@@ -96,7 +96,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HealthContactParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -138,6 +138,7 @@ The `Model` component,
 * Take note that,
     * the application differentiates patients by `Name`
     * same letters of `Name` in different cases are considered as the same `Name`
+  
 #### Appointment
 
 <img src="images/dg/UniqueAppointmentListClassDiagram.png" width="450">
@@ -157,8 +158,7 @@ The `Model` component,
     * the `Appointment` must be the same as an existing `Appointment`
     * one `Appointment` can attach at most one bill
     * the application differentiates bills by all four attributes.
-
-
+    
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -180,11 +180,11 @@ Classes used by multiple components are in the `seedu.healthcontact.commons` pac
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Current Implementation
 
-The proposed undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `History`. It tracks the states of `HealthContact` with an undo/redo history, stored internally as an `healthContactHistory` and `redoHealthContactHistory`. Additionally, it implements the following operations:
 
 * `History#updateHealthContactHistory()` — Saves the current HealthContact state, the FilteredPatients state, the FilteredAppointment state and FilteredBills state in `undoFilteredPatientsHistory`, `undoFilteredAppointmentHistory` and `undoFilteredBillsHistory` respectively.
 * `History#getHealthContactHistory(int index)` — Get the saved state of HealthContact given an index. This method is used for restoring the previous HealthContact state from its history.
@@ -255,7 +255,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-
 ### Add Feature
 
 #### Current Implementation
@@ -278,6 +277,18 @@ Step 4. The `AddPatient` command calls `Model#addPatient()`, which adds the
 patient to the `UniquePatientList` in `ModelManager`.
 
 Step 5. The application will then save the patient into the `UniquePatientList` and display the patient added.
+
+The sequence diagram below shows how the `AddXXXXCommand` is parsed:
+![AddParserSequenceDiagram](images/dg/AddParserSequenceDiagram.png)
+
+The sequence diagram below shows how the add patient operation works:
+![AddPatientSequenceDiagram](images/dg/AddPatientCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add appointment operation works:
+![AddAppointmentSequenceDiagram](images/dg/AddAppointmentCommandSequenceDiagram.png)
+
+The sequence diagram below shows how the add bill operation works:
+![AddBillSequenceDiagram](images/dg/AddBillCommandSequenceDiagram.png)
 
 The add feature is now separated for the patients, appointments and bills sections.
 
@@ -325,8 +336,13 @@ edited `Patient` will cause duplicate `Patient`s.
 Step 5. The `EditPatientCommand` calls `Model#setPatient`, which replaces
 the patient in the `UniquePatientList` in `ModelManager`.
 
-The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
+The sequence diagram below shows how the `EditXXXXCommand` is parsed:
+![EditParserSequenceDiagram](images/dg/EditParserSequenceDiagram.png)
 
+The sequence diagram below shows how the edit operation works:
+![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
+
+The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
 Design considerations:
 1. Length of command word
 2. Whether to use a prefix for the name of the patient
@@ -347,12 +363,13 @@ Alternatives:
 
 #### Current Implementation
 
+The find feature is now separated for the patients, appointments and bills sections.
+
 The `FindPatientCommand`, `FindAppointmentCommand` and `FindBillCommand` make use of predicates to filter the list of patients, appointments and bills respectively.
 Each command's parser parses the field prefixes and filter inputs keyed in by the user to create the command with Optional predicates for each field passed in as parameters.
 The command then creates a combined predicate and upon execution, updates the filtered list of patients, appointments or bills in the model by setting the new predicate.
 
 Given below is an example usage scenario for __FindPatientCommand__ and how the find mechanism behaves at each step.
-
 
 Step 1. The user launches the application. The `filteredPatients` list is initialized with an "always true" predicate for all the patient fields and all patients are shown to the user as an indexed list on the patient list panel.
 
@@ -364,7 +381,25 @@ The following sequence diagram shows how the `FindPatientCommand` works:
 
 ![FindPatientCommandSequenceDiagram](images/dg/FindPatientCommandSequenceDiagram.png)
 
-The find feature is now separated for the patients, appointments and bills sections.
+The FindAppointmentCommand works similarly to the FindPatientCommand as described in the example usage scenario, with differences in Step 2: <br>
+
+The user executes the `findappointment n/John` or `fa n/John` command to find all appointments with the name field containing "John".
+The `FindAppointmentCommand` calls `Model#updateFilteredAppointmentList(predicate)` to set the predicate of the `filteredAppointments` list (originally "always true" for all fields) to the new predicate created by the command.
+The application displays the list of all appointments for patients with names containing "John" on the appointment list panel.
+
+The following sequence diagram shows how the `FindAppointmentCommand` works:
+
+![FindAppointmentCommandSequenceDiagram](images/dg/FindAppointmentCommandSequenceDiagram.png)
+
+The FindBillCommand works similarly to the FindPatientCommand as described in the example usage scenario, with differences in Step 2: <br>
+
+The user executes the `findbill n/John` or `fb n/John` command to find all bills for appointments of patients with name field containing "John".
+The `FindBillCommand` calls `Model#updateFilteredBillList(predicate)` to set the predicate of the `filteredBills` list (originally "always true" for all fields) to the new predicate created by the command.
+The application displays the list of all bills for appointments of patients with names containing "John" on the bills list panel.
+
+The following sequence diagram shows how the `FindBillCommand` works:
+
+![FindBillCommandSequenceDiagram](images/dg/FindBillCommandSequenceDiagram.png)
 
 Design considerations:
 1. Usage of command word
@@ -394,9 +429,9 @@ of the application as indexed lists.
 Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
 The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
 
-The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
-related appointments.
 
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
+related appointments and bills. Deleting an appointment deletes its related bills.
 
 ### Select Feature
 
@@ -465,7 +500,13 @@ The following sequence diagram shows how the `SetPaidCommand` works:
 
 ![SetPaidCommandSequenceDiagram](images/dg/SetPaidCommandSequenceDiagram.png)
 
-The `SetUnpaidCommand` works similarly to the `SetPaidCommand`, just that it marks the payment status of a bill as unpaid.
+The `SetUnpaidCommand` works similarly to the `SetPaidCommand` as in the above example usage scenario, with differences in Step 2: <br>
+
+The user executes the `setunpaid 1` command to mark the first bill on the bill panel as unpaid. The `SetUnpaidCommand` calls `Model#setBillAsUnpaid`, which marks the bill in the `HealthContact` object as unpaid. The application displays the bill panel with the first bill's payment status checkbox not ticked.
+
+The following sequence diagram shows how the `SetUnpaidCommand` works:
+
+![SetUnpaidCommandSequenceDiagram](images/dg/SetUnpaidCommandSequenceDiagram.png)
 
 Design considerations:
 1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
@@ -562,49 +603,51 @@ the command.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                     | I want to …​                               | So that I can…​                                                                         |
-|----------|-----------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | user                        | add a patient                              | keep track of the patient in a database                                                 |
-| `* * *`  | user                        | edit a patient                             | make changes to patients' details in the database                                       |
-| `* * *`  | user                        | delete a patient                           | remove a patient and his or her details if they are no longer needed                    |
-| `* * *`  | user                        | add an appointment                         | keep track of the patient's appointments in the database                                |
-| `* * *`  | user                        | edit an appointment                        | make changes to appointments' details in the database                                   |
-| `* * *`  | user                        | delete an appointment                      | remove an appointment from the database once it is over                                 |
-| `* *`    | user with many patients     | sort patients by name/phone/email/address  | classify patients according to each criteria (e.g. name, phone, email, address) easily  |
-| `* *`    | user with many appointments | sort appointments by name/test/slot/doctor | classify appointments according to each criteria (e.g. name, test, slot, doctor) easily |
-| `* *`    | user with many bills        | sort bills by name/amount/date/status      | classify bills according to each criteria (e.g. name, amount, date, status) easily      |
-| `* *`    | user                        | find a patient                             | locate details of patients without having to go through the entire list                 |
-| `* *`    | user                        | find an appointment                        | locate details of appointments without having to go through the entire list             |
-| `* *`    | user                        | find a bill                                | locate details of bills without having to go through the entire list                    |
-| `* *`    | user                        | select a patient                           | view all appointments and bills tagged to that patient                                  |
-| `* *`    | user                        | select an appointment                      | view all bills tagged to that appointment                                               |
-| `* *`    | careless user               | undo an action                             | revert a command once I have realised the command is a mistake                          |
-| `* *`    | indecisive user             | redo an action                             | revert an undo command once I have changed my mind and I to execute the command again   |
+| Priority | As a …​                              | I want to …​                       | So that I can…​                                                                                     |
+|----------|--------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                 | add a patient                      | keep track of the patient's details in the application                                              |
+| `* * *`  | user                                 | edit a patient                     | make changes to patients' details in the application                                                |
+| `* * *`  | user                                 | delete a patient                   | remove a patient's details, appointments and bills if they are no longer needed                     |
+| `* * *`  | user                                 | add an appointment of a patient    | keep track of the patient's appointment in the application                                          |
+| `* * *`  | user                                 | edit an appointment of a patient   | make changes to the appointment's details in the application                                        |
+| `* * *`  | user                                 | delete an appointment of a patient | remove an appointment from the application                                                          |
+| `* *`    | user with many patients              | sort patients                      | arrange patients according to each criteria (e.g. name, phone, email, address, remark, tags) easily |
+| `* *`    | user with many appointments          | sort appointments                  | arrange appointments according to each criteria (e.g. name, medical test, slot, doctor) easily      |
+| `* *`    | user with many bills                 | sort bills                         | arrange bills according to each criteria (e.g. name, amount, bill date, payment status) easily      |
+| `* *`    | user with a few or more patients     | find a patient                     | locate details of a patient easily without having to go through the entire list                     |
+| `* *`    | user with a few or more appointments | find an appointment                | locate details of an appointment easily without having to go through the entire list                |
+| `* *`    | user with a few or more bills        | find a bill                        | locate details of a bill easily without having to go through the entire list                        |
+| `* *`    | user                                 | select a patient                   | view patient details and all appointments and bills tagged to that patient, if any                  |
+| `* *`    | user                                 | select an appointment              | view the bill tagged to that appointment, if any                                                    |
+| `* *`    | careless user                        | undo an action                     | revert a command once I realise that the previous command is a mistake                              |
+| `* *`    | indecisive user                      | redo an action                     | revert an undo command if I change my mind and I want to execute the command again                  |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HealthContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Adding a patient**
+**Use case: UC-01 - Adding a patient**
 
 **MSS**
-
-1. User enters add command with the detailed information of patient to be added.
-2. HealthContact adds the patient
-
-    Use case ends.
-
+1. User enters the add command with the patient's details to be added.
+2. HealthContact adds the patient and displays the new patient added with his/her details.
+Use case ends.
 
 **Extensions**
 
 
-* 1a. The format for add command is not followed.
 
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
-
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the patient already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the patient does not exist in the database.
+    * Use case resumes from step 2.
 
 **Use case: Adding an appointment**
 
@@ -617,17 +660,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for add command is not followed.
-
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The patient does not exist.
-
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the appointment already exists in the database.
     * 1b1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the appointment does not exist in the database.
+    * Use case resumes from step 2.
     
 **Use case: Adding a bill to an appointment**
 
@@ -640,17 +682,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for AddBillCommand is not followed.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. The bill for an appointment already exists.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the bill already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the bill does not exist in the database.
+    * Use case resumes from step 2.
     
 **Use case: Editing a patient**
 
@@ -663,11 +704,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
-    * 3a1. HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the patient already exists in the database.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the patient exists in the database.
+    * Use case resumes from step 2.
 
 **Use case: Editing an appointment**
 
@@ -680,11 +726,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The input format is invalid.
-
+* 1a. HealthContact detects an error in the format of the command entered.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the appointment index is invalid.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the appointment index is valid.
+    * Use case resumes from step 2.
     
 **Use case: Editing a bill of an appointment**
 
@@ -697,17 +748,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format for EditBillCommand is not followed.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
-
-* 1b. Index of the edited bill is not allowed.
-
-    * 1b.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
+* 1b. HealthContact detects that the bill index is invalid.
+    * 1b1. HealthContact shows an error message.
+    * 1b2. User enters the command again.
+    * Steps 1b1-1b2 are repeated until the bill index is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Deleting a patient**
@@ -721,11 +771,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
+* 1a. HealthContact detects that the patient index is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the patient index entered is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Deleting an appointment**
@@ -739,11 +789,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
+* 1a. HealthContact detects that the appointment index is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the appointment index entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Deleting a bill of an appointment**
 
@@ -756,11 +806,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a.1 HealthContact shows an error message.
-
-      Use case ends.
+* 1a. HealthContact detects that the bill index is invalid.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the bill index entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting patients**
 
@@ -773,11 +823,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting appointments**
 
@@ -790,11 +840,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Sorting bills**
 
@@ -807,11 +857,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given type of sorting is invalid.
-
+* 1a. HealthContact detects that the field is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the field entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Finding a patient**
 
@@ -824,11 +874,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find patient command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 
 **Use case: Finding an appointment**
@@ -842,11 +892,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find appointment command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Finding a bill**
 
@@ -859,11 +909,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The format of the find bill command is invalid.
-
+* 1a. HealthContact detects that the keyword is invalid.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 2.
 
 **Use case: Undoing a command**
 
@@ -876,11 +926,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. There is no command to undo.
-
+* 1a. HealthContact detects that there is no command to undo.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * Use case ends.
 
 **Use case: Redoing a command**
 
@@ -893,11 +941,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. There is no command to redo.
-
+* 1a. HealthContact detects that there is no command to redo.
     * 1a1. HealthContact shows an error message.
-
-      Use case ends.
+    * Use case ends.
 
 **Use case: Listing**
 
@@ -1124,7 +1170,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `editappointment 0 n/Ed`<br>
        Expected: No appointment is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editappointment`, `editappointment 1`(missing field(s)), `editappointment x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Editing bill details
@@ -1137,14 +1183,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The patient for the first bill displayed in the list is changed to Edward and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
-    3. Test case: `editbill 1 n/Edward p/unpaid`<br>
-       Expected: The patient for the first bill displayed in the list is changed to Edward and the payment status of the bill is changed to not paid and the complete list of bills
+    3. Test case: `editbill 1 n/Edward a/250`<br>
+       Expected: The patient for the first bill displayed in the list is changed to Edward and the amount is changed to 250 and the complete list of bills
        is displayed. The details of the edited bill is shown in the status message.
 
     4. Test case: `editbill 0 n/Ed`<br>
        Expected: No bill is edited. Error details shown in the status message.
 
-    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect edit commands to try: `editbill`, `editbill 1`(missing field(s)), `editbill x n/Ed`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Set payment status
@@ -1159,7 +1205,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setpaid`, `setpaid x`(where x is larger than the list size)<br>
            Expected: Similar to previous.
    
 2. Set a bill's payment status to unpaid
@@ -1172,7 +1218,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `setunpaid 0`<br>
        Expected: Payment status of no bill is changed. Error details shown in the status message.
 
-    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect set payment status commands to try: `setunpaid`, `setunpaid x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Sorting patients
@@ -1220,6 +1266,36 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sortbill`, `sortbill o/asc`<br>
        Expected: Similar to previous.
 
+### Select patient
+
+1. Selecting a patient to display the patient's appointments and bills
+
+    1. Prerequisites: A list of patients is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectpatient 1`<br>
+       Expected: The appointments and bills of the first patient are displayed. The details of the selected patient are shown in the status message.
+
+    3. Test case: `selectpatient 0`<br>
+       Expected: No patient is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectpatient`, `selectpatient x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Select appointment
+
+1. Selecting an appointment to display the related bills
+
+    1. Prerequisites: A list of appointments is being shown with at least 1 patient in the list.
+
+    2. Test case: `selectappointment 1`<br>
+       Expected: The bills of the first appointment are displayed. The details of the selected appointment are shown in the status message.
+
+    3. Test case: `selectappointment 0`<br>
+       Expected: No appointment is selected. Error details shown in the status message.
+
+    4. Other incorrect select commands to try: `selectappointment`, `selectappointment x`(where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
@@ -1233,3 +1309,14 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
+* Find feature
+  * FindCommand in AB3 versus FindPatientCommand, FindAppointmentCommand and FindBillCommand in HealthContact
+
+| AB3 (FindCommand)                                                          | HealthContact                                                                                                   |
+|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| Finds persons only                                                         | Finds patients, appointments and bills separately                                                               |
+| Finds by name only                                                         | Finds by respective fields of patients, appointments and bills                                                  |
+| Finds by one field at a time                                               | Finds by multiple fields at a time                                                                              |
+| A new predicate class needs to be created for each field to be filtered by | Optional predicates are used instead                                                                            |
+| Find by one entity, i.e. Person                                            | Find by multiple entities separately, i.e. Patient, Appointment and Bill                                        |
+| Can only find using full words                                             | Can find using partial and full words, numbers and special characters depending on respective field constraints |

@@ -29,17 +29,19 @@ public class AddBillCommand extends Command {
             + ": Adds a bill that corresponds to an appointment to HealthContact.\n"
             + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer) "
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
-            + PREFIX_AMOUNT + " AMOUNT";
+            + PREFIX_AMOUNT + " AMOUNT\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_BILL_DATE + "2022-11-12 "
+            + PREFIX_AMOUNT + "100";
     public static final String MESSAGE_SUCCESS = "New bill added: %1$s";
     public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in HealthContact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
             "This appointment does not exist in HealthContact";
-    public static final String MESSAGE_BILL_DATE_EARLIER_THAN_SLOT =
-            "The bill date must not be earlier than appointment slot";
 
     private final Index indexOfAppointment;
     private final BillDate billDate;
     private final Amount amount;
+    private final Bill bill;
     private final PaymentStatus defaultPaymentStatus = new PaymentStatus(PaymentStatus.Status.UNPAID.toString());
 
     /**
@@ -50,6 +52,18 @@ public class AddBillCommand extends Command {
         this.indexOfAppointment = indexOfAppointment;
         this.billDate = billDate;
         this.amount = amount;
+        this.bill = null;
+    }
+
+    /**
+     * Creates an AddBillCommand to add the specified {@code Bill}
+     */
+    public AddBillCommand(Bill bill) {
+        requireAllNonNull(bill);
+        this.indexOfAppointment = null;
+        this.billDate = null;
+        this.amount = null;
+        this.bill = bill;
     }
 
     /**
@@ -64,43 +78,52 @@ public class AddBillCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Appointment> lastShownAppointmentList = model.getFilteredAppointmentList();
+        if (this.bill == null) {
+            requireNonNull(model);
+            List<Appointment> lastShownAppointmentList = model.getFilteredAppointmentList();
 
-        Appointment appointment;
+            Appointment appointment;
 
-        if (indexOfAppointment.getZeroBased() >= lastShownAppointmentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+            if (indexOfAppointment.getZeroBased() >= lastShownAppointmentList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+            }
+
+            try {
+                appointment = model.getFilteredAppointmentList()
+                        .get(indexOfAppointment.getZeroBased());
+            } catch (AppointmentNotFoundException e) {
+                throw new CommandException(MESSAGE_APPOINTMENT_NOT_EXIST);
+            }
+
+            Bill toAdd = new Bill(appointment, amount, billDate, defaultPaymentStatus);
+
+            if (model.hasBill(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_BILL);
+            }
+
+            model.addBill(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } else {
+            if (model.hasBill(this.bill)) {
+                throw new CommandException(MESSAGE_DUPLICATE_BILL);
+            }
+
+            model.addBill(this.bill);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.bill));
         }
-
-        try {
-            appointment = model.getFilteredAppointmentList()
-                    .get(indexOfAppointment.getZeroBased());
-        } catch (AppointmentNotFoundException e) {
-            throw new CommandException(MESSAGE_APPOINTMENT_NOT_EXIST);
-        }
-
-        Bill toAdd = new Bill(appointment, amount, billDate, defaultPaymentStatus);
-
-        if (model.hasBill(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_BILL);
-        }
-
-        if (toAdd.getBillDate().localDate.isBefore(toAdd.getAppointment().getSlot().localDateTime.toLocalDate())) {
-            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
-        }
-
-        model.addBill(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddBillCommand // instanceof handles nulls
-                && indexOfAppointment.equals(((AddBillCommand) other).indexOfAppointment)
-                && billDate.equals(((AddBillCommand) other).billDate)
-                && amount.equals(((AddBillCommand) other).amount)
-                && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus));
+        if (this.bill == null) {
+            return other == this // short circuit if same object
+                    || (other instanceof AddBillCommand // instanceof handles nulls
+                    && indexOfAppointment.equals(((AddBillCommand) other).indexOfAppointment)
+                    && billDate.equals(((AddBillCommand) other).billDate)
+                    && amount.equals(((AddBillCommand) other).amount)
+                    && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus));
+        } else {
+            return other == this || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
+        }
     }
 }
