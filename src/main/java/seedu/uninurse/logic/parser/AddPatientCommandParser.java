@@ -2,6 +2,7 @@ package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -42,8 +43,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     public AddPatientCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_CONDITION, PREFIX_MEDICATION, PREFIX_TASK_DESCRIPTION, PREFIX_TAG, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
