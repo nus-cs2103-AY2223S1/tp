@@ -3,6 +3,7 @@ package seedu.hrpro.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -61,13 +62,10 @@ public class DeleteStaffCommandTest {
         model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
-    //Test to check that command throw exception when trying to delete a staff not in project
+
     @Test
     public void execute_invalidProject_throwCommandException() {
-        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
-        project.getStaffList().add(staff);
-        model.setFilteredStaffList(project.getStaffList());
+        // Trying to delete from a project that does not exist
         ProjectName projectName = new ProjectName("WRONG PROJECT NAME");
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectName);
 
@@ -75,11 +73,18 @@ public class DeleteStaffCommandTest {
 
         assertCommandFailure(deleteStaffCommand, model, expectedMessage);
 
-        model.getFilteredProjectList().get(0).getStaffList().remove(staff);
+        // Trying to delete a staff from a project that does not contain this staff
+        Project targetProject = model.getFilteredProjectList().get(1);
+        DeleteStaffCommand deleteStaffCommand2 = new DeleteStaffCommand(INDEX_FIRST_STAFF,
+                targetProject.getProjectName());
+        Staff staffToDelete = model.getFilteredStaffList().get(0);
+
+        String expectedMessage2 = String.format(MESSAGE_INVALID_STAFF,
+                staffToDelete.getStaffName());
+
+        assertCommandFailure(deleteStaffCommand2, model, expectedMessage2);
     }
 
-    //Test to check that command throw exception when trying to
-    //delete a staff from project not inside HR Pro Max++
     @Test
     public void execute_invalidIndex_throwCommandException() {
         cleanUpModel();
