@@ -40,7 +40,8 @@ public class AddTutorialCommandTest {
 
         CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
 
-        assertEquals(String.format(AddTutorialCommand.MESSAGE_SUCCESS, validTutorial), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
     }
 
