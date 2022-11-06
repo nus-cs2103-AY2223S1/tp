@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MakeStatsCommandParser" as MakeStatsCommandParser LOGIC_COLOR
+participant "c:MakeStatsCommand" as MakeStatsCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":StatsWindow" as StatsWindow UI_COLOR
+end box
+
+[-> LogicManager : execute(cmd)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(cmd)
+activate AddressBookParser
+
+create MakeStatsCommandParser
+AddressBookParser -> MakeStatsCommandParser
+activate MakeStatsCommandParser
+
+create MakeStatsCommand
+MakeStatsCommandParser -> MakeStatsCommand : parse(cmd)
+activate MakeStatsCommand
+
+MakeStatsCommand --> MakeStatsCommandParser
+deactivate MakeStatsCommand
+
+MakeStatsCommandParser --> AddressBookParser
+deactivate MakeStatsCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> MakeStatsCommand : execute()
+activate MakeStatsCommand
+
+MakeStatsCommand -> ModelManager : setData(data)
+activate ModelManager
+
+ModelManager --> MakeStatsCommand :
+deactivate ModelManager
+
+MakeStatsCommand -[hidden]-> LogicManager : result
+
+MakeStatsCommand --> MainWindow : result
+activate MainWindow
+LogicManager --> MainWindow : getPieChartData()
+
+MainWindow --> StatsWindow : setPieChart()
+activate StatsWindow
+StatsWindow --> MainWindow
+
+MainWindow --> StatsWindow : handleStats()
+
+StatsWindow -->] : show()
+StatsWindow --> MainWindow
+deactivate StatsWindow
+
+MainWindow --> MakeStatsCommand
+MainWindow --> LogicManager
+deactivate MainWindow
+deactivate MakeStatsCommand
+
+destroy MakeStatsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

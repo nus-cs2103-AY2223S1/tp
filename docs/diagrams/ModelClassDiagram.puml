@@ -14,11 +14,13 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+
+Class UniqueEventList
+Class Event
+
+Class StatisticData
+Class StatisticDataList
+
 
 }
 
@@ -28,23 +30,22 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyAddressBook
+ModelManager -up-> "1" AddressBook
+ModelManager -up-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueEventList
+AddressBook *--> "1" StatisticDataList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+UniqueEventList --> "~* all" Event
+StatisticDataList --> "~* all" StatisticData
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Person --[hidden]right--> Event
 
-ModelManager -->"~* filtered" Person
+ModelManager -up->"~* filtered" Person
+ModelManager -up->"~* filtered" Event
+ModelManager -up-> StatisticData
 @enduml

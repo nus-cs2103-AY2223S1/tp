@@ -1,0 +1,19 @@
+@startuml
+start
+repeat
+:User enters add person command;
+if () then ([date of birth field is provided])
+  if () then ([date of birth format is valid])
+    if () then ([person doesn't exist
+   in the contact list])
+      :Person is added with valid date of birth field;
+      stop
+    else ([else])
+    endif
+  else ([else])
+  endif
+else ([else])
+endif
+backward :System shows error message;
+repeat while;
+@enduml

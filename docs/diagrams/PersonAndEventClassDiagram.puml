@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Model (Partial)" <<Rectangle>>{
+    Class ModelManager
+
+    Class Event
+    Class EventTitle
+    Class Purpose
+    Class StartTime
+    Class UidList
+
+    Class Person
+    Class Address
+    Class Date
+    Class Email
+    Class Gender
+    Class Phone
+    Class Uid
+}
+
+Class HiddenOutside #FFFFFF
+
+HiddenOutside -down- ModelManager
+
+ModelManager -down-> Person
+ModelManager -down-> Event
+
+Person *-down-> Address
+Person *-down-> Date
+Person *-down-> Email
+Person *-down-> Gender
+Person *-down-> Phone
+Person *-down-> "1"Uid
+
+Person -[hidden]right-> Event
+
+Event *-down-> EventTitle
+Event *-down-> Purpose
+Event *-down-> Date
+Event *-down-> StartTime
+Event *-down-> UidList
+
+UidList -down-> "*"Uid
