@@ -103,8 +103,7 @@ public class Task implements Comparable<Task> {
             Task otherTask = (Task) other;
             return name.equals(otherTask.name)
                     && description.equals(otherTask.description)
-                    && deadline.equals(otherTask.deadline)
-                    && isDone == otherTask.isDone;
+                    && deadline.equals(otherTask.deadline);
         }
         return false;
     }
