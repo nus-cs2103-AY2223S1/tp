@@ -3,6 +3,7 @@ package seedu.address.logic.commands.schedules;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSchedules.getTypicalModuleSet;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
@@ -19,6 +20,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -102,13 +105,38 @@ public class ViewScheduleCommandTest {
                         String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                         false, false, false, false,
                         false, false, true, false, false),
-        expectedModel);
+                expectedModel);
 
+        assertCommandSuccess(
+                new ViewScheduleCommand(weekdayPredicateTwo, noModules), model,
+                new CommandResult(String.format(
+                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
+                        false, false, false, false,
+                        false, false, true, false, false),
+                expectedModel);
 
     }
 
     @Test
     public void execute_ModuleCodePredicate_showScheduleOfModules() {
+        ArrayList<String> modulesList = new ArrayList<>();
+        modulesList.add("CS2102");
+        Set<String> modulesSet = new HashSet<>();
+        modulesSet.add("CS2102");
+
+
+        ScheduleContainsKeywordsPredicate modulePredicate =
+                new ScheduleContainsKeywordsPredicate(modulesList);
+
+        expectedModel.updateFilteredScheduleList(modulePredicate);
+        CommandResult expectedResult = new CommandResult(String.format(
+                String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, expectedModel.getFilteredScheduleList().size())),
+                false, false, false, false,
+                false, false, true, false, false);
+
+        assertCommandSuccess(
+                new ViewScheduleCommand(modulePredicate, modulesSet), model,
+                expectedResult, expectedModel);
 
     }
 
@@ -143,10 +171,18 @@ public class ViewScheduleCommandTest {
 
     @Test
     public void execute_nonExistModule_throwCommandException() {
-        Set<String> modules = getTypicalModuleSet();
-        List<Schedule> schedules = model.getFilteredScheduleList();
+
+        ArrayList<String> modulesList = new ArrayList<>();
+        modulesList.add("AB1111");
+        Set<String> modulesSet = new HashSet<>();
+        modulesSet.add("AB1111");
 
 
+        ScheduleContainsKeywordsPredicate modulePredicate =
+                new ScheduleContainsKeywordsPredicate(modulesList);
+        ViewScheduleCommand viewScheduleCommand = new ViewScheduleCommand(modulePredicate, modulesSet);
+
+        assertThrows(CommandException.class, () -> viewScheduleCommand.execute(model));
 
     }
 

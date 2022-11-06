@@ -32,6 +32,7 @@ public class DeleteScheduleCommandTest {
         Index outOfBound = Index.fromOneBased(schedules.size() + 1);
         DeleteScheduleCommand deleteScheduleCommand = new DeleteScheduleCommand(outOfBound);
         assertThrows(CommandException.class, () -> deleteScheduleCommand.execute(model));
+        System.out.println(model.getFilteredScheduleList().size());
     }
 
     @Test
@@ -48,6 +49,7 @@ public class DeleteScheduleCommandTest {
         expectedModel.deleteSchedule(scheduleToDelete);
 
         assertCommandSuccess(deleteScheduleCommand, model, expectedMessage, expectedModel);
+        System.out.println(model.getFilteredScheduleList().size());
     }
 
     @Test
@@ -64,5 +66,6 @@ public class DeleteScheduleCommandTest {
         expectedModel.deleteSchedule(scheduleToDelete);
 
         assertCommandSuccess(deleteScheduleCommand, model, expectedMessage, expectedModel);
+        System.out.println(model.getFilteredScheduleList().size());
     }
 }
