@@ -47,7 +47,7 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
         * [Delete an income from the income list](#delete-an-income-from-the-income-list)
     * [Summary of entries:](#summary-of-entries)
         * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
-        * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
+        * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
     * [View entries by category:](#view-entries-by-category)
     * [View entries by month:](#view-entries-by-month)
     * [Clearing all entries:](#clearing-all-entries)
@@ -399,7 +399,7 @@ The command format is provided below:
 
 ![SummaryCommand](images/ug/SummaryCommand.png)
 
-#### Summary of all entries the specified month
+#### Summary of all entries in the specified month
 
 - Examples: `summary mo/2022-10`
 - Expected:
@@ -418,8 +418,10 @@ The command format is provided below:
 
 ### View entries by category
 
-You've always been a foodie, but how much of your total expenditure is spent on food? You have multiple income streams,
-but which helped you earn the most money? View your entries in a pie chart to find out.
+You've always been a foodie, but how much of your total expenditure is spent on food?
+
+You have multiple income streams, but which helped you earn the most money? View your entries in a pie chart to find
+out.
 
 Format: `view t/ENTRY_TYPE`
 
@@ -461,10 +463,9 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
     - Examples: `view t/i mo/2022-01`
     - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
 
-- The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
-  accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
-  error.
-
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+The `MONTH` field determines whether you get a pie chart or a line graph. Including the `MONTH` field gives you a line graph, whereas excluding it gives you a pie chart.
+</div>
 ### Clearing all entries
 
 You're giving your laptop to your younger brother and already backed up your PennyWise data. Clear all your entries so
