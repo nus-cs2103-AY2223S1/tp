@@ -20,6 +20,7 @@ I contributed to the following sections of the user guide:
 2. Fixed UG bugs in file commands section and field details.
 ### Contributions to the DG:
 I contributed to the following sections of the developer guide:
+<<<<<<< HEAD
 1. Add use cases for venue add delete view book unbook.
 2. Add Manual Testing for Modifying residents: add, delete, remove, edit
 3. Modified Storage and Logic components
@@ -33,6 +34,7 @@ In particular, I added/updated the following UML diagrams:
 - Reviewed 22 pull requests including major changes such as [#57](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/57), [#124](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/124) and [#55](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/55). 
 - Surfaced [8 potential bugs & suggestions](https://github.com/nareus/ped/issues) for other teams during PE-D.
 - Supported and handled test workload for the team according to the progress and expectations of the project.
+
 ### Contributions to the Developer Guide:
 ![](../images/FilterCommandSequenceDiagram.png)
 ![](../images/StorageClassDiagram.png)

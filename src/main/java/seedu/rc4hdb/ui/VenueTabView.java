@@ -8,8 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.rc4hdb.model.venues.Venue;
-import seedu.rc4hdb.model.venues.VenueName;
-import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * Controller for the venue tab ui component.
@@ -28,28 +26,23 @@ public class VenueTabView extends UiPart<Region> {
     @FXML
     private StackPane venueListViewPlaceholder;
 
-    private ObservableList<Booking> bookings;
-
     /**
      * Constructor for a VenueTabView instance.
      * @param venueList The list of venues to be displayed.
-     * @param bookingList The list of bookings to be displayed.
+     * @param currentlyDisplayedVenue The venue whose bookings are to be displayed
      */
-    public VenueTabView(ObservableList<Venue> venueList, ObservableList<Booking> bookingList,
-                        ObservableItem<VenueName> currentlyDisplayedVenueName) {
+    public VenueTabView(ObservableList<Venue> venueList, ObservableItem<Venue> currentlyDisplayedVenue) {
         super(FXML);
-        requireAllNonNull(venueList, bookingList);
+        requireAllNonNull(venueList, currentlyDisplayedVenue);
 
-        this.bookings = bookingList;
-        fillInnerParts(venueList, bookingList, currentlyDisplayedVenueName);
+        fillInnerParts(venueList, currentlyDisplayedVenue);
     }
 
-    void fillInnerParts(ObservableList<Venue> venues, ObservableList<Booking> bookings,
-            ObservableItem<VenueName> currentlyDisplayedVenueName) {
-        bookingTableView = new BookingTableView(bookings);
-        venueListView = new VenueListView(venues, currentlyDisplayedVenueName);
-
+    void fillInnerParts(ObservableList<Venue> venues, ObservableItem<Venue> currentlyDisplayedVenue) {
+        bookingTableView = new BookingTableView(currentlyDisplayedVenue);
         bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
+
+        venueListView = new VenueListView(venues, currentlyDisplayedVenue);
         venueListViewPlaceholder.getChildren().add(venueListView.getRoot());
     }
 

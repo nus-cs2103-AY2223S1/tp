@@ -22,7 +22,7 @@ public class Gender extends StringField implements ResidentField {
      * @param gender A valid gender string.
      */
     public Gender(String gender) {
-        super(gender);
+        super(gender.toUpperCase());
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
     }
 
@@ -30,7 +30,7 @@ public class Gender extends StringField implements ResidentField {
      * Returns true if a given string is a valid gender.
      */
     public static boolean isValidGender(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 }

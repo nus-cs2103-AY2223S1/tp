@@ -152,22 +152,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setObservableVenues(List<Venue> modifiableVenues) {
+    public ObservableItem<Venue> getCurrentlyDisplayedVenue() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Booking> getObservableBookings() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setObservableBookings(VenueName venueName) {
+    public void setCurrentlyDisplayedVenue(VenueName venueName) {
         throw new AssertionError("This method should not be called.");
     }
 

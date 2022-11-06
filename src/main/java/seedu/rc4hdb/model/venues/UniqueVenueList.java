@@ -99,14 +99,6 @@ public class UniqueVenueList implements Iterable<Venue> {
                 .removeBooking(bookingDescriptor);
     }
 
-    /**
-     * Gets the unmodifiable list of bookings that are associated to the venue with {@code venueName}.
-     */
-    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
-        requireNonNull(venueName);
-        return getVenueWithName(venueName).getObservableBookings();
-    }
-
     public void setVenues(UniqueVenueList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -125,7 +117,11 @@ public class UniqueVenueList implements Iterable<Venue> {
         internalList.setAll(venues);
     }
 
-    private Venue getVenueWithName(VenueName venueName) throws VenueNotFoundException {
+    /**
+     * Gets the venue in {@code venues} has the same name as {@code venueName}.
+     * @see Venue#isSameVenue(VenueName)
+     */
+    public Venue getVenueWithName(VenueName venueName) throws VenueNotFoundException {
         requireNonNull(venueName);
         for (Venue venue : internalList) {
             if (venue.isSameVenue(venueName)) {

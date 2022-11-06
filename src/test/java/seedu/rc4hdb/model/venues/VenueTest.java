@@ -71,7 +71,7 @@ public class VenueTest {
         if (someVenue.getVenueName() != MEETING_ROOM_VENUE_NAME) {
             return false;
         }
-        if (!someVenue.getObservableBookings().equals(List.of(MR_ALICE_MONDAY_5_TO_6PM))) {
+        if (!someVenue.getBookings().equals(List.of(MR_ALICE_MONDAY_5_TO_6PM))) {
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public class VenueTest {
     @Test
     public void constructor_withoutListOfBookings_returnsVenueWithNoBookings() {
         Venue venue = new Venue(MEETING_ROOM_VENUE_NAME);
-        assertEquals(venue.getObservableBookings(), Collections.emptyList());
+        assertEquals(venue.getBookings(), Collections.emptyList());
     }
 
     // Test the second constructor
@@ -101,7 +101,7 @@ public class VenueTest {
     public void constructor_withListOfBookings_returnsVenueWithSameListOfBookings() {
         List<Booking> bookings = Arrays.asList(MR_ALICE_MONDAY_5_TO_6PM, MR_BOB_TUESDAY_6_TO_7PM);
         Venue venue = new Venue(bookings, MEETING_ROOM_VENUE_NAME);
-        assertEquals(venue.getObservableBookings(), bookings);
+        assertEquals(venue.getBookings(), bookings);
     }
 
     // Null input for first constructor throws NullPointerException
@@ -194,7 +194,7 @@ public class VenueTest {
     // Venues with different venue names are not equal
     @Test
     public void equals_twoVenuesWithDifferentVenueNames_isNotEqual() {
-        // Both venues have the an (empty) booking list, and only differ by venue name.
+        // Both venues have a (empty) booking list, and only differ by venue name.
         Venue otherVenue = new Venue(DISCUSSION_ROOM_NAME);
         assertNotEquals(emptyVenue, otherVenue);
     }

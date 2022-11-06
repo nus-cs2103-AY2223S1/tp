@@ -30,24 +30,9 @@
             <MenuItem fx:id="commandBoxRedirect" mnemonicParsing="false" onAction="#handleRedirect" visible="false" />
           </Menu>
         </MenuBar>
-        <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600" styleClass="background" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
-            <Tab fx:id="residentTab" closable="false" styleClass="tab">
-                  <content>
-                     <StackPane fx:id="residentTableViewPlaceholder">
-                        <padding>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                        </padding>
-                     </StackPane>
-                  </content>
-            </Tab>
-            <Tab fx:id="venueTab" closable="false" styleClass="tab">
-                  <content>
-                     <StackPane fx:id="venueTabViewPlaceholder" styleClass="pane-with-border">
-                        <padding>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                        </padding></StackPane>
-                  </content>
-            </Tab>
+        <TabPane fx:id="tabViewPane" minWidth="340" prefHeight="600" styleClass="background" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
+            <Tab fx:id="residentTab" closable="false" styleClass="tab" />
+            <Tab fx:id="venueTab" closable="false" styleClass="tab" />
         </TabPane>
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
@@ -59,7 +44,7 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="fileFooterPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

@@ -100,7 +100,10 @@ public class Resident implements BookingField {
         }
 
         return otherResident != null
-                && otherResident.getName().equals(getName());
+                && (otherResident.matricNumber.equals(this.matricNumber)
+                || otherResident.phone.equals(this.phone)
+                || otherResident.email.equalsIgnoreCase(this.email)
+                || otherResident.room.equals(this.room));
     }
 
     /**
@@ -154,7 +157,12 @@ public class Resident implements BookingField {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            /* this adds a ", " between each tag, and removes the last set of ", " after the
+            last tag so that the tags display correctly. */
+            for (Tag t : tags) {
+                builder.append(t + ", ");
+            }
+            builder.delete(builder.length() - 2, builder.length());
         }
         return builder.toString();
     }

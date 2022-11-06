@@ -8,11 +8,8 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
-import seedu.rc4hdb.model.venues.VenueName;
-import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.ui.ObservableItem;
 
 /**
@@ -27,13 +24,6 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
-
-    /**
-     * Returns the ResidentBook.
-     *
-     * @see seedu.rc4hdb.model.Model#getResidentBook()
-     */
-    ReadOnlyResidentBook getResidentBook();
 
     /** Returns an unmodifiable view of the filtered list of residents */
     ObservableList<Resident> getFilteredResidentList();
@@ -59,9 +49,9 @@ public interface Logic {
     ObservableValue<Path> getObservableFolderPath();
 
     /**
-     * Returns the list of observable bookings in the model.
+     * Gets the venue that is currently being displayed.
      */
-    ObservableList<Booking> getObservableBookings();
+    ObservableItem<Venue> getCurrentlyDisplayedVenue();
 
     /**
      * Returns an observable list of the fields to be shown when invoking {@code show}.
@@ -73,5 +63,4 @@ public interface Logic {
      */
     ObservableList<String> getHiddenFields();
 
-    ObservableItem<VenueName> getCurrentlyDisplayedVenueName();
 }

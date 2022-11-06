@@ -18,7 +18,7 @@ public class MatricNumberTest {
 
     @Test
     public void constructor_invalidMatricNumber_throwsIllegalArgumentException() {
-        String invalidMatricNumber = "a01234567a";
+        String invalidMatricNumber = "a1101234567a";
         assertThrows(IllegalArgumentException.class, () -> new Gender(invalidMatricNumber));
     }
 
@@ -37,10 +37,8 @@ public class MatricNumberTest {
         assertFalse(MatricNumber.isValidMatricNumber(" ")); // spaces only
 
         // wrong format
-        assertFalse(MatricNumber.isValidMatricNumber("a0123456A")); // first letter not uppercase
         assertFalse(MatricNumber.isValidMatricNumber("B0123456A")); // first letter not A
         assertFalse(MatricNumber.isValidMatricNumber("!0123456A")); // first letter not alphabet
-        assertFalse(MatricNumber.isValidMatricNumber("A0123456a")); // last letter not uppercase
         assertFalse(MatricNumber.isValidMatricNumber("A0123456~")); // last letter not alphabet
         assertFalse(MatricNumber.isValidMatricNumber("A012345-1B")); // negative number
         assertFalse(MatricNumber.isValidMatricNumber("A012345~B")); // non-numerical character in middle

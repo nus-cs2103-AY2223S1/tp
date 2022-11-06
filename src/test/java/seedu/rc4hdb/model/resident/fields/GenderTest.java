@@ -18,7 +18,7 @@ public class GenderTest {
 
     @Test
     public void constructor_invalidGender_throwsIllegalArgumentException() {
-        String invalidGender = "m";
+        String invalidGender = "c";
         assertThrows(IllegalArgumentException.class, () -> new Gender(invalidGender));
     }
 
@@ -37,12 +37,12 @@ public class GenderTest {
         assertFalse(Gender.isValidGender(" ")); // spaces only
         assertFalse(Gender.isValidGender("^")); // only non-alphanumeric characters
         assertFalse(Gender.isValidGender("M*")); // contains non-alphanumeric characters
-        assertFalse(Gender.isValidGender("m")); // no lowercase character
         assertFalse(Gender.isValidGender("a")); // only F or M
 
         // valid gender
         assertTrue(Gender.isValidGender("M"));
         assertTrue(Gender.isValidGender("F"));
+        assertTrue(Gender.isValidGender("m"));
     }
 
 }

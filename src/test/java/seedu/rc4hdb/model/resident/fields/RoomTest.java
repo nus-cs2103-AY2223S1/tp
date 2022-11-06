@@ -50,9 +50,6 @@ public class RoomTest {
         assertTrue(Room.isValidRoom("5-07")); // with zero in front of unit number
         assertTrue(Room.isValidRoom("03-01")); // with zero in front of both floor and unit number
         assertTrue(Room.isValidRoom("1-7")); // no zero in front of both floor and unit number
-        assertTrue(Room.isValidRoom("10123561-1")); // long floor number
-        assertTrue(Room.isValidRoom("1-12357123")); // long unit number
-        assertTrue(Room.isValidRoom("123561423-12351256")); // long floor and unit number
     }
 
 }

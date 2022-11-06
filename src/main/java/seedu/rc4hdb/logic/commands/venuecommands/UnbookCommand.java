@@ -50,7 +50,7 @@ public class UnbookCommand extends VenueCommand implements ModelCommand {
         requireNonNull(model);
         try {
             model.removeBooking(bookingDescriptor);
-            model.setObservableBookings(venueName);
+            model.setCurrentlyDisplayedVenue(venueName);
             return new CommandResult(String.format(MESSAGE_SUCCESS, venueName,
                     bookingDescriptor.getDayOfWeek().orElse(null),
                     bookingDescriptor.getHourPeriod().orElse(null)));
