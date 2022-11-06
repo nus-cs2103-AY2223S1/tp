@@ -89,11 +89,11 @@ and `Tim` is the input.
 
 ## Interface Layout
 
-When you launch Cobb, Cobb will appear on your screen as a window containing our user-friendly [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).<br>
-Let's take a look at the 4 different components that make up Cobb's GUI.
+When you launch Cobb, Cobb will appear on your screen as a window. Let's take a look at the 4 different components
+that make up this window.
 
 ### 1. Command Input and Output Boxes
-You can find them located at the top section of the window.<br>
+You can find them located at the top section of the window.<br><br>
 ![CommandBox](images/CommandBox.png)<br><br>
 The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
 Clicking on it will allow you to input commands for Cobb to execute. 
@@ -130,7 +130,7 @@ If a command was not successfully executed, the text within the command input bo
 </div>
 
 ### 2. Buyer List
-You can find the buyer list located at the left section of the window.<br>
+You can find the buyer list located at the left section of the window.<br><br>
 ![Buyer List](images/BuyerList.png)<br><br>
 The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database. The buyer list
 might not be showing **all* the buyers in the database all the time (see [FAQ](#faq)).
@@ -138,15 +138,15 @@ might not be showing **all* the buyers in the database all the time (see [FAQ](#
 The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 3. Property List
-You can find the property list located at the right section of the window.
-![Property List](images/PropertyList.png)<br>
+You can find the property list located at the right section of the window.<br><br>
+![Property List](images/PropertyList.png)<br><br>
 The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
 might not be showing **all* the properties in the database all the time (see [FAQ](#faq)).
 
 The property list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 4. Help Window
-This will appear as a separate window, and is not part of the main GUI.
+This will appear as a separate window, and is not part of the main window.
 ![Help Window](images/HelpWindow.png)
 The __help window__ displays a link to Cobb's User Guide, which is this document :)
 
