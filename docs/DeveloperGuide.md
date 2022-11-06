@@ -2,6 +2,7 @@
 layout: page
 title: PennyWise Developer Guide
 ---
+
 PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
 by providing a **graphical analysis of their financial activities**.
 It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
@@ -80,7 +81,7 @@ These are some icons you may see throughout our developer guide.
 
 ### Information Box
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 This provides some additional information that you are recommended to know.
 </div>
 
@@ -263,8 +264,7 @@ call.
 
 ![Interactions Inside the Logic Component for the `delete 1 t/e` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -347,7 +347,7 @@ The `summary` command is implemented by the `SummaryCommandParser` and `SummaryC
 Below is a sequence diagram and explanation of how the `summary` command is executed.
 ![Interactions Inside the Logic Component for the `summary mo/2022-08` Command](images/SummarySequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SummaryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SummaryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 Step 1.The user enters `summary mo/2022-08` command in the main window
 
@@ -399,7 +399,7 @@ The `add` command is implemented by the `AddCommandParser` and `AddCommand` clas
 Below is a sequence diagram and explanation of how the `add` command is executed.
 ![Interactions Inside the Logic Component for the `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
 
@@ -447,7 +447,7 @@ Below is a sequence diagram and explanation of how the EditCommand is executed.
 
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditEntrySequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 Step 1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
 
@@ -524,9 +524,7 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The `redo` command does the opposite — it calls `Model#redoPennyWise()`, which shifts the `currentStatePointer` once
 to the right, pointing to the previously undone state, and restores the application to that state.
@@ -631,10 +629,23 @@ Design considerations:
 
 ## **Appendix: Requirements**
 
+In this section, we share some thought-process behind starting and developing PennyWise.
+In particular, this encompasses:
+
+* [Product scope](#product-scope)
+* [User stories](#user-stories)
+* [Use cases](#use-cases)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
+
 ### Product scope
+
+Here, we share the target user profile and the value proposition of PennyWise, which can aid you in having a better
+understanding of how our features _fit together__ a cohesive product and how it matches our target user.
 
 **Target user profile**:
 
+Tertiary students who:
 * has a need to manage a significant number of expenditures or income streams
 * prefer desktop apps over other types
 * can type fast
@@ -642,32 +653,61 @@ Design considerations:
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Empower students with the ability to make sensible financial decisions in their budgeting.
-* Provides an overview of their own expenditures and income, displaying it in a graphical manner for easy comprehension.
-* Students would be able to easily identify categories they are overspending, and hone in on which one to cut down on.
+
+PennyWise empowers tertiary students with the ability to make informed financial decisions by providing a graphical analysis of their financial activities.
+This allows students to easily identify categories they are overspending on and spot trends in their spending patterns,
+allowing them to zone in on which aspect to cut down on.
+Furthermore, PennyWise also helps students to keep track of their income streams, making it fast and convenient for them to juggle
+their budget.
 
 ### User stories
 
-Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
+Here, we list some user stories of the application so that you can better understand how the application can be used from the user's perspective.
 
-| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                           |
-|----------|----------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `HIGH`   | user           | input expenses/income <br/> delete expenses/income <br/> input expenses/income with date | record my expenses/income <br/> remove any wrong expenses/income records <br/> keep track of when I spend my money |
-| `HIGH`   | user           | view all my expenses/income                                                              | get an overview of all my expenses/income                                                                          |
-| `HIGH`   | user           | summarize my expenses/income                                                             | be aware of the amount of money I can spend                                                                        |
-| `MEDIUM` | user           | edit any mistakes in my expenses/income entries                                          | correctly log my budgeting                                                                                         |
-| `MEDIUM` | organised user | tag my expenses/income based on specific categories                                      | keep track of which components I am spending more on                                                               |
-| `MEDIUM` | organised user | filter my expenses by tags                                                               | have an overview of the areas where I spent                                                                        |
-| `MEDIUM` | organised user | filter my expenses by date range                                                         | have an overview of the amount I spent in a given period                                                           |
-| `LOW`    | visual learner | have graphs that reflects my expenses/income                                             | better understand my spending/income patterns                                                                      |
-| `LOW`    | user           | view a list of commands and how to use them                                              | refer to it when i forgot the commands                                                                             |
+<div markdown="span" class="alert alert-info">:information_source: **What is a user story?**
+User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.
 
-*{More to be added}*
+(adapted from [CS2103T Notes](https://nus-cs2103-ay2223s1.github.io/website/schedule/week5/topics.html#user-stories))
+</div>
+
+Priorities:
+* High (must have) - `HIGH`
+* Medium (nice to have) - `MEDIUM`
+* Low (unlikely to have) - `LOW`
+
+| **Priority** | **As a...**                          | **I want to...**                                        | **So that I can...**                                           |
+|--------------|--------------------------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| `HIGH`       | student                              | add a new expense/income entry                          | keep track of the details of my expenditures/incomes           |
+| `HIGH`       | student                              | delete an existing expense/income entry                 | remove an expense/income entry that I do not need to track     |
+| `HIGH`       | student                              | view all my expenses/income                             | get an overview of all my expenses/income                      |
+| `HIGH`       | student                              | summarize my expenses/income                            | easily decide on how to adjust my spending                     |
+| `MEDIUM`     | student                              | edit any mistakes in my expenses/income entries         | correctly log my budgeting                                     |
+| `MEDIUM`     | student who spends a lot             | determine areas where I am spending the most on         | zone in on the appropriate areas to cut down my spending       |
+| `MEDIUM`     | student who spends a lot             | categorize my expense entries                           | have a finer overview of my expense entries                    |
+| `MEDIUM`     | student with multiple income streams | categorize my income entries                            | have a finer overview of my income entries                     |
+| `MEDIUM`     | organised student                    | filter my expenses by tags                              | have an overview of the areas where I spent                    |
+| `MEDIUM`     | organised student                    | filter my incomes by tags                               | have an overview of the areas where I am earning               |
+| `MEDIUM`     | organised student                    | filter my expenses by date range                        | identify trends and patterns in my spending habits             |
+| `MEDIUM`     | organised student                    | filter my incomes by date range                         | identify trends and patterns in my income streams              |
+| `MEDIUM`     | potential user                       | see example data in the application                     | see how the application works                                  |
+| `LOW`        | visual learner                       | view my expenses/income using different types of graphs | better visualisation of my spending/income patterns and habits |
+| `LOW`        | forgetful student                    | view a list of commands and how to use them             | refer to it when I forget the commands                         |
+| `LOW`        | forgetful student                    | have a list of prompts for commands when I am typing    | avoid having to constantly refer to the user guide             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
-otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.)
+Here, we list some use cases of the application.
+
+<div markdown="span" class="alert alert-info">:information_source: **What is a use case?**
+A use case describes an interaction between the user and the system for a specific functionality of the system.
+
+(adapted from [CS2103T Notes](https://nus-cs2103-ay2223s1.github.io/website/schedule/week7/topics.html#W7-1))
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
+otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.
+</div>
 
 **Use case: UC1 - Add an entry**
 
@@ -800,8 +840,6 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 
    Use case ends.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. **Technical requirements**: The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -816,9 +854,9 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 9. The source code should be open source.
 10. The product is offered as a free online service.
 
-*{More to be added}*
-
 ### Glossary
+
+In the Glossary, we provide our definitions for some commonly-used terms that you can find throughout the aplication.
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Entry**: An entry refers to either an expenditure or income
