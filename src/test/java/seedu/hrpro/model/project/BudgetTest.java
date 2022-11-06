@@ -31,6 +31,7 @@ public class BudgetTest {
         assertFalse(Budget.isValidBudget("9011p041")); // alphabets within digits
         assertFalse(Budget.isValidBudget("9312 1534")); // spaces within digits
         assertFalse(Budget.isValidBudget("01534")); // begins with 0
+        assertFalse(Budget.isValidBudget("-3")); // special characters used
 
         // valid budget numbers
         assertTrue(Budget.isValidBudget("3"));

@@ -33,12 +33,19 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("12-20")); // missing year part
 
         // invalid parts
+        assertFalse(Deadline.isValidDeadline("0000-00-00")); // invalid date
         assertFalse(Deadline.isValidDeadline("2022-12-32")); // invalid day
-        assertFalse(Deadline.isValidDeadline("2012-20-10")); // invalid month
-        assertFalse(Deadline.isValidDeadline("2023-02-29")); //Invalid leap year
+        assertFalse(Deadline.isValidDeadline("2012-20-15")); // invalid month
+        assertFalse(Deadline.isValidDeadline("20000-12-15")); // invalid year
+        assertFalse(Deadline.isValidDeadline("2023-02-29")); // invalid leap year
+
+        // non-numerical inputs
+        assertFalse(Deadline.isValidDeadline("tuesday")); // invalid inputs
+        assertFalse(Deadline.isValidDeadline("!!!!")); // invalid inputs
 
         // valid deadline
-        assertTrue(Deadline.isValidDeadline("2022-12-31")); // underscore in local part
+        assertTrue(Deadline.isValidDeadline("2022-12-15")); //valid date
+        assertTrue(Deadline.isValidDeadline("2022-12-31")); //valid date
         assertTrue(Deadline.isValidDeadline("2024-02-29")); //valid leap year
     }
 }

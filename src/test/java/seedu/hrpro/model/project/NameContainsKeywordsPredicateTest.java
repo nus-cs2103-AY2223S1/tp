@@ -59,6 +59,11 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new ProjectNameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new ProjectBuilder().withName("Alice Bob").build()));
+
+        //Partial matching keyword
+        predicate = new ProjectNameContainsKeywordsPredicate(Arrays.asList("aL"));
+        assertTrue(predicate.test(new ProjectBuilder().withName("Alice Bob").build()));
+        
     }
 
     @Test
