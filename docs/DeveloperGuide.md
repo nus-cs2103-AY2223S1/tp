@@ -216,13 +216,10 @@ The latter is omitted from the diagram for simplicity purposes.
 
 ![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
 
-The activity diagram below denotes the behavior of Cobb when the user inputs an `addbuyer` command with valid syntax.  
-
-(Insert activity diagram)
-
 #### Design considerations:
 No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.  
 
 ### Creating a property: `addprop`
 
@@ -244,13 +241,10 @@ It is omitted from the diagram for simplicity purposes.
 
 ![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
 
-The activity diagram that denotes the behavior of Cobb when the user inputs an `addprop` command with valid syntax.
-
-(Insert activity diagram)
-
 #### Design considerations:
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.
 
 ### \[Proposed\] Data archiving
 
@@ -796,14 +790,21 @@ Use case ends.
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
+6. Should work without requiring an installer.
+7. Should avoid to include hard-to-test features
+7. Should not depend on a remote server.
+8. Should save data locally in a human editable text file.
+9. Should be able to be packaged into a JAR file.
+10. Should have a GUI with readable font, at least size 11, and resizable.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Buyer**: A client interested in purchasing or investing in properties.
+* **Property**: A real estate unit listed or accessible in the market.
+* **Owner**: The person who possess the rights to use/ transfer/ commercialize the real estate unit.
+* **Property Agent**: A licensed professional that represents buyer or sellers in real estate transaction. Intended target users for this product.
 
 --------------------------------------------------------------------------------------------------------------------
 
