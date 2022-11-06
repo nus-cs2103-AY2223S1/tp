@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.exceptions.DuplicateStudentException;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -133,6 +134,11 @@ public class FypManagerTest {
         public ObservableList<Student> getSortedCompletedStudentList() {
             return getCompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
                     .toLowerCase()));
+        }
+
+        @Override
+        public DeadlineList getDeadlineList(Student student) {
+            return student.getDeadlineList();
         }
     }
 

@@ -165,9 +165,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static LocalDateTime parseDeadlineDatetime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
         for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
             try {
-                return LocalDateTime.parse(dateTime,
+                return LocalDateTime.parse(trimmedDateTime,
                         DateTimeFormatter.ofPattern(dateTimeFormat)
                                 .withResolverStyle(ResolverStyle.STRICT));
             } catch (DateTimeParseException dtpe) {

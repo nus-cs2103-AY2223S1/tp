@@ -1,6 +1,7 @@
 package jeryl.fyp.model;
 
 import javafx.collections.ObservableList;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 
 /**
@@ -45,5 +46,10 @@ public interface ReadOnlyFypManager {
      * naturally sorts it in alphabetical order.
      */
     ObservableList<Student> getSortedCompletedStudentList();
+
+    /**
+     * Obtains the deadline list of a student.
+     */
+    DeadlineList getDeadlineList(Student student);
 
 }

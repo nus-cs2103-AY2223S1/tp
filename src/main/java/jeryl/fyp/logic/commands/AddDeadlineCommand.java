@@ -3,7 +3,6 @@ package jeryl.fyp.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_COMPLETED_PROJECT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_DEADLINE;
-import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_DATETIME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_NAME;
@@ -53,9 +52,6 @@ public class AddDeadlineCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Student student = model.getStudentByStudentId(studentId);
-        if (student == null) {
-            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        }
 
         // Can only add deadlines for incomplete projects.
         if (student.getProjectStatus().equals(new ProjectStatus("DONE"))) {
