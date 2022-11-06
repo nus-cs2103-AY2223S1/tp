@@ -52,7 +52,8 @@ The sequence diagram to show the interactions between the different components d
 
 ![ItemSequenceDiagram](images/NewItemSequenceDiagram.png)
 
-Depending on your screen, the image may appear blurry or too small. This cannot be helped as the number of objects that are instantiated is quite large. Please save the image to your computer if you cannot view it. Failing that (or if you are on a PDF), zoom in onto the image to view it clearly.
+This diagram excludes the instantiation of the objects that represents attributes in an Item, e.g. `ItemQuantity`, `ItemUnit`. This is because including all of them would cause the UML diagram to be cluttered and too small to read.
+
 
 ##### Feature Details
 1. The user specifies an item name for the Item to create. Optionally, the user can specify the item quantity, bought date, expiry date, price, and any remarks.
