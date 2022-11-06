@@ -156,9 +156,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackAScholarParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -350,17 +350,11 @@ The following activity diagram summarizes what happens when a user executes a re
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Find applicant feature
+### Find feature
 
 #### Implementation
 
-The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
 
-Given below is an example usage scenario and how the find command operates in TrackAScholar:
-
-1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
-
-2. `TrackAScholarParser` identifies the person and displays it to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -446,6 +440,7 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ### Pin applicant feature
 
+
 #### Implementation
 
 The pin operation is facilitated by `PinCommand`. It extends `Command` and implements the `Command#execute` operation.
@@ -508,6 +503,24 @@ The following activity diagram summarizes what happens when a user executes a un
 ![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
 [Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Proposed features**
+
+Coming soon in future iterations.
+
+For future iterations we plan to implement 2 new features.
+
+1. Sending of application results directly to email of the applicants.
+This will help applicant be notified of their result more quickly.
+It will also cut down the workload for admin staff.
+In this current iteration we still have to message the client manually.
+
+2. Exporting of Json file into Excel.
+The university admin staff might want to process or analyse the result in a more sophisticated manner.
+Excel is needed to aid in more sophisticated analysis as it has more functions.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
