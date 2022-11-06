@@ -52,6 +52,7 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
     }
 
     private boolean hasExtraPrefixesInName(String name) {
+        assert name != null;
         Matcher matcher = CliSyntax.PREFIX_REGEX.matcher(name);
         return matcher.find();
     }

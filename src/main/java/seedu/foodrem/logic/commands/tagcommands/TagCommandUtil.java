@@ -25,6 +25,8 @@ public class TagCommandUtil {
      */
     public static Item validateAndGetItem(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
+        requireNonNull(tag);
+        requireNonNull(index);
 
         if (!model.hasTag(tag)) {
             throw new CommandException("This tag does not exist");

@@ -23,6 +23,7 @@ public class RemarkCommand extends Command {
     private final ItemRemark remark;
 
     /**
+     * Constructs the RemarkCommand.
      * @param index  of the item in the filtered item list to increment.
      * @param remark the remark to be added to the item.
      */
@@ -50,6 +51,9 @@ public class RemarkCommand extends Command {
                 itemToRemark.getTagSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -67,10 +71,18 @@ public class RemarkCommand extends Command {
                 "Remark has been updated. View the updated item below:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return REMARK_COMMAND.getUsage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this

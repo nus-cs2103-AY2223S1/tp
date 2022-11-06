@@ -37,11 +37,17 @@ public class TagName {
         fullName = name;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String toString() {
         return fullName;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
@@ -49,6 +55,9 @@ public class TagName {
                 && fullName.equals(((TagName) other).fullName));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public int hashCode() {
         return fullName.hashCode();

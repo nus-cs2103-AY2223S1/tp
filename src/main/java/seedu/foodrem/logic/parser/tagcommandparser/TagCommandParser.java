@@ -2,8 +2,6 @@ package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.stream.Stream;
-
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.StringUtil;
@@ -13,7 +11,6 @@ import seedu.foodrem.logic.parser.ArgumentTokenizer;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.ParserUtil;
-import seedu.foodrem.logic.parser.Prefix;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -32,7 +29,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
                                                                TagCommand.getUsage());
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.getUsage()));
         }
@@ -42,11 +39,4 @@ public class TagCommandParser implements Parser<TagCommand> {
         return new TagCommand(name, index);
     }
 
-    /**
-     * Returns {@code true} if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }

@@ -1,7 +1,6 @@
 package seedu.foodrem.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -24,7 +23,7 @@ import seedu.foodrem.model.tag.Tag;
  * Jackson-friendly version of {@link Item}.
  */
 class JsonAdaptedItem {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
+    private static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String name;
     private final String quantity;
@@ -77,61 +76,59 @@ class JsonAdaptedItem {
      * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalArgumentException {
+        checkIfFieldsAreNull();
+        final ItemName modelItemName = new ItemName(name);
+        final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
+        final ItemUnit modelItemUnit = new ItemUnit(unit);
+        final ItemBoughtDate modelItemBoughtDate = ItemBoughtDate.of(boughtDate);
+        final ItemExpiryDate modelItemExpiryDate = ItemExpiryDate.of(expiryDate);
+        final ItemPrice modelItemPrice = new ItemPrice(price);
+        final ItemRemark modelItemRemark = new ItemRemark(remarks);
+        final Set<Tag> modelTags = tags.stream()
+                .map(JsonAdaptedTag::toModelType).collect(Collectors.toSet());
+        return new Item(modelItemName,
+                        modelItemQuantity,
+                        modelItemUnit,
+                        modelItemBoughtDate,
+                        modelItemExpiryDate,
+                        modelItemPrice,
+                        modelItemRemark,
+                        modelTags);
+    }
+
+    /**
+     * Checks if the fields in the JsonAdaptedItem are null.
+     *
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
+     */
+    private void checkIfFieldsAreNull() {
         if (name == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemName.class.getSimpleName()));
         }
-        final ItemName modelItemName = new ItemName(name);
-
         if (quantity == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemQuantity.class.getSimpleName()));
         }
-        final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
-
         if (unit == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemUnit.class.getSimpleName()));
         }
-        final ItemUnit modelItemUnit = new ItemUnit(unit);
-
         if (boughtDate == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemBoughtDate.class.getSimpleName()));
         }
-        final ItemBoughtDate modelItemBoughtDate = ItemBoughtDate.of(boughtDate);
-
         if (expiryDate == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemExpiryDate.class.getSimpleName()));
         }
-        final ItemExpiryDate modelItemExpiryDate = ItemExpiryDate.of(expiryDate);
-
         if (price == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemPrice.class.getSimpleName()));
         }
-        final ItemPrice modelItemPrice = new ItemPrice(price);
-
         if (remarks == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemRemark.class.getSimpleName()));
         }
-        final ItemRemark modelItemRemark = new ItemRemark(remarks);
-
-        final List<Tag> itemTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            itemTags.add(tag.toModelType());
-        }
-
-        final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelItemName,
-                modelItemQuantity,
-                modelItemUnit,
-                modelItemBoughtDate,
-                modelItemExpiryDate,
-                modelItemPrice,
-                modelItemRemark,
-                modelTags);
     }
 }

@@ -88,6 +88,9 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code tags}.
+     */
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
