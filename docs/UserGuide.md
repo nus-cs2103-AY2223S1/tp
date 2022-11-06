@@ -379,7 +379,7 @@ Format: `type -p TYPE`
 Examples:
 * `type -p HDB condo` returns all properties that are HDBs or Condos.
 
-### Selecting a property: `select -p INDEX`
+### Selecting a property: `select -p`
 
 Returns the property at the specified index while displaying the list of interested clients in the client directory.
 
