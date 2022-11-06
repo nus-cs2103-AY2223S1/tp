@@ -50,6 +50,13 @@ means switching from GUI-based applications to CLI code editors.
 Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context
 switching.
 
+<div markdown="span" class="alert alert-primary">
+**:star: For experienced CLI users:**
+
+TruthTable's command syntax is actually very similar to other command line applications like
+[git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
+</div>
+
 ## Using This Guide
 
 If you are a software engineering team leader looking to get started with TruthTable, make sure that you have the 
@@ -223,13 +230,6 @@ require flags to **appear before parameters**.
 
 Note that flags and parameters always **come after the command**.
 
-<div markdown="span" class="alert alert-primary">
-**:star: Command syntax**
-
-TruthTable's command syntax is actually very similar to other command line applications like
-[git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
-</div>
-
 Let's use an example to break down what each term means.
 
 #### Example Command - `add person`
@@ -274,7 +274,7 @@ To address this, each command allows you to specify the `-h` and `--help` flag, 
 and parameters for the command. Alternatively, you can also refer to this user guide to find out the specifications for 
 any command.
 
-#### Example Command Help Message - `add person --help`
+#### Example Command Help Message: `add person --help`
 
 ![Command Help Message](images/CommandHelpMessage.png)
 
@@ -363,7 +363,7 @@ Consequently, the commands are split into **5** main sections:
 <div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
 
 - Format for each command adheres to the structure laid out in the 
-[help command section](#example-command-help-message---add-person---help)
+[help command section](#example-command-help-message-add-person---help)
 - Every command has a `-h` and `--help` flag available to see their help message
 - Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
 - The equals sign (`=`) for flags are optional and do not need to be specified
@@ -403,7 +403,7 @@ Consequently, the commands are split into **5** main sections:
 </div>
 
 <div markdown="span" class="alert alert-primary">
-**:star: Letter casing for parameters**
+**:bulb: Letter casing for parameters**
 
 Note that the parameters in this user guide are all upper-cased, which differs from the lower-cased parameters in 
 the help message that TruthTable displays whenever you run a command with `-h`.
@@ -415,7 +415,7 @@ the help message that TruthTable displays whenever you run a command with `-h`.
 
 Summary of commands can be found [here](#summary-of-person-commands)
 
-#### Creating a new person `add person`
+#### Creating a new person: `add person`
 
 Adds a person to TruthTable.
 
@@ -442,7 +442,7 @@ A person can have any number of tags (including 0)
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com`
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
 
-#### Listing all persons : `list persons`
+#### Listing all persons: `list persons`
 
 Shows a list of all persons in TruthTable.
 
@@ -457,7 +457,7 @@ Shows a list of all persons in TruthTable.
 - `l persons`
 - `l p`
 
-#### Editing a person : `edit person`
+#### Editing a person: `edit person`
 
 Edits an existing person in TruthTable.
 
@@ -518,7 +518,7 @@ Finds person whose names contain any of the given keywords.
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find person alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a person : `delete person`
+#### Deleting a person: `delete person`
 
 Deletes the specified person from TruthTable.
 
@@ -545,7 +545,7 @@ Deletes the specified person from TruthTable.
 
 Summary of commands can be found [here](#summary-of-member-commands)
 
-#### Adding a new member to the team `add member`
+#### Adding a new member to the team: `add member`
 
 Adds a new team member to the user’s currently selected team. Will throw an error if the member already exists in 
 the team.
@@ -568,7 +568,7 @@ the team.
 - `add member 1` will add the first person in the [persons sections](#persons-section) as a new member to the 
   [currently selected team](#current-team-section).
 
-#### Delete a member from team `delete member`
+#### Delete a member from team: `delete member`
 
 Delete a team member from the user’s team.
 
@@ -589,7 +589,7 @@ Delete a team member from the user’s team.
 
 - `delete member 2` will delete the second member of the current team.
 
-#### Find members : `find member`
+#### Find members: `find member`
 
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
@@ -624,7 +624,7 @@ should not use both `-n` and `-e` in the `find member` command.
 * `find member -n Alex Beatrice` finds team members with **names** containing **either** "Alex" or "Beatrice".
 * `find member -e alex@gmail.com`  finds team members with **emails** containing "alex@gmail.com".
 
-#### Listing all members of the team : `list members`
+#### Listing all members of the team: `list members`
 
 View all the members currently in the team, in the form of a list.
 
@@ -639,7 +639,8 @@ View all the members currently in the team, in the form of a list.
 - `l member`
 - `l m`
 
-#### Sort members : `sort members`
+#### Sort members: `sort members`
+
 Sorts all members in the current team by name and displays them in the member list.
 
 **Format:** `sort members [-h] <ORDER>`
@@ -668,7 +669,7 @@ Sorts all members in the current team by name and displays them in the member li
 
 Summary of commands can be found [here](#summary-of-team-commands)
 
-#### Creating a new team `add team`
+#### Creating a new team: `add team`
 
 Add a new team to your list of teams, an error will be displayed if the team name is already in use.
 
@@ -694,7 +695,7 @@ Team name must consist only of alphanumeric characters (i.e., **spaces are NOT a
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
-#### Set a new team `set team`
+#### Set a new team: `set team`
 
 Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
 displayed if team does not exist.
@@ -714,7 +715,7 @@ displayed if team does not exist.
 
 - `set team CS2103T` will change the currently selected team to be the "CS2103T" team.
 
-#### Edit current team `edit team`
+#### Edit current team: `edit team`
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
 
@@ -735,7 +736,7 @@ displayed if team does not exist.
 - `edit team -n CS2103T -d "Software Engineering"` will edit the name of the 
 [currently selected team](#current-team-section) to CS2103T and description to "Software Engineering"
 
-#### Delete an existing team `delete team`
+#### Delete an existing team: `delete team`
 
 Delete an existing team, and an error is displayed if
 
@@ -761,7 +762,7 @@ Delete an existing team, and an error is displayed if
 
 Summary of commands can be found [here](#summary-of-task-commands)
 
-#### Add task to team : `add task`
+#### Add task to team: `add task`
 
 Add a new task to your current team. Each task can have multiple assignees and a deadline.
 
@@ -790,7 +791,7 @@ member in the members list with a deadline of 2nd Dec 2022 23:59, to the current
 * `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assigned to the first 
 and third member in your members list with a deadline of 2nd Dec 2022 23:59, to the current team's task list.
 
-#### Edit task in team : `edit task`
+#### Edit task in team: `edit task`
 
 Edits a specified task in the current team. 
 
@@ -901,7 +902,7 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 
 - `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 Dec 2023 23:59
 
-#### Delete task from team : `delete task`
+#### Delete task from team: `delete task`
 
 Delete an existing task from the team at the given task index.
 
@@ -960,7 +961,7 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 
 - `unmark 1` will mark the first task in the team as incomplete.
 
-#### Find tasks : `find task`
+#### Find tasks: `find task`
 
 Find all tasks in the current team whose names matches any of the given keywords.
 
@@ -992,7 +993,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on 
 whether they are complete or incomplete tasks.
 
-This command can also be used to view all tasks again after using the [`find task` command](#find-tasks--find-task) 
+This command can also be used to view all tasks again after using the [`find task` command](#find-tasks-find-task) 
 as the `find task` command filters the current team’s tasks based on some keyword(s).
 
 **Format:** `list tasks [-hci]`
@@ -1028,7 +1029,7 @@ View the number of tasks assigned to each member in the team.
 - `sum`
 - `su`
 
-#### Sort tasks : `sort tasks`
+#### Sort tasks: `sort tasks`
 
 Sorts all tasks in the current team by name and displays them in the task list.
 
@@ -1054,7 +1055,7 @@ Sorts all tasks in the current team by name and displays them in the task list.
 * `sort tasks dsc` sorts tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
 
-#### Filter tasks by team member : `tasksof`
+#### Filter tasks by team member: `tasksof`
 
 Find all tasks that have been assigned to a particular member in the currently selected team.
 
@@ -1076,7 +1077,7 @@ Find all tasks that have been assigned to a particular member in the currently s
 
 Summary of commands can be found [here](#summary-of-link-commands)
 
-#### Add a new link : `add link`
+#### Add a new link: `add link`
 
 Add a new link to the currently selected team.
 
@@ -1096,7 +1097,7 @@ Add a new link to the currently selected team.
 **Examples:**
 - `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com".
 
-#### Edit an existing link : `edit link`
+#### Edit an existing link: `edit link`
 
 Edit an existing link in the currently selected team.
 
@@ -1122,7 +1123,7 @@ Edit an existing link in the currently selected team.
   URL of "https://facebook.com".
 - `edit link 1 -n google` will update the 1st link to have the name "google".
 
-#### Delete an existing link : `delete link`
+#### Delete an existing link: `delete link`
 
 Delete the specified link from the currently selected team.
 
@@ -1146,7 +1147,7 @@ Delete the specified link from the currently selected team.
 
 Summary of commands can be found [here](#summary-of-general-commands)
 
-#### Clearing all entries : `clear`
+#### Clearing all entries: `clear`
 
 Deletes all the people from the application.
 
@@ -1172,7 +1173,7 @@ Toggles between light theme and dark theme.
 **Command Aliases:**
 - `th`
 
-#### Exiting the program : `exit`
+#### Exiting the program: `exit`
 
 Closes the program after 3 seconds.
 
@@ -1187,7 +1188,7 @@ Closes the program after 3 seconds.
 - `bye`
 - `ex`
 
-#### Viewing help : `help`
+#### Viewing help: `help`
 
 Shows the URL to this help page, which will list all available commands.
 
