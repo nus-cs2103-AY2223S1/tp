@@ -78,7 +78,7 @@ In order to help you pay attention, we have used some icons along with highlight
 
 In case you are wondering why certain texts are styled differently, here are the meaning behind them:
 
-1. Words in big size, numbered and in purple color are section titles and subtitles.
+1. Text that are numbered and in purple font are headers which mark the beginning of a section or subsection of the guide.
 2. **Words in bold** are phrases that we want you to read.
 3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
 
