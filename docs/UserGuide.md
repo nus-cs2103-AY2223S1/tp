@@ -147,7 +147,7 @@ which tells ModtRekt to treat the quote as a normal character.
 
 In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
 
-> IMPORTANT: Every task was to be associated with a module. There may not be any standalone tasks without a created module.
+> IMPORTANT: Every task has to be associated with a module. There may not be any standalone tasks without a created module.
 
 ### Parameters and constraints summary
 
