@@ -401,7 +401,7 @@ How much of your bucket list has been completed? How many countries have you vis
 
 After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
 
-[Summary_Window](images/SummaryScreenshot.png)
+![Summary_Window](images/SummaryScreenshot.png)
  
 </div>
 
@@ -427,15 +427,17 @@ Format: `clear`
 
 Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 <div class="alert alert-block alert-success">
    
 **:point_up: Use case:**<br> 
    
-Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
+Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. The list of commands will be displayed as shown in the screenshot below.
+
+![help message](images/helpMessage.png)
+
+</div>
 
 #### Exiting the program: `exit`
 Exits the program.
