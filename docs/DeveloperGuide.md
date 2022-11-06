@@ -493,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User inputs incomplete client data.
+* 1a. User inputs incomplete or invalid client data.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -509,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User selects non-existent client.
+* 1a. User selects a non-existent client.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -523,7 +523,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.4 Use case: UC4 - Add a meeting
+**Extensions**
+
+* 1a. User requests for a list of all clients whose birthday falls within a given period.
+    * 1a1. System shows a list of all clients whose birthday falls within the period.
+
+      Use case ends.
+
+* 1b. User requests for a list of all clients who has purchased a given product.
+    * 1b1. System shows a list of all clients who has purchased the product.
+
+      Use case ends.
+
+#### 5.3.4 Use case: UC4 - Delete a client
+
+**MSS**
+
+1. User requests to delete a client.
+2. Client is removed from the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to delete a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.5 Use case: UC5 - Edit a client
+
+**MSS**
+
+1. User requests to edit a client.
+2. System replaces current client information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent client or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.6 Use case: UC6 - Add a meeting
 
 **MSS**
 
@@ -539,7 +583,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.4 Use case: UC4 - List all meetings
+#### 5.3.7 Use case: UC7 - View a meeting
+
+**MSS**
+
+1. User requests to view a meeting in detail.
+2. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.8 Use case: UC8- List all meetings
 
 **MSS**
 
@@ -550,16 +610,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User requests for a list of all meetings tomorrow.
-    * 1a1. System shows a list of all meetings tomorrow.
-  
-* 1b. User requests for a list of all meetings in the next 7 days.
-    * 1b1. System shows a list of all meetings in the next 7 days.
+* 1a. User requests for a list of all meetings in a given period.
+    * 1a1. System shows the list of all meetings in the period.
 
-* 1c. User requests for a list of all meetings in this month.
-    * 1c1. System shows a list of all meetings in this month.
+      Use case ends.
 
-#### 5.3.5 Use case: UC5 - Delete a meeting
+#### 5.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
 
@@ -578,7 +634,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.6 Use case: UC6 - Add a product
+#### 5.3.10 Use case: UC10 - Edit a meeting
+
+**MSS**
+
+1. User requests to edit a meeting.
+2. System replaces current meeting information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent meeting or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.11 Use case: UC11 - Add a product
 
 **MSS**
 
@@ -594,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.7 Use case: UC7 - List all products
+#### 5.3.12 Use case: UC12 - List all products
 
 **MSS**
 
@@ -603,7 +675,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.8 Use case: UC8 - Delete a product
+#### 5.3.13 Use case: UC13 - Delete a product
 
 **MSS**
 
