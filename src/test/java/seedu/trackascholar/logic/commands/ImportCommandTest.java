@@ -2,6 +2,7 @@ package seedu.trackascholar.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 import static seedu.trackascholar.testutil.TypicalApplicants.getTypicalTrackAScholar;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.trackascholar.commons.exceptions.DataConversionException;
+import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.ModelManager;
 import seedu.trackascholar.model.ReadOnlyTrackAScholar;
@@ -28,6 +30,24 @@ public class ImportCommandTest {
     @Test
     public void constructor_nullApplicant_throwsAssertionError() {
         assertThrows(AssertionError.class, () -> new ImportCommand(ImportCommand.REPLACE, null));
+    }
+
+    @Test
+    public void execute_noFile_throwsCommandException() {
+        Path importedFilePath =
+                Paths.get("src/test/data/JsonImportCommandTest", "fileWithWrongName.json");
+        ImportCommand importCommand = new ImportCommand(ImportCommand.REPLACE, importedFilePath);
+
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_NO_FILE_FOUND_ERROR);
+    }
+
+    @Test
+    public void execute_invalidFileFormat_throwsCommandException() {
+        Path importedFilePath =
+                Paths.get("src/test/data/JsonImportCommandTest", "invalidApplicantTrackAScholar.json");
+        ImportCommand importCommand = new ImportCommand(ImportCommand.REPLACE, importedFilePath);
+
+        assertCommandFailure(importCommand, model, ImportCommand.MESSAGE_INVALID_FILE_DATA_FORMAT);
     }
 
     @Test
