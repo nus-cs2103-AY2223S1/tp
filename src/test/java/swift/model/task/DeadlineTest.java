@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import swift.model.tag.Tag;
 
 public class DeadlineTest {
 
@@ -43,6 +44,12 @@ public class DeadlineTest {
     public void equals_sameObject_true() {
         Deadline deadline = new Deadline("12-12-2001 1200");
         assertEquals(deadline, deadline);
+    }
+
+    @Test
+    public void equals_null_false() {
+        Deadline deadline = new Deadline("12-12-2001 1200");
+        assertNotEquals(deadline, null);
     }
 
     @Test

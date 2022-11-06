@@ -32,6 +32,12 @@ public class TagTest {
     }
 
     @Test
+    public void equals_null_false() {
+        Tag tag = new Tag("Developer");
+        assertNotEquals(tag, null);
+    }
+
+    @Test
     public void equals_sameTagName_true() {
         assertEquals(new Tag("Developer"), new Tag("Developer"));
     }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import swift.model.tag.Tag;
 
 public class TaskNameTest {
 
@@ -44,6 +45,12 @@ public class TaskNameTest {
     public void equals_sameObject_true() {
         TaskName name = new TaskName("Buy milk");
         assertEquals(name, name);
+    }
+
+    @Test
+    public void equals_null_false() {
+        TaskName name = new TaskName("Buy milk");
+        assertNotEquals(name, null);
     }
 
     @Test
