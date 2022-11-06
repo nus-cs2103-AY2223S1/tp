@@ -25,6 +25,7 @@ implementation of our features in the "Implementation" section.
 
 
 * [AddressBook Level-3](https://se-education.org/addressbook-level3/)
+* [Open Font License for Quicksand font](http://scripts.sil.org/OFL)
 
 --------------------------------------------------------------------------------------------------------------------
 
