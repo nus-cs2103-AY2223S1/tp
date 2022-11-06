@@ -58,7 +58,7 @@ Here are some symbols used throughout this user guide:
    2. [Multi-valued attributes](#multi-valued-attributes)
    3. [Patient parameter summary](#patient-parameter-summary)
 5. [Features](#features)
-   1. [Viewing help: `help`](#getting-help-help)
+   1. [Getting help: `help`](#getting-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
       2. [Editing a patient's contact details: `edit` `-p`](#editing-a-patients-contact-details-edit--p)
@@ -1127,7 +1127,7 @@ the data of your previous UniNurse home folder.
 | Action                                  | Format                                                                                                      |
 |-----------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | **Help**                                | `help`                                                                                                      |
-| **Add patient**                         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]… [m/MEDICATION]… [r/REMARK]…` |
+| **Add patient**                         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [d/TASK]… [c/CONDITION]… [m/MEDICATION]… [r/REMARK]…` |
 | **Edit patient**                        | `edit -p PATIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                     |
 | **Delete patient**                      | `delete -p PATIENT_INDEX`                                                                                   |
 | **Add tag**                             | `add -p PATIENT_INDEX t/TAG`                                                                                |
