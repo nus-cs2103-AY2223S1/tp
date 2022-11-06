@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.testutil.EventBuilder;
 
 class UniqueEventListTest {
