@@ -9,28 +9,28 @@ import seedu.address.model.price.PriceRange;
 /**
  * Tests that a {@code Property}'s {@code Price} is within the given price range.
  */
-public class FilterPropsByPricePredicate extends AbstractFilterPropsPredicate {
+public class FilterPropsByPriceRangePredicate extends AbstractFilterPropsPredicate {
 
     private final PriceRange priceRange;
 
     /**
      * Standard constructor for the predicate.
      */
-    public FilterPropsByPricePredicate(PriceRange priceRange) {
+    public FilterPropsByPriceRangePredicate(PriceRange priceRange) {
         requireNonNull(priceRange);
         this.priceRange = priceRange;
     }
 
     @Override
     public boolean test(Property p) {
-        return priceRange.isWithinPriceRange(p.getPrice());
+        return priceRange != null && priceRange.isWithinPriceRange(p.getPrice());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterPropsByPricePredicate // instanceof handles nulls
-                && priceRange.equals(((FilterPropsByPricePredicate) other).priceRange)); // state check
+                || (other instanceof FilterPropsByPriceRangePredicate // instanceof handles nulls
+                && priceRange.equals(((FilterPropsByPriceRangePredicate) other).priceRange)); // state check
     }
 
 }

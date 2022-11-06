@@ -28,17 +28,17 @@ public class AddBuyerCommand extends Command {
             + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL "
             + PREFIX_ADDRESS + " ADDRESS "
-            + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE]"
-            + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]\n"
+            + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
+            + "[" + PREFIX_PRIORITY + " PRIORITY<HIGH/NORMAL/LOW>]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " John "
             + PREFIX_PHONE + " 98765432 "
             + PREFIX_EMAIL + " john@gmail.com "
-            + PREFIX_ADDRESS + " 311 Clementi Ave 2, #02-25"
+            + PREFIX_ADDRESS + " 311 Clementi Ave 2, #02-25 "
             + PREFIX_PRICE_RANGE + " 600000 - 800000 "
-            + PREFIX_CHARACTERISTICS + " 5-ROOM; SOUTH-FACING"
-            + PREFIX_PRIORITY + " high ";
+            + PREFIX_CHARACTERISTICS + " 5-ROOM; SOUTH-FACING "
+            + PREFIX_PRIORITY + " HIGH ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in Cobb";

@@ -12,8 +12,8 @@ import java.text.DecimalFormat;
 public class PriceRange {
 
     public static final String MESSAGE_CONSTRAINTS = "Price ranges must be specified in the form: "
-            + "<low> - <high>, where <low> and <high> are non-negative numbers within the maximum range of a Double."
-            + "\nNote that <low> must be smaller than <high>.";
+            + "<low>-<high>, where <low> and <high> are non-negative numbers within the maximum range of a Double "
+            + "and <low> must be smaller than <high>.";
     /*
      * The first part of the range must be digits, followed by a hyphen (whitespaces optional),
      * and then followed by more digits. A decimal / floating point value is also valid.

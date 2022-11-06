@@ -32,7 +32,7 @@ public class FilterBuyersCommand extends Command {
             + " to satisfy the given price OR contain at least one given characteristic OR have the given priority.\n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]"
+            + "[" + PREFIX_PRIORITY + " PRIORITY<HIGH/NORMAL/LOW>] "
             + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PRIORITY + " NORMAL";
 
