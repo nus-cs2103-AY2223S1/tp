@@ -205,11 +205,10 @@ The following sequence diagrams illustrates the interactions between the `UI`, `
 
 #### Implementation
 
-The `tasksOn` command parses the user input and generates a `DateTime` object, however the time fields are default values since we only care about the particular Date, the it filters each patient by whether they have a 
-task on the given Date. Each patient themselves filter their TaskList to arrive at the conclusion on whether they have a task on the given Date. Then the Model is set to show the filtered Patients, each with their own TaskList to also 
-only the Tasks on the given Date.
+The `view` command when no flags are present, parses the user input and generates a `TasksOnCommand` object which has a `DateTime` object containing the date the user wants the tasks for. 
+When the command is executed, it sets the model to show only the tasks on the day of interest.
 
-The Sequence diagram below shows the execution of a tasksOn command
+The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 

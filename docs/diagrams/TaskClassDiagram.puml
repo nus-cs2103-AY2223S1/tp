@@ -10,16 +10,6 @@ Class "{abstract}\nTask" as Task
 Class DateTime
 Class NonRecurringTask
 Class RecurringTask
-enum "<<enumeration>>\nRecurrence" as Recurrence {
-    DAY
-    WEEK
-    MONTH
-    YEAR
-    DAYS
-    WEEKS
-    MONTHS
-    YEARS
-}
 }
 
 RecurringTask : Recurrence recurrence
