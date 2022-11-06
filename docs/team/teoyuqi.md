@@ -26,8 +26,8 @@ Given below are my contributions to the project.
     components meant we now had much more content to be fit within the same 
     window. This was not an easy task, considering the need to optimise 
     between displaying maximum information and keeping the design 
-    minimalistic.
-<br>
+    minimalistic.<br>
+
 * **New Feature**: Adding, deleting and swapping of `Task` objects
   * What it does:<br>
     Allows students to assign tasks to modules. Tasks can be
@@ -60,13 +60,13 @@ Given below are my contributions to the project.
     highly challenging to implement, with much research having to be done on 
     the best (and simplest) method to do so. Furthermore, this feature 
     involved implementation of a GUI functionality, which was not something
-    explored in our iP.
-<br>
+    explored in our iP.<br>
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=teoyuqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=teoyuqi&tabRepo=AY2223S1-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 <br>
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features ([#155](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/155))
-<br>  
+  * Wrote additional tests for existing features ([#155](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/155)) <br>  
+
 * **Documentation**:
   * User Guide:
     * Created a base UG for teammates to build upon ([#36](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/36))
@@ -76,13 +76,13 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated commands, links and diagrams of `Logic`, `Model`, `Ui` and 
       `Storage` components to be inline with Plannit ([#107](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/107))
-    * Added implementation detail of `Task` and `TaskList` components ([#83](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/83))
-<br>
+    * Added implementation detail of `Task` and `TaskList` components ([#83](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/83)) <br>
+
 * **Review contributions**:
   * Reviewed numerous PRs (e.g., [#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81),
     [#98](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/98)
-    and [#104](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/104))
-<br>
+    and [#104](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/104)) <br>
+  
 * **Contributions beyond the project team**:
   * Sent 10 bug [reports](https://github.com/teoyuqi/ped/issues) in 
     [SETA](https://github.com/AY2223S1-CS2103T-T08-4/tp) 
