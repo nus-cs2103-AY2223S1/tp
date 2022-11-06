@@ -29,11 +29,18 @@ public class StartTime implements Comparable<StartTime> {
      */
     public StartTime(String startTime) {
         requireNonNull(startTime);
-        assert !startTime.isBlank();
         checkArgument(isValidStartTimeFormat(startTime), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isValidStartTimeValue(startTime), String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
         String[] parsedTime = startTime.split(TIME_DELIMITER, 2);
         this.time = LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
+    }
+
+    /**
+     * Checks if a given string is a valid StartTime input.
+     * @return boolean
+     */
+    public static boolean isValidStartTime(String test) {
+        return isValidStartTimeFormat(test) && isValidStartTimeValue(test);
     }
 
     /**
