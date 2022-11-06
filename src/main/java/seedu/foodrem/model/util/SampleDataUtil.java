@@ -1,3 +1,4 @@
+/* @@author */
 package seedu.foodrem.model.util;
 
 import java.util.HashSet;
@@ -17,8 +18,6 @@ import seedu.foodrem.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code FoodRem} with sample data.
- *
- * @author
  */
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
