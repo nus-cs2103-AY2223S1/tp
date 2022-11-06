@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -120,17 +120,23 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="750" />
 
 
 The `Model` component,
 
-* stores the following address book data
+* stores the following data
   * all `Person` objects (which are contained in a `UniquePersonList` object)
   * all `Policy` objects (which are contained in a `UniquePolicyList` object)
-  <img src="images/ModelPolicyClassDiagram.png" width="500" />
   * all `Event` objects (which are contained in a `UniqueEventList` object)
+
+
+  <img src="images/ModelPolicyClassDiagram.png" width="500" />
+
+
+
   <img src="images/ModelEventClassDiagram.png"  width="500"/>
+
 * stores the currently 'selected' `XYZ` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -145,7 +151,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both app data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -191,7 +197,7 @@ View pin activity diagram: <br><br>
     * Pros: Easy to implement.
     * Cons: Hard for additional extensions given that this method uses a boolean attribute.
 
-* **Alternative 2:** Saves the entire address book of clients pinned.
+* **Alternative 2:** Saves the entire list of clients pinned.
   * Pros: More potential for further extensions.
   * Cons: May result in performance issues in terms of memory usage.
   
@@ -330,7 +336,7 @@ View income activity diagram: <br><br>
     * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilize the income for other features.
     * Cons: Might pose a problem for retrival of values from class.
 
-* **Alternative 2:** Saves the entire address book of clients pinned.
+* **Alternative 2:** Saves the entire list of clients pinned.
     * Pros: More potential for further extensions.
     * Cons: May result in performance issues in terms of memory usage.
 
@@ -396,7 +402,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 **Aspect: How `find` executes:**
 
-* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the address book by making use of the JavaFx filteredList library.
+* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the LTNS by making use of the JavaFx filteredList library.
     * Pros: 
       * Easy extension for additional predicates, by adding predicate classes
       * Lesser user implementation
@@ -404,7 +410,7 @@ The following activity diagram summarizes what happens when a user executes a fi
       * If there are too many predicates, there could be an excessive number of classes to manage
       * Lesser control over lower level details of predicate testing
 
-* **Alternative 2:** Take in user conditions and test for each person in the address book
+* **Alternative 2:** Take in user conditions and test for each person in the LTNS
     * Pros: 
       * More control over lower level details.
       * More efficient algorithms can be used for searching which can improve the overall runtime
@@ -453,20 +459,24 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
-|----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
-| `***`    | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
-| `***`    | user                                       | add a new person                  |                                                                        |
-| `***`    | user                                       | delete a person                   | remove entries that I no longer need                                   |
-| `***`    | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `**`     | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
-| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
-| `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
-| `**`     | user                                       | update my client list             | Edit their contact details                                             |
-| `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
-| `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
-| `*`      | user                                       | pin important clients             | be reminded of users which are of higher priority                      |
+| Priority | As a …​                                   | I want to …​                      | So that I can…​                                                       |
+|----------|-------------------------------------------|-----------------------------------|-----------------------------------------------------------------------|
+| `***`    | new user                                  | see usage instructions            | refer to instructions when I forget how to use the App                |
+| `***`    | user                                      | add a new person                  |                                                                       |
+| `***`    | user                                      | delete a person                   | remove entries that I no longer need                                  |
+| `***`    | user                                      | find a person by name             | locate details of persons without having to go through the entire list |
+| `**`     | user                                      | hide private contact details      | minimize chance of someone else seeing them by accident               |
+| `*`      | user with many persons in my contact list | sort persons by name              | locate a person easily                                                |
+| `**`     | new user                                  | see sample data                   | Have a better understanding of the app's default layout               |
+| `**`     | user                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera               |
+| `**`     | user                                      | update my client list             | Edit their contact details                                            |
+| `*`      | user                                      | have a reliable method            | store contact information without losing data                         |
+| `*`      | user                                      | view individual client's profiles | keep track of multiple, unique clients                                |
+| `*`      | user                                      | pin important clients             | be reminded of users which are of higher priority                     |
+| `*`      | user                                      | add an event                      |                                                                       |
+| `*`      | user                                      | delete an event                   | remove events that I no longer need to keep track of                  |
+| `**`     | user                                      | view my upcoming events           | be reminded of my upcoming events for the week                        |
+
 
 
 ### Use cases
@@ -602,7 +612,80 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
   * 2a1. LTNS displays a new list of clients with matching metrics.
 
     Use case ends.
-  
+
+
+
+**Use Case (X): Add Event**
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add an event
+3. User tags on the event details he would like to specify
+4. LTNS adds the latest event to list of events.
+5. LTNS switches to the default event view automatically
+
+
+   Use case ends
+
+
+**Extensions**
+* 4a. The event specified overlaps with another event
+  * 4a1. LTNS displays an error message 
+
+    Use Case resumes at Step 3.
+
+* 4b. The event specifies a client that doesn't exist in LTNS 
+    * 4b1. LTNS displays an error message
+
+    Use Case resumes at Step 3.
+
+
+**Use case (X): Delete an event**
+
+**MSS**
+
+1. User requests to <u>list events(UC (X))</u>
+2. User requests to delete a specific event in the list
+3. LTNS deletes the event
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The event list is empty.
+
+  Use Case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use Case resumes at step 2.
+
+**Use case (X): List clients**
+
+**MSS**
+
+1. User requests to list all events
+2. LTNS displays a list of all events
+
+   Use Case ends
+
+**Use case (X): View clients**
+
+**MSS**
+
+**Use case (X): View Calendar**
+
+**MSS**
+
+1. User requests to view his calendar 
+2. LTNS displays a list of all events in his calendar 
+    
+    Use Case ends
+
+
 
 ### Non-Functional Requirements
 
@@ -657,7 +740,50 @@ testers are expected to do more *exploratory* testing.
 
 ## Testing client functions
 
-Pinning a client
+### Adding a client
+1. Adding a Client
+   1. Prerequisites: None
+   2. Test case: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` <br>
+      Expected: Adds a client named `Clement Tan`, switches to the client display.
+   3. Test case: `addClient n/Jaron Tan p/9111111 e/JaronTan@example.com a/311, Clementi Ave 2, #02-25 t/friends b/2019-05-05 i/10000.00 ra/M` <br>
+      Suppose a client with the name `Jaron Tan` already exists in the LTNS.
+      Expected: An error message for a duplicate client should be displayed.
+   
+
+### Deleting a client 
+1. Deleting a client
+    1. Prerequisites: Client list is not empty 
+    2. Test Case: `deleteClient 1` <br>
+       Expected: Deletes the first client on the currently filtered clients list
+   3.  Test Case: `deleteClient 300` <br>
+       Suppose there is no client at index 300
+   
+       Expected: An error message for invalid client index should be displayed
+   
+### Editting a client 
+1. Edittng a client 
+   1. Prerequisites: Client list is not empty
+   2. Test Case: `editClient 1 n/Bob` <br>
+      Expected: Edits the client with an index of 1 to a new name `Bob`.
+   3. Test Case: `editClient 300 t/InvalidIndex` <br>
+      Suppose there is no client at index 300
+
+      Expected: An error message for invalid client index should be displayed
+
+### Switching to the client view
+1. Switching to the client view
+    1. Prerequisites: None
+    2. Test case: `clients` <br>
+       Expected: Client view is shown, list of currently filtered clients is displayed.
+
+### Listing all clients
+1. Listing all clients
+    1. Prerequisites: The current client list should be filtered.
+    2. Test case: `allClients` <br>
+       Expected: All clients stored in LTNS are displayed.
+
+
+### Pinning a client
 1. Pinning a new client
    1. Prerequisites: List of clients is not empty, currently viewing list of clients
    2. Test case: `pin 1` <br>
@@ -665,6 +791,11 @@ Pinning a client
    3. Test case: `pin 3` <br>
       Suppose that there is no client in index 3 <br>
       Expected: An error message for invalid client index should be displayed.
+
+
+### Sorting a client 
+
+### Finding a client
 
 ## Testing policy functions
 
@@ -734,6 +865,47 @@ Pinning a client
 
 ## Testing event functions
 
+### Adding an Event
+1. Adding a Event
+    1. Prerequisites: 
+        1. The `Event` should specify the `Name` of a Client that already exists (i.e: A non-empty client List)
+    2. Test case: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00 ` <br>
+       Expected: Adds an event tied to an existing client with the name `Clement Tan` on 10th October from 12:00 to 13:00.
+    3. Test case: `addEvent desc/Meet Missing Client at Noon n/Missing Client date/2022-10-10 st/12:00 et/13:00 ` <br>
+       Suppose a client with the name `Missing Client` does not already exist in the LTNS.
+       Expected: An error message for an invalid client name should be displayed.
+   4.  Test Case: `addEvent desc/Meet Clement Tan at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` <br>
+        Supposed there is another event taking place from `12:00` to `12:30`on `2022-10-10` as well. <br>
+        Expected: An error message for an overlapping event should be displayed.
+
+
+### Deleting an event
+1. Deleting a event
+    1. Prerequisites: Event list is not empty
+    2. Test Case: `deleteEvent 1` <br>
+       Expected: Deletes the first event on the currently filtered events list
+    3.  Test Case: `deleteEvent300` <br>
+        Suppose there is no event at index 300 <br>
+        Expected: An error message for invalid event index should be displayed
+
+
+### Switching to the event view
+1. Switching to the event view
+    1. Prerequisites: None
+    2. Test case: `events` <br>
+       Expected: Events view is shown, list of currently filtered events is displayed.
+
+### Switching to the calendar view
+1. Switching to the calendar view
+    1. Prerequisites: None
+    2. Test case: `calendar` <br>
+       Expected: Calendar view is shown, events happening in the next 7 days are shown.
+
+### Listing all events
+1. Listing all events
+    1. Prerequisites: The current event list should be filtered.
+    2. Test case: `allEvents` <br>
+       Expected: All events stored in LTNS are displayed.
 
 ## Effort
 

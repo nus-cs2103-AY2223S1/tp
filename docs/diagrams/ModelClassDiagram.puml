@@ -41,6 +41,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> RiskAppetite
+Person *--> Birthday
+Person *--> Income
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
