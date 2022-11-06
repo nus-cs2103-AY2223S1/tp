@@ -795,6 +795,9 @@ testers are expected to do more *exploratory* testing.
 
 This feature requires the use of csv files. To follow the subsequent tests, create and save two csv files with the contents as given below.
 
+If you wish to test using custom csv files, ensure that you do not have any commas in the values of the parameters, as this will result in incorrect parsing of the file.
+Additionally, ensure that the order of the columns is the same as specified below.
+
 **1st csv file**: save as `data/success.csv`.
 
 ```csv
