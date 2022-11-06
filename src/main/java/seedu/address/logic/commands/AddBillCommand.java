@@ -52,6 +52,16 @@ public class AddBillCommand extends Command {
         this.amount = amount;
     }
 
+    /**
+     * For testing purpose only.
+     * @param bill
+     */
+    public AddBillCommand(Bill bill) {
+        this.indexOfAppointment = Index.fromOneBased(1);
+        this.billDate = new BillDate(bill.getBillDate().toString());
+        this.amount = new Amount(bill.getAmount().toString());
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
