@@ -1,0 +1,25 @@
+{% comment %}
+  Copyright 2022 Richard Dominick
+{% endcomment %}
+{% capture newline %}
+{% endcapture %}
+{%- assign nodes = include.html
+  | strip
+  | split: '[['
+-%}
+{{ nodes.first }}
+{%- for node in nodes offset:1 -%}
+  {% assign data = node | split: ']]' %}{% assign tag = data | first | strip | split: '#' %}{% assign type = tag | first | strip %}{% assign number = tag | last | strip %}
+  {%- if type == 'PR' -%}
+    <span class="pr-badge">
+      {% include icons/git-merge.svg class="icon" %}
+      <a href="https://github.com/{{ site.repository }}/pull/{{ number }}">PR#{{ number }}</a>
+      <span class="tooltip"><strong>Pull Request</strong> #{{ number }}<br><small>View on GitHub</small></span>
+    </span>
+    {%- for tail in data offset:1 -%}
+      {{ tail }}
+    {%- endfor -%}
+  {%-else -%}
+    [[{{ node }}
+  {%- endif -%}
+{%- endfor -%}
