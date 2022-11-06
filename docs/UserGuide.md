@@ -78,12 +78,19 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
+## Icons
+
+**Meaning of the icons used:**
+  * :information source: Useful information.
+  * :bulb: Tip.
+  * :warning: Warning on incorrect usage.
+  * :exclamation: Caution.
 
 ## Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -103,13 +110,20 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 * Extraneous parameters for commands that do not take in parameters (such as `listC`, `listT`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
-
+  
 ## Section 1: Contacts
 
 These commands allow you to maintain a list of business contacts that you meet for collaborative projects.
 Whether it be for a school project or an internship, store all their details in one place for easy look-up.
 Contact management has never been this simple.
+
+<div markdown="block" class="alert alert-info">
+
+* Contacts have no labels by default.
+
+* Contact remarks are limited to alphanumeric characters and spaces.
+
+</div>
 
 ### Adding a contact: `addC`
 
@@ -117,13 +131,11 @@ Adds a contact to the address book.
 
 Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
-* The remark of a contact is optional.
+<div markdown="span" class="alert alert-warning">:warning:
 
-* Remarks are limited to alphanumeric characters and spaces.
+Adding a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
 
-* You cannot add a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
-
-* Contacts have no tags when first created.
+</div>
 
 Examples:
 
@@ -167,8 +179,6 @@ Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * Input values will replace existing values.
 
-* Remarks are limited to alphanumeric characters and spaces.
-
 Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
@@ -182,8 +192,6 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 * At least one information field has to be provided.
 
 * The search is case-insensitive, e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
-
-* The order of the keywords does not matter, e.g. `findC n/John p/91231234` will return the same result as `findC p/91231234 n/John`.
 
 * Only full words will be matched. e.g. `John` will not match `Johnny`.
 
@@ -204,9 +212,6 @@ Filters contacts whose label(s) contain any of the given keywords.
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
-
-* The order of the keywords does not matter, e.e. `cs2101 cs2103t` will match
-  `cs2103t` and `cs2101`.
 
 * Only the contact's label is filtered.
 
@@ -242,29 +247,30 @@ Tasks can be archived once they are completed, so you can keep track of your pro
 Monitor your progress, track deadlines and archive tasks with a few simple commands.
 Leave your task management to YellowBook, so you can do your best work.
 
+<div markdown="block" class="alert alert-info">
+
+* Tasks have no labels by default.
+
+* Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.
+
+</div>
+
+
 ### Adding a task: `addT`
 
 Adds a task to the task list.
 
 Format: `addT d/DESCRIPTION D/DEADLINE`
 
-* Tasks are unique. There cannot be more than one task with the same description, deadline and tag list in the task list.
-
-* The description and deadline of the task are not allowed to be empty.
-
-* The command parameters cannot be rearranged.
-
 * Newly added tasks are marked as not done by default.
-
-* Tasks have no tags when first created.
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-<div markdown="span" class="alert alert-warning">:exclamation: The following scenarios should not happen for your command to run successfully:</div>
+<div markdown="span" class="alert alert-warning">:warning:
 
-- If the description of the task is empty.
-- If the deadline of the task is empty.
-- The deadline of the task is not in dd-mm-yyyy format.
+- Adding a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.
+
+</div>
    
 Example:
 
@@ -276,7 +282,7 @@ Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
-* By default, tasks are marked as unarchived when they are first added.
+* Tasks are marked as unarchived when they are first added by default.
 
 * Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.
 
@@ -334,13 +340,9 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 
 * At least one information field has to be provided.
 
-* Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.
-
 * Task status must be either `complete` or `incomplete`.
 
 * The search is case-insensitive, e.g. `homework` will match `HOMEWORK`.
-
-* The order of the keywords does not matter, e.g. `findT d/homework D/25-12-2022 s/complete` will return the same result as `findT s/complete D/25-12-2022 d/homework`.
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
 
@@ -360,9 +362,6 @@ Filters tasks whose label(s) contain any of the given keywords.
 Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
-
-* The order of the keywords does not matter, e.g. `cs2101 cs2103t` will match
-  `cs2103t cs2101`.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
@@ -428,10 +427,11 @@ Format: `remindT DEADLINE`
 
 * Task with deadlines that are already past are also listed.
 
+<div markdown="span" class="alert alert-info">:bulb:
+
 * Tasks that are complete are also listed so users are reminded to delete them.
 
-The following scenarios should not happen for your command to run successfully:
-- The deadline of the task is not in dd-mm-yyyy format.
+</div>
 
 Example:
 
@@ -452,9 +452,6 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
 * Tasks with labels matching at least one keyword will be returned.
-
-The following scenarios should not happen for your command to run successfully:
-- The deadline of the task is not in dd-mm-yyyy format.
 
 Example:
 
@@ -491,31 +488,37 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
+<div markdown="span" class="alert alert-info">:information source:
+
+* Labels must be alphanumeric and one word long.
+
+* Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.
+
+*:bulb:
+
+* Multiple labels can be specified.
+
+</div>
+
 ### Listing all labels: `listL`
 
 Shows a list of all existing labels in the address book.
 
 ### Adding a label to a contact/task: `addL`
 
-Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels.
+Adds a label to an existing contact/task in YellowBook. 
 At the same time, the label is added to the label list, shown under the "tags" tab of the app.
 This list is unique, meaning each label with a distinct name is only shown once, even if more than one contact/task has the same label.
 
-Multiple labels can be added in the same command.
-However, only a maximum of one contact and one task can be labelled within the same command.
+Only a maximum of one contact and one task can be labelled within the same command.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-addL is case-sensitive! `cs2103t` and `CS2103T` will be added as separate labels in the tag list.
+<div markdown="span" class="alert alert-warning">:warning:
+
+- Contact/task does not exist.
+- Contact/task already has the required label.
+- More than one contact or more than one task is specified.
+
 </div>
-
-Labels must be alphanumeric and one word long.
-
-The following scenarios should not happen for your command to run successfully: 
-- Contact/task does not exist
-- Contact/task already has the required label
-- No label is provided
-- No contact/task is provided
-- More than one contact or more than one task is specified
 
 Format: `addL c/INDEX t/INDEX l/label_NAME`
 
@@ -530,23 +533,15 @@ Removes a label from an existing contact/task in YellowBook.
 If contact/task is last remaining contact/task with said label, label is removed from the label list.
 Otherwise, it is only removed from the specified contact/task label list.
 
-Multiple labels can be deleted in the same command.
-However, only a maximum of one contact and one task can be edited within the same command.
+Only a maximum of one contact and one task can be edited within the same command.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-deleteL is case-sensitive! If you try to delete `cs2103t` but type `CS2103T` in your command, 
-you will encounter an error as YellowBook will not find a match.
+<div markdown="span" class="alert alert-warning">:warning:
+
+- Contact/task does not exist.
+- Label does not exist on specified contact/task.
+- More than one contact or more than one task is specified.
+
 </div>
-
-Labels must be alphanumeric and one word long.
-
-
-The following scenarios should not happen for your command to run successfully: 
-- Contact/task does not exist
-- Label does not exist on specified contact/task
-- No contact/task is provided
-- No label is provided
-- More than one contact or more than one task is specified
 
 Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
@@ -556,32 +551,30 @@ Example:
 
 ### Deleting all contacts and tasks by label: `deleteA`
 
-Deleting all contacts and tasks who contain the label(s) specified.
+Deletes all contacts and tasks that contain the label(s) specified.
 
 Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
 * The label is also deleted.
 
-* The label is case-sensitive, e.g. `cs2103t` will not delete labels named `CS2103T`.
-
-* Multiple labels can be specified.
-
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
 
-The following scenarios should not happen for your command to run successfully:
-- Label does not exist
-- No label is provided
+<div markdown="span" class="alert alert-warning">:warning:
+
+- Label does not exist.
+
+</div>
 
 [[Back to Table of Contents](#table-of-contents)]
 
 ## Section 4: Other Useful Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a window with a link to this user guide and latest release of YellowBook.
 
-### Undoing a command : `undo`
+### Undoing a command: `undo`
 
 Undoes the last command.
 
@@ -591,7 +584,7 @@ Format: `undo`
 
 * Undo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
-### Redoing a command : `redo`
+### Redoing a command: `redo`
 
 Redoes the last command.
 
@@ -601,13 +594,13 @@ Format: `redo`
 
 * Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
-### Clearing YellowBook data : `clear`
+### Clearing YellowBook data: `clear`
 
 Clears all data from YellowBook.
 
 Format: `clear`
 
-### Exiting YellowBook : `exit`
+### Exiting YellowBook: `exit`
 
 Closes the YellowBook program.
 
@@ -639,7 +632,7 @@ Advanced users who wish to edit the data file should note the following:
 - The id field of a contact is unique and should comply with the string representation of [Java UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#toString--)
 - The id field of a task is unique and should be an number greater than zero
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation:
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
 </div>
 
