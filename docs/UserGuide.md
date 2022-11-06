@@ -312,8 +312,8 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 
 | Argument       | Format                                                                                                      |
 |----------------|-------------------------------------------------------------------------------------------------------------|
-| `ADDRESS`      | Any ASCII text, case insensitive                                                                            |
-| `CONTENT`      | Any ASCII text                                                                                              |
+| `ADDRESS`      | Any nonempty ASCII text, case insensitive                                                                   |
+| `CONTENT`      | Any nonempty ASCII text                                                                                     |
 | `CRITERION`    | Valid criteria are stated at the [sfind](#finding-a-stall-sfind), [rfind](#finding-a-review-rfind) commands |
 | `DATE`         | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes          |
 | `EDIT_TAG`     | A possibly empty alphanumeric token without spaces, case insensitive                                        |
@@ -330,8 +330,8 @@ This table highlights how the various data of the stalls and reviews are stored 
 
 | Data field     | Format                                                                                                    |
 |----------------|-----------------------------------------------------------------------------------------------------------|
-| Address        | Any ASCII text                                                                                            |
-| Content        | Any ASCII text                                                                                            |
+| Address        | Any nonempty ASCII text                                                                                   |
+| Content        | Any nonempty ASCII text                                                                                   |
 | Date           | DD/MM/YYYY                                                                                                |
 | Name           | Nonempty alphanumeric string with spaces, no repeated spaces, capitalisation preserved                    |
 | Rating         | An integer from 0 to 5                                                                                    |

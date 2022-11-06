@@ -33,14 +33,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The architecture diagram given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At App launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `sdel 1`.
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `sdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,11 +73,11 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="850" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StallListPanel`, `ReviewListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -100,8 +100,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a review).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
-![Interactions inside the Logic Component for the `rdel 1` Command](images/DeleteSequenceDiagram.png)
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
+
+<img src="images/DeleteSequenceDiagram.png" width="850" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -157,10 +158,10 @@ Classes used by multiple components are in the `foodwhere.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### **Review components**
-* Added Classes into the model Component to encapsulate a Review
+* Added classes into the `Model` component to encapsulate a Review
 
 #### **Implementation**
-<img src="images/ModelReviewClassDiagram.png" width="450" />
+<img src="images/ModelReviewClassDiagram.png" width="700" />
 
 A `Review`,
 - is primarily stored in the Stall associated with it
@@ -173,7 +174,7 @@ A `Review` contains the following attributes,
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
 5. can be assigned to a single `Stall`
-6. can be assigned multiple `Tags`
+6. can be assigned multiple `Tag`s
 
 #### Design considerations:
 
@@ -181,7 +182,7 @@ A `Review` contains the following attributes,
 - **Current Choice**: Attributes within `Review` are immutable, meaning that if there is an attribute that has to be edited, a new `Review` object has to be created.
     * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of a `Review` object are fixed
     * Cons: Less flexible, more steps needed in editing `Review` objects
-- Alternative 1: Allow certain components within `Review`, like `Date` and `Content`to be mutable
+- Alternative 1: Allow certain components within `Review`, like `Date` and `Content` to be mutable
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
 
@@ -189,7 +190,7 @@ A `Review` contains the following attributes,
 
 #### What is Review adding feature about?
 
-The Add Review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
+The add review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
@@ -212,7 +213,7 @@ Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicke
 
 The following activity diagram summarizes what happens when a user executes a new `radd` command:
 
-<img src="images/AddReviewActivityDiagram.png" width="250" />
+<img src="images/AddReviewActivityDiagram.png" width="350" />
 
 #### Design considerations:
 - The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
@@ -257,7 +258,7 @@ Step 6. When the SFindCommand executes, the predicate will be sent to ModelManag
 
 The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
 
-<img src="images/FindActivityDiagram.png" width="250" />
+<img src="images/FindActivityDiagram.png" width="450" />
 
 #### Design considerations:
 - Allow usage of multiple attributes (name and/ or tag) as search term to filter out stalls/ reviews that has the specified keywords
@@ -294,7 +295,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is Review deleting feature about?
 
-The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
+The delete review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
 
 For the command, the feature extends `Command`, and is implemented as such:
 * `rdel REVIEW_INDEX`
@@ -317,13 +318,13 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
-<img src="images/DeleteReviewActivityDiagram.png" width="250" />
+<img src="images/DeleteReviewActivityDiagram.png" width="350" />
 
 ### Review editing feature
 
 #### What is Review editing feature about?
 
-The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
+The edit review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
 
 `REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
 
@@ -367,9 +368,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is sorting Stalls and Reviews feature about?
 
-`ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
+`ssort`: The sort stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
-`rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+`rsort`: The sort reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
 For the command, the feature extends `Command`, and is implemented as such:
 * `ssort CRITERION`
@@ -399,7 +400,7 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortActivityDiagram.png" width="250" />
+<img src="images/SortActivityDiagram.png" width="300" />
 
 ### File format for FoodWhere
 
@@ -413,8 +414,8 @@ Aside from rating, the other fields are stored as strings. The accepted format i
 
 | Data field     | Format                                                                                                                                                          |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Address        | Any ASCII text                                                                                                                                                  |
-| Content        | Any ASCII text                                                                                                                                                  |
+| Address        | Any nonempty ASCII text                                                                                                                                         |
+| Content        | Any nonempty ASCII text                                                                                                                                         |
 | Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
 | Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
 | Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
@@ -501,7 +502,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.png" width="350" />
 
 #### Design considerations:
 
@@ -513,7 +514,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the stall being deleted).
+  * Pros: Will use less memory (e.g. for `sdel`, just save the stall being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 * **Alternative 3 (current choice):** Saves the entire address book, but ensuring that Stall and Review are both immutable.
@@ -558,7 +559,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        | Implemented in current Version                    |
+| Priority | As a …​                    | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         | Implemented in current version                    |
 |----------|---------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
 | `* * *`  | user                      | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             | Yes                                               |
 | `* * *`  | user                      | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             | Yes                                               |
@@ -828,6 +829,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
+
 ****
     
 **Use case 12: Find food reviews**
@@ -852,6 +854,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+****
+
 **Use case 13: Clearing data**
 
 **Preconditions**
@@ -863,6 +867,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FoodWhere sends a confirmation message that all data is cleared and saves all changes to disk.
 
    Use case ends.
+
+****
 
 **Use case 14: Editing the data file**
 
@@ -1135,7 +1141,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `sfind n/Alice's`<br>
        Expected: No stalls are found. Error details shown in the status message. GUI does not update.
 
-    7. Other incorrect stall find commands to try: `sfind`, `sfind n/`, `sfind a/Ang Mo Kio`<br>
+    7. Other incorrect stall find commands to try: `sfind`, `sfind a/Ang Mo Kio`<br>
        Expected: Similar to previous.
 
 ### Find reviews
