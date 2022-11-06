@@ -42,6 +42,7 @@ tutorials.
             * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
             * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
             * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+            * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
         * **Exiting the program**: [`exit`](#exiting-the-program--exit)
     * **[FAQ](#faq)**
     * **[Command Summary](#command-summary)**
