@@ -122,7 +122,7 @@ Extensions:
 
 #### Use Case 6: Add Tag to Item
 
-Preconditions: [[ Tag ]] has been created in FoodRem.
+Preconditions: [[ tag:Tag ]] has been created in FoodRem.
 
 [[ MSS ]]:
 
