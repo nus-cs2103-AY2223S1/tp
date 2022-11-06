@@ -81,6 +81,7 @@ public class Studio extends Lesson {
         return studioDescEquality
                 && otherStudio.startDateTime().equals(startDateTime())
                 && otherStudio.endDateTime().equals(endDateTime())
+                && otherStudio.getStudentList().equals(getStudentList())
                 && otherStudio.getAttendance().equals(getAttendance())
                 && otherStudio.getParticipation().equals(getParticipation());
     }
