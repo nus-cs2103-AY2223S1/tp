@@ -1,7 +1,8 @@
 ---
 layout: page
-title: **uNivUSal Developer Guide**
+title: uNivUSal Developer Guide
 ---
+# uNivUSal Developer Guide
 
 * [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#setting-up-getting-started)
