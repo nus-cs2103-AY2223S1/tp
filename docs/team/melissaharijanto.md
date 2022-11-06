@@ -95,6 +95,11 @@ Given below are my contributions to the project.
       - Relevant pull request(s): [#41](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/41),
       [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111/files),
       [#147](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/147)
+    - Added examples, screenshots, diagrams to the user guide
+      - Relevant pull request(s): [#212](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/212)
+    - Fixed UG bugs due to Markdown syntax issues
+      - Relevant pull request(s): [#135](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/135), 
+      [#216](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/216)
 
   - **Contributions to the DG**:
     - Added use cases for the Developer's Guide
@@ -114,6 +119,7 @@ Given below are my contributions to the project.
       - Relevant pull request(s): [#70](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/70),
       [#135](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/135),
       [#146](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/146)
+    - Reviewed and offered suggestions for fellow teammates' pull requests.
 
   - **Contributions beyond the project team**:
     - Assist another project team in detecting bugs and offered tips and/or solutions to fix them:
