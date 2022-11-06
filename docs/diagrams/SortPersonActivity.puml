@@ -8,6 +8,7 @@ start
 if () then ([exactly 1 criterion prefix is given, and it is valid])
     :Sort person list based on
     the given criterion prefix;
+    :Display success message;
 else ([else])
     :Gives an error that the command format is
     invalid without changing the person list;

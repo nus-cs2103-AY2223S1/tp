@@ -57,7 +57,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -p 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -191,8 +191,8 @@ The following activity diagram summarizes what happens when a user executes an `
 4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
 5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
 6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
-7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criteria.
-8. The person list will then set the comparator based on the criteria that was passed earlier, and the list is sorted based on that comparator.
+7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criterion.
+8. The person list will then set the comparator based on the criterion that was passed earlier, and the list is sorted based on that comparator.
 9. Afterwards, `SortPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
 
 The sequence diagram is given below.

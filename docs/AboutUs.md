@@ -47,8 +47,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/liufangrui)]
 [[portfolio](team/liufangrui.md)]
 
-* Role: `to be added soon`
-* Responsibilities: `to be added soon`
+* Role: Developer
+* Responsibilities: 
+  * Deliverables and deadlines 
+  * Scheduling and tracking
 
 ### Ng Qi Ting
 
