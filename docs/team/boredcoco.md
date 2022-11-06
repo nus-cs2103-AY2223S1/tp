@@ -9,11 +9,16 @@ PetCode - is a desktop address book application used for coordinating pet delive
 
 Given below are my contributions to the project.
 
-* **New Feature**: *Filter for relevant Orders or Pets*.
-    * What it does: *Using specific attributes, the user can find Pets or Orders matching those attributes*.
-    * Justification: *The user may want to take a quick look at Orders or Pets that have specific attributes so that he or she can bulk buy from a Supplier*
+* **New Feature**: *Filter for relevant Pets*.
+    * What it does: *Using specific attributes, the user can find Pets matching those attributes*.
+    * Justification: *The user may want to take a quick look at Pets that have specific attributes so that he or she can bulk buy from a Supplier*
     * Highlights: *This feature supports entering multiple fields*.
-    
+
+* **New Feature**: *Filter for relevant Orders*.
+    * What it does: *Using specific attributes, the user can find Orders matching those attributes*.
+    * Justification: *The user may want to take a quick look at Orders that have specific attributes so that he or she can have an overview of similar orders.*
+    * Highlights: *This feature supports entering multiple fields*.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=boredcoco&breakdown=true)
 
 * **Functionality**
