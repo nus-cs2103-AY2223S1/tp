@@ -122,12 +122,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<String> getVisibleFields() {
-        return model.getVisibleFields();
+        return model.getUnmodifiableVisibleFields();
     }
 
     @Override
     public ObservableList<String> getHiddenFields() {
-        return model.getHiddenFields();
+        return model.getUnmodifiableHiddenFields();
     }
 
 }

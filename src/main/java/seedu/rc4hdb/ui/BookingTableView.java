@@ -134,7 +134,7 @@ public class BookingTableView extends UiPart<Region> {
      */
     public void updateTable(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
         if (newValue != null) {
-            this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(newValue.getBookings()));
+            this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(newValue.getReadOnlyBookings()));
         } else {
             this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(new ArrayList<>()));
         }
