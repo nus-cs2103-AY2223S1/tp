@@ -26,6 +26,7 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Adding a resident `add`](#adding-a-resident--add)
     * [Editing an existing resident `edit`](#editing-an-existing-resident--edit)
     * [Deleting an existing resident `delete`](#deleting-a-resident--delete)
+    * [Deleting multiple residents `remove`](#deleting-multiple-residents--remove)
     * [Clearing all residents `clear`](#clearing-all-entries--clear)
     * [Resident field format](#format-for-resident-fields)
   * [**Viewing residents**](#viewing-residents)
@@ -37,7 +38,6 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Filtering residents `filter`](#filtering-residents-by-field--filter)
   * [**File management**](#file-management)
     * [Finding your data](#finding-your-data)
-    * [Editing your data file](#editing-your-data-file)
     * [Saving your data](#saving-your-data)
     * [Creating a new data folder `file create`](#creating-a-new-data-folder--file-create)
     * [Deleting an existing data folder `file delete`](#deleting-an-existing-data-folder--file-delete)
@@ -80,8 +80,8 @@ Broadly, **RC4HDB** provides users with the ability to:
 * Easily switch over to RC4HDB by importing old data from CSV files
 
 <div markdown="span" class="alert alert-info">
-RC4HDB is very simple, and beginner-friendly, and can be easily picked-up in a matter of days. Additionally, if you are a fast at typing, you will find yourselves comfortable while using
-RC4HDB. It can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff member.
+RC4HDB is very simple, and beginner-friendly, and can be easily picked-up in a matter of days. Regardless of your typing speed, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff member. But if you are fast at typing, you will find it very comfortable using
+RC4HDB.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -151,7 +151,7 @@ For more details on commands, refer to our [Command Guide](#command-guide) below
 ## **Command Guide**
 
 Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
-may have typed a command incorrectly as **RC4HDB** will warn you in the event that this happens!
+may have typed a command incorrectly as **RC4HDB** will inform you in the event that this happens!
 
 <div markdown="block" class="alert alert-info">
 
@@ -247,7 +247,7 @@ Examples:
   relevant personal and student information.
 
 
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/12345678 m/A3456789B g/F h/A` adds a resident named
   Betsy Crowe, with relevant personal and student information.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -352,7 +352,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a non-negative integer *i.e. `5-8` is valid and `-3-8` is invalid*
+* Both floor and unit number must be a positive integer *i.e. `5-8` is valid and `-3-8` is invalid*
 
 `g/GENDER`
 * `M` or `F`
@@ -369,8 +369,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 * Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
 
 `t/TAG`
-* Represents any other key that could be used to identify a resident
-* Must be a string. No restrictions on formatting
+* Can be used to add any other miscellaneous information, that the resident can be identified by
+* Can only contain alphanumeric characters
 * Optional. A resident can have any number of tags, including 0
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
@@ -430,7 +430,7 @@ Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) t
 As you can see,`showonly` displays only the specified columns and preserves the filter! This is one way you can 
 use our commands in conjunction with one another.
 
-Sequential examples:
+The following examples are to be performed one after the other:
 
 1. `showonly n g h` on a full table returns a table with only the *name*, *gender* and *house* columns shown, as above.
 2. Using `showonly r p e` on the table from point 1 is **invalid** as the *room*, *phone* and
@@ -472,7 +472,7 @@ Format: `hideonly LETTER [MORE_LETTERS]`
 
 ![hideonly](images/ug-photos/hideonly_command.png)
 
-Sequential examples:
+The following examples are to be performed one after the other:
 
 1. `hideonly i r p e m t` on a full table returns a table with only the *index*, *room*, *phone*, *email*, *matric* 
    and *tags* columns hidden. 
@@ -582,8 +582,6 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
-<div markdown="span" class="alert alert-info">:information_source: All file commands operate in the [data directory]().
-</div>
 
 ---
 
@@ -596,19 +594,6 @@ Inside your data folder, there should be two [JSON](#glossary-of-terms) files, `
 To find out which **sub** data folder is currently open, look at the **footer**, that can be found at the bottom of the application interface as shown in the image below, where the current **sub** data folder that is open is `rc4hdb`.
 
 ![Current data folder footer](images/ug-photos/current_data_folder_footer.png)
-
-[Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Editing your data file
-
-After familiarising yourself with **RC4HDB**, you are welcome to update data directly by editing the `resident_data.json` and `venue_data.json` found in your [**sub**](#finding-your-data) data folder. <span style="color:red">However, do take note that this is not the recommended method to edit data.</span>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, RC4HDB will discard all data and start with an empty data 
-file at the next run.
-</div>
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -805,7 +790,7 @@ Examples:
 
 ### Adding a booking: `venue book`
 
-Adds a booking to the specified venue, time period and day.
+Adds a booking to the specified venue, at the given time period and day.
 
 Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
@@ -823,7 +808,7 @@ Examples:
 
 ### Deleting a booking: `venue unbook`
 
-Deletes a booking from the specified venue, time period and day.
+Deletes a booking from the specified venue, at the given time period and day.
 
 Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
@@ -846,7 +831,7 @@ Examples:
 * The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*
 * Must begin and end on the hour *i.e. `1230-13` will not be accepted*
 * Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*
-* Valid booking hours are from `8` to `22`
+* Valid booking hours are from `8` to `23`
 * Blocks of time are allowed *i.e. `18-21` is accepted*
 * The start time must be earlier than end time
 
@@ -1054,6 +1039,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B` |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`              |
 | **Delete** | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                |
+| **Remove** | `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`<br> e.g. `remove /all h/D g/M`                                                                                |
 | **Clear**  | `clear`                                                                                                                                                                           |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
