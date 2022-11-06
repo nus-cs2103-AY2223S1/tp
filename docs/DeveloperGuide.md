@@ -3,14 +3,17 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
+## **Table of Contents**
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
 ---
 
 ## **Setting up and getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
 ---
 

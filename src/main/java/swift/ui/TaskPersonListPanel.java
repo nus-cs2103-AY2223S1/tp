@@ -43,7 +43,7 @@ public class TaskPersonListPanel extends UiPart<Region> {
      * Change panel to show all contacts.
      */
     protected void switchToAllContacts() {
-        heading.setText("ALL CONTACTS");
+        heading.setText("CONTACTS");
     }
 
     /**

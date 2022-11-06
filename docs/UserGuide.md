@@ -10,7 +10,7 @@ Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w1
 ## **About Swift+**
 
 Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily 
-interactions with contacts. As a project lead, you can easily record down your clients and teammates by **creating contacts**
+interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating contacts
 using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed. 
 Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
 
@@ -18,11 +18,14 @@ Perfect for SWE professionals, Swift+ is built around a **command line interface
 If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
 
 This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and 
-use its text-based commands. Get started now by heading over to [How to use the User Guide](#how-to-use-this-user-guide)!
+use its text-based commands. Get started now by heading over to [How to use this User Guide](#how-to-use-this-user-guide)!
 
 ---
 
-- Table of Contents
+## **Table of Contents**
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
 ---
@@ -34,19 +37,19 @@ use its text-based commands. Get started now by heading over to [How to use the 
 Throughout this website, you may find colored boxes that contain useful information. The icon at the top of the box represents
 the type of information contained.
 
-| Icon                                      | Meaning                              |
-|-------------------------------------------|--------------------------------------|
-| ![Tip](images/user-guide/tip.png)         | Something you may find useful.       |
-| ![Note](images/user-guide/note.png)       | Something you should keep in mind.   |
-| ![Caution](images/user-guide/caution.png) | Something you should be cautious of. |
+| Icon                                                      | Meaning                                                      |
+|-----------------------------------------------------------|--------------------------------------------------------------|
+| ![Tip](images/user-guide/tip.png){:height="32px"}         | Tips to help you make the most out of Swift+.                |
+| ![Note](images/user-guide/note.png){:height="32px"}       | Information you should take note of while using Swift+.      |
+| ![Caution](images/user-guide/caution.png){:height="32px"} | Warnings that may corrupt your app and data if not followed. |
 
 ### Sections
 
 If you have not installed Swift+, head over to the [Installation](#installation) section.
 
 After installing Swift+, you can refer to our [Getting Started](#getting-started) section on the basics of using Swift+. This includes the app's,
-- [layout](#layout)
-- [command format](#command-format)
+- [Layout](#layout)
+- [Command format](#command-format)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 If you are using Swift+ for the first time, we **highly recommend** that you read through the [Getting Started](#getting-started) 
@@ -86,7 +89,7 @@ The app comes with sample contacts and tasks by default. To delete the sample da
 ### Layout
 
 After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle 
-between the Contact View, which is primarily for viewing contacts, and the Task View, which is mainly for viewing tasks. 
+between the [Contact View](#contact-view) and the [Task View](#task-view).
 Let's take a look at the different components in Swift+ below.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
@@ -96,27 +99,31 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 **Swift+'s GUI:**
 ![Ui](images/Ui.png)
 
-This table outlines the components shared by both Contact View and Task View.
+This table showcases the components shared by both Contact View and Task View.
 
-| Component Name        | Image                                                         |
-|-----------------------|---------------------------------------------------------------|
-| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                   |
-| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png) |
-| **Search Results**    | ![Search Results](images/user-guide/search-results.png)       |
+| Component Name        | Image                                                                    |
+|-----------------------|--------------------------------------------------------------------------|
+| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                              |
+| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)            |
+| **Search Results**    | ![Search Results](images/user-guide/search-results.png){:height="120px"} |
 
 #### Contact View
 
-| Component Name   | Image                                               |
-|------------------|-----------------------------------------------------|
-| **Contact List** | ![Contact List](images/user-guide/contact-list.png) |
-| **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png) |
+The contact view is primarily for viewing contacts. The main panel on the left displays a list of contacts and all of their details. The right sidebar contains a list of tasks with some essential details.
+
+| Component Name   | Image                                                                |
+|------------------|----------------------------------------------------------------------|
+| **Contact List** | ![Contact List](images/user-guide/contact-list.png){:height="200px"} |
+| **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png){:height="150px"} |
 
 #### Task View
 
-| Component Name      | Image                                                     |
-|---------------------|-----------------------------------------------------------|
-| **Task List**       | ![Task List](images/user-guide/task-list.png)             |
-| **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png) |
+The task view is primarily for viewing tasks. The main panel on the left displays a list of tasks and all of their details. The right sidebar contains a list of contacts with some essential details.
+
+| Component Name      | Image                                                                      |
+|---------------------|----------------------------------------------------------------------------|
+| **Task List**       | ![Task List](images/user-guide/task-list.png){:height="200px"}             |
+| **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png){:height="150px"} |
 
 ### How to use Swift+ commands 
 
@@ -143,7 +150,9 @@ Refer to the [Command Format](#command-format) section on how to use flags and p
 
 #### Parameter
 
-A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag.
+A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag. 
+
+Each parameter has unique constraints, which restricts what you can type in for the parameter. Refer to the table below for details.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note**<br>
 Some parameters, such as `CONTACT_INDEX` and `KEYWORD`, may not follow after flags.
@@ -151,19 +160,120 @@ Some parameters, such as `CONTACT_INDEX` and `KEYWORD`, may not follow after fla
 
 Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
 
-| Parameter       | Corresponding Flag | Description                                                |
-|-----------------|--------------------|------------------------------------------------------------|
-| `ADDRESS`       | `a/`               | The address of a contact.                                  |
-| `CONTACT_INDEX` | `c/`               | The displayed index of a contact.                          |
-| `CONTACT_NAME`  | `n/`               | The name of a contact.                                     |
-| `DEADLINE`      | `dl/`              | The deadline of a task.                                    |
-| `DESCRIPTION`   | `d/`               | The description of a task.                                 |
-| `EMAIL`         | `e/`               | The email of a contact.                                    |
-| `KEYWORD`       | Not applicable     | The keywords to search for when finding contacts or tasks. |
-| `TASK_INDEX`    | `t/`               | The displayed index of a task.                             |
-| `TASK_NAME`     | `n/`               | The name of a task.                                        |
-| `PHONE_NUMBER`  | `p/`               | The phone number of a contact.                             |
-| `TAG`           | `t/`               | The tag of a contact.                                      |
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Corresponding Flag</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td markdown="span">`ADDRESS`</td>
+        <td markdown="span">`a/`</td>
+        <td markdown="block">Specifies the address of a contact.
+
+- Cannot be blank.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`CONTACT_INDEX`</td>
+        <td markdown="span">`c/`</td>
+        <td markdown="block">Refers to the index number shown in the **displayed contact list**.
+
+- Must be a **positive whole number**, e.g. 1, 2, 3.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`CONTACT_NAME`</td>
+        <td markdown="span">`n/`</td>
+        <td markdown="block">Specifies the name of a contact.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `,` `-` `'`.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`DEADLINE`</td>
+        <td markdown="span">`dl/`</td>
+        <td markdown="block">Specifies the due date of a task.
+
+- Must be in the format of **`dd-MM-yyyy HHmm`**, e.g. `12-06-2020 1234` represents `12 June 2020 12:34`.
+- If `HHmm` is specified as `2400`, the date will increase to the following day with the time at 00:00.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`DESCRIPTION`</td>
+        <td markdown="span">`d/`</td>
+        <td markdown="block">Specifies the description and further details of a task.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `$` `&` `+` `,` `:` `;` `=` `?` `@` `#` `|` `'` `<` `>` `.` `\` `-` `^` `*` `(` `)` `%` `!`.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`EMAIL`</td>
+        <td markdown="span">`e/`</td>
+        <td markdown="block">Specifies the email of a contact.
+
+- Must be in the format of **`USERNAME@DOMAIN`**.
+- `USERNAME` should only contain alphanumeric characters and the following special symbols: `+` `_` `.` `-`.
+- `USERNAME` cannot start or end with the above special symbols.
+- `DOMAIN` consists of domain labels separated by periods (`.`), e.g. `nus.edu.sg`.
+- `DOMAIN` must end with a domain label with at least 2 characters, e.g. `.com`.
+- Each domain label must only consist of alphanumeric characters, separated only by hyphens, if any, e.g. `swift-plus.com`.
+- Each domain label start and end with alphanumeric characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`KEYWORD`</td>
+        <td>Not applicable</td>
+        <td markdown="block">Specifies the keywords to search for when finding contacts or tasks.
+
+- Can contain alphanumeric characters, spaces, and any special characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`PHONE_NUMBER`</td>
+        <td markdown="span">`p/`</td>
+        <td markdown="block">Specifies the phone number of a contact.
+
+- Should only contain numbers.
+- Must be at least 3 digits long.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TAG`</td>
+        <td markdown="span">`t/`</td>
+        <td markdown="block">Specifies the tag to categorize a contact under.
+
+- Should only contain alphanumeric characters.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TASK_INDEX`</td>
+        <td markdown="span">`t/`</td>
+        <td markdown="block">Refers to the index number shown in the **displayed task list**.
+
+- Must be a **positive whole number**, e.g. 1, 2, 3.
+
+</td>
+    </tr>
+    <tr>
+        <td markdown="span">`TASK_NAME`</td>
+        <td markdown="span">`n/`</td>
+        <td markdown="block">Specifies the name of a task.
+
+- Should only contain alphanumeric characters, spaces, and the following symbols: `,` `-` `'`.
+
+</td>
+    </tr>
+</table>
 
 #### Command Format
 
@@ -192,16 +302,14 @@ zero times.
   e.g. if you specify `p/1234 p/5678`, only `p/5678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list_contact`, `exit` and `clear`) will be **ignored**.<br>
   e.g. if your specify `help 123`, it will be interpreted as `help`.
-- Contact and task name should only contain alphanumeric characters, commas, hyphens, apostrophe and spaces.<br>
-  e.g. `n/Dr. John-Doe` is acceptable, but `n/John!` is not.
 
 </div>
 
 ---
 
-## **Commands**
+## Commands
 
-This section covers how to use each command in detail.
+This section covers how to use each command in detail. You may wish to refer to the [Parameter](#parameter) section to view the constraints for each parameter.
 
 ### Contact commands
 
@@ -209,37 +317,41 @@ This section covers how to use each command in detail.
 
 > Adds a contact.
 
-Format: `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Format:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 A contact can have any number of tags (including 0)
 </div>
 
-Examples:
+**Examples:**
 
-- `add_contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add_contact n/Betsy Crowe t/developer e/betsycrowe@example.com a/Newgate office p/1234567 t/client`
+- `add_contact n/Mark Yang p/12345678 e/mark@example.com a/block 123` adds a contact named `Mark Yang` with a phone number of `12345678`, email of `mark@example.com`, and address of `block 123`.
+- `add_contact n/Anne Marie t/developer e/anne@example.com a/Newgate office p/87654321 t/client` adds a contact named `Anne Marie` with a tag of `developer` and `friend`, email of `anne@example.com`, address of `Newgate office`, and phone number of `87654321`.
 
 #### Listing all contacts: `list_contact`
 
 > Shows a list of all contacts.
 
-Format: `list_contact`
+**Format:** `list_contact`
 
 #### Finding contacts by name: `find_contact`
 
 > Finds contacts whose names contain any of the given keywords.
 
-Format: `find_contact KEYWORD [MORE_KEYWORDS]`
+**Format:** `find_contact KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g. `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
+- The search is **case-insensitive**. e.g. `mark` will match `Mark`
+- The order of the keywords does not matter. e.g. `Mark Wilson` will match `Wilson Mark`
+- Only the name of contacts is searched.
+- Only full words will be matched e.g. `Mark` will not match `Marks`
 - Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Mark Wilson` will return `Mark Yang`, `Steve Wilson`
 
-Examples:
+</div>
+
+**Examples:**
 
 - `find_contact John` returns `john` and `John Doe`.
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
@@ -249,17 +361,19 @@ Examples:
 
 > Edits an existing contact.
 
-Format: `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:** `edit_contact CONTACT_INDEX [n/CONTACT_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
+- Edits the contact at the specified `CONTACT_INDEX`.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 - You can remove all the contact's tags by typing `t/` without specifying any tags after it.
 
-Examples:
+</div>
+
+**Examples:**
 
 - `edit_contact 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 - `edit_contact 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
@@ -268,13 +382,9 @@ Examples:
 
 > Deletes the specified contact.
 
-Format: `delete_contact INDEX`
+**Format:** `delete_contact CONTACT_INDEX`
 
-- Deletes the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
+**Examples:**
 
 - `list_contact` followed by `delete_contact 2` deletes the 2nd contact in the entire contact list.
 - `find_contact Betsy` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact Betsy` command.
@@ -283,13 +393,9 @@ Examples:
 
 > Selects the specified contact and displays the contact's assigned tasks.
 
-Format: `select_contact INDEX`
+**Format:** `select_contact CONTACT_INDEX`
 
-- Selects the contact at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed contact list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
+**Examples:**
 
 - `list_contact` followed by `select_contact 1` selects the 1st contact in the entire contact list and shows all tasks assigned to that contact.
 - `find_contact Hermione` followed by `select_contact 1` selects the 1st contact in the results of the `find_contact Hermione` command and shows all task assigned to that person.
@@ -300,30 +406,33 @@ Examples:
 
 > Adds a task.
 
-Format: `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
+**Format:** `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
 
-- Adds and assigns a task to contacts at the specified `CONTACT_INDEX`.
-- The contact index refers to the index number shown in the **displayed contact list**.
-- The contact index **must be a positive integer** 1, 2, 3, …​
-- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
-- If `HHmm` exceeds `2359`, it will overflow to the next day.
+**Examples:**
 
-Examples:
-
-- `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1`
-- `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2 c/3`
+- `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1` adds a task assigned to the 1st displayed contact. The task has a name of `CS2103T`, description of `Finish milestones`, and deadline of `12 December 2022 23:59`.
+- `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2 c/3` adds a task assigned to the 2nd and 3rd displayed contact. The task has a name of `CS2101 Assignment` and deadline of `12 December 2022 23:59`.
 
 #### Listing all tasks: `list_task`
 
-Shows a list of all tasks. Tasks are sorted chronologically by deadline. Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
+> Shows a list of all tasks. 
 
-Format: `list_task`
+**Format:** `list_task`
+
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
+- Tasks are **sorted chronologically by deadline**. 
+- Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
+
+</div>
 
 #### Finding tasks by name: `find_task`
 
-Finds tasks whose names contain any of the given keywords.
+> Finds tasks whose names contain any of the given keywords.
 
-Format: `find_task KEYWORD [MORE_KEYWORDS]`
+**Format:** `find_task KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - The search is case-insensitive. e.g. `book` will match `Book`
 - The order of the keywords does not matter. e.g. `read book` will match `book read`
@@ -332,7 +441,9 @@ Format: `find_task KEYWORD [MORE_KEYWORDS]`
 - Tasks matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Read book` will return `Write book`, `Find book`
 
-Examples:
+</div>
+
+**Examples:**
 
 - `find_task Book` returns `book` and `Book`.
 - `find_task read book` returns `read novel` and `sell book`.
@@ -341,17 +452,17 @@ Examples:
 
 > Edits an existing task.
 
-Format: `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+**Format:** `edit_task TASK_INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
-- Edits the task at the specified `INDEX`. 
-- The index refers to the index number shown in the **displayed task list**. 
-- The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
+- Edits the task at the specified `TASK_INDEX`. 
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
-- If `HHmm` exceeds `2359`, it will overflow to the next day.
 
-Examples:
+</div>
+
+**Examples:**
 
 - `edit_task 1 n/Client meeting d/Gather user stories` edits the task name and description of the 1st task to `Client meeting` and `Gather user stories` respectively.
 - `edit_task 2 dl/06-12-2022 1200` edits the deadline of the 2nd task to be `06-12-2022 1200`.
@@ -360,28 +471,20 @@ Examples:
 
 > Deletes an existing task in task list.
 
-Format: `delete_task INDEX`
+**Format:** `delete_task TASK_INDEX`
 
-- Deletes the task at the specified `INDEX`. 
-- The index refers to the index number shown in the displayed task list. 
-- The index **must be a positive integer** 1, 2, 3, …​
+**Examples:**
 
-Examples:
-
-- `delete_task 1` Deletes the Task at index 1.
-- `delete_task 3` Deletes the Task at index 3.
+- `delete_task 1` deletes the task at index 1.
+- `delete_task 3` deletes the task at index 3.
 
 #### Selecting a task: `select_task`
 
 > Selects the specified task and displays the contacts assigned to the task.
 
-Format: `select_task INDEX`
+**Format:** `select_task TASK_INDEX`
 
-- Selects the task at the specified `INDEX`.
-- The index refers to the index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
+**Examples:**
 
 - `list_task` followed by `select_task 1` selects the 1st task in the entire task list and shows all contacts assigned to that task.
 - `find_task sleep` followed by `select_task 1` selects the 1st task in the results of the `find_task sleep` command and shows all contacts assigned to that task.
@@ -390,14 +493,15 @@ Examples:
 
 > Marks the specified task as completed.
 
-Format: `mark INDEX`
+**Format:** `mark TASK_INDEX`
 
-- Marks the task at the specified `INDEX` as completed.
-- The index refers to index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
 - Specified task must be currently incomplete for command to succeed.
 
-Examples:
+</div>
+
+**Examples:**
 
 - `list_task` followed by `mark 1` marks the 1st task in the entire task list as completed.
 - `find_task sleep` followed by `mark 1` marks the 1st task in the results of the `find_task sleep` command as completed.
@@ -406,14 +510,15 @@ Examples:
 
 > Marks the specified task as incomplete.
 
-Format: `unmark INDEX`
+**Format:** `unmark TASK_INDEX`
 
-- Marks the task at the specified `INDEX` as incomplete.
-- The index refers to index number shown in the **displayed task list**.
-- The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
 - Specified task must be currently completed for command to succeed.
 
-Examples:
+</div>
+
+**Examples:**
 
 - `list_task` followed by `unmark 1` marks the 1st task in the entire task list as incomplete.
 - `find_task sleep` followed by `unmark 1` marks the 1st task in the results of the `find_task sleep` command as incomplete.
@@ -422,13 +527,16 @@ Examples:
 
 > Assigns a task to a contact.
 
-Format: `assign c/CONTACT_INDEX t/TASK_INDEX`
+**Format:** `assign c/CONTACT_INDEX t/TASK_INDEX`
+
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. 
-- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
-- The indices **must be a positive integer** 1, 2, 3, …​
+- Existing assignments are not affected.
 
-Examples:
+</div>
+
+**Examples:**
 
 - `assign c/1 t/1` assigns the task at index 1 to the contact at index 1.
 - `assign c/3 t/2` assigns the task at index 2 to the contact at index 3.
@@ -437,13 +545,15 @@ Examples:
 
 > Removes a contact from a task.
 
-Format: `unassign c/CONTACT_INDEX t/TASK_INDEX`
+**Format:** `unassign c/CONTACT_INDEX t/TASK_INDEX`
+
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
 - Removes the contact at the specified `CONTACT_INDEX` from the task at the specified `TASK_INDEX`. 
-- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
-- The indices **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+</div>
+
+**Examples:**
 
 - `unassign c/1 t/1` removes the contact at index 1 from the task at index 1.
 - `unassign c/3 t/2` removes the contact at index 3 from the task at index 2.
@@ -454,31 +564,37 @@ Examples:
 
 > Toggles the view between the contacts and tasks tabs.
 
-Format: `Ctrl + Tab`
+**Format:** `Ctrl + Tab`
 
-- Alternatively, you can also click on the Contacts and Tasks button in the top toolbar.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+Alternatively, you can click on the **Contacts and Tasks button** in the top toolbar.
+</div>
 
 #### Viewing help: `help`
 
 Shows a message explaining how to access the user guide.
 
-- Alternatively, you can also click on the Help button in the top toolbar.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+Alternatively, you can click on the **Help button** in the top toolbar.
+</div>
 
-Format: `help`
+**Format:** `help`
 
 #### Clearing all data: `clear`
 
 > Deletes all data in the application.
 
-Format: `clear`
+**Format:** `clear`
 
 #### Exiting the program : `exit`
 
 > Exits the program.
 
-Format: `exit`
+**Format:** `exit`
 
-- Alternatively, you can also click on the Exit button in the top toolbar.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+Alternatively, you can click on the **Exit button** in the top toolbar.
+</div>
  
 ### Command suggestion and autocomplete
 
@@ -519,23 +635,23 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## **Command Summary**
 
-| Action             | Format                                                                                 |
-|--------------------|----------------------------------------------------------------------------------------|
-| **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
-| **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`               |
-| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                  |
-| **Clear Data**     | `clear`                                                                                |
-| **Delete Contact** | `delete_contact INDEX`                                                                 |
-| **Delete Task**    | `delete_task INDEX`                                                                    |
-| **Edit Contact**   | `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Edit Task**      | `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`                          |
-| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                                 |
-| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                                    |
-| **Help**           | `help`                                                                                 |
-| **List Contacts**  | `list_contact`                                                                         |
-| **List Tasks**     | `list_task`                                                                            |
-| **Mark Task**      | `mark INDEX`                                                                           |
-| **Select Contact** | `select_contact INDEX`                                                                 |
-| **Select Task**    | `select_task INDEX`                                                                    |
-| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                                |
-| **Unmark Task**    | `unmark INDEX`                                                                         |
+| Action             | Format                                                                                         |
+|--------------------|------------------------------------------------------------------------------------------------|
+| **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                        |
+| **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`                       |
+| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                          |
+| **Clear Data**     | `clear`                                                                                        |
+| **Delete Contact** | `delete_contact CONTACT_INDEX`                                                                 |
+| **Delete Task**    | `delete_task TASK_INDEX`                                                                       |
+| **Edit Contact**   | `edit_contact CONTACT_INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Edit Task**      | `edit_task TASK_INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`                             |
+| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                                         |
+| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                                            |
+| **Help**           | `help`                                                                                         |
+| **List Contacts**  | `list_contact`                                                                                 |
+| **List Tasks**     | `list_task`                                                                                    |
+| **Mark Task**      | `mark TASK_INDEX`                                                                              |
+| **Select Contact** | `select_contact CONTACT_INDEX`                                                                 |
+| **Select Task**    | `select_task TASK_INDEX`                                                                       |
+| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                                        |
+| **Unmark Task**    | `unmark TASK_INDEX`                                                                            |

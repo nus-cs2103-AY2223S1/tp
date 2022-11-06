@@ -46,7 +46,7 @@ public class PersonTaskListPanel extends UiPart<Region> {
      * Change panel to show all contacts.
      */
     protected void switchToAllTasks() {
-        heading.setText("ALL TASKS");
+        heading.setText("TASKS");
     }
 
     /**
