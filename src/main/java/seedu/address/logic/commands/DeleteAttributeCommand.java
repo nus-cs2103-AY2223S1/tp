@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
@@ -37,6 +39,9 @@ public class DeleteAttributeCommand extends Command {
     public static final String MESSAGE_USAGE = " Deletes a person's specified contact. "
             + "Allowed Parameters are: email, phone, slack, telegram, role, timezone, address\n"
             + "Example: " + COMMAND_WORD + " email";
+    public static final String MESSAGE_NO_SUCH_ATTRIBUTE = "No such attribute exists for person %s.";
+    public static final String MESSAGE_CANNOT_DELETE_NAME = "You can't delete a person on this page!\n"
+            + "To delete this person, go back first";
 
     private final Prefix prefixToDelete;
 
@@ -44,6 +49,7 @@ public class DeleteAttributeCommand extends Command {
      * Constructor for DeleteAttributeCommand
      */
     public DeleteAttributeCommand(Prefix prefixToDelete) {
+        requireNonNull(prefixToDelete);
         this.prefixToDelete = prefixToDelete;
     }
 
@@ -58,6 +64,12 @@ public class DeleteAttributeCommand extends Command {
         // Get the Person whose attribute will be deleted
         Person toDelete = model.getSelectedPerson().get();
         assert toDelete != null;
+
+        // Check if there is existing value for given prefix
+        // If not, return MESSAGE_NO_SUCH_ATTRIBUTE
+        if (!checkAttributePresence(toDelete, this.prefixToDelete)) {
+            throw new CommandException(MESSAGE_NO_SUCH_ATTRIBUTE);
+        }
 
         // Update the Person with the Deletion
         Person personAfterDeletion = createPersonAfterDeletion(toDelete);
@@ -106,5 +118,43 @@ public class DeleteAttributeCommand extends Command {
         }
 
         return new Person(name, address, tags, updatedContacts, role, timezone, githubUser);
+    }
+
+    private boolean checkAttributePresence(Person toDelete, Prefix attribute) throws CommandException {
+        if (attribute.equals(PREFIX_TAG)) {
+            return toDelete.getTags().size() > 0;
+        } else if (attribute.equals(PREFIX_ADDRESS)) {
+            return toDelete.getAddress().isPresent();
+        } else if (attribute.equals(PREFIX_ROLE)) {
+            return toDelete.getRole().isPresent();
+        } else if (attribute.equals(PREFIX_GITHUB)) {
+            return toDelete.getGithubUser().isPresent();
+        } else if (attribute.equals(PREFIX_TIMEZONE)) {
+            return toDelete.getTimezone().isPresent();
+        } else if (attribute.equals(PREFIX_PHONE)) {
+            return toDelete.getContacts().containsKey(ContactType.PHONE);
+        } else if (attribute.equals(PREFIX_SLACK)) {
+            return toDelete.getContacts().containsKey(ContactType.SLACK);
+        } else if (attribute.equals(PREFIX_EMAIL)) {
+            return toDelete.getContacts().containsKey(ContactType.EMAIL);
+        } else if (attribute.equals(PREFIX_TELEGRAM)) {
+            return toDelete.getContacts().containsKey(ContactType.TELEGRAM);
+        } else if (attribute.equals(PREFIX_NAME)) {
+            throw new CommandException(MESSAGE_CANNOT_DELETE_NAME);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof DeleteAttributeCommand) {
+            DeleteAttributeCommand otherCommand = (DeleteAttributeCommand) other;
+            return otherCommand.prefixToDelete.equals(this.prefixToDelete);
+        } else {
+            return false;
+        }
     }
 }
