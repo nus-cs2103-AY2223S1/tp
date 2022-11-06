@@ -15,13 +15,6 @@ import seedu.pennywise.testutil.ExpenditureBuilder;
 
 
 public class ExpenditureTest {
-
-    // @Test
-    // public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-    //     Entry expenditure = new ExpenditureBuilder().build();
-    //     assertThrows(UnsupportedOperationException.class, () -> expenditure.getTag());
-    // }
-
     @Test
     public void isSameExpenditure() {
         // same object -> returns True
