@@ -1,6 +1,8 @@
 package seedu.modquik.storage;
 
+import static seedu.modquik.logic.commands.consultation.AddConsultationCommand.MESSAGE_CLASH_CONSULTATION;
 import static seedu.modquik.logic.commands.consultation.AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION;
+import static seedu.modquik.logic.commands.tutorial.AddTutorialCommand.MESSAGE_CLASH_TUTORIAL;
 import static seedu.modquik.logic.commands.tutorial.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
 
 import java.util.ArrayList;
@@ -88,6 +90,11 @@ class JsonSerializableModQuik {
             if (modQuik.hasTutorial(tutorial)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
             }
+
+            if (modQuik.hasClashingTutorial(tutorial)) {
+                throw new IllegalValueException(MESSAGE_CLASH_TUTORIAL);
+            }
+
             modQuik.addTutorial(tutorial);
         }
 
@@ -96,6 +103,11 @@ class JsonSerializableModQuik {
             if (modQuik.hasConsultation(consultation)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }
+
+            if (modQuik.hasClashingConsultation(consultation)) {
+                throw new IllegalValueException(MESSAGE_CLASH_CONSULTATION);
+            }
+
             modQuik.addConsultation(consultation);
         }
 

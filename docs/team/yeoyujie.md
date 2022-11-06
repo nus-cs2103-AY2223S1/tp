@@ -32,9 +32,16 @@ Given below are my contributions to the project.
       * `delete reminder`
       * `sort reminder`
     * Implemented the initial skeleton of the command summary
+    * Added the glossary  
     * Improve the prefix summary by specifying which commands uses which prefixes
   * Developer Guide:
-    * to be added soon
+    * Added the Use Cases section
+    * Added manual testing for the following features:
+      * `add reminder`
+      * `edit reminder`
+      * `delete reminder`
+      * `sort reminder`
+    * Added the glossary
 
 * **Contributions to team-based tasks**:
   * Setting up GitHub team org and repo

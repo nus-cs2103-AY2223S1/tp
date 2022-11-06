@@ -7,18 +7,11 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class ConsultationDescription {
-    public static final String MESSAGE_CONSTRAINTS =
-        "Description should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
 
     public final String description;
 
     /**
-     * Constructs a {@code consultationName}.
+     * Constructs a {@code ConsultationDescription}.
      *
      * @param description A valid description.
      */
