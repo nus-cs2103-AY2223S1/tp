@@ -1163,7 +1163,7 @@ More information on usage: [deltag command](UserGuide.html#deleting-a-tag-from-a
     5. Other incorrect status commands to try: `deltag 1`, `deltag x Urgent` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Adding tags to an internship while internships are being filtered.
+2. Deleting tags from an internship while internships are being filtered.
 
     1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple 
        internships in the list. The first internship in the list has only the `Urgent` tag (case-sensitive).
