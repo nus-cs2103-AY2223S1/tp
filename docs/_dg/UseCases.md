@@ -6,7 +6,7 @@ Preconditions: Item to add does not yet exist in inventory.
 
 MSS:
 
-1. User adds a new Item to the inventory with the specified arguments.
+1. User adds a new Item to the inventory.
 1. FoodRem informs user that item has been successfully created.
 
 Use case ends.
@@ -16,7 +16,7 @@ Extensions:
 * 1a. If the item name already exists in the inventory, FoodRem will throw an error.
 
   * 1a1. FoodRem requests for the command to be entered again.
-  * 1a2. FoodRem re-enters the command.
+  * 1a2. User re-enters the command.
   * Steps 1a1-1a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
 
 * 1b. FoodRem detects that there is an issue with the command entered.
@@ -44,7 +44,7 @@ Extensions:
 * 3a. If the item name does not exist in the inventory, FoodRem will throw an error.
 
   * 3a1. FoodRem requests for the command to be entered again.
-  * 3a2. FoodRem re-enters the command.
+  * 3a2. User re-enters the command.
   * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 3.
 
 * 3b. FoodRem detects that there is an issue with the command entered.
@@ -82,7 +82,7 @@ Preconditions: Tag does not yet exist in FoodRem.
 
 MSS:
 
-1. User adds a new Tag to the inventory with the specified arguments.
+1. User adds a new Tag to the inventory.
 1. FoodRem informs user that tag has been successfully created.
 
 Use case ends.
@@ -92,7 +92,7 @@ Extensions:
 * 3a. If the tag name already exists in the inventory, FoodRem will throw an error.
 
   * 3a1. FoodRem requests for the command to be entered again.
-  * 3a2. FoodRem re-enters the command.
+  * 3a2. User re-enters the command.
   * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
 
 * 3b. FoodRem detects that there is an issue with the command entered.
