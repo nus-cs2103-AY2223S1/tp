@@ -139,38 +139,43 @@ public class ModelManagerTest {
 
         assertTrue(invalidProject.isEmpty());
 
-        Project projectToAdd = new ProjectBuilder(APPLE).build();
-        ProjectName projectName = projectToAdd.getProjectName();
-        modelManager.addProject(projectToAdd);
-        Optional<Project> validProject = modelManager.getProjectWithName(projectName);
+        ModelManager copyModelManager = setUpModelManager();
         Project copyProjectToAdd = new ProjectBuilder(APPLE).build();
+        Staff staff = new StaffBuilder(STAFF_ANDY).build();
+        copyProjectToAdd.getStaffList().add(staff);
+        ProjectName projectName = copyProjectToAdd.getProjectName();
+        Optional<Project> validProject = copyModelManager.getProjectWithName(projectName);
 
         assertTrue(!validProject.isEmpty());
         assertTrue(validProject.get().equals(copyProjectToAdd));
+
+        modelManager = new ModelManager();
     }
 
     @Test
     public void isSuccessStaffDelete_test() {
-        setUpModelManager();
-        Project projectBeingViewed = modelManager.getFilteredProjectList().get(0);
-        Project anoProj = modelManager.getFilteredProjectList().get(1);
+        ModelManager copyModelManager = setUpModelManager();
+        Project projectBeingViewed = copyModelManager.getFilteredProjectList().get(0);
+        Project anoProj = copyModelManager.getFilteredProjectList().get(1);
         Index index = Index.fromOneBased(1);
 
-        assertTrue(modelManager.isSuccessStaffDelete(projectBeingViewed, index));
-        assertFalse(modelManager.isSuccessStaffDelete(anoProj, index));
+        assertTrue(copyModelManager.isSuccessStaffDelete(projectBeingViewed, index));
+
+        ModelManager anoModelManager = setUpModelManager();
+        assertFalse(anoModelManager.isSuccessStaffDelete(anoProj, index));
     }
 
     @Test
-    public void isSuccessStaffEdit() {
-        setUpModelManager();
+    public void isSuccessStaffEdit_test() {
+        ModelManager copyModelManager = setUpModelManager();
         Staff editWith = new StaffBuilder(STAFF_JAY).build();
-        Project projectBeingViewed = modelManager.getFilteredProjectList().get(0);
-        Project anoProj = modelManager.getFilteredProjectList().get(1);
+        Project projectBeingViewed = copyModelManager.getFilteredProjectList().get(0);
+        Project anoProj = copyModelManager.getFilteredProjectList().get(1);
         Staff displayStaff = new StaffBuilder(STAFF_ANDY).build();
-        Staff anoStaff = new StaffBuilder().build();
+        Staff anoStaff = new StaffBuilder(STAFF_1).build();
 
-        assertTrue(modelManager.isSuccessStaffEdit(projectBeingViewed, displayStaff, editWith));
-        assertFalse(modelManager.isSuccessStaffEdit(anoProj, anoStaff, editWith));
+        assertTrue(copyModelManager.isSuccessStaffEdit(projectBeingViewed, displayStaff, editWith));
+        assertFalse(copyModelManager.isSuccessStaffEdit(anoProj, anoStaff, editWith));
     }
 
     @Test
@@ -211,17 +216,19 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(hrPro, differentUserPrefs)));
     }
 
-    private void setUpModelManager() {
+    private ModelManager setUpModelManager() {
+        ModelManager copyModelManager = new ModelManager();
         Project projectToAdd = new ProjectBuilder(APPLE).build();
         Staff staff = new StaffBuilder(STAFF_ANDY).build();
         projectToAdd.getStaffList().add(staff);
 
         Project anoProj = new ProjectBuilder().build();
-        Staff anoStaff = new StaffBuilder(STAFF_1).build();
+        Staff anoStaff = new StaffBuilder().build();
         anoProj.getStaffList().add(anoStaff);
 
-        modelManager.addProject(projectToAdd);
-        modelManager.addProject(anoProj);
-        modelManager.setFilteredStaffList(projectToAdd.getStaffList());
+        copyModelManager.addProject(projectToAdd);
+        copyModelManager.addProject(anoProj);
+        copyModelManager.setFilteredStaffList(projectToAdd.getStaffList());
+        return copyModelManager;
     }
 }
