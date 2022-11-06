@@ -56,6 +56,9 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
     private static final String MESSAGE_NO_PERSON_WITH_EMAIL = "There is no person with that email";
 
+    private static final String MESSAGE_DUPLICATE_VALUES = "All edited fields must be different"
+            + " from the existing values";
+
     private final Index index;
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
@@ -78,7 +81,9 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor,
                                          Model model) throws CommandException {
         assert editTaskDescriptor != null;
-
+        if (!checkNewValues(taskToEdit, editTaskDescriptor)) {
+            throw new CommandException(MESSAGE_DUPLICATE_VALUES);
+        }
         TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         TaskCategory updatedCategory = editTaskDescriptor.getCategory().orElse(taskToEdit.getCategory());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
@@ -87,7 +92,7 @@ public class EditTaskCommand extends Command {
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
         Person updatedPerson = taskToEdit.getPerson();
-        if (!editTaskDescriptor.getPersonEmail().isEmpty()) {
+        if (editTaskDescriptor.getPersonEmail().isPresent()) {
             try {
                 updatedPerson = model.getPersonByEmail(editTaskDescriptor.getPersonEmail().get());
             } catch (PersonNotFoundException e) {
@@ -97,6 +102,29 @@ public class EditTaskCommand extends Command {
 
         return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
                 updatedPerson, updatedIsDone);
+    }
+
+    /**
+     * Checks that the values entered in edited with {@code editTaskDescriptor} are not the same as the one
+     * in the person to Edit
+     */
+    private static boolean checkNewValues(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+        boolean uniqueName = editTaskDescriptor.getName().isEmpty()
+                || !editTaskDescriptor.getName().get().equals(taskToEdit.getName());
+        boolean uniqueCategory = editTaskDescriptor.getCategory().isEmpty()
+                || !editTaskDescriptor.getCategory().get().equals(taskToEdit.getCategory());
+        boolean uniquePersonEmail = editTaskDescriptor.getPersonEmail().isEmpty()
+                || !editTaskDescriptor.getPersonEmail().get().equals(taskToEdit.getEmail());
+        boolean uniqueDeadline = editTaskDescriptor.getDeadline().isEmpty()
+                || !editTaskDescriptor.getDeadline().get().equals(taskToEdit.getDeadline());
+        boolean uniquePriority = editTaskDescriptor.getPriority().isEmpty()
+                || !editTaskDescriptor.getPriority().get().equals(taskToEdit.getPriority());
+        boolean uniqueDescription = editTaskDescriptor.getDescription().isEmpty()
+                || !editTaskDescriptor.getDescription().get()
+                .equals(taskToEdit.getDescription());
+        return uniqueName && uniqueCategory && uniquePersonEmail
+                && uniqueDeadline && uniquePriority && uniqueDescription;
+
     }
 
     @Override

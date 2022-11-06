@@ -37,7 +37,7 @@ public class TaskBuilder {
     private Email taskPersonEmailAddress;
 
     private Person taskPerson;
-    private boolean taskStatus;
+    private boolean taskIsDone;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -49,7 +49,7 @@ public class TaskBuilder {
         taskPriority = new Priority(defaultPriority);
         taskDeadline = new TaskDeadline(defaultLocalDate);
         taskPersonEmailAddress = new Email("test@gmail.com");
-        taskStatus = defaultStatus;
+        taskIsDone = defaultStatus;
     }
 
     /**
@@ -62,11 +62,11 @@ public class TaskBuilder {
         taskPriority = taskToCopy.getPriority();
         taskDeadline = taskToCopy.getDeadline();
         taskPerson = taskToCopy.getPerson();
-        taskStatus = taskToCopy.isDone();
+        taskIsDone = taskToCopy.isDone();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Task} that we are building.
      */
     public TaskBuilder withName(String name) {
         this.taskName = new TaskName(name);
@@ -74,7 +74,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * ets the {@code Category} of the {@code Task} that we are building.
      */
     public TaskBuilder withCategory(TaskCategory taskCategory) {
         this.taskCategory = taskCategory;
@@ -82,15 +82,15 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Description} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDescription(String description) {
-        this.taskDescription = new Description(description);
+    public TaskBuilder withDescription(Description description) {
+        this.taskDescription = description;
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Priority} of the {@code Task} that we are building.
      */
     public TaskBuilder withPriority(PriorityEnum priority) {
         this.taskPriority = new Priority(priority);
@@ -98,7 +98,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Deadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(LocalDate date) {
         this.taskDeadline = new TaskDeadline(date);
@@ -106,7 +106,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Task} that we are building.
      */
     public TaskBuilder withTaskPersonEmailAddressPerson(Email email) {
         this.taskPersonEmailAddress = email;
@@ -114,15 +114,15 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Person} that we are building.
+     * Sets the {@code Status} of the {@code Task} that we are building.
      */
     public TaskBuilder withStatus(boolean status) {
-        this.taskStatus = status;
+        this.taskIsDone = status;
         return this;
     }
 
     /**
-     * Sets the {@code Status} of the {@code Person} that we are building.
+     * Sets the {@code Person} of the {@code Task} that we are building.
      */
     public TaskBuilder withPerson(Person person) {
         this.taskPerson = person;
@@ -132,12 +132,12 @@ public class TaskBuilder {
     /**
      * Builds a Task
      *
-     * @return the task to be builtF
+     * @return the task to be built
      */
 
     public Task build() {
         return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline,
-                taskPerson, taskStatus);
+                taskPerson, taskIsDone);
     }
 
 }

@@ -12,5 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_INTEGER_INDEX = "The index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TASK_LISTED_OVERVIEW = "%1$d tasks listed!";
+    public static final String MESSAGE_DUPLICATE_VALUES = "All edited fields must be different"
+            + " from the existing values";
 
 }

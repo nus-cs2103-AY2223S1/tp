@@ -40,8 +40,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 
-
-
 /**
  * Contains helper methods for testing commands.
  */
@@ -57,6 +55,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -82,10 +81,14 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
-    private static final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
-    private static final Description testDisc = new Description("Test");
-    private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
-    private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    public static final TaskCategory TEST_CATEGORY_OTHERS = new TaskCategory(TaskCategoryType.OTHERS);
+    public static final TaskCategory TEST_CATEGORY_FRONTEND = new TaskCategory(TaskCategoryType.FRONTEND);
+    public static final Description TEST_DESCRIPTION_ONE = new Description("Test");
+    public static final Description TEST_DESCRIPTION_TWO = new Description("Test test");
+    public static final Priority TEST_PRIORITY_MEDIUM = new Priority(PriorityEnum.MEDIUM);
+    public static final Priority TEST_PRIORITY_LOW = new Priority(PriorityEnum.LOW);
+    public static final TaskDeadline TEST_DEADLINE_NOW = new TaskDeadline(LocalDate.now());
+    public static final TaskDeadline TEST_DEADLINE_TOMORROW = new TaskDeadline(LocalDate.now().plusDays(1));
     private static final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
 
@@ -97,7 +100,8 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Task a = new Task(new TaskName("A"), testDisc, testPriority, testCat, testDeadline,
+        Task a = new Task(new TaskName("A"), TEST_DESCRIPTION_ONE, TEST_PRIORITY_MEDIUM, TEST_CATEGORY_OTHERS,
+                TEST_DEADLINE_NOW,
                 testPerson, false);
 
         DESC_ONE = new EditTaskDescriptorBuilder(a).withName("A").build();
@@ -114,10 +118,6 @@ public class CommandTestUtil {
                                             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(expectedModel.getFilteredTaskList().toString()
-                    .equals(actualModel.getFilteredTaskList().toString()));
-            System.out.println(expectedModel.getFilteredTaskList().toString());
-            System.out.println(actualModel.getFilteredTaskList().toString());
 
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
