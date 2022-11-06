@@ -1290,32 +1290,29 @@ the data of your previous TruthTable home folder.
 
 ### Flag And Parameter Constraints
 
-| Parameter Name          | Flags                 | Constraints |
-|-------------------------|-----------------------|-------------|
-| `PERSON_EMAIL`          | `-e`, `--email`       |             |
-| `PERSON_NAME`           | `-n`,`--name`         |             |
-| `PERSON_PHONE`          | `-p`, `--phone`       |             |
-| `PERSON_TAGS`           | `-t`, `--tags`        |             |
-| `PERSON_INDEX`          |                       |             |
-| `MEMBER_INDEX`          |                       |             |
-| `MEMBER_NAME_KEYWORDS`  | `-n`,`--name`         |             |
-| `MEMBER_EMAIL_KEYWORDS` | `-e`,`--email`        |             |
-| `MEMBER_DESCRIPTION`    | `-d`, `--description` |             |
-| `TEAM_NAME`             | `-n`,`--name`         |             |
-| `TASK_NAME`             | `-n`, `--name`        |             |
-| `TASK_INDEX`            |                       |             |
-| `TASK_ASSIGNEES`        | `-a`, `--assignee`    |             |
-| `TASK_DEADLINE`         | `-d`, `--deadline`    |             |
-| `TASK_NAME_KEYWORDS`    |                       |             |
-| `LINK_URL`              | `-l`, `--link`        |             |
-| `LINK_NAME`             | `-n`, `--name`        |             |
-| `LINK_INDEX`            |                       |             |
-| `ORDER`                 |                       |             |
-
-
+| Parameter Name          | Flags                 | Constraints                                                                                                                    |
+|-------------------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `PERSON_EMAIL`          | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a> |
+| `PERSON_NAME`           | `-n`,` --name`        | - Only alphabets, numbers, and spaces allowed, and should not be blank                                                         |
+| `PERSON_PHONE`          | `-p`, `--phone`       | - Only numbers allowed<br/> - Minimum of 3 numbers                                                                             |
+| `PERSON_TAGS`           | `-t`, `--tags`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
+| `PERSON_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of persons in TruthTable                            |
+| `MEMBER_INDEX`          |                       | - Only positive integers are allowed<br/> - Must be less than total number of members in TruthTable                            |
+| `MEMBER_NAME_KEYWORDS`  | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
+| `MEMBER_EMAIL_KEYWORDS` | `-e`, `--email`       | - Only valid emails allowed<br/> - Click <a href="https://regex101.com/r/0huBLM/1" target="_blank">here to test your input</a> |
+| `MEMBER_DESCRIPTION`    | `-d`, `--description` | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                     |
+| `TEAM_NAME`             | `-n`, `--name`        | - Only alphabets and numbers are allowed, and should not be blank                                                              |
+| `TASK_NAME`             | `-n`, `--name`        | - Any characters allowed, except quotes (`'` and `"`) and should not be blank                                                  |
+| `TASK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of tasks in selected team                           |
+| `TASK_ASSIGNEES`        | `-a`, `--assignee`    | - Only positive integers are allowed<br/> - Must be less than total number of members in selected team                         |
+| `TASK_DEADLINE`         | `-d`, `--deadline`    | - Must be in `YYYY-MM-DD HH:MM` format and cannot be blank<br/> - Date and time must be separated with a space                 |
+| `TASK_NAME_KEYWORDS`    |                       | - Any characters allowed, except quotes (`'` and `"`) and spaces, and should not be blank                                      |
+| `LINK_URL`              | `-l`, `--link`        | - Only valid URLs allowed<br/> - Click <a href="https://regex101.com/r/oW3Q3v/1" target="_blank">here to test your input</a>   |
+| `LINK_NAME`             | `-n`, `--name`        | - Only alphabets, numbers, and spaces are allowed, and should not be blank                                                     |
+| `LINK_INDEX`            |                       | - Only positive integers are allowed<br/> - Must be less than total number of links in selected team                           |
+| `ORDER`                 |                       | - Only `asc`, `dsc`, and `res` allowed<br/> - Corresponds to ascending, descending, and reset respectively.                    |
 
 [Back to Table of Contents](#table-of-contents)
-
 
 ### Summary of Person Commands 
 
