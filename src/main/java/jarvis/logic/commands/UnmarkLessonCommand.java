@@ -25,7 +25,7 @@ public class UnmarkLessonCommand extends Command {
             + "Parameters: INDEX(must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as not completed.";
+    public static final String MESSAGE_MARK_LESSON_SUCCESS = "Marked %1$s as not completed.";
 
     private final Index lessonIndex;
 
@@ -49,7 +49,7 @@ public class UnmarkLessonCommand extends Command {
         lessonToMark.markAsNotCompleted();
         model.setLesson(lessonToMark, lessonToMark);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
-        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, lessonToMark));
+        return new CommandResult(String.format(MESSAGE_MARK_LESSON_SUCCESS, lessonToMark));
     }
 
     @Override
