@@ -92,7 +92,7 @@ Format: `add-e n/TITLE d/DESCRIPTION`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
    
@@ -135,7 +135,7 @@ Format: `display-e INDEX`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
 
 Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
 
@@ -161,7 +161,7 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
 </div>
@@ -199,7 +199,7 @@ Format: `display INDEX`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
 
@@ -229,7 +229,7 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br> 
    
 <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
 
@@ -254,7 +254,7 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. 
 </div>
@@ -273,7 +273,7 @@ Format: `select INDEX`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br> 
    
 Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
 
@@ -301,7 +301,7 @@ Format: `mark INDEX`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
 
@@ -330,7 +330,7 @@ Format: `unmark INDEX`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
 
@@ -383,7 +383,7 @@ Format: `completed`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. 
 
@@ -407,7 +407,7 @@ Format: `summary`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
 
@@ -417,7 +417,6 @@ After the command has been successfully executed, a new window will pop up, with
 
 ![Summary_Window](images/SummaryScreenshot.png)
  
-
 
 <div markdown="block" class="alert alert-info">
 
@@ -445,7 +444,7 @@ Format: `help`
 
 <div class="alert alert-block alert-success">
    
-**:point_up: Use case:**<br> 
+:point_up: <strong>Use case:</strong><br>
    
 Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. 
 
@@ -473,7 +472,7 @@ Travelr data are saved locally automatically after any command. There is no need
 
 ### Icons
 |**Icon**|**Explanation**|
-|:-:|:-:|
+|:-:|:--|
 |:information_source:|The segment will provide useful information for using Travelr.|
 |:warning:|The segment will provide important notes about Travelr.|
 |:point_up:|The segment explains the uses of a feature.|
