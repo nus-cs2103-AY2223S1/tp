@@ -112,7 +112,9 @@ public class EditModuleCommand extends Command {
             changeStudentDetails(this.moduleCode, editedModule.getCode(), model);
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
+                false, false, true,
+                false, false, false, false, false, false);
     }
 
     /**
