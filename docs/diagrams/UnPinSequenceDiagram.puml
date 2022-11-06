@@ -60,7 +60,7 @@ activate UnPinCommand
 
 UnPinCommand -> Model : getAllApplicants()
 activate Model
-Model --> Model : get()
+
 Model --> UnPinCommand : oldApplicant
 deactivate Model
 

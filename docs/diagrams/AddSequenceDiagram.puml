@@ -37,6 +37,8 @@ activate AddCommandParser
 AddCommandParser -> AddCommandParser : arePrefixesPresent()
 activate AddCommandParser
 
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
 
 create Applicant
 AddCommandParser -> Applicant : Applicant()
@@ -51,7 +53,7 @@ activate AddCommand
 
 AddCommand --> AddCommandParser
 deactivate AddCommand
-deactivate AddCommandParser
+
 
 AddCommandParser --> TrackAScholarParser
 deactivate AddCommandParser

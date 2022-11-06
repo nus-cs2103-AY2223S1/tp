@@ -30,9 +30,9 @@ This developer guide is designed for individuals who want to understand TrackASc
 
 Italics are used to indicate specific technical terms. If you'd want to know what they mean, you may look them up in our [Glossary](#glossary).
 
-For additional details on our target audience and how our application solves their problems, check out the [Requirements](#appendix-requirements).
+For additional details on our target audience and how our app solves their problems, check out the [Requirements](#appendix-requirements).
 
-For new users who are discovering the features of our application, please refer to our [User Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/UserGuide.html).
+For new users who are discovering the features of our app, please refer to our [User Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/UserGuide.html).
 
 #### Current version
 
@@ -48,6 +48,8 @@ Here are certain indicators explained so that the user may better comprehend the
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -55,11 +57,15 @@ Here are certain indicators explained so that the user may better comprehend the
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson).
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,6 +75,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,6 +121,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### UI component
@@ -131,6 +141,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Applicant` object residing in the `Model`.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,7 +164,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This limitation applies to the remaining sequence diagrams in our guide.
+
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -163,12 +178,14 @@ How the parsing works:
 * When called upon to parse a user command, the `TrackAScholarParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TrackAScholarParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 
 The `Model` component,
@@ -178,11 +195,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackAScholarBook`, which `Applicant` references. This allows `TrackAScholar` to only require one `Tag` object per unique tag, instead of each `Applicant` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Major` list in the `TrackAScholar`, which `Applicant` references. This allows `TrackAScholar` to only require one `Major` object per unique Major, instead of each `Applicant` needing their own `Major` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
 </div>
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -201,11 +220,15 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.trackascholar.commons` package.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Add applicant feature
 
@@ -241,6 +264,97 @@ The following sequence diagram shows how the add operation works:
 The following activity diagram summarizes what happens when a user executes an add command:
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Edit applicant feature
+
+#### Implementation
+
+The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
+
+1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
+   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
+
+2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`) and creates an `Index`.
+
+3. `EditCommandParser#parse()` will then call `EditCommandParser#isPrefixPresent()` to check which prefixes are present
+   in the user input, to identify which parameter need to be changed.
+
+4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before
+   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
+
+5. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
+   `Model#hasApplicant()` is then called to check if the new `Applicant` is a duplicate of any other applicant already stored in TrackAScholar. 
+   When the check has concluded and no duplicate was found, `Model#setApplicant()` is called to update the existing applicant with the new applicant.
+
+6. `EditCommand#execute()` then invokes `Model#updateFilteredApplcantList()` to display the updated applicant.
+
+7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the edited applicant.
+
+The following sequence diagram shows how the edit operation works:
+
+![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a edit command:
+
+![Edit command activity diagram](images/EditCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Remove applicants by application status feature
+
+#### Implementation
+
+The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
+
+1. The user enters `remove accepted`, for example, to remove all applicants with accepted scholarship application status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `remove` and
+   the argument `accepted`.
+
+2. `TrackAScholarParser` identifies the `remove` command and `RemoveCommandParser` will be instantiated which calls `RemoveCommandParser#parse()`.
+
+3. `RemoveCommandParser#parse()` now parses the argument and creates a new `ApplicationStatus` before finally initializing and returning a `RemoveCommand`
+   with the new `ApplicationStatus` as an argument.
+
+4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
+   a window asking for the user's confirmation to remove the applicants. After the user confirms, `RemoveCommand#confirmRemove()` is called which
+   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
+
+5. `RemoveCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
+
+The following sequence diagram shows how the remove operation works:
+
+![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
+is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a remove command:
+
+![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Find applicant feature
+
+#### Implementation
+
+The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the find command operates in TrackAScholar:
+
+1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
+
+2. `TrackAScholarParser` identifies the person and displays it to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,11 +410,11 @@ Given below is an example usage scenario and how the sort operation is handled b
 3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
    with the new `Comparator<Applicant>` as an argument.
 
-4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
-   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
-   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#sortApplicants()` to sort the list of
+   applicants with the `Comparator<Applicant` provided. When the operation has concluded, `Model#updateFilteredApplcantList()`
+   is then called to display the sorted list.
 
-5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
+5. `SortCommand#execute()` finishes with returning a `CommandResult` containing information of the successful sorting.
 
 The following sequence diagram shows how the sort operation works:
 
@@ -311,98 +425,6 @@ The following activity diagram summarizes what happens when a user executes a so
 ![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
-
-### Remove applicants by application status feature
-
-#### Implementation
-
-The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
-
-Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
-
-1. The user enters `remove accepted`, for example, to remove all applicants with accepted scholarship application status.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `remove` and
-   the argument `accepted`.
-
-2. `TrackAScholarParser` identifies the `remove` command and `RemoveCommandParser` will be instantiated which calls `RemoveCommandParser#parse()`.
-
-3. `RemoveCommandParser#parse()` now parses the argument and creates a new `ApplicationStatus` before finally initializing and returning a `RemoveCommand`
-   with the new `ApplicationStatus` as an argument.
-
-4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
-   a window asking for the user's confirmation to remove the applicants. After the user confirms, `RemoveCommand#confirmRemove()` is called which
-   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
-
-5. `RemoveCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
-
-The following sequence diagram shows how the remove operation works:
-
-![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
-is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
-
-</div>
-
-The following activity diagram summarizes what happens when a user executes a remove command:
-
-![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
-
---------------------------------------------------------------------------------------------------------------------
-### Find applicant by find name feature
-
-#### Implementation
-
-The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
-
-Given below is an example usage scenario and how the find command operates in TrackAScholar:
-
-1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
-
-2. `TrackAScholarParser` identifies the person and displays it to the user.
-
---------------------------------------------------------------------------------------------------------------------
-### Edit applicant feature
-
-#### Implementation
-
-The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
-
-Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
-
-1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
-   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
-
-2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
-   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
-
-3. `EditCommandParser#parse()` will then call `Optional#isPresent()` to check if a prefix is present
-   in the user input, to identify which inputs need to be changed.
-
-4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before 
-   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
-
-5. `EditCommandParser#parse()` throws a `ParseException` if index is not a positive integer and a `CommandException` if index 
-   is larger than the list size.
-
-6. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
-    `Model#setApplicant` is used to update the current applicant with the new applicant. 
-
-7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful edit and the applicant's details in TrackAScholar.
-
-
-The following sequence diagram shows how the edit operation works:
-
-
-![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
-
-
-The following activity diagram summarizes what happens when a user executes a edit command:
-
-![Edit command activity diagram](images/EditCommandActivityDiagram.png)
-
---------------------------------------------------------------------------------------------------------------------
 ### Pin applicant feature
 
 #### Implementation
@@ -410,14 +432,18 @@ The following activity diagram summarizes what happens when a user executes a ed
 The pin operation is facilitated by `PinCommand`. It extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the pin operation is handled by TrackAScholar:
-1. The user enters `pin 1`, for example, to pin an existing applicant at index 1 in the list.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `pin` and
-   the argument `1`.
+
+1. The user enters `pin 1`, for example, to pin an existing applicant at index 1 in the list. This invokes `LogicManager#execute()`,
+   which calls `TrackAScholarParser#parseCommand()` to separate the command word `pin` and the argument `1`.
+
 2. `TrackAScholarParser` identifies the `pin` command and `PinCommandParser` will be instantiated which calls `PinCommandParser#parse()`.
+
 3. `PinCommandParser#parse()` now parses the argument and creates a new `Index` before initializing a `PinCommand`
     with the new `Index` as an argument.
+
 4. `LogicManager#execute()` now calls `PinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
    `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+
 5. `PinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful pinning of an applicant.
 
 The following sequence diagram shows how the pin operation works:
@@ -436,14 +462,19 @@ The following activity diagram summarizes what happens when a user executes a pi
 The unpin operation is facilitated by `UnPinCommand`. It extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the unpin operation is handled by TrackAScholar:
+
 1. The user enters `unpin Alex Yeoh`, for example, to unpin a pinned applicant with full name matching `Alex Yeoh`.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `unpin` and
    the argument `Alex Yeoh`.
+
 2. `TrackAScholarParser` identifies the `unpin` command and `UnPinCommandParser` will be instantiated which calls `UnPinCommandParser#parse()`.
+
 3. `UnPinCommandParser#parse()` now parses the argument and creates a new `Name` before initializing a `UnPinCommand`
    with the new `Name` as an argument.
+
 4. `LogicManager#execute()` now calls `UnPinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
    `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+
 5. `UnPinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful unpinning of an applicant.
 
 The following sequence diagram shows how the unpin operation works:

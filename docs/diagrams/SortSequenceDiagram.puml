@@ -45,6 +45,9 @@ activate Applicant
 Applicant --> SortCommandParser : comparator
 deactivate Applicant
 
+SortCommandParser --> SortCommandParser : comparator
+deactivate SortCommandParser
+
 create SortCommand
 SortCommandParser -> SortCommand : SortCommand(comparator)
 activate SortCommand

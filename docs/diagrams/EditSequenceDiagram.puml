@@ -8,7 +8,7 @@ participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 
 participant ":EditCommand" as EditCommand LOGIC_COLOR
-participant "ead:EditApplicantDescriptor" as EditApplicantDescriptor LOGIC_COLOR
+participant ":EditApplicantDescriptor" as EditApplicantDescriptor LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -17,7 +17,7 @@ participant ":Model" as Model MODEL_COLOR
 'participant "applicant:Applicant" as Applicant MODEL_COLOR
 end box
 
-[-> LogicManager : execute(edit 1 n/Sam \n p/98886767)
+[-> LogicManager : execute(edit 1 n/Sam \n p/91234567 \n e/samnew@example.com \n s/NUS Sports Scholarship \n as/accepted)
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -31,32 +31,29 @@ EditCommandParser --> TrackAScholarParser
 deactivate EditCommandParser
 
 
-TrackAScholarParser -> EditCommandParser : parse(1 n/Sam \n p/98886767)
+TrackAScholarParser -> EditCommandParser : parse(1 n/Sam \n p/91234567 \n e/samnew@example.com \n s/NUS Sports Scholarship \n as/accepted)
 activate EditCommandParser
 
 
 EditCommandParser -> EditCommandParser : isPrefixPresent()
 activate EditCommandParser
 
-
-create EditCommand
-EditCommandParser -> EditCommand : EditCommand(index, EditApplicantDescriptor)
-activate EditCommand
+EditCommandParser --> EditCommandParser
+deactivate EditCommandParser
 
 create EditApplicantDescriptor
-EditCommand -> EditApplicantDescriptor : EditApplicantDescriptor()
+EditCommandParser -> EditApplicantDescriptor : EditApplicantDescriptor()
 activate EditApplicantDescriptor
 
-EditApplicantDescriptor -> EditApplicantDescriptor : setName(args)
-
-EditApplicantDescriptor -> EditApplicantDescriptor : setPhone(args)
-
-EditApplicantDescriptor --> EditCommand :ead
+EditApplicantDescriptor --> EditCommandParser
 deactivate EditApplicantDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(index, editApplicantDescriptor)
+activate EditCommand
 
 EditCommand --> EditCommandParser
 deactivate EditCommand
-deactivate EditCommandParser
 
 EditCommandParser --> TrackAScholarParser
 deactivate EditCommandParser
@@ -77,15 +74,13 @@ activate Model
 Model --> EditCommand
 deactivate
 
-EditCommand --> EditCommand : createEditedApplicant(applicantToEdit, ead)
-
-EditCommand -> Model : setApplicant(applicantToEdit, editedApplicant)
+EditCommand -> Model : setApplicant(applicantToEdit,\n editedApplicant)
 activate Model
 
 Model --> EditCommand
 deactivate
 
-EditCommand -> Model : updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS)
+EditCommand -> Model : updateFilteredApplicantList()
 activate Model
 
 Model --> EditCommand

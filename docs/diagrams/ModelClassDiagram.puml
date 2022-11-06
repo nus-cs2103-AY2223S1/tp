@@ -19,7 +19,8 @@ Class ApplicationStatus
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Major
+Class Pin
 
 }
 
@@ -42,9 +43,10 @@ Applicant *--> "1" Phone
 Applicant *--> "1" Email
 Applicant *--> "1" Scholarship
 Applicant *--> "1" ApplicationStatus
-Applicant *--> "*" Tag
+Applicant *--> "*" Major
+Applicant --> "1" Pin
 
-Name -[hidden]right-> Scholarship
+Name -[hidden]right-> Phone
 Scholarship -[hidden]right-> ApplicationStatus
 Phone -[hidden]right-> Email
 

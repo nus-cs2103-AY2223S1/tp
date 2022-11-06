@@ -288,14 +288,14 @@ Here are some quick questions you can try to answer based on your execution path
 2.  What components will you have to modify to perform the following
     enhancements to the application?
 
-    1.  Make command words case-insensitive
+    1. Make command words case-insensitive
 
-    2.  Allow `delete` to remove more than one index at a time
+    2. Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3. Save the address book in the CSV format instead
 
-    4.  Add a new command
+    4. Add a new command
 
-    5.  Add a new field to `Person`
+    5. Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6. Add a new entity to the address book

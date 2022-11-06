@@ -7,16 +7,16 @@ if () then ([Is invalid parameter])
 
 else ([Is valid parameters])
 
-    if () then ([Index is in TrackAScholar])
-        :Retrieve applicant \nfrom track a scholar;
+    if () then ([Valid index])
+        :Retrieve current applicant\n    from TrackAScholar;
 
-        :Modify applicant fields \nwith input given by the user;
+        :Create an edited applicant \nwith input given by the user;
 
-        if () then ([Applicant created has same name\n as applicant in TrackAScholar])
+        if () then ([Edited applicant already\n exist in TrackAScholar])
             :TrackAScholar displays \nerror message indicating \nthat Applicant already exist;
 
         else ([else])
-            :Add new Applicant \ninto TrackAScholar;
+            :Replaces current applicant\n     with edited applicant;
 
             :TrackAScholar updates \nto display edited applicant;
         endif
