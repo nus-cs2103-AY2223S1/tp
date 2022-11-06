@@ -178,17 +178,23 @@ Examples:
 ## Tasks-related Features
 
 ### Adding a task
-Adds task into task list.
+Adds the task into the stored task list.
 
 Format: `t add m/MODULE d/DESCRIPTION`
-* Adds a task to the task list.
+
+Parameters:
 * `MODULE` refers to the module code of the module which the task belongs to.
 * `DESCRIPTION` refers to the task description to be shown.
-* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
-* If `DESCRIPTION` is empty, an error message will be displayed.
+
+Restrictions:
+* `MODULE`
+  * `MODULE` should be at least 6 characters long.
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+  * `MODULE` should be the module code of an existing module in the stored module list.
+* `DESCRIPTION` should not be empty.
 
 Example:
-`t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the task list.
+`t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the stored task list.
 
 ### Deleting a task 
 Deletes the specified task according to the index given
@@ -275,14 +281,22 @@ Example:
 `t list` displays tasks that are stored in the task list
 
 ### Filtering the task list
-Filters the task list based on module code, completion status, and/or link status.
+Filters the displayed task list to show only tasks that fulfil the module code, completion status, and/or link status conditions.
 
 Format: `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*`
-* Filters the task list to show only tasks that fulfill all the stated conditions.
-* `MODULE` refers to the module code to be filtered out.
+
+Parameters:
+* `MODULE` refers to the module code of the module to be filtered out.
 * `COMPLETED` should be `y` to filter tasks that are complete or `n` to filter tasks that are incomplete.
 * `LINKED` should be `y` to filter tasks that are linked to an exam or `n` to filter tasks that are not linked to any exam.
-* At least one optional condition has to be specified, otherwise an error message will be displayed.
+
+Restrictions:
+* `MODULE`
+  * `MODULE` should be at least 6 characters long.
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+  * `MODULE` should be the module code of an existing module in the stored module list.
+* `COMPLETED` should be `y` or `n`.
+* `LINKED` should be `y` or `n`.
 
 Examples:
 
@@ -407,13 +421,9 @@ of the first task in the displayed task list
 the priority status and deadline of the second task in the displayed task list
 
 ### Clearing the task list
-Clears the entire task list.
+Clears all tasks currently in the stored task list.
 
 Format: `t clear`
-* Clears all tasks currently in the task list.
-
-Example:
-`t clear` clears all tasks currently in the task list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -469,13 +479,16 @@ Examples:
 
 
 ### Deleting an exam
-Deletes the specified exam according to the index given.
+Deletes the specified exam according to the index given based on the displayed exam list.
 
 Format: `e del INDEX`
-* Deletes the exam at the specified index from the exam list.
-* `INDEX` refers to the index number shown in the exam list.
-* `INDEX` must be a positive integer 1, 2, 3, …​
-* If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+
+Parameter:
+* `INDEX` refers to the index number shown in the displayed exam list.
+
+Restrictions:
+* `INDEX` should be an integer greater than 0 and less than 2147483648.
+* `INDEX` should not be more than the number of exams in the displayed exam list.
 
 Example:
 
@@ -506,26 +519,32 @@ Examples:
 `e link e/2 t/3` links the third task in the displayed task list to the second exam in the exam list
 
 ### Unlinking an exam
-Unlinks the exam from the specified task according to the index given.
+Unlinks the exam from the task at the specified index on the displayed task list.
 
 Format: `e unlink INDEX`
-* Unlinks the exam from the task at the specific `INDEX` from the task list.
-* `INDEX` refers to the index number shown in the task list of the task to be unlinked.
-* `INDEX` must be a positive integer 1, 2, 3, …​
-* If `INDEX` is non-positive or more than the number of tasks in the task list, an error message will be displayed.
+
+Parameter:
+* `INDEX` refers to the index number shown on the displayed task list of the task to be unlinked.
+
+Restrictions:
+* `INDEX` should be an integer greater than 0 and less than 2147483648.
+* `INDEX` should not be more than the number of tasks in the displayed task list.
 
 Example:
 
 `e unlink 1` unlinks the first task in the task list from its current exam.
 
 ### Showing the tasks of an exam
-Shows all tasks linked to the specified exam according to the index given.
+Shows all tasks linked to the exam according to the specified index from the displayed exam list.
 
 Format: `e showt INDEX`
-* Shows all tasks that are linked to the exam at the specified `INDEX` from the exam list.
-* `INDEX` refers to the index number of the exam shown in the exam list.
-* `INDEX` must be a positive integer 1, 2, 3, …​
-* If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+
+Parameter:
+* `INDEX` refers to the index number of the exam in the displayed exam list.
+
+Restrictions:
+* `INDEX` should be an integer greater than 0 and less than 2147483648.
+* `INDEX` should not be more than the number of exams in the displayed exam list.
 
 Example:
 
@@ -534,14 +553,9 @@ Example:
 ## Other Features
 
 ### Clearing all the lists
-Clears the task, exam and module lists.
+Clears all tasks, exams and modules currently in the respective stored lists.
 
 Format: `clearall`
-* Clears all tasks, exams and modules currently in the respective lists.
-
-Example:
-
-`clearall` clears all tasks, exams and modules currently in the respective lists.
 
 ### Help
 Views the help window which displays the list of commands
