@@ -61,7 +61,7 @@ public class ItineraryTest {
     @Test
     public void getTimeString_correctOutput() {
         String expectedString = "Dates: 2022-02-02 - 2022-02-03";
-        String actualString = new ItineraryBuilder(AUTUMN).withDuration("2").build()
+        String actualString = new ItineraryBuilder().withStartDate("2022-02-02").withDuration("2").build()
                 .getTimeString(Text.INDENT_NONE);
         assertEquals(expectedString, actualString);
     }
