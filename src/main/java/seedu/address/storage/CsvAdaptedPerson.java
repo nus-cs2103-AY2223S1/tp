@@ -124,10 +124,10 @@ public class CsvAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
-        meetingDate = source.getMeeting().getMeetingDate().value;
+        meetingDate = source.getMeeting().getMeetingDate().get();
         meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags());
-        risk = portfolio.getRisk().value;
+        risk = portfolio.getRisk().get();
         planned.addAll(portfolio.getPlans());
         noted.addAll(portfolio.getNotes());
     }

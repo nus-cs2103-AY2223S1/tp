@@ -192,6 +192,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setIncome(toCopy.income);
             setMeetingDate(toCopy.meetingDate);
+            setMeetingLocation(toCopy.meetingLocation);
             setTags(toCopy.tags);
             setRisk(toCopy.risk);
             setPlans(toCopy.plans);
@@ -202,7 +203,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, meetingLocation, tags,
                 risk, plans, notes);
         }
 
@@ -335,5 +336,38 @@ public class EditCommand extends Command {
                 && getPlans().equals(e.getPlans())
                 && getNotes().equals(e.getNotes());
         }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(getName())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                .append("; Address: ")
+                .append(getAddress())
+                .append("; Income: ")
+                .append(getIncome())
+                .append("; Meeting Date: ")
+                .append(getMeetingDate())
+                .append("; Meeting Location: ")
+                .append(getMeetingLocation())
+                .append("; Tags: ")
+                .append(getTags())
+                .append("; Risk: ")
+                .append(getRisk())
+                .append("; Plans: ")
+                .append(getPlans())
+                .append("; Notes: ")
+                .append(getNotes());
+
+            return sb.toString();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return index.getOneBased() + " " + editPersonDescriptor.toString();
     }
 }

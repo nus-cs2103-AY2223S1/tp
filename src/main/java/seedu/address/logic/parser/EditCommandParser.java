@@ -75,7 +75,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MEETING_LOCATION).isPresent()) {
             editPersonDescriptor.setMeetingLocation(
-                ParserUtil.parseMeetingLocation(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
+                ParserUtil.parseMeetingLocation(argMultimap.getValue(PREFIX_MEETING_LOCATION).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
