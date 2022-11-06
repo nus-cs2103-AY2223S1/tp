@@ -126,8 +126,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 3. Create a folder where you want to use StudMap, and copy `studmap.jar` into it. This will be the home folder
    for StudMap.
 
-4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window similar to the figure
-   below. 
+4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window detailed in the next section.
 
 ## 4.2 Understanding the User Interface
 
@@ -139,11 +138,11 @@ explore each element one by one.
 
    Take note of the three main elements of the interface:
 
-| Element      | Purpose                                                                                                                                                   |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands) |
-| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                              |
-| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                     |
+| Element      | Purpose                                                                                                                                                    |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
+| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                               |
+| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
 
 ### Student Cards
 
@@ -164,21 +163,20 @@ The **left half** of each student card contains the student's particulars. Let's
 | GitHub Username | GitHub username of your student, if available.                                                           |
 | Telegram Handle | Telegram handle of your student, if available.                                                           |
 
-   <br><br>
 
 The **right half** of each student card contains module information related to your TA responsibilities:
 
    ![Ui](images/ui/ui-ta-info.png)
 
-| Element                  | Purpose                                                                                                                                                                                                                                                                         |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                        |
-| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                |
-| Classes                  | Detailed record of classes for your student. Each box represents one class: <li>the text in the box indicates the name of the class<li>the colour indicates attendance status (Green for present, Red for absent)                                                               |
-| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                     |
-| Participation Components | Detailed record of participation for your student. Each box represents one component: <li>the text in the box indicates the name of the component<li>the colour indicates participation status (Green for yes, Red for no)                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                |
-| Telegram Handle          | Detailed record of assignments for your student. Each box represents one assignment: <li>the text in the box indicates the name of the assignment<li>the colour indicates assignment status (There are 3 assignment states: Green for graded, Red for received, Yellow for new) |
+| Element                  | Purpose                                                                                                                                                                                                                                                                                            |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                           |
+| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                   |
+| Classes                  | Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>                                                               |
+| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                        |
+| Participation Components | Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                   |
+| Assignment Status        | Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul> |
 
 ## 4.3 Understanding Commands
 
@@ -207,8 +205,8 @@ Here's an example of how parameters can be used:
 you want
 * The final command will look like this: `edit 2 n/Salad`!
 
-<div markdown="block" class="alert alert-info">
-:bulb: Confused about which commands use what parameters? Do not fret! Keying in the command word into the command box 
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tip:** Confused about which commands use what parameters? Do not fret! Keying in the command word into the command box 
 and pressing enter will give you all the information about the command: what it does, what parameters it takes and so on!
 </div>
 
@@ -292,6 +290,28 @@ This will help you understand the guide better!
 
 </div>
 
+Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated summary of
+the parameters and any remarks that might be of relevance.
+
+
+| Parameter    | Remarks                                                                                                           |
+|--------------|-------------------------------------------------------------------------------------------------------------------|
+| INDEX        | Used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list |
+| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                            |
+| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                 |
+| a/ASSIGNMENT | Assignment to be recorded for your student                                                                        |
+| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                              |
+| c/CLASS      | Class to be recorded for your student                                                                             |
+| e/EMAIL      | Email for your student. Must be of the format local-part@domain                                                   |
+| g/GITNAME    | GitHub Username for your student                                                                                  |
+| h/TELEHANDLE | Telegram Handle for your student                                                                                  |
+| id/ID        | Student ID for your student                                                                                       |
+| m/MODULE     | Module for your student                                                                                           |
+| n/NAME       | Name for your student                                                                                             |
+| p/COMPONENT  | Participation component to be recorded for your student                                                           |
+| t/TAG        | Tag for your student                                                                                              |
+
+
 ## 5.3 Student List Management
 
 * [5.3.1 Adding a student: `add`](#531-adding-a-student-add)
@@ -310,7 +330,7 @@ This will help you understand the guide better!
 New student attending your class? Add them into StudMap to start managing their records! This is one of the ways you can
 add a student into StudMap.
 
-**Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
+**Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
@@ -337,14 +357,15 @@ remains clutter-free!
 
 <div markdown="span" class="alert alert-primary">
 :bulb: <b>Tip:</b>
-You can use [Find](#536-locating-students-by-name-find) to help locate the student you wish to delete first. <br>
+You can use [`find`](#536-locating-students-by-name-find) to help locate the student you wish to delete first. <br>
 </div>
 
-**Format:** `delete INDEX`
+**Format:** `delete INDEX/ALL`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX`: You can specify the index of the student you want to delete. The index refers to the
+  index number shown in the displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* `ALL`: You can delete all the students currently displayed.
 
 **Examples:**
 
@@ -505,6 +526,12 @@ by assignment.
 - `filter a/Keyword [MORE_KEYWORDS]`
     * Filters students specific to the category "assignment" represented with the prefix `a/`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The filter command only successfully filters if there is an exact match between the category and
+the keyword provided. <br/>
+Example: `filter t/friends` will filter students who have the tag `friends`, but `filter t/fri` will not. 
+</div>
+
 **Example:**
 
 * `filter t/ friends` will return a filtered list of students
@@ -538,13 +565,14 @@ by assignment.
 Need to update outdated student details? You can easily edit that field without deleting and re-adding the student.
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
- You can use [Find](#536-locating-students-by-name-find) to help locate the student you wish to edit first. <br>
+ You can use [`find`](#536-locating-students-by-name-find) to help locate the student you wish to edit first. <br>
 </div>
 
-**Format:** `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
+**Format:** `edit INDEX/ALL [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-  The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
+* `INDEX`: You can specify the index of the student you want to edit. The index refers to the index number shown in the displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​ 
+* `ALL`: You can edit all students currently displayed.
 * **At least one of the optional fields** must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e. adding of tags is not cumulative.
@@ -561,14 +589,13 @@ Need to update outdated student details? You can easily edit that field without 
 
 **Function:** Mark students as present or absent for a specified class.
 
-**Format:** `mark INDEX/ALL ATTENDANCE c/CLASS`
+**Format:** `mark INDEX/ALL STATUS c/CLASS`
 
-*`INDEX`: You can specify the index of the student you want to mark attendance for. The index refers to the index number
+* `INDEX`: You can specify the index of the student you want to mark attendance for. The index refers to the index number
 shown in the displayed student list.
 The index **must be a positive integer** 1, 2, 3, …​
-*`ALL`: You can mark attendance for all students currently displayed.
-
-* Attendance accepts two values only: `present` and `absent`
+* `ALL`: You can mark attendance for all students currently displayed.
+* Status accepts two values only: `present` and `absent`
 * :exclamation: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other
   character will lead to your class name being **rejected**
 * Marking an **existing class** as either `present` or `absent` will **overwrite** the existing record
@@ -593,7 +620,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 * `ALL`: You can remove attendance record for all students currently displayed.
 
 * StudMap allows for attendances to be removed even if the student never had any record for that class
-  (i.e. no error will be thrown)
+  (i.e. StudMap will inform you that the student has not been modified)
 
 **Examples:**
 
@@ -613,7 +640,7 @@ help you to better keep track of assignments that you have graded or received.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note 1:** The name of assignments should contain only numbers and letters (all upper case). If
+**:information_source: Note:** The name of assignments should contain only numbers and letters (all upper case). If
 you include any lower case in the assignment name, it will be automatically converted to upper case.
 
 </div>
@@ -693,7 +720,7 @@ you include any lower case in the assignment name, it will be automatically conv
 **Examples:**
 
 * `unparticipate 1 p/P01` removes participation component `P01` from first student in currently displayed list.
-* `unparticipate all p/P03 ` removes participation component `P03` from all students in currently displayed list.
+* `unparticipate all p/P03` removes participation component `P03` from all students in currently displayed list.
 
 **See Also:**
 [`participate`](#546-recording-participation-of-student-participate)
@@ -825,27 +852,27 @@ the data of your previous StudMap home folder. See how to back up your data [her
 
 # 7. Command Summary
 
-| Action                                                                           | Format, Examples                                                                                                                                                                                         |
-|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[Add](#531-adding-a-student-add)**                                             | `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T id/E1234567 g/user1 h/@user1 t/friends t/owesMoney` |
-| **[Delete](#532-deleting-a-student-delete)**                                     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
-| **[Clear](#533-clearing-all-entries-clear)**                                     | `clear`                                                                                                                                                                                                  |
-| **[Import CSV](#534-importing-students-from-csv-file-import)**                   | `import`                                                                                                                                                                                                 |
-| **[List](#535-listing-all-students-list)**                                       | `list`                                                                                                                                                                                                   |
-| **[Find](#536-locating-students-by-name-find)**                                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                               |
-| **[Sort](#537-sorting-the-students-sort)**                                       | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`                                                                                                                                                    |
-| **[Filter](#538-filtering-the-students-filter)**                                 | `filter`                                                                                                                                                                                                 |
-| **[Edit](#541-editing-a-student-edit)**                                          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                    |
-| **[Mark attendance](#542-marking-attendance-of-student-mark)**                   | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`                                                                                                                                    |
-| **[Unmark attendance](#543-unmarking-attendance-of-student-unmark)**             | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`                                                                                                                                                     |
-| **[Grade assignment](#544-grading-assignment-for-student-grade)**                | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`                                                                                                                                     |
-| **[Remove assignment](#545-removing-assignment-from-student-ungrade)**           | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`                                                                                                                                            |
-| **[Record participation](#546-recording-participation-of-student-participate)**  | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`                                                                                                                          |
-| **[Remove participation](#547-removing-participation-of-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`                                                                                                                                 |
-| **[Add tag](#548-adding-tag-to-student-tag)**                                    | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`                                                                                                                                         |
-| **[Remove tag](#549-removing-tag-from-student-untag)**                           | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`                                                                                                                                     |
-| **[Exit](#551-exiting-the-program-exit)**                                        | `exit`                                                                                                                                                                                                   |
-| **[Help](#555-viewing-help-help)**                                               | `help`                                                                                                                                                                                                   |
+| Action                                                                           | Format, Examples                                                                                                                                                                                             |
+|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add](#531-adding-a-student-add)**                                             | `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T id/E1234567 g/user1 h/@user1 t/friends t/owesMoney` |
+| **[Delete](#532-deleting-a-student-delete)**                                     | `delete INDEX/ALL`<br> e.g., `delete 3`                                                                                                                                                                      |
+| **[Clear](#533-clearing-all-entries-clear)**                                     | `clear`                                                                                                                                                                                                      |
+| **[Import CSV](#534-importing-students-from-csv-file-import)**                   | `import`                                                                                                                                                                                                     |
+| **[List](#535-listing-all-students-list)**                                       | `list`                                                                                                                                                                                                       |
+| **[Find](#536-locating-students-by-name-find)**                                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                   |
+| **[Sort](#537-sorting-the-students-sort)**                                       | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`                                                                                                                                                        |
+| **[Filter](#538-filtering-the-students-filter)**                                 | `filter`                                                                                                                                                                                                     |
+| **[Edit](#541-editing-a-student-edit)**                                          | `edit INDEX/ALL [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                    |
+| **[Mark attendance](#542-marking-attendance-of-student-mark)**                   | `mark INDEX/ALL STATUS c/CLASS` <br> e.g., `mark 1 present c/T01`                                                                                                                                            |
+| **[Unmark attendance](#543-unmarking-attendance-of-student-unmark)**             | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`                                                                                                                                                         |
+| **[Grade assignment](#544-grading-assignment-for-student-grade)**                | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`                                                                                                                                         |
+| **[Remove assignment](#545-removing-assignment-from-student-ungrade)**           | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`                                                                                                                                                |
+| **[Record participation](#546-recording-participation-of-student-participate)**  | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`                                                                                                                              |
+| **[Remove participation](#547-removing-participation-of-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`                                                                                                                                     |
+| **[Add tag](#548-adding-tag-to-student-tag)**                                    | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`                                                                                                                                             |
+| **[Remove tag](#549-removing-tag-from-student-untag)**                           | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`                                                                                                                                         |
+| **[Exit](#551-exiting-the-program-exit)**                                        | `exit`                                                                                                                                                                                                       |
+| **[Help](#555-viewing-help-help)**                                               | `help`                                                                                                                                                                                                       |
 
 ---
 

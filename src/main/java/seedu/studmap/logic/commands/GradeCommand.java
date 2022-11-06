@@ -24,7 +24,7 @@ public class GradeCommand extends EditStudentCommand<GradeCommand.GradeCommandSt
             + " student list.\nThis commands creates a new assignment for the student if it does not exist.\n"
             + "Grades the status for the assignment specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer or use \"all\" to mark everyone currently displayed)"
-            + " OPTION (must be marked/received/new where 'new'"
+            + " STATUS (must be marked/received/new where 'new'"
             + " also represents a new assignment that is not yet received) "
             + PREFIX_ASSIGNMENT + "ASSIGNMENT\n"
             + "Example: " + COMMAND_WORD + " 1 new " + PREFIX_ASSIGNMENT + "A01\n"
