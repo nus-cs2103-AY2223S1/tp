@@ -73,39 +73,65 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        Predicate<Person> predicate = x -> {
-            boolean addressMatch = x.getAddress().value.toLowerCase()
-                    .contains(address.orElse(x.getAddress()).value.toLowerCase());
-            boolean categoryMatch = x.getCategory().equalsIgnoreCase(category.orElse(x.getCategory()));
-            boolean genderMatch = x.getGender().equalsIgnoreCase(gender.orElse(x.getGender()));
+        applyFilter(model);
 
-            boolean tagMatch;
+        String filteredAddress = getFilteredAddress();
+        String filteredGender = getFilteredGender();
+        String filteredCategory = getFilteredCategory();
+        String filteredTag = getFilteredTag();
+
+        String result = String.format(MESSAGE_SUCCESS,
+                filteredAddress,
+                filteredCategory,
+                filteredGender,
+                filteredTag);
+        if (!parametersAreValid) {
+            result += MESSAGE_INVALID_PARAMETERS_IGNORED;
+        }
+        return new CommandResult(result);
+    }
+
+    private String getFilteredAddress() {
+        return address.orElse(new Address("NIL")).value;
+    }
+
+    private String getFilteredGender() {
+        final String[] filteredGender = new String[1];
+        gender.ifPresentOrElse(x -> filteredGender[0] = x.gender, () -> filteredGender[0] = "NIL");
+        return filteredGender[0];
+    }
+
+    private String getFilteredCategory() {
+        final String[] filteredCategory = new String[1];
+        category.ifPresentOrElse(x -> filteredCategory[0] = x.categoryName, () -> filteredCategory[0] = "NIL");
+        return filteredCategory[0];
+    }
+
+    private String getFilteredTag() {
+        return tag.orElse(new Tag("NIL")).tagName;
+    }
+
+    private void applyFilter(Model model) {
+        Predicate<Person> addressMatch = x -> x.getAddress().value.toLowerCase()
+                .contains(address.orElse(x.getAddress()).value.toLowerCase());
+        Predicate<Person> categoryMatch = x -> x.getCategory().equalsIgnoreCase(category.orElse(x.getCategory()));
+        Predicate<Person> genderMatch = x -> x.getGender().equalsIgnoreCase(gender.orElse(x.getGender()));
+        Predicate<Person> tagMatch = x -> {
             if (x.getTags().size() == 0) {
-                tagMatch = tag.isEmpty();
+                return tag.isEmpty();
             } else {
                 Predicate<Tag> tagPredicate = y -> {
                     Tag tagToCompare = tag.orElse((Tag) x.getTags().toArray()[0]);
                     return y.equals(tagToCompare);
                 };
-                tagMatch = x.getTags().stream().anyMatch(tagPredicate);
+                return x.getTags().stream().anyMatch(tagPredicate);
             }
-            return addressMatch && categoryMatch && genderMatch && tagMatch;
         };
+        Predicate<Person> predicate = addressMatch
+                .and(categoryMatch)
+                .and(genderMatch)
+                .and(tagMatch);
         model.updateFilteredPersonList(predicate);
-
-        final String[] filteredGender = new String[1];
-        gender.ifPresentOrElse(x -> filteredGender[0] = x.gender, () -> filteredGender[0] = "NIL");
-        final String[] filteredCategory = new String[1];
-        category.ifPresentOrElse(x -> filteredCategory[0] = x.categoryName, () -> filteredCategory[0] = "NIL");
-
-        String result = String.format(MESSAGE_SUCCESS, address.orElse(new Address("NIL")).value,
-                filteredCategory[0],
-                filteredGender[0],
-                tag.orElse(new Tag("NIL")).tagName);
-        if (!parametersAreValid) {
-            result += MESSAGE_INVALID_PARAMETERS_IGNORED;
-        }
-        return new CommandResult(result);
     }
 
     @Override
