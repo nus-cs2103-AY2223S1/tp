@@ -13,7 +13,7 @@
 
 * Plannit can be used to track their tasks for each module so that they do not have to worry about unintentionally forgetting their tasks.
 
-* Plannit allows tracking of student contacts by module. Students do not have to worry about forgetting which friend takes which module.
+* Plannit allows tracking of student contacts by module. Students do not have to worry about forgetting which friend takes which module and can thus easily know who to approach when in need of help.
 
 * Plannit is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
