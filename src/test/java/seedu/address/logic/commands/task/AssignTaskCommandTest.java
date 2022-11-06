@@ -41,7 +41,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_invalidTeammateAddIndex_throwsCommandException() {
         Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
-        HashSet<Index> invalidAssignedTeammates = new HashSet<Index>();
+        HashSet<Index> invalidAssignedTeammates = new HashSet<>();
         invalidAssignedTeammates.add(outOfBoundTeammateIndex);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, invalidAssignedTeammates,
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
@@ -54,7 +54,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_invalidTeammateDeleteIndex_throwsCommandException() {
         Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
-        HashSet<Index> invalidAssignedTeammates = new HashSet<Index>();
+        HashSet<Index> invalidAssignedTeammates = new HashSet<>();
         invalidAssignedTeammates.add(outOfBoundTeammateIndex);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(), invalidAssignedTeammates, new HashSet<>());
@@ -87,7 +87,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_teammateToAddAlreadyAdded_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(Arrays.asList("Alice Pauline")), new HashSet<>(), new HashSet<>());
+                new HashSet<>(List.of("Alice Pauline")), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(AssignTaskCommand.MESSAGE_REPEATED_CONTACT,
@@ -97,7 +97,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_teammateToDeleteNotAssigned_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList("George Best")));
+                new HashSet<>(), new HashSet<>(), new HashSet<>(List.of("George Best")));
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(AssignTaskCommand.MESSAGE_CONTACT_DOES_NOT_EXIT,
@@ -107,7 +107,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_validTaskIndexAndAddTeammatesName_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(), new HashSet<>(Arrays.asList("George Best")),
+                new HashSet<>(), new HashSet<>(List.of("George Best")),
                 new HashSet<>(), new HashSet<>());
 
         CommandResult commandResult = assignTaskCommand.execute(model);
@@ -119,7 +119,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_validTaskAndAddTeammatesIndexes_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
 
         CommandResult commandResult = assignTaskCommand.execute(model);
@@ -132,7 +132,7 @@ public class AssignTaskCommandTest {
     public void execute_validTaskAndDeleteTeammatesIndexes_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(),
-                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE)), new HashSet<>());
+                new HashSet<>(List.of(INDEX_FIRST_TEAMMATE)), new HashSet<>());
 
         CommandResult commandResult = assignTaskCommand.execute(model);
 
@@ -144,7 +144,7 @@ public class AssignTaskCommandTest {
     public void execute_validTaskIndexAndDeleteTeammatesName_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(Arrays.asList("Alice Pauline")));
+                new HashSet<>(), new HashSet<>(List.of("Alice Pauline")));
 
         CommandResult commandResult = assignTaskCommand.execute(model);
 
@@ -162,7 +162,7 @@ public class AssignTaskCommandTest {
                 new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
         AssignTaskCommand thirdCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<Index>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE, INDEX_THIRD_TEAMMATE)),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE, INDEX_THIRD_TEAMMATE)),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
         AssignTaskCommand fourthCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
@@ -182,11 +182,6 @@ public class AssignTaskCommandTest {
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        AssignTaskCommand sixthCommandCopy = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
-                "Alex", "Bernice")),
-                new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>(Arrays.asList(
-                "Charlotte", "David")));
         assertTrue(sixthCommand.equals(sixthCommand));
 
         // different types -> returns false

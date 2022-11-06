@@ -18,7 +18,7 @@ import seedu.address.model.task.Deadline;
 
 public class ListTasksCommandParserTest {
 
-    private ListTasksCommandParser parser = new ListTasksCommandParser();
+    private final ListTasksCommandParser parser = new ListTasksCommandParser();
 
     @Test
     public void parse_validArgs_returnsListTasksCommand() {
@@ -56,7 +56,7 @@ public class ListTasksCommandParserTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE))
+                        new HashSet<>(List.of(INDEX_FIRST_TEAMMATE))
                 )
         );
 

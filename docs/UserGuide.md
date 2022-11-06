@@ -316,22 +316,17 @@ These commands modify the Task panel of `Arrow`.
 
 Adds a new task to the task panel.
 
-Format: `task add TITLE by/DEADLINE [#PROJECT] [@TEAMMATE_INDEX]...`
+Format: `task add TITLE`
 
 * `TITLE` refers to the task and **cannot be empty**.
-* You can only use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
-* Dates containing non-alphanumeric characters such as `11-11-2022` will not be accepted and an error message will be thrown.
-* If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
-* If task does not have a deadline, you can put `by/?` and there will be no deadline.
-* `TEAMMATE_INDEX` refers to the index number shown in the displayed teammate list.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the current task list only shows completed task (via `task list -c`), the newly added will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
 </div>
 
 Examples:
-* `task add Task 1 by/next friday #CS2103T @1`
-* `task add Finish GUI by/sunday #CS2100 @2`
+* `task add Task 1`
+* `task add Finish GUI`
 
 ---
 ### Assigning a Task to a Teammate: `task assign`
@@ -577,19 +572,19 @@ This summary provides a list of useful and straightforward instructions on how t
 
 ### Task Commands
 
-| Command      | Format                                                                                                         | Example                                                                                            |
-|--------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Task add     | `task add TITLE by/DEADLINE [#PROJECT] [@TEAMMATE_INDEX]...`                                                   | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| Task assign  | `task assign TASK_INDEX [+@/TEAMMATE_INDEX]…​ [+@/TEAMMATE_NAME]…​ [cd/TEAMMATE_INDEX]…​ [-@/TEAMMATE_NAME]…​` | `task assign 3 +@/1 +@/Alex Yeoh @-/2`                                                             |
-| Task list    | `task list`                                                                                                    | -                                                                                                  |
-| Task mark    | `task mark TASK_INDEX`                                                                                         | `task mark 1`                                                                                      |
-| Task unmark  | `task unmark TASK_INDEX`                                                                                       | `task unmark 1`                                                                                    |
-| Task delete  | `task delete INDEX`                                                                                            | `task delete 3`                                                                                    |
-| Task do      | `task do TASK_INDEX by/DATE...`                                                                                | `task do 1 by/tomorrow`                                                                            |
-| Task sort    | `task sort`                                                                                                    | -                                                                                                  |
-| Task filter  | `task list`                                                                                                    | -                                                                                                  |
-| Task edit    | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@TEAMMATES_INDEX] ... [-@TEAMMATES_INDEX]...`     | `task edit 2 ti/Finish bar by/tomorrow`                                                            |
-| Task project | `task project`                                                                                                 | -                                                                                                  |
+| Command      | Format                                                                                                         | Example                                 |
+|--------------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| Task add     | `task add TITLE`                                                                                               | `task add Test 1`                       |
+| Task assign  | `task assign TASK_INDEX [+@/TEAMMATE_INDEX]…​ [+@/TEAMMATE_NAME]…​ [cd/TEAMMATE_INDEX]…​ [-@/TEAMMATE_NAME]…​` | `task assign 3 +@/1 +@/Alex Yeoh @-/2`  |
+| Task list    | `task list`                                                                                                    | -                                       |
+| Task mark    | `task mark TASK_INDEX`                                                                                         | `task mark 1`                           |
+| Task unmark  | `task unmark TASK_INDEX`                                                                                       | `task unmark 1`                         |
+| Task delete  | `task delete INDEX`                                                                                            | `task delete 3`                         |
+| Task do      | `task do TASK_INDEX by/DATE...`                                                                                | `task do 1 by/tomorrow`                 |
+| Task sort    | `task sort`                                                                                                    | -                                       |
+| Task filter  | `task list`                                                                                                    | -                                       |
+| Task edit    | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@TEAMMATES_INDEX] ... [-@TEAMMATES_INDEX]...`     | `task edit 2 ti/Finish bar by/tomorrow` |
+| Task project | `task project`                                                                                                 | -                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -10,14 +10,10 @@ import seedu.address.model.teammate.Teammate;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private final AddressBook addressBook;
 
     public AddressBookBuilder() {
         addressBook = new AddressBook();
-    }
-
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
     }
 
     /**

@@ -7,18 +7,22 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskPanel;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 import seedu.address.model.teammate.Teammate;
 import seedu.address.testutil.TaskBuilder;
 
@@ -26,11 +30,9 @@ public class AddTaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand((Title) null));
     }
 
-    // TODO: Update Tests
-    /*
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
@@ -38,7 +40,8 @@ public class AddTaskCommandTest {
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask.getTitle()),
+                commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validTask), modelStub.tasksAdded);
     }
 
@@ -54,7 +57,6 @@ public class AddTaskCommandTest {
                     -> addTaskCommand.execute(modelStub)
         );
     }
-     */
 
     @Test
     public void equals() {

@@ -15,12 +15,10 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.teammate.NameContainsKeywordsPredicate;
 import seedu.address.model.teammate.Teammate;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.EditTeammateDescriptorBuilder;
 
 /**
@@ -56,12 +54,6 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String VALID_TITLE_HOMEWORK = "Do homework";
-    public static final String VALID_TITLE_WORKSHOP = "Attend workshop";
-
-    public static final EditTaskCommand.EditTaskDescriptor DESC_HOMEWORK;
-    public static final EditTaskCommand.EditTaskDescriptor DESC_WORKSHOP;
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -75,8 +67,6 @@ public class CommandTestUtil {
         DESC_BOB = new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_HOMEWORK = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_HOMEWORK).build();
-        DESC_WORKSHOP = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_WORKSHOP).build();
     }
 
     /**

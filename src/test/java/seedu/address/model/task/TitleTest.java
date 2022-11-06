@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,6 +18,20 @@ public class TitleTest {
     public void constructor_invalidTitle_throwsIllegalArgumentException() {
         String invalidTitle = "";
         assertThrows(IllegalArgumentException.class, () -> new Title(invalidTitle));
+    }
+
+    @Test
+    public void equals() {
+        Title t1 = new Title("Test");
+        Title t2 = new Title("Test");
+
+        // same object -> return true
+        assertEquals(t1, t1);
+        assertEquals(t1.hashCode(), t1.hashCode());
+
+        // same title -> return true
+        assertEquals(t1, t2);
+        assertEquals(t1.hashCode(), t2.hashCode());
     }
 
     @Test

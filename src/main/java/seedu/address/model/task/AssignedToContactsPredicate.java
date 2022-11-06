@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -54,9 +53,6 @@ public class AssignedToContactsPredicate implements Predicate<Task> {
 
     public Set<Contact> getContacts() {
         return contacts;
-    }
-    public String getContactNames() {
-        return contacts.stream().map(c -> c.contactName).collect(Collectors.joining(", "));
     }
 
     @Override

@@ -19,8 +19,6 @@ import seedu.address.model.task.Deadline;
  */
 public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
 
-    public static final String MESSAGE_DATE_PARSE_FAILURE = "Could not parse the date provided.";
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeadlineTaskCommand
      * and returns an DeadlineTaskCommand object for execution.

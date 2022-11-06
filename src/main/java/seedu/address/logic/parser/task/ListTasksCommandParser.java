@@ -61,8 +61,8 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
         }
 
         Set<Index> teammatesIndexes;
-        Optional<Deadline> before = Optional.empty();;
-        Optional<Deadline> after = Optional.empty();;
+        Optional<Deadline> before = Optional.empty();
+        Optional<Deadline> after = Optional.empty();
 
 
         if (beforeArgs.isPresent()) {

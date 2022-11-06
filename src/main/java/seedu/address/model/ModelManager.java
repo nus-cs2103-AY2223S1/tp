@@ -15,9 +15,10 @@ import seedu.address.model.task.Task;
 import seedu.address.model.teammate.Teammate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of Arrow data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;

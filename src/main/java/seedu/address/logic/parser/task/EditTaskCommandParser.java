@@ -2,9 +2,7 @@ package seedu.address.logic.parser.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -14,6 +12,7 @@ import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Project;
@@ -30,13 +29,12 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_PROJECT,
-                        PREFIX_ADD_CONTACT, PREFIX_DELETE_CONTACT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_PROJECT);
 
         Index targetIndex;
 
         try {
-            targetIndex = TaskParserUtil.parseIndex(argMultimap.getPreamble());
+            targetIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
         }

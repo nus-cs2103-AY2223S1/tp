@@ -36,13 +36,7 @@ public class AddTaskCommandIntegrationTest {
         assertCommandSuccess(
             new AddTaskCommand(validTask),
             model,
-            String.format(AddTaskCommand.MESSAGE_SUCCESS,
-                    validTask.getTitle(),
-                    validTask.getDeadline(),
-                    validTask.getProject(),
-                    validTask.getAssignedContacts()),
-            expectedModel
-        );
+            String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask.getTitle()), expectedModel);
     }
 
     @Test

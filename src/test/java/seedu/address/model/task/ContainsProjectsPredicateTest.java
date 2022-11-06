@@ -48,7 +48,7 @@ public class ContainsProjectsPredicateTest {
 
         List<String> multipleProject = List.of("Test Project", "Another Project");
         ContainsProjectsPredicate multiPredicate = new ContainsProjectsPredicate(multipleProject);
-        assertTrue(predicate.test(testTask));
+        assertTrue(multiPredicate.test(testTask));
     }
 
     @Test

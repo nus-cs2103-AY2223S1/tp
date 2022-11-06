@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
@@ -15,13 +16,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for MarkTaskCommand.
  */
 public class UnmarkTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -37,20 +37,20 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand secondCommand = new UnmarkTaskCommand(INDEX_SECOND_TEAMMATE);
 
         // same object -> returns true
-        assertTrue(firstCommand.equals(firstCommand));
+        assertEquals(firstCommand, firstCommand);
 
         // same values -> returns true
         UnmarkTaskCommand firstCommandCopy = new UnmarkTaskCommand(INDEX_FIRST_TEAMMATE);
-        assertTrue(firstCommand.equals(firstCommandCopy));
+        assertEquals(firstCommand, firstCommandCopy);
 
         // different types -> returns false
-        assertFalse(firstCommand.equals(1));
+        assertNotEquals(1, firstCommand);
 
         // null -> returns false
-        assertFalse(firstCommand.equals(null));
+        assertNotEquals(null, firstCommand);
 
         // different teammate -> returns false
-        assertFalse(firstCommand.equals(secondCommand));
+        assertNotEquals(firstCommand, secondCommand);
     }
 
     /**

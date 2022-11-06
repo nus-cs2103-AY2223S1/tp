@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.TASK_ONE;
@@ -67,7 +68,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setTeammate_targetTaskNotInList_throwsTaskNotFoundException() {
+    public void setTask_targetTaskNotInList_throwsTaskNotFoundException() {
         assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.setTask(TASK_ONE, TASK_TWO));
     }
 
@@ -90,7 +91,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setTeammate_editedTaskHasNonUniqueDescription_throwsDuplicateTaskException() {
+    public void setTask_editedTaskHasNonUniqueDescription_throwsDuplicateTaskException() {
         uniqueTaskList.add(TASK_ONE);
         uniqueTaskList.add(TASK_TWO);
         assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(TASK_ONE, TASK_TWO));
@@ -153,5 +154,25 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        UniqueTaskList utl1 = new UniqueTaskList();
+        UniqueTaskList utl2 = new UniqueTaskList();
+
+        // same values -> returns true
+        assertEquals(utl1, utl2);
+        assertEquals(utl1.hashCode(), utl2.hashCode());
+
+        // same object -> returns true
+        assertEquals(utl1, utl1);
+        assertEquals(utl1.hashCode(), utl1.hashCode());
+
+        // null -> returns false
+        assertNotEquals(null, utl1);
+
+        // different type -> returns false
+        assertNotEquals(5, utl1);
     }
 }

@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +33,6 @@ import seedu.address.model.task.DeadlineIsAfterPredicate;
 import seedu.address.model.task.DeadlineIsBeforePredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsKeywordPredicate;
-import seedu.address.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListTasksCommand.
@@ -100,7 +98,7 @@ public class ListTasksCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeammateList().size());
 
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(outOfBoundIndex));
 
         ListTasksCommand command =
                 new ListTasksCommand(
@@ -218,7 +216,7 @@ public class ListTasksCommandTest {
     @Test
     public void execute_contact_singleResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(INDEX_FIRST_TEAMMATE));
         AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, teammateIndexes);
 
         expectedModel.updateFilteredTaskList(filter);
@@ -244,7 +242,7 @@ public class ListTasksCommandTest {
     @Test
     public void execute_keywordAndContact_noResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(INDEX_FIRST_TEAMMATE));
 
         Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
         AssignedToContactsPredicate assignedToContactsPredicate =

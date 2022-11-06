@@ -125,13 +125,6 @@ public class UniqueTeammateList implements Iterable<Teammate> {
      * Returns true if {@code teammates} contains only unique teammates.
      */
     private boolean teammatesAreUnique(List<Teammate> teammates) {
-        for (int i = 0; i < teammates.size() - 1; i++) {
-            for (int j = i + 1; j < teammates.size(); j++) {
-                if (teammates.get(i).isSameTeammate(teammates.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return teammates.stream().map(Teammate::getName).distinct().count() == teammates.size();
     }
 }
