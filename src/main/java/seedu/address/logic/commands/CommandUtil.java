@@ -11,6 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.ArchivalStatus;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Id;
@@ -107,8 +109,10 @@ public class CommandUtil {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
 
-        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
-        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
+        CompletionStatus updatedIsDone = editTaskDescriptor.getCompletionStatus()
+                .orElse(taskToEdit.getCompletionStatus());
+        ArchivalStatus updatedIsArchived = editTaskDescriptor.getArchivalStatus()
+                .orElse(taskToEdit.getArchivalStatus());
 
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
@@ -133,8 +137,10 @@ public class CommandUtil {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
 
-        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
-        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
+        CompletionStatus updatedIsDone = editTaskDescriptor.getCompletionStatus()
+                .orElse(taskToEdit.getCompletionStatus());
+        ArchivalStatus updatedIsArchived = editTaskDescriptor.getArchivalStatus()
+                .orElse(taskToEdit.getArchivalStatus());
 
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();

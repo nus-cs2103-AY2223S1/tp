@@ -9,6 +9,7 @@ import seedu.address.logic.commands.task.MarkTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.CompletionStatus;
 
 /**
  * Parses input arguments and creates a new MarkTaskCommand object
@@ -32,7 +33,7 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setCompletionStatus(true);
+        editTaskDescriptor.setCompletionStatus(new CompletionStatus(true));
 
         return new MarkTaskCommand(index, editTaskDescriptor);
     }

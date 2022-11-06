@@ -1,9 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.task.Task.COMPLETION_STATUS_MESSAGE_CONSTRAINTS;
-import static seedu.address.model.task.Task.INPUT_TASK_COMPLETED;
-import static seedu.address.model.task.Task.INPUT_TASK_NOT_COMPLETED;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -21,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 
@@ -345,28 +343,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a string of {@code String completionStatuses} into a list of {@code Boolean completionStatuses}.
+     * Parses a string of {@code String completionStatuses} into a list of {@code CompletionStatus completionStatuses}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param completionStatuses The completion statuses to be parsed.
      * @return A list of completion statuses.
      * @throws ParseException if any {@code completionStatus} is invalid.
      */
-    public static List<Boolean> parseCompletionStatuses(String completionStatuses) throws ParseException {
+    public static List<CompletionStatus> parseCompletionStatuses(String completionStatuses) throws ParseException {
         requireNonNull(completionStatuses);
         String trimmedCompletionStatuses = completionStatuses.trim();
         String[] completionStatusArr = trimmedCompletionStatuses.split(" ");
-        ArrayList<Boolean> completionStatusList = new ArrayList<>();
+        ArrayList<CompletionStatus> completionStatusList = new ArrayList<>();
         for (String completionStatus : completionStatusArr) {
-            if (StringUtil.containsWordIgnoreCase(completionStatus, INPUT_TASK_COMPLETED)) {
-                completionStatusList.add(true);
-                continue;
+            if (!CompletionStatus.isValidCompletionStatus(completionStatus)) {
+                throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
             }
-            if (StringUtil.containsWordIgnoreCase(completionStatus, INPUT_TASK_NOT_COMPLETED)) {
-                completionStatusList.add(false);
-                continue;
-            }
-            throw new ParseException(COMPLETION_STATUS_MESSAGE_CONSTRAINTS);
+            completionStatusList.add(new CompletionStatus(
+                    Boolean.parseBoolean(completionStatus.toLowerCase())));
         }
         return completionStatusList;
     }

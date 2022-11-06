@@ -9,6 +9,7 @@ import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.CompletionStatus;
 
 /**
  * Parses input arguments and creates a new UnmarkTaskCommand object
@@ -32,7 +33,7 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setCompletionStatus(false);
+        editTaskDescriptor.setCompletionStatus(new CompletionStatus(false));
 
         return new UnmarkTaskCommand(index, editTaskDescriptor);
     }

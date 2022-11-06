@@ -16,14 +16,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
-
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -38,12 +36,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
-        filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.versionedAddressBook.getTaskList());
+        filteredTags = new FilteredList<>(this.versionedAddressBook.getTagList());
 
         // Show only non-archived tasks
         updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
@@ -92,28 +89,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -121,12 +118,12 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
     }
 
     @Override
     public void commitAddressBook() {
-        versionedAddressBook.commit(addressBook);
+        versionedAddressBook.commit();
     }
 
     @Override
@@ -150,7 +147,6 @@ public class ModelManager implements Model {
     public boolean canRedoAddressBook() {
         return versionedAddressBook.canRedo();
     }
-
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -183,7 +179,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredTasks.equals(other.filteredTasks)
@@ -194,36 +190,36 @@ public class ModelManager implements Model {
 
     @Override
     public void addTask(Task task) {
-        addressBook.addTask(task);
+        versionedAddressBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
     }
 
     @Override
     public void deleteTask(Task target) {
-        addressBook.removeTask(target);
+        versionedAddressBook.removeTask(target);
     }
 
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return addressBook.hasTask(task);
+        return versionedAddressBook.hasTask(task);
     }
 
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        addressBook.setTask(target, editedTask);
+        versionedAddressBook.setTask(target, editedTask);
     }
 
     @Override
     public void sortByDeadline() {
-        addressBook.sortByDeadline();
+        versionedAddressBook.sortByDeadline();
     }
 
     @Override
     public void sortById() {
-        addressBook.sortById();
+        versionedAddressBook.sortById();
     }
     //=========== Filtered Task List Accessors =============================================================
 
@@ -255,7 +251,7 @@ public class ModelManager implements Model {
 
         for (int i = 0; i < numOfTasks; i++) {
             Task currTask = filteredTasks.get(i);
-            if (currTask.getCompletionStatus()) {
+            if (currTask.getIsCompleted()) {
                 numCompleted += 1;
             }
         }
@@ -266,35 +262,35 @@ public class ModelManager implements Model {
     //=========== Tag List Accessors =============================================================
     @Override
     public void addTag(Tag tag) {
-        addressBook.addTag(tag);
+        versionedAddressBook.addTag(tag);
     }
 
     @Override
     public void addTagCount(Tag tag) {
-        addressBook.addTagCount(tag);
+        versionedAddressBook.addTagCount(tag);
     }
 
     @Override
     public void decreaseTagCount(Tag toDelete) {
-        addressBook.decreaseTagCount(toDelete);
+        versionedAddressBook.decreaseTagCount(toDelete);
     }
 
     @Override
     public void deleteTag(Tag target) {
-        addressBook.removeTag(target);
+        versionedAddressBook.removeTag(target);
     }
 
     @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        return addressBook.hasTag(tag);
+        return versionedAddressBook.hasTag(tag);
     }
 
     @Override
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
-        addressBook.setTag(target, editedTag);
+        versionedAddressBook.setTag(target, editedTag);
     }
 
     @Override
