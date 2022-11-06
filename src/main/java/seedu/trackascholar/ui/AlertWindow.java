@@ -33,6 +33,7 @@ public class AlertWindow {
                 .filter(response -> response.getButtonData() == ButtonBar.ButtonData.YES)
                 .ifPresent(response ->
                         setIsConfirmed());
+        //@@author
         return isConfirmed;
     }
 
