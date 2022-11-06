@@ -13,7 +13,7 @@ end box
 
 box External EXTERNAL_COLOR
 Participant ":ArrayList" as ArrayList EXTERNAL_COLOR_T1
-Participant ":ObservableArrayList" as ObservableArrayList EXTERNAL_COLOR_T2
+Participant ":ObservableList" as ObservableList EXTERNAL_COLOR_T2
 end box
 
 [-[LOGIC_COLOR]> SortBuyersCommand: execute(model)
@@ -40,11 +40,11 @@ activate BuyerBook
 BuyerBook -> UniqueBuyerList : setBuyers(buyerList)
 activate UniqueBuyerList
 
-UniqueBuyerList -> ObservableArrayList : setAll(internalList)
-activate ObservableArrayList
+UniqueBuyerList -> ObservableList : setAll(internalList)
+activate ObservableList
 
-ObservableArrayList -> UniqueBuyerList
-deactivate ObservableArrayList
+ObservableList -> UniqueBuyerList
+deactivate ObservableList
 
 UniqueBuyerList -> BuyerBook
 deactivate UniqueBuyerList
