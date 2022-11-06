@@ -836,7 +836,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The label requested is invalid.
 
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a label to an existing contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. YellowBook shows a list of contacts
+3. User requests to tag a specific contact in the list with a label
+4. YellowBook tags the contact with specified label
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is invalid.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+          
+
+**Use case: Delete a label from an existing task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  YellowBook shows a list of tasks
+3.  User requests to delete a label from a task in the list
+4.  YellowBook deletes the label from the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is not found on the task.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a label from an existing contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  YellowBook shows a list of contacts
+3.  User requests to delete a label from a contact in the list
+4.  YellowBook deletes the label from the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is not found on the contact.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
