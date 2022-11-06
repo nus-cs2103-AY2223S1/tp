@@ -100,7 +100,7 @@ is comfortable with the command line interface (CLI).
 
 * plays Minecraft multiplayer with friends regularly
 * has many Minecraft friends (online and offline) from all over the world
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * prefers typing to mouse interactions and types fast
 * is comfortable using the Minecraft command line, and by hence extension, using CLI apps
 
@@ -171,7 +171,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts is defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -285,7 +285,7 @@ a `PersonSuggestionPredicate` such that the predicate can be used to filter
 through the list of all friends to get a list of suggested friends.
 
 The `PersonSuggestionPredicate` is made up of two parts, a collection of `DayTimeInWeek` and a collection of `Keyword`. 
-Minefriends will find all persons that is available for **any** of the `DayTimeInWeek` and contains **all** the keywords in 
+Minefriends will find all friends that are available for **any** of the `DayTimeInWeek` and contains **all** the keywords in 
 the collection of `Keyword`.
 
 The following sequence diagram shows the flow of the execution of the suggest command.
@@ -334,11 +334,11 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 ### *Available timings*
 
-The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
+The user can save the available timings of a friend to their profile, as a time interval during the week. 
 
 #### Implementation
 
-The available timings of a friend is stored as a `TimeInterval` attribute in the `Person` class. 
+The available timings of a friend are stored as `TimeInterval` attributes in the `Person` class. 
 Each `TimeInterval` object will have two `DayTimeInWeek` fields, representing its start time and its end time.
 
 The time stamp that is parsed into the `DayTimeInWeek` class is then saved as the number of elapsed minutes since Monday 12am.
@@ -352,8 +352,8 @@ The following class diagram shows the relationship between the classes:
 
 <img src="images/TimeIntervalClassDiagram.png" width="550" />
 
-### *Servers, GameType and Socials as Coloured Tags in Friend's profile*
-Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
+### *Servers, GameTypes and Socials as Coloured Tags in Friend's profile*
+Whenever the user updates the in-game preferences or social handles of a friend, they are displayed as 
 distinct coloured tags under the friend's profile.
 
 #### Implementation
@@ -525,29 +525,29 @@ Priority legend
 * Medium: Good to have
 * Low: Unlikely to have
 
-| Priority | As a             | I want to                                          | so that I can                                                                  |
-|---------|------------------|----------------------------------------------------|--------------------------------------------------------------------------------|
-| High    | new user         | see usage instructions                             | learn how to use Minefriends                                                   |
-| High    | Minecraft player | add my friends to Minefriends                      | remember information about them                                                |
-| High    | Minefraft player | remove a friend from Minefriends                   | keep an accurate list of my Minecraft friends                                  |
-| High    | Minecraft player | view all my friends                                | have an overview of my Minecraft social contacts                               |
-| High    | Minecraft player | save all my friends' information                   | retrieve them on subsequent uses of Minefriends                                |
-| High    | Minecraft player | receive suggestions on which friends to play with  | play Minecraft with the right friend at the right time                         |
-| High    | Minecraft player | know my friend's name                              | address them correctly                                                         |
-| High    | Minecraft player | know my friend's Minecraft username                | recognize them on Minecraft servers                                            |
-| High    | Minecraft player | know my friend's phone number                      | call/sms them when I want to play with them                                    |
-| High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                     |
-| High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests with me at that point in time |
-| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time    |
-| High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                                 |
-| Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                     |
-| Medium  | Minecraft player | know my friend's physical address                  | go to their houses an play together                                            |
-| Medium  | Minecraft player | know my friend's country                           | be mindful of timezone differences when playing                                |
-| Medium  | Minecraft player | note down additional information about my friends  | remember other noteworthy information about them                               |
-| Medium  | Minecraft player | know what servers my friends have been banned from | avoid those servers when playing with them                                     |
-| Low     | Minecraft player | secure my information behind a password            | other people cannot intrude upon my privacy                                    |
-| Low     | Minecraft player | know my friend's in-game skin                      | I can recognize them in game                                                   |
-| Low     | Minecraft player | find new friends through Minefriends               | have more friends to play Minecraft with                                       |
+| Priority | As a             | I want to                                          | so that I can                                                               |
+|---------|------------------|----------------------------------------------------|-----------------------------------------------------------------------------|
+| High    | new user         | see usage instructions                             | learn how to use Minefriends                                                |
+| High    | Minecraft player | add my friends to Minefriends                      | remember information about them                                             |
+| High    | Minefraft player | remove a friend from Minefriends                   | keep an accurate list of my Minecraft friends                               |
+| High    | Minecraft player | view all my friends                                | have an overview of my Minecraft social contacts                            |
+| High    | Minecraft player | save all my friends' information                   | retrieve them on subsequent uses of Minefriends                             |
+| High    | Minecraft player | receive suggestions on which friends to play with  | play Minecraft with the right friend at the right time                      |
+| High    | Minecraft player | know my friend's name                              | address them correctly                                                      |
+| High    | Minecraft player | know my friend's Minecraft username                | recognize them on Minecraft servers                                         |
+| High    | Minecraft player | know my friend's phone number                      | call/text them when I want to play with them                                |
+| High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                  |
+| High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests                            |
+| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time |
+| High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                              |
+| Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                  |
+| Medium  | Minecraft player | know my friend's physical address                  | go to their houses to play together                                         |
+| Medium  | Minecraft player | know my friend's country                           | be mindful of timezone differences when playing                             |
+| Medium  | Minecraft player | note down additional information about my friends  | remember other noteworthy information about them                            |
+| Medium  | Minecraft player | know what servers my friends have been banned from | avoid those servers when playing with them                                  |
+| Low     | Minecraft player | secure my information behind a password            | other people cannot intrude upon my privacy                                 |
+| Low     | Minecraft player | know my friend's in-game skin                      | I can recognize them in game                                                |
+| Low     | Minecraft player | find new friends through Minefriends               | have more friends to play Minecraft with                                    |
 
 
 
@@ -555,7 +555,7 @@ Priority legend
 
 ## **Appendix B: Use cases**
 
-(For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Minefriends` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a friend**
 
@@ -663,7 +663,7 @@ Priority legend
 
 **MSS**
 
-1. User requests to suggest friends in the list who matches the given keyword or available time interval.
+1. User requests to suggest friends in the list who matches the given keywords and time intervals.
 2. MineFriends shows the list of friends matched.
 
    Use case ends.
@@ -736,11 +736,11 @@ For a complete glossary of Minecraft terms, please visit this page on the
 
 ### Other terminologies
 
-| Terminology   | Definition                                                                  |
-|---------------|-----------------------------------------------------------------------------|
-| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X         |
-| Socials       | A person's social media account information, such as their Telegram handle  |
-| CLI           | An acronym for "command line interface"                                     |
+| Terminology   | Definition                                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
+| CLI           | An acronym for "command line interface"                                                                            |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -814,7 +814,7 @@ This includes, but is not limited to:
 * Adding and designing a help window to show the user a list of commands
 * Adding the auto-complete feature to the command box
 
-Amongst these changes, we had the hardest time redesigning the `Person` model, as we have encountered various bugs after
-we have modified it to include additional fields, in the end we took many hours to fix more than 200 test cases related to it. 
+Amongst these changes, we had the hardest time redesigning the `Person` model, as we encountered various bugs after
+we had modified it to include additional fields, thus in the end we took many hours to fix more than 200 test cases related to it. 
 Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model, which 
-took quite a few iterations before we got it to a point where we felt comfortable with it.
+took quite a few iterations.
