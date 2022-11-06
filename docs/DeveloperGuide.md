@@ -11,26 +11,26 @@ Financial advisers now focus on giving their full attention to their clients wit
 
 **FABook** is optimized for a **one-stop storage solution** to store and remind them on **everything** they need to know about their client.
 
-### **What is this guide for?**
+### What is this guide for?
 
 This developer guide is intended for readers to understand the inner workings of how **FABook** works and the design process behind different implementations of features.
 This guide will go into detail about the architecture used to build FABook as well as several notable features.
 
-### **Who is this guide for?**
+### Who is this guide for?
 
 The intended target audience of this guide is for
 * Developers looking to morph or evolve **FABook** for different or improved uses
 * Developers looking to understand the architecture and follow the design to build the system
 * Maintainers who are looking to understand how the system was built in order to be able to perform any enhancement or reengineering work.
 
-### **How to use this guide?**
+### How to use this guide?
 
-#### **Recommended prerequisites**
+#### Recommended prerequisites
 To fully utilise and understand this guide, you should have knowledge and expertise in the following:
 * Java
 * UML diagrams
 
-#### **Organization**
+#### Organization
 The guide provides a top-down view of the system by first providing an overview of the entire system before looking in greater detail of each component of the architecture.
 Afterwards, it talks about notable implementations within the components. Details mentioned may include:
 * Implementation
@@ -41,7 +41,7 @@ Afterwards, it talks about notable implementations within the components. Detail
 
 You may refer to the [table of contents](#table-of-contents) below to quick jump to any particular section.
 
-#### **Legend**
+#### Legend
 1. Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
 2. Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
 3. Text in `code snippets such as this` are used to show program or code related or used in FABook
@@ -932,14 +932,14 @@ testers are expected to do more *exploratory* testing.
 [**AddressBook Level-3**](https://nus-cs2103-ay2223s1.github.io/tp/), as well as conceptualize, design and plan out the
 implementation of **FABook**. The 6 remaining weeks were used to incrementally implement functionalities on a weekly basis.
 
-### **Difficulty Level**
+### Difficulty Level
 
 Given that each of us had to work on a similar individual project(iP) before banding together to work on this project, if the difficulty of the individual project is a 5,
 the difficulty of implementing **FABook** as an application is a 9. This is due to the following:
 * Given more freedom to explore and create an application based on our team's ideas, this encouraged us to push for more complex logic designs.
 * Working in a team environment meant that there was a need to discuss and delegate tasks on a regular basis, which led to administrative challenges.
 
-### **Challenges Faced**
+### Challenges Faced
 
 * Evolving any feature that was implemented in **AB3** often leads to a chain reaction of changes to make such as the following:
   * We have to ensure that other features of the program have not been broken through updating of automated test cases as well as manual testing.
@@ -948,12 +948,12 @@ the difficulty of implementing **FABook** as an application is a 9. This is due 
 * Coordinating with the UI of the program after implementing new features.
 * Dealing with team conflicts over design choices and time delay between different schedules of team members.
 
-### **Effort required**
+### Effort required
 
 When compared to the effort needed for everyone's iP, it can be estimated ~150% of the effort needed for iP was used for this team project.
 Weekly consistent effort was needed by everyone to handle team deliverables and to ensure that a working product was ready at every milestone and iteration.
 
-### **Achievements**
+### Achievements
 
 * Implementation of the ability to assign and open client's PDF document.
 * UI redesigned to match a more aesthetically pleasing and purposeful look.
