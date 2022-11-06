@@ -1,0 +1,100 @@
+.pr-badge {
+  $color: #8250df;
+  $border-color: #d0d7de;
+
+  vertical-align: text-bottom;
+
+  display: inline-flex;
+  column-gap: 4px;
+  align-items: center;
+
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  border: 1px solid $border-color;
+
+  margin-inline: 2px;
+  padding: 2px 4px;
+
+  > a {
+    display: inline-block;
+    color: inherit !important;
+    line-height: 100%;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-decoration: none;
+  }
+
+  &:hover > a {
+    color: $link-base-color !important;
+  }
+
+  .icon {
+    $size: 14px;
+    fill: $color;
+    vertical-align: text-top;
+    display: inline-block;
+    height: $size;
+    width: $size;
+  }
+
+  position: relative;
+
+  > .tooltip {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    border: 1px solid $border-color;
+
+    $width: 180px;
+    width: $width;
+    margin-left: calc(-#{$width} / 2);
+    box-sizing: border-box;
+    padding: 6px 10px;
+
+    background-color: white;
+    border-radius: 6px;
+    color: gray;
+    font-size: small;
+
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    text-align: center;
+
+    strong {
+      color: black;
+    }
+
+    // Popup arrow
+    &::after {
+      $arrow-width: 5px;
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -$arrow-width;
+      border-width: $arrow-width;
+      border-style: solid;
+      border-color: $border-color transparent transparent transparent;
+    }
+
+    :last-child {
+      font-size: smaller;
+    }
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity ease-in-out 150ms;
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &:hover > .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+}
