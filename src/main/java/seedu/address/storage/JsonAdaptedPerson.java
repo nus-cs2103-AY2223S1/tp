@@ -93,9 +93,9 @@ class JsonAdaptedPerson {
         this.pName = Objects.requireNonNullElse(pName, NOT_APPLICABLE);
         this.pPhone = Objects.requireNonNullElse(pPhone, NOT_APPLICABLE);
         this.pEmail = Objects.requireNonNullElse(pEmail, NOT_APPLICABLE);
-        this.nName = Objects.requireNonNullElse(nName,NOT_APPLICABLE);
-        this.nPhone = Objects.requireNonNullElse(nPhone,NOT_APPLICABLE);
-        this.nEmail = Objects.requireNonNullElse(nEmail,NOT_APPLICABLE);
+        this.nName = Objects.requireNonNullElse(nName, NOT_APPLICABLE);
+        this.nPhone = Objects.requireNonNullElse(nPhone, NOT_APPLICABLE);
+        this.nEmail = Objects.requireNonNullElse(nEmail, NOT_APPLICABLE);
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -158,8 +158,8 @@ class JsonAdaptedPerson {
 
     private String getpName(Patient sourcePatient) {
         String[] physNameArr = new String[] {NOT_APPLICABLE};
-        sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0]
-                = x.getName().fullName.substring(3));
+        sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] =
+                x.getName().fullName.substring(3));
         return physNameArr[0];
     }
 
@@ -204,7 +204,7 @@ class JsonAdaptedPerson {
         final Uid modelUid = getModelUid();
         final Name modelName = getModelName(name, false, false);
         final Gender modelGender = getModelGender();
-        final Phone modelPhone =getModelPhone(phone, false,false);
+        final Phone modelPhone = getModelPhone(phone, false, false);
         final Email modelEmail = getModelEmail(email, false, false);
         final Address modelAddress = getModelAddress();
         final Set<Tag> modelTags = getModelTags();
@@ -242,12 +242,12 @@ class JsonAdaptedPerson {
         return new Uid(uid);
     }
 
-    private Name getModelName(String name, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+    private Name getModelName(String name, Boolean isPhysician, Boolean isNok) throws IllegalValueException {
         String indicator = "";
         if (isPhysician) {
             indicator = "Physician's ";
         }
-        if (isNOK) {
+        if (isNok) {
             indicator = "Next Of Kin's ";
         }
         if (name == null || name.equals(NOT_APPLICABLE)) {
@@ -270,17 +270,17 @@ class JsonAdaptedPerson {
         return new Gender(gender);
     }
 
-    private Phone getModelPhone(String phone, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+    private Phone getModelPhone(String phone, Boolean isPhysician, Boolean isNok) throws IllegalValueException {
         String indicator = "";
         if (isPhysician) {
             indicator = "Physician's ";
         }
-        if (isNOK) {
+        if (isNok) {
             indicator = "Next Of Kin's ";
         }
         if (phone == null) {
-            throw new IllegalValueException(indicator +
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(indicator
+                    + String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(indicator + Phone.MESSAGE_CONSTRAINTS);
@@ -288,17 +288,17 @@ class JsonAdaptedPerson {
         return new Phone(phone);
     }
 
-    private Email getModelEmail(String email, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+    private Email getModelEmail(String email, Boolean isPhysician, Boolean isNok) throws IllegalValueException {
         String indicator = "";
         if (isPhysician) {
             indicator = "Physician's ";
         }
-        if (isNOK) {
+        if (isNok) {
             indicator = "Next Of Kin's ";
         }
         if (email == null) {
-            throw new IllegalValueException(indicator +
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(indicator
+                    + String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(indicator + Email.MESSAGE_CONSTRAINTS);
