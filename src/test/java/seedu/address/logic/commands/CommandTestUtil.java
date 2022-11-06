@@ -22,7 +22,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
@@ -115,6 +114,7 @@ public class CommandTestUtil {
 
     public static final Deadline FIRST_VALID_DEADLINE = new Deadline(VALID_DEADLINE_QUIZ);
     public static final Deadline SECOND_VALID_DEADLINE = new Deadline(VALID_DEADLINE_REPORT);
+    public static final Deadline THIRD_VALID_DEADLINE = new Deadline(VALID_DEADLINE_EARLIEST);
 
     public static final String INVALID_DESCRIPTION_DESC = "This&THAT!";
     public static final String INVALID_DEADLINE_DESC = "234-12-344";
@@ -182,8 +182,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(testPerson -> testPerson.equals(person));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
