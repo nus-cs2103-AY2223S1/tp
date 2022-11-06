@@ -55,22 +55,6 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidMultipleTeammateAddIndex_throwsCommandException() {
-        Index outOfBoundTeammateIndexOne = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
-        Index outOfBoundTeammateIndexTwo = Index.fromOneBased(model.getFilteredTeammateList().size() + 2);
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(outOfBoundTeammateIndexTwo,
-                outOfBoundTeammateIndexOne)),
-                new HashSet<>(), new HashSet<>(), new HashSet<>());
-
-        assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndexTwo.getOneBased()) + '\n'
-                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndexOne.getOneBased()) + '\n');
-    }
-
-    @Test
     public void execute_invalidTeammateDeleteIndex_throwsCommandException() {
         Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
@@ -89,17 +73,6 @@ public class AssignTaskCommandTest {
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
                         "NotAName") + "\n");
-    }
-
-    @Test
-    public void execute_invalidMultipleTeammateAddName_throwsCommandException() {
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(Arrays.asList("NotAName", "NonName")), new HashSet<>(), new HashSet<>());
-
-        assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
-                        "NotAName") + "\n" + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
-                        "NonName") + "\n");
     }
 
     @Test
