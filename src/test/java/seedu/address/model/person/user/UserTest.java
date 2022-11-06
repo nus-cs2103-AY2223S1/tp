@@ -107,6 +107,18 @@ public class UserTest {
     }
 
     @Test
+    public void differentConstructor_samePerson_returnsTrue() {
+        User zephyr = new UserBuilder(ZEPHYR).build();
+        assertTrue(zephyr.equals(new ExistingUser(ZEPHYR)));
+    }
+
+    @Test
+    public void differentConstructor_differentPerson_returnsFalse() {
+        User zephyr = new UserBuilder(ZEPHYR).build();
+        assertFalse(zephyr.equals(new ExistingUser(XAVIER)));
+    }
+
+    @Test
     public void existingUser_hashcode() {
         // same values -> returns same hashcode
         User zephyrCopy = new UserBuilder(ZEPHYR).build();
