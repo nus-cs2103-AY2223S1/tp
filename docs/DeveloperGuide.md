@@ -193,7 +193,7 @@ the abstraction of commands.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-![UML diagram for Model component](./images/LatestModelClassDiagram.png)
+![UML diagram for Model component](./images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -686,7 +686,7 @@ In order to be able to keep track of venues, we implemented a `Venue` class, whi
 
 ##### Daily schedule
 
-However, considering our usage of a `TableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to the table to represent a timetable of the bookings for a week, for a specified venue.
+However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a week, for a specified venue.
 
 <br>
 
@@ -700,13 +700,29 @@ Considering the requirements for venue and booking data, we have come up with th
 
 #### Model updates
 
-With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored 
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes. 
+
+The diagram [here](#model-component) showcases the addition of the following classes in order to support the venue data tracking in `Model`:
+* `UniqueVenueList`
+* `VenueBook`
 
 <br>
 
 #### Storage updates
 
 [Comment]: <> (to be added in)
+
+<br>
+
+#### Logic updates
+
+To support basic venue creation and deletion, we added the 
+
+Due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to 
+
+<br>
+
+#####
 
 ---
 

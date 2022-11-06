@@ -50,7 +50,7 @@ Given below are my contributions to the project.
 
 * **Class diagram for Model component:**
 
-![](../images/LatestModelClassDiagram.png)
+![](../images/ModelClassDiagram.png)
 
 
 * **Class diagram for possible extension of Model component with better OOP:**
