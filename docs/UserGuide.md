@@ -2,10 +2,10 @@
 layout: page
 title: User Guide
 ---
-![StudMapLogo](images/studmap/studmap_hd.png)
+{:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
+![StudMapLogo](images/studmap/studmap_hd.png){: logo}
 
-# Overview
-
+# 1. Overview 
 StudMap is a lightweight desktop app for managing your students and organizing your teaching assistant (TA)
 responsibilities. It’s optimized for use via a Command Line Interface (CLI), meaning that you give instructions to
 StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
@@ -14,13 +14,16 @@ see. If you type fast, StudMap can get your student management tasks done faster
 
 ---
 
-# Why StudMap?
+* Table of Contents
+  {:toc}
+
+# 2. Why StudMap?
 
 Let’s face it — nobody loves keeping track of administrative details. It’s not the most interesting part of any job. If
 you are a TA for a computing [module](#module), you probably didn’t sign up out of your love for admin work. Sadly,
 administrative work is a necessary evil for TAs, so the best you can do is to make conquering it more efficient.
 
-## What do TAs do?
+## 2.1 What do TAs do?
 
 As a TA, you will find yourself juggling various tasks:
 
@@ -83,10 +86,6 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
    commands.
 4. If you see any unfamiliar terms, check out the [Glossary](#glossary) for more information.
 
-# Table of Contents
-
-* Table of Contents
-{:toc}
 
 ---
 
