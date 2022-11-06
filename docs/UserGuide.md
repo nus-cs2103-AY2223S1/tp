@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-This guide provides everything a CS1101S Teaching Assistant needs to know to get the most out of JARVIS!
+This guide provides everything a CS1101S Teaching Assistant (TA) needs to know to get the most out of JARVIS!
 
 To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
@@ -19,18 +19,18 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
 There are 3 main entities in JARVIS - Students, Tasks and Lessons. 
 
-- Student entity: Represents a student of the user
-- Task entity: Represents a task (to be) completed by the user
-- Lesson entity: Represents a lesson (to be) conducted by the user.
+- Student entity: Represents a student of the TA
+- Task entity: Represents a task (to be) completed by the TA
+- Lesson entity: Represents a lesson (to be) conducted by the TA
 
 JARVIS takes in user input via Command Line Interface (CLI) commands. These CLI commands can be categorised into 4 main types - Basic, Student, Task and Lesson commands. 
 
 - Basic commands: General-purpose commands that are not tied to a single entity (e.g. a command used to exit the app)
 - Student commands: Used for managing Student entities (e.g. adding/deleting students)
 - Task commands: Used for managing Task entities (e.g. marking tasks as completed)
-- Lesson commands: Used for managing Lesson entities (e.g. recording attendance for a lesson).
+- Lesson commands: Used for managing Lesson entities (e.g. recording attendance for a lesson)
 
-To execute a command, type it into the command box and press Enter. Refer to [Quick start](#quick start) for an illustration of this.
+To execute a command, type it into the command box and press Enter. Refer to [Quick start](#quick-start) for an illustration of this.
 
 Commands have to be written in the correct format to be used. The format for each command is specified using the convention below.
 
@@ -62,14 +62,14 @@ Commands have to be written in the correct format to be used. The format for eac
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `JARVIS.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
+2. Download the latest `JARVIS.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
+3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`liststudent`** : Shows an expanded list of all students.
@@ -82,7 +82,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Basic commands](#basic commands) below to get started with the basic commands.
+6. Refer to the [Basic commands](#basic-commands) below to get started with the basic commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
