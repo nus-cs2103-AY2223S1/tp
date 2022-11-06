@@ -1,3 +1,4 @@
+/* @@author */
 package seedu.foodrem.model;
 
 import static java.util.Objects.requireNonNull;
@@ -10,7 +11,6 @@ import seedu.foodrem.commons.core.GuiSettings;
 
 /**
  * Represents User's preferences.
- * @author
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
