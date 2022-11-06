@@ -101,8 +101,7 @@ Take note of the following symbols and formatting used in this document:
 
 </div>
 
-Student Contact Commands
----
+## Student Contact Commands
 [Back to Top ↑](#introduction)
 
 ### Adding a student: `add`
@@ -288,8 +287,7 @@ Expected outcome:
 ![AttendanceDelete](images/AttendanceDelete.png)
 After using ```attendance delete``` command
 
-Task Commands
----
+##Task Commands
 [Back to Top ↑](#introduction)
 
 ### Adding a Task : `task`
