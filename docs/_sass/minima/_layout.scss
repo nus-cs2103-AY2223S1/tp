@@ -131,7 +131,7 @@
 }
 
 .post-list-heading {
-  @include relative-font-size(1.66);
+  @include relative-font-size(1.55);
 }
 
 .post-list {
@@ -180,7 +180,7 @@
   h4, h5, h6 { margin-top: $spacing-unit }
 
   h2 {
-    @include relative-font-size(1.66);
+    @include relative-font-size(1.55);
 
     @media screen and (min-width: $on-large) {
       @include relative-font-size(2);
