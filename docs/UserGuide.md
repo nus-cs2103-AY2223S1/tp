@@ -437,9 +437,9 @@ Example:
 
 * `remindT 12-09-2022` will list all tasks with deadlines up to and including 12-09-2022.
 
-### Show the percentage of tasks with the specified tags that are completed: `progressT`
+### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
-Show the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
+Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
 
 Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
