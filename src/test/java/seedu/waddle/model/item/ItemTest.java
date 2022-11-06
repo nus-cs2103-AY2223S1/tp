@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.Text;
 import seedu.waddle.testutil.ItemBuilder;
-import seedu.waddle.testutil.TypicalItems;
 
 public class ItemTest {
 
@@ -52,7 +51,7 @@ public class ItemTest {
     @Test
     public void getTimeString_notPlanned() {
         String expectedString = "Time: (Not planned)";
-        String actualString = SHOPPING.getTimeString(Text.INDENT_NONE);
+        String actualString = new ItemBuilder().build().getTimeString(Text.INDENT_NONE);
         assertEquals(expectedString, actualString);
     }
 
@@ -82,12 +81,12 @@ public class ItemTest {
 
     @Test
     public void toString_correctOutput() {
-        String expectedString = "Shopping" + System.lineSeparator() +
-                "    ★★" + System.lineSeparator() +
-                "    Cost $0.00" + System.lineSeparator() +
-                "    Duration 30 mins" + System.lineSeparator() +
-                "    Time: (Not planned)";
-        String actualString = SHOPPING.toString();
+        String expectedString = "Airport" + System.lineSeparator()
+                + "    ★★★★★" + System.lineSeparator()
+                + "    Cost $100.00" + System.lineSeparator()
+                + "    Duration 60 mins" + System.lineSeparator()
+                + "    Time: (Not planned)";
+        String actualString = new ItemBuilder().build().toString();
         assertEquals(expectedString, actualString);
     }
 

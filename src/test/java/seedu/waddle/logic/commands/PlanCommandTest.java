@@ -1,7 +1,5 @@
 package seedu.waddle.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.commons.core.Messages.MESSAGE_CONFLICTING_ITEMS;
@@ -9,34 +7,23 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_ITEM_PAST_MIDNIGHT;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.Assert.assertThrows;
-import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
-import java.nio.file.Path;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.beans.value.WritableDoubleValue;
-import javafx.collections.ObservableList;
-import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
-import seedu.waddle.model.ReadOnlyUserPrefs;
-import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
 import seedu.waddle.model.Waddle;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.testutil.ItemBuilder;
-import seedu.waddle.testutil.ItineraryBuilder;
 import seedu.waddle.testutil.TypicalItineraries;
 
 public class PlanCommandTest {
