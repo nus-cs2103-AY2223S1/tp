@@ -46,11 +46,14 @@
     }
 
     pre,
-    hr,
+    hr {
+      page-break-before: avoid;
+      page-break-after: avoid;
+    }
+
     ul,
     ol {
       page-break-before: avoid;
-      page-break-after: avoid;
     }
 
     p,
