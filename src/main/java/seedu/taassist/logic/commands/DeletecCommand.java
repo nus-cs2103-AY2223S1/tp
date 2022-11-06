@@ -14,7 +14,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Deletes a moduleClass identified using it's className from TA-Assist.
+ * Deletes moduleClasses identified bby their classNames from TA-Assist.
  */
 public class DeletecCommand extends Command {
 
@@ -34,6 +34,8 @@ public class DeletecCommand extends Command {
 
     /**
      * Creates a DeletecCommand to delete the given classes.
+     *
+     * @param moduleClasses ModuleClass objects to delete.
      */
     public DeletecCommand(Set<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
@@ -70,10 +72,15 @@ public class DeletecCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param existingClasses ModuleClass objects that were deleted.
+     * @param nonExistentClasses ModuleClass objects that were not deleted because they do not exist.
+     * @return Command message showing which ModuleClass objects were deleted and which were not.
+     */
     public static String getCommandMessage(Set<ModuleClass> existingClasses, Set<ModuleClass> nonExistentClasses) {
-        requireAllNonNull(existingClasses);
-        requireAllNonNull(nonExistentClasses);
-
+        requireAllNonNull(existingClasses, nonExistentClasses);
         StringBuilder outputString = new StringBuilder();
         if (!existingClasses.isEmpty()) {
             outputString.append(getClassesDeletedMessage(existingClasses)).append("\n");
@@ -90,7 +97,6 @@ public class DeletecCommand extends Command {
 
     private static String getClassesDeletedMessage(Set<ModuleClass> deletedClasses) {
         requireAllNonNull(deletedClasses);
-
         String deletedClassesStr = commaSeparate(deletedClasses, ModuleClass::toString);
         return String.format(MESSAGE_SUCCESS, deletedClassesStr);
     }

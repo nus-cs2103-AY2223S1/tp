@@ -15,7 +15,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
 /**
- * Deletes Sessions for a class.
+ * Deletes Sessions from the currently focused class.
  */
 public class DeletesCommand extends Command {
 
@@ -33,7 +33,9 @@ public class DeletesCommand extends Command {
     private final Set<Session> sessions;
 
     /**
-     * Creates a DeletesCommand to delete the specified {@code Session}s.
+     * Creates a DeletesCommand to delete the specified {@code sessions}.
+     *
+     * @param sessions Session objects to delete.
      */
     public DeletesCommand(Set<Session> sessions) {
         requireAllNonNull(sessions);
@@ -64,6 +66,12 @@ public class DeletesCommand extends Command {
         return new CommandResult(getCommandMessage(existingSessions));
     }
 
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param sessions Session objects that were deleted.
+     * @return Command message showing which Session objects were deleted.
+     */
     public static String getCommandMessage(Set<Session> sessions) {
         requireAllNonNull(sessions);
         String sessionsString = commaSeparate(sessions, Session::getSessionName);

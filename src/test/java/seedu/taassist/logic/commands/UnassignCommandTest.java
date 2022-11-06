@@ -63,7 +63,7 @@ class UnassignCommandTest {
 
         UnassignCommand unassignCommand = new UnassignCommand(indices, moduleClass);
         Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses().build();
-        String expectedMessage = UnassignCommand.getSuccessMessage(new ArrayList<>(List.of(expectedStudent)),
+        String expectedMessage = UnassignCommand.getCommandMessage(new ArrayList<>(List.of(expectedStudent)),
                 moduleClass);
 
         CommandResult commandResult = unassignCommand.execute(modelStub);
@@ -83,7 +83,7 @@ class UnassignCommandTest {
         UnassignCommand unassignCommand = new UnassignCommand(indices, moduleClass);
         Student expectedStudent1 = new StudentBuilder(ALICE).withModuleClasses().build();
         Student expectedStudent2 = new StudentBuilder(BOB).withModuleClasses().build();
-        String expectedMessage = UnassignCommand.getSuccessMessage(new ArrayList<>(
+        String expectedMessage = UnassignCommand.getCommandMessage(new ArrayList<>(
                 List.of(expectedStudent1, expectedStudent2)), moduleClass);
 
         CommandResult commandResult = unassignCommand.execute(modelStub);

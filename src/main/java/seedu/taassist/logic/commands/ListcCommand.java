@@ -7,7 +7,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Lists all classes in TA-Assist to the user.
+ * Lists all classes in TA-Assist.
  */
 public class ListcCommand extends Command {
 

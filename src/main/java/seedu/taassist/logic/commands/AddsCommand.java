@@ -17,7 +17,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
 /**
- * Creates Session for a class.
+ * Creates and adds Sessions to the currently focused module class.
  */
 public class AddsCommand extends Command {
 
@@ -37,7 +37,9 @@ public class AddsCommand extends Command {
     private final Set<Session> sessions;
 
     /**
-     * Creates an AddsCommand to create the specified {@code Session}.
+     * Creates an AddsCommand to create the specified {@code sessions}.
+     *
+     * @param sessions Session objects to create and add to the focused module class.
      */
     public AddsCommand(Set<Session> sessions) {
         requireNonNull(sessions);
@@ -71,6 +73,13 @@ public class AddsCommand extends Command {
         return new CommandResult(getCommandMessage(newSessions, duplicateSessions));
     }
 
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param newSessions New Session objects that were added.
+     * @param duplicateSessions Session objects that were not added because they already exist.
+     * @return Command message showing which Session objects were added and which were not.
+     */
     public static String getCommandMessage(Set<Session> newSessions, Set<Session> duplicateSessions) {
         StringBuilder outputString = new StringBuilder();
         if (!newSessions.isEmpty()) {
@@ -85,6 +94,7 @@ public class AddsCommand extends Command {
         outputString.setLength(outputString.length() - 1);
         return outputString.toString();
     }
+
     private static String getSessionsAddedMessage(Set<Session> newSessions) {
         requireAllNonNull(newSessions);
         StringJoiner sessionsString = new StringJoiner("\n");
@@ -110,6 +120,4 @@ public class AddsCommand extends Command {
                 || (other instanceof AddsCommand // instanceof handles nulls
                 && sessions.equals(((AddsCommand) other).sessions));
     }
-
-
 }

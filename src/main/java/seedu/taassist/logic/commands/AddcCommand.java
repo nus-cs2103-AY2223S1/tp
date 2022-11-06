@@ -32,7 +32,9 @@ public class AddcCommand extends Command {
     private final Set<ModuleClass> moduleClasses;
 
     /**
-     * Creates an AddCommand to add the specified {@code Set&gt;ModuleClass&lt;}.
+     * Creates an AddCommand to add the specified {@code moduleClasses}.
+     *
+     * @param moduleClasses Module classes to add.
      */
     public AddcCommand(Set<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
@@ -59,6 +61,13 @@ public class AddcCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param newClasses New ModuleClass objects that were added.
+     * @param duplicateClasses ModuleClass objects that were not added because they already exist.
+     * @return Command message showing which ModuleClass objects were added and which were not.
+     */
     public static String getCommandMessage(Set<ModuleClass> newClasses, Set<ModuleClass> duplicateClasses) {
         StringBuilder outputString = new StringBuilder();
         if (!newClasses.isEmpty()) {

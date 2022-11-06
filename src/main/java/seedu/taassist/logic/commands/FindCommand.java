@@ -23,6 +23,8 @@ public class FindCommand extends Command {
 
     /**
      * Creates a FindCommand to find students with the given keywords.
+     *
+     * @param predicate Predicate that matches student names to a set of keywords.
      */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);

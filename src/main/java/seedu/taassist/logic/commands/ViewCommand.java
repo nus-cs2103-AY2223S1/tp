@@ -17,7 +17,7 @@ import seedu.taassist.model.student.SessionData;
 import seedu.taassist.model.student.Student;
 
 /**
- * Displays grades of a student for the current module class.
+ * Displays the grades of a student from the current focused module class.
  */
 public class ViewCommand extends Command {
 
@@ -68,6 +68,13 @@ public class ViewCommand extends Command {
         return new CommandResult(getCommandMessage(sessionDataList, student));
     }
 
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param sessionDataList SessionData objects containing data of each session for {@code student}.
+     * @param student Queried student.
+     * @return Command message showing the grades for each session for the queried {@code student}.
+     */
     public static String getCommandMessage(List<SessionData> sessionDataList, Student student) {
         if (sessionDataList.isEmpty()) {
             return String.format(MESSAGE_EMPTY_GRADES_LIST, student.getName());

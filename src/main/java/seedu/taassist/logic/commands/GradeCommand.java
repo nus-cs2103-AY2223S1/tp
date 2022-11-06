@@ -42,8 +42,12 @@ public class GradeCommand extends Command {
     private final Double grade;
 
     /**
-     * Creates a GradeCommand to give the specified {@code grade} to the student at the specified {@code index}
+     * Creates a GradeCommand to give the specified {@code grade} to the students at the specified {@code indices}
      * for the specified {@code session}.
+     *
+     * @param indices List of {@code Index} objects specifying the Student objects to give grades to.
+     * @param session Session to grade.
+     * @param grade Numerical grade for the {@code session}.
      */
     public GradeCommand(List<Index> indices, Session session, Double grade) {
         requireAllNonNull(indices, session, grade);
@@ -79,11 +83,19 @@ public class GradeCommand extends Command {
 
         studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, existingSession, grade)));
 
-        String message = getSuccessMessage(studentsToGrade, existingSession, grade);
+        String message = getCommandMessage(studentsToGrade, existingSession, grade);
         return new CommandResult(message);
     }
 
-    public static String getSuccessMessage(List<Student> students, Session session, Double grade) {
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param students Student objects that were graded.
+     * @param session Session that was graded.
+     * @param grade Numerical grade given to {@code session}.
+     * @return Command message showing which Student objects were given {@code grade} for {@code session}.
+     */
+    public static String getCommandMessage(List<Student> students, Session session, Double grade) {
         String studentNames = commaSeparate(students, student -> student.getName().toString());
         return String.format(MESSAGE_SUCCESS, grade, session.getSessionName(), studentNames);
     }

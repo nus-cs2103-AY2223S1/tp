@@ -21,8 +21,10 @@ public class ExportCsvStorageAction implements StorageAction {
     private final String fileData;
 
     /**
-     * Creates an ExportCsvStorageAction to export a CSV file with
-     * the specified {@code fileName} and {@code fileData}.
+     * Creates an ExportCsvStorageAction to export a CSV file with the specified {@code fileName} and {@code fileData}.
+     *
+     * @param fileName Name of the exported CSV file.
+     * @param fileData Data inside the exported CSV file.
      */
     public ExportCsvStorageAction(String fileName, String fileData) {
         requireNonNull(fileName);

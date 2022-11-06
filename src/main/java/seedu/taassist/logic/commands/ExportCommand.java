@@ -23,7 +23,7 @@ import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.predicate.IsPartOfClassPredicate;
 
 /**
- * Retrieve module class information and creates a {@code StorageCommand} to
+ * Retrieves module class information and creates a {@code StorageCommand} to
  * export the module class as a CSV file containing student's grade information.
  */
 public class ExportCommand extends Command {
@@ -57,8 +57,11 @@ public class ExportCommand extends Command {
     }
 
     /**
-     * Returns a string containing data to be written to the output CSV file based on
-     * the {@code moduleClass} and the {@code students}.
+     * Constructs and formats the string representing data that will be written to the output CSV file.
+     *
+     * @param moduleClass ModuleClass object containing the data that will be written into the CSV file.
+     * @param students Student objects containing the data that will be written into the CSV file.
+     * @return CSV-formatted string representation of the data that will be written to the output CSV file.
      */
     private static String moduleClassToCsvString(ModuleClass moduleClass, List<Student> students)
             throws AssertionError {

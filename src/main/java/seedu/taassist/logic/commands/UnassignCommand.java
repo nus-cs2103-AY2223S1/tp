@@ -38,7 +38,12 @@ public class UnassignCommand extends Command {
     private final ModuleClass moduleClassToUnassign;
 
     /**
-     * Creates an UnassignCommand to unassign the given {@code ModuleClass} from students at the given {@code Indices}.
+     * Creates an UnassignCommand to unassign the students at the given {@code indices} from
+     * {@code moduleClassToUnassign}.
+     *
+     * @param indices List of {@code Index} objects specifying which Student objects to unassign from
+     * {@code moduleClassToUnassign}.
+     * @param moduleClassToUnassign Module class to unassign the students from.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
         requireAllNonNull(indices);
@@ -70,10 +75,17 @@ public class UnassignCommand extends Command {
 
         studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(existingModuleClass)));
 
-        return new CommandResult(getSuccessMessage(studentsToUnassign, existingModuleClass));
+        return new CommandResult(getCommandMessage(studentsToUnassign, existingModuleClass));
     }
 
-    public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param students Student objects that were unassigned from {@code moduleClass}.
+     * @param moduleClass Module class the students were assigned from.
+     * @return Command message showing which Student objects were unassigned from {@code moduleClass}.
+     */
+    public static String getCommandMessage(List<Student> students, ModuleClass moduleClass) {
         String studentNames = commaSeparate(students, student -> student.getName().toString());
         return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
