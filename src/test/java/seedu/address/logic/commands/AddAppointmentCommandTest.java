@@ -41,10 +41,10 @@ public class AddAppointmentCommandTest {
         // Create expectedModel
         Model expectedModel = new ModelBuilder().build();
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
-        expectedPerson.getAppointments().add(new AppointmentBuilder().build());
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
+        expectedPerson.getAppointments().add(appointmentToAdd);
 
         // Create addAppointmentCommand
-        Appointment appointmentToAdd = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
@@ -61,11 +61,11 @@ public class AddAppointmentCommandTest {
         // Create expectedModel
         Model expectedModel = new ModelBuilder().build();
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
-        expectedPerson.getAppointments().add(new AppointmentBuilder().build());
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
+        expectedPerson.getAppointments().add(appointmentToAdd);
         expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson));
 
         // Create addAppointmentCommand
-        Appointment appointmentToAdd = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
@@ -83,7 +83,7 @@ public class AddAppointmentCommandTest {
 
         // Create addAppointmentCommand
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
-                .withLocation("editedValidLocation")
+                .withLocation("differentValidLocation")
                 .build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
@@ -101,7 +101,7 @@ public class AddAppointmentCommandTest {
 
         // Create addAppointmentCommand
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
-                .withLocation("editedValidLocation")
+                .withLocation("differentValidLocation")
                 .build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
