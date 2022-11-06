@@ -301,9 +301,6 @@ The `DeleteCommandParser` will take in the `userInput`, parse it, and return the
 This process of deleting the first client in the list is depicted by the following sequence diagram (for user input `delete 1 m/client`):
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
 
 The process for deleting `transaction` and `remark` is almost the same as the process stated above, with just the following changes:
 - For delete transaction:
@@ -326,6 +323,34 @@ The process for deleting `transaction` and `remark` is almost the same as the pr
 * **Alternative 2:** Create separate individual commands to Delete Client/Transaction/Remark, e.g. `deleteClient 1`, `deleteTransaction 1`, `deleteRemark 1`.
     * Pros: More intuitive to use, shorter command to type.
     * Cons: Adds more valid commands that the user can use, which may not be very user-friendly since they have to remember more commands. Also, there will be much more classes and code.
+
+### Sort feature
+
+#### Current Implementation
+
+The sort mechanism for `transactions` is facilitated by a `SortCommandParser` and `SortCommand`.
+
+The `SortCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is `SortCommand` which will be executed to achieve the sort functionality.
+
+This process of sorting the transactions by latest transaction of the first client in the list is depicted by the following sequence diagram (for user input `sort 1 latest`):
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+
+#### Design Considerations:
+
+**Aspect: How Sort executes:**
+
+* **Alternative 1 (current choice):** Sort Transaction specified by `oldest` or `latest` selected by `index`
+    * Pros: Easy to implement and easy to understand command. Also targeted sort command allows for unnecessary transactions to be hidden, increasing user-friendliness.
+    * Cons: Users may want to sort and view all transactions by `oldest` or `latest`.
+
+* **Alternative 2:** Sort all Transaction of all clients by `oldest` or `latest`.
+    * Pros: Allows for faster sorting for users if user wants to sort every client.
+    * Cons: It is rare for users to want to sort all clients by `oldeest` or `latest`. Also, there maybe information overload if all transactions are displayed when sorted.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -459,6 +484,12 @@ Users are able to perform several tasks within the application that is broken do
 * The remark does not exist in the list
 
     Use case resumes at step 2.
+
+**Use case: UC04 - Sort a client by `latest`**
+
+1. User requests to sort the transactions of a client by `latest`
+2. JeeqTracker displays 
+
 
 **Use case: Find a Client**
 
