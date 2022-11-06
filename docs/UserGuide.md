@@ -500,7 +500,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 |-----------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | **Add Student**       | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
 | **List Students**     | `list`                                                                                   |                                                                                   |
-| **Add Class**         | `class`                                                                                  | `class 1 c/CS2030S Lab 32`                                                        |                     |                                                                                          |                                                                                   |
+| **Add Class**         | `class`                                                                                  | `class 1 c/CS2030S Lab 32`                                                        |
 | **Upload Picture**    | `upload-pic INDEX`                                                                       | `upload-pic 1`                                                                    |
 | **Edit Student**      | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                       |
 | **Find Student**      | `find KEYWORD [MORE_KEYWORDS]...`                                                        | `find James Jake`                                                                 |
@@ -520,6 +520,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Remove Task**         | `remove-task INDEX`                                                                                                     | `remove-task 1`                                                            |
 
 ### 5.3 General Commands
+
 | Action          | Format                                                                                                            |
 |-----------------|-------------------------------------------------------------------------------------------------------------------|
 | **Clear**       | `clear`                                                                                                           |
