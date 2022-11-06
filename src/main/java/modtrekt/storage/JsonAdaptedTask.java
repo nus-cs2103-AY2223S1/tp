@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+import com.beust.jcommander.ParameterException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -75,21 +76,24 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
-        final ModCode modCode = new ModCode(this.modCode);
 
-        Task.Priority modelPriority = new PriorityConverter().convert(priority);
-        if (dueDate == null) {
-            return new Task(modelDescription, modCode, isDone, modelPriority);
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
-                .withResolverStyle(ResolverStyle.STRICT);
         try {
+            final ModCode modCode = new ModCode(this.modCode);
+            Task.Priority modelPriority = new PriorityConverter().convert(priority);
+            if (dueDate == null) {
+                return new Task(modelDescription, modCode, isDone, modelPriority);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
+                    .withResolverStyle(ResolverStyle.STRICT);
             LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
             return new Deadline(modelDescription, modCode, dueDateObj, isDone, modelPriority);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalValueException(exception.getMessage());
         } catch (DateTimeParseException exception) {
             throw new IllegalValueException(
-                    String.format("%s is an invalid date: %s", dueDate, exception));
+                    String.format("%s is an invalid date: %s", dueDate, exception.getMessage()));
+        } catch (ParameterException exception) {
+            throw new IllegalValueException(exception.getMessage());
         }
-
     }
 }
