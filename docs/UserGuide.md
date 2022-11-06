@@ -59,7 +59,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 * Extraneous arguments for commands that do not have any parameters (such as `help`, `exit`, `list -p`, `list -c`, `clear -p`  and `clear -c`) will be ignored.<br>
   * e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
-<div>
+</div>
 
 
 ### Prefix list
