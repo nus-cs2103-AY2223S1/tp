@@ -1,5 +1,7 @@
 @startuml
 !include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 package UI {
 Class MainWindow UI_COLOR
