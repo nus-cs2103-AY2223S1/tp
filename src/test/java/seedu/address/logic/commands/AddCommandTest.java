@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getArchivedTaskBookFilePath() {
+        public Path getArchivedTaskListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getArchivedAddressBook() {
+        public ReadOnlyAddressBook getArchivedTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -169,7 +169,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getArchivedTaskList() {
+        public ObservableList<Task> getObservableArchivedTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,12 +188,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setArchivedTaskBook(ReadOnlyAddressBook addressBook) {
+        public void setArchivedTaskList(ReadOnlyAddressBook addressBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
+        public void setArchivedTaskListFilePath(Path archivedTaskBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -5,17 +5,18 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ArchivedTaskList;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.ArchivedTaskBook}.
+ * Represents a storage for {@link ArchivedTaskList}.
  */
-public interface ArchivedTaskBookStorage {
+public interface ArchivedTaskListStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getArchivedTaskBookFilePath();
+    Path getArchivedTaskListFilePath();
 
     /**
      * Returns TaskBook data as a {@link ReadOnlyAddressBook}.
@@ -23,16 +24,16 @@ public interface ArchivedTaskBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readArchivedTaskBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readArchivedTaskList() throws DataConversionException, IOException;
 
     /**
-     * @see #getArchivedTaskBookFilePath()
+     * @see #getArchivedTaskListFilePath()
      */
-    Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readArchivedTaskList(Path filePath) throws DataConversionException, IOException;
 
-    void saveArchivedTaskBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveArchivedTaskList(ReadOnlyAddressBook addressBook) throws IOException;
 
-    void saveArchivedTaskBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveArchivedTaskList(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
 
 }
 

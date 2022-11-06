@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ArchivedTaskBook;
+import seedu.address.model.ArchivedTaskList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "archivedTaskBook")
-public class JsonSerializableArchivedTaskBook {
+@JsonRootName(value = "archivedTaskList")
+public class JsonSerializableArchivedTaskList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate task(s).";
 
@@ -27,7 +27,7 @@ public class JsonSerializableArchivedTaskBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableArchivedTaskBook(@JsonProperty("archivedTasks") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableArchivedTaskList(@JsonProperty("archivedTasks") List<JsonAdaptedPerson> persons) {
         this.archivedTasks.addAll(persons);
     }
 
@@ -36,7 +36,7 @@ public class JsonSerializableArchivedTaskBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableArchivedTaskBook(ReadOnlyAddressBook source) {
+    public JsonSerializableArchivedTaskList(ReadOnlyAddressBook source) {
         archivedTasks.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,15 +45,15 @@ public class JsonSerializableArchivedTaskBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ArchivedTaskBook toModelType() throws IllegalValueException {
-        ArchivedTaskBook archivedTaskBook = new ArchivedTaskBook();
+    public ArchivedTaskList toModelType() throws IllegalValueException {
+        ArchivedTaskList archivedTaskList = new ArchivedTaskList();
         for (JsonAdaptedPerson jsonAdaptedPerson : archivedTasks) {
             Task task = jsonAdaptedPerson.toModelType();
-            if (archivedTaskBook.hasTask(task)) {
+            if (archivedTaskList.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            archivedTaskBook.addTask(task);
+            archivedTaskList.addTask(task);
         }
-        return archivedTaskBook;
+        return archivedTaskList;
     }
 }

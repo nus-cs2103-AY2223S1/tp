@@ -321,6 +321,12 @@ Example: `tag 1 -t optional`
 
 Clears all entries of tasks in the task list.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+Clear command does not clear archived task list.  
+
+</div>
+
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">
@@ -558,11 +564,11 @@ Click to return to: [Back to Top](#)
 
 ## Glossary
 
-| Word    | Definition                                                                   |
-|---------|------------------------------------------------------------------------------|
-| **GUI** | Graphical User Interface - what the user sees when interacting with the app. |
-|         |                                                                              |
-|         |                                                                              |
-|         |                                                                              |
+| Word             | Definition                                                                   |
+|------------------|------------------------------------------------------------------------------|
+| **GUI**          | Graphical User Interface - what the user sees when interacting with the app. |
+| **Alphanumeric** | A combination of both letters and numbers without space.                     |
+| **Terminal**     | A text-based interface for the computer.                                     |
+| **Interface**    | A program or device that allows the user to communicate with the computer.   |
 
 Click to return to: [Back to Top](#)

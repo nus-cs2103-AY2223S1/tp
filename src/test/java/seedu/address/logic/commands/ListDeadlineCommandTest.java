@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,9 +23,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskByDeadlinePredicate;
 
 public class ListDeadlineCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(),
-            getTypicalArchivedTaskBook(), new UserPrefs());
+            getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void equals() {
