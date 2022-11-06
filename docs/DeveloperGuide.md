@@ -372,15 +372,25 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Command Format: 
 `e add m/MODULE ex/EXAM DESCRIPTION ed/EXAM DATE`
-where `MODULE` is the exam module, `EXAM DESCRIPTION` is the exam description and `EXAM DATE` is the exam date.
+where `MODULE` refers to the exam module, `EXAM DESCRIPTION` refers to the exam description and `EXAM DATE` refers to the exam date of the exam 
+to be added into the exam list. 
 
-#### About the feature: 
-This command allows users to add an exam to the `DistinctExamList` 
-in `AddressBook`, with the following fields of exam module, exam description, 
-and exam date.
+#### What is the feature about: 
+This command allows users to add an exam to the exam list, with the following fields of exam module, exam description 
+and exam date. 
+
+#### How does the feature work: 
+This add exam feature is currently implemented through AddExamCommand class which extends the abstract class Command. 
+If the module, exam description and exam date are valid, and the module exists in the module list, and the exam is not a duplicate of any existing exam, 
+the exam will be added to the `DistinctExamList`. 
+
 
 #### UML Diagrams
-![AddExamCommand](images/AddExamCommandSequenceDiagram.png)
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
+
+| ![AddExamCommand](images/AddExamCommandSequenceDiagram.png)  |
+|:------------------------------------------------------------:|
+|              Sequence diagram of AddExamCommand              |
 
 Step 1. The user types an `e add` command. 
 
@@ -396,14 +406,14 @@ and the `ExamDate` objects of the exam by calling their respective `ParserUtil` 
 Then, an `Exam` object is created with the three objects as arguments. 
 
 Step 5. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
-object created previously as the argument in the constructor. `LogicManager` class will call 
+object created previously as the argument in the constructor. `LogicManager` object will call 
 `AddExamCommand#execute()` with a `Model` object as the argument. 
 
 Step 6. `AddExamCommand#execute()` will check if model already contains the module of the exam 
 through `Model#hasModule()`. If it does not contain the module, an exception will be thrown to 
 indicate the module is not found. It will also check if the model already contains the exam 
 through `Model#hasExam()`. If it contains the exam, an exception will be thrown 
-to indicate that the exam has already been added.
+to indicate that the exam already exists in MODPRO. 
 
 Otherwise, it will call `ModelManager#addExam()` with the exam as the argument, 
 which calls `AddressBook#addExam()` that will add the exam to the `DistinctExamList`, 
@@ -415,71 +425,14 @@ object to display that the exam was successfully added.
 
 * For step 4, the `Exam` object will not be created if the exam description or exam date or module 
 is not valid. Exam description is not valid if it is an empty string, exam date is not valid 
-if it is not in DD-MM-YYYY or an actual valid date, Module is not valid if it is not at least 6 characters long
-with the first 2 being alphabetical characters. Hence, `Exam` object is not created, and the exam will not be added.
+if it is not in DD-MM-YYYY or if it is earlier than the current date. Module is not valid if it is not at least 6 characters long
+with the first 2 being alphabetical characters. Hence, in such cases, `Exam` object is not created, and the exam will not be added.
 
-![AddExamActivityDiagram](images/AddExamActivityDiagram.png)
+The following activity diagram summarises what happens when AddExamCommand is executed
 
-
-### Edit Exam Command
-
-#### Command Format: 
-`e edit INDEX m/[MODULE]* ex/[EXAM DESCRIPTION]* ed/[EXAM DATE]*`
-where `MODULE` is the new module field of the edited exam, `EXAM DESCRIPTION` is the new description of the edited exam and `EXAM DATE` is the new date of the edited exam.
-
-#### About the feature: 
-The `e edit` is an edit exam command that allows users to edit an exam in the `DistinctExamList`
-in `AddressBook`, by changing at least one of the following optional fields of `MODULE`, `EXAM DESCRIPTION`,
-and `EXAM DATE`.
-
-#### UML Diagrams: 
-![EditExamCommand](images/EditExamCommandSequenceDiagram.png)
-
-
-Step 1. The user types an `e edit` command.
-
-Step 2. This calls `LogicManager#execute()` with
-the command input as the argument, which then calls `AddressBookParser#parseCommand() `
-with command input as the argument.
-
-Step 3. `AddressBookParser#parseCommand()` matches the command to be
-an edit exam command through the feature type and the command word, which then calls `EditExamCommandParser#parse()`.
-
-Step 4. `EditExamCommandParser#parse()` will create an `EditExamDescriptor` object which stores the details to edit the exam(ie the fields of the exam that is edited)
-and return the index of the exam to be edited in the list. Then, it will return
- an `EditExamCommand` object created with the `INDEX` object and `EditExamDescriptor`
-object as the arguments in the constructor. `LogicManager` class will call
-`EditExamCommand#execute()` with a `Model` object as the argument.
-
-Step 5. `EditExamCommand#execute()` will then get the old exam by accessing the list of exams with the `INDEX`
-as well as the edited exam using the `EditExamDescriptor`. Then it will call `Model#replaceExam` to replace the original exam 
-with the edited exam. Then `Model#isExamLinkedToTask` is called 
-to check if the original exam is linked to any task. Then, if the exam is linked to the task and the module field is edited, 
-`Model#unlinkTaskFromExam` will be called to unlink the tasks which are previously linked to the exam. 
-Otherwise, `Model#updateExamFieldForTask`
-will be called to update the exam field stored in the tasks for tasks that are linked to that exam. 
-
-Step 6: `EditExamCommand#execute()` will then return a `CommandResult`
-object, which contains the message saying that the exam was edited, to the `LogicManager` object. 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-
-* For Step 4, `EditExamCommandParser#parse` will not return a new `EditExamCommand` object if the fields of the edited exam
-is not a valid module(ie not 6 characters long, with first two as alphabets) or if it is not a valid date(ie not in DD-MM-YYYY format or a valid date) or if it is not a valid description(ie empty description).
-`EditExamCommandParser#parse` will not return a new `EditExamCommand` object if the `INDEX` is negative or bigger than 2147483647.
-Hence, for such situations, the exam will not be edited. 
-
-* For Step 5, `Model#replaceExam` will not be called if the `INDEX` used is greater than the list size 
-or if the `MODULE` does not exist. So, the exam will not be edited in this case. 
-
-* If the edited exam is the same as an existing exam in the exam list, an exception will be thrown.
-
-* If the exam is linked to some tasks, and the module of the exam is edited, then the tasks will be unlinked from the exam. 
-This is because the tasks should not have a different module code from the exam.
-A warning message is shown to the user when this action is done to inform them that the links are dropped.
-
-![EditExamActivityDiagram](images/EditExamActivityDiagram.png)
-
+| ![AddExamActivityDiagram](images/AddExamActivityDiagram.png)  |
+|:-------------------------------------------------------------:|
+|               Activity diagram of AddExamCommand              |
 
   
 ### Find Tasks Command
@@ -487,17 +440,21 @@ A warning message is shown to the user when this action is done to inform them t
 #### Command Format:
 `t find KEYWORD` where `KEYWORD` is the keyword inputted by user.
 
-#### About the feature: 
+#### What is the feature about: 
 The `t find` is a find tasks command that allows users to find tasks whose task description matches the keyword inputted by them fully or partially.
 The keyword is case-insensitive. For example, "TASK" will match "task".
 
 #### Why is the feature implemented in this way: 
-Implemented the tasks such that they can find tasks that contain the keyword not just fully but also partially. 
+It is implemented such that users can find tasks that contain the keyword not just fully but also partially. 
 This can be helpful especially if they cannot remember the full description of the task. 
-Also, if they want quick access to the task, they can just simply type a partial description to find the task instead of writing the whole description.
+Also, if they want quick access to the task, they can simply type a partial description to find the task instead of writing the whole description.
 
-#### UML Diagrams: 
-![FindTasksCommand](images/FindTasksCommandSequenceDiagram.png)
+#### UML Diagrams:
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
+
+| ![FindTasksCommand](images/FindTasksCommandSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+|               Sequence diagram of FindTasksCommand               |
 
 Step 1. The user types an `t find` command.
 
@@ -508,23 +465,25 @@ with command input as the argument.
 Step 3. `AddressBookParser#parseCommand()` matches the command to be
 a find tasks command through the command word and the feature type, which then calls `FindTasksCommandParser#parse()`.
 
-Step 4. `FindTasksCommandParser#parse()` will return a `FindTaskCommand` object that takes in a single argument
-a `DescriptionContainsKeywordsPredicate` object which itself takes in the keyword inputted by user and 
-tests if the task description matches the keyword. 
+Step 4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
+tests if the task description matches the keyword.
+Then it will create  `FindTasksCommand` object that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
+and return to `LogicManager` object.
 
 Step 5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
 `FindTasksCommand#execute()` will call `Model#updateFilteredTaskList` to update the filtered task list
 by the predicate (which is the `DescriptionContainsKeywordsPredicate` object created previously) to only 
-display the tasks which contain the keyword. Then, a `CommandResult` object with the message of the number of tasks that contains the keyword being listed 
-is returned to the `LogicManager` object.
+display the tasks which match the keyword. Then, a `CommandResult` object is returned to the `LogicManager` object.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 
-* For Step 4, `FindTasksCommandParser#parse` will not return a new `FindExamCommand` object if the keyword is empty. 
+* For Step 4, `FindTasksCommandParser#parse` will not return a new `FindTasksCommand` object if the keyword is empty. 
 
+The following activity diagram summarises what happens when FindTasksCommand is executed
 
-![FindTasksActivityDiagram](images/FindTasksActivityDiagram.png)
-
+| ![FindTasksActicityDiagram](images/FindTasksActivityDiagram.png) |
+|:----------------------------------------------------------------:|
+|               Activity diagram of FindTasksCommand               |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -558,20 +517,20 @@ is returned to the `LogicManager` object.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                       | So that I can…​                                                                                   |
-|---------|--------------|----------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `* * *` | NUS student  | view the list of tasks I need to complete          | start implementing those tasks.                                                                   |
-| `* * *` | NUS student  | create the tasks in the tasklist                   | add the list of tasks that need to be completed                                                   |
-| `* * *` | NUS student  | mark a task as complete                            | have a better idea of what I have completed.                                                      |
-| `* *`   | NUS student  | tag the priority of the tasks in the tasklist      | prioritise the task that I would like to complete first                                           |
-| `* * *` | NUS student  | delete the tasks in my tasklist                    | remove them if added wrongly.                                                                     |
-| `* * *` | NUS student  | delete the modules in my modulelist                | remove them if added wrongly.                                                                     |
-| `* * *` | NUS student  | edit the modules in my modulelist                  | remove them if added wrongly.                                                                     |
-| `* *`   | NUS student  | find my task by task description through a command | quickly locate my task instead of having to go through the whole list of tasks just to find it.   |
-| `* *`   | NUS student  | find my module by module code through a command    | quickly locate my module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
-| `* * *` | NUS student  | add my exams to the exam list                      | add my upcoming exams to the exam list to track my revision progress.                           |
-| `* * *` | NUS student  | edit the exams in the exam list                    |  change the exam details easily if I input the wrong details.                          |
-| `* * *` | NUS student  | view the list of modules I have                    | see the modules I am taking and my study progress for the modules.                            |
+| Priority | As a …​      | I want to …​                                      | So that I can…​                                                                                      |
+|---------|--------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `* * *` | NUS student  | view the list of tasks I need to complete         | start implementing those tasks.                                                                      |
+| `* * *` | NUS student  | create the tasks in the tasklist                  | add the list of tasks that need to be completed                                                      |
+| `* * *` | NUS student  | mark a task as complete                           | have a better idea of what I have completed.                                                         |
+| `* *`   | NUS student  | tag the priority of the tasks in the tasklist     | prioritise the task that I would like to complete first                                              |
+| `* * *` | NUS student  | delete the tasks in my tasklist                   | remove them if added wrongly.                                                                        |
+| `* * *` | NUS student  | delete the modules in my modulelist               | remove them if added wrongly.                                                                        |
+| `* * *` | NUS student  | edit the modules in my modulelist                 | remove them if added wrongly.                                                                        |
+| `* *`   | NUS student  | find a task by task description through a command | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
+| `* *`   | NUS student  | find a module by module code through a command    | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
+| `* * *` | NUS student  | add my exams to the exam list                     | add my upcoming exams to the exam list to track my revision progress.                                |
+| `* * *` | NUS student  | edit the exams in the exam list                   | change the exam details easily if I input the wrong details.                                         |
+| `* * *` | NUS student  | view the list of modules I have                   | see the modules I am taking and my study progress for the modules.                                   |
    
 *{More to be added}*
 
@@ -600,10 +559,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: List tasks in task list**
 
 **MSS**
-1. User requests to view tasks in the task list
-2. MODPRO displays the list of tasks
+1. NUS student requests to view all tasks in the stored task list
+2. MODPRO displays the list of all tasks and display a message of "Listed all tasks".
 
    Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
 
 **Use case: Mark a task as complete**
 
@@ -689,16 +653,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: List modules in module list**
 
 **MSS**
-1. User requests to view modules in the stored module list
-2. MODPRO displays the list of modules. 
+1. NUS student requests to view all modules in the stored module list.
+2. MODPRO displays the list of all modules and display a message of "Listed all modules".
 
    Use case ends.
 
+**Extensions**
+* 1a. The provided command is in an invalid command format.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+  
 **Use case: Find tasks in the task list**
 
 **MSS** 
-1. User requests to find tasks whose description matches the keyword inputted partially or fully.  
-2. MODPRO show the list of tasks whose description matches the keyword partially or fully.  
+1. NUS student requests to find tasks whose description matches the keyword inputted partially or fully.  
+2. MODPRO show the list of tasks whose description matches the keyword partially or fully, and display a message to state how many tasks(that match the keyword) are listed. 
 
    Use case ends. 
 
@@ -706,12 +675,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The keyword inputted is empty
     * 1a1. MODPRO shows an error message </br> 
       Use case ends. 
+* 1b. The provided command is in an invalid command format.
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
 
 **Use case: Find modules in the module list**
 
 **MSS**
-1. User requests to find modules whose module code matches the keyword inputted partially or fully.
-2. MODPRO show the list of modules whose module code matches the keyword partially or fully. 
+1. NUS student requests to find modules whose module code matches the keyword inputted partially or fully.
+2. MODPRO show the list of modules whose module code matches the keyword partially or fully, display a message to state how many modules(that match the keyword) are listed.
 
    Use case ends.
 
@@ -719,77 +691,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The keyword inputted is empty
     * 1a1. MODPRO shows an error message </br>
       Use case ends.
-
+* 1b. The provided command is in an invalid command format.
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+  
 **Use case: Add an exam into the exam list** 
 
 **MSS** 
-1. User requests to add an exam. 
+1. NUS student requests to add an exam. 
 2. MODPRO adds the exam into the exam list.
 
 **Extensions**
 * 1a. The description of the exam is empty
     * 1a1. MODPRO shows an error message. </br>
       Use case ends. 
-* 1b. The exam date provided is not in DD-MM-YYYY format.
+* 1b. The exam date provided is invalid. 
     * 1b1. MODPRO shows an error message. </br>
       Use case ends.
-* 1c. The exam date provided is not a valid date.
+* 1c. Exam module does not exist in MODPRO.  
     * 1c1. MODPRO shows an error message. </br>
       Use case ends.
-* 1d. The exam date provided is earlier than today's date.
-    * 1d1. MODPRO shows an error message. </br>
-      Use case ends.
-* 1e. Exam module does not exist in MODPRO.  
-    * 1e1. MODPRO shows an error message. </br>
-      Use case ends.
-* 1f. The exam to be added already exists in the exam list. 
-    * 1f1. MODPRO shows an error message. </br> 
+* 1d. The exam to be added is the same as another existing exam in the exam list. 
+    * 1d1. MODPRO shows an error message. </br> 
       Use case ends. 
-* 1g. The module code provided is not in correct format. 
-    * 1g1. MODPRO shows an error message. </br> 
+* 1e. The module code provided is invalid. 
+    * 1e1. MODPRO shows an error message. </br> 
       Use case ends.
-
+* 1f. The provided command is in an invalid command format. 
+    * 1f1. MODPRO shows an error message. </br> 
+      Use case ends.
+* 1g. Not all the fields(Exam description, Exam date, Module) are provided. 
+    * 1g1. MODPRO shows an error message. </br>
+      Use case ends. 
 
 **Use case: Edit an exam into the exam list**
 
 **MSS**
-1. User requests to edit a specific exam in the exam list by specifying the index number of the exam to be edited.  
-2. MODPRO edits the exam. 
+1. NUS student requests to edit a specific exam in the exam list by specifying the index number of the exam to be edited.  
+2. MODPRO updates the specified exam with the new values provided.
 
 **Extensions**
-* 1a. The new exam description provided is empty. 
+* 1a. The given exam description is empty. 
     * 1a1. MODPRO shows an error message. </br>
       Use case ends.
-* 1b. The new exam date provided is not in DD-MM-YYYY format.
+* 1b. The given exam date is invalid. 
     * 1b1. MODPRO shows an error message. </br>
       Use case ends.
-* 1c. The new exam date provided is not a valid date. 
-    * 1c1. MODPRO shows an error message. </br>
-      Use case ends.
-* 1d. The new exam date provided is earlier than today's date.
-    * 1d1. MODPRO shows an error message. </br>
-      Use case ends.
-* 1e. The new exam module code provided is not a valid module code.
-    * 1e1.MODPRO shows an error message. </br> 
+* 1c. The given exam module code is invalid.
+    * 1c1.MODPRO shows an error message. </br> 
       Use case ends. 
-* 1f. The new exam module does not exist in MODPRO. 
-    * 1f1. MODPRO shows an error message. </br> 
+* 1d. The given exam module does not exist in MODPRO. 
+    * 1d1. MODPRO shows an error message. </br> 
       Use case ends. 
-* 1g. The index is non-positive or larger than 2147483647. 
-    * 1g1. MODPRO shows an error message. </br>
+* 1e. The given index is invalid.
+    * 1e1. MODPRO shows an error message. </br>
       Use case ends.
-* 1h. The index is larger than the number of exams in the exam list. 
-    * 1h1. MODPRO shows an error message. </br>
+* 1f. The edited exam is the same as another existing exam in the exam list.
+    * 1f1. MODPRO shows an error message. </br>
       Use case ends.
-* 1i. The new exam already exists in the exam list.
+* 1g. The module and description and date of the exam are not changed. 
+    * 1g1. MODPRO shows an error message </br> 
+      Use case ends. 
+* 1h. The provided command is in an invalid command format.
+    * 1ih. MODPRO shows an error message. </br>
+      Use case ends.
+* 1i. No fields are provided to edit the exam. 
     * 1i1. MODPRO shows an error message. </br>
-      Use case ends.
-* 1j. The exam is not edited.
-    * 1j1. MODPRO shows an error message </br> 
       Use case ends. 
-
-
-
 
 ### Non-Functional Requirements
 
@@ -859,70 +827,70 @@ testers are expected to do more *exploratory* testing.
 ### Adding an exam 
 
 1. Adding an exam to the exam list
-    1. Prerequisite: the module `cs2030s` must already be present in the module list, and `cs2040s` is not present in module list. 
-    2. Test case: `e add m/cs2030s ex/Finals ed/30-12-2023`
-         Expected: The exam with the module field as `cs2030s`, exam description as `Finals`, exam date as `30-12-2023` is added to the exam list.
+    1. Prerequisite: the module `cs2030s` is present in the module list, and `cs2040s` is not present in module list. 
+    2. Test case: `e add m/cs2030s ex/Finals ed/30-12-2023`<br>
+       Expected: The exam with the module field as `cs2030s`, exam description as `Finals`, exam date as `30-12-2023` is added to the exam list.
     A message is displayed to show that the exam is added successfully.
-    3. Test case: `e add m/cs2030s ex/Finals ed/30-13-2023`
+    3. Test case: `e add m/cs2030s ex/Finals ed/30-13-2023`<br>
        Expected: Exam will not be added, and error message will be shown to say that the date provided is not in DD-MM-YYYY format. 
-    4. Test case: `e add m/cs2040s ex/Finals ed/30-12-2023`
+    4. Test case: `e add m/cs2040s ex/Finals ed/30-12-2023`<br>
        Expected: Exam will not be added, and error message will be shown to say that the module does not exist. 
-    5. Test case: `e add m/cs2030s ex/ ed/30-12-2023`
+    5. Test case: `e add m/cs2030s ex/ ed/30-12-2023`<br>
        Expected: Exam will not be added, and error message will be shown to say that the description of the exam should not be empty. 
     
-_{ more test cases …​ }_
+
 ### Editing an exam 
-1. Editing an exam in the exam list.
-    1. Prerequisite: the module `cs2030s` must already be present in the module list, and `cs2040s` is not present in module list and exam list only have 2 exams. 
-    2. Test case: `e edit 1 m/cs2030s ex/Finals ed/30-12-2023`
+2. Editing an exam in the exam list.
+    1. Prerequisite: the module `cs2030s` is present in the module list, and `cs2040s` is not present in module list and exam list only has 2 exams. 
+    2. Test case: `e edit 1 m/cs2030s ex/Finals ed/30-12-2023`<br>
        Expected: The first exam in the exam list is edited by changing the module field to `cs2030s`, exam description to `Finals`, exam date to `30-12-2023`. 
        A message is displayed to show that the exam is edited successfully.
-    3. Test case: `e edit 0 m/cs2030s ex/Finals ed/30-12-2023`
+    3. Test case: `e edit 0 m/cs2030s ex/Finals ed/30-12-2023`<br>
        Expected: Exam will not be edited, and error message will be shown to say that the index should be greater than 0 and less than 2147483648 for the index of an exam.
-    4. Test case: `e edit 1 m/cs2040s ex/Finals ed/30-12-2023`
+    4. Test case: `e edit 1 m/cs2040s ex/Finals ed/30-12-2023`<br>
        Expected: Exam will not be edited, and error message will be shown to say that the module does not exist.
-    5. Test case: `e edit 1 ex/ ed/30-12-2023`
+    5. Test case: `e edit 1 ex/ ed/30-12-2023`<br>
        Expected: Exam will not be edited, and error message will be shown to say that the description of the exam should not be empty.
-    6. Test case: `e edit 1 ed/30-13-2023`
+    6. Test case: `e edit 1 ed/30-13-2023`<br>
        Expected: Exam will not be edited, and error message will be shown to say that the date provided is not in DD-MM-YYYY format.
-    7. Test case: `e edit 4 ed/30-12-2023`
+    7. Test case: `e edit 4 ed/30-12-2023`<br>
        Expected: Exam will not be edited, and error message will be shown to say that the index should be more than 0 but less than 3.
 
-{ more test cases …​ }_
+
 ### Finding a task  
-1. Finding a task in the task list
-   1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" is inside the task list.
-   2. Test case: `t find work` 
+3. Finding a task in the task list
+   1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" are inside the task list.
+   2. Test case: `t find work` <br>
       Expected: The task list should display the 3 tasks with task description of "WORK", "homework 1", "homewoRK 2",with a message saying "3 tasks listed"
-   3. Test case: `t find paper`
+   3. Test case: `t find paper`<br>
       Expected: The task list should only display the task with the task description "past year paper", with a message saying "1 tasks listed"
-   4. Test case: `t find assignment`
+   4. Test case: `t find assignment`<br>
       Expected: The task list should show no tasks displayed, with a message saying "0 tasks listed"
 
-{ more test cases …​ }_
+
 ### Finding a task
-1. Finding a module in the module list
-    1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" is inside the module list.
-    2. Test case: `m find cs`
+4. Finding a module in the module list
+    1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" are inside the module list.
+    2. Test case: `m find cs`<br>
        Expected: The module list should display the 3 modules with module code of "CS2030s", "CS2040S", "CS3333",with a message saying "3 modules listed"
-    3. Test case: `m find 20`
+    3. Test case: `m find 20`<br>
        Expected: The module list should display the 2 modules with the module code of "CS2030s", "CS2040S",with a message saying "2 modules listed".
-    4. Test case: `m find 5555`
+    4. Test case: `m find 5555`<br>
        Expected: The module list should show no module displayed, with a message saying "0 modules listed"
     
-_{ more test cases …​ }_
+
 ### Listing modules
-1. Listing modules in the stored module list
-    1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" is inside the module list, and a `m find 20` command is done.
-    2. Test case: `m list`
+5. Listing modules in the stored module list
+    1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" are inside the module list, and a `m find 20` command is done.
+    2. Test case: `m list`<br>
        Expected: The module list should now display the all 3 modules with module code of "CS2030s", "CS2040S", "CS3333",with a message saying "Listed all modules"
 
 
-_{ more test cases …​ }_
+
 ### Listing tasks
-1. Listing tasks in the stored tasks list
-    1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" is inside the task list, and a `t find paper` command is done. 
-    2. Test case: `t list` 
+6. Listing tasks in the stored tasks list
+    1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" are inside the task list, and a `t find paper` command is done. 
+    2. Test case: `t list` <br>
        Expected: The task list should now display the all 4 tasks with task descriptions of "WORK", "homework 1", "homewoRK 2", "past year paper",with a message saying "Listed all tasks"
 
-_{ more test cases …​ }_
+
