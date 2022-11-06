@@ -180,7 +180,7 @@ As you can see from the diagrm, the `MainWindow` is filled with both the person 
 Similar to the person list, the task list will contain all the tasks currently stored in the application
 By having separate list panels, it will be easier to display the tasks and people seperately
 
-<img src="images/UiClassDiagramNew.png" width="500" height="400" />
+<img src="images/UiClassDiagramNew.png" />
 
 Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task. 
 The user can navigate between the dispays using a tab at the top of the UI display.
