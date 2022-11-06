@@ -2,10 +2,24 @@
 layout: page
 title: User Guide
 ---
+Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
+their business. With so many things to keep track of, you might have found yourself wondering if there were a
+better way to manage all of these.
 
-Made for commission-based artists, **ArtBuddy** (AB) is the easiest way to organise your customers and commissions.
-Powerful features and intuitive design, all packaged into one desktop app. With optimised support for
-use via a Command Line Interface (CLI) ArtBuddy can help you manage your small business with the speed of your fingertips. But not to worry if you're unfamiliar with CLI, we still offer the benefits of a Graphical User Interface (GUI).
+That's why we built **ArtBuddy** (AB), a commission-based artist's best buddy, just for you. Developed with your
+needs in mind, ArtBuddy is here to help you manage all your customers and commissions in one place. But that's
+not all. With integrated support for tracking the progress of your commissions through iterations,
+and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+
+So, focus on your art and leave the rest to ArtBuddy.
+
+Just getting started with ArtBuddy? We recommend you check out the [Using this guide](#using-this-guide) section
+to.
+Eager to get started? You can refer to our [Quick Start](#quick-start) section to set ArtBuddy up, or
+you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
+
+--------------------------------------------------------------------------------------------------------------------
+# Table of Contents
 
 * Table of Contents
 {:toc}
@@ -15,105 +29,399 @@ use via a Command Line Interface (CLI) ArtBuddy can help you manage your small b
 
 This guide walks you through all the features of ArtBuddy and can be used as a quick reference whenever you need any help.
 
-If you are a new user, we welcome you to start from our [introduction](#introduction) to get control of your business.
+If you're just getting started with ArtBuddy, we welcome you to start from our [Introduction](#introduction) section to
+learn more about ArtBuddy. Or, if you're eager to hop right into setting up ArtBuddy, you might find the [Quick Start](#quick-start) section helpful.
+
+Already set up ArtBuddy? You can check out our [Features](#features) section. For ease of reference, the
+[Features](#features) section is divided into subsections corresponding to each main feature:
+Customers, Commissions, Iterations and Statistics. Feel free to jump around as you explore ArtBuddy's amazing features!
+
+You can also refer to our [Table of Contents](#table-of-contents) to navigate between the different sections of this guide.
+
+### Conventions used in this guide
+
+**Formatting conventions**  
+As you read through this guide, you might come across text with special formatting. These specially formatted
+text hold meaning, as described below. 
+
+|                                    | Description                                                                                                                                                                                             |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`                             | ArtBuddy commands appear in a monospaced font, with a grey background, as shown on the left. To learn more about ArtBuddy commands, refer to the [CLI section](#artbuddys-command-line-interface-cli).  |
+| `CODE_UPPER_CASE`                  | Certain ArtBuddy commands contain words appear in upper case. These refer to [parameters](#command-parameters) (user input) to be supplied to ArtBuddy.                                                 |
+| <code><em>code_italics</em></code> | ArtBuddy commands may also contain words that appear in italics. These refer to example command [parameters](#command-parameters), which you can replace with your own inputs.                          |
+| [blue hyperlink]()                 | Hyperlinks appear in a blue font that is underlined when hovered over by your mouse. These hyperlinks bring you to another section of the user guide containing more relevant information to the topic. |
+| **Bold Title Case**                | References to elements in ArtBuddy's [GUI](#glossary) (like buttons and text field labels) are formatted in **bold**, in Title Case.                                                                    |
+
+
+**Conventions used in command formats**  
+When talking about ArtBuddy command formats, we've adopted the following conventions to make explanations
+more succinct. If you're not familiar with ArtBuddy's CLI, you might want to look at our
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli) section to learn more.
+
+|                                                         | Description                                                                                                                                                                                                                                                    | Example                                                                                                                                                                                                                                                                                           |
+|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Optional command parameters                             | Certain ArtBuddy commands have optional command parameters. These command parameters may be specified, or be left out. You'll be able to identify optional command parameters as they will appear around square brackets when specified in the command format. | For instance, the command format of the Add Customer command is `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`. Notice that the address and tag command parameters appear around square brackets? That just means that you can choose whether to specify these command parameters! |
+| Command parameters that can be specified more than once | You may also notice that certain command have `...` after certain command parameters. This simply means indicates that the input parameter be used multiple times (including zero times).                                                                      | Following the example of the Add Customer example above, where you'll notice the tag command parameter `[t/TAG]...` is followed by `...`, this just means that the tag command input can be specified any number of times!                                                                        |
+
+**Call-out text box conventions**  
+You might also notice call-out text boxes in this guide. These contain additional information tidbits that might be useful
+for you.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** Call-outs like this contain information that you should know about ArtBuddy!
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Call-outs like this contain tips that you might find useful when using ArtBuddy.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Call-outs like this contain warnings that we recommend you read through to avoid
+any unexpected behaviour of ArtBuddy.
+</div>
+
+<div align="right">
+
+[ <a href="#using-this-guide">To start section: Using this guide</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 # Introduction
 
-Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
-their business. With so many things to keep track of, you might have found yourself wondering if there were a
-better way to manage all of these.
+Made for commission-based artists, ArtBuddy is the easiest way to organise your customers and commissions.
+Powerful features and intuitive design, all packaged into one neat desktop app. ArtBuddy is supported on all
+major operating systems (Windows, macOS, Linux).
 
-That's why we built ArtBuddy, a commission-based artist's best buddy, just for you. Developed with your
-needs in mind, ArtBuddy can help you manage all your customers and commissions in one place. That's
-not all. With integrated support for tracking the progress of your commissions through iterations,
-and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+{: .no_toc}
+#### Let ArtBuddy help you...
 
-So, focus on your art and leave the rest to ArtBuddy.
+1. [**Manage your customers**](#customer-related-commands)  
+ArtBuddy lets you store, edit and delete your customer's information. Consolidate all your customer's
+contact details, so you never have to lose a contact again.  
 
-Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
-you can jump to our [Features](#features) section to learn more about the features ArtBuddy offers.
 
+2. [**Take charge of your commissions**](#commission-related-commands)  
+Add commissions to a customer in ArtBuddy, just like in real life! ArtBuddy can store your
+commission details, like fees, deadlines, and completion statuses. Easily update and delete
+commissions as you wish.  
+
+
+3. [**Keep track of your progress**](#iteration-related-commands)  
+ArtBuddy wants you help you hone your craft, and learning from yourself is a critical part of that.
+With ArtBuddy, keep track of the progress of your commissions using iterations. Each iteration is simply 
+a version of your artwork. Learn from feedback and your past work, so you can continuously improve your craft.  
+
+
+4. [**Supercharge your business**](#statistical-commands)  
+Learn where your highest sales are coming from by leveraging on the powerful statistics ArtBuddy offers
+so that you can accelerate your business growth.
+
+{: .no_toc}
+#### Getting things done fast
+We get that your time is precious. So spend it on what you love doing, your art, and let ArtBuddy handle the
+rest. With optimised support for use via a Command Line Interface (CLI), ArtBuddy can help you manage your
+small business at the speed of your fingertips.
+
+Not sure what a CLI is? Don't worry! It's easy to pick up, you can even refer to our short introduction to
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli) to learn more.
+
+More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy still has a sleek, intuitive
+[Graphical User Interface (GUI)](#glossary). This means that you can also interact with ArtBuddy using visual controls
+like buttons and pop-ups. There's something for everyone!
+
+<div align="right">
+
+[ <a href="#introduction">To start section: Introduction</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 # Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Let's get you started with ArtBuddy! This section will help you get oriented with ArtBuddy, from installation
+to a quick tutorial. Users already experienced with CLI might want to skip over the CLI section. So, what are you
+waiting for? Let's go, go, go!
 
-2. Download the latest `artbuddy.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases).
+[Installation instructions](#installation-instructions)  
+[Starting up ArtBuddy](#starting-up-artbuddy)  
+[Starting up ArtBuddy (on macOS)](#starting-up-artbuddy-macos)  
+[Getting familiar with ArtBuddy's interface](#getting-familiar-with-artbuddys-interface)  
+[ArtBuddy's CLI](#artbuddys-command-line-interface-cli)  
+[Quick tutorial](#quick-tutorial)
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
+## Installation instructions
 
-4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
-5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
-Note that the images are to help with interface only. The actual details of the data may differ in your application.
-6. You can use the following commands in the Customer View:
+Don't have ArtBuddy installed on your computer yet? Check out our step-by-step installation instructions to
+download ArtBuddy.
 
-   * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
-   * `delcus 2` :  Deletes the 2nd customer displayed on the list.
-   * `opencus 2` : Selects the 2nd customer (Bernice Yu) on the list.
+1. ArtBuddy is written in the programming language Java, so you'll need **Java 11 or above** installed in your computer
+to run ArtBuddy.
+   1. Not sure if you have a compatible Java version installed on your computer?
+   Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+   While Linux users can refer to [this guide](https://phoenixnap.com/kb/check-java-version-linux).
+   2. Don't have a compatible Java version installed? Fret not, Java is free to install! Complete installation
+   instructions can be found [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 
-7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
-8. You can use the following commands in the Commission View:
-    * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
-    * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
-    * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
-9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed.
-10. You can use the following commands in the Commission Details View:
-   * `additer d/2022-10-11 n/Add lighting p//Users/Joseph/CSP/sunshine_highlight.png f/Warmer tone might be better` : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
-11. Refer to the [Features](#features) below for details of each command.
+2. Download the latest version of ArtBuddy by downloading the `artbuddy.jar` file found [here](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases).
+
+![Download JAR](images/ab-quick-start-download.png)
+
+4. Create a new empty folder (with any name you like) in your computer where you'd like to store ArtBuddy.
+
+5. Copy the downloaded ArtBuddy file (`artbuddy.jar`) into the new folder.
+
+6. And...that's it! You now have ArtBuddy installed on your laptop!
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+## Starting up ArtBuddy
+
+Nice! Now that you've downloaded ArtBuddy (if not, our [installation instructions](#installation-instructions)
+might be useful), let's ArtBuddy up and running.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Due to the default privacy settings on macOS, certain features of ArtBuddy
+may not work as expectedly. To avoid this, please refer to the section
+[Starting up ArtBuddy (macOS)](#starting-up-artbuddy-macos) instead if you are a macOS user.
+</div>
+
+1. To start ArtBuddy, simply open up the folder where your downloaded `artbuddy.jar` file is and double-click the file to start the app.
+2. And...ta-da! You should now see ArtBuddy running on your computer!
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+## Starting up ArtBuddy (macOS)
+
+Due to the default privacy settings on macOS computers, ArtBuddy might not be able to read from or write to
+files on your macOS computer. Because of this, some features like uploading images to ArtBuddy might not
+work properly. To get ArtBuddy working properly on your macOS computer, follow these instructions instead
+to get ArtBuddy up and running!
+
+1. Locate the folder where your downloaded `artbuddy.jar` file is stored, and right click (or do a 2-finger press on
+your Apple trackpad) on your folder. Click on the **Services** option in the menu that pops up.
+2. This should reveal a **New Terminal at Folder** option, as shown below.
+
+![Starting up ArtBuddy (macOS) Step 1](images/start-ab-mac-step1.png)
+
+3. Click on the **New Terminal at Folder** option. You should see a Terminal window open. The Terminal is
+just macOS's own CLI that will allow you to communicate with your macOS computer.
+4. To let your computer know you want to run ArtBuddy, simply paste this command: `java -jar artbuddy.jar` into
+the Terminal window and hit **return** on your keyboard.
+
+![Starting up ArtBuddy (macOS) Step 1](images/start-ab-mac-step2.png)
+
+5. And...ta-da! You should now see ArtBuddy running on your computer!
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+## Getting familiar with ArtBuddy's interface
+
+Cool! You now have gotten ArtBuddy up and running. Let's get you familiar with ArtBuddy's user interface.
+
+ArtBuddy has two tabs: a **Customers Tab**, and a **Commissions Tab**. Let's take a closer look at each tab individually.
+
+{: .no_toc}
+### Customers Tab
+
+When you first open ArtBuddy, ArtBuddy will have the **Customers Tab** open by default. As its name implies,
+the **Customers Tab** shows all your customer related information. Let's learn what each of these ArtBuddy components
+in your **Customers Tab** does!
+
+![ArtBuddy's UI](images/ab-user-interface.png)
+
+|     | Component        | Description                                                                                                                                                                                                 |
+|-----|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Menu Bar         | The menu bar contains menu options to [exit](#exiting-the-program-exit) from ArtBuddy and to get [help](#viewing-help-help).                                                                                |
+| 2   | Command Input    | The command input is where you can key in your commands to tell ArtBuddy what you want to get done. To learn more about ArtBuddy's CLI, refer to the [next section](#artbuddys-command-line-interface-cli). |
+| 3   | Result Display   | The result display is where you'll see ArtBuddy's replies to your commands.                                                                                                                                 |
+| 4   | Customer List    | The default tab opened when you first start ArtBuddy is the customer tab. Notice how the **Customer** tab is highlighted? That indicates that ArtBuddy is currently showing you your list of Customers.     |
+| 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and statistics of your selected customer in this pane.                                                           |
+| 6   | Saved Data File  | For advanced users, the [file path](#glossary) displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                      |
+
+{: .no_toc}
+### Commissions Tab
+
+Notice that ArtBuddy also has a **Commissions Tab**? When you navigate to the **Commissions Tab**, this is what you'll see.
+As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all commission-related information!
+
+![ArtBuddy's UI](images/ab-user-interface-commission-tab.png)
+
+|     | Component          | Description                                                                                                                              |
+|-----|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Commission List    | By default, all the commissions of your currently selected customer will be displayed in the Commission List here.                       |
+| 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane. |
+| 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+## ArtBuddy's Command Line Interface (CLI)
+
+ArtBuddy also has a Command Line Interface (CLI). This just means that besides interacting with ArtBuddy by
+clicking on buttons, you can also tell ArtBuddy what you want to get done just by using text input (known as commands). Cool right?
+
+Right now, ArtBuddy only understands certain commands (the complete list of commands can be found in
+[Features](#features)). These commands must be formatted in a specific way. It's just the way ArtBuddy
+is wired to think and listen to words. So let's learn how to talk to ArtBuddy!
+
+{: .no_toc}
+### Command Input  
+
+The **Command Input** is where ArtBuddy's 'ears' are. This is the rectangular text input box outlined in red below.
+To type in commands into the **Command Input**, just click on the **Command Input** and start typing away! Once you've
+typed in your command, just press 'Enter' (or 'return' for Mac users) on your keyboard and... voilà!
+ArtBuddy has just executed your command. It's that easy!
+
+![ArtBuddy's UI](images/ab-cli-command-input.png)
+
+{: .no_toc}
+### ArtBuddy Commands
+
+An ArtBuddy command is typically made up of the following parts:
+
+{: .no_toc}
+##### Command keyword  
+This is the keyword that tells ArtBuddy exactly what command you wish to execute. All
+ArtBuddy commands have a unique command keyword so ArtBuddy knows what you want to do.  
+
+{: .no_toc}
+##### Index  
+Some ArtBuddy commands have an [index](#glossary), this simply a number that uniquely identifies the
+customer, commission, or iteration that you wish to execute your command on. A customer's or commission's index is
+simply the number that appears beside your customer's name, or commission's title.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** For ArtBuddy to understand what you mean, all ArtBuddy commands must begin
+with their command keyword. Also, if an ArtBuddy command accepts an index, **the index must appear immediately
+after the command keyword**.
+</div>
+
+{: .no_toc}
+##### Command parameters  
+Some ArtBuddy commands also accept command parameters. These are just additional
+inputs that ArtBuddy requires to execute some commands properly. For instance, to add a customer, ArtBuddy
+needs to know the name of the customer which you'll need to pass into ArtBuddy as a command parameter.
+<br><br>For ArtBuddy to understand these command parameters, you need to attach a ['prefix'](#glossary) in front of
+each of these parameters.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** Advanced details on ArtBuddy command parameters can be found in
+[Appendix: Further notes on command parameters](#further-notes-on-command-parameters).
+</div>
+
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+## Quick tutorial
+Itching to get started with ArtBuddy? Let's run you through some simple commands to get you warmed up
+before you dive right into ArtBuddy's full feature list!
+
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the images used in this section are only meant to be used as references.
+ArtBuddy might appear differently on your computer because as the data shown in this sample reference may differ from
+the data stored in your application.
+</div>
+
+Let's start by getting our hands cracking with some simple customer-related commands! Make sure the
+[**Customer Tab**](#customers-tab) is open before trying out the following steps so you can observe what happens!
+
+![ArtBuddy's UI](images/ab-quick-start-customer-tab.png)
+
+1. Suppose you've just received a new customer, Betsy, and you want to add her into ArtBuddy. Easy! Try
+running the command <code>addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586</code>.
+   1. You'll notice that ArtBuddy has just created a new customer, Betsy Crowe!
+
+![ArtBuddy's UI](images/ab-quick-start-addcus.png) 
+
+{:start="2"}
+2. Now suppose you want to delete a customer, Bernice, because she has decided to cancel her commission. This time, try
+running <code>delcus 2</code>. 
+   1. Ta-da! After executing the command, Bernice is now deleted from ArtBuddy.
+
+![ArtBuddy's UI](images/ab-quick-start-delcus.png)
+
+Now that you've been introduced to some customer-related commands, let's change things up by checking out some
+commission commands.
+
+![ArtBuddy's UI](images/ab-quick-start-commission-tab.png)
+
+{:start="3"}
+3. Suppose you want to manage Betsy's commissions. Let ArtBuddy know this by first 'opening' up Betsy's details in the
+**Customers Tab**. You can do this by clicking on Betsy's entry in the **Customer List**, or by executing the command `opencus 2`.
+   1. You should notice that Betsy's details appear in the **Customer Details** pane as shown below.
+
+![ArtBuddy's UI](images/ab-quick-start-opencus.png)
+
+{:start="4"}
+4. Now, switch to the **Commissions Tab** where all of Betsy's commissions are displayed. This tab should be empty
+right now because Betsy has no commissions yet. Let's change that!
+
+5. Try running the command <code>addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city</code>.
+   1. Nice! Betsy should now have a new commission titled "Fate Archer". You should also see the details of the newly
+   created commission appear in the **Commission Details** pane.
+
+![ArtBuddy's UI](images/ab-quick-start-addcom.png)
+
+Good job! Now that you're getting the hang of things, check out our [Features](#features) section to explore the full
+capabilities of ArtBuddy.
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
+Dive right into ArtBuddy's full list of features. This section guides you through all of ArtBuddy's commands.
 
-<div markdown="block" class="alert alert-info">
+For ease of reference, similar features are grouped into the individual subsections listed below:
+* [Customer related commands](#customer-related-commands)
+* [Commission related commands](#commission-related-commands)
+* [Iteration related commands](#iteration-related-commands)
+* [Statistical commands](#statistical-commands)
+* [Miscellaneous](#miscellaneous)
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* `INDEX` refers to the numbering shown on the list. <br>
-  e.g. in `opencus INDEX`, `INDEX` refers to the numbering shown on the customers list.
-
-* Anything with prefix `d/` such as `d/DATE` should be formatted in YYYY-MM-DD. <br>
-  e.g. `d/2022-10-04` is a valid input.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help: `help`
-
-Shows you a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ## Customer related commands
 
-A customer view is the first thing you see when you start up the application.
-This will help you keep track of all the customers you currently have.
+Customers are at the heart of ArtBuddy. ArtBuddy will help you keep track of all your customers and their
+details so you never have to lose a contact again.
 
-A customer will have the following details:
-* Name
-* Phone number
-* Email
-* Optional address
-* Optional Tags
+ArtBuddy offers the following commands to help you manage your customers:
+* [Viewing a customer: `opencus`](#viewing-a-customer-opencus)
+* [Adding a customer: `addcus`](#adding-a-customer-addcus)
+* [Editing a customer: `editcus`](#editing-a-customer-editcus)
+* [Deleting a customer: `delcus`](#deleting-a-customer-delcus)
+
+Customers stored in ArtBuddy have the following details:
+
+| Detail           | Explanation                                                                                                        |
+|------------------|--------------------------------------------------------------------------------------------------------------------|
+| Name             | The name of the customer                                                                                           |
+| Phone number     | The phone number of the customer                                                                                   |
+| Email            | The email of the customer                                                                                          |
+| Optional address | The address of the customer (which is optional, a customer may not have recorded address)                          |
+| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers |
 
 ### Viewing a customer: `opencus`
 
@@ -122,7 +430,7 @@ Opens a customer at `INDEX` and shows customer details with various analytics yo
 Format: `opencus [INDEX]`
 
 Examples:
-* `opencus 2`
+* <code>opencus <em>2</em></code>
   Shows details about the customer and updates the commissions tab.
 
 ![opencus](images/opencus.png)
@@ -138,9 +446,9 @@ A customer can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons t/vip`
+* <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em> t/<em>vip</em></code>
 Creates the customer entry for John Doe with his details including multiple tags.
-* `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
+* <code>addcus n/<em>Betsy Crowe</em> e/<em>betsycrowe@example.com</em> p/<em>12345867</em></code>
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
 
@@ -152,7 +460,7 @@ Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 * At least one field to edit must be provided.
 
 Examples:
-* `editcus 1 p/91234567 e/johndoe@example.com` Edits the first customer's phone number and email.
+* <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code> Edits the first customer's phone number and email.
 
 ### Deleting a customer: `delcus`
 
@@ -161,20 +469,34 @@ Deletes the customer at `INDEX` from the ArtBuddy.
 Format: `delcus INDEX`
 
 Examples:
-* `delcus 2` Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
+* <code>delcus <em>2</em></code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
+
+
+<div align="right">
+
+[ <a href="#customer-related-commands">To start of Customer related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Commission related commands
 
 A customer may ask for multiple commissions with different needs.
 That is why we created the commission to help you keep track of all the commissions.
 
-A commission will have the following details:
-* Title
-* Fee
-* Deadline
-* Status
-* Optional Description
-* Optional Tags
+ArtBuddy offers the following commands to help you manage your commissions:
+* [Viewing a commission: `opencom`](#viewing-a-commission-opencom)
+* [Adding a commission: `addcom`](#adding-a-commission-addcom)
+* [Editing a commission: `editcom`](#editing-a-commission-editcom)
+* [Deleting a commission: `delcom`](#deleting-a-commission-delcom)
+
+Commissions stored in ArtBuddy have the following details:
+
+| Detail               | Explanation                                                                                                            |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|
+| Title                | The name of the commission                                                                                             |
+| Deadline             | The due date of the commission                                                                                         |
+| Status               | The completion status of the commission                                                                                |
+| Optional description | An optional description of the commission (for instance, the commission requirements)                                  |
+| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions |
 
 ### Viewing a commission: `opencom`
 
@@ -185,7 +507,7 @@ Format: `opencom [INDEX]`
 Examples:
 * `opencom` Switches to commissions tab.
 
-* `opencom 2` When you run an `opencom` command with index `opencom 2`, you should be switched to the commissions tab to view commission details.
+* <code>opencom <em>2</em></code> When you run an `opencom` command with index <code>opencom <em>2</em></code>, you should be switched to the commissions tab to view commission details.
 
 ![opencom](images/opencom.png)
 
@@ -198,8 +520,8 @@ Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 * Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status. It is case-insensitive.
 
 Examples:
-* `addcom n/Rimuru f/40 d/2022-11-01 t/traditional s/Y t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
-* `addcom n/Fate Archer f/60 d/2022-10-15 s/false p/Archery t/night t/city` creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
+* <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> s/<em>Y</em> t/<em>chibi</em></code> creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
+* <code>addcom n/<em>Fate Archer</em> f/<em>60</em> d/<em>2022-10-15</em> s/<em>false</em> p/<em>Archery</em> t/<em>night</em> t/<em>city</em></code> creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
 
 ### Editing a commission: `editcom`
 
@@ -209,9 +531,9 @@ Format: `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/D
 * At least one field to edit must be provided.
 
 Example:
-* `editcom 1 n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
+* <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code>
   Edits the first commission to have the above fields.
-* `editcom 2 s/True` Edits the second commission to be completed.
+* <code>editcom <em>2</em> s/<em>True</em></code> Edits the second commission to be completed.
 
 ### Deleting a commission: `delcom`
 
@@ -220,106 +542,81 @@ Deletes a commission at `INDEX` and iterations related to the commission.
 Format: `delcom INDEX`
 
 Example:
-* `delcom 14`
+* <code>delcom <em>14</em></code>
+
+<div align="right">
+
+[ <a href="#commission-related-commands">To start of Commission related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Iteration related commands
 
-When working on a commission, you can expect to create multiple images to get feedback and update your commission.
-The iteration is created to serve this purpose of keeping track of your progress in the commission.
+Each piece of art represents a journey of growth. From ideation, sketches, drafts, to constant refinements.
+ArtBuddy wants to help you capture this process. That's why we created iterations, just for you.
 
-An iteration will have the following details:
-* Description
-* Date
-* Filepath for the image
-* Feedback
+Each iteration serves as a 'bookmark', representing a version of your artwork as you work on perfecting your commission.
 
-### Adding iteration to a commission: `additer`
-Just like the other add commands, adding iterations can be done either via the command-line, or
-the graphical interface.
+ArtBuddy offers the following commands to help you manage your iterations:
+* [Adding iteration to a commission: `additer`](#adding-an-iteration-to-a-commission-additer)
+* [Editing an iteration from commission: `edititer`](#editing-an-iteration-from-commission-edititer)
+* [Deleting an iteration from commission: `deliter`](#deleting-an-iteration-from-commission-deliter)
 
-**Adding by the Command-Line Interface**
+Iterations stored in ArtBuddy have the following details:
+
+| Detail      | Explanation                                                                           |
+|-------------|---------------------------------------------------------------------------------------|
+| Description | Describes the progress that was made in the iteration                                 |
+| Date        | Records the date tied to the iteration (for instance, when the iteration was created) |
+| Image       | A picture that captures how the commission looks like in the current iteration        |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)      |
+
+### Adding an iteration to a commission: `additer`
+Adds an iteration to the currently selected commission. This can be done either by the
+[CLI](#adding-by-the-command-line-interface) or [GUI](#adding-by-graphical-interface).
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** There are some known limitations with images in ArtBuddy. Please refer
+to [Appendix: Limitations with images in ArtBuddy](#limitations-with-images-in-artbuddy) for more details.
+</div>
+
+{: .no_toc}
+##### Adding by the Command-Line Interface
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
-and root directories, you might find the explanation [below](#filepath_explanation) helpful.
+and root directories, you might find the explanation in the [Appendix](#what-are-file-paths-and-root-directories) helpful.
 * The command requires a commission to be selected.
-* The image name will assume the filename specified in the command.
-* Currently, only image file types .png, .jpg, .bmp and .gif are supported
+* Currently, only image file types .png, .jpg, .bmp and .gif are supported.
 
 Example:
-* `additer n/First Draft d/2022-10-28 p//Users/John/Downloads/Draft 1.png f/Looks great` creates an iteration
-with the description "First Draft", date 28 October 2022, image at file path `p//Users/John/Downloads/Draft 1.png`,
+> Note that this example will probably not work for you because you'll need to replace the file path
+with a valid file path.
+
+* <code>additer n/<em>First Draft</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Draft 1.png</em> f/<em>Looks great</em></code> creates an iteration
+with the description "First Draft", date 28 October 2022, image at file path <code>p/<em>/Users/John/Downloads/Draft 1.png</em></code>,
 and feedback "Looks great".
 
-<br>
-<details>
-<summary id="filepath_explanation">What is a filepath and my root directory?</summary>
-<div markdown="1" class="alert alert-info">
-**:information_source: What is a filepath and my root directory?**<br>
-Just like how we use addresses to tell specify locations when talking to people, computers
-do the same! Each file in your computer has a unique address that can be used to identify the
-exact location in your computer where the file is stored.
-<br><br>
-The address of each file in your computer can be viewed simply as "directions", guiding your
-computer to get to the file. Think about how you would tell someone how to open a specific file
-in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
-where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
-<br><br>
-Well to computers, filepaths are just like these guiding instructions that help them locate
-a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
-your computer. For most users using a Windows or Mac computer, this root directory is simply
-a folder named `/`.
-<br><br>
-So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
-the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
-folder called John. Open that up and you'll find another folder called Downloads.
-Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
-<br><br>
-To easily copy a filepath of a file:
 
-<ul>
-<li>
+<div markdown="span" class="alert alert-warning">
 
-On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
-
-</li>
-<li>
-
-On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
-
-</li>
-</ul>
-
+:exclamation: **Caution:** There are some known limitations with specifying using the CLI. Please refer
+to [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli) for more details.
 </div>
-</details>
-<br>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Due to file path naming and the command format, specifying a folder with a folder name that ends with
-a 'n', 'd', 'f', or 'p' would lead to an ambiguous command. For instance, the command
-<code>`additer d/2022-10-10 n/description f/actual feedback p//test f/image.png</code> is ambiguous
-because AB does know whether <code>f/image.png</code> is the feedback parameter specified by the user.
-<br><br>
-If you wish to upload the image, either rename the folder name, or upload the image by the GUI.
-</div>
-<br>
 
-**Adding by Graphical Interface**
+{: .no_toc}
+##### Adding by Graphical Interface
 
-Adding an iteration can also be done via the graphical interface by clicking on
-the `Add Iteration` button inside the Commission you wish to add the iteration to.
+1. Click on the **Add Iteration** button inside the Commission you wish to add the iteration to.
 
-<img src="images/AddIterationButton.png" width="450" />
+2. Fill in the details of the new iteration in the window that pops up.
+   * An image can be added to the iteration by selecting a file in your file manager by clicking on the
+   **Add Image** button, or by dragging and dropping an image to the grey image drop area.
 
-A new window will then pop up, where you will be prompted to fill in the details of
-the new iteration. An image can be added to the iteration by selecting a file in
-your file manager by clicking on the `Add Image` button, or by dragging and dropping
-an image to the grey image drop area.
+![Add Iteration](images/AddIteration.png)
 
-<img src="images/AddIterationWindow.png" width="450" />
-
-<br><br>
 
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
@@ -328,7 +625,7 @@ ArtBuddy creates a copy of each file you upload. This means that you can edit, d
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
 
-### Editing iteration from commission: `edititer`
+### Editing an iteration from commission: `edititer`
 Edits an iteration at `INDEX` in a commission.
 
 Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
@@ -336,20 +633,39 @@ Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
 * At least one field to edit must be provided.
 
 Example:
-* `edititer 1 n/Colourised image d/2022-10-12 f/Good improvement p//Users/John/Downloads/Updated Image.png`
-  Edits the first iteration in the currently selected commission to have the above fields and image.
-* `edititer 2 n/Sketch` Edits the description of the second iteration in the currently selected commission.
+* <code>edititer <em>2</em> n/<em>Sketch</em></code> Edits the description of the second iteration in the currently selected commission.
 
-### Deleting iteration from commission: `deliter`
+![Edit Iteration](images/EditIteration.png)
+
+### Deleting an iteration from commission: `deliter`
 Deletes an iteration at `INDEX` from a commission.
 
 Format: `deliter INDEX`
 * The command requires a commission to be selected.
 * You may want to note that your local copy of the image will not be deleted.
 
+Example:
+* <code>deliter <em>2</em></code> Deletes the second iteration of the currently selected commission.
+
+![Delete Iteration](images/DeleteIteration.png)
+
+
+<div align="right">
+
+[ <a href="#iteration-related-commands">To start of Iteration related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 ## Statistical commands
 
-To make the best out of your business, we have integrated statistical commands for you to filter, sort and find out which customers are your favorite.
+Supercharge your business with ArtBuddy's integrated statistical commands. It's now possible to leverage on your business data at the snap of your fingers. 
+
+ArtBuddy offers the following commands to help you navigate through and make sense of all your data:
+* [List all the customers: `list`](#list-all-the-customers-list)
+* [Find a customer: `find`](#find-a-customer-find)
+* [Sorting the customer list: `sortcus`](#sorting-the-customer-list-sortcus)
+* [List the commissions: `listcom`](#list-the-commissions-listcom)
+* [Viewing all commissions: `allcom`](#viewing-all-commissions-allcom)
+* [Find a commission: `findcom`](#find-a-commission-findcom)
 
 ### List all the customers: `list`
 Lists all the customers
@@ -363,9 +679,9 @@ Format: `find [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
 
 Examples:
-* `find k/Kevin` Finds customers who have name Kevin.
-* `find -all t/friend t/colleague` Finds customers who are tagged both `friend` and `colleague`.
-* `find -any t/friend t/colleague` Finds customers who are either tagged `friend` or `colleague`.
+* <code>find k/<em>Kevin</em></code> Finds customers who have the name Kevin.
+* <code>find -all t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are tagged both `friend` and `colleague`.
+* <code>find -any t/<em>friend</em> t/<em>colleague</em></code> Finds customers who are either tagged `friend` or `colleague`.
 
 ### Sorting the customer list: `sortcus`
 
@@ -402,15 +718,28 @@ To view the commissions for a specific customer, return to the customer list ([`
 ### Find a commission: `findcom`
 Finds all the commissions in the list which satisfy keyword matching in the title and tag filters. The tag filter more specifically will include commissions which contain all tags under `-all` and at least one of the tags under `-any`.
 
-Format: `find [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
+Format: `findcom [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 * The keywords, all, and any filters are all optional and can be omitted, but at least one should exist.
 
 Examples:
-* `find k/Kevin` Finds customers who have name Kevin.
-* `find -all t/friend t/colleague` Finds customers who are tagged both `friend` and `colleague`.
-* `find -any t/friend t/colleague` Finds customers who are either tagged `friend` or `colleague`.
+* <code>findcom k/<em>Tree Painting</em></code> Finds commissions which have the title `Tree Painting`.
+* <code>findcom -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
+* <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
+
+<div align="right">
+
+[ <a href="#statistical-commands">To start of Statistical commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Miscellaneous
+
+### Viewing help: `help`
+
+Shows you a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Clearing all the customers: `clear`
 Clears all your customers from ArtBuddy, including their commissions and iterations.
@@ -424,6 +753,15 @@ Exits the program.
 
 Format: `exit`
 
+<div align="right">
+
+[ <a href="#miscellaneous">To start of Miscellaneous commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Appendix
+
 ### Saving the data
 
 ArtBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -436,6 +774,92 @@ ArtBuddy data are saved as a JSON file `[JAR file location]/data/artbuddy.json`.
 If your changes to the data file makes its format invalid, ArtBuddy will discard all data and start with an empty data file at the next run.
 </div>
 
+### Further notes on command parameters
+* When passing in dates in ArtBuddy as command parameters, they should be formatted in YYYY-MM-DD format.
+    * This means that if you want to specify '4th October 2022' as a date command parameter, it should be
+      formatted and passed into ArtBuddy as '2022-10-04'.
+
+* Something cool about ArtBuddy is that command parameters can be specified in any order!
+    * This means that if the command specifies `n/NAME p/PHONE_NUMBER`, ArtBuddy will also understand the
+      input `p/PHONE_NUMBER n/NAME`.
+
+* Also, if a parameter is expected only once in the command, but you specified it multiple times, ArtBuddy
+  will only listen to the last occurrence of the parameter.
+    * So, if you specify <code>p/<em>12341234</em> p/<em>56785678</em></code>, only <code>p/<em>56785678</em></code> will be taken.
+
+* In addition, if you specify command parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`),
+  ArtBuddy simply ignore these extra parameters.
+    * Meaning that the command <code>help <em>123</em></code>, will be interpreted as `help`.
+
+### Limitations with file paths in CLI
+Due to file path naming and the command format, specifying a folder with a folder name that ends with a
+**'n', 'd', 'f', or 'p'** would lead to an ambiguous command.
+
+For instance, the command `additer d/2022-10-10 n/description f/actual feedback p//test f/image.png` is ambiguous
+because ArtBuddy does not know whether <code>f/<em>image.png</em></code> is the feedback parameter specified by the user.
+
+If you wish to upload the image, either rename the folder name, or [upload the image by the GUI](#adding-by-graphical-interface).
+
+### Limitations with images in ArtBuddy
+ArtBuddy might not properly handle extreme image sizes. If your images are too small, they might not render
+properly on ArtBuddy, or might appear very pixelated. If your image is too big (the recommended image
+size limit is around 10MB), ArtBuddy might not be able to open the image at all, or you may start to
+experience significant lag with ArtBuddy.
+
+### What are file paths and root directories?
+Just like how we use addresses to tell specify locations when talking to people, computers
+do the same! Each file in your computer has a unique address that can be used to identify the
+exact location in your computer where the file is stored.
+
+The address of each file in your computer can be viewed simply as "directions", guiding your
+computer to get to the file. Think about how you would tell someone how to open a specific file
+in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
+where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
+
+Well to computers, file paths are just like these guiding instructions that help them locate
+a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
+your computer. For most users using a Windows or Mac computer, this root directory is simply
+a folder named `/`.
+
+So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
+the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
+folder called John. Open that up and you'll find another folder called Downloads.
+Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
+
+To easily copy a filepath of a file:
+* On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
+* On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
+
+<div align="right">
+
+[ <a href="#appendix">To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+Not sure what certain terms used in this user guide mean? Don't worry, we're here to help! 
+
+| Detail                         | Explanation                                                                                                                                                                                                                                                                                                                               |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Commission                     | A commission is a piece of work that you would receive from a customer.                                                                                                                                                                                                                                                                   |
+| Iteration                      | An iteration is a version of your commission. You can think of it as a bookmark on your process of making a piece of art.                                                                                                                                                                                                                 |
+| Command Line Interface (CLI)   | An application with a Command Line Interface is one where the user interacts with the application using text-inputs. CLI apps typically have no visual interface.                                                                                                                                                                         |
+| Graphical User Interface (GUI) | GUI applications are what you are most probably familiar with. These are applications with visual graphics, where you interact with the system by pressing buttons or clicking on things.                                                                                                                                                 |
+| Java                           | Java is a popular programming language which ArtBuddy is written in!                                                                                                                                                                                                                                                                      |
+| JAR file                       | A JAR file is basically a ZIP file that compresses all of ArtBuddy's inner working parts into one neat file that you can run on your computer.                                                                                                                                                                                            |
+| Terminal                       | The terminal is a CLI for macOS computers that allows you to communicate directly with your computer.                                                                                                                                                                                                                                     |
+| Index                          | The index is a customer's, commissions', or iteration's unique identifier. It is simply the number that appears next to the customer's name, the commission's title, or the iteration's description.                                                                                                                                      |
+| Prefix                         | A 'prefix' is simply a single character with a forward slash (eg: "n/", "p/", "d/") that lets ArtBuddy know what the piece of data you've passed into ArtBuddy is. With a prefix attached to each command parameter, ArtBuddy now understands whether a command parameter is a customer's name, or a customer's phone number. Neat right? |
+| File path                      | A string of words that represents where a file in your computer is located. You may refer to [Appendix: What are file paths and root directories?](#what-are-file-paths-and-root-directories) for a more detailed explanation.                                                                                                            |
+| Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.         |
+
+<div align="right">
+
+[ <a href="#glossary">To start section: Glossary</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # FAQ
@@ -443,29 +867,45 @@ If your changes to the data file makes its format invalid, ArtBuddy will discard
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ArtBuddy home folder.
 
+**Q**: Why isn't my file path being recognised by ArtBuddy?  
+**A**: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
+So do check that the file path you specified starts with a '/'. Please also make sure that your specified file path does
+not fall under the limitations of file paths in ArtBuddy mentioned in the [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli).
+If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
+
+<div align="right">
+
+[ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Command summary
 
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Open customer** | `opencus INDEX`<br> e.g., `opencus 2`
-**Add customer** | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons`
-**Edit customer** | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `editcus 1 p/91234567 e/johndoe@example.com`
-**Delete customer** | `delcus INDEX`<br> e.g., `delcus 14`
-**Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
-**Add commission** | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi`
-**Edit commission** | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., `editcom 1 n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
-**Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
-**Add Iteration** | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
-**Edit Iteration**| `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
-**Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
-**List customers**| `list`
-**Find customers**| `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. `find -all t/friend t/colleague`
-**Sort customers**| `sortcus PREFIX/SUFFIX`<br> e.g., `sortcus n/+`
-**List commissions**| `listcom`
-**View all Commissions** | `allcom`
-**Find commissions**| `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`
-**Clear everything**| `clear`
-**Exit** | `exit`
+| Action                   | Format, Examples                                                                                                                                                                                                                                                                                                                      |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                 | `help`                                                                                                                                                                                                                                                                                                                                |
+| **Open customer**        | `opencus INDEX`<br> e.g., <code>opencus <em>2</em></code>                                                                                                                                                                                                                                                                             |
+| **Add customer**         | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em></code>                                                                                               |
+| **Edit customer**        | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code>                                                                                                                                                                     |
+| **Delete customer**      | `delcus INDEX`<br> e.g., <code>delcus <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| **Open Commission**      | `opencom INDEX`<br> e.g., <code>opencom <em>14</em></code>                                                                                                                                                                                                                                                                            |
+| **Add commission**       | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> t/<em>chibi</em></code>                                                                                                                                                              |
+| **Edit commission**      | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code> |
+| **Delete Commission**    | `delcom INDEX`<br> e.g., <code>delcom <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| **Add Iteration**        | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., <code>additer n/<em>Draft 1</em> f/<em>Good</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Bread.jpeg</em></code>                                                                                                                                              |
+| **Edit Iteration**       | `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, <code>edititer <em>2</em> n/<em>Sketch</em></code>                                                                                                                                                                                                       |
+| **Delete Iteration**     | `deliter INDEX`<br> e.g., <code>deliter <em>1</em></code>                                                                                                                                                                                                                                                                             |
+| **List customers**       | `list`                                                                                                                                                                                                                                                                                                                                |
+| **Find customers**       | `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. <code>find -all t/<em>friend</em> t/<em>colleague</em></code>                                                                                                                                                                                                         |
+| **Sort customers**       | `sortcus PREFIX/SUFFIX`<br> e.g., <code>sortcus n/<em>+</em></code>                                                                                                                                                                                                                                                                   |
+| **List commissions**     | `listcom`                                                                                                                                                                                                                                                                                                                             |
+| **View all Commissions** | `allcom`                                                                                                                                                                                                                                                                                                                              |
+| **Find commissions**     | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                                                                              |
+| **Clear everything**     | `clear`                                                                                                                                                                                                                                                                                                                               |
+| **Exit**                 | `exit`                                                                                                                                                                                                                                                                                                                                |
+
+<div align="right">
+
+[ <a href="#command-summary">To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
