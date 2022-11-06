@@ -29,6 +29,11 @@ title: Developer Guide
   - [Non-function Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Adding a book](#adding-a-book)
+  - [Adding a user](#adding-a-user)
+  - [Deleting a book](#deleting-a-book)
+  - [Deleting a user](#deleting-a-user)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -753,33 +758,114 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Enter `java -jar BookFace.jar` into the command prompt/terminal. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-### Deleting a person
 
-1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Adding a book
+1. Adding a book while all books are being shown
+   1. Prequisites: List all books using the `list books` or `list all` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `add book t/Moby Dick a/Herman Melville`<br>
+      Expected: Successful addition of the book to the bottom of the book list. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `add book t/Moby Dick`<br>
+      Expected: No book is added. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect add book commands to try: `add book`, `add book t/Herman Melville`, `...` (where one or more compulsory parameter prefixes are missing) <br>
+      Expected: Similar to previous
+
+### Adding a user
+1. Adding a user while all users are being shown
+   
+   1. Prerequisites: List all users using the `list users` or `list all` command.
+
+   2. Test case: `add user n/James Bond p/96629813 e/jamesbond@gmail.com`<br>
+      Expected: Successful addition of the user to the bottom of the person list.
+
+   3. Test case: `add user n/James Bond p/96629813`<br>
+      Expected: No user is added. Error details shown in the status message.
+
+   4. Other incorrect add user commands to try: `add user`, `add user n/James Bond`, `...` (where one or more compulsory parameter prefixes are missing) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Deleting a book
+1. Deleting a book 
+   1. Prequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in the book list. 
+
+   2. Test case: `delete book 1`<br>
+      Expected: First book is deleted from the book list. Details of the deleted book is shown in the status message.
+
+   3. Test case: `delete book 0`<br>
+      Expected: No book is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete book commands to try: `delete book`, `delete book x`, `...` (where x is larger than the book list size)<br>
+      Expected: Similar to previous
+
+2. Deleting a book that is loaned out
+   1. Prerequisites: At least one or more user and book in BookFace, and book is loaned out using the `loan 1 1` command.
+
+   2. Test case: `delete book 1`<br> 
+      Expected: No book is deleted. Error message preventing the deletion of loan books is shown in the status message.
+
+### Deleting a user
+
+1. Deleting a user while all users are being shown
+
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in the person list.
+
+   2. Test case: `delete user 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+
+   3. Test case: `delete user 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete user commands to try: `delete user`, `delete user x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Loaning a book
+
+
+### Returning a book
+
+
+### Finding a book
+
+
+### Finding a user
+
+
+### Editing a book
+
+
+### Editing a user
+
+
+### Listing all books
+
+
+### Listing all users
+
+
+
+### Listing all books and user
+
+
+### Listing all loans
+
+
+### Listing all overdue loans
+
 
 ### Saving data
 
