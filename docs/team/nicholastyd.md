@@ -39,7 +39,7 @@ Contributions to the DG:
 Contributions to team-based tasks:
 - Updated v1.3 .jar release file
 
-Review/mentoring contributions: 
+Review/mentoring contributions:
 - [PR review 1](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/138)
 - [PR review 2](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/81)
 - [PR review 3](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/76)
