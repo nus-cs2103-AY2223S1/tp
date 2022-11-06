@@ -59,12 +59,14 @@ Given below are my contributions to the project.
       [#276](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/276).
         * Added installation section for the PayMeLah application with diagrams and tutorial links
       [#269](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/269).
+        * Restructured features section by type of feature
+      [#279](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/279).
       
     * Developer Guide:
         * Updated Model and Storage component diagrams to accommodate `Telegram` field 
       [#194](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/194).
         * Added implementation details for the features `cleardebts`, `deletedebt` and `splitdebt`
-      [#194](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/194).
+      [#324](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/194), [#327](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/327).
         * Initial drafting of skeleton of Developer Guide user profile, user story, and user value sections
       [#31](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/31).
 
