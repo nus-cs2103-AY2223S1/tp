@@ -33,9 +33,9 @@ public class CommandResult {
 
     private TuitionClass deletedClass;
 
-    /** Types of command which are passed to the Ui to determine actions to take for each type **/
+    /** Types of command which are passed to the Ui to determine actions to take for each type. **/
     public enum CommandType {
-        ADD, EDIT, DELETE, SORT, CLEAR, FIND, LIST, EXIT, HELP, SHOW, ASSIGN, UNASSIGN, NOK, OTHER
+        ADD, ADDSTUDENT, ADDTUTOR, EDIT, DELETE, SORT, CLEAR, FIND, LIST, EXIT, HELP, SHOW, ASSIGN, UNASSIGN, NOK, OTHER
     }
 
     /**
@@ -44,7 +44,8 @@ public class CommandResult {
      * ExitCommand.
      */
     public CommandResult(String feedbackToUser, CommandType type) {
-        assert(type == CommandType.ADD
+        assert(type == CommandType.ADDSTUDENT
+                || type == CommandType.ADDTUTOR
                 || type == CommandType.LIST
                 || type == CommandType.HELP
                 || type == CommandType.EXIT
@@ -172,7 +173,6 @@ public class CommandResult {
 
     public boolean isUpdateDescription() {
         return this.commandType == CommandType.ASSIGN
-                || this.commandType == CommandType.EDIT
                 || this.commandType == CommandType.SHOW
                 || this.commandType == CommandType.NOK;
     }
@@ -181,8 +181,16 @@ public class CommandResult {
         return this.commandType == CommandType.DELETE;
     }
 
-    public boolean isAdd() {
-        return this.commandType == CommandType.ADD;
+    public boolean isAddStudent() {
+        return this.commandType == CommandType.ADDSTUDENT;
+    }
+
+    public boolean isAddTutor() {
+        return this.commandType == CommandType.ADDTUTOR;
+    }
+
+    public boolean isEdit() {
+        return this.commandType == CommandType.EDIT;
     }
 
     @Override

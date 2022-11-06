@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandResult.CommandType.ADD;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDSTUDENT;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDTUTOR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
@@ -33,7 +34,7 @@ public class AddCommandIntegrationTest { //todo
         expectedModel.addPerson(validStudent);
 
         assertCommandSuccess(AddCommand.of(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel, ADD);
+                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel, ADDSTUDENT);
 
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         Tutor validTutor = new TutorBuilder().build();
@@ -42,7 +43,7 @@ public class AddCommandIntegrationTest { //todo
         expectedModel.addPerson(validTutor);
 
         assertCommandSuccess(AddCommand.of(validTutor), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validTutor), expectedModel, ADD);
+                String.format(AddCommand.MESSAGE_SUCCESS, validTutor), expectedModel, ADDTUTOR);
     }
 
     @Test
@@ -54,7 +55,7 @@ public class AddCommandIntegrationTest { //todo
         expectedModel.addTuitionClass(validClass);
 
         assertCommandSuccess(AddCommand.of(validClass), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validClass), expectedModel, ADD);
+                String.format(AddCommand.MESSAGE_SUCCESS, validClass), expectedModel);
     }
 
     @Test
