@@ -186,7 +186,9 @@ Format: `help`
 Shortcut key: <kbd>F1</kbd> 
 </div>
 
-### Adding a task: `add`
+### Task Management
+
+#### Adding a task: `add`
 
 Adds a task to the task list.
 
@@ -214,7 +216,7 @@ Examples:
 ![Before image of Add Command](images/user-guide/AddCommandBefore.png)
 ![After image of Add Command](images/user-guide/AddCommandAfter.png)
 
-### Editing a task : `edit`
+#### Editing a task : `edit`
 
 Edits an existing task in the task list, at least one field needs to be edited.
 
@@ -235,7 +237,7 @@ Examples:
 
 ![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
 
-### Deleting a task : `delete`
+#### Deleting a task : `delete`
 
 Allows user to delete a task from task list.
 
@@ -249,7 +251,7 @@ Examples:
 ![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
 ![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
 
-### Marking a task as completed: `mark`
+#### Marking a task as completed: `mark`
 
 Mark a task as complete.
 
@@ -261,7 +263,7 @@ Example: `mark 2`
 
 ![Example image of Mark Command](images/user-guide/MarkCommandDemo.png)
 
-### Unmarking a task: `unmark`
+#### Unmarking a task: `unmark`
 
 Unmark a task, ie mark a task as incomplete.
 
@@ -271,7 +273,7 @@ Format: `unmark TASK_NUMBER`
 
 Example: `unmark 2`
 
-### Tagging a task: `tag`
+#### Tagging a task: `tag`
 
 Allows you to tag a task.
 
@@ -290,6 +292,13 @@ Clears all entries of tasks in the task list.
 
 Format: `clear`
 
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning:**
+
+This command is irreversible!
+
+</div>
 
 ### List : `ls`
 
@@ -387,7 +396,10 @@ finds **any** task name that contain keywords `week` or `tut` or **any** tag tha
 <br>(Note that it is not limited to only 2 keywords)
 
 Example multiple word search: ![FindCommandMultiple](images/user-guide/FindCommandMultiple.png)
-### Archiving data files : `archive`
+
+### Archive Management
+
+#### Archiving tasks : `archive`
 
 Allows you to remove a task from task list and store in archived file.
 
@@ -406,7 +418,7 @@ This command is irreversible!
 </div>
 
 
-### View Archived Tasks : `showarchive`
+#### View archived tasks : `showarchive`
 
 Displays a list of archived tasks.
 
