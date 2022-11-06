@@ -170,7 +170,7 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
   Duplicate persons are not allowed.
 * `LINK_INDEX` refers to the displayed index of the internship the person is in charge of. 
 Specified internship will be linked as the internship of the person.
-* `Tags` must be alphanumeric and can only be one word.
+* `TAG` must be alphanumeric and can only be one word.
 * `COMPANY` refers to the company the contact person is working at.
 
 <div markdown="block" class="alert alert-info">
