@@ -18,7 +18,10 @@ If you are a developer that recently joined the PayMeLah development team, or a 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* JavaFX for providing the API for rendering GUI.
+* Jackson for providing the API for parsing JSON files.
+* JUnit for providing a unit testing framework.
+* [Zephyr](https://stackoverflow.com/users/6485651/zephyr) for providing [inspiration](https://stackoverflow.com/a/52458162) for the right-aligned label in the `PersonListPanel` class.
 
 --------------------------------------------------------------------------------------------------------------------
 
