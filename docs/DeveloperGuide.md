@@ -422,9 +422,8 @@ object to display that the exam was successfully added.
 
 
 <div markdown="span" class="alert alert-info">
-:information_source: 
 
-**Note:**
+:information_source: **Note:**
 
 * For step 4, the `Exam` object will not be created if the exam description or exam date or module 
 is not valid. Exam description is not valid if it is an empty string, exam date is not valid 
@@ -479,9 +478,8 @@ by the predicate (which is the `DescriptionContainsKeywordsPredicate` object cre
 display the tasks which match the keyword. Then, a `CommandResult` object is returned to the `LogicManager` object.
 
 <div markdown="span" class="alert alert-info">
-:information_source: 
 
-**Note:**
+:information_source: **Note:**
 
 * For Step 4, `FindTasksCommandParser#parse` will not return a new `FindTasksCommand` object if the keyword is empty. 
 
