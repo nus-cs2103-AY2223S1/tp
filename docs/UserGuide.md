@@ -496,7 +496,7 @@ Note:
 * The order of the conditions does not matter.
 * At least one input must be provided, `find` cannot work with no inputs.
 
-#### Combining inputs to `find`
+##### Combining inputs to `find`
 
 When multiple inputs are provided to `find`, only people matching all conditions will be shown.
 
