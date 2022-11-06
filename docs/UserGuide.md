@@ -260,9 +260,9 @@ Format: `listAT`
 
 * Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
 
-### Removing a tasks: `deleteT`
+### Deleting a task: `deleteT`
 
-Removes a task from the task list.
+Deletes a task from the task list.
 
 Format: `deleteT INDEX`
 
