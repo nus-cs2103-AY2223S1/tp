@@ -47,8 +47,7 @@ public class AddcCommand extends Command {
 
         for (ModuleClass moduleClass : moduleClasses) {
             if (model.hasModuleClass(moduleClass)) {
-                ModuleClass existingModuleClass = model.getModuleClassWithSameName(moduleClass);
-                duplicateClasses.add(existingModuleClass);
+                duplicateClasses.add(moduleClass);
             } else {
                 newClasses.add(moduleClass);
             }

@@ -1,13 +1,13 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
+import static seedu.taassist.logic.commands.CommandUtil.requireSessionsExists;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -28,7 +28,6 @@ public class DeletesCommand extends Command {
             + PREFIX_SESSION + "Lab1";
 
     public static final String MESSAGE_SUCCESS = "Session(s) deleted: [ %s ]";
-    public static final String MESSAGE_SESSION_DOES_NOT_EXIST = "Session [ %s ] does not exist!";
 
     private final Set<Session> sessions;
 
@@ -42,26 +41,12 @@ public class DeletesCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
         requireNonNull(model);
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
-
+        requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
-
-        for (Session session: sessions) {
-            if (!focusedClass.hasSession(session)) {
-                throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, session.getSessionName()));
-            }
-        }
-
-        // Every session exists. Gets the actual name of each session.
-        Set<Session> existingSessions = sessions.stream().map(focusedClass::getSessionWithSameName)
-                .collect(Collectors.toSet());
-        model.removeSessions(focusedClass, existingSessions);
-        return new CommandResult(getCommandMessage(existingSessions));
+        requireSessionsExists(sessions, focusedClass);
+        model.removeSessions(focusedClass, sessions);
+        return new CommandResult(getCommandMessage(sessions));
     }
 
     public static String getCommandMessage(Set<Session> sessions) {

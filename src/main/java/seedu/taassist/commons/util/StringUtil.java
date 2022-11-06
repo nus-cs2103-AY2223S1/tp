@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -43,6 +44,21 @@ public class StringUtil<T> {
     }
 
     /**
+     * Capitalises the first letter of each word in the trimmed {@code str} and sets the remaining characters
+     * to lowercase.
+     */
+    public static String capitalise(String str) {
+        requireNonNull(str);
+        String trimmedString = str.trim();
+        if (trimmedString.length() <= 1) {
+            return trimmedString.toUpperCase();
+        }
+        return Arrays.stream(trimmedString.toLowerCase().split(" "))
+                .map(w -> w.substring(0, 1).toUpperCase() + w.substring(1))
+                .collect(Collectors.joining(" "));
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
@@ -70,6 +86,9 @@ public class StringUtil<T> {
         }
     }
 
+    /**
+     * Joins the string representation of each object in {@code objects} with a comma.
+     */
     public static <T> String commaSeparate(Collection<? extends T> objects, Function<T, String> fn) {
         return objects.stream().map(fn).collect(Collectors.joining(", "));
     }

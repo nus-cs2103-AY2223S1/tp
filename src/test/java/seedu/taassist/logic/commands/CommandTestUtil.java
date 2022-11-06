@@ -39,7 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_CLASS_CS1101S = "CS1101S";
     public static final String VALID_CLASS_CS1231S = "CS1231S";
-    public static final String VALID_SESSION_LAB1 = "LAB_1";
+    public static final String VALID_SESSION_LAB1 = "Lab_1";
     public static final String VALID_SESSION_TUT3 = "Tutorial 3";
     public static final String VALID_DATE = "2022-01-01";
     public static final String VALID_GRADE_VALUE_12345 = "12.345";
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_CLASS_DESC = " " + PREFIX_MODULE_CLASS + "CS1101S*"; // '*' not allowed
     public static final String INVALID_INDEX = "-1"; // non-positive indices not allowed
     public static final String INVALID_SESSION_NAME = " " + PREFIX_SESSION + "foo,bar"; // ',' not allowed
-    public static final String INVALID_DATE = "2022/01/01";
+    public static final String INVALID_DATE = "2022/01/01"; // should be `-` instead of '/'
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + INVALID_DATE;
     public static final String INVALID_GRADE_VALUE_DESC = " " + PREFIX_GRADE + "foo"; // strings not allowed
 
