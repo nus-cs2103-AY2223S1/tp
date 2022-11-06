@@ -301,7 +301,7 @@ Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
-### 5.4. Edit a module feature
+### 5.4. The edit a module feature
 
 #### Implementation
 
