@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-1/tp/blob/master/src/main/java/seedu/travelr/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -242,7 +242,7 @@ contains all events added to Travelr.
 Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
-sample Travelr data.
+initial Travelr state.
 
 Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
@@ -280,7 +280,7 @@ It extends `Command` with some tests that checks the event and trip.
 Given below is an example usage scenario of how the add event to trip's mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
-initial Travelr book state.
+initial Travelr state.
 
 Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
@@ -322,7 +322,7 @@ in the display of completed trips and events.
 Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `Travelr` will be initialised with the
-initial Travelr book state.
+initial Travelr state.
 
 Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
@@ -337,7 +337,7 @@ and 'Try Takoyakis'.
 
 The following sequence diagram shows how the completed command works:
 
-<img src="images/ViewCompletedSequenceDiagram.png" width="550" />
+<img src="images/ViewCompletedSequenceDiagram.png" width="650" />
 
 ### \[Implemented\] Display Travelr Summary Window
 #### Implementation
@@ -356,7 +356,7 @@ These methods added to the `ModelManager` helps to manage the `SummaryVariables`
 
 Given below is an example usage scenario and how the summary mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `Travelr` will be initialized with the initial Travelr state, with no trips or events added.
+Step 1. The user launches the application for the first time. The `Travelr` will be initialized with the initial Travelr state.
 
 Step 2. The user executes `add n/Trip Name ...` to add a new trip, and `add-e n/Event Name ...` to add a new event. Throughout the usage of the app, the user adds multiple trips and events to Travelr, and also uses `add-et n/Event Name t/Trip Name ...` to add events to trips. 
 
@@ -389,11 +389,7 @@ The following sequence diagram shows how the GUI displays the Summary Window:
 * **Alternative 2:** Overlay the summary panel over the trips and events panel in the main window.
   * Pros: Easier for users to see the summary information from one window.
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -427,19 +423,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                    | So that I can…​                                         |
+| Priority | As a …​                            | I want to …​                    | So that I can…​                                |
 |----------|------------------------------------|---------------------------------|---------------------------------------------------------|
 | `* * *`  | user                               | add events and trips            | keep track of what I want to do                         |
+| `* * *`  | user                               | delete events and trips         | remove the unwanted event and trips                     |
+| `* * *`  | user                               | add an event  to a trip         | assign event to trip                                    |
+| `* * *`  | user                               | delete an event from trip       | unassign an event from trip                             |
 | `* * *`  | user                               | view all the events in the list | refer to it whenever I want                             |
 | `* * *`  | user                               | save events into local storage  | access the data whenever I want                         |
-| `* * *`  | user                               | delete events and trips         | remove the unwanted event and trips                     |
-| `* *`    | user                               | hide private contact details    | minimize chance of someone else seeing them by accident |
+| `* * *`  | user                               | display events in a trip        | keep track of what events I assigned to a trip          |
+| `* * *`  | user                               | mark a trip as done             | remind myself that I have completed a trip              |
+| `* * *`  | user                               | mark a trip as not done         | tell myself I have not completed a trip                 |
+| `* * *`  | user                               | view all trips I have completed | see what trips and events I have completed              |
 | `* *`    | user who often change his/her mind | update the details              | easily change things                                    |
 | `* *`    | user                               | categorize my events            | keep track of each category                             |
 | `*`      | user                               | reuse past itineraries          | use it when I want to                                   |
 | `*`      | user                               | view the total budget needed    | keep track of the budget                                |
 
-*{More to be added}*
 
 ### Use Cases
 Software System: Travelr
