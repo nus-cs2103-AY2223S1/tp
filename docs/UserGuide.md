@@ -163,7 +163,7 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
    
 :point_up: <strong>Use case:</strong><br>
    
-Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
+   Planning an upcoming trip? Use the <code>add</code> command to add a new trip to your trip list!
 </div>
 
 Examples:
@@ -231,7 +231,7 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
    
 :point_up: <strong>Use case:</strong><br> 
    
-<code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
+<code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the <code>select</code> command.
 
 </div>
 
@@ -471,8 +471,8 @@ Travelr data are saved locally automatically after any command. There is no need
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
 ### Icons
-|**Icon**|**Explanation**|
-|:-:|:--|
+|<strong>Icon</strong>|<strong>Explanation</strong>|
+|:-:|:-:|
 |:information_source:|The segment will provide useful information for using Travelr.|
 |:warning:|The segment will provide important notes about Travelr.|
 |:point_up:|The segment explains the uses of a feature.|
