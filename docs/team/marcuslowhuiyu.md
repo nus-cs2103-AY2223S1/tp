@@ -15,7 +15,7 @@ Around 500 lines of code according to the [RepoSense Link](https://nus-cs2103-ay
 
 - **New Feature**: Modified `Comments` to behave as a list rather than a string
     - Purpose: Allows for multiple comments to be added to a singular tutor
-    
+
 ### Contributions to the UG
 - Added documentation for `comment` and `deletecomment` commands
 
