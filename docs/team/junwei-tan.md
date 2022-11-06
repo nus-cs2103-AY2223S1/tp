@@ -12,7 +12,7 @@ It is written in Java, and has about XXX kLoC.
 Given below are my contributions to the project.
 
 * **New feature**: Added ability to archive/unarchive tasks
-  * What it does:  allow users to mark a task as archived
+  * What it does:  allows users to mark a task as archived
   * Justification: users may wish to remove a task from their task list but be able to access it at a later time
 
 * **New feature**: Undo / Redo Command
@@ -38,8 +38,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated find contact command to search all fields in addition to name [\#110](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/110)
     * Added unique id to contacts using Java UUID class [\#168](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/168)
-    * Added Task class to model and implemented deadline/description class [\#126](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/126) 
-    * Wrote additional tests for existing features to increase coverage
+    * Added CompletionStatus and ArchivalStatus class [\#263](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/263) 
+    * Wrote additional tests for newly added and existing features to increase coverage
 
 * **Documentation**:
     * User Guide:
