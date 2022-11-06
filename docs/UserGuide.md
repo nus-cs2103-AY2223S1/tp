@@ -606,6 +606,7 @@ Closes the YellowBook program.
 
 [[Back to Table of Contents](#table-of-contents)]
 
+--------------------------------------------------------------------------------------------------------------------
 ## Automatic tab switching
 
 Depending on the command you enter, you will see the open tab in the GUI switch automatically.
@@ -614,6 +615,9 @@ For example, when using a task-related command, the tab switches to "Task" and t
 The result of the entered command is displayed.
 For example, after adding a new contact, the list shown on the GUI is the updated list with your new contact included.
 
+[[Back to Table of Contents](#table-of-contents)]
+
+--------------------------------------------------------------------------------------------------------------------
 ## YellowBook data
 ### Saving the data
 
@@ -678,3 +682,5 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **addL**       | **add** **L**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`         |
 | **deleteL**    | **delete** **L**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]` |
 | **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                       |
+
+[[Back to Table of Contents](#table-of-contents)]
