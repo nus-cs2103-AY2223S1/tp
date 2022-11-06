@@ -606,6 +606,7 @@ The individual rating values will be displayed beside each node in the performan
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
 
 - Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+
 - This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
 
 </div>
@@ -644,7 +645,7 @@ View the summarized details of a department given the name of the department.
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
 
 <p align="center">
-  <img src="images/ui-screenshots/view_department.png"></img>
+  <img src="images/ui-screenshots/view_department.png" />
   <br><em>Result of view-department on General Management</em>
 </p>
 
