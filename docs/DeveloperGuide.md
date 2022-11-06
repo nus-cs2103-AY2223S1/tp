@@ -166,7 +166,7 @@ Examples of usage:
 * `select -c 10`
 
 
-### Range feature [Zacchaeus]
+### Range feature
 
 The range feature allows the user to filter properties by a price range in Condonery.
 
@@ -184,9 +184,7 @@ These are the steps that will be taken when parsing a range command:
 3. If the user command is valid, the parser creates the corresponding `Command` object for execution.
 
 Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/<LOWER> u/<UPPER>`
-API call.
-- Note that the command is truncated for brevity and <LOWER> and <UPPER> are used as placeholders to encapsulate the remaining arguments supplied by the user.
-- For example, if the full command was `range -p l/100,000 u/500,000`, then `l/<LOWER> u/<UPPER>` is equivalent to `l/100,000 u/500,000`.
+API call. Note that the command (e.g., `range -p l/100,000 u/500,000`)is truncated for brevity.
 
 ![RangeSequenceDiagram](images/RangeSequenceDiagram.png)
 
@@ -203,7 +201,7 @@ Next, a `CommandResult` object containing the message to be displayed to the use
 
 **Error handling within the `Logic` component**
 
-The below activity diagram shows the overall process of execution of `execute(range -p l/100 u/200`.
+The below activity diagram shows the overall process of execution of `execute(range -p l/100 u/200)`.
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 
@@ -232,7 +230,48 @@ Aspect: How to filter properties by prices
 
 Alternative 1 was chosen to enable more efficient parsing of commands.
 
-`PropertyPriceWithinRangePredicate`
+### Filter feature
+
+The filter feature returns a list of properties whose tags contain any of the given keywords.
+
+The feature is activated by the command pattern `filter -p TAG [MORE_TAGS]`.
+
+**Parsing of command within the `Logic` component**
+
+Much like the other core features, we introduced an intermediate between `CondoneryParser` and the filter command parser,
+that is the `FilterPropertyCommandParser`.
+
+These are the steps that will be taken when parsing a range command:
+
+1. The `CondoneryParser` checks if the user command is a filter command. Then it creates a `FilterPropertyCommandParser`.
+2. The `FilterPropertyCommandParser` which implements the `Parser` interface, parses the command via `Parser#parse`.
+3. If the user command is valid, the parser creates the corresponding `Command` object for execution.
+
+Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/<LOWER> u/<UPPER>`
+API call. Note that the command (e.g., `filter -p High-end Luxury` is truncated for brevity.
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+**Execution of command within the `Logic` component**
+
+When a `FilterPropertyCommand` is created by the `FilterPropertyCommandParser`, it is executed with `model` passed in
+as the parameter.
+
+Firstly, the `updateFilteredPropertyList` is called to get the list of properties whose tags match any of the given arguments.
+
+Next, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![FilterExecuteSequenceDiagram](images/FilterExecuteSequenceDiagram.png)
+
+**Error handling within the `Logic` component**
+
+The below activity diagram shows the overall process of execution of `execute(range -p l/100 u/200`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+
+- Incorrect command format is used (e.g. missing tag argument)
+
+![RangeActivityDiagram](images/RangeActivityDiagram.png)
 
 ### Commands
 

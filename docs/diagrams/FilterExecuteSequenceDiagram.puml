@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant "a:RangePropertyCommand" as RangePropertyCommand LOGIC_COLOR
+participant "a:FilterPropertyCommand" as FilterPropertyCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -11,24 +11,24 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-LogicManager -> RangePropertyCommand : execute(model)
-activate RangePropertyCommand
+LogicManager -> FilterPropertyCommand : execute(model)
+activate FilterPropertyCommand
 
-RangePropertyCommand -> Model : updateFilteredPropertyList(...)
+FilterPropertyCommand -> Model : updateFilteredPropertyList(...)
 activate Model
 
-Model -> RangePropertyCommand
+Model -> FilterPropertyCommand
 deactivate Model
 
 create CommandResult
-RangePropertyCommand -> CommandResult
+FilterPropertyCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> RangePropertyCommand
+CommandResult --> FilterPropertyCommand
 deactivate CommandResult
 
-RangePropertyCommand --> LogicManager : result
-deactivate RangePropertyCommand
+FilterPropertyCommand --> LogicManager : result
+deactivate FilterPropertyCommand
 
 [<--LogicManager
 deactivate LogicManager
