@@ -21,10 +21,13 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=boredcoco&breakdown=true)
 
-* **Functionality**
+* **Functionality**: Predicates
   * Wrote Predicates (ie. PetNameContainsKeywordsPredicate) for Find and Filter functions
   * Predicates pertain to Buyers, Deliverers, Suppliers, Pets and Orders
   * These predicates help in the implementation of Find and Filter commands.
+
+* **Functionality**: Implemented some parser utility methods for predicates.
+  * Wrote PredicateParser class which generates Predicates pertaining to Buyer, Suppliers, Deliverers, Pets or Orders from the user input.
 
 * **Project management**:
     * *Managed testing and writing test code [\#280](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/280#issue-1428340017)*.
