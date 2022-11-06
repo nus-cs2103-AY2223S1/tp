@@ -7,11 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -64,13 +59,7 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
-//import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Pet;
-//import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
-//import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
-//import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
-//import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
-//import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PetBuilder;
@@ -200,34 +189,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
-    /*
-    @Test
-    public void parseCommand_filterPet() throws Exception {
-        ColorContainsKeywordsPredicate colorContainsKeywordsPredicate = new ColorContainsKeywordsPredicate(
-                Arrays.asList("grey"));
-        PetNameContainsKeywordsPredicate petNameContainsKeywordsPredicate = new PetNameContainsKeywordsPredicate(
-                Arrays.asList("ashy"));
-        PriceContainsKeywordsPredicate priceContainsKeywordsPredicate = new PriceContainsKeywordsPredicate(
-                Arrays.asList(5.5));
-        SpeciesContainsKeywordsPredicate speciesContainsKeywordsPredicate = new SpeciesContainsKeywordsPredicate(
-                Arrays.asList("cat"));
-        VaccinationStatusPredicate vaccinationStatusPredicate = new VaccinationStatusPredicate(true);
-        FilterPetCommand command = new FilterPetCommand(
-                colorContainsKeywordsPredicate,
-                petNameContainsKeywordsPredicate,
-                priceContainsKeywordsPredicate,
-                speciesContainsKeywordsPredicate, vaccinationStatusPredicate);
-        String input = FilterPetCommand.COMMAND_WORD + " "
-                + PREFIX_PET_COLOR + "grey "
-                + PREFIX_PET_NAME + "ashy "
-                + PREFIX_PET_PRICE + "5.5 "
-                + PREFIX_PET_SPECIES + "cat "
-                + PREFIX_PET_VACCINATION_STATUS + "true";
-        assertEquals(parser.parseCommand(input), command);
-    }
-
-     */
 
     @Test
     public void parseCommand_filterOrder() throws Exception {
