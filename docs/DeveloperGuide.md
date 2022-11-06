@@ -99,7 +99,7 @@ The `UI` component,
 
 **Description**
 
-The `Logic` component handles the execution of the user input. `Logic` parses the user input to decide the type of command to be executed.
+The `Logic` component handles the execution of the user input. It manages the parsing of the user input to decide the type of command to be executed.
 
 **Components**
 
@@ -145,15 +145,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 **Description**
 
-The `Model` component stores and handles 
+The `Model` component stores and handles the UniNurse data. The data in this component is represented by objects that simulate real-life entities and the associations between these entities.
 
 **Components**
 
-
-**Functionality**
-
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="550" />
 
 The `Model` component,
 
@@ -161,8 +157,11 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* _Diagram to be updated with new `Patient` attributes ..._
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+* ***Diagram to be updated with new `Patient` attributes ...***
+* 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -175,7 +174,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/storage/Storage.java)
+
+**Description**
+
+The `Storage` component saves and stores UniNurse data in a JSON file format. It also reads the stored data back into UniNurse.
+
+**Components**
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
