@@ -29,9 +29,7 @@ Given below are my contributions to the project.
   * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing and leaves space if more distinct attributes are added them in the future.
   * Highlights: This makes use of polymorphism as there is a need to abstract out the common logic in all three types of `EditCommand`.
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wu-lezheng&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Wu-Lezheng&tabRepo=AY2223S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
 
 * **Project management**:
   * Managed releases `v1.3` on GitHub ([Link to v1.3 release](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases/tag/v1.3.1))
@@ -39,14 +37,12 @@ Given below are my contributions to the project.
   * Created and assigned issues to team members on GitHub.
   * Created labels and categorised issues on GitHub.
 
-
 * **Enhancements to existing features**:
   * Updated the style of GUI and its layout. (Pull request: [#142](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/142))
   * Categorised all Java classes into their respective packages. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
   * Adapted the `CommandResult` class to the added/modified commands.
   * Wrote additional tests to increase test coverage.
   * Fixed several bugs. (Pull requests: [#325](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/325), [#362](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/362))
-
 
 * **Documentation**:
   * User Guide:
@@ -64,7 +60,6 @@ Given below are my contributions to the project.
                     [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205),
                     [#372](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/372))
 
-
 * **Community**:
   * PRs reviewed and clarifications on own PRs (with non-trivial comments):
     [\#156](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/156#discussion_r1000077198),
@@ -76,7 +71,6 @@ Given below are my contributions to the project.
     [#178](https://github.com/AY2223S1-CS2103T-W08-2/tp/issues/178),
     [#186](https://github.com/AY2223S1-CS2103T-W08-2/tp/issues/186),
     [#195](https://github.com/AY2223S1-CS2103T-W08-2/tp/issues/195).
-
 
 * **Tools**:
   * Used JavaFX to modify the UI.
