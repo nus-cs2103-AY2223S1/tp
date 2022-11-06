@@ -350,7 +350,7 @@ The `isAvailable()` method takes in a time stamp as a `DayTimeInWeek` object, an
 
 The following class diagram shows the relationship between the classes:
 
-<img src="images/TimeIntervalClassDiagram.png" width="550" />
+<img src="images/TimeIntervalClassDiagram.png" width="275" />
 
 ### *Servers, GameTypes and Socials as Coloured Tags in Friend's profile*
 Whenever the user updates the in-game preferences or social handles of a friend, they are displayed as 
