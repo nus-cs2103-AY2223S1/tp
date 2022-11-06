@@ -2,14 +2,18 @@
 start
 :User executes command;
 if () then ([command is valid])
+  if () then ([all input fields are valid])
   :Update filtered task list;
   :Display filtered task list;
-else ([else])
-  if () then([module does not exist])
-    :Display module not found error message;
   else ([else])
-    :Display status should be complete or incomplete;
+    if () then([module does not exist])
+      :Display module not found error message;
+    else ([else])
+      :Display response constraints error message;
+    endif
   endif
+else ([else])
+  :Display invalid command error message and filter message usage;
 endif
 
 stop
