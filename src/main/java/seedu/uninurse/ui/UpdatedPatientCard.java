@@ -332,6 +332,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 + "-fx-text-fill: black;");
 
         remarkBox.getChildren().add(remarkLabel);
+        remarkBox.setMinHeight(VBox.USE_PREF_SIZE);
         return remarkBox;
     }
 
@@ -347,8 +348,8 @@ public class UpdatedPatientCard extends UiPart<Region> {
         remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                 + "-fx-font-size: 13px;"
                 + "-fx-text-fill: black;");
-
         remarkBox.getChildren().add(remarkLabel);
+        remarkBox.setMinHeight(VBox.USE_PREF_SIZE);
         return remarkBox;
     }
 
