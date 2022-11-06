@@ -327,20 +327,6 @@ Examples:
 * `task assign 1 +@1 +@Alex Yeoh -@Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 ---
-### Viewing all Tasks assigned to a Teammate: `task list @`
-
-Lists all the task(s) that have been assigned to the specified teammate.
-
-Format: `task list @PERSON_INDEX`
-* Shows the tasks of the specified `PERSON_INDEX`.
-* The contact refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `task list @2` shows the incomplete tasks assigned to the 2nd person in the address book.
-* `find Betsy` followed by `task list @1` shows the incomplete tasks assigned to the 1st person in the result of the `find` command.
-
----
 ### Marking completed Tasks: `task mark`
 
 Marks a task as complete.
@@ -464,6 +450,9 @@ For ease of understanding, many of these common use cases have been detailed bel
 #### 4. Filtering by Assigned Contact(s)
 `Format: task list @PERSON_INDEX...`
 - The `@` parameter allows you to search for tasks that are assigned to **all** the contact(s) you specify.
+- Shows the tasks of the specified `PERSON_INDEX`.
+- The contact refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 ##### Example
 - `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd persons from the address book.
