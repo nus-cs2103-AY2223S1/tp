@@ -118,7 +118,7 @@
     .command-container {
       page-break-before: avoid;
 
-      * + * {
+      > * + * {
         // Use old-style spacing due to unsupported
         // column-gap for flex items
         margin-left: 1rem;
