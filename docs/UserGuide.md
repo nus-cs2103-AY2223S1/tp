@@ -74,7 +74,7 @@ Throughout this user guide, there are hyperlinks which you can click on to get m
 If you are already familiar with the features of HobbyList and just want a quick summary of the commands, you can refer to this [command summary table](#8-command-summary).
 
 #### Glossary
-If you encounter an unfamiliar technical term, you can look it up in the glossary at the bottom, you can refer to this [glossary](#9-glossary).
+If you encounter an unfamiliar technical term, you can refer to this [glossary](#9-glossary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -581,7 +581,7 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 | **Clear**                         | `clear`                                                                  | `clear`                                                                                                                                                | 
 | **Exit**                          | `exit`                                                                   | `exit`                                                                                                                                                 |
 
-## 9. Glossary
+## **9. Glossary**
 
 | Terms              | Description                                                                                                                                           |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
