@@ -342,7 +342,7 @@ Current filters applied will be shown in the UI at the top bar.
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
 
-We have the following commands in this section
+We have the following commands in this section:
 
 * [Listing all tasks](#listing-all-tasks--ls--a)
 * [Listing all unmarked tasks](#listing-all-unmarked-tasks--ls--u)
