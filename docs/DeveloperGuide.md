@@ -260,7 +260,7 @@ The edit feature is facilitated through the `EditCommand` and `EditCommandParser
 the `EditCommand` class, there is a `EditPersonDescriptor` nested class which takes in all
 the updated details of the friend to be edited.
 
-MineFriends will then call the "createEditedPerson" method which will create a new person
+MineFriends will then call the `createEditedPerson` method which will create a new person
 with new details. This will then invoke a call to the `ModelManager` class to set the new person
 in the addressBook.
 
