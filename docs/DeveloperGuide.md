@@ -316,13 +316,21 @@ The proposed `Status` feature is added as an attribute under the `Person` class.
 
 A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs.
 
+Some example statuses include:
+- Application Received 
+- OA in Progress
+- Shortlisted for Interview
+- Accepted
+- Rejected
+
 The `Status` attribute is mainly implemented by the following methods:
-- `Status` can be added via the `AddCommand`
-- `Status` can be edited via the `EditCommand`.
+- `Status` can be added via the `AddCommand`, eg: `add n/John Doe e/john@mail.com p/10384280 s/Application Received` adds a new candidate with name `John Doe`, email `john@mail.com`, phone number `10384280`, and status of `Application Received`.
+- `Status` can be edited via the `EditCommand` eg: `edit 1 s/OA in Progress` edits `Status` field of the 1st candidate in CLInkedIn to `OA in Progress`.
 
 It is also additionally facilitated by these methods:
-- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
 - `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
+- `EditCommandParser#parse()` - Checks the input for the status prefix, only edits the candidate's `Status` if the entry has a `Status` prefix and a valid `Status` input
 
 Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
 1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore s/Application Received`
@@ -330,7 +338,8 @@ Here is an example of what happens when the recruiter attempts to add a candidat
 3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
 4. Each of the different arguments of a candidate (name, phone, email, address, status) are parsed by `AddCommandParser#parse()`
 5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown.
-6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+6. Else, an `AddCommand` object is generated.
+7. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
 
 Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
 1. Recruiter enters the command `edit 1 s/OA In Progress`
@@ -393,7 +402,10 @@ The proposed `Rating` feature is added as an attribute under the `Person` class.
 A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
 
 The `Rating` attribute is mainly implemented by the following methods:
-- `Rating` can be added via the `RateCommand`
+- `AddRateCommand` - Adds rating to a candidate who **does not currently have a rating**, eg: `addrate 4 rate/9` adds a `Rating` of 9 to the 4th candidate in CLInkedIn. 
+- `DeleteRateCommand` - Deletes rating of a candidate, eg: `deleterate 1` deletes rating of the 1st candidate in CLInkedIn.
+- `AddCommand` - Adds a new candidate with rating, eg: `add n/John Doe e/john@mail.com p/10384280 s/Application Received rate/9` adds a new candidate with name `John Doe`, email `john@mail.com`, phone number `10384280`, status of `Application Received` with rating of `9`. 
+- `EditCommand` - Edits the rating of a candidate, eg: `edit 2 rate/9` edits `Rating` of the 2nd candidate in CLInkedIn to `9`.
 
 It is also additionally facilitated by these methods:
 - `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
