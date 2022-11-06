@@ -504,10 +504,12 @@ manipulate the list based on their needs.
 
 A `Comparator` is used to sort the `ObservableArrayList`. Different comparators with different conditions are used to sort the
 list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
+
 `Buyer`: `BuyerComparator`
 1. `BuyerNameComparator`: sort by buyer's name
 2. `PriceRangeComparator`: sort by buyer's price range
 3. `PriorityComparator`: sort by buyer's priority
+
 `Property`: `PropertyComparator`
 4. `PropertyNameComparator`: sort by property's name
 5. `PriceComparator`: sort by property's price
@@ -620,27 +622,27 @@ automation of matching between suitable properties and buyers
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers
-| `* * *`  | property agent                             | add new properties
-| `* *`    | property agent                             | edit information without needing internet access
-| `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
-| `* *`    | property agent                             | edit contacts' details                            | easily update any changes
-| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
-| `* *`    | property agent                             | search and filter for certain characteristics     | easily find matches
-| `*`      | property agent                             | link a buyer to a property
-| `*`      | non tech-savvy user                        | be able to make use of the command-line interface without too much difficulty
-| `*`      | property agent                             | track a list of buyers who are interested in a certain property | follow up on these leads
-| `*`      | property agent                             | filter out properties that do not meet the conditions of a prospective buyer
-| `*`      | property agent                             | save tasks related to each contact                | monitor the things that I have to do
-| `*`      | property agent                             | input notes for each contact                      | easily retrieve it for future correspondence with the client
-| `*`      | property agent                             | view all existing information at a glance in a clean, visually-appealing manner
-| `*`      | property agent with many clients           | avoid duplicate contacts                          | have a neat list of active clients
-| `*`      | property agent                             | view the commission rate for each closed case and aggregated commissions for the year | track my progress
-| `*`      | property agent                             | prioritise some clients who are desperate to find a place | contact them first and close the deal more easily |
-| `*`      | property agent with a busy schedule        | know when my next free time is                    | schedule client meetings with no overlap
-| `*`      | property agent                             | keep track of the cases that I have closed        | track my progress
+| Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                                        |
+| -------- |------------------------------------------------|---------------------------------------------------------------------------------------| --------------------------------------- -----|
+| `* * *`  | property agent                                 | add new buyers                                                                        
+| `* * *`  | property agent                                 | add new properties                                                                    
+| `* *`    | property agent                                 | edit information without needing internet access                                      
+| `* *`    | disorganised property agent                    | categorise contacts as "buyer" or "seller                                             | keep track of demand and supply
+| `* *`    | property agent                                 | edit contacts' details                                                                | easily update any changes
+| `* * *`  | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria                     | easily manipulate my list in a way I want to view the information
+| `* *`    | property agent                                 | search and filter for certain characteristics                                         | easily find matches
+| `*`      | property agent                                 | link a buyer to a property                                                            
+| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         
+| `*`      | property agent                                 | track a list of buyers who are interested in a certain property                       | follow up on these leads
+| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          
+| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do
+| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients
+| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily |
+| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap
+| `*`      | property agent                                 | keep track of the cases that I have closed                                            | track my progress
 
 ### Use cases
 
@@ -738,6 +740,33 @@ Use case ends.
 1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
 2. User finds buyers that are no longer relevant (e.g. already bought a house).
 3. User executes delete command on these buyers.
+
+### Use case: Sort properties
+
+**MSS:**
+
+1. User chooses to sort properties by a specified field in a specified order.
+2. User executes sort properties command on the currently displayed properties list.
+
+Use case ends.
+
+### Use case: Sort buyers
+
+**MSS:**
+
+1. User chooses to sort buyers by a specified field in a specified order.
+2. User executes sort buyers command on the currently displayed buyer list.
+
+Use case ends.
+
+### Use case: List buyers
+
+**MSS:**
+
+1. User chooses to list buyers
+2. User executes list buyers command.
+
+Use case ends.
 
 ### Use case: Match buyer to properties
 
