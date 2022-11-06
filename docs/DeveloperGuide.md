@@ -914,7 +914,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Run a sort command, for example `sort o/position r/`. Close the app.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file or using the `java -jar` command in a terminal.<br>
        Expected: The list is still sorted in the order used before closing the app.
 
 ### Undo the previous command
