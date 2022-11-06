@@ -46,6 +46,7 @@ public class MasteryCheck extends Lesson {
         return masteryCheckDescEquality
                 && otherMasteryCheck.startDateTime().equals(startDateTime())
                 && otherMasteryCheck.endDateTime().equals(endDateTime())
+                && otherMasteryCheck.getStudentList().equals(getStudentList())
                 && otherMasteryCheck.getAttendance().equals(getAttendance());
     }
 
