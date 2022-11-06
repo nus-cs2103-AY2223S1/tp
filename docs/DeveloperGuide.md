@@ -190,6 +190,9 @@ The sequence diagram is given below.
 The sequence diagram is given below.
 ![SortPersonSequence](images/SortPersonSequence.png)
 
+The activity diagram is given below.
+![SortPersonActivity](images/SortPersonActivity.png)
+
 #### Design considerations
 
 The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
@@ -507,6 +510,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
 
+**Use case: UC5 - Sort person list**
+
+**MSS**
+1. User requests to sort person list and supplies a criterion flag.
+2. InterNUS sorts person list based on the specified criterion flag.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User submits a blank or invalid criterion flag.
+
+     * 1a1. InterNUS notifies the user that the criterion flag is invalid.
+    
+       Use case resumes at step 1.
+
+* 1b. User submits more than 1 criterion flag.
+
+     * 1b1. InterNUS notifies the user that only 1 criterion flag can be specified.
+
+       Use case resumes at step 1.
+
 *{More to be added}*
 
 
@@ -591,6 +616,46 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Sorting person list
+
+1. Sorts person list while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+      Expected: Person list is sorted by the persons' names.
+
+   1. Test case: `sort -p c/`<br>
+      Expected: Person list is sorted by the company's names that each person is working at. Persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+      Expected: Error is thrown to show that only 1 criterion flag can be used.
+
+   1. Test case: `sort -p`<br>
+      Expected: Error is thrown to show that there should be a recognisable criterion flag.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
+      Expected: Similar to previous.
+
+2. Sorts person list while not all persons are being shown
+
+   1. Prerequisites: Filter the persons list with `find -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+   Expected: Person list is sorted by the remaining persons' names.
+
+   1. Test case: `sort -p c/`<br>
+   Expected: Person list is sorted by the company's names that each remaining person is working at. Remaining persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+   Expected: Error is thrown to show that only 1 criterion flag can be used.
+
+   1. Test case: `sort -p`<br>
+   Expected: Error is thrown to show that there should be a recognisable criterion flag.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
+   Expected: Similar to previous.
 
 ### Saving data
 

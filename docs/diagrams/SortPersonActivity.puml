@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([criterion flag is valid])
+    if() then ([only 1 criterion flag is specified])
+    :Sort person list based on
+    the given criterion flag;
+    else ([else])
+    :Gives an error that only 1 criterion flag can be
+    specified without changing the person list;
+    endif
+else ([else])
+    :Gives an error that the criterion flag is
+    unrecognisable without changing the person list;
+endif
+stop
+@enduml
