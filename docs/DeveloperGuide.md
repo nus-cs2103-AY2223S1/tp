@@ -245,7 +245,7 @@ This section explains the implementation of the `add` feature. The command takes
 
 Below is a sequence diagram and explanation of how `add` is executed.
 
-<img src="images/diagrams/AddCommandUML.png" width="550" />
+<img src="images/diagrams/AddCommandUML.png" />
 
 Step 1. The user enters the command `add n/Jon j/janitor`.
 
@@ -321,6 +321,36 @@ Step 2. User input is parsed by `ViewCommandParser` which created the `ViewComma
 Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
 
 Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a messafe indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel being updated with the correct `person` information.
+
+### Rate feature
+
+This section explains the implementation of the `rate` feature.
+The command takes in 2 parameters: employee ID, and rating value.
+
+#### Implementation
+
+When a valid input is given, the `rate` command will add the given rating to the employee of the given ID.
+
+- On the UI, a new node with the rating value and timestamp will be added to the `performanceHistory` graph in the employee profile at the side panel.
+- The "Performance" field will also be updated accordingly, which reflects the latest employee rating value.
+
+Below is a sequence diagram and explanation of how `rate` is executed. In this example, we will look at the command `rate id/1 r/3`.
+
+<img src="images/diagrams/RateCommandUML.png" />
+
+Step 1. The user enters the command "rate id/1 r/3".
+
+Step 2. The user input is parsed by `RateCommandParser` which creates an `RateCommand` object.
+
+Step 3. The `execute` method of `RateCommand` is then called on the object.
+
+Step 4. This calls the `model#getPersonList` method, which returns a list of employees.
+
+Step 5. The target employee is then taken from the list by their employee ID from the input.
+
+Step 6. The `Person#addRating` method is then called on the employee, and the new Rating is added to the employee.
+
+Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
 
 ### Add leave feature
 
