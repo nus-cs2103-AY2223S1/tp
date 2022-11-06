@@ -10,6 +10,8 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * The implementation of the status field was adapted from this [project's implementation of a similar feature](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
