@@ -70,7 +70,7 @@ by a big-picture design overview of the various components before diving into in
 * Background textures - [Dirt block](https://minecraft.fandom.com/wiki/Dirt)
 * Background textures - [Grass block](https://minecraft.fandom.com/wiki/Grass_Block)
 * Background textures - [Bedrock](https://minecraft.fandom.com/wiki/Bedrock)
-* [Creeper texture](https://en.wikipedia.org/wiki/File:Creeper_(Minecraft).png)
+* [Creeper texture](https://minecraft.fandom.com/wiki/Creeper?file=Charged_Creeper_JE1_BE1.png)
 * [Creeper explosion texture](https://toppng.com/show_download/244692/explosion-pixel-art/large)
 * Creeper explosion audio: Self-recorded in game
 
