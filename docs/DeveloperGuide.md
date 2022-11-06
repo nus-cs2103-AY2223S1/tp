@@ -34,17 +34,18 @@ title: Developer Guide
   * [Use Cases](#use-cases)
   * [Non-functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
-- **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
   * [Launch and shutdown](#launch-and-shutdown) 
   * [Delete a buyer](#deleting-a-buyer)
   * [Saving data](#saving-data)
+- **[Appendix: Effort](#appendix-effort)**
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* The features Add, Edit, Delete were reused with minimal changes from the past project 
+  [Address Book Level 3](https://github.com/nus-cs2103-AY2223S1/tp) ([UG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/UserGuide.md), [DG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/DeveloperGuide.md)). 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +95,7 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete-b 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -102,7 +103,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -116,7 +117,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 Given below is a partial class diagram of the `Ui` component.
 
@@ -125,11 +126,11 @@ Given below is a partial class diagram of the `Ui` component.
 The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
 The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
 Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up-window-for-add-command).
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
+All these UI components, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-Furthermore, the `MainWindow` can be filled by **one** List panels, such as `BuyerListPanel` and `PetListPanel`, for display.
-Which list panel is displayed depends on the input `Command`.
+Furthermore, the `MainWindow` can be filled by **one** list panel, such as `BuyerListPanel` and `PetListPanel`, for display.
+The list panel displayed depends on the input `Command`.
 Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number
 of `BuyerCard`.
 All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph
@@ -149,11 +150,11 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -162,37 +163,67 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-b 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-b 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteBuyerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Given below is a diagram showing some other classes in `Logic` (omitted from the class diagram above) that can be used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works:
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** Some classes shown such as `ArgumentMultiMap`, `ArgumentTokenizer` and `CliSyntax` may not be used for some `XYZCommandParser` objects. Read the information section below for further explanation.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Different commands have different ways of implementing their respective parsers.**<br><br>
+
+**Some parsers can return different `Command` objects.**<br>
+The `SortCommandParser` returns one of `SortCommand`'s subclasses -- `SortBuyerCommand`,
+`SortDelivererCommand`, `SortSupplierCommand`, `SortOrderCommand`, and `SortPetCommand`.<br>
+The implementation of `SortCommandParser` was done such that the `SortCommand` is able to accept multiple inputs for the
+`LIST_TYPE` and `ATTRIBUTES` parameters. Hence, the `SortCommandParser` makes use of `SortCommandParserUtil`
+and `CommandUtil` classes which help to parse the multiple valid parameters and return the correct `SortCommand`
+subclass.<br>
+Given below is the Parser classes diagram for the `SortCommand`.<br>
+<img src="images/SortCommandParserClasses.png" width="600" /> <br><br>
+
+**Some `Command` objects are similar but have their own parsers and behave distinctly.**<br>
+The `AddressBookParser` creates `DeleteBuyerCommandParser`, `DeleteSupplierCommandParser`,
+`DeleteDelivererCommandParser`, `DeleteOrderCommandParser`, or a `DeletePetCommandParser` depending on the user's input.
+Each `DeleteCommand` parser then returns the respective `DeleteCommand` to `AddressBookParser` for execution,
+i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br>
+This way of implementation is done for commands that are very similar but have different `COMMAND_WORD`s, such as the
+AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br>
+Given below is the Parser classes diagram for the `DeleteCommand`. 
+**`ParserUtil` and `Index` classes are omitted from the diagram to reduce graph complexity.**<br>
+<img src="images/DeleteCommandParserClasses.png" width="1500" />
+
+</div>
+
+**How the parsing works:**
 
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  placeholder for the specific command name e.g., `AddBuyerCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddBuyerCommand`) which the `AddressBookParser` returns back as
   a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+* All `XYZCommandParser` classes (e.g., `AddBuyerCommandParser`, `DeleteBuyerCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
-* Some Commands have multiple parsers for the same Command (FindCommand has 3 different parsers - FindBuyerCommandParser
-  , FindSupplierCommandParser and FindDelivererCommandParser, all of which return a FindCommand)
-* Some parsers can return different Commands (eg. SortCommandParser can return a SortBuyerCommand, SortDelivererCommand
-  etc.)
-* Some Commands are similar but have their own Parsers and behave distinctly. (eg. AddDelivererCommand vs
-  AddBuyerCommand).
 
 ### Model component
 
@@ -230,8 +261,6 @@ Each order has an `UniqueId` for easier identification. Hence, the orders are st
 objects to easily access unique orders. Given below is the class diagram for the **`Buyer`** Class: <br>
 
 <img src="images/ModelBuyerObjectImplementation.png" width="600" /> <br><br>
-
-
 
 **`Supplier` Class**<br>
 
@@ -705,14 +734,14 @@ Use case ends.
 1. User specifies the type of person/item and the index of the person/item they want to delete
 2. PetCode searches for this person/item
 3. PetCode removes this person/item from the list
-4. Petcode notifies user that person/item has been deleted from the list
+4. PetCode notifies user that person/item has been deleted from the list
 
 Use case ends.
 
 **Extensions**
 
-2a. Petcode detects that the specified person/item does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 2a1. Petcode notifies the user that the person/item does not exist.
+2a. PetCode detects that the specified person/item does not exist <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2a1. PetCode notifies the user that the person/item does not exist.
 &nbsp;&nbsp;&nbsp;&nbsp; 2a2. User specifies new person/item
 &nbsp;&nbsp;&nbsp;&nbsp; Steps 2a1-2a2 are repeated until the person/item exists.
 &nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 3.
@@ -874,3 +903,5 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**

@@ -30,8 +30,6 @@ Class JsonAdaptedRequest
 
 }
 
-
-
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
@@ -50,9 +48,8 @@ JsonSerializableAddressBook --> "*" JsonAdaptedSupplier
 JsonSerializableAddressBook --> "*" JsonAdaptedDeliverer
 JsonSerializableAddressBook --> "*" JsonAdaptedPet
 JsonSerializableAddressBook --> "*" JsonAdaptedOrder
-JsonAdaptedPet --> "*" JsonAdaptedTag
 JsonAdaptedPet --> "1" JsonAdaptedSupplier
-JsonAdaptedOrder --> "1" JsonAdaptedBuyer
+JsonAdaptedOrder --> "         1" JsonAdaptedBuyer
 JsonAdaptedOrder --> "1" JsonAdaptedPriceRange
 JsonAdaptedOrder --> "1" JsonAdaptedRequest
 

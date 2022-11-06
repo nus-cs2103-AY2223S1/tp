@@ -12,14 +12,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Deliverer;
 
 /**
- * Parses input arguments and creates a new FindCommand object.
+ * Parses input arguments and creates a new FindDelivererCommand object.
  */
 public class FindDelivererCommandParser implements Parser<FindCommand> {
     public static final String PARSE_WORD = "find-d";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindDelivererCommand
+     * and returns a FindDelivererCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public FindDelivererCommand parse(String args) throws ParseException {
