@@ -52,7 +52,7 @@ public class RedoCommandTest {
     }
 
     @Test
-    public void execute_execute_deleteUserUndoRedo_success() throws Exception {
+    public void execute_deleteUserUndoRedo_success() throws Exception {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         CommandResult deleteUserCommandResult = new DeleteUserCommand().execute(model);

@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -26,7 +25,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.User;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.UserBuilder;
 
 public class UndoCommandTest {
 
