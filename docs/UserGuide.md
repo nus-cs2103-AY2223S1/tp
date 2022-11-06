@@ -125,7 +125,7 @@ The top section displays relevant messages/errors after the command is entered.
 
 4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-  <img src="./images/ui-screenshots/Ui.png"/>
+  <img src="./images/Ui.png"/>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
