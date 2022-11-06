@@ -58,6 +58,9 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Returns the {@code Task} that we have built.
+     */
     public Task build() {
         return new Task(taskDesc, taskDeadline);
     }

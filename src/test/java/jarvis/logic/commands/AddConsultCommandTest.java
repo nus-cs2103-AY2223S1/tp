@@ -26,23 +26,22 @@ public class AddConsultCommandTest extends AddLessonCommandTest {
 
     @Test
     public void constructor_nullTimePeriod_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                    () -> new AddConsultCommand(null, null, VALID_STUDENT_INDEX));
+        assertThrows(NullPointerException.class, () ->
+                new AddConsultCommand(null, null, VALID_STUDENT_INDEX));
     }
 
     @Test
     public void constructor_nullStudentIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddConsultCommand(null, VALID_TIME_PERIOD, null));
+        assertThrows(NullPointerException.class, () ->
+                new AddConsultCommand(null, VALID_TIME_PERIOD, null));
     }
 
     @Test
     public void execute_consultAcceptedByModel_addSuccessful() throws Exception {
-        AddLessonCommandTest.ModelStubAcceptingLessonAdded modelStub =
-                new AddLessonCommandTest.ModelStubAcceptingLessonAdded();
+        ModelStubAcceptingLessonAdded modelStub = new ModelStubAcceptingLessonAdded();
 
-        CommandResult commandResult =
-                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX).execute(modelStub);
+        CommandResult commandResult = new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD,
+                VALID_STUDENT_INDEX).execute(modelStub);
 
         Consult validConsult = new LessonBuilder().withDesc(DEFAULT_CONSULT_DESC).withTimePeriod(DEFAULT_TIME_PERIOD)
                 .withStudents(getStudentsInLesson()).buildConsult();
@@ -61,7 +60,7 @@ public class AddConsultCommandTest extends AddLessonCommandTest {
         AddConsultCommand addConsultCommand =
                 new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub = new AddConsultCommandTest.ModelStubWithLesson(validConsult);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validConsult);
 
         assertThrows(CommandException.class,
                 AddConsultCommand.MESSAGE_DUPLICATE_CONSULT, () -> addConsultCommand.execute(modelStub));
@@ -76,7 +75,7 @@ public class AddConsultCommandTest extends AddLessonCommandTest {
         AddConsultCommand addConsultCommand =
                 new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub = new AddConsultCommandTest.ModelStubWithLesson(validConsult);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validConsult);
 
         assertThrows(CommandException.class,
                 AddConsultCommand.MESSAGE_TIME_PERIOD_CLASH, () -> addConsultCommand.execute(modelStub));

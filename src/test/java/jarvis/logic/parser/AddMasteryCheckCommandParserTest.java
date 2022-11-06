@@ -59,11 +59,11 @@ public class AddMasteryCheckCommandParserTest {
     public void parse_compulsoryFieldsPresent_success() {
         // without end date
         assertParseSuccess(parser, LESSON_DESC_MASTERY_CHECK + LESSON_START_DATE
-                        + LESSON_START_TIME  + LESSON_END_TIME + LESSON_STUDENT_INDEX,
+                        + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
 
         // without lesson desc
-        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME  + LESSON_END_DATE
+        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME + LESSON_END_DATE
                         + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 new AddMasteryCheckCommand(null, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
     }
@@ -90,7 +90,7 @@ public class AddMasteryCheckCommandParserTest {
         assertParseFailure(parser, INVALID_LESSON_DESC + LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX, LessonDesc.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser,  INVALID_LESSON_START_DATE + LESSON_START_TIME
+        assertParseFailure(parser, INVALID_LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX, TimePeriod.MESSAGE_CONSTRAINTS_DATE);
 
         assertParseFailure(parser, LESSON_START_DATE + INVALID_LESSON_START_TIME
@@ -107,7 +107,7 @@ public class AddMasteryCheckCommandParserTest {
 
         // non empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + LESSON_DESC_MASTERY_CHECK + LESSON_START_DATE
-                        + LESSON_START_TIME  + LESSON_END_TIME + LESSON_STUDENT_INDEX,
+                        + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMasteryCheckCommand.MESSAGE_USAGE));
 
     }

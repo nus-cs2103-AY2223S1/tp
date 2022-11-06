@@ -46,11 +46,11 @@ public class AddStudioCommandParserTest {
     public void parse_compulsoryFieldsPresent_success() {
         // without end date
         assertParseSuccess(parser, LESSON_DESC_STUDIO + LESSON_START_DATE
-                        + LESSON_START_TIME  + LESSON_END_TIME,
+                        + LESSON_START_TIME + LESSON_END_TIME,
                 new AddStudioCommand(DEFAULT_STUDIO_DESC, DEFAULT_TIME_PERIOD));
 
         // without lesson desc
-        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME  + LESSON_END_DATE + LESSON_END_TIME,
+        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME + LESSON_END_DATE + LESSON_END_TIME,
                 new AddStudioCommand(null, DEFAULT_TIME_PERIOD));
     }
 
@@ -71,7 +71,7 @@ public class AddStudioCommandParserTest {
         assertParseFailure(parser, INVALID_LESSON_DESC + LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME, LessonDesc.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser,  INVALID_LESSON_START_DATE + LESSON_START_TIME
+        assertParseFailure(parser, INVALID_LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME, TimePeriod.MESSAGE_CONSTRAINTS_DATE);
 
         assertParseFailure(parser, LESSON_START_DATE + INVALID_LESSON_START_TIME
@@ -85,7 +85,7 @@ public class AddStudioCommandParserTest {
 
         // non empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + LESSON_DESC_STUDIO + LESSON_START_DATE
-                        + LESSON_START_TIME  + LESSON_END_TIME + LESSON_STUDENT_INDEX,
+                        + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudioCommand.MESSAGE_USAGE));
     }
 }

@@ -1,8 +1,8 @@
 package jarvis.logic.commands;
 
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.LessonBuilder.DEFAULT_MASTERY_CHECK_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_LESSON_DESC;
+import static jarvis.testutil.LessonBuilder.DEFAULT_MASTERY_CHECK_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_TIME_PERIOD;
 import static jarvis.testutil.TypicalLessons.DT3;
 import static jarvis.testutil.TypicalLessons.DT4;
@@ -26,20 +26,19 @@ public class AddMasteryCheckCommandTest extends AddLessonCommandTest {
 
     @Test
     public void constructor_nullTimePeriod_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddMasteryCheckCommand(null, null, VALID_STUDENT_INDEX));
+        assertThrows(NullPointerException.class, () ->
+                new AddMasteryCheckCommand(null, null, VALID_STUDENT_INDEX));
     }
 
     @Test
     public void constructor_nullStudentIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddMasteryCheckCommand(null, VALID_TIME_PERIOD, null));
+        assertThrows(NullPointerException.class, () ->
+                new AddMasteryCheckCommand(null, VALID_TIME_PERIOD, null));
     }
 
     @Test
     public void execute_masteryCheckAcceptedByModel_addSuccessful() throws Exception {
-        AddLessonCommandTest.ModelStubAcceptingLessonAdded modelStub =
-                new AddLessonCommandTest.ModelStubAcceptingLessonAdded();
+        ModelStubAcceptingLessonAdded modelStub = new ModelStubAcceptingLessonAdded();
 
         CommandResult commandResult = new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC,
                 DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX).execute(modelStub);
@@ -61,11 +60,10 @@ public class AddMasteryCheckCommandTest extends AddLessonCommandTest {
         AddMasteryCheckCommand addMasteryCheckCommand =
                 new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub =
-                new AddMasteryCheckCommandTest.ModelStubWithLesson(validMasteryCheck);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validMasteryCheck);
 
-        assertThrows(CommandException.class, AddMasteryCheckCommand.MESSAGE_DUPLICATE_MASTERY_CHECK,
-                () -> addMasteryCheckCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddMasteryCheckCommand.MESSAGE_DUPLICATE_MASTERY_CHECK, () ->
+                addMasteryCheckCommand.execute(modelStub));
     }
 
     @Test
@@ -77,11 +75,10 @@ public class AddMasteryCheckCommandTest extends AddLessonCommandTest {
         AddMasteryCheckCommand addMasteryCheckCommand =
                 new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub =
-                new AddMasteryCheckCommandTest.ModelStubWithLesson(validMasteryCheck);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validMasteryCheck);
 
-        assertThrows(CommandException.class, AddMasteryCheckCommand.MESSAGE_TIME_PERIOD_CLASH,
-                () -> addMasteryCheckCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddMasteryCheckCommand.MESSAGE_TIME_PERIOD_CLASH, () ->
+                addMasteryCheckCommand.execute(modelStub));
     }
 
     @Test

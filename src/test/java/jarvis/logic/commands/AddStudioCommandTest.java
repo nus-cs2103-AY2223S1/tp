@@ -23,14 +23,12 @@ public class AddStudioCommandTest extends AddLessonCommandTest {
 
     @Test
     public void constructor_nullTimePeriod_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AddStudioCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new AddStudioCommand(null, null));
     }
 
     @Test
     public void execute_studioAcceptedByModel_addSuccessful() throws Exception {
-        AddLessonCommandTest.ModelStubAcceptingLessonAdded modelStub =
-                new AddLessonCommandTest.ModelStubAcceptingLessonAdded();
+        ModelStubAcceptingLessonAdded modelStub = new ModelStubAcceptingLessonAdded();
 
         CommandResult commandResult = new AddStudioCommand(DEFAULT_STUDIO_DESC, DEFAULT_TIME_PERIOD).execute(modelStub);
 
@@ -49,10 +47,10 @@ public class AddStudioCommandTest extends AddLessonCommandTest {
 
         AddStudioCommand addStudioCommand = new AddStudioCommand(DEFAULT_STUDIO_DESC, DEFAULT_TIME_PERIOD);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub = new AddStudioCommandTest.ModelStubWithLesson(validStudio);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validStudio);
 
-        assertThrows(CommandException.class, AddStudioCommand.MESSAGE_DUPLICATE_STUDIO,
-                () -> addStudioCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddStudioCommand.MESSAGE_DUPLICATE_STUDIO, () -> addStudioCommand.execute(modelStub));
     }
 
     @Test
@@ -63,11 +61,10 @@ public class AddStudioCommandTest extends AddLessonCommandTest {
 
         AddStudioCommand addStudioCommand = new AddStudioCommand(DEFAULT_STUDIO_DESC, DEFAULT_TIME_PERIOD);
 
-        AddLessonCommandTest.ModelStubWithLesson modelStub =
-                new AddStudioCommandTest.ModelStubWithLesson(validStudio);
+        ModelStubWithLesson modelStub = new ModelStubWithLesson(validStudio);
 
-        assertThrows(CommandException.class, AddStudioCommand.MESSAGE_TIME_PERIOD_CLASH,
-                () -> addStudioCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddStudioCommand.MESSAGE_TIME_PERIOD_CLASH, () -> addStudioCommand.execute(modelStub));
     }
 
     @Test

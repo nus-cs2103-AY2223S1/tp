@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.AddConsultCommand;
-import jarvis.logic.commands.AddLessonCommandTest;
 import jarvis.model.LessonDesc;
 import jarvis.model.TimePeriod;
 
@@ -48,7 +47,7 @@ public class AddConsultCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + LESSON_DESC_CONSULT + LESSON_START_DATE
                 + LESSON_START_TIME + LESSON_END_DATE + LESSON_END_TIME + LESSON_STUDENT_INDEX,
-                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, AddLessonCommandTest.getFirstStudentIndex()));
+                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
 
         // multiple desc - last desc accepted
         assertParseSuccess(parser, LESSON_DESC_STUDIO + LESSON_DESC_CONSULT + LESSON_START_DATE
@@ -60,11 +59,11 @@ public class AddConsultCommandParserTest {
     public void parse_compulsoryFieldsPresent_success() {
         // without end date
         assertParseSuccess(parser, LESSON_DESC_CONSULT + LESSON_START_DATE
-                + LESSON_START_TIME  + LESSON_END_TIME + LESSON_STUDENT_INDEX,
+                + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
 
         // without lesson desc
-        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME  + LESSON_END_DATE
+        assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME + LESSON_END_DATE
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 new AddConsultCommand(null, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
     }
@@ -91,7 +90,7 @@ public class AddConsultCommandParserTest {
         assertParseFailure(parser, INVALID_LESSON_DESC + LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX, LessonDesc.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser,  INVALID_LESSON_START_DATE + LESSON_START_TIME
+        assertParseFailure(parser, INVALID_LESSON_START_DATE + LESSON_START_TIME
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX, TimePeriod.MESSAGE_CONSTRAINTS_DATE);
 
         assertParseFailure(parser, LESSON_START_DATE + INVALID_LESSON_START_TIME
@@ -108,7 +107,7 @@ public class AddConsultCommandParserTest {
 
         // non empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + LESSON_DESC_CONSULT + LESSON_START_DATE
-                        + LESSON_START_TIME  + LESSON_END_TIME + LESSON_STUDENT_INDEX,
+                        + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConsultCommand.MESSAGE_USAGE));
 
     }

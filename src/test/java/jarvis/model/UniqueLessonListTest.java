@@ -1,10 +1,10 @@
 package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.DT1;
 import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
-import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
