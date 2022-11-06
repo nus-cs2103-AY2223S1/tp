@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters a find command in
+the command box;
+
+:FindCommandParser parses the argument;
+
+if () then ([valid input arguments])
+    :get current ListType;
+    if () then ([STUDENT_LIST])
+        :create a new
+        StudentContainsKeywordsPredicate object;
+        :update filtered student list using the
+        new StudentContainsKeywordsPredicate;
+    else if () then ([TUTOR_LIST])
+        :create a new
+        TutorContainsKeywordsPredicate object;
+        :update filtered tutor list using the
+        new TutorContainsKeywordsPredicate;
+    else ([TUITIONCLASS_LIST])
+        :create a new
+        TuitionClassContainsKeywordsPredicate object;
+        :update filtered tuition class list using the
+        new TuitionClassContainsKeywordsPredicate;
+    endif
+else ([else])
+    :throws ParseException
+    with usage message
+    and feedback message;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml
