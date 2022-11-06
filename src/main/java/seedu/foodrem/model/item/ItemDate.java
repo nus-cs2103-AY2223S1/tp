@@ -15,14 +15,23 @@ public abstract class ItemDate {
 
     private final LocalDate date;
 
+    /**
+     * Constructs an ItemDate.
+     */
     protected ItemDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Returns the local date.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Compares the itemDate to another itemDate.
+     */
     public int compareTo(ItemDate other) {
         return date.compareTo(other.date);
     }
@@ -60,8 +69,8 @@ public abstract class ItemDate {
     @Override
     public boolean equals(Object other) {
         return other == this
-                && other instanceof ItemDate
-                && date.equals(((ItemDate) other).date);
+                || (other instanceof ItemDate
+                && date.equals(((ItemDate) other).date));
     }
 
     /**

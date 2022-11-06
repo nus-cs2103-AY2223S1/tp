@@ -25,6 +25,9 @@ public class NewCommand extends Command {
         newItem = item;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -42,10 +45,18 @@ public class NewCommand extends Command {
         return CommandResult.from(new ItemWithMessage(newItem, "New item added as follows:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return NEW_COMMAND.getUsage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this

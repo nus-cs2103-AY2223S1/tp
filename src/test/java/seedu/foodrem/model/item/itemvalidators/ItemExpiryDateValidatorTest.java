@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.testutil.MessageToUser;
 
+/**
+ * A class to test the ItemExpiryDateValidator.
+ */
 public class ItemExpiryDateValidatorTest {
     /**
      * Checks for valid date string formatting.
