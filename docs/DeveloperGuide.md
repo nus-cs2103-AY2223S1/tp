@@ -906,29 +906,30 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 
 Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have)
 
-| Priority | As a … | I want to … | So that I can…                                                                                               |
-| -------- | ------ | ----------- |--------------------------------------------------------------------------------------------------------------|
-| `High` | User | Add a contact | View them in future settings                                                                                 |
-| `High` | User | Delete a contact | Trim my contact list to keep it updated                                                                      |
-| `High` | User | Add a module into Plannit | Add details of the module                                                                                    |
-| `High` | User | Delete a module into Plannit | Remove unnecessary modules after the semester ends                                                           |
-| `High` | User | Add tasks for each module into Plannit | Keep track of tasks for each module                                                                          |
-| `High` | User | Delete tasks from module on Plannit | Remove tasks that have been completed                                                                        |
-| `High` | User | Add links | Store the links on Plannit for easy reference
-| `High` | User | Delete links | Remove the links when the semester ends                                                                      |
-| `High` | User | Easily navigate through different modules | Quickly view relevant modules details                                                                        |
-| `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks                                                                        |
-| `Medium` | User | Edit module details | Rectify mistakes and update module details when needed                                                       |
-| `Medium` | User | Edit a contact | Rectify mistakes and update contact details when needed                                                      |
-| `Medium` | User | Set different priorities to prioritise my tasks	| I know is important and should be done first                                                                 |
-| `Medium` | Forgetful Student | Organise contacts by module | I can discuss difficult assignment questions with them and delete them once the semester is completed        |
-| `Medium` | Organised Person | Filter contacts by names | Search for contacts relevant for my case                                                                     |
-| `Medium` | Expert User | Search a keyword	| Go to the module which has the relevant topic I have in mind                                                 |
-| `Medium` | User | Detect (and delete) duplicate items | Avoid adding a same item twice                                                                               |
-| `Medium` | New potential user | See the app populated with sample data | Easily see how the app will look like when it is in use                                                      |
-| `Medium` | Forgetful student | Group contacts by tags	| Find out which friends are taking what modules                                                               |
-| `Medium` | Expert User | Purge existing module data | Save time deleting all the module data when the semester ends                                                |
-| `Low` | Expert User | Archive existing data | Restore the data in case I mess up                                                                           |
+| Priority | As a …             | I want to …                                     | So that I can…                                                                                        |
+|----------|--------------------|-------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `High`   | User               | Add a contact                                   | View them in future settings                                                                          |
+| `High`   | User               | Delete a contact                                | Trim my contact list to keep it updated                                                               |
+| `High`   | User               | Add a module into Plannit                       | Add details of the module                                                                             |
+| `High`   | User               | Delete a module into Plannit                    | Remove unnecessary modules after the semester ends                                                    |
+| `High`   | User               | Add tasks for each module into Plannit          | Keep track of tasks for each module                                                                   |
+| `High`   | User               | Delete tasks from module on Plannit             | Remove tasks that have been completed                                                                 |
+| `High`   | User               | Add links                                       | Store module-related links for future access                                                          | 
+| `High`   | User               | Open links                                      | Access module-related links                                                                           | 
+| `High`   | User               | Delete links                                    | Remove module-related links when the semester ends                                                    |
+| `High`   | User               | Easily navigate through different modules       | Quickly view relevant modules details                                                                 |
+| `High`   | Busy User          | See the overview of tasks on the home page      | Get a quick summary of upcoming tasks                                                                 |
+| `Medium` | User               | Edit module details                             | Rectify mistakes and update module details when needed                                                |
+| `Medium` | User               | Edit a contact                                  | Rectify mistakes and update contact details when needed                                               |
+| `Medium` | User               | Set different priorities to prioritise my tasks | I know is important and should be done first                                                          |
+| `Medium` | Forgetful Student  | Organise contacts by module                     | I can discuss difficult assignment questions with them and delete them once the semester is completed |
+| `Medium` | Organised Person   | Filter contacts by names                        | Search for contacts relevant for my case                                                              |
+| `Medium` | Expert User        | Search a keyword	                               | Go to the module which has the relevant topic I have in mind                                          |
+| `Medium` | User               | Detect (and delete) duplicate items             | Avoid adding a same item twice                                                                        |
+| `Medium` | New potential user | See the app populated with sample data          | Easily see how the app will look like when it is in use                                               |
+| `Medium` | Forgetful student  | Group contacts by tags	                         | Find out which friends are taking what modules                                                        |
+| `Medium` | Expert User        | Purge existing module data                      | Save time deleting all the module data when the semester ends                                         |
+| `Low`    | Expert User        | Archive existing data                           | Restore the data in case I mess up                                                                    |
 
 ### Use cases
 
@@ -1267,8 +1268,8 @@ Use case ends.
 #### Project Scope
 1. Plannit does not automatically update module details/links.
 2. Plannit does not rigorously check for the validity of the email provided by the user.
-3. Plannit does not verify the security of links provided by the user
-4. Plannit does not ensure the validity of links provided by the user.
+3. Plannit does not verify the existence or security of links provided by the user
+4. Plannit does not rigorously check for the validity of links provided by the user.
 5. Plannit does not rigorously check for the existence of phone number provided by the user.
 6. Plannit does not remind the user of upcoming tasks with notifications.
 7. Plannit does not check for invalid module codes.
