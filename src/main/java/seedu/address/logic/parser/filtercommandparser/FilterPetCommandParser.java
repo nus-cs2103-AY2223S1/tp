@@ -48,13 +48,11 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
         Predicate<Pet> pricePredicate = defaultPredicate;
         Predicate<Pet> speciesPredicate = defaultPredicate;
         Predicate<Pet> vaccinationPredicate = defaultPredicate;
-
         for (String arg: nameKeywords) {
             arg = arg.trim();
             String[] query = arg.split("/");
             switch (query[0]) {
             case COLOR_PREFIX:
-                System.out.println(query[0]);
                 colorPredicate = PredicateParser.parsePet(arg);
                 break;
             case PET_NAME_PREFIX:
