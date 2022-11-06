@@ -241,8 +241,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseListingId_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String ListingIdWithWhitespace = WHITESPACE + VALID_LISTING_ID + WHITESPACE;
+        String listingIdWithWhitespace = WHITESPACE + VALID_LISTING_ID + WHITESPACE;
         ListingId expectedListingId = new ListingId(VALID_LISTING_ID);
-        assertEquals(expectedListingId, ParserUtil.parseListingId(ListingIdWithWhitespace));
+        assertEquals(expectedListingId, ParserUtil.parseListingId(listingIdWithWhitespace));
     }
 }

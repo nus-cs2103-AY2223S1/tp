@@ -15,16 +15,13 @@ import static seedu.realtime.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_LISTING_ID_1;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_PRICE_1;
-import static seedu.realtime.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.realtime.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.realtime.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.realtime.testutil.TypicalOffers.ALICE;
 import static seedu.realtime.testutil.TypicalOffers.AMY;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.realtime.logic.commands.AddOfferCommand;
-import seedu.realtime.logic.commands.CommandTestUtil;
 import seedu.realtime.model.listing.ListingId;
 import seedu.realtime.model.offer.Offer;
 import seedu.realtime.model.offer.Price;
@@ -51,7 +48,7 @@ public class AddOfferCommandParserTest {
             + OFFER_PRICE_DESC_AMY, new AddOfferCommand(expectedOffer));
 
         // multiple offer prices - last offer prices accepted
-        assertParseSuccess(parser, NAME_DESC_AMY +  LISTING_ID_DESC_AMY + OFFER_PRICE_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_AMY + LISTING_ID_DESC_AMY + OFFER_PRICE_DESC_BOB
             + OFFER_PRICE_DESC_AMY, new AddOfferCommand(expectedOffer));
     }
 

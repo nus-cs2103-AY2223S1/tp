@@ -81,22 +81,22 @@ public class EditOfferCommandTest {
         assertCommandSuccess(editOfferCommand, model, expectedMessage, expectedModel);
     }
 
-//    @Test
-//    public void execute_filteredList_success() {
-//        showOfferAtIndex(model, FIRST_INDEX);
-//
-//        Offer offerInFilteredList = model.getFilteredOfferList().get(FIRST_INDEX.getZeroBased());
-//        Offer editedOffer = new OfferBuilder(offerInFilteredList).withBuyer(VALID_NAME_AMY).build();
-//        EditOfferCommand editOfferCommand = new EditOfferCommand(FIRST_INDEX,
-//            new EditOfferDescriptorBuilder().withBuyer(VALID_NAME_AMY).build());
-//
-//        String expectedMessage = String.format(EditOfferCommand.MESSAGE_EDIT_OFFER_SUCCESS, editedOffer);
-//
-//        Model expectedModel = new ModelManager(new RealTime(model.getRealTime()), new UserPrefs());
-//        expectedModel.setOffer(model.getFilteredOfferList().get(0), editedOffer);
-//
-//        assertCommandSuccess(editOfferCommand, model, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_filteredList_success() {
+        showOfferAtIndex(model, FIRST_INDEX);
+
+        Offer offerInFilteredList = model.getFilteredOfferList().get(FIRST_INDEX.getZeroBased());
+        Offer editedOffer = new OfferBuilder(offerInFilteredList).withBuyer(VALID_NAME_AMY).build();
+        EditOfferCommand editOfferCommand = new EditOfferCommand(FIRST_INDEX,
+            new EditOfferDescriptorBuilder().withBuyer(VALID_NAME_AMY).build());
+
+        String expectedMessage = String.format(EditOfferCommand.MESSAGE_EDIT_OFFER_SUCCESS, editedOffer);
+
+        Model expectedModel = new ModelManager(new RealTime(model.getRealTime()), new UserPrefs());
+        expectedModel.setOffer(model.getFilteredOfferList().get(0), editedOffer);
+
+        assertCommandSuccess(editOfferCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_duplicateOfferUnfilteredList_failure() {
@@ -107,17 +107,17 @@ public class EditOfferCommandTest {
         assertCommandFailure(editOfferCommand, model, EditOfferCommand.MESSAGE_DUPLICATE_OFFER);
     }
 
-//    @Test
-//    public void execute_duplicateOfferFilteredList_failure() {
-//        showOfferAtIndex(model, FIRST_INDEX);
-//
-//        // edit offer in filtered list into a duplicate in realtime
-//        Offer offerInList = model.getRealTime().getOfferList().get(SECOND_INDEX.getZeroBased());
-//        EditOfferCommand editOfferCommand = new EditOfferCommand(FIRST_INDEX,
-//                new EditOfferDescriptorBuilder(offerInList).build());
-//
-//        assertCommandFailure(editOfferCommand, model, EditOfferCommand.MESSAGE_DUPLICATE_OFFER);
-//    }
+    @Test
+    public void execute_duplicateOfferFilteredList_failure() {
+        showOfferAtIndex(model, FIRST_INDEX);
+
+        // edit offer in filtered list into a duplicate in realtime
+        Offer offerInList = model.getRealTime().getOfferList().get(SECOND_INDEX.getZeroBased());
+        EditOfferCommand editOfferCommand = new EditOfferCommand(FIRST_INDEX,
+                new EditOfferDescriptorBuilder(offerInList).build());
+
+        assertCommandFailure(editOfferCommand, model, EditOfferCommand.MESSAGE_DUPLICATE_OFFER);
+    }
 
     @Test
     public void execute_invalidOfferIndexUnfilteredList_failure() {
@@ -128,23 +128,6 @@ public class EditOfferCommandTest {
 
         assertCommandFailure(editOfferCommand, model, Messages.MESSAGE_INVALID_OFFER_DISPLAYED_INDEX);
     }
-
-//    /**
-//     * Edit filtered list where index is larger than size of filtered list,
-//     * but smaller than size of realtime
-//     */
-//    @Test
-//    public void execute_invalidOfferIndexFilteredList_failure() {
-//        showOfferAtIndex(model, FIRST_INDEX);
-//        Index outOfBoundIndex = SECOND_INDEX;
-//        // ensures that outOfboundIndex is still in bounds of realtime list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getRealTime().getOfferList().size());
-//
-//        EditOfferCommand editOfferCommand = new EditOfferCommand(outOfBoundIndex,
-//                new EditOfferDescriptorBuilder().withBuyer(VALID_NAME_AMY).build());
-//
-//        assertCommandFailure(editOfferCommand, model, Messages.MESSAGE_INVALID_OFFER_DISPLAYED_INDEX);
-//    }
 
     @Test
     public void equals() {

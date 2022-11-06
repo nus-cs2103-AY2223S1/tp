@@ -167,6 +167,6 @@ public class UniqueOfferListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-        -> uniqueOfferList.asUnmodifiableObservableList().remove(0));
+            -> uniqueOfferList.asUnmodifiableObservableList().remove(0));
     }
 }

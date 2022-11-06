@@ -16,7 +16,8 @@ public class EditOfferDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditOfferCommand.EditOfferDescriptor descriptorWithSameValues = new EditOfferCommand.EditOfferDescriptor(DESC_OFFER_AMY);
+        EditOfferCommand.EditOfferDescriptor descriptorWithSameValues = new EditOfferCommand
+                .EditOfferDescriptor(DESC_OFFER_AMY);
         assertTrue(DESC_OFFER_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -32,7 +33,8 @@ public class EditOfferDescriptorTest {
         assertFalse(DESC_OFFER_AMY.equals(DESC_OFFER_BOB));
 
         // different name -> returns false
-        EditOfferCommand.EditOfferDescriptor editedAmy = new EditOfferDescriptorBuilder(DESC_OFFER_AMY).withBuyer(VALID_NAME_BOB).build();
+        EditOfferCommand.EditOfferDescriptor editedAmy = new EditOfferDescriptorBuilder(DESC_OFFER_AMY)
+                .withBuyer(VALID_NAME_BOB).build();
         assertFalse(DESC_OFFER_AMY.equals(editedAmy));
 
         // different offer price -> returns false

@@ -57,7 +57,7 @@ public class CommandTestUtil {
     public static final String VALID_PRICE_2 = "2";
     public static final String VALID_PRICE_3 = "1000000";
     public static final String VALID_LISTING_ID_BEDOK = "BEDOK";
-    public static final String VALID_LISTING_ID_1= "1";
+    public static final String VALID_LISTING_ID_1 = "1";
     public static final String VALID_LISTING_ID_2 = "2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -163,10 +163,12 @@ public class CommandTestUtil {
         // only do so by copying its components.
         RealTime expectedRealTime = new RealTime(actualModel.getRealTime());
         List<Client> expectedFilteredClientList = new ArrayList<>(actualModel.getFilteredClientList());
+        List<Offer> expectedFilteredOfferList = new ArrayList<>(actualModel.getFilteredOfferList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedRealTime, actualModel.getRealTime());
         assertEquals(expectedFilteredClientList, actualModel.getFilteredClientList());
+        assertEquals(expectedFilteredOfferList, actualModel.getFilteredOfferList());
     }
 
     /**
@@ -223,10 +225,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOfferList().size());
 
         Offer offer = model.getFilteredOfferList().get(targetIndex.getZeroBased());
-        final String[] splitListingId= offer.getListing().value.split("\\s+");
+        final String[] splitListingId = offer.getListing().toString().split("\\s+");
         model.updateFilteredOfferList(new OfferContainsListingIdPredicate(Arrays.asList(splitListingId[0])));
 
-        assertEquals(1, model.getFilteredOfferList().size());
+        assertEquals(2, model.getFilteredOfferList().size());
     }
 
 }

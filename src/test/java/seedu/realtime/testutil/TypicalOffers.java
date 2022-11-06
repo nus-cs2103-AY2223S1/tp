@@ -1,7 +1,5 @@
 package seedu.realtime.testutil;
 
-import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_AMY;
-import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_LISTING_ID_1;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_LISTING_ID_2;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_AMY;
