@@ -256,17 +256,15 @@ Since `add` is used for the operations of both adding a book and adding a user, 
 
 `add book` adds a new book to the model. Specifically, `ModelManager` maintains a list of books and contains the method `addbook()` that is invoked by `AddBookCommand` to perform this adding operation.
 
-The updating of the model is represented in the following diagram:
+The updating of the model is represented in the following sequence diagram:
 
-![AddBookSimpleDiagram](images/AddBookSimpleDiagram.png)
-
-*The above will be updated with a more accurate diagram*
-
-The following is the sequence diagram for this operation:
-*To be updated with sequence diagram.*
+![AddBookSequenceDiagram](images/AddSequenceDiagram.png)
 
 #### Adding a user with `add user`
-*To be updated.*
+Add user follow the same logic as add book, but uses `AddUserArgumentsParser` and `AddUserCommand` in place of the add book variants.
+
+The activity diagram for add user is as follows:
+
 
 ### Delete feature
 #### Deleting a book/user

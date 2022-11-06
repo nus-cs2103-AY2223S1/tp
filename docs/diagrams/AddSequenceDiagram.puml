@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddBookArgumentsParser" as AddBookArgumentsParser LOGIC_COLOR
+participant ":AddBookCommand" as AddBookCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add book t/Title a/Author")
+activate LogicManager
+
+LogicManager -> PrimaryParser : parse("add book t/Title a/Author")
+activate PrimaryParser
+
+PrimaryParser -> AddCommandParser : parse("book t/Title a/Author")
+activate AddCommandParser
+
+AddCommandParser -> AddBookArgumentsParser : parse("t/Title a/Author")
+activate AddBookArgumentsParser
+
+AddBookArgumentsParser -> AddBookCommand : AddBookCommand(book)
+activate AddBookCommand
+
+AddBookCommand --> AddBookArgumentsParser
+deactivate AddBookCommand
+
+AddBookArgumentsParser --> AddCommandParser
+deactivate AddBookArgumentsParser
+AddBookArgumentsParser -[hidden]-> AddCommandParser
+destroy AddBookArgumentsParser
+
+
+AddCommandParser --> PrimaryParser
+deactivate AddCommandParser
+AddCommandParser -[hidden]-> PrimaryParser
+destroy AddCommandParser
+
+PrimaryParser --> LogicManager
+deactivate PrimaryParser
+
+LogicManager -> AddBookCommand : execute()
+activate AddBookCommand
+
+AddBookCommand -> Model : addBook(book)
+activate Model
+
+Model --> AddBookCommand
+deactivate Model
+
+create CommandResult
+AddBookCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddBookCommand
+deactivate CommandResult
+
+AddBookCommand --> LogicManager : result
+deactivate AddBookCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
