@@ -721,6 +721,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+#### State Management
+
+Implementing Undo/Redo commands in this manner requires the developers to strictly follow certain State Management rules. Some important aspects include:
+1. Every command (that can be undone/redone) should produce and save a new state of the AddressBook
+2. Every AddressBook should not be related to another
+   - Every instance in each AddressBook should be completely new with new data
+   - E.g. Changing the User's name field should create a new User Object with the desired new name, instead of changing the exisitng User objects name.
+   - This is because each state of the AddressBook must be unique from one another
+   
+
+#### Implementation
+
 Given below are the proposed Classes to implement:
 
 * `VersionedAddressBook`
