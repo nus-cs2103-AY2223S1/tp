@@ -1,0 +1,13 @@
+@startuml
+
+(*) --> "User enters a command"
+if "" then
+  -->[Valid Command] "HackAssist executes the command"
+  --> "HackAssist converts each Task in TaskList to JsonAdaptedTask"
+  --> "HackAssist saves a list of JsonAdaptedTask in AddressBook.json"
+  -right-> (*)
+else
+  -->[Invalid Command] (*)
+endif
+
+@enduml

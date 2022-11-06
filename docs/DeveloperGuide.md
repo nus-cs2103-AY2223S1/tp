@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/). Several ideas, implementations and diagrams are re-used or extended based on those in AddressBook Level-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -327,23 +327,69 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
-### \[Proposed\] Persistent Storage for Task
+### Email Address in Task as Reference (Foreign Key) to Member
 
-#### Proposed Implementation
+#### Motivation
 
-We save tasks in Json format which contains the details of the task such as the task's name, description, etc.
-We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can
-then be converted to a list of tasks. Hence, our Json data file contains a list of task details.
+To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in hte `Task` object that uniquely identifies the person.
+
+#### Implementation 
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
+a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
+to this is to keep a person object in a task object but this will prevent the change in the person object that is
+supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+### Persistent Storage for Task
+
+#### Motivation
+
+For creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
+
+#### Implementation
+
+When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)).
+Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`. 
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageReadActivityDiagram](images/StorageReadActivityDiagram.png)
 
 When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
 This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for
 such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal
 values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
 
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
-a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
-to this is to keep a person object in a task object but this will prevent the change in the person object that is
-supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. 
+Each `JsonAdaptedTask` object contains the details of the task.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageSaveActivityDiagram](images/StorageSaveActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: When to save data?**
+
+* **Alternative 1 (current choice):** Saves the data after execution of each command.
+    * Pros: User does not have to remember to save (saved automatically).
+    * Cons: More computationally expensive as more save operations are performed.
+
+* **Alternative 2:** Creates a save command and save it when save command is executed.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter save command and lose all of their changes.
+
+* **Alternative 3:** Save when user enters exit command.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter exit command when closing the program and lose all of their changes.
+
+Our current choice of implementation is preferred considering the main use of HackAssist. 
+HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save.
+Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
+
+### Persistent Storage for Member
+
+The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
 
 ### \[Proposed\] Filtering of tasks by Task Category, Task Deadline or Both
 
