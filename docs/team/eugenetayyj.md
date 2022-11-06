@@ -30,6 +30,7 @@ Given below are my contributions to the project.
     * Set up Git Issues for tasks to be completed.
     * Proposed meeting to decide group's decision on bug handling for v1.4.
     * [PRs Reviewed by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/pulls?q=is%3Apr+reviewed-by%3Aeugenetayyj)
+    * [Issues created by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues?q=is%3Aissue+author%3Aeugenetayyj)
 <br>
 
 * **Enhancements to existing features**:
@@ -64,6 +65,4 @@ Given below are my contributions to the project.
       * Edited Model implementation details diagrams.
 
  * **Community**:
-    * [PRs reviewed by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/pulls?q=commenter%3Aeugenetayyj).
-    * [Issues created by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues?q=is%3Aissue+author%3Aeugenetayyj)
     * Reported bugs and suggestions for other teams in the class: [PE-D Issues Link](https://github.com/eugenetayyj/ped/issues)
