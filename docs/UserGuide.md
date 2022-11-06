@@ -105,7 +105,8 @@ section of this user guide or to an external website.
    ```
     openjdk 11.0.16.1 2022-07-19 LTS
     OpenJDK Runtime Environment Zulu11.58+23-CA (build 11.0.16.1+1-LTS)
-    OpenJDK 64-Bit Server VM Zulu11.58+23-CA (build 11.0.16.1+1-LTS, mixed mode)
+    OpenJDK 64-Bit Server VM Zulu11.58+23-CA 
+    (build 11.0.16.1+1-LTS, mixed mode)
    ```
    * Else, if `Java 11` is not installed, an error message will appear as shown below.
    ```
@@ -208,6 +209,8 @@ to GuestBook) for you to get acquainted with.
 
 ## Features
 
+### Commands
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -215,28 +218,28 @@ to GuestBook) for you to get acquainted with.
 There are some conventions the commands follow. We have laid them out here in hopes that it will
 aid you in understanding their significance.
 
-* Words in `UPPER_CASE` are the **parameters** to be supplied by you, the user.<br>
-  E.g., In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the **fields** to be supplied by you, the user.<br>
+  E.g., In `add n/NAME`, `NAME` is a field which can be used as `add n/John Doe`.
 
 
 * Items in square brackets are **optional**.<br>
   E.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
 
 
-* Parameters can be supplied in **any order**.<br>
+* Fields can be supplied in **any order**.<br>
   E.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 
-* If a parameter is expected only once but is specified multiple times in the command, only the **last occurrence** of the parameter will be considered.<br>
+* If a field is expected only once but is specified multiple times in the command, only the **last occurrence** of the field will be considered.<br>
   E.g., If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
+* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
   E.g., If the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Adding a guest: `add`
+#### Adding a guest: `add`
 
 This command adds a guest to GuestBook.
 
@@ -262,7 +265,7 @@ Adds the guest _Betsy Crowe_ to GuestBook, with the `request` to have _extra tow
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing a guest: `edit`
+#### Editing a guest: `edit`
 
 This command edits an existing guest in GuestBook.
 
@@ -298,7 +301,7 @@ using the [find command](#locating-guests), and then editing them accordingly!
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Billing a guest: `bill`
+#### Billing a guest: `bill`
 
 This command updates the bill of a guest in GuestBook. This command is typically used to **charge a guest** for services, such as room service.
 
@@ -334,7 +337,7 @@ or **decreased** respectively by the value you provide.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Locating guests: `find`
+#### Locating guests: `find`
 
 This command locates guests whose details contain any of the given search terms.
 This allows you to search through all guests' fields.
@@ -348,11 +351,11 @@ will display the guests that already have their rooms cleaned.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about using `find`:**<br>
-* The search is **case-insensitive**. E.g., `hans` will match `Hans`
-* The order of the keywords does not matter. E.g., `Hans Bo` will match `Bo Hans`
-* **Only full words** will be matched E.g., `Han` will not match `Hans`
-* Guests matching **at least one** keyword will be returned (i.e. `OR` search).
-  E.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is **case-insensitive**. E.g., _hans_ will match _Hans_.
+* The order of the keywords does not matter. E.g., _Hans Bo_ will match _Bo Hans_.
+* **Only full words** will be matched E.g., _Han_ will not match _Hans_.
+* Guests matching **at least one** keyword will be returned (i.e., `OR` search).
+  E.g., _Hans Bo_ will return _Hans Gruber_ and _Bo Yang_
 </div>
 
 **Examples**:
@@ -381,7 +384,7 @@ will display the guests that already have their rooms cleaned.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Listing all guests: `list`
+#### Listing all guests: `list`
 
 This command displays a list of all guests in GuestBook, which is akin to going back to the homepage of GuestBook.
 
@@ -399,7 +402,7 @@ using the `find` command as a filter.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Deleting a guest: `delete`
+#### Deleting a guest: `delete`
 
 This command deletes an existing guest in GuestBook from the current list.
 
@@ -427,7 +430,7 @@ command with caution.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Marking all rooms as unclean: `markroomsunclean`
+#### Marking all rooms as unclean: `markroomsunclean`
 
 This command functions to mark the room clean statuses of all guests as `no`.
 
@@ -449,7 +452,7 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Clearing all entries: `clear`
+#### Clearing all entries: `clear`
 
 This command clears **all entries** from GuestBook.
 
@@ -471,7 +474,7 @@ with utmost caution.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Viewing help: `help`
+#### Viewing help: `help`
 
 This command shows a message explaining how to access the **help page**, which is this user guide you are reading.
 
@@ -572,17 +575,17 @@ In the case where GuestBook rejects your field inputs, you can refer to this sec
 **Consider using capital letters** as this check is case-sensitive (`rq/Extra bed & P/C` will be handled correctly as part of a `request`).
 </div>
 
-| Field                  | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`NAME`**             | `n/`                 | Should contain only **alphabets, spaces, and special characters (`'`, `-`, `.`, `,`, `/`)**.<br/><br/><div markdown="block" class="alert alert-danger">:exclamation: **Caution:**<br>Names are case-sensitive and multiple consecutive spaces in-between them are allowed. GuestBook will not detect these names as the same.<br/>E.g. _John Doe_, _John&nbsp;&nbsp;&nbsp;Doe_ and _john doe_ will all be detected as different guests.</div> |
-| **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be **at least 3** digits and **at most 15** digits long.                                                                                                                                                                                                                                                                                                                                       |
-| **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters, 1 `@` character, and the following special characters (`+`, `_`, `.`, `-`)**.<br/>The local segment (before `@`) should be at most 64 characters long, and the domain segment (after `@`) should be at most 255 characters long.<br/>Segments cannot start or end with special characters, and special characters cannot be used adjacent to each other.                                       |
-| **`ROOM`**             | `rm/`                | Should contain only **alphanumeric characters and hyphens (`-`)**.<br/>A hyphen can only be added if it is in between 2 alphanumeric characters (This also means that it **should not start or end with a hyphen**).                                                                                                                                                                                                                          |
-| **`DATE_RANGE`**       | `dr/`                | Should follow the format `dd/MM/yy - dd/MM/yy` with 2 valid dates and the second date should be later than the first date. There should only be **one spacing** before and after the hyphen(`-`).                                                                                                                                                                                                                                             |
-| **`NUMBER_OF_GUESTS`** | `ng/`                | Should contain only **numbers**, and **only** contain values 1, 2, 3, or 4.                                                                                                                                                                                                                                                                                                                                                                   |
-| **`REQUEST`**          | `rq/`                | Is an **optional field**, and should be **at most 500** characters long.                                                                                                                                                                                                                                                                                                                                                                      |
-| **`IS_ROOM_CLEAN`**    | `rc/`                | Should be only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                                                                                    |
-| **`BILL`**             | `b/`                 | Should contain only **numbers, optionally one decimal point (`.`), and optionally one leading sign (`+`/`-`)**.<br/>Can have up to 12 leading digits and 2 decimal places.<br/>Is **assumed to be positive if no leading sign** is used.                                                                                                                                                                                                      |
+| Field                  | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`NAME`**             | `n/`                 | Should contain only **alphabets, spaces, and special characters (`'`, `-`, `.`, `,`, `/`)**.<br/><br/> <div markdown="block" class="alert alert-danger"> :exclamation: **Caution:**<br>Names are case-sensitive and multiple consecutive spaces in-between them are allowed. GuestBook will not detect these names as the same.<br/>E.g. _John Doe_, _John&nbsp;&nbsp;&nbsp;Doe_ and _john doe_ will all be detected as different guests. </div> |
+| **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be **at least 3** digits and **at most 15** digits long.                                                                                                                                                                                                                                                                                                                                          |
+| **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters, 1 `@` character, and the following special characters (`+`, `_`, `.`, `-`)**.<br/>The local segment (before `@`) should be at most 64 characters long, and the domain segment (after `@`) should be at most 255 characters long.<br/>Segments cannot start or end with special characters, and special characters cannot be used adjacent to each other.                                          |
+| **`ROOM`**             | `rm/`                | Should contain only **alphanumeric characters and hyphens (`-`)**.<br/>A hyphen can only be added if it is in between 2 alphanumeric characters (This also means that it **should not start or end with a hyphen**).                                                                                                                                                                                                                             |
+| **`DATE_RANGE`**       | `dr/`                | Should follow the format `dd/MM/yy - dd/MM/yy` with 2 valid dates and the second date should be later than the first date. There should only be **one spacing** before and after the hyphen(`-`).                                                                                                                                                                                                                                                |
+| **`NUMBER_OF_GUESTS`** | `ng/`                | Should contain only **numbers**, and **only** contain values 1, 2, 3, or 4.                                                                                                                                                                                                                                                                                                                                                                      |
+| **`REQUEST`**          | `rq/`                | Is an **optional field**, and should be **at most 500** characters long.                                                                                                                                                                                                                                                                                                                                                                         |
+| **`IS_ROOM_CLEAN`**    | `rc/`                | Should be only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                                                                                       |
+| **`BILL`**             | `b/`                 | Should contain only **numbers, optionally one decimal point (`.`), and optionally one leading sign (`+`/`-`)**.<br/>Can have up to 12 leading digits and 2 decimal places.<br/>Is **assumed to be positive if no leading sign** is used.                                                                                                                                                                                                         |
 
 [Return to Table of Contents](#table-of-contents)
 

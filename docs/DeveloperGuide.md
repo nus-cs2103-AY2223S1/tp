@@ -323,7 +323,7 @@ This feature was implemented so that it is easy for the user to change a guest's
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `edit` command takes in an `INDEX` indicating the guest to edit in the current panel (starting from 1)
-  and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
+  and 8 optional fields (`name`, `phone`, `email`, `room`, `dateRange`, `numberOfGuests`, `isRoomClean` and `request`)
   and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagram summarizes what happens when a user enters an `edit` command.
@@ -805,48 +805,38 @@ Prerequisites: Only one guest to be added.
       The `name` and `room` of the guest to be added should not exist in GuestBook.
    The format and data of the command should be valid.
 
-   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
-                  dr/13/09/22 - 15/09/22 ng/1 rq/Apply for room service `<br>
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/1 rq/Apply for room service `<br>
       Expected: Guest add successfully.
 
-   3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   2. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added,
       because the **`name` is already in GuestBook**. Error details shown in the result display.
 
-   4. Test case: `add n/Peter p/98765431 e/johnd@nus.com rm/05-73
-         dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   3. Test case: `add n/Peter p/98765431 e/johnd@nus.com rm/05-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
          Expected: No guest is added,
          because the **`room` is already in GuestBook**. Error details shown in the result display.
 
-   5. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the **`name` is invalid**. Error details shown in the result display.
 
-   6. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   5. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the **`phone` number is invalid**. Error details shown in the result display.
 
-   7. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
-                  dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   6. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the **`email` address is invalid**. Error details shown in the result display.
 
-   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
-                  dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+   7. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73 dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the **`room` is invalid**. Error details shown in the result display.
 
-   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 12/09/22 ng/1 rq/Kill the insect `<br>
+   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 12/09/22 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the **`date range` is invalid**. Error details shown in the result display.
 
-   10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-                   dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
-       Expected: No guest is added, because the **`number of guest` is invalid** (>4).
-       Error details shown in the result display.
+   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
+      Expected: No guest is added, because the **`number of guest` is invalid** (>4).
+      Error details shown in the result display.
 
-   12. Let INVALID_REQUEST be a string of 501 characters long. <br>
-       Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-       dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
+   10. Let INVALID_REQUEST be a string of 501 characters long. <br>
+       Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73 dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
        Expected: No guest is added, because the **`request` is invalid** (>500 characters).
 
 ### Editing a guest
@@ -858,11 +848,13 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    1. Test case: `edit 1 n/Johnny`<br>
       Expected: Guest edit successfully, the first guest's `name` will change from "John Doe" to "Johnny".
 
-   3. Test case: `edit 99999 n/Johnny`<br>
+   2. Test case: `edit 99999 n/Johnny`<br>
       Expected: No guest is edited, because the input **index does not exist**. Error details shown in the result display.
 
-   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`, `edit 1 n/Jo@`<br>
+   3. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`, `edit 1 n/Jo@`<br>
       Expected: No guest is edited, because the **parameters are invalid**. Error details shown in the result display.
+
+
 ### Saving data
 
 Dealing with corrupted data files
