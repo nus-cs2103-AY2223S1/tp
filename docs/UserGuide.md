@@ -75,7 +75,7 @@ Track the internships you're interested in and all the relevant information -- t
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
 
-We have created this user manual for new users who want to use our app and returning users who need reference to the command summary. 
+We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
 For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
 
 
@@ -145,7 +145,7 @@ The UI component description:
 
 5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-|     ![Ui](images/Ui.png)      |
+|  ![Ui](images/darktheme.png)  |
 |:-----------------------------:|
 | InterNUS GUI with sample data |
 
@@ -167,24 +167,33 @@ Saves a contact person into InterNUS, from the hiring manager you liaise with
 during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
-* The link index (in add -p) refers to the index number shown in the internship list.
-* The company refers to the company the contact person is working at.
+* `PHONE_NUMBER` can only be numeric and consists of at least 3 numbers.
+* `LINK_INDEX` refers to the index number shown in the person list and is optional.
+    * Specifying this parameter will define the internship at the specified index in the internship list as the internship of the new person.
+    * An internship is assumed to have at most one contact person, and a person is assumed to be in charge of at most one internship position.
+    * If the internship at the specified index is already an internship for another person,
+      the linking between the person and the internship will fail with a warning, but the person will still be added.
+* `TAG` can only be alphanumeric and be one word.
+* `COMPANY` refers to the company the contact person is working at.
+* `EMAIL`,`PHONE`,`TAG`,`COMPANY` are optional as user might not have all the information of contact person.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
-Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
-A person is assumed to be in charge of at most one internship position.
-A phone number is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
-Duplicate persons are not allowed.
-A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
-Tags must be alphanumeric and can only be one word.
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** 
+
+* Duplicate person are not allowed.
+  A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
+* Adding person maintains the current sorted order of the display list (as opposed to adding to the back of the list).
+  By default, the list is sorted by date of creation. Refer to [this note under section 4.7.1 for how the sorting works](#471-sorting-persons-in-the-list-sort--p).
+* A person is assumed to be in charge of at most one internship position.
+* A person can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` 
-adds the name, email, phone number and company and link to the internship with index **1**.
-* `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com` 
-adds the name, tags and email.
+* `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` adds a person with `NAME` **John Doe**, `EMAIL` **johnd@example.com**, `PHONE` **98765432** and `COMPANY` **Meta**.
+  If the internship at index **1** of the internship list is not linked to any other person, this internship will be linked as the internship for this person. To unlink this person and internship, see [section 4.4.2 for the Unlink command](#442-unlinking-a-person-and-an-internship--unlink).
+* `add -p n/Betsy Crowe t/HR e/betsycrowe@example.com` adds a person with `NAME` **Betsy Crowe**, `TAG` **HR**, `EMAIL` **betsycrowe@example.com**
+  Here, since the `LINK_INDEX` field is omitted, the person will be added with **No internship linked**. To link an internship to this person, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
+
 
 ### 4.1.2. Adding an internship: `add -i`
 
@@ -219,7 +228,7 @@ Examples:
 * `add -i c/TikTok r/Data Engineer s/rejected l/1` adds an internship with `COMPANY_NAME` **TikTok**, `ROLE` **Data Engineer**, and `STATUS` **REJECTED**. 
   If the person at index **1** of the person list is not linked to any other internship, this person will be linked as the contact person for this internship. To unlink this person and internship, see [section 4.4.2 for the Unlink command](#442-unlinking-a-person-and-an-internship--unlink).
 * `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00` adds an internship with `COMPANY_NAME` **Grab**, `ROLE` **Full Stack Developer**, `STATUS` **PENDING** and `INTERVIEW_DATE` **2020-12-20 12:00**.
-  Here, since the `LINK_INDEX` field is omitted, the internship will be added with no linked contact person. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
+  Here, since the `LINK_INDEX` field is omitted, the internship will be added with **No contact person**. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
 ## 4.2. List Command
 
