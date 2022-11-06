@@ -298,7 +298,7 @@ The delete person mechanism is facilitated by `DeletePersonCommand` and `DeleteP
 
 Given below is an example usage scenario and how the delete person mechanism behaves at each important step.
 Before proceeding on with this section, it is highly recommended that you read the
-[Module-Person association](#Module-and-Person-association) section to be able to fully comprehend the example scenario
+[Module-Person association](#module-and-person-association) section to be able to fully comprehend the example scenario
 below.
 
 **Step 1**. There currently exists 3 persons in Plannit, with 2 of them already
@@ -773,7 +773,8 @@ obtain the `Module` associated with the `ModuleCode` obtained in **Step 2** by c
 **Step 5**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
 to the `ModuleCodeMatchesKeywordPredicate` object instantiated in **Step 2**.
 
-**Step 6**: A `PersonIsInModulePredicate` object is then instantiated with the `Module` object obtained in **Step 4**.
+**Step 6**: A `PersonIsInModulePredicate` object is then instantiated with the `Module` object <br>
+obtained in **Step 4**.
 
 **Step 7**: The person list is then filtered using the `Model#updateFilteredPersonList()` method according
 to the `PersonIsInModulePredicate` object instantiated in **Step 6**.
