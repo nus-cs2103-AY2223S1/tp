@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
-    private static String REGEX_PREFIX = "\\s\\p{Alnum}*\\/";
+    private static final String REGEX_PREFIX = "\\s\\p{Alnum}*\\/";
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
@@ -34,6 +34,14 @@ public class ArgumentTokenizer {
         return extractArguments(argsString, positions);
     }
 
+    //@@author eesung00-reused
+    //Reused from https://stackoverflow.com/questions/4662215/how-to-extract-a-substring-using-regex
+    // with minor modifications
+    /**
+     * Returns a List of prefixes found from the arguments.
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @return           List of Prefixes found.
+     */
     public static Set<Prefix> prefixFound(String argsString) {
         Pattern pattern = Pattern.compile(REGEX_PREFIX);
         Matcher matcher = pattern.matcher(argsString);
