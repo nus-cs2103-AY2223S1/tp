@@ -394,10 +394,10 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
 
 Step 1. The user creates an entity with a unique ID. The entity is unpinned by default and will be displayed according to the current sorting order.
 
-Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `togglePin()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
+Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `Client#togglePin()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the current client is already pinned, `togglePin()` will toggle the `Pin` attribute of the client from `true` to `false` and call the latest sort order, causing the client to be displayed in its original position.
+:information_source: **Note:** If the current client is already pinned, `Client#togglePin()` will toggle the `Pin` attribute of the client from `true` to `false` and call the latest sort order, causing the client to be displayed in its original position.
 </div>
 
 The following sequence diagram shows how the pin operation works:
@@ -417,7 +417,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 **Aspect: How entities can be unpinned:**
 
-* **Alternative 1 (current choice):** The `togglePin()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
+* **Alternative 1 (current choice):** The `Client#togglePin()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
     * Pros: Less duplication of code and less commands for the user to remember.
     * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
 

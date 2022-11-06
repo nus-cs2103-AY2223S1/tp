@@ -11,6 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":Client" as Client MODEL_COLOR
 end box
 
 --> LogicManager : execute("client -p 3")
@@ -43,11 +44,11 @@ deactivate AddressBookParser
 LogicManager -> PinClientCommand : execute()
 activate PinClientCommand
 
-PinClientCommand --> Model : togglePin(3)
-activate Model
+PinClientCommand --> Client : togglePin()
+activate Client
 
-Model --> PinClientCommand
-deactivate Model
+Client --> PinClientCommand
+deactivate Client
 
 PinClientCommand --> Model : sortClientsByCurrentCategory()
 activate Model
