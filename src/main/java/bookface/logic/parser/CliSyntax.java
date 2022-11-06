@@ -1,5 +1,7 @@
 package bookface.logic.parser;
 
+import java.util.List;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -13,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TITLE = new Prefix("t/");
     public static final Prefix PREFIX_AUTHOR = new Prefix("a/");
 
+    public static final List<Prefix> PREFIXES_MULTIPLE_ALLOWED = List.of(PREFIX_TAG);
 }

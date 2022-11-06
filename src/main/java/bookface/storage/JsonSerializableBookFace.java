@@ -82,7 +82,7 @@ class JsonSerializableBookFace {
             Book book = jsonAdaptedBook.toModelType();
             if (bookFace.hasBook(book)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
-            } else if (book.isLoaned() || !book.getReturnDateString().equals("")) {
+            } else if (book.isLoaned() || book.getReturnDateString().isPresent()) {
                 throw new IllegalValueException((MESSAGE_INVALID_LOANED_BOOK));
             }
             bookFace.addBook(book);

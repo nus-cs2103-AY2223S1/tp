@@ -8,6 +8,7 @@ import static bookface.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandTestUtil;
 import bookface.logic.commands.add.AddUserCommand;
 import bookface.model.person.Email;
@@ -30,25 +31,37 @@ public class AddUserArgumentsParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.NAME_DESC_BOB
+        // all fields present at least once
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-               + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
+                + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
+
+        // multiple tags - all accepted
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+                .build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
+                + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+                + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPersonMultipleTags));
+    }
+
+    @Test
+    public void parse_mutipleFieldsPresent_throwsException() {
+        // multiple names - last name accepted
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.NAME_DESC_BOB
+                + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+               + CommandTestUtil.TAG_DESC_FRIEND, String.format(Messages.MULTIPLE_PREFIXES_ENTERED, "n/"));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
+                + CommandTestUtil.TAG_DESC_FRIEND, String.format(Messages.MULTIPLE_PREFIXES_ENTERED, "p/"));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
-                + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND, new AddUserCommand(expectedPerson));
+                + CommandTestUtil.TAG_DESC_FRIEND, String.format(Messages.MULTIPLE_PREFIXES_ENTERED, "e/"));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB)

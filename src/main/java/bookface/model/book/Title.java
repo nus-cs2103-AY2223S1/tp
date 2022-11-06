@@ -44,6 +44,10 @@ public class Title {
         return bookTitle;
     }
 
+    public boolean equalsIgnoreCase(Title title) {
+        return bookTitle.equalsIgnoreCase(title.bookTitle);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
