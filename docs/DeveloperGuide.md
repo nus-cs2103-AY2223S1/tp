@@ -117,24 +117,16 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `ClientCommandParser`, `IssueCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="1000" />
 
 The `Model` component,
 
-* stores the project book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the project book data i.e., all `Project`, `Client`, and `Issue` objects (which are contained in separate `UniqueEntityList` objects).
+* stores the currently 'selected' `Peoject`, `CLient`, or `Issue` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>`, `ObservableList<Client>` or `ObservableList<Issue>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -359,6 +351,7 @@ Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
@@ -604,8 +597,10 @@ which retrieves the issue with the parsed issueId from the `IssueList` in the sy
 Compulsory argument: VALID_ISSUE_ID
 Example use: `issue -u 2`
 
-#### The following sequence diagram shows how the mark command operation works for mark an issue entity:
+#### The following sequence diagram shows how the mark command operation works for mark an issue entity (unmark works in the same manner):
 Example: `issue -m 1`
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
 #### Design Considerations
 
