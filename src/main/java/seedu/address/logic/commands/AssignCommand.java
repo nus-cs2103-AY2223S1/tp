@@ -34,10 +34,10 @@ public class AssignCommand extends Command {
             + "by using the unique id number of the patient, nurse and the dateslot index.\n"
             + "Parameters: " + PREFIX_UID + "UID of a nurse (must be a positive integer) "
             + PREFIX_UID + "UID of a patient (must be a positive integer)"
-            + "[" + PREFIX_DATE_AND_SLOT_INDEX + "DATE_AND_SLOT_INDEX] \n"
-            + "Example: " + COMMAND_WORD + PREFIX_UID + " 1 "
-            + PREFIX_UID + "2"
-            + PREFIX_DATE_AND_SLOT_INDEX + "1";
+            + " [" + PREFIX_DATE_AND_SLOT_INDEX + "DATE_AND_SLOT_INDEX] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_UID + "1 "
+            + PREFIX_UID + "2 "
+            + PREFIX_DATE_AND_SLOT_INDEX + "1 ";
 
     public static final String MESSAGE_SUCCESS = "%1$s's dateslot/dateslots assigned to %2$s.";
 
