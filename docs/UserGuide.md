@@ -10,6 +10,7 @@ title: User Guide
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
+<div id="toc"></div>
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Are you a gym-goer looking to use Gim to track your exercises? This user guide w
 
 ## 2. How to use this guide?
 Gim uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through the user guide from start to end to fully understand how to use Gim. However, you may also choose to skip to the relevant sections described below:
-* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide.
+* Refer to our <a href="#toc">Table of Contents</a> to easily navigate between sections of the User Guide.
 * Refer to our [Getting Started](#3-getting-started) guide to learn how to setup Gim.
 * Refer to our [GUI Orientation](#4-gui-orientation) to better orientate yourself around the GUI.
 * Refer to our [Commands](#5-commands) section to learn in detail the different features and commands available in Gim.
@@ -66,7 +67,7 @@ While exploring Gim's features with this user guide, do take note of these symbo
 
 6. Refer to the [Commands Section](#5-commands) below for details of each command.
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -113,7 +114,7 @@ i.e. Bench Press, BENCH PRESS, BenchPress will be logged as the same exercise fo
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -451,7 +452,7 @@ Format: `:wq`
 
 </div>
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -493,7 +494,7 @@ Format: `:wq`
 If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
 </div>
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -518,7 +519,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 | **Help menu**                   | :help                                          | :help                                     |
 | **Exit program**                | :wq                                            | :wq                                       |
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -538,4 +539,4 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 * **Vim**: A text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Weight**: Total weight (include barbell if applicable, exclude body weight).
 
-<a href="#top">Back To Top</a>
+<a href="#toc">Back To Table of Contents</a>
