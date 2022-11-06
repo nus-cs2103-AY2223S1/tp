@@ -1021,22 +1021,114 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `client -d 1`<br>
+      Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `client -d 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list 
+      size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
+
+### Adding a client
+
+1. Deleting a client while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+
+    3. Test case: `client -d 0`<br>
+       Expected: No client is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Editing a client
+
+1. Deleting a client while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+
+    3. Test case: `client -d 0`<br>
+       Expected: No client is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Finding a client
+
+1. Deleting a client while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+
+    3. Test case: `client -d 0`<br>
+       Expected: No client is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Finding a project
+
+1. Deleting a client while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+
+    3. Test case: `client -d 0`<br>
+       Expected: No client is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Finding an issue
+
+1. Deleting a client while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+
+    3. Test case: `client -d 0`<br>
+       Expected: No client is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
 
 ### Listing an entity
 
