@@ -22,10 +22,16 @@ public class ItemWithMessage {
         this.message = message;
     }
 
+    /**
+     * Returns the item.
+     */
     public Item getItem() {
         return item;
     }
 
+    /**
+     * Returns the message.
+     */
     public String getMessage() {
         return message;
     }
