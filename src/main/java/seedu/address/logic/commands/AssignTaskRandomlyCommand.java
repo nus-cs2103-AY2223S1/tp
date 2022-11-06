@@ -27,7 +27,7 @@ public class AssignTaskRandomlyCommand extends Command {
     public static final String ALIAS = "r";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'assign random' command is used to randomly assign a task to a member in the team.\n";
+            "The '" + FULL_COMMAND + "' command is used to randomly assign a task to a member in the team.\n";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Randomly Assigned Task: %1$s randomly assigned to %2$s";
     public static final String MESSAGE_ALL_MEMBERS_ASSIGNED = "There are no team members left to assign this task to";

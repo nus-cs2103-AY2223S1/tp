@@ -32,7 +32,7 @@ public class FindMemberCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'find member' command is used to find a member in the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to find a member in the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s): %2$s\n"
             + "Type `list members` to show all members again.";

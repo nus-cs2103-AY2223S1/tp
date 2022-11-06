@@ -37,7 +37,7 @@ public class AddTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'add task' command is used to add a new task to the current team's task list.\n";
+            "The '" + FULL_COMMAND + "' command is used to add a new task to the current team's task list.\n";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";

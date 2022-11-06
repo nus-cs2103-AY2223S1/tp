@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     public static final String ALIAS = "c";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'clear' command is used to clear all the data from the application.\n";
+            "The '" + FULL_COMMAND + "' command is used to clear all the data from the application.\n";
 
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 

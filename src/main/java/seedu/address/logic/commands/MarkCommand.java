@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_MARKED = "This task has already been marked as complete.";
     public static final String HELP_MESSAGE =
-            "The 'mark task' command is used to mark a task in the current team's task list as completed.\n";
+            "The '" + FULL_COMMAND + "' command is used to mark a task in the current team's task list as completed.\n";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;

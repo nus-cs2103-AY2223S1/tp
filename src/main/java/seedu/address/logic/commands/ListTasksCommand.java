@@ -29,7 +29,7 @@ public class ListTasksCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'list tasks' command is used to list all tasks of the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to list all tasks of the current team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Lists all the tasks of the current team.\n"

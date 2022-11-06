@@ -35,7 +35,7 @@ public class EditLinkCommand extends Command {
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'edit link' command is used to edit a link's details.\n";
+            "The '" + FULL_COMMAND + "' command is used to edit a link's details.\n";
 
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the team.";

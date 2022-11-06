@@ -22,7 +22,7 @@ public class SortCommand extends Command {
     public static final String ALIAS = "so";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'sort' command is used to sort data in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to sort data in TruthTable.\n";
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

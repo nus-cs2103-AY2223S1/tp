@@ -19,7 +19,7 @@ public class ListPersonsCommand extends Command {
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'list persons' command is used to list all the persons in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to list all the persons in TruthTable.\n";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 

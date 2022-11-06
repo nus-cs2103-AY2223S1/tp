@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
     public static final String ALIAS = "d";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'delete' command is used to delete data from TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to delete data from TruthTable.\n";
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

@@ -23,7 +23,7 @@ public class FindPersonCommand extends Command {
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'find person' command is used to find a person in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to find a person in TruthTable.\n";
 
     @CommandLine.Parameters(arity = "1", paramLabel = "keywords",
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,

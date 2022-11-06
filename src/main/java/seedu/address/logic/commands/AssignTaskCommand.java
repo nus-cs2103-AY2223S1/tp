@@ -32,7 +32,7 @@ public class AssignTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'assign task' command is used to assign a task to a specific member(s) of the team.\n";
+            "The '" + FULL_COMMAND + "' command is used to assign a task to a specific member(s) of the team.\n";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task successfully. %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";

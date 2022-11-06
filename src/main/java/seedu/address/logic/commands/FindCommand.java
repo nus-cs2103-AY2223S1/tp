@@ -23,7 +23,7 @@ public class FindCommand extends Command {
     public static final String ALIAS = "f";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'find' command is used to find data in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to find data in TruthTable.\n";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

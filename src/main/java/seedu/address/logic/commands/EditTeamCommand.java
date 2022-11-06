@@ -36,7 +36,7 @@ public class EditTeamCommand extends Command {
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'edit team' command is used to edit a team's details.\n";
+            "The '" + FULL_COMMAND + "' command is used to edit a team's details.\n";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
     public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the TruthTable.";

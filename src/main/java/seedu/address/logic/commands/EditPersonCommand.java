@@ -47,7 +47,7 @@ public class EditPersonCommand extends Command {
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'edit person' command is used to edit a person's details.\n";
+            "The '" + FULL_COMMAND + "' command is used to edit a person's details.\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the TruthTable.";

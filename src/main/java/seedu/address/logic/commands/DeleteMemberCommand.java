@@ -25,7 +25,7 @@ public class DeleteMemberCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'delete member' command is used to delete a member from the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to delete a member from the current team.\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 

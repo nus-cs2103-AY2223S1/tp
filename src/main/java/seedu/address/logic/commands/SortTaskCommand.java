@@ -24,7 +24,7 @@ public class SortTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'sort tasks' command is used to sort the tasks of the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to sort the tasks of the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted tasks successfully";
 

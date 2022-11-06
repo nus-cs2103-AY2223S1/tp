@@ -25,7 +25,8 @@ public class TasksSummaryCommand extends Command {
     public static final String ALIAS_SUM = "sum";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'summary' command is used to view the summary of how tasks have been assigned in the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to view the summary of how tasks have been assigned in the "
+                    + "current team.\n";
 
     public static final String MESSAGE_TASK_SUMMARY = "Task Summary: \n%1$s";
 

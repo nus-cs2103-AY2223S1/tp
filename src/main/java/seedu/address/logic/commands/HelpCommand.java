@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
     public static final String ALIAS = "h";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'help' command is used to view a list of all commands.\n";
+            "The '" + FULL_COMMAND + "' command is used to view a list of all commands.\n";
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

@@ -25,7 +25,7 @@ public class DeleteTeamCommand extends Command {
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'delete team' command is used to delete a team from TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to delete a team from TruthTable.\n";
 
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Deleted team: %1$s";
     public static final String MESSAGE_AT_LEAST_ONE_TEAM = "You must have at least one team!";

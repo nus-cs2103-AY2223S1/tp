@@ -22,7 +22,7 @@ public class ExitCommand extends Command {
     public static final String ALIAS_QUIT = "quit";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'exit' command is used to exit the application.\n";
+            "The '" + FULL_COMMAND + "' command is used to exit the application.\n";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
             "Exiting TruthTable as requested (will close in " + MainWindow.DELAY_DURATION_SECONDS + "s)...";

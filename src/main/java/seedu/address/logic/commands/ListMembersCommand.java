@@ -22,7 +22,7 @@ public class ListMembersCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'list members' command is used to list all the members of the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to list all the members of the current team.\n";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

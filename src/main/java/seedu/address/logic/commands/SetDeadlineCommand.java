@@ -26,7 +26,7 @@ public class SetDeadlineCommand extends Command {
     public static final String ALIAS = "d";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'set deadline' command is used to set a deadline for a task.\n";
+            "The '" + FULL_COMMAND + "' command is used to set a deadline for a task.\n";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "

@@ -23,7 +23,7 @@ public class ListCommand extends Command {
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'list' command is used to list data in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to list data in TruthTable.\n";
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

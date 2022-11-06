@@ -23,7 +23,7 @@ public class FindTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'find task' command is used to find a task in the current team's task list.\n";
+            "The '" + FULL_COMMAND + "' command is used to find a task in the current team's task list.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s): %2$s.\n"
             + "Type `list tasks` to show all tasks again.";

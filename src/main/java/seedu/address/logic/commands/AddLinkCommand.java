@@ -28,7 +28,7 @@ public class AddLinkCommand extends Command {
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'add link' command is used to add links relevant to the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to add links relevant to the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in team";

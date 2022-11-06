@@ -27,7 +27,7 @@ public class SetTeamCommand extends Command {
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'set team' command is used to change the current working team.\n";
+            "The '" + FULL_COMMAND + "' command is used to change the current working team.\n";
 
     public static final String MESSAGE_SET_TEAM_SUCCESS = "Set current team: %1$s";
     public static final String MESSAGE_TEAM_ALREADY_SET = "You are already on this team!";

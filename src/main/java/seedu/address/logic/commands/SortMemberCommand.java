@@ -24,7 +24,7 @@ public class SortMemberCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'sort members' command is used to sort the current team's members.\n";
+            "The '" + FULL_COMMAND + "' command is used to sort the current team's members.\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted members successfully";
 

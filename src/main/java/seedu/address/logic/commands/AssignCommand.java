@@ -22,7 +22,7 @@ public class AssignCommand extends Command {
     public static final String ALIAS = "as";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'assign' command is used to assign a task.\n";
+            "The '" + FULL_COMMAND + "' command is used to assign a task.\n";
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

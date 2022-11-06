@@ -26,7 +26,7 @@ public class DeleteTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'delete task' command is used to delete a task from the current team's task list.\n";
+            "The '" + FULL_COMMAND + "' command is used to delete a task from the current team's task list.\n";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 

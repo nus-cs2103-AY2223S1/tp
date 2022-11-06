@@ -25,7 +25,7 @@ public class AddMemberCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'add member' command is used to add new members to the current team.\n";
+            "The '" + FULL_COMMAND + "' command is used to add new members to the current team.\n";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";

@@ -28,7 +28,7 @@ public class AddTeamCommand extends Command {
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'add team' command is used to create a new team in TruthTable.\n";
+            "The '" + FULL_COMMAND + "' command is used to create a new team in TruthTable.\n";
 
     public static final String MESSAGE_ADD_TEAM_SUCCESS = "Added team: %1$s";
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";

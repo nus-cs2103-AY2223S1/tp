@@ -42,7 +42,7 @@ public class EditTaskCommand extends Command {
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'edit task' command is used to edit a task's details.\n";
+            "The '" + FULL_COMMAND + "' command is used to edit a task's details.\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";
