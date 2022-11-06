@@ -322,9 +322,9 @@ Examples:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-### Clearing all entries : `clear`
-
 ---
+
+### Clearing all entries : `clear`
 
 Clears all entries from **RC4HDB**.
 
@@ -403,8 +403,6 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
 
 ### Showing only some columns : `showonly`
@@ -452,8 +450,6 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
 
 ### Hiding only some columns : `hideonly`
@@ -495,8 +491,6 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
 
 ### Resetting hidden columns : `reset`
@@ -513,8 +507,6 @@ Note:
   * However, both commands cause the full set of resident fields to be displayed in the table.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -543,8 +535,6 @@ Examples:
 * `find char li` returns `Charmaine Yee`, `William Li`<br>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -890,7 +880,7 @@ will not be saved!. </div>
 
 You do not have to worry about exiting
 **RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit
-the [file management section](#saving-your-data).
+the section on [saving your data](#saving-your-data).
 
 ### Exiting the program : `exit`
 
@@ -1009,8 +999,6 @@ This term is short for JavaScript Object Notation. It is a common file type that
 
 This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
 For more information, please refer to our [about us](AboutUs.md) page.
-
-
 
 ---
 
