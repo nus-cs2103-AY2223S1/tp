@@ -26,6 +26,8 @@ import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.entry.EntryType;
 import seedu.pennywise.model.entry.GraphType;
 
+import static seedu.pennywise.model.entry.GraphType.GRAPH_TYPE_CATEGORY;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -129,10 +131,24 @@ public class MainWindow extends UiPart<Stage> {
 
         entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
+
         entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            Object data = entryPane.getExpenses().getUserData();
+            entryPane.getExpenses().setUserData(false);
+            if (!entryPane.getExpenses().isSelected()) {
+                return;
+            }
+
+            // if the change in tab selection is caused by a user command (eg. view t/e)
+            if (data != null && data.equals(true)) {
+                return;
+            }
+
+            // if the change in tab selection is caused by user manually toggling,
+            // show pie chart with reset filters
             GraphConfiguration expenditureGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                    this.currGraphPanel.getGraphType(),
+                    new GraphType(GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult expenditureCommandResult = new CommandResult(
                     "",
@@ -142,9 +158,22 @@ public class MainWindow extends UiPart<Stage> {
             this.updateGraph(expenditureCommandResult);
         });
         entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            Object data = entryPane.getIncome().getUserData();
+            entryPane.getIncome().setUserData(false);
+            if (!entryPane.getIncome().isSelected()) {
+                return;
+            }
+
+            // if the change in tab selection is caused by a user command (eg. view t/e)
+            if (data != null && data.equals(true)) {
+                return;
+            }
+
+            // if the change in tab selection is caused by user manually toggling,
+            // show pie chart with reset filters
             GraphConfiguration incomeGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                    this.currGraphPanel.getGraphType(),
+                    new GraphType(GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult incomeCommandResult = new CommandResult(
                     "",
@@ -222,6 +251,7 @@ public class MainWindow extends UiPart<Stage> {
         assert entryType != null;
 
         EntryType finalEntryType = entryType;
+        System.out.println("**********: " + entryType);
         Supplier<ObservableList<PieChart.Data>> pieChartDataSupplier = () -> {
             switch (finalEntryType.getEntryType()) {
             case EXPENDITURE:
