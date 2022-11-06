@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeletePersonCommand}.
  */
 public class DeletePersonCommandTest {
 
@@ -99,7 +99,7 @@ public class DeletePersonCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered person list to show no persons.
      */
     private void showNoPerson(Model model) {
         model.updateFilteredPersonList(p -> false);

@@ -190,4 +190,18 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredEventList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitEventTitle = event.getEventTitle().toString().split("\\s+");
+        model.updateFilteredEventList(new EventTitleContainsKeywordsPredicate(Arrays.asList(splitEventTitle[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
+    }
+
 }

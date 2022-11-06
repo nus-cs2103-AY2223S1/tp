@@ -23,7 +23,7 @@ public class DeleteEventCommand extends Command {
             + COMMAND_WORD
             + " 3";
 
-    public static final String MESSAGE_DELETED_EVENT_SUCCESS = "Deleted Event: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
 
     private final Index targetEventIndex;
 
@@ -43,12 +43,12 @@ public class DeleteEventCommand extends Command {
         Integer zeroBasedIndex = targetEventIndex.getZeroBased();
 
         if (zeroBasedIndex >= currentEventList.size()) {
-            throw new CommandException("The event index supplied is invalid");
+            throw new CommandException("The event index provided is invalid");
         }
 
         Event toDelete = currentEventList.get(zeroBasedIndex);
         model.deleteEvent(toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETED_EVENT_SUCCESS, toDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, toDelete));
     }
 
     @Override
