@@ -151,9 +151,11 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 ## 5.1 Introduction
 
 Welcome to the Features section of StudMap. We have three categories of
-features: [Student List Management](#53-student-list-management), and
-[Student Updating](#54-student-updating), and [Miscellaneous](#55-miscellaneous). They have been color-coded for your
-convenience and viewing pleasure.
+features: 
+
+* [5.3 Student List Management](#53-student-list-management)
+* [5.4 Student Updating](#54-student-updating)
+* [5.5 Miscellaneous](#55-miscellaneous)
 
 Read on to learn in detail about the plethora of features that StudMap has in store for you! Worried about the learning
 curve? StudMap is designed to be extremely intuitive, with in-built help messages guiding you every step of the way!
@@ -193,6 +195,15 @@ This will help you understand the guide better!
 </div>
 
 ## 5.3 Student List Management
+
+* [5.3.1 Adding a student: `add`](#531-adding-a-student-add)
+* [5.3.2 Deleting a student: `delete`](#532-deleting-a-student-delete)
+* [5.3.3 Clearing all entries: `clear`](#533-clearing-all-entries-clear)
+* [5.3.4 Importing students from CSV file: `import`](#534-importing-students-from-csv-file-import)
+* [5.3.5 Listing all students: `list`](#535-listing-all-students-list)
+* [5.3.6 Locating students by name: `find`](#536-locating-students-by-name-find)
+* [5.3.7 Sorting the students: `sort`](#537-sorting-the-students-sort)
+* [5.3.8 Filtering the students: `filter`](#538-filtering-the-students-filter)
 
 ### 5.3.1 Adding a student: `add`
 
@@ -406,6 +417,16 @@ by assignment.
 [`find`](#536-locating-students-by-name-find)
 
 ## 5.4 Student Updating
+
+* [5.4.1 Editing a student: `edit`](#541-editing-a-student-edit)
+* [5.4.2 Marking attendance of student: `mark`](#542-marking-attendance-of-student-mark)
+* [5.4.3 Unmarking attendance of student: `unmark`](#543-unmarking-attendance-of-student-unmark)
+* [5.4.4 Grading assignment for student: `grade`](#544-grading-assignment-for-student-grade)
+* [5.4.5 Removing assignment from student: `ungrade`](#545-removing-assignment-from-student-ungrade)
+* [5.4.6 Recording participation of student: `participate`](#546-recording-participation-of-student-participate)
+* [5.4.7 Removing participation of student: `unparticipate`](#547-removing-participation-of-student-unparticipate)
+* [5.4.8 Adding tag to student: `tag`](#548-adding-tag-to-student-tag)
+* [5.4.9 Removing tag from student: `untag`](#549-removing-tag-from-student-untag)
 
 ### 5.4.1 Editing a student: `edit`
 
@@ -641,6 +662,12 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 [`tag`](#548-adding-tag-to-student-tag)
 
 ## 5.5 Miscellaneous
+
+* [5.5.1 Exiting the program: `exit`](#551-exiting-the-program-exit)
+* [5.5.2 Saving the data](#552-saving-the-data)
+* [5.5.3 Backing up data](#553-backing-up-data)
+* [5.5.4 Editing the data file](#554-editing-the-data-file)
+* [5.5.5 Viewing help: `help`](#555-viewing-help-help)
 
 ### 5.5.1 Exiting the program: `exit`
 
