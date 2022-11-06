@@ -294,38 +294,6 @@ Example:
 
 * `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be sleep and deadline to be 22-10-2022.
 
-### Marking task as completed: `markT`
-
-Marks a task in the task list as completed.
-
-Format: `markT INDEX`
-
-* Index of a task is its index number on the task list.
-
-* INDEX must be a positive integer more than 0.
-
-Examples:
-
-* `listT` followed by `markT 1` marks the first task in the displayed task list as done.
-
-* `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
-
-### Marking task as incomplete: `unmarkT`
-
-Marks a task in the task list as incomplete.
-
-Format: `unmarkT INDEX`
-
-* Index of a task is its index number on the task list.
-
-* INDEX must be a positive integer more than 0.
-
-Examples:
-
-* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
-
-* `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
-
 ### Finding a task: `findT`
 
 Finds a task using one or more information fields (e.g. description, deadline, and/or completion status)
@@ -369,6 +337,54 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 Example:
 
 * `filterT cs2103t` will return a tasks with label `cs2103t`.
+
+### Marking task as completed: `markT`
+
+Marks a task in the task list as completed.
+
+Format: `markT INDEX`
+
+* Index of a task is its index number on the task list.
+
+* INDEX must be a positive integer more than 0.
+
+Examples:
+
+* `listT` followed by `markT 1` marks the first task in the displayed task list as done.
+
+* `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
+
+### Marking task as incomplete: `unmarkT`
+
+Marks a task in the task list as incomplete.
+
+Format: `unmarkT INDEX`
+
+* Index of a task is its index number on the task list.
+
+* INDEX must be a positive integer more than 0.
+
+Examples:
+
+* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
+
+* `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+
+### Archiving a task: `archiveT`
+
+Archives a task in the task list, removing it from main task list.
+
+* Archived task list will be displayed after executing this command.
+
+Format: `archiveT INDEX`
+
+### Unarchiving a task: `unarchiveT`
+
+Unarchives a task in the task list, adding it to the main task list.
+
+* Main (unarchived) task list will be displayed after executing this command.
+
+Format: `unarchiveT INDEX`
 
 ### List tasks with deadlines up to and including the specified date: `remindT`
 
@@ -433,22 +449,6 @@ Sorts all tasks in the task list by id.
 * The list remains in this sorted order until a different sort command is used.
 
 Format: `sortI`
-
-### Archiving a task: `archiveT`
-
-Archives a task in the task list, removing it from main task list.
-
-* Archived task list will be displayed after executing this command.
-
-Format: `archiveT INDEX`
-
-### Unarchiving a task: `unarchiveT`
-
-Unarchives a task in the task list, adding it to the main task list.
-
-* Main (unarchived) task list will be displayed after executing this command.
-
-Format: `unarchiveT INDEX`
 
 [[Back to Table of Contents](#table-of-contents)]
 
