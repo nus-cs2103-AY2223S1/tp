@@ -253,6 +253,9 @@ Examples:
 * `find typ/stu ta` -> Returns contacts who are students OR teaching assistants.
 * * `find typ/stu prof` -> Returns contacts who are students OR professors.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 3.3.2 List contact: `list`
 
 Displays all contacts stored in application.
@@ -264,6 +267,9 @@ After executing find command, only the contacts that matches your input will be 
 Format: `list`
 
 Example Command: `list`
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.3.3 Sort contact
 
@@ -300,6 +306,9 @@ After executing the command:<br>
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Contacts are sorted by name in `Z-A` order.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 #### 3.3.3.2 Sort by moduleCode
 
@@ -438,6 +447,9 @@ file:
 ![after export](images/CsvExport.png)
 The file path is displayed in SoConnect:
 ![file path](images/ExportFilePath.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.7.2 Import address book in CSV format into address book: `import`
 
