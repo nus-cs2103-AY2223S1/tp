@@ -20,6 +20,7 @@ class DebtIndex3 as "__3:Index__"
 package Person {
 class OldPerson as "__person1:Person__"
     package Debt {
+    class DebtList as "__initialList:DebtList__"
     class Debt1 as "__1:Debt__"
     class Debt2 as "__2:Debt__"
     class Debt3 as "__3:Debt__"
@@ -39,9 +40,10 @@ DeleteDebtCommand -[hidden]-> "to delete" Debt2
 DeleteDebtCommand -[hidden]-> "to delete" Debt3
 Debt2 -d[hidden]-> Debt3
 
-OldPerson ---> Debt1
-OldPerson ---> Debt2
-OldPerson ---> Debt3
+OldPerson --> DebtList
+DebtList --> Debt1
+DebtList --> Debt2
+DebtList --> Debt3
 
 
 

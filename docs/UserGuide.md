@@ -169,15 +169,15 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * To separate inputs that represent different information, you should precede ambiguous inputs with their paired prefixes that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
-* Items in square brackets `[]` are optional.<br>
+* Inputs in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Command fields with `…` can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+* Inputs with … can be used multiple times, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
+Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
 
 * Inputs can be in any order.<br>
@@ -186,14 +186,12 @@ Be very careful with how a command is formatted! If the `…` is found within th
 * If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the input will be taken.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Extraneous inputs for commands that do not take in inputs (such as `help`, `list`, `exit` and `clear`)
-  will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Any inputs for commands that do not accept inputs will be ignored.<br>
+  e.g. entering `help 123` will be equivalent to entering `help`, as it does not accept any inputs.
 
 </div>
 
-#### Input-specific behavior
-
+#### Input-specific behaviour
 <div markdown="block" class="alert alert-info">
 
 * Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
@@ -211,6 +209,9 @@ Be very careful with how a command is formatted! If the `…` is found within th
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
+</div>
 
 ### Viewing help: `help`
 
@@ -221,7 +222,7 @@ If you get lost while using PayMeLah, this is the one command to remember!
 
 Format: `help`
 
-<div markdown="block" class="alert alert-secondary">
+<div markdown="block" class="alert alert-info">
 **:star: Advanced Tip:**
 Pressing <kbd> F1 </kbd> will also open up the help message.
 </div>
@@ -355,16 +356,27 @@ You can split a debt among as many people as you want. You can even include your
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
-* If you do not specify date and time, they will conveniently default to the current date and time.
-* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
+</div>
+
+
+* If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
+* If you specify **only the time but not the date**, the date will conveniently default to the current date.
+* If you specify **only the date but not the time**, the time will default to midnight.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
+</div>
+
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
 
 Examples:
-* `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
-* `splitdebt 0 2 5 d/KFC Fish m/13+ date/2022-10-12`
+* `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
+* `splitdebt 0 2 5 d/KFC chicken bucket m/30+ date/2022-10-12` will add debts with `2022-10-12` and with the default `00:00` as the date and time respectively to **both** the 2nd person and 5th person. These debts will be recorded with the description `KFC chicken bucket` and require GST to be added to an initial total price of `$30` before dividing the costs by 3, over yourself, the 2nd person and the 5th person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$10.70`.
 
 ### Deleting a debt: `deletedebt`
 
@@ -383,8 +395,13 @@ You can use this command to delete all of a person’s debts and your relationsh
 
 Format: `cleardebts <person index>`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+</div>
+
+
 Example:
-* `cleardebts 3`
+* `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current person list.
 
 ### Marking debts as paid: `mark`
 
@@ -405,7 +422,6 @@ Format: `unmark <person index> debt/<debt index…>`
 
 Example:
 * `unmark 2 debt/2 3`
-
 
 ### Getting the statement: `statement`
 
