@@ -498,13 +498,13 @@ _{More to be added}_
 
   Use case resumes at step 2.
 
-**Use case: UC02 - Edit details of a person**
+**Use case: UC02 - Edit details of a employee**
 
 **MSS**
 
-1. User requests to list persons.
-2. Coydir shows a list of persons.
-3. User requests to edit a specific person in the list.
+1. User requests to list employees.
+2. Coydir shows a list of employees.
+3. User requests to edit a specific employee in the list.
 4. Coydir replaces the data of the employee based on the user's specified inputs.
 
    Use case ends.
@@ -536,7 +536,7 @@ _{More to be added}_
     Use case resumes at step 2.
 
 
-**Use case: UC03 - Find details of a person**
+**Use case: UC03 - Find details of a employee**
 
 **MSS**
 
@@ -559,14 +559,14 @@ _{More to be added}_
   
   Use case ends.
 
-**Use case: UC04 - View details of a person**
+**Use case: UC04 - View details of a employee**
 
 **MSS**
 
-1. User requests to list persons.
-2. Coydir shows a list of persons.
-3. User request to view details of a specific person in the list.
-4. Coydir shows the details of the specific person.
+1. User requests to list employees.
+2. Coydir shows a list of employees.
+3. User request to view details of a specific employee in the list.
+4. Coydir shows the details of the specific employee.
 
    Use case ends.
 
@@ -624,8 +624,8 @@ Use case ends.
 **Use case: UC06 - Allocate leave to employee**
 
 **MSS**
-1. User requests to list persons.
-2. Coydir shows a list of persons.
+1. User requests to list employees.
+2. Coydir shows a list of employees.
 3. User requests to add leave to specified employee and includes duration.
 4. User requests to view specified employee (UC04).
 5. Coydir shows the updated details of the employee.
@@ -670,8 +670,8 @@ Use case ends.
 **Use case: UC07 - Delete leave from employee**
 
 **MSS**
-1. User requests to list persons.
-2. Coydir shows a list of persons.
+1. User requests to list employees.
+2. Coydir shows a list of employees.
 3. User requests to view details of specified employee (UC04). 
 4. Coydir shows details of specified employee.
 5. User requests to delete leave from employee indicating index of leave to delete.
@@ -740,7 +740,7 @@ Use case ends.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 5. The product should be easy to use by person with little experience of using a command line application.
