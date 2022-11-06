@@ -26,8 +26,10 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses given arguments to determine execution of {@code AddCommand}.
+     *
+     * @param args Arguments to be parsed.
+     * @return {@code AddCommand} to be executed.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -54,6 +56,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @return Whether all prefixes contain non-empty values.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

@@ -15,7 +15,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     /**
      * Constructor for the tag predicate.
-     * @param keywords
+     *
+     * @param keywords List of keywords to be tested against.
      */
     public TagContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;

@@ -4,8 +4,12 @@ title: Zhao Yao's Project Portfolio Page
 ---
 
 ## Project: idENTify
+
 ### Overview
-idENTify - ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the severity of their condition, their diagnosis, and allow admin staff to filter different types of patients
+IdENTify is a **desktop app made for Ear, Nose and Throat (ENT) administrative staff to manage patients' contact details
+and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks
+done faster than traditional GUI apps.
 
 ### Summary of Contributions
 Given below are my contributions to the project.

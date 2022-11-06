@@ -157,4 +157,11 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateAppointmentComparator(Comparator<Appointment> comparator);
+
+    /**
+     * Updates the filter of the filtered person and appointment lists by the given {@code predicate}
+     * and {@code appointmentPredicate}.
+     * @throws NullPointerException if {@code predicate} or {@code appointmentPredicate} is null.
+     */
+    void updateFilteredLists(Predicate<Person> predicate, Predicate<Appointment> appointmentPredicate);
 }
