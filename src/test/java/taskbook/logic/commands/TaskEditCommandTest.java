@@ -39,6 +39,7 @@ public class TaskEditCommandTest {
             .withAssignment(Assignment.FROM)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
+            .withTags(task.getTags())
             .build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         TaskEditCommand editCommand = new TaskEditCommand(INDEX_SECOND_TASK, descriptor);

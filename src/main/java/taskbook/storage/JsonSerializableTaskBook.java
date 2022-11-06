@@ -46,18 +46,19 @@ class JsonSerializableTaskBook {
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        tasks.addAll(source.getTaskList().stream().map(task -> {
-            Class<? extends Task> c = task.getClass();
-            if (c.equals(Todo.class)) {
-                return new JsonAdaptedTodo(task);
-            } else if (c.equals(Event.class)) {
-                return new JsonAdaptedEvent((Event) task);
-            } else if (c.equals(Deadline.class)) {
-                return new JsonAdaptedDeadline((Deadline) task);
-            }
-            return null;
-        })
-            .collect(Collectors.toList()));
+        tasks.addAll(
+            source.getTaskList().stream().map(task -> {
+                Class<? extends Task> c = task.getClass();
+                if (c.equals(Todo.class)) {
+                    return new JsonAdaptedTodo(task);
+                } else if (c.equals(Event.class)) {
+                    return new JsonAdaptedEvent((Event) task);
+                } else if (c.equals(Deadline.class)) {
+                    return new JsonAdaptedDeadline((Deadline) task);
+                }
+                return null;
+            }).collect(Collectors.toList())
+        );
     }
 
     /**
@@ -78,6 +79,9 @@ class JsonSerializableTaskBook {
             Task task = jsonAdaptedTask.toModelType();
             if (taskBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            if (taskBook.findPerson(task.getName()) == null) {
+                continue;
             }
             taskBook.addTask(task);
         }
