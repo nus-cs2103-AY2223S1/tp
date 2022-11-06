@@ -48,7 +48,7 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
         - [Delete a Teammate](#deleting-a-teammate--delete)
         - [Edit a Teammate](#editing-a-teammates-information--edit)
         - [Find Teammate](#finding-teammates-based-on-namekeywordtags-find)
-    3. [Task Commands](#task-commands)
+    3. [Task Management Commands](#task-management-commands)
         - [Add a Task](#adding-a-new-task-task-add)
         - [Assign a Task to a Teammate](#assigning-a-task-to-a-teammate-task-assign)
         - [Mark completed Task](#marking-completed-tasks-task-mark)
@@ -65,7 +65,7 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 6. [Behind Everything](#behind-everything)
 7. [Glossary](#glossary)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick Start
 
@@ -78,9 +78,9 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 Note how the app contains some sample data. If the app does not start and an `error` appears on your screen, do refer to the [FAQ](#faq).<br>
 
 5. The picture below shows the _main window_ of **Arrow**.
-- The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
-- The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
-- The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
+* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
+* The task panel is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
+* The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your teammates.
 ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -89,9 +89,10 @@ Note how the app contains some sample data. If the app does not start and an `er
     * **`list`** : Lists all teammates.
 
     * **`exit`** : Exits the app.
+    * 
 7. Refer to the **Features** section below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Overview of Features
 
@@ -101,6 +102,9 @@ This section provides a brief overview of `Arrow`. The intention is for users to
 understanding of basic functionalities of `Arrow`, before diving into specific commands.
 
 </div>
+
+Task Details
+![Task](images/TaskDetails.png)
 
 1. **Basic functionality**
     1. Clear all Teammates' records
@@ -167,7 +171,7 @@ it will be completed and disappears from the task panel as it is NOT incomplete.
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Basic Commands
 This section covers basic application-related commands.
@@ -178,7 +182,7 @@ Clears all Teammates from the address book.
 
 Format: `clear`
 
----
+
 ### Clearing all tasks from Task Panel: `task clear`
 
 Clears the tasks from tasks list.
@@ -188,7 +192,7 @@ Format: `task clear`
 Examples:
 - `task list` followed by `task clear` to delete all incomplete tasks.
 
----
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -197,7 +201,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
----
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -298,7 +302,8 @@ Examples:
 
 ---
 ## Task Management Commands
-A Team Leader in `Arrow` may have tasks to complete or assign to Teammates.
+
+A team Leader in `Arrow` may have tasks to complete or assign to Teammates.
 
 In the Task panel, all tasks are shown coupled with who it has been assigned to.
 
@@ -555,7 +560,7 @@ add tasks of the same name (different projects) since categorisation will be don
 
 This summary provides a list of useful and straightforward instructions on how to use the command lines more efficiently.
 
-### Basic Commands
+### Basic Commands Summary
 
 | Command         | Format       |
 |-----------------|--------------|
@@ -564,7 +569,7 @@ This summary provides a list of useful and straightforward instructions on how t
 | Clear Tasks     | `task clear` |
 | Exit            | `exit`       |
 
-### Teammate Commands
+### Teammate Commands Summary
 
 | Command | Format                                                                 | Example                                                                                            |
 |---------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
@@ -575,7 +580,7 @@ This summary provides a list of useful and straightforward instructions on how t
 | Find    | `find [KEYWORD]… [t/TAG]…`                                             | `find James Jake t/frontend t/backend`                                                             |
 
 
-### Task Commands
+### Task Commands Summary
 
 | Command      | Format                                                                                                         | Example                                 |
 |--------------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------|
@@ -588,7 +593,7 @@ This summary provides a list of useful and straightforward instructions on how t
 | Task do      | `task do TASK_INDEX by/DATE...`                                                                                | `task do 1 by/tomorrow`                 |
 | Task sort    | `task sort`                                                                                                    | -                                       |
 | Task filter  | `task list`                                                                                                    | -                                       |
-| Task edit    | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@TEAMMATES_INDEX] ... [-@TEAMMATES_INDEX]...`     | `task edit 2 ti/Finish bar by/tomorrow` |
+| Task edit    | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] `                                                   | `task edit 2 ti/Finish bar by/tomorrow` |
 | Task project | `task project`                                                                                                 | -                                       |
 
 --------------------------------------------------------------------------------------------------------------------
