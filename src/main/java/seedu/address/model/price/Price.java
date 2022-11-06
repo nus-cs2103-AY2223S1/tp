@@ -13,7 +13,7 @@ public class Price {
             "Price should only contain numbers and an optional exponent within the maximum range of a Double,"
                     + " and it should not be blank."
                     + " For example: 123.45";
-    private static final String VALIDATION_REGEX = "^[0-9]*\.*[0-9]+$";
+    private static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
     private static final double EPSILON = 0.01d;
     public final String value;
     private final double numericalValue;
