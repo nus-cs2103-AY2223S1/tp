@@ -217,7 +217,7 @@ This is shown in the diagram below:
 
 </div>
 
-*Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+*Figure 10: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -251,7 +251,8 @@ Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will r
 
 This is shown in the diagram below:
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
-*Figure 13: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
+
+*Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be edited for each command?**
@@ -281,7 +282,7 @@ This is shown in the diagram below:
 
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
 
-*Figure 13: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+*Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be deleted for each command**
@@ -314,7 +315,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 12: Activity Diagram showing the execution of an `find` command*
+*Figure 13: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 

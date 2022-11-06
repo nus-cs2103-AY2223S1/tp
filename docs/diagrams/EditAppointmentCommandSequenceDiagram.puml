@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+skinparam ParticipantFontSize 25
+
 skinparam Sequence {
     ArrowFontSize 20
 }
