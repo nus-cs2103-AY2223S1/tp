@@ -9,17 +9,19 @@ Example of a [Tag](#tag):
 
 > Creates a new tag with the provided tag name
 
-**Example Input:**
+**Example:**
 
-```text
-newtag n/Vegetables
-```
+{% capture notes %}
+**Assumption:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-New tag added: Vegetables
-```
+FoodRem does not already contain a tag called "Vegetables".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="newtag n/Vegetables"
+  commandOutputBox="images/tagCommands/commandOutputBox/newtag.png"
+%}
 
 ---
 
