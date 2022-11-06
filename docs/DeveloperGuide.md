@@ -182,11 +182,11 @@ The `ClassStorage` component,
           be mapped to a LocalDate object (19 April 2022).
 * contains main methods such as
     1. `initialiseClass`
-       1. Initialises the HashMap when the application opens up.
+       1. Initialises the HashMap when the application opens up
     2. `saveClass`
        1. Stores the new class and the student in the HashMap
     3. `refresh`:
-       1. Re-initialises the HashMap in `ClassStorage`.
+       1. Re-initialises the HashMap in `ClassStorage`
 
 ### Common classes
 
