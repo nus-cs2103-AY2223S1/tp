@@ -37,5 +37,4 @@ BuyerComparator --> "nameComparator 0..1" BuyerNameComparator
 BuyerComparator --> "priceRangeComparator 0..1" PriceRangeComparator
 BuyerComparator --> "priorityComparator 0..1" PriorityComparator
 BuyerComparator --> "timeComparator 0..1" TimeComparator
-
 @enduml
