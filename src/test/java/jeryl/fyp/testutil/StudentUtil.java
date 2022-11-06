@@ -27,10 +27,24 @@ public class StudentUtil {
     }
 
     /**
+     * Returns an add student command string using another command word for adding the {@code student}.
+     */
+    public static String getAlternativeAddStudentCommand(Student student) {
+        return AddStudentCommand.ALTERNATIVE_COMMAND_WORD + " " + getStudentDetails(student);
+    }
+
+    /**
      * Returns a delete student command string for deleting the {@code student}.
      */
     public static String getDeleteStudentCommand(Student student) {
         return DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + student.getStudentId();
+    }
+
+    /**
+     * Returns a delete student command string using another command word for deleting the {@code student}.
+     */
+    public static String getAlternativeDeleteStudentCommand(Student student) {
+        return DeleteStudentCommand.ALTERNATIVE_COMMAND_WORD + " " + PREFIX_STUDENT_ID + student.getStudentId();
     }
 
     /**
