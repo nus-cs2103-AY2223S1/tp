@@ -190,6 +190,29 @@ an instance of Clipboard's method `setContent`.
 An alternative is to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
 does not attach itself as a mailto: handler.
 
+### Sort reminder
+This feature allows a TA to sort the list of reminders by a given criteria. TA could either choose to sort by
+* priority
+* deadline
+
+If priority is chosen, reminders will be sorted from `HIGH` to `MEDIUM` to `LOW`, whereas if deadline is chosen, reminders will be sorted chronologically from earliest to latest.
+
+#### Current Implementation
+ It is implemented by the SortReminderCommandParser and SortReminderCommand classes.<br>
+`SortReminderCommandParser` is responsible for parsing and validating the parameters inputted by the user while `SortReminder` class is responsible for sorting the reminders in the reminder list.<br>
+ The following sequence diagram shows how the `sort reminder` works.
+
+![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
+
+1. The user enters `sort reminders by/priority` command in main window to sort the reminders by priority.
+2. `LogicManager#execute` will then call `ModQuikParser#parseCommand` method, which then calls `SortReminderCommandParser#parse` method.
+3. `SortReminderCommandParser` will check the parameter inputted by the user, and create a new instance of SortReminderCommand with the corresponding sorting criteria.
+4. `SortReminderCommandParser` will return the new `SortReminderCommand` instance to ModQuikParser, which in turns return to LogicManager.
+5. `LogicManager` calls `SortReminderCommand#execute` method, which will then call either `Model#sortReminderByPriority()` or `Model#sortReminderByDeadline()` depending on the criteria that was initialised with the `SortReminderCommand`.
+6. Reminder list will then be sorted according to the given criteria.
+7. The SortReminderCommand then creates a new instance of CommandResult and return it to LogicManager.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -731,7 +754,7 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `delete reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-#### Mark a reminder
+#### Marking a reminder
 
 1. Marking a reminder while all reminders are being shown.
 
@@ -746,7 +769,7 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect mark reminder commands to try: `mark`, `mark reminders`, `mark reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-#### Unmark a reminder
+#### Unmarking a reminder
 
 1. Unmarking a reminder while all reminders are being shown.
 
@@ -807,3 +830,25 @@ Do the test cases sequentially to ensure correct expectation.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Effort
+Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
+
+### Code Design
+As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new classes to get the minimum viable product of ModQuik.
+We created `Tutorial`, `Consultation` and `Reminder` classes and its associated inner field classes. When applicable, we try to abstract out commonly reused classes.
+However, it was not easy to identify them, and we had to make many subsequent changes along the way to due to other design considerations such as the fact that tutorials are repeated on a weekly basis while consultations are usually a one-off thing.
+We also had to create Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
+As we use multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created a plethora of ways for invalid inputs to occur.
+
+One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester.
+However, this would require us to implement tight constraints on our user as we would have to validate the inputs every step along the way.
+The most inconvenient aspect is that editing any student entry that involves changing the module code will require user to first delete a module (if they are already capped at 2 modules) and then add the new module.
+This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
+However, this would not be very viable as the TA might simply want to add another student into the list of students, and such design would not accomodate nicely to accidental errors as well.
+Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries. However, this is not a desired behaviour. 
+For instance, though rare, a student may end up having the same TA for 2 mods. 
+
+There are many plausible arguments, and it also depends on how the user uses the product. If given more time...
+
+### User Interface
