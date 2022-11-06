@@ -25,7 +25,7 @@ import seedu.address.model.task.Title;
  */
 public class TaskParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero integer.";
 
     /**
      * Parses a {@code String title} into a {@code Title}.

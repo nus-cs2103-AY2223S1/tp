@@ -29,12 +29,12 @@ public class EditTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "edit";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
+            + "by the index number used in the displayed task list.\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: TASK_INDEX "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PROJECT + "PROJECT NAME] "
+            + "[" + PREFIX_PROJECT + "PROJECT]\n"
             + "Example: " + COMMAND_WORD_FULL + " 1 "
             + PREFIX_TITLE + "Add tasks functionality "
             + PREFIX_DEADLINE + "next Friday"
