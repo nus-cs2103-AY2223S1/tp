@@ -17,7 +17,7 @@ public class FindByTagCommand extends FindByPrefixCommand {
             + "the keywords (case-insensitive) being searched"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "friends";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + " friends";
 
     private final TagContainsKeywordsPredicate predicate;
 

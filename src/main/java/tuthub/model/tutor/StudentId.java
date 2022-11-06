@@ -10,7 +10,7 @@ import static tuthub.commons.util.AppUtil.checkArgument;
 public class StudentId {
 
     public static final String MESSAGE_CONSTRAINTS = "Student IDs should start with A, followed by "
-            + "7 numbers, and end with any capital letter.";
+            + "7 numbers, and end with any capital letter";
 
     /*
      * The first character of studentIds must be A, the next 7 values can be any

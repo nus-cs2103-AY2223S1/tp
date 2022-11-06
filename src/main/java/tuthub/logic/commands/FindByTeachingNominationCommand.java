@@ -15,7 +15,7 @@ public class FindByTeachingNominationCommand extends FindByPrefixCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose teaching nominations matches "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TEACHINGNOMINATION + "2";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TEACHINGNOMINATION + " 2";
 
     private final TeachingNominationContainKeywordsPredicate predicate;
 

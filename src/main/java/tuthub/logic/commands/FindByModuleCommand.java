@@ -17,7 +17,7 @@ public class FindByModuleCommand extends FindByPrefixCommand {
             + "the specified module code (case-insensitive) being searched"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + "CS2040";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040";
 
     private final ModuleContainsKeywordsPredicate predicate;
 

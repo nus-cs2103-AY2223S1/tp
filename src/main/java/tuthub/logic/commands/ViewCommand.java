@@ -19,7 +19,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the full details of the tutor identified "
             + "by the index number used in the displayed tutor list. "
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_VIEW_TUTOR_SUCCESS = "Viewing Tutor: %1$s";
