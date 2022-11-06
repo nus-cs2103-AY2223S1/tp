@@ -47,7 +47,7 @@ our app.
 2. Download the latest `plannit.jar` [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/releases/).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit. In other words, 
-   the folder which `plannit.jar` is will be the folder in which Plannit will store its data.
+   the folder which `plannit.jar` is in will be the folder in which Plannit will store its data.
 
 4. Double-click the file to start the app. The window below should appear in a 
    few seconds. <br>
@@ -237,9 +237,9 @@ Deleting a module will bring you back to the home page.
 </div>
 
 #### 2.1.3. Edit module
-You can edit a module on Plannit using the `edit-module` command. This is useful when you want 
-to add a module title when it is available, or make corrections due to an accidental typo in one 
-of the modules, without having to delete the entire module with links and tasks, and recreating it.
+You can edit a module on Plannit using the `edit-module` command. In this way, you can modify module
+titles and descriptions without having to delete and recreate the entire module, together with its
+associated links, tasks and contacts.
 
 This command will require an index and at least one of the following flags:
 
