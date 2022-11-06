@@ -239,7 +239,7 @@ Here is a list of the details discussed:
 * [Filter command](#filter-command)
 * [Multiple data files](#multiple-data-files)
 * [Command history](#command-history)
-* [Venue and booking]()
+* [Venue and booking](#venue-and-booking)
 
 ---
 
@@ -496,7 +496,7 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 ### Multiple data files
 
-#### Background
+#### Motivation
 
 In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
 
@@ -536,15 +536,17 @@ With our earlier issue of a lack of `Storage` reference in `Command` resolved, a
 
 #### Create and delete file commands
 
-Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, resulting in new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
 
 <br>
 
 #### Switch file command
 
-Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implemented `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences and use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+---
 
 ### Command history
 
@@ -571,6 +573,83 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 ![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
+
+<br>
+
+---
+
+### Venue and booking
+
+#### Motivation
+
+As our [target user](#target-user-profile) would benefit greatly from being able to manage venues and bookings in RC4, we have decided to add a venue booking system in **RC4HDB**.
+
+#### Planning the Ui
+
+Using the top-down approach, we started by deciding on how we could display booking data in a format that our **target user** would benefit most. 
+
+After consideration, we came up with two different formats for booking representation:
+* Booking list display for each venue
+* Weekly timetable (similar to NUSMods)
+
+##### Booking list
+
+Pros:
+* Well suited for adhoc bookings
+* Easier to implement commands to check if a venue has been booked during a certain date and time period
+
+Cons:
+* Does not represent empty time slots well
+* Not temporally intuitive
+
+##### Weekly timetable
+
+Pros:
+* Easier for users to distinguish between time periods where venue is booked and venue is not booked
+* Well suited for recurrent bookings
+* Format is familiar to **target user**
+* Temporally intuitive
+
+Cons:
+* Difficult to implement adhoc bookings
+
+After considering both choices, we decided that a weekly timetable format would better serve our **target user**. However, due to limitations in time, we decided to implement only recurrent bookings and leave adhoc bookings to be implemented in a future iteration.
+
+#### Ui implementation
+
+[Comment]: <> (to be added in)
+
+#### Planning the data format
+
+After deciding on how we would like to display our venue and booking data, we had to design our `Venue` and `Booking` data classes to fit our chosen `Ui` design.
+
+##### Booking data
+
+Considering that we are only going to implement `RecurrentBooking`, we minimally require:
+* an association to the venue that is being booked by the booking
+* an association to the resident that is making the booking
+* a time period for the booking
+* a day of the week for the booking
+
+##### Venue data
+
+In order to be able to keep track of venues, we implemented a `Venue` class, which has a unique identifier, in the form of `VenueName`. `VenueName` was implemented with the `Name` field in `Resident` in mind, as both are `VenueName` and `Name` served similar purposes before `Name` was no longer the unique identifier for `Resident`. Since each booking was tagged to a venue, we decided to add a list of bookings in `Venue`, to keep track of the bookings made for each venue.
+
+#### Data format implementation
+
+[Comment]: <> (to be added in)
+
+#### Storage updates
+
+[Comment]: <> (to be added in)
+
+#### Model updates
+
+[Comment]: <> (to be added in)
+
+<br>
+
+---
 
 ### \[Proposed\] Undo/redo feature (To be removed)
 
@@ -688,13 +767,13 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Project requirements**
 
 ### Product scope
 
-**Target user profile**:
+#### Target user profile:
 
 * works in the housing management team for [**RC4**](#glossary) with several other co-workers
 * has a need to manage a significant number of residents in [**RC4**](#glossary)
@@ -705,7 +784,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * prefers typing to mouse interactions
 * is reasonably comfortable using [**CLI**](#glossary) apps
 
-**Value proposition**:
+#### Value proposition:
 
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
