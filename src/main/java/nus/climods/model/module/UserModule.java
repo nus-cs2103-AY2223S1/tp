@@ -1,6 +1,7 @@
 package nus.climods.model.module;
 
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import org.openapitools.client.model.SemestersEnum;
 
@@ -51,7 +52,7 @@ public class UserModule {
     private void updateLessonDataDisplay() {
         StringBuilder str = new StringBuilder();
 
-        for (LessonTypeEnum k : lessons.keySet()) {
+        for (LessonTypeEnum k : lessons.keySet().stream().sorted().collect(Collectors.toList())) {
             str.append(k.name()).append(" ")
                     .append(lessons.get(k)).append("--\n");
         }

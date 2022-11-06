@@ -41,6 +41,18 @@ Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Features syntax
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**
+
+* Words in `lowercase` are commands.
+* Words in `UPPPERCASE` are compulsory arguments.
+* Words in `[square brackets]` are optional arguments.
+* Words in `<triangle brackets>` are keyboard strokes.
+
+</div>
+
 ## Features
 
 ### User Manual: `help`
@@ -50,6 +62,8 @@ Format: `help`
 Provides the user manual for all supported commands.
 
 ### Listing modules: `ls`
+
+![ListCommand Demo](images/commands/ListCommand.png)
 
 Format: `ls [FACULTY-PREFIX]`
 
@@ -63,18 +77,30 @@ module prefix e.g. CS, CEG).
 
 ### Searching for modules: `find`
 
+![FindCommand Demo](images/commands/FindCommand.png)
+
 Format: `find KEYWORD`
 
 Required Arguments:
 
 - `KEYWORD`
     - Any keyword to search against the list of modules
-    - A keyword can be a regex expression
-        - e.g. `^CS20\d0$`
+    - A keyword must be a regex expression
+        - e.g. `^CS20\d0$` or `CS2103`
+        - Refer to the FAQ section to learn more about regex!
 
 Search for a (list of) module in the entire list of modules offered by NUS.
 
+<div markdown="block" class="alert alert-danger">
+:warning: Regex is difficult, and is intended to be used by more experienced users. This function works fine even without using regex in the query!
+</div>
+
+> Click [here](https://regex101.com/) to check that your regex statement is compatible with Java 8
+
 ### View module details: `view`
+
+![ViewCommand Demo](images/commands/ViewCommand.png)
+![ViewCommand Show Tutorial Demo](images/commands/ViewCommandShowTutorial.png)
 
 Format: `view MODULE-CODE`
 
@@ -87,6 +113,8 @@ View full details (e.g. description, module credits and lesson slots) of a modul
 
 ### Listing module prerequisite: `preq`
 
+![PreqCommand Demo](images/commands/PreqCommand.png)
+
 Format: `preq MODULE-CODE`
 
 Required Arguments:
@@ -96,6 +124,11 @@ Required Arguments:
 
 Show the list of modules that are the given module's prerequisites.
 
+
+<div markdown="block" class="alert alert-danger">
+:warning: Preclusions to prerequisite mods will not be shown due to a limitation with the NUSMods API. (E.g. Only CS1010 will be shown for `preq cs2040`)
+</div>
+
 **Note**: `preq` is not always able to show prerequisites for all modules due to limitations of the NUSMods API.
 - Some modules may list a prerequisite module code that is no longer offered in the current academic year. Such 
 modules will not be shown in the list of prerequisites after running `preq`.
@@ -104,6 +137,8 @@ modules will not be shown in the list of prerequisites after running `preq`.
 - The `preq` command does not show and/or relationships between prerequisite modules.
 
 ### Add modules to user list: `add`
+
+![AddCommand Demo](images/commands/AddCommand.png)
 
 Format: `add MODULE-CODE SEMESTER-CODE`
 
@@ -148,13 +183,14 @@ Required Arguments:
     - `REC`: Recitations
     - `SEC`: Sectional Teaching
     - `LEC`: Lecture
+    - `OTHERS`: Others
   > More lesson types coming soon 😃
 
 - `LESSON-ID`
     - e.g. `08J`
   > Tip: Use the `view` command to look at the available lessons!
 
-Pick lesson (e.g tutorial, lab) slots from the available choices for modules that are in the user list.
+Pick lesson (e.g tutorial, lab) slots from the available choices for modules that have been selected by the user.
 
 Your list of modules will display your lesson timings!
 
@@ -182,12 +218,40 @@ Traverse/Scroll **down**: `<Down>`
 
 | Action   | Format, Examples                                                       |
 |----------|------------------------------------------------------------------------|
-| **help** | `help`<br> e.g. `help find`                                            |
-| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
+| **help** | `help`<br> e.g. `help`                                                 |
+| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`                           |
 | **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
 | **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
 | **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
-| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
+| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103 s1`                             |
 | **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
 | **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
 | **exit** | `exit`                                                                 |
+
+
+## FAQs
+1. What is a `regex` expression?
+
+Ans: It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text.
+To learn more about regex, you can refer to [this tutorial](https://regexone.com).
+
+2. Why can't I visit external links?
+
+Ans: You are likely coming from our application via the `help` command.  It is intended for the user
+to only view our website (including the user guide) via the command.  If you wish to visit any external links,
+you can copy the link and paste it into your favourite browser!
+
+3. Can I update the json file?
+
+Ans: No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
+CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
+
+<div markdown="block" class="alert alert-danger">
+:warning: If the file is corrupted, please manually delete the file from the directory. 
+Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
+</div>
+
+4. Why is the application not displaying any modules?
+
+Ans: CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
+internet access before launching CLIMods.
