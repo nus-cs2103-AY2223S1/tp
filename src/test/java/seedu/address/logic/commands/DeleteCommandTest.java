@@ -85,8 +85,7 @@ public class DeleteCommandTest {
 
         DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE,
-                //String.format(PersonOutOfBoundException.ERR_MSG,
+        assertCommandFailure(deleteCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT, String.format(PersonOutOfBoundException.ERR_MSG),
                 model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
     }
 
