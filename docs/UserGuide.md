@@ -276,15 +276,22 @@ You may want to use this command to email a student or groups of students who ar
 Format: `extract emails`
 
 <div markdown="span" class="alert alert-primary">:information_source: **How to use:**
-<ol>
-<li> Execute the ```extract emails``` command in the ModQuik command box. The following message will be displayed in the Results Display Box:
-<img src="images/ExtractEmails1.png">
-All the emails will be copied onto your clipboard.
-<li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.
+    <ol>
+        <li> Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
+            <img src="images/ExtractEmails1.png">
+            All the emails will be copied onto your clipboard.
+        </li>
+        <li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
+        <li> Open your mail app and all the emails should be pasted as shown: <br>
+            <img src="images/ExtractEmails3.png">
+        </li>
+    </ol>
+</div>
 
-
-</ol>
-Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g. Outlook !
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+If your mail app does not open, you can paste your clipboard directly into your email recipient box but remember to delete "mailto:" in front of the emails.<br>
+You may also be required to separate the emails.
+    <img src="images/ExtractEmails4.png">
 </div>
 
 Examples:
@@ -316,7 +323,7 @@ Examples:
     <td><img src="images/Tutorial.png" width=350></td>
     <td><img src="images/AddTutorial.png" width=350></td>
   </tr>
- </table>
+</table>
 
 <a name="edit-tutorial"></a>
 #### 5.2.2 Editing a tutorial: `edit tutorial`
@@ -430,7 +437,7 @@ Examples:
     <td><img src="images/AddConsultation.png" width=350></td>
     <td><img src="images/EditConsultation.png" width=350></td>
   </tr>
- </table>
+</table>
 
 <a name="delete-consultation"></a>
 #### 5.3.3 Deleting a consultation: `delete consultation`
@@ -447,6 +454,8 @@ Examples:
 * `delete consultation 3`
 
 ### 5.4 Reminder Features
+
+![Reminder](images/AnnotatedReminder.png)
 
 <a name="add-reminder"></a>
 #### 5.4.1 Adding a reminder: `add reminder`
@@ -472,10 +481,25 @@ Examples:
 * `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/30 papers to mark p/HIGH`
 * `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
+<table>
+  <tr>
+    <td>Before executing add reminder command</td>
+    <td>After executing example command to add reminder to update grades</td>
+  </tr>
+  <tr>
+    <td><img src="images/Reminder.png" width=350></td>
+    <td><img src="images/AddReminder.png" width=350></td>
+  </tr>
+</table>
+
 <a name="edit-reminder"></a>
 #### 5.4.2 Editing a reminder: `edit reminder`
 
-Edits an existing reminder in ModQuik. Users would be able to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
+Edits an existing reminder in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to add this command to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
+</div>
 
 Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION] `
 
@@ -489,12 +513,27 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2023-10-10` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Oct 10`.
+* `edit reminder 2 T/14:00 D/2023-11-17` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Nov 17`.
+
+<table>
+  <tr>
+    <td>Before executing edit reminder command</td>
+    <td>After executing example command to edit 2nd reminder</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddReminder.png" width=350></td>
+    <td><img src="images/EditReminder.png" width=350></td>
+  </tr>
+</table>
 
 <a name="mark-reminder"></a>
 #### 5.4.3 Mark a reminder: `mark reminder`
 
 Sets the reminder status as _completed_.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+Reminders that have been completed have a green sidebar and a tick on the left of their name. Reminders that are yet to be done have a yellow sidebar.
+</div>
 
 Format: `mark reminder INDEX`
 
@@ -504,10 +543,10 @@ Examples:
 <table>
   <tr>
     <td>Before executing mark command</td>
-    <td>After executing mark command</td>
+    <td>After executing command to mark 2nd reminder</td>
   </tr>
   <tr>
-    <td><img src="images/UnmarkedReminder.png" width=350></td>
+    <td><img src="images/EditReminder.png" width=350></td>
     <td><img src="images/MarkedReminder.png" width=350></td>
   </tr>
  </table>
@@ -553,7 +592,13 @@ Format: `sort reminder by/SORT_CRITERIA`
 * Sorting does not take reminders' status into account.
 
 Examples:
-* `sort reminder by/priority`
+* `sort reminder by/priority`:
+
+![Sorted reminder by priority](images/MarkedReminder.png)
+
+* `sort reminder by/deadline`:
+
+![Sorted reminder by deadline](images/ReminderDeadline.png)
 
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
