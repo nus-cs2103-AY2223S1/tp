@@ -277,7 +277,6 @@ Examples:
 * `find -p Pinnacle@Duxton Bishan` returns `Pinnacle@Duxton`, `Bishan 8`<br>
 
 [//]: # (Image to be added later)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a property : `delete -p`
 
