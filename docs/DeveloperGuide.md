@@ -481,7 +481,8 @@ Users are able to perform several tasks within the application that is broken do
 
   Use case ends.
 
-**Use case: Add a Remark to a Client**
+**Use case: Add a Remark to a Client** <br>
+**Preconditions: Alice is a valid Client in JeeqTracker** 
 
 **MSS**
 
@@ -494,9 +495,6 @@ Users are able to perform several tasks within the application that is broken do
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
 * 3a. User fails to provide a valid command format to create a Remark.
     * 3a1. JeeqTracker shows an error message.
 
