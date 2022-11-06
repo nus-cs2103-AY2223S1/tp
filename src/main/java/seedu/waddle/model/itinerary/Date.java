@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Please provide a valid date in the following format: yyyy-mm-dd.";
+            "Please provide a valid future date in the following format: yyyy-mm-dd.";
 
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
@@ -34,12 +34,13 @@ public class Date {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidDate(String test) {
+        LocalDate date;
         try {
-            LocalDate.parse(test);
+            date = LocalDate.parse(test);
         } catch (DateTimeParseException e) {
             return false;
         }
-        return true;
+        return !date.isBefore(LocalDate.now()); // cannot be past date
     }
 
     public LocalDate getValue() {

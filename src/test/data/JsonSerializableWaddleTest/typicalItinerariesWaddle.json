@@ -3,7 +3,7 @@
   "itineraries" : [ {
     "description" : "Spring Trip",
     "country" : "Australia",
-    "startDate" : "2022-01-01",
+    "startDate" : "2023-01-01",
     "duration" : "14",
     "people" : "1",
     "budget" : "300.0",
@@ -54,7 +54,7 @@
   }, {
     "description" : "Autumn Hiking",
     "country" : "Canada",
-    "startDate" : "2022-02-02",
+    "startDate" : "2023-02-02",
     "duration" : "22",
     "people" : "2",
     "budget" : "700.0",
@@ -129,7 +129,7 @@
   }, {
     "description" : "Graduation Trip",
     "country" : "France",
-    "startDate" : "2022-03-03",
+    "startDate" : "2023-03-03",
     "duration" : "4",
     "people" : "4",
     "budget" : "2200.0",

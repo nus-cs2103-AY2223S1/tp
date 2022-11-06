@@ -34,13 +34,13 @@ import seedu.waddle.model.itinerary.Itinerary;
 public class TypicalItineraries {
 
     public static final Itinerary SPRING = new ItineraryBuilder().withName("Spring Trip")
-            .withCountry("Australia").withStartDate("2022-01-01")
+            .withCountry("Australia").withStartDate("2023-01-01")
             .withDuration("14").withPeople("1").withBudget("300").build();
     public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Autumn Hiking")
-            .withCountry("Canada").withStartDate("2022-02-02")
+            .withCountry("Canada").withStartDate("2023-02-02")
             .withDuration("22").withPeople("2").withBudget("700").build();
     public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")
-            .withCountry("France").withStartDate("2022-03-03")
+            .withCountry("France").withStartDate("2023-03-03")
             .withDuration("4").withPeople("4").withBudget("2200").build();
     // Manually added - Itinerary's details found in {@code CommandTestUtil}
     public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
@@ -59,19 +59,19 @@ public class TypicalItineraries {
 
     public static Itinerary getSpring() {
         return new ItineraryBuilder().withName("Spring Trip")
-                .withCountry("Australia").withStartDate("2022-01-01")
+                .withCountry("Australia").withStartDate("2023-01-01")
                 .withDuration("14").withPeople("1").withBudget("300").build();
     }
 
     public static Itinerary getAutumn() {
         return new ItineraryBuilder().withName("Autumn Hiking")
-                .withCountry("Canada").withStartDate("2022-02-02")
+                .withCountry("Canada").withStartDate("2023-02-02")
                 .withDuration("22").withPeople("2").withBudget("700").build();
     }
 
     public static Itinerary getGraduation() {
         return new ItineraryBuilder().withName("Graduation Trip")
-                .withCountry("France").withStartDate("2022-03-03")
+                .withCountry("France").withStartDate("2023-03-03")
                 .withDuration("4").withPeople("4").withBudget("2200").build();
     }
 
