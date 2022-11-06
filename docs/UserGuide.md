@@ -156,7 +156,7 @@ Examples:
 #### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
-* Note: This will delete the person permanately
+* Note: This will delete the person permanently
 
 Format: `delete INDEX`
 
@@ -180,7 +180,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, all existing tags of the person will be removed and completely replaced with the new tags.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* To edit what tasks a person is assigned to, instead of editing the person, edit the relvant task. The edit will be reflected in the person list after you edit the task. There is no way to edit a task using the edit person command.
+* To edit what tasks a person is assigned to, instead of editing the person, edit the relevant task. The edit will be reflected in the person list after you edit the task. There is no way to edit a task using the edit person command.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -269,7 +269,7 @@ Finds tasks with names or descriptions that contain any of the given keywords.
 
 Format: `findTask KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g fix will match Fix
+* The search is case-insensitive. e.g. fix will match Fix
 * The order of the keywords does not matter. e.g. Toggle fix will match Fix toggle
 * The name and description are both searched.
 * Only full words will be matched e.g. Dark will not match Darkmode
@@ -344,12 +344,13 @@ Examples:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.<br>
-**Q**: Do i need internet to run HackAssist?<br>
+**Q**: Do I need internet to run HackAssist?<br>
 **A**: Internet is not needed to run the application.<br>
 **Q**: Will my data be lost after closing the application?<br>
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do I backup my data?<br>
 **A**: Create a copy of the `HackAssist.json` file in another directory.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
