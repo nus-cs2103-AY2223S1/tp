@@ -2,6 +2,7 @@ package coydir.testutil;
 
 import static coydir.model.person.Leave.COMPARATOR;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -45,6 +46,7 @@ public class PersonBuilder {
     private int totalLeave;
     private Set<Tag> tags;
     private Queue<Leave> leavePeriod;
+    private ArrayList<Rating> performanceHistory;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -61,6 +63,7 @@ public class PersonBuilder {
         totalLeave = DEFAULT_LEAVE;
         tags = new HashSet<>();
         leavePeriod = new PriorityQueue<Leave>(COMPARATOR);
+        performanceHistory = new ArrayList<>();
     }
 
     /**
@@ -78,6 +81,7 @@ public class PersonBuilder {
         totalLeave = personToCopy.getTotalNumberOfLeaves();
         tags = new HashSet<>(personToCopy.getTags());
         leavePeriod = personToCopy.getLeaves();
+        performanceHistory = personToCopy.getRatingHistory();
 
     }
 
@@ -173,7 +177,8 @@ public class PersonBuilder {
      * Sets the {@code Rating} of the {@code Person} that we are building.
      */
     public PersonBuilder withRating(String rating) {
-        this.rating = new Rating(rating);
+        Rating toAdd = new Rating(rating);
+        this.rating = toAdd;
         return this;
     }
 

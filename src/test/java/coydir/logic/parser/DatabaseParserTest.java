@@ -24,6 +24,7 @@ import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
+import coydir.logic.commands.RateCommand;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
@@ -98,6 +99,11 @@ public class DatabaseParserTest {
     @Test
     public void parseCommand_batch_add() throws Exception {
         assertTrue(parser.parseCommand(BatchAddCommand.COMMAND_WORD + " coydir.csv") instanceof BatchAddCommand);
+    }
+
+    @Test
+    public void parseCommand_rate() throws Exception {
+        assertTrue(parser.parseCommand(RateCommand.COMMAND_WORD + " id/1 r/4") instanceof RateCommand);
     }
 
     @Test

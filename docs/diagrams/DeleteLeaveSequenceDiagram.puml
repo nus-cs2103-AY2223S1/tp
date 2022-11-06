@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
+participant ":DeleteLeaveCommandParser" as DeleteLeaveCommandParser LOGIC_COLOR
+participant ":DeleteLeaveCommand" as DeleteLeaveCommand LOGIC_COLOR
+participant "targetPerson:Person" as person LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Queue<Leave>" as Queue LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-leave id/1 i/1")
+activate LogicManager
+
+LogicManager -> DatabaseParser : parseCommand("delete-leave id/1 i/1")
+activate DatabaseParser
+
+create DeleteLeaveCommandParser
+DatabaseParser -> DeleteLeaveCommandParser
+activate DeleteLeaveCommandParser
+
+DeleteLeaveCommandParser --> DatabaseParser
+deactivate DeleteLeaveCommandParser
+
+DatabaseParser -> DeleteLeaveCommandParser : parse("id/1 i/1")
+activate DeleteLeaveCommandParser
+
+create DeleteLeaveCommand
+DeleteLeaveCommandParser -> DeleteLeaveCommand
+activate DeleteLeaveCommand
+
+DeleteLeaveCommand -> DeleteLeaveCommandParser
+deactivate DeleteLeaveCommand
+
+DeleteLeaveCommandParser --> DatabaseParser
+deactivate DeleteLeaveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteLeaveCommandParser -[hidden]-> DatabaseParser
+
+DatabaseParser --> LogicManager
+deactivate DatabaseParser
+
+LogicManager -> DeleteLeaveCommand : execute()
+activate DeleteLeaveCommand
+
+DeleteLeaveCommand -> Model : getPersonList()
+activate Model
+
+Model --> DeleteLeaveCommand
+deactivate Model
+
+DeleteLeaveCommand -> person : getLeaves()
+activate person
+person --> DeleteLeaveCommand : returns a Queue<Leave>
+deactivate person
+DeleteLeaveCommand -> Queue : remove(leave)
+activate Queue
+Queue --> DeleteLeaveCommand
+deactivate Queue
+create CommandResult
+DeleteLeaveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteLeaveCommand
+deactivate CommandResult
+
+DeleteLeaveCommand --> LogicManager : result
+deactivate DeleteLeaveCommand
+[<--LogicManager
+deactivate LogicManager
+@enduml
