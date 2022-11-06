@@ -96,7 +96,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues  
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
@@ -183,7 +183,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
-The partial class diagram above shows the classes that make up the `Model` component. Classes used by Person objects
+The partial class diagram above shows the classes that make up the `Model` component. Classes used by `Person` objects
 through composition are omitted for brevity and shown later. 
 
 The `Model` component,
@@ -336,12 +336,13 @@ in addition to the prefix. The command `get /hw North` will be used for this exa
 
 All get commands are implemented in the following steps:
 1. User input prefix is matched in `GetCommandParser` class
-2. Parser for the get command corresponding to the prefix is called and parses the user input
+2. If the get command takes in both a prefix and parameter, the parser for the get command corresponding to the prefix 
+   is called and parses the parameters inputted
 3. Specific child classes of `GetCommand` is instantiated and executed
 4. The model is then updated such that the *filtered* list only displays patients whose details match the query
-arguments of that prefix
+   arguments of that prefix
 
-#### Appointment Date (`/appton`)
+#### Appointment Date (/appton)
 
 Getting the list of patients with an appointment on the query date involves the following steps:
 1. Prefix `/appton` is matched using an instance of `GetCommandParser`
@@ -354,7 +355,7 @@ Getting the list of patients with an appointment on the query date involves the 
 
 To ease the parsing of date inputs using `LocalDate`, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
-#### Past appointments of a patient (`/appt`)
+#### Past appointments of a patient (/appt)
 
 Getting the past appointments of a patient involves the following steps:
 1. Prefix `/appt` is matched using an instance of `GetCommandParser`
@@ -364,7 +365,7 @@ Getting the past appointments of a patient involves the following steps:
    to be returned in a `CommandResult`
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
 
-#### Floor Number (`/fn`)
+#### Floor Number (/fn)
 
 Getting the list of patients in the query floor number involves the following steps:
 1. Prefix `/fn` is matched in `GetCommandParser` class
@@ -375,7 +376,7 @@ Getting the list of patients in the query floor number involves the following st
 Strict restrictions are placed to prevent querying and parsing of invalid floor numbers. Invalid floor numbers include
 floor numbers less than 1, negative numbers and characters or strings. 
 
-#### Hospital Wing (`/hw`)
+#### Hospital Wing (/hw)
 
 Getting the list of patients in the query hospital wing involves the following steps:
 1. Prefix `/hw` is matched in `GetCommandParser` class
@@ -386,7 +387,7 @@ Getting the list of patients in the query hospital wing involves the following s
 Strict restrictions are placed to prevent too many varieties of hospital wings. Hospital wings only accepts 
 the following values (case-insensitive) `south` `north` `east` `west` as valid inputs. 
 
-#### Long Term Medication (`/m`)
+#### Long Term Medication (/m)
 
 Getting the list of patients who are taking the query long term medication involves the following steps:
 1. Prefix `/m` is matched in `GetCommandParser` class
@@ -419,7 +420,7 @@ Getting the information of the next of kin of the list of query patient names in
 
 Details of the next of kin include the name, relationship to patient and phone number.
 
-#### Patient type (`/inp` & `/outp`)
+#### Patient type (/inp & /outp)
 
 Getting the list of inpatients and outpatients involves the following steps:
 1. Prefix `/inp` or `/outp` is matched using an instance of `GetCommandParser`
@@ -429,7 +430,7 @@ Getting the list of inpatients and outpatients involves the following steps:
 If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
 how `help`, `list`, `exit` and `clear` are executed.
 
-#### Ward Number (`/wn`)
+#### Ward Number (/wn)
 
 Getting the list of patients in the query ward number involves the following steps:
 1. Prefix `/wn` is matched in `GetCommandParser` class
@@ -450,6 +451,7 @@ The new `Add` Command incorporates support for the necessary fields for a patien
 flow of the old command, as illustrated in the Activity Diagram below.
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
 ![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
 
 As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
@@ -507,6 +509,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff | remove patients from the database                  | remove redundant entries that are no longer necessary                                    |
 | `* * *`  | doctor         | view the previous appointments of a patient        | see patients' previous consultation diagnoses or issued medications                      |
 | `* * *`  | receptionist   | retrieve patients by their appointment date        | know which patients have scheduled an appointment on a particular day                    |
+| `*`      | hospital staff | retrieve patient count by medication               | know which medication is most commonly prescribed                                        |
+| `* *`    | receptionist   | add appointments to a patient's record             | keep track of a patient's medical history and backdate records                           |
+| `* *`    | doctor         | store a patient's next appointment date            | keep track of when the patient is due for their next appointment                         |
 
 - Doctor - Doctor
 - Receptionist - Receptionist
@@ -822,6 +827,48 @@ testers are expected to do more *exploratory* testing.
    6. Test case: `get outp/`<br>
       Expected: The current list remains unchanged. Error message is displayed in the result box.
 
+### Sorting patients by hospital wing
+
+1. Displaying all inpatients in a particular hospital wing
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /hw south`<br>
+       Expected: All inpatients in the south wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    3. Test case: `get /hw NORTH`<br>
+       Expected: All inpatients in the north wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    4. Test case: `get /hw east /fn 9`<br>
+       Expected: All inpatients in the east wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    5. Test case: `get /hw east south`<br>
+       Expected: All inpatients in the east wing and south wing are listed.
+       The number of inpatients listed is displayed in the result box.
+    6. Test case: `get hw`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    7. Test case: `get hw/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Sorting patients by appointment date
+
+1. Displaying all patients that has an appointment on the query appointment date
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /appton 14-12-1212`<br>
+       Expected: All patients having appointments on 14th December 1212 are listed.
+       The number of patients listed is displayed in the result box.
+    3. Test case: `get /appton 14-12-1212 15-12-2020`<br>
+       Expected: All patients having appointments on 14th December 1212 or 15th December 2020 are listed.
+       The number of patients listed is displayed in the result box.
+    4. Test case: `get /appton 2020-08-08`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    5. Test case: `get /appton 14-12-1212 /hw south`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    6. Test case: `get /appton 14-12-1212 5`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    7. Test case: `get appton`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    8. Test case: `get appton/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    
 ### Displaying all past appointments of a patient
 
 1. Displaying the past appointment of a patient when all patients have past appointments.

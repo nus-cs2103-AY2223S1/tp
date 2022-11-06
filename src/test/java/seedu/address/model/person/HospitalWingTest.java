@@ -33,85 +33,113 @@ public class HospitalWingTest {
     }
 
     @Test
-    public void constructor_invalidHospitalWing_throwsIllegalArgumentException() {
+    public void constructor_emptyString_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new HospitalWing(""));
         assertThrows(IllegalArgumentException.class, () -> new HospitalWing(" "));
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("1")); // numbers
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("@@")); //symbols
-        // strings which is not part of the enum
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("me"));
-        // invalid inputs
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("NORTH--"));
-        // strings with spaces in between
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("SOU TH"));
-        // combination of two enum strings
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("WESTNORTH"));
-        // combination of two enum strings with spaces in between
-        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("west north"));
     }
 
     @Test
-    public void isValidHospitalWing() {
-        // null HospitalWing
-        assertThrows(NullPointerException.class, () -> HospitalWing.isValidHospitalWing(null));
+    public void constructor_garbledHospitalWing_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("abcdefgh")); // garbled text
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("/inp /fn /outp")); // other prefixes
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("@@")); // symbols
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("123456")); // numbers
+    }
 
-        // valid HospitalWing
-        assertTrue(HospitalWing.isValidHospitalWing("north")); // north in all lower-case
-        assertTrue(HospitalWing.isValidHospitalWing("south")); // south in all lower-case
-        assertTrue(HospitalWing.isValidHospitalWing("east")); // east in all lower-case
-        assertTrue(HospitalWing.isValidHospitalWing("west")); // west in all lower-case
-        assertTrue(HospitalWing.isValidHospitalWing("NORTH")); // north in all upper-case
-        assertTrue(HospitalWing.isValidHospitalWing("SOUTH")); // south in all upper-case
-        assertTrue(HospitalWing.isValidHospitalWing("EAST")); // east in all upper-case
-        assertTrue(HospitalWing.isValidHospitalWing("WEST")); // west in all upper-case
-        assertTrue(HospitalWing.isValidHospitalWing("NOrth")); // north in mix of upper and lower cases
-        assertTrue(HospitalWing.isValidHospitalWing("SOuth")); // south in mix of upper and lower cases
-        assertTrue(HospitalWing.isValidHospitalWing("EAst")); // east in mix of upper and lower cases
-        assertTrue(HospitalWing.isValidHospitalWing("weST")); // west in mix of upper and lower cases
+    @Test
+    public void constructor_invalidHospitalWing_throwsIllegalArgumentException() {
+        // enum values with unexpected character in between
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("SOU TH"));
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("souths")); // one additional character
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("WES")); // missing character
+        assertThrows(IllegalArgumentException.class, () -> new HospitalWing("WES ")); // missing character
+    }
+
+    @Test
+    public void isValidHospitalWingTest() {
+        // null hospital wing
+        assertThrows(NullPointerException.class, (
+                ) -> HospitalWing.isValidHospitalWing(null));
+
+        // blank hospital wing
+        assertFalse(HospitalWing.isValidHospitalWing("")); // empty string
+        assertFalse(HospitalWing.isValidHospitalWing(" ")); // spaces only
+
+        // invalid hospital wing
+        assertFalse(HospitalWing.isValidHospitalWing("sou th")); //space in between
+        assertFalse(HospitalWing.isValidHospitalWing("southsouth")); //duplicate enum values
+        assertFalse(HospitalWing.isValidHospitalWing("south north")); //two enum values with space
+        assertFalse(HospitalWing.isValidHospitalWing("wests")); //additonal character
+        assertFalse(HospitalWing.isValidHospitalWing("WES")); //missing character
+        assertFalse(HospitalWing.isValidHospitalWing("WEST ")); //additional space
+        assertFalse(HospitalWing.isValidHospitalWing("")); //empty string
+        assertFalse(HospitalWing.isValidHospitalWing(" ")); //space only
+        assertFalse(HospitalWing.isValidHospitalWing("123")); //numbers
+        assertFalse(HospitalWing.isValidHospitalWing("@@@")); //symbols
+        assertFalse(HospitalWing.isValidHospitalWing("abdadew")); //not valid enum values
+
+        // valid hospital wing
+        assertTrue(HospitalWing.isValidHospitalWing("SOUTH"));
+        assertTrue(HospitalWing.isValidHospitalWing("SOUth"));
+        assertTrue(HospitalWing.isValidHospitalWing("south"));
+        assertTrue(HospitalWing.isValidHospitalWing("NORth"));
+        assertTrue(HospitalWing.isValidHospitalWing("NORTH"));
+        assertTrue(HospitalWing.isValidHospitalWing("north"));
+        assertTrue(HospitalWing.isValidHospitalWing("EAST"));
+        assertTrue(HospitalWing.isValidHospitalWing("EAst"));
+        assertTrue(HospitalWing.isValidHospitalWing("east"));
+        assertTrue(HospitalWing.isValidHospitalWing("west"));
+        assertTrue(HospitalWing.isValidHospitalWing("WESt"));
+        assertTrue(HospitalWing.isValidHospitalWing("WEST"));
     }
 
     @Test
     public void toStringTest() {
-        String expectedMessage1 = "Hospital Wing: North";
-        String expectedMessage2 = "Hospital Wing: South";
+        String expectedMessageForSouth = "Hospital Wing: South";
+        String expectedMessageNorth = "Hospital Wing: North";
+        HospitalWing hospitalWingSouth = new HospitalWing("south");
+        HospitalWing hospitalWingNorth = new HospitalWing("north");
 
-        // same HospitalWing
-        assertEquals(expectedMessage1, new HospitalWing("north").toString());
-        assertEquals(expectedMessage2, new HospitalWing("south").toString());
-
-        // different HospitalWing
-        assertNotEquals(expectedMessage1, new HospitalWing("south").toString());
-        assertNotEquals(expectedMessage2, new HospitalWing("north").toString());
+        // same hospital wing
+        assertEquals(expectedMessageForSouth, hospitalWingSouth.toString());
+        assertEquals(expectedMessageNorth, hospitalWingNorth.toString());
+        // different hospital wing
+        assertNotEquals(expectedMessageForSouth, hospitalWingNorth.toString());
+        assertNotEquals(expectedMessageNorth, hospitalWingSouth.toString());
     }
 
     @Test
-    public void equals() {
-        HospitalWing hospitalWing = new HospitalWing("north");
+    public void equalsTest() {
+        HospitalWing hospitalWing = new HospitalWing("south");
 
         // same object -> returns true
         assertTrue(hospitalWing.equals(hospitalWing));
 
         // same values -> returns true
-        HospitalWing hospitalWingCopy = new HospitalWing("north");
+        HospitalWing hospitalWingCopy = new HospitalWing("south");
         assertTrue(hospitalWing.equals(hospitalWingCopy));
+
+        // case insensitive -> returns true
+        HospitalWing hospitalWingCaseInsenstive = new HospitalWing("SOUTH");
+        assertTrue(hospitalWing.equals(hospitalWingCaseInsenstive));
 
         // different types -> returns false
         assertFalse(hospitalWing.equals(1));
-        assertFalse(hospitalWing.equals("north"));
 
         // null -> returns false
         assertFalse(hospitalWing.equals(null));
 
-        // different HospitalWing -> returns false
-        HospitalWing differentHospitalWing = new HospitalWing("south");
+        // different hospital wing -> returns false
+        HospitalWing differentHospitalWing = new HospitalWing("east");
         assertFalse(hospitalWing.equals(differentHospitalWing));
     }
 
     @Test
     public void hashCodeTest() {
-        HospitalWing hospitalWing1 = new HospitalWing("north");
-        HospitalWing hospitalWing2 = new HospitalWing("north");
-        HospitalWing hospitalWing3 = new HospitalWing("south");
+        HospitalWing hospitalWing1 = new HospitalWing("south");
+        HospitalWing hospitalWing2 = new HospitalWing("south");
+        HospitalWing hospitalWing3 = new HospitalWing("SOuth");
+        HospitalWing hospitalWing4 = new HospitalWing("east");
 
         // same object -> same hashcode
         assertEquals(hospitalWing1.hashCode(), hospitalWing1.hashCode());
@@ -119,8 +147,11 @@ public class HospitalWingTest {
         // same values -> same hashcode
         assertEquals(hospitalWing1.hashCode(), hospitalWing2.hashCode());
 
+        // same values (case insensitive)-> same hashcode
+        assertEquals(hospitalWing1.hashCode(), hospitalWing3.hashCode());
+
         // different values -> different hashcode
-        assertNotEquals(hospitalWing1.hashCode(), hospitalWing3.hashCode());
-        assertNotEquals(hospitalWing2.hashCode(), hospitalWing3.hashCode());
+        assertNotEquals(hospitalWing1.hashCode(), hospitalWing4.hashCode());
+        assertNotEquals(hospitalWing3.hashCode(), hospitalWing4.hashCode());
     }
 }
