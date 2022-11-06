@@ -58,7 +58,7 @@ Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart)
 
 If you are a returning user, you can head over to the [Command Summary](#command-summary) section for a quick overview of all commands in SoConnect. Alternatively, you can also read the detailed explanation of each command in the [Commands](#commands) section.
 
-Feeling stuck? The [FAQ](#faq) section might help find the answer you are looking for.
+Have a question regarding the app? You might find the answer you are looking for in the [FAQ](#faq) section.
 
 You can also refer to the [Glossary](#glossary) section for definitions of commonly used terms in SoConnect.
 
