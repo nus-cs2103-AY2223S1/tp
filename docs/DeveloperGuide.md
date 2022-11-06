@@ -238,22 +238,22 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 on which entity is added, which retrieves the respective entity list from the system, adds the entity into the list to update it, and have the UI display the updated filtered entity list.   
 
 #### Add Project Command
-Compulsory prefixes: n/<valid name>
-Optional prefixes: c/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
+Compulsory prefixes: n/VALID_NAME  
+Optional prefixes: c/VALID_CLIENT_ID, r/VALID_REPOSITORY, d/VALID_DEADLINE  
+Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`  
 
 #### Add Issue Command
-Compulsory prefixes: p/<valid project id>, t/<valid title>
-Optional prefixes: d/<valid deadline> u/<valid urgency>
-Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`
+Compulsory prefixes: p/VALID_PROJECT_ID, t/VALID_TITLE  
+Optional prefixes: d/VALID_DEADLINE, u/VALID_URGENCY  
+Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`  
 
 #### Add Client Command
-Compulsory prefixes: n/<valid name>, p/<valid project id>
-Optional prefixes: m/<valid mobile number>, e/<valid email>
-Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`
+Compulsory prefixes: n/VALID_NAME, p/VALID_PROJECT_ID  
+Optional prefixes: m/VALID_MOBILE_NUMBER, e/VALID_EMAIL  
+Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`  
 
 #### The following sequence diagram shows how the add command operation works for adding a project entity:
-Example: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
+Example: `project -a n/Team Project`
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
@@ -264,13 +264,13 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
 
 #### Design considerations:
 
-**Aspect: Add command access to the model: **
+**Aspect: Add command access to the model:**
 
 **Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
 * Pros: No coupling between Parser class and Model class.
 * Cons: Mappings could not be performed within the parser.
-* 
-**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
  * Pros: Mappings could be performed within the parser which fitted its responsibility.
  * Cons: May result in extra coupling between Parser class and Model class.
  
@@ -294,24 +294,24 @@ on which entity is deleted, which retrieves the respective entity list from the 
 list to update it, and have the UI display the updated filtered entity list.
 
 #### Delete Project Command
-Compulsory prefix: p/<valid project id>
-Example Use: `project -d 1`
+Compulsory prefix: p/VALID_PROJECT_ID  
+Example Use: `project -d 1`  
 
 #### Delete Issue Command
-Compulsory prefix: i/<valid issue id>
-Example Use: `issue -d 2`
+Compulsory prefix: i/VALID_ISSUE_ID  
+Example Use: `issue -d 2`  
 
 #### Delete Client Command
-Compulsory prefix: p/<valid client id>
-Example Use: `client -d 3`
+Compulsory prefix: c/VALID_CLIENT_ID  
+Example Use: `client -d 3`  
 
-#### The following sequence diagram shows how the delete command operation works for adding a project entity:
+#### The following sequence diagram shows how the delete command operation works for deleting a client entity:
 Example: `client -d 1`
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `AddProjectCommand` 
+:information_source: **Note:** The lifeline for `DeleteClientCommand` 
 should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -342,19 +342,19 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
 
 #### Edit Project Command
-Compulsory prefix: p/<valid project id>
-Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
+Compulsory prefix: p/VALID_PROJECT_ID  
+Optional prefixes (at least one to be included): n/VALID_NAME, c/VALID_CLIENT_ID, r/VALID_REPOSITORY, d/VALID_DEADLINE  
+Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`  
 
 #### Edit Issue Command
-Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
-Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+Compulsory prefix: i/VALID_ISSUE_ID  
+Optional prefixes (at least one to be included): t/VALID_TITLE, d/VALID_DEADLINE, u/VALID_URGENCY  
+Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`  
 
 #### Edit Client Command
-Compulsory prefix: c/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
-Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
+Compulsory prefix: c/VALID_CLIENT_ID  
+Optional prefixes (at least one to be included): n/VALID_NAME, m/VALID_MOBILE_NUMBER, e/VALID_EMAIL, p/VALID_PROJECT_ID  
+Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`  
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
@@ -379,6 +379,44 @@ Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientC
 * Cons: Creation of a new entity object requiring modification of the entity list 
 
 As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+
+### Sort Feature
+
+The sort feature sorts the entities in their respective entity lists in the Model according to a specified `key` and `order`. The View pulls the new entity lists from the Model and displays them. Upon the execution of
+either a `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the `AddressBook#sortXXXByYYY()` is invoked (where XXX is the `entity` and YYY is the `key` to be sorted by) which obtains the entity class's 
+modifiable `ObservableList` as imported from the JavaFX collections, and calls its `sorted()` method that, depending on the specified `order`, takes in a comparator function specifying how to sort the entities.
+
+#### Sort Project Command
+Keys (exactly one key to be included): p, d, i, n  
+Orders (exactly one order to be included): 0, 1  
+General Form: `project -s KEY/ORDER`  
+Example Use: `project -s d/0`  
+
+#### Sort Issue Command
+Keys (exactly one key to be included): i, d, u  
+Orders (exactly one order to be included): 0, 1  
+General Form: `issue -s KEY/ORDER`  
+Example Use: `issue -s u/1`  
+
+#### Sort Client Command
+Keys (exactly one key to be included): c, n  
+Orders (exactly one order to be included): 0, 1  
+General Form: `client -s KEY/ORDER`  
+Example Use: `client -s c/1`  
+
+#### Design considerations:
+
+**Aspect: How sorted entities are stored in the Model:**
+
+* **Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
+    * Pros: Saves lots of space
+    * Cons: Sort commands manipulate the original entity list in order to change the display on view
+
+* **Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
+    * Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
+    * Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
+    
+Alternative 1 was chosen because it saves space when sorting entities. The command to set default view of each entity helped overcome the cons of directly manipulating of the original list. This meant rebooting the app removed the previous entity sort order and revert to the default order. 
 
 ### Pin Feature
 
@@ -903,23 +941,6 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
 ### Listing an entity
 
 1. Listing an entity while any list of entities is currently being shown
@@ -953,6 +974,40 @@ testers are expected to do more *exploratory* testing.
 
     5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
        Expected: Similar to previous.
+
+### Adding an entity
+
+1. Adding an entity while any list of entities is being shown
+
+    1. Test case: `project -a n/Home Project`<br>
+       Expected: project with name 'Home Project' is added to project list. View of project list is shown.
+   
+    2. Test case: `issue -s t/Has bugs p/1`<br>
+       Expected: issue with title 'Has bugs' is added to issue list. View of issue list is shown.
+   
+    3. Test case: `client -a n/John Doe p/1`<br>
+       Expected: client with name 'John Doe' is added to client list. View of client list is shown.
+   
+    4. Incorrect add commands for `project` entity: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x` where x improperly formatted, `project -a n/Project y/` where y is an invalid prefix
+       Expected: No adding occurs. Error details shown in the status message. Status bar remains the same.
+
+### Sorting an entity
+
+1. Sorting an entity while any list of entities is being shown
+
+    1. Prerequisites: Optional parameters of various entities have values. 
+   
+    2. Test case: `project -s d/1`<br>
+       Expected: projects sorted in reverse chronological order. View of project list is shown.
+   
+    3. Test case: `issue -s u/1`<br>
+       Expected: issues sorted in descending levels of urgency. View of issue list is shown.
+   
+    4. Test case: `client -s n/0`<br>
+       Expected: clients sorted in alphabetical order of names. View of client list is shown.
+   
+    5. Incorrect sort commands for `project` entity: `project -s`, `project -s d/x` where x is not 0 or 1, `project -s y/0` where y is not a valid key, `project -s i/0 i/1 d/0`. Same for entities `issue` and `client`.<br>
+       Expected: No sorting occurs. Error details shown in the status message. Status bar remains the same.
 
 ### Pinning an entity
 
