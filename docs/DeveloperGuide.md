@@ -166,15 +166,15 @@ Id is unique and automatically generated when person is added.
 Persons with the same fields for email, phone or ID are not allowed.
 In real life, these fields would always be unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields.
 
-| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Email      | -                                              | Non-empty string of the format local-part@domain name<ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 characters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
-| Remark     | -                                              | Alphanumeric string (can consist of spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Email      | -                                              | Non-empty string of the format local-part@domain name <br><ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 characters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
+| Remark     | -                                              | Alphanumeric string (can consist of spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 #### Task
 
@@ -888,38 +888,60 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `listC` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deleteC 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deleteC 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person after executing a find command
+
+   1. Prerequisites: Find multiple persons using the `findC` command. Multiple persons in the results of the find command.
+
+   2. Test case: `deleteC 1`<br>
+      Expected: First contact is deleted from the results of the find command. Details of the deleted contact shown in the status message.
+
+   3. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the results of the find command)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the data file in the file path of `yellowBooks.jar` (if-any). <br>
 
-1. _{ more test cases …​ }_
+   2. Launch the app by double-clicking the jar file.
+   
+   3. Perform any command (e.g. `listT`).<br>
+      Expected: A data file will be created in the directory `./data/yellowBook.json`. There will be some sample data.
+
+1. Dealing with a corrupted data file
+
+   1. Prerequisites: Have a existing data file in the directory `./data/yellowBook.json` and open it with a text editor.
+
+   2. Edit the data file to contain invalid data (e.g. change a `phone` to contain alphabets ) and save it.<br>
+      Expected: The app will show empty contact list, task list, and tag list when launched. 
+    
+   3. Close the app without performing any commands.
+      Expected: The data file will still contain the corrupt data.
+
+   4. Edit the data file to revert the data to the original state from step 1 and save it.<br>
+      Expected: The app will show the orignal contact list, task list, and tag list when launched. 
