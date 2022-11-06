@@ -39,7 +39,7 @@ As a TA, you will find yourself juggling various tasks:
 Managing these may be initially easy, but they can quickly pile up and become more tedious if not handled properly,
 especially with the tools available.
 
-## 2.2 What tools do TA currently use?
+## 2.2 What tools do TAs currently use?
 
 ### Spreadsheets
 
