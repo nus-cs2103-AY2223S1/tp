@@ -462,9 +462,9 @@ The following table illustrates the details of each metric and their search rang
 
 Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
-* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
-* `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
-* `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
+* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both `LIFE` and `HEALTH`
+* `findPolicy cmp/PRU` returns policies that belong to `Prudential Assurance Company`
+* `findPolicy ti/Shield cov/LIFE` returns polices with `Shield` in its title and covers the `LIFE` coverage type
 
 ### Assigning a Policy to a Client : `assign` 
 
