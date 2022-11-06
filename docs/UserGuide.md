@@ -419,17 +419,17 @@ Clears all entries from the student list as well as task list.
 
 Format: `clear`
 
-#### 3.3.1 Navigating User Input History: `↑`, `↓`
+#### 3.3.2 Navigating User Input History: `↑`, `↓`
 
 Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
 
 Format: `↑`, `↓`
 
-#### 3.3.1 Saving the data
+#### 3.3.3 Saving the data
 
 GREWZ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 3.3.1 Editing the data file
+#### 3.3.4 Editing the data file
 
 GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -437,7 +437,7 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-#### 3.3.1 Viewing help : `help`
+#### 3.3.5 Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -445,7 +445,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-#### 3.3.1 Exiting the program : `exit`
+#### 3.3.6 Exiting the program : `exit`
 
 Exits the program.
 
