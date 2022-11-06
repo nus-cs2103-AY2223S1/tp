@@ -19,6 +19,7 @@ Class Position
 Class Email
 Class Date
 Class Contact
+Enum Status
 Class Tag
 Class Interview
 
@@ -43,6 +44,7 @@ Application *--> Contact
 Application *--> Email
 Application *--> Position
 Application *--> Date
+Application *--> Status
 Application *--> "*" Tag
 Application *-right-> "0..1" Interview
 

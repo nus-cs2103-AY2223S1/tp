@@ -355,10 +355,6 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
 #resultDisplay .content {
     -fx-background-color: transparent, DARKSLATEGREY, transparent, DARKSLATEGREY;
     -fx-background-radius: 0;
