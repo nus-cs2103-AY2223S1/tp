@@ -99,7 +99,7 @@ The sections below give more details of each component.
 The UI consists of a `MainWindow` that is made up of the following parts:
 * `ResultDisplay`
 * `CommandBox`
-* * `HelpWindow`
+* `HelpWindow`
 * `ProgressBarController`
 * `StatusBarFooter`
 * `FoodListPanel`
