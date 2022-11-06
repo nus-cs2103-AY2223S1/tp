@@ -72,7 +72,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'githubContact.jar'
 }
 
 run {
