@@ -404,7 +404,6 @@ Format: `remove-task INDEX`
 Examples:
 * `remove-task 2` removes the 2nd task in the task list.
 * `remove-task 1` removes the 1st task in the task list.
----
 
 ### 3.3 General Commands
 
