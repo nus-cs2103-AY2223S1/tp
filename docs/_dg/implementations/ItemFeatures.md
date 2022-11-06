@@ -32,6 +32,8 @@ Regarding the attributes, here are a few things to note:
 * All attributes except `ItemName` is optional.
 * The Item value is the `ItemPrice` multiplied by the `ItemQuantity`. This is used for the [Statistics](#statistics-features) feature.
 
+The class diagram is as such:
+
 ![model_diagram](images/BetterModelClassDiagram.png)
 
 #### General Design Considerations
