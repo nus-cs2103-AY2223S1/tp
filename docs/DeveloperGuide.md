@@ -923,11 +923,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Delete `TrackAScholar.json` file in `data` folder and launch TrackAScholar again. <br>
+   Expected: TrackAScholar restarts with a default list of applicants and the missing data files are recovered.
+       
 
-2. _{ more test cases …​ }_
+2. Saving data in TrackAScholar
+   1. Prerequisites: Some commands will modify the list of applicants permanently. <br>
+   1. Test case: `pin 1` follow by `exit` command and restart TrackAScholar <br>
+   Expected: Upon restarting, the first applicant will be shown on the right list panel.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
