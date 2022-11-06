@@ -22,6 +22,8 @@ This User Guide aims to help your business integrate smoothly with OmniHealth, g
 It shows you how to start using OmniHealth, essential OmniHealth features, Frequently Asked Questions (FAQ) and a neat command summary
 for easy reference. So, let's [get started](#installation)!
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -60,7 +62,7 @@ for easy reference. So, let's [get started](#installation)!
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
+
 ## Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. Refer to the [FAQ](#faq) for more information on installation.
@@ -75,14 +77,16 @@ for easy reference. So, let's [get started](#installation)!
 
 6. Head over to the next section to learn [how to use OmniHealth](#how-to-use-omnihealth).
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## How to Use OmniHealth
 <div markdown="block" class="alert alert-warning">
 
 :warning: We **highly recommend** that you read through this section before moving on to our Features and FAQ<br>
 
 </div>
-This section covers all you need to know to start using OmniHealth. 
+
+> This section covers all you need to know to start using OmniHealth. 
 We will go through the essentials to better understand OmniHealth's [layout](#layout), [navigation](#navigation) and [command format](#command-format).
 
 ### Layout
