@@ -18,7 +18,7 @@ public class Birthday {
             "Birthday should be in the format DDMMYYYY and should be a valid day of the year";
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Birthday should be at most 100 years before and no more than the date of creation";
-    private static final int yearsBefore = 100;
+    private static final int YEARS_BEFORE = 100;
     private final LocalDate date;
 
     /**
@@ -106,6 +106,6 @@ public class Birthday {
      */
     public static boolean isDateInValidPeriod(Birthday birthday) {
         return !birthday.date.isAfter(LocalDate.now())
-                && !birthday.date.isBefore(LocalDate.now().minusYears(yearsBefore));
+                && !birthday.date.isBefore(LocalDate.now().minusYears(YEARS_BEFORE));
     }
 }

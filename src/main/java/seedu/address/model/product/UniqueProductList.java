@@ -83,9 +83,11 @@ public class UniqueProductList implements Iterable<Product> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueProductList // instanceof handles nulls
-                && internalList.equals(((UniqueProductList) other).internalList));
+        boolean isSameObject = other == this;
+        boolean isSameInternalList = other instanceof UniqueProductList // instanceof handles nulls
+                && internalList.equals(((UniqueProductList) other).internalList);
+
+        return isSameObject || isSameInternalList;
     }
 
     @Override

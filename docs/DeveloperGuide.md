@@ -133,7 +133,7 @@ The `Model` component,
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections.
+* `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections. Not all dependencies and composition will be shown.
 
 #### 2.4.2 Client
 
@@ -143,7 +143,7 @@ The `Model` component,
 
 <img src="images/MeetingClassDiagram.png" width="600" />
 
-#### 2.4.2 UniqueProductList
+#### 2.4.2 Product
 
 <img src="images/ProductClassDiagram.png" width="150" />
 
@@ -182,13 +182,35 @@ Here, we are interested in the use of adding a client and associating it with a 
 
 Below is an activity diagram that illustrates how a user might use the addClient feature and associate the added client with a product.
 
-![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
+![AddClientWithProductActivityDiagram](images/AddClientWithProductActivityDiagram.png)
 
 ##### Design Considerations
 
 We decided to only allow adding of a client with its product only after the product is already added using `addProduct`.
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
+
+#### 3.1.3 View Client feature
+
+Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
+
+Purpose: View details associated to the client, such as the client's birthday and address, as well as the meeting details with the client.
+
+##### Implementation
+
+Usage Scenario of `viewClient`:
+
+1) User inputs `viewClient i/1` to view the first client in the `Model`.
+
+:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+
+Below is a sequence diagram that illustrates the execution of `viewClient` command and the interaction with `Model`.
+
+![ViewClientSequenceDiagram](images/ViewClientSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `viewClient`.
+
+![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
 ### 3.2 `Meeting`-related features
 
@@ -232,7 +254,7 @@ the command is executed.
 
 #### 3.2.2 Delete Meeting Feature
 
-Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
+Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
 Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 
@@ -267,7 +289,7 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 #### 3.2.3 View Meeting feature
 
-Syntax: `viewMeeting i/INDEX`
+Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
 Purpose: View details associated with a meeting, such as meeting’s date and time.
 
@@ -282,6 +304,10 @@ Usage Scenario of `viewMeeting`:
 Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
 
 ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `viewMeeting`.
+
+![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
 
 #### 3.2.4 List Meeting feature
 
@@ -316,9 +342,31 @@ Below is a sequence diagram that illustrates the execution of `listMeeting d/tom
 
 ### 3.3 `Product`-related features
 
+#### 3.3.1 Add Product feature
+
+Syntax: `addProduct pd/PRODUCT_NAME`
+
+Purpose: Add a self-defined product with a name `PRODUCT_NAME` into the product list to keep track of the products that the financial advisor sells.
+
+##### Implementation
+
+Usage Scenario of `addProduct`:
+
+1) User inputs `addProduct pd/PrudenSure` to add PrudenSure in the product list.
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command.
+
+![AddProductSequenceDiagram](images/AddProductSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `addProduct`.
+
+![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
+
 ### 3.4 UI
 
 #### 3.4.1 Different view panels
+
+View panels are one of the main component of the UI and the main component where a user sees the results of their commands. Examples of view panel include `MeetingListPanel`, `ClientDetailedViewPanel` and more.
 
 The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
 
@@ -347,7 +395,9 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 **Aspect: Different view panels do not inherit from a single abstract panel class
 
-- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here is an example of over engineering and adds no value to justify the effort of doing so.
+- View panels include not only `ListPanel`, but also `DetailedViewPanel`.
+- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here to make all the different view panels inherit from a single parent class is an example of over engineering and adds no value to justify the effort of doing so.
+- Only within the three `ListPanel`, there is a single common method `numRecordsString`, which checks for plurality of the word 'record'. As such, a small bit of polymorphism in an abstract class `ListPanel` is incorporated in an attempt to reduce repetition.
 
 
 
@@ -493,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User inputs incomplete client data.
+* 1a. User inputs incomplete or invalid client data.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -509,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User selects non-existent client.
+* 1a. User selects a non-existent client.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -523,7 +573,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.4 Use case: UC4 - Add a meeting
+**Extensions**
+
+* 1a. User requests for a list of all clients whose birthday falls within a given period.
+    * 1a1. System shows a list of all clients whose birthday falls within the period.
+
+      Use case ends.
+
+* 1b. User requests for a list of all clients who has purchased a given product.
+    * 1b1. System shows a list of all clients who has purchased the product.
+
+      Use case ends.
+
+#### 5.3.4 Use case: UC4 - Delete a client
+
+**MSS**
+
+1. User requests to delete a client.
+2. Client is removed from the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to delete a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.5 Use case: UC5 - Edit a client
+
+**MSS**
+
+1. User requests to edit a client.
+2. System replaces current client information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent client or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.6 Use case: UC6 - Add a meeting
 
 **MSS**
 
@@ -539,7 +633,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.4 Use case: UC4 - List all meetings
+#### 5.3.7 Use case: UC7 - View a meeting
+
+**MSS**
+
+1. User requests to view a meeting in detail.
+2. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.8 Use case: UC8- List all meetings
 
 **MSS**
 
@@ -550,16 +660,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User requests for a list of all meetings tomorrow.
-    * 1a1. System shows a list of all meetings tomorrow.
-  
-* 1b. User requests for a list of all meetings in the next 7 days.
-    * 1b1. System shows a list of all meetings in the next 7 days.
+* 1a. User requests for a list of all meetings in a given period.
+    * 1a1. System shows the list of all meetings in the period.
 
-* 1c. User requests for a list of all meetings in this month.
-    * 1c1. System shows a list of all meetings in this month.
+      Use case ends.
 
-#### 5.3.5 Use case: UC5 - Delete a meeting
+#### 5.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
 
@@ -578,7 +684,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.6 Use case: UC6 - Add a product
+#### 5.3.10 Use case: UC10 - Edit a meeting
+
+**MSS**
+
+1. User requests to edit a meeting.
+2. System replaces current meeting information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent meeting or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.11 Use case: UC11 - Add a product
 
 **MSS**
 
@@ -594,7 +716,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.7 Use case: UC7 - List all products
+#### 5.3.12 Use case: UC12 - List all products
 
 **MSS**
 
@@ -603,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.8 Use case: UC8 - Delete a product
+#### 5.3.13 Use case: UC13 - Delete a product
 
 **MSS**
 
@@ -639,7 +761,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 * **Meeting**: An event that the user with the client at a specific date and time.
 * **Product**: A financial product such as life insurance that a financial advisor is selling
 * **Timing conflict**: Time periods that overlap. e.g., a time period spanning from 1400 to 1500 and another time period spanning from 1430 to 1500 are considered to overlap. Time period that start and end at the same time however are considered to not overlap, e.g., a time period spanning from 0900 to 0900 and another time period spanning from 0900 to 0900 are considered to not overlap.
-* **View panel**: The main and largest component of the user interface the user will be interacting with. e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
+* **View panel**: The main and largest component of the user interface. The user sees the result of their commands in the view panel. 
+  * e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -698,6 +821,27 @@ testers are expected to do more *exploratory* testing.
    3. Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
       4. Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
+### 6.2 Viewing a client
+
+1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
+
+2. Test case: `viewClient i/1`
+   Expected: The details of the client who is at the first index is shown.
+
+3. Test case: `viewClient i/a`
+   Expected: The index is not numeric, so there will be an error.
+
+4. Test case: `viewClient i/2`
+   Expected: Index is larger than the size of client list, so there will be an error.
+
+5. Test case: `viewClient i/0`
+   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+
+6. Test case: `viewClient i/`
+   Expected: Index is not provided, so there will be an error.
+
+7. Test case: `viewClient 1`
+   Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 6.2 Deleting a client
 
@@ -740,6 +884,28 @@ Deleting a client while all clients are being shown
 
 1. Test case: `listMeeting adsfadsf`
     2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+
+### 6.2 Viewing a meeting
+
+1. Prerequisites: View a specific meeting's details using the `viewMeeting` command. There is exactly one meeting in the list.
+
+2. Test case: `viewMeeting i/1`
+   Expected: The details of the meeting who is at the first index is shown.
+
+3. Test case: `viewMeeting i/a`
+   Expected: The index is not numeric, so there will be an error.
+
+4. Test case: `viewMeeting i/2`
+   Expected: Index is larger than the size of meeting list, so there will be an error.
+
+5. Test case: `viewMeeting i/0`
+   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+
+6. Test case: `viewMeeting i/`
+   Expected: Index is not provided, so there will be an error.
+
+7. Test case: `viewMeeting 1`
+   Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 6.4 Adding a product
 

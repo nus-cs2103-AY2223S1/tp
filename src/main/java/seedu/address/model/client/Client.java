@@ -128,7 +128,7 @@ public class Client {
     }
 
     public boolean isBirthdayValid() {
-        return birthday.isEmpty() ? true : Birthday.isDateInValidPeriod(birthday.get());
+        return birthday.isEmpty() || Birthday.isDateInValidPeriod(birthday.get());
     }
 
     /**

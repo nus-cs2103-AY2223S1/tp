@@ -127,7 +127,6 @@ public class ParserUtil {
      */
     public static DateKeyword parseDateKeyword(String dateKeyword) throws ParseException {
         requireNonNull(dateKeyword);
-        LocalDate today = LocalDate.now();
 
         switch(dateKeyword) {
         case "tomorrow":
