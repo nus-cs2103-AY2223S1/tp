@@ -105,6 +105,8 @@ For first-time users, we also recommend you to first read through the various [p
 
 </div>
 
+[Back to top](#welcome-to-socompilers-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Commands
@@ -126,16 +128,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​`
 * The search is *NOT* case-sensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
 * The order of the keywords does not matter; e.g. `Friday 10am` will match `10am Friday`.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
-* Full words are characterized by having a space before and after the word; eg. Searching `Friday` will only match `Friday` and not `Friday,`
+* Full words are characterized by having a space before and after the word; e.g. Searching `Friday` will only match `Friday` and not `Friday,`
 * Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `Friday` will return all modules that have lectures or tutorials on `Friday`.
 
 Examples:
 
-* `find CS2030S` returns `cs2030s`
+* `find CS2040S` returns both the module `cs2040s` as well as contacts with `cs2030s` under their `module` field.
+  <img src="images/find.png"/>
 * `find Friday` returns `CS2100` and `CS2103T`, assuming both modules have lectures or tutorials on Friday.
-
-The result from finding `CS2030s`:
-<img src="images/Find.png"/>
+  <img src="images/find2.png"/>
 
 ### Clearing all contacts and modules: `clear`
 
@@ -153,6 +154,10 @@ Format: `help`
 You can access this window by clicking the File button on the top left of the app, followed by Help. Or you can just press F1!
 </div>
 
+The help popout window:
+
+<img src="images/help.png"/>
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -167,6 +172,8 @@ Alternatively, you can click the File button on the top left of the app, followe
 
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+[Back to top](#welcome-to-socompilers-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands for Contacts
@@ -177,13 +184,12 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-* The `NAME` field is mandatory while all other fields are optional ([you can click here for more details on each individual field](#person-fields)). If you attempt to add a person without a name, it will result in an error!
+* The `NAME` field is mandatory while all other fields are optional (click [here](#person-fields) for more details on each individual field). If you attempt to add a person without a name, it will result in an error!
 * A contact can have any number of tags (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:**
 You can add the name first and leave other fields blank. Other fields can be added later using the editp command! 
 </div>
-
 
 Examples:
 
@@ -211,11 +217,6 @@ Examples:
   and `johndoe@example.com` respectively.
 * `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-Before edit:
-<img src="images/editp1.png"/>
-After edit:
-<img src="images/editp2.png"/>
-
 ### Deleting a contact: `deletep`
 
 Deletes the specified contact from the contact list.
@@ -231,35 +232,24 @@ Examples:
 * `findp Betsy` followed by `deletep 1` deletes the 1st contact in the results of the `findp` command.
 * `list` followed by `deletep 5` deletes the 5th contact in the address book.
 
-Before delete:
-<img src="images/deletep1.png"/>
-After delete:
-<img src="images/deletep2.png"/>
-
 ### Finding a contact: `findp`
 
-Find contacts with given keywords.
-
-Fields that you can filter for contacts:
-
-* Person name
-* Handphone number
-* Module code
-* Email address
-* Telegram handle
-* Person tags
+Finds contacts with any of the given keywords in any field.
 
 Format: `findp KEYWORD [MORE_KEYWORD]…​`
 
-* The search is *NOT* case-sensitive; e.g. `alex` will match `Alex`, or `ALEX`.
-* The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
-* Only full words will be matched; e.g. `ale` will not match `alex`.
-* Full words are characterized by having a space before and after the word; eg. Searching `Alex` will only match `Alex` and not `Alex-`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
+* The search is *NOT* case-sensitive; e.g. `findp alex` will return the contact `Alex`, or `ALEX`.
+* The order of the keywords does not matter; e.g. `findp Bob McGhee` will return the contact `McGhee Bob`.
+* Only full words will be matched; e.g. `find ale` will not return the contact `alex`.
+* Full words are characterized by having a space before and after the word; e.g. Searching `Alex` will only match `Alex` and not `Alex-`
+* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `findp mcghee broad` will return the contacts `Bob McGhee` and `Seaward Broad`.
 
 Examples:
 
-* `findp bob jessica` returns `Bob McGhee` and `Jessica Lim`
+* `findp yeoh yu` returns contacts `Alex Yeoh` and `Bernice Yu`
+  <img src="images/findp.png"/>
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -271,15 +261,13 @@ Adds a module to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-* The `MODULE_CODE` field is mandatory while all other fields are optional ([you can click here for more details on each individual field](#module-fields)). If you attempt to add a module without a module code, it will result in an error!
+* The `MODULE_CODE` field is mandatory while all other fields are optional (click [here](#module-fields) for more details on each individual field). If you attempt to add a module without a module code, it will result in an error!
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 * A module can have any number of `AssignmentDetails` (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:** 
 You can add the module code first and leave other fields blank. Other fields can be added later using the editm command! 
 </div>
-
-
 
 Examples:
 
@@ -298,7 +286,7 @@ Format: `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [l
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignment details, the existing assignment details of the module will be removed
-  i.e adding of assignment details are not cumulative.
+  i.e. adding of assignment details are not cumulative.
 * You can remove all the module’s assignment details by typing `a/` without specifying any assignment details after it.
 
 Examples:
@@ -321,28 +309,30 @@ Format: `deletem MODULE_INDEX`
 
 Examples:
 
-* `list` followed by `deletem 2` deletes the 2nd module in the address book.
-* `find CS2030S` followed by `deletem 1` deletes the CS2030S module.
+* `list` followed by `deletem 2` deletes the 2nd module in the module list.
+* `find CS2030S` followed by `deletem 1` deletes module `CS2030S`.
 
 ### Finding a module: `findm`
 
-Find modules with given keyword.
-
-Fields that you can filter for modules:
-
-* Module code
-* Lecture details
-* Tutorial details
-* Assignment details
+Finds modules with any of the given keywords in any field.
 
 Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
-* The search is *NOT* case-sensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
-* The order of the keywords does not matter; e.g. `cs2100 cs2109s` will match `cs2109s cs2100`.
+* The search is *NOT* case-sensitive; e.g. `find cs2030s` will return the module `CS2030S`, or `Cs2030s`.
+* The order of the keywords does not matter; e.g. `find cs2100 cs2109s` will return modules `cs2109s` and `cs2100`.
 * Any field associated with the module can be found using this command.
-* Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
+* Only full words will be matched; e.g. `find Cs2030` will not return module `Cs2030S`.
 * Full words are characterized by having an empty space before and after the word; e.g. Searching `Friday` will only match `Friday` and not `Friday,`
-* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s` and `CS2100`.
+* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return modules `CS2109s` and `CS2100`.
+
+Examples:
+
+* `findm CS2040S` returns module `cs2040s`
+  <img src="images/findm.png"/>
+* `findm Friday` returns modules `CS2101` and `CS2103T`, assuming both modules have lectures and/or tutorials on Friday.
+  <img src="images/findm2.png"/>
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -389,6 +379,8 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 | [find](#finding-keywords-in-contacts-andor-modules-find)  | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
 | [exit](#looking-for-help-help)                            | General        | `exit`                                                                                                                                         |
 | [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 

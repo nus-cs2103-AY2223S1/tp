@@ -59,11 +59,11 @@ public class SampleDataUtil {
         ModuleCode cs2101 = new ModuleCode("CS2101");
         cs2101.setModuleTitle("Effective Communication for Computing Professionals");
         return new Module[]{
-            new Module(cs2103t, new LectureDetails("Monday, 2pm"), new TutorialDetails("Friday, 7pm"),
+            new Module(cs2103t, new LectureDetails("Monday 2pm"), new TutorialDetails("Friday 7pm"),
                 new ZoomLink("https://nus-sg.zoom.us/j/tutorialCS2103T"),
                 new ZoomLink("https://nus-sg.zoom.us/j/lectureCS2103T"),
                 getAssignmentDetailsSet("lectureQuiz", "weeklyTutorial")),
-            new Module(cs2040s, new LectureDetails("Wednesday, 3pm"), new TutorialDetails("Thursday, 6pm"),
+            new Module(cs2040s, new LectureDetails("Wednesday 3pm"), new TutorialDetails("Thursday 6pm"),
                 new ZoomLink("https://nus-sg.zoom.us/j/tutorialCS2040S"),
                 new ZoomLink("https://nus-sg.zoom.us/j/lectureCS2040S"),
                 getAssignmentDetailsSet("ProblemSets", "Tutorial", "inLectureQuiz")),
@@ -75,7 +75,7 @@ public class SampleDataUtil {
                 new ZoomLink("https://nus-sg.zoom.us/j/tutorialCS2100"),
                 new ZoomLink("https://nus-sg.zoom.us/j/lectureCS2100"),
                 getAssignmentDetailsSet()),
-            new Module(cs2101, new LectureDetails("Friday, 10am"), new TutorialDetails("Wednesday 10am"),
+            new Module(cs2101, new LectureDetails("Friday 10am"), new TutorialDetails("Wednesday 10am"),
                 new ZoomLink("https://nus-sg.zoom.us/j/tutorialCS2101"),
                 new ZoomLink("https://nus-sg.zoom.us/j/lectureCS2101"),
                 getAssignmentDetailsSet("OP2", "UGDGsubmission"))

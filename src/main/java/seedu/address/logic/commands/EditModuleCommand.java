@@ -50,8 +50,8 @@ public class EditModuleCommand extends Command {
         + "[" + PREFIX_TUTORIAL_ZOOM + "TUTORIAL ZOOM] "
         + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_LECTURE + "Monday, 9am "
-        + PREFIX_TUTORIAL + "Thursday, 10am";
+        + PREFIX_LECTURE + "Monday 9am "
+        + PREFIX_TUTORIAL + "Thursday 10am";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -104,13 +104,13 @@ public class EditModuleCommand extends Command {
         LectureDetails updatedLecture = editModuleDescriptor.getLecture().orElse(moduleToEdit.getLectureDetails());
         TutorialDetails updatedTutorial = editModuleDescriptor.getTutorial().orElse(moduleToEdit.getTutorialDetails());
         ZoomLink updatedLectureZoomLink = editModuleDescriptor
-                .getLectureZoomLink().orElse(moduleToEdit.getLectureZoomLink());
+            .getLectureZoomLink().orElse(moduleToEdit.getLectureZoomLink());
         ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getTutorialZoomLink()
-                .orElse(moduleToEdit.getTutorialZoomLink());
+            .orElse(moduleToEdit.getTutorialZoomLink());
         Set<AssignmentDetails> updatedAssignment =
             editModuleDescriptor.getAssignments().orElse(moduleToEdit.getAssignmentDetails());
         return new Module(updatedModuleCode, updatedLecture, updatedTutorial,
-                updatedLectureZoomLink, updatedTutorialZoomLink, updatedAssignment);
+            updatedLectureZoomLink, updatedTutorialZoomLink, updatedAssignment);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class EditModuleCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(moduleCode, lecture,
-                    tutorial, lectureZoomLink, tutorialZoomLink, assignments);
+                tutorial, lectureZoomLink, tutorialZoomLink, assignments);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
@@ -244,11 +244,11 @@ public class EditModuleCommand extends Command {
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
             return getModuleCode().equals(e.getModuleCode())
-                    && getLecture().equals(e.getLecture())
-                    && getTutorial().equals(e.getTutorial())
-                    && getLectureZoomLink().equals(e.getLectureZoomLink())
-                    && getTutorialZoomLink().equals(e.getTutorialZoomLink())
-                    && getAssignments().equals(e.getAssignments());
+                && getLecture().equals(e.getLecture())
+                && getTutorial().equals(e.getTutorial())
+                && getLectureZoomLink().equals(e.getLectureZoomLink())
+                && getTutorialZoomLink().equals(e.getTutorialZoomLink())
+                && getAssignments().equals(e.getAssignments());
         }
     }
 }
