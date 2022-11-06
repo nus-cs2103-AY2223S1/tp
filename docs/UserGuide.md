@@ -40,15 +40,14 @@ title: Modtrekt User Guide
 
 ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
 tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
-learning and not be sidetracked by unexpected tasks that you forget. With Modtrekt, you can **quickly add tasks**, see your 
-**latest deadlines**, and **filter your tasks based on its module**.
+learning and not be sidetracked by unexpected tasks that you forget. With ModtRekt, you can **quickly add tasks**, see your 
+**upcoming deadlines**, and **filter your tasks by their module**.
 
-Modtrekt is optimized for use via a Command Line Interface (CLI) for **faster navigation** and input whilst still having
-the benefits of a Graphical User Interface (GUI).
+Modtrekt is optimized for use via a command line interface (CLI) for **faster navigation** and input while retaining
+the benefits of a graphical user interface (GUI).
 
-
-This User Guide contains in-depth information which can help new users learn all the functionalities of Modtrekt. If you
-are an experienced user, there exists a command summary at the bottom which can bring you up to speed.
+This user guide contains in-depth information which can help new users learn all the features of ModtRekt. If you
+are an experienced user, the a command summary at the bottom can get you up to speed.
 
 ## Quick Start
 
@@ -71,7 +70,7 @@ are an experienced user, there exists a command summary at the bottom which can 
 
     1. `cd CS2103T`: Sets the current module page to CS2103T.
 
-    1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called iP week 6, with a deadline of 28/10/2022, to the module tracker.
+    1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called "tP v1.3", with a deadline of 28/10/2022, to the module tracker.
 
     1. `list task`: Lists all the active tasks.
 
@@ -94,6 +93,12 @@ The image below shows what each window of the application represents.
 - The Module List and Task Book automatically updates to show various modules and tasks depending on your commands.
 
 ### General Command Syntax
+
+**TLDR:** If you're familar with Unix-style commands, e.g. Git, the ModtRekt commands have a similar syntax.
+A command has up to 2 words, and each parameter prefixed with a dash (`-`) and may have a single value after a space.
+Values with spaces must be enclosed in quotes (`"`).
+
+---
 
 Every command starts with a **command phrase**, which may be single or multiple words.
 
@@ -147,7 +152,7 @@ which tells ModtRekt to treat the quote as a normal character.
 
 In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
 
-> IMPORTANT: Every task was to be associated with a module. There may not be any standalone tasks without a created module.
+> IMPORTANT: Every task has to be associated with a module. There may not be any standalone tasks without a created module.
 
 ### Parameters and constraints summary
 
@@ -227,13 +232,13 @@ Deletes a module from the program. You have to specify a module code to delete.
 
 Format: `remove module <module code>`
 
-Shorthand: `rm mod <module code>`
+Shorthand: `rm module <module code>`, `rm mod <module code>`
 
 - Module code must match an existing module.
 
 Format: `remove module <module code>`
 
-Shorthand: `rm mod <module code>`
+Shorthand: `rm module <module code>`, `rm mod <module code>`
 
 Examples:
 - `remove module CS2103T`
@@ -251,7 +256,6 @@ Format: `cd <module code>`
 Allows you to view information relating to the specified module.
 - Scopes your actions to the specified module.
 - Module code must match an existing module.
-- The module must not be marked as `done`.
 
 Format: `cd <module code>`
 
@@ -283,7 +287,7 @@ Marks a module as done.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 - You cannot execute this command while cd'd into any module.
 
->:warning If there are `undone` tasks of a `done` module, you will be able to mark the module as done again, and the
+>:warning: If there are `undone` tasks of a `done` module, you will be able to mark the module as done again, and the
 `undone` task will be marked as `done`. 
 
 Format: `done module <module code>`
@@ -368,11 +372,11 @@ Format (if `cd`'d previously): `add task <description> [-d <deadline>] [-p <prio
 
 Format (if not `cd`'d): `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`
 
-Examples (CDed into a module):
+Examples (CD'd into a module):
 - `add task "do ip tasks" -d 2022-09-15`
-- `add task -d 15/09/2022 "do ip tasks"`
+- `add task -d 2022-09-15 "do ip tasks"`
 
-Examples (Not CDed into a module):
+Examples (Not CD'd into a module):
 - `add task -c CS2103T "do ip tasks" -d 2022-09-15`
 - `add task -d 2022-09-15 "do ip tasks" -c CS2103T`
 
@@ -431,6 +435,17 @@ Shows only the active tasks (i.e. tasks which are undone) by default.
 - Include the optional `-a` flag to the command to show all tasks, including those that are done.
 - If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
   only show the tasks under the selected module.
+- Tasks are automatically sorted, in order, according to the following criteria:
+  1) Done status
+  2) Priority level
+  3) Deadline
+  4) Alphabetical order of description
+
+>The sorting criteria is applied in order. For instance, a task that is undone will *always* appear before a task that is done, regardless of priority level, deadline or alphabetical order.
+> 
+>If two tasks are tied on the same criteria (e.g. both tasks have the same priority level), they will be tiebroken based on the next criteria.
+> 
+> For deadlines, tasks *without* associated deadlines are always displayed after tasks with associated deadlines.
 
 Format: `list task [-a]`
 
@@ -450,7 +465,7 @@ Changes current parameters of selected task
 
 
 - You can add priorities into their tasks which will be ordered by decreasing priority in the task list
-- 4 Levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
+- 4 levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
 - can be set by adding: `-p none`, `-p low`, `-p medium`, `-p high` tags
 
 Format: `edit task <task index> [-c <module code>] [-d <deadline>] [-ds <description>] [-p <priority>]`
