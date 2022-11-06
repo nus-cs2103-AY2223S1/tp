@@ -42,5 +42,3 @@ The following are my contributions to the project:
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#33](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/33),[\#45](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/45),[\#70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70), [\#90](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/90)
     * Reported bugs and suggestions for other teams in the class [PE-D Issues Link](https://github.com/Ruihan00/ped/issues)
-
-  
