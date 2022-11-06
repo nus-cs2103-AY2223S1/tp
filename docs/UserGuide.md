@@ -3,27 +3,28 @@ layout: page
 title: User Guide
 ---
 
-* **Plannit** is an **all-in-one application** that streamlines the execution of module
-  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
-  **module-mates** (i.e., students in the same module) to increase their productivity.
-
-
-* Plannit will be the **go-to platform** for them to access all modules links and information
-without needing to tediously navigate through multiple websites.
-
-
-* Plannit allows tracking of student contacts by module.
-Students do not have to worry about forgetting which friend takes which module.
-
-
-* Plannit is **optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+**Plannit** is an **all-in-one application** that streamlines the execution of module
+deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+**module-mates** (i.e., students in the same module) to increase their productivity.
+
+Plannit will be the **go-to platform** for them to access all modules links and information
+without needing to tediously navigate through multiple websites. Students 
+can also use it to track their tasks for each module with this application 
+so that they do not have to worry about unintentionally forgetting their tasks.
+
+In addition, Plannit allows tracking of student contacts by module.
+Students do not have to worry about forgetting which friend takes which module.
+
+Plannit is **optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
+
+
 ## 0. How to use this guide
 This guide is targeted at new users who are looking at learning more about 
 our app.
@@ -39,6 +40,7 @@ our app.
 | :bulb:               | A relevant tip which you may find helpful.                                  |
 | :information_source: | Information that you should **must** note of when using a specific feature. |
 | :eye:                | A feature related to the section you are currently looking at.              |
+| :exclamation:        | A disclaimer related to the section you are currently looking at.           |
 
 
 ## 1. Quick start
@@ -87,16 +89,17 @@ our app.
 | [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
 | *[`find-person`](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
 | *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
-
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
-Features marked with * can only be utilised when users are at the home page.
-</div>
+| [`goto`](#251-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [`home`](#252-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
+| [`help`](#26-help)                                            | `help`                                                                  | View help                                                                       |
+| [`exit`](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
 <div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
+</div>
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+Features marked with * can only be utilised when you are at the home page.
 </div>
 
 ## 2. Features
@@ -105,7 +108,7 @@ Features marked with * can only be utilised when users are at the home page.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* You are to include the parameters in the command that are labelled in `UPPER_CASE`.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
 * Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
@@ -125,8 +128,9 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
-  `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `home 123`, it will be interpreted as `home`.
+  [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
+  [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
+  e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
 </div>
 
 ### 2.1. Modules
@@ -179,7 +183,7 @@ This command will require one flag:
 | **Module Code** | `m/` | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
 
 Format: `delete-module m/MODULE_CODE`
-* Module code must correspond to currently displayed module on screen (case-insensitive)
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 
 Example:
 
@@ -251,11 +255,19 @@ OR
 ```
 find-module CS
 ```
-In either of the above examples, we find every module whose module code starts with CS in Plannit.
+In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
-remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules) command.
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>The module list is now updated with modules whose module code starts with `CS`!</p><p/>{:/} |
+
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
+You will remain on the home page after executing the `find-module` command. This is different
+from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
+updated with the persons associated with the module.
+
 </div>
 
 #### 2.1.5. List module
@@ -263,11 +275,11 @@ When you are on the home page, you may obtain the list of every module in Planni
 
 Format: `list-module`
 
-Example:
-```
-list-module
-```
-In the above example, we list every module that exist in Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                          |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><p>The module list has now been updated with every module!</p><p/>{:/} |
 
 <br>
 
@@ -278,7 +290,7 @@ keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+Make sure you have [added a module](#211-add-module) to Plannit 
 before proceeding!
 </div>
 
@@ -291,7 +303,7 @@ This command will require two prefixes:
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 
 Example:
 ```
@@ -306,9 +318,9 @@ command:
 | {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
-You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
-you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
+You may view the tasks added to a module by navigating to a module's page
+using the [`goto`](##251-navigate-between-modules) command. Alternatively,
+you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a
 module's tasks while on the home page.
 </div>
 
@@ -324,7 +336,7 @@ This command will require two prefixes:
 | **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 * You should provide a task number corresponding to that of an existing task in
 the module.
 
@@ -353,7 +365,7 @@ This command will require two prefixes:
 | **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
-* You should provide a module code of an existing module in Plannit.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
 * You should provide a pair of task numbers corresponding to those of existing 
   tasks in the module.
 * You may only specify two task numbers at once. Both task numbers must be 
@@ -402,8 +414,8 @@ the tasks.
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
-home page and view more details of a specific module, you may use the 
-[`goto`](#252-navigate-between-modules) command.
+home page and view more details of a specific module, you may use the
+[`goto`](#251-navigate-between-modules) command.
 </div>
 
 <br>
@@ -430,16 +442,17 @@ Link aliases will be paired with link URLs according to their respective order o
 Plannit provides no guarantee of the link URL's existence.
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Link URL**    | `l/`  | <li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li> |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Link URL**    | `l/`  | {::nomarkdown}<ul><li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li></ul>{:/} |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
-* You cannot add a link to a non-existent module code.
-* You cannot add a link using a link alias that already exists in the module represented by the module code.
-* You cannot add a link using a link URL that already exists in the module represented by the module code.
+* Each link must belong to a specific module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot add a link using a link alias that already exists in the module.
+* You cannot add a link using a link URL that already exists in the module.
 (HTTP headers are ignored for uniqueness of link URLs.)
   * E.g., 'https://www.google.com', 'http://www.google.com', 'www.google.com' are considered the same link URL
 
@@ -459,7 +472,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                    | After executing the command                                                    |
 |---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.png"/></p>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/add-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.PNG"/></p>{:/} |
 
 #### 2.3.2. Delete link
 You may delete link(s) from a specific module using the `delete-link` command. 
@@ -470,14 +483,14 @@ If there exists a link alias that is detected as invalid within a chained comman
 none of the links in the command will be deleted.
 
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul> {:/} |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
-* You cannot delete a link from a non-existent module code.
-* You cannot delete a link using a non-existent link alias from an existing module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot delete a link using a non-existent link alias within the module.
 
 Example:
 ```
@@ -495,7 +508,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                       | After executing the command                                                       |
 |------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.png"/></p>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/delete-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.PNG"/></p>{:/} |
 
 #### 2.3.3. Open link
 You may open link(s) from a specific module to your default browser using the `open-link` command.
@@ -516,14 +529,14 @@ Permissions from your operating system may be required for some users to open li
 (They are enabled by default for most users)
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}  |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
-* You cannot open a link from a non-existent module code.
-* You cannot open a link using a non-existent link alias from an existing module.
+* Module code must correspond to a currently displayed module on screen (case-insensitive).
+* You cannot open a link using a non-existent link alias within the module.
 
 Example:
 ```
@@ -590,7 +603,7 @@ In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>
 If you wish to view a person added to a particular module, you may do so by navigating to that
-module using the [`goto`](#252-navigate-between-modules) command.
+module using the [`goto`](#251-navigate-between-modules) command.
 </div>
 
 #### 2.4.3. Delete person
@@ -639,6 +652,9 @@ delete-person-from-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a person will bring you back to the home page.
+</div>
 
 #### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
@@ -675,7 +691,6 @@ In the above example, we are editing the contact with a displayed-index number o
 Editing a person will bring you back to the home page.
 </div>
 
-
 #### 2.4.6. Find person
 When you are on the home page, you can search for people whose names start with the specified keywords.
 
@@ -690,49 +705,29 @@ OR
 ```
 find-person Alex
 ```
-In either of the above examples, we find every person whose name starts with Alex in Plannit.
+In either of the above examples, we find every person whose name starts with Alex in Plannit. Here's
+a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><p>The person list is now updated with persons whose name starts with `Alex`</p><p/>{:/} |
 
 #### 2.4.7. List person
 When you are on the home page, you may obtain the list of every person in Plannit.
 
 Format: `list-person`
 
-Example:
-```
-list-person
-```
-In the above example, we list every person that exist in Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                          |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/list-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-person-after.png"/></p> <p align="left"><p>The person list has now been updated with every person!</p><p/>{:/} |
+
 
 ### 2.5. Navigation
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
-#### 2.5.1. Navigate to home
-An overview of the modules and persons in Plannit is provided on the home page.
-
-You may navigate to the home page using the `home` command.
-
-Format:  `home`
-
-<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
-You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
-For more detailed information regarding a specific module, you may navigate to that
-module using the [`goto`](#252-navigate-between-modules) command. <br>
-The following commands also navigates you back to the home page:
-* [`add-module`](#211-add-module)
-* [`delete-module`](#212-delete-module)
-* [`add-person`](#244-add-person)
-</div>
-
-<div markdown="block" class="alert alert-info"> :information_source: **Note:**<br>
-After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
-re-enable the following commands:
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
-</div>
-
-#### 2.5.2. Navigate between modules
+#### 2.5.1. Navigate between modules
 You may navigate between modules to view tasks and contacts associated with a particular
 module using the `goto` command.
 
@@ -741,48 +736,92 @@ Format: `goto MODULE_CODE`
 
 Example:
 ```
-goto CS2109S
+goto CS2103T
 ```
-In the above example, we are navigating to the module with module code `CS2109S`.
+In the above example, we are navigating to the module with module code `CS2103T`. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**<br>
-You may return to home page by executing the [`home`](#251-navigate-to-home) command.
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                                    |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="left"><p>The screen is now updated with the module's information!</p><p/>{:/} |
+
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+You may return to home page by executing the [`home`](#252-navigate-to-home) command.
 </div>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
 You will leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#215-find-module) command. <br>
+behavior of [`find-module`](#214-find-module) command. <br> <br>
 After using the `goto` command, usage of the following commands will be restricted:<br>
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person). <br> <br>
 To re-enable the restricted commands, you may execute any commands that bring you back to the home page
-(i.e. [`home`](#251-navigate-to-home)).
+(i.e. [`home`](#252-navigate-to-home)).<br><br>
+For Macbook user: If tasks are not shown, double-click on the module to open it!
+</div>
+
+#### 2.5.2. Navigate to home
+An overview of the modules and persons in Plannit is provided on the home page.
+
+You may navigate to the home page using the `home` command.
+
+Format:  `home`
+
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><p>You are now back on the home screen!</p><p/>{:/} |
+
+<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
+You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
+For more detailed information regarding a specific module, you may navigate to that
+module using the [`goto`](#251-navigate-between-modules) command. <br> <br>
+The following commands also navigate you back to the home page: <br>
+[`add-module`](#211-add-module), [`delete-module`](#212-delete-module), [`add-person`](#241-add-person).
+</div>
+
+<div markdown="block" class="alert alert-info"> :information_source: **Note:**
+After using the [`goto`](#251-navigate-between-modules) command, executing the `home` command will 
+re-enable the following commands: <br>
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person).
 </div>
 
 <br>
 
-### 2.6. Exiting The Program
+### 2.6. View help
+If you're feeling lost regarding our features, use the `help` command to
+open a window with a link that directs you to our user guide!
+
+Format: `help`
+
+#### Minor enhancement [coming in v1.5] <br>
+Stay tuned for Plannit v1.5, where we will be including a table showing all commands
+within the help window!
+
+<br>
+
+### 2.7. Exiting The Program
 Exits the program.
 
 Format: `exit`
 
 <br>
 
-### 2.7. Saving The Data
+### 2.8. Saving The Data
 Your data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 <br>
 
-### 2.8. Loading The Data
+### 2.9. Loading The Data
 If saved data exists, data is automatically loaded when the program starts.
 There is no need to load manually.
 
 <br>
 
-### 2.9. Editing The Data File
+### 2.10. Editing The Data File
 Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
