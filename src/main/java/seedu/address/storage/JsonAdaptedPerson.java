@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,10 +24,12 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
@@ -36,7 +39,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
+    public static final String NOT_APPLICABLE = "NA";
     private final Long uid;
     private final String name;
     private final String category;
@@ -52,6 +55,9 @@ class JsonAdaptedPerson {
     private final String pName;
     private final String pPhone;
     private final String pEmail;
+    private final String nName;
+    private final String nPhone;
+    private final String nEmail;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -68,7 +74,10 @@ class JsonAdaptedPerson {
             @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
             @JsonProperty("phys name") String pName,
             @JsonProperty("phys phone") String pPhone,
-            @JsonProperty("phys email") String pEmail) {
+            @JsonProperty("phys email") String pEmail,
+            @JsonProperty("nok name") String nName,
+            @JsonProperty("nok phone") String nPhone,
+            @JsonProperty("nok email") String nEmail) {
 
         this.uid = uid;
         this.name = name;
@@ -81,9 +90,12 @@ class JsonAdaptedPerson {
         if (dateSlot != null) {
             this.dateSlots.addAll(dateSlot);
         }
-        this.pName = Objects.requireNonNullElse(pName, "NA");
-        this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
-        this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
+        this.pName = Objects.requireNonNullElse(pName, NOT_APPLICABLE);
+        this.pPhone = Objects.requireNonNullElse(pPhone, NOT_APPLICABLE);
+        this.pEmail = Objects.requireNonNullElse(pEmail, NOT_APPLICABLE);
+        this.nName = Objects.requireNonNullElse(nName,NOT_APPLICABLE);
+        this.nPhone = Objects.requireNonNullElse(nPhone,NOT_APPLICABLE);
+        this.nEmail = Objects.requireNonNullElse(nEmail,NOT_APPLICABLE);
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -112,31 +124,27 @@ class JsonAdaptedPerson {
 
         if (isPatient) {
             Patient sourcePatient = (Patient) source;
-            dateSlots.addAll(sourcePatient.getDatesSlots().stream()
-                    .map(JsonAdaptedDateSlot::new)
+            dateSlots.addAll(sourcePatient.getDatesSlots().stream().map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
-            String[] physNameArr = new String[] { "NA" };
-            sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
-            pName = physNameArr[0];
-            String[] physEmailArr = new String[] { "NA" };
-            sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
-            pEmail = physEmailArr[0];
-            String[] physPhoneArr = new String[] { "NA" };
-            sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
-            pPhone = physPhoneArr[0];
+            pName = getpName(sourcePatient);
+            pEmail = getpEmail(sourcePatient);
+            pPhone = getpPhone(sourcePatient);
+            nName = getnName(sourcePatient);
+            nEmail = getnEmail(sourcePatient);
+            nPhone = getnPhone(sourcePatient);
         } else {
-            homeVisits.addAll(((Nurse) source).getHomeVisits().stream()
-                    .map(JsonAdaptedHomeVisit::new)
+            homeVisits.addAll(((Nurse) source).getHomeVisits().stream().map(JsonAdaptedHomeVisit::new)
                     .collect(Collectors.toList()));
-            unavailableDates.addAll(((Nurse) source).getUnavailableDates().stream()
-                    .map(JsonAdaptedDate::new)
+            unavailableDates.addAll(((Nurse) source).getUnavailableDates().stream().map(JsonAdaptedDate::new)
                     .collect(Collectors.toList()));
-            fullyAssignedDates.addAll(((Nurse) source).getFullyScheduledDates().stream()
-                    .map(JsonAdaptedDate::new)
+            fullyAssignedDates.addAll(((Nurse) source).getFullyScheduledDates().stream().map(JsonAdaptedDate::new)
                     .collect(Collectors.toList()));
-            pName = "NA";
-            pPhone = "NA";
-            pEmail = "NA";
+            pName = NOT_APPLICABLE;
+            pPhone = NOT_APPLICABLE;
+            pEmail = NOT_APPLICABLE;
+            nName = NOT_APPLICABLE;
+            nEmail = NOT_APPLICABLE;
+            nPhone = NOT_APPLICABLE;
         }
 
         uid = source.getUid().uid;
@@ -145,9 +153,44 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tagged.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+    }
+
+    private String getpName(Patient sourcePatient) {
+        String[] physNameArr = new String[] {NOT_APPLICABLE};
+        sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0]
+                = x.getName().fullName.substring(3));
+        return physNameArr[0];
+    }
+
+    private String getpEmail(Patient sourcePatient) {
+        String[] physEmailArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
+        return physEmailArr[0];
+    }
+
+    private String getpPhone(Patient sourcePatient) {
+        String[] physPhoneArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
+        return physPhoneArr[0];
+    }
+
+    private String getnName(Patient sourcePatient) {
+        String[] nokNameArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getNextOfKin().ifPresent(x -> nokNameArr[0] = x.getName().fullName);
+        return nokNameArr[0];
+    }
+
+    private String getnEmail(Patient sourcePatient) {
+        String[] nokEmailArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getNextOfKin().ifPresent(x -> nokEmailArr[0] = x.getEmail().value);
+        return nokEmailArr[0];
+    }
+
+    private String getnPhone(Patient sourcePatient) {
+        String[] nokPhoneArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getNextOfKin().ifPresent(x -> nokPhoneArr[0] = x.getPhone().value);
+        return nokPhoneArr[0];
     }
 
     /**
@@ -158,78 +201,13 @@ class JsonAdaptedPerson {
      *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
-        final List<HomeVisit> nurseHomeVisitList = new ArrayList<>();
-        for (JsonAdaptedHomeVisit homeVisit : homeVisits) {
-            nurseHomeVisitList.add(homeVisit.toModelType());
-        }
-
-        final List<Date> nurseUnavailableDate = new ArrayList<>();
-        for (JsonAdaptedDate date : unavailableDates) {
-            nurseUnavailableDate.add(date.toModelType());
-        }
-
-        final List<Date> nurseFullySchedulledDates = new ArrayList<>();
-        for (JsonAdaptedDate date : fullyAssignedDates) {
-            nurseFullySchedulledDates.add(date.toModelType());
-        }
-
-        final List<DateSlot> patientHomeVisitDatesSlots = new ArrayList<>();
-        for (JsonAdaptedDateSlot dateSlot : dateSlots) {
-            patientHomeVisitDatesSlots.add(dateSlot.toModelType());
-        }
-
-        if (uid == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
-        }
-
-        final Uid modelUid = new Uid(uid);
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (gender == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
-        }
-        if (!Gender.isValidGender(gender)) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        final Gender modelGender = new Gender(gender);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Uid modelUid = getModelUid();
+        final Name modelName = getModelName(name, false, false);
+        final Gender modelGender = getModelGender();
+        final Phone modelPhone =getModelPhone(phone, false,false);
+        final Email modelEmail = getModelEmail(email, false, false);
+        final Address modelAddress = getModelAddress();
+        final Set<Tag> modelTags = getModelTags();
 
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -237,18 +215,173 @@ class JsonAdaptedPerson {
         }
 
         if (category.equals(NURSE_SYMBOL)) {
+            List<Date> modelUnavailableDates = getModelUnavailableDates();
+            List<HomeVisit> modelHomeVisits = getModelHomeVisits();
+            List<Date> modelFullySchedulledDates = getModelFullyScheduledDates();
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags,
-                    nurseUnavailableDate, nurseHomeVisitList, nurseFullySchedulledDates);
+                    modelUnavailableDates, modelHomeVisits, modelFullySchedulledDates);
 
         } else if (category.equals(PATIENT_SYMBOL)) {
+            List<DateSlot> modelDateSlots = getModelDateSlots();
+            Optional<Physician> modelPhysician = getModelPhysician();
+            Optional<NextOfKin> modelNextOfKin = getModelNextOfKin();
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, patientHomeVisitDatesSlots);
+                    modelAddress, modelTags, modelDateSlots, modelPhysician, modelNextOfKin);
 
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
 
         }
 
+    }
+
+    private Uid getModelUid() throws IllegalValueException {
+        if (uid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+        }
+        return new Uid(uid);
+    }
+
+    private Name getModelName(String name, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+        String indicator = "";
+        if (isPhysician) {
+            indicator = "Physician's ";
+        }
+        if (isNOK) {
+            indicator = "Next Of Kin's ";
+        }
+        if (name == null || name.equals(NOT_APPLICABLE)) {
+            throw new IllegalValueException(indicator
+                    + String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(indicator + Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(name);
+    }
+
+    private Gender getModelGender() throws IllegalValueException {
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(gender);
+    }
+
+    private Phone getModelPhone(String phone, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+        String indicator = "";
+        if (isPhysician) {
+            indicator = "Physician's ";
+        }
+        if (isNOK) {
+            indicator = "Next Of Kin's ";
+        }
+        if (phone == null) {
+            throw new IllegalValueException(indicator +
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(indicator + Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(phone);
+    }
+
+    private Email getModelEmail(String email, Boolean isPhysician, Boolean isNOK) throws IllegalValueException {
+        String indicator = "";
+        if (isPhysician) {
+            indicator = "Physician's ";
+        }
+        if (isNOK) {
+            indicator = "Next Of Kin's ";
+        }
+        if (email == null) {
+            throw new IllegalValueException(indicator +
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(indicator + Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(email);
+    }
+
+    private Address getModelAddress() throws IllegalValueException {
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(address);
+    }
+
+    private Set<Tag> getModelTags() throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+        return new HashSet<>(personTags);
+    }
+
+    private List<HomeVisit> getModelHomeVisits() throws IllegalValueException {
+        final List<HomeVisit> nurseHomeVisitList = new ArrayList<>();
+        for (JsonAdaptedHomeVisit homeVisit : homeVisits) {
+            nurseHomeVisitList.add(homeVisit.toModelType());
+        }
+        return nurseHomeVisitList;
+    }
+
+    private List<Date> getModelUnavailableDates() throws IllegalValueException {
+        final List<Date> nurseUnavailableDate = new ArrayList<>();
+        for (JsonAdaptedDate date : unavailableDates) {
+            nurseUnavailableDate.add(date.toModelType());
+        }
+        return nurseUnavailableDate;
+    }
+
+    private List<Date> getModelFullyScheduledDates() throws IllegalValueException {
+        final List<Date> nurseFullySchedulledDates = new ArrayList<>();
+        for (JsonAdaptedDate date : fullyAssignedDates) {
+            nurseFullySchedulledDates.add(date.toModelType());
+        }
+        return nurseFullySchedulledDates;
+    }
+
+    private List<DateSlot> getModelDateSlots() throws IllegalValueException {
+        final List<DateSlot> patientHomeVisitDatesSlots = new ArrayList<>();
+        for (JsonAdaptedDateSlot dateSlot : dateSlots) {
+            patientHomeVisitDatesSlots.add(dateSlot.toModelType());
+        }
+        return patientHomeVisitDatesSlots;
+    }
+
+    private Optional<Physician> getModelPhysician() throws IllegalValueException {
+        Boolean haspName = !pName.equals(NOT_APPLICABLE);
+        Boolean haspPhone = !pPhone.equals(NOT_APPLICABLE);
+        Boolean haspEmail = !pEmail.equals(NOT_APPLICABLE);
+        if (!haspName && !haspPhone && !haspEmail) {
+            return Optional.empty();
+        } else {
+            Name phyName = getModelName(pName, true, false);
+            Phone phyPhone = getModelPhone(pPhone, true, false);
+            Email phyEmail = getModelEmail(pEmail, true, false);
+            return Optional.of(new Physician(phyName, phyPhone, phyEmail));
+        }
+    }
+
+    private Optional<NextOfKin> getModelNextOfKin() throws IllegalValueException {
+        Boolean hasnName = !nName.equals(NOT_APPLICABLE);
+        Boolean hasnPhone = !nPhone.equals(NOT_APPLICABLE);
+        Boolean hasnEmail = !nEmail.equals(NOT_APPLICABLE);
+        if (!hasnName && !hasnPhone && !hasnEmail) {
+            return Optional.empty();
+        } else {
+            Name nokName = getModelName(pName, false, true);
+            Phone nokPhone = getModelPhone(pPhone, false, true);
+            Email nokEmail = getModelEmail(pEmail, false, true);
+            return Optional.of(new NextOfKin(nokName, nokPhone, nokEmail));
+        }
     }
 
 }
