@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 import seedu.address.testutil.PropertyBuilder;
 
 

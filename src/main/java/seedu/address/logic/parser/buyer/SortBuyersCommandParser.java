@@ -25,7 +25,7 @@ import seedu.address.logic.sortcomparators.TimeComparator;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Priority;
-import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.price.PriceRange;
 
 /**
  * Parses user input to create a {@code SortBuyersCommand}.

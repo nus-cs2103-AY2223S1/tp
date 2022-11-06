@@ -2,19 +2,19 @@ package seedu.address.model.buyer;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 
 /**
  * Tests that a {@code Buyer}'s {@code PriceRange} contains the given price value.
  */
-public class FilterBuyerByPricePredicate extends AbstractFilterBuyerPredicate {
+public class FilterBuyersByPricePredicate extends AbstractFilterBuyersPredicate {
 
     private final Price price;
 
     /**
      * Standard constructor for the predicate.
      */
-    public FilterBuyerByPricePredicate(Price price) {
+    public FilterBuyersByPricePredicate(Price price) {
         requireNonNull(price);
         this.price = price;
     }
@@ -31,8 +31,8 @@ public class FilterBuyerByPricePredicate extends AbstractFilterBuyerPredicate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterBuyerByPricePredicate // instanceof handles nulls
-                && price.equals(((FilterBuyerByPricePredicate) other).price)); // state check
+                || (other instanceof FilterBuyersByPricePredicate // instanceof handles nulls
+                && price.equals(((FilterBuyersByPricePredicate) other).price)); // state check
     }
 
 }

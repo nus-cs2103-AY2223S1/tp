@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Optional;
 
-import seedu.address.model.property.Price;
+import seedu.address.model.price.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 

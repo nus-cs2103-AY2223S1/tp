@@ -15,9 +15,9 @@ import seedu.address.logic.commands.buyer.FilterBuyersCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByPricePredicate;
-import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
-import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
+import seedu.address.model.buyer.FilterBuyersByPricePredicate;
+import seedu.address.model.buyer.FilterBuyersContainingAllCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyersContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
 
 /**
@@ -65,13 +65,13 @@ public class MatchPropertyCommand extends Command {
         Property propertyToMatch = lastShownList.get(targetIndex.getZeroBased());
 
         ArrayList<Predicate<Buyer>> predicatesList = new ArrayList<>();
-        predicatesList.add(new FilterBuyerByPricePredicate(propertyToMatch.getPrice()));
+        predicatesList.add(new FilterBuyersByPricePredicate(propertyToMatch.getPrice()));
         if (propertyToMatch.getCharacteristics().isPresent()) {
             if (isMatchingAll) {
-                predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(
+                predicatesList.add(new FilterBuyersContainingAllCharacteristicsPredicate(
                         propertyToMatch.getCharacteristics().get()));
             } else {
-                predicatesList.add(new FilterBuyerContainingAnyCharacteristicPredicate(
+                predicatesList.add(new FilterBuyersContainingAnyCharacteristicPredicate(
                         propertyToMatch.getCharacteristics().get()));
             }
         }

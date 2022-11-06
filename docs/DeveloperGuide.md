@@ -5,12 +5,29 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## **Introduction**
 
+Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a
+command-line interface. 
+
+### **Purpose**
+
+This guide is primarily targeted towards developers looking to understand or extend the functionalities of Cobb, 
+and software testers looking to test Cobb's features. You are also welcome to read this if you understand UML diagrams
+and have a general understanding of how a software application works under the hood.
+
+### **Scope**
+
+This guide first gives a high-level architecture overview of Cobb, before explaining the main components that make up 
+the application. It then explains some notable features and the design considerations behind their implementation. To
+better understand what the application does from the user's standpoint, you might want to dive into the 
+[Use cases](#Use cases) section first, or simply run the application and try it for yourself before reading the rest 
+of the guide.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -20,11 +37,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -36,7 +48,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called 
+[`Main`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,16 +67,21 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletebuyer 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+the command `deletebuyer 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
+* `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality 
+using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given 
+component through its interface rather than the concrete class (reason: to prevent outside component's being coupled 
+to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,7 +89,8 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API**: 
+[`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -82,11 +103,12 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Buyer` and `Property` objects residing in `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : 
+[`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,15 +116,18 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CobbParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) 
+which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletebuyer 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletebuyer 1")` 
+API call.
 
 ![Interactions Inside the Logic Component for the `deletebuyer 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBuyerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBuyerCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,41 +135,55 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `CobbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddBuyerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddBuyerCommand`) which the `CobbParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddBuyerCommandParser`, `DeletePropertyCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `CobbParser` class creates an `XYZCommandParser` (`XYZ` is a 
+placeholder for the specific command name e.g. `AddBuyerCommandParser`) which uses the other classes shown above to 
+parse the user command and create a `XYZCommand` object (e.g. `AddBuyerCommand`) which the `CobbParser` returns back 
+as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddBuyerCommandParser`, `DeletePropertyCommandParser`, ...) inherit from the 
+`Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : 
+[`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="950" />
 
 The `Model` component,
 
 * stores the buyer book data i.e., all `Buyer` objects (which are contained in a `UniqueBuyerList` object).
-* stores the property book date i.e, all `Property` objects (which are contained in a `UniquePropertyList` object).
-* stores the currently 'selected' `Buyer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Buyer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* * stores the currently 'selected' `Property` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Property>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the property book data i.e, all `Property` objects (which are contained in a `UniquePropertyList` object).
+* stores the currently 'selected' `Buyer` and `Property` objects (e.g. results of a search query) as separate
+_filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Buyer>` and `ObservableList<Property>`
+respectively that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when 
+the data in the lists change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a 
+`ReadOnlyUserPref` object.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they 
+should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since that the two children classes have a lot of methods with identical purposes.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) 
+model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since the two 
+children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="850" />
 
 </div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** :
+[`Storage.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
-* can save buyer book data, property book date, and user preference data in json format, and read them back into corresponding objects.
-* inherits from `BuyerBookStorage`, `PropertyBookStorage`, `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save buyer book data, property book data, and user preference data in JSON format, and read them back into 
+corresponding objects.
+* inherits from `BuyerBookStorage`, `PropertyBookStorage`, `UserPrefStorage`, which means it can be treated as either 
+one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects 
+that belong to the `Model`)
 
 ### Common classes
 
@@ -296,6 +335,47 @@ Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyRelea
 element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
 unexecuted command from Step 3.
 
+### Indexing existing buyers and properties in the database
+
+Many of the existing features that are currently implemented requires Cobb to index existing entries in the database.
+For example, `deletebuyer 1` would perform the `deletebuyer` operation on the buyer at index `1` of the buyer list.
+
+If the index provided is not a positive integer or not a valid number, Cobb will throw an error requesting the user to
+provide a valid input. Similarly, if the index provided is valid but exceeds the number of elements currently in the list,
+Cobb will be able to identify that there is a bounds mismatch and inform the user to provide a valid input within bounds.
+
+Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableArrayList`, which is an array-like
+data structure provided by JavaFX which fires off reports about all of its changes to associated listeners. This means that
+any changes to the structure or objects in the `ObservableArrayList` will be recorded by its listeners, causing the updated
+list to be displayed correctly on the user's screen.
+
+#### Design Considerations
+**Aspect: How entries are indexed in a list**
+* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableArrayList`.
+  If the list is filtered or sorted, then the entries' relative positions will change according to this new version of the
+  list.
+    * Pros:
+        * Users will be able to quickly ascertain the index of an entry in the list simply by finding the entry in the list.
+        * Indices of visible entries in the `ObservableArrayList` will always be in the range `[1,n]` inclusive, where n
+          is the number of entries currently visible in the list. This gives the indices order and structure.
+        * No index field needs to be created for `Buyer` and `Property` objects.
+    * Cons:
+        * The relative index of an entry will change depending on the current structure of the `ObservableArrayList`. This 
+          means that a property that has index `1` might not have the same index after the property list is filtered.
+
+* **Alternative 2**: Entries in a list are indexed by an internal `EntryID` parameter that is automatically generated 
+  upon its creation.
+    * Pros:
+        * Users will still be able to identify the index of the entry by first looking for the entry in the list, and then
+          looking at the value of its `EntryID` parameter.
+        * The index of the entry in the list will not change if the structure of the list is changed, e.g. through filtering
+          or sorting operations.
+    * Cons:
+        * `Buyer` and `Property` class will be bloated with one extra parameter.
+        * Care needs to be taken to ensure that no IDs are clashing with each other, which might lead to implementation issues.
+        * Users might be able to execute commands on entries in the list that are not currently visible, which might lead
+          to confusion.
+
 ### Creating a buyer
 
 The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
@@ -331,8 +411,8 @@ The structure for executing an `addprop` command follows the flow as mentioned i
 #### Design considerations:
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
-### Owner specification within a property
 
+### Owner specification within a property
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
 The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
@@ -372,18 +452,87 @@ The tradeoffs for this approach is examined below:
       * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
       the owner is deleted.
 
-### Filtering properties by price range
+### Filtering buyers and properties: Overall structure
 
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
-property's price falls within a specified price range.
+In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableArrayList` that stores 
+references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
+being tested, consequently, they might give different outputs when applied to a given list.
 
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
-this guide.
+#### Design Considerations
+In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
+`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
+we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
 
-Design considerations:
-As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
-unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
-falls within this range would be displayed.
+Additionally, since users
+are only allowed to filter using certain conditions as defined in the behaviour of the `filter` commands, concrete classes
+extending this abstract predicate class were implemented for each condition. For example:
+
+Users can filter `Properties` by their `PropertyName`, `Price`, `Characteristics` or `OwnerName`. As a result, the following 
+concrete predicate classes were implemented:
+1. `PropertyNameContainsSubstringPredicate`
+2. `FilterPropsByPricePredicate`
+3. `FilterPropsContainingAllCharacteristicsPredicate`
+4. `FilterPropsContainingAnyCharacteristicsPredicate`
+5. `FilterPropsByOwnerNamePredicate`
+
+Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
+`Predicate`, which is then used to filter the `ObservableArrayList` directly.
+
+The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
+
+![FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
+
+#### Filter-specific design considerations
+1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
+   agents to want to identify properties that fit within a certain price range instead of a fixed price.
+2. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+   a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
+   for the entry to pass through the filter.
+3. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
+   is for Cobb to filter out entries that contain **ALL** of the given characteristics. The `-fuzzy` flag changes this behaviour
+   to filter out entries that contain *at least one* of the given characteristics.
+4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
+   contain the parameter provided to `-n` as a *substring*.
+
+### Matching properties to a buyer, and vice versa
+
+`matchprop` and `matchbuyer` are convenience features, allowing the users to find suitable matches between buyers
+and properties easily. Without this, users would have to manually input the conditions from an identified buyer or 
+property and make use of the `filter` command. `matchprop` allows users to filter the buyer list with the conditions 
+set by a specific property. `matchbuyer` is similar, filtering the property list with the conditions set by a specific 
+buyer. 
+
+#### Specifications
+
+For `matchprop`, a `Buyer` is considered a match if its `PriceRange` contains the property's `Price` (inclusive),
+and contains at least 1 common characteristic with the property.
+For `matchbuyer`, a `Property` is considered a match if its `Price` is within the buyer's `PriceRange` (inclusive),
+and contains at least 1 common characteristic with the buyer.
+
+It is also possible to specify `-strict`, which would require a matching object to have _all_ (instead of at least 1)
+the characteristics of the target object. This was added due to the possibility that the user gets too many matches,
+and wishes to narrow down the results easily. Without this, the user would have to revert to the `filter` command 
+and manually input more specific conditions.
+
+Here is a Sequence Diagram of how `matchbuyer 1` is handled, assuming 1 is a valid index and the `Buyer` at index 1 
+contains both a `PriceRange` and `Characteristics`.
+
+![MatchBuyerSequenceDiagram](images/MatchBuyerCommandSequenceDiagram.png)
+
+We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
+then passed to the constructor of `FilterPropertiesCommand` and executed.
+
+#### Design considerations:
+
+`Buyer` and `Property` have many different fields, but there were only a few common fields between them. Both classes
+contain `Characteristics`. `Property` contains `Price`, which inherits from `PriceRange` that `Buyer` contains. Thus,
+it makes sense that only these fields are used in the match commands, since it would not be possible to filter the list
+by a field that is not present in a matching object.
+
+Initially, we also considered allowing a `Buyer` or `Property` to be a match if it just contained at least 1 common
+characteristic (i.e. a match did not need to satisfy the pricing condition). However, we decided against this as we
+felt that a buyer would almost never consider a property that is not within their budget, and vice versa. Allowing this
+to occur would likely give the user more matches that were irrelevant instead of useful ones.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -412,8 +561,9 @@ falls within this range would be displayed.
 * can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs, separate functionalities for two contact bases (buyers and sellers) and properties, and optimized searching and filtering to automate property to buyer matches
-
+**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs,
+use of commands to quickly execute functionalities as compared to buttons in the UI on desktop applications, 
+automation of matching between suitable properties and buyers
 
 ### User stories
 
@@ -450,15 +600,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 
 1. User chooses to add a new buyer.
-2. User enters the details of the buyer (e.g. their requirements) and his/her status as a buyer/seller.
+2. User enters the details of the buyer.
+3. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The buyer already exists.
-* 2b. Cobb shows an error message.
+* 3a. The buyer already exists.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
 
-Use case ends.
+
+* 3b. User provides incorrectly formatted information.<br>
+  3b1. Cobb shows an error message.<br>
+  Use case ends.
 
 ### Use case: Add a property
 
@@ -466,28 +621,52 @@ Use case ends.
 
 1. User chooses to add a new property.
 2. User enters the details of the property.
-3. If available, user enters the details of the buyer/seller.
+3. If available, user enters the details of the owner of the property.
+4. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The property already exists.
-* 2b. Cobb shows an error message.
+* 4a. The property already exists.<br>
+  4a1. Cobb shows an error message.<br>
+  Use case ends.
+
+
+* 4b. User provides incorrectly formatted information.<br>
+  4b1. Cobb shows an error message. <br>
+  Use case ends.
+
+### Use case: Edit a buyer
+
+**MSS:**
+
+1. User chooses to edit an existing buyer.
+2. User finds buyer they want to edit.
+3. User executes update command with relevant information to update.
 
 Use case ends.
+
+**Extensions**
+* 3a. User provides incorrect information to update.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
+
 
 ### Use case: List properties
 
 **MSS:**
 
-1. User chooses to list all properties.
-2. User chooses the order in which to list the properties.
+1. User chooses to list properties.
+2. User executes list properties command.
 
 Use case ends.
 
-**Extensions**
-* 2a. There are no properties.
-* 2b. Cobb shows an error message.
+### Use case: List buyers
+
+**MSS:**
+
+1. User chooses to list buyers
+2. User executes list buyers command.
 
 Use case ends.
 
@@ -495,29 +674,38 @@ Use case ends.
 
 **MSS:**
 
-1. User <u>lists properties (Use case: List properties)</u>.
-2. User finds properties that are not relevant anymore (e.g. already sold).
-3. User deletes these properties.
+1. User <u>lists properties [(Use case: List properties)](#use-case-list-properties)</u>.
+2. User finds properties that are no longer relevant (e.g. already sold).
+3. User executes delete command on these properties.
 
 Use case ends.
 
-### Use case: Match buyer to property
+### Use case: Delete irrelevant buyers
+
+**MSS:**
+
+1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
+2. User finds buyers that are no longer relevant (e.g. already bought a house).
+3. User executes delete command on these buyers.
+
+### Use case: Match buyer to properties
 
 **Preconditions**: Prospective buyer has been added.
 
 **MSS:**
-1. User <u>lists all properties (Use case: List properties)</u>.
-2. User finds the property that suits the buyer.
-3. User edits the property to record that it has been bought by the buyer.
+1. User <u>lists all buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
+2. User executes match command on desired buyer.
 
 Use case ends.
 
-**Extensions**
-* 2a. A suitable property is not found.
 
-Use case ends.
+### Use case: Match property to buyers
 
-* 2b. Buyer rejects the suitable property found.
+**Preconditions**: Property exists in database.
+
+**MSS:**
+1. User <u>lists all properties [(Use case: List properties)](#use-case-list-properties)</u>.
+2. User executes match command on desired property.
 
 Use case ends.
 
@@ -525,21 +713,20 @@ Use case ends.
 
 **MSS:**
 1. User gets a new buyer.
-2. User <u>adds the buyer (Use case: Add buyer)</u>.
-3. User tries to <u>match the buyer to a property (Use case: Match buyer to property)</u>.
+2. User <u>adds the buyer [(Use case: Add buyer)](#use-case-add-a-buyer)</u>
+3. User tries to <u>match the buyer to a property [(Use case: Match buyer to property)](#use-case-match-buyer-to-properties)</u>.
 
 **Extensions:**
-2a. Buyer already exists.
-2b. User edits the existing buyer with new requirements, if necessary.
-
-Use case continues at 3.
+* 2a. Buyer already exists.<br>
+  2b. User edits the existing buyer with new requirements, if necessary.<br>
+  Use case continues at 3.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on any computer fewer than five years old.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should work on any computer fewer than five years old. 
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
