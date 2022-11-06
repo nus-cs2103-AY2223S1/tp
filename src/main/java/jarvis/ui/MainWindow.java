@@ -40,8 +40,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private UiPart<Region> taskListPanel;
-    private UiPart<Region> lessonListPanel;
+    private TaskListPanel taskListPanel;
+    private LessonListPanel lessonListPanel;
     private ExpandedStudentListPanel expStudentListPanel;
     private ExpandedTaskListPanel expTaskListPanel;
     private ExpandedLessonListPanel expLessonListPanel;
