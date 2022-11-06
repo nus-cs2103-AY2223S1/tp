@@ -534,14 +534,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Coydir` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a person**
+**Use case: UC01 - Delete a employee**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Coydir shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  Coydir deletes the person.
+1.  User requests to list employees.
+2.  Coydir shows a list of employees.
+3.  User requests to delete a specific employee in the list.
+4.  Coydir deletes the employee.
 
     Use case ends.
 
@@ -559,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: UC02 - Edit details of a employee**
+**Use case: UC02 - Edit details of an employee**
 
 **MSS**
 
@@ -597,7 +597,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 2.
 
 
-**Use case: UC03 - Find details of a employee**
+**Use case: UC03 - Find details of an employee**
 
 **MSS**
 
@@ -620,7 +620,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends.
 
-**Use case: UC04 - View details of a employee**
+**Use case: UC04 - View details of an employee**
 
 **MSS**
 
@@ -906,7 +906,7 @@ Use case ends.
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers are expected to do more exploratory testing.
 
 </div>
 
