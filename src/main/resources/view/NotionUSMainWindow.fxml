@@ -37,7 +37,6 @@
                     <Menu mnemonicParsing="false" text="Archived">
                         <MenuItem fx:id="archiveMenuItem" mnemonicParsing="false" onAction="#handleShowArchive" text="Archived"/>
                     </Menu>
-                    <!--          onAction="#handleSortDue"-->
                 </MenuBar>
                     <HBox fx:id="filterStatusDisplayPlaceholder" styleClass="menu-bar">
                         <padding>

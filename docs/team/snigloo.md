@@ -16,7 +16,7 @@ for the code that I contributed.
   * UI Redesign
     * Editing CSS
     * Editing JXML files and UI classes
-    * Relearnt JavaFX to understand AddressBook's style of having separate JXML files from UI class files
+    * Re-learnt JavaFX to understand AddressBook's style of having separate JXML files from UI class files
     * Designed new icon
   * Adding list name `ls -n` command and related tests
   * Changing the implementation of the `find` function and related tests
@@ -32,7 +32,10 @@ for the code that I contributed.
 * **Contributions to the DG**: 
   * Renamed all instances of `AddressBook` to match the current project files, including most UML diagrams
   * Added the explanation of the implementation of the `Autocomplete` feature including its activity UML diagram
-  * Gave more in-depth explanation of how the `UI` works, now including the addition of the `Filter Status` display
+  * Gave more in-depth explanation of how the `UI` works
+    * Including the addition of the `FilterStatusDisplay`
+    * Updated UML diagram to add `FilterStatusDisplay`
+  * Updated all user stories for v1.4
 * **Contributions to team-based-tasks**: 
   * Designed new product icon
     * Small icon

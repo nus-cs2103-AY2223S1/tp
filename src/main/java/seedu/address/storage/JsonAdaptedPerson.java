@@ -34,8 +34,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                 @JsonProperty("deadline") String deadline, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                 @JsonProperty("isDone") Boolean isDone) {
+                             @JsonProperty("deadline") String deadline,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("isDone") Boolean isDone) {
         this.name = name;
         this.module = module;
         this.deadline = deadline;
