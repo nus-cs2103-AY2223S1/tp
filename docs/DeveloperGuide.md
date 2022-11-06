@@ -1147,7 +1147,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample patients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1156,24 +1156,97 @@ starting point for testers to work on; testers are expected to do more *explorat
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+### Adding a patient 
 
-### Deleting a person
+1. Adding a new patient to the patient list.
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Prerequisites: The new patient does not already exist in the patient list. 
+   
+   2. Test case: `add n/John Doe p/91235678 e/johnd@gmail.com a/312 Rivervale Street SG 416875 t/elderly r/Allergic to paracetemol m/Cough syrup | 5ml a day c/Cough` <br>
+      Expected: The patient John Doe is added to the patient list. Details of the added patient shown in the status message and output panel.
+   
+   3. Test case: `add n/John Doe p/91235678 e/johnd@gmail.com a/312 Rivervale Street SG 416875 t/elderly r/Allergic to paracetemol m/Cough syrup | 5ml a day c/Cough` <br>
+      Expected: No patient is added to the list. Error details shown in the status message. 
+   
+   4. Other incorrect add commands to try: `add`, `add n/Mike Ho p/91283045` (missing fields) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases … }_
+### Editing a patient's contact details
+
+1. Editing a patient's contact details in the patient list. 
+
+   1. Prerequisites: There is at least 1 patient in the current displayed patient list.
+   
+   2. Test case: `edit -p 1 n/Michelle Ho` <br>
+      Expected: The name of the first patient displayed in the patient list is changed to `Michelle Ho`. Details of the edited patient shown in the status message and output panel.
+   
+   3. Test case: `edit -p 0 p/98776566` <br>
+      Expected: No patient is edited. Error details shown in the status message. 
+   
+   4. Other incorrect edit commands to try: `edit`, `edit -p 1` (missing fields), `edit -p x n/Edna`, `...` (where x is larger than the displayed patient list size)). <br>
+      Expected: Similar to previous.
+
+### Deleting a patient
+
+1. Deleting a patient from the patient list.
+
+   1. Prerequisites: There is at least 1 patient in the current displayed patient list.
+
+   1. Test case: `delete- p 1`<br>
+      Expected: First patient in the displayed list is deleted. Details of the deleted patient is shown in the status message and the output panel.
+
+   1. Test case: `delete 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete`, `delete -p x`, `...` (where x is larger than the displayed list size)<br>
+      Expected: Similar to previous.
+   
+### Adding a tag to a patient
+
+1. Adding a tag to a patient in the patient list. 
+   
+   1. Prerequisites: There is at least 1 patient in the current displayed patient list. The new tag does not already exist in the patient.
+   
+   2. Test case: `add -p 1 t/elderly` <br>
+      Expected: The `elderly` tag is added to the first patient in the displayed list. Details of the added tag is shown in the status message and the output panel.
+   
+   3. Test case: `add -p 1 t/elderly` <br>
+      Expected: No tag is added. Error details shown in the status message.
+   
+   4. Other incorrect adding tags commands to try: `add -p 1 t/` (missing fields), `add -p 0 t/critical`, `add -p x t/wheelchair`, `...` (where x is larger than the displayed list size) <br>
+      Expected: Similar to previous.
+
+### Editing a patient's tag
+
+1. Editing a patient's tag.
+
+   1. Prerequisites: There is at least 1 patient in the current displayed patient list. The patient has at least 2 tags.
+   
+   2. Test case: `edit -p 1 -t 1 t/infant` <br>
+      Expected: The first tag of the first patient in the displayed list is changed to `infant`. Details of the new tag is shown in the status message and the output panel.
+   
+   3. Test case: `edit -p 1 -t 2 t/infant` <br>
+      Expected: No tag is edited. Error details shown in the status message.
+   
+   4. Other incorrect editing tag commands to try: `edit -p 1 -t 0`, `edit -p 1 -t x t/bedridden`, `...` (where x is larger than the number of patient's tags) <br>
+      Expected: Similar to previous.
+
+### Deleting a patient's tag
+
+1. Deleting a patient's tag.
+
+   1. Prerequisites: There is at least 1 patient in the current displayed patient list. The patient has at least 1 tag.
+   
+   2. Test case: `delete -p 1 -t 1` <br>
+      Expected: The first tag from the first patient in the displayed list is deleted. Details of the deleted tag is shown in the status message and the patient's details is shown in the output panel.
+   
+   3. Test case: `delete -p 1 -t 0` <br>
+      Expected: No tag is deleted. Error details are shown in the status message.
+   
+   4. Other incorrect deleting tag commands to try: `delete -p 1 -t` (missing fields), `delete -p 1 -t x`, `...` (where x is larger than the number of patient's tags) <br>
+
+
+
 
 ### Saving data
 
