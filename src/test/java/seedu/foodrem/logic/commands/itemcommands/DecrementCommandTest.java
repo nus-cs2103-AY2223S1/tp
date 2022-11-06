@@ -21,6 +21,9 @@ import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
+/**
+ * A class to test the DecrementCommand.
+ */
 class DecrementCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "Decremented successfully and updated item as follows:";
 

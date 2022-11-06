@@ -19,6 +19,9 @@ import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 import seedu.foodrem.testutil.FoodRemBuilder;
 
+/**
+ * A class to test the ModelManager.
+ */
 public class ModelManagerTest {
     private ModelManager modelManager = new ModelManager();
 

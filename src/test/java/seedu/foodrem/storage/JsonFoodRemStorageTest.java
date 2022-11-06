@@ -19,6 +19,9 @@ import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.testutil.TypicalTags;
 
+/**
+ * A class to test JsonFoodRemStorage.
+ */
 public class JsonFoodRemStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFoodRemStorageTest");
 

@@ -27,6 +27,9 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
+/**
+ * A class to test the UntagCommand.
+ */
 public class UntagCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "Item untagged successfully. Updated item:";
     private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item has not been tagged with this tag";

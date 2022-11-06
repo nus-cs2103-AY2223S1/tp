@@ -15,12 +15,21 @@ public class TagNameContainsKeywordsPredicate implements Predicate<Tag> {
         this.keywords = keywords;
     }
 
+    /**
+     * Tests whether the keyword is contained in the {@code tag}
+     *
+     * @param tag to be tested
+     * @return boolean stating whether keyword in tag name
+     */
     @Override
     public boolean test(Tag tag) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tag.getName(), keyword));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public boolean equals(Object other) {
         return other == this

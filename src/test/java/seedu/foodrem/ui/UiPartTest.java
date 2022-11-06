@@ -13,6 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 import javafx.fxml.FXML;
 import seedu.foodrem.MainApp;
 
+/**
+ * A test object which to test UiPart.
+ */
 public class UiPartTest {
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
     private static final String INVALID_FILE_PATH = "UiPartTest/invalidFile.fxml";

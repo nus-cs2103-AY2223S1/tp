@@ -15,8 +15,7 @@ import seedu.foodrem.viewmodels.FilterByTag;
  * Filters all items in FoodRem for items that contain the specified tag
  */
 public class FilterTagCommand extends Command {
-    private final TagSetContainsTagPredicate pred;
-
+    private final TagSetContainsTagPredicate predicate;
     private final Tag tag;
 
     /**
@@ -24,10 +23,13 @@ public class FilterTagCommand extends Command {
      */
     public FilterTagCommand(Tag tag) {
         requireNonNull(tag);
-        this.pred = new TagSetContainsTagPredicate(tag);
+        this.predicate = new TagSetContainsTagPredicate(tag);
         this.tag = tag;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<FilterByTag> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -36,20 +38,28 @@ public class FilterTagCommand extends Command {
             throw new CommandException("This tag does not exist in FoodRem");
         }
 
-        model.updateFilteredItemList(pred);
+        model.updateFilteredItemList(predicate);
         String primaryMessage = "Filtered by tag:";
         String secondaryMessage = String.format("%s items filtered", model.getCurrentList().size());
         return CommandResult.from(new FilterByTag(tag, primaryMessage, secondaryMessage));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return FILTER_TAG_COMMAND.getUsage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof FilterTagCommand
-                && this.pred.equals(((FilterTagCommand) other).pred));
+                && this.predicate.equals(((FilterTagCommand) other).predicate));
     }
 }
