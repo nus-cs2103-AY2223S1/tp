@@ -2,60 +2,52 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindRecordCommandParser" as FindRecordCommandParser LOGIC_COLOR
+participant "predicate:RecordContainsKeywordsPredicate" as RecordContainsKeywordsPredicate LOGIC_COLOR
 participant ":FindRecordCommand" as FindRecordCommand LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute("rFind m/Paracetamol d/10-2022")
-activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("rFind m/Paracetamol d/10-2022")
-activate AddressBookParser
-
-create FindRecordCommandParser
-AddressBookParser -> FindRecordCommandParser
+[-> FindRecordCommandParser : parse("m/Paracetamol d/10-2022")
 activate FindRecordCommandParser
 
-FindRecordCommandParser --> AddressBookParser
-deactivate FindRecordCommandParser
+create RecordContainsKeywordsPredicate
+FindRecordCommandParser -> RecordContainsKeywordsPredicate :
+activate RecordContainsKeywordsPredicate
 
-AddressBookParser -> FindRecordCommandParser : parse("m/Paracetamol d/10-2022")
-activate FindRecordCommandParser
+RecordContainsKeywordsPredicate --> FindRecordCommandParser : predicate
+deactivate RecordContainsKeywordsPredicate
 
-FindRecordCommandParser -> ParserUtil : parseDateKeyword
-activate ParserUtil
-
-ParserUtil --> FindRecordCommandParser : List<String> Keywords
-FindRecordCommandParser -> ParserUtil : parseKeywords
-ParserUtil --> FindRecordCommandParser : String date
-deactivate ParserUtil
+FindRecordCommandParser -[hidden]-> :FindRecordCommand
 
 create FindRecordCommand
-FindRecordCommandParser -> FindRecordCommand
+FindRecordCommandParser -> FindRecordCommand : FindRecordCommand(predicate)
 activate FindRecordCommand
 
 FindRecordCommand --> FindRecordCommandParser : r
 deactivate FindRecordCommand
 
-FindRecordCommandParser --> AddressBookParser : r
+[<--FindRecordCommandParser : r
 deactivate FindRecordCommandParser
 
-FindRecordCommandParser -[hidden]-> AddressBookParser
+FindRecordCommandParser -[hidden]-> FindRecordCommand
 destroy FindRecordCommandParser
 
-AddressBookParser --> LogicManager : r
-deactivate AddressBookParser
-
-LogicManager -> FindRecordCommand : execute()
+[-> FindRecordCommand : execute()
 activate FindRecordCommand
 
+FindRecordCommand -> Model : updateFilteredRecordList(predicate)
+activate Model
+
+Model -[hidden]-> FindRecordCommand
+Model --> FindRecordCommand
+deactivate Model
+
+FindRecordCommand -[hidden]-> Model
 create CommandResult
 FindRecordCommand -> CommandResult
 activate CommandResult
@@ -63,9 +55,7 @@ activate CommandResult
 CommandResult --> FindRecordCommand
 deactivate CommandResult
 
-FindRecordCommand --> LogicManager : result
+[<--FindRecordCommand : result
 deactivate FindRecordCommand
 
-[<--LogicManager
-deactivate LogicManager
 @enduml

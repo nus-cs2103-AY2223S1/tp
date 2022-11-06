@@ -338,20 +338,16 @@ Given below is an example usage scenario for the command.
 
 ### Find records feature
 
-#### About
+#### Implementation:
+While the find patient function only searches the name field, the find record function searches for `Record` objects
+based on multiple specified search parameters namely the `recorddata`, `medications` and `recorddate` field. This is done using 
+the `rFind` command implemented in the `FindRecordCommand` class which is facilitated by helper classes
+`RecordContainsKeywordPredicate` and `FindRecordCommandParser`which extends `Predicate` and `AddressbookParser` 
+respectively. The following operations are implemented for the `rfind` command:
 
-Omnihealth is able to find records based on specified search parameters. This is done using the `rFind` command 
-implemented in the `FindRecordCommand` class.
+* `FindRecordCommandParser#parse()` - Parses the input arguments by extracting the required arguments and creates a new
+`FindRecordCommand` with the correct inputs.
 
-#### Implementation: 
-The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
-which extends `Predicate` and `AddressbookParser` respectively. 
-
-`FindRecordCommandParser` implements the following operations:
-* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
-values as an `ArgumentMultimap`.
-
-`RecordContainsKeywordPredicate` implements the following operations:
 * `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
 in the correct fields.
 
@@ -364,11 +360,50 @@ Given below is an example usage and how the find record mechanism works at each 
   * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution:
-  * User executes `rfind m/Paracetamol d/10-2022 r/Patient exhibits symptoms of cold`.
+  1. User executes `rfind m/Paracetamol d/10-2022 r/Patient exhibits symptoms of cold`.
+  2. The input is parsed by the `AddressBookParser#Parse()` which calls `FindRecordCommandParser#parse()`. Here, the input <br>
+     is checked for which are the fields that have been specified. A `FindRecordCommand` object is then created containing
+     a `RecordContainsKeywordPredicate` that represents the search parameters to match a `Record` object to.
+  3. The record list that is being displayed is implemented using an `FilteredList`. This means that the 
+     `RecordContainsKeywordPredicate` object can be passed into the `FilteredList#setPredicate()` method. This tests each `record`
+     object stored inside the record list.
+  4. The record list that is displayed is updated to only show `record` objects that pass the test.
+
+The following sequence diagram demonstrates how the find record mechanism works:
+
+![FindRecordSequenceDiagram](images/FindRecordSequenceDiagram.png)
+
+The following activity diagram demonstrates what happens when a find record command is used:
 
 ![FindRecordActivityDiagram](images/FindRecordActivityDiagram.png)
 
-Outline of the
+
+#### Design Considerations:
+**Aspect: The effect of multiple search parameters**
+* **Alternative 1 (current choice)**: More search parameters tightens the search constraints
+  * Pros: A record needs to match all the specified search parameters for it to be displayed.
+    The user is thus able to narrow down the search to easily find a specific record. This is especially useful
+    when the record list becomes very large. For example, searching by medication alone may not be very effective since
+    medications like Paracetamol are commonly prescribed. Instead, it will be more useful to specify which month was a particular medication prescribed.
+  * Cons: A record may become more difficult to find if the user does not remember the correct details regarding what is stored in the record.
+  
+* **Alternative 2**: More search parameters loosens the search constraints
+  * Pros: Searching for multiple records that may not share commonalities in the data stored becomes easier. 
+  * Cons: Scenerios where this would be useful may not occur frequently. 
+
+**Aspect: How an unspecified field is represented**
+
+Since the search parameters are optional, there is a problem during parsing of differentiating between a parameter that is not specified
+and a parameter that is not specified but is left blank. 
+
+* **Alternative 1 (current choice)**: A specific String is used to replace the value of a parameter that is not specified 
+  * Pros: Since this string acts as an identifier that the parameter is valid even though it was empty, it is easy to implement.
+
+* **Alternative 2**: Use a boolean value to represent if a parameter is specified by the user input
+  * Pros: This is relatively simple to implement.
+  * Cons: This requires constant checks by multiple classes to test if the parameter has been specified and thus breaks the
+          abstraction barrier.
+  
 [<*Back to ToC*>](#table-of-contents)
 
 ### Clear all records feature
