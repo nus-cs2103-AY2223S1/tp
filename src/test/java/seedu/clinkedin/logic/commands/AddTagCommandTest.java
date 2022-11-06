@@ -281,6 +281,10 @@ public class AddTagCommandTest {
         public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addPersonWithoutCommitting(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
