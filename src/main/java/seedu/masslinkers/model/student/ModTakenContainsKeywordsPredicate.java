@@ -24,7 +24,7 @@ public class ModTakenContainsKeywordsPredicate extends ModContainsKeywordsPredic
     @Override
     public boolean test(Student student) {
         ObservableList<Mod> mods = student.getMods();
-        return keywords.stream().count() != 0
+        return (long) keywords.size() != 0
                 && keywords.stream().allMatch(keyword -> mods.stream()
                 .anyMatch(mod -> mod.getModStatus() && StringUtil.containsWordIgnoreCase(mod.getModName(), keyword)));
     }

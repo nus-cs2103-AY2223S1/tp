@@ -14,7 +14,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Student;
 
 /**
- * Adds a student to the mass linkers.
+ * Adds a student to Mass Linkers.
  */
 public class AddCommand extends Command {
 
