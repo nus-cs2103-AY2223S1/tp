@@ -442,13 +442,14 @@ Examples:
 
 ### Locating persons by debt description: `finddebt`
 
-Finds persons who are associated with any debts that match any of the given keywords.
+Finds persons who are associated with any debts that match any of the given keywords.<br>
+This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
 
 Format: `finddebt <keyword>…`
 
-* The search is case-insensitive. e.g `burger` will match `Burger`
+* The search is case-insensitive. e.g. `burger` will match `Burger`
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
-* Only the name is searched.
+* Only the descriptions of the debts are searched for the keywords.
 * Only full words will be matched e.g. `Burger` will not match `Burgers`
 * Persons with debts matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
