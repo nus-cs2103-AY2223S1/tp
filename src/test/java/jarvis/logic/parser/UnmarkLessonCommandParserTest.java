@@ -7,22 +7,22 @@ import static jarvis.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.MarkTaskCommand;
+import jarvis.logic.commands.UnmarkLessonCommand;
 
-public class MarkTaskCommandParserTest {
+public class UnmarkLessonCommandParserTest {
 
-    private MarkTaskCommandParser parser = new MarkTaskCommandParser();
+    private UnmarkLessonCommandParser parser = new UnmarkLessonCommandParser();
 
     @Test
-    public void parse_validArgs_returnsMarkTaskCommand() {
-        assertParseSuccess(parser, "1", new MarkTaskCommand(INDEX_FIRST));
+    public void parse_validArgs_returnsUnmarkLessonCommand() {
+        assertParseSuccess(parser, "1", new UnmarkLessonCommand(INDEX_FIRST));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkTaskCommand.MESSAGE_USAGE));
+                UnmarkLessonCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkTaskCommand.MESSAGE_USAGE));
+                UnmarkLessonCommand.MESSAGE_USAGE));
     }
 }
