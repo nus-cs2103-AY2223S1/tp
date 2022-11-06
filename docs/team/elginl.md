@@ -52,10 +52,16 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the `Introduction`, `Table of Contents`, `User Interface Overview` (Pull request [#253](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/253))
             * Image in `User Interface Overview` is created by `Joel`
+        * Added `How to use the user guide` section (Pull request [#288](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/288))
         * Added `Prefix Table` (Pull request [#214](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/214))
         * Added documentation for commands `delete transaction`, `delete remark`, `edit transaction`, `edit remark`
     * Developer Guide:
-        * `to be added soon`
+        * Updated UI component (Pull request [#294](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/294))
+        * Updated delete client/transaction/remark feature implementation (Pull request [#302](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/302))
+        * Updated user stories (Pull request [#293](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/293))
+        * Added delete client/transaction/remark in `Appendix: Manual testing section` (Pull request [#298](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/298))
+        * Added use cases for delete client/transaction/remark (Pull request [#301](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/301))
+        * Added use case diagram for use cases overview (Pull request [#301](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/294))
 
 
 * **Community**:
