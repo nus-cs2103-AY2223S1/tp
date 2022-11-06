@@ -32,6 +32,8 @@ Feel free to add tags as you see fit to organize your inventory. Examples of how
 
 Tags can be renamed and these changes would be reflected on all items immediately.
 
+{% include page-break.html %}
+
 FoodRem Tags are unique by name and case-sensitive. This means you cannot add two or more tags of the same name.
 
 #### Flags
