@@ -5,8 +5,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":CdCommandParser" as CdCommandParser LOGIC_COLOR
-participant ":CdModuleCommand" as CdModuleCommand LOGIC_COLOR
+participant "commanad:CdModuleCommand" as CdModuleCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -21,35 +20,19 @@ activate LogicManager
 LogicManager -> ModtrektParser : parseCommand("cd CS2106")
 activate ModtrektParser
 
-create CdCommandParser
-ModtrektParser -> CdCommandParser
-activate CdCommandParser
-
-CdCommandParser --> ModtrektParser
-deactivate CdCommandParser
-
-ModtrektParser -> CdCommandParser : parse("CS2106")
-activate CdCommandParser
-
 create ModCode
-CdCommandParser -> ModCode
+ModtrektParser -> ModCode : ModCode("CS2106")
 activate ModCode
 
-ModCode --> CdCommandParser : moduleCode
+ModCode --> ModtrektParser : moduleCode
 deactivate ModCode
 
 create CdModuleCommand
-CdCommandParser -> CdModuleCommand : CdModuleCommand(moduleCode)
+ModtrektParser -> CdModuleCommand : CdModuleCommand(moduleCode)
 activate CdModuleCommand
 
-CdModuleCommand --> CdCommandParser : command
+CdModuleCommand --> ModtrektParser : command
 deactivate CdModuleCommand
-
-CdCommandParser --> ModtrektParser : command
-deactivate CdCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-CdCommandParser -[hidden]-> ModtrektParser
-destroy CdCommandParser
 
 ModtrektParser --> LogicManager : command
 deactivate ModtrektParser
