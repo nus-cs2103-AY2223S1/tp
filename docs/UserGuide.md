@@ -120,7 +120,7 @@ _<center>Figure 1: HobbyList's default UI</center>_
 
 Refer to Figure 2 below to get yourself familiar with the user interface! 
 
-![HobbyList UI](images/annotated_ui.jpg)
+![HobbyList UI](images/annotated_gui.jpg)
 _Figure 2: Annotated GUI of HobbyList_
 {: style="text-align: center;"}
 

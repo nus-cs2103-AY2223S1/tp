@@ -41,7 +41,7 @@ You can reach us at the email `sitong.hao@u.nus.edu`
 
 ### Yap Sien Soon
 
-<img src="images/ssyap98.png" width="200px">
+<img src="images/ssyap98.jpg" width="200px">
 
 [[github](https://github.com/ssyap98)]
 [[portfolio](team/ssyap98.md)]
