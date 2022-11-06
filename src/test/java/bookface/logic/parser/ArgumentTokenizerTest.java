@@ -3,6 +3,7 @@ package bookface.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -118,14 +119,10 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
-    public void tokenize_multipleArgumentsWithRepeats() throws ParseException {
+    public void tokenize_multipleArgumentsWithRepeats() {
         // Two arguments repeated, some have empty values
         String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value -t";
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        assertPreamblePresent(argMultimap, "SomePreambleString");
-        assertArgumentPresent(argMultimap, pSlash, "pSlash value");
-        assertArgumentPresent(argMultimap, dashT, "dashT-Value", "another dashT value", "");
-        assertArgumentPresent(argMultimap, hatQ, "", "");
+        assertThrows(ParseException.class, () -> ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ));
     }
 
     @Test

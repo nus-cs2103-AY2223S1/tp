@@ -57,6 +57,12 @@ com/a/14018549/13742805</a>
 /parser/CommandParser.java">CommandParser.java</a></td>
 <td markdown="span">Force subclasses to have the same initial method calls</td>
 </tr>
+<tr>
+<td markdown="span"><a href="https://stackoverflow.com/a/30974991/13742805">https://stackoverflow.com/a/30974991/13742805</a>
+</td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/LambdaUtil.java">CommandParser.java</a></td>
+<td markdown="span">A lambda function that throws a checked Exception</td>
+</tr>
 </tbody>
 </table>
 
