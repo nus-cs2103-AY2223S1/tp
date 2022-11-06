@@ -83,6 +83,7 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
+  horizontal-align: middle;
 }
 
 /**
@@ -90,6 +91,8 @@ img {
  */
 figure > img {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 figcaption {
