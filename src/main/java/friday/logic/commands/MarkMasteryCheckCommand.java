@@ -18,6 +18,7 @@ public class MarkMasteryCheckCommand extends Command {
             + " the index number as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
+    public static final String MESSAGE_SUCCESS = "Marked Mastery Check of Student: %s as passed.";
     public static final String MESSAGE_ALREADY_MARKED = "'s Mastery Check has already been marked as passed!";
     public static final String MESSAGE_CANNOT_PASS = "'s Mastery Check cannot be marked as passed as the date(%s) has"
             + " not been reached yet. (Today's date: %s)";
@@ -55,6 +56,6 @@ public class MarkMasteryCheckCommand extends Command {
     }
 
     private String generateSuccessMessage(Student studentToMark) {
-        return String.format("Marked Mastery Check of Student: %s as passed.", studentToMark.getName());
+        return String.format(MESSAGE_SUCCESS, studentToMark.getName());
     }
 }

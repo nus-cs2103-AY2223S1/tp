@@ -79,8 +79,13 @@ public class StudentBuilder {
     /**
      * Sets the {@code MasteryCheck} of the {@code Student} that we are building with isDone set to false by default.
      */
-    public StudentBuilder withMasteryCheck(LocalDate desiredDate) {
-        this.masteryCheck = new MasteryCheck(desiredDate);
+    public StudentBuilder withMasteryCheck(LocalDate desiredDate, boolean isPassed) {
+        this.masteryCheck = new MasteryCheck(desiredDate, isPassed);
+        return this;
+    }
+
+    public StudentBuilder withEmptyMasteryCheck() {
+        this.masteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         return this;
     }
 

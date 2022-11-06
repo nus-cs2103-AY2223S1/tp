@@ -1,6 +1,6 @@
 package friday.model.student;
 
-import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalStudents.ALICE;
@@ -42,7 +42,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB, false)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
@@ -91,7 +91,7 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB, false)
                 .withTags(VALID_TAG_HUSBAND).build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
