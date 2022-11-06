@@ -57,7 +57,7 @@ public class ParserUtil {
         requireNonNull(sortFieldLetter);
         String trimmedSortFieldLetter = sortFieldLetter.trim();
 
-        if (!PersonSortField.isValidSortField(trimmedSortFieldLetter)) {
+        if (!PersonSortField.isValidPersonSortField(trimmedSortFieldLetter)) {
             throw new ParseException(PersonSortField.MESSAGE_CONSTRAINTS);
         }
 
@@ -76,7 +76,7 @@ public class ParserUtil {
         requireNonNull(sortFieldLetter);
         String trimmedSortFieldLetter = sortFieldLetter.trim();
 
-        if (!EventSortField.isValidSortField(trimmedSortFieldLetter)) {
+        if (!EventSortField.isValidEventSortField(trimmedSortFieldLetter)) {
             throw new ParseException(EventSortField.MESSAGE_CONSTRAINTS);
         }
 
