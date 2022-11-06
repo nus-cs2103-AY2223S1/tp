@@ -13,22 +13,36 @@ CLI, and the application responds with its GUI, created with JavaFX.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
 
 * **Enhancements implemented**:
+
   * Notable Feature: **Mark Order Command**
-    * Function:
-    * Purpose:
-    * Relevant pull request(s): 
+    * Function: Allow the user to mark orders as paid and/or delivered. This feature also includes reducing inventory 
+    item quantities accordingly when and item is marked as delivered, and checking for sufficient stock when a 
+    user wants to mark an order as delivered. 
+    * Purpose: Unique selling point of our application over traditional Excel sheets. By automating 
+    the depletion of quantities in the inventory with every fulfilled order, TrackO reduces the risk of
+    human error in the inventory tracking process. 
+    * Relevant pull request(s): [#118](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/118),
+    [#121](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/121), 
+    [#127](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/127)
+
   * Notable Feature/Enhancement: **Add Item Command**
-    * Function: 
-    * Purpose: 
-    * Relevant pull request(s): [#61](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/61),
+    * Function: Allows the user to add inventory items to the inventory list. 
+    * Purpose: Core feature of an application that manages inventory. 
+    * Relevant pull request(s): [#61](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/61)
+
   * Notable Enhancement: **Implement initial Storage and UI support for inventory items**
-    * Function: 
-    * Purpose: 
+    * Function: Sets the foundation for saving and displaying inventory items in TrackO. 
+    * Purpose: Foundation for future developments of an inventory management application. 
     * Relevant pull request(s): [#67](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/67),
-      [#69](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/69)
+    [#69](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/69)
+
   * Notable Enhancement: **Clear Command**
-    * Function: 
-    * Purpose: 
+    * Function: Allows the user to clear all data in TrackO. 
+    * Purpose: This is to allow users to clear all sample data when they are ready to use the application proper.
+    * Notable implementation
+      * Clear command is implemented as a multilevel command which means that users will be required to respond to a 
+      confirmation / cancellation prompt before the command is executed by TrackO. This serves to reduce the risk of 
+      users accidentally deleting all their data. 
     * Relevant pull request(s): [#140](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/140), 
     [#213](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/213)
 
