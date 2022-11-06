@@ -1,14 +1,14 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
+skinparam arrowColor BLACK
 skinparam classBackgroundColor LOGIC_COLOR
 
 Class "<<interface>>\nCommand" as Command
 Class XYZCommand
 
 package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nCommandParser" as CommandParser
 Class Rc4hdbParser
 Class XYZCommandParser
 Class CliSyntax
@@ -25,7 +25,7 @@ Rc4hdbParser .down.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 Rc4hdbParser ..> Command : returns >
-XYZCommandParser .up.|> Parser
+XYZCommandParser .up.|> CommandParser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
