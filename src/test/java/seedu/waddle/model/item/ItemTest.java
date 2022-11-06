@@ -9,9 +9,9 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SKINNY;
 import static seedu.waddle.testutil.TypicalItems.SHOPPING;
 import static seedu.waddle.testutil.TypicalItems.SKINNY;
 
-import seedu.waddle.testutil.ItemBuilder;
-
 import org.junit.jupiter.api.Test;
+
+import seedu.waddle.testutil.ItemBuilder;
 
 public class ItemTest {
 
@@ -24,7 +24,7 @@ public class ItemTest {
         assertFalse(SHOPPING.isSameItem(null));
 
         // same name, all other attributes different -> returns true
-        Item editedShopping =  new ItemBuilder(SHOPPING)
+        Item editedShopping = new ItemBuilder(SHOPPING)
                 .withPriority(VALID_PRIORITY_SKINNY).withCost(VALID_COST_SKINNY)
                 .withDuration(VALID_DURATION_SKINNY).build();
         assertTrue(SHOPPING.isSameItem(editedShopping));
