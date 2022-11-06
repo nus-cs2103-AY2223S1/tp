@@ -6,7 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditInternshipCommandParser" as EditInternshipCommandParser LOGIC_COLOR
 participant "e:EditInternshipCommand" as EditInternshipCommand LOGIC_COLOR
-participant "d:EditInternshipCommandDescriptor" as EditInternshipCommandDescriptor LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -30,15 +29,8 @@ deactivate EditInternshipCommandParser
 AddressBookParser -> EditInternshipCommandParser : parse("1 s/R")
 activate EditInternshipCommandParser
 
-create EditInternshipCommandDescriptor
-EditInternshipCommandParser -> EditInternshipCommandDescriptor : EditInternshipCommandDescriptor()
-activate EditInternshipCommandDescriptor
-EditInternshipCommandDescriptor --> EditInternshipCommandParser : descriptor
-deactivate EditInternshipCommandDescriptor
-
-
 create EditInternshipCommand
-EditInternshipCommandParser -> EditInternshipCommand : EditInternshipCommand(1, d)
+EditInternshipCommandParser -> EditInternshipCommand : EditInternshipCommand(1, descriptor)
 activate EditInternshipCommand
 
 
@@ -58,16 +50,10 @@ LogicManager -> EditInternshipCommand : execute()
 activate EditInternshipCommand
 
 EditInternshipCommand -> Model : getFilteredInternshipList()
-activate Model
-Model --> EditInternshipCommand
-deactivate Model
 
-EditInternshipCommand -> EditInternshipCommand : createEditedInternship(internshipToEdit, d)
+EditInternshipCommand -> EditInternshipCommand : createEditedInternship()
 
 EditInternshipCommand -> Model : setInternship(internshipToEdit, editedInternship)
-activate Model
-Model --> EditInternshipCommand
-deactivate Model
 
 create CommandResult
 EditInternshipCommand -> CommandResult
