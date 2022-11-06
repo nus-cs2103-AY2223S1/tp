@@ -61,7 +61,7 @@ Prerequisite: Suppose the first item in the Item List Box has a quantity of 3.
 
 Prerequisite: Suppose the first item in the Item List Box has a name of `Potato`.
 
-1. Test case: `edit 1 n/Tomato` <br> Expected Output in Item  List Box: The `Potato`item has been renamed to `Tomato` and this is now reflected in item List Box<br> Expected Output in Command Output Box: Item edited message with details of the edited item shown.
+1. Test case: `edit 1 n/Tomato` <br> Expected Output in Item  List Box: The `Potato`item has been renamed to `Tomato` and this is now reflected in Item List Box<br> Expected Output in Command Output Box: Item edited message with details of the edited item shown.
 
 #### Add a remark to an item
 
