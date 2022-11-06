@@ -728,7 +728,37 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `delete reminder 0`<br>
        Expected: No reminder is deleted. Error details shown in the result display box. Reminder list remains the same.
 
-    4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `delete reminder x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+#### Mark a reminder
+
+1. Marking a reminder while all reminders are being shown.
+
+    1. Prerequisites: At least 1 incomplete reminder in the reminder list.
+
+    2. Test case: `mark reminder 1`<br>
+       Expected: The status of the first reminder will become completed. Reminder list will be updated and colour of reminder will turn from yellow to green. 
+       
+    3. Test case: `mark reminder 0`<br>
+       Expected: No reminder is marked as completed. Error details shown in the result display box. Reminder list remains the same.
+
+    4. Other incorrect mark reminder commands to try: `mark`, `mark reminders`, `mark reminder x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+#### Unmark a reminder
+
+1. Unmarking a reminder while all reminders are being shown.
+
+    1. Prerequisites: At least 1 completed reminder in the reminder list.
+
+    2. Test case: `unmark reminder 1`<br>
+       Expected: The status of the first reminder will become incomplete. Reminder list will be updated and colour of reminder will turn from green to yellow.
+
+    3. Test case: `unmark reminder 0`<br>
+       Expected: No reminder is unmarked as incomplete. Error details shown in the result display box. Reminder list remains the same.
+
+    4. Other incorrect unmark reminder commands to try: `unmark`, `unmark reminders`, `unmark reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 #### Sorting reminders
