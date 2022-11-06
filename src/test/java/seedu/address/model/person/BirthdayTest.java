@@ -14,13 +14,13 @@ public class BirthdayTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidBirthday_throwsIllegalArgumentException() {
         String invalidBirthday = "";
         assertThrows(IllegalArgumentException.class, () -> new Address(invalidBirthday));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidBirthday() {
         // null birthday
         assertThrows(NullPointerException.class, () -> Birthday.isValidDate(null));
 
