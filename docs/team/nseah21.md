@@ -49,7 +49,7 @@ Given below are my contributions to the project. You may view the full code here
         * Updated the [acknowledgements section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#acknowledgements) 
         * Updated the [Design section for the Model component](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#model-component)
             * Added [a class diagram](#appendix-for-uml-diagrams-added-to-the-developer-guide) for this section
-        * Added [details to the Implementation section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#showhide-feature-for-resident-fields) for the `showonly`, `hideonly` and `reset` features
+        * Added [details to the Implementation section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#manipulating-table-columns-using-showonly-and-hideonly) for the `showonly`, `hideonly` and `reset` features
             * Added [two class diagrams and one activity diagram](#appendix-for-uml-diagrams-added-to-the-developer-guide) for this section
         * Added [use cases](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#use-cases) and [user stories](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#user-stories) for RC4HDB
         * Added a sequential testing guide to the [manual testing section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#viewing-residents) for the `list`, `showonly`, `hideonly`, and `reset` commands
