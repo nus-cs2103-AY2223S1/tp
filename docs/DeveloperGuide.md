@@ -583,7 +583,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a client
 
-1. Deleting a client while all clients are being shown
+1. Deleting a client while all clients are being shown.
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
@@ -606,13 +606,22 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
 
 
-2. Deleting a transaction while more than one client is shown in the client list
+2. Deleting a transaction while more than one client is shown in the client list.
    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
    2. Test case: `delete 1 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
    
 ### Deleting a remark
-- Note: This test is exactly the same as [Deleting a transaction](#deleting-a-transaction), except replace all `transaction` keyword with `remark`
+- Note: This test is exactly the same as [Deleting a transaction](#deleting-a-transaction), except replace all `transaction` keyword with `remark`.
 
+### Filtering transactions from all clients
+
+1. Filtering transactions.
+
+   1. Test case: `filter buy`<br/>Expected: All buy transactions will be displayed in the transaction list panel while all clients will be listed in the client list panel.
+   If there are no buy transactions, the transaction list panel will be empty.
+   2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data files
