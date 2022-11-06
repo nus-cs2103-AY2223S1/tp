@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 import static seedu.address.testutil.TypicalTasks.TASK_CODE;
@@ -37,6 +38,12 @@ class DeleteTaskCommandTest {
         expectedModel.getTeam().addTask(TASK_REVIEW);
     }
 
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
     @Test
     public void execute_unfilteredList_success() {
         commandLine.parseArgs(new String[] {"1"});

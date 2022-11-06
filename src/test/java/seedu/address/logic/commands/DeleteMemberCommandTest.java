@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
@@ -30,7 +31,6 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteMemberCommand}.
  */
-// TODO: Add implementation for tests
 public class DeleteMemberCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
@@ -47,7 +47,12 @@ public class DeleteMemberCommandTest {
         expectedModel.getTeam().addMember(ALICE);
         expectedModel.getTeam().addMember(BENSON);
     }
-
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
     @Test
     public void execute_unfilteredList_success() {
         commandLine.parseArgs(new String[] {"1"});

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
@@ -20,7 +21,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListMembersCommand.
  */
-// TODO: Add implementation for tests
 public class ListMembersCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
@@ -36,6 +36,13 @@ public class ListMembersCommandTest {
         model.getTeam().addMember(BENSON);
         expectedModel.getTeam().addMember(ALICE);
         expectedModel.getTeam().addMember(BENSON);
+    }
+
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
     @Test

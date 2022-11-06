@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import java.util.List;
@@ -25,7 +26,12 @@ public class FindPersonCommandTest {
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter());
-
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
     @Test
     public void execute_multipleNameKeywords_multipleMembersFound() {
         String[] keywords = {"Alice", "Carl"};

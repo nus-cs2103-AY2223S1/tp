@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TWO;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
@@ -31,6 +32,13 @@ class UnmarkCommandTest {
     public void setUp() {
         model.getTeam().addTask(TASK_MARKED);
         expectedModel.getTeam().addTask(TASK_MARKED);
+    }
+
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
     @Test

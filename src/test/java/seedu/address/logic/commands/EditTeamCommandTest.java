@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
@@ -21,7 +22,6 @@ import seedu.address.model.team.TeamName;
 import seedu.address.testutil.TeamUtil;
 import seedu.address.testutil.TypicalTeams;
 
-// TODO: Add implementation for tests
 class EditTeamCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
@@ -29,7 +29,12 @@ class EditTeamCommandTest {
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(TeamName.class, new TeamNameConverter())
             .registerConverter(Description.class, new DescriptionConverter());
-
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Team validTeam = TypicalTeams.FIRST;

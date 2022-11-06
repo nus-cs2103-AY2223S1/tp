@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.AddMemberCommand.MESSAGE_ADD_MEMBER_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
@@ -30,7 +31,7 @@ import seedu.address.testutil.LinkUtil;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code AddMemberCommand}.
  */
-// TODO: Add implementation for tests
+
 public class AddMemberCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
@@ -39,6 +40,13 @@ public class AddMemberCommandTest {
     private final Command commandToBeTested = new AddMemberCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
+
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
 
     @Test
     public void execute_memberAcceptedByModel_addSuccessful() {

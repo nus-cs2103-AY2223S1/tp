@@ -1,45 +1,38 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-
-import java.util.Arrays;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-// TODO: Add implementation for tests
+
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    Model model = new ModelManager();
+    Model expectedModel = new ModelManager();
+    private final Command commandToBeTested = new FindCommand();
+
+    private final CommandLine commandLine = new CommandLine(commandToBeTested);
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
 
     @Test
     public void execute_noSubCommand_throwsError() {
-
-    }
-
-    @Test
-    public void equals() {
-    }
-
-    @Test
-    public void execute_zeroKeywords_noPersonFound() {
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        String resultString = String.format(
+                Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, FindCommand.COMMAND_WORD);
+        assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }
 }

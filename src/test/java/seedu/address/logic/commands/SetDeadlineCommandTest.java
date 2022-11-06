@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TWO;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -36,6 +37,14 @@ class SetDeadlineCommandTest {
         model.getTeam().addTask(TASK_1);
         expectedModel.getTeam().addTask(TASK_1);
     }
+
+    @Test
+    public void execute_helpFlagSupplied_success() {
+        commandLine.parseArgs(FLAG_HELP_STR);
+        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
+    }
+
     @Test
     public void execute_setNewDeadline_success() {
         commandLine.parseArgs(new String[] {"1", "2023-12-25", "23:59"});
