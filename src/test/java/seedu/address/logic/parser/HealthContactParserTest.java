@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddBillCommand;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -57,13 +56,6 @@ public class HealthContactParserTest {
         AddAppointmentCommand command = (AddAppointmentCommand) parser
                 .parseCommand(AppointmentUtil.getAddCommand(appointment));
         assertEquals(new AddAppointmentCommand(appointment), command);
-    }
-    @Test
-    public void parseCommand_addBill() throws Exception {
-        Bill bill = new BillBuilder().build();
-        AddBillCommand command = (AddBillCommand) parser
-                .parseCommand(BillUtil.getAddCommand(bill));
-        assertEquals(new AddBillCommand(bill), command);
     }
     @Test
     public void parseCommand_clear() throws Exception {

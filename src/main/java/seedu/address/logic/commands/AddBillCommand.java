@@ -66,16 +66,6 @@ public class AddBillCommand extends Command {
         this.bill = bill;
     }
 
-    /**
-     * For testing purpose only.
-     * @param bill
-     */
-    public AddBillCommand(Bill bill) {
-        this.indexOfAppointment = Index.fromOneBased(1);
-        this.billDate = new BillDate(bill.getBillDate().toString());
-        this.amount = new Amount(bill.getAmount().toString());
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (this.bill == null) {
@@ -123,7 +113,8 @@ public class AddBillCommand extends Command {
                     && amount.equals(((AddBillCommand) other).amount)
                     && defaultPaymentStatus.equals(((AddBillCommand) other).defaultPaymentStatus));
         } else {
-            return other == this || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
+            return other == this
+                    || (other instanceof AddBillCommand && bill.equals(((AddBillCommand) other).bill));
         }
     }
 }
