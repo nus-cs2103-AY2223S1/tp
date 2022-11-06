@@ -20,7 +20,6 @@ import seedu.address.model.question.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**

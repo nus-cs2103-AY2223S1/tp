@@ -7,10 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
-
 import java.util.Collection;
 import java.util.Collections;
-
 
 import org.junit.jupiter.api.Test;
 
