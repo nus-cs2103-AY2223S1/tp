@@ -16,7 +16,7 @@ public class ClientTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Client(null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new Client(null, null, null));
     }
 
     @Test

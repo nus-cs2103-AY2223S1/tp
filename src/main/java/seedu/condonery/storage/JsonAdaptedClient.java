@@ -26,22 +26,17 @@ class JsonAdaptedClient {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedProperty> interestedProperties = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("interestedProperties") List<JsonAdaptedProperty> interestedProperties) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
-        }
-        if (interestedProperties != null) {
-            this.interestedProperties.addAll(interestedProperties);
         }
     }
 
@@ -53,9 +48,6 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        interestedProperties.addAll(source.getInterestedProperties().stream()
-                .map(JsonAdaptedProperty::new)
                 .collect(Collectors.toList()));
     }
 
@@ -70,10 +62,6 @@ class JsonAdaptedClient {
 
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
-        }
-
-        for (JsonAdaptedProperty property : this.interestedProperties) {
-            interestedProperties.add(property.toModelType());
         }
 
         if (name == null) {
@@ -94,8 +82,7 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        final Set<Property> modelInterestedProperties = new HashSet<>(interestedProperties);
-        return new Client(modelName, modelAddress, modelTags, modelInterestedProperties);
+        return new Client(modelName, modelAddress, modelTags);
     }
 
 }

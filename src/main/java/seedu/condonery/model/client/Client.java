@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
-import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -25,14 +24,13 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Property> interestedProperties = new HashSet<>();
 
     private Path imageDirectoryPath;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Address address, Set<Tag> tags, Set<Property> interestedProperties) {
+    public Client(Name name, Address address, Set<Tag> tags) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
@@ -56,14 +54,6 @@ public class Client {
     }
 
     /**
-     * Returns an immutable property set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Property> getInterestedProperties() {
-        return Collections.unmodifiableSet(interestedProperties);
-    }
-
-    /**
      * Returns an immutable set containing tag names, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -80,16 +70,6 @@ public class Client {
     public Path getImagePath() {
         requireAllNonNull(imageDirectoryPath);
         return imageDirectoryPath.resolve("client-" + getCamelCaseName());
-    }
-
-    /**
-     * Returns an immutable set containing interested property names, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<String> getInterestedPropertyNames() {
-        HashSet<String> stringProperties = new HashSet<>(interestedProperties.size());
-        interestedProperties.forEach(property -> stringProperties.add(property.getName().toString()));
-        return Collections.unmodifiableSet(stringProperties);
     }
 
     /**
@@ -150,14 +130,13 @@ public class Client {
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
             && otherClient.getAddress().equals(getAddress())
-            && otherClient.getTags().equals(getTags())
-            && otherClient.getInterestedProperties().equals(getInterestedProperties());
+            && otherClient.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags, interestedProperties);
+        return Objects.hash(name, address, tags);
     }
 
     @Override
@@ -171,12 +150,6 @@ public class Client {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
-        }
-
-        Set<Property> interestedProperties = getInterestedProperties();
-        if (!interestedProperties.isEmpty()) {
-            builder.append("; Interested Properties: ");
-            interestedProperties.forEach(builder::append);
         }
 
         return builder.toString();
