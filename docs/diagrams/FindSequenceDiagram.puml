@@ -7,19 +7,19 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
-participant "res:CommandResult" as CommandResult LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "predN:NamePredicate" as NamePredicate MODEL_COLOR
-participant "predM:ModulePredicate" as ModulePredicate MODEL_COLOR
+participant ":NamePredicate" as NamePredicate MODEL_COLOR
+participant ":ModulePredicate" as ModulePredicate MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-[-> LogicManager: execute("find n/John m/CS2103T")
+[-> LogicManager: execute("...")
 activate LogicManager
 
-LogicManager -> ModQuikParser : parseCommand("find n/John m/CS2103T")
+LogicManager -> ModQuikParser : parseCommand("...")
 activate ModQuikParser
 
 create FindCommandParser
@@ -72,10 +72,10 @@ activate CommandResult
 CommandResult --> FindCommand
 deactivate CommandResult
 
-FindCommand --> LogicManager : res
+FindCommand --> LogicManager : r
 deactivate FindCommand
 
-[<-- LogicManager : res
+[<-- LogicManager : r
 deactivate LogicManager
 
 @enduml

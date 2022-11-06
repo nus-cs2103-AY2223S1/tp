@@ -176,7 +176,8 @@ The filtering is based on an AND search, for example, `find n/John m/CS2103T` wi
 
 #### Implementation
 
-The following sequence diagram shows how the `find` command works.
+The following sequence diagram shows how the `find` command works. The exact command has been omitted in the diagram, instead
+replaced with "..." for readibility.
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
