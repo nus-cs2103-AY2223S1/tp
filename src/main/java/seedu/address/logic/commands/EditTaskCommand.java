@@ -45,10 +45,8 @@ public class EditTaskCommand extends Command {
             "The 'edit task' command is used to edit a task's details.\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
-    public static final String MESSAGE_DEADLINE_BADLY_FORMATTED = "Deadline is badly formatted.";
 
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -122,7 +120,7 @@ public class EditTaskCommand extends Command {
 
         if (editTaskDescriptor.getAssignees().isPresent()) {
             List<Index> assignees = editTaskDescriptor.getAssignees().get();
-            for (Index index: assignees) {
+            for (Index index : assignees) {
                 if (index.getZeroBased() >= memberList.size()) {
                     throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
                 }

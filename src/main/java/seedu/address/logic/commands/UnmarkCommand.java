@@ -23,6 +23,7 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     public static final String ALIAS = "u";
     public static final String FULL_COMMAND = COMMAND_WORD;
+
     public static final String MESSAGE_MARK_SUCCESS = "Marked as incomplete: [ ] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";

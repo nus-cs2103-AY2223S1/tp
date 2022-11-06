@@ -12,7 +12,6 @@ import seedu.address.model.Model;
  */
 @CommandLine.Command(name = ThemeCommand.COMMAND_WORD, aliases = {ThemeCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class ThemeCommand extends Command {
-
     public static final String COMMAND_WORD = "theme";
     public static final String ALIAS = "th";
     public static final String FULL_COMMAND = COMMAND_WORD;
@@ -34,6 +33,7 @@ public class ThemeCommand extends Command {
         }
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, false, true);
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

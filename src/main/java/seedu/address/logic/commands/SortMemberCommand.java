@@ -20,7 +20,6 @@ import seedu.address.model.person.Person;
 @CommandLine.Command(name = SortMemberCommand.COMMAND_WORD,
         aliases = {SortMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class SortMemberCommand extends Command {
-
     public static final String COMMAND_WORD = "members";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;

@@ -29,11 +29,8 @@ public class SetTeamCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'set team' command is used to change the current working team.\n";
 
-
     public static final String MESSAGE_SET_TEAM_SUCCESS = "Set current team: %1$s";
-
     public static final String MESSAGE_TEAM_ALREADY_SET = "You are already on this team!";
-
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)

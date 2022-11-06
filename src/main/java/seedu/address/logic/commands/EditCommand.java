@@ -25,6 +25,7 @@ public class EditCommand extends Command {
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
             "The 'edit' command is used to edit data in TruthTable.\n";
+
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 

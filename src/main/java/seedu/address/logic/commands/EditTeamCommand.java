@@ -39,9 +39,6 @@ public class EditTeamCommand extends Command {
             "The 'edit team' command is used to edit a team's details.\n";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
-
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-
     public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the TruthTable.";
 
     private final EditTeamDescriptor editTeamDescriptor;

@@ -31,7 +31,6 @@ public class AddTeamCommand extends Command {
             "The 'add team' command is used to create a new team in TruthTable.\n";
 
     public static final String MESSAGE_ADD_TEAM_SUCCESS = "Added team: %1$s";
-
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)

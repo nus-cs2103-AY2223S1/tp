@@ -41,15 +41,13 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
-    public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
-
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_NAME_DESCRIPTION)
     private TaskName taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},
-        description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
+            description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
     private List<Index> assignees = new ArrayList<>();
 
     @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},

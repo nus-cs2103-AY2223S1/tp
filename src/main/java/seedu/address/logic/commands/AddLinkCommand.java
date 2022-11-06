@@ -31,7 +31,6 @@ public class AddLinkCommand extends Command {
             "The 'add link' command is used to add links relevant to the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
-
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in team";
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,

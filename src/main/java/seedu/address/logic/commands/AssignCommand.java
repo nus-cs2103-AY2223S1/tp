@@ -23,6 +23,7 @@ public class AssignCommand extends Command {
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
             "The 'assign' command is used to assign a task.\n";
+
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -38,6 +39,7 @@ public class AssignCommand extends Command {
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

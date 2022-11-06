@@ -38,7 +38,6 @@ public class EditLinkCommand extends Command {
             "The 'edit link' command is used to edit a link's details.\n";
 
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the team.";
 
     @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
