@@ -48,21 +48,10 @@ public class UpcomingInterviewPredicateTest {
         assertTrue(predicate.test(aMinuteLaterApplication));
 
         // EP: interview is an hour later
-        Application anHourLaterApplication;
-        boolean isNextDayAfterAnHour = LocalTime.now().plusHours(1)
-                .isAfter(LocalTime.of(0, 0));
-        boolean isExactlyNextDayAfterAnHour = LocalTime.now().plusHours(1)
-                .equals(LocalTime.of(0, 0));
-
-        if (isNextDayAfterAnHour || isExactlyNextDayAfterAnHour) {
-            anHourLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
-                            .withInterviewTime(LocalTime.now().plusHours(1)).build()).build();
-        } else {
-            anHourLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now())
-                            .withInterviewTime(LocalTime.now().plusHours(1)).build()).build();
-        }
+        LocalDateTime anHourLater = LocalDateTime.now().plusHours(1);
+        Application anHourLaterApplication = new ApplicationBuilder().withInterview(
+                new InterviewBuilder().withInterviewDate(anHourLater.toLocalDate()),
+                        .withInterviewTime(anHourLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(anHourLaterApplication));
 
         // EP: interview is a day later
