@@ -284,11 +284,12 @@ Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 
 :information_source: **Note:**
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
-* The search is case-insensitive. e.g. hans will match Hans
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* The search is case-insensitive. e.g. `find n/hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `find n/Hans Bo` will match `Bo Hans`
 * Only the attribute that corresponds to the prefix entered is searched.
-* **Partial words** will be matched e.g. Han will match Hans
-* Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* **Partial words** will be matched for the following tutor attributes: `NAME`, `PHONE_NUMBER`, `EMAIL`, `MODULE`, `YEAR`, `STUDENT_ID`, `TEACHING_NOMINATIONS`, `TAG`. e.g. `find n/Han` will match `Hans`
+* For `Rating` attribute, matching is done based on whether the rating of a tutor starts with the keywords searched. e.g. `find r/4` will match both `4.99` and `4.15`
+* Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. `find n/Hans Bo` will return `Hans Gruber` and `Bo Yang`
 
 </div>
 
@@ -312,6 +313,7 @@ Examples:
 * `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X` or `A0123456Y`.
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
+* `find r/4` returns all tutors that having rating starting with `4`.
 * `find t/senior` returns all tutors that have a tag containing `senior`, as shown below:
 
 ![findTag](images/user-guide/find-tag.png)
