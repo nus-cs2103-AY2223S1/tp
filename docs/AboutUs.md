@@ -74,3 +74,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities:
   * Handle team's deliverables with project advisor
+  * Update public document for team deliverables
