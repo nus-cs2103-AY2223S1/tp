@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
  * Abstract panel for the different lists.
  */
 public abstract class ListPanel extends UiPart<Region> {
-    public ListPanel(String fxml) {
+    protected ListPanel(String fxml) {
         super(fxml);
     }
 
