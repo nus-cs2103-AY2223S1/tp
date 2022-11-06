@@ -1,4 +1,14 @@
 @startuml
+
+skinparam Shadowing false
+skinparam ArrowColor #A80036
+
+skinparam activity {
+  BackgroundColor Business
+  BorderColor #A80036
+  BorderThickness 1.5
+}
+
 start
 :User executes command to manipulate columns;
 :RC4HDB parses user input;
