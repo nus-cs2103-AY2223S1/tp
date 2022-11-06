@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
@@ -64,8 +65,12 @@ class JsonAdaptedAbstractAttribute {
         final int modelDisplayFormat = (int) data.get(AbstractAttribute.SAVE_KEY_DISPLAY_FORMAT);
         final int modelStyleFormat = (int) data.get(AbstractAttribute.SAVE_KEY_STYLE_FORMAT);
 
-        Attribute<?> modelAttribute =
-                ParserUtil.parseAttribute(modelTypeName, modelValue, modelDisplayFormat, modelStyleFormat);
-        return modelAttribute;
+        try {
+            Attribute<?> modelAttribute =
+                    ParserUtil.parseAttribute(modelTypeName, modelValue, modelDisplayFormat, modelStyleFormat);
+            return modelAttribute;
+        } catch (ParseException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
     }
 }
