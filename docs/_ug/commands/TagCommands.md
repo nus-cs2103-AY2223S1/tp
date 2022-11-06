@@ -108,18 +108,20 @@ Initially, FoodRem contains only the following three tags:
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-renametag n/Vegetables n/Veggies
-```
+{% capture notes %}
+**Assumptions:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Original tag: Vegetables
-Renamed tag: Veggies
-```
+* Initially, there exists a tag called "Vegetables".
+* FoodRem does not already contain a tag called "Veggies".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="renametag n/Vegetables n/Veggies"
+  commandOutputBox="images/tagCommands/commandOutputBox/renametag.png"
+%}
 
 ---
 
