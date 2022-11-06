@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
+skinparam arrowColor BLACK
 skinparam classBackgroundColor MODEL_COLOR
 skinparam classAttributeIconSize 0
 
@@ -37,8 +37,7 @@ Model .right.> ReadOnlyResidentBook
 Model .left.> ReadOnlyVenueBook
 ModelManager -right-> "1" ResidentBook
 ModelManager -left-> "1" UserPrefs
-ModelManager --> "~*" Venue
-ModelManager --> "~*" Booking
+ModelManager --> "1" Venue
 ModelManager --> " 1" VenueBook
 
 ResidentBook *--> "1" UniqueResidentList

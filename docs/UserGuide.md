@@ -417,7 +417,7 @@ Format: `showonly LETTER [MORE_LETTERS]`
 
 Calling `filter /all g/M` on a full table, followed by `showonly n g h` will produce the following result:
 
-![showonly](images/ug-photos/showonly_command.png)
+![showonly](images/ug-photos/showonly_photo.png)
 
 As you can see,`showonly` displays only the specified columns, and does not change the filtered list of residents. 
 
@@ -461,7 +461,8 @@ Format: `hideonly LETTER [MORE_LETTERS]`
 
 Calling `hideonly i r p e m t` on a full table will produce the following result:
 
-![hideonly](images/ug-photos/hideonly_command.png)
+![hideonly](images/ug-photos/hideonly_photo.png)
+
 
 The following examples are to be performed one after the other:
 
@@ -510,7 +511,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Calling `find el an` on our sample data will produce the following result:
 
-![find_command](images/ug-photos/find_command.png)
+![find_command](images/ug-photos/find_photo.png)
 
 As you can see, the residents with names containing either "el" or "an" are listed as the result of the `find` command.
 
@@ -703,7 +704,7 @@ add, remove bookings for those venues.
 
 To view the bookings, you will have to click on the tab labelled as bookings.
 
-![Booking tab](images/venue_tab_ui.png)
+![Booking tab](images/ug-photos/booking_photo.png)
 
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
