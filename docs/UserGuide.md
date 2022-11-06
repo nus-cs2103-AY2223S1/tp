@@ -318,8 +318,8 @@ Examples:<br>
 ### List Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-These commands can be used to view all buyers and properties again, after a [Filter Command](#filter-commands) is executed.
-See [FAQ](#faq) for more information.
+These commands can be used to view all buyers and properties again, after a [Filter Command](#filter-commands) or a 
+[Find Command](#find-commands) is executed. See [FAQ](#faq) for more information.
 </div>
 
 #### List buyers in database: `listbuyers`
@@ -333,6 +333,11 @@ Updates the [Property List](#3-property-list) to include all properties in the d
 Syntax: `listprops`
 
 ### Find Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+These commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+buyers and properties in the database! Use the [List Commands](#list-commands) to show all buyers and properties again.
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 No flags are used for these commands and the search word(s) are to be supplied directly.
@@ -495,8 +500,9 @@ If your changes to the data file makes its format invalid, Cobb will discard all
 ## FAQ
 
 **Q**: Why am I not seeing some properties and buyers in my property and buyer lists?
-**A**: You might be looking at a filtered portion of the database. This is because you previously executed a [Filter Command](#filter-commands).
-To view all buyers and properties again, use the [List Commands](#list-commands)
+**A**: You might be looking at a filtered portion of the database. This is because you previously executed a 
+[Filter Command](#filter-commands) or a [Find Command](#find-commands). To view all buyers and properties again, 
+use the [List Commands](#list-commands).
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Cobb home folder.
