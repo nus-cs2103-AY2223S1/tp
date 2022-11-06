@@ -55,21 +55,8 @@ public class TypicalProjects {
 
     private TypicalProjects() {} // prevents instantiation
 
-
-    /**
-     * Returns an {@code HrPro} with all the typical projects.
-     */
-    /*
-    public static HrPro getTypicalHrProWithProjectOnly() {
-        HrPro ab = new HrPro();
-        for (Project project : getTypicalProjects()) {
-            ab.addProject(project);
-        }
-        return ab;
-    }
-    */
-
     public static List<Project> getTypicalProjects() {
+        APPLE.getStaffList().setStaffs(TypicalStaff.getTypicalStaff());
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, COCONUT, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
