@@ -73,7 +73,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" width="700" />
+<img src="images/UiClassDiagram.png" width="850" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StallListPanel`, `ReviewListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -102,7 +102,7 @@ How the `Logic` component works:
 
 The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
 
-<img src="images/DeleteSequenceDiagram.png" width="700" />
+<img src="images/DeleteSequenceDiagram.png" width="850" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
