@@ -69,7 +69,6 @@ public class FilterPetCommand extends FilterCommand {
                 String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, model.getFilteredCurrList().size()));
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

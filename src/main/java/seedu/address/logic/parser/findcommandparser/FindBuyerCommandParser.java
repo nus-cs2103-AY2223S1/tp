@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.findcommands.FindBuyerCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
@@ -14,7 +13,7 @@ import seedu.address.model.person.Buyer;
 /**
  * Parses input arguments and creates a new FindCommand object.
  */
-public class FindBuyerCommandParser implements Parser<FindCommand> {
+public class FindBuyerCommandParser extends FindCommandParser {
     public static final String PARSE_WORD = "find-b";
 
     /**
@@ -27,6 +26,11 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (moreThanOnePrefix(trimmedArgs)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, "More than 1 prefix present"));
         }
 
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(trimmedArgs);

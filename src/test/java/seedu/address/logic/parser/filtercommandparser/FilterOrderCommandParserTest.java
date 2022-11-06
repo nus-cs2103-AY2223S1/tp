@@ -62,16 +62,17 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = PREFIX_ORDER_ADDITIONAL_REQUESTS + "fluffy";
-        String inputWithSpaces = "\n" + PREFIX_ORDER_ADDITIONAL_REQUESTS + "\n fluffy \t \n";
+        String input = " " + PREFIX_ORDER_ADDITIONAL_REQUESTS + "fluffy ";
+        String inputWithSpaces = " " + PREFIX_ORDER_ADDITIONAL_REQUESTS + "fluffy \t";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(
-                new AdditionalRequestPredicate<>(Arrays.asList("fluffy")), defaultPredicate, defaultPredicate);
-//        try {
-//            assertEquals(parser.parse(input.trim()), expectedCommand);
-//            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
-//        } catch (ParseException e) {
-//            assert false;
-//        }
+                new AdditionalRequestPredicate<>(Arrays.asList("fluffy")),
+                defaultPredicate, defaultPredicate);
+        try {
+            assertEquals(parser.parse(input), expectedCommand);
+            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 
     @Test
@@ -86,16 +87,16 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = PREFIX_ORDER_STATUS + "/Delivering";
-        String inputWithSpaces = "\n \t " + PREFIX_ORDER_STATUS + "Delivering \n \n";
+        String input = " " + PREFIX_ORDER_STATUS + "Delivering";
+        String inputWithSpaces = " " + PREFIX_ORDER_STATUS + "Delivering \n \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(defaultPredicate,
                 new OrderStatusPredicate<>(OrderStatus.DELIVERING), defaultPredicate);
-//        try {
-//            assertEquals(parser.parse(input), expectedCommand);
-//            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
-//        } catch (ParseException e) {
-//            assert false;
-//        }
+        try {
+            assertEquals(parser.parse(input), expectedCommand);
+            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 
     @Test
@@ -110,15 +111,15 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = PREFIX_ORDER_PRICE_RANGE + "10.1-59.4";
+        String input = " " + PREFIX_ORDER_PRICE_RANGE + "10.1-59.4";
         String inputWithSpaces = "\n \t \n " + PREFIX_ORDER_PRICE_RANGE + "" + "\t 10.1-59.4 \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(defaultPredicate, defaultPredicate,
                 new PriceRangePredicate<>(new Price(10.1), new Price(59.4)));
-//        try {
-//            assertEquals(parser.parse(input), expectedCommand);
-//            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
-//        } catch (ParseException e) {
-//            assert false;
-//        }
+        try {
+            assertEquals(parser.parse(input), expectedCommand);
+            assertEquals(parser.parse(inputWithSpaces), expectedCommand);
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 }
