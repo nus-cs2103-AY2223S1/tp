@@ -337,7 +337,7 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 * A date should strictly follow the format of YYYY-MM-DD.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Valid dates are only dates you can find on a calendar. 0000-00-00 is <strong>not</strong> considered a valid date.
+Only dates you can find on a calendar are valid dates. 0000-00-00 is <strong>not</strong> considered a valid date.
 </div>
 
 Examples:
