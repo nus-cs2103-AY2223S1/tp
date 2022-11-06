@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     via the `goto` command, so that they can find suitable study buddies whenever they are 
     struggling academically.
   * Highlights: This enhancement was not easy because it involved an interaction between two 
-    different kinds of `Model` objects, namely `Person` and `Module`, while require special 
+    different kinds of `Model` objects, namely `Person` and `Module`, which requires special 
     thought on the design. This was previously not in the design of AB3.
 
 * **New Feature**: add/delete/edit module
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cheeheng&breakdown=true)
 
 * **Project management**:
-  * Managed releases v1.2.1, v1.3.0, v1.3.1 and v1.3.2
+  * Managed releases v1.2.1, v1.3.0, v1.3.1, v1.3.2 and v1.4
 
 * **Documentation**:
   * User Guide:
