@@ -64,6 +64,23 @@ public class MeetingDate {
     }
 
     /**
+     * Converts String value to a comparable LocalDateTime object.
+     *
+     * @return LocalDateTime object.
+     */
+    public LocalDateTime convert() {
+        String temp = value.orElse(PLACEHOLDER_VALUE);
+        if (!temp.contains(":") && !temp.isEmpty()) {
+            temp = temp + " 00:00";
+        } else if (temp.isEmpty()) {
+            temp = "31 Dec 9999 23:59";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(temp, formatter);
+        return dateTime;
+    }
+
+    /**
      * Returns the value of the meeting date.
      */
     public String get() {

@@ -81,8 +81,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(mask(person.getAddress().value));
         email.setText(mask(person.getEmail().value));
         income.setText(mask(person.getIncome().value));
-        meetingDate.setText(meeting.getMeetingDate().get());
-        meetingLocation.setText(meeting.getMeetingLocation().getVirtualStatus());
+        meetingDate.setText(mask(meeting.getMeetingDate().get()));
+        meetingLocation.setText(mask(meeting.getMeetingLocation().getVirtualStatus()));
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(mask(tag.tagName))));
