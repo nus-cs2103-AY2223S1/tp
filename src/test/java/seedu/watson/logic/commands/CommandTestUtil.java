@@ -9,6 +9,7 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.watson.testutil.Assert.assertThrows;
 
@@ -41,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_SUBJECT_ENGLISH = "english";
     public static final String INVALID_TAG = "#####";
 
     // New fields
@@ -78,6 +80,10 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String VALID_ASC_ARGS = " ASC";
+    public static final String INVALID_ASC_ARGS = " AEC";
+    public static final String SUBJECT_ARG = " " + PREFIX_SUBJECT + VALID_SUBJECT_ENGLISH;
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
