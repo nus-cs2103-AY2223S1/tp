@@ -1311,18 +1311,18 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
     1. Download the `JAR` file and copy it into an empty folder
 
-    1. Double-click the `JAR` file or run `java -jar plannit.jar` using the terminal.
-       Expected:
-        * Shows the GUI with a set of sample contacts.
-        * The window size may not be optimum.
+    2. Double-click the `JAR` file or run `java -jar plannit.jar` using the terminal.
+        Expected:
+         * Shows the GUI with a set of sample contacts.
+         * The window size may not be optimum.
 
 2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the `JAR` file.<br>
-       Expected:
-        * The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the `JAR` file.<br>
+        Expected:
+         * The most recent window size and location is retained.
 
 <!-- @@author cheeheng -->
 ### Adding a module
@@ -1377,170 +1377,160 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
     1. Prerequisites: List all modules using the `list` command. At least one module in the list.
 
-    1. Test case: `delete-module m/CS2103T`<br>
-       Expected:
-        * Module `CS2103T` is deleted from the list.
-        * Details of the deleted module shown in the result display.
+    2. Test case: `delete-module m/CS2103T`<br>
+        Expected:
+         * Module `CS2103T` is deleted from the list.
+         * Details of the deleted module shown in the result display.
 
-    1. Test case: `delete-module m/MA2104`<br>
+    3. Test case: `delete-module m/MA2104`<br>
        Expected:
         * No module is deleted.
         * Error details shown in the result display.
         * Currently-displayed module list and person list remain the same.
 
-    1. Other incorrect delete commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+    4. Other incorrect delete commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected:
         * Similar to previous.
 
 2. Deleting module while some, but not all, modules are being shown
+
     1. Prerequisites: Search module using `find-module` or navigate to module using `goto`. The following test case assumes `goto CS2103T` is the most recent command before the deletion.
 
-    1. Test case: `delete-module m/CS2103T`<br>
-       Expected:
-        * Module `CS2103T` is deleted from the list.
-        * Details of the deleted module shown in the result display.
+    2. Test case: `delete-module m/CS2103T`<br>
+        Expected:
+         * Module `CS2103T` is deleted from the list.
+         * Details of the deleted module shown in the result display.
 
-    1. Test case: `delete-module m/MA2104`<br>
+    3. Test case: `delete-module m/MA2104`<br>
        Expected:
         * No module is deleted.
         * Error details shown in the result display. Module list and person list remain the same.
 
-    1. Test case: `delete-module m/GE3238`<br>
+    4. Test case: `delete-module m/GE3238`<br>
        Expected: Similar to (3).
         * Note: GE3238 exists on Plannit but gets filtered away by `goto CS2103T`.
 
-    1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+    5. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected: Similar to (3).
 
 <!-- @@author Tan-Jia-Rong -->
 ### Finding modules
 
-Prerequisites:
-* Must be at the home page.
-* Multiple modules in Plannit.
-
 1. Finding modules while all modules are being shown
 
-    * Additional Prerequisites:
-        * Must be at the home page.
+    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
 
-    1. Test case: `find-module cS`<br>
-       Expected:
-        * Module list is updated with modules with module code starting with `cS`<br>(case-insensitive).
-        * Number of modules listed shown in the status message.
+    2. Test case: `find-module cS`<br>
+        Expected:
+         * Module list is updated with modules with module code starting with `cS`<br>(case-insensitive).
+         * Number of modules listed shown in the status message.
 
-    1. Test case: `find-module Dummy`<br>
-       Assumption: There are no modules whose module codes start with `Dummy` in Plannit.
+    3. Test case: `find-module Dummy`<br>
+       Assumption: There are no modules whose module codes start with `Dummy` in Plannit. <br>
        Expected:
         * Module list is updated to show an empty list.
         * Number of module listed shown in the status message.
 
-    1. Test case: `find-module`<br>
+    4. Test case: `find-module`<br>
        Expected:
         * Module list remains the same.
         * Command box remains the same.
         * Error details shown in the status message.
 
-1. Finding modules while not all modules are being shown
+2. Finding modules while not all modules are being shown
 
-    * Additional Prerequisites:
-        * Must be at the home page.
-          <br>
-    1. Test case: `find-module CS2103T`<br>
+    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
+
+    2. Test case: `find-module CS2103T`<br>
        Assumption: Module `CS2103T` is not in the current module list<br>
        Expected:
-        * Module list is updated with module code starting with `CS2103T`<br>(case-insensitive).
+        * Module list is updated with module code starting with `CS2103T`(case-insensitive).
         * Number of modules listed shown in the status message.
 
-1. Other incorrect `find-module` usage to try:
-    * Finding modules while not at home page <br>
-      Expected:
-        * Module list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
+3. Finding modules while not at home page
+
+    Expected: 
+   * Module list remains the same.
+   * Command box remains the same.
+   * Error details shown in the status message.
 
 ### Listing all modules
 
-Prerequisites:
-* Must be at the home page
-* Not all modules are shown in the module list
-
 1. Listing modules while not all modules are shown
 
-    1. Test case: `list-module`<br>
+    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
+
+    2. Test case: `list-module`<br>
        Expected:
         * Module list is updated to show all modules.
         * A success message is displayed to the user.
 
-    1. Test case: `list-module 44321`<br>
+    3. Test case: `list-module 44321`<br>
        Expected:
         * Same as the previous
 
-1. Other incorrect `list-module` usage to try:
-    * Listing all modules while not at home page <br>
-      Expected:
-        * Module list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
+2. Listing all modules while not at home page
+
+   Expected:
+   * Module list remains the same.
+   * Command box remains the same.
+   * Error details shown in the status message.
 
 <!-- @@author teoyuqi -->
 ### Adding a task
 1. Adding a task to a module in Plannit
-    1. Prerequisites: List all modules using the `list` command.
+    1. Prerequisites: List all modules using the `list-module` command.
 
-    1. Test case: `add-task m/CS2103T td/Complete week 7's weekly assignments`<br>
-       Expected:
-        * A new task with the description "Complete week 7's weekly assignments" will be added under the `CS2103T` module.
-        * Details of the module with the new task is shown in the result display.
-
-
-    1. Test case: `add-task m/CS3203 td/Complete week 7's weekly assignments`<br>
-       Expected: 
-       * No task is added.
-       * Modules in module list remains the same.
-       * Command box remains the same.
-       * Error details shown in the status message.
-    1. Other incorrect `add-task` commands to try: `add-task m/CS2103T`, `add-task`<br>
+    2. Test case: `add-task m/CS2103T td/Complete week 7's weekly assignments`<br>
+        Expected:
+         * A new task with the description "Complete week 7's weekly assignments" will be added under the `CS2103T` module.
+         * Details of the module with the new task is shown in the result display.
+         
+    3. Test case: `add-task m/CS3203 td/Complete week 7's weekly assignments`<br>
+        Expected: 
+        * No task is added.
+        * Modules in module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+    4. Other incorrect `add-task` commands to try: `add-task m/CS2103T`, `add-task`<br>
       Expected: Similar to previous.
 
 ### Deleting a task
 1. Deleting a task from a module in Plannit
 
-    1. Prerequisites: List all modules using the `list` command.
+    1. Prerequisites: List all modules using the `list-module` command.
 
-    1. Test case: `delete-task m/CS2103T tn/2`<br>
-       Expected:
-        * Second task of `CS2103T` is deleted.
-        * Details of the module with the deleted task is shown in the result display.
-
-
-    1. Test case: `delete-task m/CS3203 tn/2`<br>
+    2. Test case: `delete-task m/CS2103T tn/2`<br>
+        Expected:
+         * Second task of `CS2103T` is deleted.
+         * Details of the module with the deleted task is shown in the result display.
+    3. Test case: `delete-task m/CS3203 tn/2`<br>
        Expected:
        * No tasks are deleted.
        * Modules in module list remains the same.
        * Command box remains the same.
        * Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete-task`, `delete-task m/CS2103T`, `delete-task tn/2`,`delete-task m/CS2103T tn/x`, `...` (where `x` is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete-task`, `delete-task m/CS2103T`, `delete-task tn/2`,`delete-task m/CS2103T tn/x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Swapping the order of a pair of tasks
 1. Swapping the order of two tasks in a module in Plannit
-    1. Prerequisites: List all modules using the `list` command.
+    1. Prerequisites: List all modules using the `list-module` command.
 
-    1. Test case: `swap-task m/CS2103T ts/1 2`<br>
-       Expected:
-        * Positions of the first and second task of `CS2103T` are swapped.
-        * Details of the module with the deleted task is shown in the result display.
+    2. Test case: `swap-task m/CS2103T ts/1 2`<br>
+        Expected:
+         * Positions of the first and second task of `CS2103T` are swapped.
+         * Details of the module with the deleted task is shown in the result display.
 
-    1. Test case: `swap-task m/CS3203 ts/1 2`<br>
+    3. Test case: `swap-task m/CS3203 ts/1 2`<br>
        Expected:
         * No task are swapped.
         * Modules in module list remains the same.
         * Command box remains the same.
         * Error details shown in the status message.
 
-    1. Other incorrect swap-task commands to try: `swap-task`, `swap-task m/CS2103T`, `swap-task ts/1 x`,`swap-task m/CS2103T ts/1 x`, `...` (where `x` is larger than the list size)<br>
+    4. Other incorrect swap-task commands to try: `swap-task`, `swap-task m/CS2103T`, `swap-task ts/1 x`,`swap-task m/CS2103T ts/1 x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
 <!-- @@author shwene -->
@@ -1548,56 +1538,56 @@ Prerequisites:
 
 1. Adding a link to a module in Plannit
 
-    1. Prerequisite: Use the `list` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite: Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
-    1. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
-       Expected:
-        * A new link with url `google.com` is added to the module with module code `CS2103T`.
-        * The new link is represented with a yellow-outlined box labelled with `Google` within the said module on Plannit.
+    2. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
+        Expected:
+         * A new link with url `google.com` is added to the module with module code `CS2103T`.
+         * The new link is represented with a yellow-outlined box labelled with `Google` within the said module on Plannit.
 
-    1. Test case: `add-link m/CS2100 la/Google l/google.com`<br>
+    3. Test case: `add-link m/CS2100 la/Google l/google.com`<br>
        Expected:
         * The link with url `google.com` is not added to the module with module code `CS2100`.
         * Error details shown in the status message.
 
-    1. Other incorrect add commands to try: `add-link`, `add-link m/CS2103T `, `add-link m/CS2103T la/Google`<br>
+    4. Other incorrect add commands to try: `add-link`, `add-link m/CS2103T `, `add-link m/CS2103T la/Google`<br>
        Expected: Similar to previous.
 
 ### Deleting a link
 
 1. Deleting a link from a module in Plannit
 
-    1. Prerequisite:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite:  Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
-    1. Test case: `delete-link m/CS2103T la/Team Repo`<br>
-       Expected:
-        * The link with the alias `Team Repo` is deleted from the module with module code `CS2103T`.
-        * The link which was represented with a yellow-outlined box labelled with `Team Repo` within the said module on Plannit disappears.
+    2. Test case: `delete-link m/CS2103T la/Team Repo`<br>
+        Expected:
+         * The link with the alias `Team Repo` is deleted from the module with module code `CS2103T`.
+         * The link which was represented with a yellow-outlined box labelled with `Team Repo` within the said module on Plannit disappears.
 
-    1. Test case: `delete-link m/CS2103T la/hahahaha`<br>
+    3. Test case: `delete-link m/CS2103T la/hahahaha`<br>
        Expected:
         * No links are deleted from the module with module code `CS2103T`.
         * Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete-link`, `delete-link m/CS2103T `, `delete-link m/CS2103T m/CS2106`<br>
+    4. Other incorrect delete commands to try: `delete-link`, `delete-link m/CS2103T `, `delete-link m/CS2103T m/CS2106`<br>
        Expected: Similar to previous.
 
 ### Opening a link
 
 1. Opening a link from a module in Plannit
 
-    1. Prerequisites:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisites:  Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
-    1. Test case: `open-link m/CS2103T la/Team Repo`<br>
+    2. Test case: `open-link m/CS2103T la/Team Repo`<br>
        Expected:
         * The link with the alias `Team Repo` is opened from the module with module code `CS2103T` into your default browser.
 
-    1. Test case: `open-link m/CS2103T la/hahahaha`<br>
+    3. Test case: `open-link m/CS2103T la/hahahaha`<br>
        Expected:
         * No links are opened from the module with module code `CS2103T`.
         * Error details shown in the status message.
 
-    1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
+    4. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
        Expected: Similar to previous.
 
 <!-- @@author ekweirui -->
@@ -1607,17 +1597,17 @@ Prerequisites:
 
     1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
 
-    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
-       Expected:
-        * A person with name Amy is added to Plannit.
-        * A success message is displayed to the user.
+    2. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+        Expected:
+         * A person with name Amy is added to Plannit.
+         * A success message is displayed to the user.
 
-    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+    3. Test case: `add-person n/Amy e/amy@gmail.com`<br>
        Expected:
         * No person is added to Plannit because there is a missing field (phone number).
         * Error details indicating invalid command format displayed to the user.
 
-    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+    4. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
        Expected:
         * No person is added to Plannit.
         * An error message with relevant details is displayed to the user.
@@ -1661,17 +1651,17 @@ Prerequisites:
 
     1. Prerequisites: Person to be deleted is currently displayed on screen.
 
-    1. Test case: `delete-person n/Alex Yeoh`<br>
-       Expected:
-        * Contact with name Alex Yeoh is deleted from the displayed list and Plannit.
-        * Details of the deleted contact displayed to the user.
+    2. Test case: `delete-person n/Alex Yeoh`<br>
+        Expected:
+         * Contact with name Alex Yeoh is deleted from the displayed list and Plannit.
+         * Details of the deleted contact displayed to the user.
 
-    1. Test case: `delete-person n/Bob`, assuming Bob is currently not displayed on screen<br>
+    3. Test case: `delete-person n/Bob`, assuming Bob is currently not displayed on screen<br>
        Expected:
         * No person is deleted.
         * Error message detailing the fact that no Bob is currently displayed on screen.
 
-    1. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
+    4. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
        Expected:
         * No person is deleted.
         * An error message with relevant details is displayed to the user.
@@ -1682,17 +1672,17 @@ Prerequisites:
 
     1. Prerequisites: Both the person to be deleted from the module and the module itself are currently displayed on screen. Also, the person to be deleted from the module must have already been added to the module.
 
-    1. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
-       Expected:
-        * Contact with name David Li is deleted from the CS2103T module. 
-        * A successful message stating that a person got deleted from CS2103T is displayed to the user.
+    2. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
+        Expected:
+         * Contact with name David Li is deleted from the CS2103T module. 
+         * A successful message stating that a person got deleted from CS2103T is displayed to the user.
 
-    1. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
+    3. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
        Expected:
         * No person is deleted from CS2103T. 
         * Error message detailing the fact that Bob is currently not displayed in list is displayed.
 
-    1. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
+    4. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
        Expected:
         * No person is deleted from any module. 
         * An error message with relevant details is displayed to the user.
@@ -1704,17 +1694,17 @@ Prerequisites:
 
     1. Prerequisites: Person to be edited is currently displayed on screen.
 
-    1. Test case: `edit-person 1 n/Armin`<br>
-       Expected:
-        * First contact on the list is edited to have the name Armin. 
-        * Details of the edited contact displayed to the user.
+    2. Test case: `edit-person 1 n/Armin`<br>
+        Expected:
+         * First contact on the list is edited to have the name Armin. 
+         * Details of the edited contact displayed to the user.
 
-    1. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
+    3. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
        Expected:
         * No person is edited. 
         * Error message detailing the fact an invalid index is provided is displayed to the user.
 
-    1. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
+    4. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
        Expected:
         * No person is edited. 
         * An error message with relevant details is displayed to the user.
@@ -1723,72 +1713,63 @@ Prerequisites:
 
 ### Finding contacts
 
-Prerequisites:
-* Must be at the home page.
-* Multiple persons in Plannit.
-
 1. Finding persons while all persons are being shown
 
-    * Additional Prerequisites:
-        * Must be at the home page.
+   1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
 
-    1. Test case: `find-person Alex`<br>
-       Expected:
-        * Person list is updated with persons whose names starting with `Alex`<br>(case-insensitive).
-        * Number of persons listed shown in the status message.
-
-    1. Test case: `find-person Dummy`<br>
-       Assumption: There are no persons whose names start with `Dummy` in Plannit.
-       Expected:
-        * Person list is updated with an empty list
-        * Number of persons listed shown in the status message.
-
-    1. Test case: `find-person`<br>
-       Expected:
-        * Person list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
-
-1. Finding persons while not all persons are being shown
-
-    * Additional Prerequisites:
-        * Must be at the home page.
-          <br>
-    1. Test case: `find-person Bernice`<br>
-       Assumption: Person `Bernice` is not in the current person list<br>
-       Expected:
-        * Person list is updated with persons whose names starts with `Bernice`<br>(case-insensitive).
-        * Number of persons listed shown in the status message.
-
-1. Other incorrect `find-person` usage to try:
-    * Finding persons while not at home page <br>
+   2. Test case: `find-person Alex`<br>
       Expected:
-        * Person list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
+      * Person list is updated with persons whose names starting with `Alex`(case-insensitive). 
+      * Number of persons listed shown in the status message.
+
+   3. Test case: `find-person Dummy`<br>
+      Assumption: There are no persons whose names start with `Dummy` in Plannit.<br>
+      Expected:
+       * Person list is updated with an empty list
+       * Number of persons listed shown in the status message.
+
+   5. Test case: `find-person`<br>
+      Expected:
+       * Person list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
+
+2. Finding persons while not all persons are being shown
+
+    1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
+    2. Test case: `find-person Bernice`<br>
+        Assumption: Person `Bernice` is not in the current person list<br>
+        Expected:
+         * Person list is updated with persons whose names starts with `Bernice` (case-insensitive).
+         * Number of persons listed shown in the status message.
+
+3. Finding persons while not at home page 
+
+   Expected:
+   * Person list remains the same.
+   * Command box remains the same.
+   * Error details shown in the status message.
 
 ### Listing all persons
 
-Prerequisites:
-* Must be at the home page
-
 1. Listing persons while not all persons are shown
+   1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
 
-    1. Test case: `list-person`<br>
-       Expected:
-        * Person list is updated to show all persons.
-        * Success message is shown in the status message.
-
-    1. Test case: `list-person 12345`<br>
-       Expected:
-        * Same as the previous.
-
-1. Other incorrect `list-person` usage to try:
-    * Listing all persons while not at home page <br>
+   2. Test case: `list-person`<br>
       Expected:
-        * Module list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
+       * Person list is updated to show all persons.
+       * Success message is shown in the status message.
+
+   3. Test case: `list-person 12345`<br>
+      Expected:
+       * Same as the previous.
+
+2. Listing all persons while not at home page
+
+   Expected:
+   * Module list remains the same.
+   * Command box remains the same.
+   * Error details shown in the status message.
 
 ### Navigating between modules
 
@@ -1801,15 +1782,15 @@ Prerequisites:
         * Task list is expanded to show tasks associated with the module.
         * Success message is shown in the status message.
 
-    1. Test case: `goto CS1234`<br>
+    2. Test case: `goto CS1234`<br>
 
-       Assumption: Module `CS1234` is not in Plannit<br>
+        Assumption: Module `CS1234` is not in Plannit<br>
 
-       Expected:
-        * Module list remains the same.
-        * Person list remains the same.
-        * Command box remains the same.
-        * Error details shown in the status message.
+        Expected:
+         * Module list remains the same.
+         * Person list remains the same.
+         * Command box remains the same.
+         * Error details shown in the status message.
 
 ### Navigating back home
 
@@ -1821,9 +1802,9 @@ Prerequisites:
         * Person list is updated with all persons.
         * Success message is shown in the status message.
 
-    1. Test case: `home 1234`<br>
-       Expected:
-        * Same as previous.
+    2. Test case: `home 1234`<br>
+        Expected:
+         * Same as previous.
 
 ### Viewing help
 
@@ -1838,6 +1819,7 @@ Prerequisites:
     * The program closes.
 
 <!-- @@author teoyuqi -->
+
 ## **Appendix: Effort**
 ### Initial design
 Although we described Plannit as a morph of the original AB3, there was substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
