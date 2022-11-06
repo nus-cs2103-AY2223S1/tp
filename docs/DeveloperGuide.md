@@ -63,6 +63,24 @@ com/a/14018549/13742805</a>
 <td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/LambdaUtil.java">CommandParser.java</a></td>
 <td markdown="span">A lambda function that throws a checked Exception</td>
 </tr>
+<tr>
+<td markdown="span"><a href="https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java">https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java</a>
+</td>
+<td markdown="span"><a href=https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/logic/commands/LoanCommand.java>LoanCommand.java</a></td>
+<td markdown="span">Add certain number of days to the current day</td>
+</tr>
+<tr>
+<td markdown="span"><a href="https://stackoverflow.com/questions/62054264/check-invalid-date-by-localdate">https://stackoverflow.com/questions/62054264/check-invalid-date-by-localdate</a>
+</td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/logic/parser/LoanCommandParser.java">LoanCommandParser.java</a></td>
+<td markdown="span">Parse dates properly</td>
+</tr>
+<tr>
+<td markdown="span"><a href="https://www.ocpsoft.org/prettytime/nlp/">PrettyTimeParser library</a>
+</td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/logic/parser/LoanCommandParser.java">LoanCommandParser.java</a></td>
+<td markdown="span">Allow for higher amounts of flexibility of date formats</td>
+</tr>
 </tbody>
 </table>
 
