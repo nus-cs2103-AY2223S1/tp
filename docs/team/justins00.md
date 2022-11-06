@@ -1,6 +1,9 @@
-#Justin Siaw's Project Portfolio Page
-##<span style="color:orange"> Project: PleaseHireUs </span>
+---
+layout: page
+title: Justin Siaw's Project Portfolio Page
+---
 
+### Project: PleaseHireUs
 
 PleaseHireUs (PHU) is a desktop app for managing internships, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PHU can get your internship management tasks done faster than traditional GUI apps.Given below are my contributions to the project
 * **New Feature**: A reminder bar (Pull requests [\#94](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/94))
