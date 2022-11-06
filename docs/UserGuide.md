@@ -780,9 +780,9 @@ the data of your previous StudMap home folder. See how to back up your data [her
 
 # 8. Glossary
 
-### Commands
+### Command
 
-Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
+A command is an instruction for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
 section
 to see what commands are available.
 
