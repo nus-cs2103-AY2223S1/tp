@@ -240,7 +240,7 @@ When `execute` of `FilterCommand` is run, the `InternshipHasApplicationStatusPre
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
-<img src="images/FilterCommandActivityDiagram.png" width="450" />
+<img src="images/FilterCommandActivityDiagram.png" width="480" />
 
 #### Design Considerations
 
