@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "command:HomeCommand" as HomeCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(input)
+activate AddressBookParser
+
+create HomeCommand
+AddressBookParser -> HomeCommand
+activate HomeCommand
+HomeCommand --> AddressBookParser : command
+deactivate HomeCommand
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> HomeCommand : execute()
+
+activate HomeCommand
+
+HomeCommand -> Model : goToHomePage()
+activate Model
+Model --> HomeCommand
+deactivate Model
+
+create CommandResult
+HomeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> HomeCommand
+deactivate CommandResult
+
+HomeCommand --> LogicManager : result
+deactivate HomeCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+HomeCommand -[hidden]-> HomeCommand
+destroy HomeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

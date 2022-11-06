@@ -12,32 +12,41 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 Given below are my contributions to the project.
 
 * **New Feature**: Adding, deleting and opening of `Link` objects
-  * What it does: Allows students to add module-specific link(s) with a user-defined alias. 
+  * What it does:<br>
+    Allows students to add module-specific link(s) with a user-defined alias. 
     Multiple links can be opened using a single command.
-  * Justification: This feature provides a centralised storage location for their links, which 
+  * Justification:<br>
+    This feature provides a centralised storage location for their links, which 
     in turn empowers them with easy access to online resources at any given point of time.
-  * Highlights: This is a completely new component that was not previously
-    in the design of AB3. It serves as a bridge between the students' module needs and the internet
+  * Highlights:<br>
+    This is a completely new component that was not previously
+    in the design of AB3. It serves as a bridge between the students' module links and the internet.
 
 * **New Feature**: Interactive UI for `Link` objects
-  * What it does: Allows students to open links from the application window by clicking
+  * What it does:<br>
+    Allows students to open links from the application window by clicking
     on the displayed alias associated with the desired link.
-  * Justification: This feature provides them with easy access to online resources 
+  * Justification:<br>
+    This feature provides them with easy access to online resources 
     at any given point of time with a single click.
-  * Highlights: This is a completely new component that was not previously
+  * Highlights:<br>
+    This is a completely new component that was not previously
     in the design of AB3. It has the effect of making each link object look visually distinct
     while having the benefit of being functional.
 
-* **Code contributed [coming soon]**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shwene&breakdown=true)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shwene&breakdown=true)
 
 * **Documentation**
     * User Guide:
       * Added documentation for commands `add-link`, `delete-link` and
-      `open-link` (e.g, [#51](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/51) and
+      `open-link` with diagrams (e.g, [#51](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/51) and
         [#167](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/167))
     * Developer Guide:
-      * Added implementation detail of `Link` components
+      * Added implementation detail of `Link` components with diagrams
       (see [#89](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/89))
+
+* **Contribution to team-based-tasks**:
+    * Created sample data for first time users of Plannit.
 
 * **Review contributions**:
     * Reviewed numerous PRs (e.g., [#36](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/36),
