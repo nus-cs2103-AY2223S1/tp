@@ -9,8 +9,13 @@ title: Chao Yung's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-## Contributions
+## Summary of Contributions
+
 ---
+
+#### Code Contributed
+
+[RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=chao890&tabRepo=AY2223S1-CS2103T-T15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 #### Enhancements Implemented
 * **New Features**
@@ -52,14 +57,16 @@ Given below are my contributions to the project.
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues.
+* Wrote test code for features that I upgraded (delete, add-leave, delete-leave).
 * Contributed to manual testing of application to find bugs.
 * Oversaw documentation work.
 
 #### Reviewing Contributions
 * Pull Requests reviewed:
-  * [#63](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/63)
-  * [#111](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/111)
-  * [#119](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/119)
-  * [#143](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/143)
-  * [#225](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225)
-  * [#226](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/226)
+  [#63](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/63),
+  [#111](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/111),
+  [#119](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/119),
+  [#143](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/143),
+  [#225](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225),
+  [#226](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/226)
+  [#244](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/244)

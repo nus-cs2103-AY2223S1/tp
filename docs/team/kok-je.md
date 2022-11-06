@@ -10,8 +10,12 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
-## Contributions
+### Summary of Contributions
+
 ---
+
+#### Code Contributed
+
 >[RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Kok-je&tabRepo=AY2223S1-CS2103T-T15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 #### Enhancements Implemented
@@ -26,9 +30,7 @@ Given below are my contributions to the project.
     * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java))
     and `RateCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/RateCommandParser.java)).
     * Use Case: User can add ratings for employees.
-    * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale:
-
-        [5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory]
+    * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale.
     * Highlights: This command was slightly tricky to implement, as there were many cases to consider, such as ensuring that ratings are always sorted by the local date format (if the user modifies the JSON database).
 
   * Implemented `Performance history graph` feature
@@ -68,12 +70,12 @@ Given below are my contributions to the project.
 
 #### Reviewing Contributions
 * Pull Requests reviewed:
-  * [#92] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/92)
-  * [#113] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/113)
-  * [#116] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/116)
-  * [#144] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/144)
-  * [#150] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/150)
-  * [#224] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/224)
-  * [#225] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225)
-  * [#241] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/241)
-  * [#243] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/243)
+  [#92](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/92),
+  [#113](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/113),
+  [#116](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/116),
+  [#144](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/144),
+  [#150](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/150),
+  [#224](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/224),
+  [#225](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225),
+  [#241](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/241),
+  [#243](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/243)
