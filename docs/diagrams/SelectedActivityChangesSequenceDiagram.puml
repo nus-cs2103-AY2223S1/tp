@@ -6,7 +6,7 @@ participant ":ActivityListPanel" as ActivityListPanel UI_COLOR
 participant ":SelectedActivityPanel" as SelectedActivityPanel UI_COLOR
 end box
 
-[-> ActivityListPanel : OnChanged(changes)
+[-> ActivityListPanel : onChanged(changes)
 activate ActivityListPanel
 ActivityListPanel -> ActivityListPanel : updateSelectedIfChange(selected)
 ActivityListPanel -> SelectedActivityPanel : setSelectedActivity(selected)
