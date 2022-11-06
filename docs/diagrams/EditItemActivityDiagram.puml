@@ -16,7 +16,7 @@ if () then ([else])
    stop
  else ([Edited item does not share a name with any other Items])
 endif
-  :Tag Command successfully executes.
+  :edit command successfully executes.
 Item is edited.;
 stop
 
