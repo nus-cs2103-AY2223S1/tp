@@ -30,6 +30,6 @@ Given below are my contributions to the project.
   * Developer Guide: Added documentation, sequence diagrams, and activity diagrams for the features import and edit
 
 * **Community**:
-* Reviewed several PRs, including [#97](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
+* Reviewed several PRs, including [#92](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
 * Found several bugs for CS2103T-W12-3 and suggested improvements.
-* Reported bugs for another team [here](https://github.com/samuelcheongws/ped/issues)
+* Reported bugs for team F-11-4 [here](https://github.com/samuelcheongws/ped/issues)
