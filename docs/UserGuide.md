@@ -257,7 +257,7 @@ a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><i>Notice that only modules with module code starting with `CS` are listed!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>Notice that only modules with module code starting with `CS` are listed!</p><p/>{:/} |
 
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
@@ -276,7 +276,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                          |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><i>The module list has now been updated with every module!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><p>The module list has now been updated with every module!</p><p/>{:/} |
 
 <br>
 
@@ -287,7 +287,7 @@ keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+Make sure you have [added a module](#211-add-module) to Plannit 
 before proceeding!
 </div>
 
@@ -706,7 +706,7 @@ a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                                   |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><i>Notice that only persons whose name starts with Alex are listed!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><p>Notice that only persons whose name starts with Alex are listed!</p><p/>{:/} |
 
 #### 2.4.7. List person
 When you are on the home page, you may obtain the list of every person in Plannit.
@@ -717,7 +717,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                          |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/list-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-person-after.png"/></p> <p align="left"><i>The person list has now been updated with every person!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/list-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-person-after.png"/></p> <p align="left"><p>The person list has now been updated with every person!</p><p/>{:/} |
 
 
 ### 2.5. Navigation
@@ -739,7 +739,7 @@ a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                         | After executing the command                                                                                                                                            |
 |------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="left"><i>Notice that the screen is updated with the module's information!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="left"><p>Notice that the screen is updated with the module's information!</p><p/>{:/} |
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
 You may return to home page by executing the [`home`](#252-navigate-to-home) command.
@@ -767,7 +767,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 | Before executing the command                                                                                                                         | After executing the command                                                                                                                            |
 |------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><i>Notice that you are now back on the home screen!</i><p/>{:/} |
+| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><p>Notice that you are now back on the home screen!</p><p/>{:/} |
 
 <div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
 You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
