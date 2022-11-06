@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Developer Guide
+show-toc: true
 ---
 
 ![NUScheduler](images/logoText.png)
@@ -500,18 +501,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a profile to the event.
-2. NUScheduler adds the profile to the event and displays the updated event attendees.
+1. User requests to add multiple profiles to an event.
+2. NUScheduler adds the profiles to the event and displays the updated event attendees.
 
 **Extensions**
 
-* 1a. The given event to add profile to is invalid.
+* 1a. The given event index to add profiles to is invalid.
 
     * 1a1. NUScheduler shows an error message.
 
       Use case ends.
 
-* 1b. The given profile to add is invalid.
+* 1b. One or more of the given profile indexes is invalid.
 
     * 1b1. NUScheduler shows an error message.
 
@@ -526,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Response to any commands should be displayed within 5 seconds.
 6. A user's individual schedule should not be accessible to other users.
 7. The _GUI_ should display data logic warnings when commands are entered with incomplete fields.
-8. The _GUI_ should be at least 1280 by 720 pixels to clearly display all information.
+8. The _GUI_ should be at least 1000 by 700 pixels to clearly display all information.
 
 ### Glossary
 
