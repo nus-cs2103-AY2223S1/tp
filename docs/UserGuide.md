@@ -250,7 +250,7 @@ To add a **tutor**,<br>
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,<br><p></p>
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -316,7 +316,7 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,<br><p></p>
     * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
       <p></p>
     * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
@@ -718,8 +718,7 @@ Format: `list <entity>`
   1. student
   2. tutor
   3. class
-
-
+  <p></p>
 * The lists of each entity type can be displayed by clicking any of the tabs above the current displayed list.
 
 Examples:
@@ -770,9 +769,11 @@ Sorts the current list chronologically, alphabetically, or in reverse order.
 
 Format: `sort <order>`
 
-* `<order>` field should be a valid sort order. The valid orders are as follows:
+* `<order>` field should be a valid sort order. The valid orders are as follows:<br><p></p>
   * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
+    <p></p>   
   * **alpha**: Sorts the list alphabetically with reference to the name.
+    <p></p>
   * **reverse**: Sorts the list in reverse order.
 
 Examples:
