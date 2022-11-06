@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Testing guide
+show-toc: true
 ---
 
 * Table of Contents

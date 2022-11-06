@@ -3,8 +3,6 @@ layout: page
 title: Xinbei's Project Portfolio Page
 ---
 
-<div markdown="block" class="no-num">
-
 ### Project: NUScheduler
 
 NUScheduler is a desktop app for **NUS students who have a large network of contacts to manage, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
@@ -51,5 +49,3 @@ Given below are my contributions to the project.
     * Reviewed 29 Pull Requests on [GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+commenter%3Aichigh0st+is%3Aclosed+-author%3Aichigh0st)
     * PRs reviewed (with non-trivial review comments): [#57](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/57), [#97](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/97), [#99](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/99)
     * Found 13 bugs in team [CS2103-F12-4](https://github.com/ichigh0st/ped)'s product during PE-D.
-
-</div>
