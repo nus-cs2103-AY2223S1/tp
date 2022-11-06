@@ -136,4 +136,16 @@ public class DeleteAttributeCommand extends Command {
             return false;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof DeleteAttributeCommand) {
+            DeleteAttributeCommand otherCommand = (DeleteAttributeCommand) other;
+            return otherCommand.prefixToDelete.equals(this.prefixToDelete);
+        } else {
+            return false;
+        }
+    }
 }
