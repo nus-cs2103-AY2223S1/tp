@@ -41,35 +41,17 @@ public class UpcomingInterviewPredicateTest {
         // they are considered to have passed
 
         // EP: interview is a minute later
-        Application aMinuteLaterApplication;
-        //Take account of time is 2359
-        if (LocalTime.now().plusMinutes(1).equals(LocalTime.of(0, 0))) {
-            aMinuteLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
-                            .withInterviewTime(LocalTime.of(0, 0)).build()).build();
-        } else {
-            aMinuteLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now())
-                            .withInterviewTime(LocalTime.now().plusMinutes(1)).build()).build();
-        }
+        LocalDateTime aMinuteLater = LocalDateTime.now().plusMinutes(1);
+        Application aMinuteLaterApplication = new ApplicationBuilder().withInterview(
+                new InterviewBuilder().withInterviewDate(aMinuteLater.toLocalDate()),
+                        .withInterviewTime(aMinuteLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(aMinuteLaterApplication));
 
         // EP: interview is an hour later
-        Application anHourLaterApplication;
-        boolean isNextDayAfterAnHour = LocalTime.now().plusHours(1)
-                .isAfter(LocalTime.of(0, 0));
-        boolean isExactlyNextDayAfterAnHour = LocalTime.now().plusHours(1)
-                .equals(LocalTime.of(0, 0));
-
-        if (isNextDayAfterAnHour || isExactlyNextDayAfterAnHour) {
-            anHourLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
-                            .withInterviewTime(LocalTime.now().plusHours(1)).build()).build();
-        } else {
-            anHourLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now())
-                            .withInterviewTime(LocalTime.now().plusHours(1)).build()).build();
-        }
+        LocalDateTime anHourLater = LocalDateTime.now().plusHours(1);
+        Application anHourLaterApplication = new ApplicationBuilder().withInterview(
+                new InterviewBuilder().withInterviewDate(anHourLater.toLocalDate()),
+                        .withInterviewTime(anHourLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(anHourLaterApplication));
 
         // EP: interview is a day later
