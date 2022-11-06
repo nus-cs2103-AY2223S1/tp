@@ -1373,8 +1373,3 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Delete all data files (i.e. `modulelist.json`, `taskbook.json`).<br>
        Expected: The application will start with an empty module and task list. The application will create a new data file 
        when the user exits the application.
-
-    2. Test case: Make breaking changes to one or more data files (i.e. `modulelist.json`, `taskbook.json`). An example 
-       of a breaking change could be to delete a closing bracket or to modify a date to an incorrect format.<br>
-       Expected: The application will start with an empty module and task list. 
-       The application will create a new data file when the user exits the application.
