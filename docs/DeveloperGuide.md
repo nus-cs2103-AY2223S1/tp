@@ -96,7 +96,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues  
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
@@ -105,7 +105,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
-  `interface` mentioned in the previous point.
+  `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
@@ -189,7 +189,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
-The partial class diagram above shows the classes that make up the `Model` component. Classes used by Person objects
+The partial class diagram above shows the classes that make up the `Model` component. Classes used by `Person` objects
 through composition are omitted for brevity and shown later. 
 
 The `Model` component,
@@ -430,10 +430,11 @@ in addition to the prefix. The command `get /hw North` will be used for this exa
 
 All get commands are implemented in the following steps:
 1. User input prefix is matched in `GetCommandParser` class
-2. Parser for the get command corresponding to the prefix is called and parses the user input
+2. If the get command takes in both a prefix and parameter, the parser for the get command corresponding to the prefix 
+   is called and parses the parameters inputted
 3. Specific child classes of `GetCommand` is instantiated and executed
 4. The model is then updated such that the *filtered* list only displays patients whose details match the query
-arguments of that prefix
+   arguments of that prefix
 
 #### Floor Number (/fn)
 
@@ -489,20 +490,20 @@ Getting the list of patients in th query appointment date involves the following
 
 To ease the parsing of date inputs, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
-#### Patient type (`/inp` & `/outp`)
+#### Patient type (/inp & /outp)
 
 Getting the list of inpatients and outpatients involves the following steps:
-1. prefix `/inp` or `/outp` is matched using an instance of `GetCommandParser`
+1. prefix "/inp" or "/outp" is matched using an instance of `GetCommandParser`
 2. the respective `GetInpatientCommand` or `GetOutpatientCommand` instance is created and returned
 3. the model is updated such that the *filtered* list only displays inpatients or outpatients
 
 If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
 how `help`, `list`, `exit` and `clear` are executed.
 
-#### Getting the past appointments of a patient (`/appt`)
+#### Getting the past appointments of a patient (/appt)
 
 Getting the past appointments of a patient involves the following steps:
-1. prefix `/appt` is matched using an instance of `GetCommandParser`
+1. prefix "/appt" is matched using an instance of `GetCommandParser`
 2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specifically the index inputted)
 3. a `GetPastAppointmentCommand` instance containing the index of the patient to be updated is created and returned
 4. the `GetPastAppointmentCommand` is executed, accessing the list of `PastAppointment` of the specified patient
@@ -636,13 +637,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff         | edit patient profiles                                            | update existing patients info                                                               |
 | `* * *`  | nurse                  | retrieve patients by medication                                  | find out a list of patients under each medication                                           |
 | `* * *`  | hospital staff         | remove patients from the database                                | remove redundant entries that are no longer necessary                                       |
+| `* *`    | hospital staff         | view the previous appointments of a patient                      | see patients' medical history                                                               |
 | `* * *`  | hospital staff         | retrieve patients by their appointment date                      | know which patients have scheduled an appointment on a particular day                       |
+| `*`      | hospital staff         | retrieve patient count by medication                             | know which medication is most commonly prescribed                                           |
+| `* *`    | hospital staff         | add appointments to a patient's record                           | keep track of a patient's medical history and backdate records                              |
+| `*`      | doctor                 | store a patient's next appointment date                          | keep track of when the patient is due for their next appointment                            |
 | `* *`    | hospital staff         | have easy access to my patients' info                            | attend to them quickly                                                                      |
 | `* *`    | hospital staff         | edit my patients' info without having to enter the whole command | attend to them quickly                                                                      |
 | `* * *`  | nurse                  | delete my patient's past appointments                            | correct any errors I make                                                                   |
 | `* *`    | doctor                 | document my consultation with a patient easily                   | attend to them quickly and ensure that the system is always updated                         |
 | `* *`    | hospital staff         | view the previous appointments of a patient                      | see patients' medical history                                                               |
-| `* * `   | hospital staff         | naviagate through commands I have previously entered             | avoid typing the same commands repeatedly                                                   |
+| `* * `   | hospital staff         | navigate through commands I have previously entered              | avoid typing the same commands repeatedly                                                   |
 
 ### Use cases
 
@@ -908,7 +913,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Adding a patient
 
@@ -1050,8 +1054,7 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+_
 
 ### Sorting patients by patient type
 
@@ -1081,6 +1084,48 @@ testers are expected to do more *exploratory* testing.
    6. Test case: `get outp/`<br>
       Expected: The current list remains unchanged. Error message is displayed in the result box.
 
+### Sorting patients by hospital wing
+
+1. Displaying all inpatients in a particular hospital wing
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /hw south`<br>
+       Expected: All inpatients in the south wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    3. Test case: `get /hw NORTH`<br>
+       Expected: All inpatients in the north wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    4. Test case: `get /hw east /fn 9`<br>
+       Expected: All inpatients in the east wing are listed. 
+       The number of inpatients listed is displayed in the result box.
+    5. Test case: `get /hw east south`<br>
+       Expected: All inpatients in the east wing and south wing are listed.
+       The number of inpatients listed is displayed in the result box.
+    6. Test case: `get hw`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    7. Test case: `get hw/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+
+### Sorting patients by appointment date
+
+1. Displaying all patients that has an appointment on the query appointment date
+    1. Prerequisites: List all patients using the `list` command. At least one inpatient in the list of people.
+    2. Test case: `get /appton 14-12-1212`<br>
+       Expected: All patients having appointments on 14th December 1212 are listed.
+       The number of patients listed is displayed in the result box.
+    3. Test case: `get /appton 14-12-1212 15-12-2020`<br>
+       Expected: All patients having appointments on 14th December 1212 or 15th December 2020 are listed.
+       The number of patients listed is displayed in the result box.
+    4. Test case: `get /appton 2020-08-08`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    5. Test case: `get /appton 14-12-1212 /hw south`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    6. Test case: `get /appton 14-12-1212 5`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    7. Test case: `get appton`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    8. Test case: `get appton/`<br>
+       Expected: The current list remains unchanged. Error message is displayed in the result box.
+    
 ### Displaying all past appointments of a patient
 
 1. Displaying the past appointment of a patient when all patients have past appointments.

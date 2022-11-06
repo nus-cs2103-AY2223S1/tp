@@ -59,11 +59,17 @@ public class ConsultCommand extends Command {
         }
         Person person = lastShownList.get(index.getZeroBased());
 
-        if (person.getUpcomingAppointment().get().value.equals(LocalDate.now()
-                .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
+        if (isPresentUpcomingAppointment(person)
+                && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
+                        .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
     }
+
+    private boolean isPresentUpcomingAppointment(Person person) {
+        return !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
+    }
+
 }
