@@ -190,9 +190,9 @@ The `Assignment` component,
 * is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
 * has an optional `Deadline` attribute which is a `LocalDateTime` object.
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### Storage component
 
@@ -353,6 +353,8 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
 
 <img src="images/DeleteGroupMemberCommandExecutesSequenceDiagram.png" width="400" />
 
+<div style="page-break-after: always;"></div>
+
 **Design Considerations:**
 
 **Aspect: How a group maintains references to its members:**
@@ -481,6 +483,8 @@ The `AddressBook` model is reflected below:
 exist in the app, that the person is a member of the group, and the person has the specified task under
 the group.
 
+<div style="page-break-after: always;"></div>
+
 For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteTaskCommandExecuteSequenceDiagram.png" width="400" />
@@ -555,6 +559,8 @@ User executes `deletetaskall g/CS2103T task/Task`. Similar to above:
     member.
   - Calls `Model#setPerson()` and `Model#setGroup()` with the respective
     edits to change member and `CS2103T` in the `AddressBook`.
+
+<div style="page-break-after: always;"></div>
 
 The `AddressBook` model is reflected below:
 
@@ -706,6 +712,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 ### UC2: Edit a person’s details
 
@@ -770,6 +777,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC4: List every person
 
