@@ -44,6 +44,8 @@ public class JsonAdaptedAppointment {
 
     /**
      * Converts a given {@code Appointment} into this class for Jackson use.
+     *
+     * @param source Given appointment to be converted.
      */
     public JsonAdaptedAppointment(Appointment source) {
         this.reason = source.getReason();

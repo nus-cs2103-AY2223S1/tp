@@ -146,6 +146,8 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person}
      * in ascending order by name backed by the internal list of
      * {@code versionedAddressBook}
+     *
+     * @return Unmodifiable filtered list of person.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -170,6 +172,8 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Appointment}
      * in ascending order by datetime backed by the internal list of
      * {@code versionedAddressBook}
+     *
+     * @return Unmodifiable filtered list of appointments.
      */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
@@ -186,6 +190,14 @@ public class ModelManager implements Model {
     public void updateAppointmentComparator(Comparator<Appointment> comparator) {
         requireNonNull(comparator);
         addressBook.sortAppointments(comparator);
+    }
+
+    @Override
+    public void updateFilteredLists(Predicate<Person> predicate, Predicate<Appointment> appointmentPredicate) {
+        requireNonNull(predicate);
+        requireNonNull(appointmentPredicate);
+        filteredPersons.setPredicate(predicate);
+        filteredAppointments.setPredicate(appointmentPredicate);
     }
 
     @Override
