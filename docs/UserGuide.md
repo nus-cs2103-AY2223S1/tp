@@ -426,6 +426,8 @@ Here is a summary of the inputs this command accepts:
 Note:
 * `name/<name>` and `address/<address>` are case-insensitive (they ignore capitalisation) and perform partial matching (they match anything that contains them).
 * The order of the conditions does not matter.
+* At least one input must be provided, `find` cannot work with no inputs.
+
 #### Combining inputs to `find`
 
 When multiple inputs are provided to `find`, only people matching all conditions will be shown.
