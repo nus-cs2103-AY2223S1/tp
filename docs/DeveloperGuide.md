@@ -2,8 +2,13 @@
 layout: page
 title: PennyWise Developer Guide
 ---
+PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
+by providing a **graphical analysis of their financial activities**.
+It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
 
 # Table of Contents
+<div id="top">
+</div>
 
 <!-- TOC -->
   * [**Acknowledgements**](#acknowledgements)
@@ -46,6 +51,63 @@ title: PennyWise Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Purpose of Guide
+
+This guide is a comprehensive resource for developing and maintaining PennyWise.
+
+If you are an **experienced developer on PennyWise**, this guide provides a deep-dive into the core [implementation](#implementation) details and design considerations
+of several features of the application, allowing you to quickly familiarise yourself with the inner-workings of most parts of the code
+architecture and design.
+If you are **just getting started**, fret not! The guide gives a quick onboarding on how you can [set up and get started](#setting-up-getting-started).
+Once you have the development environment up and running, head over to the [design](#design) section to get a comprehensive
+overview of the code design of PennyWise.
+
+If you are in the **customer success team**, you may find the section on [requirements](#appendix-requirements) most helpful to
+you on _how_ and _why_ PennyWise came about. It allows you to have a thorough understanding of the [product](#product-scope),
+including the [user stories](#user-stories), [use cases](#use-cases) and [non-functional requirements](#non-functional-requirements).
+
+Whether you are a developer or in the customer success team, you may also find it useful to be aware of the [product requirements](#appendix-requirements)
+to ensure that we are always developing the finest application and solving the right problems for students. The [glossary](#glossary)
+is also helpful if you are unfamiliar with some terms used. Finally, the section on [testing](#appendix-instructions-for-manual-testing)
+provides information related to how you can test the application.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+## How to use this Developer Guide
+These are some icons you may see throughout our developer guide.
+
+### Information Box
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+This provides some additional information that you are recommended to know.
+</div>
+
+### Tip Box
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+This provides some quick and convenient hacks that you might find useful.
+</div>
+
+### Danger Box
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+Danger zone! Do pay attention to the information here carefully.
+</div>
+
+### Formatting
+
+- `Highlights` are used to denote commands or output from the application.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+If you are ready, let's [get started](#setting-up-getting-started)!
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
 * This project is based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) created by the [SE-EDU initiative](https://se-education.org).
@@ -56,15 +118,39 @@ title: PennyWise Developer Guide
   * Font: [Poppins Font from Google Fonts](https://fonts.google.com/specimen/Poppins)
   * Theme: [Dark Color Palette from ColorHunt](https://colorhunt.co/palette/2c3333395b64a5c9cae7f6f2)
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Woohoo! We are excited to help you take your first steps in developing PennyWise.
+Please refer to [_Setting up and getting started_](SettingUp.md) to get up and running!
+
+Once you are done, you may check out the [design](#design) section to have a comprehensive overview of how PennyWise
+is designed.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+In this section, we provide a comprehensive and high-level overview of the code architecture and design of PennyWise,
+allowing you to easily _familiarise_ yourself with navigating the various aspects of the code and to _build upon_
+the existing code base.
+
+In explaining the design approach of the application, there are 6 main aspects:
+* [Architecture](#architecture)
+* [UI component](#ui-component)
+* [Logic component](#logic-component)
+* [Model component](#model-component)
+* [Storage component](#storage-component)
+* [Common classes](#common-classes)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -76,13 +162,13 @@ diagrams.
 
 ### Architecture
 
+The ***Architecture*** provides a high-level design of PennyWise and how the various components work together.
+
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
-
-Given below is a quick overview of main components and how they interact with each other.
-
 **Main components of the architecture**
+
+Here, we provide a quick overview of main components and how they interact with each other.
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/Main.java)
@@ -121,9 +207,16 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
-
+Ready to take your next steps? Read on to find out more about each of the components:
+* [UI component](#ui-component)
+* [Logic component](#logic-component)
+* [Model component](#model-component)
+* [Storage component](#storage-component)
+* [Common classes](#common-classes)
+* 
 ### UI component
+
+The UI component is responsible for handling the interactions on the user-interface.
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/ui/Ui.java)
@@ -148,6 +241,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Entry` object residing in the `Model`.
 
 ### Logic component
+
+The Logic component is the _brain_ of the application and handles how commands from the users are parsed and executed.
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/logic/Logic.java)
 
@@ -186,6 +281,8 @@ How the parsing works:
 
 ### Model component
 
+The Model component is in charge of managing the entities in the application. 
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -203,6 +300,8 @@ The `Model` component,
 
 ### Storage component
 
+The Storage component helps to provide data-storage facilities, allowing data in the application to be stored securely.
+
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
@@ -218,13 +317,18 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the [`seedu.addressbook.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented, as well as the considerations that goes behind the implementations.
+You can also find some of our proposed implementations for challenging features that we will focus on in later iterations.
 
 ### Summarise Entries
 
@@ -505,6 +609,10 @@ Design considerations:
     * Pros: Intuitive, simple and quick for user.
     * Cons: Difficult to extend to other graph types as user might prefer other graph representations.
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -514,6 +622,10 @@ Design considerations:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -710,6 +822,10 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Entry**: An entry refers to either an expenditure or income
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -832,3 +948,7 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>

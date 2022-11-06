@@ -70,7 +70,7 @@ These are some icons you may see throughout our user guide.
 ### Information Box
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-This provides some additional information that users are recommended to know.
+This provides some additional information that you are recommended to know.
 </div>
 
 ### Tip Box

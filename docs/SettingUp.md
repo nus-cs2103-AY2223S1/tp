@@ -3,11 +3,14 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
+# Table of Contents
+
 {:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+Here are the basic steps to get up and running!
 
 ## Setting up the project in your computer
 

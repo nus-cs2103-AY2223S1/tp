@@ -13,15 +13,14 @@ if () then ([inputs are valid))
       stop
     endswitch
 
-    switch ()
-    case ([category graph type is specified])
-      :Display the list of entries;
-      :Display pie chart of the entries\nbased on all categories;
-    case ([month graph type is specified])
-      :Display the list of entries in the month;
-      :Display line chart of amount statistic\nof the entries in the month;
-    endswitch
-else ([end])
+    if () then ([year-month is specified)
+        :Display the list of entries in the year-month;
+        :Display line chart of amount statistic\nof the entries in the year-month;
+    else ([else])
+        :Display the list of entries;
+        :Display pie chart of the entries\nbased on all categories;
+    endif
+else ([else])
     stop
 endif
 
