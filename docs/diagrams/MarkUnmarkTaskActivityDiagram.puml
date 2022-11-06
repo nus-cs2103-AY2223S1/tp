@@ -9,7 +9,9 @@ if () then ([valid index])
     :Replace old Task
     with new Task
     in TaskList;
+    :Display success message;
 else ([invalid index])
+    :Display error message;
 endif
 stop
 @enduml
