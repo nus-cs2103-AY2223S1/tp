@@ -215,7 +215,7 @@ This way of implementation is done for commands that are very similar but have d
 AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br>
 Given below is the Parser classes diagram for the `DeleteCommand`. 
 **`ParserUtil` and `Index` classes are omitted from the diagram to reduce graph complexity.**<br>
-<img src="images/DeleteCommandParserClasses.png" width="1500" />
+<img src="images/DeleteCommandParserClasses.png" width="1500" height="250"/>
 
 </div>
 
@@ -943,24 +943,20 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a buyer
 
 1. Deleting a buyer while all buyers are being shown
 
     1. Prerequisites: List all buyers using the `list buyer` command. Multiple buyers in the list.
 
-    1. Test case: `delete-b 1`<br>
+    2. Test case: `delete-b 1`<br>
        Expected: First buyer is deleted from the list. Details of the deleted contact shown in the message in the result display box.
 
-    1. Test case: `delete-b 0`<br>
+    3. Test case: `delete-b 0`<br>
        Expected: No person is deleted. Error details shown in the message in the result display box.
 
-    1. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -976,3 +972,35 @@ testers are expected to do more *exploratory* testing.
       Expected: Application starts up with no sample data.
 
 ## **Appendix: Effort**
+Our group feels that we have put in **much more effort** than what was required for this project. We faced several difficulties
+in maintaining several entity types. Due to the nature of our product, we had to handle five different entities - `Buyer`,
+`Supplier`, `Deliverer`, `Order` and `Pet`. Each entity also contains several attributes which makes it even more difficult
+to manage. Moreover, we had to account for how these entities and their attributes are displayed to the user in the `MainWindow` of our application.
+This led to a lot of issues with the UI as we had to ensure that the logic of each command and the information displayed to the users
+are coherent. 
+
+Due to the existence of five entities, we also had to extend the commands for each of these entities. For instance, we could no
+longer have just one `AddPersonCommand` but had to extend the add command to be `AddBuyerCommand`, `AddSupplierCommand`,
+`AddDelivererCommand`, `AddOrderCommand` and `AddPetCommand`. The same goes for several other commands such as the `DeleteCommand`,
+`EditCommand`, `ListCommand` etc. On top of the fundamental commands, we have also implemented a few other commands such as the
+`MatchCommand`, `SortCommand` and `FilterCommand` to address the needs of our target user.
+
+Furthermore, since we wanted a smooth user experience for our product, we came up with a `AddCommandWithPopup` feature
+where users can add a `Buyer` and `Supplier` contact along with their respective `Order` and `Pet` using a popup window
+instead of the command box. This is to reduce the user's frustration in handling multiple prefixes when adding these contacts.
+However, to make it appeal more to CLI users, we also implemented shortcut keys in this feature so that users can simply
+use their keyboard to fill in contact details and item details.
+
+The addition of all these classes demanded a lot of refactoring to the code base of AB3. For instance, we had to update
+the `Storage` component to store all of these entities in a json-readable format. Furthermore, we had to design many testcases
+to ensure that our code was working how we wanted it to. All of these refactoring took a lot of time, effort and teamwork to accomplish.
+
+Lastly, we spent a lot of time updating and proofreading the User Guide and Developer Guide to ensure that our users and
+future developers would understand how our product works. There was a lot of changes made to the User Guide and Developer
+Guide due to the addition of many new entities and commands.
+
+Overall, as our team is dedicated to making our product address the needs of our users and improving the user experience
+when using our product, we have spent **a lot of time and effort** on this project. We have built upon the original AB3
+code base by leaps and bounds (as evident by the number of lines of code written by our team ~30 kLoC). We sincerely wish
+that our users would find our product addresses their needs and that future developers would be interested in contributing
+to our product.
