@@ -20,6 +20,9 @@ import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.testutil.TypicalItems;
 import seedu.foodrem.testutil.TypicalTags;
 
+/**
+ * A class to test if an item can be converted into a JSON format.
+ */
 public class JsonAdaptedItemTest {
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
             "The item unit should only contain alphanumeric characters, spaces and the following symbols "
@@ -38,6 +41,7 @@ public class JsonAdaptedItemTest {
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
             "The item remark should only contain alphanumeric characters, spaces and the following symbols "
                     + "[]{}()-+*=.,_'\"^$?@!#%&:;";
+    private static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private static final String INVALID_NAME = "Po|a|oes\\";
     private static final String INVALID_QUANTITY = "1/2";
@@ -89,7 +93,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemName.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -119,7 +123,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemQuantity.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -148,7 +152,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemUnit.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -176,7 +180,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemBoughtDate.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -204,7 +208,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemExpiryDate.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -232,7 +236,7 @@ public class JsonAdaptedItemTest {
                 null,
                 VALID_REMARKS,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemPrice.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -260,7 +264,7 @@ public class JsonAdaptedItemTest {
                 VALID_PRICE,
                 null,
                 VALID_TAG_SET);
-        String expectedMessage = String.format(JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT,
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ItemRemark.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }

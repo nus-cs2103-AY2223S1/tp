@@ -46,6 +46,9 @@ public class ModelManager implements Model {
         filteredTags = new FilteredList<>(this.foodRem.getTagList());
     }
 
+    /**
+     * Initializes a ModelManager with an empty foodRem and defajult userPrefs.
+     */
     public ModelManager() {
         this(new FoodRem(), new UserPrefs());
     }
@@ -83,16 +86,6 @@ public class ModelManager implements Model {
     public void setFoodRemFilePath(Path foodRemFilePath) {
         requireNonNull(foodRemFilePath);
         userPrefs.setFoodRemFilePath(foodRemFilePath);
-    }
-
-    @Override
-    public boolean isItemStorageFull() {
-        return foodRem.isItemStorageFull();
-    }
-
-    @Override
-    public boolean isTagStorageFull() {
-        return foodRem.isTagStorageFull();
     }
 
     //=========== FoodRem ================================================================================

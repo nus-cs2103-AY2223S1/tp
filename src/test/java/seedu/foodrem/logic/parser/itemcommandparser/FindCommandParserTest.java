@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 
+/**
+ * A class to test the FindCommandParser.
+ */
 public class FindCommandParserTest {
     private final FindCommandParser parser = new FindCommandParser();
 

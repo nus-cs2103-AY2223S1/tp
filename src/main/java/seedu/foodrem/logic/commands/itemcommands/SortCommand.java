@@ -26,10 +26,16 @@ import seedu.foodrem.model.item.Item;
 public class SortCommand extends Command {
     private final Comparator<Item> comparator;
 
+    /**
+     * Constructs the SortCommand.
+     */
     public SortCommand(Comparator<Item> comparator) {
         this.comparator = comparator;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
@@ -38,10 +44,18 @@ public class SortCommand extends Command {
                 model.getCurrentList().size()));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return SORT_COMMAND.getUsage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this

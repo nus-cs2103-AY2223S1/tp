@@ -18,6 +18,9 @@ import seedu.foodrem.model.item.exceptions.DuplicateItemException;
 import seedu.foodrem.model.item.exceptions.ItemNotFoundException;
 import seedu.foodrem.testutil.ItemBuilder;
 
+/**
+ * A class to test the UniqueItemList.
+ */
 public class UniqueItemListTest {
     private final UniqueItemList uniqueItemList = new UniqueItemList();
 
