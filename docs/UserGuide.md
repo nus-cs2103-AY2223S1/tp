@@ -29,7 +29,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`listPersons`** : Lists all contacts.
 
-   * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/3/1993` : Adds a contact named `John Doe` to the application.
+   * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/03/1993` : Adds a contact named `John Doe` to the application.
 
    * **`deletePerson`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -54,11 +54,10 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the validity of previous parameter inputs.<br>
-  e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers,
-       only `p/56785678`, will be taken by the command as its parameter input.
-  e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
+  * e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers, only `p/56785678`, will be taken by the command as its parameter input.
+  * e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
        only `d/01/01/2022`, which is a valid parameter input, will be taken by the command as its parameter input.
-  e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
+  * e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
        only `d/A/B/C`, which is an invalid parameter input, is considered.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -101,8 +100,10 @@ Examples:
 :information_source: **Note:** Adding a new person that has the same name as an existing person is not allowed.<br><br>
 
 For example, if the application currently has a person named `Donny`, the input `addPerson n/Donny p/98765432 e/test@test.com a/UTown g/M d/10/10/2022`
-will not run and will output the error message `This person already exists in the address book`.
+will not run and will output the error message `This person already exists in the address book`.<br><br>
+</div>
 
+<div markdown ="span" class="alert alert-info">
 :information_source: **Note:** The year "0000" is an invalid input for all persons and events.<br><br>
 </div>
 
@@ -196,7 +197,8 @@ Adds a new event to the application.
 Format: `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 
 * The compulsory parameters are: event title (`e`), date (`d`), time (`t`) and purpose (`p`).
-* Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
+* Only alphanumeric characters are allowed for event title (`e`).
+* Any character is allowed for purpose (`p`).
 
 Examples:
 * `addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`
@@ -209,6 +211,11 @@ For example, if the application currently has a event with an event title `Car S
 will not run and will output the error message `This event already exists in the address book`.
 </div>
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** To add an event with starting time during 12am, only input `t/00:00` is allowed. Input `t/24:00` will not be allowed.
+</div>
+
+
 
 ### Editing an event : `editEvent`
 
@@ -216,11 +223,12 @@ Edits an existing event in the application.
 
 Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
-- Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
-  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
+* Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer. 
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Only alphanumeric characters are allowed for event title (`e`).
+* Any character is allowed for purpose (`p`).
 
 Examples:
 *  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be
@@ -327,8 +335,8 @@ Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The mailing list is saved as a CSV file at the following location: `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
-  `Name` and `Email`, representing the name and email for every person in the event.
+* The mailing list is saved as a CSV file at the following location: <br><br> `[JAR file location]/data/EVENT_TITLE.csv`. 
+  The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person in the event.
 
 Example:
 * `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event
