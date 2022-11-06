@@ -5,7 +5,8 @@ title: User Guide
 {:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
 ![StudMapLogo](images/studmap/studmap_hd.png){: logo}
 
-# 1. Overview 
+# 1. Overview
+
 StudMap is a lightweight desktop app for managing your students and organizing your teaching assistant (TA)
 responsibilities. It’s optimized for use via a Command Line Interface (CLI), meaning that you give instructions to
 StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
@@ -15,7 +16,7 @@ see. If you type fast, StudMap can get your student management tasks done faster
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 # 2. Why StudMap?
 
@@ -79,15 +80,17 @@ you know how to make the most out of StudMap.
 Thank you for choosing StudMap! This user guide will help you navigate our beloved software.
 
 1. You can head off to [Section 4: Quick Start](#4-quick-start) section for a quick tutorial.
-2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information about each
+2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information
+   about each
    command
    you can give StudMap.
-3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all the
+3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all
+   the
    commands.
 4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#8-glossary) for more information.
-5. If you still have any other questions regarding StudMap and its usage, check out [Section 6: FAQ](#6-frequently-asked-questions)
+5. If you still have any other questions regarding StudMap and its usage, check
+   out [Section 6: FAQ](#6-frequently-asked-questions)
    for answers to some frequently asked questions.
-
 
 ---
 
@@ -191,9 +194,10 @@ This will help you understand the guide better!
 
 ### 5.3.1 Adding a student: `add`
 
-Adds a student to the StudMap.
+#### Adds a student to StudMap.
 
-New student attending your class? Add them into StudMap to start managing their records!
+New student attending your class? Add them into StudMap to start managing their records! This is one of the ways you can
+add a student into StudMap.
 
 **Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
@@ -209,6 +213,9 @@ A student can have any number of tags (including 0)
   and tagged as `PotentialTA`.
 * `add n/Silos Yao t/StrongStudent g/silosyao id/E1234567 m/MA5203` adds student named `Silos Yao` taking `MA5203` with
   student id `E1234567` and tagged as `StrongStudent`.
+
+**See Also:**
+[`Import`](#534-importing-students-from-csv-file-import)
 
 ### 5.3.2 Deleting a student: `delete`
 
@@ -261,7 +268,7 @@ For your convenience, please download the import template here: [template csv](f
 1. Remove the default list of students by typing `clear`
 2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
    ![example CSV](images/exampleCSV.png)
-<br/>
+   <br/>
    *Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)*
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
@@ -530,7 +537,8 @@ be recognised as different labels.
 
 **:information_source: Note 3:** The tagging command is cumulative, that is, new tags are simply added to the student(s)
 and
-do not replace their previous tags. To remove tags from the student(s), see [untag](#549-removing-tag-from-student-untag)
+do not replace their previous tags. To remove tags from the student(s),
+see [untag](#549-removing-tag-from-student-untag)
 below. <br>
 
 </div>
@@ -643,7 +651,8 @@ the data of your previous StudMap home folder.
 
 ### Commands
 
-Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features) section
+Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
+section
 to see what commands are available.
 
 ### Module
