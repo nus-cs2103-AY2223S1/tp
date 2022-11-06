@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -71,11 +69,11 @@
                            </font>
                         </Label>
                         <Region prefHeight="5.0" />
-                        <Hyperlink fx:id="email" VBox.vgrow="SOMETIMES">
-                           <graphic>
-                              <ImageView fx:id="emailImage" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </Hyperlink>
+                        <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                           <font>
+                              <Font name="System Italic" size="11.0" />
+                           </font>
+                        </Label>
                         <Region prefHeight="5.0" />
                      <FlowPane fx:id="tags" minHeight="-Infinity" VBox.vgrow="ALWAYS" />
                    </VBox>

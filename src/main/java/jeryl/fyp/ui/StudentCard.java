@@ -1,19 +1,12 @@
 package jeryl.fyp.ui;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -46,9 +39,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label studentId;
     @FXML
-    private Hyperlink email;
-    @FXML
-    private ImageView emailImage;
+    private Label email;
     @FXML
     private Label projectName;
     @FXML
@@ -57,8 +48,6 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane deadlineList;
-
-    private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/mail.png"));
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -69,16 +58,7 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getStudentName().fullStudentName);
         studentId.setText(student.getStudentId().id);
-        emailImage.setImage(emailThumbnail);
-        email.setOnAction(t -> {
-            try {
-                Desktop.getDesktop().browse(new URI("mailto:" + student.getEmail().value));
-            } catch (IOException ioe) {
-                throw new RuntimeException(ioe);
-            } catch (URISyntaxException urie) {
-                throw new RuntimeException(urie);
-            }
-        });
+        email.setText(student.getEmail().value);
         projectName.setText(student.getProjectName().fullProjectName);
         projectStatus.setText(student.getProjectStatus().projectStatus);
 
