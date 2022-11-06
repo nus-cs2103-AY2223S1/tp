@@ -30,7 +30,7 @@ Given below are my contributions to the project.
   * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features to increase coverage from 46% to 52% (Pull requests [\#205](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/205), [\#38]())
+  * Wrote additional tests for existing features to increase coverage from 59% to 64% (Pull requests [\#205](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/205), [\#219](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/219))
 
 * **Documentation**:
   * User Guide:
