@@ -299,7 +299,7 @@ In the narrow UI layout, the tips can be accessed through a `tipsButton` which h
 
 The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `stageHasTips()` method from the `StageUtil` class that returns a boolean `isXXX` depending on whether the stage of the application has tips.
 
-If the application stage has tips and the button is pressed, the `TipsWindow` UI component of the `InternshipCard` will have its `GridPane` populated with `TipsCard` vertically after retrieving the tips using the `getStageSpecificStips()` method and building the `TipsCard` for each tip. The tips window is then opened.
+If the application stage has tips and the button is pressed, the `TipsWindow` UI component of the `InternshipCard` will have its `GridPane` populated with `TipsCard` vertically after retrieving the tips using the `getStageSpecificTips()` method and building the `TipsCard` for each tip. The tips window is then opened.
 
 If the application stage does not have tips, the tips button will be set to hidden and the `TipsWindow` will not be populated and will be inaccessible.
 
