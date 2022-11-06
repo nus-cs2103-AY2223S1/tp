@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant "lastShownList:List" as List MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+
+[-> EditCommand: execute(model)
+activate EditCommand
+
+EditCommand -> Model: getFilteredPersonList()
+activate Model
+
+Model -> List: get(index.getZeroBased())
+activate List
+
+List -> Person
+activate Person
+
+Person --> List: personToEdit
+deactivate Person
+
+List --> Model: personToEdit
+deactivate List
+
+Model --> EditCommand: personToEdit
+deactivate Model
+
+EditCommand -> Model: createEditedPerson(personToEdit, editPersonDescriptor)
+activate Model
+
+Model -> Person
+activate Person
+
+Person --> Model: editedPerson
+deactivate Person
+
+Model --> EditCommand: editedPerson
+deactivate Model
+
+EditCommand -> Model: setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+[<-- EditCommand: CommandResult
+deactivate EditCommand
+
+
+
+
+
+
+
+
+@enduml

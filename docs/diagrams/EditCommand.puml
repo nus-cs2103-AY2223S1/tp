@@ -12,7 +12,7 @@ class EditPersonDescriptor
 
 Command <|- EditCommand
 Model <|- ModelManager
-EditCommand o-- "1" EditPersonDescriptor
+EditCommand *-- "1" EditPersonDescriptor
 ModelManager <-down- EditCommand
 
 abstract class Model {

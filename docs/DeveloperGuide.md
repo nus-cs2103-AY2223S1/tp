@@ -212,7 +212,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" height="250" />
 
 
 The `Model` component,
@@ -256,17 +256,25 @@ The `edit` feature allows users to edit details of their friends.
 
 #### Implementation
 
-The edit feature is facilitated through the `EditCommand` and `EditCommandParser` classes. In
+The edit feature is facilitated through the `EditCommand` and `EditCommandParser` classes. First, the friend to 
+be edited is identified through the index of the person in the list of friends. Then, in
 the `EditCommand` class, there is a `EditPersonDescriptor` nested class which takes in all
-the updated details of the friend to be edited.
+the updated details of the friend to be edited. For the fields that are not updated, the 
+original fields will be used in the `EditPersonDescriptor` class.
 
 MineFriends will then call the `createEditedPerson` method which will create a new person
-with new details. This will then invoke a call to the `ModelManager` class to set the new person
-in the addressBook.
+with new details. This will then invoke a call to the `ModelManager` class to replace the target person
+with the edited person in the addressBook.
 
 The following class diagram shows the organization of the classes for `edit`.
 
-<img src="images/EditCommand.png" width="250" />
+<img src="images/editCommand.png" width="250" />
+
+The following sequence diagram shows the flow of the execution of the
+edit command. Some details related to the general parsing and execution of 
+commands are omitted as they have been explained under [logic](#logic-component).
+
+<img src="images/EditCommandSequenceDiagram.png" height="280"/>
 
 ### *Suggest a Friend*
 
