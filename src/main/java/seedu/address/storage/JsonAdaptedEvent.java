@@ -20,7 +20,7 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Uid;
 
 /**
- * Jackson-friendly version of Event
+ * Jackson-friendly version of {@link Event}.
  */
 public class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing";
@@ -36,10 +36,6 @@ public class JsonAdaptedEvent {
 
     /**
      * Constructs a JsonAdaptedEvent with the given event details.
-     * @param eventTitle
-     * @param startDate
-     * @param startTime
-     * @param purpose
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("startDate") String startDate,
@@ -55,7 +51,7 @@ public class JsonAdaptedEvent {
     }
 
     /**
-     * Converts a given Event into this class for use by Jackson.
+     * Converts a given {@code Event} into this class for use by Jackson.
      */
     public JsonAdaptedEvent(Event event) {
         this.eventTitle = event.getEventTitle().toString();
@@ -105,7 +101,6 @@ public class JsonAdaptedEvent {
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
-
         if (!Purpose.isValidPurpose(purpose)) {
             throw new IllegalValueException(EventTitle.MESSAGE_CONSTRAINTS);
         }

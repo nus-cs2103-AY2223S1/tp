@@ -19,7 +19,9 @@ public class JsonAdaptedUid {
     public JsonAdaptedUid(String uid) {
         this.uid = uid;
     }
-
+    /**
+     * Converts a given {@code Uid} into this class for Jackson use.
+     */
     public JsonAdaptedUid(Uid source) {
         uid = source.getUid();
     }
@@ -35,6 +37,9 @@ public class JsonAdaptedUid {
      * @throws IllegalValueException if there were any data constraints violated in the adapted uid.
      */
     public Uid toModelType() throws IllegalValueException {
+        if (uid == null || Uid.isValidUid(uid)) {
+            throw new IllegalValueException(Uid.MESSAGE_CONSTRAINTS);
+        }
         return new Uid(uid);
     }
 }
