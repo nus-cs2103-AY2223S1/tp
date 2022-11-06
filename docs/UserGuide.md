@@ -303,6 +303,12 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 
 </div>
 
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
+See [addProduct](#731-adding-a-product-addproduct).
+</div>
+
+
 ### 7.1 Client commands
 
 This subsection covers all client-related commands.
@@ -316,6 +322,8 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
+* `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
 * If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
@@ -323,11 +331,6 @@ Use case:
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
-</div>
-
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
-See [addProduct](#731-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -347,6 +350,7 @@ A valid filter can also be applied to show a selected list of clients.
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`.
+* `PRODUCT` must exists already.
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
@@ -417,6 +421,8 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * Edit the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
 * If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
@@ -449,10 +455,11 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 * `INDEX` refers to the number of the client you are meeting with,
 as shown by executing the [`listClient`](#712-list-clients-listclient) command.
-* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
-1 February 2022.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. For example,
-1234 represents the 12:34PM.
+* `DATE` should be given in the format DDMMYYYY. 
+  * For example, 01022022 represents 1 February 2022.
+*  `DATE` in the past are not acceptable.
+* `START_TIME` and `END_TIME` should be given in 24 Hours HHMM format. 
+  * For example, 1234 represents the 12:34PM.
 
 Use case:
 1. You have just scheduled a meeting with a client! You can use this command to add the details of the meeting into _MyInsuRec_ to help remember the meeting details.
@@ -547,6 +554,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
+* `DATE` in the past are not acceptable.
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 
@@ -640,7 +648,7 @@ Format: `exit`
 
 #### 7.4.3 Clear *MyInsuRec*: `clear`
 
-Clear all data in *MyInsuRec*.
+Clear all data regarding clients, meetings and products from *MyInsuRec*.
 
 Format: `clear`
 

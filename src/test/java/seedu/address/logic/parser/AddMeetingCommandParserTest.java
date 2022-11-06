@@ -114,4 +114,18 @@ public class AddMeetingCommandParserTest {
                 MeetingDate.MESSAGE_CONSTRAINTS);
 
     }
+
+    @Test
+    public void parse_invalidIndex_failure() {
+        // Negative integer given to index
+        String testArgs1 = " i/-1 dn/desc st/1800 et/1900 d/12122099";
+        String expectedMessage1 = ParserUtil.MESSAGE_INVALID_INDEX;
+        assertParseFailure(parser, testArgs1, expectedMessage1);
+
+        // Non-integer given to index
+        String testArgs2 = " i/1.5 dn/desc st/1800 et/1900 d/12122099";
+        String expectedMessage2 = ParserUtil.MESSAGE_INVALID_INDEX;
+        assertParseFailure(parser, testArgs2, expectedMessage2);
+    }
+
 }

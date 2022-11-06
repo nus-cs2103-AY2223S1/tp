@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -96,8 +97,8 @@ public class ClientBuilder {
     /**
      * Sets the {@code Birthday} of the {@code Client} that we are building.
      */
-    public ClientBuilder withBirthday(LocalDate birthday) {
-        this.birthday = Optional.of(new Birthday(birthday));
+    public ClientBuilder withBirthday(String birthday) {
+        this.birthday = Optional.of(new Birthday(LocalDate.parse(birthday, DateTimeFormatter.ofPattern("ddMMyyyy"))));
         return this;
     }
 

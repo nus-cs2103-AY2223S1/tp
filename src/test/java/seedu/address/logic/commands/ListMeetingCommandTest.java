@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalMeetings.getTypicalMyInsuRec;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateKeyword;
@@ -24,14 +23,8 @@ import seedu.address.model.meeting.Meeting;
  */
 public class ListMeetingCommandTest {
 
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
-        expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
-    }
+    private Model model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
+    private Model expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {

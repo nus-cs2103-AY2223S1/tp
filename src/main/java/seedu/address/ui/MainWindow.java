@@ -238,6 +238,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             setListPanel(commandResult.getCommandSpecific());
+            logger.info("Switched view panel to: " + commandResult.getCommandSpecific());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
@@ -96,6 +102,7 @@ public class ClientRebuilder {
      * Removes a {@code Product} to the {@code Set<Product>} of the {@code Client} that we are building.
      */
     public ClientRebuilder removeProduct(Product product) {
+        assert this.products.contains(product);
         this.products.remove(product);
         return this;
     }
@@ -121,6 +128,7 @@ public class ClientRebuilder {
      * Removes a {@code Meeting} to the {@code List<Meeting>} of the {@code Client} that we are building.
      */
     public ClientRebuilder removeMeeting(Meeting meeting) {
+        assert this.meetings.contains(meeting);
         this.meetings.remove(meeting);
         return this;
     }

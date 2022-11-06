@@ -3,10 +3,10 @@
 
 start
 :User inputs command;
-if () then ([else])
-  :Adds the product
-  into the product list;
-else ([Product exists])
+if () then ([Valid Index])
+  :Get the client's details
+  at the specified index;
+else ([else])
   :Throws error;
 endif
 

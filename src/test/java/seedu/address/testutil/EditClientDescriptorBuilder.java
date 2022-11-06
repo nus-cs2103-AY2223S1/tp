@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -77,8 +78,9 @@ public class EditClientDescriptorBuilder {
     /**
      * Sets the {@code Birthday} of the {@code EditClientDescriptor} that we are building.
      */
-    public EditClientDescriptorBuilder withBirthday(LocalDate birthday) {
-        descriptor.setBirthday(Optional.of(new Birthday(birthday)));
+    public EditClientDescriptorBuilder withBirthday(String birthday) {
+        descriptor.setBirthday(Optional.of(
+                new Birthday(LocalDate.parse(birthday, DateTimeFormatter.ofPattern("ddMMyyyy")))));
         return this;
     }
 
