@@ -463,7 +463,7 @@ Edits an existing person in TruthTable.
 | `-p`,`--phone`  | :asterisk: | Phone of person (e.g. 98765432)         |
 | `-t`,`--tags`   | :asterisk: | Tags of person (e.g. Frontend, Backend) |
 
-:asterisk: - at least one of the flags must be specified
+:asterisk: - at least one of the flags for email, name, phone, and tags must be specified
 
 * Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
@@ -716,7 +716,7 @@ Team name must consist only of alphanumeric characters (i.e., **spaces are NOT a
 | `-n`, `--name`        | :asterisk: | Name of team (e.g. "CS2103T")                         |
 | `-d`, `--description` | :asterisk: | Description of team (e.g. "A team to manage CS2103T") | 
 
-:asterisk: - at least one of the flags must be specified
+:asterisk: - at least one of the flags for name and description must be specified
 
 **Command Aliases:**
 - `edit te`
@@ -816,7 +816,7 @@ Edits a specified task in the current team's task list.
 | `-d`, `--deadline` | :asterisk: | Deadline of task (e.g. 2023-02-25 23:59)                     |
 | `-a`, `--assignee` | :asterisk: | Index of members in [members section](#current-team-section) |
 
-:asterisk: - at least one of the flags must be specified
+:asterisk: - at least one of the flags for name, deadline, and assignees must be specified
 
 * Edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
   [team members section](#current-team-section)
@@ -1123,7 +1123,7 @@ Edit an existing link in the currently selected team.
 | `-l`, `--link` | :asterisk: | URL of link (e.g. https://google.com) |
 | `-n`, `--name` | :asterisk: | Name of link (e.g. "Meeting #1")      |
 
-:asterisk: - at least one of the flags must be specified
+:asterisk: - at least one of the flags for link and name must be specified
 
 * `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
 
