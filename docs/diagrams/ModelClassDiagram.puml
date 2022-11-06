@@ -14,10 +14,10 @@ Class UserPrefs
 
 Class UniqueEateryList
 Class Eatery
-Class Address
-Class Email
+Class Location
+Class Cuisine
 Class Name
-Class Phone
+Class Price
 Class Tag
 
 }
@@ -37,13 +37,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 FoodGuide *--> "1" UniqueEateryList
 UniqueEateryList --> "~* all" Eatery
 Eatery *--> Name
-Eatery *--> Phone
+Eatery *--> Price
 Eatery *--> Cuisine
 Eatery *--> Location
 Eatery *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Location
+Name -[hidden]right-> Price
+Price -[hidden]right-> Location
 Location -[hidden]right-> Cuisine
 
 ModelManager -->"~* filtered" Eatery
