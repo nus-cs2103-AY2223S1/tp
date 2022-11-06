@@ -173,10 +173,10 @@ However, our product needs to display tasks in addition to people, as this is a 
 
 Tasks have a lot of information regarding them, such as deadline, priority, description and category. Thus, including them as
 labels within the `PersonCard` would quickly lead to a very messy and disorganized display. Additionally, we intended for each person
-to be able to be assigned to multiple tasks. Thus, this would introduce the probelm of having a dynamic number of labels for each 
+to be able to be assigned to multiple tasks. Thus, this would introduce the probelm of having a dynamic number of labels for each
 `PersonCard`, and potentially make the UI even more messy,
 
-Therefore, it is necessary to have a **separate list panel** for tasks, as well as people. This would allow the information for tasks to be 
+Therefore, it is necessary to have a **separate list panel** for tasks, as well as people. This would allow the information for tasks to be
 cleanly displayed seperate from the information releveant to people
 
 #### 2. Implementation of the new UI
@@ -187,7 +187,7 @@ By having separate list panels, it will be easier to display the tasks and peopl
 
 <img src="images/UiClassDiagramNew.png" />
 
-Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task. 
+Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task.
 The user can navigate between the dispays using a tab at the top of the UI display.
 
 #### 3. Alternatives considered
@@ -544,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new member
 2. HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member 
+4. HackAssist shows list of all members, including new member
 
 Use case ends.
 
@@ -569,7 +569,7 @@ Extensions:
 3. User inputs fields
 4. HackAssist displays confirmation message
 5. HackAssist removes the user's name and email from all the tasks assigned to that user
-6. HackAssist shows list of all members, excluding deleted member, and the updated task list 
+6. HackAssist shows list of all members, excluding deleted member, and the updated task list
 
 Use case ends.
 
@@ -624,7 +624,7 @@ Extensions:
 1. User requests to add a new member
 2. HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member 
+4. HackAssist shows list of all members, including new member
 
 Use case ends.
 
@@ -657,7 +657,7 @@ Extensions:
 3. User inputs fields
 4. HackAssist displays confirmation message
 5. HackAssist removes the task from task list and all members assigned to that task
-6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list 
+6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list
 
 Use case ends.
 
@@ -681,7 +681,7 @@ Extensions:
 2. HackAssist shows current list of tasks
 3. User edits the task to have the email of a current member
 4. User is updated to be assigned to existing task
-5. Task is updated to show the user assigned to it, and that user's email 
+5. Task is updated to show the user assigned to it, and that user's email
 
 Use case ends.
 
@@ -708,7 +708,7 @@ Extensions:
 2. HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
 3. User inputs fields
 4. HackAssist displays confirmation message
-5. HackAssist shows list of all members, with that particular member's fields updated 
+5. HackAssist shows list of all members, with that particular member's fields updated
 
 Use case ends.
 
@@ -740,7 +740,7 @@ Extensions:
 
 1. User requests to filter the tasks by category
 2. User inputs the category
-3. HackAssist shows the filtered task list 
+3. HackAssist shows the filtered task list
 
 Use case ends.
 
@@ -760,7 +760,7 @@ Extensions:
 
 1. User requests to filter the tasks by category
 2. User inputs the category
-3. HackAssist shows the filtered task list 
+3. HackAssist shows the filtered task list
 
 Use case ends.
 
@@ -780,7 +780,7 @@ Extensions:
 
 1. User requests to sort the tasks by priority
 2. User inputs ascending or descending
-3. HackAssist shows the sorted task list 
+3. HackAssist shows the sorted task list
 
 Use case ends.
 
@@ -796,7 +796,7 @@ Extensions:
 
 1. User requests to sort the tasks by deadline
 2. User inputs ascending or descending
-3. HackAssist shows the sorted task list 
+3. HackAssist shows the sorted task list
 
 Use case ends.
 
