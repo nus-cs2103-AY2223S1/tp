@@ -720,8 +720,8 @@ Format: `findcom [k/KEYWORDS]... -all [t/TAGS]... -any [t/TAGS]...`
 
 Examples:
 * <code>findcom k/<em>Tree Painting</em></code> Finds commissions which have the title `Tree Painting`.
-* <code>find -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
-* <code>find -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
+* <code>findcom -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
+* <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
 <div align="right">
 
@@ -850,7 +850,7 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 | Index                          | The index is a customer's, commissions', or iteration's unique identifier. It is simply the number that appears next to the customer's name, the commission's title, or the iteration's description.                                                                                                                                      |
 | Prefix                         | A 'prefix' is simply a single character with a forward slash (eg: "n/", "p/", "d/") that lets ArtBuddy know what the piece of data you've passed into ArtBuddy is. With a prefix attached to each command parameter, ArtBuddy now understands whether a command parameter is a customer's name, or a customer's phone number. Neat right? |
 | File path                      | A string of words that represents where a file in your computer is located. You may refer to [Appendix: What are file paths and root directories?](#what-are-file-paths-and-root-directories) for a more detailed explanation.                                                                                                            |
-| Root directory                 | The mother of all folder in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.                                                                                                                                                                                             |
+| Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.         |
 
 <div align="right">
 
