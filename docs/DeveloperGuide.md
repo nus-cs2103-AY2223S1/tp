@@ -77,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StallListPanel`, `ReviewListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -173,7 +173,7 @@ A `Review` contains the following attributes,
 3. a `Content`, which represent the review of the Stall by the user
 4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
 5. can be assigned to a single `Stall`
-6. can be assigned multiple `Tags`
+6. can be assigned multiple `Tag`s
 
 #### Design considerations:
 
@@ -181,7 +181,7 @@ A `Review` contains the following attributes,
 - **Current Choice**: Attributes within `Review` are immutable, meaning that if there is an attribute that has to be edited, a new `Review` object has to be created.
     * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of a `Review` object are fixed
     * Cons: Less flexible, more steps needed in editing `Review` objects
-- Alternative 1: Allow certain components within `Review`, like `Date` and `Content`to be mutable
+- Alternative 1: Allow certain components within `Review`, like `Date` and `Content` to be mutable
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
 
@@ -189,7 +189,7 @@ A `Review` contains the following attributes,
 
 #### What is Review adding feature about?
 
-The Add Review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
+The add review mechanism is facilitated by `AddressBook`. This feature enhances `AddressBook` by allowing to store not only `Stall`, but also `Review`. This is stored internally as a `UniqueStallList` and `UniqueReviewList`. `Review` requires a `Stall` as `Review` is stored in `Stall`. Additionally, the feature implements the following operations:
 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
@@ -294,7 +294,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is Review deleting feature about?
 
-The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
+The delete review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
 
 For the command, the feature extends `Command`, and is implemented as such:
 * `rdel REVIEW_INDEX`
@@ -323,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is Review editing feature about?
 
-The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
+The edit review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
 
 `REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
 
@@ -367,9 +367,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is sorting Stalls and Reviews feature about?
 
-`ssort`: The Sort Stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
+`ssort`: The sort stalls mechanism is facilitated by `Model` and `StallsComparatorList`. This feature allows the user to sort all stalls by specified criterion. The list of supported sorting criteria is stored in `StallsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Stall>` field that will be passed in as an argument for `Model.sortStalls()` for sorting the stall list.
 
-`rsort`: The Sort Reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+`rsort`: The sort reviews mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion. The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
 
 For the command, the feature extends `Command`, and is implemented as such:
 * `ssort CRITERION`
