@@ -14,6 +14,8 @@ This user guide will help you get started and understand how FABook can **seamle
 * TOC
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -40,6 +42,8 @@ This user guide will help you get started and understand how FABook can **seamle
 7. Refer to the [Command Summary](#command-summary) for a quick summary of all commands.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -649,6 +653,8 @@ If your changes to the data file makes its format invalid, FABook will discard a
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
