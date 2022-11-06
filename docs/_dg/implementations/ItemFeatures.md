@@ -57,10 +57,10 @@ This diagram excludes the instantiation of the objects that represents attribute
 
 ##### Feature Details
 1. The user specifies an item name for the Item to create. Optionally, the user can specify the item quantity, bought date, expiry date, price, and any remarks.
-2. If the item name is not provided, or if a wrong command input is provided, the user will be prompted to enter the command correctly via an error message.
-3. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
-4. If the item storage of FoodRem is full, an error is thrown to inform the user that the maximum item limit is reached, and that no new items can be added.
-5. If step 4 completes without any exceptions, then the new `Item` is successfully created and stored inside the Item.
+1. If the item name is not provided, or if a wrong command input is provided, the user will be prompted to enter the command correctly via an error message.
+1. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+1. If the item storage of FoodRem is full, an error is thrown to inform the user that the maximum item limit is reached, and that no new items can be added.
+1. If step 4 completes without any exceptions, then the new `Item` is successfully created and stored inside the Item.
 
 ##### Feature Considerations
 It should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. This is because allowing Items with the same name will introduce additional complexity for other commands, and also presents confusingly to the user. This is room for improvement, as items ideally can have the same name. For example, the user should ideally have multiple `Potato` items with different bought and expiry dates. 
@@ -81,10 +81,10 @@ This diagram excludes the instantiation of the objects that represents attribute
 
 ##### Feature Details
 1. The user specifies an item index that represents an `Item` to be edited.  
-2. If an invalid index is provided, the user is prompted to enter the command correctly via an error message.
-3. If an invalid command input is provided, the user will be prompted to enter the command correctly via an error message.
-4. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
-5. If step 4 completes without any exceptions, then the new `Item` is successfully edited.
+1. If an invalid index is provided, the user is prompted to enter the command correctly via an error message.
+1. If an invalid command input is provided, the user will be prompted to enter the command correctly via an error message.
+1. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+1. If step 4 completes without any exceptions, then the new `Item` is successfully edited.
 
 ##### Feature Considerations
 Similar to the `new` command, it should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. For example, if an `Item` with the name `Potato` already exists inside the inventory, then you cannot edit an existing `Item` to have the name `Potato`.
@@ -94,8 +94,6 @@ When providing multiple arguments with the same delimiter, the last instance of 
 #### Sorting an Item
 
 ##### Overview
-
-<!-- TODO: ACTIVITY DIAGRAM -->
 
 The `sort` feature sorts the list of items currently displayed to the user by specified flag(s). It is possible to sort by one or more criteria. A list of available criteria for sorting includes:
 
