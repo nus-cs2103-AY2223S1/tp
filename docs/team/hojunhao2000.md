@@ -1,5 +1,6 @@
 ---
-layout: page title: Ho Jun Hao's Project Portfolio Page
+layout: page 
+title: Ho Jun Hao's Project Portfolio Page
 ---
 
 ### Project: ModtRekt
@@ -59,6 +60,9 @@ Given below are my contributions to the project.
       additions, it can help the user better understand our UG and utilize our application.
     * Highlights: Created a parameter constraints summary so that users can see all the constraints at a glance. Added value
       proposition so users will now what they can do and how they can benefit using modtrekt.
+
+* **Minor Enhancement**: Added several JUnit tests.
+    * Tested the execution of `AddModuleCommand`, `RemoveModuleCommand`, `EditModuleCommand`, `EditTaskCommand`
 
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=HoJunHao2000&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
