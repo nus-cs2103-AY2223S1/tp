@@ -36,18 +36,16 @@ Given below are my contributions to the project.
   * Implemented storage for `add` and `delete` commands (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
 
   * Wrote additional tests for `add` and `delete` to increase coverage from 28.88% to 30.86% (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
-  
+
   * Implemented UI for all lesson types under the `view` command (Pull requests [\#100](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/100))
 
 
 * **Documentation**:
 
   * User Guide:
-
     * Added warnings and notes to highlight potential confusions users might have (Pull requests [\#166](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/166))
-    
+  
   * Developer Guide:
-
     * Added implementation details of the `UI` feature and updated diagram (Pull request [\#169](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/169) )
     * Updated MSS for `find`, `add`. (Pull request [\#169](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/169) )
     * Proofread the Developer Guide
