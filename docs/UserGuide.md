@@ -145,7 +145,7 @@ The UI component description:
 
 5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-|     ![Ui](images/Ui.png)      |
+|  ![Ui](images/darktheme.png)  |
 |:-----------------------------:|
 | InterNUS GUI with sample data |
 
