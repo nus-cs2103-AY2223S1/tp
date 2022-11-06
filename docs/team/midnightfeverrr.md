@@ -23,13 +23,13 @@ ModtRekt is optimized for use via a CLI while still having the benefits of a GUI
   * Credits: [Jonathan](https://github.com/jontmy) helped with the future iterations.
 * **Major Enhancement**: Implemented `done module`, `undone module`, and `list module` commands.
   * What it does:
-    * `Done Module`: Allows user to archive a particular module he/she has completed.
-    * `Undone Module`: Allows user to undo an archiving of a particular module he/she has completed.
-    * `List Module`: Allows the user to list the all module/active module in the GUI.
+    * `done module`: Allows user to archive a particular module he/she has completed.
+    * `undone module`: Allows user to undo an archiving of a particular module he/she has completed.
+    * `list module`: Allows the user to list the all module/active module in the GUI.
   * Justification: User can get rid of the module that they are done with, to avoid cluttering. User can also undo their decision.
   * Highlights: This three commands function helps to 'glue' the three components of the app altogether.
-    * In the `Done Module` command, when a module is marked as `done`, it updates a part of GUI which shows the information of the total MCs user has fulfilled.
-    * In the `List Module` command, user can avoid cluttering in the GUI by hiding the module that they have marked as done.
+    * In the `done module` command, when a module is marked as `done`, it updates a part of GUI which shows the information of the total MCs user has fulfilled.
+    * In the `list module` command, user can avoid cluttering in the GUI by hiding the module that they have marked as done.
 * **Minor Enhancement**: Created a Module Credit Calculator and displays it in a part of the GUI.
 * **Minor Enhancement**: Added several JUnit tests in testing the code.
 * **Minor Enhancement**: Did mock-up of the GUI using Figma.
