@@ -26,8 +26,11 @@ public class FilterOrderCommand extends FilterCommand {
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
-    public static final String MESSAGE_INVALID_OS = "Order status has to be either " +
-            "'Pending', 'Negotiating', or 'Delivering'";
+    public static final String MESSAGE_INVALID_OS = "Order status has to be either "
+            + "'Pending', 'Negotiating', or 'Delivering'";
+    public static final String MESSAGE_INVALID_PARAMETER = "The correct format for price range should be"
+            + "lower - upper \n"
+            + "e.g: 20- 200";
 
     private final Predicate<Order> additionalRequestPredicate;
     private final Predicate<Order> orderStatusPredicate;

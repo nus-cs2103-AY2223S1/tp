@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
@@ -223,9 +225,16 @@ public class PredicateParser {
             }
             throw new ParseException(FilterOrderCommand.MESSAGE_INVALID_OS);
         case PRICE_RANGE_PREFIX:
-            String[] prices = input.split("-");
-            Price lowerBound = new Price(Double.parseDouble(prices[0]));
-            Price upperBound = new Price(Double.parseDouble(prices[1]));
+            final Pattern format = Pattern.compile("(?<lower>.\\S+)-(?<upper>.\\S+)");
+            final Matcher matcher = format.matcher(input);
+            if (!matcher.matches()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            }
+            final String lower = matcher.group("lower").strip();
+            final String upper = matcher.group("upper").strip();
+            Price lowerBound = new Price(Double.parseDouble(lower));
+            Price upperBound = new Price(Double.parseDouble(upper));
 
             if (lowerBound.getPrice() > upperBound.getPrice()) {
                 throw new ParseException(
@@ -233,8 +242,6 @@ public class PredicateParser {
             }
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
-            System.out.println(prefix);
-            System.out.println(input);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
