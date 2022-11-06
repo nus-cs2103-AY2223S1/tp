@@ -294,15 +294,15 @@ on which entity is deleted, which retrieves the respective entity list from the 
 list to update it, and have the UI display the updated filtered entity list.
 
 #### Delete Project Command
-Compulsory argument: <valid project id>
+Compulsory argument: VALID_PROJECT_ID
 Example Use: `project -d 1`
 
 #### Delete Issue Command
-Compulsory argument: <valid issue id>
+Compulsory argument: VALID_ISSUE_ID
 Example Use: `issue -d 2`
 
 #### Delete Client Command
-Compulsory argument: <valid client id>
+Compulsory argument: VALID_CLIENT_ID
 Example Use: `client -d 3`
 
 #### The following sequence diagram shows how the delete command operation works for deleting a client entity:
@@ -443,18 +443,17 @@ its entity list in the system, searches for the keywords the fields of the entit
 entities with such fields, and have the UI display the updated filtered entity list.
 
 #### Find Project Command
-Optional prefixes (at least one to be included): n/<valid name>, p/<valid project id>, c/<valid client id>, r/<valid 
-repository>, l/<valid client name>
+Optional prefixes (at least one to be included): n/VALID_PROJECT_NAME, p/VALID_PROJECT_ID, c/VALID_CLIENT_ID, 
+r/VALID_REPOSITORY, l/VALID_CLIENT_NAME
 Example Use: `project -f p/1 n/DevEnable c/2 r/Jeffrey/tp l/Jeffrey`
 
 #### Find Issue Command
-Optional prefixes (at least one to be included): t/<valid title>, s/<valid status>, u/<valid urgency>, n/<valid project 
-name>, p/<valid project id>, i/<valid issue id>
+Optional prefixes (at least one to be included): t/VALID_TITLE, s/VALID_STATUS, u/VALID_URGENCY, 
+n/VALID_PROJECT_NAME, p/VALID_PROJECT_ID, i/VALID_ISSUE_ID
 Example Use: `issue -f t/Documentation s/Incomplete u/LOW n/DevEnable p/1 i/3`
 
 #### Find Client Command
-Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, e/<valid email>, m/<valid 
-client mobile>
+Optional prefixes (at least one to be included): n/VALID_CLIENT_NAME, c/VALID_CLIENT_ID, e/VALID_EMAIL, m/VALID_MOBILE
 Example Use: `client -f n/BenTen c/1 m/12345678 e/Ben10@gmail.com`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
