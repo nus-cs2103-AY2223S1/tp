@@ -26,7 +26,7 @@ import seedu.address.testutil.PersonUtil;
 public class AddPersonCommandTest {
 
     private Model model = new ModelManager();
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new AddPersonCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
@@ -37,6 +37,7 @@ public class AddPersonCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() {
         Person validPerson = new PersonBuilder().build();
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
+        expectedModel.addPerson(validPerson);
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_SUCCESS, validPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }

@@ -20,11 +20,10 @@ import seedu.address.model.team.TeamName;
 import seedu.address.testutil.TeamUtil;
 import seedu.address.testutil.TypicalTeams;
 
-// TODO: Add implementation for tests
 class AddTeamCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new AddTeamCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(TeamName.class, new TeamNameConverter())
@@ -33,6 +32,7 @@ class AddTeamCommandTest {
     @Test
     public void execute_teamAcceptedByModel_addSuccessful() throws Exception {
         Team validTeam = TypicalTeams.FIRST;
+        expectedModel.addTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertTeamToArgs(validTeam));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_ADD_TEAM_SUCCESS, validTeam));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);

@@ -22,7 +22,7 @@ import seedu.address.testutil.LinkUtil;
 class AddLinkCommandTest {
     private Model model = new ModelManager();
 
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new AddLinkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(LinkName.class, new LinkNameConverter())
@@ -30,6 +30,7 @@ class AddLinkCommandTest {
     @Test
     public void execute_linkAcceptedByModel_addSuccessful() {
         Link validLink = new LinkBuilder().build();
+        expectedModel.addLink(validLink);
         commandLine.parseArgs(LinkUtil.convertLinkToArgs(validLink));
         CommandResult expectedResult = new CommandResult(String.format(AddLinkCommand.MESSAGE_SUCCESS, validLink));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);

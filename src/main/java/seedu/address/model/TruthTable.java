@@ -193,9 +193,16 @@ public class TruthTable implements ReadOnlyTruthTable {
 
     @Override
     public boolean equals(Object other) {
+        boolean yo = persons.equals(((TruthTable) other).persons);
+        boolean dog = teams.equals(((TruthTable) other).teams);
+        ObjectProperty what = ((TruthTable) other).currentTeam;
+        boolean cat = currentTeam.equals(((TruthTable) other).currentTeam);
+
         return other == this // short circuit if same object
                 || (other instanceof TruthTable // instanceof handles nulls
-                && persons.equals(((TruthTable) other).persons));
+                && persons.equals(((TruthTable) other).persons))
+                && teams.equals(((TruthTable) other).teams)
+                && currentTeam.get().equals(((TruthTable) other).currentTeam.get());
     }
 
     @Override

@@ -1,11 +1,18 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
+import static seedu.address.testutil.TypicalTasks.TASK_1;
+import static seedu.address.testutil.TypicalTasks.TASK_2;
+import static seedu.address.testutil.TypicalTasks.TASK_3;
+import static seedu.address.testutil.TypicalTasks.TASK_3_NO_DEADLINE;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
@@ -20,6 +27,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
+import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 import seedu.address.testutil.TypicalPersons;
 import seedu.address.testutil.TypicalTasks;
@@ -27,17 +35,24 @@ import seedu.address.testutil.TypicalTasks;
 class EditTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(TaskName.class, new TaskNameConverter());
 
+    @BeforeEach
+    public void setUp() {
+        model.getTeam().addMember(ALICE);
+        expectedModel.getTeam().addMember(ALICE);
+        model.getTeam().addTask(TASK_1);
+        expectedModel.getTeam().addTask(TASK_1);
+    }
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        model.getTeam().addMember(TypicalPersons.ALICE);
-        model.getTeam().addTask(TypicalTasks.TASK_1);
-        Task validTask = TypicalTasks.TASK_3;
+        Task validTask = new TaskBuilder(TASK_3).build();
+        expectedModel.setTask(TASK_1, validTask);
         commandLine.parseArgs(TaskUtil.convertEditTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 validTask));
@@ -46,9 +61,8 @@ class EditTaskCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        model.getTeam().addMember(TypicalPersons.ALICE);
-        model.getTeam().addTask(TypicalTasks.TASK_1);
-        Task validTask = TypicalTasks.TASK_3;
+        Task validTask = TASK_3_NO_DEADLINE;
+        expectedModel.setTask(TASK_1, validTask);
         commandLine.parseArgs(TaskUtil.convertEditPartialTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
                 TypicalTasks.TASK_3_NO_DEADLINE));
@@ -57,23 +71,26 @@ class EditTaskCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        model.getTeam().addMember(TypicalPersons.ALICE);
-        model.getTeam().addTask(TypicalTasks.TASK_2);
-        model.getTeam().addTask(TypicalTasks.TASK_3);
+        model.getTeam().addTask(TASK_2);
+        model.getTeam().addTask(TASK_3);
+        expectedModel.getTeam().addTask(TASK_2);
+        expectedModel.getTeam().addTask(TASK_3);
+
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(List.of("three"));
         model.updateFilteredTaskList(predicate);
         Task validTask = model.getFilteredTaskList().get(0);
-        commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask, 1, 1));
+
+        expectedModel.setTask(TASK_3,validTask);
+
+        commandLine.parseArgs(TaskUtil.convertEditTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                TypicalTasks.TASK_2_EDITED));
+                validTask));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
-        model.getTeam().addMember(TypicalPersons.ALICE);
-        model.getTeam().addTask(TypicalTasks.TASK_1);
-        Task validTask = TypicalTasks.TASK_3;
+        Task validTask = TASK_3;
         commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask, 3, 1));
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
@@ -81,13 +98,12 @@ class EditTaskCommandTest {
 
     @Test
     public void execute_invalidTaskIndexFilteredList_failure() {
-        model.getTeam().addMember(TypicalPersons.ALICE);
-        model.getTeam().addTask(TypicalTasks.TASK_2);
-        model.getTeam().addTask(TypicalTasks.TASK_3);
+        model.getTeam().addTask(TASK_2);
+        model.getTeam().addTask(TASK_3);
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(List.of("three"));
         model.updateFilteredTaskList(predicate);
         Task validTask = model.getFilteredTaskList().get(0);
-        commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask, 3, 1));
+        commandLine.parseArgs(TaskUtil.convertEditPartialNoNameTaskToArgs(validTask, 4, 1));
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
     }

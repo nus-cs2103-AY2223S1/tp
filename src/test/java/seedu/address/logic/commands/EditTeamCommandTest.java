@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
@@ -22,7 +24,7 @@ import seedu.address.testutil.TypicalTeams;
 // TODO: Add implementation for tests
 class EditTeamCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditTeamCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(TeamName.class, new TeamNameConverter())
@@ -31,6 +33,8 @@ class EditTeamCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Team validTeam = TypicalTeams.FIRST;
+        expectedModel.setTeams(Collections.singletonList(validTeam));
+        expectedModel.setTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertEditTeamToArgs(validTeam));
         CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS,
                 validTeam));
@@ -40,6 +44,8 @@ class EditTeamCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Team validTeam = TypicalTeams.DEFAULT_EDITED;
+        expectedModel.setTeams(Collections.singletonList(validTeam));
+        expectedModel.setTeam(validTeam);
         commandLine.parseArgs(TeamUtil.convertEditPartialTeamToArgs(validTeam));
         CommandResult expectedResult = new CommandResult(String.format(EditTeamCommand.MESSAGE_EDIT_TEAM_SUCCESS,
                 validTeam));

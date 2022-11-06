@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTI
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -119,7 +120,7 @@ public class EditTaskCommand extends Command {
         if (arguments.taskName != null) {
             editTaskDescriptor.setName(arguments.taskName);
         }
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getTeam().getFilteredTaskList();
 
         if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -149,6 +150,7 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
 
     }

@@ -35,7 +35,7 @@ public class AddMemberCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new AddMemberCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
@@ -43,6 +43,7 @@ public class AddMemberCommandTest {
     @Test
     public void execute_memberAcceptedByModel_addSuccessful() {
         commandLine.parseArgs(new String[] {"1"});
+        expectedModel.getTeam().addMember(ALICE);
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_ADD_MEMBER_SUCCESS, ALICE));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }

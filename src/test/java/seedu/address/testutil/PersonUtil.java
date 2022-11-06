@@ -87,7 +87,7 @@ public class PersonUtil {
      */
     public static String[] convertEditPersonToArgs(Person person, int personIndex) {
         List<String> argList = new ArrayList<>();
-        argList.add(String.valueOf(2));
+        argList.add(String.valueOf(personIndex));
         argList.add(FLAG_NAME_STR);
         argList.add(person.getName().fullName);
         argList.add(FLAG_PHONE_STR);

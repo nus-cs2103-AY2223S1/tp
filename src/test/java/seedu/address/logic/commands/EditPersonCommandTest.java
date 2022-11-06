@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import java.nio.file.Path;
@@ -17,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
@@ -49,11 +53,10 @@ import seedu.address.testutil.TypicalPersons;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPersonCommand.
  */
-// TODO: Add implementation for tests
 public class EditPersonCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditPersonCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter())
@@ -65,6 +68,7 @@ public class EditPersonCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).build();
+        expectedModel.setPerson(BENSON, validPerson);
         commandLine.parseArgs(PersonUtil.convertEditPersonToArgs(validPerson, 2));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, validPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -72,7 +76,8 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).build();
+        Person validPerson = new PersonBuilder(TypicalPersons.ALLIE).withEmail(BENSON.getEmail().toString()).build();
+        expectedModel.setPerson(BENSON, validPerson);
         commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(validPerson, 2));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, validPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -83,8 +88,9 @@ public class EditPersonCommandTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Carl"));
         model.updateFilteredPersonList(predicate);
         Person validPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(validPerson).withName(VALID_NAME_BOB).build();
-        commandLine.parseArgs(PersonUtil.convertEditPersonPartialToArgs(editedPerson, 1));
+        Person editedPerson = new PersonBuilder(validPerson).withEmail(VALID_EMAIL_BOB).build();
+        expectedModel.setPerson(CARL, editedPerson);
+        commandLine.parseArgs(PersonUtil.convertEditPersonToArgs(editedPerson, 1));
         CommandResult expectedResult = new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }

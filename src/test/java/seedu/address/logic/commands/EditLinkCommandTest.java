@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalLinks.LINK_FACEBOOK;
 import static seedu.address.testutil.TypicalLinks.LINK_GOOGLE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
@@ -29,17 +30,22 @@ class EditLinkCommandTest {
 
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = model;
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditLinkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(LinkName.class, new LinkNameConverter())
             .registerConverter(Url.class, new UrlConverter());
 
+    @BeforeEach
+    public void setUp() {
+        model.getTeam().addLink(LINK_GOOGLE);
+        expectedModel.getTeam().addLink(LINK_GOOGLE);
+    }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Link validLink = new LinkBuilder().build();
-        model.getTeam().addLink(validLink);
+        Link validLink = new LinkBuilder(LINK_FACEBOOK).build();
+        expectedModel.getTeam().setLink(LINK_GOOGLE, LINK_FACEBOOK);
         commandLine.parseArgs(LinkUtil.convertEditLinkToArgs(validLink, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditLinkCommand.MESSAGE_EDIT_LINK_SUCCESS,
                 validLink));
@@ -48,8 +54,8 @@ class EditLinkCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Link validLink = new LinkBuilder().build();
-        model.getTeam().addLink(validLink);
+        Link validLink = new LinkBuilder(LINK_GOOGLE).withName(VALID_NAME_FACEBOOK).build();
+        expectedModel.getTeam().setLink(LINK_GOOGLE, validLink);
         commandLine.parseArgs(LinkUtil.convertEditPartialLinkToArgs(validLink, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditLinkCommand.MESSAGE_EDIT_LINK_SUCCESS,
                 validLink));
@@ -60,7 +66,6 @@ class EditLinkCommandTest {
     public void execute_duplicateLinkUnfilteredList_throwsCommandException() {
         Link googleLink = LINK_GOOGLE;
         Link facebookLink = LINK_FACEBOOK;
-        model.addLink(googleLink);
         model.addLink(facebookLink);
         Link editedGoogleToFacebook = new LinkBuilder(googleLink).withName(VALID_NAME_FACEBOOK).build();
         commandLine.parseArgs(LinkUtil.convertEditLinkToArgs(editedGoogleToFacebook, 1));
@@ -71,7 +76,6 @@ class EditLinkCommandTest {
     @Test
     public void execute_outOfBounds_throwsCommandException() {
         Link validLink = new LinkBuilder().build();
-        model.addLink(validLink);
         commandLine.parseArgs(LinkUtil.convertEditLinkToArgs(validLink, 2));
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
