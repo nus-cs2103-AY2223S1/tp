@@ -1,7 +1,6 @@
 package seedu.workbook.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in WorkBook.
