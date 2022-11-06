@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us on our GitHub portfolios, links provided below.
 
 ## Project team
 
@@ -16,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Neethesh26)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role:
+* Responsibilities:
 
 ### Chen Ruihan
 
@@ -26,7 +27,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rui-han-crh.md)]
 
 * Role: Developer
-* Responsibilities: Features
+* Responsibilities: 
+  * User Interface
+  * Feature (Loans)
+  * English Proofreading
+  * Project Embellishments
 
 ### Ryan Chua
 
@@ -35,8 +40,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/ryanczx)]
 [[portfolio](team/ryanczx.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role:
+* Responsibilities:
 
 ### Chee Zhong Wei
 
@@ -45,8 +50,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/czhongwei)]
 [[portfolio](team/czhongwei.md)]
 
-* Role: Developer
-* Responsibilities: Features
+* Role:
+* Responsibilities:
 
 ### Jiang Pinran
 
@@ -55,5 +60,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Pinran-J)]
 [[portfolio](team/pinran-j.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role:
+* Responsibilities:
