@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks done faster than traditional GUI apps.
+Teacher’s Address Book (TAB) is a **desktop app made for teachers, teaching assistants(TA) and professors for managing contacts of each other, as well as their students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks done faster than traditional GUI apps.
+
+TAs and Professors are now taking on more roles in different modules. As such, TAB allows the creation of multiple addressbooks which can be used to store the contact information of each specific module, which leads to neater organisation of contacts.
 * Table of Contents
 {:toc}
 
@@ -47,6 +49,8 @@ For teachers who are teaching more than one module, please use one TAB for each 
 
 **:information_source: Notes about the command format:**<br>
 
+* All commands are **case sentitive**
+* All tokenizers are **case sentitive**
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -87,9 +91,22 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL pos/POSITION a/ADDRESS t/MODULE-GROUP
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teaching assistant or professor can have more than one tag. A student can only have one tag.
+
+Format of parameters:
+* `NAME`: Alphanumerical
+* `PHONE_NUMBER`: Numerical
+* `Email`: local-part@domain
+  * local-part: Alphanumerical and the following special characters, excluding the parentheses, (+_.-)
+  * domain: The domain name must:
+    * end with a domain label at least 2 characters long
+    * have each domain label start and end with alphanumeric characters
+    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+* `Position`: `Student`, `TA`, or `Professor` (case-insensitive)
+* `Address`: Any value, but cannot be blank
+* `Tags`: {Alphanumeric Module}-{Alphanumeric Tutorial group}
 </div>
 
-Adds a new contact with the provided details. Required fields include name, phone number, email, and position. Tags representing the module and tutorial group a person is associated with are optional and must be in the format of module-tutorial group.
+Adds a new contact with the provided details. Required fields include name, phone number, address, email, position, and tag. Tags represent the module and tutorial group a person is associated with and must be in the format of module-tutorial group.
 
 Examples:
 * `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
@@ -105,11 +122,36 @@ Format: `list`
 
 Shows the detailed information of a person.
 
+General displayed information are:
+* Name
+* Position
+* Phone
+* Email
+* Tags
+* Address
+* Remarks
+
+There are also additional information unique to each role
+
+Professors:
+* Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
+
+TA:
+* Availability: `Available` or `Unavailable` 
+
+Student
+* Attendance: represented as a fraction _e.g. 9/10_
+* Grade: represented as a fraction. This grade is the overall grade calculated from the list of already graded Assignments.
+* Graph containing each Assignment and their scores(only if their grae has been updated)
 Format: `show INDEX`
 
 * Shows the detailed information of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you cannot see all the added assignments in the graph, simply enlarge your tab!
+</div>
 
 Examples:
 * `show 3` shows the detailed information of the 3rd person in TAB.
@@ -170,10 +212,10 @@ Adds assignments to all students in the TAB.
 Format: `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`
 
 * The assignments are added to all students in the TAB. Students that are added to the TAB afterwards will automatically be instantiated with the assignments.
-* The weightage of the assignments must add up to 100%. The command will fail otherwise.
+* The weightage of the assignments must be integers that add up to 100%. The command will fail otherwise.
 * At most 10 assignments can be added.
 
-Examples: 
+Examples:
 * `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40` adds Assignment 1: 15% weightage, Assignment 2: 15% weightage, Midterms: 30% weightage, and Finals: 40% weightage to all students in the TAB.
 * `assignments assignments/ Assignment 1 w/20 Finals w/15` will fail as the weightage does not add up to 100%.
 
@@ -183,7 +225,9 @@ Edits a student's grade of an assignment of in TAB.
 
 Format: `grade INDEX assignment/INDEX grade/GRADE`
 
-Edits the grade of an assignment of the person (whose position must be student) at the specified `INDEX`. The first index refers to the index number shown in the displayed person list. The second index refers to the index of the assignment to be edited as shown in the assignment list of the specified student. The indices **must be positive integers** 1, 2, 3, …​
+Edits the grade of an assignment of the person (whose position must be student) at the specified `INDEX`. The first index refers to the index number shown in the displayed person list. The second index refers to the index of the assignment to be edited as shown in the assignment list of the specified student. Grade must follow the format [integer]/[integer]
+
+The indices **must be positive integers** 1, 2, 3, …​
 * The grade shown on the detail page of a student represent the overall grade that the student has achieved, calculated based on the grade and weightage of each assignment.
 
 Examples:
@@ -193,6 +237,7 @@ Examples:
 ### Editing the availability of a TA : `avail`
 
 Edits the availability of an existing TA in TAB.
+Availabilities are case-insensitive.
 
 Format: `avail INDEX avail/AVAILABILITY`
 
@@ -208,7 +253,8 @@ Edits the roles of an existing professor in TAB.
 Format: `roles INDEX roles/ROLE1, ROLE2,...`
 
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-*  Multiple roles may be added and must be separated by a comma.
+Roles are case-insensitive 
+* Multiple roles may be added and must be separated by a comma.
 
 Examples:
 *  `roles 1 roles/Coordinator, Lecturer, Advisor` edits the roles of the 1st person to be `Coordinator, Lecturer, Advisor`.
@@ -265,18 +311,6 @@ Clears all entries from the TAB.
 
 Format: `clear`
 
-### Saving the data
-
-TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
-</div>
-
 ### Creating new TAB : `new`
 
 Creates a new TAB and automatically swaps to the newly created data file.
@@ -309,6 +343,17 @@ Renames the current data file as the `NEW_NAME`
 Example:
 * `rename {CS2103T}` renames the current data file as `CS2103T.json`
 
+### Saving the data
+
+TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -331,6 +376,58 @@ This can also be done by clicking File - Exit.
 **A**: The new TAB's name appears at the bottom left corner.
 
 ![FAQ_Identify_New_Book](images/FAQ_Identify_New_Book.png)
+
+**Q**: How do I properly delete a TAB once I created it?<br>
+**A**: To delete a created TAB here are the steps to follow:<br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If there is only one TAB, do not follow the steps below! Use the `clear` command instead!
+</div>
+
+- Step 1:
+    - From the `data` directory, delete the `.json` file you like to remove
+- Step 2:
+    - From the `preferences.json`, delete the **same** `.json` file from the `allAddressBookFilePath` parameter.
+
+**Case By Case Basis:**
+- Step 3: (**Only if** `"addressBookFilePath"` has the same name as the TAB you want to delete)
+    - If the `.json` file is also `addressBookFilePath`, swap it for the first TAB under `allAddressBookFilePath`
+      and set `addressBookIndex` to 0
+
+<div markdown="span" class="alert alert-success">:information_source: **Example:**<br>
+
+Here I would like to delete a TAB named `addressbook`<br>
+
+Step 1:<br>
+Go into `data` folder and delete `addressbook.json`<br>
+&emsp; Before:<br>
+&emsp;![delete_step_1a.png](images/delete_step_1a.png)<br><br>
+&emsp;After:<br>
+&emsp;![delete_step_1b.png](images/delete_step_1b.png)<br><br>
+
+Step 2:<br>
+- Open `preferences.json`<br>
+- Remove `, "data\\addressbook.json"` from `"allAddressBookFilePath"`<br>
+  &emsp;Before:
+  &emsp;![delete_step_2a.png](images/delete_step_2a.png)<br><br>
+  &emsp;After:
+  &emsp;![delete_step_2b.png](images/delete_step_2b.png)<br>
+  **Save the file and you are done!**<br><br>
+
+**Case By Case Basis:**<br>
+Step 3: (if `"addressBookFilePath"` has the same name as the TAB you want to delete):<br>
+- Remove both `addressbook.json`<br>
+  &emsp;Before:
+  &emsp;![delete_step_3a.png](images/delete_step_3a.png)<br><br>
+  &emsp;After:
+  &emsp;![delete_step_3b.png](images/delete_step_3b.png)<br><br>
+- Copy the first TAB name from `"allAddressBookFilePath"`, paste into `"addressBookFilePath"` and change `"addressBookIndex"` to 0.<br>
+  &emsp;It should look something like this. (Note the changes in green)
+  &emsp;![delete_step_3c.png](images/delete_step_3c.png)<br><br>
+  **Save the file and you are done!**<br>
+
+</div>
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
