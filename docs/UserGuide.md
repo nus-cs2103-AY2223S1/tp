@@ -447,6 +447,8 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
 * Both complete and incomplete tasks are listed.
 
+* Both archived and unarchived tasks are listed.
+
 * Tasks with deadlines that are already past are also listed.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
