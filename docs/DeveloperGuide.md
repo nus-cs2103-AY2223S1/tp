@@ -393,7 +393,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`                  | user    | use CTRL + Z                                                                             | undo a command qucikly                                                 |
 | `*`                  | user    | use CTRL + L                                                                             | clone a new surveyee qucickly                                          |
 | `*`                  | user    | use CTRL + I                                                                             | view an existing surveyee qucickly                                     |
-| _{More to be added}_ |         |                                                                                          |                                                                        |
 
 ### Use cases
 
@@ -534,15 +533,11 @@ Preconditions: User can recall the part of a survey name
 
    Use case ends.
 
-_{More to be added}_
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 3. No backend server required since local storage is used.
-
-_{More to be added}_
 
 ### Glossary
 
@@ -574,8 +569,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -682,8 +675,6 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 
