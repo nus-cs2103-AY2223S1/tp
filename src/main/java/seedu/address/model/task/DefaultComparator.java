@@ -11,6 +11,8 @@ import seedu.address.model.TaskList;
  */
 public class DefaultComparator implements Comparator<Task> {
 
+    private static final String COMPARE_CRITERIA = "in order of most recent task added.";
+
     private TaskList taskList;
 
     /**
@@ -49,6 +51,11 @@ public class DefaultComparator implements Comparator<Task> {
             return this.taskList.equals(otherDefaultComparator.taskList); // state check
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return COMPARE_CRITERIA;
     }
 
 }

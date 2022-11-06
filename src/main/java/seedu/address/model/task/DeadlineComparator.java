@@ -3,9 +3,11 @@ package seedu.address.model.task;
 import java.util.Comparator;
 
 /**
- * Compares two tasks on the basis of the task with an earlier deadline ordered in frnnt of the other task.
+ * Compares two tasks on the basis of the task with an earlier deadline ordered in front of the other task.
  */
 public class DeadlineComparator implements Comparator<Task> {
+
+    private static final String COMPARE_CRITERIA = "in order of task with earliest deadline.";
 
     @Override
     public int compare(Task a, Task b) {
@@ -25,6 +27,11 @@ public class DeadlineComparator implements Comparator<Task> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return COMPARE_CRITERIA;
     }
 
 }

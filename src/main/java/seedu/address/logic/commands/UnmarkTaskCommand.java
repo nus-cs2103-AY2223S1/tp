@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
 /**
- * Marks a task as done.
+ * Unmarks a task as not done.
  */
 public class UnmarkTaskCommand extends Command {
 
