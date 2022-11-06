@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant ":EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant "c:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("t edit d/task 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("t edit 2 d/task 1")
+activate AddressBookParser
+
+create EditTaskCommandParser
+AddressBookParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+
+EditTaskCommandParser --> AddressBookParser
+deactivate EditTaskCommandParser
+
+AddressBookParser -> EditTaskCommandParser : parse("2 d/task 1")
+activate EditTaskCommandParser
+
+create EditTaskDescriptor
+EditTaskCommandParser -> EditTaskDescriptor
+activate EditTaskDescriptor
+
+EditTaskDescriptor --> EditTaskCommandParser
+deactivate EditTaskDescriptor
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser
+deactivate EditTaskCommand
+
+EditTaskCommandParser --> AddressBookParser : c
+deactivate EditTaskCommandParser
+
+EditTaskCommandParser -[hidden]-> AddressBookParser
+destroy EditTaskCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> EditTaskCommand: execute()
+activate EditTaskCommand
+
+ref over EditTaskCommand, Model
+get taskToEdit and create editedTask
+endref
+
+EditTaskCommand -> Model : replaceTask(taskToEdit, editedTask, false)
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : result
+deactivate EditTaskCommand
+
+EditTaskCommand -[hidden]-> LogicManager
+destroy EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+
+@enduml

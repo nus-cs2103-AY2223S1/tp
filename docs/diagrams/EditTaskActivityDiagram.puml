@@ -1,0 +1,35 @@
+@startuml
+start
+:User executes the edit task command;
+switch ()
+case ( [invalid command] )
+  :Display error message
+  regarding invalid command;
+case ( [task is not edited] )
+  :Display error message
+  stating the fields provided
+  are the same as the current
+  values;
+case ( [duplicate task] )
+  :Display error message
+  stating the edited task
+  is the same as another
+  existing task in the task
+  list;
+case ( [module does not exist] )
+  :Display error message
+   stating the module
+   provided does not exist
+   in the module list;
+case ( [else] )
+  :Create a copy of the task
+  at the specified index,
+  with the existing values
+  replaced by any provided
+  values;
+  :Replace the task at the
+  specified index with
+  this task;
+endswitch
+stop
+@enduml

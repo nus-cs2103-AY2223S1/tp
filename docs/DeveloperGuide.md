@@ -2,8 +2,26 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## **Table of Contents**
+* Acknowledgements
+* Setting up
+* Design
+  * Architecture
+  * UI component
+  * Logic component
+  * Model component
+  * Storage component
+  * Common classes
+* Implementation
+* Documentation, logging, testing, configuration, dev-ops
+* Appendix: Requirements
+  * Product scope
+  * User stories
+  * Use cases
+  * Non-Functional Requirements
+  * Glossary
+* Appendix: Instructions for manual testing
+  * 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -228,7 +246,7 @@ The following sequence diagram shows how the filter operation works:
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -250,116 +268,107 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ### Mark Task feature
 
-#### Implementation
+####Command Format
 
-The proposed mark/unmark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
+`t mark INDEX` where `INDEX` is the index (as shown in the displayed task list) of the task to be marked.
+
+####What is the feature
+
+The `t mark` command allows users to indicate a specific task is completed.
+The task specified will be ticked.
+
+####How does the feature work
+
+The proposed mark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
 
 * `MarkCommand#execute()` — Executes the mark command 
 
 This operation is exposed in the `Command` abstract class as `Command#execute()`.
 
-Given below is an example of how the mark mechanism works.
+####UML diagrams
+Given below is an example of the execution of a mark command.
 
-1. The user executes the `mark 1` command. 
-2. The `MarkCommand` calls `Model#getFilteredTaskList()` which returns the filtered list of the tasks.
-3. The `MarkCommand` command calls `List<Task>#get()` which returns the task at index 1 in the filtered list. 
-4. Then, `MarkCommand` command calls `Task#mark()` to create a marked copy of the task.
-5. This marked task has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`. 
-6. Then, `MarkCommand` command calls `Model#replaceTask()` which sets the first task in `Model#tasks` to the marked task.
- 
-The following sequence diagram shows how the mark operation works:
+|  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+| ![MarkTaskReferenceDiagram](images/MarkTaskReferenceDiagram.png) |
+|               Sequence diagrams of MarkTaskCommand               |
 
-![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+This is the sequence of steps taken:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-  
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command has an invalid format or the index is greater than the number of tasks shown, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
-  
-The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+1. The user types the `t mark 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t mark 1`, creating a `MarkCommandParser` object.
+4. The `AddressBookParser` calls `MarkCommandParser#parse()` which parses `1` and creates a `MarkCommand` object with an `Index` object storing the target index `1`.
+5. Then, the `LogicManager`calls `MarkCommand#execute()`.
+6. The `MarkCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`. 
+7. The `MarkCommand` command calls `Task#mark()` to create a marked copy of the `taskToMark`.
+8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
+9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+<div markdown="span" class="alert alert-info">:The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+</div>
   
 The following activity diagram summarizes what happens when a user executes a new mark command:
   
-![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
+| ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png) |
+|:--------------------------------------------------------------:|
+|              Activity diagram of MarkTaskCommand               |
 
-### \[Proposed\] Undo/redo feature
+### Edit Task Command
 
-#### Proposed Implementation
+####Command Format
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+`t edit INDEX [m/MODULE]* [d/DESCRIPTION]*` where `INDEX` is the index of the task to edit, and `MODULE` and `DESCRIPTION` are the module and description to replace the current values of the specified task.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+####What is the feature
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+####How does the feature work
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The proposed edit mechanism is facilitated by `EditTaskCommand`. It extends `Command` with a target index, stored internally as an `Index` and a descriptor containing the new values, stored internally as an `EditTaskDescriptor`. Additionally, it implements the following operation:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+* `EditTaskCommand#execute()` — Executes the edit task command
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+This operation is exposed in the `Command` abstract class as `Command#execute()`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+####UML diagrams
+Given below is an example of the execution of an edit task command.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+|  ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)  |
+|:----------------------------------------------------------------:|
+| ![EditTaskReferenceDiagram](images/EditTaskReferenceDiagram.png) |
+|               Sequence diagrams of EditTaskCommand               |
 
-![UndoRedoState2](images/UndoRedoState2.png)
+This is the sequence of steps taken:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+1. The user types the `t edit 1 d/task 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t edit 1 d/task 1`, creating an `EditTaskCommandParser` object.
+4. The `AddressBookParser` calls `EditTaskCommandParser#parse()` which parses `1 d/task 1` and creates an `EditTaskCommand` object with an `Index` object storing the target index `1` and an `EditTaskDescriptor` object storing the description `task 1` in a `TaskDescription` object.
+5. Then, the `LogicManager`calls `EditTaskCommand#execute()`.
+6. The `EditTaskCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
+7. The `EditTaskCommand` command calls `Task#edit()` with the `EditTaskDescriptor` passed as the argument.
+8. The `Task#edit()` method checks that the module of the `taskToEdit` is not changed, so it creates a copy of the `taskToMark`, still linked to an exam.
+9. This `editedTask` has all fields similar to the original task, except its `TaskDescription` is changed to `Task 1`.
+10. Then, the `EditTaskCommand` calls `Model#replaceTask()` which replaces the `taskToEdit` in the filtered task list in `Model` with the `editedTask`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
 </div>
 
-The following sequence diagram shows how the undo operation works:
+The following activity diagram summarizes what happens when a user executes a new edit task command:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+| ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png) |
+|:--------------------------------------------------------------:|
+|                Activity diagram of EditTaskCommand                |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -452,7 +461,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|-------------|-----------------------------------------------|---------------------------------------------------------|
 | `* * *`  | NUS student | view the list of tasks I need to complete     | start implementing those tasks.                         |
 | `* * *`  | NUS student | create the tasks in the tasklist              | add the list of tasks that need to be completed         |
-| `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
+| `* * *`  | NUS student | indicate a task is completed                  | have a better idea of what I have completed.            |
+| `* *`    | NUS student | indicate a task is not completed              | continue working on the task.                           |
+| `* *`    | NUS student | edit a task                                   | easily change and correct the details of my tasks.      |
 | `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
 | `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
 | `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
@@ -490,20 +501,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: Mark a task as complete**
+**Use case: Indicate a task is completed**
 
 **MSS**
-1. User requests to mark a specific task as complete
-2. MODPRO marks the task
+1. User requests to mark a specific task
+2. MODPRO ticks the specified task
+3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
    Use case ends.
 
 **Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The task specified is already marked 
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
 
-* 1a. The given index is invalid.
+**Use case: Indicate a task is not completed**
 
-    * 1a1. MODPRO shows an error message..
+**MSS**
+1. User requests to unmark a specific task
+2. MODPRO unticks the specified task
+3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The task specified is already unmarked
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
+
+**Use case: Edit a task**
+
+**MSS**
+1. User requests to edit the module or description of a specific task
+2. MODPRO updates the specified task with the new values provided
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. Neither the module nor the description is provided.
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
+* 1d. The given module code is invalid
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends.
+* 1e. The given description is invalid
+    * 1e1. MODPRO shows an error message </br>
+      Use case ends.
+* 1f. The given module does not exist in the module list
+    * 1f1. MODPRO shows an error message </br>
+      Use case ends.
+* 1g. The module and description of the specified task are not changed.
+    * 1g1. MODPRO shows an error message </br>
+      Use case ends.
+* 1h. The edited task is the same as another existing task in the task list
+    * 1h1. MODPRO shows an error message </br>
+      Use case ends. 
+* 2a. The module of the specified task is changed and the specified task is linked to an exam
+    * 2a1. MODPRO unlinks the task from its exam and updates the progress bar for the exam
+    * 2a2. MODPRO updates the progress bar for both the current and previous module of the task</br>
+      Use case ends.
+* 2b. The module of the specified task is changed and the specified task is not linked to any exam
+    * 2b1. MODPRO updates the progress bar for both the current and previous module of the task</br>
       Use case ends.
 
 **Use Case: Tag the priority to complete task**
@@ -623,7 +699,114 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Marking a task
+
+1. Marking a task while all tasks are being shown 
+   * Prerequisites: 
+     * List all tasks using the `t list` command. 
+     * The task list displays multiple tasks. 
+   * Test case: `t mark 1`<br>
+     Expected: 
+     * First task in the list is ticked.
+     * Details of the marked task shown in the feedback message.
+     * Progress bar for the module of the task is updated. 
+   * Test case: `t mark 0`<br>
+     Expected:
+     * No changes made to any tasks, exams or modules.
+     * Error details shown in the feedback message. 
+   * Test case: `t mark INDEX` (where `INDEX` is the index of a task that is already marked)<br>
+     Expected: Similar to the previous test case.
+   * Other invalid mark commands to try: `t mark `, `t mark asd`, `t mark INDEX` (where `INDEX` is larger than the list size)<br>
+     Expected: Similar to the previous test case.
+
+2. Marking a task with only some tasks shown 
+   * Prerequisites:
+     * Filter the tasks using the `t filter` command.
+     * The task list displays multiple tasks. 
+   * Test case: `t mark 1`<br>
+     Expected:
+     * First task in the list is ticked.
+     * Details of the marked task shown in the feedback message.
+     * Progress bar for the module of the task is updated. 
+   * Test case: `t mark INDEX` (where `INDEX` is larger than the size of the displayed list but less than the size of the stored task list)<br>
+     Expected:
+     * No changes made to any tasks, exams or modules.
+     * Error details shown in the feedback message.
+
+3. Marking a task linked to an exam
+    * Prerequisites:
+      * The list contains a task linked to an exam.
+      * The task shows the name of the exam.
+    * Test case: `t mark INDEX` (where `INDEX` is the index of the linked task)<br>
+      Expected:
+      * The task specified is ticked.
+      * Details of the marked task shown in the feedback message.
+      * Progress bars for both the module of the task and the exam it is linked to, are updated.
+
+
+### Editing a task
+
+1. Editing a task while all tasks are being shown
+    * Prerequisites: 
+      * List all tasks using the `t list` command.
+      * The task list displays multiple tasks.
+      * There are no tasks with the description 'task 1'.
+    * Test case: `t edit 1 d/task 1`
+      Expected:
+      * The description of the first task in the list is changed to 'task 1'.
+      * Details of the edited task is shown in the feedback message.
+    * Test case: `t edit 0 d/task 1`<br>
+      Expected:
+      * No changes made to any tasks, exams or modules.
+      * Error details shown in the feedback message.
+    * Other incorrect edit commands to try: `t edit d/task 1`, `t edit 1`, `t edit asd d/task 1`, `t edit INDEX d/task 1` (where `INDEX` is larger than the list size), `t edit 1 d/DESCRIPTION` (where `DESCRIPTION` is the current description of the first task in the list)<br>
+      Expected: Similar to the previous test case.
+
+2. Editing a task with only some tasks shown
+    * Prerequisites:
+      * Filter the tasks using the `t filter` command.
+      * The task list displays multiple tasks but not all the tasks in the stored task list.
+      * There are no tasks in the stored task list with the description 'task 1'.
+    * Test case: `t edit 1 d/task 1`<br>
+      Expected:
+      * The description of the first task in the list is changed to 'task 1'.
+      * Details of the marked task shown in the feedback message.
+    * Test case: `t edit INDEX d/task 1` (where `INDEX` is larger than the size of the displayed list but less than the size of the stored task list)<br>
+      Expected:
+      * No changes made to any tasks, exams or modules.
+      * Error details shown in the feedback message.
+
+3. Editing a task with invalid parameters
+    * Prerequisites:
+        * There are no modules in the stored module list with the module code 'cs2030'.
+        * The task list displays multiple tasks. 
+    * Test cases: `t edit 1 m/cs2030`, `t edit 1 m/c`, `t edit 1 d/ `<br>
+      Expected:
+        * No changes made to any tasks, exams or modules.
+        * Error details shown in the feedback message.
+
+4. Editing a task to be the same as another task
+    * Prerequisites:
+        * There are 2 modules in the stored module list.
+        * The first 2 tasks in the list have the same module.
+    * Test cases: `t edit 1 d/DESCRIPTION` (where DESCRIPTION is the description of the second task)<br>
+      Expected:
+        * No changes made to any tasks, exams or modules.
+        * Error details shown in the feedback message.
+
+5. Editing the module of a task linked to an exam
+    * Prerequisites:
+        * List all tasks using the `t list` command.
+        * There are 2 modules in the stored module list, 1 exam in the exam list and 1 task in the task list.
+        * The module of both the exam and the task is the first module in the module list.
+        * The task is linked to the exam.
+    * Test cases: `t edit 1 m/MODULE` (where `MODULE` is the module code of the second module in the list)<br>
+      Expected:
+        * The module of the task in the list is changed to `MODULE`.
+        * A warning and the details of the edited task are shown in the feedback message.
+        * Progress bars for the 2 modules are updated.
 
 ### Saving data
 
