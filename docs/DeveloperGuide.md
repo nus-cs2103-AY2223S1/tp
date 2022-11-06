@@ -22,7 +22,7 @@ TAS presents the administrative staff with various options such as the ability t
 edit their details easily and find or filter for applicants with ease.
 
 TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
-(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional _GUI_ apps.
 
 #### Who is this Developer Guide for?
 
@@ -112,10 +112,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* defines its _API_ in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding _API_ `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its _API_ in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -127,11 +127,11 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
+The **_API_** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible _GUI_.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -148,7 +148,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
+**_API_** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -160,7 +160,7 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` _API_ call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -183,7 +183,7 @@ How the parsing works:
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
+**_API_** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="650" />
 
@@ -207,12 +207,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
+**_API_** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both TrackAScholar data and user preference data in json format, and read them back into corresponding objects.
+* can save both TrackAScholar data and user preference data in _json_ format, and read them back into corresponding objects.
 * inherits from both `TrackAScholarStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -349,7 +349,7 @@ The following sequence diagram shows how the remove operation works:
 
 ![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The _GUI_ interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
 is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
 
 </div>
@@ -596,7 +596,7 @@ The following activity diagram summarizes what happens when a user executes a un
 NUS administrative staff in the Office of Admissions.
 
 **Value Proposition**: <br>
-Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.
+Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a _GUI_.
 
 [Return to top](#table-of-contents)
 
@@ -784,21 +784,22 @@ be able to view the applicant from the list.
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Product should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
+3. Product should respond within 2 seconds.
 4. Product should not be required to handle the contacting of applicants.
-5. Learning features of the product should be intuitive and easily acquired by new users.
-6. TrackAScholar should respond within 2 seconds.
-7. Storage stored should be easy to be shared and uploaded between different users.
-
-*{More to be added}*
+5. Product should still have data stored up to the last command sent in the event of a system failure.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. Learning features of the product should be intuitive and easily acquired by new users.
+8. Storage stored should be easy to be shared and uploaded between different users.
 
 ### Glossary
 
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
 * **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **API:** Application Programming Interface: Refers to a software intermediary that allows two applications to talk to each other
+* **Json:** JavaScript Object Notation: A lightweight format for storing and transporting data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -817,7 +818,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
