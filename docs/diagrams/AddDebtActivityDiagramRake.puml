@@ -1,0 +1,17 @@
+@startuml
+title: Activity: Generation of debtor list from person indices
+
+start
+repeat
+:Person index matched to person in filtered list;
+if () then ([invalid index])
+    :User informed of invalid index;
+    stop
+else ([valid index])
+:Person-to-edit added to debtor list;
+endif
+repeat while () is ([has more indices])
+->[no more indices];
+stop
+
+@enduml
