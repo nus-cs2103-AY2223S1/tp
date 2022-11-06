@@ -7,8 +7,8 @@
 
 ```note
 These statistics include:
-* **Total cost** of wasted items
-* Top 3 **most commonly** used tags in your inventory
+* **Total cost** of wasted [[ item:items ]]
+* Top 3 **most commonly** used [[ tag:tags ]] in your inventory
 * Top 3 **most costly** items in your inventory
 
 The cost of an item is the price of the item multiplied by the quantity of the item in your inventory.

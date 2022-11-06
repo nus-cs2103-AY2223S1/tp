@@ -40,7 +40,7 @@ help help
 
 **Expected Output:**<br>A new window will open showing the instructions.
 
-If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a URL to this User Guide.
+If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a [[URL:URL]] to this User Guide.
 
 If a `COMMAND_WORD` was specified, additional help for that command will be provided.
 
