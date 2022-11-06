@@ -37,10 +37,10 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 
 [[github](http://github.com/Chustinjeng)]
 
-[[portfolio](team/Chustinjeng.md)]
+[[portfolio](team/chustinjeng.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Functional developer and test cases
 
 ### Shawn Tan
 
