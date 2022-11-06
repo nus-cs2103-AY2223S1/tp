@@ -6,12 +6,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -20,22 +21,35 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <VBox alignment="CENTER">
-        <children>
-          <HBox fx:id="topHeaderContainer" styleClass="commandContainer" alignment="CENTER">
+         <GridPane alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="800.0" styleClass="commandContainer">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints vgrow="ALWAYS" />
+             <RowConstraints vgrow="ALWAYS" />
+             <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+               <RowConstraints vgrow="ALWAYS" />
+           </rowConstraints>
+            <children>
+          <HBox fx:id="topHeaderContainer" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
             <children>
               <Label fx:id="topHeader" text="List of Commands" />
             </children>
             <opaqueInsets>
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </opaqueInsets>
-            <padding>
-              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
           </HBox>
-          <HBox fx:id="addCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="addCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="1">
             <children>
-              <Label fx:id="addCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Add an Internship: ">
+              <Label fx:id="addCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Add an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -43,9 +57,9 @@
               <Label fx:id="addCommand" styleClass="commandText" text="Add" />
             </children>
           </HBox>
-          <HBox fx:id="listCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="listCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="2">
             <children>
-              <Label fx:id="listCommandHeader" styleClass="commandHeader" minWidth="150.0" text="List all Internships: ">
+              <Label fx:id="listCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="List all Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -53,9 +67,9 @@
               <Label fx:id="listCommand" styleClass="commandText" text="list" />
             </children>
           </HBox>
-          <HBox fx:id="findCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="findCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="3">
             <children>
-              <Label fx:id="findCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Filter Internships: ">
+              <Label fx:id="findCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Filter Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -63,9 +77,9 @@
               <Label fx:id="findCommand" styleClass="commandText" text="filter" />
             </children>
           </HBox>
-          <HBox fx:id="editCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="editCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="4">
             <children>
-              <Label fx:id="editCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Edit an Internship: ">
+              <Label fx:id="editCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Edit an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -73,9 +87,9 @@
               <Label fx:id="editCommand" styleClass="commandText" text="Edit" />
             </children>
           </HBox>
-          <HBox fx:id="deleteCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="deleteCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="5">
             <children>
-              <Label fx:id="deleteCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Delete an Internship: ">
+              <Label fx:id="deleteCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Delete an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -83,9 +97,9 @@
               <Label fx:id="deleteCommand" styleClass="commandText" text="Delete" />
             </children>
           </HBox>
-          <HBox fx:id="clearCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="clearCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="6">
             <children>
-              <Label fx:id="clearCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Clear all Internships: ">
+              <Label fx:id="clearCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Clear all Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -93,9 +107,9 @@
               <Label fx:id="clearCommand" styleClass="commandText" text="Clear" />
             </children>
           </HBox>
-          <HBox fx:id="undoCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="undoCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="7">
             <children>
-              <Label fx:id="undoCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Undo a command: ">
+              <Label fx:id="undoCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Undo a command: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -103,9 +117,9 @@
               <Label fx:id="undoCommand" styleClass="commandText" text="undo" />
             </children>
           </HBox>
-          <HBox fx:id="redoCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="redoCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="8">
             <children>
-              <Label fx:id="redoCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Redo a command: ">
+              <Label fx:id="redoCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Redo a command: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -113,9 +127,9 @@
               <Label fx:id="redoCommand" styleClass="commandText" text="redo" />
             </children>
           </HBox>
-          <HBox fx:id="exitCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="exitCommandContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.rowIndex="9">
             <children>
-              <Label fx:id="exitCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Exit application: ">
+              <Label fx:id="exitCommandHeader" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="125.0" styleClass="commandHeader" text="Exit application: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
@@ -123,7 +137,7 @@
               <Label fx:id="exitCommand" styleClass="commandText" text="Exit" />
             </children>
           </HBox>
-          <HBox fx:id="urlMessageContainer" alignment="CENTER">
+          <HBox fx:id="urlMessageContainer" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" GridPane.rowIndex="10">
             <children>
               <Label fx:id="urlMessage" text="URL">
                 <HBox.margin>
@@ -143,8 +157,14 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-        </children>
-      </VBox>
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <padding>
+               <Insets left="15.0" right="15.0" />
+            </padding>
+         </GridPane>
     </Scene>
   </scene>
 </fx:root>

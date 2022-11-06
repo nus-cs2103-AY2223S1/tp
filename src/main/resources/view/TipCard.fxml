@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox id="tipPane" styleClass="tipContainer" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="20.0" HBox.hgrow="NEVER">
+         <children>
+            <Label fx:id="indexLabel" styleClass="indexText" text="index" />
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" minHeight="-Infinity" HBox.hgrow="NEVER">
+         <children>
+            <Label fx:id="tipLabel" alignment="TOP_LEFT" styleClass="tipText" text="tip" wrapText="true" />
+         </children>
+      </HBox>
+   </children>
+</HBox>
