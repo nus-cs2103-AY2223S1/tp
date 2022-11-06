@@ -414,7 +414,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 ### Parameter hint (enhancement)
-The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
+This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
 
 The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
 
