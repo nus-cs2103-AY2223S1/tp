@@ -52,6 +52,7 @@ If this is the first time you are using this user guide, it is highly recommende
     * [Sorting contacts](#sorting-contacts--sort)
     * [Clearing all contacts](#clearing-all-entries--clear)
     * [Exiting the program](#exiting-the-program--exit)
+    * [Automation of information flow (future feature)](#automation-of-information-flow-coming-in-v20)
 - **[How data is stored](#how-data-is-stored)**
     * [Saving contacts and items](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -473,9 +474,9 @@ Examples:
 
 #### Adding a contact with a popup window : `add`
 
-Adds a contact with a pop-up window that has prompt texts for what to input without the need to enter any
+Adds a contact with a popup window that has prompt texts for what to input without the need to enter any
 prefixes. This reduces the need to memorise prefixes.
-Given below is the pop-up window for adding a supplier.
+Given below is the popup window for adding a supplier.
 
 ![pop up window for adding a supplier](images/AddSupplierWithPopup.png)
 
@@ -495,12 +496,12 @@ The followings are two ways to use this command:
 
 | Keyboard shortcut | Associated action                                                                      |
 |:-----------------:|:---------------------------------------------------------------------------------------|
-|      ESCAPE       | Closes the pop-up window **without saving**                                            |
+|      ESCAPE       | Closes the popup window **without saving**                                             |
 |       ENTER       | Goes to the next input text field                                                      |
 |     CTRL + A      | Adds an order/pet to the buyer/supplier                                                |
-|     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
-|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
-<br> <br>
+|     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the popup window                |
+|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the popup window | <br> <br>
+
 Note that some shortcuts are only **effective when a text field is in focus**.
 When no text fields are highlighted (i.e. not in focus), **press TAB once (still no focus, press TAB again and again until the highlight appears)** to focus the cursor to a text field.
 This ensures that you can use all the available shortcuts.
@@ -546,7 +547,7 @@ With this information, you may contact the suppliers who own these pets for furt
 This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
 
 We have designed an algorithm to give each pet in the storage a score. Pets with descriptions that are closer to the requirements specified in the order will be given a higher score.
-Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md).
+Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md). <br>
 
 In the current version of PetCode, the score calculation in the algorithm uses a default set of weightages. In the future, you may be able to define your own
 weightages for different fields, such as price, age, species and so on.
@@ -659,12 +660,12 @@ Examples:
 ### Finding contact(s) using keywords : `find`
 
 Displays **all** contacts which match **one** specific attribute. This command is especially useful when you want to quickly
-find contacts based on a keyword.
+find contacts based on an attribute.
+
+Format: `find PREFIX/ATTRIBUTE`
 
 There are five possible attributes for finding contact(s):
-Address, Email, Location, Name, Phone. Please provide **one** out of the five when using this command.
-
-Format: `find prefix/ATTRIBUTE`
+address, email, location, name, phone. Please provide **one** out of the five when using this command.
 
 #### Attributes and Their Corresponding Prefixes Table
 
@@ -682,6 +683,16 @@ Examples:
 * `find e/blackball@furry.com`
 * `find ph/98986668`
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: Notes: <br>
+
+* Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.
+* This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
+* The above principles also apply to the sub-commands of `find` given below.
+
+</div>
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -689,7 +700,7 @@ Examples:
 
 Displays all buyers who match **one** specific attribute.
 
-Format: `find-b prefix/ATTRIBUTE`
+Format: `find-b PREFIX/ATTRIBUTE`
 
 Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information on prefixes and attributes.
@@ -707,7 +718,7 @@ Examples:
 
 Displays all deliverers who match **one** specific attribute.
 
-Format: `find-d prefix/ATTRIBUTE`
+Format: `find-d PREFIX/ATTRIBUTE`
 
 Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information on prefixes and attributes.
@@ -725,7 +736,7 @@ Examples:
 
 Displays all suppliers who match **one** specific attribute.
 
-Format: `find-s prefix/ATTRIBUTE`
+Format: `find-s PREFIX/ATTRIBUTE`
 
 Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information on prefixes and attributes.
@@ -742,7 +753,7 @@ Examples:
 ### Filtering items by attributes : `filter`
 
 Displays items based on the specified attribute(s). This command is especially useful when you want to coordinate
-sales between a Buyer and Supplier, by filtering out orders that are still "Pending", etc.
+sales between a Buyer and Supplier, by filtering out orders that are still "Pending", or filtering out pets with specific attributes.
 Please provide **at least one** attribute when using this command.
 
 <div markdown="span" class="alert alert-info">
@@ -753,56 +764,72 @@ Please provide **at least one** attribute when using this command.
 
 </div>
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: Notes: <br>
+
+* This command is case-insensitive, meaning `filter-o o_st/Pending` is equivalent to `filter-o o_st/pending`. <br>
+* Having multiple prefixes of the same type is allowed, but only the latest input will be taken.
+  For example, `filter-o o_st/Pending o_st/Delivering` is equivalent to `filter-o o_st/Delivering`. <br>
+* When multiple attributes are given, items that fulfil **all** attributes are filtered out.
+
+</div>
+
 #### Filtering orders : `filter-o`
 
-Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
-requests, Order status, Price range.
+Displays Orders that satisfy the given attribute(s). There are three possible attributes to filter: additional
+requests, order status, and price range.
 
-Format: `filter-o PREFIX/ATTRIBUTE`
+Format: `filter-o PREFIX/ATTRIBUTE [PREFIX/ATTRIBUTE]…​`
 
-| Attribute           | Prefix | Format                       | Example            |
-|---------------------|--------|------------------------------|--------------------|
-| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding  |
-| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating   |
-| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456       |
+| Attribute           | Prefix | Format                             | Example            |
+|---------------------|--------|------------------------------------|--------------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                       | o_ar/free delivery |
+| Order Status        | o_st   | o_st/KEYWORD                       | o_st/Negotiating   |
+| Price Range         | o_pr   | o_pr/SMALLER_NUMBER, LARGER_NUMBER | o_pr/100, 456      |
 
+<div markdown="span" class="alert alert-warning">
 
+:exclamation: **Caution**: Order status can only be one of the following three: `pending`, `negotiating`, `delivering`.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: Filtering based on price range will filter out orders with price ranges that are **subsets** of the price range specified by the user.
+For example, the user input `100, 200` will filter out orders with price ranges `100, 150` and `180, 200`, but not `80, 140` and `175, 230`.
+
+</div>
 
 Examples:
 
-* `filter-o o_st/Pending`
-* `filter-o o_st/Negotiating o_pr/90-900`
-* `filter-o o_ar/good o_st/Delivering o_pr/80-100`
-
-Notes:
-
-* For additional requests, there cannot be spaces (i.e. filter-o o_ar/good for kids).
-* Having multiple prefixes of the same type is allowed. One example of this is:
-`filter-o o_st/Pending o_st/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
+* `filter-o o_st/Pending`, filters out orders with order status set to `Pending`
+* `filter-o o_st/Negotiating o_pr/90, 900`, filters out orders with order status set to`Negotiating` and price ranges that are subsets of `90, 900`
+* `filter-o o_ar/good o_st/Delivering o_pr/80, 100`, filters out orders with additional requests that contain the keyword `good`, order status set to `Delivering` and price ranges that are subsets of `80, 100`.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
 #### Filtering pets : `filter-p`
 
-Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
-Price, Species, Vaccination status.
+Displays Pets that satisfy the given attributes. There are five possible attributes to filter: color, name,
+price, species, vaccination status.
 
-Format: `filter-p PREFIX/ATTRIBUTE`
+Format: `filter-p PREFIX/ATTRIBUTE [PREFIX/ATTRIBUTE]…​`
 
-| Attribute          | Prefix | Format      | Example           |
-|--------------------|--------|-------------|-------------------|
-| Color              | p_c    | p_c/KEYWORD | p_c/pink          |
-| Name               | p_n    | p_n/KEYWORD | p_n/nyanko-sensei |
-| Price              | p_p    | p_p/PRICE   | p_p/209           |
-| Species            | p_s    | p_s/KEYWORD | p_s/ostrich       |
-| Vaccination Status | p_v    | p_v/KEYWORD | p_v/false         |
+| Attribute          | Prefix | Format      | Example        |
+|--------------------|--------|-------------|----------------|
+| Color              | p_c    | p_c/KEYWORD | p_c/pink       |
+| Name               | p_n    | p_n/KEYWORD | p_n/snow white |
+| Price              | p_p    | p_p/NUMBER  | p_p/209        |
+| Species            | p_s    | p_s/KEYWORD | p_s/ostrich    |
+| Vaccination Status | p_v    | p_v/KEYWORD | p_v/false      |
 
 Examples:
 
-* `filter-p p_c/white`
-* `filter-p p_c/black p_v/true`
-* `filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true`
+* `filter-p p_c/white`, filters out pets of white color
+* `filter-p p_c/black p_v/true`, filters out vaccinated pets of black color
+* `filter-p p_c/grey p_n/doraemon p_p/50 p_s/cat p_v/true`, filters out vaccinated cats of grey color named doraemon sold at a price of $50
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -813,15 +840,9 @@ Sorts the specified list based on the default or given attribute(s) as sorting c
 
 Format: `sort KEY [ATTRIBUTE]…​`
 
-<div markdown="span" class="alert alert-info">
-
-:information_source: When no attributes are specified as sorting criteria, the list will be sorted based on the default sorting criteria given below.
-
-</div>
-
 #### KEY and ATTRIBUTE Table
 
-| Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE as Sorting Criteria <br> (acceptable parameters)                                                                                                                                               | Examples                                    |
+| Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE to Sort <br> (acceptable parameters)                                                                                                                                                           | Examples                                    |
 |:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
 |         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort buyer name`, <br> `sort b p n`        |
 |        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort supplier e`, <br> `sort s address`    |
@@ -829,13 +850,19 @@ Format: `sort KEY [ATTRIBUTE]…​`
 |         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`            |          
 |          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`             |
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-info">
 
-:exclamation:**Caution:** This command sorts the specified list in **ascending** order. For example, it will display the buyer with the **lowest** number
-of orders at the **top** of the buyer list and the buyer with the **highest** number of orders at the **bottom** of the buyer list.
+:information_source: When no attributes are specified as sorting criteria, the list will be sorted based on the default sorting criteria given above.
+When multiple attributes are provided, the list will be first sorted based on the first attribute, and then based on the second, and so on. For example, `sort pet price height` sorts the pet list by price first. Pets with the same price are sorted by their height.
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: This command sorts the specified list in **ascending** order. For example, it will display the buyer with the **lowest** number
+of orders at the **top** of the buyer list and the buyer with the **highest** number of orders at the **bottom** of the buyer list.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -860,6 +887,17 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
+### Automation of information flow `[coming in v2.0]`
+
+In future versions of PetCode, some information will be auto-updated. For example, you will be able to upload vaccination proof and pet certificates to PetCode from your local disk.
+`Vaccination status` will be set to `true` once the system detects the vaccination proof file, and `pet certificates` will be set to the titles of the pet certificate documents uploaded.
+You will also be able to transfer orders from buyers to suppliers and then to deliverers. The `order status` will be auto-updated from `Pending` to `Negotiating` to `Delivering` in the process.
+
+This is the reason why you are unable to modify some information, and why some information, although you can enter and store in PetCode, is not displayed in the UI, in the current version.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -924,15 +962,15 @@ These prefixes are for you to indicate different fields when you add a new [buye
 | `l/`      | General Person  | Location (country) of this person | A string of alphanumeric characters. Required.                                                                                                                                                                                                                                                                                     | `l/Singapore`, `USA`, `China`                   |
 | `o/`      | Order           | Order                             | Always followed by `add-o`. Optional, if no orders to add when adding a buyer. Can have multiple.                                                                                                                                                                                                                                  | `o/add-o`                                       |
 | `o_st/`   | Order           | Order status                      | `Pending`, `Negotiating`, or `Delivering`                                                                                                                                                                                                                                                                                          | `o_st/Pending`                                  |
-| `o_p/`    | Order           | Price                             | A non-negative decimal number. Use `-1` to indicate not settled price. Must be within the price range. Required.                                                                                                                                                                                                                   | `o_p/38.6`                                      |
-| `o_pr/`   | Order           | Price range                       | This is for you to use when negotiating with buyer -- the range the price is expected  to fall within. Two non-negative decimal numbers, separated by a comma `,`. The first must not be greater than the second. If you haven't settled down one or two of the bounds, use `-1` to indicate not applicable price bound. Required. | `o_pr/-1, -1`, `o_pr/2.9, -1`, `o_pr/4.3, 19.5` |
+| `o_p/`    | Order           | Settled price                     | A non-negative decimal number. Use `-1` to indicate not settled price. Must be within the price range. Required.                                                                                                                                                                                                                   | `o_p/38.6`                                      |
+| `o_pr/`   | Order           | Acceptable price range            | This is for you to use when negotiating with buyer -- the range the price is expected  to fall within. Two non-negative decimal numbers, separated by a comma `,`. The first must not be greater than the second. If you haven't settled down one or two of the bounds, use `-1` to indicate not applicable price bound. Required. | `o_pr/-1, -1`, `o_pr/2.9, -1`, `o_pr/4.3, 19.5` |
 | `o_d/`    | Order           | Transaction (scheduled) date      | In the format `yyyy-MM-dd`.                                                                                                                                                                                                                                                                                                        | `o_d/2022-10-28`, `o_d/2022-9-2`                |
 | `o_r/`    | Order (Request) | Order request                     | Always followed by `add-r`. The Request group of prefixes describe what kind of pet this order seeks. Required.                                                                                                                                                                                                                    | `o_r/add-r`                                     |
-| `o_a/`    | Order (Request) | Age                               | A non-negative whole number. Required.                                                                                                                                                                                                                                                                                             | `o_a/5`                                         |
-| `o_sp/`   | Order (Request) | Species                           | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `o_sp/Chihuahua`, `o_sp/German shepherd`        |
-| `o_c/`    | Order (Request) | Color                             | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `o_c/red`                                       |
-| `o_cp/`   | Order (Request) | Color pattern                     | A string of alphanumeric and characters and whitespaces. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                        | `o_cp/white stripped`, `o_cp/black dotted`      |
-| `o_ar/`   | Order           | Additional request of the order.  | A string of alphanumeric and characters and whitespaces. Optional. Can have multiple.                                                                                                                                                                                                                                              | `o_ar/free delivery`, `o_ar/arrive in 10 days`  |
+| `o_a/`    | Order (Request) | Requested pet age                 | A non-negative whole number. Required.                                                                                                                                                                                                                                                                                             | `o_a/5`                                         |
+| `o_sp/`   | Order (Request) | Requested pet species             | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `o_sp/Chihuahua`, `o_sp/German shepherd`        |
+| `o_c/`    | Order (Request) | Requested pet color               | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `o_c/red`                                       |
+| `o_cp/`   | Order (Request) | Requested pet color pattern       | A string of alphanumeric and characters and whitespaces. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                        | `o_cp/white stripped`, `o_cp/black dotted`      |
+| `o_ar/`   | Order           | Additional request of the order   | A string of alphanumeric and characters and whitespaces. Optional. Can have multiple.                                                                                                                                                                                                                                              | `o_ar/free delivery`, `o_ar/arrive in 10 days`  |
 | `p/`      | Pet             | Pet                               | Always followed by `add-p`. Optional, if no orders to add when adding a supplier. Can have multiple.                                                                                                                                                                                                                               | `p/add-p`                                       |
 | `p_n/`    | Pet             | Pet name                          | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `p_n/Page`                                      |
 | `p_s/`    | Pet             | Species                           | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                 | `p_s/Chihuahua`, `p_s/German shepherd`          |
@@ -957,18 +995,18 @@ These prefixes are for you to indicate different fields when you add a new [buye
 |:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 |                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`                     | `add-b n/Hongyi p/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore` |
 | **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                        |
+|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check KEY INDEX`                                                                         | `check buyer 1`                                                        |
 |                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                        |
 |             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`   |
-|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                         |
-|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                     | `find n/James Jake`                                                    |
-|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                  |
-|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                  |
-|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                  |
-|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o o_ar/non-allergic o_pr/10-100`                               |
-|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p p_c/white p_s/capybara`                                      |
+|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-KEY INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                    | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                         |
+|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/ATTRIBUTE`                                                                   | `find n/James Jake`                                                    |
+|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/ATTRIBUTE`                                                                 | `find-b n/James Jake`                                                  |
+|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/ATTRIBUTE`                                                                 | `find-d n/James Jake`                                                  |
+|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/ATTRIBUTE`                                                                 | `find-s n/James Jake`                                                  |
+|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/ATTRIBUTE`                                                               | `filter-o o_ar/non-allergic o_pr/10-100`                               |
+|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/ATTRIBUTE`                                                               | `filter-p p_c/white p_s/capybara`                                      |
 |                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                        |
 |               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                        |
-|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                         |
-|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                   | `check buyer 1`                                                        |
+|                    **[Sort](#sorting-contacts--sort)**                    | `sort KEY [ATTRIBUTE]…​`                                                                  | `sort pet price height weight`                                         |
 
 [Go back to [Table of Contents](#table-of-contents)]

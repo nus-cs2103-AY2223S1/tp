@@ -401,7 +401,7 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 to `'a'`, we do a carry to the more significant digit. Repeat this step until there is no more carry or the most
 significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit. As shown below.
 
-![img.png](images/uniqueIdIllustration.png)
+<img src="images/uniqueIdIllustration.png" width="500"/>
 
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and
 concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
@@ -521,7 +521,7 @@ After the pop-up window is created, the user enters information of the `Supplier
 <img src="images/PopupWindowSequenceDiagram2.png"/>
 
 * Step 1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`).
-* Step 2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing.
+* Step 2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input (text fields that start with whitespace are e also treated as empty), the pop-up window will do nothing.
 * Step 3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself.
 * Step 4. The generation of supplier invokes the corresponding static methods in the `ParserUtil` class for each of the supplier's attribute, until all inputs are parsed.
 * Step 5 **(not shown on the graph)**. When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call.
