@@ -29,10 +29,12 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 #### Contributions to Developer Guide
 - Added user stories.
 - Added use cases.
+- Added Find Command's implementation
 
 #### Contributions to team-based tasks
 - [Testing](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/81): Added attributes for internships and test code.
 - [Another example of adding test files](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/87/commits/f02d66f84d1029f6460cebe3fd6778676b394df2)
+- Refactoring attributes of AB3 to match our current product WorkBook
 
 #### Review/mentoring contributions
 - Reviewed a few PRs made by my teammates.
