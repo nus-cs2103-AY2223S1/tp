@@ -35,6 +35,7 @@ public class DeleteTaskCommand extends Command {
      * @param index Index of the task to be deleted
      */
     public DeleteTaskCommand(Index index) {
+        assert index.getOneBased() > 0 : "index should be a positive unsigned integer";
         requireNonNull(index);
         this.index = index;
     }

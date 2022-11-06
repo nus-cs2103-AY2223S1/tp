@@ -42,6 +42,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        assert args != null : "task should not be null";
         final Matcher matcher = TASK_COMMAND_FORMAT.matcher(args.trim());
 
         if (!matcher.matches()) {
