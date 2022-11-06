@@ -296,8 +296,9 @@ regarding the description and deadline of a task.
 * `Task`: The task to be done.
 * `TaskDeadline`: The deadline of the task.
 * `TaskDescription`: The description of the task.
+* `TaskMark`: The completion status of the task.
 
-![img.png](images/TaskListUML.png)
+![img.png](images/TaskStructure.png)
 
 ### Design considerations:
 
@@ -307,6 +308,25 @@ are well-defined.
 there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
+
+## Find Task
+
+### Implementation
+Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask`
+command to match part of the `TaskDescription`.
+
+The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
+![img.png](images/FindTaskDiagram.png)
+
+### Design considerations:
+
+* We chose to find task by their `TaskDescription` as it is more specific and more significant information to for example,
+  the `Deadline`.
+* Users can find their specific task if their keyword matches part of the `TaskDescription`.
+    * Pros: Users can find their tasks more easily, especially if they do not know the exact `TaskDescription` of the `Task`
+      they want to find.
+    * Cons: More tasks will be displayed to the users as there will be more `TaskDescription` that partially matches the keyword.
+
 
 ## Mark and unmark task
 
@@ -420,6 +440,7 @@ Pros: Easier to implement then the current implementation
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
 ## Adding staff feature
+
 ### Implementation
 The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
 to add a  `Staff` to a `Project`, both of which are provided via the `addStaff` command.
@@ -515,16 +536,33 @@ know who to find and how to contact them.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                               | So that I can…​                               |
-|----------|-----------|--------------------------------------------|-----------------------------------------------|
-| `* * *`  | team lead | view the projects I am working on          | view my workload                              |
-| `* * *`  | team lead | add deadline to projects                   | aim to finish before then                     |
-| `* * *`  | team lead | record down project tasks to do            | track my remaining tasks                      |
-| `* * *`  | team lead | delete projects that are done or cancelled | remove unnecessary information                |
-| `* * *`  | team lead | edit project details                       | to update project with the newest information |
-| `* * *`  | team lead | add staff to a project                     | to track who is working on each project       |
-| `* * *`  | new user  | record staff details one at a time         | ensure that I will not make any mistake       |
-
+| Priority | As a …​   | I want to …​                                 | So that I can…​                               |
+|----------|-----------|----------------------------------------------|-----------------------------------------------|
+| `* * *`  | team lead | view the projects I am working on            | view my workload                              |
+| `* * *`  | team lead | add deadline to projects                     | aim to finish before then                     |
+| `* * *`  | team lead | record down tasks to do                      | track my remaining tasks                      |
+| `* * *`  | team lead | delete projects that are done or cancelled   | remove unnecessary information                |
+| `* * *`  | team lead | edit project details                         | to update project with the newest information |
+| `* * *`  | team lead | add staff to a project                       | to track who is working on each project       |
+| `* * *`  | new user  | record staff details one at a time           | ensure that I will not make any mistake       |
+| `* * *`  | team lead | add budget to a project                      | ensure that I will not exceed the budget      |
+| `* * *`  | team lead | access my member department                  | easily know who to contact                    |
+| `* * *`  | team lead | access my member titles                      | keep track of their job scope                 |
+| `* * *`  | team lead | access my member contacts from staff details | easily communicate with them                  |
+| `* * *`  | team lead | keep track of my staff leave status          | know who is currently available               |
+| `* * *`  | team lead | keep track of staff names                    | know the people I am leading                  |
+| `* * *`  | team lead | delete staff members from a project          | track who is working on each project          |
+| `* * *`  | team lead | view the staff of a project                  | easily know who is working on the project     |
+| `* * *`  | team lead | edit the staff detail of a project           | keep up to date on my staff information       |
+| `* * *`  | team lead | delete task from task list                   | know that I have completed them               |
+| `* * *`  | team lead | edit name for a task                         | keep it updated with the latest information   |
+| `* * *`  | team lead | mark task as complete                        | record that I have finished it                |
+| `* * *`  | team lead | mark task as incomplete                      | remind myself to do this task in the future   |
+| `* *`    | team lead | find staff in a project                      | know if he is involved in the project         |
+| `* *`    | team lead | sort projects by deadline                    | know which projects are due                   |
+| `* *`    | team lead | find task by name                            | find out more information about the task      |
+| `* *`    | team lead | sort task by deadline                        | know which task is more urgent                |
+| `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  | 
 
 ## Use cases
 
@@ -655,6 +693,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. HR Pro Max++ shows error.
 
       Use case resume at step 2.
+
+###**Use case: UC07- Find staff in project**
+
+**MSS**
+
+1. User add staff to project(UC02).
+2. User request to view staff details(UC06).
+3. HR Pro Max++ displays staff details.
+4. User request to find a specific staff.
+5. HR Pro Max++ displays staff details.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. The given project is invalid.
+    * 1a1. HR Pro Max++ shows error.
+
+      Use case resume at step 1.
+* 2a. The given project is invalid.
+    * 2a1. HR Pro Max++ shows error.
+
+      Use case resume at step 2.
+* 4a. The given staff does not exist.
+    * 4a1. HR Pro Max++ does not display any staff.
+
+      Use case ends.
 
 
 ## Non-Functional Requirements
