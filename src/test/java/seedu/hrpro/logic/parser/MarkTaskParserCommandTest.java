@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.MarkTaskCommand;
 
+/**
+ * Contains test cases for MarkTaskCommandParser.
+ */
 public class MarkTaskParserCommandTest {
     private MarkTaskCommandParser parser = new MarkTaskCommandParser();
 
