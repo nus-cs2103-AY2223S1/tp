@@ -1,0 +1,59 @@
+@startuml
+box Ui #F97181
+participant ":MainWindow" as MainWindow #9D0012
+end box
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager #3333C4
+participant ":AddressBookParser" as AddressBookParser #3333C4
+participant ":ClientCommandParser" as ClientCommandParser #3333C4
+participant ":FindClientCommand" as FindClientCommand #3333C4
+end box
+
+[-> MainWindow : executeCommand\n(client -f n/Harry)
+activate MainWindow
+
+MainWindow --> LogicManager : execute\n(client -f n/Harry)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n(client -f n/Harry)
+activate AddressBookParser
+
+create ClientCommandParser
+AddressBookParser -> ClientCommandParser
+activate ClientCommandParser
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+AddressBookParser -> ClientCommandParser : parse\n(client -f n/Harry)
+activate ClientCommandParser
+
+create FindClientCommand
+ClientCommandParser -> FindClientCommand
+activate FindClientCommand
+
+FindClientCommand --> ClientCommandParser
+deactivate FindClientCommand
+
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> FindClientCommand : execute\n(model, ui)
+activate FindClientCommand
+
+FindClientCommand --> LogicManager : result
+deactivate FindClientCommand
+
+FindClientCommand -[hidden]-> LogicManager : result
+destroy FindClientCommand
+
+MainWindow <-- LogicManager : result
+deactivate LogicManager
+MainWindow --> MainWindow : swapClientListDisplay()
+
+[<-- MainWindow : result
+deactivate MainWindow
+
+@enduml
