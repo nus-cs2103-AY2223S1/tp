@@ -36,7 +36,7 @@ SoConnect allows you to store all your contact information, so that you no longe
 1. Quickly **add, view, edit and delete** your contact.
 2. **Sort** your displayed contact list by name, email, address, phone number and tag.
 3. **Tag** specific people in your contact list.
-4. **Search** efficiently, just like how Google works.
+4. **Search** efficiently, just like using Google.
 5. What's more, we even let you **customise** how you want your contact list to be shown!
 
 ### 3.2. Todo Management
