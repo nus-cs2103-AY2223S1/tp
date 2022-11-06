@@ -790,7 +790,7 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect retrieve commands in this situation are similar to section 3 above.
 
 5. Data archiving with `FindCommand`
-   1. Prerequisites: Use `FindCommand` with multiple keywords that match multiple applications in CinternS. Multiple applications in the list.
+   1. Prerequisites: Use `FindCommand` with keywords that match multiple applications in CinternS. Multiple applications in the list.
 
    2. Test case: `retrieve 1`<br>
       Situation 1: First application is an archived application.<br>

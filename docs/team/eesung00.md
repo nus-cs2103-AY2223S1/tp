@@ -29,7 +29,10 @@ Given below are my contributions to the project.
     * Managed issues, pull request and milestones on Github.
     * Setup meeting links for team meeting.
 
-* **Documentation**:
+* **Enhancements to existing features**:
+    * Improved the existing parser by enabling it to detect unknown prefixes entered by users [#215](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/215)
+
+* **Documentation**: 
     * User Guide:
         * Added documentation for the features `archive`, `statistics` and `delete`: [#27](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/27/files), [#115](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/115/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb), [#190](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/190).
     * Developer Guide:
