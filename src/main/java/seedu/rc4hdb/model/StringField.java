@@ -28,9 +28,11 @@ public abstract class StringField {
      * @return true if the condition above is satisfied.
      */
     public boolean equalsIgnoreCase(StringField other) {
-        return other == this
-                || (this.isSubOrSuperClass(other)
-                && this.value.equalsIgnoreCase(other.value));
+        if (this == other) {
+            return false;
+        }
+        return this.isSubOrSuperClass(other)
+                && this.value.equalsIgnoreCase(other.value);
     }
 
     /**
@@ -39,7 +41,10 @@ public abstract class StringField {
      * @return true if the condition above is satisfied.
      */
     private boolean isSubOrSuperClass(StringField other) {
-        return other != null && other.getClass().equals(this.getClass());
+        if (other == null) {
+            return false;
+        }
+        return other.getClass().equals(this.getClass());
     }
 
     @Override
