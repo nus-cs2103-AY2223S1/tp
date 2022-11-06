@@ -57,7 +57,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STATUS + "NEW_STATUS] "
             + "[" + PREFIX_SKILLTAG + "OLD_SKILL_TAG-NEW_SKILL_TAG] (if tag type not deleted) \n "
             + "[" + PREFIX_DEGREETAG + "OLD_DEGREE_TAG-NEW_DEGREE_TAG] (if tag type not deleted) "
-            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted)\n "
+            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted) \n "
             + "[<custom_tag_prefix>/OLD_TAG-NEW_TAG] "
             + "[" + PREFIX_NOTE + "NEW_NOTE] "
             + "[" + PREFIX_RATING + "NEW_RATING] "
