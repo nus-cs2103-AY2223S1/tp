@@ -176,7 +176,7 @@ An applicant can have at most 2 majors (including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Application status is **case-insensitive**, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable.
+Application status is **case-insensitive**, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable. This applies to the other features who make use of application status in our guide
 </div>
 
 Examples:

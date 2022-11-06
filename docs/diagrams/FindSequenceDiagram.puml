@@ -16,7 +16,7 @@ participant ":Model" as Model MODEL_COLOR
 'participant "applicant:Applicant" as Applicant MODEL_COLOR
 end box
 
-[-> LogicManager : execute(find n/John)
+[-> LogicManager : execute("find \nn/Sam s/Merit")
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -30,23 +30,19 @@ FindCommandParser --> TrackAScholarParser
 deactivate FindCommandParser
 
 
-TrackAScholarParser -> FindCommandParser : parse(n/John)
+TrackAScholarParser -> FindCommandParser : parse("n/Sam s/Merit")
 activate FindCommandParser
-
-FindCommandParser -> FindCommandParser : hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SCHOLARSHIP, PREFIX_MAJOR)
-activate FindCommandParser
-deactivate FindCommandParser
 
 FindCommandParser -> FindCommandParser : isPrefixPresent()
 activate FindCommandParser
+
+FindCommandParser --> FindCommandParser
 deactivate FindCommandParser
 
-FindCommandParser -> FindCommandParser : getKeywordsList(ArgumentMultimap argumentMultimap,Prefix prefix)
+FindCommandParser -> FindCommandParser : parsePredicates()
 activate FindCommandParser
-deactivate FindCommandParser
 
-FindCommandParser -> FindCommandParser : combinePredicateList(List<Predicate<Applicant>> applicantPredicateList)
-activate FindCommandParser
+FindCommandParser --> FindCommandParser : predicate
 deactivate FindCommandParser
 
 create FindCommand
@@ -57,6 +53,8 @@ FindCommand --> FindCommandParser
 deactivate FindCommand
 FindCommandParser --> TrackAScholarParser
 deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> TrackAScholarParser
 destroy FindCommandParser
 
 deactivate FindCommandParser
@@ -92,4 +90,7 @@ deactivate CommandResult
 
 FindCommand --> LogicManager : result
 deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml

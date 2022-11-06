@@ -2,24 +2,11 @@
 start
 :User enters Find command;
 
-if () then ([hasNoPrefixesPresent])
-    : TrackAScholar displays \nerror message indicating \nno prefix present;
+if () then ([is invalid parameters])
+    :TrackAScholar displays\nerror message indicating\ninvalid user input;
 
-else ([hasAnyPrefixesPresent])
-    :Check for valid prefix;
-    if () then ([prefix is not s/ , n/ or m/ ])
-        :TrackAScholar displays \nerror message indicating \n an Invalid  prefix;
-
-    else ([else])
-        :Set keywordlist;
-         if () then ([keywordlist is empty ])
-                :TrackAScholar displays \nerror message indicating \n invalid command format;
-            else ([else])
-                :Combine predicate list \nbefore calling filter to return \na list of applicant that matched \nthe find criteria;
-                :TrackAScholar updates to \ndisplay new applicant \nthat matched all \nthe above criterias  ;
-        endif
-
-    endif
+else ([Is valid parameters])
+    :TrackAScholar displays\napplicants found\nand the total count;
 
 endif
 stop

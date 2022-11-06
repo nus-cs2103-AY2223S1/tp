@@ -17,7 +17,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "Applicant" as Applicant <<class>> MODEL_COLOR
 end box
 
-[-> LogicManager : execute(sort name)
+[-> LogicManager : execute("sort name")
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -33,7 +33,7 @@ deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SortCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 
-TrackAScholarParser -> SortCommandParser : parse(name)
+TrackAScholarParser -> SortCommandParser : parse("name")
 activate SortCommandParser
 
 SortCommandParser -> SortCommandParser : checkInputSizeAndReverseFlag()

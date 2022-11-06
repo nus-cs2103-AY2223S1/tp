@@ -16,7 +16,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "applicant:Applicant" as Applicant MODEL_COLOR
 end box
 
-[-> LogicManager : execute(add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+[-> LogicManager : execute("add n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending")
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -30,7 +30,7 @@ AddCommandParser --> TrackAScholarParser
 deactivate AddCommandParser
 
 
-TrackAScholarParser -> AddCommandParser : parse(n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+TrackAScholarParser -> AddCommandParser : parse("n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending")
 activate AddCommandParser
 
 

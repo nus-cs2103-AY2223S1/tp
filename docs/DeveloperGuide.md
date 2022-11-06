@@ -234,7 +234,10 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add operation is facilitated by `AddCommand`. It extends `Command` and implements the `Command#execute` operation.
+The add operation is facilitated by `AddCommandParser`. `AddCommandParser` will map the creation of an
+`Applicant` based on the user input to be added to the applicant list in the `Model`.
+
+`AddCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the add operation is handled by TrackAScholar:
 
@@ -273,7 +276,11 @@ The following activity diagram summarizes what happens when a user executes an a
 
 #### Implementation
 
-The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
+The edit operation is facilitated by `EditCommandParser`. `EditComamndParser` will map the creation of an
+`EditApplicantDescriptor` based on the input prefixes. `EditApplicantDescriptor` stores the details to edit the 
+applicant with, where user specified parameters to edit will replace the corresponding details of the current applicant.
+
+`EditCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
 
@@ -282,19 +289,20 @@ Given below is an example usage scenario and how the edit operation is handled b
    the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
 
 2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
-   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`) and creates an `Index`.
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`) and creates an `Index` by calling
+   `ParserUtil#parseIndex()`.
 
 3. `EditCommandParser#parse()` will then call `EditCommandParser#isPrefixPresent()` to check which prefixes are present
    in the user input, to identify which parameter need to be changed.
 
 4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before
-   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
+   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` and `Index` as an argument.
 
 5. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
    `Model#hasApplicant()` is then called to check if the new `Applicant` is a duplicate of any other applicant already stored in TrackAScholar. 
    When the check has concluded and no duplicate was found, `Model#setApplicant()` is called to update the existing applicant with the new applicant.
 
-6. `EditCommand#execute()` then invokes `Model#updateFilteredApplcantList()` to display the updated applicant.
+6. `EditCommand#execute()` then invokes `Model#updateFilteredApplcantList()` to display the updated applicant in the applicant list.
 
 7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the edited applicant.
 
@@ -310,11 +318,15 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Remove applicants by application status feature
+### Remove applicants feature
 
 #### Implementation
 
-The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
+The remove operation is facilitated by `RemoveCommandParser`. `RemoveCommandParser` parses the user input into an
+`ApplicationStatus` to compare with and remove, hence assisting the deletion of applicants from the applicant list
+in the `Model`.
+
+`RemoveCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
 
@@ -350,19 +362,66 @@ The following activity diagram summarizes what happens when a user executes a re
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Find feature
+### Find applicant feature
 
 #### Implementation
 
+The find operation is facilitated by `FindCommandParser`. `FindCommandParser` will map the creation of a
+`Predicate<Applicant>` based on the input prefixes. The following implementations support the creation of
+`Predicate<Applicant>`:
 
+* `NameContainsKeywordsPredicate`: Returns true if an applicant's `Name` partially matches with the inputs provided.
+* `ScholarshipContainsKeywordsPredicate`: Returns true if an applicant's `Scholarship` partially matches with the inputs provided.
+* `MajorContainsKeywordsPredicate`: Returns true if any of the applicant's `Major` partially matches with the inputs provided.
+
+These predicates are combined using the `FindCommandParser#combinePredicateList()` method which chains the predicates using the
+`Predicate#and()` method. `Predicate<Applicant>` then assist the filtering of the applicant list in the `Model` for returning
+the search result.
+
+`FindCommand` extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the find operation is handled by TrackAScholar:
+
+1. The user enters `find n/Sam s/Merit`, for example, to find an applicant.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `find` and
+   the argument `n/Sam s/Merit`.
+
+2. `TrackAScholarParser` identifies the `find` command and `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
+
+3. `FindCommandParser#parse()` will then call `FindCommandParser#parsePredicates()` which invokes `FindCommandParser#isPrefixPresent()`
+   to check which prefixes are present in the user input, hence identify which predicates are to be created.
+
+4. In this example, a `NameContainsKeywordsPredicate` and `ScholarshipContainsKeywordsPredicate` are created which are chained
+   into a `Predicate<Applicant>`. `FindCommandParser#parse()` then initializes and returns a `FindCommand` with the new
+   `Predicate<Applicant>` as an argument.
+
+5. `LogicManager#execute()` now calls `FindCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the
+   applicants who do not match the predicate. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants found.
+
+6. `FindCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found.
+
+The following sequence diagram shows how the find operation works:
+
+![Interactions Inside the Logic Component for the `find` Command example](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![Find command activity diagram](images/FindActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Filter application status feature
+### Filter applicants feature
 
 #### Implementation
 
-The filter operation is facilitated by `FilterCommand`. It extends `Command` and implements the `Command#execute` operation.
+The filter operation is facilitated by `FilterCommandParser`. `FilterCommandParser` parses the user input into an
+`ApplicationStatusPredicate` which assist the filtering of applicant list in the `Model`.
+
+`FilterCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
 
@@ -376,8 +435,8 @@ Given below is an example usage scenario and how the filter operation is handled
 3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
    with the new `ApplicationStatusPredicate` as an argument.
 
-4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
-   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the
+   applicants with the non-matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
    is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
 5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
@@ -394,11 +453,14 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Sort applicants by name, scholarship or status feature.
+### Sort applicants feature.
 
 #### Implementation
 
-The sort operation is facilitated by `SortCommand`. It extends `Command` and implements the `Command#execute` operation.
+The sort operation is facilitated by `SortCommandParser`. `SortCommandParser` will map the creation of a
+`Comparator<Applicant>` based on the user input which assist in the sorting of the applicant list in the `Model`.
+
+`SortCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
 
@@ -440,10 +502,12 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ### Pin applicant feature
 
-
 #### Implementation
 
-The pin operation is facilitated by `PinCommand`. It extends `Command` and implements the `Command#execute` operation.
+The pin operation is facilitated by `PinCommandParser`. `PinCommandParser` parses the user input into an `Index` to
+assist in identifying the applicant to pin from the applicant list in the `Model`.
+
+`PinCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the pin operation is handled by TrackAScholar:
 
@@ -476,7 +540,10 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 #### Implementation
 
-The unpin operation is facilitated by `UnPinCommand`. It extends `Command` and implements the `Command#execute` operation.
+The unpin operation is facilitated by `UnPinCommandParser`. `UnPinCommandParser` parses the user input into an `Name` to
+assist in identifying the applicant to unpin from the applicant list in the `Model`.
+
+`UnPincommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the unpin operation is handled by TrackAScholar:
 
@@ -503,24 +570,6 @@ The following activity diagram summarizes what happens when a user executes a un
 ![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
 [Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Proposed features**
-
-Coming soon in future iterations.
-
-For future iterations we plan to implement 2 new features.
-
-1. Sending of application results directly to email of the applicants.
-This will help applicant be notified of their result more quickly.
-It will also cut down the workload for admin staff.
-In this current iteration we still have to message the client manually.
-
-2. Exporting of Json file into Excel.
-The university admin staff might want to process or analyse the result in a more sophisticated manner.
-Excel is needed to aid in more sophisticated analysis as it has more functions.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -809,4 +858,3 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
-

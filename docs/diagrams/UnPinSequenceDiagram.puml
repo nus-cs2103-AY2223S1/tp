@@ -5,20 +5,19 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
 participant ":UnPinCommandParser" as UnPinCommandParser LOGIC_COLOR
-participant "u:UnPinCommand" as UnPinCommand LOGIC_COLOR
+participant ":UnPinCommand" as UnPinCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "newApplicant:Applicant" as Applicant MODEL_COLOR
-participant "name:Name" as Name MODEL_COLOR
 end box
 
-[-> LogicManager : execute("unpin Alex Yeoh")
+[-> LogicManager : execute("unpin\nAlex Yeoh")
 activate LogicManager
 
-LogicManager -> TrackAScholarParser : parseCommand("unpin Alex Yeoh")
+LogicManager -> TrackAScholarParser : parseCommand(args)
 activate TrackAScholarParser
 
 create UnPinCommandParser
@@ -31,28 +30,20 @@ deactivate UnPinCommandParser
 TrackAScholarParser -> UnPinCommandParser : parse("Alex Yeoh")
 activate UnPinCommandParser
 
-create Name
-UnPinCommandParser -> Name : Name("Alex Yeoh")
-activate Name
-
-Name --> UnPinCommandParser : name
-deactivate Name
-
-
 create UnPinCommand
 UnPinCommandParser -> UnPinCommand : UnPinCommand(name)
 activate UnPinCommand
 
-UnPinCommand --> UnPinCommandParser : u
+UnPinCommand --> UnPinCommandParser
 deactivate UnPinCommand
 
-UnPinCommandParser --> TrackAScholarParser : u
+UnPinCommandParser --> TrackAScholarParser
 deactivate UnPinCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 UnPinCommandParser -[hidden]-> TrackAScholarParser
 destroy UnPinCommandParser
 
-TrackAScholarParser --> LogicManager : u
+TrackAScholarParser --> LogicManager
 deactivate TrackAScholarParser
 
 LogicManager -> UnPinCommand : execute()

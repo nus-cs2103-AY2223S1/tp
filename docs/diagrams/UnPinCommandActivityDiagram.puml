@@ -10,8 +10,8 @@ else ([Else])
               :TrackAScholar displays \nerror message indicating \nthat Applicant is already \nunpinned in TrackAScholar;
 
         else ([else])
-              : Create new Applicant with updated Pin field;
-              : Update existing Applicant \nwith new Applicant\nin TrackAScholar;
+              :Create new Applicant with updated Pin field;
+              :Update existing Applicant\nwith new Applicant\nin TrackAScholar;
 
         endif
 
