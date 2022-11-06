@@ -289,7 +289,7 @@ Here's a screenshot of Plannit before and after executing the command:
     </tr>
     <tr>
         <td style="vertical-align: top"><p align="center"><img src="images/edit-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
-        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to `Programming Language Concepts`. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to <code>Programming Language Concepts</code>. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
     </tr>
 </table>
 {:/}
