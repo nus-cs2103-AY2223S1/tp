@@ -333,7 +333,7 @@ This table highlights how the various data of the stalls and reviews are stored 
 | Address        | Any nonempty ASCII text                                                                                   |
 | Content        | Any nonempty ASCII text                                                                                   |
 | Date           | DD/MM/YYYY                                                                                                |
-| Name           | Nonempty alphanumeric string with spaces, no repeated spaces, capitalisation preserved                    |
+| Name           | Nonempty alphanumeric string with spaces, no repeated spaces, capitalization preserved                    |
 | Rating         | An integer from 0 to 5                                                                                    |
 | Tag            | Nonempty lowercase alphanumeric token without spaces                                                      |
 
