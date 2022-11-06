@@ -342,6 +342,14 @@ Given below is an example usage scenario and how the find command operates in Tr
 
 8. `FilterCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keyword `john`. 
 
+The following sequence diagram shows how the pin operation works:
+
+![Interactions Inside the Logic Component for the `find` Command example](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a pin command:
+
+![Find command activity diagram](images/FindActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 ### Edit applicant feature
 
