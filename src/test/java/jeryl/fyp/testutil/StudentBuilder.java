@@ -2,16 +2,11 @@ package jeryl.fyp.testutil;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jeryl.fyp.model.student.DeadlineList;
-import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.ProjectName;
-import jeryl.fyp.model.student.ProjectStatus;
-import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentId;
-import jeryl.fyp.model.student.StudentName;
+import jeryl.fyp.model.student.*;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -79,12 +74,24 @@ public class StudentBuilder {
 
     /**
      * Parses the {@code deadlines} into a {@code Set<Deadline>} and set it to the {@code Student} that we are building.
+     * @param deadlines a list of Deadlines represented by a list of string.
+     * @return StudentBuilder with deadlines.
      */
     public StudentBuilder withDeadlines(String[] deadlines) {
         Arrays.stream(deadlines)
                 .map(ddl -> SampleDataUtil.getDeadline(ddl.split(", deadline: ")[0],
                                 ddl.split(", deadline: ")[1])).collect(Collectors.toList())
                 .forEach(ddl -> this.deadlineList.add(ddl));
+        return this;
+    }
+
+    /**
+     * Parses the {@code deadlines} into a {@code Set<Deadline>} and set it to the {@code Student} that we are building.
+     * @param deadlines a list of Deadlines represented by a list of Deadline Class.
+     * @return StudentBuilder with deadlines.
+     */
+    public StudentBuilder withDeadlines(List<Deadline> deadlines) {
+        deadlines.stream().forEach(ddl -> this.deadlineList.add(ddl));
         return this;
     }
 
