@@ -109,7 +109,6 @@ public class ModelManager implements Model {
     @Override
     public void addExpenditure(Entry entry) {
         pennyWise.addExpenditure(entry);
-        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
@@ -133,7 +132,6 @@ public class ModelManager implements Model {
     @Override
     public void addIncome(Entry entry) {
         pennyWise.addIncome(entry);
-        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
