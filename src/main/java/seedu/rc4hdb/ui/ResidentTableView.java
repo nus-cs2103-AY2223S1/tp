@@ -32,6 +32,11 @@ public class ResidentTableView extends UiPart<Region> {
 
     private static final String FXML = "ResidentTableView.fxml";
 
+    // The COLUMN_WIDTH_SIZE fields are provided here for ease of change.
+    private static final int COLUMN_WIDTH_SMALL = 90; // Index, Gender, House columns use this width.
+    private static final int COLUMN_WIDTH_MEDIUM = 140; // Phone, Room, Matric columns use this width.
+    private static final int COLUMN_WIDTH_LARGE = 300; // Name, Email columns use this width.
+
     @FXML
     private TableView<Resident> residentTableView;
 
@@ -44,11 +49,6 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> phoneColumn = new TableColumn<>(Phone.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
     private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
-
-    // The COLUMN_WIDTH_SIZE fields are provided here for ease of change.
-    private final int COLUMN_WIDTH_SMALL = 90; // Index, Gender, House columns use this width.
-    private final int COLUMN_WIDTH_MEDIUM = 140; // Phone, Room, Matric columns use this width.
-    private final int COLUMN_WIDTH_LARGE = 300; // Name, Email columns use this width.
 
     /**
      * Creates a {@code ResidentTableView} with the given {@code ObservableList}.
@@ -154,7 +154,7 @@ public class ResidentTableView extends UiPart<Region> {
      * Sets the columns for constant-sized fields to be un-resizable.
      */
     private void setResizeable() {
-        List<TableColumn<Resident, ResidentField>> unResizeable  = List.of(indexColumn, phoneColumn, roomColumn,
+        List<TableColumn<Resident, ResidentField>> unResizeable = List.of(indexColumn, phoneColumn, roomColumn,
                 genderColumn, houseColumn, matricColumn);
         unResizeable.forEach(x -> x.setResizable(false));
     }
