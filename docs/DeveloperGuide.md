@@ -669,8 +669,9 @@ The following sequence diagram summarizes what happens when a user executes the 
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModuleCommandParser`
+and `FindModuleCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -721,8 +722,8 @@ The following sequence diagram summarizes what happens when a user executes the 
 
 ![ListModuleSequenceDiagram](images/ListModuleSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListModuleCommand` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -786,7 +787,8 @@ The following sequence diagram summarizes what happens when a user executes the 
 ![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+and `GoToCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -815,8 +817,7 @@ E.g.:
 home
 ```
 
-**Step 2**: The `LogicManager` uses the `AddressBookParser` to parse the user input.
-After validating the arguments provided by the user, the user input is used to instantiate
+**Step 2**: The `LogicManager` uses the `AddressBookParser` to instantiate
 a `HomeCommand` object, which is returned to the `LogicManger`.
 
 **Step 3**: `LogicManager` calls the `HomeCommand#execute()` method. This method will then
@@ -830,6 +831,10 @@ call the `Model#goToHomePage()` method which perform the following actions:
 The following sequence diagram summarizes what happens when a user executes the `home` command:
 
 ![HomeSequenceDiagram](images/HomeSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeCommand`should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design consideration:
 
@@ -857,7 +862,7 @@ The following sequence diagram summarizes what happens when a user executes the 
    as the filtering of modules is not needed when there exist only one module.
 
 3. The following commands `list-person` and `find-person` are disabled as they are not meant to be used in tandem with `goto` command
-   as essential person within a module (i.e. professors, tutor assistant and friends) are likely to be limited in numbers.
+   as essential persons within a module (i.e. professors, tutor assistant and friends) are likely to be limited in numbers.
 
 Hence, to prevent confusion we chose Alternative 1.
 
@@ -970,7 +975,7 @@ Use case ends.
 1. User chooses to search up on modules with module code starting with specific keyword.
 2. Plannit requests for keyword.
 3. User enters the keyword.
-4. Plannit searches and displays a list of module with mode code starting with the specified keyword.
+4. Plannit searches and displays a list of modules with module code starting with the specified keyword.
 
 Use case ends.
 
