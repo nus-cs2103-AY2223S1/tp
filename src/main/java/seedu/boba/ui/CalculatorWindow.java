@@ -129,8 +129,12 @@ public class CalculatorWindow extends UiPart<Stage> {
         }
         if (buttonText.equals("=")) {
             final BigDecimal right = numberInputting ? new BigDecimal(display.getText()) : left;
-            left = calculate(selectedOperator, left, right);
-            display.setText(left.toString());
+            try {
+                left = calculate(selectedOperator, left, right);
+                display.setText(left.toString());
+            } catch (ArithmeticException ae) {
+                display.setText("∞");
+            }
             numberInputting = false;
         }
     }
