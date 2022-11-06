@@ -26,7 +26,7 @@ activate SetupCommandParser
 SetupCommandParser --> NutriGoalsParser
 deactivate SetupCommandParser
 
-NutriGoalsParser -> SetupCommandParser : parse("$userInput")
+NutriGoalsParser -> SetupCommandParser : parse("w/70 g/m i/65 h/170 a/20")
 activate SetupCommandParser
 
 create SetupCommand

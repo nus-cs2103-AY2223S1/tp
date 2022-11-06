@@ -26,7 +26,7 @@ activate TargetCommandParser
 TargetCommandParser --> NutriGoalsParser
 deactivate TargetCommandParser
 
-NutriGoalsParser -> TargetCommandParser : parse("$userInput")
+NutriGoalsParser -> TargetCommandParser : parse("2103")
 activate TargetCommandParser
 
 create TargetCommand
