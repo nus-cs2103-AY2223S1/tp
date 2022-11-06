@@ -59,8 +59,8 @@ public class LoanCommand extends Command {
     public LoanCommand(Index userIndex, Index bookIndex) {
         this.targetUserIndex = userIndex;
         this.targetBookIndex = bookIndex;
-        // Code below is effectively borrowed from
-        // https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java
+        // @@author sprintaway-reused
+        // Reused from https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java
         this.returnDate = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(14));
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.parsedDate = formatter.format(returnDate);
