@@ -84,6 +84,7 @@ any unexpected behaviour of ArtBuddy.
 </div>
 
 <div align="right">
+<br>
 
 [ <a href="#using-this-guide">To start section: Using this guide</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -133,6 +134,7 @@ More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy 
 like buttons and pop-ups. There's something for everyone!
 
 <div align="right">
+<br>
 
 [ <a href="#introduction">To start section: Introduction</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -175,6 +177,7 @@ to run ArtBuddy.
 6. And...that's it! You now have ArtBuddy installed on your laptop!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -195,6 +198,7 @@ may not work as expectedly. To avoid this, please refer to the section
 2. And...ta-da! You should now see ArtBuddy running on your computer!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -222,6 +226,7 @@ the Terminal window and hit **return** on your keyboard.
 5. And...ta-da! You should now see ArtBuddy running on your computer!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -265,6 +270,7 @@ As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all com
 | 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -327,6 +333,7 @@ each of these parameters.
 
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -385,6 +392,7 @@ Good job! Now that you're getting the hang of things, check out our [Features](#
 capabilities of ArtBuddy.
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -469,6 +477,7 @@ Examples:
 
 
 <div align="right">
+<br>
 
 [ <a href="#customer-related-commands">To start of Customer related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -541,6 +550,7 @@ Example:
 * <code>delcom <em>14</em></code>
 
 <div align="right">
+<br>
 
 [ <a href="#commission-related-commands">To start of Commission related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -647,6 +657,7 @@ Example:
 
 
 <div align="right">
+<br>
 
 [ <a href="#iteration-related-commands">To start of Iteration related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -723,6 +734,7 @@ Examples:
 * <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
 <div align="right">
+<br>
 
 [ <a href="#statistical-commands">To start of Statistical commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -750,6 +762,7 @@ Exits the program.
 Format: `exit`
 
 <div align="right">
+<br>
 
 [ <a href="#miscellaneous">To start of Miscellaneous commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -827,6 +840,7 @@ To easily copy a filepath of a file:
 * On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
 
 <div align="right">
+<br>
 
 [ <a href="#appendix">To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -852,6 +866,7 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 | Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.         |
 
 <div align="right">
+<br>
 
 [ <a href="#glossary">To start section: Glossary</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -938,6 +953,7 @@ But we provide you a good explanation to answer your question in the <a href="#w
 <br>
 
 <div align="right">
+<br>
 
 [ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -971,6 +987,7 @@ But we provide you a good explanation to answer your question in the <a href="#w
 
 
 <div align="right">
+<br>
 
 [ <a href="#command-summary">To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
