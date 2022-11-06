@@ -12,7 +12,7 @@ public enum SortCriteria {
     Applied("applied"),
     Interview("interview");
 
-    public static final String MESSAGE_CONSTRAINTS = "Sort criteria can only be applied or interview";
+    public static final String MESSAGE_CONSTRAINTS = "Sort criteria can only be applied or interview.";
 
     private final String criteria;
 
@@ -52,6 +52,12 @@ public enum SortCriteria {
         return false;
     }
 
+    /**
+     * Returns a Comparator based on the given sort criteria.
+     *
+     * @param sortCriteria Criteria used to sort the list.
+     * @return Comparator based on the sortCriteria.
+     */
     public static Comparator<Internship> getComparator(SortCriteria sortCriteria) {
         switch (sortCriteria) {
         case Applied:

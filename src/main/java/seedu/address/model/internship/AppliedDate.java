@@ -117,6 +117,12 @@ public class AppliedDate {
         return value.hashCode();
     }
 
+
+    /**
+     * Returns a Comparator that compares two Internships based on appliedDate.
+     *
+     * @return Comparator to compare by appliedDate.
+     */
     public static Comparator<Internship> getComparator() {
         return (i1, i2) -> {
             AppliedDate t1 = i1.getAppliedDate();

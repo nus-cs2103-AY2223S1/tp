@@ -136,6 +136,11 @@ public class InterviewDateTime {
         return value.hashCode();
     }
 
+    /**
+     * Returns a Comparator that compares two Internships based on interviewDate.
+     *
+     * @return Comparator to compare by interviewDate.
+     */
     public static Comparator<Internship> getComparator() {
         return (i1, i2) -> {
             InterviewDateTime t1 = i1.getInterviewDateTime();

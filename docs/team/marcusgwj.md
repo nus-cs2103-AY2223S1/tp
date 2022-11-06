@@ -19,21 +19,28 @@ Given below are my contributions to the project.
         * What it does: Allows the user to sort internship applications by applied date or interview date
         * Justifications: The user will want to be able to sort by date so he/she can view internship applications in 
           a chronological order, and prioritise different applications.
-    * Updating and adding test cases
-        * Increase test coverage
-        * Identify bugs before pushing
+    * Implemented `SortCriteria`
+        * What it does: Represents the criteria used to sort internship applications
+        * Justification: Crucial for`sort` command to be possible
     * Refactoring AB3
+        * Updated all instances of AddressBook to FindMyIntern
+        * Updated and added test cases to reflect Internship and relevant fields instead of AddressBook
         * Crucial in allowing us to develop FindMyIntern as a Brownfield project
 
 * **Contributions to the UG**:
     * Added documentation for `sort` feature
     * Updated command summary
-    * Added about section
+    * Added welcome section
         * Allow readers to understand of user guide
         * Allow new and experienced users to navigate to different sections
     * Added introduction section
         * Allow new readers to have understanding of project
-        
+    * Added section on special formats used
+      * Help readers understand what each special format mean
+    * Added Command Line Guide
+      * Instructions for new users to enter commands
+
+
 * **Contributions to the DG**: 
     * Added implementation details of `sort` feature
         * Included sequence diagram and design considerations for feature

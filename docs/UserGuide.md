@@ -3,33 +3,42 @@ layout: page
 title: User Guide
 ---
 
-## About
+## Welcome to FindMyIntern!
 
 The purpose of this user guide is to help both new and experienced users with using FindMyIntern.
 
 - If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do.
+We also recommend going through the [special formats](#special-formats) used in this user guide to understand what they mean.
 If you have no prior experience with command line interfaces, we recommend reading this [guide](#command-line-guide).
 
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 Are you a student applying for internships? Do you have trouble remembering what you have applied?
-Or are you tired of using Excel to keep track?
-Applying for internships is already painful enough.
-There should be an easy way to keep track of various applications and upcoming interviews.
-FindMyIntern is the perfect solution for you!
+Or are you tired of using Excel to keep track? FindMyIntern is the perfect solution for you!
 
-FindMyIntern is a desktop application that helps students easily keep track of
-their internship applications.
+FindMyIntern is a desktop application that helps you easily keep track of
+your internship applications.
 
 FindMyIntern helps you to
 - Consolidate all applications into a single place
 - Find particular internship applications
-- Easily visualise different applications
+- Easily visualise different application statuses
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
+
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Special formats](#special-formats)</h6>
+This section explains the special formats that are used in this user guide.
+</div>
+</div>
 
 <div class="card mb-2">
 <div markdown="1" class="card-body py-0">
@@ -79,12 +88,69 @@ This section contains the formats of all commands in FindMyIntern.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Special formats
+
+Here are some special formats to take note of when reading this user guide:
+
+<div class="d-flex alert alert-info">
+    <div class="me-3">
+      <span class="badge text-bg-info">INFO</span>
+    </div>
+    <div markdown="span">
+        Additional information that is useful to know.
+    </div>
+</div>
+
+<div class="d-flex alert alert-warning">
+    <div class="me-3">
+      <span class="badge text-bg-warning">WARNING</span>
+    </div>
+    <div markdown="span">
+        Important information to ensure that fields are added correctly.
+    </div>
+</div>
+
+<div class="d-flex alert alert-danger">
+    <div class="me-3">
+      <span class="badge text-bg-danger">DANGER</span>
+    </div>
+    <div markdown="span">
+        Critical information to take note of to avoid any loss of data.
+    </div>
+</div>
+
+
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        Represents the format for each command.
+    </div>
+</div>
+
+`Code denotes commands, parameters, user inputs or file names`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command Line Guide
 
    <p align="center">
        <img src="images/CommandLine.png" width="600" />
    </p>
-That’s it! That’s all you need to know about command line to use FindMyIntern. You are now ready to start.
+
+Simply type in:
+1. The command 
+    * Example: `add` represents the `add` command
+2. The prefix indicating a field
+    * Example: The prefix `c/` indicates the `company` field
+3. The field to be added or updated
+    * Enter directly after the prefix
+    * Example: For `c/TikTok`, `Tiktok` represents the actual `company` field to be added.
+4. Repeat steps 3 and 4 to add or update more fields in a single command
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
@@ -487,7 +553,7 @@ Examples:
 </div>
 <div markdown="span">
 **Sorting by interview date**<br>
-Applications without interview date will remain in the original order at the bottom.
+Applications without interview date will remain at the bottom in the original order that it was added.
 </div>
 </div>
 
@@ -540,6 +606,8 @@ Shows a message with a link to the user guide, and the data file location.
         ```
     </div>
 </div>
+
+* Click on the link to copy the user guide link.
 
 <p align="center">
     <img src="images/helpMessage.png" width="500"/>
