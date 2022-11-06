@@ -1,8 +1,8 @@
 package seedu.clinkedin.model.person;
 
-import org.junit.jupiter.api.Test;
-
 import static seedu.clinkedin.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class UniqueTagTypeMapTest {
 
