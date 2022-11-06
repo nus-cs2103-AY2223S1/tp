@@ -137,11 +137,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setExercise(Exercise target, Exercise editedExercise) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Exercise> getFilteredExerciseList() {
             throw new AssertionError("This method should not be called.");
         }
