@@ -155,9 +155,9 @@ Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
 
 ADDRESS: Non-exact address matching (e.g. Searching for `an` returns `Ang Mo Kio`, `Woodlands`)
 
-CATEGORY: Only accepts `N` for NURSES or `P` for PATIENTS.
+CATEGORY: Only accepts `N` for NURSES or `P` for PATIENTS. (Not case sensitive)
 
-GENDER: Only accepts `M` for MALE or `F` for FEMALE.
+GENDER: Only accepts `M` for MALE or `F` for FEMALE. (Not case sensitive)
 
 TAG: Exact, case sensitive tag matching (e.g. Searching for `dia` does not return `DIABETIC`)
 
