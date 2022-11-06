@@ -202,10 +202,12 @@ This new `Person` object replaces the original `Person` object in the `Model` co
 
 The sequence diagram below details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteDebtSequenceDiagram.png)
+<img src="images/DeleteDebtSequenceDiagram.png" width="1100" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagram below.
+An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagrams below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
 <img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
