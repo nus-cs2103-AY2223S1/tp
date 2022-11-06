@@ -105,6 +105,8 @@ For first-time users, we also recommend you to first read through the various [p
 
 </div>
 
+[Back to top](#welcome-to-socompilers-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Commands
@@ -169,6 +171,8 @@ Alternatively, you can click the File button on the top left of the app, followe
 ### Saving the data
 
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,6 +248,8 @@ Examples:
 
 * `findp yeoh yu` returns contacts `Alex Yeoh` and `Bernice Yu`
   <img src="images/findp.png"/>
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -326,6 +332,8 @@ Examples:
 * `findm Friday` returns modules `CS2101` and `CS2103T`, assuming both modules have lectures and/or tutorials on Friday.
   <img src="images/findm2.png"/>
 
+[Back to top](#welcome-to-socompilers-user-guide)
+
 ------------------------------------------------------------------------------------------------------------------------
 
 ## Person Fields
@@ -371,6 +379,8 @@ Examples:
 | [find](#finding-keywords-in-contacts-andor-modules-find)  | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
 | [exit](#looking-for-help-help)                            | General        | `exit`                                                                                                                                         |
 | [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
