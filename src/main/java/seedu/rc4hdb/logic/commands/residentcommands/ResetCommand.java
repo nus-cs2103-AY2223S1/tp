@@ -30,7 +30,7 @@ public class ResetCommand extends ColumnManipulatorCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Going to start execution.");
 
-        // Defensively checks for invalid fields in both field lists
+        // Defensively checks for invalid fields in both field lists, as well as for the minimum number of columns
         requireAllFieldsValid(fieldsToShow);
         requireAllFieldsValid(fieldsToHide);
         requireAtLeastOneVisibleColumn(fieldsToShow);

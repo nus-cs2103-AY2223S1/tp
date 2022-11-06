@@ -148,6 +148,4 @@ public class Venue implements BookingField {
         }
         return false;
     }
-
-    // Todo: Populate venue table with the venues specified in the .txt file and hook up class with storage
 }
