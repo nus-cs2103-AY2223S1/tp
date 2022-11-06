@@ -31,6 +31,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private final String feedbackToUser =
+            "JSON file is invalid. File will not be saved until the error is corrected."
+            + "\nYou may delete the JSON file if you want a fresh restart or"
+            + " revert any changes to json file if you still want the data.";
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
@@ -212,8 +216,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Displays error message to user when there is invalid format in the teachersPet json file.
      */
-    public void showInvalidFormatInJsonFile() {
-        resultDisplay.setFeedbackToUser("JSON file is invalid. File will not be saved until the error is corrected."
-                + "\nYou may delete the JSON file if you wish to create a new set of data.");
+    public void displayErrorMessageInvalidJson() {
+        resultDisplay.setFeedbackToUser(feedbackToUser);
     }
 }

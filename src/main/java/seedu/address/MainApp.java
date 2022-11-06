@@ -193,7 +193,7 @@ public class MainApp extends Application {
         ui.start(primaryStage);
         // Display error message in command box if JSON file is invalid
         if (isInInvalidFormat) {
-            ui.showInvalidFormatInJsonFile();
+            ui.displayInvalidJsonFileMessage();
         }
     }
 
