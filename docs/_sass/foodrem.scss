@@ -360,6 +360,7 @@ article.post {
     pre {
       margin-top: 0;
       border: 1px solid black;
+      white-space: break-spaces;
 
       &,
       & code {
