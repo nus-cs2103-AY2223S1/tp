@@ -1426,8 +1426,111 @@ starting point for testers to work on; testers are expected to do more *explorat
        Expected: Similar to previous.
 
 
+### Viewing details of a patient
+
+1. View details of a specific patient.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+   
+   2. Test case: `focus -p 1` <br>
+      Expected: The details of the first patient in the displayed list is shown in the output panel.
+   
+   3. Test case: `focus -p 0` (invalid index) <br>
+      Expected: No patient is displayed in the output panel. Error details are shown in the status message.
+   
+   4. Other incorrect viewing commands: `focus -p `, `focus 1` (missing fields) <br>
+      Expected: Similar to previous.
+
+### Finding patients
+
+ 1. Finding patients with specific keywords.
+
+    1. Prerequisites: None.
+    
+    2. Test case: `find Alex Yeoh` <br>
+       Expected: A list of patients whose details contain the keywords `Alex Yeoh` are shown in the displayed patient list and output panel.
+    
+    3. Test case: `find cough syrup` <br>
+       Expected: A list of patients whose details contain the keywords `cough syrup` are shown in the displayed patient list and output panel.
+    
+    4. Test case: `find` (missing keyword) <br>
+       Expected: No patients are shown in the output panel. Error details are shown in the status message.
+   
+### Viewing all tasks for a particular day
+
+1. Viewing all tasks for today.
+
+    1. Prerequisites: None.
+
+    2. Test case: `view --today` <br>
+       Expected: All tasks whose date is the current day are shown in the output panel.
+   
+
+2. Viewing all tasks for a particular day.
+
+   1. Prerequisites: None.
+   
+   2. Test case: `view 10-10-22` <br>
+      Expected: All tasks with the date `10-10-22` are shown in the output panel.
+   
+   3. Test case: `view 10-10-2022` (invalid date format) <br>
+      Expected: No tasks are shown in the output panel. Error details are shown in the status message.
+   
+   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view ` (missing date) <br>
+      Expected: Similar to previous.
 
 
+### Viewing all tasks of a patient
+
+ 1. Viewing all tasks of a patient.
+
+    1. Prerequisites: There is at least 1 patient in the displayed patient list.
+    
+    2. Test case: `view -p 1` <br>
+       Expected: The task list of the first patient in the displayed list is shown in the output panel.
+    
+    3. Test case: `view -p 0` (invalid index) <br>
+       Expected: No task list is shown in the output panel. Error details are shown in the status message.
+    
+    4. Other incorrect task viewing commands to try: `view -p ` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
+       Expected: Similar to previous.
+
+### Viewing all tasks of all patients
+
+1. Viewing all tasks of all patients.
+
+   1. Prerequisites: None.
+   
+   2. Test case: `view -p --all` <br>
+      Expected: All tasks of all patients in the patient list are shown in the output panel.
+
+### Undoing previous command
+
+ 1. Undoing a previous command entered.
+ 
+    1. Prerequisites: At least 1 add/edit/delete command was executed.
+    
+    2. Test case: `undo` <br>
+       Expected: Previous command is undone. Details of the undone command is shown in the status message and output panel.
+
+### Reversing undo command
+
+1. Reversing an undo command.
+
+   1. Prerequisites: An undo command was executed successfully.
+   
+   2. Test case: `redo` <br>
+      Expected: Previous undo command is reversed. Details of the redone command is shown in the status message and output panel.
+
+   
+### Clearing all patients
+
+1. Delete all patients in the displayed patient list.
+
+   1. Prerequisites: There is at least 1 patient in the displayed patient list.
+   
+   2. Test case: `clear` <br>
+      Expected: All patients in the displayed list are deleted. Details of the clear command is shown in the status message.
 
 ### Saving data
 
