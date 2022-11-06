@@ -64,8 +64,8 @@ Here are certain indicators explained so that the user may better comprehend the
 
 ## Glossary
 
-* GUI: Graphical User Interface: Refers to the user interface that the user interacts with.
-* CLI: Command Line Interface: Refers to a computer program that accepts text inputs.
+* **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
+* **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
 

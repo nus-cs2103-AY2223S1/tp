@@ -34,6 +34,7 @@ public class AlertWindow {
                 .ifPresent(response ->
                         setIsConfirmed());
         return isConfirmed;
+        //@@author
     }
 
     public void setIsConfirmed() {

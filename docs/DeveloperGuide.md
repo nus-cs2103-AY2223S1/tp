@@ -265,6 +265,8 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Edit applicant feature
@@ -304,6 +306,8 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Remove applicants by application status feature
@@ -341,6 +345,8 @@ is abstracted out as this sequence diagram aims only to demonstrate the interact
 The following activity diagram summarizes what happens when a user executes a remove command:
 
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -390,6 +396,8 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Sort applicants by name, scholarship or status feature.
@@ -424,7 +432,18 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+
+### Import feature
+
+#### Implementation
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Pin applicant feature
 
 #### Implementation
@@ -454,7 +473,10 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ![Pin command activity diagram](images/PinCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+
 ### UnPin applicant feature
 
 #### Implementation
@@ -485,13 +507,18 @@ The following activity diagram summarizes what happens when a user executes a un
 
 ![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -505,28 +532,41 @@ NUS administrative staff in the Office of Admissions.
 **Value Proposition**: <br>
 Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                    |
-|---------|-------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------|
-| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                               |
-| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                        |
-| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                             |
-| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                           |
-| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                                |
-| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of applications that is no longer needed                               |
-| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                        |
-| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                     |
-| `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
-| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                    |
+| Priority | As a …​                                              | I want to …​                                                                | So that I can…​                                                                             |
+|---------|------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *` | administrator (new user)                             | see usage instructions easily                                               | discover functionalities provided by the application                                        |
+| `* * *` | administrator (new user)                             | operate with clear and concise commands                                     | learn easily and grow proficiency with time                                                 |
+| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored database easily                                                               |
+| `* * *` | administrator                                        | save fresh data easily                                                      | avoid losing all my data                                                                    |
+| `* * *` | administrator                                        | add a new applicant to my database                                          | keep track of organize all the scholarship applications                                     |
+| `* * *` | administrator                                        | delete an applicant from my database                                        | remove data of scholarship applications that is no longer needed                            |
+| `* * *` | administrator                                        | edit the details of an applicant in my database                             | keep track of their most updated details                                                    |
+| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in the list of applications                  |
+| `* * *` | administrator managing many scholarship applications | find applicants by their name                                               | retrieve details of an applicant without having to go through the entire list               |
+| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarships                    |
+| `* * *` | administrator managing many scholarship applications | find applicants by their majors taken                                       | retrieve details of all applicants who has taken the specified majors                       |
+| `* *`   | administrator managing many scholarship applications | pinpoint applicants by their name, scholarship applied for and majors taken | identify and retrieve details of an exact applicant easily                                  |
+| `* *`   | administrator managing many scholarship applications | filter for applicants by status of their application                        | focus on the applicants whose application status is now of relevance to me                  |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by their name                                           | have an overview of all applicants with their names in alphabetical order                   |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by the scholarship they applied for                     | have an overview of all applicants with their scholarship applied for in alphabetical order |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by status of their application                          | have an overview of all applicants grouped by their application status                      |
+| `* *`   | experienced administrator                            | remove all completed scholarship applications together                      | avoid clutter of data                                                                       |
+| `* *`   | experienced administrator                            | pin important applications that require further attention                   | refer to them easily when i need to                                                         |
+| `* *`   | experienced administrator                            | unpin applications that has been completed                                  | focus on the other important scholarship applications                                       |
+| `*`     | experienced administrator                            | run the application on different operating systems                          | access the same database/storage on different operating systems                             |
+| `*`     | experienced administrator                            | import scholarship application data easily                                  | combine scholarship application data from external sources with my own easily               |
 
+[Return to top](#table-of-contents)
 
-
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
 ### Use cases
 
@@ -690,10 +730,9 @@ be able to view the applicant from the list.
 
 ### Glossary
 
+* **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
+* **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **MSS**: Main Success Scenario
-* **GUI**: Graphical user interface allows users to interact with a software through visual components instead of the command line
 
 --------------------------------------------------------------------------------------------------------------------
 
