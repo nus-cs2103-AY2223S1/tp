@@ -243,28 +243,6 @@ Here's a summary of what each highlighted section represents.
 | 2      | Flag/Option        | Text that is used to modify the operation of a command, often starting with `-` or `--` |
 | 3      | Parameter/Argument | Information specified for a command to operate, often used after flags                  |
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Important note for flags**
-
-Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
-</div>
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Important note for parameters**
-
-Use of quotation marks around parameters (`""`) is optional.
-
-**However**, if you are specifying a parameter
-with multiple words, you will need to wrap the words in a quotes. Otherwise, TruthTable will not carry out the
-command properly.
-
-For instance, 
-- `add person -n "full name" ...` will recognise "full name" as the name being specified for the new person
-- `add person -n full name ...` will recognise "full" as the name being specified for the new person, however, this 
-  command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for 
-  the `add person` command)
-</div>
-
 ### Understanding the help message
 
 Every command in TruthTable has their own flags and parameters, but it is not feasible for you to remember them all. 
@@ -289,8 +267,37 @@ Here's a summary of what each highlighted section represents.
 | 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
 | 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
 
-<div markdown="block" class="alert alert-info">**:information_source: Optional flags are wrapped with square 
-brackets (`[]`)**
+<div markdown="block" class="alert alert-info">
+**:information_source: Important note for flags**
+
+- Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
+- Optional flags are wrapped with square brackets (`[]`)
+- Flags can be specified in any order
+  - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Important note for parameters**
+
+Use of quotation marks around parameters (`""` and `''`) is optional.
+
+**However**, if you are specifying a parameter with multiple words, you will need to wrap the words in a quotes.
+Otherwise, TruthTable will not carry out the command properly.
+
+For instance,
+- `add person -n "full name" ...` will recognise "full name" as the name being specified for the new person
+- `add person -n full name ...` will recognise "full" as the name being specified for the new person, however, this
+  command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for
+  the `add person` command)
+
+Also, if your quotes are not closed properly (i.e. some open quotation mark does not have a corresponding close
+quotation mark), the command will not be executed. If the parameter specified contains quotation marks, they will be
+rejected as well.
+
+For instance,
+- `'word` is invalid as the open quotation mark `'` does not have a corresponding close quotation mark.
+- `"'"` is invalid as `'` will be passed as a parameter, which is invalid.
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -301,6 +308,7 @@ If a flag is displayed with `...` behind it, this means that the flag can take i
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
 </div>
+
 
 <div markdown="block" class="alert alert-primary">
 **:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
@@ -365,10 +373,6 @@ Consequently, the commands are split into **5** main sections:
 [help command section](#example-command-help-message-add-person---help)
 - Every command has a `-h` and `--help` flag available to see their help message
 - Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
-- The equals sign (`=`) for flags are optional and do not need to be specified
-- Flags in square brackets (`[]`) are optional
-- Flags can be specified in any order
-  - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
 - Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
   must be specified
   - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
@@ -390,15 +394,19 @@ Consequently, the commands are split into **5** main sections:
     2. `-t one`
     3. `-t one two`
     4. `-t one -t two`
-- If an extra parameter is specified, the command will not execute and an error message will be displayed
-  - For e.g. `help with extra words` will display an error message
 - Flags can be combined if they all begin with `-`, where the flags are clustered. Find out more
   <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
-  - For `[-hci]`, the following examples are valid
+  - For `[-h] [-c] [-i]`, the following examples are valid
     1. `-h`
     2. `-hc`
     3. `-ci`
     4. `-hci`
+- If an extra parameter is specified, the command will not execute and an error message will be displayed
+  - For e.g. `help with extra words` will display an error message
+</div>
+
+<div markdown="block" class="alert alert-info">**:information_source: Parameter constraints can be found 
+[here](#flag-and-parameter-constraints)**
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -408,7 +416,6 @@ Note that the parameters in this user guide are all upper-cased, which differs f
 the help message that TruthTable displays whenever you run a command with `-h`.
 </div>
 
-[//]: # (TODO: add reference to flags/parameter summary)
 
 ### Commands to Manage Persons
 
@@ -1013,7 +1020,7 @@ whether they are complete or incomplete tasks.
 This command can also be used to view all tasks again after using the [`find task` command](#find-tasks-find-task) 
 as the `find task` command filters the current team’s tasks based on some keyword(s).
 
-**Format:** `list tasks [-hci]`
+**Format:** `list tasks [-h] [-c] [-i]`
 
 | Flags                | Required | Remarks                             |
 |----------------------|:---------|-------------------------------------|
@@ -1279,6 +1286,30 @@ the data of your previous TruthTable home folder.
 [Back to Table of Contents](#table-of-contents)
 
 ### Flag And Parameter Constraints
+
+| Parameter Name          | Flags                 | Constraints |
+|-------------------------|-----------------------|-------------|
+| `PERSON_EMAIL`          | `-e`, `--email`       |             |
+| `PERSON_NAME`           | `-n`,`--name`         |             |
+| `PERSON_PHONE`          | `-p`, `--phone`       |             |
+| `PERSON_TAGS`           | `-t`, `--tags`        |             |
+| `PERSON_INDEX`          |                       |             |
+| `MEMBER_INDEX`          |                       |             |
+| `MEMBER_NAME_KEYWORDS`  | `-n`,`--name`         |             |
+| `MEMBER_EMAIL_KEYWORDS` | `-e`,`--email`        |             |
+| `MEMBER_DESCRIPTION`    | `-d`, `--description` |             |
+| `TEAM_NAME`             | `-n`,`--name`         |             |
+| `TASK_NAME`             | `-n`, `--name`        |             |
+| `TASK_INDEX`            |                       |             |
+| `TASK_ASSIGNEES`        | `-a`, `--assignee`    |             |
+| `TASK_DEADLINE`         | `-d`, `--deadline`    |             |
+| `TASK_NAME_KEYWORDS`    |                       |             |
+| `LINK_URL`              | `-l`, `--link`        |             |
+| `LINK_NAME`             | `-n`, `--name`        |             |
+| `LINK_INDEX`            |                       |             |
+| `ORDER`                 |                       |             |
+
+
 
 [Back to Table of Contents](#table-of-contents)
 
