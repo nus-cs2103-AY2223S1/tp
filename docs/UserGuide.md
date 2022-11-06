@@ -468,12 +468,12 @@ Format: `unfocus`
 
 ### Automated Data Backup
 
-On each launch of TA-Assist, a backup of the save data is made and saved to `data/taassist_backup.json`. In the event that
+On each launch of TA-Assist, a backup of the save data is made and saved to `data/taassist.json.bak`. In the event that
 you need to revert a catastrophic change, you may simply quit the app and overwrite `data/taassist.json` with the backup file.
 
 {% include important.html content="
 
-Each time TA-Assist is launched, the previous `data/taassist_backup.json` file will be overwritten if it exists.
+Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will be overwritten if it exists.
 
 " %}
 
