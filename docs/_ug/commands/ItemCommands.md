@@ -131,25 +131,26 @@ FoodRem contains the following items, each with their own attributes:
 * The sort can only be done in an ascending order.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-sort n/
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+FoodRem contains the following items:
 
-```text
-3 items sorted!
-```
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
 
-Item List Box:
-
-```text
-1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
-```
+The command will sort the items by their names.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="sort n/"
+  itemListBox="images/itemCommands/itemListBox/sort.png"
+%}
 
 ---
 
