@@ -8,7 +8,7 @@ title After command "clear"
 package States <<rectangle>> {
     class State1 as "__it0:InTrack__"
     class State2 as "__it1:InTrack__"
-    class State3 as "__it2:InTrack__"
+    class State3 as "__it3:InTrack__"
 }
 
 State1 -[hidden]right-> State2
