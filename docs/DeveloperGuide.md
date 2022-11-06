@@ -76,7 +76,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -121,7 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteContactCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagramPerson.png" width="450" />
 <img src="images/ModelClassDiagramTaskTag.png" width="450" />
@@ -138,7 +138,7 @@ The same goes for `Task` and `Tag`.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="700" />
 
@@ -164,7 +164,7 @@ Each field is implemented by a class with the same name, except for `Id` which i
 Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
-This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
+In real life, these fields would always be unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields.
 
 | Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
