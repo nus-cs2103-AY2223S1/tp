@@ -40,8 +40,8 @@ You can reach us on our GitHub portfolios, links provided below.
 [[github](http://github.com/ryanczx)]
 [[portfolio](team/ryanczx.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Tags
 
 ### Chee Zhong Wei
 
