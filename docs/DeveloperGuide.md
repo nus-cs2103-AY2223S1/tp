@@ -914,7 +914,7 @@ Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have
 | `High`   | User               | Delete a module into Plannit                    | Remove unnecessary modules after the semester ends                                                    |
 | `High`   | User               | Add tasks for each module into Plannit          | Keep track of tasks for each module                                                                   |
 | `High`   | User               | Delete tasks from module on Plannit             | Remove tasks that have been completed                                                                 |
-| `High`   | User               | Add links                                       | Store the module-related links for easy reference                                                     | 
+| `High`   | User               | Add links                                       | Store module-related links for future access                                                          | 
 | `High`   | User               | Open links                                      | Access module-related links                                                                           | 
 | `High`   | User               | Delete links                                    | Remove module-related links when the semester ends                                                    |
 | `High`   | User               | Easily navigate through different modules       | Quickly view relevant modules details                                                                 |
