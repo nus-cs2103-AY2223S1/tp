@@ -324,13 +324,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete -p`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -342,7 +335,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -534,8 +526,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case ends.
 
-*{More to be added}*
-
 
 ### Non-Functional Requirements
 
@@ -551,15 +541,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Each contact person can only link to one internship and each internship is only linked to one contact person
 
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -584,7 +571,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Editing a person
 
@@ -600,7 +586,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect edit commands to try: `edit -p 1`, `edit -p x t/colleague`(where x is larger than the list size).<br>
        Expected: Similar to previous.
-1. _{ more test cases …​ }_
+
 
 ### Deleting a person
 
@@ -617,7 +603,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete -p`, `delete -p x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Sorting person list
 
@@ -657,6 +642,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Go to the folder `data` and find the file `addressbook.json`. App is not launched.
 
-1. _{ more test cases …​ }_
+   1. Test case: Delete the `data` folder <br>
+   Expected: On app launch, InterNUS is populated with sample data.
+
+   1. Test case: Delete the `addressbook.json` file <br>
+   Expected: On app launch, InterNUS is populated with sample data.
+
+   1. Test case: Delete the second line of `addressbook.json`, which should be `"persons" : [ {`<br>
+   Expected: On app launch, InterNUS will have no persons or internships data (i.e. empty lists).
+
