@@ -23,6 +23,9 @@ import jarvis.model.TimePeriod;
 public class LessonBuilder {
 
     public static final LessonDesc DEFAULT_LESSON_DESC = null;
+    public static final LessonDesc DEFAULT_CONSULT_DESC = new LessonDesc("Consult on recursion");
+    public static final LessonDesc DEFAULT_STUDIO_DESC = new LessonDesc("Studio 1");
+    public static final LessonDesc DEFAULT_MASTERY_CHECK_DESC = new LessonDesc("Mastery Check 1");
     public static final Collection<Student> DEFAULT_STUDENTS = getTypicalStudents();
     public static final LessonAttendance DEFAULT_LESSON_ATTENDANCE = new LessonAttendance(DEFAULT_STUDENTS);
     public static final StudioParticipation DEFAULT_STUDIO_PARTICIPATION = new StudioParticipation(DEFAULT_STUDENTS);
@@ -51,20 +54,85 @@ public class LessonBuilder {
     }
 
     /**
-     * Builds the lesson with the given values.
-     * @param lessonType Type of lesson.
-     * @return The lesson with the given values.
+     * Initializes the LessonBuilder with the data of {@code consultToCopy}
      */
-    public Lesson build(LessonType lessonType) {
-        switch (lessonType) {
-        case STUDIO:
-            return new Studio(lessonDesc, timePeriod, students, attendance, notes, studioParticipation);
-        case CONSULT:
-            return new Consult(lessonDesc, timePeriod, students, attendance, notes);
-        case MASTERY_CHECK:
-            return new MasteryCheck(lessonDesc, timePeriod, students, attendance, notes);
-        default:
-            throw new IllegalArgumentException("Unknown lesson type");
-        }
+    public LessonBuilder(Consult consultToCopy) {
+        lessonDesc = consultToCopy.getDesc();
+        students = consultToCopy.getStudentList();
+        attendance = consultToCopy.getLessonAttendance();
+        notes = consultToCopy.getLessonNotes();
+        timePeriod = consultToCopy.getTimePeriod();
+    }
+
+    /**
+     * Initializes the LessonBuilder with the data of {@code masteryCheckToCopy}
+     */
+    public LessonBuilder(MasteryCheck masteryCheckToCopy) {
+        lessonDesc = masteryCheckToCopy.getDesc();
+        students = masteryCheckToCopy.getStudentList();
+        attendance = masteryCheckToCopy.getLessonAttendance();
+        notes = masteryCheckToCopy.getLessonNotes();
+        timePeriod = masteryCheckToCopy.getTimePeriod();
+    }
+
+    /**
+     * Initializes the LessonBuilder with the data of {@code studioToCopy}
+     */
+    public LessonBuilder(Studio studioToCopy) {
+        lessonDesc = studioToCopy.getDesc();
+        students = studioToCopy.getStudentList();
+        attendance = studioToCopy.getLessonAttendance();
+        notes = studioToCopy.getLessonNotes();
+        timePeriod = studioToCopy.getTimePeriod();
+        studioParticipation = studioToCopy.getStudioParticipation();
+    }
+
+    /**
+     * Sets the {@code LessonDesc} of the {@code Lesson} that we are building.
+     */
+    public LessonBuilder withDesc(LessonDesc lessondesc) {
+        this.lessonDesc = lessondesc;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Students}, {@code LessonAttendance}, {@code LessonNotes} and {@code StudioParticipation}
+     * of the {@code Lesson} that we are building.
+     */
+    public LessonBuilder withStudents(Collection<Student> students) {
+        this.students = students;
+        attendance = new LessonAttendance(students);
+        notes = new LessonNotes(students);
+        studioParticipation = new StudioParticipation(students);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TimePeriod} of the {@code Lesson} that we are building.
+     */
+    public LessonBuilder withTimePeriod(TimePeriod timePeriod) {
+        this.timePeriod = timePeriod;
+        return this;
+    }
+
+    /**
+     * Returns the {@code Consult} that we have built.
+     */
+    public Consult buildConsult() {
+        return new Consult(lessonDesc, timePeriod, students, attendance, notes);
+    }
+
+    /**
+     * Returns the {@code MasteryCheck} that we have built.
+     */
+    public MasteryCheck buildMasteryCheck() {
+        return new MasteryCheck(lessonDesc, timePeriod, students, attendance, notes);
+    }
+
+    /**
+     * Returns the {@code Studio} that we have built.
+     */
+    public Studio buildStudio() {
+        return new Studio(lessonDesc, timePeriod, students, attendance, notes, studioParticipation);
     }
 }
