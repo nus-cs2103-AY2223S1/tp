@@ -28,15 +28,17 @@ Given below are my contributions to the project.
 
 * **Contributions to the UG**: 
   * Added documentation for `mark` feature
+  * Updated documentation for `edit` feature
   * Added section on "Command Line Guide"
     * Useful for new users that are not familiar with command line interface
     * Provides users with a quick guide on how to use command line in FindMyIntern, without diving deep into it
   * Contributed to table of contents
 
 * **Contributions to the DG**: 
-  * Added implementation of `mark` feature
+  * Added implementation of `mark` and `edit` feature
     * Included activity diagram and design considerations for feature
   * Added use cases for `add`, `mark`, `find`, `filter`
+  * Updated diagrams from AB3 to reflect FindMyIntern
 
 * **Contributions to team-based tasks**: 
   * Added GitHub issues and milestones
@@ -63,6 +65,8 @@ Given below are my contributions to the project.
     * [#165](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/165)
     * [#170](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/170)
     * [#174](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/174)
+    * [#175](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/175)
+    * [#178](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/178)
 
 * **Contributions beyond the project team**: 
   * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/desmondyst/ped/issues)

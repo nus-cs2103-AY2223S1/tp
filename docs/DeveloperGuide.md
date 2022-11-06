@@ -240,13 +240,32 @@ When `execute` of `FilterCommand` is run, the `InternshipHasApplicationStatusPre
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
-<img src="images/FilterCommandActivityDiagram.png" width="450" />
+<img src="images/FilterCommandActivityDiagram.png" width="480" />
 
 #### Design Considerations
 
 * The implementation is similar to `FindCommand` as both have the same idea of filtering/finding something in the list.
 * The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.
 * This implementation would allow easy extension should there be more `ApplicationStatus` added, since parsing of user input is done by `ApplicationStatus`.
+
+
+### Edit `Internship` feature
+
+#### Implementation
+
+* An `EditCommandParser` object is created, which parses the user input by splitting the input by the prefix of each field in `Internship`, then returns the relevant `EditCommand`.
+* `EditCommand` takes in an `index` and at least one of `Internship`'s fields.
+
+When `execute` of `EditCommand` is run, a new `Internship` object with the updated fields is created.
+* The new `Internship` is passed into the model to be updated.
+
+The following activity diagram summarizes what happens when a user executes an edit command.
+
+<img src="images/EditCommandActivityDiagram.png" width="650" />
+
+#### Design Considerations
+- The fields passed in are optional, but at least one must be provided. 
+
 
 ### Mark `Internship` feature
 
@@ -359,12 +378,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is `FindMyIntern` and the **Actor** is the `user` unless specified otherwise)
 
 
-**Use Case: UC1 - Add internship application to the tracker**
+**Use Case: UC1 - Add internship application**
 
 **MSS**:
-1. User wants to add an internship application to the tracker.
+1. User requests to add an internship application.
 2. User enters the details for the internship application.
-3. FindMyIntern adds the new internship application into the tracker.
+3. FindMyIntern creates the new internship application. 
 
    Use case ends.
 
@@ -380,11 +399,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC2 - Edit an internship application**
+**Use Case: UC2 - Edit internship application**
 
 **MSS**:
-1. User requests to edit an internship application in the tracker.
-2. FindMyIntern updates the details of the internship application in the tracker.
+1. User requests to edit an internship application.
+2. User enters the changes to be made.
+3. FindMyIntern updates the details of the internship application.
 
    Use case ends.
 
@@ -401,25 +421,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC3 - Mark status of internship application**
+**Use Case: UC3 - Mark application status of internship application**
 
-**MSS**:
-1. User requests to mark the status of a specific internship application in the tracker.
-2. FindMyIntern updates the internship application to the status.
-   Use case ends.
-
-**Extensions**:
-* 2a. User enters the details in the wrong format.
-  * 2a1. FindMyIntern shows an error message.
-  
-    Use case ends.
+Similar to use case 2 except the changes to be made is restricted to application status. 
 
 <br />
 
 **Use Case: UC4 - Find internship applications using keywords**
 
 **MSS**:
-1. User wants to find internship applications stored in the tracker.
+1. User requests to find internship applications stored in the FindMyIntern.
 2. User enters the keywords for the search.
 3. FindMyIntern shows a list of internship applications that match the keywords.
    
@@ -433,34 +444,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 3a. There were no internship applications that matched the keywords.
   * 3a1. FindMyIntern shows an empty list.
+  
     Use case ends.
 
 <br />
 
 **Use Case: UC5 - Filter internship applications by application status**
 
-**MSS**:
-1. User wants to filter internship applications by application status.
-2. User enters the desired application status.
-3. FindMyIntern shows a list of internship applications with the desired application status.
+Similar to use case 4 except that the filtering is done by application status instead of keywords. 
 
-   Use case ends.
-
-**Extensions**:
-* 2a. User enters the details in the wrong format.
-  * 2a1. FindMyIntern shows an error message.
-
-    Use case ends.
-  
-* 3a. There were no internship applications that contained the desired application status.
-  * 3a1. FindMyIntern shows an empty list.
-
-    Use case ends.
+<br />
 
 **Use Case: UC6 - Sort internship applications by sort criteria**
 
 **MSS**:
-1. User wants to sort internship applications by sort criteria.
+1. User requests to sort internship applications by sort criteria.
 2. User enters the desired sort criteria (applied or interview).
 3. FindMyIntern shows a list of internship applications sorted by the desired sort criteria.
 
