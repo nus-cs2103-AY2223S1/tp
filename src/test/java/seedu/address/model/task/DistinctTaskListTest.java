@@ -23,7 +23,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.commons.Criteria;
+import seedu.address.model.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;

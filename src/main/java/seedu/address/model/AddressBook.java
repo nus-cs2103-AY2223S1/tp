@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.DistinctExamList;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;

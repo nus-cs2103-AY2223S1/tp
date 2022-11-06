@@ -1,0 +1,13 @@
+{
+  "tasks" : [ ],
+  "modules" : [{
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  }],
+  "exams" : [ ]
+}

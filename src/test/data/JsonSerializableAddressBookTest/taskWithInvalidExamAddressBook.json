@@ -1,0 +1,21 @@
+{
+  "tasks" : [ {
+    "taskDescription" : "Task A",
+    "status" : "incomplete",
+    "priority" : null,
+    "deadline" : null,
+    "examDate" : "30-12-2022",
+    "examDescription" : "Finals",
+    "moduleCode" : "cs2030"
+  } ],
+  "modules" : [ {
+    "moduleCode" : "cs2030",
+    "moduleName" : "Programming Methodology",
+    "moduleCredit" : "4"
+  } ],
+  "exams" : [ {
+    "description" : "Midterm Exam",
+    "date" : "29-11-2022",
+    "moduleCode" : "cs2030"
+  } ]
+}

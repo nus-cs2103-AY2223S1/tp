@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
