@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     * DG User Stories Table  ([[PR#419]])
     * Added Instructions for Manual testing ([[PR#505]])
     * Added Effort Section ([[PR#503]])
-    * Updating and fixing bugs in DG ([[PR#36]],[[PR#278]], [[PR#281]], [[PR#287]], [[PR#319]], [[PR#334]], [[PR#419]])
+    * Updating and fixing bugs in DG ([[PR#36]],[[PR#278]], [[PR#281]], [[PR#287]], [[PR#319]], [[PR#334]], [[PR#419]], [[PR#521]])
 
 * **Community**:
 
