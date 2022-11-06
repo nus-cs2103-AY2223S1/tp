@@ -41,8 +41,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 LessonBook *--> "1" UniqueLessonList
 UniqueLessonList --> "~* all" Lesson
 Studio -u-|> Lesson
-MasteryCheck -u-|> Lesson
-Consult --|> Lesson
+MasteryCheck -l-|> Lesson
+Consult -r-|> Lesson
 
 Lesson *---> LessonDesc
 Lesson *---> TimePeriod
@@ -55,8 +55,7 @@ TimePeriod -[hidden]right-> LessonAttendance
 LessonAttendance -[hidden]right-> LessonNotes
 LessonNotes -[hidden]right-> StudioParticipation
 LessonNotes -[hidden]right-> StudioParticipation
-MasteryCheck -[hidden]r-> Consult
-Studio -[hidden]r-> MasteryCheck
+Studio -[hidden]up-> MasteryCheck
 
 ModelManager -->"~* filtered" Lesson
 @enduml
