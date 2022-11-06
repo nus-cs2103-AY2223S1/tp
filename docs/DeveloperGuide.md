@@ -636,7 +636,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC01 - Add An Applicant**
+**Use case: UC02 - Add An Applicant**
 
 **Guarantees:**
 * A new applicant will only be added if there does not exist an applicant with the same name.
@@ -666,7 +666,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC02 - Delete an applicant**
+**Use case: UC03 - List Applicants**
+
+**MSS**
+
+1. User requests to list all applicants.
+2. TrackAScholar shows the list of all applicants. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. TrackAScholar has no applicants stored.
+
+    * 1a1. TrackAScholar shows an empty applicant list.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC04 - Edit personal details of an applicant**
+
+**Guarantees:**
+* The details of an applicant will only be updated if there exists such an applicant with the same name in the txt file.
+
+**MSS**
+
+1. User requests to change the details of an applicant (such as email or contact number etc.).
+2. TrackAScholar updates the personal details of the applicant to the list. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. An applicant with such name does not exist.
+
+    * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
+      Use case resumes at step 1.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC05 - Delete an applicant**
 
 **Guarantees:**
 * Once an applicant is deleted,the applicant will be removed from the database and the user will no longer
@@ -696,60 +747,11 @@ be able to view the applicant from the list.
   * 1c2. User agrees by typing YES to confirm deletion. <br>
       Use case ends.
 
---------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC03 - Edit personal details of an applicant**
-
-**Guarantees:**
-* The details of an applicant will only be updated if there exists such an applicant with the same name in the txt file.
-
-**MSS**
-
-1. User requests to change the details of an applicant (such as email or contact number etc.).
-2. TrackAScholar updates the personal details of the applicant to the list. <br>
-   Use case ends.
-
-**Extensions**
-
-* 1a. Input format is wrong.
-
-  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
-
-* 1b. Input parameters is invalid.
-
-  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
-      Use case resumes at step 1.
-
-* 1c. An applicant with such name does not exist.
-
-  * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
-      Use case resumes at step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC04 - List Applicants**
-
-**MSS**
-
-1. User requests to list all applicants.
-2. TrackAScholar shows the list of all applicants. <br>
-   Use case ends.
-
-**Extensions**
-
-* 1a. Input format is wrong.
-
-    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
-
-* 1b. TrackAScholar has no applicants stored.
-
-    * 1a1. TrackAScholar shows an empty applicant list.
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case: UC05 - Filter applicants by status**
+**Use case: UC09 - Filter applicants by status**
 
 **MSS**
 
