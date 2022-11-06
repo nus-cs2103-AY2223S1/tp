@@ -118,7 +118,6 @@ public class SuggestCommandTest {
                 new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        System.out.println(expectedModel.getFilteredPersonList());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, HOON, IDA, JUSTIN),
                 model.getFilteredPersonList());
