@@ -194,7 +194,8 @@ This will help you understand the guide better!
 
 ### 5.3.1 Adding a student: `add`
 
-<div markdown="span" class="command-info">
+
+<div markdown="span" class="alert alert-info">
 :wrench: <b>Function:</b>
 Adds a student to StudMap.
 </div>
