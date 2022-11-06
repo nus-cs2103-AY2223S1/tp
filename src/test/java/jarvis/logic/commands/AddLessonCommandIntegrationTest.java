@@ -44,7 +44,7 @@ public class AddLessonCommandIntegrationTest {
     private LocalDateTime newDT1 = LocalDateTime.of(2022, 9, 9, 9, 0);
     private LocalDateTime newDT2 = LocalDateTime.of(2022, 9, 9, 10, 0);
     private TimePeriod noClashTimePeriod = new TimePeriod(newDT1, newDT2);
-    private List<Student> studentsInLesson =  Arrays.asList(getTypicalStudents().get(0), getTypicalStudents().get(1));
+    private List<Student> studentsInLesson = Arrays.asList(getTypicalStudents().get(0), getTypicalStudents().get(1));
     private Set<Index> studentIndexesForLesson =
             new HashSet<>(Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(2)));
 

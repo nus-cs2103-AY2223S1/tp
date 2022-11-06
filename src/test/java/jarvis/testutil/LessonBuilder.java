@@ -6,11 +6,9 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 import jarvis.model.Consult;
-import jarvis.model.Lesson;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
-import jarvis.model.LessonType;
 import jarvis.model.MasteryCheck;
 import jarvis.model.Student;
 import jarvis.model.Studio;

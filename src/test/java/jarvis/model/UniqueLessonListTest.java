@@ -3,7 +3,6 @@ package jarvis.model;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
-import static jarvis.testutil.TypicalLessons.TP1;
 import static jarvis.testutil.TypicalLessons.TP2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
