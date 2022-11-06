@@ -12,9 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_APPOINTMENT;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
@@ -33,15 +32,17 @@ import seedu.address.model.tag.Tag;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    private static final Prefix[] commandPrefixes =
+            {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+            PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END, PREFIX_TAG_APPOINTMENT};
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END, PREFIX_TAG_APPOINTMENT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, commandPrefixes);
 
         String name = argMultimap.getValue(PREFIX_NAME).orElse("");
         String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
@@ -55,8 +56,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_END).orElse(""));
         List<String> appointmentTagList = argMultimap.getAllValues(PREFIX_TAG_APPOINTMENT);
 
-        checkIfAtLeastOneInputPresent(personTagList, appointmentTagList,
-                name, phone, email, address, reason, startDateTime, endDateTime);
+        checkIfValidCommandFormat(argMultimap);
         checkIfInputsValid(name, phone, personTagList, startDateTime, endDateTime);
 
         LocalDateTime parsedStartDateTime = parseDateTime(startDateTime, LocalDateTime.MIN);
@@ -64,26 +64,33 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
 
+        boolean isUsingAppointmentPredicate =
+                isAnyAppointmentFieldSpecified(reason, startDateTime, endDateTime, appointmentTagList);
+
+        return createFindCommand(name, phone, email, address, personTagList,
+                reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList, isUsingAppointmentPredicate);
+    }
+
+    private FindCommand createFindCommand(String name, String phone, String email, String address,
+                                          List<String> personTagList, String reason,
+                                          LocalDateTime parsedStartDateTime, LocalDateTime parsedEndDateTime,
+                                          List<String> appointmentTagList, boolean isUsingAppointmentPredicate) {
+
         CombinedPersonPredicate combinedPersonPredicate =
                 new CombinedPersonPredicate(name, phone, email, address, personTagList);
         CombinedAppointmentPredicate combinedAppointmentPredicate =
                 new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList);
 
-        boolean isUsingAppointmentPredicate =
-                isAnyAppointmentFieldSpecified(reason, startDateTime, endDateTime, appointmentTagList);
-
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isUsingAppointmentPredicate);
     }
 
-    private void checkIfAtLeastOneInputPresent(List<String> personTagList, List<String> appointmentTagList,
-                                               String... otherFields) throws ParseException {
-        List<String> allFields = new ArrayList<>(Arrays.asList(otherFields));
-        allFields.addAll(personTagList);
-        allFields.addAll(appointmentTagList);
+    private void checkIfValidCommandFormat(ArgumentMultimap argumentMultimap) throws ParseException {
+        boolean atLeastOnePrefixPresent =
+                Stream.of(commandPrefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
 
-        boolean areAllFieldsEmpty = allFields.stream().allMatch(String::isEmpty);
+        boolean isPreambleEmpty = argumentMultimap.getPreamble().isEmpty();
 
-        if (areAllFieldsEmpty) {
+        if (!atLeastOnePrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
