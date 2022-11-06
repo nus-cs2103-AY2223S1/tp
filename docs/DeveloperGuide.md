@@ -252,7 +252,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 <img src="images/DeleteCommandSequenceDiagram.png" />
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **Step 1: Parsing the command**
@@ -406,6 +406,11 @@ This command can be divided into 2 main steps:
 The following Sequence diagram shows how the `ViewClassCommand` works:
 
 <img src="images/ViewClassCommandSequenceDiagram.png" />
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `ViewClassCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 **Step 1: Parsing the command**
 
