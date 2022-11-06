@@ -18,7 +18,7 @@ public class Mod {
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
         GE("General Education"), UE("Unrestricted Elective");
-        private String value;
+        private final String value;
 
         ModCategory(String value) {
             this.value = value;
