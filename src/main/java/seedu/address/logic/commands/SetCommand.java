@@ -22,8 +22,8 @@ public class SetCommand extends Command {
     public static final String ALIAS = "s";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String HELP_MESSAGE =
-            "The 'set' command is used to either set a deadline for a task or change the current " +
-                    "working team in TruthTable .\n";
+            "The 'set' command is used to either set a deadline for a task or change the current "
+                    + "working team in TruthTable .\n";
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
