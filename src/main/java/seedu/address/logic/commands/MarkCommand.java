@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Marks an appointment for the given patient as complete.
@@ -40,6 +41,8 @@ public class MarkCommand extends SelectAppointmentCommand {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
         appointmentToMark.mark();
+        model.updateFilteredLists(HiddenPredicateSingleton.getInstance().getCurrPersonPredicate(),
+                HiddenPredicateSingleton.getInstance().getCurrApptPredicate());
         String addRecurringSuccessMsg = addRecurringAppointment(model, person, appointmentToMark);
         String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased());
