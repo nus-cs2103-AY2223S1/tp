@@ -559,13 +559,7 @@ Internship applications can stretch over a long period of time, making it hard t
 
 **MSS**
 
-<<<<<<< HEAD
-1.  User inputs their application details (i.e. company 
-name, position applied, application 
-date, status, etc.)
-=======
 1.  User inputs their application details (i.e. company name, contact number and email of the company, position applied, application date, current application status, etc.)
->>>>>>> master
 2.  CinternS adds the application into the database.
     
     Use case ends.
