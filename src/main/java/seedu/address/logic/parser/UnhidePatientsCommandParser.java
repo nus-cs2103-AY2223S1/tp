@@ -21,6 +21,8 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
     /**
      * Parses the given {@code String} of arguments in the context of the HidePatientCommand.
      * and returns a FilterPatientCommand object for execution.
+     *
+     * @param args Given arguments to be parsed.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnhidePatientsCommand parse(String args) throws ParseException {
@@ -46,6 +48,7 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
 
     /**
      * Checks if given tags match ear, nose or throat.
+     *
      * @param tags The values gotten from the user after the t/ prefix.
      * @return Whether tags are all valid.
      */
