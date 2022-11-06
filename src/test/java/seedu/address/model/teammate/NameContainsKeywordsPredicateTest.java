@@ -57,6 +57,14 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new TeammateBuilder().withName("Alice Bob").build()));
+
+        // Incomplete keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIc"));
+        assertTrue(predicate.test(new TeammateBuilder().withName("Alice Bob").build()));
+
+        // Incomplete keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("LIce"));
+        assertTrue(predicate.test(new TeammateBuilder().withName("Alice Bob").build()));
     }
 
     @Test
@@ -69,9 +77,10 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(List.of("Carol"));
         assertFalse(predicate.test(new TeammateBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        // Keywords match phone, email, address, tag, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street",
+                "frontend"));
         assertFalse(predicate.test(new TeammateBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withEmail("alice@email.com").withAddress("Main Street").withTags("frontend").build()));
     }
 }

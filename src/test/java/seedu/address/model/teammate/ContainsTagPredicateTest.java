@@ -69,5 +69,9 @@ public class ContainsTagPredicateTest {
         predicate = new ContainsTagPredicate(List.of("fullstack"));
         assertFalse(predicate.test(new TeammateBuilder().withTags("frontend", "backend").build()));
 
+        // Incomplete tags
+        predicate = new ContainsTagPredicate(List.of("front"));
+        assertFalse(predicate.test(new TeammateBuilder().withTags("frontend", "backend").build()));
+
     }
 }

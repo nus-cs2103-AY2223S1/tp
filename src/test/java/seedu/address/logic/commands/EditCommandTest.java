@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTeammateAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
@@ -23,9 +26,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TaskPanel;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
 import seedu.address.model.teammate.Teammate;
 import seedu.address.testutil.EditTeammateDescriptorBuilder;
-//import seedu.address.testutil.TeammateBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TeammateBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -34,42 +39,42 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
-    //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-    //        Teammate editedTeammate = new TeammateBuilder().build();
-    //        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE, descriptor);
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //            new TaskPanel(model.getTaskPanel()), new UserPrefs());
-    //        expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+        @Test
+        public void execute_allFieldsSpecifiedUnfilteredListNoTaskChange_success() {
+            Teammate editedTeammate = new TeammateBuilder().build();
+            EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+            EditCommand editCommand = new EditCommand(INDEX_SECOND_TEAMMATE, descriptor);
 
-    //    @Test
-    //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-    //        Index indexLastTeammate = Index.fromOneBased(model.getFilteredTeammateList().size());
-    //        Teammate lastTeammate = model.getFilteredTeammateList().get(indexLastTeammate.getZeroBased());
-    //
-    //        TeammateBuilder teammateInList = new TeammateBuilder(lastTeammate);
-    //        Teammate editedTeammate = teammateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-    //                .withTags(VALID_TAG_HUSBAND).build();
-    //
-    //        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB)
-    //                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-    //        EditCommand editCommand = new EditCommand(indexLastTeammate, descriptor);
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //            new TaskPanel(model.getTaskPanel()), new UserPrefs());
-    //        expectedModel.setTeammate(lastTeammate, editedTeammate);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
+
+            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+            expectedModel.setTeammate(model.getFilteredTeammateList().get(1), editedTeammate);
+
+            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        }
+
+        @Test
+        public void execute_someFieldsSpecifiedUnfilteredListNoTaskChange_success() {
+            Index indexSecondLastTeammate = Index.fromOneBased(model.getFilteredTeammateList().size() - 1);
+            Teammate secondLastTeammate = model.getFilteredTeammateList().get(indexSecondLastTeammate.getZeroBased());
+
+            TeammateBuilder teammateInList = new TeammateBuilder(secondLastTeammate);
+            Teammate editedTeammate = teammateInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                    .withTags(VALID_TAG_HUSBAND).build();
+
+            EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB)
+                    .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+            EditCommand editCommand = new EditCommand(indexSecondLastTeammate, descriptor);
+
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
+
+            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+            expectedModel.setTeammate(secondLastTeammate, editedTeammate);
+
+            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -84,24 +89,41 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_filteredList_success() {
-    //        showTeammateAtIndex(model, INDEX_FIRST_TEAMMATE);
-    //
-    //        Teammate teammateInFilteredList =
-    //              model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
-    //        Teammate editedTeammate = new TeammateBuilder(teammateInFilteredList).withName(VALID_NAME_BOB).build();
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE,
-    //                new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB).build());
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //            new TaskPanel(model.getTaskPanel()), new UserPrefs());
-    //        expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+        @Test
+        public void execute_filteredListNoTaskChange_success() {
+            showTeammateAtIndex(model, INDEX_THIRD_TEAMMATE);
+
+            Teammate teammateInFilteredList =
+                  model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+            Teammate editedTeammate = new TeammateBuilder(teammateInFilteredList).withName(VALID_NAME_BOB).build();
+            EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE,
+                    new EditTeammateDescriptorBuilder().withName(VALID_NAME_BOB).build());
+
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
+
+            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+            expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
+
+            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        }
+
+    @Test
+    public void execute_taskAssignedContactCascade_success() {
+        Teammate editedTeammate = new TeammateBuilder().build();
+        Task editedTask = new TaskBuilder(model.getFilteredTaskList().get(0)).withContacts("Amy Bee").build();
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(editedTeammate).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TEAMMATE, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTeammate(model.getFilteredTeammateList().get(0), editedTeammate);
+        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_duplicateTeammateUnfilteredList_failure() {
