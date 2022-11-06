@@ -176,11 +176,18 @@ This feature allows a TA to easily mass email a selected group of students. A ty
 3. When the deep link is opened in the browser, the user is redirected to NUS WebMail with a draft email and selected recipients.
 
 #### Current Implementation
-The following sequence diagram shows how the extract emails command works.
+The following sequence diagram shows how the extract emails command works. As it is a high-level diagram, `Ui`, `Logic` and `Model` refer to
+components in ModQuik, rather than classes. `Clipboard` refers to the Java 11 Clipboard class.
 
 ![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
 
-Note: An alternative is to use a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
+Upon the user issuing the `extract emails` command, an `ExtractEmailCommand` is created. This step is not shown in the sequence diagram for breivity.
+
+When the command is executed, the current list of students shown is retrieved from Model as an ObservableList of students.
+This list is passed to the helper method `generateUrl`, which creates the deeplink required. This link is then pasted to the system clipboard via
+an instance of Clipboard's method `setContent`.
+
+An alternative is to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
 does not attach itself as a mailto: handler.
 
 ### \[Proposed\] Undo/redo feature
