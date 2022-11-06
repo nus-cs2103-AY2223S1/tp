@@ -276,6 +276,10 @@ Format: `marktask INDEX`
 Example:
 * `marktask 2` marks the 2nd task as done.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Tasks that have been marked as done will get shifted to the bottom of the task list.
+</div>
+
 ### Marking a task as not done : `unmarktask`
 
 Marks a task as not done.
