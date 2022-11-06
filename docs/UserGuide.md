@@ -11,7 +11,7 @@ TABS aims to help project team leaders by
 1. Simplifying the **group management** process.
 2. Providing an **overview** of tasks assigned to members.
 
-Individuals with a fast typing speed will benefit more because TABS optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Individuals with a fast typing speed will benefit more because TABS optimized for use via a **Command-Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ### Feature Overview
 
@@ -382,8 +382,8 @@ Format: `assigntaskall g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 <div markdown="span" class="alert alert-primary">
   :information_source: <b>Extra note</b>:
 
-When `assigntaskall` is executed with Task A, members of the group who initially has `TASK` of the same name as Task A
-will be not be assigned Task A, even if the specified `WORKLOAD` and `DEADLINE` of Task A is different from that of the original.
+`assigntaskall` will not add the specified `TASK` to members of the group if they have a task with the same name as the one being assigned, 
+even if the `WORKLOAD` and `DEADLINE` of the new task is different.
 
 </div>
 
@@ -454,7 +454,9 @@ Format: `exit`
 | **Workload**                      | `The estimated amount of work to be done by a member, gauged by low, medium or high`    |
 | **Deadline**                      | `The specified date the task has to be completed by`                                    |
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
