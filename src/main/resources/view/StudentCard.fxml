@@ -13,7 +13,6 @@
 
 <VBox maxHeight="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Region maxHeight="5.0" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #d9d9d9;" />
       <HBox fx:id="cardPane" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
          <HBox maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
             <opaqueInsets>
@@ -105,6 +104,5 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Region maxHeight="5.0" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #d9d9d9;" />
    </children>
 </VBox>
