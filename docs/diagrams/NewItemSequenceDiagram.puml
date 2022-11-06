@@ -38,7 +38,7 @@ activate NewCommandParser
 NewCommandParser --> FoodRemParser
 deactivate NewCommandParser
 
-FoodRemParser -> NewCommandParser : parse("n/tagname")
+FoodRemParser -> NewCommandParser : parse("n/itemname")
 activate NewCommandParser
 
 create ItemName
