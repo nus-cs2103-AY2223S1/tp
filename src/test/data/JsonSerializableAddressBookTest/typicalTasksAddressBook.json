@@ -1,0 +1,55 @@
+{
+  "persons" : [ ],
+  "groups" : [ {
+    "name" : "t1",
+    "uid" : "ca762678-c236-3043-b841-2bc071624f8f",
+    "tags" : [ ],
+    "attributes" : [ ]
+  } ],
+  "tasks" : [ {
+    "description" : "Bug related to the Alpha command",
+    "localDateTime" : "2022-11-04T22:07:53.947688600",
+    "name" : "Fix bug",
+    "uid" : "0dce1d16-a2e7-37eb-977f-efeaaeaa4f4c",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Logic",
+        "content" : "Check null value in command",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "description" : "Administrative tasks by management",
+    "localDateTime" : "",
+    "name" : "Do paperwork",
+    "uid" : "8cc6fe70-d453-376d-9b7c-59a2c777277e",
+    "tags" : [ ],
+    "attributes" : [ ]
+  }, {
+    "description" : "Buy printer from XYZ street",
+    "localDateTime" : "",
+    "name" : "Buy printer",
+    "uid" : "4243b59a-e08f-349f-9e59-07e1481efece",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Priority",
+        "content" : "High",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "itemRelationship" : {
+    "8cc6fe70-d453-376d-9b7c-59a2c777277e" : [ "ca762678-c236-3043-b841-2bc071624f8f" ],
+    "0dce1d16-a2e7-37eb-977f-efeaaeaa4f4c" : [ "ca762678-c236-3043-b841-2bc071624f8f" ],
+    "ca762678-c236-3043-b841-2bc071624f8f" : [ ],
+    "4243b59a-e08f-349f-9e59-07e1481efece" : [ "ca762678-c236-3043-b841-2bc071624f8f" ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
+  }
+}
