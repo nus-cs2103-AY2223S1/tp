@@ -25,7 +25,11 @@ public class DeleteTaskCommand extends TaskCommand {
             + "Parameters: \n"
             + "Example: " + COMMAND_WORD_FULL + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Task deleted: %1$s";
+    public static final String MESSAGE_SUCCESS = "Task deleted:\n"
+        + "Title: %s\n"
+        + "Deadline: %s\n"
+        + "Project: %s\n"
+        + "Assigned Contacts: %s\n";
 
     private final Index targetIndex;
 
@@ -49,7 +53,11 @@ public class DeleteTaskCommand extends TaskCommand {
         Task toDelete = taskList.get(targetIndex.getZeroBased());
         model.deleteTask(toDelete);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                toDelete.getTitle(),
+                toDelete.getDeadline(),
+                toDelete.getProject(),
+                toDelete.getAssignedContacts()));
     }
 
     @Override

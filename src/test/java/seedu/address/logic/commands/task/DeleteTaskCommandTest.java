@@ -18,6 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 
 public class DeleteTaskCommandTest {
+
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
     @Test
@@ -30,7 +31,11 @@ public class DeleteTaskCommandTest {
         Index targetIndex = Index.fromOneBased(1);
         Task taskToDelete = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(targetIndex);
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
+            taskToDelete.getTitle(),
+            taskToDelete.getDeadline(),
+            taskToDelete.getProject(),
+            taskToDelete.getAssignedContacts());
         ModelManager expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new TaskPanel(model.getTaskPanel()), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
