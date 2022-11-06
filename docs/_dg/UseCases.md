@@ -28,7 +28,7 @@ Extensions:
 
 #### Use Case 2: Update Item in Inventory
 
-Preconditions: [[ Item ]] to edit exists in inventory.
+Preconditions: [[ item:Item ]] to edit exists in inventory.
 
 [[ MSS ]]:
 
