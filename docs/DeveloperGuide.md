@@ -1189,7 +1189,7 @@ More information on usage: [select command](UserGuide.html#selecting-an-internsh
     5. Other incorrect select commands to try: `select`, `select x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Adding tags to an internship while internships are being filtered.
+2. Selecting an internship while internships are being filtered.
 
     1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple
        internships in the list. 
