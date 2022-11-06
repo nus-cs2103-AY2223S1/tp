@@ -126,6 +126,11 @@ public class EditExamCommandParserTest {
         assertParseFailure(parser, "1" + EXAMMODULEONE
                 + INVALID_EXAM_DESCRIPTION + EXAMDATEONE, ExamDescription.DESCRIPTION_CONSTRAINTS);
 
+        assertParseFailure(parser, "2147483648" + EXAMDESCRIPTIONONE,
+                MESSAGE_INVALID_EXAM_INDEX);
+
+        assertParseFailure(parser, "-2" + EXAMDESCRIPTIONONE, MESSAGE_INVALID_EXAM_INDEX);
+
     }
 
     @Test
