@@ -658,6 +658,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## Command summary
 
+
 | Command        | Mnemonic                                        | Format, Examples                                                                                                                                           |
 |----------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **help**       | -                                               | `help`                                                                                                                                                     |
@@ -691,5 +692,6 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **addL**       | **add** **L**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`         |
 | **deleteL**    | **delete** **L**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]` |
 | **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                       |
+
 
 [[Back to Table of Contents](#table-of-contents)]
