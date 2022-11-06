@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes command to manipulate columns;
+:RC4HDB parses user input;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid subset of columns in current table])
+    :Generate list of columns to display;
+    :Check the number of visible columns;
+    if () then ([at least one visible column])
+    :Display specified columns;
+    else ([else])
+    :Display "at least one visible column
+              required" error message;
+    endif
+else ([else])
+    :Display "invalid subset"
+          error message;
+endif
+stop
+@enduml
