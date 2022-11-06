@@ -138,7 +138,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 * Parameters can be in any order.<br>
   E.g. If the command specifies `n/NAME w/WEIGHT`, `w/WEIGHT n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   E.g. If you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
 
 * Redundant inputs for commands that do not take in additional parameters (such as `:list`, `:sort`, `:help` `:wq`) will be ignored.<br>
@@ -204,7 +204,7 @@ Deletes a particular exercise from our list. The index refers to the index numbe
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note about delete:**<br>
-If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
+If the deleted exercise was the last exercise with the same name, then the exercise is automatically de-registered from the list of unique exercises.
 
 </div>
 
@@ -230,7 +230,7 @@ Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> E.
 Example:
 * `:clear confirm/` Clears all saved exercises, resetting the data in the system.
 
-### 5.4. Filtering exercises by their name(s) : `:filter`
+### 5.4. Filtering exercises by keyword(s) : `:filter`
 
 Filters exercises, in the current [Exercise List](#42-exercise-list), with names containing any of the given keywords.
 
@@ -251,7 +251,7 @@ Format: `:filter KEYWORD [KEYWORD]...`
 <div markdown="block" class="alert alert-warning">
 
 **:thinking: When should I use this?**<br>
-I should use this when I want to find the instances of a specific exercise.
+I should use this when I want to find the entries of a specific exercise.
 
 </div>
 
