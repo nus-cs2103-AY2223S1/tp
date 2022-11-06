@@ -59,6 +59,9 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
+        if (name.isEmpty()) {
+            return Client.EmptyClient.EMPTY_CLIENT;
+        }
         final List<Project> clientProjects = new ArrayList<>();
         final Name modelName = StorageUtil.readNameFromStorage(name, Client.class.getSimpleName());
         final ClientMobile modelMobile = StorageUtil.readMobileFromStorage(mobile);
