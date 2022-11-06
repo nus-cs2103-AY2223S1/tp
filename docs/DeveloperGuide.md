@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="500" />
 
 
 The `Model` component,
@@ -129,7 +129,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="650" />
 
 </div>
 
@@ -232,7 +232,7 @@ and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command 
 this alias-keyword mapping into `AliasMap`.
 
 3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
-for a alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
+for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
 `list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
 
 _{To add sequence diagram}_
@@ -241,9 +241,13 @@ _{To add activity diagram}_
 
 #### Design considerations
 
-**Aspect: How alias command is implemented:**
+**Aspect: How `Alias` is stored in `AliasMap`:**
 
-_{To add other design considerations}_
+|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map                                   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+_
 
 ### Grade Feature
 FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
