@@ -420,7 +420,7 @@ The user may want to edit the details of a buyer or property after adding it to 
 Or, the user may want to change the price of a property after adding it to Cobb.
 
 #### Implementation
-The `EditBuyerCommand` and `EditPropertyCommand` class extends the `Command` class. They are used to edit the details of a buyer or property, respectively.
+The `EditBuyerCommand` and `EditPropertyCommand` classes extends the `Command` class. They are used to edit the details of a buyer or property, respectively.
 Both commands allow the user to change any of the fields of a buyer or property. The commands expect at least one flag to be edited, otherwise an error message will be displayed.
 When the edit command is inputted, the `EditBuyerCommandParser` and `EditPropertyCommandParser` classes are used to parse the user input and create the respective `EditBuyerCommand` and `EditPropertyCommand` objects.
 When these created command objects are executed by the `LogicManager`, the `EditBuyerCommand#execute(Model model)` or `EditPropertyCommand#execute(Model model)` methods are called. These methods will edit the buyer or property in the model, and return a `CommandResult` object.
