@@ -14,7 +14,6 @@ import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.waddle.commons.core.Text;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class ItineraryTest {
