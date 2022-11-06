@@ -7,6 +7,7 @@ import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
 import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
 import static swift.testutil.TypicalTasks.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
 
 import swift.commons.core.Messages;
@@ -23,7 +24,7 @@ import swift.testutil.TaskBuilder;
  * {@code MarkTaskCommand}.
  */
 public class MarkTaskCommandTest {
-  
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
 

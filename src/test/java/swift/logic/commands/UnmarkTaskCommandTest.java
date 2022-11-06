@@ -7,6 +7,7 @@ import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
 import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
 import static swift.testutil.TypicalTasks.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
 
 import swift.commons.core.Messages;
@@ -23,7 +24,7 @@ import swift.testutil.TaskBuilder;
  * {@code UnmarkTaskCommand}.
  */
 public class UnmarkTaskCommandTest {
-  
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
 
@@ -65,7 +66,7 @@ public class UnmarkTaskCommandTest {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
 
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(indexLastTask);
-        assertCommandFailure(unmarkTaskCommand, model, 
+        assertCommandFailure(unmarkTaskCommand, model,
                 UnmarkTaskCommand.MESSAGE_TASK_ALREADY_INCOMPLETE);
     }
 
