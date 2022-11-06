@@ -407,6 +407,7 @@ After executing `help delete`:
 <div style="page-break-after: always;"></div>
 
 ## Parameter Input Formats
+
 | Attribute | Input Format                                                                                                                                                                                                                                                                                                                 |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name      | Should only contain alphanumeric characters, spaces or dashes, and it should not be blank.                                                                                                                                                                                                                                   |
