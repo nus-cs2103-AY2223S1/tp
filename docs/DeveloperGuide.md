@@ -1296,6 +1296,14 @@ testers are expected to do more *exploratory* testing.
 <!-- @@author cheeheng -->
 Assumption: The sample data is loaded into Plannit.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Sample data is automatically loaded into Plannit when <code>data/addressbook.json</code> is not found. 
+
+To load the sample data, close Plannit (if a Plannit instance is active) and delete `data/addressbook.json` if it exists. 
+Remember to perform a backup before deletion if necessary. Then, open Plannit.
+
+</div>
+
 <!-- @@author ekweirui -->
 ### Launching the application
 
