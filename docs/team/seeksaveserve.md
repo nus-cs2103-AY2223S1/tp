@@ -53,10 +53,4 @@ Given below are my contributions to the project.
 
 * **Community**:
 
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#101](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/101), [\#85](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/85), [\#83](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/83), [\#59](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/59), [\#55](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/55)
