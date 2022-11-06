@@ -10,9 +10,10 @@ import javafx.scene.Node;
 /**
  * A GUI unit test class for InternshipBook.
  *
- * Reused from https://github.com/se-edu/addressbook-level4 with minor modifications.
+ * Reused from https://github.com/se-edu/addressbook-level4/blob/master/src/test/java/seedu/address/ui/GuiUnitTest.java
+ * with minor modifications.
  *
- * @@author se-edu
+ * @@author sugiyem-reused
  */
 public abstract class GuiUnitTest {
     // TODO: Remove this workaround after using JavaFX version 13 or above

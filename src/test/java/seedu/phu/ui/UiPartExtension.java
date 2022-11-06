@@ -13,9 +13,11 @@ import javafx.scene.Scene;
 /**
  * Ui Part extension to handle GUI test cases.
  *
- * Reused from https://github.com/se-edu/addressbook-level4 with minor modifications.
+ * Reused from
+ * https://github.com/se-edu/addressbook-level4/blob/master/src/test/java/seedu/address/ui/testutil/UiPartExtension.java
+ * with minor modifications.
  *
- * @@author se-edu
+ * @@author sugiyem-reused
  */
 public class UiPartExtension implements AfterEachCallback, BeforeEachCallback {
     private static final String[] CSS_FILES = {"view/DarkTheme.css", "view/Extensions.css"};
