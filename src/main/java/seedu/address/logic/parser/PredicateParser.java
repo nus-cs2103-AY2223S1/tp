@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
@@ -42,11 +44,11 @@ public class PredicateParser {
     private static final String PHONE_PREFIX = "ph";
 
     //For pets
-    private static final String COLOR_PREFIX = "p_c";
-    private static final String PET_NAME_PREFIX = "p_n";
-    private static final String PRICE_PREFIX = "p_p";
-    private static final String SPECIES_PREFIX = "p_s";
-    private static final String VACCINATION_PREFIX = "p_v";
+    private static final String COLOR_PREFIX = "p_c/";
+    private static final String PET_NAME_PREFIX = "p_n/";
+    private static final String PRICE_PREFIX = "p_p/";
+    private static final String SPECIES_PREFIX = "p_s/";
+    private static final String VACCINATION_PREFIX = "p_v/";
 
     //For orders
     private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar/";
@@ -169,32 +171,43 @@ public class PredicateParser {
      * and returns a Predicate.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public static Predicate<Pet> parsePet(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
-        if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
+    public static Predicate<Pet> parsePet(String input, String prefix) throws ParseException {
+
+        input = input.trim();
+
+        if (input.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
-        String query = nameKeywords[1].trim();
-        switch (nameKeywords[0].trim()) {
+        String[] inputs = input.split("\\s+");
+        switch (prefix) {
         case COLOR_PREFIX:
-            return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new ColorContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case PET_NAME_PREFIX:
-            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case PRICE_PREFIX:
-            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
+            if (!input.matches("[0-9]+")) {
+                throw new ParseException("Input has to be numbers without spaces");
+            };
+            if (inputs.length > 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+            }
+            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(input)));
         case SPECIES_PREFIX:
-            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case VACCINATION_PREFIX:
-            query = query.trim();
-            if (!query.equals(Boolean.toString(true)) && !query.equals(Boolean.toString(false))) {
+            input = input.trim();
+            if (!input.equals(Boolean.toString(true)) && !input.equals(Boolean.toString(false))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
-            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
+            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(input));
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
+
+
     }
 
     /**
@@ -213,22 +226,26 @@ public class PredicateParser {
         case ADDITIONAL_REQUEST_PREFIX:
             return new AdditionalRequestPredicate<>(Arrays.asList(input));
         case ORDER_STATUS_PREFIX:
-            if (!OrderStatus.isValidOrderStatus(input)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        FilterOrderCommand.MESSAGE_USAGE));
-            }
-            if (input.equals(OrderStatus.DELIVERING.toString())) {
+            input = input.toUpperCase();
+            if (input.equals(OrderStatus.DELIVERING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
-            } else if (input.equals(OrderStatus.NEGOTIATING.toString())) {
+            } else if (input.equals(OrderStatus.NEGOTIATING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
-            } else if (input.equals(OrderStatus.PENDING.toString())) {
+            } else if (input.equals(OrderStatus.PENDING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(FilterOrderCommand.MESSAGE_INVALID_OS);
         case PRICE_RANGE_PREFIX:
-            String[] prices = input.split("-");
-            Price lowerBound = new Price(Double.parseDouble(prices[0]));
-            Price upperBound = new Price(Double.parseDouble(prices[1]));
+            final Pattern format = Pattern.compile("(?<lower>.\\S+)-(?<upper>.\\S+)");
+            final Matcher matcher = format.matcher(input);
+            if (!matcher.matches()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            }
+            final String lower = matcher.group("lower").strip();
+            final String upper = matcher.group("upper").strip();
+            Price lowerBound = new Price(Double.parseDouble(lower));
+            Price upperBound = new Price(Double.parseDouble(upper));
 
             if (lowerBound.getPrice() > upperBound.getPrice()) {
                 throw new ParseException(
@@ -236,8 +253,6 @@ public class PredicateParser {
             }
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
-            System.out.println(prefix);
-            System.out.println(input);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
