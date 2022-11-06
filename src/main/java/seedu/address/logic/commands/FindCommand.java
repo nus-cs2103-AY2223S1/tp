@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
-
-import java.util.List;
 
 /**
  * Finds and lists all customers in address book whose name contains any of the argument keywords
@@ -39,7 +39,7 @@ public class FindCommand extends Command {
         model.updateFilteredCustomerList(predicate);
         model.selectTab(GuiTab.CUSTOMER);
         List<Customer> lastShownList = model.getSortedFilteredCustomerList();
-        if(lastShownList.size() > 0) {
+        if (lastShownList.size() > 0) {
             Customer customerToOpen = lastShownList.get(0);
             model.selectCustomer(customerToOpen);
         }
