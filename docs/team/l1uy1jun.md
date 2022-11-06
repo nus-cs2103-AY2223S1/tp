@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added an attribute `ApplicationStatus` to keep track of the status of the scholarship application.
 
-* **New Feature**: Added the ability to remove scholarship applications in bulk.
+* **New Feature**: Added the ability to remove scholarship applications in bulk. (Pull Request [#84](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/84))
   * What it does: Allows the user to remove all the completed (accepted / rejected) scholarship applications by specifying which status to remove.
   * Justification: This feature improves the product significantly because a user can remove all the finished scholarship application together with one command without having to tediously delete them one by one.
 
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
       i.e. finding multiple names while specifying a single major matches only all the applicants whose name is partially mentioned and has taken the major specified.
     * Added 2 new classes `ScholarshipContainsKeywordsPredicate` and `MajorContainsKeywordsPredicate` to assist searching.
 
-  * Wrote additional test cases for existing features to improve coverage.
+  * Wrote additional test cases for existing features to improve coverage by 4%: [#190](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/190) [#196](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/196)
   
 * **Documentation**:
   * User Guide:

@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/shummyownzyou.png" width="200px">
 
-[[homepage]()]
 [[github](https://github.com/ShummyOwnzYou)]
 [[portfolio](team/jiehui.md)]
 
@@ -37,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/L1uY1jun)]
 [[portfolio](team/l1uy1jun.md)]
 
-* Role: Project Advisor
-* Responsibilities: `to be added soon`
+* Role: Developer
+* Responsibilities: Documentation + Code Quality + Deliverables & Deadlines
 
 ### Darren Tng
 
