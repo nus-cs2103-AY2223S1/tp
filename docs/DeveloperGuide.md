@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
+1.  User requests to list all clients
 2.  JeeqTracker shows a list of clients
 3.  User requests to delete a specific client in the list
 4.  JeeqTracker deletes the client
@@ -433,24 +433,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add a remark**
+**Use case: Add a Remark to a Client**
 
 **MSS**
 
-1. User requests to create a Mcdonalds client
-2. JeeqTracker creates and adds a client called McDonalds into JeeqTracker
-3. User requests to add Justin as a Remark to Mcdonalds
-4. JeeqTracker adds Justin and his details into the Mcdonalds as the Remark
+1. User requests to list all clients
+2. JeeqTracker shows a list of clients
+3. User requests to add Punctual Buyer as a Remark to client Alice
+4. JeeqTracker adds Punctual Buyer as the Remark to Alice's contact card
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Client Mcdonalds already exists.
-    * 1a1. JeeqTracker shows an error message.
+* 2a. The list is empty.
 
-        Use case resumes at 1.
-* 3a. User fails to provide all necessary details to create a Remark.
+  Use case ends.
+* 3a. User fails to provide a valid command format to create a Remark.
     * 3a1. JeeqTracker shows an error message.
 
         Use case resumes at 2.
@@ -481,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. JeeqTracker shows an error message.
 
       Use case resumes at 2.
-
+    
 
 *{More to be added}*
 
@@ -505,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Mainstream OS | Windows, Linux, Unix, OS-X                                                                    |
 | Client        | People who the user wants to have transactions with, or have already transacted with the user |
 | Remark        | Characteristics of a client (e.g. Punctual, Friendly)                                         |
-| Transaction   | can only be a **buy** or **sell** transaction, not a trade                                    |
+| Transaction   | Can only be a **buy** or **sell** transaction, not a trade                                    |
 
 
 --------------------------------------------------------------------------------------------------------------------
