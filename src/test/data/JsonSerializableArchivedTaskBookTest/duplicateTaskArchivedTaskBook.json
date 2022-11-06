@@ -1,0 +1,15 @@
+{
+  "archivedTasks": [ {
+    "name" : "Assignment 2",
+    "module" : "CS2100",
+    "deadline" : "2022-11-02",
+    "tagged" : [ "highPriority" ],
+    "isDone" : true
+  }, {
+    "name" : "Assignment 2",
+    "module" : "CS2100",
+    "deadline" : "2022-12-11",
+    "tagged" : [ ],
+    "isDone" : false
+  } ]
+}

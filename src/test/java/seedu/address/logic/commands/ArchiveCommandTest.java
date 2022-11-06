@@ -21,48 +21,47 @@ import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code ArchiveCommand}.
  */
-public class DeleteCommandTest {
-
+public class ArchiveCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Task taskToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(archiveCommand.MESSAGE_ARCHIVED_TASK_SUCCESS, taskToArchive);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(),
                 model.getArchivedAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(taskToDelete);
+        expectedModel.archivedTask(taskToArchive);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Task taskToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Task taskToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(archiveCommand.MESSAGE_ARCHIVED_TASK_SUCCESS, taskToArchive);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getArchivedAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(taskToDelete);
+        expectedModel.archivedTask(taskToArchive);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -73,31 +72,31 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
+        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(archiveFirstCommand.equals(archiveFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        ArchiveCommand archiveFirstCommandCopy = new ArchiveCommand(INDEX_FIRST_PERSON);
+        assertTrue(archiveFirstCommand.equals(archiveFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(archiveFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(archiveFirstCommand.equals(null));
 
         // different task -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(archiveFirstCommand.equals(archiveSecondCommand));
     }
 
     /**

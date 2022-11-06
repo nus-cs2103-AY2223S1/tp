@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class TagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

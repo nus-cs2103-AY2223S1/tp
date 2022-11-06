@@ -5,6 +5,8 @@ title: User Guide
 
 Welcome to the NotionUS user guide! 
 
+![NotionUS](images/NotionUS_FullLogo.png)
+
 **NotionUS** is a lightweight but powerful application that can help you to manage your assignments and tasks. It sports 
 a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance. It provides a command
 line user interface which aids fast typists in managing their assignments quickly, while still providing the benefits of
@@ -26,6 +28,7 @@ a graphical user interface.
       `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
    2. If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11)
       and download the appropriate Java for your operating system.
+
 
 2. Download the latest NotionUS.jar from [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/releases/).
 
@@ -50,9 +53,9 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to **Feature** section below.
+      please refer to the [**Features**](#features) section below.
 
-3. Main tasklist:
+3. Main task list:
     * This displays all your *current* tasks.
 
 4. Result display:
@@ -95,27 +98,29 @@ The GUI should be updated as shown below:
 
 #### Autocomplete
 
-When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
-Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
+When the user starts to type in the start of a command in the _Command Box_, a pop-up menu will appear with options to complete your input.
+Use the `Up` and `Down` arrow keys on your keyboard to navigate through the options and press the `Enter` key to fill the command box with the command
 of your choice.
 
 Here is an example of autocomplete in action:
 
 ![Autocomplete](images/user-guide/Autocomplete.png)
 
-However, it is recommended to read through the features section to understand the syntax for commands that require additional input.
+However, it is recommended to read through the [Features](#features) section to understand the syntax for commands that require additional input.
 
-#### Returning to a previous command : `up`/`down` keys
+#### Returning to a previous command : `Up`/`Down` keys
+
 Loads previous command into the _Command Box_.
-While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navigate through the command history that is automatically loaded in.
+While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Features
 
-Before proceeding, do make sure that you can understand our notation for command formats:
+In this section, we will be explaining our commands. Under every command, you will find it's "Format". This refers to the text that you can enter in order to execute that command. 
+To understand the notation of these "Format"s, read on! 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" >
 
 **:information_source: Notes about the command format:**
 
@@ -171,7 +176,7 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 **Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
-Notes about usage of the add command:
+**:information_source: Notes about usage of the add command:**
 * **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
@@ -195,10 +200,10 @@ Edits an existing task in the task list, at least one field needs to be edited.
 
 Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 
-**Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
+**Reminder**: Parameters in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
-Notes about usage of the edit command:
+**:information_source: Notes about usage of the edit command:**
 * **Duplicate detection** - If you try to edit the task such that it will have the same name and module as another task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Deadline removal** - Run the edit command with `-d` without specifying a date, eg `edit 1 -d`.
@@ -272,11 +277,6 @@ Format: `clear`
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
-<br/> It is also case-insensitive. <br/> Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
-<br><br></div>
-
 Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
@@ -317,7 +317,11 @@ Format: `ls -t TAG_NAME`
 
 * `TAG_NAME`: The tag you are looking for should be an exact match and alphanumeric, ie must not contain any spaces.
 
-Example: `ls -t highPriority` will find tags with `highpriority` (case-insensitive)
+Example: `ls -t highPriority` will find tags with `highpriority` (Case-insensitive)
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Any command that searches for tags finds all tags that exactly match, but is case-insensitive.
+</div>
 
 #### Listing all tasks with deadline on or after a date : `ls -d`
 
@@ -339,6 +343,10 @@ Format: `ls -n KEYWORD*`
 * `KEYWORD`: One or more keywords can be provided. Each keyword should consist of only letters and numbers, and are separated by spaces.
 
 Example: `ls -n task1`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
+</div>
 
 ### Find task names or tags: `find`
 
@@ -369,7 +377,9 @@ Format: `archive TASK_NUMBER`
 Examples:
 * `archive 1`: archives first task in task list.
 
-<div markdown="span" class="alert alert-warning">:warning: **NOTE**: 
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning:**
 
 This command is irreversible!
 
@@ -382,7 +392,37 @@ Displays a list of archived tasks.
 
 ![Screenshot of Archived Window](images/user-guide/ArchivedDemo.png)
 
-Format: `showArchive`
+Format: `showarchive`
+
+### Editing a task : `edit`
+
+Edits an existing task in the task list, at least one field needs to be edited. 
+
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
+
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+
+* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
+* (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
+will be removed if no date or tag is given. 
+</div>
+
+Examples:
+* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
+
+![Example image of Edit Command](images/user-guide/EditCommandDemo.png)
+  
+### Clearing all entries : `clear`
+
+Clears all entries of tasks in the task list. 
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -400,9 +440,12 @@ NotionUS data are saved in the hard disk automatically after any command that ch
 ### Editing the data file
 NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
-**Caution:**
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -410,7 +453,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **Q**: How do I transfer my data in NotionUS to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
 
-**Q**: What is the date file fails to load into NotionUS?<br>
+**Q**: What if the date file fails to load into NotionUS?<br>
 **A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUS. 
 
 **Q**: What if double-clicking fails to open the jar file?<br>
@@ -419,8 +462,8 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **Q**: Is internet needed for NotionUS to work?<br>
 **A**: No, NotionUS functions fully without internet connection.
 
-**Q**: What if the application crashes?<br>
-**A**: Please contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error or state the error message. We will assist you as soon as possible. 
+**Q**: I need help! How can I contact the team?<br>
+**A**: You may contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen). If possible, do provide screenshots demonstrating the problem you are facing. We will assist you as soon as possible! 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -442,7 +485,7 @@ Format meanings:
 | **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
 | **Find** task/tag with name | `find KEYWORD/TAG_NAME*`                                                                                                                                                                                                                                                                                                                                                                                                               | `find Tutorial Lab`                          |
 | **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
-| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD*]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
+| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD]*`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
 | **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                     | `mark 2`                                     |
 | **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                          |                                              |
 | **Tagging** a task          | `tag TASK_NUMBER (-t TAG_NAME)*`                                                                                                                                                                                                                                                                                                                                                                                                       | `tag 1 -t highPriority -t homework`          |

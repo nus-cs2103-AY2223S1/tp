@@ -39,12 +39,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleArchivedTasks() {
         return new Task[] {
-            new Task(new Name("Tutorial 1"), new Module("CS2100"), new Deadline("2022-11-02"),
-                getTagSet("highPriority")),
-            new Task(new Name("Tutorial 4"), new Module("CS2100"), new Deadline("2022-10-07"),
-                getTagSet("mediumPriority", "easy")),
-            new Task(new Name("Chapter 1 Revision"), new Module("CS2103T"), new Deadline("2022-10-11"),
-                getTagSet("revision"))
+            new Task(new Name("Tutorial 1"), new Module("CS2100"), new Deadline("2022-11-01"),
+                getTagSet("MediumPriority"), true),
+            new Task(new Name("Tutorial 7"), new Module("CS2100"), new Deadline("2022-11-07"),
+                getTagSet("lowPriority", "hard"), true),
+            new Task(new Name("Chapter 4 Revision"), new Module("CS2103T"), new Deadline("2022-11-14"),
+                getTagSet("revision"), true)
         };
     }
 

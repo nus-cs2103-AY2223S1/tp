@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskIsDonePredicate;
 
 public class ListMarkedCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(),
+            getTypicalArchivedTaskBook(), new UserPrefs());
 
     @Test
     public void equals() {
