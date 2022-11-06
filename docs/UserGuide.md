@@ -57,7 +57,9 @@ Take note of the following symbols and formatting used in this document:
 3. Copy the file to the folder you want to use as the [_home folder_](#6-glossary) for your GREWZ.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-Alternatively, you can open the Command Prompt and run
+Alternatively, you can open the Command Prompt by right-clicking and clicking "Open in Terminal".
+![Open Command Prompt](images/OpenCommandPrompt.png)
+<br>Next, run
 ```
 java -jar ./GREWZ.jar
 ```
