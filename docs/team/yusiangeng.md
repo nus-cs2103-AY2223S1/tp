@@ -5,20 +5,20 @@ title: Joe's Project Portfolio Page
 
 ### Project: HackAssist
 
-HackAssist is a desktop application for hackathon project leaders to manage tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+HackAssist is a desktop application for hackathon project leaders to manage tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added a UI for the task list.
-  * What it does: Allows the user to view and manage their hackathon tasks. 
-  * Highlights: Displays in the UI what kind of sorting and filtering is currently applied to the task list. 
+  * What it does: Allows the user to view and manage their hackathon tasks.
+  * Highlights: Displays in the UI what kind of sorting and filtering is currently applied to the task list.
 
 * **New Feature**: Added a command to assign tasks to team members.
-  * What it does: Displays which team member each task is assigned to and which task(s) each team member is assigned to. 
+  * What it does: Displays which team member each task is assigned to and which task(s) each team member is assigned to.
 
 * **New Feature**: Added a command to sort the task list.
   * What it does: Allows the user to sort the task list by priority or deadline in either ascending or descending order.
-  * Justification: This feature helps the user, who is a hackathon team leader, to identify which tasks need to be completed first. 
+  * Justification: This feature helps the user, who is a hackathon team leader, to identify which tasks need to be completed first.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yusiangeng&breakdown=true)
 
