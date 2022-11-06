@@ -22,7 +22,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
    5. [Editing an applicant](#35-editing-an-applicant-edit)
    6. [Deleting an applicant](#36-deleting-an-applicant-delete)
    7. [Locating applicants by field](#37-locating-applicants-by-field-find)
-   8. [Importing applicants from an external text file](#38-importing-applicants-from-an-external-json-file-import)
+   8. [Importing applicants from an external JSON file](#38-importing-applicants-from-an-external-json-file-import)
    9. [Exporting displayed list](#39-exporting-displayed-list-export)
    10. [Checkout a new or existing list](#310-checkout-a-new-or-existing-list-checkout)
    11. [Clearing all entries](#311-clearing-all-entries-clear)
