@@ -69,7 +69,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         CombinedAppointmentPredicate combinedAppointmentPredicate =
                 new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList);
 
-        boolean isUsingAppointmentPredicate = isAnyAppointmentFieldSpecified(reason, startDateTime, endDateTime, appointmentTagList);
+        boolean isUsingAppointmentPredicate =
+                isAnyAppointmentFieldSpecified(reason, startDateTime, endDateTime, appointmentTagList);
 
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isUsingAppointmentPredicate);
     }
