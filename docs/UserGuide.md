@@ -109,13 +109,13 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                                    |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000        |                         
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                                    |
-| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces              |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, `SPECIAL_PUNCTUATIONS` and spaces            |
 
 * `CURRENT_CAP` must be a positive value (more than `0.0`)
 * `CURRENT_CAP` value must be smaller than or equal to `MAX_CAP`
 * `MAX_CAP` and `CURRENT_CAP` values should not exceed `100.0`
 * `MAX_CAP` and `CURRENT_CAP` will be rounded to 2 decimal places, e.g. `3.99999` will be rounded to `4.00`
-* Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
+* `SPECIAL_PUNCTUATIONS` include `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
 ### 2.3 Tag Fields
@@ -141,7 +141,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 * Items with `...` after them can be used multiple times including zero times.
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
 
-* Items in curly brackets represent multiple parameters, and each of them is mandatory.
+* Curly brackets represent a set of at least 1 parameter, and each of them is mandatory.
   e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields that belong to mandatory fields must be listed.
 
 * Items in square brackets are optional.
