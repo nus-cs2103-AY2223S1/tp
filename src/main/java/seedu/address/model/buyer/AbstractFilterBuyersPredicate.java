@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * we need to create an abstract class that can be passed into the {@code FilterBuyersCommand} constructor,
  * after which each individual predicate's behaviour is determined through polymorphism.
  */
-public abstract class AbstractFilterBuyerPredicate implements Predicate<Buyer> {
+public abstract class AbstractFilterBuyersPredicate implements Predicate<Buyer> {
 
     @Override
     public abstract boolean test(Buyer buyer);

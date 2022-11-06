@@ -320,8 +320,8 @@ This command updates the properties list to display all current entries.
 Syntax: `listprops`
 
 ### Find Commands
-#### Find buyer entry in database: `findbuyer`
-Syntax: `findbuyer [-k KEYWORDS]`
+#### Find buyer entry in database: `findbuyers`
+Syntax: `findbuyers [-k KEYWORDS]`
 
 Searches through the database and returns all buyers whose names contain any keywords in KEYWORDS _(case-insensitive)_.
 
@@ -337,8 +337,8 @@ Examples:<br>
 `findbuyer -k John`: Looks for all buyers that have “John” in their name.<br>
 `findbuyer -k John Alice Bob`: Looks for all buyers that have "John", "Alice" or "Bob" in their name.
 
-#### Find property entry in database: `findprop`
-Syntax: `findprop [-k KEYWORDS]`
+#### Find property entry in database: `findprops`
+Syntax: `findprops [-k KEYWORDS]`
 
 Searches through the database and returns all properties whose names contain any keywords in KEYWORDS _(case-insensitive)_.
 

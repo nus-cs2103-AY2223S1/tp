@@ -7,14 +7,14 @@ import seedu.address.model.characteristics.Characteristics;
 /**
  * Tests that a given {@code Buyer}'s {@code DesiredCharacteristics} contains any of the given characteristics.
  */
-public class FilterBuyerContainingAnyCharacteristicPredicate extends AbstractFilterBuyerPredicate {
+public class FilterBuyersContainingAnyCharacteristicPredicate extends AbstractFilterBuyersPredicate {
 
     private final Characteristics givenCharacteristics;
 
     /**
      * Standard constructor for the predicate.
      */
-    public FilterBuyerContainingAnyCharacteristicPredicate(Characteristics characteristics) {
+    public FilterBuyersContainingAnyCharacteristicPredicate(Characteristics characteristics) {
         requireNonNull(characteristics);
         this.givenCharacteristics = characteristics;
     }
@@ -31,8 +31,8 @@ public class FilterBuyerContainingAnyCharacteristicPredicate extends AbstractFil
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterBuyerContainingAnyCharacteristicPredicate // instanceof handles nulls
+                || (other instanceof FilterBuyersContainingAnyCharacteristicPredicate // instanceof handles nulls
                 && givenCharacteristics.equals((
-                        (FilterBuyerContainingAnyCharacteristicPredicate) other).givenCharacteristics)); // state check
+                        (FilterBuyersContainingAnyCharacteristicPredicate) other).givenCharacteristics)); // state check
     }
 }

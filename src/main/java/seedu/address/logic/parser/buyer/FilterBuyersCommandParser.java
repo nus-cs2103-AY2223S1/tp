@@ -18,10 +18,10 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByPricePredicate;
-import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
-import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
-import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
+import seedu.address.model.buyer.FilterBuyersByPricePredicate;
+import seedu.address.model.buyer.FilterBuyersByPriorityPredicate;
+import seedu.address.model.buyer.FilterBuyersContainingAllCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyersContainingAnyCharacteristicPredicate;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.price.Price;
@@ -54,23 +54,23 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
 
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
-            predicatesList.add(new FilterBuyerByPricePredicate(price));
+            predicatesList.add(new FilterBuyersByPricePredicate(price));
         }
 
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
             if (argMultimap.getValue(PREFIX_FUZZY).isPresent()) {
-                predicatesList.add(new FilterBuyerContainingAnyCharacteristicPredicate(characteristics));
+                predicatesList.add(new FilterBuyersContainingAnyCharacteristicPredicate(characteristics));
             } else {
-                predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(characteristics));
+                predicatesList.add(new FilterBuyersContainingAllCharacteristicsPredicate(characteristics));
             }
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             Priority priority = ParserUtil.parsePriority(
                     argMultimap.getValue(PREFIX_PRIORITY).get());
-            predicatesList.add(new FilterBuyerByPriorityPredicate(priority));
+            predicatesList.add(new FilterBuyersByPriorityPredicate(priority));
         }
 
         // predicatesList must not be empty, since at least 1 prefix should be present

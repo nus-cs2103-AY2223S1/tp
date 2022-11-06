@@ -252,7 +252,6 @@ The activity diagram that denotes the behavior of Cobb when the user inputs an `
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
 ### Owner specification within a property
-
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
 The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
@@ -291,20 +290,6 @@ The tradeoffs for this approach is examined below:
         * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
         * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
           the owner is deleted.
-
-### Filtering properties by price range
-
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
-property's price falls within a specified price range.
-
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
-this guide.
-
-Design considerations:
-As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
-unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
-falls within this range would be displayed.
-
 
 ### \[Proposed\] Data archiving
 
@@ -366,95 +351,93 @@ Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyRelea
 element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
 unexecuted command from Step 3.
 
-### Creating a buyer
+### Indexing existing buyers and properties in the database
 
-The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.  
+Many of the existing features that are currently implemented requires Cobb to index existing entries in the database.
+For example, `deletebuyer 1` would perform the `deletebuyer` operation on the buyer at index `1` of the buyer list.
 
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`. 
+If the index provided is not a positive integer or not a valid number, Cobb will throw an error requesting the user to
+provide a valid input. Similarly, if the index provided is valid but exceeds the number of elements currently in the list,
+Cobb will be able to identify that there is a bounds mismatch and inform the user to provide a valid input within bounds.
 
-This is the class diagram of a `Buyer`.
+Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableArrayList`, which is an array-like
+data structure provided by JavaFX which fires off reports about all of its changes to associated listeners. This means that
+any changes to the structure or objects in the `ObservableArrayList` will be recorded by its listeners, causing the updated
+list to be displayed correctly on the user's screen.
 
-![BuyerClassDiagram](images/BuyerClassDiagram.png)
-
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
-
-#### Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person. 
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.  
-
-### Creating a property
-
-The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
-
-The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Property`.
-
-![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
-
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
-
-#### Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
-### Owner specification within a property
-
-To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
-
-The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
-The fields are also validated the same way as when creating a new `Buyer` object.
-
-To support retrieving the `Owner` of a `Property`, we added the following methods:
-- `Property#getOwner()` - Returns the `Owner` object of the property.
-- `Property#getOwnerName()` - Retrieves the name of the owner of the property.
-- `Property#getOwnerPhone()` - Retrieves the phone number of the owner of the property.
-
-This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
-![FullPropertyClassDiagram](images/OwnerClassDiagram.png)
-
-The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
-The tradeoffs for this approach is examined below:
-
-#### Design considerations:
-
-**Aspect: How the owner class associates with the property class:**
-
-* **Alternative 1 (current choice):** Owner class is coupled together with the property class.
+#### Design Considerations
+**Aspect: How entries are indexed in a list**
+* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableArrayList`.
+  If the list is filtered or sorted, then the entries' relative positions will change according to this new version of the
+  list.
     * Pros:
-      * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
-      * You do not need to create an owner object separately using another command.
-      * This reduces complexity of the system, and unexpected behaviours.
+        * Users will be able to quickly ascertain the index of an entry in the list simply by finding the entry in the list.
+        * Indices of visible entries in the `ObservableArrayList` will always be in the range `[1,n]` inclusive, where n
+          is the number of entries currently visible in the list. This gives the indices order and structure.
+        * No index field needs to be created for `Buyer` and `Property` objects.
     * Cons:
-      * This creates a 1-to-1 relationship between the owner and the property.
-      * Each owner is coupled tightly with the property, and cannot be used for other properties.
+        * The relative index of an entry will change depending on the current structure of the `ObservableArrayList`. This 
+          means that a property that has index `1` might not have the same index after the property list is filtered.
 
-* **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
+* **Alternative 2**: Entries in a list are indexed by an internal `EntryID` parameter that is automatically generated 
+  upon its creation.
     * Pros:
-      * This allows for a many-to-many relationship between the owners and properties.
-      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to
-      `Buyer`.
+        * Users will still be able to identify the index of the entry by first looking for the entry in the list, and then
+          looking at the value of its `EntryID` parameter.
+        * The index of the entry in the list will not change if the structure of the list is changed, e.g. through filtering
+          or sorting operations.
     * Cons:
-      * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
-      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
-      the owner is deleted.
+        * `Buyer` and `Property` class will be bloated with one extra parameter.
+        * Care needs to be taken to ensure that no IDs are clashing with each other, which might lead to implementation issues.
+        * Users might be able to execute commands on entries in the list that are not currently visible, which might lead
+          to confusion.
 
-### Filtering properties by price range
 
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
-property's price falls within a specified price range.
+### Filtering buyers and properties: Overall structure
 
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
-this guide.
+In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableArrayList` that stores 
+references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
+being tested, consequently, they might give different outputs when applied to a given list.
 
-#### Design considerations:
+#### Design Considerations
+In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
+`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
+we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
+
 As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
 unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
 falls within this range would be displayed.
->>>>>>> 1a96f5efc9d72b301f31569a392696375ed65e80
+
+Additionally, since users
+are only allowed to filter using certain conditions as defined in the behaviour of the `filter` commands, concrete classes
+extending this abstract predicate class were implemented for each condition. For example:
+
+Users can filter `Properties` by their `PropertyName`, `Price`, `Characteristics` or `OwnerName`. As a result, the following 
+concrete predicate classes were implemented:
+1. `PropertyNameContainsSubstringPredicate`
+2. `FilterPropsByPricePredicate`
+3. `FilterPropsContainingAllCharacteristicsPredicate`
+4. `FilterPropsContainingAnyCharacteristicsPredicate`
+5. `FilterPropsByOwnerNamePredicate`
+
+Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
+`Predicate`, which is then used to filter the `ObservableArrayList` directly.
+
+The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
+
+![FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
+
+#### Filter-specific design considerations
+1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
+   agents to want to identify properties that fit within a certain price range instead of a fixed price.
+2. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+   a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
+   for the entry to pass through the filter.
+3. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
+   is for Cobb to filter out entries that contain **ALL** of the given characteristics. The `-fuzzy` flag changes this behaviour
+   to filter out entries that contain *at least one* of the given characteristics.
+4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
+   contain the parameter provided to `-n` as a *substring*.
 
 ### Matching properties to a buyer, and vice versa
 
@@ -483,7 +466,6 @@ contains both a `PriceRange` and `Characteristics`.
 
 We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
 then passed to the constructor of `FilterPropertiesCommand` and executed.
-
 
 #### Design considerations:
 
@@ -563,15 +545,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 
 1. User chooses to add a new buyer.
-2. User enters the details of the buyer (e.g. their requirements) and his/her status as a buyer/seller.
+2. User enters the details of the buyer.
+3. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The buyer already exists.
-* 2b. Cobb shows an error message.
+* 3a. The buyer already exists.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
 
-Use case ends.
+
+* 3b. User provides incorrectly formatted information.<br>
+  3b1. Cobb shows an error message.<br>
+  Use case ends.
 
 ### Use case: Add a property
 
@@ -579,28 +566,52 @@ Use case ends.
 
 1. User chooses to add a new property.
 2. User enters the details of the property.
-3. If available, user enters the details of the buyer/seller.
+3. If available, user enters the details of the owner of the property.
+4. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The property already exists.
-* 2b. Cobb shows an error message.
+* 4a. The property already exists.<br>
+  4a1. Cobb shows an error message.<br>
+  Use case ends.
+
+
+* 4b. User provides incorrectly formatted information.<br>
+  4b1. Cobb shows an error message. <br>
+  Use case ends.
+
+### Use case: Edit a buyer
+
+**MSS:**
+
+1. User chooses to edit an existing buyer.
+2. User finds buyer they want to edit.
+3. User executes update command with relevant information to update.
 
 Use case ends.
+
+**Extensions**
+* 3a. User provides incorrect information to update.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
+
 
 ### Use case: List properties
 
 **MSS:**
 
-1. User chooses to list all properties.
-2. User chooses the order in which to list the properties.
+1. User chooses to list properties.
+2. User executes list properties command.
 
 Use case ends.
 
-**Extensions**
-* 2a. There are no properties.
-* 2b. Cobb shows an error message.
+### Use case: List buyers
+
+**MSS:**
+
+1. User chooses to list buyers
+2. User executes list buyers command.
 
 Use case ends.
 
@@ -608,29 +619,38 @@ Use case ends.
 
 **MSS:**
 
-1. User <u>lists properties (Use case: List properties)</u>.
-2. User finds properties that are not relevant anymore (e.g. already sold).
-3. User deletes these properties.
+1. User <u>lists properties [(Use case: List properties)](#use-case-list-properties)</u>.
+2. User finds properties that are no longer relevant (e.g. already sold).
+3. User executes delete command on these properties.
 
 Use case ends.
 
-### Use case: Match buyer to property
+### Use case: Delete irrelevant buyers
+
+**MSS:**
+
+1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
+2. User finds buyers that are no longer relevant (e.g. already bought a house).
+3. User executes delete command on these buyers.
+
+### Use case: Match buyer to properties
 
 **Preconditions**: Prospective buyer has been added.
 
 **MSS:**
-1. User <u>lists all properties (Use case: List properties)</u>.
-2. User finds the property that suits the buyer.
-3. User edits the property to record that it has been bought by the buyer.
+1. User <u>lists all buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
+2. User executes match command on desired buyer.
 
 Use case ends.
 
-**Extensions**
-* 2a. A suitable property is not found.
 
-Use case ends.
+### Use case: Match property to buyers
 
-* 2b. Buyer rejects the suitable property found.
+**Preconditions**: Property exists in database.
+
+**MSS:**
+1. User <u>lists all properties [(Use case: List properties)](#use-case-list-properties)</u>.
+2. User executes match command on desired property.
 
 Use case ends.
 
@@ -638,21 +658,20 @@ Use case ends.
 
 **MSS:**
 1. User gets a new buyer.
-2. User <u>adds the buyer (Use case: Add buyer)</u>.
-3. User tries to <u>match the buyer to a property (Use case: Match buyer to property)</u>.
+2. User <u>adds the buyer [(Use case: Add buyer)](#use-case-add-a-buyer)</u>
+3. User tries to <u>match the buyer to a property [(Use case: Match buyer to property)](#use-case-match-buyer-to-properties)</u>.
 
 **Extensions:**
-2a. Buyer already exists.
-2b. User edits the existing buyer with new requirements, if necessary.
-
-Use case continues at 3.
+* 2a. Buyer already exists.<br>
+  2b. User edits the existing buyer with new requirements, if necessary.<br>
+  Use case continues at 3.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on any computer fewer than five years old.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should work on any computer fewer than five years old. 
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
