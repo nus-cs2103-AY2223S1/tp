@@ -52,6 +52,11 @@ public class Item {
                 Set<Tag> tagSet) {
         requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
 
+        // Bought date is after today
+        if (!boughtDate.isNotSet() && boughtDate.isAfterDate(LocalDate.now())) {
+            throw new IllegalArgumentException("The item bought date should not be in the future.");
+        }
+
         // Same Bought date and Expiry date is accepted
         if (!boughtDate.isNotSet() && !expiryDate.isNotSet() && boughtDate.isAfterDate(expiryDate)) {
             throw new IllegalArgumentException("The item bought date should not be after the item expiry date.");
