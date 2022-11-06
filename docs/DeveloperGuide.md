@@ -34,7 +34,7 @@ title: Developer Guide
   * [Use Cases](#use-cases)
   * [Non-functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
-- **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
   * [Launch and shutdown](#launch-and-shutdown) 
   * [Delete a buyer](#deleting-a-buyer)
   * [Saving data](#saving-data)
