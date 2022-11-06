@@ -109,6 +109,54 @@ public class DayTest {
 
     @Test
     public void getVacantSlots_correctOutput() {
+        modifyDayStub();
+        String expectedString = "Day 1:" + System.lineSeparator()
+                + "    02:00 - 11:00" + System.lineSeparator()
+                + "    13:00 - 23:00" + System.lineSeparator();
+        String actualString = dayStub.getVacantSlots();
+
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void getTextRepresentation_correctOutput() {
+        modifyDayStub();
+        String expectedString = "Day 1" + System.lineSeparator() +
+                "    1. start at midnight" + System.lineSeparator() +
+                "        ★★★★★" + System.lineSeparator() +
+                "        Cost $100.00" + System.lineSeparator() +
+                "        Duration 60 mins" + System.lineSeparator() +
+                "        Time: 00:00 - 01:00" + System.lineSeparator() +
+                "    " + System.lineSeparator() +
+                "    2. start joined with previous item" + System.lineSeparator() +
+                "        ★★★★★" + System.lineSeparator() +
+                "        Cost $100.00" + System.lineSeparator() +
+                "        Duration 60 mins" + System.lineSeparator() +
+                "        Time: 01:00 - 02:00" + System.lineSeparator() +
+                "    " + System.lineSeparator() +
+                "    3. end joined with next item" + System.lineSeparator() +
+                "        ★★★★★" + System.lineSeparator() +
+                "        Cost $100.00" + System.lineSeparator() +
+                "        Duration 60 mins" + System.lineSeparator() +
+                "        Time: 11:00 - 12:00" + System.lineSeparator() +
+                "    " + System.lineSeparator() +
+                "    4. Airport" + System.lineSeparator() +
+                "        ★★★★★" + System.lineSeparator() +
+                "        Cost $100.00" + System.lineSeparator() +
+                "        Duration 60 mins" + System.lineSeparator() +
+                "        Time: 12:00 - 13:00" + System.lineSeparator() +
+                "    " + System.lineSeparator() +
+                "    5. end at midnight" + System.lineSeparator() +
+                "        ★★★★★" + System.lineSeparator() +
+                "        Cost $100.00" + System.lineSeparator() +
+                "        Duration 60 mins" + System.lineSeparator() +
+                "        Time: 23:00 - 00:00" + System.lineSeparator() +
+                "    " + System.lineSeparator();
+        String actualString = dayStub.getTextRepresentation();
+        assertEquals(expectedString, actualString);
+    }
+
+    private void modifyDayStub() {
         Item startAtMidnight = new ItemBuilder().withDesc("start at midnight").build();
         startAtMidnight.setStartTime(LocalTime.MIDNIGHT);
         Item startJoined = new ItemBuilder().withDesc("start joined with previous item").build();
@@ -126,12 +174,5 @@ public class DayTest {
         } catch (CommandException e) {
             assert false : "Failed to modify Day stub";
         }
-
-        String expectedString = "Day 1:" + System.lineSeparator()
-                + "    02:00 - 11:00" + System.lineSeparator()
-                + "    13:00 - 23:00" + System.lineSeparator();
-        String actualString = dayStub.getVacantSlots();
-
-        assertEquals(expectedString, actualString);
     }
 }
