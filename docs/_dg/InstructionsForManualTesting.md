@@ -5,7 +5,7 @@ This section provides you with instructions to test the app manually. It also co
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 ```
 
-### Launch and Shutdown
+### Launch
 
 #### Initial launch
 
