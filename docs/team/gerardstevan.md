@@ -3,7 +3,7 @@
 ## Project: Travelr
 Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
-- **Code contributed:** https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=gerardstevan&breakdown=true
+- **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=gerardstevan&breakdown=true)
 
 ## Contributions
 - **New Feature:** Implement the package main.java.seedu.travelr.model.list 
@@ -26,7 +26,10 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 * **Enhancements to existing features**:
     * Refactored the storage component to save isDone value of Trips .
     * Changed the help window to show a table of commands.
-  
+
+### Testing
+- Add test cases for AddEventToTripCommand, DeleteEventFromTripCommand, MarkTripDoneCommand, and UnmarkDoneTripCommand.
+
 ### Documentation
 #### User Guide
 - Added documentation and relevant examples for `add-et`, `delete-et`, `mark`, and  `unmark` commands
