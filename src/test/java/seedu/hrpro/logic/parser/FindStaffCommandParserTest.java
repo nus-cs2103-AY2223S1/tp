@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.FindStaffCommand;
-import seedu.hrpro.model.staff.StaffName;
 import seedu.hrpro.model.staff.StaffNameContainsKeywordsPredicate;
 
 public class FindStaffCommandParserTest {
@@ -20,16 +19,6 @@ public class FindStaffCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindStaffCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "12", StaffName.MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
-    public void parse_validArgWithInvalidArg_throwsParseException() {
-        assertParseFailure(parser, "alan ()", StaffName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.FindTaskCommand;
-import seedu.hrpro.model.task.TaskDescription;
 import seedu.hrpro.model.task.TaskDescriptionContainsKeywordsPredicate;
 
 public class FindTaskCommandParserTest {
@@ -20,16 +19,6 @@ public class FindTaskCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "<#>", TaskDescription.MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
-    public void parse_validArgWithInvalidArg_throwsParseException() {
-        assertParseFailure(parser, "to ()", TaskDescription.MESSAGE_CONSTRAINTS);
     }
 
     @Test

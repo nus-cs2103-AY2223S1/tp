@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import seedu.hrpro.logic.commands.FindTaskCommand;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
-import seedu.hrpro.model.task.TaskDescription;
 import seedu.hrpro.model.task.TaskDescriptionContainsKeywordsPredicate;
 
 /**
@@ -27,12 +26,6 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         }
 
         String[] keywords = trimmedArgs.split("\\s+");
-
-        for (String keyword : keywords) {
-            if (!TaskDescription.isValidTaskDescription(keyword)) {
-                throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
-            }
-        }
 
         return new FindTaskCommand(new TaskDescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
     }

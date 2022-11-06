@@ -16,7 +16,7 @@ public class FindTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose description contain any of "
             + "the exact specified keywords (but can be case-insensitive) and displays them as "
             + "a list with index numbers.\n"
-            + "A task with the description work can be found using these keywords: work, Work, WORK\n "
+            + "A task with the description work can be found using these keywords: work, Work, WORK\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 

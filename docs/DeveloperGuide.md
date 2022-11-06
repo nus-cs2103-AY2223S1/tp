@@ -714,12 +714,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. HR Pro Max++ shows error.
 
       Use case resume at step 2.
-* 4a. The given staff name is invalid.
-    * 4a1. HR Pro Max++ shows error.
-
-      Use case resume at step 4.
-* 4b. The given staff does not exist.
-    * 4b1. HR Pro Max++ does not display any staff.
+* 4a. The given staff does not exist.
+    * 4a1. HR Pro Max++ does not display any staff.
 
       Use case ends.
 

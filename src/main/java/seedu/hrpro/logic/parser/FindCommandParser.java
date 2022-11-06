@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import seedu.hrpro.logic.commands.FindCommand;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
-import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
@@ -27,12 +26,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        for (String name : nameKeywords) {
-            if (!ProjectName.isValidProjectName(name)) {
-                throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
-            }
-        }
 
         return new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
