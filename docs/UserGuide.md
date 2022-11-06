@@ -402,7 +402,7 @@ Examples:
 <div markdown="block" class="alert alert-warning">
 
 **:bulb: Note:**<br>
-* [As mentioned above](#Adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
+* [As mentioned above](#adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
 
 </div>
 
