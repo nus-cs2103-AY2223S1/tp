@@ -27,7 +27,6 @@ import seedu.uninurse.commons.exceptions.DataConversionException;
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
-
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
     private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
@@ -114,7 +113,6 @@ public class JsonUtil {
      * Contains methods that retrieve logging level from serialized string.
      */
     private static class LevelDeserializer extends FromStringDeserializer<Level> {
-
         protected LevelDeserializer(Class<?> vc) {
             super(vc);
         }
@@ -139,5 +137,4 @@ public class JsonUtil {
             return Level.class;
         }
     }
-
 }

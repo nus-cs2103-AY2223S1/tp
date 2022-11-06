@@ -20,20 +20,20 @@ public class Prefix {
     }
 
     @Override
-    public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Prefix)) {
+    public boolean equals(Object other) {
+        if (!(other instanceof Prefix)) {
             return false;
         }
-        if (obj == this) {
+        if (other == this) {
             return true;
         }
 
-        Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        Prefix o = (Prefix) other;
+        return o.getPrefix().equals(prefix);
+    }
+
+    @Override
+    public int hashCode() {
+        return prefix == null ? 0 : prefix.hashCode();
     }
 }

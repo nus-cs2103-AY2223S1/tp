@@ -1,7 +1,8 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
@@ -17,25 +19,21 @@ import seedu.uninurse.model.person.Patient;
  * Deletes a medication from a patient identified using its displayed index from the patient list.
  */
 public class DeleteMedicationCommand extends DeleteGenericCommand {
-    // tentative syntax; TODO: integrate with DeleteGenericCommand
-    public static final String COMMAND_WORD = "deleteMedication";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the medication identified by the index number in the medication list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "MEDICATION_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
-
-    public static final String MESSAGE_DELETE_MEDICATION_SUCCESS = "Deleted medication %1$d from %2$s: %3$s";
-
-    public static final CommandType DELETE_MEDICATION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_MEDICATION_INDEX
+            + ": Deletes a medication from a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_MEDICATION_INDEX + " MEDICATION_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
+            + PREFIX_OPTION_MEDICATION_INDEX + " 1";
+    public static final String MESSAGE_SUCCESS = "Deleted medication %1$d from %2$s: %3$s";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index medicationIndex;
 
     /**
-     * Creates an DeleteMedicationCommand to delete a {@code Medication} from the specified patient.
+     * Creates an DeleteMedicationCommand to delete a medication from the specified patient.
      *
      * @param patientIndex The index of the patient in the filtered person list to delete the medication.
      * @param medicationIndex The index of the medication in the patient's medication list.
@@ -49,7 +47,7 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -68,11 +66,11 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_MEDICATION_SUCCESS, medicationIndex.getOneBased(),
-                editedPatient.getName(), deletedMedication), DELETE_MEDICATION_COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, medicationIndex.getOneBased(),
+                editedPatient.getName(), deletedMedication), COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -88,7 +86,7 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteMedicationCommand command = (DeleteMedicationCommand) other;
-        return patientIndex.equals(command.patientIndex) && medicationIndex.equals((command.medicationIndex));
+        DeleteMedicationCommand o = (DeleteMedicationCommand) other;
+        return patientIndex.equals(o.patientIndex) && medicationIndex.equals((o.medicationIndex));
     }
 }

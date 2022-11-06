@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
+import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
@@ -105,31 +106,31 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Patient target) {
+    public PatientListTracker deletePerson(Patient target) {
         persistentUninurseBook.getWorkingCopy().removePerson(target);
-        makeSnapshot(new PatientListTracker(null, target));
+        return new PatientListTracker(null, target);
     }
 
     @Override
-    public void clearPersons(List<Patient> targets) {
+    public PatientListTracker clearPersons(List<Patient> targets) {
         for (Patient target : targets) {
             persistentUninurseBook.getWorkingCopy().removePerson(target);
         }
-        makeSnapshot(new PatientListTracker(null, targets));
+        return new PatientListTracker(null, targets);
     }
 
     @Override
-    public void addPerson(Patient person) {
+    public PatientListTracker addPerson(Patient person) {
         persistentUninurseBook.getWorkingCopy().addPerson(person);
-        makeSnapshot(new PatientListTracker(person, null));
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new PatientListTracker(person, null);
     }
 
     @Override
-    public void setPerson(Patient target, Patient editedPerson) {
+    public PatientListTracker setPerson(Patient target, Patient editedPerson) {
         requireAllNonNull(target, editedPerson);
         persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
-        makeSnapshot(new PatientListTracker(editedPerson, target));
+        return new PatientListTracker(editedPerson, target);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -194,18 +195,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undo() {
-        persistentUninurseBook.undo();
+    public CommandResult undo() {
+        return persistentUninurseBook.undo();
     }
 
     @Override
-    public void redo() {
-        persistentUninurseBook.redo();
+    public CommandResult redo() {
+        return persistentUninurseBook.redo();
     }
 
     @Override
-    public void makeSnapshot(PatientListTracker patientListTracker) {
-        persistentUninurseBook.makeSnapshot(patientListTracker);
+    public void makeSnapshot(CommandResult commandResult) {
+        persistentUninurseBook.makeSnapshot(commandResult);
     }
 
     //=========== Other Accessors =============================================================

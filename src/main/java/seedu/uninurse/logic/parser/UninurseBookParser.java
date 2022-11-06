@@ -25,7 +25,6 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
  * Parses user input.
  */
 public class UninurseBookParser {
-
     /**
      * Used for initial separation of command word and args.
      */

@@ -8,8 +8,8 @@ import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLA
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.uninurse.logic.commands.DeleteMedicationCommand.DELETE_MEDICATION_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.DeleteMedicationCommand.MESSAGE_DELETE_MEDICATION_SUCCESS;
+import static seedu.uninurse.logic.commands.DeleteMedicationCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.DeleteMedicationCommand.MESSAGE_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -64,15 +64,14 @@ public class DeleteMedicationCommandTest {
         DeleteMedicationCommand deleteMedicationCommand =
                 new DeleteMedicationCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_MEDICATION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), deletedMedication);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteMedication, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, DELETE_MEDICATION_COMMAND_TYPE,
-                expectedModel);
+        assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -98,7 +97,7 @@ public class DeleteMedicationCommandTest {
         DeleteMedicationCommand deleteMedicationCommand =
                 new DeleteMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_MEDICATION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), deletedMedication);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -106,8 +105,7 @@ public class DeleteMedicationCommandTest {
         expectedModel.setPerson(patientToDeleteMedication, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, DELETE_MEDICATION_COMMAND_TYPE,
-                expectedModel);
+        assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test

@@ -68,6 +68,11 @@ public class ConditionListTest {
     }
 
     @Test
+    public void edit_nullCondition_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> emptyConditionList.add(null));
+    }
+
+    @Test
     public void edit_emptyList_throwsConditionNotFoundException() {
         assertThrows(ConditionNotFoundException.class, () -> emptyConditionList.edit(0, CONDITION_DIABETES));
     }

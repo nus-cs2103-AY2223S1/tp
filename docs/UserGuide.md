@@ -223,7 +223,14 @@ Example: `p/91234567`
 
 #### `e/EMAIL`
 
-_Use the one from MESSAGE_CONSTRAINTS_
+`EMAIL` should be in the form of `local-part@domain`, where:
+* `local-part` contains only alphanumeric characters and the special characters `+`, `_`, `.`, `-`, and may not start or end with any special characters.
+* `domain` is made up domain labels separated by periods, where `domain` must:
+  - end with a domain label at least 2 characters long.
+  - have each domain label start and end with alphanumeric characters.
+  - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Example: `johndoe@gmail.com`
 
 #### `a/ADDRESS`
 
@@ -241,20 +248,33 @@ Example:`t/12-A nursing home`
 
 #### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-_To be added and cleaned up_
+The task parameter has the following constraints:
 
-* A task is specified using two pieces of information: `TASK_DESCRIPTION` and `DATE TIME`.
-* `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
-* `DATE TIME` must be of the form d-M-yy HHmm, but the time is optional. <br>
-  e.g. `2-7-22 1345`, `28-10-22` are valid dates.
-* Although time can be omitted, this will result in the task being created with a default time of `0000` hours.
-* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
-* A task can be recurring, i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
-* A recurring task can be specified using parameters `INTERVAL TIME_PERIOD`, in addition to the `TASK_DESCRIPTION` and `DATE TIME`.
-* `TIME_PERIOD` can be: `day`/`days`, `week`/`weeks`, `month`/`months` or `year`/`years`
-* `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
-* Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
-* Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
+* `TASK_DESCRIPTION` accepts any values.
+* `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`. <br>
+   e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
+* `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/week(s)/month(s)/year(s)` where `X` is a positive integer.
+
+Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
+
+### `c/CONDITION`
+
+`CONDITION` accepts any values.
+
+Example:`c/Parkinson's disease`
+
+### `m/MEDICATION_TYPE | DOSAGE`
+
+`MEDICATION_TYPE` accepts any values.
+`DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
+
+Example:`m/Amoxicillin | 0.5g every 8 hours`
+
+### `r/REMARK`
+
+`REMARK` accepts any values.
+
+Example:`r/Allergic to peanuts`
 
 #### `c/CONDITION`
 
@@ -440,7 +460,7 @@ Example:
 
 You can add a tag to a patient with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX t/TAG`
+Format: **`add`** `-p PATIENT_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -468,7 +488,7 @@ Examples:
 
 You can edit a tag of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -t TAG_INDEX t/TAG`
+Format: **`edit`** `-p PATIENT_INDEX -t TAG_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -498,12 +518,31 @@ Examples:
 
 ### Adding a task: `add` `-p`
 
-Adds a task or recurring task to a patient.
+You can add a task or recurring task to a patient with the `add` command.
 
-Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>`
+Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>`
 
-* Adds a task to a patient at the specified `PATIENT_INDEX`.
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#task-parameters).
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
+* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
+* `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
+* If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. one off task.
+* Note that tasks are automatically sorted in chronological order upon being added. <br> 
+  e.g. If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
+  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:**
+If you enter a `TIME` of `2400`, then the date and time will be set to `0000` hours of the next day.
+
+</div>
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
@@ -512,7 +551,7 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+:bulb **Tip:** You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
@@ -520,30 +559,41 @@ Examples:
 
 ### Editing a task: `edit` `-p` `-d`
 
-Edits the specified task or recurring task associated with a patient.
+You can edit a task of a patient with the `edit` command.
 
-Format: `edit -p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>`
+Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>`
 
-* Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
-* The task index refers to the index number shown in the task list of a patient.
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in notes under command format.
-* If no new `DATE TIME` or `INTERVAL TIME_PERIOD` are provided, then original values will be used.
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
+* Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
+
+</div>
 
 Examples:
 * `list` followed by `edit -p 1 -d 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours.
+* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours, while retaining the original description for the task.
+* `list` followed by `edit -p 1 -d 1 d/| | 3 days` edits the recurrence of the 1st task of the 1st patient if the task was a recurring task to every 3 days, while keeping the original description, date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 3 days.
+* `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task fo the 2nd patient in the patient list to 25th october 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
+* `find David` followed by `edit -p 1 -d 2 d/Change bandage | | 4 days` edits the description and recurrence of the 2nd task of the 1st patient in the results of `find` command to `Change bandage` and every 4 days, while keeping the original date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 4 days.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You must always provide a `DATE` if you want to change the `TIME`. <br>
+  e.g. to change from `25-10-22 0800` to `25-10-22 0900`, the edit would be `d/| 25-10-22 0900`.
+
+</div>
 
 <br>
 
 ### Deleting a task: `delete` `-p` `-d`
 
-Deletes the specified task or recurring task associated with a patient.
+You can delete a task of a patient with the `delete` command.
 
-Format: `delete -p PATIENT_INDEX -d TASK_INDEX`
-
-* Deletes the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
-* The task index refers to the index number shown in the task list of a patient.
+Format: **`delete`** `-p PATIENT_INDEX -d TASK_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -d 3` deletes the 3rd task of the 2nd patient in the patient list.
@@ -570,13 +620,19 @@ Examples:
 * `list` followed by `add -p 1 c/Diabetes` adds the `Diabetes` condition to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 c/Alzheimer's disease` adds the `Diabetes` condition to the 2nd patient in the results of the `find Betsy` command.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
 <br>
 
 ### Editing a medical condition: `edit` `-p` `-c`
 
 You can edit a medical condition of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
+Format: **`edit`** `-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
 
 <div markdown="block" class="alert alert-info">
 
@@ -596,7 +652,7 @@ Examples:
 
 You can delete a medical condition of a patient with the `delete` command.
 
-Format: **`delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -c CONDITION_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
@@ -606,67 +662,122 @@ Examples:
 
 ### Adding a medication: `add` `-p`
 
-Format: `add -p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Adds a medication to a patient at the specified `PATIENT_INDEX`.
+You can add a medication to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one medication at a time.
+* You cannot add duplicate medications.
+* Medications are considered duplicates only when both `MEDICATION_TYPE` and `DOSAGE` are the same e.g. `Paracetamol | 1 tab every 6 hours` is different from `Paracetamol | 2 tabs every 6 hours`.
+* Medications are case-sensitive e.g. `Paracetamol` is distinct from `paracetamol`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 m/Paracetamol | 2 tabs every 6 hours` adds the `Paracetamol` medication with the dosage `2 tabs every 6 hours` to the 1st patient in the patient list.
+* `find Alice` followed by `add -p 2 m/Amoxicillin | 0.5g every 8 hours` adds the `Amoxicillin` medication with the dosage `0.5g every 8 hours` to the 2nd patient in the results of the `find Alice` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medications at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a medication: `edit` `-p` `-m`
 
-Format: `edit -p PATIENT_INDEX -m MEDICATION_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Edits the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a medication of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <DOSAGE>`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one medication at a time.
+* If no new `MEDICATION_TYPE` or `DOSAGE` are provided, then original values will be used.
+* At least one of `MEDICATION_TYPE` or `DOSAGE` must be present, or else the medication will not be edited.
+* If there are duplicate medications after editing a medication, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 1 -m 1 d/Amoxicillin` edits the medication type of the 1st medication of the 1st patient in the patient list to `Amoxicillin`, while retaining the original dosage.
+* `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in results of the `find Alice` command, while retaining the original medication type.
 
 <br>
 
 ### Deleting a medication: `delete` `-p` `-m`
 
-Format: `delete -p PATIENT_INDEX -m MEDICATION_INDEX`
-* Deletes the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medication of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -m MEDICATION_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -m 3` deletes the 3rd medication of the 2nd patient in the patient list.
+* `find Alice` followed by `delete -p 1 -m 2` deletes the 2nd medication of the 1st patient in the results of the `find Alice` command.
 
 <br>
 
 ### Adding a remark: `add` `-p`
 
-Format: `add -p PATIENT_INDEX r/REMARK`
-* Adds a remark to a patient at the specified `PATIENT_INDEX`.
+You can add a remark to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one remark at a time.
+* You cannot add duplicate remarks.
+* Remarks are case-sensitive e.g. `allergic to peanuts` is distinct from `Allergic to Peanuts`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 r/Requires wheelchair to move around` adds the `Requires wheelchair to move around` remark to the 1st patient in the patient list.
+* `find Rachel` followed by `add -p 2 r/Allergic to Peanuts` adds the `Allergic to Peanuts` remark to the 2nd patient in the results of the `find Rachel` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a remark: `edit` `-p` `-r`
 
-Format: `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
-* Edits the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a remark of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one remark at a time.
+* If there are duplicate remarks after editing a remark, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 2 -r 3 r/Allergic to Amoxicillin` edits the 3rd remark of the 2nd patient in the patient list to `Allergic to Amoxicillin`.
+* `find Rachel` followed by `edit -p 1 -r 2 r/Allergic to Amoxicillin` edits the 2nd remark of the 1st patient in the results of the `find Rachel` command to `Allergic to Amoxicillin`.
 
 <br>
 
 ### Deleting a remark: `delete` `-p` `-r`
 
-Format: `delete -p PATIENT_INDEX -r REMARK_INDEX`
-* Deletes the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medical condition of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -r REMARK_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -r 3` deletes the 3rd remark of the 2nd patient in the patient list.
+* `find Rachel` followed by `delete -p 1 -r 2` deletes the 2nd remark of the 1st patient in the results of the `find Rachel` command.
 
 <br>
 
@@ -719,25 +830,52 @@ _Add screenshot here_
 
 <br>
 
-### Listing all tasks of a patient: `view` `-p`
+### Listing all tasks for today: `view` `--today`
 
-Shows all the tasks that are associated with the specified patient.
+You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
-Format: `view -p PATIENT_INDEX`
+Format: **`view`** `--today`
 
 Examples:
 
-Suppose the following patients were added.
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
 
-`add n/John Doe d/Administer 3ml of example medicine`
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p 1` will display:
-    * `Administer 3ml of example medicine`
-* `view -p 2` will display:
-    * `Change dressing on left arm`
+![result for `view --today`](images/viewTodayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
 
-_Add screenshot here_
+<br>
+
+### Listing all tasks: `view` `-p` `--all`
+
+You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
+
+Format: **`view`** `-p --all`
+
+Examples:
+
+* `view -p --all` will show a list of all tasks belonging to patients with tasks.
+
+![result for `view -p --all`](images/viewAllTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
+
+<br>
+
+### Viewing all tasks of a patient: `view` `-p`
+
+You can view the list of tasks for a particular patient using the `view` command.
+
+Format: **`view`** `-p PATIENT_INDEX`
+
+Examples:
+
+* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
+
+![result for `view -p 2`](images/viewBerniceTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p 2` command </div>_
 
 <br>
 
@@ -764,16 +902,23 @@ _Add screenshot here_
 
 ### Listing all tasks for a particular day: `view`
 
-Shows a list of all tasks on a particular day.
+You can view the list of tasks for a particular day using the `view` command.
 
-Format: `view DATE`
+Format: **`view`** `DATE`
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 * The DATE **must be of the specified format** dd-MM-yy
+</div>
 
 Examples:
-* `view 25-12-22` lists the tasks on 25th December 2022
+* `view 5-9-22` lists the tasks on 5th September 2022
+* `view 25-11-22` lists the tasks on 25th November 2022
 
-_Add screenshot here_
+![result for `view 25-11-22`](images/viewSpecificDayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view 25-11-22` command </div>_
+
 
 <br>
 

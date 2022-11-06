@@ -1,6 +1,6 @@
 package seedu.uninurse.model.condition;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,24 +21,24 @@ public class ConditionList implements GenericList<Condition> {
     private final List<Condition> internalConditionList;
 
     /**
-     * Constructs an empty {@code ConditionList}.
+     * Constructs an empty ConditionList.
      */
     public ConditionList() {
-        internalConditionList = new ArrayList<>();
+        this.internalConditionList = new ArrayList<>();
     }
 
     /**
-     * Constructs a {@code ConditionList}.
+     * Constructs a ConditionList.
      * @param conditions The given list of conditions.
      */
     public ConditionList(List<Condition> conditions) {
-        requireNonNull(conditions);
-        internalConditionList = conditions;
+        requireAllNonNull(conditions);
+        this.internalConditionList = conditions;
     }
 
     @Override
     public ConditionList add(Condition condition) {
-        requireNonNull(condition);
+        requireAllNonNull(condition);
         if (internalConditionList.contains(condition)) {
             throw new DuplicateConditionException();
         }
@@ -61,6 +61,7 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public ConditionList edit(int index, Condition condition) {
+        requireAllNonNull(condition);
         try {
             List<Condition> updatedConditions = new ArrayList<>(internalConditionList);
             updatedConditions.set(index, condition);
@@ -136,21 +137,21 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         internalConditionList.forEach(c -> {
             int index = internalConditionList.indexOf(c);
             if (index == 0) {
-                builder.append(index + 1)
+                sb.append(index + 1)
                         .append(". ")
                         .append(c);
             } else {
-                builder.append("\n")
+                sb.append("\n")
                         .append(index + 1)
                         .append(". ")
                         .append(c);
             }
         });
-        return builder.toString();
+        return sb.toString();
     }
 
     @Override

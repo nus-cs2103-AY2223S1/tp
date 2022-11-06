@@ -7,7 +7,7 @@ import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.
+ * Tests that at least one of the Person's Tag matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

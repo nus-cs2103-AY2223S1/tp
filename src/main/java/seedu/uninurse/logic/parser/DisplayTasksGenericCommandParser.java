@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.SPECIAL_CHARACTER_ALL;
@@ -23,28 +23,28 @@ public class DisplayTasksGenericCommandParser implements Parser<DisplayTasksGene
      * @throws ParseException if the user input does not conform the expected format
      */
     public DisplayTasksGenericCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
         args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
 
         ArgumentMultimap parameters = ArgumentTokenizer.tokenize(args);
 
-        if (ParserUtil.optionsOnlyContains(options)
+        if (ParserUtil.optionsExactlyContains(options)
                 && parameters.getPreamble().trim().equals(SPECIAL_CHARACTER_TODAY)) {
             return new PatientsTodayCommand();
         }
 
-        if (ParserUtil.optionsOnlyContains(options)) {
+        if (ParserUtil.optionsExactlyContains(options)) {
             return new TasksOnCommandParser().parse(args);
         }
 
-        if (ParserUtil.optionsOnlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
+        if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
                 && options.getValue(PREFIX_OPTION_PATIENT_INDEX).get().equals(SPECIAL_CHARACTER_ALL)) {
             return new ListTaskCommand();
         }
 
-        if (ParserUtil.optionsOnlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
+        if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
             return new ViewTaskCommandParser().parse(
                     options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " " + args);
         }

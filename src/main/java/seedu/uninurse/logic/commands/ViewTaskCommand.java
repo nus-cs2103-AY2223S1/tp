@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -14,13 +15,10 @@ import seedu.uninurse.model.person.Patient;
  * Shows all tasks associcated with the given patient in the uninurse book to the user.
  */
 public class ViewTaskCommand extends DisplayTasksGenericCommand {
-    public static final String COMMAND_WORD = "viewTask";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a list of tasks associated with the patient identified by the index number\n"
-            + "used in the displayed patient list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Shows a patient's task list.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 
     public static final String MESSAGE_SUCCESS = "Showing Tasks for Patient: %1$s\n%2$s";
 

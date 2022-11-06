@@ -17,10 +17,10 @@ import seedu.uninurse.model.person.Patient;
 public class ViewPatientCommand extends Command {
     public static final String COMMAND_WORD = "focus";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a patient's details identified by the index number used in the displayed patient list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
+            + ": Shows a patient's full details.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 
     public static final String MESSAGE_SUCCESS = "Showing Patient: %1$s";
 

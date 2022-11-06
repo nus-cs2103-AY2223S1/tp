@@ -31,13 +31,13 @@ public class DeletePatientCommandTest {
         Patient personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeletePatientCommand deleteCommand = new DeletePatientCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getUninurseBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage,
-                DeletePatientCommand.DELETE_PATIENT_COMMAND_TYPE, expectedModel);
+                DeletePatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -55,14 +55,14 @@ public class DeletePatientCommandTest {
         Patient personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeletePatientCommand deleteCommand = new DeletePatientCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePatientCommand.MESSAGE_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getUninurseBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage,
-                DeletePatientCommand.DELETE_PATIENT_COMMAND_TYPE, expectedModel);
+                DeletePatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

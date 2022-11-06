@@ -64,7 +64,7 @@ public class AddTaskCommandTest {
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, addedTask);
 
-        String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
+        String expectedMessage = String.format(AddTaskCommand.MESSAGE_SUCCESS,
                 editedPatient.getName().toString(), addedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -72,7 +72,7 @@ public class AddTaskCommandTest {
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage,
-                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
+                AddTaskCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class AddTaskCommandTest {
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, addedTask);
 
-        String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
+        String expectedMessage = String.format(AddTaskCommand.MESSAGE_SUCCESS,
                 editedPatient.getName().toString(), addedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -105,7 +105,7 @@ public class AddTaskCommandTest {
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage,
-                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
+                AddTaskCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

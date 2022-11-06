@@ -9,13 +9,9 @@ import java.util.logging.Level;
  * Config values used by the app
  */
 public class Config {
-
     public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
-
     public static final int HISTORY_SIZE_LIMIT = 100;
-
     public static final int UNDO_LIMIT = 100;
-
 
     // Config values customizable through config file
     private Level logLevel = Level.INFO;
@@ -64,5 +60,4 @@ public class Config {
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         return sb.toString();
     }
-
 }
