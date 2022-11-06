@@ -30,7 +30,6 @@ ArchiveCommandParser --> TaskListParser
 deactivate ArchiveCommandParser
 
 ArchiveCommandParser -> ArchiveCommandParser : parse("1")
-activate ArchiveCommandParser
 
 create ArchiveCommand
 ArchiveCommandParser -> ArchiveCommand

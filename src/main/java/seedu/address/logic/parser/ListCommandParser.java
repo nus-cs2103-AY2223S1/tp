@@ -39,12 +39,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
 
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-        }
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_LIST_ALL, PREFIX_LIST_UNMARKED, PREFIX_LIST_MARKED,
@@ -70,6 +64,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         return new ListCommand(predicates);
     }
 
+    /**
+     * Parses the argument if any and returns the predicate for each prefix filter.
+     * @param prefix The command word of each list command subclass.
+     * @param keyword The argument that follows the command word.
+     * @return the corresponding predicate
+     * @throws ParseException if the argument does not conform the expected format
+     */
     private Predicate<Task> getPredicate(Prefix prefix, String keyword) throws ParseException {
         switch (prefix.toString()) {
         case ListAllCommand.COMMAND_WORD:

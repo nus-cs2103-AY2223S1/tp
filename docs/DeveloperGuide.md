@@ -245,9 +245,9 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 #### 5.3.1 Implementation
 
-The list feature filters through the task list based on the filters entered by user. Its mechanism is facilitated by `ListCommand` and `ListCommandParser`, as well as their subclasses (E.g. `ListDeadlineCommand`, `ListDeadlineCommandParser`).
+The list feature filters the displayed task list based on the filters entered by user. Its mechanism is facilitated by `ListCommand` and `ListCommandParser`, as well as their subclasses (E.g. `ListDeadlineCommand`, `ListDeadlineCommandParser`).
 
-Multiple filters can be applied in a single list command. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T".
+Multiple filters can be applied in a single `ListCommand`. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T".
 
 This table summarizes the respective flags that users can use to apply filters of their choice.
 
@@ -267,10 +267,9 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 | `-n`*       | List all task names with the matching keywords    | `ls -n KEYWORD`               | 
 
 In the table above, flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. 
-These commands have a corresponding Parser that extends `ListCommandParser` to parse the parameter passed in. In the process of that, validity checks are conducted. These are some examples of validity checks conducted in the subclass parsers: 
+These commands have a corresponding Parser that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each Parser implements the `parse` method in `Parser` interface. In the process of that, validity checks are conducted. These are some examples of validity checks conducted in the subclass parsers: 
 * In `ListModuleCommandParser`, the argument is checked to contain only alphanumeric characters with no spaces, and is not blank
 * In `ListDeadlineCommandParser`, the argument is checked to be numbers be in `YYYY-MM-DD` format 
-
 
 `ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
 
@@ -278,7 +277,15 @@ This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.  
 
+Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command.
+
+**Step 1.** The user enters `ls -u --module CS2103T` to filter out tasks that are unmarked and under the `Module` "CS2103T".
+
+**Step 2.** The
+
 Below is the sequence diagram for the execution of `ls -u --module CS2103T`.
+
+![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram-0.png)
 
 ### 5.4 Returning to a previous command
 
@@ -297,26 +304,26 @@ Additionally, it implements the following operations:
 
 Given below is an example usage scenario and how the command history traversal mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `CommandBox` will be initialised, which in turns
+**Step 1.** The user launches the application for the first time. The `CommandBox` will be initialised, which in turns
 initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands` will be
 empty.
 
-Step 2. The user enters a command `add -n Project -m CS2103T -d 2022-10-18 -t lowPriority`. Upon entering a new
+**Step 2.** The user enters a command `add -n Project -m CS2103T -d 2022-10-18 -t lowPriority`. Upon entering a new
 command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to
 stores this command into `previousCommands`.
 
-Step 3. The user presses on the `up` key to return to the previously entered command. This action calls
+**Step 3.** The user presses on the `up` key to return to the previously entered command. This action calls
 the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history,
 and feeds this String back to the command box.
 
-Step 4. The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()`
+**Step 4.** The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()`
 which will shift `pointer` once to the right. Since the `pointer` is already pointing to the latest command in history,
 there are no more commands to be returned to.
 Hence, the command box will be cleared.
 
 The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys.
 
-![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
+![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
 
 #### 5.4.2 Design considerations:
 
