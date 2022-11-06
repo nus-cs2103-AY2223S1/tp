@@ -310,7 +310,7 @@ step 5. After making a deletion into the tasklist, the `DeleteTaskCommand` calls
 `AddressBook#setTasks` to update the tasklist in the model to the latest version
 
 The following sequence diagram shows how the AddTask operation works:
-![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram.png)
+![AddTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a AddTask command:
 ![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
