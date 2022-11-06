@@ -29,7 +29,9 @@ import jeryl.fyp.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format given!\n"
+            + "Consider using \"dd-MM-yyyy HH:mm\"\n"
+            + "Example: 20-10-2022 13:57";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -174,9 +176,7 @@ public class ParserUtil {
                 // Go to the next dateTime format
             }
         }
-        throw new ParseException("Invalid datetime format given!\n"
-                + "Consider using \"dd-MM-yyyy HH:mm\"\n"
-                + "Example: 20-10-2022 13:57");
+        throw new ParseException(MESSAGE_INVALID_DATETIME);
     }
 
     /**
