@@ -37,4 +37,13 @@ public class ListMeetingCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, CommandSpecific.MEETING);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof ListMeetingCommand)) {
+            return false;
+        }
+        ListMeetingCommand otherCmd = (ListMeetingCommand) other;
+        return otherCmd.dateKeyword == this.dateKeyword;
+    }
+
 }

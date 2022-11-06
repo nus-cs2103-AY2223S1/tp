@@ -23,6 +23,8 @@ import seedu.address.model.product.Product;
 class JsonSerializableMyInsuRec {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
+    public static final String MESSAGE_DUPLICATE_MEETING = "Meetings list contains duplicate meeting(s)";
+    public static final String MESSAGE_DUPLICATE_PRODUCT = "Products list contains duplicate product(s)";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedProduct> products = new ArrayList<>();
@@ -56,19 +58,37 @@ class JsonSerializableMyInsuRec {
         MyInsuRec myInsuRec = new MyInsuRec();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
-            if (myInsuRec.hasClient(client)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
-            }
-            myInsuRec.addClient(client);
+            addClientToModel(client, myInsuRec);
             for (Meeting meeting : client.getMeetings()) {
-                myInsuRec.addMeeting(meeting);
+                addMeetingToModel(meeting, myInsuRec);
             }
         }
         for (JsonAdaptedProduct jsonAdaptedProduct : products) {
             Product product = jsonAdaptedProduct.toModelType();
-            myInsuRec.addProduct(product);
+            addProductToModel(product, myInsuRec);
         }
         return myInsuRec;
+    }
+
+    private void addMeetingToModel(Meeting meeting, MyInsuRec mir) throws IllegalValueException {
+        if (mir.hasMeeting(meeting)) {
+            throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
+        }
+        mir.addMeeting(meeting);
+    }
+
+    private void addClientToModel(Client client, MyInsuRec mir) throws IllegalValueException {
+        if (mir.hasClient(client)) {
+            throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
+        }
+        mir.addClient(client);
+    }
+
+    private void addProductToModel(Product product, MyInsuRec mir) throws IllegalValueException {
+        if (mir.hasProduct(product)) {
+            throw new IllegalValueException(MESSAGE_DUPLICATE_PRODUCT);
+        }
+        mir.addProduct(product);
     }
 
 }

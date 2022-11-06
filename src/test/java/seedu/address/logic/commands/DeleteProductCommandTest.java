@@ -29,6 +29,7 @@ public class DeleteProductCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        // ep: productlist: [filtered][unfiltered], index:[valid][invalid]
         Product productToDelete = model.getFilteredProductList().get(INDEX_FIRST_ELEMENT.getZeroBased());
         DeleteProductCommand deleteProductCommand = new DeleteProductCommand(INDEX_FIRST_ELEMENT);
 

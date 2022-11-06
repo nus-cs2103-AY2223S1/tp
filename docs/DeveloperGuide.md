@@ -216,9 +216,7 @@ Purpose: Adds a meeting with the given information to the internal model and sto
 
 ##### Implementation
 
-In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
-to accept the new command word, `addMeeting`.
+In keeping with the command execution structure of the overall program, the command specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was also modified to accept the new command word, `addMeeting`.
 
 The following sequence diagram offers a high-level overview of how
 the command is executed.
@@ -273,7 +271,7 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 **Aspect: How many meetings to delete in one command**
 
-- **Alternative Solution 1 (current choice):** Allows only one deletion
+- **Alternative Solution 1 (Current Choice):** Allows only one deletion
     - Pros: Easy to implement
     - Cons: Troublesome in the event where multiple meetings
 - **Alternative Solution 2:** Allows multiple deletion
@@ -398,6 +396,10 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 - Ultimately, we believe that we will not have too many views (likely a maximum of 6 as we only have to consider `Client`, `Meeting`, `Product` and their detailed variant). As such, we felt that passing the `CommandSpecific` is a cheaper (in terms of effort and programming hours and research) and better solution for now.
 
+**Aspect: Different view panels do not inherit from a single abstract panel class
+
+- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here is an example of over engineering and adds no value to justify the effort of doing so.
+
 ### 3.5 Proposed Features
 
 #### 3.5.1 Multiple possible prefixes per command
@@ -507,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User inputs incomplete client data.
+* 1a. User inputs incomplete or invalid client data.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -523,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 1a. User selects non-existent client.
+* 1a. User selects a non-existent client.
     * 1a1. System shows an error message.
 
       Use case ends.
@@ -537,7 +539,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.4 Use case: UC4 - List all meetings
+**Extensions**
+
+* 1a. User requests for a list of all clients whose birthday falls within a given period.
+    * 1a1. System shows a list of all clients whose birthday falls within the period.
+
+      Use case ends.
+
+* 1b. User requests for a list of all clients who has purchased a given product.
+    * 1b1. System shows a list of all clients who has purchased the product.
+
+      Use case ends.
+
+#### 5.3.4 Use case: UC4 - Delete a client
+
+**MSS**
+
+1. User requests to delete a client.
+2. Client is removed from the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to delete a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.5 Use case: UC5 - Edit a client
+
+**MSS**
+
+1. User requests to edit a client.
+2. System replaces current client information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent client or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.6 Use case: UC6 - Add a meeting
+
+**MSS**
+
+1. User requests to add a meeting.
+2. System adds the meeting.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs incomplete or invalid meeting data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.7 Use case: UC7 - View a meeting
+
+**MSS**
+
+1. User requests to view a meeting in detail.
+2. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.8 Use case: UC8- List all meetings
 
 **MSS**
 
@@ -546,7 +624,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.5 Use case: UC5 - Delete a meeting
+**Extensions**
+
+* 1a. User requests for a list of all meetings in a given period.
+    * 1a1. System shows the list of all meetings in the period.
+
+      Use case ends.
+
+#### 5.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
 
@@ -565,7 +650,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.6 Use case: UC6 - Add a product
+#### 5.3.10 Use case: UC10 - Edit a meeting
+
+**MSS**
+
+1. User requests to edit a meeting.
+2. System replaces current meeting information with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User attempts to edit a non-existent meeting or inputs invalid data.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 5.3.11 Use case: UC11 - Add a product
 
 **MSS**
 
@@ -581,7 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.7 Use case: UC7 - List all products
+#### 5.3.12 Use case: UC12 - List all products
 
 **MSS**
 
@@ -590,7 +691,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.8 Use case: UC8 - Delete a product
+#### 5.3.13 Use case: UC13 - Delete a product
 
 **MSS**
 
@@ -736,7 +837,34 @@ Deleting a client while all clients are being shown
    1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 6.3 Adding a product
+### 6.3 Listing meetings
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+
+</div>
+
+1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
+   2. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
+      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
+
+1. Test case: `listMeeting`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+
+1. Test case: `listMeeting d/tomorrow`
+    2. Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+
+1. Test case: `listMeeting d/week`
+    2. Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+
+1. Test case: `listMeeting d/month`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+
+1. Test case: `listMeeting adsfadsf`
+    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+
+### 6.4 Adding a product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
@@ -750,7 +878,7 @@ Deleting a client while all clients are being shown
 1. Test case: `addProduct pd/`
     2. Expected: Empty fields are not allowed, so no product is added.
 
-### 6.3 List product
+### 6.5 Listing products
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
@@ -762,7 +890,7 @@ Deleting a client while all clients are being shown
 1. Test case: `listProduct adfafio3`
     2. Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
 
-### 6.4 Delete product
+### 6.6 Delete product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
 

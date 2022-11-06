@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import seedu.address.logic.commands.ListMeetingCommand;
@@ -18,12 +17,7 @@ public class ListMeetingCommandParser implements Parser<ListMeetingCommand> {
             return new ListMeetingCommand(DateKeyword.ALL_TIME);
         }
 
-        try {
-            DateKeyword dateKeyword = ParserUtil.parseDateKeyword(argumentMultimap.getValue(PREFIX_DATE).get());
-            return new ListMeetingCommand(dateKeyword);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ListMeetingCommand.MESSAGE_USAGE), pe);
-        }
+        DateKeyword dateKeyword = ParserUtil.parseDateKeyword(argumentMultimap.getValue(PREFIX_DATE).get());
+        return new ListMeetingCommand(dateKeyword);
     }
 }
