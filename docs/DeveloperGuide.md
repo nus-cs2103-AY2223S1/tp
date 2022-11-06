@@ -277,6 +277,12 @@ Given below is an example success scenario and how the find mechanism behaves at
 6. `FindCommand` calls `Model#updateFilteredPersonList(predicates)`.
 7. `FindCommand` updates the `filteredPersons` in `model` and only clients that match any of the keywords are shown.
 
+The following activity diagram summarizes what happens when a user executes the Find command:
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
+
+*Figure 12: Activity Diagram showing the execution of an `find` command*
+
 #### Design Considerations
 
 **Aspect: Format of the `find` command**
