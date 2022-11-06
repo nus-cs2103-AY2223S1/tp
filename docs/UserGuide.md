@@ -519,7 +519,7 @@ Format: `delete -c INDEX`
 
 **Tips:**
     
-* The `INDEX` refers to the index numebr shown in the currently displayed client directory. 
+* The `INDEX` refers to the index number shown in the currently displayed client directory. 
 * The `INDEX` must be a positive integer 1, 2, 3...
     
 </div>
