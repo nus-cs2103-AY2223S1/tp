@@ -140,6 +140,12 @@ If you are new to **Arrow**, here provides some tips for you to enter commands e
 
 **:information_source: Notes about the command format:**<br>
 
+* The task list shows only **INCOMPLETE** tasks. 
+Once a task has been marked (either by the command or the by ticking the white box), 
+it will be completed and disappears from the task panel as it is NOT incomplete.
+
+* To view the task list with both complete and incomplete ones, using `task list -a`.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -613,6 +619,8 @@ To improve the speed of your actions and quality of your life while using the ap
 since there could be many projects and each project may have so many items to keep in track.
 Thus, **Arrow** has a task panel list to keep every task organized. 
 Details of each task can be added, which helps the team managers no fear of leaving out any progress.
+
+    Also the task panel list only shows the incomplete tasks.
 
 
 * **Teammate List**
