@@ -15,8 +15,8 @@ there are two main lists which store the tasks list and the contact list. In thi
 can use two lists to organize the team project easily.
 
 **Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
-project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
-**Arrow** can help you manage your team members in an exceptionally quick way.
+project managers, who should be equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
+**Arrow** can help you manage your teammates in an exceptionally quick way.
 
 ### Note
 
@@ -47,11 +47,10 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
         - [List all Teammates](#listing-all-teammates--list)
         - [Delete a Teammate](#deleting-a-teammate--delete)
         - [Edit a Teammate](#editing-a-teammates-information--edit)
-        - [Find Teammate](#finding-teammates-based-on-namekeyword-find)
+        - [Find Teammate](#finding-teammates-based-on-namekeywordtags-find)
     3. [Task Commands](#task-commands)
         - [Add a Task](#adding-a-new-task-task-add)
         - [Assign a Task to a Teammate](#assigning-a-task-to-a-teammate-task-assign)
-        - [View all Tasks assigned to a Teammate](#viewing-all-tasks-assigned-to-a-teammate-task-list-)
         - [Mark completed Task](#marking-completed-tasks-task-mark)
         - [Unmark incomplete Task](#unmarking-incomplete-tasks-task-unmark)
         - [Delete a task](#deleting-a-task-task-delete)
@@ -397,7 +396,7 @@ You can use the `task do ... by/` command to set (or remove) a deadline for some
 
 Format: `task do TASK_INDEX by/DATE...`
 - The `task do` command sets the deadline specified by `DATE` to the task at the specified `TASK_INDEX` from the task list.
-- You can only use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+- You can only use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November 2022`, and so on.
 - Dates containing non-alphanumeric characters such as `11-11-2022` will not be accepted and an error message will be thrown.
 - If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 - To **remove** the deadline from a task, you can use the special character `?`.
@@ -548,6 +547,7 @@ Sort Teammates by alphabetical order of their names. Currently, it is difficult 
 ## Command Summary
 
 This summary provides a list of useful and straightforward instructions on how to use the command lines more efficiently.
+
 ### Basic Commands
 
 | Command         | Format       |
@@ -570,19 +570,19 @@ This summary provides a list of useful and straightforward instructions on how t
 
 ### Task Commands
 
-| Command           | Format                                                                                               | Example                                                                                            |
-|-------------------|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Task add          | `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`                                           | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| Task assign       | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​` | `task assign 3 +@/1 +@/Alex Yeoh @-/2`                                                             |
-| Task list         | `task list`                                                                                          | -                                                                                                  |
-| Task mark         | `task mark TASK_INDEX`                                                                               | `task mark 1`                                                                                      |
-| Task unmark       | `task unmark TASK_INDEX`                                                                             | `task unmark 1`                                                                                    |
-| Task delete       | `task delete INDEX`                                                                                  | `task delete 3`                                                                                    |
-| Task set deadline | `task do TASK_INDEX by/DATE...`                                                                      | `task do 1 by/tomorrow`                                                                            |
-| Task sort         | `task sort`                                                                                          | -                                                                                                  |
-| Task filter       | `task list`                                                                                          | -                                                                                                  |
-| Task edit         | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@PERSONS_INDEX] ... [-@PERSONS_INDEX]...` | `task edit 2 ti/Finish bar by/tomorrow`                                                            |
-| Task project      | `task project`                                                                                       | -                                                                                                  |
+| Command      | Format                                                                                                 | Example                                                                                            |
+|--------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Task add     | `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`                                             | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| Task assign  | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​` | `task assign 3 +@/1 +@/Alex Yeoh @-/2`                                                             |
+| Task list    | `task list`                                                                                            | -                                                                                                  |
+| Task mark    | `task mark TASK_INDEX`                                                                                 | `task mark 1`                                                                                      |
+| Task unmark  | `task unmark TASK_INDEX`                                                                               | `task unmark 1`                                                                                    |
+| Task delete  | `task delete INDEX`                                                                                    | `task delete 3`                                                                                    |
+| Task do      | `task do TASK_INDEX by/DATE...`                                                                        | `task do 1 by/tomorrow`                                                                            |
+| Task sort    | `task sort`                                                                                            | -                                                                                                  |
+| Task filter  | `task list`                                                                                            | -                                                                                                  |
+| Task edit    | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@PERSONS_INDEX] ... [-@PERSONS_INDEX]...` | `task edit 2 ti/Finish bar by/tomorrow`                                                            |
+| Task project | `task project`                                                                                         | -                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
