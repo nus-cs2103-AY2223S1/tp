@@ -139,6 +139,13 @@ public class Review {
         return builder.toString();
     }
 
+    /**
+     * Creates a string that contains the list of tags stored within the Review.
+     * Example: If the sets of tags are 'test1' and 'test2', the method will
+     * return "test1, test2"
+     *
+     * @return List of tags in a string format.
+     */
     public String getTagString() {
         if (!tags.isEmpty()) {
             return this.tags

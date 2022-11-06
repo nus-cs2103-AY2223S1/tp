@@ -14,6 +14,7 @@ public class RSortCommandParser implements Parser<RSortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RSortCommand
      * and returns a RSortCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RSortCommand parse(String args) throws ParseException {

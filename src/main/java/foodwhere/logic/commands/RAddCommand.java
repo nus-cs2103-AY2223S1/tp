@@ -21,7 +21,7 @@ import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 
 /**
- * Adds a review to the address book.
+ * Adds a review to the address book in FoodWhere.
  */
 public class RAddCommand extends Command {
 
@@ -56,7 +56,13 @@ public class RAddCommand extends Command {
     private final Set<Tag> tagList;
 
     /**
-     * Creates an RAddCommand to add the specified {@code Review}
+     * Creates an RAddCommand to add the specified {@code Review}.
+     *
+     * @param stallIndex Index of the Stall.
+     * @param date Date of the Review.
+     * @param content Content of the Review.
+     * @param rating Rating given to the Review.
+     * @param tagList List of tags for the Review.
      */
     public RAddCommand(Index stallIndex, Date date, Content content, Rating rating, Set<Tag> tagList) {
         requireNonNull(stallIndex);

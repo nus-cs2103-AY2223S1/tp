@@ -12,7 +12,7 @@ import foodwhere.model.Model;
 import foodwhere.model.review.Review;
 
 /**
- * Deletes a review identified using it's displayed index from the address book.
+ * Deletes a review identified using its displayed index from the address book in FoodWhere.
  */
 public class RDeleteCommand extends Command {
 
@@ -31,6 +31,11 @@ public class RDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an RDeleteCommand to delete the specified {@code Review}.
+     *
+     * @param targetIndex Index of the Review in the observed list.
+     */
     public RDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

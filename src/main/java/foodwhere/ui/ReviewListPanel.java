@@ -14,8 +14,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of stalls.
- * Will be updated to a Review for later iterations.
+ * Panel containing the list of reviews.
  */
 public class ReviewListPanel extends UiPart<Region> {
     private static final String FXML = "ReviewListPanel.fxml";

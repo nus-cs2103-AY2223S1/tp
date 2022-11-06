@@ -16,8 +16,8 @@ import foodwhere.model.stall.exceptions.StallNotFoundException;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameStall comparison)
+ * Wraps all data at the address-book level in FoodWhere.
+ * Duplicates are not allowed (by .isSameStall comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -39,7 +39,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Stalls in the {@code toBeCopied}
+     * Creates an AddressBook using the Stalls in the {@code toBeCopied}.
+     *
+     * @param toBeCopied ReadOnlyAddressBook that is to be copied.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -74,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Finds the {@code Stall} which this review refers to
+     * Finds the {@code Stall} which this review refers to.
      */
     private Stall getStallOfReview(Review review) throws StallNotFoundException {
         for (Stall stall : stalls) {
@@ -92,6 +94,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the contents of the stall list with {@code stalls}.
      * {@code stalls} must not contain duplicate stalls.
+     *
+     * @param stalls List of stalls.
      */
     public void setStalls(List<Stall> stalls) {
         this.stalls.setStalls(stalls);
@@ -100,6 +104,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     *
+     * @param newData ReadOnlyAddressBook that is to be copied.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
@@ -111,6 +117,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a stall with the same identity as {@code stall} exists in the address book.
+     *
+     * @param stall Stall that is to be checked.
+     * @return Whether there is an existing stall in the address book.
      */
     public boolean hasStall(Stall stall) {
         requireNonNull(stall);
@@ -120,6 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a stall to the address book.
      * The stall must not already exist in the address book.
+     *
+     * @param p {@code Stall} that is to be added.
      */
     public void addStall(Stall p) {
         requireNonNull(p);
@@ -131,6 +142,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the given stall {@code target} in the list with {@code editedStall}.
      * {@code target} must exist in the address book.
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
+     *
+     * @param target {@code Stall} to be edited.
+     * @param editedStall {@code Stall} that is edited.
      */
     public void setStall(Stall target, Stall editedStall) {
         requireNonNull(editedStall);
@@ -141,6 +155,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
+     *
+     * @param key {@code Stall} to be removed.
      */
     public void removeStall(Stall key) {
         stalls.remove(key);
@@ -149,6 +165,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Sorts the stall list by {@code comparator}.
+     *
+     * @param comparator Comparator to sort the {@code Stall}s by.
      */
     public void sortStalls(Comparator<Stall> comparator) {
         requireNonNull(comparator);
@@ -159,6 +177,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a review with the same identity as {@code review} exists in the address book.
+     *
+     * @param review Review that is to be checked.
+     * @return Whether there is an existing review in the address book.
      */
     public boolean hasReview(Review review) {
         requireNonNull(review);
@@ -168,6 +189,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a review to the address book.
      * The review must not already exist in the address book.
+     *
+     * @param review Review that is to be added.
      */
     public void addReview(Review review) {
         requireNonNull(review);
@@ -181,6 +204,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a review to a stall in the address book.
      * The review must not already exist in the address book.
      * The stall must exist in the address book.
+     *
+     * @param review Review that is to be added.
+     * @param stall Stall that is associated with the Review.
      */
     public void addReviewToStall(Review review, Stall stall) {
         requireNonNull(review);
@@ -193,6 +219,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the given review {@code target} in the list with {@code editedReview}.
      * {@code target} must exist in the address book.
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
+     *
+     * @param target Review that is to be edited.
+     * @param editedReview Review that is edited.
      */
     public void setReview(Review target, Review editedReview) {
         requireNonNull(target);
@@ -207,6 +236,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
+     *
+     * @param key Review that is to be removed.
      */
     public void removeReview(Review key) {
         requireNonNull(key);
@@ -218,6 +249,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Sorts the review list by {@code comparator}.
+     *
+     * @param comparator Comparator to sort the review list by.
      */
     public void sortReviews(Comparator<Review> comparator) {
         requireNonNull(comparator);

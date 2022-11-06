@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ AddressBook in FoodWhere methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {

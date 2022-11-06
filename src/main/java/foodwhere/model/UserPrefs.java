@@ -23,6 +23,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
+     *
+     * @param userPrefs The provided user preferences.
      */
     public UserPrefs(ReadOnlyUserPrefs userPrefs) {
         this();
@@ -31,6 +33,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
+     *
+     * @param newUserPrefs The new user preferences.
      */
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
@@ -38,19 +42,39 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
+    /**
+     * Returns the current GUI settings.
+     *
+     * @return The current GUI settings.
+     */
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
 
+    /**
+     * Resets the existing data of the {@code GuiSettings} with {@code guiSettings}.
+     *
+     * @param guiSettings The new GUI Settings.
+     */
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
 
+    /**
+     * Returns the current address book path in FoodWhere.
+     *
+     * @return The current address book path.
+     */
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
     }
 
+    /**
+     * Sets the address book path in FoodWhere.
+     *
+     * @param addressBookFilePath The new address book path.
+     */
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;

@@ -14,6 +14,7 @@ public class SSortCommandParser implements Parser<SSortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SSortCommand
      * and returns a SSortCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public SSortCommand parse(String args) throws ParseException {

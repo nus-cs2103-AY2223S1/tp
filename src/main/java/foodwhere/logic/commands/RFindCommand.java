@@ -9,7 +9,7 @@ import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 
 /**
  * Finds and lists all reviews in FoodWhere whose names or tags contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class RFindCommand extends Command {
 
@@ -26,6 +26,11 @@ public class RFindCommand extends Command {
 
     private final ReviewContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an RFindCommand to find the specified {@code Review}s.
+     *
+     * @param predicate Predicate to filter the review list.
+     */
     public RFindCommand(ReviewContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

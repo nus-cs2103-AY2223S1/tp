@@ -135,16 +135,16 @@ public class UniqueReviewListTest {
     }
 
     @Test
-    public void setStalls_nullUniqueReviewList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueReviewList.setStalls((UniqueReviewList) null));
+    public void setReviews_nullUniqueReviewList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueReviewList.setReviews((UniqueReviewList) null));
     }
 
     @Test
-    public void setStalls_uniqueReviewList_replacesOwnListWithProvidedUniqueReviewList() {
+    public void setReviews_uniqueReviewList_replacesOwnListWithProvidedUniqueReviewList() {
         uniqueReviewList.add(TypicalReviews.ALICE);
         UniqueReviewList expectedUniqueReviewList = new UniqueReviewList();
         expectedUniqueReviewList.add(TypicalReviews.BOB);
-        uniqueReviewList.setStalls(expectedUniqueReviewList);
+        uniqueReviewList.setReviews(expectedUniqueReviewList);
         assertEquals(expectedUniqueReviewList, uniqueReviewList);
     }
 

@@ -22,6 +22,11 @@ public class SSortCommand extends Command {
 
     private final StallsComparatorList stallsComparator;
 
+    /**
+     * Creates an SSortCommand to sort the specified {@code Stall}s based on a criteria.
+     *
+     * @param stallsComparator Comparator for the {@code Stall}s
+     */
     public SSortCommand(StallsComparatorList stallsComparator) {
         this.stallsComparator = stallsComparator;
     }

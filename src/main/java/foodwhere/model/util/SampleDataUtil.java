@@ -19,6 +19,12 @@ import foodwhere.model.stall.Stall;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * Returns a sample list of {@code Stall}s used in FoodWhere.
+     *
+     * @return Sample list of {@code Stall}s.
+     */
     public static Stall[] getSampleStalls() {
         return new Stall[] {
             new Stall(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -32,6 +38,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Returns a sample list of {@code Review}s used in FoodWhere.
+     *
+     * @return Sample list of {@code Review}s.
+     */
     public static Review[] getSampleReviews() {
         return new Review[] {
             new Review(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -43,6 +54,12 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Returns a sample Address Book used in FoodWhere.
+     * The address book is preloaded with sample {@code Stall}s and {@code Review}s.
+     *
+     * @return sample Address Book.
+     */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Stall sampleStall : getSampleStalls()) {
@@ -57,6 +74,9 @@ public class SampleDataUtil {
 
     /**
      * Returns a tag set containing the list of strings given.
+     *
+     * @param strings List of strings.
+     * @return Set of Tag objects.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)

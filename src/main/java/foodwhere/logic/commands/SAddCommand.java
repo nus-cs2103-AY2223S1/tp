@@ -31,7 +31,9 @@ public class SAddCommand extends Command {
     private final Stall toAdd;
 
     /**
-     * Creates an SAddCommand to add the specified {@code Stall}
+     * Creates an SAddCommand to add the specified {@code Stall}.
+     *
+     * @param stall Stall to be added.
      */
     public SAddCommand(Stall stall) {
         requireNonNull(stall);

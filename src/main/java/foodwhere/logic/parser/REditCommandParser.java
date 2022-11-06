@@ -22,6 +22,7 @@ public class REditCommandParser implements Parser<REditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the REditCommand
      * and returns an REditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public REditCommand parse(String args) throws ParseException {

@@ -40,21 +40,21 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' address book file path in FoodWhere.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' address book file path in FoodWhere.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code addressBook} in FoodWhere.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /** Returns the AddressBook in FoodWhere. */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -64,19 +64,19 @@ public interface Model {
 
     /**
      * Deletes the given stall.
-     * The stall must exist in the address book.
+     * The stall must exist in the address book in FoodWhere.
      */
     void deleteStall(Stall target);
 
     /**
      * Adds the given stall.
-     * {@code stall} must not already exist in the address book.
+     * {@code stall} must not already exist in the address book in FoodWhere.
      */
     void addStall(Stall stall);
 
     /**
      * Replaces the given stall {@code target} with {@code editedStall}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the address book in FoodWhere.
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
      */
     void setStall(Stall target, Stall editedStall);
@@ -87,31 +87,31 @@ public interface Model {
     void sortStalls(Comparator<Stall> comparator);
 
     /**
-     * Returns true if a review with the same identity as {@code review} exists in the address book.
+     * Returns true if a review with the same identity as {@code review} exists in the address book in FoodWhere.
      */
     boolean hasReview(Review review);
 
     /**
      * Deletes the given review.
-     * The review must exist in the address book.
+     * The review must exist in the address book in FoodWhere.
      */
     void deleteReview(Review target);
 
     /**
      * Adds the given review.
-     * {@code review} must not already exist in the address book.
+     * {@code review} must not already exist in the address book in FoodWhere.
      */
     void addReview(Review review);
 
     /**
      * Adds the given review to the stall.
-     * {@code review} must not already exist in the address book.
+     * {@code review} must not already exist in the address book in FoodWhere.
      */
     void addReviewToStall(Review review, Stall stall);
 
     /**
      * Replaces the given review {@code target} with {@code editedReview}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the address book in FoodWhere.
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
      */
     void setReview(Review target, Review editedReview);
