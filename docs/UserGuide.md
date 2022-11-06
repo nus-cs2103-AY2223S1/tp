@@ -23,7 +23,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 ## Table of Contents
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -128,7 +128,6 @@ These are the GUI components of TaskBook. Components are all described from top 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds, containing sample data.<br>
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/Ui.png">
 </p>
@@ -261,7 +260,6 @@ Examples:
 2. `contact add n/Betsy Crowe #/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 #/criminal`
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleContactAdd.png">
 </p>
@@ -305,7 +303,6 @@ Examples:
 4. `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleTodoAdd.png">
 </p>
@@ -350,7 +347,6 @@ Examples:
 4. `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called "Finish essay" which you assign to yourself.
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleDeadlineAdd.png">
 </p>
@@ -394,14 +390,12 @@ Examples:
 4. `task event d/Finish essay t/Jan 31 2022` adds an event called "Finish essay" which you assigned to yourself.
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleEventAdd.png">
 </p>
 <figcaption align = "center"><b>Result of executing (1) to (4) sequentially. Indices may be different.</b>
 </figcaption>
 </figure>
-
 
 ### Editing
 
@@ -436,7 +430,6 @@ Examples:
 2. `contact edit i/2 p/98765433 #/friend`
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleContactEditBefore.png">
 </p>
@@ -445,7 +438,6 @@ Examples:
 </figure>
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleContactEditAfter.png">
 </p>
@@ -495,7 +487,6 @@ Examples:
 3. `task edit i/5 t/2023-12-31`
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleTaskEditBefore.png">
 </p>
@@ -504,7 +495,6 @@ Examples:
 </figure>
 
 <figure>
-<p>
 <p align = "center">
 <img src="images/ExampleTaskEditAfter.png">
 </p>
