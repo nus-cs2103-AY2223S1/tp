@@ -77,14 +77,14 @@ Given below is a quick overview of main components and how they interact with ea
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 #### 3.1.2 How the architecture components interact with each other
@@ -174,7 +174,7 @@ The `Model` component,
 
 <img src="images/MeetingClassDiagram.png" width="600" />
 
-#### 3.4.2 Product
+#### 3.4.4 Product
 
 <img src="images/ProductClassDiagram.png" width="150" />
 
@@ -233,7 +233,9 @@ Usage Scenario of `viewClient`:
 
 1) User inputs `viewClient i/1` to view the first client in the `Model`.
 
-:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+
+</div>
 
 Below is a sequence diagram that illustrates the execution of `viewClient` command and the interaction with `Model`.
 
@@ -825,7 +827,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.2 Adding a client
 
-//@@author sikai00
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
 </div>
@@ -858,7 +859,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.3 Viewing a client
 
-//@@author ThomasHoooo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
 
 </div>
@@ -891,7 +891,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.4 Deleting a client
 
-//@@author Thing1Thing2
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
 
 </div>
@@ -944,7 +943,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.6 Viewing a meeting
 
-//@@author ThomasHoooo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.
 
 </div>
@@ -977,7 +975,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.7 Adding a product
 
-//@@author sikai00
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
 </div>

@@ -6,17 +6,17 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
 participant ":DeleteClientCommandParser" as DeleteClientCommandParser LOGIC_COLOR
 participant "d:DeleteClientCommand" as DeleteClientCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delClient 1")
+[-> LogicManager : execute("delClient i/1")
 activate LogicManager
 
-LogicManager -> MyInsuRecParser : parseCommand("delClient 1")
+LogicManager -> MyInsuRecParser : parseCommand("delClient i/1")
 activate MyInsuRecParser
 
 create DeleteClientCommandParser
@@ -26,7 +26,7 @@ activate DeleteClientCommandParser
 DeleteClientCommandParser --> MyInsuRecParser
 deactivate DeleteClientCommandParser
 
-MyInsuRecParser -> DeleteClientCommandParser : parse("1")
+MyInsuRecParser -> DeleteClientCommandParser : parse("i/1")
 activate DeleteClientCommandParser
 
 create DeleteClientCommand
@@ -48,7 +48,7 @@ deactivate MyInsuRecParser
 LogicManager -> DeleteClientCommand : execute()
 activate DeleteClientCommand
 
-DeleteClientCommand -> Model : deleteClient(1)
+DeleteClientCommand -> Model : deleteClient(client1)
 activate Model
 
 Model --> DeleteClientCommand
