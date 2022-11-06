@@ -15,14 +15,14 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Implemented features:](#implemented-features)
-    - [Record features:](#record-features)
+    - [Record features:]
       - [Add record feature](#implemented-add-record-feature)
       - [List records feature](#implemented-list-records-feature)
       - [Delete record feature](#implemented-delete-record-feature)
       - [Edit record feature](#implemented-edit-record-feature)
       - [Find records feature](#implemented-find-records-feature)
       - [Clear all records feature](#implemented-clear-all-records-feature)
-    - [Appointment features:](#appointment-features)
+    - [Appointment features:]
       - [Add appointment feature](#implemented-add-appointment-feature)
       - [Clear appointment feature](#implemented-clear-appointment-feature)
   - [Proposed features:](#proposed-features)
@@ -44,6 +44,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Adapted from AB3 https://github.com/nus-cs2103-AY2223S1/tp
+* Icon was adapted from Eatlogos https://www.eatlogos.com/download-logo/vector-medical-logo/96
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,7 +157,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -202,14 +203,12 @@ This section describes some noteworthy details on how certain features are imple
 
 ## Implemented features
 
-### Patient Record features:
-> Features relating to the patient's records
-### \[Implemented\] Add record feature
-
-#### Patient Records
-OmniHealth manages patient records generated during patient consultations.  Each `Patient` holds a list of 
+#### About Patient Records
+>OmniHealth manages patient records generated during patient consultations.  Each `Patient` holds a list of 
 medical records that the user is able to modify and edit. The `Record` class encapsulates a medical
 record that comprises a date, medical information and medicine prescribed (if any).
+
+### Add record feature
 
 #### Implementation
 
@@ -223,7 +222,7 @@ input string to return a `AddRecordCommand` object with a `Record` derived from 
 
 Given below is an example usage scenario.
 
-Precondition. User should be current viewing a specific patient's record list using the `rlist` command. The current
+Precondition. User should be currently viewing a specific patient's record list using the `rlist` command. The current
 patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 Execution. User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
@@ -254,7 +253,7 @@ displayed
   
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] List records feature
+### List records feature
 
 #### Implementation:
 
@@ -279,7 +278,7 @@ Example usage scenario:
 
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] Delete record feature
+### Delete record feature
 
 #### Implementation:
 The delete record mechanism is facilitated by `DeleteRecordCommandParser`  which extends `AddressbookParser`.
@@ -296,7 +295,7 @@ The `DeleteRecordCommand` object then communicates with the `Model` API when it 
 Given below is an example usage scenario for the command.
 
 * Precondition: 
-  * User should be current viewing a specific patient's record list using the `rlist` command. 
+  * User should be currently viewing a specific patient's record list using the `rlist` command. 
   * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution: 
@@ -304,7 +303,7 @@ Given below is an example usage scenario for the command.
 
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] Edit record feature
+### Edit record feature
 
 #### Implementation:
 The edit record mechanism is facilitated by `EditRecordCommandParser`  which extends `AddressbookParser`.
@@ -324,7 +323,7 @@ in this case, show all the records.
 Given below is an example usage scenario for the command.
 
 * Precondition:
-    * User should be current viewing a specific patient's record list using the `rlist` command.
+    * User should be currently viewing a specific patient's record list using the `rlist` command.
     * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution:
@@ -333,7 +332,12 @@ Given below is an example usage scenario for the command.
 
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] Find records feature
+### Find records feature
+
+#### About
+
+Omnihealth is able to find records based on specified search parameters. This is done using the `rFind` command 
+implemented in the `FindRecordCommand` class.
 
 #### Implementation: 
 The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
@@ -351,9 +355,19 @@ Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parse
 
 Given below is an example usage and how the find record mechanism works at each step.
 
+* Precondition:
+  * User should be currently viewing a specific patient's record list using the `rlist` command.
+  * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+* Execution:
+  * User executes `rfind m/Paracetamol d/10-2022 r/Patient exhibits symptoms of cold`.
+
+![FindRecordActivityDiagram](images/FindRecordActivityDiagram.png)
+
+Outline of the 
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] Clear all records feature
+### Clear all records feature
 
 The clear record command `rclear` allows the application to clear all the existing records in the current active record
 list.
@@ -372,7 +386,11 @@ Given below is an example usage scenario for the command.
 
 ### Appointment features:
 > Features relating to the patient's appointments
-### \[Implemented\] Add appointment feature
+
+#### About Appointment Features
+...
+
+### Add appointment feature
 
 The add appointment feature allows OmniHealth to manage future appointments for patients. Each `Patient` holds an appointment
 reference for record keeping that the user is able to edit and clear.
@@ -411,7 +429,7 @@ Given below is an example usage scenario for the command.
 
 [*<Back to ToC>*](#table-of-contents)
 
-### \[Implemented\] Clear appointment feature
+### Clear appointment feature
 
 #### Implementation:
 The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
@@ -437,8 +455,7 @@ Below is an activity diagram illustrating an example process of how the `Appoint
 
 >### Proposed features:
 
-### Appointment features (proposed):
-### \[Proposed\] Upcoming appointment tracker feature
+### Upcoming appointment tracker feature
 
 The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
 
@@ -453,6 +470,9 @@ Given below is an example usage scenario for the command.
 
 [*<Back to ToC>*](#table-of-contents)
 
+### Send reminders about upcoming appointments
+
+...
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -488,21 +508,26 @@ Given below is an example usage scenario for the command.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                             | So that I can…​                                                                           |
-|----------|------------------------|------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user               | view the user guide easily               | learn more about the product usage                                                        |
-| `* * *`  | user                   | add a new patient and their details      | save them for later viewing                                                               |
-| `* * *`  | user                   | view an existing patient's full details  | know more about the patient                                                               |
-| `* * *`  | user                   | delete a patient's records               | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
-| `* * *`  | user                   | clear all of a patient's records         | save time by not deleting one by one                                                      |
-| `* * *`  | user                   | view the entire list of patients         | see all my patients I have added.                                                         |
-| `* * *`  | user                   | view a specific patient’s records        | remember past visits recorded                                                             |
-| `* * *`  | user                   | exit the program                         |                                                                                           |
-| `* *`    | schedule-oriented user | add appointments scheduled for a patient | keep track of my appointments                                                             |
-| `* *`    | user                   | edit a patient's record                  | change details of a record in the future                                                  |
-
-
-*{More to be added}*
+| Priority | As a …​                | I want to …​                                 | So that I can…​                                                                           |
+|----------|------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | user                   | view the entire list of patients             | see all my patients I have added.                                                         |
+| `* * *`  | user                   | add a new patient and their details          | save them for later viewing                                                               |
+| `* * *`  | user                   | delete an existing patient and their details | remove an inactive patient                                                                |
+| `* * *`  | user                   | edit a new patient and their details         | change the personal particulars of that patient                                           |
+| `* *`    | user                   | find an existing patient's details           | know more about the patient                                                               |
+| `* *`    | user                   | clear the patient list                       | save time by not deleting one by one                                                      |
+| `* * *`  | user                   | view a specific patient’s records            | remember past visits recorded                                                             |
+| `* * *`  | user                   | add a patient's record                       | store details of the patient's visit for the future                                       |
+| `* * *`  | user                   | edit a patient's record                      | change details of a record in the future                                                  |
+| `* * *`  | user                   | delete a patient's records                   | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
+| `* *`    | user                   | find a patient's record                      | avoid manually scrolling through multiple records to get to the record that I want        |
+| `* *`    | user                   | clear all of a patient's records             | save time by not deleting one by one                                                      |
+| `* *`    | user                   | clear the search parameters                  | view the whole list of patients or records                                                |
+| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
+| `* *`    | schedule-oriented user | add appointments scheduled for a patient     | keep track of my appointments                                                             |
+| `* *`    | schedule-oriented user | clear an appointment of an existing patient  | stop seeing reminders of a past appointment                                               |
+| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
+| `* * *`  | user                   | exit the program                             |                                                                                           |
 
 [*<Back to ToC>*](#table-of-contents)
 
@@ -559,6 +584,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+* 2a. The user searches for a specific patient before deleting.
+
+    * 2a1. User requests to find a patient
+    * 2a2. OmniHealth shows a list of patient with given keyword
+    * 2a3. User requests to delete a specific patient in the list
+    * 2a4. OmniHealth deletes the patient
+
+      Use case ends.
+
 * 3a. The list is empty.
     * 3a1. OmniHealth shows an error message.
 
@@ -570,14 +604,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2a. The user searches for a specific patient before deleting.
-
-    * 2a1. User requests to find a patient
-    * 2a2. OmniHealth shows a list of patient with given keyword
-    * 2a3. User requests to delete a specific patient in the list
-    * 2a4. OmniHealth deletes the patient
-
-      Use case ends.
 
 **Use case: UC04 - Delete a record**
 
@@ -845,17 +871,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work as long as Java `11` or above is installed.
 2. Should be secure to use so that patient records are not easily leaked.
-3. Should be able to handle large amounts of data eg. Patient record list, Patient list
-
-*{More to be added}*
+3. Should be able to handle large amounts of data without feeling sluggish.
+   * Patient list should be able to store up to 500 patients 
+   * Likewise, Patient Record List should be able to store up to 1000 records
+4. Should target fast typist rather than mouse users (Designed with CLI in mind)
+5. Should be simple to use for a user that is not proficient with technology. (Target users are used to pen and paper records)
+   * Should have simple and intuitive commands that does not take complicated inputs and is easy to learn 
+6. Should be more efficient than using paper records. 
+   * eg. Finding a patients information using Omnihealth is faster than manaully searching for it.
 
 [*<Back to ToC>*](#table-of-contents)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Patient**
+* **Patient Record**
+* **Paper Records**
+* **Patient List**
+* **Record List**
+* 
 [*<Back to ToC>*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------

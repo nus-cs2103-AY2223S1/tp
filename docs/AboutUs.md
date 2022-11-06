@@ -15,8 +15,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/anthonyhoth)]
 [[portfolio](team/anthonyhoth.md)]
 
-* Role: TBD
-* Responsiblities: In charge of `delete`, `rdelete`, `edit`, `redit` commands
+* Role: Developer
+* Responsiblities: In charge of `delete`, `rdelete`, `edit`, `redit` commands and the User Guide.
 
 ### Lai Han Wen
 
@@ -26,8 +26,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/hanwenlai)]
 [[portfolio](team/hanwenlai.md)]
 
-* Role: TBD
-* Responsiblities: In charge of `list` and `rlist` commands
+* Role: Developer
+* Responsiblities: In charge of `list` and `rlist` commands and the Developer Guide.
 
 ### Marcus Lee
 
@@ -36,8 +36,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/marclzh)]
 [[portfolio](team/marclzh.md)]
 
-* Role: TBD
-* Responsibilities: In charge of `find` and `rfind` commands
+* Role: Developer
+* Responsibilities: In charge of `clear`, `rclear`, `appt` and `apptcl` commands  and the User Guide.
 
 ### Eiffel Leo
 
@@ -46,8 +46,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/eiffellkf)]
 [[portfolio](team/eiffellkf.md)]
 
-* Role: TBD
-* Responsibilities: In charge of `add` and `radd` command
+* Role: Developer
+* Responsibilities: In charge of `add` and `radd` command and the User Guide.
 
 ### Sean Lam
 
@@ -56,5 +56,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/ljxsean)]
 [[portfolio](team/ljxsean.md)]
 
-* Role: TBD
-* Responsiblities: In charge of `clear` and `rclear` commands
+* Role: Developer
+* Responsiblities: In charge of `find` and `rfind` commands and the Developer Guide.
