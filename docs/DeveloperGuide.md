@@ -517,18 +517,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a ...                          | I want to ...                                                                  | So that I can ...                                                                                            |
 |----------|-----------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | `* * *`  | new user                          | ask for instructions on how to use the app by inputting a command to the query | learn how to use the app fully                                                                               |
-| `* * *`  | user                              | add new applicants by inputting a command to the query                         |                                                                                                              |
-| `* * *`  | user                              | manually edit applicant's details just by inputting a command to the query     | keep my data up to date in a shorter time                                                                    |
+| `* * *`  | new user                          | start the list with a sample data                                              | play around and see how the app works                                                                        |
+| `* * *`  | user                              | add new applicants                                                             |                                                                                                              |
+| `* * *`  | user                              | edit an applicant                                                              | keep my list updated                                                                                         |
 | `* * *`  | user                              | view the details of the applicant I am interested in                           |                                                                                                              |
+| `* * *`  | user                              | list all my current applicants                                                 |                                                                                                              |
 | `* * *`  | user                              | delete an applicant                                                            | remove entries that I no longer need                                                                         |
-| `* * *`  | experienced user                  | edit the data file manually                                                    | efficiently edit my data                                                                                     |
+| `* * *`  | experienced user                  | edit the data file manually                                                    | efficiently edit numerous data at once                                                                       |
 | `* *`    | user ready to start using the app | clear all current data                                                         | get rid of sample/experimental data I used for exploring the app or quickly erase all of my applicant's data |
-| `* *`    | user                              | search for applicants by individual field                                      | quickly find what I need                                                                                     |
+| `* *`    | user                              | search for applicants by fields                                                | quickly find the applicants that I need without having to go through the entire list                         |
 | `* *`    | user                              | import applicants' data from a human editable file                             | mass-add my data quickly and conveniently without hassle                                                     |
-| `* *`    | user                              | export the current list of applicants that I have                              | share resources with others                                                                                  |
-| `* *`    | user                              | have multiple lists of applicant and checkout between them                     | group my applicants neatly                                                                                   |
-| `*`      | user                              | give customised tag to applicants                                              | label them according to what I want                                                                          |
-| `*`      | user                              | close the app just by inputting a command to the query                         |                                                                                                              |
+| `* *`    | user                              | export the current list of applicants that I have                              | share my data with others                                                                                    |
+| `* *`    | user                              | have multiple lists of applicant and checkout between them                     | work with different sets of data                                                                             |
+| `*`      | user                              | give customised tag to applicants                                              | label them accordingly                                                                                       |
+| `*`      | user                              | close the app                                                                  |                                                                                                              |
 
 
 ### 6.3 Use cases
@@ -580,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all applicants (UC01)
+1.  User requests to <u>list all applicants (UC01)</u>
 2.  User requests to modify an applicant at a certain index with its parameters
 3.  InternConnect modifies the applicant
 4.  InternConnect shows the updated applicant
@@ -628,7 +630,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all applicants (UC01)
+1.  User requests to <u>list all applicants (UC01)</u>
 2.  User requests to delete an applicant at a certain index in the list
 3.  InternConnect deletes the applicant
 4.  InternConnect shows the updated list of applicants
@@ -658,7 +660,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all applicants (UC01)
+1.  User requests to <u>list all applicants (UC01)</u>
 2.  User requests to view an applicant at a certain index in the list
 3.  InternConnect shows the detailed data of the applicant
 
@@ -683,11 +685,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC06 - Find an applicant**
+**Use case: UC06 - Find applicants by field**
 
 **MSS**
 
-1.  User requests to list all applicants (UC01)
+1.  User requests to <u>list all applicants (UC01)</u>
 2.  User requests to find all applicants with matching keywords in its specified fields
 3.  InternConnect lists all applicants who match the request
 
@@ -747,7 +749,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all applicants (UC01)
+1.  User requests to <u>list all applicants (UC01)</u> or <u>find applicants by field (UC06)</u>
 2.  User requests to export displayed list to a JSON file
 3.  InternConnect exports displayed list to a JSON file
 
