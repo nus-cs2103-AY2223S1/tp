@@ -53,13 +53,13 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to the [**Features**](#features) section below.
+      please refer to the [**Features**](#command-features) section below.
 
 3. Main task list:
     * This displays all your *current* tasks.
 
 4. Result display:
-    * The result display displays any information regarding command inputs, such as success or err    rs.
+    * The result displays any information regarding command inputs, such as success or errors.
 
 5. Command box:
     * This is where you enter commands to control the app.
