@@ -191,7 +191,7 @@ What you will see:
 
 |                                                  |
 |:------------------------------------------------:|
-| ![AddCommandResult](images/AddCommandResult.png) ||
+| ![AddCommandResult](images/AddCommandResult.png) |
 
 
 <div markdown="block" class="alert alert-success">
@@ -222,7 +222,7 @@ Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL
   * Within the number range of your list of internship applications.
 * At least one of the optional fields **must** be provided.
 
-Example: `edit 2 s/Tecnical Interview d/28-Dec-2022 08:00`
+Example: `edit 2 s/Technical Interview d/28-Dec-2022 08:00`
 
 What you'll see before and after executing the command: <br>
 
