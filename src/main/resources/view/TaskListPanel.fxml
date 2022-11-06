@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <Label fx:id="listPanelHeading" prefHeight="17.0" prefWidth="245.0" styleClass="sub_heading" text="ALL TASKS">
+   <Label fx:id="listPanelHeading" prefHeight="17.0" prefWidth="245.0" styleClass="sub_heading" text="TASKS">
       <VBox.margin>
          <Insets bottom="5.0" />
       </VBox.margin>
