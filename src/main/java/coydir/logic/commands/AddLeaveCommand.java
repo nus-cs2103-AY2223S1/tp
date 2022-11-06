@@ -62,7 +62,7 @@ public class AddLeaveCommand extends Command {
         }
 
         if (targetPerson == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_ID);
         }
 
         int leavesLeft = targetPerson.getLeavesLeft();

@@ -125,7 +125,7 @@ The top section displays relevant messages/errors after the command is entered.
 
 4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-  <img src="./images/ui-screenshots/Ui.png"/>
+  <img src="./images/Ui.png"/>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -177,7 +177,10 @@ We will explore each of these fields in great detail as we continue along, but b
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: **Integer input values cannot be too large**: any values greater than $2^{31}-1$ is not supported.
+- If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
+  e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
+
+:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
 
 ### Managing Employee Profiles
 
@@ -226,7 +229,7 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
 | Field        | TAG | Description                     | Requirement    | Default Value |
 | ------------ | --- | ------------------------------- | -------------- | ------------- |
@@ -710,7 +713,8 @@ Coydir data are saved in the hard disk automatically after any command that chan
 
 Coydir data are saved as a JSON file `[JAR file location]/data/database.json`.
 It is possible to manipulate data by editing the data file directly, but even for advanced users, we **strongly discourage** making any changes to the data file.
-If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
+
+If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
@@ -749,4 +753,3 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
 | **Clear**           | `clear`                                                                                                                                                                              |
-

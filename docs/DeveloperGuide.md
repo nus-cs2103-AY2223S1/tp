@@ -3,24 +3,88 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+<p align="center">
+  <img src="./images/Coydir_Logo.png" />
+  <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
+</p>
+
+## **Coydir /(‘kohy-də)/**
+
+> **Financial Resources may be the lifeblood of a company, but human resources are the brains.** - Rob Silzer
+
+**Revolutionize** your company and become an **Industry Leader** today with Coydir!
 
 ---
 
-## **Acknowledgements**
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add feature](#add-feature)
+    - [Implementation](#add-feature-implementation)
+  - [Delete feature](#delete-feature)
+    - [Implementation](#delete-feature-implementation)
+  - [Find feature](#find-feature)
+    - [Implementation](#find-feature-implementation)
+  - [View feature](#view-feature)
+  - [Add leave feature](#add-leave-feature)
+    - [Implementation](#add-leave-feature-implementation)
+  - [Delete leave feature](#delete-leave-feature)
+    - [Implementation](#delete-leave-feature-implementation)
+  - [Batch-add feature](#batch-add-feature)
+    - [Implementation](#batch-add-feature-implementation)
+    - [Design Considerations](#batch-add-feature-design-considerations)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-functional requirements](#non-functional-requirements)
+    - [Technical requirements](#technical-requirements)
+    - [Performance requirements](#performance-requirements)
+    - [Quality requirements](#quality-requirements)
+    - [Documentation requirements](#documentation-requirements)
+    - [Non-requirements](#non-requirements)
+  - [Glossary](#glossary)
+    - [Technical Terminology](#technical-terminology)
+    - [Coydir Terminology](#coydir-terminology)
+    - [Miscellaneous](#miscellaneous)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Basic commands](#basic-commands)
+  - [Adding an employee](#adding-an-employee)
+  - [Editing an employee](#editing-an-employee)
+  - [Deleting an employee](#deleting-an-employee)
+  - [Batch-adding employees](#batch-adding-employees)
+  - [Finding employees](#finding-employees)
+  - [Adding employee leaves](#adding-employee-leaves)
+  - [Deleting employee leaves](#deleting-employee-leaves)
+  - [Rating employee performance](#rating-employee-performance)
+  - [Viewing department overview](#viewing-department-overview)
+
+---
+
+## Acknowledgements
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ---
 
-## **Setting up, getting started**
+<h2 id="setting-up-getting-started">Setting up, getting started</h2>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -121,31 +185,25 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/model/Model.java)
 
-<img src="images/diagrams/ModelClassDiagram.png" width="450" />
+<img src="images/diagrams/ModelClassDiagram.png" width="850" />
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the Coydir data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/diagrams/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/storage/Storage.java)
 
-<img src="images/diagrams/StorageClassDiagram.png" width="550" />
+<img src="images/diagrams/StorageClassDiagram.png" width="450"/>
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- can save both Coydir data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `DatabaseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,92 +212,13 @@ Classes used by multiple components are in the `coydirbook.commons` package.
 
 ---
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/diagrams/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/diagrams/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/diagrams/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/diagrams/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/diagrams/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/diagrams/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/diagrams/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/diagrams/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire Coydir
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
 ### Add feature
 
-#### Implementation
+<h4 id="add-feature-implementation">Implementation</h2>
 
 This section explains the implementation of the `add` feature. The command takes in two compulsory parameters which is the employee name and position, executing the command leads to the addition of an employee person into the records of coydir.
 
@@ -259,7 +238,7 @@ Step 5. `storage#saveDatabase` is then called on the current `database`, updates
 
 ### Delete feature
 
-#### Implementation
+<h4 id="delete-feature-implementation">Implementation</h2>
 
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
@@ -285,7 +264,7 @@ The command takes in a number of parameters, which serve as the "filters" for th
 At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
 Thus it is possible to use these altogether to search for a person with high specificity.
 
-#### Implementation
+<h4 id="find-feature-implementation">Implementation</h2>
 
 The `find` command updates the model's filtered persons list based on the search filters.
 
@@ -327,7 +306,8 @@ Step 4. This finds the `person` from the list from the `model#getFilteredPersonL
 This section explains the implementation of the `add-leave` feature.
 The command takes in 3 parameters: employee ID, start date of leave, and end date of leave.
 
-#### Implementation 
+<h4 id="add-leave-feature-implementation">Implementation</h2>
+
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
 - On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel. 
@@ -356,7 +336,8 @@ Step 7. This returns a `CommandResult` object, which is returned to the `LogicMa
 This section explains the implementation of the `delete-leave` feature.
 The command takes in 2 parameters: employee ID, and the one-based index of leave in the leave table of the employee.
 
-#### Implementation 
+<h4 id="delete-leave-feature-implementation">Implementation</h2>
+
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
 - On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel. 
@@ -380,7 +361,7 @@ Step 6. The leave to be removed is created based of its index in the `Queue<Leav
 
 Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
 
-### BatchAdd
+### Batch-Add feature
 
 This feature is created for users to add multiple entries at once.
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
@@ -395,26 +376,39 @@ Moving on to the implementation, some things to note.
 
 These are possible things to work on for future iterations.
 
-#### Implementation
+<h4 id="batch-add-feature-implementation">Implementation</h2>
 
-Pre-requisites: User has a CSV file filled with whatever information they have
-and has stored it in the `/data` folder of the repository.
+_Pre-requisites: User has a CSV file filled with whatever information they want to `batch-add`
+and has stored it in the `/data` folder of the repository._
 
-Step 1: User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
-This will return a new `BatchAddParser` object and `parse` function is then called.
-A helper function in `ParserUtil` helps to trim the filename and check if it is valid. If no argument is provided, a
-`ParseException` will be thrown.
+UML Diagram:
+![BatchAdd](images/diagrams/BatchAddUML.png)
 
-Step 2: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
-step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and write it
-into a `List<AddCommand>`. If file does not exist in the folder, a `FileNotFound` exception is thrown too.
+**Steps:**
 
-Step 3. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`
+**Step 1**: User launches the application.
+
+**Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+This will return a new `BatchAddCommandParser` object and `parse` function is then called.
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid. 
+
+Note: If no argument is provided or file not in CSV format, a`ParseException` will be thrown.
+
+**Step 3**: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
+step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts 
+each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added 
+into a `List<AddCommand>`. 
+
+Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
+
+**Step 4**: Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
 If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
 
-Step 4. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
+**Step 5**: `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
-#### Design Considerations
+<h4 id="batch-add-feature-design-considerations">Design Considerations</h2>
+
+##### Aspect: How Batch-add is run
 
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
   - Pros: Makes use of the Error Handling that the `AddCommand` has.
@@ -423,9 +417,18 @@ Step 4. `storage#saveDatabase` is then called on the current `database`, updates
   - Pros: If Add Fails, BatchAdd can still work.
   - Cons: Implementation Heavy.
 
+##### Aspect: How Batch-add `.csv` file is processed
+
+- Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e Have a fixed row position for each command).
+  - Pros: No need for header rows
+  - Cons: If the user orders it wrongly, it will not work.
+- Alternative 2: Use the Header row to determine the data used.
+  - Pros: No need to follow a specific ordering.
+  - Cons: Name of headers need to be the exact name used. 
+
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+<h2 id="documentation-logging-testing-configuration-dev-ops">Documentation, logging, testing, configuration, dev-ops</h2>
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -435,17 +438,17 @@ Step 4. `storage#saveDatabase` is then called on the current `database`, updates
 
 ---
 
-## **Appendix: Requirements**
+<h2 id="appendix-requirements">Appendix: Requirements</h2>
 
 ### Product scope
 
 **Target user profile**:
 
-Our target user is a Chief Human Resources Officer (CHRO) who:
+Our target users would include Human Resources Executives (HRE) and Head of Departments (HOD) who:
 
 - types fast
-- is comfortable with using CLI for inputting commands
-- needs a centralized platform for accessing and updating employees’ data
+- are comfortable with using CLI for inputting commands
+- require a centralized platform for accessing and updating employees’ data
 - is a Top-level management executive in charge of an organization's employees
 
 **Value proposition**:
@@ -454,20 +457,48 @@ Coydir enables the Company’s HR executive to quickly access the list of all em
 
 ### User stories
 
-_Currently for Coydir v1.2_
+_Currently for Coydir v1.4_
+
+_Note_:
+ **User** will refer to both HRE and HOD
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                      | So that I can…​                                  |
-| -------- | ------- | --------------------------------- | ------------------------------------------------ |
-| `* * *`  | user    | add a new person                  | keep the database updated with the employee list |
-| `* * *`  | user    | delete a person                   | remove entries that I no longer need             |
-| `* * *`  | user    | list people in the database       | keep track of who is in the company              |
-| `* * *`  | user    | edit details of employees         | correct the details of the employees             |
-| `* * *`  | user    | view contact details of employees | contact them if necessary                        |
-| `* * *`  | user    | save my data                      | load the data I input previously                 |
+| Priority | As a …​                                    | I want to …​                                                            | So that I can…​                                                                                   |
+| ------ |--------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *` | user                                       | add a new employee                                                      | keep the database updated with the employee list.                                                 |
+| `* * *` | user                                       | delete a employee                                                       | remove entries that I no longer need.                                                             |
+| `* * *` | user                                       | list people in the database                                             | keep track of who is in the company.                                                              |
+| `* * *` | user                                       | edit details of employees                                               | correct the details of the employees.                                                             |
+| `* * *` | user                                       | view the employee's email address                                       | contact them via email for work related updates.                                                  |
+| `* * *` | user                                       | view the employee's phone number                                        | contact them via phone for work related updates.                                                  |
+| `* * *` | user                                       | view the employee's address                                             | mail them relevant documents if need be.                                                          |
+| `* * *` | user                                       | view the employee's department                                          |                                                                                                   |
+| `* * *` | user                                       | view the employee's total number of leaves and number of leaves left    | track to make sure the leave requests from the employees are valid.                               |
+| `* * *` | user                                       | view details of employees                                               | contact them if necessary.                                                                        |
+| `* * *` | user                                       | save my data                                                            | load the data I input previously.                                                                 |
+| `* * *` | user with many employees                   | find an employee                                                        | get all relevant information about a particular employee.                                         |
+| `* * *` | user                                       | find all employees in a specific department                             | see how many and who are in the specified department.                                             |
+| `* * *` | user                                       | find all employees in a specific position                               | see how many and who are in the specified position.                                               |
+| `* * *` | new user                                   | know what commands I can do                                             | fully maximise the application and use all of the features provided.                              |
+| `* * *` | user                                       | add multiple employees at once                                          | avoid wasting time adding employees one by one when multiple new employees have joined the company. |
+| `* * *` | user                                       | keep track of leaves taken so far                                       | track which days the employee has taken leave over the year for accountability purposes.          |
+| `* * *` | user                                       | see if an employee is on leave today                                    | choose whether to allocate work to him based on his availability.                                 |
+| `* * *` | user                                       | rate my employee based on their performance                             |                                                                                                   |
+| `* * *` | user                                       | view the previous ratings of an employee                                | observe the performance trend and make managerial level decisions.                                |
+| `* * *` | HOD                                        | have an overview of how many people in the department are on leave      | allocate manpower accordingly.                                                                    |
+| `* * *` | HOD                                        | have an overview of the ratings of my employees                         | reward high performers and identify poor performers.                                              |
+| `* * *` | user                                       | add leave amount to my employee                                         | carry over leave from last year.                                                                  |
+| `* *`  | user                                       | change colour and theme of the app                                      | use the app with my preferred mode (Dark or Light Mode).                                          |
+| `* *`  | HRE                                        | build an organisation chart                                             | view a high level overview of the company's organisation structure.                               |
+| `* *`  | HRE                                        | archive past employees                                                  | keep a copy of past data while keeping current interface clean and fast.                          |
+| `* *`  | user                                       | to undo my previous command                                             | revert mistakes if necessary.                                                                     |
+| `* * `  | user dealing with confidential information | have some form of authentication                                        | prevent confidential data from being leaked out.                                                  |
+| `* * `  | HRE                                        | keep track of monthly salary of my employees                            | know how much to pay them every month.                                                            |
+| `* * `  | HRE                                        | keep track what time the employees starts and end work                  | factor in overtime into their pay.                                                                |
+| `* * `  | HRE                                        | view the claims (transport claims, food claims etc) that employees make | compensate them back.                                                                             |
+| `* * `  | expert user                                | customizable shortcuts                                                  | run frequently used commands faster.                                                              |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -737,27 +768,69 @@ Use case ends.
   Use case ends.
 
 
-### Non-Functional Requirements
+### Non-functional requirements
+
+#### Technical requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
-5. The product should be easy to use by person with little experience of using a command line application.
+2. The application should look and perform the same regardless of which _mainstream OS_ is used.
+3. The data state should be persistent.
 
-_{More to be added}_
+#### Performance requirements
+
+1. Should be able to hold up to 100 employees without a noticeable sluggishness in performance for typical usage.
+2. The system should be able to execute all commands within half a second (given constraint #1).
+
+#### Quality requirements
+
+1. A user with above average typing speed (above 40 WPM) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. The product should be easy to use by users with little experience of using a command line application.
+3. Application should be accessible, and readily available to new users.
+4. It should be easy to begin adopting usage of the application for its intended use.
+5. The application should not create unnecessary files/hidden files that clog up the user's disk.
+6. The product should offer at least two different themes (at least a light and dark setting) to accommodate different lighting environments.
+
+#### Documentation requirements
+
+1. User guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
+2. Developer guide should be sufficiently clear such that any external readers can peruse it to understand the codebase thoroughly, enough to possibly add a new feature/property.
+3. Users should be able to access the relevant documentations from the application easily, if they require it.
+
+#### Non-requirements
+
+1. This product is not required to manage/handle the on-site execution of HR processes (such as `add` - hire an employee, `delete` - fire an employee).
+2. This product is not required to support applicant screening and processing for HR recruitment.
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **Entries**: Profile of a person which contains all the necessary details about the person
+#### Technical Terminology
 
-_{More to be added}_
+- **Mainstream OS**: For the purpose of this project, we define the mainstream operating systems as: Windows, Linux, Unix, OS-X.
+- **Private contact detail**: A contact detail that is not meant to be shared with others.
+- **Entries**: Profile of a person which contains all the necessary details about the person.
+- **User Interface (UI)**: A platform that acts as the medium between the user, and the application. This is what the user sees the application as.
+- **Command Line Interface (CLI)**: A user interface that relies on typing into a command line for user interaction with the application.
+- **Graphical User Interface (GUI)**: A user interface that relies on graphical usage (such as using a mouse) for user interaction with the application.
+- **jar**: Stands for Java ARchive. A file format for aggregated Java class files, metadata, and resources for distribution and deployment.
+- **csv**: Stands for Comma-Separated Values. A file format for storing grouped data in a table-like format.
+- **Diagram / Unified Modeling Language (UML) Diagram**: A graphical model used to illustrate and represent processes, relationships, and concepts.
+  UML is the format most widely adopted for designing and interpreting such diagrams.
+
+#### Coydir Terminology
+
+- **Human Resources (HR)**: A core function of companies and businesses that involves the management of staff.
+- **Company**: The overarching organization that is the context for the application's usage.
+- **Employee**: Any person or staff that is part of or under the management of the company.
+- **Profile**: A collection of particulars and records applying to an individual employee.
+- **Department**: A sub-division or group within the company. **Note**: for Coydir, we have a set of pre-defined Departments.
+
+#### Miscellaneous
+
+- **WPM**: Words Per Minute, a unit of measurement for typing speed.
 
 ---
 
-## **Appendix: Instructions for manual testing**
+<h2 id="appendix-instructions-for-manual-testing">Appendix: Instructions for manual testing</h2>
 
 Given below are instructions to test the app manually.
 
@@ -768,42 +841,336 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch:
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.<br>
+      **Expected Outcome**: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences:
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      **Expected Outcome**: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Utility Commands:
 
-### Deleting a person
+   1. With the app open, key in `help` and enter.<br>
+      **Expected Outcome**: The help window appears in front of the main app window.
 
-1. Deleting a person while all persons are being shown
+   2. Click the button labelled "User Guide" at the bottom of the window.<br>
+      **Expected Outcome**: A new tab opens in browser, leading to the Coydir User Guide.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   3. In the main app window, type `exit` and enter.<br>
+      **Expected Outcome**: The window closes, the same way it closed previously by clicking on the close button.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Basic commands
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Listing all employees:
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. **Prerequisites**: Ensure that there is at least 1 person in the database.
 
-1. _{ more test cases …​ }_
+   2. **Test Case**: `list`<br>
+      **Expected Outcome**: On the left side panel, all employees are shown in the list (at least 1). There might not be any changes from before (if they have already been listed).
 
-### Saving data
+   3. Other valid listing commands: `list a`, `list 1`, `list n/John`<br>
+      **Expected Outcome**: Same as previous.
 
-1. Dealing with missing/corrupted data files
+   4. **Test Case**: `find d/NoSuchDepartment`, followed by `list`<br>
+      **Expected Outcome**: The first command should empty the list shown on the left panel. The second command displays all employees again (at least 1).
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Viewing an employee:
 
-1. _{ more test cases …​ }_
+   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database. Then enter `list` to display all employees.
+      Additionally, take note of the total count of employees (you can see this by checking the largest index displayed on the left panel).
+
+   2. **Test Case**: `view 1`<br>
+      **Expected Outcome**: On the right side panel, the employee profile of the first listed person is displayed.
+
+   3. **Test Case**: `view 0`<br>
+      **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
+
+   4. **Test Case**: `view x`, where `x` is a number larger than the total count of employees<br>
+      **Expected Outcome**: An error message appears, saying that the index provided is invalid.
+
+3. Clearing the database:
+
+   1. **Prerequisites**: Ensure that there is at least 1 person in the database.
+      Additionally, take note of the highest employee ID available.
+
+   2. **Test Case**: `clear`<br>
+      **Expected Outcome**: On the left panel, there are no more employees displayed. The right panel should show the home panel, regardless of its previous state.
+
+   3. **Follow-up Test Case**: `list`<br>
+      **Expected Outcome**: No employees are listed. Feedback says that all employees are listed.
+
+   4. **Follow-up Test Case**: `add n/ClearTest j/Position d/Operations`<br>
+      **Expected Outcome**: A new employee is displayed on the left panel, with the employee ID value of 1.
+
+### Adding an employee
+
+1. Adding an employee with all fields specified:
+
+   1. **Test Case**: `add n/John Doe j/Accountant d/Finance p/91234567 e/john@coydir.com a/Oak Street, Loudoun l/21 t/New hire`<br>
+      **Expected Outcome**: A new employee, with the name "John Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
+
+2. Adding an employee with optional fields missing:
+
+   1. **Test Case**: `add n/Jack Doe j/Consultant d/Legal p/98765432 e/jack@coydir.com a/Pine Street, Loudoun`<br>
+      **Expected Outcome**: A new employee, with the name "Jack Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
+
+   2. **Test Case**: `add n/Jill Doe j/Scheduler d/Administration`<br>
+      **Expected Outcome**: A new employee, with the name "Jill Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
+
+3. Adding an employee with compulsory fields missing:
+
+   1. **Test Case**: `add n/Jane Doe j/Telemarketer p/99887766 e/jane@coydir.com a/Elm Street, Loudoun`<br>
+      **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
+
+4. Adding an employee with invalid fields:
+
+   1. **Test Case**: `add n/Joe Doe j/Carpenter d/Craftsmenship`<br>
+      **Expected Outcome**: An error message appears, saying that the department field is invalid.
+
+   2. Other invalid test cases: `add` with prefixes but empty arguments, or arguments that do not match specified constraints.
+      **Expected Outcome**: An error message appears, saying the constraints of the invalid argument provided.
+
+### Editing an employee
+
+1. Editing employees in general:
+
+   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database.
+      Additionally, take note of the total count of employees (you can see this by entering `list` and checking the largest index shown).
+
+   1. **Test Case**: `edit 1`<br>
+      **Expected Outcome**: No changes occur. An error is shown, saying that there must be at least one field provided.
+
+   1. **Test Case**: `edit 0 n/EditTest1`<br>
+      **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x n/Valid Name` (where x is larger than the list size), `edit abcdef`<br>
+      **Expected Outcome**: Similar to previous.
+
+2. Editing an employee while not viewing their profile:
+
+   1. **Test Case**: `edit 1 n/EditTest2 t/EditTestTag1 t/EditTestTag2`<br>
+      **Expected Outcome**: On the left side panel, the name of the first employee updates immediately to the new name "EditTest2", and there are now two tags "EditTestTag1" and "EditTestTag2".
+
+   2. **Test Case**: `edit 1 a/EditTest2Address`<br>
+      **Expected Outcome**: No changes noticed on the left side panel, but upon clicking the first employee, notice the address on the right panel is updated to "EditTest2Address".
+
+3. Editing an employee while viewing their profile:
+
+   1. **Prerequisites**: Ensure there is at least 1 employee present in the list on the left side panel. If there isn't, either enter `list` to show all, and if there are none at all, `add` an employee first.
+      Then, enter `view 1` to view the employee profile of the first employee.
+
+   2. **Test Case**: `edit 1 e/EditTest3@email.com a/EditTest3Address`<br>
+      **Expected Outcome**: On the right side panel, the profile is updated such that the email is now "EditTest3@email.com" and the address is "EditTest3Address".
+
+   3. **Test Case**: `edit 1 n/EditTest3`<br>
+      **Expected Outcome**: On the right side panel, the profile is updated such that the name is now "EditTest3". Similarly, the name should be the same on the left panel.
+
+4. Editing an employee while finding:
+
+   1. **Prerequisites**: Ensure there is at least 1 employee in the database with a name that contains "e". If you have been following the previous test cases, the employee "EditTest3" will suffice.
+      Then, enter `find n/e`, and enter `view 1`.
+
+   2. **Test Case**: `edit 1 n/EditTest4`
+      **Expected Outcome**: On the right side panel, the profile is updated such that the name is now "EditTest4". Similarly, the name should be the same on the left panel.
+
+   3. **Test Case**: `edit 1 n/Void`
+      **Expected Outcome**: On the left side panel, the edited employee disappears. The right side panel either shows the next employee (if there is any), or shows the home panel.
+
+### Deleting an employee
+
+1. Deleting an employee in general:
+
+   1. **Prerequisites**: Ensure that there is at least 1 employee in the database.
+
+   2. **Test Case**: `delete 1`<br>
+      **Expected Outcome**: First employee is deleted from the list. Details of the deleted employee shown in the status message.
+      Right panel now shows the next employee (if there is any), or shows the home panel.
+
+   3. **Test Case**: `delete 0`<br>
+      **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
+      **Expected Outcome**: Similar to previous.
+
+### Batch-adding employees
+
+This feature requires the use of csv files. To follow the subsequent tests, create and save two csv files with the contents as given below.
+
+If you wish to test using custom csv files, ensure that you do not have any commas in the values for the parameters, as this will result in incorrect parsing of the file.
+Additionally, ensure that the order of the columns is the same as specified below.
+
+**1st csv file**: save as `data/success.csv`.
+
+```csv
+Name,Phone,Email,Position,Department,Address,Leave,Tags,
+Kim Meier,84824249,kimmeier@example.com ,Frontend Engineer,Information Technology,Little India,20,Promotion coming,
+Petris Mueller,96722343,,Marketing Intern,Marketing,,13,,
+Paul Morty,,paul@example.com,UI/UX Engineer,Sales,,,Innovation Lead,
+```
+
+**2nd csv file**: save as `data/duplicatePerson.csv`.
+
+```csv
+Name,Phone,Email,Position,Department,Address,Leaves,Tags
+Prittam Ravi,87438807,prittam@example.com,Chief Technology Officer,General Management,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Peter Lim,99272758,peter@example.com,Accountant,Finance,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Shawn Kok,99272758,shawn@example.com,Recruiter,Human Resources,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Kevin Chang,99272758,kevin@example.com,Factory Worker,Production,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Ng Shi Jun,99272758,shijun@example.com,Frontend Developer,Information Technology,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Prittam Ravi,87438807,prittam@example.com,Chief Technology Officer,General Management,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+```
+
+1. Batch-adding multiple employees:
+
+   1. Prerequisites: Must not have used any of the names provided in `data/success.csv`.
+      We recommend that you load the default sample data to Coydir.
+      You can do this by exiting the app, deleting whatever data file you currently have (located at `data/database.json`), then launching the app again.
+
+   2. **Test Case**: `batch-add success.csv`
+      **Expected Outcome**: Three new employees are added, with the names "Kim Meier", "Petris Mueller", "Paul Morty".
+
+   3. **Test Case**: `batch-add duplicatePerson.csv`
+      **Expected Outcome**: No changes occured. An error message appears, saying that one person is found to be a duplicate.
+
+   4. **Follow-up Test Case**: `batch-add success.csv`
+      **Expected Outcome**: Same as previous.
+
+### Finding employees
+
+To follow the subsequent tests for the find feature, load the default sample data to Coydir.
+You can do this by exiting the app, deleting whatever data file you currently have (located at `data/database.json`), then launching the app again.
+
+1. Finding employees with just one filter:
+
+   1. **Test Case**: `find n/Alex`<br>
+      **Expected Outcome**: One employee is displayed on the left, with the name "Alex Yeoh". The right panel displays their profile.
+
+   2. **Test Case**: `find n/alex`<br>
+      **Expected Outcome**: Same as previous.
+
+   3. **Test Case**: `find d/general`<br>
+      **Expected Outcome**: Three employees are displayed on the left, all in the "General Management" department. The right panel displays the first employee's profile, "Alex Yeoh".
+
+   4. **Test Case**: `find j/a`<br>
+      **Expected Outcome**: Three employees are displayed on the left (IDs 2, 4, 5). The right panel displays the first employee's profile, "Bernice Yu".
+
+2. Finding an employee with multiple filters:
+
+   1. **Test Case**: `find n/Roy j/UI d/Tech`<br>
+      **Expected Outcome**: One employee is displayed on the left. The right panel displays that employee's profile, "Roy Balakrishnan".
+
+   2. **Follow-up Test Case**: `edit 1 d/Technology`<br>
+      **Expected Outcome**: The right panel updates to show that Roy is now in the "Technology" department.
+
+   2. **Follow-up Test Case**: `edit 1 d/Sales`<br>
+      **Expected Outcome**: The left panel now displays nobody. The right panel shows the home panel. Upon entering `list` followed by `view 6`, observe that Roy's department is now "Sales".
+
+### Adding employee leaves
+
+For the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Adding leave period for an employee
+
+   1. **Test Case**: `add-leave id/x sd/01-01-2022 ed/01-01-2022`<br>
+      **Expected Outcome**: Total leaves remain the same. Leaves left decreases by 1.
+      A new row is added to the table of leave periods, with the correct start and end date, with duration (1 day).
+
+   2. **Test Case**: `add-leave id/x sd/Today ed/Today`, where `Today` refers to the present date, in DD-MM-YYYY format<br>
+      **Expected Outcome**: Same as previous. Additionally, the property "On leave" now reads "True".
+
+   3. **Test Case**: `add-leave id/x sd/31-12-2020 ed/01-01-2021`<br>
+      **Expected Outcome**: Total leaves remain the same. Leaves left decreases by 2.
+      A new row is added to the table of leave periods, with the correct start and end date, with duration (2 days).
+
+2. Adding invalid leave period for an employee
+
+   1. **Prerequisites**: Follow test 1(i) to add a leave period for 1 Jan 2022 for employee ID `x`.
+
+   2. **Test Case**: `add-leave id/x sd/01-01-2022 ed/02-01-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that overlapping leaves are not allowed.
+
+   3. **Test Case**: `add-leave id/x sd/31-04-2022 ed/01-05-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that there were invalid date inputs.
+
+   4. **Test Case**: `add-leave id/x sd/01-05-2022 ed/15-05-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the employee does not have enough leaves left.
+      This is assuming that the total leaves is 14, the default value.
+      Else, you can adjust the end date in the example provided to achieve a duration longer than the available leaves.
+
+### Deleting employee leaves
+
+For the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+In addition, prior to running each test case, ensure that the employee has at least one leave period.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Deleting leave period for an employee
+
+   1. **Test Case**: `delete-leave id/x i/1`<br>
+      **Expected Outcome**: Total leaves remain the same.
+      Leaves left increases by the duration of the corresponding leave period.
+      The corresponding row in the leaves table is deleted.
+
+   2. **Test Case**: `delete-leave id/x i/y+1`, where `y` is the number of leave periods the employee has<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the index provided is invalid.
+
+   3. **Test Case**: `delete-leave id/x i/0`<br>
+      **Expected Outcome**: No changes occured. An error message appears, providing the constraints for numbers.
+
+### Rating employee performance
+
+For the following tests, ensure that there is at least 1 employee, who has never been rated prior.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Rating an employee's performance
+
+   1. **Test Case**: `rate id/x r/5`<br>
+      **Expected Outcome**: The "Performance" property of the employee is updated to "5".
+      On the "Performance History" graph, there will be a new node with a rating value of "5", and a timestamp of today's date.
+
+   2. **Follow-up Test Case**: `rate id/x r/4`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
+
+   3. **Test Case**: `rate id/x r/6`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the number provided is not a valid rating.
+
+### Viewing department overview
+
+For the following tests, ensure that there is at least 1 employee (who will be in 1 department).
+Any department (that has at least 1 person) can be used, but for ease and simplicity, we will be using "Sales" in our examples, as it is has the fewest letters.
+
+1. Viewing the department overview
+   
+   1. **Test Case**: `view-department Sales`<br>
+      **Expected Outcome**: On the right panel, the department name ("Sales") is shown.
+      Other information includes number of employees (available, on leave), and ratings of all employees.
+
+   2. **Follow-up Test Case**: `add n/viewDeptTest j/Position d/Sales`<br>
+      **Expected Outcome**: The new employee is displayed on the left panel.
+      On the right panel, the number of employees increments by 1, and a new row is added to the "Rating Table" with the rating "N/A" for the new employee.
+
+   3. **Follow-up Test Case**: `rate id/x r/5`, where `x` is the employee ID of the employee added in the previous test<br>
+      **Expected Outcome**: The rating table is updated with the new rating of the previously added employee.
+
+   4. Other follow-up test cases include adding/deleting data relevant to employees in the department, such as leaves, performance, or their presence in the database.
+      In each scenario, the right side panel should update itself to display the new information immediately, if there is any.
