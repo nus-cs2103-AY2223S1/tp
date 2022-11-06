@@ -34,6 +34,7 @@ public class ResidentTableView extends UiPart<Region> {
     public static final Integer COLUMN_WIDTH_MEDIUM_1 = 120;
     public static final Integer COLUMN_WIDTH_MEDIUM_2 = 140;
     public static final Integer COLUMN_WIDTH_LARGE = 300;
+    public static final String MATRIC_NUMBER_VARIABLE_NAME = "matricNumber";
 
     private static final String FXML = "ResidentTableView.fxml";
 
@@ -98,8 +99,10 @@ public class ResidentTableView extends UiPart<Region> {
         indexColumn.setCellFactory(this::populateIndexColumn);
         genderColumn.setCellValueFactory(new PropertyValueFactory<>(Gender.IDENTIFIER.toLowerCase()));
         houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
-        matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber")); // because variable name differs
-                                                                                      // from the column identifier
+
+        // Because the column identifier is different from the variable name
+        matricColumn.setCellValueFactory(new PropertyValueFactory<>(MATRIC_NUMBER_VARIABLE_NAME));
+
         tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
         tagColumn.setCellFactory(this::populateTagColumn);
     }
@@ -193,12 +196,12 @@ public class ResidentTableView extends UiPart<Region> {
             residentTableView.getColumns().forEach(column -> column.setVisible(!isVisible));
 
             // Obtain the filtered list of columns whose visibilities should be set
-            // Recall that column headers are in title-case, i.e. first letter is capitalised
+            // And then set the visibilities of the *filtered* columns to the desired visibility
             residentTableView.getColumns()
                     .stream()
                     .filter(column -> c.getList().contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(isVisible)); // Set visibilities of the *filtered* columns
-                                                                      // to the desired visibility
+                    .forEach(column -> column.setVisible(isVisible));
+
             // Ensure that index column is properly rendered
             indexColumn.setCellFactory(this::populateIndexColumn);
         };
