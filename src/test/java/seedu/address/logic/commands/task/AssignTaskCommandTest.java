@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -177,12 +178,17 @@ public class AssignTaskCommandTest {
                 "Alex", "Bernice")),
                 new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Charlotte", "David")));
+        AssignTaskCommand sixthCommandCopy = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
+                "Alex", "Bernice")),
+                new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>(Arrays.asList(
+                "Charlotte", "David")));
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        assertTrue(sixthCommand.equals(sixthCommand));
+        assertTrue(sixthCommand.equals(sixthCommandCopy));
 
         // different types -> returns false
         assertFalse(firstCommand.equals(1));
