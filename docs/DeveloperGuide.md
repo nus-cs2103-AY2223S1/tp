@@ -276,7 +276,7 @@ the initial bill to be 0 and chose to exclude `Bill` as it would make the `add` 
 
 **Aspect: Making `Request` optional in the `add` command**
 * As adding a guest will be done during check in, the guest may or may not have any special requests to make for the room. Hence,
-we chose to make `Request` optional and **default its value as a hyphen (`-`)** should it not be provided. This would also reduce the length
+we chose to make `Request` optional and **default its value to a hyphen (`-`)** should it not be provided. This would also reduce the length
 of `add` command in the event that there is no request from the guest.
 
 
@@ -323,7 +323,7 @@ This feature was implemented so that it is easy for the user to change a guest's
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
 * The `edit` command takes in an `INDEX` indicating the guest to edit in the current panel (starting from 1)
-  and 9 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
+  and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
   and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagram summarizes what happens when a user enters an `edit` command.
@@ -403,7 +403,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 * As the user would usually appreciate the ability to search by other fields such as by `room`, it is appropriate to make the `find` command search through all the fields of the guests.
 
 **Aspect: Only matching full keywords**
-* The `find` command only matches full keywords (e.g, typing in 'ali' would **not** match a guest named 'Alice'). As we do not want to display irrelevant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
+* The `find` command only matches full keywords (e.g., typing in 'ali' would **not** match a guest named 'Alice'). As we do not want to display irrelevant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
 
 **Aspect: Implementing `find` command without prefixes**
 * In order to increase the productivity of the user, we do not wish for the user to have to type in the prefix, as there is a low probability that the values for the prefixes overlap in a small hotel.
@@ -549,39 +549,39 @@ This is a quick overview of all the commands and their functionalities.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…                    | I want to…                                                         | So that I can…                                                                               |
-|----------|--------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *`  | first time hotel manager | know the available commands                                        | use the application to its full capabilities                                                 |
-| `* * *`  | hotel manager            | view a list of all the guests                                      | browse all my guests' data at once                                                           |
-| `* * *`  | hotel manager            | view the contact number of the guest                               | contact them in an emergency                                                                 |
-| `* * *`  | hotel manager            | view the name of the guest                                         | verify the guest                                                                             |
-| `* * *`  | hotel manager            | view the email address of the guest                                | contact the guest via email                                                                  |
-| `* * *`  | hotel manager            | be able to exit the program                                        | close it when I am done using it                                                             |
-| `* * *`  | first time hotel manager | be able to delete data of all guests at one go                     | have a clean slate to work on should I need to                                               |
-| `* * *`  | hotel manager            | view the check-in date of a guest                                  | calculate the number of days resided by the guest (using check-out date information as well) |
-| `* * *`  | hotel manager            | view the check-out date of a guest                                 | inform the guest when it is the date of check-out                                            |
-| `* * *`  | hotel manager            | delete a guest                                                     | not keep unnecessary data of my guests (e.g, when a guest has checked out)                   |
-| `* * *`  | hotel manager            | be able to save the details of the guests                          | the data is not lost between sessions                                                        |
-| `* * *`  | hotel manager            | search guests by keyword                                           | efficiently locate the details of a guest                                                    |
-| `* * *`  | hotel manager            | view the number of guests in each room                             | prepare proper bed suites                                                                    |
-| `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel   | know the details of who is staying at my hotel                                               |
-| `* * *`  | hotel manager            | be able to edit the name of the guest                              | update it if there are any changes                                                           |
-| `* * *`  | hotel manager            | be able to edit the email address of the guest                     | update it if there are any changes                                                           |
-| `* * *`  | hotel manager            | be able to edit the number of guests                               | update it if there are any changes                                                           |
-| `* * *`  | hotel manager            | be able to edit the check-in and check-out date range of the guest | update it if there are any changes                                                           |
-| `* * *`  | hotel manager            | be able to edit the contact number of the guest                    | update it if there are any changes                                                           |
-| `* *`    | hotel manager            | get the details of the bill of the hotel guest                     | charge the guest the right amount                                                            |
-| `* *`    | hotel manager            | be able to add to the bill of the hotel guest                      | update it if there are any changes                                                           |
-| `* *`    | hotel manager            | be able to deduct from the bill of the hotel guest                 | update it if there are any changes                                                           |
-| `* *`    | hotel manager            | view if a room has been cleaned                                    | allocate my cleaners cleaning duties                                                         |
-| `* *`    | hotel manager            | mark a room as clean                                               | ensure my cleaners will not need to waste time cleaning the room again                       |
-| `* *`    | hotel manager            | mark a room as not clean                                           | ensure my cleaners will know which room to clean                                             |
-| `* *`    | hotel manager            | get the details of any requests from the guests                    | serve the guest as requested                                                                 |
-| `* *`    | hotel manager            | mark all the rooms as not cleaned at one go                        | save time from editing all the guests in GuestBook as cleaning of rooms is a daily affair    |
-| `* `     | hotel manager            | get the details of where the guests booked their hotel stay from   | decide which booking platform I need to pay more attention to                                |
-| `* `     | hotel manager            | get the details of how many guests are eating breakfast            | prepare the appropriate amount of food                                                       |
-| `* `     | hotel manager            | get the details of how many guests are eating lunch                | prepare the appropriate amount of food                                                       |
-| `* `     | hotel manager            | get the details of how many guests are eating dinner               | prepare the appropriate amount of food                                                       |
+| Priority | As a…                    | I want to…                                                         | So that I can…                                                                            |
+|----------|--------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | first time hotel manager | know the available commands                                        | use the application to its full capabilities                                              |
+| `* * *`  | hotel manager            | view a list of all the guests                                      | browse all my guests' data at once                                                        |
+| `* * *`  | hotel manager            | view the contact number of the guest                               | contact them in an emergency                                                              |
+| `* * *`  | hotel manager            | view the name of the guest                                         | verify the guest                                                                          |
+| `* * *`  | hotel manager            | view the email address of the guest                                | contact the guest via email                                                               |
+| `* * *`  | hotel manager            | be able to exit the program                                        | close it when I am done using it                                                          |
+| `* * *`  | first time hotel manager | be able to delete data of all guests at one go                     | have a clean slate to work on should I need to                                            |
+| `* * *`  | hotel manager            | view the check-in date of a guest                                  | to prepare the room for the incoming guests                                               |
+| `* * *`  | hotel manager            | view the check-out date of a guest                                 | inform the guest when it is the date of check-out                                         |
+| `* * *`  | hotel manager            | delete a guest                                                     | not keep unnecessary data of my guests (e.g., when a guest has checked out)               |
+| `* * *`  | hotel manager            | be able to save the details of the guests                          | the data is not lost between sessions                                                     |
+| `* * *`  | hotel manager            | search guests by keyword                                           | efficiently locate the details of a guest                                                 |
+| `* * *`  | hotel manager            | view the number of guests in each room                             | prepare proper bed suites                                                                 |
+| `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel   | know the details of who is staying at my hotel                                            |
+| `* * *`  | hotel manager            | be able to edit the name of the guest                              | update it if there are any changes                                                        |
+| `* * *`  | hotel manager            | be able to edit the email address of the guest                     | update it if there are any changes                                                        |
+| `* * *`  | hotel manager            | be able to edit the number of guests                               | update it if there are any changes                                                        |
+| `* * *`  | hotel manager            | be able to edit the check-in and check-out date range of the guest | update it if there are any changes                                                        |
+| `* * *`  | hotel manager            | be able to edit the contact number of the guest                    | update it if there are any changes                                                        |
+| `* *`    | hotel manager            | get the details of the bill of the hotel guest                     | charge the guest the right amount                                                         |
+| `* *`    | hotel manager            | be able to add to the bill of the hotel guest                      | update it if there are any changes                                                        |
+| `* *`    | hotel manager            | be able to deduct from the bill of the hotel guest                 | update it if there are any changes                                                        |
+| `* *`    | hotel manager            | view if a room has been cleaned                                    | allocate my cleaners cleaning duties                                                      |
+| `* *`    | hotel manager            | mark a room as clean                                               | ensure my cleaners will not need to waste time cleaning the room again                    |
+| `* *`    | hotel manager            | mark a room as not clean                                           | ensure my cleaners will know which room to clean                                          |
+| `* *`    | hotel manager            | get the details of any requests from the guests                    | serve the guest as requested                                                              |
+| `* *`    | hotel manager            | mark all the rooms as not cleaned at one go                        | save time from editing all the guests in GuestBook as cleaning of rooms is a daily affair |
+| `* `     | hotel manager            | get the details of where the guests booked their hotel stay from   | decide which booking platform I need to pay more attention to                             |
+| `* `     | hotel manager            | get the details of how many guests are eating breakfast            | prepare the appropriate amount of food                                                    |
+| `* `     | hotel manager            | get the details of how many guests are eating lunch                | prepare the appropriate amount of food                                                    |
+| `* `     | hotel manager            | get the details of how many guests are eating dinner               | prepare the appropriate amount of food                                                    |
 
 
 [//]: # (*{More to be added}*)
@@ -802,7 +802,7 @@ testers are expected to do more exploratory testing.
 ### Adding a guest
 
 Prerequisites: Only one guest to be added.
-      The `name` or `room` of the guest to be added should not exist in GuestBook.
+      The `name` and `room` of the guest to be added should not exist in GuestBook.
    The format and data of the command should be valid.
 
    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
@@ -853,7 +853,7 @@ Prerequisites: Only one guest to be added.
 
 Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    The guest should exist in GuestBook. The format and content of the command should be valid.
-   The updated `name` or `room` values of the guest to be edited should not be the same as other guests in GuestBook.
+   The updated `name` and `room` values of the guest to be edited should not be the same as other guests in GuestBook.
 
    1. Test case: `edit 1 n/Johnny`<br>
       Expected: Guest edit successfully, the first guest's `name` will change from "John Doe" to "Johnny".
