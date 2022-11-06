@@ -13,7 +13,7 @@ import modtrekt.model.task.Task;
 public class DeadlineBuilder {
     public static final String DEFAULT_DESC = "Complete Assignment";
     public static final String DEFAULT_MOD_CODE = "CS2103T";
-    public static final LocalDate DEFAULT_DUE_DATE = LocalDate.of(2022, 01, 01);
+    public static final LocalDate DEFAULT_DUE_DATE = LocalDate.of(2022, 1, 1);
     public static final boolean DEFAULT_IS_DONE_STATUS = false;
     public static final Task.Priority DEFAULT_PRIORITY = Task.Priority.NONE;
     private Description description;

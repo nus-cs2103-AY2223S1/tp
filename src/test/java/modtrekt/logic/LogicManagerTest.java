@@ -55,25 +55,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //        JsonTaskBookStorage taskBookStorage =
-    //                new JsonTaskBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-    //        JsonUserPrefsStorage userPrefsStorage =
-    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Execute add command
-    //        String addCommand = AddTaskCommand.COMMAND_WORD + " -t " + CommandTestUtil.VALID_DESC_1;
-    //        Task expectedTask = new TaskBuilder(TypicalTasks.TASK_1).build();
-    //            ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addTask(expectedTask);
-    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
-
     @Test
     public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));

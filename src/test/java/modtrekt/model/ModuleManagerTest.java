@@ -70,58 +70,6 @@ public class ModuleManagerTest {
         assertEquals(path, modelManager.getTaskBookFilePath());
     }
 
-    //    @Test
-    //    public void hasPerson_nullPerson_throwsNullPointerException() {
-    //        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
-    //    }
-    //
-    //    @Test
-    //    public void hasPerson_personNotInAddressBook_returnsFalse() {
-    //        assertFalse(modelManager.hasPerson(ALICE));
-    //    }
-    //
-    //    @Test
-    //    public void hasPerson_personInAddressBook_returnsTrue() {
-    //        modelManager.addPerson(ALICE);
-    //        assertTrue(modelManager.hasPerson(ALICE));
-    //    }
-
-    //    @Test
-    //    public void equals() {
-    //        TaskBook addressBook = new AddressBookBuilder().withTas (task1).withTask(BENSON).build();
-    //        TaskBook differentAddressBook = new TaskBook();
-    //        UserPrefs userPrefs = new UserPrefs();
-    //
-    //        // same values -> returns true
-    //        modelManager = new ModelManager(addressBook, userPrefs);
-    //        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-    //        assertTrue(modelManager.equals(modelManagerCopy));
-    //
-    //        // same object -> returns true
-    //        assertTrue(modelManager.equals(modelManager));
-    //
-    //        // null -> returns false
-    //        assertFalse(modelManager.equals(null));
-    //
-    //        // different types -> returns false
-    //        assertFalse(modelManager.equals(5));
-    //
-    //        // different addressBook -> returns false
-    //        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-    //
-    //        // different filteredList -> returns false
-    //        String[] keywords = task1.getName().description.split("\\s+");
-    //        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-    //
-    //        // resets modelManager to initial state for upcoming tests
-    //        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
-    //
-    //        // different userPrefs -> returns false
-    //        UserPrefs differentUserPrefs = new UserPrefs();
-    //        differentUserPrefs.setTaskBookFilePath(Paths.get("differentFilePath"));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-    //    }
     public void setModuleListFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setModuleListFilePath(null));
     }
@@ -139,12 +87,12 @@ public class ModuleManagerTest {
     }
 
     @Test
-    public void hasModule_personNotInModuleList_returnsFalse() {
+    public void hasModule_moduleNotInModuleList_returnsFalse() {
         assertFalse(modelManager.hasModule(MA1521));
     }
 
     @Test
-    public void hasModule_personInModuleList_returnsTrue() {
+    public void hasModule_moduleInModuleList_returnsTrue() {
         modelManager.addModule(MA1521);
         assertTrue(modelManager.hasModule(MA1521));
     }
@@ -154,37 +102,4 @@ public class ModuleManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
     }
 
-    /*
-    @Test
-    public void equals() {
-        ModuleList addressBook = new ModuleListBuilder().withModule(MA1521).withModule(MA2001).build();
-        ModuleList differentModuleList = new ModuleList();
-        UserPrefs userPrefs = new UserPrefs();
-
-        // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModuleManager modelManagerCopy = new ModuleManager(addressBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
-
-        // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
-
-        // null -> returns false
-        assertFalse(modelManager.equals(null));
-
-        // different types -> returns false
-        assertFalse(modelManager.equals(5));
-
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModuleManager(differentModuleList, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setModuleListFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModuleManager(addressBook, differentUserPrefs)));
-    }
-     */
 }

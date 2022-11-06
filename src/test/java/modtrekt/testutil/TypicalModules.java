@@ -25,12 +25,12 @@ public class TypicalModules {
     } // prevents instantiation
 
     /**
-     * Returns an {@code ModuleList} with all the typical persons.
+     * Returns an {@code ModuleList} with all the typical modules.
      */
     public static ModuleList getTypicalModuleList() {
         ModuleList ab = new ModuleList();
-        for (Module person : getTypicalModules()) {
-            ab.addModule(person);
+        for (Module mod : getTypicalModules()) {
+            ab.addModule(mod);
         }
         return ab;
     }
