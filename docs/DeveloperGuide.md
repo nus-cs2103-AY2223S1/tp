@@ -24,7 +24,7 @@ implementation of our features in the "Implementation" section.
 ## **2. Acknowledgements**
 
 
-* [AddressBook Level-3](https://se-education.org/addressbook-level3/)
+* This project is based on the [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,15 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *4. *Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
-</div>
+## **4. Design**
 
 ### 4.1 Architecture
 
@@ -62,14 +54,14 @@ is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the App.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -126,8 +118,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -163,6 +154,7 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -174,18 +166,20 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
+* stores the archived `Task` objects in another `UniqueTaskList` object
 * stores the filter status when the task list is filtered and also updates when the list changes.
-* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+For the `Task` class,
+* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
 ### 4.5 Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram-0.png" width="550" />
 
@@ -193,7 +187,7 @@ The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `TaskListStorage`, `ArchivedtaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage`, `ArchivedTaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)

@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TaskList(), new TaskList(modelManager.getAddressBook()));
         assertEquals(new ArchivedTaskList(), new ArchivedTaskList(modelManager.getArchivedTaskList()));
     }
 
@@ -153,9 +153,9 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TaskList addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         ArchivedTaskList archivedTaskList = new ArchivedTaskList();
-        AddressBook differentAddressBook = new AddressBook();
+        TaskList differentAddressBook = new TaskList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

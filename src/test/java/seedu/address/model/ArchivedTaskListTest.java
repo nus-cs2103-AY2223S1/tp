@@ -28,7 +28,7 @@ public class ArchivedTaskListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), archivedTaskList.getPersonList());
+        assertEquals(Collections.emptyList(), archivedTaskList.getTaskList());
     }
 
     @Test
@@ -80,13 +80,13 @@ public class ArchivedTaskListTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> archivedTaskList.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> archivedTaskList.getTaskList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose tasks list can violate interface constraints.
+     * A stub ReadOnlyTaskList whose tasks list can violate interface constraints.
      */
-    private static class ArchivedTaskBookStub implements ReadOnlyAddressBook {
+    private static class ArchivedTaskBookStub implements ReadOnlyTaskList {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
         ArchivedTaskBookStub(Collection<Task> tasks) {
@@ -94,7 +94,7 @@ public class ArchivedTaskListTest {
         }
 
         @Override
-        public ObservableList<Task> getPersonList() {
+        public ObservableList<Task> getTaskList() {
             return tasks;
         }
     }

@@ -19,7 +19,7 @@ import seedu.address.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TaskList addressBook;
     private final ArchivedTaskList archivedTaskList;
     private final UserPrefs userPrefs;
     private FilteredList<Task> filteredTasks;
@@ -29,22 +29,22 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyAddressBook archivedTaskList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskList addressBook,
+                        ReadOnlyTaskList archivedTaskList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, archivedTaskList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
                 + "Archived Task Book: " + archivedTaskList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new TaskList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.archivedTaskList = new ArchivedTaskList(archivedTaskList);
-        filteredTasks = new FilteredList<>(this.addressBook.getPersonList());
-        filteredArchivedTasks = new FilteredList<>(this.archivedTaskList.getPersonList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredArchivedTasks = new FilteredList<>(this.archivedTaskList.getTaskList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ArchivedTaskList(), new UserPrefs());
+        this(new TaskList(), new ArchivedTaskList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -93,15 +93,15 @@ public class ModelManager implements Model {
         userPrefs.setArchivedTaskListFilePath(archivedTaskListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TaskList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyTaskList addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaskList getAddressBook() {
         return addressBook;
     }
 
@@ -133,7 +133,7 @@ public class ModelManager implements Model {
     //=========== ArchivedTaskBook ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getArchivedTaskList() {
+    public ReadOnlyTaskList getArchivedTaskList() {
         return archivedTaskList;
     }
 
@@ -152,7 +152,7 @@ public class ModelManager implements Model {
 
 
     @Override
-    public void setArchivedTaskList(ReadOnlyAddressBook taskList) {
+    public void setArchivedTaskList(ReadOnlyTaskList taskList) {
         this.archivedTaskList.resetData(taskList);
     }
 
@@ -179,7 +179,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Task> getObservableArchivedTaskList() {
-        return this.archivedTaskList.getPersonList();
+        return this.archivedTaskList.getTaskList();
     }
 
     @Override
