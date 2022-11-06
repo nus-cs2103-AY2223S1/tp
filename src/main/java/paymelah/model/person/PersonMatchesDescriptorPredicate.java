@@ -90,6 +90,17 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
         return true;
     }
 
+    private boolean matchesAboveBelow(Person person) {
+        if (debtsDescriptor.getAbove().isPresent() && debtsDescriptor.getBelow().isPresent()) {
+            Money above = debtsDescriptor.getAbove().get();
+            Money below = debtsDescriptor.getBelow().get();
+            return person.getDebts().asList().stream().anyMatch(debt ->
+                    debt.getMoney().compareTo(above) >= 0
+                    && debt.getMoney().compareTo(below) <= 0);
+        }
+        return true;
+    }
+
     private boolean matchesAbove(Person person) {
         if (debtsDescriptor.getAbove().isPresent()) {
             Money above = debtsDescriptor.getAbove().get();
@@ -130,6 +141,17 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
         return true;
     }
 
+    private boolean matchesBeforeAfter(Person person) {
+        if (debtsDescriptor.getBefore().isPresent() && debtsDescriptor.getAfter().isPresent()) {
+            DebtDate before = debtsDescriptor.getBefore().get();
+            DebtDate after = debtsDescriptor.getAfter().get();
+            return person.getDebts().asList().stream().anyMatch(debt ->
+                    debt.getDate().compareTo(before) <= 0
+                            && debt.getDate().compareTo(after) >= 0);
+        }
+        return true;
+    }
+
     private boolean matchesTimes(Person person) {
         if (debtsDescriptor.getTimes().isPresent()) {
             return debtsDescriptor.getTimes().get().stream().allMatch(time ->
@@ -147,9 +169,11 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
                 && matchesTags(person)
                 && matchesDescriptions(person)
                 && matchesMonies(person)
+                && matchesAboveBelow(person)
                 && matchesAbove(person)
                 && matchesBelow(person)
                 && matchesDates(person)
+                && matchesBeforeAfter(person)
                 && matchesBefore(person)
                 && matchesAfter(person)
                 && matchesTimes(person);

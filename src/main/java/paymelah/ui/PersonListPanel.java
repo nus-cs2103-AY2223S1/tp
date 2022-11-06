@@ -35,17 +35,37 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         List<TitledPane> titledPanes = new ArrayList<TitledPane>();
         personList.addListener((ListChangeListener<Person>) c -> {
+            TitledPane expandedPane = personListView.getExpandedPane();
+            String name = getNameFromExpandedPane(expandedPane);
             personListView.getPanes().clear();
             titledPanes.clear();
+            TitledPane newExpandedPane = null;
             for (Person person : c.getList()) {
-                titledPanes.add(createTitledPane(person, c.getList()));
+                TitledPane titledPane = createTitledPane(person, c.getList());
+                if (expandedPane != null && person.getName().fullName.equals(name)) {
+                    newExpandedPane = titledPane;
+                }
+                titledPanes.add(titledPane);
             }
             personListView.getPanes().addAll(titledPanes);
+            personListView.setExpandedPane(newExpandedPane);
         });
         for (Person person : personList) {
             titledPanes.add(createTitledPane(person, personList));
         }
         personListView.getPanes().addAll(titledPanes);
+    }
+
+    private String getNameFromExpandedPane(TitledPane expandedPane) {
+        if (expandedPane == null) {
+            return null;
+        }
+
+        HBox hBox = (HBox) expandedPane.getGraphic();
+        Label label = (Label) hBox.getChildren().get(0);
+        String text = label.getText();
+        String name = text.substring(text.indexOf('.') + 2);
+        return name;
     }
 
     private TitledPane createTitledPane(Person person, ObservableList<? extends Person> observableList) {
@@ -55,7 +75,10 @@ public class PersonListPanel extends UiPart<Region> {
         }
         TitledPane titledPane = new TitledPane();
         titledPane.setAlignment(Pos.CENTER);
-        titledPane.setMinHeight(300);
+        titledPane.setMinHeight(200);
+
+        // @@author TheSoggy-reused
+        // Adapted from https://stackoverflow.com/a/52458162
 
         // Create HBox to hold our 2 labels
         HBox contentPane = new HBox();
@@ -77,7 +100,7 @@ public class PersonListPanel extends UiPart<Region> {
         name.setMaxWidth(250);
 
         Label totalAmount = new Label("Total: $" + person.getDebtsAmountAsMoney().toString());
-        totalAmount.setMaxWidth(200);
+        totalAmount.setMaxWidth(300);
 
         // Add our nodes to the contentPane
         contentPane.getChildren().addAll(
@@ -89,6 +112,8 @@ public class PersonListPanel extends UiPart<Region> {
         // Add the contentPane as the graphic for the TitledPane
         titledPane.setGraphic(contentPane);
         titledPane.setContent(new PersonCard(person).personCardPane);
+        // @@author
+
         return titledPane;
     }
 }

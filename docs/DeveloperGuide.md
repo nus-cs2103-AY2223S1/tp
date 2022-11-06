@@ -174,6 +174,44 @@ The activity diagram below details the behaviour of PayMeLah when a user inputs 
 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
 
+
+### Clear debts feature - `cleardebts`
+
+#### Implementation
+This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
+
+When given a valid user input, the `ClearDebtsCommandParser` will construct a `ClearDebtsCommand` object with the parsed `Index` representing the position of the `Person` in the `Model` component to have his/her debts cleared.
+
+Receiving the `Index` of the specified `Person` from the `ClearDebtsCommandParser`, the `ClearDebtsCommand` object obtains the `Person` object specified from the `Model` component when executed.
+The `ClearDebtsCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new empty `DebtList`.
+This new `Person` object replaces the original `Person` object in the `Model` component.
+
+
+### Delete debt feature - `deletedebt`
+
+#### Implementation
+This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
+
+When given a valid user input, the `DeletDebtCommandParser` will create a set with the `Index` object that represents the position of the `Debt` object to be removed from the `DebtList` of the specified `Person`.
+
+To speed up deleting multiple `Debt` objects (for example, when multiple debts of a person contain incorrect details) from the `DebtList` of the specified `Person`, the `DeleteDebtCommandParser` can take in multiple indices such that the set with the `Index` object contains multiple `Index` objects that each represent the position of the `Debt` object to be removed.
+
+Receiving this set of `Index` objects, and the `Index` of the specified `Person` from the `DeleteDebtCommandParser`, the `DeleteDebtCommand` object obtains the `Person` object and the `Debt` objects specified by the set from the `Model` component when executed.
+The `DeleteDebtCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new `DebtList` that does not contain the previously obtained `Debt` objects to be removed.
+This new `Person` object replaces the original `Person` object in the `Model` component.
+
+The sequence diagram below details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteDebtSequenceDiagram.png)
+
+
+An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagram below.
+
+<img src="images/DeleteDebtObjectDiagram.png" width="450" />
+<img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
+
+
+
 ### \[Proposed\] Improved find command: `find`
 
 #### Proposed Implementation
