@@ -1,6 +1,5 @@
 package seedu.clinkedin.testutil;
 
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
