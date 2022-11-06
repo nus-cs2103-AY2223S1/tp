@@ -1150,6 +1150,9 @@ Summary of commands can be found [here](#summary-of-general-commands)
 
 Deletes all the people from the application.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution: This action is irreversible!**
+</div>
+
 **Format:** `clear [-h]`
 
 | Flags          | Required | Remarks                             |
@@ -1166,15 +1169,23 @@ Toggles between light theme and dark theme.
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
+**Command Aliases:**
+- `th`
+
 #### Exiting the program : `exit`
 
-Exits the program.
+Closes the program after 3 seconds.
 
 **Format:** `exit [-h]`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
+
+**Command Aliases:**
+- `quit`
+- `bye`
+- `ex`
 
 #### Viewing help : `help`
 
@@ -1186,24 +1197,29 @@ Shows the URL to this help page, which will list all available commands.
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-#### Saving the data
+**Command Aliases:**
+- `h`
 
-TruthTable data is saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+---
 
-#### Editing the data file
+## Saving the data
 
-TruthTable data is saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to
-update data directly by editing that data file.
+TruthTable's data is saved in the hard disk automatically after running any command that changes data. There is no 
+need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
+
+## Editing the data file
+
+TruthTable data is saved as a [JSON file](#json-file), which can be found in the location where `truthtable.jar` 
+is opened from (`TRUTHTABLE_LOCATION`) and going to `TRUTHTABLE_LOCATION/data/truthtable.json`. 
+
+Advanced users are welcomed to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TruthTable will discard all data and start with an empty
 data file on the next run.
 </div>
-
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -1293,15 +1309,21 @@ the data of your previous TruthTable home folder.
 
 ## Glossary
 
-| Term                     | Meaning |
-|--------------------------|---------|
-| Command                  |         |
-| Parameter                |         |
-| Positional Parameter     ||
-| Index                    |         |
-| Alias                    |         | 
-| Command Line Interface   |         |
-| Graphical User Interface |         |
+### Command                  
+
+### Parameter                
+
+### Positional Parameter     
+
+### Index                    
+
+### Alias                     
+
+### Command Line Interface   
+
+### Graphical User Interface 
+
+### JSON File
 
 [Back to Table of Contents](#table-of-contents)
 
