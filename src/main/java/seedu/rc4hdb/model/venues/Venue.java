@@ -112,7 +112,6 @@ public class Venue implements BookingField {
 
     //==================== Start of getters =================================
 
-    //@@author nealetham
     public List<Booking> getReadOnlyBookings() {
         clearExpiredBookings();
         return Collections.unmodifiableList(bookings);
