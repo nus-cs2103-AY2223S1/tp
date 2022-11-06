@@ -7,7 +7,7 @@ hide empty methods
 show members
 hide empty members
 
-title Initial state
+title Final state
 
 class MarkCommand as "__:MarkCommand__"
 together {
@@ -27,8 +27,8 @@ class OldPerson as "__person1:Person__"
 }
 
 Debt1 : isPaid = false
-Debt2 : isPaid = false
-Debt3 : isPaid = false
+Debt2 : isPaid = true
+Debt3 : isPaid = true
 
 MarkCommand -l-> "debtor index" DebtorIndex1
 MarkCommand ----> "debt index" DebtIndex2

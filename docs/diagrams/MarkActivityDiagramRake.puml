@@ -1,0 +1,17 @@
+@startuml
+title: Activity: Generation of debts-to-mark DebtList from debt indices
+
+start
+repeat
+  :Debt index matched to debt in DebtList of person-to-edit;
+  if () then ([invalid debt index])
+  :User informed of invalid debt index;
+  stop
+  else ([valid debt index])
+  :Debt added to debts-to-mark;
+  endif
+repeat while () is ([has more indices])
+->[no more indices];
+stop
+
+@enduml
