@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.module.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -45,12 +46,15 @@ public class EditModuleCommandTest {
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE, descriptor);
 
-        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
+                false, false, true,
+                false, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
 
-        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -68,12 +72,15 @@ public class EditModuleCommandTest {
                 .withCode(VALID_MODULE_CODE_CYBERSEC).withTags(VALID_TAG_IMPORTANT).build();
         EditModuleCommand editCommand = new EditModuleCommand(lastModuleCode, descriptor);
 
-        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
+                false, false, true,
+                false, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(lastModule, editedModule);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -81,11 +88,14 @@ public class EditModuleCommandTest {
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE, new EditModuleDescriptor());
         Module editedModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
-        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
+                false, false, true,
+                false, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
 
-        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -98,12 +108,15 @@ public class EditModuleCommandTest {
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE,
                 new EditModuleDescriptorBuilder().withCode(VALID_MODULE_CODE_PL).build());
 
-        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
+                false, false, true,
+                false, false, false, false, false, false);
 
         Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
 
-        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
