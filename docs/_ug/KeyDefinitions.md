@@ -36,7 +36,7 @@ FoodRem Tags are unique by name and case-sensitive. This means you cannot add tw
 
 #### Flags
 
-Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
+Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different parameters without ambiguity.
 
 You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
