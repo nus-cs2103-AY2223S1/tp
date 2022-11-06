@@ -1,4 +1,8 @@
 @startuml
+!include style.puml
+skinparam classBackgroundColor MODEL_COLOR
+show members
+
 enum Status {
     INTERVIEW
     OFFERED
