@@ -26,7 +26,7 @@ public class ViewScheduleCommand extends Command {
             + "Format: " + COMMAND_WORD + " [ " + PREFIX_WEEKDAY + "WEEKDAY] [ " + PREFIX_WEEKDAY + "MORE_WEEKDAYS] ["
             + PREFIX_MODULE_OF_SCHEDULE + "MODULE_CODE] [" + PREFIX_MODULE_OF_SCHEDULE + " MORE_MODULE_CODES]" + "\n"
             + "Example: " + COMMAND_WORD + " \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " CS2103T\n";
 
     public static final String MESSAGE_MODULE_NOT_EXIST = "The module you are looking for doesn't exist.";
 

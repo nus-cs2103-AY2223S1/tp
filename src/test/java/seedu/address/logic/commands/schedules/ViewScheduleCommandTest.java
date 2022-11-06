@@ -64,7 +64,7 @@ public class ViewScheduleCommandTest {
 
         // same values -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
-        //  assertTrue(viewEmptyCommand.equals(viewEmptyCommandCopy));
+        assertTrue(viewEmptyCommand.equals(viewEmptyCommandCopy));
 
         // different types -> returns false
         assertFalse(viewFirstCommand.equals(1));
