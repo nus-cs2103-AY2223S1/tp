@@ -3,27 +3,26 @@ layout: page
 title: User Guide
 ---
 
-* **Plannit** is an **all-in-one application** that streamlines the execution of module
-  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
-  **module-mates** (i.e., students in the same module) to increase their productivity.
-
-
-* Plannit will be the **go-to platform** for them to access all modules links and information
-without needing to tediously navigate through multiple websites.
-
-
-* Plannit allows tracking of student contacts by module.
-Students do not have to worry about forgetting which friend takes which module.
-
-
-* Plannit is **optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+**Plannit** is an **all-in-one application** that streamlines the execution of module
+deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+**module-mates** (i.e., students in the same module) to increase their productivity.
+
+Plannit will be the **go-to platform** for them to access all modules links and information
+without needing to tediously navigate through multiple websites.
+
+Plannit allows tracking of student contacts by module.
+Students do not have to worry about forgetting which friend takes which module.
+
+Plannit is **optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
+
+
 ## 0. How to use this guide
 This guide is targeted at new users who are looking at learning more about 
 our app.
@@ -90,7 +89,8 @@ our app.
 | *[List person](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
 | [Home](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [Goto](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [Exit](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+| [Help](#26-help)                                            | `help`                                                                  | View help                                                                       |
+| [Exit](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
 Features marked with * can only be utilised when users are at the home page.
@@ -98,6 +98,10 @@ Features marked with * can only be utilised when users are at the home page.
 
 <div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
+</div>
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+Features marked with * can only be utilised when you are at the home page.
 </div>
 
 ## 2. Features
@@ -128,8 +132,9 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Any parameter in commands that do not take in parameters (such as
-  `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `home 123`, it will be interpreted as `home`.
+  [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
+  [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
+  e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
 </div>
 
 ### 2.1. Modules
@@ -307,23 +312,30 @@ OR
 ```
 find-module CS
 ```
-In either of the above examples, we find every module whose module code starts with CS in Plannit.
+In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
-remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules) command.
-</div>
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                          |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="right"><i>Notice that only modules with module code starting with `CS` are listed!</i><p/>{:/} |
+
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
+You will remain on the home page after executing the `find-module` command. This is different
+from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
+updated with the persons associated with the module.
 
 #### 2.1.5. List module
 When you are on the home page, you may obtain the list of every module in Plannit.
 
 Format: `list-module`
 
-Example:
-```
-list-module
-```
-In the above example, we list every module that exist in Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                 |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="right"><i>Notice that the module list has been updated!</i><p/>{:/} |
+
 
 <br>
 
@@ -362,9 +374,9 @@ command:
 | {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
-You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
-you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
+You may view the tasks added to a module by navigating to a module's page
+using the [`goto`](##251-navigate-between-modules) command. Alternatively,
+you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a
 module's tasks while on the home page.
 </div>
 
@@ -458,8 +470,8 @@ the tasks.
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
-home page and view more details of a specific module, you may use the 
-[`goto`](#252-navigate-between-modules) command.
+home page and view more details of a specific module, you may use the
+[`goto`](#251-navigate-between-modules) command.
 </div>
 
 <br>
@@ -665,7 +677,7 @@ Here's a screenshot of Plannit before and after executing the command:
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>
 If you wish to view a person added to a particular module, you may do so by navigating to that
-module using the [`goto`](#252-navigate-between-modules) command.
+module using the [`goto`](#251-navigate-between-modules) command.
 </div>
 
 #### 2.4.3. Delete person
@@ -714,6 +726,9 @@ delete-person-from-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a person will bring you back to the home page.
+</div>
 
 #### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
@@ -750,7 +765,6 @@ In the above example, we are editing the contact with a displayed-index number o
 Editing a person will bring you back to the home page.
 </div>
 
-
 #### 2.4.6. Find person
 When you are on the home page, you can search for people whose names start with the specified keywords.
 
@@ -765,52 +779,29 @@ OR
 ```
 find-person Alex
 ```
-In either of the above examples, we find every person whose name starts with Alex in Plannit.
+In either of the above examples, we find every person whose name starts with Alex in Plannit. Here's
+a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                         |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="right"><i>Notice that only names starting with Alex are listed!</i><p/>{:/} |
 
 #### 2.4.7. List person
 When you are on the home page, you may obtain the list of every person in Plannit.
 
 Format: `list-person`
 
-Example:
-```
-list-person
-```
-In the above example, we list every person that exist in Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                         |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/list-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-person-after.png"/></p> <p align="right"><i>Notice that the person list has been updated!</i><p/>{:/} |
+
 
 ### 2.5. Navigation
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
-#### 2.5.1. Navigate to home
-An overview of the modules and persons in Plannit is provided on the home page.
-
-You may navigate to the home page using the `home` command.
-
-Format:  `home`
-
-<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
-You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
-For more detailed information regarding a specific module, you may navigate to that
-module using the [`goto`](#252-navigate-between-modules) command. <br>
-The following commands also navigate you back to the home page:
-* [`add-module`](#211-add-module)
-* [`delete-module`](#212-delete-module)
-* [`edit-module`](#213-edit-module)
-* [`add-person`](#241-add-person)
-* [`delete-person`](#243-delete-person)
-* [`edit-person`](#245-edit-person)
-</div>
-
-<div markdown="block" class="alert alert-info"> :information_source: **Note:**<br>
-After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
-re-enable the following commands:
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
-</div>
-
-#### 2.5.2. Navigate between modules
+#### 2.5.1. Navigate between modules
 You may navigate between modules to view tasks and contacts associated with a particular
 module using the `goto` command.
 
@@ -819,49 +810,93 @@ Format: `goto MODULE_CODE`
 
 Example:
 ```
-goto CS2109S
+goto CS2103T
 ```
-In the above example, we are navigating to the module with module code `CS2109S`.
+In the above example, we are navigating to the module with module code `CS2103T`. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**<br>
-You may return to home page by executing the [`home`](#251-navigate-to-home) command.
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                                                                                                                       |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="right"><i>Notice that the screen is updated with the module's information! <br> (If the tasks are not shown, double-click on the module to open it!)</i><p/>{:/} |
+
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+You may return to home page by executing the [`home`](#252-navigate-to-home) command.
 </div>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
 You will leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#215-find-module) command. <br>
+behavior of [`find-module`](#214-find-module) command. <br> <br>
 After using the `goto` command, usage of the following commands will be restricted:<br>
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
+
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person). <br> <br>
 
 To re-enable the restricted commands, you may execute any commands that bring you back to the home page
-(i.e. [`home`](#251-navigate-to-home)).
+(i.e. [`home`](#252-navigate-to-home)).
+</div>
+
+#### 2.5.2. Navigate to home
+An overview of the modules and persons in Plannit is provided on the home page.
+
+You may navigate to the home page using the `home` command.
+
+Format:  `home`
+
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                             |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="right"><i>Notice that you are now back to the home screen!</i><p/>{:/} |
+
+<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
+You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
+For more detailed information regarding a specific module, you may navigate to that
+module using the [`goto`](#251-navigate-between-modules) command. <br> <br>
+The following commands also navigate you back to the home page: <br>
+[`add-module`](#211-add-module), [`delete-module`](#212-delete-module), [`add-person`](#241-add-person).
+</div>
+
+<div markdown="block" class="alert alert-info"> :information_source: **Note:**
+After using the [`goto`](#251-navigate-between-modules) command, executing the `home` command will 
+re-enable the following commands: <br>
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person).
 </div>
 
 <br>
 
-### 2.6. Exiting The Program
+### 2.6. View help
+If you're feeling lost regarding our features, use the `help` command to
+open a window with a link that directs you to our user guide!
+
+Format: `help`
+
+#### Minor enhancement [coming in v1.5] <br>
+Stay tuned for Plannit v1.5, where we will be including a table showing all commands
+within the help window!
+
+<br>
+
+### 2.7. Exiting The Program
 Exits the program.
 
 Format: `exit`
 
 <br>
 
-### 2.7. Saving The Data
+### 2.8. Saving The Data
 Your data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 <br>
 
-### 2.8. Loading The Data
+### 2.9. Loading The Data
 If saved data exists, data is automatically loaded when the program starts.
 There is no need to load manually.
 
 <br>
 
-### 2.9. Editing The Data File
+### 2.10. Editing The Data File
 Your data is saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
