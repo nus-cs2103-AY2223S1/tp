@@ -1451,10 +1451,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 3. Finding modules while not at home page
 
-    Expected: 
-   * Module list remains the same.
-   * Command box remains the same.
-   * Error details shown in the status message.
+    1. Prerequisites: Must not be at the home page.
+
+    2. Test case: `find-module CS2103T`<br>
+       Expected:
+       * Module list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
 
 ### Listing all modules
 
@@ -1473,10 +1476,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Listing all modules while not at home page
 
-   Expected:
-   * Module list remains the same.
-   * Command box remains the same.
-   * Error details shown in the status message.
+    1. Prerequisites: Must not be at the home page.
+
+    2. Test case: `list-module`<br>
+       Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
 
 <!-- @@author teoyuqi -->
 ### Adding a task
@@ -1747,10 +1753,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 3. Finding persons while not at home page 
 
-   Expected:
-   * Person list remains the same.
-   * Command box remains the same.
-   * Error details shown in the status message.
+    1. Prerequisites: Must not be at the home page.
+
+    2. Test case: `find-person Bernice`<br>
+       Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
 
 ### Listing all contacts
 
@@ -1769,10 +1778,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Listing all persons while not at home page
 
-   Expected:
-   * Module list remains the same.
-   * Command box remains the same.
-   * Error details shown in the status message.
+    1. Prerequisites: Must not be at the home page.
+
+    2. Test case: `list-person`<br>
+       Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
 
 ### Navigating between modules
 
