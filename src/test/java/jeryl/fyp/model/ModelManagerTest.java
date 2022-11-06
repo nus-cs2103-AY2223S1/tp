@@ -4,6 +4,9 @@ import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
 import static jeryl.fyp.testutil.TypicalStudents.BENSON;
+import static jeryl.fyp.testutil.TypicalStudents.CARL;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
+import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import jeryl.fyp.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.core.GuiSettings;
@@ -37,14 +41,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setFypManagerFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFypManagerFilePath(Paths.get("jeryl/fyp/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setFypManagerFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFypManagerFilePath(Paths.get("new/jeryl/fyp/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +71,7 @@ public class ModelManagerTest {
 
     @Test
     public void setFypManagerFilePath_validPath_setsFypManagerFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("jeryl/fyp/file/path");
         modelManager.setFypManagerFilePath(path);
         assertEquals(path, modelManager.getFypManagerFilePath());
     }
@@ -91,6 +95,64 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            modelManager.addStudent(student);
+        }
+        assertEquals(modelManager.getUncompletedStudentList().get(0), ALICE);
+        assertEquals(modelManager.getUncompletedStudentList().get(1), BENSON);
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getUncompletedStudentList().get(2));
+    }
+
+    @Test
+    public void getCompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            modelManager.addStudent(student);
+        }
+        assertEquals(modelManager.getCompletedStudentList().get(0), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getCompletedStudentList().get(1));
+    }
+
+    @Test
+    public void getSortedByProjectNameUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, CARL, DANIEL };
+        for (Student student : students) {
+            modelManager.addStudent(student);
+        }
+        assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(0), CARL);
+        assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(1), BENSON);
+        assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(2), ALICE);
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> modelManager.getSortedByProjectNameUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedByProjectStatusUncompletedStudentList() {
+        Student[] students = { CARL, BENSON, DANIEL, ALICE };
+        for (Student student : students) {
+            modelManager.addStudent(student);
+        }
+        assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(0), CARL);
+        assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(1), ALICE);
+        assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(2), BENSON);
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> modelManager.getSortedByProjectStatusUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedCompletedStudentList() {
+        Student[] students = { BENSON, ALICE, DANIEL, ELLE };
+        for (Student student : students) {
+            modelManager.addStudent(student);
+        }
+        assertEquals(modelManager.getSortedCompletedStudentList().get(0), ELLE);
+        assertEquals(modelManager.getSortedCompletedStudentList().get(1), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getSortedCompletedStudentList().get(2));
     }
 
     @Test

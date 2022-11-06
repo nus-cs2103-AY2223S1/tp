@@ -3,6 +3,10 @@ package jeryl.fyp.model;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
+import static jeryl.fyp.testutil.TypicalStudents.BENSON;
+import static jeryl.fyp.testutil.TypicalStudents.CARL;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
+import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -82,6 +86,63 @@ public class FypManagerTest {
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> fypManager.getStudentList().remove(0));
+    }
+
+    @Test
+    public void getUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            fypManager.addStudent(student);
+        }
+        assertEquals(fypManager.getUncompletedStudentList().get(0), ALICE);
+        assertEquals(fypManager.getUncompletedStudentList().get(1), BENSON);
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager.getUncompletedStudentList().get(2));
+    }
+
+    @Test
+    public void getCompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            fypManager.addStudent(student);
+        }
+        assertEquals(fypManager.getCompletedStudentList().get(0), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager.getCompletedStudentList().get(1));
+    }
+
+    @Test
+    public void getSortedByProjectNameUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, CARL, DANIEL };
+        for (Student student : students) {
+            fypManager.addStudent(student);
+        }
+        assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(0), CARL);
+        assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(1), BENSON);
+        assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(2), ALICE);
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager.getSortedByProjectNameUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedByProjectStatusUncompletedStudentList() {
+        Student[] students = { CARL, BENSON, DANIEL, ALICE };
+        for (Student student : students) {
+            fypManager.addStudent(student);
+        }
+        assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(0), CARL);
+        assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(1), ALICE);
+        assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(2), BENSON);
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> fypManager.getSortedByProjectStatusUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedCompletedStudentList() {
+        Student[] students = { BENSON, ALICE, DANIEL, ELLE };
+        for (Student student : students) {
+            fypManager.addStudent(student);
+        }
+        assertEquals(fypManager.getSortedCompletedStudentList().get(0), ELLE);
+        assertEquals(fypManager.getSortedCompletedStudentList().get(1), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager.getSortedCompletedStudentList().get(2));
     }
 
     /**
