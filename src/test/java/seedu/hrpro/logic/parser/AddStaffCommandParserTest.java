@@ -47,6 +47,9 @@ import seedu.hrpro.model.staff.StaffTitle;
 import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for AddStaffCommandParser.
+ */
 public class AddStaffCommandParserTest {
 
     private AddStaffCommandParser parser = new AddStaffCommandParser();
@@ -99,7 +102,6 @@ public class AddStaffCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         Staff expectedStaffWithNoTags = new StaffBuilder(STAFF_JAY).withTags().build();
-        Project projectStud = new ProjectBuilder(BOB).build();
 
         //no tags ok
         assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY

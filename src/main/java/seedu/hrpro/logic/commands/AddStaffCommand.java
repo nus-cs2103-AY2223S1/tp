@@ -53,6 +53,7 @@ public class AddStaffCommand extends Command {
      */
     public AddStaffCommand(Staff staff, Index index) {
         requireNonNull(staff);
+        requireNonNull(index);
         toAdd = staff;
         this.index = index;
     }

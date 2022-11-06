@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.logic.commands.FindStaffCommand;
 import seedu.hrpro.model.staff.StaffNameContainsKeywordsPredicate;
 
+/**
+ * Contains test cases for FindStaffCommandParser.
+ */
 public class FindStaffCommandParserTest {
 
     private FindStaffCommandParser parser = new FindStaffCommandParser();

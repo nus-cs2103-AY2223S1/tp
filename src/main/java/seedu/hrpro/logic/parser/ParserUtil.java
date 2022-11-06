@@ -113,13 +113,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String contact} into a {@code StaffContact}.
+     * Parses {@code String staffContact} into a {@code StaffContact}.
      *
      * @throws ParseException if the given {@code staffContact} is invalid.
      */
-    public static StaffContact parseStaffContact(String contact) throws ParseException {
-        requireNonNull(contact);
-        String trimmedContact = contact.trim();
+    public static StaffContact parseStaffContact(String staffContact) throws ParseException {
+        requireNonNull(staffContact);
+        String trimmedContact = staffContact.trim();
         if (!StaffContact.isValidStaffContact(trimmedContact)) {
             throw new ParseException(StaffContact.MESSAGE_CONSTRAINTS);
         }
@@ -127,41 +127,41 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String department} into a {@code StaffDepartment}.
+     * Parses {@code String staffDepartment} into a {@code StaffDepartment}.
      *
      * @throws ParseException if the given {@code staffDepartment} is invalid.
      */
-    public static StaffDepartment parseStaffDepartment(String department) throws ParseException {
-        requireNonNull(department);
-        String trimmedDepartment = department.trim();
-        if (!StaffDepartment.isValidStaffDepartment(department)) {
+    public static StaffDepartment parseStaffDepartment(String staffDepartment) throws ParseException {
+        requireNonNull(staffDepartment);
+        String trimmedDepartment = staffDepartment.trim();
+        if (!StaffDepartment.isValidStaffDepartment(staffDepartment)) {
             throw new ParseException(StaffDepartment.MESSAGE_CONSTRAINTS);
         }
         return new StaffDepartment(trimmedDepartment);
     }
 
     /**
-     * Parses {@code String leave} into a {@code StaffLeave}.
+     * Parses {@code String staffLeave} into a {@code StaffLeave}.
      *
      * @throws ParseException if the given {@code staffLeave} is invalid.
      */
-    public static StaffLeave parseStaffLeave(String leave) throws ParseException {
-        requireNonNull(leave);
-        String trimmedLeave = leave.trim();
-        if (!StaffLeave.isValidStaffLeave(leave)) {
+    public static StaffLeave parseStaffLeave(String staffLeave) throws ParseException {
+        requireNonNull(staffLeave);
+        String trimmedLeave = staffLeave.trim();
+        if (!StaffLeave.isValidStaffLeave(staffLeave)) {
             throw new ParseException(StaffLeave.MESSAGE_CONSTRAINTS);
         }
         return new StaffLeave(trimmedLeave);
     }
 
     /**
-     * Parses {@code String name} into a {@code StaffName}.
+     * Parses {@code String staffName} into a {@code StaffName}.
      *
      * @throws ParseException if the given {@code staffName} is invalid.
      */
-    public static StaffName parseStaffName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
+    public static StaffName parseStaffName(String staffName) throws ParseException {
+        requireNonNull(staffName);
+        String trimmedName = staffName.trim();
         if (!StaffName.isValidStaffName(trimmedName)) {
             throw new ParseException(StaffName.MESSAGE_CONSTRAINTS);
         }
@@ -169,13 +169,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String title} into a {@code StaffTitle}.
+     * Parses {@code String staffTitle} into a {@code StaffTitle}.
      *
      * @throws ParseException if the given {@code staffTitle} is invalid.
      */
-    public static StaffTitle parseStaffTitle(String title) throws ParseException {
-        requireNonNull(title);
-        String trimmedTitle = title.trim();
+    public static StaffTitle parseStaffTitle(String staffTitle) throws ParseException {
+        requireNonNull(staffTitle);
+        String trimmedTitle = staffTitle.trim();
         if (!StaffTitle.isValidStaffTitle(trimmedTitle)) {
             throw new ParseException(StaffTitle.MESSAGE_CONSTRAINTS);
         }
@@ -183,13 +183,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String deadline} into a {@code TaskDeadline}
+     * Parses {@code String taskDeadline} into a {@code TaskDeadline}
      *
      * @throws ParseException if the given {@code taskDeadline} is invalid.
      */
-    public static Deadline parseTaskDeadline(String deadline) throws ParseException {
-        requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
+    public static Deadline parseTaskDeadline(String taskDeadline) throws ParseException {
+        requireNonNull(taskDeadline);
+        String trimmedDeadline = taskDeadline.trim();
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
@@ -201,9 +201,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code taskDescription} is invalid.
      */
-    public static TaskDescription parseTaskDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
+    public static TaskDescription parseTaskDescription(String taskDescription) throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedDescription = taskDescription.trim();
         if (!TaskDescription.isValidTaskDescription(trimmedDescription)) {
             throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }

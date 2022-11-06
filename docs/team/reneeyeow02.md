@@ -19,8 +19,7 @@ Given below are my contributions to the project.
     Changes to the MainWindow.java and FXML files were also required to allow the display of the new windows.
     New java and FXML files also had to be created for the cards and panels involved in the display.
     * Credits: Took inspiration from AB3's person object.
-
-
+    
   * Refactor insurance to leave status.
     * What it does: Allows user to view the leave status of a staff member.
     * Justification: Allowing the user to view the availability of a staff member is part of the main features of HR Pro Max++.
@@ -33,7 +32,8 @@ Given below are my contributions to the project.
     * What it does: Allows user to create Staff objects.
     * Justification: Allowing the user to create Staff objects is part of the main features of HR Pro Max++.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=reneeyeow02&breakdown=true)
+  * Refactor AB3 to HR Pro Max++.
+    * Justification: Refactoring AB3 to HR Pro Max++ better reflects the purpose of the application.
 
 
 * **Project management**:
