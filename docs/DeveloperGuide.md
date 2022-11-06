@@ -218,7 +218,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add feature
 
-<h4 id="add-feature-implementation">Implementation</h2>
+<h4 id="add-feature-implementation">Implementation</h4>
 
 This section explains the implementation of the `add` feature. The command takes in two compulsory parameters which is the employee name and position, executing the command leads to the addition of an employee person into the records of coydir.
 
@@ -238,7 +238,7 @@ Step 5. `storage#saveDatabase` is then called on the current `database`, updates
 
 ### Delete feature
 
-<h4 id="delete-feature-implementation">Implementation</h2>
+<h4 id="delete-feature-implementation">Implementation</h4>
 
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
@@ -264,7 +264,7 @@ The command takes in a number of parameters, which serve as the "filters" for th
 At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
 Thus it is possible to use these altogether to search for a person with high specificity.
 
-<h4 id="find-feature-implementation">Implementation</h2>
+<h4 id="find-feature-implementation">Implementation</h4>
 
 The `find` command updates the model's filtered persons list based on the search filters.
 
@@ -306,7 +306,7 @@ Step 4. This finds the `person` from the list from the `model#getFilteredPersonL
 This section explains the implementation of the `add-leave` feature.
 The command takes in 3 parameters: employee ID, start date of leave, and end date of leave.
 
-<h4 id="add-leave-feature-implementation">Implementation</h2>
+<h4 id="add-leave-feature-implementation">Implementation</h4>
 
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
@@ -336,7 +336,7 @@ Step 7. This returns a `CommandResult` object, which is returned to the `LogicMa
 This section explains the implementation of the `delete-leave` feature.
 The command takes in 2 parameters: employee ID, and the one-based index of leave in the leave table of the employee.
 
-<h4 id="delete-leave-feature-implementation">Implementation</h2>
+<h4 id="delete-leave-feature-implementation">Implementation</h4>
 
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
@@ -376,7 +376,7 @@ Moving on to the implementation, some things to note.
 
 These are possible things to work on for future iterations.
 
-<h4 id="batch-add-feature-implementation">Implementation</h2>
+<h4 id="batch-add-feature-implementation">Implementation</h4>
 
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batch-add`
 and has stored it in the `/data` folder of the repository._
@@ -406,7 +406,7 @@ If there is any duplicate Person found, the function call will be aborted and th
 
 **Step 5**: `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
-<h4 id="batch-add-feature-design-considerations">Design Considerations</h2>
+<h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
 ##### Aspect: How Batch-add is run
 
