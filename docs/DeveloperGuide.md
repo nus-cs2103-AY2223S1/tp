@@ -41,32 +41,50 @@ title: Developer Guide
     - [Implementation](#delete-leave-feature-implementation)
   - [Batch-add feature](#batch-add-feature)
     - [Implementation](#batch-add-feature-implementation)
-    - [Design Considerations](#batch-add-design-considerations)
+    - [Design Considerations](#batch-add-feature-design-considerations)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-functional requirements](#non-functional-requirements)
+    - [Technical requirements](#technical-requirements)
+    - [Performance requirements](#performance-requirements)
+    - [Quality requirements](#quality-requirements)
+    - [Documentation requirements](#documentation-requirements)
+    - [Non-requirements](#non-requirements)
   - [Glossary](#glossary)
+    - [Technical Terminology](#technical-terminology)
+    - [Coydir Terminology](#coydir-terminology)
+    - [Miscellaneous](#miscellaneous)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
+  - [Basic commands](#basic-commands)
+  - [Adding an employee](#adding-an-employee)
+  - [Editing an employee](#editing-an-employee)
+  - [Deleting an employee](#deleting-an-employee)
+  - [Batch-adding employees](#batch-adding-employees)
+  - [Finding employees](#finding-employees)
+  - [Adding employee leaves](#adding-employee-leaves)
+  - [Deleting employee leaves](#deleting-employee-leaves)
+  - [Rating employee performance](#rating-employee-performance)
+  - [Viewing department overview](#viewing-department-overview)
 
 ---
 
-## **Acknowledgements**
+## Acknowledgements
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ---
 
-## **Setting up, getting started**
+<h2 id="setting-up-getting-started">Setting up, getting started</h2>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -200,13 +218,13 @@ Classes used by multiple components are in the `coydirbook.commons` package.
 
 ---
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add feature
 
-#### Implementation {#add-feature-implementation}
+<h4 id="add-feature-implementation">Implementation</h2>
 
 This section explains the implementation of the `add` feature. The command takes in two compulsory parameters which is the employee name and position, executing the command leads to the addition of an employee person into the records of coydir.
 
@@ -226,7 +244,7 @@ Step 5. `storage#saveDatabase` is then called on the current `database`, updates
 
 ### Delete feature
 
-#### Implementation {#delete-feature-implementation}
+<h4 id="delete-feature-implementation">Implementation</h2>
 
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
@@ -252,7 +270,7 @@ The command takes in a number of parameters, which serve as the "filters" for th
 At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
 Thus it is possible to use these altogether to search for a person with high specificity.
 
-#### Implementation {#find-feature-implementation}
+<h4 id="find-feature-implementation">Implementation</h2>
 
 The `find` command updates the model's filtered persons list based on the search filters.
 
@@ -294,7 +312,7 @@ Step 4. This finds the `person` from the list from the `model#getFilteredPersonL
 This section explains the implementation of the `add-leave` feature.
 The command takes in 3 parameters: employee ID, start date of leave, and end date of leave.
 
-#### Implementation {#add-leave-feature-implementation}
+<h4 id="add-leave-feature-implementation">Implementation</h2>
 
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
@@ -324,7 +342,7 @@ Step 7. This returns a `CommandResult` object, which is returned to the `LogicMa
 This section explains the implementation of the `delete-leave` feature.
 The command takes in 2 parameters: employee ID, and the one-based index of leave in the leave table of the employee.
 
-#### Implementation {#delete-leave-feature-implementation}
+<h4 id="delete-leave-feature-implementation">Implementation</h2>
 
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
@@ -349,7 +367,7 @@ Step 6. The leave to be removed is created based of its index in the `Queue<Leav
 
 Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
 
-### Batch-Add
+### Batch-Add feature
 
 This feature is created for users to add multiple entries at once.
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
@@ -364,7 +382,7 @@ Moving on to the implementation, some things to note.
 
 These are possible things to work on for future iterations.
 
-#### Implementation
+<h4 id="batch-add-feature-implementation">Implementation</h2>
 
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batch-add`
 and has stored it in the `/data` folder of the repository._
@@ -394,9 +412,10 @@ If there is any duplicate Person found, the function call will be aborted and th
 
 **Step 5**: `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
-#### Design Considerations {#batch-add-design-considerations}
+<h4 id="batch-add-feature-design-considerations">Design Considerations</h2>
 
-#### Aspect : How Batch Add is run
+##### Aspect: How Batch-add is run
+
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
   - Pros: Makes use of the Error Handling that the `AddCommand` has.
   - Cons: `BatchAdd` will fail if Add fails.
@@ -404,7 +423,7 @@ If there is any duplicate Person found, the function call will be aborted and th
   - Pros: If Add Fails, BatchAdd can still work.
   - Cons: Implementation Heavy.
 
-#### Aspect : How Batch Add `.csv` file is processed
+##### Aspect: How Batch-add `.csv` file is processed
 
 - Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e Have a fixed row position for each command).
   - Pros: No need for header rows
@@ -415,7 +434,7 @@ If there is any duplicate Person found, the function call will be aborted and th
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+<h2 id="documentation-logging-testing-configuration-dev-ops">Documentation, logging, testing, configuration, dev-ops</h2>
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -425,7 +444,7 @@ If there is any duplicate Person found, the function call will be aborted and th
 
 ---
 
-## **Appendix: Requirements**
+<h2 id="appendix-requirements">Appendix: Requirements</h2>
 
 ### Product scope
 
@@ -579,18 +598,18 @@ _{More to be added}_
 
 ### Non-functional requirements
 
-#### Technical Requirements
+#### Technical requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The application should look and perform the same regardless of which _mainstream OS_ is used.
 3. The data state should be persistent.
 
-#### Performance Requirements
+#### Performance requirements
 
 1. Should be able to hold up to 100 employees without a noticeable sluggishness in performance for typical usage.
 2. The system should be able to execute all commands within half a second (given constraint #1).
 
-#### Quality Requirements
+#### Quality requirements
 
 1. A user with above average typing speed (above 40 WPM) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 2. The product should be easy to use by users with little experience of using a command line application.
@@ -599,7 +618,7 @@ _{More to be added}_
 5. The application should not create unnecessary files/hidden files that clog up the user's disk.
 6. The product should offer at least two different themes (at least a light and dark setting) to accommodate different lighting environments.
 
-#### Documentation Requirements
+#### Documentation requirements
 
 1. User guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 2. Developer guide should be sufficiently clear such that any external readers can peruse it to understand the codebase thoroughly, enough to possibly add a new feature/property.
@@ -639,7 +658,7 @@ _{More to be added}_
 
 ---
 
-## **Appendix: Instructions for manual testing**
+<h2 id="appendix-instructions-for-manual-testing">Appendix: Instructions for manual testing</h2>
 
 Given below are instructions to test the app manually.
 
@@ -675,7 +694,7 @@ testers are expected to do more *exploratory* testing.
    3. In the main app window, type `exit` and enter.<br>
       **Expected Outcome**: The window closes, the same way it closed previously by clicking on the close button.
 
-### Basic Commands:
+### Basic commands
 
 1. Listing all employees:
 
