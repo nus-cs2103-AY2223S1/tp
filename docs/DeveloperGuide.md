@@ -1023,7 +1023,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Interview with displayed index 1 is successfully removed from its application, success message with interview details is shown.
 
     2. Test case: `remove-i 0`<br>
-       Expected: Interview failed to be added. Error details are shown.
+       Expected: Interview failed to be removed. Error details are shown.
 
     3. Other incorrect `remove-i` commands to try: `remove-i`, `remove-i x` (where x is larger than the interview list size) <br>
        Expected: Similar to previous.
