@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleNewBook() {
         try {
             if (!logic.addAddressBook()) {
-                resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+                resultDisplay.setFeedbackToUser("Maximum amount of TAB created");
             } else {
                 refreshStatusBar();
             }
