@@ -32,8 +32,8 @@ public class DateTest {
         assertFalse(Date.isValidDate("6 Aug 2020"));
 
         // valid date
-        assertTrue(Date.isValidDate("2020-08-20"));
-        assertTrue(Date.isValidDate("2020-09-30"));
+        assertTrue(Date.isValidDate("2023-08-20"));
+        assertTrue(Date.isValidDate("2023-09-30"));
 
     }
 }
