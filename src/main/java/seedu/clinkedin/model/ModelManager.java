@@ -156,6 +156,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPersonWithoutCommitting(Person person) {
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
