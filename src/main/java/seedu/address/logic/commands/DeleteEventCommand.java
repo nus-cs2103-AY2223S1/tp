@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Deletes an Event from the AddressBook based on the index supplied
+ * Deletes an Event identified using it's displayed index from the event list of the application.
  */
 public class DeleteEventCommand extends Command {
 
@@ -19,20 +20,18 @@ public class DeleteEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the Event based on the index number in the Event list displayed\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: "
-            + COMMAND_WORD
-            + " 3";
+            + "Example: " + COMMAND_WORD + " 3";
 
     public static final String MESSAGE_DELETED_EVENT_SUCCESS = "Deleted Event: %1$s";
 
-    private final Index targetEventIndex;
+    private final Index index;
 
     /**
-     * Constructor for DeleteEventCommand
-     * @param targetEventIndex location of Event to be deleted
+     * Creates a DeleteEventCommand.
+     * @param targetEventIndex displayed index of Event to be deleted.
      */
     public DeleteEventCommand(Index targetEventIndex) {
-        this.targetEventIndex = targetEventIndex;
+        this.index = targetEventIndex;
     }
 
     @Override
@@ -40,10 +39,9 @@ public class DeleteEventCommand extends Command {
         requireNonNull(model);
         List<Event> currentEventList = model.getFilteredEventList();
 
-        Integer zeroBasedIndex = targetEventIndex.getZeroBased();
-
+        Integer zeroBasedIndex = index.getZeroBased();
         if (zeroBasedIndex >= currentEventList.size()) {
-            throw new CommandException("The event index supplied is invalid");
+            throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event toDelete = currentEventList.get(zeroBasedIndex);
@@ -54,7 +52,7 @@ public class DeleteEventCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this || (other instanceof DeleteEventCommand
-                && targetEventIndex.equals(((DeleteEventCommand) other).targetEventIndex));
+                && index.equals(((DeleteEventCommand) other).index));
     }
 
 }

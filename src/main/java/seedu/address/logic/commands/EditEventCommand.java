@@ -22,7 +22,7 @@ import seedu.address.model.event.StartTime;
 import seedu.address.model.event.UidList;
 
 /**
- * Edits the details of an existing event in the application.
+ * Edits the details of an existing event in the event list of the application.
  */
 public class EditEventCommand extends Command {
 
@@ -44,14 +44,15 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the the event list of the"
+            + " application.";
 
     private final Index index;
 
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * Constructor of the EditEventCommand class.
+     * Creates an EditEventCommand to edit a event at the {@code index}.
      * @param index of the event to be edited in the filtered event list.
      * @param editEventDescriptor details to edit the event with.
      */
@@ -68,13 +69,12 @@ public class EditEventCommand extends Command {
         requireNonNull(model);
         List<Event> currentEventList = model.getFilteredEventList();
 
-        int zeroBased = index.getZeroBased();
-
-        if (zeroBased >= currentEventList.size()) {
+        int zeroBasedIndex = index.getZeroBased();
+        if (zeroBasedIndex >= currentEventList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToEdit = currentEventList.get(zeroBased);
+        Event eventToEdit = currentEventList.get(zeroBasedIndex);
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
@@ -116,7 +116,7 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Static class that stores the details to edit the event with.
+     * Stores the details to edit the event with.
      * Each field that is non-null will replace the corresponding field value of the event.
      */
     public static class EditEventDescriptor {
@@ -130,11 +130,11 @@ public class EditEventCommand extends Command {
         /**
          * Constructor to create a {@code EditEventDescriptor} object.
          */
-        public EditEventDescriptor(EditEventDescriptor copy) {
-            setEventTitle(copy.eventTitle);
-            setDate(copy.date);
-            setTime(copy.time);
-            setPurpose(copy.purpose);
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
+            setEventTitle(toCopy.eventTitle);
+            setDate(toCopy.date);
+            setTime(toCopy.time);
+            setPurpose(toCopy.purpose);
         }
 
         /**
@@ -187,7 +187,6 @@ public class EditEventCommand extends Command {
             }
 
             EditEventDescriptor otherEventDescriptor = (EditEventDescriptor) other;
-
             return getEventTitle().equals(otherEventDescriptor.getEventTitle())
                     && getDate().equals(otherEventDescriptor.getDate())
                     && getTime().equals(otherEventDescriptor.getTime())

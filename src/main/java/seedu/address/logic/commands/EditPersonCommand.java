@@ -27,7 +27,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the contact list of the application.
  */
 public class EditPersonCommand extends Command {
 
@@ -51,14 +51,16 @@ public class EditPersonCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contact list of the"
+            + " application";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates an EditPersonCommand to edit a person at the {@code index}.
+     * @param index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor details to edit the person with.
      */
     public EditPersonCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -73,11 +75,12 @@ public class EditPersonCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        int zeroBasedIndex = index.getZeroBased();
+        if (zeroBasedIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(zeroBasedIndex);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -91,8 +94,8 @@ public class EditPersonCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToEdit} that is edited
+     * with details of with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -103,9 +106,9 @@ public class EditPersonCommand extends Command {
         Date updatedDob = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
-        Uid updatedUid = new Uid(personToEdit.getUid().getUid());
+        Uid uid = personToEdit.getUid();
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedDob, updatedUid);
+                updatedGender, updatedDob, uid);
     }
 
     @Override
@@ -121,9 +124,9 @@ public class EditPersonCommand extends Command {
         }
 
         // state check
-        EditPersonCommand e = (EditPersonCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        EditPersonCommand otherCommand = (EditPersonCommand) other;
+        return index.equals(otherCommand.index)
+                && editPersonDescriptor.equals(otherCommand.editPersonDescriptor);
     }
 
     /**
@@ -142,7 +145,7 @@ public class EditPersonCommand extends Command {
         public EditPersonDescriptor() {}
 
         /**
-         * Copy constructor.
+         * Constructor to create a {@code EditPersonDescriptor} object.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -157,7 +160,7 @@ public class EditPersonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, dob, address, gender);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, gender, dob);
         }
 
         public void setName(Name name) {
@@ -184,14 +187,6 @@ public class EditPersonCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setDob(Date dob) {
-            this.dob = dob;
-        }
-
-        public Optional<Date> getDob() {
-            return Optional.ofNullable(dob);
-        }
-
         public void setAddress(Address address) {
             this.address = address;
         }
@@ -207,6 +202,13 @@ public class EditPersonCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
+        public void setDob(Date dob) {
+            this.dob = dob;
+        }
+
+        public Optional<Date> getDob() {
+            return Optional.ofNullable(dob);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -221,14 +223,13 @@ public class EditPersonCommand extends Command {
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getDob().equals(e.getDob())
-                    && getAddress().equals(e.getAddress())
-                    && getGender().equals(e.getGender());
+            EditPersonDescriptor otherPersonDescriptor = (EditPersonDescriptor) other;
+            return getName().equals(otherPersonDescriptor.getName())
+                    && getPhone().equals(otherPersonDescriptor.getPhone())
+                    && getEmail().equals(otherPersonDescriptor.getEmail())
+                    && getAddress().equals(otherPersonDescriptor.getAddress())
+                    && getGender().equals(otherPersonDescriptor.getGender())
+                    && getDob().equals(otherPersonDescriptor.getDob());
         }
     }
 }

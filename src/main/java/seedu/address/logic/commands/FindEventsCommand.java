@@ -7,8 +7,8 @@ import seedu.address.model.Model;
 import seedu.address.model.event.EventTitleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all events in address book whose event title contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all events in the event list whose event title contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class FindEventsCommand extends Command {
 

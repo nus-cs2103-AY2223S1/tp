@@ -19,7 +19,8 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Creates mailing list of customer name and email address in an event.
+ * Creates mailing list of an event in the event list of the application.
+ * The mailing list contains the names and email addresses of all attendees of the event.
  */
 public class MailEventCommand extends Command {
     public static final String COMMAND_WORD = "mailEvent";
@@ -32,15 +33,16 @@ public class MailEventCommand extends Command {
     public static final String MESSAGE_MAIL_EVENT_SUCCESS = " Generated mailing list for event: %s, "
             + "stored %s.csv file in /data folder.";
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save mailing list to file: %s.csv";
-    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no person in the event: %s.";
-    private final Index eventIndex;
+    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no attendees in the event: %s,"
+            + " the mailing list file won't be created.";
+    private final Index index;
     /**
-     * Constructor of MailEvent Command.
+     * Creates a MailEventCommand.
      * @param eventIndex index of the event to create mailing list with.
      */
     public MailEventCommand(Index eventIndex) {
         requireNonNull(eventIndex);
-        this.eventIndex = eventIndex;
+        this.index = eventIndex;
     }
 
     @Override
@@ -48,10 +50,10 @@ public class MailEventCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
-        Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
+        Event eventToMail = lastShownEventList.get(index.getZeroBased());
         String eventTitle = eventToMail.getEventTitle().toString();
         // check if index is valid
-        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
+        if (index.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         // check if there is any person in the event

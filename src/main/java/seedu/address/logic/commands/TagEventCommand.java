@@ -16,7 +16,7 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Tags customers in Person List to an event.
+ * Tags persons in the contact list to an event in the event list of the application.
  */
 public class TagEventCommand extends Command {
     public static final String COMMAND_WORD = "tagEvent";
@@ -34,6 +34,7 @@ public class TagEventCommand extends Command {
     private final List<Index> personIndexes;
 
     /**
+     * Creates a TagEventCommand.
      * @param eventIndex index of the event to be tagged with persons.
      * @param personIndexes index of persons to be tagged to the event.
      */
@@ -55,7 +56,7 @@ public class TagEventCommand extends Command {
         Event eventToTag = lastShownEventList.get(eventIndex.getZeroBased());
         UidList uids = eventToTag.getUids();
         List<String> personNamesTagged = new ArrayList<>();
-        // loop through personIndexes, raise exceptions if any (invalid index or duplicated person)
+        // loop through personIndexes, raise exceptions if any
         for (Index personIndex : personIndexes) {
             if (personIndex.getZeroBased() >= lastShownPersonList.size()) { // index is invalid
                 throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

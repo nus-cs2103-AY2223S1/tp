@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.statistics.StatisticDataList;
 
 /**
-* Generates statistics for the event specified
+* Generates statistics for the event specified.
 */
 public class MakeStatsCommand extends Command {
 
@@ -21,7 +21,7 @@ public class MakeStatsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the statistics of the Event at the index "
         + "specified by the user. Type of statistics shown is based off a user input parameter.\n"
-        + "Parameters INDEX " + PREFIX_TYPE + "TYPE \n"
+        + "Parameters: INDEX " + PREFIX_TYPE + "TYPE\n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TYPE + "g";
 
     public static final String SHOWING_STATS_MESSAGE = "Opened statistics window.";
@@ -66,7 +66,7 @@ public class MakeStatsCommand extends Command {
         StatisticDataList newDataList = new StatisticDataList();
         for (Person person : personList) {
             Gender gender = person.getGender();
-            newDataList.addToStatistic(gender.toString());
+            newDataList.incrementStatistic(gender.toString());
         }
         return newDataList;
     }
@@ -77,7 +77,7 @@ public class MakeStatsCommand extends Command {
     public StatisticDataList getAgeStatistic(ObservableList<Person> personList) {
         StatisticDataList newDataList = new StatisticDataList();
         for (Person person : personList) {
-            newDataList.addToStatistic(person.getAgeGroup());
+            newDataList.incrementStatistic(person.getAgeGroup());
         }
         return newDataList;
     }

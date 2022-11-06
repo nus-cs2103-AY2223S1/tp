@@ -16,7 +16,7 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Untags customers in Person List to an event.
+ * Untags persons in the contact list to an event in the event list of the application.
  */
 public class UntagEventCommand extends Command {
     public static final String COMMAND_WORD = "untagEvent";
@@ -34,6 +34,7 @@ public class UntagEventCommand extends Command {
     private final List<Index> personIndexes;
 
     /**
+     * Creates an UntagEventCommand.
      * @param eventIndex index of the event to be untagged with persons.
      * @param personIndexes index of persons to be untagged to the event.
      */
