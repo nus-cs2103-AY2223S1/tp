@@ -64,7 +64,26 @@ It should be noted that when checking for duplicates in the `UniqueItemList` ins
 When providing multiple arguments with the same delimiter, the last instance of the repeat delimiter is taken during the `parse` command.
 
 #### Editing an Item
-<!-- TODO: Fill up -->
+
+##### Overview
+
+The `edit` feature edits the attached attributes of a specified `Item`, which is specified by the one-indexed `itemList` presented to the user. 
+
+Here is the activity diagram showing the process of the `edit` command:
+
+<!-- TODO -->
+
+##### Feature Details
+1. The user specifies an item index that represents an `Item` to be edited.  
+2. If an invalid index is provided, the user is prompted to enter the command correctly via an error message.
+3. If an invalid command input is provided, the user will be prompted to enter the command correctly via an error message.
+4. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+5. If step 4 completes without any exceptions, then the new `Item` is successfully edited.
+
+##### Feature Considerations
+Similar to the `new` command, it should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. For example, if an `Item` with the name `Potato` already exists inside the inventory, then you cannot edit an existing `Item` to have the name `Potato`.
+
+When providing multiple arguments with the same delimiter, the last instance of the repeat delimiter is taken during the `parse` command.
 
 #### Sorting an Item
 
