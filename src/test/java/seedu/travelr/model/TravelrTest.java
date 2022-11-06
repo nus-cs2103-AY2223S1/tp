@@ -7,7 +7,7 @@ import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANT
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.SUN;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalTravelr;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class TravelrTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Travelr newData = getTypicalAddressBook();
+        Travelr newData = getTypicalTravelr();
         travelr.resetData(newData);
         assertEquals(newData, travelr);
     }

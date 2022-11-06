@@ -26,7 +26,11 @@ public class DeleteEventCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex
+     */
     public DeleteEventCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

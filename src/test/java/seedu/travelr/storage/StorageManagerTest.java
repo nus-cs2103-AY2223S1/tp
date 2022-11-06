@@ -2,7 +2,7 @@ package seedu.travelr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalTravelr;
 
 import java.nio.file.Path;
 
@@ -56,7 +56,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        Travelr original = getTypicalAddressBook();
+        Travelr original = getTypicalTravelr();
         storageManager.saveTravelr(original);
         ReadOnlyTravelr retrieved = storageManager.readTravelr().get();
         assertEquals(original, new Travelr(retrieved));

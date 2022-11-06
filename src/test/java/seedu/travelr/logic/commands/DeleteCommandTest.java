@@ -7,7 +7,7 @@ import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.travelr.logic.commands.CommandTestUtil.showTripAtIndex;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_SECOND_TRIP;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalTravelr;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.travelr.model.trip.Trip;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTravelr(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
