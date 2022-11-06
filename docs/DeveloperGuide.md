@@ -76,7 +76,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -121,7 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteContactCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagramPerson.png" width="450" />
 <img src="images/ModelClassDiagramTaskTag.png" width="450" />
@@ -138,7 +138,7 @@ The same goes for `Task` and `Tag`.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="700" />
 
@@ -164,34 +164,35 @@ Each field is implemented by a class with the same name, except for `Id` which i
 Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
-This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
+In real life, these fields would always be unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields.
 
-| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Email      | -                                              | Non-empty string of the format local-part@domain name<br/><ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 characters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
-| Remark     | -                                              | Alphanumeric string (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Email      | -                                              | Non-empty string of the format local-part@domain name<ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 characters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
+| Remark     | -                                              | Alphanumeric string (can consist of spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 #### Task
 
-Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
+Each field is implemented by a class with the same name.
 
 Id is unique and automatically generated when task is added.
 Tasks with the same fields in all of description, deadline and tag are not allowed.
 This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
 As we are maintaining a unique task list in our app, this is disallowed.
 
-| Field Name  | Description                                                                        | Constraints                                                     |
-|-------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Id          | Unique identifier for Task                                                         | -                                                               |
-| Description | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
-| Deadline    | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
-| Status      | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
-| Tag         | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
+| Field Name        | Description                                                                        | Constraints                                                     |
+|-------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| Id                | Unique identifier for Task                                                         | -                                                               |
+| Description       | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
+| Deadline          | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
+| Completion Status | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
+| Archival Status   | Archival status of task, defaults to false (not archived) when new task is added   | Boolean (Archived or Not Archived)                              |
+| Tag               | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
 
 #### Tag
 
@@ -265,9 +266,9 @@ The following sequence diagram shows how the add tag operation works:
 
 ### Add/delete task feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
+The add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
 
 Every instance of AddTaskCommand is created with a Task instance. If the Task instance is null, an exception is thrown.
 
@@ -340,6 +341,10 @@ Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()
 Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
 
 ![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 The find task feature uses the same mechanism as the find contact feature, except that it uses classes and methods for `Task` instead of `Person`.
 

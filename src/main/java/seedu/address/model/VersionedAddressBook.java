@@ -2,6 +2,9 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Manages the versioning of the address book data.
@@ -11,6 +14,7 @@ public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> addressBookStateList;
     /** Index of current state **/
     private int currentStatePointer;
+    private final Logger logger = LogsCenter.getLogger(VersionedAddressBook.class);
 
     /**
      * Creates a VersionedAddressBook and sets the initial state to the given {@code ReadOnlyAddressBook}.
@@ -33,6 +37,9 @@ public class VersionedAddressBook extends AddressBook {
         }
         addressBookStateList.add(super.getCopyOfAddressBook());
         currentStatePointer++;
+
+        logger.info("Versioned AddressBook State Change: [COMMIT][Updated State: "
+                + (currentStatePointer + 1) + " / " + addressBookStateList.size() + "]");
     }
 
     /**
@@ -41,6 +48,9 @@ public class VersionedAddressBook extends AddressBook {
     public void undo() {
         assert currentStatePointer > 0;
         currentStatePointer--;
+
+        logger.info("Versioned AddressBook State Change: [UNDO][Updated State: "
+                + (currentStatePointer + 1) + " / " + addressBookStateList.size() + "]");
     }
 
     /**
@@ -49,6 +59,9 @@ public class VersionedAddressBook extends AddressBook {
     public void redo() {
         assert currentStatePointer < addressBookStateList.size() - 1;
         currentStatePointer++;
+
+        logger.info("Versioned AddressBook State Change: [REDO][Updated State: "
+                + (currentStatePointer + 1) + " / " + addressBookStateList.size() + "]");
     }
 
     /**

@@ -8,6 +8,9 @@ public class ArchivalStatus {
     private static final String MESSAGE_TASK_ARCHIVED = "archived";
     private static final String MESSAGE_TASK_NOT_ARCHIVED = "not archived";
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Archival status should be " + MESSAGE_TASK_ARCHIVED + " or " + MESSAGE_TASK_NOT_ARCHIVED;
+
     private final Boolean isArchived;
 
     /**
@@ -26,12 +29,11 @@ public class ArchivalStatus {
         this.isArchived = isArchived;
     }
 
+    /**
+     * Returns true is archival status is archived.
+     */
     public Boolean getIsArchived() {
         return isArchived;
-    }
-
-    public static Boolean isValidArchivalStatus(String test) {
-        return test.equals(MESSAGE_TASK_ARCHIVED) || test.equals(MESSAGE_TASK_NOT_ARCHIVED);
     }
 
     @Override
