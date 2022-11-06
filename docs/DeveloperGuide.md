@@ -523,16 +523,31 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1 m/client`<br>
+      Expected: First client is deleted from the list. Details of the deleted client (excluding **remarks**) shown in the `Application's Reply` panel.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 0 m/client`<br>
+      Expected: No client is deleted. Error details shown in the `Application's Reply` panel.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the client list size), `delete 1`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a transaction
+
+1. Deleting a transaction while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
+    2. Test case: `delete 1 m/transaction`<br/>Expected: First transaction is deleted from the list. Details of the deleted transaction shown in the `Application's Reply` panel.
+    3. Test case: `delete 0 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
+
+
+2. Deleting a transaction while more than one client is shown in the client list
+   1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+   2. Test case: `delete 1 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
+   
+### Deleting a remark
+- Note: This test is exactly the same as [Deleting a transaction](#deleting-a-transaction), except replace all `transaction` keyword with `remark`
 
 ### Saving data
 

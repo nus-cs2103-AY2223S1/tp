@@ -20,9 +20,8 @@ public class DeleteTransactionCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_TRANSACTION_SUCCESS = "Deleted Transaction: %1$s";
 
-    public static final String MESSAGE_INVALID_USAGE = "Deletion of transaction can only happen when transactions "
-            + "are visible in the application!\n"
-            + "Use 'view' command to view a specific client before applying this command\n";
+    public static final String MESSAGE_INVALID_USAGE =
+            "Use 'view' command to view a specific client before applying this command\n";
 
     private final Index targetIndex;
 
