@@ -141,23 +141,6 @@
   > li {
     margin-bottom: $spacing-unit;
   }
-
-  ol {
-      counter-reset: item;
-  }
-
-  ol > li {
-      counter-increment: item;
-  }
-
-  ol ol > li {
-      display: block;
-  }
-
-  ol ol > li:before {
-      content: counters(item, ".") ". ";
-      margin-left: -20px;
-  }
 }
 
 .post-meta {
@@ -268,7 +251,24 @@
   }
 }
 
+#markdown-toc {
+  ol {
+      counter-reset: item;
+  }
 
+  ol > li {
+      counter-increment: item;
+  }
+
+  ol ol > li {
+      display: block;
+  }
+
+  ol ol > li:before {
+      content: counters(item, ".") ". ";
+      margin-left: -20px;
+  }
+}
 
 /**
  * Grid helpers
