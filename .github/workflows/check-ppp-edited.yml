@@ -42,8 +42,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Save query data to file
-        working-directory: ${{ github.workspace }}/cli-test
+        working-directory: ${{ github.workspace }}/cli-test/ppp-checker
         run: "echo '${{ steps.get_latest_prs.outputs.data }}' > data.json"
       - name: Validate all PRs are included in PPP
-        working-directory: ${{ github.workspace }}/cli-test
-        run: ./check-ppp-is-complete.sh ${{ github.event.pull_request.user.login }}
+        working-directory: ${{ github.workspace }}/cli-test/ppp-checker
+        run: ./check-ppp-is-present.sh ${{ github.event.pull_request.user.login }}
