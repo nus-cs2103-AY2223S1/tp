@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_DEADLINE;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -55,9 +56,8 @@ public class AddDeadlineCommandTest {
         Student validStudent = new StudentBuilder().build();
         model.addStudent(validStudent);
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline, validStudent.getStudentId());
-        CommandResult commandResult = addDeadlineCommand.execute(model);
 
-        assertThrows(CommandException.class, AddDeadlineCommand.MESSAGE_DUPLICATE_DEADLINE, () ->
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_DEADLINE, () ->
                 addDeadlineCommand.execute(model));
     }
 

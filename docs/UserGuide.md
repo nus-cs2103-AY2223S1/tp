@@ -101,8 +101,12 @@ Refer to the [Features](#3-features) section for details of each command.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -s n/FYP_NAME`, `FYP_NAME` is a parameter which can be used as `add -s n/Neural Network`.
-*  Having multiple prefix parameter as inputs would result in latest (right most input) to be read. <br>
-  e.g. `add -s i/A0123456J i/A6543210J n/Russell Dash` will be read as `add -s i/A6543210J n/Russell Dash`.
+
+* Having multiple parameters when exactly one is required will result in the latest parameter being read. <br>
+  e.g. `add -s i/A0123456J i/A6543210J n/Russell Dash` will be read as `add -s i/A6543210J n/Russell Dash` as the student ID parameter appears twice.
+
+* Adding or editing duplicate student tags will result in only the set of distinct tags being added or edited into the student. <br>
+  e.g. `edit A0123456J t/SOC t/ML t/SOC` will result in the student with student ID A0123456J to have two tags, `SOC` and `ML`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/FYP_NAME [t/TAG]` can be used as `n/Neural Network t/SOC` or as `n/Data Caching`.
@@ -139,7 +143,7 @@ Refer to the [Features](#3-features) section for details of each command.
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
   e.g. `05-11-2022 08:00`, `2022-11-05 08:00`.
 
-* For deadline tasks, a priority rank specifies the importance of said task. <br>
+* For deadline tasks, a priority rank `DEADLINE_RANK` specifies the importance of said task. <br>
   e.g. `delete -d i/A0123456X r/2` would delete the 2nd highest priority deadline for the student with student
   ID of A0123456X.
 
