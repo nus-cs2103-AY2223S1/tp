@@ -591,6 +591,17 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+### Planned Features
+
+#### Editing debts: `editdebt` (Not yet implemented)
+
+This command would allow you to edit the details of a specific debt, such as its description, amount, etc. Do look forward to it in a future update!
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
