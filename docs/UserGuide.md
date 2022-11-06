@@ -14,6 +14,10 @@ StudMap through a text box, and StudMap just does it for you — it’s like mag
 traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
 see. If you type fast, StudMap can get your student management tasks done faster than anything else.
 
+StudMap comes with powerful sort, filter, and mass operations features, as well as built-in attendance and participation
+tracking. If you are a TA for a computing [module](#module), StudMap is built just for you. This user guide aims to help
+you understand StudMap, so that you can make the best use of our features. Read on to find out more!
+
 ---
 
 * Table of Contents
@@ -36,7 +40,7 @@ As a TA, you will find yourself juggling various tasks:
 Managing these may be initially easy, but they can quickly pile up and become more tedious if not handled properly,
 especially with the tools available.
 
-## 2.2 What tools do TA currently use?
+## 2.2 What tools do TAs currently use?
 
 ### Spreadsheets
 
@@ -63,16 +67,18 @@ After trying all of these tools, you may start wondering: why am I wasting time 
 spent doing more productive tasks for myself or my students? You’re tired, and you just want to catch up on your sleep
 schedule!
 
-Be assured that you are not alone in this endeavor. According to an analysis done by University College London on the
-Teaching and Learning International Survey, a significant portion of teachers consider too much admin work as a source
-of their workload stress, which can in turn affect their mental well-being. You wouldn’t want this to happen to you!
+Be assured that you are not alone in this endeavor. According to
+an [analysis](https://johnjerrim.files.wordpress.com/2020/11/working_paper_workload_wellbeing_november_2020.pdf) done by
+University College London on the Teaching and Learning International Survey, a significant portion of teachers consider
+too much admin work as a source of their workload stress, which can in turn affect their mental well-being. You wouldn’t
+want this to happen to you!
 
 ## 2.4 Our Solution
 
 StudMap is our solution for you. It is a lightweight desktop app that addresses your needs as a TA. With a set of
 essential yet easy-to-use features, we aim to fill the void between Excel spreadsheets and traditional note-taking apps,
-to provide you the necessary tool to perform record keeping effectively. This user guide is a reference for you, so that
-you know how to make the most out of StudMap.
+to provide you with the necessary tool to perform record keeping effectively. This user guide is a reference for you, so
+that you know how to make the most out of StudMap.
 
 ---
 
@@ -82,16 +88,12 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 
 1. You can head off to [Section 4: Quick Start](#4-quick-start) section for a quick tutorial.
 2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information
-   about each
-   command
-   you can give StudMap.
+   about each command you can give StudMap.
 3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all
-   the
-   commands.
+   the commands.
 4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#8-glossary) for more information.
 5. If you still have any other questions regarding StudMap and its usage, check
-   out [Section 6: FAQ](#6-frequently-asked-questions)
-   for answers to some frequently asked questions.
+   out [Section 6: FAQ](#6-frequently-asked-questions) for answers to some frequently asked questions.
 
 ---
 
@@ -99,16 +101,17 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 
 If you’re new to StudMap, this is the tutorial for you! Here are the steps for you to get started:
 
-1. Ensure you have Java 11 or above installed in your computer. Download
-   Java [here](https://www.oracle.com/sg/java/technologies/downloads/).
+1. Ensure you have Java 11 or above installed in your computer. See
+   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for more detailed
+   installation instructions for Java.
 
 2. Download the latest `studmap.jar` [here](https://github.com/AY2223S1-CS2103T-W13-1/tp/releases).
 
-3. Create a folder where you want to use StudMap, and copy `StudMap.jar` into it. This will be the home folder
+3. Create a folder where you want to use StudMap, and copy `studmap.jar` into it. This will be the home folder
    for StudMap.
 
-4. Double click StudMap.jar to start the app. In a few seconds, you should see a new window similar to the figure below.
-   Notice that StudMap contains some sample data.
+4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window similar to the figure
+   below. We have added some sample data for you to play around with before you start using StudMap for yourself.
 
    ![Ui](images/ui/ui-getting-started.png)
 
@@ -117,9 +120,35 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
     * The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands)
       .
     * The **Reply Box** is where StudMap responds to your instructions.
-    * The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
+    * The **Student List** is a list of your students, each represented by a **student card**. StudMap updates this list
+      as you give it commands to do so.
+      <br><br>
 
-5. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
+5. Zooming in on the left of each student card, you can see the student's particulars:
+
+   ![Ui](images/ui/ui-student-info.png)
+
+   Take note of the following elements in the student card:
+
+    * The **Index** and **Student Name** are placed together.
+    * **Tags** are text labels for students for easy classification.
+    * **Student ID**
+    * **Phone Number**
+    * **Email**
+    * **GitHub Username**
+    * **Telegram Handle**
+
+   <br><br>
+
+6. Zooming in on the right side of each student card, you can see the information you need as a TA:
+
+   ![Ui](images/ui/ui-ta-info.png)
+
+   Take note of the following elements in the student card:
+
+   <br><br>
+
+7. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
     * `list`
         * This updates the Student List with all the students you have.
@@ -131,15 +160,16 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
         * This deletes the 3rd student currently shown in the Student List.
     * `clear`
         * This deletes all the students, so you can start with a clean slate!
+          <br><br>
 
-6. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
+8. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
    you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
    Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
    out this [Example Template](files/example_template.csv), or check out
    [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
-7. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
+9. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
    command.
    We hope you enjoy using StudMap!
 
@@ -150,9 +180,11 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 ## 5.1 Introduction
 
 Welcome to the Features section of StudMap. We have three categories of
-features: [Student List Management](#53-student-list-management), and
-[Student Updating](#54-student-updating), and [Miscellaneous](#55-miscellaneous). They have been color-coded for your
-convenience and viewing pleasure.
+features:
+
+* [5.3 Student List Management](#53-student-list-management)
+* [5.4 Student Updating](#54-student-updating)
+* [5.5 Miscellaneous](#55-miscellaneous)
 
 Read on to learn in detail about the plethora of features that StudMap has in store for you! Worried about the learning
 curve? StudMap is designed to be extremely intuitive, with in-built help messages guiding you every step of the way!
@@ -192,6 +224,15 @@ This will help you understand the guide better!
 </div>
 
 ## 5.3 Student List Management
+
+* [5.3.1 Adding a student: `add`](#531-adding-a-student-add)
+* [5.3.2 Deleting a student: `delete`](#532-deleting-a-student-delete)
+* [5.3.3 Clearing all entries: `clear`](#533-clearing-all-entries-clear)
+* [5.3.4 Importing students from CSV file: `import`](#534-importing-students-from-csv-file-import)
+* [5.3.5 Listing all students: `list`](#535-listing-all-students-list)
+* [5.3.6 Locating students by name: `find`](#536-locating-students-by-name-find)
+* [5.3.7 Sorting the students: `sort`](#537-sorting-the-students-sort)
+* [5.3.8 Filtering the students: `filter`](#538-filtering-the-students-filter)
 
 ### 5.3.1 Adding a student: `add`
 
@@ -263,7 +304,8 @@ See <a href="#553-backing-up-data">here</a> for more instructions.<br>
 
 ### 5.3.4 Importing students from CSV file: `import`
 
-**Function:** Imports student data from a CSV (Comma-separated Values) file stored on your computer.
+**Function:** Imports student data from a [CSV (Comma-separated Values) file](#csv-comma-separated-values-file) stored
+on your computer.
 
 Just starting out with StudMap? Simply copy and paste in the necessary details into a template, and StudMap will handle
 the rest — it's like magic. For your convenience, you can find the import template
@@ -284,10 +326,11 @@ that has commas in the CSV.
 **Example Use Case:** Importing a fresh batch of students as a new StudMap user
 
 1. Remove the default list of students by typing `clear`
-2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
+2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)<br><br>
    ![example CSV](images/exampleCSV.png)
-   <br/>
-   *Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)*
+   <br><br>
+   _Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)_
+   <br><br>
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
@@ -320,10 +363,13 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 **Examples:**
 
+* `find tom` returns `Tom Aito`
+
+  ![Ui](images/ui/ui-find.png)
+  <br><br>
+
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  <!-- TODO: ![result for 'find alex david'](images/findAlexDavidResult.png) -->
-  [Sample UI To be added]
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
 **See Also:**
 [`filter`](#538-filtering-the-students-filter)
@@ -406,6 +452,16 @@ by assignment.
 
 ## 5.4 Student Updating
 
+* [5.4.1 Editing a student: `edit`](#541-editing-a-student-edit)
+* [5.4.2 Marking attendance of student: `mark`](#542-marking-attendance-of-student-mark)
+* [5.4.3 Unmarking attendance of student: `unmark`](#543-unmarking-attendance-of-student-unmark)
+* [5.4.4 Grading assignment for student: `grade`](#544-grading-assignment-for-student-grade)
+* [5.4.5 Removing assignment from student: `ungrade`](#545-removing-assignment-from-student-ungrade)
+* [5.4.6 Recording participation of student: `participate`](#546-recording-participation-of-student-participate)
+* [5.4.7 Removing participation of student: `unparticipate`](#547-removing-participation-of-student-unparticipate)
+* [5.4.8 Adding tag to student: `tag`](#548-adding-tag-to-student-tag)
+* [5.4.9 Removing tag from student: `untag`](#549-removing-tag-from-student-untag)
+
 ### 5.4.1 Editing a student: `edit`
 
 **Function:** Edits an existing student in the StudMap.
@@ -462,10 +518,10 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 **Format:** `unmark INDEX/ALL c/CLASS`
 
-*`INDEX`: You can specify the index of the student you want to remove attendance record for. The index refers to the
-index number shown in the displayed student list.
-The index **must be a positive integer** 1, 2, 3, …​
-*`ALL`: You can remove attendance record for all students currently displayed.
+* `INDEX`: You can specify the index of the student you want to remove attendance record for. The index refers to the
+  index number shown in the displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* `ALL`: You can remove attendance record for all students currently displayed.
 
 * StudMap allows for attendances to be removed even if the student never had any record for that class
   (i.e. no error will be thrown)
@@ -641,6 +697,12 @@ Accidentally tagged a student wrongly, or simply don't want it there anymore? Th
 
 ## 5.5 Miscellaneous
 
+* [5.5.1 Exiting the program: `exit`](#551-exiting-the-program-exit)
+* [5.5.2 Saving the data](#552-saving-the-data)
+* [5.5.3 Backing up data](#553-backing-up-data)
+* [5.5.4 Editing the data file](#554-editing-the-data-file)
+* [5.5.5 Viewing help: `help`](#555-viewing-help-help)
+
 ### 5.5.1 Exiting the program: `exit`
 
 **Function:** Exits the program.
@@ -654,7 +716,8 @@ manually.
 
 ### 5.5.3 Backing up data
 
-StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. You can make a copy of this file if you
+StudMap data are saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. You can make a copy of this
+file if you
 want to back up your data.
 
 ### 5.5.4 Editing the data file
@@ -718,11 +781,20 @@ the data of your previous StudMap home folder. See how to back up your data [her
 
 # 8. Glossary
 
-### Commands
+### Command
 
-Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
+A command is an instruction for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
 section
 to see what commands are available.
+
+### CSV (Comma-separated Values) file
+
+This is a file type that many applications use for importing and exporting data. That's why we're using it for import!
+
+### JSON file
+
+This is a file type that many applications use for storing data in a human-readable format. We're also using it, so that
+advanced users can edit their student data easily if they wish.
 
 ### Module
 
