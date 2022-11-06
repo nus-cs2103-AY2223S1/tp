@@ -601,26 +601,87 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an employee
 
-1. Adding an employee with all fields specified.
+1. Adding an employee with all fields specified:
 
-   1. Test case: `
+   1. **Test Case**: `add n/John Doe j/Accountant d/Finance p/91234567 e/john@coydir.com a/Oak Street, Loudoun l/21 t/New hire`<br>
+      **Expected Outcome**: A new employee, with the name "John Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
 
-### Deleting a person
+2. Adding an employee with optional fields missing:
 
-1. Deleting a person while all persons are being shown
+   1. **Test Case**: `add n/Jack Doe j/Consultant d/Legal p/98765432 e/jack@coydir.com a/Pine Street, Loudoun`<br>
+      **Expected Outcome**: A new employee, with the name "Jack Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. **Test Case**: `add n/Jill Doe j/Scheduler d/Administration`<br>
+      **Expected Outcome**: A new employee, with the name "Jill Doe", appears at the bottom of the list of employees on the left panel (you might need to scroll down to view it).
 
-   1. Test case: `delete 1`<br>
-      Expected Outcome: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Adding an employee with compulsory fields missing:
 
-   1. Test case: `delete 0`<br>
-      Expected Outcome: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. **Test Case**: `add n/Jane Doe j/Telemarketer p/99887766 e/jane@coydir.com a/Elm Street, Loudoun`<br>
+      **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+### Editing an employee
+
+1. Editing employees in general:
+
+   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database.
+      Additionally, take note of the total count of employees (you can see this by entering `list` and checking the largest index shown).
+
+   1. **Test Case**: `edit 1`<br>
+      **Expected Outcome**: No changes occur. An error is shown, saying that there must be at least one field provided.
+
+   1. **Test Case**: `edit 0 n/EditTest1`<br>
+      **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x n/Valid Name` (where x is larger than the list size), `edit abcdef`<br>
       Expected Outcome: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Editing an employee while not viewing their profile:
+
+   1. **Test Case**: `edit 1 n/EditTest2 t/EditTestTag1 t/EditTestTag2`<br>
+      **Expected Outcome**: On the left side panel, the name of the first employee updates immediately to the new name "EditTest2", and there are now two tags "EditTestTag1" and "EditTestTag2".
+
+   2. **Test Case**: `edit 1 a/EditTest2Address`<br>
+      **Expected Outcome**: No changes noticed on the left side panel, but upon clicking the first employee, notice the address on the right panel is updated to "EditTest2Address".
+
+3. Editing an employee while viewing their profile:
+
+   1. **Prerequisites**: Ensure there is at least 1 employee present in the list on the left side panel. If there isn't, either enter `list` to show all, and if there are none at all, `add` an employee first.
+      Then, enter `view 1` to view the employee profile of the first employee.
+
+   2. **Test Case**: `edit 1 e/EditTest3@email.com a/EditTest3Address`<br>
+      **Expected Outcome**: On the right side panel, the profile is updated such that the email is now "EditTest3@email.com" and the address is "EditTest3Address".
+
+   3. **Test Case**: `edit 1 n/EditTest3`<br>
+      **Expected Outcome**: On the right side panel, the profile is updated such that the name is now "EditTest3". Similarly, the name should be the same on the left panel.
+
+4. Editing an employee while finding:
+
+   1. **Prerequisites**: Ensure there is at least 1 employee in the database with a name that contains "e". If you have been following the previous test cases, the employee "EditTest2" will suffice.
+      Then, enter `find n/e`, and enter `view 1`.
+
+   2. **Test Case**: `edit 1 n/EditTest4`
+      **Expected Outcome**: On the right side panel, the profile is updated such that the name is now "EditTest4". Similarly, the name should be the same on the left panel.
+
+   3. **Test Case**: `edit 1 n/Void`
+      **Expected Outcome**: On the left side panel, the edited employee disappears. The right side panel either shows the next employee (if there is any), or shows the home panel.
+
+### Deleting an employee
+
+1. Deleting an employee in general:
+
+   1. **Prerequisites**: List all employees using the `list` command. Multiple persons are shown in the list on the left panel.
+
+   2. **Test Case**: `delete 1`<br>
+      **Expected Outcome**: First employee is deleted from the list. Details of the deleted employee shown in the status message.
+      Right panel now shows the next employee (if there is any), or shows the home panel.
+
+   3. **Test Case**: `delete 0`<br>
+      **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
+      Expected Outcome: Similar to previous.
+
+###
 
 ### Saving data
 
