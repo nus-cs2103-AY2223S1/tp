@@ -154,6 +154,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Display of person and task list
+
+#### 1. Motivation
+
+Given below is a partial class diagram of the **old UI**.
+
+<img src="images/UiClassDiagram.png" width="500" height="400" />
+
+In the original implementation, there is only one `PersonListPanel` that displays a list of people using `PersonCard`.
+This was sufficent, as the original addressbook only had to manage a list of people.
+However, our product needs to display tasks in addition to people, as this is a core feature of our product.
+
+Tasks have a lot of information regarding them, such as deadline, priority, description and category. Thus, including them as
+labels within the `PersonCard` would quickly lead to a very messy and disorganized display. Additionally, we intended for each person
+to be able to be assigned to multiple tasks. Thus, this would introduce the probelm of having a dynamic number of labels for each 
+`PersonCard`, and potentially make the UI even more messy,
+
+Therefore, it is necessary to have a **separate list panel** for tasks, as well as people. This would allow the information for tasks to be 
+cleanly displayed seperate from the information releveant to people
+
+#### 2. Implementation of the new UI
+
+In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings
+depending on the `Command` executed:
+
+By having separate list panels, it will be easier to customise the display of different `Person` types as well
+as `Order` and `Pet` if required by future features and ui improvements.
+
+In each `BuyerCard` as seen in the graph below, the buyer's `Name` will be shown together with an index and a label
+indicating he or she is a `Buyer`.
+The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
+The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of
+each of the `Order` that the `Buyer` makes with an index in a list.
+
+<img src="images/BuyerCard.png" width="700"/>
+
+The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
+
+In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
+Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of
+the `Pet` that the `Supplier` sells with an index in a list.
+
+By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact
+details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the
+height of each card within a reasonable range
+(e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched
+vertically, potentially to an extent that the whole window can only show information of one single buyer).
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
