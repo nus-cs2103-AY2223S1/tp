@@ -1240,14 +1240,69 @@ testers are expected to do more *exploratory* testing.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+### Adding a module
+
+1. Adding a module while all modules are being shown
+
+    1. Prerequisites: 
+       - All modules are being shown (i.e. run `list module -a` first).
+       - You are not currently `cd`'d into a module (`cd ..` if you are).
+       - The module does not already exist in the module list.
+
+    2. Test case: `add module CS2103T`<br>
+       Expected: Module CS2103T is being added to the module list. Details of the added module shown in the status message.
+
+    3. Test case: `add module CS2100 -n "Computer Organisation" -cr 4`<br>
+       Expected: Module CS2100 is being added to the module list. Details of the added module shown in the status message.
+
+    4. Test case: `CS2103T` already exists and you input `add module CS2103T`<br>
+       Expected: No module is added. Error stating module already exists appears is displayed.
+
+    5. Test case: `add module CS2100 -n "Computer Organisation"`<br>
+       Expected: No module is added. Error showing command input syntax displayed. 
+
+### Removing a module
+
+1. Removing a module while all modules are being shown
+
+    1. Prerequisites:
+        - All modules are being shown (i.e. run `list module -a` first).
+        - You are not currently `cd`'d into a module (`cd ..` if you are).
+        - The module exists in the module list.
+
+    2. Test case: `remove mod CS2103T` when `CS2103T` does not exist in the module list.<br>
+       Expected: Module CS2103T is being removed from the module list. Tasks associated with the module are also removed
+       from the task book. Details of the deleted task shown in the status message.
+
+    3. Test case: `remove mod CS2100` when `CS2100 does not exist in the modules list<br>
+       Expected: No module is deleted. Error stating that module does not exist is displayed.
+
+### Editing a module
+
+1. Removing a module while all modules are being shown
+
+    1. Prerequisites:
+        - All modules are being shown (i.e. run `list module -a` first).
+        - You are not currently `cd`'d into a module (`cd ..` if you are).
+        - The module exists in the module list.
+
+    2. Test case: `edit module CS2103T -c CS2100` where `CS2103T` exists and `CS2100` does not exist in module list.<br>
+       Expected: Module with code CS2103T is replaced with CS2100. Message indicating a successful edit is displayed.
+
+    3. Test case: `edit module MA1521 -n "calculus"` when `MA1521` does not exist in module list.<br>
+       Expected: No module is edited. Error stating that module does not exist is displayed.
+
+    4. Test case: `edit module MA1521 -d 2000-12-1` when `MA1521` exists in module list.<br>
+       Expected: No module is edited. Error containing proper command syntax is displayed.
 
 ### Removing a task
 
@@ -1264,7 +1319,28 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a task
+
+1. Editing a task while all tasks are being shown
+
+2. Removing a module while all modules are being shown
+
+    1. Prerequisites:
+        - All tasks are being shown (i.e. run `list task -a` first).
+        - The task exist in the task book.
+
+    2. Test case: `edit task 1 -d "return book"` where `1` is a valid index.<br>
+       Expected: The task with index 1 in the current task book is edited to have a new description. Message indicating
+       a successful task edit is displayed.
+
+    3. Test case: `edit task 1 -p high` where `1` is a valid index.<br>
+       Expected: The task with index 1 in the current task book is edited to have a new priority. Depending on what the
+       other tasks parameters are, the task may change index to showcase the change in priority. Message indicating
+       a successful task edit is displayed.
+
+    4. Test case: `edit task 3 -p low` where `3` is an invalid index.<br>
+       Expected: No task is edited. Error indicating the valid index range is displayed.
+    
 
 ### Saving data
 
