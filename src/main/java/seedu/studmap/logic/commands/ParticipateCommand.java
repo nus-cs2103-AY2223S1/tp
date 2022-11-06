@@ -30,10 +30,10 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
             + "\nExample: " + COMMAND_WORD + " 1 yes " + PREFIX_PARTICIPATION + "P01"
             + "\nExample: " + COMMAND_WORD + " all yes " + PREFIX_PARTICIPATION + "P02";
 
-    public static final String MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION = "Recorded Student as %1$s: %2$s";
+    public static final String MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION = "Recorded Student as %1$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION = "Recorded %1$s students as %2$s";
 
-    public static final String MESSAGE_MARK_SINGLE_UNEDITED_PARTICIPATION = "Student is already recorded as %1$s: %2$s";
+    public static final String MESSAGE_MARK_SINGLE_UNEDITED_PARTICIPATION = "Student is already recorded as %1$s";
     public static final String MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT =
             "%1$s students are already recorded as %2$s";
 
@@ -47,30 +47,28 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
     public String getSingleEditSuccessMessage(Student editedStudent) {
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
-                studentEditor.getParticipation().getString(),
-                editedStudent);
+                studentEditor.getParticipation().getString());
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION,
-                editedStudents.size(), studentEditor.getParticipation());
+                editedStudents.size(), studentEditor.getParticipation().getString());
     }
 
     @Override
     public String getSingleUneditedMessage(Student uneditedStudent) {
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_MARK_SINGLE_UNEDITED_PARTICIPATION,
-                studentEditor.getParticipation().getString(),
-                uneditedStudent);
+                studentEditor.getParticipation().getString());
     }
 
     @Override
     public String getMultiUneditedMessage(List<Student> uneditedStudents) {
         requireNonNull(studentEditor.getParticipation());
         return String.format(MESSAGE_GRADE_MULTI_UNEDITED_ASSIGNMENT,
-                uneditedStudents.size(), studentEditor.getParticipation());
+                uneditedStudents.size(), studentEditor.getParticipation().getString());
     }
 
     @Override
