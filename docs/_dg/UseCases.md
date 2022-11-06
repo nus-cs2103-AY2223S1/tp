@@ -78,7 +78,7 @@ Extensions:
 
 #### Use Case 4: Create Tag
 
-Preconditions: [[ Tag ]] does not yet exist in FoodRem.
+Preconditions: [[ tag:Tag ]] does not yet exist in FoodRem.
 
 [[ MSS ]]:
 
