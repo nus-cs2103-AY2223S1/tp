@@ -166,7 +166,7 @@ The features covered in this guide are:
 * [Mark Student Feature](#mark-student-feature)
 * [Sort-by feature](#sort-by-feature)
 * [Undo Command Feature](#undo-command-feature)
-* [[Proposed] Find-by feature](#proposed-find-by-feature)
+* [Find-by feature](#find-by-feature)
 
 ### Edit Class Feature
 
