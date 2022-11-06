@@ -178,15 +178,15 @@ In this section, we will describe how our add commands are implemented. In NUSch
 
 Since both `AddProfileCommand` and `AddEventCommand` are implemented in a similar manner, we will be using the `AddProfileCommand` to illustrate the implementation of add commands.
 
-The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute` method, to add new profiles when called.
+The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute()` method, to add new profiles when called.
 
 #### Implementation
 
 1. When the user inputs a command to add a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and return a new `AddProfileCommandParser`.
-4. The method `AddProfileCommandParser#parse` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `AddProfileCommand`, which will then create a new `Profile` using the `Model#addProfile` method.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and return a new `AddProfileCommandParser`.
+4. The method `AddProfileCommandParser#parse()` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute()` method of the `AddProfileCommand`, which will then create a new `Profile` using the `Model#addProfile()` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `AddProfileCommand` works.
@@ -214,15 +214,15 @@ In this section, we will describe how our delete commands are implemented. In NU
 
 Since both `DeleteProfileCommand` and `DeleteEventCommand` are implemented in a similar manner, we will be using the `DeleteProfileCommand` to illustrate the implementation of delete commands.
 
-The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `DeleteProfileCommand` overrides the `Command#execute` method, to delete the specified profile when called.
+The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `DeleteProfileCommand` overrides the `Command#execute()` method, to delete the specified profile when called.
 
 #### Implementation
 
 1. When the user inputs a command to delete a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and returns a new `DeleteProfileCommandParser`.
-4. The method `DeleteProfileCommandParser#parse` will then return a new `DeleteProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile` method.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and returns a new `DeleteProfileCommandParser`.
+4. The method `DeleteProfileCommandParser#parse()` will then return a new `DeleteProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `DeleteProfileCommand` works.
@@ -245,15 +245,15 @@ In this section, we will describe how our edit commands are implemented. In NUSc
 
 Since both `EditProfileCommand` and `EditEventCommand` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands.
 
-The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute` method, to edit existing profiles when called.
+The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute()` method, to edit existing profiles when called.
 
 #### Implementation
 
 1. When the user inputs a command to edit a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and return a new `EditProfileCommandParser`.
-4. The method `EditProfileCommandParser#parse` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile` method.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and return a new `EditProfileCommandParser`.
+4. The method `EditProfileCommandParser#parse()` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `EditProfileCommand` works.
@@ -276,14 +276,14 @@ In this section, we will describe how our view commands are implemented. In NUSc
 
 Since both `ViewProfileCommand` and `ViewEventCommand` are implemented in a similar manner, we will be using the `ViewProfileCommand` to illustrate the implementation of view commands.
 
-The `ViewProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `ViewProfileCommand` overrides the `Command#execute` method, to view existing profiles when called.
+The `ViewProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `ViewProfileCommand` overrides the `Command#execute()` method, to view existing profiles when called.
 
 #### Implementation
 
 1. After the user command is parsed by `NuSchedulerParser`, a `Command` object (more precisely, a `ViewCommand` object) will be returned to the `LogicManager`.
-2. The `LogicManager` will then call `Command#execute` of the `ViewCommand`, passing the `Model` object as parameter.
-3. During the execution of the `ViewCommand`, `Model#updateFilteredProfileList` will be called. The method takes in a `Predicate`, in this case the `Predicate` returns `true` for all inputs. This is to allow all `Profile`s to be listed.
-4. `Model#updateFilteredProfileList` method will then update the `FilteredList` to contain all `Profile`s, which will then be reflected on the terminal.
+2. The `LogicManager` will then call `Command#execute()` of the `ViewCommand`, passing the `Model` object as parameter.
+3. During the execution of the `ViewCommand`, `Model#updateFilteredProfileList()` will be called. The method takes in a `Predicate`, in this case the `Predicate` returns `true` for all inputs. This is to allow all `Profile`s to be listed.
+4. `Model#updateFilteredProfileList()` method will then update the `FilteredList` to contain all `Profile`s, which will then be reflected on the terminal.
 5. At the end of method, a `CommandResult` object will be returned which will be used to indicate a successful execution of the command in the display.
 
 The following sequence diagram shows what happens when `ViewCommand` gets executed.
@@ -300,15 +300,15 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 In this section, we will describe how view upcoming events command is implemented.
 
-The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute` method, to display upcoming event commands when called.
+The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute()` method, to display upcoming event commands when called.
 
 #### Implementation
 
-1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ViewUpcomingEventsCommandParser`.
-2. The method `ViewUpcomingEventsCommandParser#parse` is then called. It calls `ParserUtil#parseDays`which returns the days input as an integer.
+1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ViewUpcomingEventsCommandParser`.
+2. The method `ViewUpcomingEventsCommandParser#parse()` is then called. It calls `ParserUtil#parseDays()`which returns the days input as an integer.
 3. Days input will be used to create a new `StartDateWithinTimeFramePredicate`.
 4. Using the days integer and the predicate, `ViewUpcomingEventsCommandParser` creates `ViewUpcomingEventsCommand` which gets returned to `LogicManager`.
-5. The `LogicManager` will call `Command#execute` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList` to display the desired events.
+5. The `LogicManager` will call `Command#execute()` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList()` to display the desired events.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows what happens when `ViewUpcomingEventsCommand` gets executed.
@@ -325,7 +325,7 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddProfilesToEventCommand` is used to add existing `Profile`s to an `Event` as attendees.
 
-The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute` method to add new attendees to an event when called.
+The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute()` method to add new attendees to an event when called.
 
 #### Proposed implementation
 
