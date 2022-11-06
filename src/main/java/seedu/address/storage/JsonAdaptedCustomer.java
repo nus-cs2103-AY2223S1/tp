@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commission.exceptions.DuplicateCommissionException;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -24,6 +25,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedCustomer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
+
+    public static final String MESSAGE_DUPLICATE_COMMISSION = "Commission list contains duplicate commission(s).";
 
     private final String name;
     private final String phone;
@@ -133,7 +136,11 @@ class JsonAdaptedCustomer {
 
         // create commission entries
         for (JsonAdaptedCommission commission : commissions) {
-            customer.addCommission(commission.toModelType(customer));
+            try {
+                customer.addCommission(commission.toModelType(customer));
+            } catch (DuplicateCommissionException e) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_COMMISSION);
+            }
         }
         return customer;
     }
