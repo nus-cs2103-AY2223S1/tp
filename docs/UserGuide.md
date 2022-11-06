@@ -194,7 +194,7 @@ Examples:
 Adds a commission to the currently opened customer.
 
 Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
-* Fee is the amount you are charging the customer for this commission.
+* Fee is the amount you are charging the customer for this commission. _Note: Though there is no limit to the number of decimal places for input, only up to two decimal places will be displayed on the graphical interface._
 * Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status. It is case-insensitive.
 
 Examples:
