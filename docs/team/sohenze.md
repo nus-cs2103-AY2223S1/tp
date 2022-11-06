@@ -92,8 +92,7 @@ CLI, and the application responds with its GUI, created with JavaFX.
   [#203](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/203)
   
 * **Contributions to team-based tasks**:
-  * Facilitated team discussions on design implementations
-  * Provided insights and proposed solutions to problems during team discussions
+  * Updated the DG sections on architecture and general components of the application.
 
 * **Review/mentoring contributions:**:
   * Provided alternative opinions to teammates' contributions
