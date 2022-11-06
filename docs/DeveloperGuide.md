@@ -834,9 +834,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
 
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC09 - Filter applicants by status**
+**Use case: UC09 - Filter applicants by application status**
 
 **MSS**
 
@@ -857,7 +862,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC10 - Sorts all applicants by name, scholarship or application status**
+
+**MSS**
+
+1. User requests a sorted list sorted by name, scholarship or application status.
+2. TrackAScholar shows the sorted list of applicants with the specified input parameter. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC11 - Imports a json file into TrackAScholar**
+
+**Guarantees:**
+* After merging, no two applicants will have the same name.
+
+**MSS**
+
+1. User imports a json file into TrackAScholar and specifies the type of merging.
+2. TrackAScholar merges the imported json file with the current file.
+3. TrackAScholar shows the lists of all applicants after importing.
+   Use case ends.
+
+**Extensions**
+  
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Imported file does not exist.
+
+    * 1c1. TrackAScholar displays an error message informing the user that there is no file to be imported. <br>
+      Use case resumes at step 1.
+
+* 1d. Imported file is not a json file.
+
+    * 1d1. TrackAScholar displays an error message showing the imported file type requirements. <br>
+      Use case resumes at step 1.
+
+* 2a. An imported applicant has the same name as an applicant already in the applicant list.
+
+    * 2a1. TrackAScholar merges the applicants according to the type of merging specified by the user input. <br>
+      Use case resumes at step 2.
 
 --------------------------------------------------------------------------------------------------------------------
 
