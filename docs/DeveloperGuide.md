@@ -622,8 +622,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     2. Test case: `clone 1 n/James Lee p/91234567 e/jameslee@example.com b/1990-10-22`<br>
-       Expected 1: A new person with James Lee, phone number 91234567, email jameslee@example.com and birthdate 1990-10-22 and other details same as the first person will be added to the end of the list.<br>
-       Expected 2: Error shown if this person is already exist in the survin.
+       Expected 1: A new person with name James Lee, phone number 91234567, email jameslee@example.com and birthdate 1990-10-22 and other details same as the first person will be added to the end of the list.<br>
+       Expected 2: Error shown if this person is already exist in the Survin.
 
 ### Saving data
 

@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **New Feature**: Shortcut keys
   * What it does: Allow the users to use keyboard shortcuts to add helpful text to the command box.
   * Justification: This feature provides a fast and efficient way for user to enter the commands, it can also help the users to avoid mistakes such as typos and missing prefixes in the command.
-  * Highlights: Currently, only shortcut for add command has included all the prefixes because most of the fields are compulsory to add, shortcuts for other commands do not contain any prefixes because most of the the fields are optional, if we include all the prefixes the user has to take more time to delete away those unwanted prefix.
+  * Highlights: Currently, only shortcut for add command has included all the prefixes because most of the fields are compulsory to add, shortcuts for other commands do not contain any prefixes because most of the fields are optional, if we include all the prefixes the users have to take more time to delete away those unwanted prefixes.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=NUSDG&breakdown=true)
 
