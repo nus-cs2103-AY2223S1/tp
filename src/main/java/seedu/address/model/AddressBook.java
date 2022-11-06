@@ -92,6 +92,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
         customers.setCustomer(target, editedCustomer);
+        target.getCommissionList().forEach(allCommissions::remove);
+        editedCustomer.getCommissionList().forEach(allCommissions::add);
     }
 
     /**
