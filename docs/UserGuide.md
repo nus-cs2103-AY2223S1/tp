@@ -263,15 +263,7 @@ Finds properties whose names contain any of the given keywords.
 
 Format: `find -p NAME [MORE_NAMES]`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
-
-
-    
-    
-
-</div>
-
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **Tips:**
 
@@ -295,13 +287,13 @@ Deletes the property at the specified INDEX from the property directory.
 
 Format: `delete -p INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">:bulb: 
 
 **Tips:**
-    
+
 * The `INDEX` refers to the index number shown in the currently displayed property directory.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
-    
+
 </div>
 
 Examples:
