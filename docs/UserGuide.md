@@ -270,7 +270,9 @@ Examples:
 * `attendance mark 1 l/2 m/0` marks the attendance of the 2nd lesson for the 1st student in the shown student list with a 0.
 
 Expected outcome:
+
 ![AttendanceMark](images/AttendanceMark.png)
+
 After using ```attendance mark``` command
 
 ### Deleting attendance of a student: `attendance delete`
@@ -283,11 +285,11 @@ Examples:
 * `attendance delete 1` deletes the attendance list for the 1st student in the shown student list.
 * `attendance delete 2` deletes the attendance list for the 2nd student in the shown student list.
 
-Expected outcome:
-![AttendanceDelete](images/AttendanceDelete.png)
+Expected outcome:<br>
+![AttendanceDelete](images/AttendanceDelete.png)<br>
 After using ```attendance delete``` command
 
-##Task Commands
+## Task Commands
 [Back to Top ↑](#introduction)
 
 ### Adding a Task : `task`
@@ -312,8 +314,8 @@ Examples:
 * `task t/Prepare studio slides d/Topic Environment Model` adds a ToDo with title "Prepare studio slides" and description "Topic Environment Model" to the task list.
 * `task t/Collect robot d/At MakersLab` adds a ToDo with title "Collect robot" and description "MakersLab" to the task list.
 
-Expected outcome: <br>
-![AddingToDo](images/AddingToDo.png) <br>
+Expected outcome:<br>
+![AddingToDo](images/AddingToDo.png)<br>
 After adding a ToDo task
 
 #### Adding a Deadline
