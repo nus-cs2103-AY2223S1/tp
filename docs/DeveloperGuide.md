@@ -58,7 +58,7 @@ Given below is an **Architecture Diagram**. It explains the high-level design of
 overview of main components and how they interact with each other.
 
 ![Architecture](images/ArchitectureDiagram.png)
-{:diagram}
+{: diagram}
 
 ### Main components of the architecture
 
@@ -85,7 +85,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 the command `delete 1`.
 
 ![Sequence Diagram](images/ArchitectureSequenceDiagram.png)
-{:diagram}
+{: diagram}
 
 Each of the four main components (also shown in the diagram above)
 
@@ -99,7 +99,7 @@ through its interface rather than the concrete class (reason: to prevent outside
 implementation of a component), as illustrated in the (partial) class diagram below.
 
 ![Component Managers](images/ComponentManagers.png))
-{:diagram}
+{: diagram}
 
 The sections below give more details of each component.
 
@@ -109,7 +109,7 @@ The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-{:diagram}
+{: diagram}
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -136,7 +136,7 @@ The `UI` component
 Here's a (partial) class diagram of the `Logic` component:
 
 ![Logic Class Diagram](images/LogicClassDiagram.png)
-{:diagram}
+{: diagram}
 
 How the `Logic` component works:
 
@@ -150,7 +150,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-{:diagram}
+{: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -174,7 +174,7 @@ How the parsing works:
 [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
 ![Model Class Diagram](images/ModelClassDiagram.png)
-{:diagram}
+{: diagram}
 
 The `Model` component
 
@@ -190,7 +190,7 @@ The `Model` component
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 ![More OOP Model](images/BetterModelClassDiagram.png)
-{:diagram}
+{: diagram}
 
 </div>
 
@@ -200,7 +200,7 @@ The `Model` component
 [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
 ![Storage Class Diagram](images/StorageClassDiagram.png)
-{:diagram}
+{: diagram}
 
 The `Storage` component
 
@@ -229,7 +229,7 @@ The `filter` feature is implemented by the `FilterCommand` class which extends i
 of the `filter` feature can be summarized via the sequence diagram shown below.
 
 ![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png)
-{:diagram}
+{: diagram}
 
 This method is implemented to support the feature of filtering students by the tags that is assigned to them.
 
@@ -279,7 +279,7 @@ Since all concrete implementations of the `EditStudentCommand` share the same cl
 of `MarkCommand` will also be used to explain the implementation details.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
-{:diagram}
+{: diagram}
 
 `IndexListGenerator` is an abstract class representing the list of indexes to modify.
 The instance of `IndexListGenerator` can be either
@@ -297,7 +297,7 @@ using `MarkCommandParser` is illustrated in the class diagram
 below.
 
 ![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
-{:diagram}
+{: diagram}
 
 ### General flow for `EditStudentCommand`
 
@@ -310,7 +310,7 @@ Given below is the typical flow for `EditStudentCommand` such as the  `MarkComma
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
-{:diagram}
+{: diagram}
 
 ### Additional Notes
 
@@ -364,7 +364,7 @@ This operation is exposed in the `Model` interface as `sortFilteredStudentList()
 The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
-{:diagram}
+{: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
