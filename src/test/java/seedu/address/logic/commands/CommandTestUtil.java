@@ -15,6 +15,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
@@ -189,5 +191,19 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered tag list to show only the tag at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTagAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTagList().size());
+
+        Tag tag = model.getFilteredTagList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = tag.getName().split("\\s+");
+        model.updateFilteredTagList(new TagNameContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTagList().size());
     }
 }
