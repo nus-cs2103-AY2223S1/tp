@@ -22,6 +22,9 @@ public class Assessment {
     public static final String MESSAGE_CONSTRAINTS_DIFFICULTY =
         "Assessment difficulty has to be more than 0 and less than 5";
 
+    public static final String MESSAGE_CONSTRAINTS_SUBJECT =
+            "Subjects should only contain alphabets, and it should not be blank";
+
     // Checks for alphanumeric characters and includes spaces after the first word.
     // Also accepts dots and underscores.
     public static final String VALIDATION_REGEX = "([\\w.]+\\s*)+";
@@ -113,6 +116,34 @@ public class Assessment {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Obtains error message from AssessmentString if invalid.
+     * @param assessmentString
+     * @return string containing error message of invalid field, or empty string if all fields are valid
+     */
+
+    public static String getErrorMessage(String assessmentString) {
+        String[] parsedString = assessmentString.split("_");
+        String subjectName = parsedString[0].trim().toUpperCase();
+        String name = parsedString[1].trim().toUpperCase();
+        double totalScore = Double.parseDouble(parsedString[2].trim());
+        double weightage = Double.parseDouble(parsedString[3].trim());
+        double difficulty = Double.parseDouble(parsedString[4].trim());
+        if (!Subject.isValidSubject(subjectName)) {
+            return MESSAGE_CONSTRAINTS_SUBJECT;
+        } else if (!isValidAssessment(name)) {
+            return MESSAGE_CONSTRAINTS;
+        } else if (!isValidTotalScore(totalScore)) {
+            return MESSAGE_CONSTRAINTS_TOTAL_SCORE;
+        } else if (!isValidWeightage(weightage)) {
+            return MESSAGE_CONSTRAINTS_WEIGHTAGE;
+        } else if (!isValidDifficulty(difficulty)) {
+            return MESSAGE_CONSTRAINTS_DIFFICULTY;
+        } else {
+            return "";
+        }
     }
 
     public String getAssessmentName() {

@@ -39,8 +39,7 @@ public class TypicalStudents {
                                                            .withEmail("johnd@example.com").withPhone("98765432")
                                                            .withTags("owesMoney", "friends")
                                                            .withStudentClass("1A")
-                                                           .withAttendance("date/12-02-2022 attendance/1 "
-                                                            + "%% date/13-02-2022 attendance/0")
+                                                           .withAttendance("date/12-02-2024 attendance/1")
                                                            .withSubjectHandler("english: CA1:[80.0, 100.0, 0.2, 1.0], "
                                                                    + "CA2:[30.0, 56.0, 0.4, 2.0] %%math: CA1:[80.0, "
                                                                    + "100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]")

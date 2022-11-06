@@ -18,7 +18,7 @@ import seedu.watson.model.student.subject.Subject;
 import seedu.watson.storage.Storage;
 
 /**
- * Controller for a help page
+ * Controller for a GradeWindow page
  */
 public class GradeWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(GradeWindow.class);
@@ -56,10 +56,8 @@ public class GradeWindow extends UiPart<Stage> {
     @FXML
     private Label errorMessage;
 
-
-
     /**
-     * Creates a new HelpWindow.
+     * Creates a new GradeWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
@@ -78,10 +76,8 @@ public class GradeWindow extends UiPart<Stage> {
         });
     }
 
-
-
     /**
-     * Creates a new HelpWindow.
+     * Creates a new GradeWindow.
      */
     public GradeWindow(Logic logic) {
         this(new Stage(), logic);
@@ -169,21 +165,21 @@ public class GradeWindow extends UiPart<Stage> {
         }
     }
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the grading window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the grading window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the grading window.
      */
     public void focus() {
         getRoot().requestFocus();

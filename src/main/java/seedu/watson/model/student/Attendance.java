@@ -14,7 +14,7 @@ import seedu.watson.logic.parser.exceptions.ParseException;
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Attendance should only contain a date followed by a \"1\" or a \"0\"";
+        "Attendance should only contain a date followed by a \"1\" or a \"0\", and should not be in the past!";
 
     private static final Pattern FORMAT = Pattern.compile("date/(?<date>.+) attendance/(?<attendance>[01])");
 
