@@ -54,10 +54,6 @@ activate Model
 Model --> UploadPictureCommand
 deactivate Model
 
-UploadPictureCommand -> Model : get(1)
-activate Model
-Model --> UploadPictureCommand : Student studentToEdit
-deactivate Model
 
 UploadPictureCommand -> ":<<class>> \nImageStorage" : chooseImage()
 activate ":<<class>> \nImageStorage"

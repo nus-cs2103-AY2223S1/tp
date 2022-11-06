@@ -270,8 +270,7 @@ The following is a more detailed explanation of how the `UploadPictureCommand` w
 4. The file is then uploaded via ```ImageStorage#uploadImage(Student student, File file)``` into the images folder in the current working directory which was created upon intialization of GREWZ.
 5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
-![picture upload activity](images/PictureUploadActivityDiagram.png)
-Activity diagram for PictureUploadCommand
+
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
 Sequence diagram for PictureUploadCommand
 

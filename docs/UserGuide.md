@@ -100,7 +100,7 @@ Refer to the [Features](#3-features) below for details of each command.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* [Extraneous](#glossary) parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* [Extraneous](#6-glossary) parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -127,7 +127,7 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
 Students CANNOT have the same name.
 
-GREWZ naming convention is [case-insensitive](#glossary), but [whitespace-sensitive](#glossary).
+GREWZ naming convention is [case-insensitive](#6-glossary), but [whitespace-sensitive](#6-glossary).
 This means that it does not allow for students with the exact same name to be keyed into the application. 
 Thus trying to add a student with the name `Ben` and `ben` will not work.
 Student ID must also be unique.
@@ -171,7 +171,7 @@ GREWZ allows you to upload image of your students into your application. The fol
 Format: `upload-pic INDEX`
 
 * Uploads a picture for the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* A window will open to allow you to select a file from your computer. The file **must** be of [.JPG](#glossary) format.
+* A window will open to allow you to select a file from your computer. The file **must** be of [.JPG](#6-glossary) format.
 * If no picture exists for the student specified, the selected picture will be assigned to the student.
 * Existing picture will be updated to the input file picture.
 
@@ -428,7 +428,7 @@ GREWZ data are saved in the hard disk automatically after any command that chang
 
 #### 3.3.4 Editing the data file
 
-GREWZ data are saved as a [JSON](#glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GREWZ data are saved as a [JSON](#6-glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
@@ -453,7 +453,7 @@ Format: `exit`
 ## 4. FAQ
 [Back to Top ↑](#1-introduction)
 
-**Q:** I don't know if I have [Java `11`](#glossary) installed in my computer. What do I do?
+**Q:** I don't know if I have [Java `11`](#6-glossary) installed in my computer. What do I do?
 <br />
 **A:** To check your Java version, open a Command Prompt or Terminal window on your computer and type:
 ```
@@ -461,32 +461,33 @@ java -version
 ```
 This will show you the exact version of Java installed on your computer, if any.
 If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
+If you are still lost, try referring to [this site](https://blog.hubspot.com/website/check-java-verison).
 
 **Q:** Do I have to retype the command every single time even if they are similar?
 <br />
-**A:** You can use our [input history feature](#331-navigating-user-input-history--) and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
+**A:** You can use our [input history feature](#332-navigating-user-input-history--) and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
 
-**Q:** What is the difference between the different types of [tasks](#32-task-commands)?
+**Q:** What is the difference between the different types of [tasks](#32-task-features)?
 <br />
 **A:** All the three tasks essentially have a task title and description. What differentiates them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task has neither of these fields.
 
-**Q:** How do I to add a student if I do not have their student ID?
+**Q:** How do I add a student if I do not have their student ID?
 <br />
 **A:** Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish
 the students in the student list. However, you could initially add a dummy student ID and tag the student profile as "incomplete".
 
-**Q:** How do I to add a deadline to an existing ToDo task?
+**Q:** How do I add a deadline to an existing ToDo task?
 <br />
 **A:** Remove the existing ToDo task, then add the same task with your given deadline.
 
-**Q:** How do I to edit an existing task?
+**Q:** How do I edit an existing task?
 <br />
 **A:** Use our [edit task](#322-editing-a-task--edit-task) feature to edit the respective fields.
 
 
 **Q:** How do I transfer my data into another computer?
 <br />
-**A:** Download the app in the other computer and overwrite the empty data files it creates with the files that contain data of your previous GREWZ data folder.
+**A:** Download the app in the other computer and transfer all files from the images and data folders from the existing computer into the new images and data folders in the new computer.
 
 **Q:** How do I use the [attendance commands](#318-attendance-management)?
 <br />
@@ -495,7 +496,7 @@ the students in the student list. However, you could initially add a dummy stude
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
-[Back to Top ↑](#ed)
+[Back to Top ↑](#1-introduction)
 
 ### 5.1 Student Management Commands
 
@@ -554,9 +555,7 @@ the students in the student list. However, you could initially add a dummy stude
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
 | **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
 | **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
-| **JSON**                                   | It is plain text written in JavaScript Object Notation and used to send data between computers.                                                |        
 | **Extraneous**                             | Irrelevant or unrelated to the subject being dealt with.                                                                                       |
-| **.JPG**                                   | Standard file format for compressing pictures so that they can be stored or sent by email more easily.                                         |
 | **Java**                                   | Widely used programming language and it is a software platform used in distributed environment of the internet.                                |
 
 [Back to Top ↑](#1-introduction)
