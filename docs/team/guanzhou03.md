@@ -23,7 +23,7 @@ Enhancements implemented:
 * `unhide patients` command: Allows the mode to unhide previously hidden patients based on conditions specified e.g unhide by tags.
 * `unhide appts` command: Allows the model to unhide previously hidden appointments based on conditions specified e.g unhide by marked status.
 The global predicate to show/hide which appointments and patients was difficult to implement, because hide/unhide has to work with other commands such as find and edit,
-and a global predicate for the model must be maintained at all times. e.g hide/find/exit/unhide commands work on the current shown list instead of the full list of appointments and patients, and so the predicate has to be constantly combined, leading to many bugs.
+and a global predicate for the model must be maintained at all times. e.g hide/find/edit/unhide commands work on the current shown list instead of the full list of appointments and patients, and so the predicate has to be constantly combined, leading to many bugs.
 
 Contributions to the UG:
 * Added `delete`, `cancel`, `hide patients`, `hide appts`, `unhide patients`, `unhide appts` feature description and examples.
