@@ -7,6 +7,7 @@ Condonery is a desktop app made for property agents primarily used for managing 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -261,7 +262,6 @@ Examples:
 * `find -p Pinnacle@Duxton Bishan` returns `Pinnacle@Duxton`, `Bishan 8`<br>
 
 [//]: # (Image to be added later)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 ### Deleting a property : `delete -p`
 
@@ -308,11 +308,9 @@ Returns a list of properties within a specified price range.
 Format: `range -p l/100,000 u/1,000,000`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
-
 **Tips:**
 * Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable).
 * Lower price boundary (`l/LOWER_BOUND`) cannot be higher than upper price boundary (`u/UPPER_BOUND`).
-
 </div>
 
 Examples:
