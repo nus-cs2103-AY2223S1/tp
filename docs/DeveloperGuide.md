@@ -926,6 +926,47 @@ testers are expected to do more *exploratory* testing.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
    The window automatically expands to occupy the entire screen.
 
+### Listing all orders
+
+1. Listing all orders after calling `findo`
+  * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
+    Of these orders, there exist 2 orders made by customers with `Chan` in their names.
+  * Before testing, enter `findo n/Chan`<br/>
+    Expected: 2 orders by customers with `Chan` in their name.
+  * Test case: Enter `listo` into the command box.<br/>
+    Expected: ALl orders listed.
+  * Alternative negative test case: Enter `listO` into the command box.<br/>
+    Expected: Result display shows `Unknown command`.
+
+### Finding order(s)
+
+1. Finding an order while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+   * Test case: Enter `findo -d` into the command box.</br>
+   Expected: Orders which have been delivered are displayed. The number of orders which 
+   correspond to the search parameters is displayed in the result display.
+   * Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+   Expected: Orders which have a customer name `Alex` and address containing the word 
+   `Geylang` will be displayed. The number of orders which correspond to the search 
+   parameters is displayed in the result display.
+   * Test case: Enter `findo Alex` into the command box.<br/>
+   Expected: Result display displays an invalid command format message with the 
+   specifications of the correct `findo` command format.
+   * Other incorrect `findo` commands to try: `findo`, `findo -e`.
+   Expected: Similar to previous.
+
+### Sorting orders by time created
+
+1. Sorting orders by time created while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
+   * Test case: Enter `sorto old` into the command box.<br/>
+   Expected: Orders in the order card will be displayed from oldest to newest.
+   * Test case: Enter `sorto new` into the command box.<br/>
+   Expected: Orders in the order card will be displayed from newest to oldest.
+   * Test case: Enter `sorto hello` into the command box.<br/>
+   Expected: Result display displays an invalid command format message with the
+   specifications of the correct `sorto` command format.
+
 ### Deleting an order
 
 1. Deleting an order while all orders are being shown 
