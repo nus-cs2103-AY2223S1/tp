@@ -19,6 +19,12 @@
     font-style: italic;
     margin-top: 1.5rem;
   }
+
+  @footnote {
+    border-top: 1px solid black;
+    border-clip: 5rem;
+    padding-top: 0.5rem;
+  }
 }
 
 @page :first {
