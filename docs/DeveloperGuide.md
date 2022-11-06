@@ -393,7 +393,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 ```java
 (first, second) -> {
     HashMap&ltInteger, Object&gt a = first.getUniqueId();
-    HashMap&ltInteger, Object> b = second.getUniqueId();
+    HashMap<Integer, Object> b = second.getUniqueId();
     Instant t = (Instant) a.get(0);
     int result = t.compareTo((Instant) b.get(0));
     if (result == 0) {
@@ -408,6 +408,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 <td>Alphabetical</td>
 <td>`Comparator.compare&#40;Tutor::getName&#41;`</td>
 </tr>
+</table>
 
 
 
