@@ -284,7 +284,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Tips feature
 
-The tips feature shows curates tips for internship applications for specific application stages that helps the user to prepare for their application deliverables and tests. The tips are only shown for specific stages of internship applications.
+The tips feature shows curated tips for internship applications for specific application stages in order to help the user prepare for their certain deliverables, interviews and tests. The tips are currently only curated for common stages of internship applications due to the feasibility constraints.
 
 #### Implementation
 
