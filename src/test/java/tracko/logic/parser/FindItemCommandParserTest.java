@@ -1,6 +1,7 @@
 package tracko.logic.parser;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 
@@ -24,10 +25,10 @@ public class FindItemCommandParserTest {
         // no leading and trailing whitespaces
         FindItemCommand expectedFindItemCommand =
                 new FindItemCommand(new ItemContainsKeywordsPredicate(Arrays.asList("Chair", "Keychain")));
-        CommandParserTestUtil.assertParseSuccess(parser, "Chair Keychain", expectedFindItemCommand);
+        assertParseSuccess(parser, "Chair Keychain", expectedFindItemCommand);
 
         // multiple whitespaces between keywords
-        CommandParserTestUtil.assertParseSuccess(parser, " \n Chair \n \t Keychain  \t", expectedFindItemCommand);
+        assertParseSuccess(parser, " \n Chair \n \t Keychain  \t", expectedFindItemCommand);
     }
 
 }

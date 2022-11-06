@@ -752,7 +752,7 @@ Shows a window with a link to the user guide.
 
 ### Clearing all data in TrackO: `clear`
 
-If you want clear all sample data present, `clear` is the command for you. 
+If you want to clear all sample data present, `clear` is the command for you. 
 
 The command `clear` clears all data (in both [Order List](#layout) and [Inventory List](#layout)) from TrackO.
 
