@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
@@ -43,14 +44,14 @@ public class UpcomingInterviewPredicateTest {
         // EP: interview is a minute later
         LocalDateTime aMinuteLater = LocalDateTime.now().plusMinutes(1);
         Application aMinuteLaterApplication = new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate(aMinuteLater.toLocalDate()),
+                new InterviewBuilder().withInterviewDate(aMinuteLater.toLocalDate())
                         .withInterviewTime(aMinuteLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(aMinuteLaterApplication));
 
         // EP: interview is an hour later
         LocalDateTime anHourLater = LocalDateTime.now().plusHours(1);
         Application anHourLaterApplication = new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate(anHourLater.toLocalDate()),
+                new InterviewBuilder().withInterviewDate(anHourLater.toLocalDate())
                         .withInterviewTime(anHourLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(anHourLaterApplication));
 
