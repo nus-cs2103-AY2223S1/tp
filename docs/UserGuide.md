@@ -5,7 +5,7 @@ title: User Guide
 
 HackAssist is a desktop application which aims to help manage tasks in software development hackathons. In hackathon projects, task management is often hectic because we are required to complete a large number of tasks in a short amount of time. However, with HackAssist, we aim to make your task management workflow easier, so you can focus on building your hackathon project :)
 
-This guide provides an overview on how to perform the main functionalities of HackAssist: [Members Management](#members-management) and [Tasks Management](#tasks-management).
+This guide provides an overview on how to perform the main functionalities of HackAssist: [People Management](#people-management) and [Tasks Management](#tasks-management).
 
 For advanced users, you can go straight to the [Command Summary](#command-summary).
 
@@ -56,7 +56,7 @@ Refer to the [Features](#features) below for details of each command.
 
 3. Tabs: This is where you can choose for HackAssist to display Members or Tasks List
 
-4. Members/ Tasks List: This is where the current list is displayed which includes details about each member or task.
+4. Members/ Tasks List: This is where the current list is displayed which includes details about each member (person in your team) or task.
 
 5. Storage Location: This is where you can see the location of HackAssist data file.
 
@@ -68,7 +68,7 @@ Refer to the [Features](#features) below for details of each command.
 
 This section provides information on how you can use HackAssist commands for people management and tasks management. 
 
-You can click [General](#general) to learn about general commands, [Members Management](#members-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
+You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
 
 Before you learn any commands, please read the following notes about HackAssist command format.
 
@@ -134,7 +134,7 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 
 <br>
 
-### Members Management
+### People Management
 
 #### Adding a person: `add`
 
@@ -147,7 +147,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A person can have any number of tags (including 0)
 </div>
 
-Refer to the [Member Parameters](#member-parameters) section for details about the format of each parameter.
+Refer to the [Person Parameters](#person-parameters) section for details about the format of each parameter.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 `
@@ -215,7 +215,7 @@ Format: `list`
 
 ### Tasks Management
 
-The following commands are for viewing and managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. Each task can be assigned to a member to represent that they are responsible for completing that task.
+The following commands are for viewing and managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. Each task can be assigned to a person to represent that they are responsible for completing that task.
 
 #### Adding a task: `addTask`
 
@@ -223,14 +223,14 @@ Adds a task to the task list. Note that you cannot add a task if another task wi
 
 Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
-* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that member. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done. 
+* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that person. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done. 
 
 Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
 Examples:
 
 * `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12` adds task `Fix toggle` to the task list
-* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list and assigns it to member with email `john@example.com`
+* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list and assigns it to person with email `john@example.com`
 
 #### Deleting a task: `deleteTask`
 
@@ -247,20 +247,20 @@ Examples:
 
 #### Editing a Task: `editTask`
 
-Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a team member. 
+Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team. 
 
 Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
 * Edits the task at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed task list. It must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
+* To un-assign a person from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
 * To mark a task's status as `completed` or `not completed`, write `true` or `false` in the IS_DONE field, e.g. `do/true`.
 
 Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
 Examples:
-* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the member with email `charlotte@example.com`.
+* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the person with email `charlotte@example.com`.
 * `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
 
 ### Finding a Task using keywords : `findTask`
@@ -350,31 +350,6 @@ Examples:
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do I backup my data?<br>
 **A**: Create a copy of the `HackAssist.json` file in another directory.
-
---------------------------------------------------------------------------------------------------------------------
-## Member Parameters
-
-| Parameter      | Format                                                                                                                                                                                                                                                                                                                                                                                             |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/NAME         | Should contain only alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                             |
-| d/PHONE_NUMBER | Should contain only numbers                                                                                                                                                                                                                                                                                                                                                                        |
-| e/EMAIL        | Has 2 parts separated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These labels should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any. |
-| c/ADDRESS      | No restriction on what characters can be entered in this field                                                                                                                                                                                                                                                                                                                                     |
-
---------------------------------------------------------------------------------------------------------------------
-
-## Task Parameters
-
-| Parameter                   | Format                                                                                                                                                               |
-|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/NAME                      | Should contain only alphanumeric characters and spaces                                                                                                               |
-| d/DESCRIPTION               | Should contain only alphanumeric characters and spaces                                                                                                               |
-| pr/PRIORITY                 | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                                      |
-| c/CATEGORY                  | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others`               |
-| dl/DEADLINE                 | Should be in the format `YYYY-MM-DD` and after the current date                                                                                                      |
-| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`. |
-| do/IS_DONE                  | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                     |
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -383,3 +358,30 @@ Examples:
 |-----------|-------------------------------------------------------------------------|
 | GUI       | Graphical User Interface - The visual representation of the application |
 | Parameter | Input to the command called                                             |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix
+
+### Person Parameters
+
+| Parameter      | Format                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME         | Should contain only alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                             |
+| d/PHONE_NUMBER | Should contain only numbers                                                                                                                                                                                                                                                                                                                                                                        |
+| e/EMAIL        | Has 2 parts separated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These labels should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any. |
+| c/ADDRESS      | No restriction on what characters can be entered in this field                                                                                                                                                                                                                                                                                                                                     |
+
+### Task Parameters
+
+| Parameter                   | Format                                                                                                                                                                                |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME                      | Should contain only alphanumeric characters and spaces                                                                                                                                |
+| d/DESCRIPTION               | Should contain only alphanumeric characters and spaces                                                                                                                                |
+| pr/PRIORITY                 | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                                                       |
+| c/CATEGORY                  | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others`                                |
+| dl/DEADLINE                 | Should be in the format `YYYY-MM-DD` and after the current date                                                                                                                       |
+| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing person (case-insensitive) in your contacts. For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`. |
+| do/IS_DONE                  | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                      |
+
+
