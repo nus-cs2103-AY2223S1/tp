@@ -12,7 +12,7 @@ tutorials and note down questions more effectively than traditional GUI apps.
 * Table of Contents
     * **[Quick Start](#quick-start)**
     * **[Features](#features)**
-        * [**Students**](#<ins>Students</ins>)
+        * **[Students](#students)**
             * Adding a student: [`addstu`](#adding-a-student--addstu)
             * Editing a student: [`editstu`](#editing-a-student-editstu)
             * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
@@ -21,12 +21,12 @@ tutorials and note down questions more effectively than traditional GUI apps.
             * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
             * Finding a student: [`findstu`](#finding-a-student-findstu)
             * Listing all students: [`liststu`](#listing-all-students-liststu)
-        * [**Questions**](#<ins>Questions</ins>)
+        * **[Questions](#questions)**
             * Adding a question: [`addq`](#adding-a-question--addq)
             * Marking a question: [`markq`](#marking-a-question--markq)
             * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
             * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
-        * [**Tutorials**](#<ins>Tutorials</ins>)
+        * **[Tutorials](#tutorials)**
             * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
             * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
             * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
@@ -41,15 +41,18 @@ tutorials and note down questions more effectively than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
+2. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
+3. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. 
+   1. If double-clicking does not work, you can go to the directory containing the SETA.jar file through your terminal 
+   and run `java -jar SETA.jar` to launch the application.
+5. The GUI similar to the below should appear in a few seconds. Note how the app
+      contains some sample data.<br>
+      ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
    list all the students in the 'Student' column.<br>
 
 Some example commands you can try:
@@ -89,7 +92,10 @@ Some example commands you can try:
 
 </div>
 
-### <ins>Students</ins>
+### Students
+Each student contains details such as their name, telegram handle and email. The latter two are there for you to
+contact the student if necessary. You can also track each student's attendance and include the number of messages
+he has sent on Zoom to note down his participation.
 
 ### Adding a student : `addstu`
 
@@ -99,12 +105,13 @@ Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
 * Telegram handle must start with a '@', followed by an alphanumeric character.
 * After the first character, telegram handle can only contain alphanumeric character or underscore.
-* Email can only contain alphanumeric characters.
+* Email can only contain alphanumeric characters and must contain a top level domain with at least 2 characters
+  (E.g. of top level domain: `.com`, `.co`, `.edu`).
 
 Examples:
 
 * `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
-* `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.com`
+* `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.edu`
 
 <img src="images/ug-screenshots/addstu.png" alt="addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com" width="1100">
 
@@ -115,7 +122,7 @@ Edits an existing student in the student list.
 Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
-  The index must be a positive integer 1, 2…
+  The index must be a positive integer 1, 2, 3...
 * At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
 * Editing a student with the same details as the student's original details will be accepted. 
@@ -139,11 +146,11 @@ Format: `attendance INDEX`
 
 * Increment attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2, 3, ….
+* The index must be a positive integer 1, 2, 3...
 
 Example:
 
-* `attendance 1`
+* `attendance 1` 
 
 <img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
@@ -157,8 +164,8 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
   * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
     student in the student list will be 7 instead of 2.
 * The `INDEX` refers to the index number shown in the displayed student list.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
+* The `INDEX` must be a positive integer 1, 2, 3... 
+* The `MESSAGE_COUNT` must be a positive integer 1, 2, 3...
 * If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
 `response: 000000000`
 
@@ -176,7 +183,7 @@ Format: `helpstu INDEX`
 
 * Adds a help tag to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, ….
+* The index must be a positive integer 1, 2. 3...
 * Adding help tag to a student who is already tagged with help tag will not change anything.
 
 Example:
@@ -193,8 +200,8 @@ Format: `unhelpstu INDEX`
 
 * Removes help tag to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, ….
-* Removing help tag from a student who does not need help will not change anything.
+* The index must be a positive integer 1, 2. 3...
+* Removing help tag from a student who does not have a help tag will not change anything.
 
 Example:
 
@@ -210,7 +217,7 @@ Format: `deletestu INDEX`
 
 * Deletes the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, ….
+* The index must be a positive integer 1, 2. 3...
 
 Example:
 
@@ -229,8 +236,8 @@ Format: `findstu KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `findstu jun`
 * `findstu john mary`
+* `findstu jun`
 
 <img src="images/ug-screenshots/findstu.png" alt="findstu 1" width="1100">
 
@@ -240,13 +247,20 @@ Lists all students in the student list.
 
 Format: `liststu`
 
+* Lists all students after student list is filtered upon finding a student or students. 
+
 Example:
 
 * `liststu`
 
 <img src="images/ug-screenshots/liststu.png" alt="liststu 1" width="1100">
 
-### <ins>Questions</ins>
+### Questions
+Sometimes, you may receive questions that you may not have the answer to or you may not have enough time to answer
+all of them during the tutorial. SETA allows you to track these questions. Furthermore, if you find a question that
+requires urgent clarification or critical thinking, you can indicate on the user interface that these questions are
+important. For questions requiring critical thinking, it would be also good to share them with other TAs so that the
+rest of the module's students can benefit from knowing this question.
 
 ### Adding a question : `addq`
 
@@ -268,10 +282,10 @@ Format: `markq INDEX`
 
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2, 3, ...
-* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
-  indexes are 1, 2, 3 and 4.
-* Note: A marked question can be marked again.
+* The index must be a positive integer 1, 2, 3...
+* The index must be within the number of questions in the question list (E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.).
+* Note: Marking a question that is already marked will not change anything.
 
 Example:
 
@@ -287,10 +301,10 @@ Format: `unmarkq INDEX`
 
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2, 3, ...
+* The index must be a positive integer 1, 2, 3...
 * The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
-* Note: An unmarked question can be unmarked again.
+* Note: Unmarking a question that is already unmarked will not change anything.
 
 Example:
 
@@ -305,7 +319,7 @@ Deletes a question in the question list.
 Format: `deleteq INDEX`
 
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2, 3, ...
+* The index must be a positive integer 1, 2, 3...
 * The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
@@ -315,7 +329,9 @@ Example:
 
 <img src="images/ug-screenshots/deleteq.png" alt="deleteq 1" width="1100">
 
-### <ins>Tutorials</ins>
+### Tutorials
+Each tutorial has a group number, a topic to focus on and a date and time. These correspond to the `GROUP_NUMBER`,
+`CONTENT` and `DATE TIME` parameters accordingly.
 
 ### Adding a tutorial : `addtut`
 
@@ -324,7 +340,7 @@ Adds a tutorial to the tutorial list.
 Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 
 * The format of the date must be `YYYY-MM-DD`.
-* The format of the time must be in 24h format without semicolon: `HHmm`.
+* The format of the time must be in 24h format without semicolon: `HHmm` (E.g. `0120`, `1830`).
 * Special cases for `DATE`:
   * Input: `2022-02-29`, `2022-02-30` and `2022-02-31` 
   * Shown: `28 Feb 2022`
@@ -343,7 +359,7 @@ Format: `deletetut INDEX`
 
 * Deletes the tutorial at the specified INDEX.
 * The index refers to the index number shown in the displayed tutorial list.
-* The index must be a positive integer 1, 2. 3, … .
+* The index must be a positive integer 1, 2. 3...
 
 Example:
 
@@ -411,9 +427,6 @@ directly by editing that data file.
 If your changes to the data file makes its format invalid, SETA will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 
 
