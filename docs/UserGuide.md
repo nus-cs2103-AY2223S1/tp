@@ -34,6 +34,8 @@ tutorial for you to get familiar with the commands and command formats.
 
 This user guide also provides comprehensive explanations so that you know how to use all the [features](#features) in YellowBook.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer. [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
