@@ -20,6 +20,9 @@ Class JsonJeeqTrackerStorage
 Class JsonSerializableJeeqTracker
 Class JsonAdaptedClient
 Class JsonAdaptedTag
+Class JsonAdaptedRemark
+Class JsonAdaptedTransaction
+
 }
 
 }
@@ -37,5 +40,7 @@ JsonJeeqTrackerStorage .up.|> JeeqTrackerStorage
 JsonJeeqTrackerStorage ..> JsonSerializableJeeqTracker
 JsonSerializableJeeqTracker --> "*" JsonAdaptedClient
 JsonAdaptedClient --> "*" JsonAdaptedTag
+JsonAdaptedClient --> "*" JsonAdaptedRemark
+JsonAdaptedClient --> "*" JsonAdaptedTransaction
 
 @enduml
