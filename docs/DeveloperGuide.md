@@ -159,7 +159,6 @@ This section describes some noteworthy details on how certain features are imple
 #### About this feature
 
 The add internship application feature allows users to quickly add an internship application in the tracker via the
-The add internship application feature allows users to quickly add an internship application in the tracker via the
 command `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]...`.
 
 #### How it is implemented
@@ -544,29 +543,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | view a list of current internship applications                        | -                                                                  |
 | `* * *`  | user                                       | add a new internship application                                      | -                                                                  |
 | `* * *`  | user                                       | delete an internship application                                      | remove entries that I no longer need                               |
-| `* *`    | user                                       | mark internship applications as completed                             | clearly see my progress                                            |
-| `*`      | user                                       | unmark completed internship applications                              | clearly see my progress                                            |
 | `* * *`  | forgetful user                             | obtain the information of the company                                 | contact them if I have any queries                                 |
-| `*`      | potential user                             | see the app populated with sample data                                | see what the app is like while it is in use                        |
-| `* *`    | new user                                   | purge all current data                                                | get rid of experimental data I used for exploring the app          |
 | `* * *`  | organized user                             | color code tags for different interviews and statuses                 | sort and prioritize my interview data                              |
+| `* * *`  | user applying to many internships          | search for a specific company via keywords                            | easily find the information I am looking for                       |
+| `* * *`  | user applying to many internships          | make my own tags                                                      | sort my applications better                                        |
+| `* * *`  | user applying to internships progressively | edit individual application information at any time                   | make sure the information stays relevant                           |
+| `* * *`  | frequent user                              | the commands to be simple and memorable                               | access my information quickly and easily                           |
+| `* *`    | user                                       | mark internship applications as completed                             | clearly see my progress                                            |
+| `* *`    | user                                       | view internship periods of different companies                        | more informed about my applications                                |                                                                                    
+| `* *`    | new user                                   | purge all current data                                                | get rid of experimental data I used for exploring the app          |                  
 | `* *`    | user applying to many internships          | sort application deadlines by time and priority                       | take note of upcoming deadlines                                    |
 | `* *`    | user applying to many internships          | record down the dates of the interviews                               | avoid interview clashes                                            |
-| `* *`    | user who just started his interviews       | record my mistakes made during interviews                             | reflect on t hem                                                   |
-| `* * *`  | user applying to many internships          | search for a specific company via keywords                            | easily find the information I am looking for                       |
+| `* *`    | user who just started his interviews       | record my mistakes made during interviews                             | reflect on t hem                                                   |          
 | `* *`    | user applying to many internships          | receive reminders about upcoming interviews and deadlines             | not miss any important dates                                       |
-| `* * *`  | user applying to many internships          | make my own tags                                                      | sort my applications better                                        |
-| `* *`    | user applying to technical internships     | view different stages of my interview such as HR and technical stages | see what phase of the interviews I am at                           |
-| `* * *`  | user applying to internships progressively | edit individual application information at any time                   | make sure the information stays relevant                           |
+| `* *`    | user applying to technical internships     | view different stages of my interview such as HR and technical stages | see what phase of the interviews I am at                           |                     
 | `* *`    | user applying to technical internships     | filter through my internships by job role                             | to keep track of the roles I have applied for                      |
-| `*`      | user applying to many internships          | sort the salaries of each company                                     | compare the options I have                                         |
-| `*`      | user applying to many internships          | archive the interviews I have been rejected from                      | avoid cluttering the app with data and also refer to them later on |
 | `* *`    | user applying to many internships          | prioritize the companies I am keen on                                 | compare the options I have                                         |
-| `* * *`  | frequent user                              | the commands to be simple and memorable                               | access my information quickly and easily                           |
-| `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |
-| `* *`    | user                                       | view internship periods of different companies                        | more informed about my applications                                |
-| `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |
 | `* *`    | frequent user                              | compare internship statistics such as internship lengths              | make a more informed choice                                        |
+| `*`      | potential user                             | see the app populated with sample data                                | see what the app is like while it is in use                        |
+| `*`      | user                                       | unmark completed internship applications                              | clearly see my progress                                            |
+| `*`      | user applying to many internships          | sort the salaries of each company                                     | compare the options I have                                         |
+| `*`      | user applying to many internships          | archive the interviews I have been rejected from                      | avoid cluttering the app with data and also refer to them later on |                                                        
+| `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |                               
+| `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |                                      
 | `*`      | frequent user                              | send feedback to the developers of the application                    | make them optimize the app more                                    |
 
 *{More to be added}*
@@ -763,7 +762,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
----
 
 **Use case: UC09 - Edit an internship application**
 
@@ -943,28 +941,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
----
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Data should be stored consistently upon closing and reopening the app
-5. System should be usable by a Computing student who has never applied to an internship before
-6. System should be easily usable by the majority of Year 2+ Computing students
-
-
-*{More to be added}*
-
+4. Data should be stored consistently even after closing and reopening the app.
+5. System should be usable by a Computing student who has never applied to an internship before.
+6. System should be easily usable by the majority of Year 2+ Computing students.
+7. The application is not required to support any other language other than English.
+8. The application is not required to support multiple users on a single device.
+9. The response to any commands carried out by the user should become visible within 3 seconds.
+10. The user is not required to install Gradle/JavaFx for the application to function. 
+11. The user is not required to have internet connection in order for the application to function.
 
 ### Glossary
 
-| Term        | Explanation |
-| ----------- | ----------- |
-| Mainstream OS | Windows, Linux, Unix, OS-X |
-| Graphical User Interface (GUI) | An interface for the user to interact with the system via graphical icons and audio |
-| Command Line Interface (CLI) | An interface for the user to input commands to interact with the system |
+| Term                           | Explanation                                                                                                    |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------|
+| Mainstream OS                  | Windows, Linux, Unix, OS-X                                                                                     |
+| Graphical User Interface (GUI) | An interface for the user to interact with the system via graphical icons and audio                            |
+| Command Line Interface (CLI)   | An interface for the user to input commands to interact with the system                                        |
+| Tag                            | An optional one-word identifier of a internship application. An internship application can have multiple tags. |
+| Status                         | The status of the internship application, must be either `Offered`, `Rejected` or `Progress`                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -984,7 +983,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    2. Double-click the jar file <br>
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample internships. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -1021,7 +1020,7 @@ More information on usage: [stats command](UserGuide.html#viewing-statistics-of-
 ### Exiting application
 
 Command: `exit` <br>
-More information on usage: [exit command](UserGuide.md#exiting-the-program-exit)
+More information on usage: [exit command](UserGuide.html#exiting-the-program-exit)
 
 1. Test case: `exit` <br>
    Expected: Exits InTrack and all data is saved.
@@ -1029,7 +1028,7 @@ More information on usage: [exit command](UserGuide.md#exiting-the-program-exit)
 ### Adding an internship
 
 Command: `add` <br>
-More information on usage: [add command](UserGuide.md#adding-an-internship-application-add)
+More information on usage: [add command](UserGuide.html#adding-an-internship-application-add)
 
 1. Adding an internship application while all internship applications are being shown.
 
@@ -1057,7 +1056,7 @@ More information on usage: [add command](UserGuide.md#adding-an-internship-appli
 ### Deleting an internship
 
 Command: `delete` <br>
-More information on usage: [delete command](UserGuide.md#deleting-an-internship-application-delete)
+More information on usage: [delete command](UserGuide.html#deleting-an-internship-application-delete)
 
 1. Deleting an internship while all internships are being shown
 
@@ -1083,7 +1082,7 @@ More information on usage: [delete command](UserGuide.md#deleting-an-internship-
 ### Updating status of an internship
 
 Command: `status` <br>
-More information on usage: [status command](UserGuide.md#updating-status-of-an-internship-application--status)
+More information on usage: [status command](UserGuide.html#updating-status-of-an-internship-application--status)
 
 1. Updating status of an internship while all internships are shown.
 
@@ -1098,7 +1097,7 @@ More information on usage: [status command](UserGuide.md#updating-status-of-an-i
     4. Other incorrect status commands to try: `status 1 j`, `status x o` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Deleting an internship while internships are being filtered.
+2. Updating status of an internship while internships are being filtered.
 
    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
 
@@ -1108,7 +1107,7 @@ More information on usage: [status command](UserGuide.md#updating-status-of-an-i
 ### Adding tags to an internship
 
 Command: `addtag` <br>
-More information on usage: [addtag command](UserGuide.md#adding-a-tag-to-an-internship-application--addtag)
+More information on usage: [addtag command](UserGuide.html#adding-a-tag-to-an-internship-application--addtag)
 
 1. Adding tags to an internship while all internships are shown.
 
@@ -1144,7 +1143,7 @@ More information on usage: [addtag command](UserGuide.md#adding-a-tag-to-an-inte
 ### Deleting tags from an internship
 
 Command: `deltag` <br>
-More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-internship-application--deltag)
+More information on usage: [deltag command](UserGuide.html#deleting-a-tag-from-an-internship-application--deltag)
 
 1. Deleting tags from an internship while all internships are shown.
 
@@ -1163,7 +1162,7 @@ More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-
     5. Other incorrect status commands to try: `deltag 1`, `deltag x Urgent` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Adding tags to an internship while internships are being filtered.
+2. Deleting tags from an internship while internships are being filtered.
 
     1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple 
        internships in the list. The first internship in the list has only the `Urgent` tag (case-sensitive).
@@ -1174,7 +1173,7 @@ More information on usage: [deltag command](UserGuide.md#deleting-a-tag-from-an-
 ### Selecting an internship
 
 Command: `select` <br>
-More information on usage: [select command](UserGuide.md#selecting-an-internship-application--select)
+More information on usage: [select command](UserGuide.html#selecting-an-internship-application--select)
 
 1. Selecting an internship while all internships are shown.
 
@@ -1189,7 +1188,7 @@ More information on usage: [select command](UserGuide.md#selecting-an-internship
     5. Other incorrect select commands to try: `select`, `select x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Adding tags to an internship while internships are being filtered.
+2. Selecting an internship while internships are being filtered.
 
     1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple
        internships in the list. 
@@ -1200,11 +1199,11 @@ More information on usage: [select command](UserGuide.md#selecting-an-internship
 ### Editing an internship
 
 Command: `edit` <br>
-More information on usage: [edit command](UserGuide.md#editing-an-internship-application--edit)
+More information on usage: [edit command](UserGuide.html#editing-an-internship-application--edit)
 
 1. Editing a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. The selected internship
     has `POSITION` as `Software Engineer` and has only `Urgent` tag.
 
     2. Test case: `edit p/Data Analyst`<br>
@@ -1230,11 +1229,11 @@ More information on usage: [edit command](UserGuide.md#editing-an-internship-app
 ### Adding a task to an internship
 
 Command: `addtask` <br>
-More information on usage: [addtask command](UserGuide.md#adding-a-task-to-a-selected-internship-application--addtask)
+More information on usage: [addtask command](UserGuide.html#adding-a-task-to-a-selected-internship-application--addtask)
 
 1. Adding a task to a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. 
 
     2. Test case: `addtask Technical Interview /at 12-01-2023 15:00`<br>
        Expected: `Technical Interview` task is added to the task list of the selected internship, added in chronological
@@ -1256,11 +1255,11 @@ More information on usage: [addtask command](UserGuide.md#adding-a-task-to-a-sel
 ### Deleting a task from an internship
 
 Command: `deltask` <br>
-More information on usage: [deltask command](UserGuide.md#deleting-a-task-from-a-selected-internship-application--deltask)
+More information on usage: [deltask command](UserGuide.html#deleting-a-task-from-a-selected-internship-application--deltask)
 
 1. Deleting a task from a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. The selected internship 
     contains at least one task.
 
     3. Test case: `deltask 1`<br>
@@ -1282,11 +1281,11 @@ More information on usage: [deltask command](UserGuide.md#deleting-a-task-from-a
 ### Adding a remark to an internship
 
 Command: `remark` <br>
-More information on usage: [remark command](UserGuide.md#adding-a-remark-to-an-internship-application--remark)
+More information on usage: [remark command](UserGuide.html#adding-a-remark-to-an-internship-application--remark)
 
 1. Adding a remark to a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. 
 
     2. Test case: `remark r/Read up beforehand`<br>
         Expected: The remark `Read up beforehand` is added to the remark field of the selected internship.
@@ -1304,11 +1303,11 @@ More information on usage: [remark command](UserGuide.md#adding-a-remark-to-an-i
 ### Sending an email
 
 Command: `mail` <br>
-More information on usage: [mail command](UserGuide.md#sending-an-email-to-a-company--mail)
+More information on usage: [mail command](UserGuide.html#sending-an-email-to-a-company--mail)
 
 1. Sending an email to the email of the selected internship
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel.
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel.
 
     2. Test case: `mail`<br>
        Expected: The default mail app is launched with the email of the selected internship in the 
@@ -1324,7 +1323,7 @@ More information on usage: [mail command](UserGuide.md#sending-an-email-to-a-com
 ### Clearing data
 
 Command: `clear` <br>
-More information on usage: [clear command](UserGuide.md#clearing-all-internship-applications--clear)
+More information on usage: [clear command](UserGuide.html#clearing-all-internship-applications--clear)
 
 1. Test case: `clear` <br>
    Expected: All data is cleared from InTrack.
@@ -1332,7 +1331,7 @@ More information on usage: [clear command](UserGuide.md#clearing-all-internship-
 ### Filtering internships by company name
 
 Command: `findc` <br>
-More information on usage: [findc command](UserGuide.md#finding-internship-applications-by-company-name--findc)
+More information on usage: [findc command](UserGuide.html#finding-internship-applications-by-company-name--findc)
 
 1. Filtering internships by company name while all internships are being shown.
 
@@ -1357,7 +1356,7 @@ More information on usage: [findc command](UserGuide.md#finding-internship-appli
 ### Filtering internships by position name
 
 Command: `findp` <br>
-More information on usage: [findp command](UserGuide.md#finding-internship-applications-by-position--findp)
+More information on usage: [findp command](UserGuide.html#finding-internship-applications-by-position--findp)
 
 1. Filtering internships by position name while all internships are being shown.
 
@@ -1382,7 +1381,7 @@ More information on usage: [findp command](UserGuide.md#finding-internship-appli
 ### Filtering internships by tags
 
 Command: `findt` <br>
-More information on usage: [findt command](UserGuide.md#finding-internship-applications-by-tags--findt)
+More information on usage: [findt command](UserGuide.html#finding-internship-applications-by-tags--findt)
 
 1. Filtering internships by tags while all internships are being shown.
 
@@ -1407,7 +1406,7 @@ More information on usage: [findt command](UserGuide.md#finding-internship-appli
 ### Filtering internships by status 
 
 Command: `filter` <br>
-More information on usage: [filter command](UserGuide.md#filtering-internship-applications-by-status--filter)
+More information on usage: [filter command](UserGuide.html#filtering-internship-applications-by-status--filter)
 
 1. Filtering internships by status while all internships are being shown.
 
@@ -1429,7 +1428,7 @@ More information on usage: [filter command](UserGuide.md#filtering-internship-ap
 ### Sorting internships 
 
 Command: `sort` <br>
-More information on usage: [sort command](UserGuide.md#sorting-internship-applications-sort)
+More information on usage: [sort command](UserGuide.html#sorting-internship-applications-sort)
 
 1. Sorting internships while all internships are being shown.
 
@@ -1477,8 +1476,9 @@ More information on usage: [sort command](UserGuide.md#sorting-internship-applic
    Expected: All internships are deleted. InTrack will start as expected with sample data provided.
    
    2. Test case: Exit InTrack, then delete the `config.json` file. Reopen InTrack.
-   Expected: InTrack starts as expected.
+   Expected: InTrack starts as expected, with either the sample data provided or any previously saved data, if present.
+   The size of the window should be the same as the previously saved user preference.
    
    3. Test case: Exit InTrack, then delete `preferences.json`. Reopen InTrack.
    Expected: The previous user preferences such as the size of the window will be deleted. InTrack starts
-   with default settings. 
+   with default settings.
