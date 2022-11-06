@@ -22,6 +22,7 @@ import seedu.address.model.task.Task;
  * Jackson-friendly version of {@link Task}
  */
 public class JsonAdaptedTask {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing !";
     private final String title;
     private final String deadline;
     private final boolean status;
@@ -67,7 +68,7 @@ public class JsonAdaptedTask {
 
         // TODO: Handle exceptions more gracefully
         if (title == null) {
-            throw new IllegalValueException("Task title is missing !");
+            throw new IllegalValueException("Task's title field is missing !");
         }
 
         // TODO: isValidTitle... Deadline ... Tags
@@ -75,7 +76,7 @@ public class JsonAdaptedTask {
         final String modelTitle = this.title;
 
         if (deadline == null) {
-            throw new IllegalValueException("Deadline is missing !");
+            throw new IllegalValueException("Task's deadline field is missing !");
         }
 
         if (!isLocalDateString(deadline)) {
