@@ -61,9 +61,35 @@ However, you may also choose to head over to the relevant sections as described 
 
 ## Features
 
+CodeConnect has 2 main sets of commands, one set to manage your contacts and one set to manage your tasks.
+
+Here are some notations that are used in this section:
+
+**Tips**
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+:bulb: Tips are useful suggestions on what is allowed and not allowed for some features.
+
+</div>
+
+**Questions**
+
+<div markdown="block" class="alert alert-info">
+
+:question: Questions are further explanations on things that might be confusing.
+
+</div>
+
+**Cautions**
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Cautions warns you of any potential pitfall when using the feature.
+
+</div>
+
+### Notes about the command format:
 
 * Words in `{curly_braces}` are the parameters to be supplied by the user.<br>
   e.g. In `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
@@ -83,8 +109,6 @@ However, you may also choose to head over to the relevant sections as described 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
-
 <div markdown="block" class="alert alert-info">
 
 :bulb: A Note on Indexes
@@ -95,15 +119,9 @@ Several commands below require an `index` to be specified, as they operate on a 
 * This value ranges from 1, 2, 3...
 
 </div>
-
-
-### Getting help
-
-#### Viewing help : `help`
-
-Format: `help`
-
 ### Managing tasks
+
+This section contains all the commands for the Task features. 
 
 #### Adding a task: `add`
 
@@ -113,8 +131,9 @@ Format:
 `add {task_name} by/{deadline} [m/{module_code}]`
 
 Examples:
-* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
-* `add finish SEP application by/2022-12-25 23:59`
+* `add finish problem set 5 by/tomorrow 5pm m/CS2040S` - adds a new task "finish problem set 5" 
+with the given deadline and module.
+* `add finish SEP application by/2022-12-25 23:59` - adds a new task "finish SEP application" with the given deadline.
 
 <div markdown="block" class="alert alert-info">
 
@@ -159,12 +178,12 @@ Format:
 `edit {task_index} {field_prefix + field_description}`
 
 Examples:
-* `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
-* `edit 3 m/CS2040S by/2022-12-12 23:59` - Changes the module and deadline of the task at index 3
+* `edit 2 n/Rewatch lecture 6` - edits the task at index 2 to "Rewatch lecture 6".
+* `edit 3 m/CS2040S by/2022-12-12 23:59` - edits the module and deadline of the task at index 3.
 
 <div markdown="block" class="alert alert-info">
 
-:question: Field Prefixes
+:question: What is Field Prefixes?
 
 `field_prefix` can be any task field used in the [add task command](#adding-a-task-add).
 
@@ -178,7 +197,7 @@ Format:
 `del {task_index}`
 
 Example:
-`del 5`
+`del 5` - deletes the task at index 5 from the task list.
 
 #### Deleting all completed tasks: `clean`
 
@@ -201,7 +220,7 @@ Format:
 `mark {task_index}`
 
 Example:
-`mark 2` will mark the task with index 2 as done, as shown by a tick beside the task description.
+`mark 2` - marks the task with index 2 as done shown by a tick beside the task description.
 
 ![marktask](images/markTask.png)
 
@@ -213,7 +232,7 @@ Format:
 `unmark {task_index}`
 
 Example:
-`unmark 3`
+`unmark 3` - undo the marking of the task with index 2 shown by a cross beside the task description.
 
 #### Searching for tasks: `find`
 
@@ -223,15 +242,25 @@ Format:
 `find n/{keyword}` `find m/{module}`
 
 Examples:
-* `find n/homework` returns `Science homework`, `Math homework`
-* `find n/home` returns `Science homework`, `Math homework`
-* `find n/tut set` returns `Tutorial 1`, `Problem set 2`
-* `find m/CS1101S` returns `Problem set 4`, `Reading assignment 2`
-* `find m/1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find n/homework` - lists out all tasks with name containing the word "homework".
+* `find n/home` - lists out all tasks with name containing the substring "home".
+* `find n/tut set` - lists out all tasks with name containing a substring "tut" or "set".
+* `find m/CS1101S` - lists out all tasks with the module tag "CS1101S".
+* `find m/1101S` - lists out all tasks with the module tag containing substring "1101S".
 
 `find m/CS2103T` returns this:
 
 ![findTasks](images/findTaskModule.png)
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: Predicate's case-insensitivity 
+
+When finding for a task, the predicate keyed in are case-insensitive.
+
+`find n/ hOmEwOrK` will still list out all tasks name containing the word "homework".
+
+</div>
 
 #### Listing all tasks : `list`
 
@@ -239,10 +268,10 @@ Shows a list of all tasks.
 
 Format: `list`  `list time`
 
-* `list` - displays a list of all tasks in the order of most recent task added
-* `list time` - displays a list of all tasks in the order of the earliest deadline
+* `list` - displays a list of all tasks in the order of most recent task added.
+* `list time` - displays a list of all tasks in the order of the earliest deadline.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: About extraneous parameters in `list`
 
@@ -255,6 +284,8 @@ Click [here](#) to return to the top of the page.
 
 ### Managing contacts
 
+This section contains all the commands for the Contacts features.
+
 #### Adding a contact: `addc`
 
 Adds a contact to the contact list.
@@ -262,8 +293,8 @@ Adds a contact to the contact list.
 Format: `addc n/{name} p/{phone_number} [e/{email}] [a/{address}] [t/{tag_1}]... [m/{module}...] [gh/{github}] [tele/{telegram}]`
 
 Examples:
-* `addc n/Bob Martin p/98765432 e/bobbymartini@gmail.com m/CS1101S CS1231S gh/bobby tele/bmartin`
-* `addc n/Betsy Crowe p/89985432 tele/croweybetty`
+* `addc n/Bob Martin p/98765432 e/bobbymartini@gmail.com m/CS1101S CS1231S gh/bobby tele/bmartin` - adds a contact with the given name, phone number, email, modules, Github username and Telegram handle.
+* `addc n/Betsy Crowe p/89985432 tele/croweybetty` - adds a contact with the given name, phone number and Github username.
 
 <div markdown="block" class="alert alert-info">
 
@@ -296,7 +327,7 @@ Deletes the specified contact.
 Format: `delc {contact_index}`
 
 Examples:
-* `delc 2` - deletes the contact at index 2 in the contact list.
+* `delc 2` - deletes the contact at index 2 from the contact list.
 
 #### Editing a contact : `editc`
 
@@ -305,7 +336,7 @@ Edits the specified contact.
 Format: `editc {contact_index} {field prefix}{field description}`
 
 Examples:
-* `editc 4 gh/alicey` - edits the Github profile of the contact at index 4 in the contact list to `alicey`
+* `editc 4 gh/alicey` - edits the Github username of the contact at index 4 in the contact list to "alicey".
 
 ![editContact](images/editContact.png)
 
@@ -325,12 +356,22 @@ Format:
 `findc n/{name}` `findc m/{module}` `findc ts/{task_index}`
 
 Examples:
-* `findc n/John` returns `john`, `John Doe`
-* `findc n/jo` returns `john`, `John Doe`
-* `findc n/jo ja` returns `john`, `james`
-* `findc m/CS1231S` returns `Alex Yeoh`, `David Li`
-* `findc m/1231` returns `Alex Yeoh`, `David Li`
-* `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
+* `findc n/John` - lists out all the contacts with name containing the word "John".
+* `findc n/jo` - lists out all the contacts with name containing the substring "jo".
+* `findc n/jo ja` - lists out all the contacts with name containing the substring "jo" or "ja".
+* `findc m/CS1231S` - lists out all the contacts with module tag "CS1231S".
+* `findc m/1231` - lists out all the contacts with module tag containing the substring "1231".
+* `findc ts/2` - lists out all the contacts with the module tag matching the task at index 2. 
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: Predicate's case-insensitivity
+
+When finding for a contact, the predicate keyed in are case-insensitive.
+
+`find n/ jOhN` will still list out all contacts name containing the word "john".
+
+</div>
 
 #### Quick-search for contacts: `saveme`
 
@@ -354,14 +395,20 @@ Deletes all contacts.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">
-
-:exclamation: Warning!<br>
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**<br>
 Deleted contacts are **unrecoverable**!
 
 </div>
 
 Click [here](#) to return to the top of the page.
+
+### Getting help
+
+#### Viewing help : `help`
+
+Provides the link to this User Guide.
+
+Format: `help`
 
 ### Finishing up
 
@@ -377,7 +424,7 @@ CodeConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for contacts or `[JAR file location]/data/task.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
+CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for your contacts or `[JAR file location]/data/task.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
