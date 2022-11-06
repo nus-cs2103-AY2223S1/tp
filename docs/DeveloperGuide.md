@@ -137,14 +137,15 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramNew.png" width="550" />
 
 The `Storage` component,
 * can save both project book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+* handles all parsing of objects in `StorageUtil`.
 
 ### Common classes
 
@@ -197,6 +198,34 @@ The following activity diagram summarizes what happens when a user executes a li
 * **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`.
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
+
+### Default View Feature
+
+The default view mechanism is facilitated by `GuiSettings`. It is stored internally as a `DefaultView` enumeration which can take either of three values, `PROJECT`, `CLIENT` or `ISSUE`. Upon the execution of either a `SetProjectDefaultViewCommand`, `SetClientDefaultViewCommand` or `SetIssueDefaultViewCommand`, the following operation is called:
+* `GuiSettings#setDefaultView()` — Sets the default view variable to the specified `DefaultView` type.
+
+This operation is exposed in the Model interface as `Model#setDefaultView()`.
+
+Given below is an example usage scenario and how the default view mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The list of projects is shown by default.
+
+Step 2. The user executes `client -v` to set the default view to clients. The `SetClientDefaultViewCommand` is executed and calls `Model#setDefaultView()`, setting the default view to the list of clients.
+
+Step 3. The next time the user launches the application, the list of clients is shown by default.
+
+The following sequence diagram shows how the default view operation works:
+
+![DefaultViewSequenceDiagram](images/DefaultViewSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `SetClientDefaultViewCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a default view command:
+
+![DefaultViewActivityDiagram](images/DefaultViewActivityDiagram.png)
   
 ### Add Command Feature
 
@@ -247,6 +276,61 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
  
 Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for add command access to the model.
 
+### Delete Command Feature
+
+A key functionality of DevEnable is the ability to delete projects, issues, and clients into the system. The command 
+word for deleting will be `project`, `issue`, or `client`, depending on which entity is being deleted.
+This is followed by the flag `-d`, representing a Delete command. Next, it is followed by a compulsory argument to 
+initialise the entity.
+When a user enters a valid Delete command in the interface, `AddressBookParser#parseCommand` will be called which 
+processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within 
+this method, the flag `-d` will be detected, calling `ProjectCommandParser#parseDeleteProjectCommand`,
+`IssueCommandParser#parseDeleteIssueCommand`, or `ClientCommandParser#parseDeleteClientCommand`, depending on which 
+entity is deleted, which checks for input argument validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Delete Command entity and the 
+`DeleteProjectCommand#execute`, `DeleteIssueCommand#execute`, or `AddClientCommand#execute` is called depending
+on which entity is deleted, which retrieves the respective entity list from the system, deletes the entity from the 
+list to update it, and have the UI display the updated filtered entity list.
+
+#### Delete Project Command
+Compulsory prefix: p/<valid project id>
+Example Use: `project -d 1`
+
+#### Delete Issue Command
+Compulsory prefix: i/<valid issue id>
+Example Use: `issue -d 2`
+
+#### Delete Client Command
+Compulsory prefix: p/<valid client id>
+Example Use: `client -d 3`
+
+#### The following sequence diagram shows how the delete command operation works for adding a project entity:
+Example: `client -d 1`
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `AddProjectCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: Delete command access to the model: **
+
+**Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+*
+**Alternative 2: ** Refactor `ProjectCommandParser:parseDeleteProjectCommand`, 
+`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to 
+the Model.
+* Pros: Mappings could be performed within the parser which fitted its responsibility.
+* Cons: May result in extra coupling between Parser class and Model class.
+
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for delete command access to the model.
+
 ### Edit Command Feature
 
 A key functionality of DevEnable is the ability to edit projects, issues and clients currently in the system. The command word for editing will be `project`, `issue`, or `client`, depending on which entity it being edited.
@@ -296,6 +380,50 @@ Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientC
 
 As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
 
+### Pin Feature
+
+The pin mechanism is facilitated by `AddressBook`. It contains a `UniqueEntityList` for each entity type. Upon the execution of either a `PinProjectCommand`, `PinClientCommand` or `PinIssueCommand`, the following operations are carried out:
+* `AddressBook#sortProjectsByPin()` — Sorts the current project list according to pin.
+* `AddressBook#sortClientsByPin()`, `AddressBook#sortIssuesByPin()` — Similar function as above, but for clients and issues.
+* `AddressBook#sortProjectsByCurrentCategory()`  — Sorts the current project list according to the last known sorting category.
+* `AddressBook#sortClientsByCurrentCategory()`, `AddressBook#sortIssuesByCurrentCategory()` — Similar function as above, but for clients and issues.
+
+These operations are exposed in the Model interface as methods with the same name e.g. `Model#sortProjectsByPin()`, `Model#sortProjectsByCurrentCategory()`.
+
+Given below is an example usage scenario and how the pin mechanism behaves at each step.
+
+Step 1. The user creates an entity with a unique ID. The entity is unpinned by default and will be displayed according to the current sorting order.
+
+Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `togglePinned()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the current client is already pinned, `Client#togglePin()` will toggle the `Pin` attribute of the client from `true` to `false` and call the latest sort order, causing the client to be displayed in its original position.
+</div>
+
+The following sequence diagram shows how the pin operation works:
+
+![PinSequenceDiagram](images/PinSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `PinClientCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a pin command:
+
+![PinActivityDiagram](images/PinActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How entities can be unpinned:**
+
+* **Alternative 1 (current choice):** The `togglePinned()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
+    * Pros: Less duplication of code and less commands for the user to remember.
+    * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
+
+* **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
+    * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
+    * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -320,9 +448,8 @@ As logic should be handled in the parser and to minimise modifications of the en
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* needs to store projects and stakeholders securely
 
-**Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app, in a secure manner.
+**Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app.
 
 
 ### User stories
@@ -334,40 +461,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  `* * *` | student developer  |  track multiple projects spread across different websites in one place. | |
 | `* * *`         | forgetful developer  |  see all the tasks for my projects on one page  |  I will remember what needs to be an experienced developer,  |
 |  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher urgency first |
-|   `* * *`       | developer  |  have a quick overview of those collaborating on projects with me  |  I can contact collaborators or access information quickly |
 | `* * *`         | user  |  add projects to the application | |
 | `* * *`         | user  |  delete projects from the application  |  I can keep my data accurate if I make a mistake in entering data. |
 | `* * *`         | user  |  edit projects from the application  |  I can handle changes in my projects. |
 | `* * *`         | user  |  tag clients to each project  |  I can know which clients each project is under. |
 |  `* * *`        | new user  |  view a guide  |  I can learn about the functionalities of the application. |
 | `* * *`         | user  |  add deadlines to the projects  |  I can prioritize accordingly. |
-| `* * *`         | user  |  differentiate between the types of projects  |  I can organize my workspace. |
 | `* * *`         | user  |  add the contact numbers and email addresses of each client to the projects  |  I can contact them more efficiently. |
 |  `* * *`        | user  |  link my projects to their repositories  |  I can easily navigate to them. |
-|    `* *`       | forgetful developer | I can categorize projects into various categories |  better organize them |
 |   `* *`        | developer  |  choose to ‘pin’ certain projects  |  I can quickly access them  |
-|  `* *`         | developer  |  rate the importance of each client  |  I can prioritize certain clients. |
 |   `* *`        | developer  |  see all the issues/room for improvements of the website that my clients have in one place,  |  I know what features/bugs to work on for them |
-|  `* *`        | company developer  |  ensure my project and data are only accessible after user authentication | my data is kept secure |
-|   `* *`        | developer  |  also track other aspects (such as project cost) that are not in the default implementation. | |
 |   `* *`        | new user  |  view dummy data  |  I can learn how to use the application. |
 |   `* *`        | new user  |  tag ongoing bugs to a project  |  I can allocate my time to bug fixes in an efficient manner. |
 | `* *`         | developer  |  sort the projects  |  I can see which projects require more urgency when the number of projects becomes too long. |
-|    `* *`       | user  |  create an account,  |  I do not give access to my project data if I lose my laptop. |
-|     `* *`      | user  |  login to my account,  |  I can access my data. |
-|    `* *`       | forgetful user  |  reset my password,  |  I can access my account if I forget my password. |
-|  `* *`         | user  |  delete tags from the projects. | |
-|    `* *`       | user  |  differentiate between teammate contacts and client contacts and advanced user, I can categorize issues for each project  |  I can organize the types of bugs that need to be fixed. |
-|    `* *`       | user  |  change my password to prevent theft of my data. |
-|      `* *`     | user  |  view the current time and date  |  I can keep track of the due date of my projects. |
 |    `* *`       | developer  |  clear all data using a single command |  |
 |     `* *`      | user  |  split the project tiles into different categories  |  I can organize my workspace better. |
-|    `*`       | user  |  get a notification every time an issue surfaces,  |  I can respond in a timely manner. |
 |    `*`       | user  |  automatically check my projects for issues  |  I can efficiently check for outstanding bug fixes. |
-|    `*`       | user  |  see the bug history of each project  |  I can identify the more problematic projects. |
-|    `*`       | user  |  tag team members to the projects,  |  I can communicate with other developers on my team. |
-|   `*`        | user  |  customize the look of each project tile,  |  I can make my workspace more aesthetic. |
-|     `*`      | head developer  |  have multiple developers use the same application on the same system. |  |
 
 *{More to be added}*
 
@@ -756,17 +865,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11.  The product needs to be developed in a breadth-first incremental manner.
 12.  The product should not use a DBMS to store data.
 13.  The data should be saved every time a command alters the data.
-14.  The testing strategy should cover over 90% of the code.
-15.  The data should be encrypted and secured for the user.
-
-
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Client**: A contact detail that is attached to a project.
 * **Project**: A project that has many clients, which typically has deliverables with deadlines.
+* **Entity**: A Client, Project or Issue.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -783,9 +888,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample projects. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -813,10 +919,96 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+### Listing an entity
+
+1. Listing an entity while any list of entities is currently being shown
+
+    1. Test case: `project -l`<br>
+       Expected: All project entities are listed regardless of the initial display. Details of the pinned project shown in the status message.
+
+    2. Test case: `project -l 012345`<br>
+       Expected: Similar to previous. Extraneous parameters are ignored.
+
+    3. Test case: `project l`<br>
+       Expected: Displayed list does not change. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect list commands to try: `project list`, `project -list`, `...` <br>
+       Expected: Similar to previous.
+
+### Setting default view
+
+1. Setting the default view to any list of entities
+
+    1. Prerequisites: Current default view not set to clients (DevEnable sets the default view to project for first time users)
+
+    2. Test case: `client -v`<br>
+       Expected: On reopening the application, the list of clients will be displayed. Details of the changed default view shown in the status message.
+
+    3. Test case: `client -v 012345`<br>
+       Expected: Similar to previous. Extraneous parameters are ignored.
+
+    4. Test case: `client v`<br>
+       Expected: List displayed by default does not change. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
+       Expected: Similar to previous.
+
+### Pinning an entity
+
+1. Pinning an entity while any list of entities is being shown
+
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
+
+    2. Test case: `project -p 3`<br>
+       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
+
+    3. Test case: Repeat `project -p 2` twice.<br>
+       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
+
+    4. Test case: `project -p 0`<br>
+       Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
+       Expected: Similar to previous.
+
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Editing the data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Obtain sample data file from running the application for the first time.
+   
+   2. Test case: Change the `pin` attribute for any `project` or `issue` object from `false` to `true` or vice-versa.<br>
+      Expected: Application starts with the corresponding `project` or `issue` pinned to the top of their respective lists.
+   
+   3. Test case: Change the `mobile` attribute for **all** instances of the `client` object with name `Alex Yeoh`.<br>
+      Expected: Application starts with the respective change in the `mobile` attribute.
+   
+2. Dealing with missing data file
 
-2. _{ more test cases …​ }_
+   1. Test case: Delete the `addressbook.json` data file and open up the application.<br>
+      Expected: Application starts up with sample data. Details of the missing data file is logged in `addressbook.log.0`
+
+3. Dealing with corrupted data files
+
+   1. Prerequisites: Same as that for editing the data file.
+   
+   2. Test case: Remove the `pin` attribute from any JSON object and open up the application.<br>
+      Expected: Application starts with empty data. Error details logged in `addressbook.log.0`
+   
+   3. Test case: Change the `deadline` attribute to an invalid deadline string e.g. `2022-50-04`.<br>
+      Expected: Similar to previous.
+   
+   4. Test case: Change the `projectId` attribute of the first project object (with `name` attribute `Individual Project`) to `2` such that there is a duplicate project ID.<br>
+      Expected: Similar to previous.
+
+   5. Test case: Change the `mobile` attribute of the first client object (with `name` attribute `Alex Yeoh`) to `91111111` such that it does not tally with the second copy of `Alex Yeoh`.<br>
+      Expected: Similar to previous.
+
+   6. Test case: Change the `name` attribute of the first project object (with `name` attribute `Individual Project`) to `Team Project` such that there is a duplicate project name.<br>
+      Expected: Similar to previous.
+   
+   7. Test case: Add an extra comma `,` after any other comma e.g. `"name" : "Individual Project",,` such that the data file is in the wrong format.<br>
+      Expected: Similar to previous.
+
+   8. Test case: Add an extraneous attribute e.g. `"remark" : "likes to eat"` after any other attribute in the file.<br>
+      Expected: The extraneous attribute is ignored and the application starts up as per normal with the correct data.
