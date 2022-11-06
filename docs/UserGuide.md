@@ -216,7 +216,14 @@ Example: `p/91234567`
 
 ### `e/EMAIL`
 
-_Use the one from MESSAGE_CONSTRAINTS_
+`EMAIL` should be in the form of `local-part@domain`, where:
+* `local-part` contains only alphanumeric characters and the special characters `+`, `_`, `.`, `-`, and may not start or end with any special characters.
+* `domain` is made up domain labels separated by periods, where `domain` must:
+  - end with a domain label at least 2 characters long.
+  - have each domain label start and end with alphanumeric characters.
+  - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Example: `johndoe@gmail.com`
 
 ### `a/ADDRESS`
 
@@ -232,7 +239,13 @@ Example:`t/12-A nursing home`
 
 ### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-_To be added_
+The task parameter has the following constraints:
+
+* `TASK_DESCRIPTION` accepts any values.
+* `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`.
+* `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/ week(s)/ month(s)/year(s)` where `X` is a positive integer.
+
+Example: `d/Change dressing | 18-06-22 0900 | 2 days`
 
 ### `c/CONDITION`
 
@@ -240,13 +253,19 @@ _To be added_
 
 Example:`c/Parkinson's disease`
 
-### `m/MEDICATION | DOSAGE`
+### `m/MEDICATION_TYPE | DOSAGE`
 
-_To be added_
+`MEDICATION_TYPE` accepts any values.
+`DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
+
+Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 ### `r/REMARK`
 
-_To be added_
+`REMARK` accepts any values.
+
+Example:`r/Allergic to peanuts`
+
 
 
 _Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
@@ -389,7 +408,7 @@ Examples:
 
 You can add a tag to a patient with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX t/TAG`
+Format: **`add`** `-p PATIENT_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -417,7 +436,7 @@ Examples:
 
 You can edit a tag of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -t TAG_INDEX t/TAG`
+Format: **`edit`** `-p PATIENT_INDEX -t TAG_INDEX t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -458,12 +477,6 @@ Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
 * `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
-
-<div markdown="block" class="alert alert-success">
-
-:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
-
-</div>
 
 <br>
 
@@ -519,13 +532,19 @@ Examples:
 * `list` followed by `add -p 1 c/Diabetes` adds the `Diabetes` condition to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 c/Alzheimer's disease` adds the `Diabetes` condition to the 2nd patient in the results of the `find Betsy` command.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
 <br>
 
 ### Editing a medical condition: `edit` `-p` `-c`
 
 You can edit a medical condition of a patient with the `edit` command.
 
-Format: **`edit`**`-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
+Format: **`edit`** `-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
 
 <div markdown="block" class="alert alert-info">
 
@@ -545,7 +564,7 @@ Examples:
 
 You can delete a medical condition of a patient with the `delete` command.
 
-Format: **`delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -c CONDITION_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
@@ -555,67 +574,122 @@ Examples:
 
 ### Adding a medication: `add` `-p`
 
-Format: `add -p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Adds a medication to a patient at the specified `PATIENT_INDEX`.
+You can add a medication to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one medication at a time.
+* You cannot add duplicate medications.
+* Medications are considered duplicates only when both `MEDICATION_TYPE` and `DOSAGE` are the same e.g. `Paracetamol | 1 tab every 6 hours` is different from `Paracetamol | 2 tabs every 6 hours`.
+* Medications are case-sensitive e.g. `Paracetamol` is distinct from `paracetamol`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 m/Paracetamol | 2 tabs every 6 hours` adds the `Paracetamol` medication with the dosage `2 tabs every 6 hours` to the 1st patient in the patient list.
+* `find Alice` followed by `add -p 2 m/Amoxicillin | 0.5g every 8 hours` adds the `Amoxicillin` medication with the dosage `0.5g every 8 hours` to the 2nd patient in the results of the `find Alice` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medications at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a medication: `edit` `-p` `-m`
 
-Format: `edit -p PATIENT_INDEX -m MEDICATION_INDEX m/MEDICATION_TYPE | DOSAGE`
-* Edits the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a medication of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <DOSAGE>`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one medication at a time.
+* If no new `MEDICATION_TYPE` or `DOSAGE` are provided, then original values will be used.
+* At least one of `MEDICATION_TYPE` or `DOSAGE` must be present, or else the medication will not be edited.
+* If there are duplicate medications after editing a medication, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 1 -m 1 d/Amoxicillin` edits the medication type of the 1st medication of the 1st patient in the patient list to `Amoxicillin`, while retaining the original dosage.
+* `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in results of the `find Alice` command, while retaining the original medication type.
 
 <br>
 
 ### Deleting a medication: `delete` `-p` `-m`
 
-Format: `delete -p PATIENT_INDEX -m MEDICATION_INDEX`
-* Deletes the medication at the specified `MEDICATION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medication of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -m MEDICATION_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -m 3` deletes the 3rd medication of the 2nd patient in the patient list.
+* `find Alice` followed by `delete -p 1 -m 2` deletes the 2nd medication of the 1st patient in the results of the `find Alice` command.
 
 <br>
 
 ### Adding a remark: `add` `-p`
 
-Format: `add -p PATIENT_INDEX r/REMARK`
-* Adds a remark to a patient at the specified `PATIENT_INDEX`.
+You can add a remark to a patient with the `add` command.
+
+Format: **`add`** `-p PATIENT_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only add one remark at a time.
+* You cannot add duplicate remarks.
+* Remarks are case-sensitive e.g. `allergic to peanuts` is distinct from `Allergic to Peanuts`.
+
+</div>
 
 Examples:
+* `list` followed by `add -p 1 r/Requires wheelchair to move around` adds the `Requires wheelchair to move around` remark to the 1st patient in the patient list.
+* `find Rachel` followed by `add -p 2 r/Allergic to Peanuts` adds the `Allergic to Peanuts` remark to the 2nd patient in the results of the `find Rachel` command.
 
-_To be added_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
 
 <br>
 
 ### Editing a remark: `edit` `-p` `-r`
 
-Format: `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
-* Edits the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can edit a remark of a patient with the `edit` command.
+
+Format: **`edit`** `-p PATIENT_INDEX -r REMARK_INDEX r/REMARK`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
+* You can only edit one remark at a time.
+* If there are duplicate remarks after editing a remark, it will not be edited.
+
+</div>
 
 Examples:
-
-_To be added_
+* `list` followed by `edit -p 2 -r 3 r/Allergic to Amoxicillin` edits the 3rd remark of the 2nd patient in the patient list to `Allergic to Amoxicillin`.
+* `find Rachel` followed by `edit -p 1 -r 2 r/Allergic to Amoxicillin` edits the 2nd remark of the 1st patient in the results of the `find Rachel` command to `Allergic to Amoxicillin`.
 
 <br>
 
 ### Deleting a remark: `delete` `-p` `-r`
 
-Format: `delete -p PATIENT_INDEX -r REMARK_INDEX`
-* Deletes the remark at the specified `REMARK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+You can delete a medical condition of a patient with the `delete` command.
+
+Format: **`delete`** `-p PATIENT_INDEX -r REMARK_INDEX`
 
 Examples:
-
-_To be added_
+* `list` followed by `delete -p 2 -r 3` deletes the 3rd remark of the 2nd patient in the patient list.
+* `find Rachel` followed by `delete -p 1 -r 2` deletes the 2nd remark of the 1st patient in the results of the `find Rachel` command.
 
 <br>
 
@@ -667,69 +741,74 @@ _Add screenshot here_
 
 <br>
 
-### Listing all patients for today: `view` `--today`
+### Listing all tasks for today: `view` `--today`
 
-Shows a list of all patients with tasks due today.
+You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
-Format: `view --today`
+Format: **`view`** `--today`
+
+Examples:
+
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
+
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
+
+![result for `view --today`](images/viewTodayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
 
 <br>
 
 ### Listing all tasks: `view` `-p` `--all`
 
-Shows a list of all tasks to be completed.
+You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
 
-Format: `view -p --all`
+Format: **`view`** `-p --all`
 
 Examples:
 
-Suppose the following patients were added.
+* `view -p --all` will show a list of all tasks belonging to patients with tasks.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p --all` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-_Add screenshot here_
+![result for `view -p --all`](images/viewAllTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
 
 <br>
 
 ### Viewing all tasks of a patient: `view` `-p`
 
-Shows all the tasks that are associated with the specified patient.
+You can view the list of tasks for a particular patient using the `view` command.
 
-Format: `view -p PATIENT_INDEX`
+Format: **`view`** `-p PATIENT_INDEX`
 
 Examples:
 
-Suppose the following patients were added.
+* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
 
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p 1` will display:
-    * `Administer 3ml of example medicine`
-* `view -p 2` will display:
-    * `Change dressing on left arm`
-
-_Add screenshot here_
+![result for `view -p 2`](images/viewBerniceTaskResult.png)
+_<div align="center"> Patient and task list displayed after running the `view -p 2` command </div>_
 
 <br>
 
 ### Listing all tasks for a particular day: `view`
 
-Shows a list of all tasks on a particular day.
+You can view the list of tasks for a particular day using the `view` command.
 
-Format: `view DATE`
+Format: **`view`** `DATE`
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 * The DATE **must be of the specified format** dd-MM-yy
+</div>
 
 Examples:
-* `view 25-12-22` lists the tasks on 25th December 2022
+* `view 5-9-22` lists the tasks on 5th September 2022
+* `view 25-11-22` lists the tasks on 25th November 2022
 
-_Add screenshot here_
+![result for `view 25-11-22`](images/viewSpecificDayResult.png)
+_<div align="center"> Patient and task list displayed after running the `view 25-11-22` command </div>_
+
 
 <br>
 

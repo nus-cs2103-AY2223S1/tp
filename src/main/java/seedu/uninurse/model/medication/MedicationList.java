@@ -1,6 +1,6 @@
 package seedu.uninurse.model.medication;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,25 +21,25 @@ public class MedicationList implements GenericList<Medication> {
     private final List<Medication> internalMedicationList;
 
     /**
-     * Constructs an empty {@code MedicationList}.
+     * Constructs an empty MedicationList.
      */
     public MedicationList() {
         this.internalMedicationList = new ArrayList<>();
     }
 
     /**
-     * Constructs a {@code MedicationList}.
+     * Constructs a MedicationList.
      * @param medicationList The given list of medications.
      */
     public MedicationList(List<Medication> medicationList) {
-        requireNonNull(medicationList);
+        requireAllNonNull(medicationList);
         this.internalMedicationList = medicationList;
     }
 
     @Override
     public MedicationList add(Medication medication) {
-        requireNonNull(medication);
-        if (this.internalMedicationList.contains(medication)) {
+        requireAllNonNull(medication);
+        if (internalMedicationList.contains(medication)) {
             throw new DuplicateMedicationException();
         }
 
@@ -61,6 +61,7 @@ public class MedicationList implements GenericList<Medication> {
 
     @Override
     public MedicationList edit(int index, Medication editedMedication) {
+        requireAllNonNull(editedMedication);
         try {
             List<Medication> updatedMedications = new ArrayList<>(internalMedicationList);
             updatedMedications.set(index, editedMedication);
@@ -135,21 +136,21 @@ public class MedicationList implements GenericList<Medication> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         internalMedicationList.forEach(m -> {
             int index = internalMedicationList.indexOf(m);
             if (index == 0) {
-                builder.append(index + 1)
+                sb.append(index + 1)
                         .append(". ")
                         .append(m);
             } else {
-                builder.append("\n")
+                sb.append("\n")
                         .append(index + 1)
                         .append(". ")
                         .append(m);
             }
         });
-        return builder.toString();
+        return sb.toString();
     }
 
     @Override

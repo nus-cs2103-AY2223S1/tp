@@ -3,7 +3,6 @@ package seedu.uninurse.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_ROOM;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalPersons.ALICE;
@@ -46,8 +45,7 @@ public class UninurseBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_ROOM)
-                .build();
+        Patient editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
         List<Patient> newPersons = Arrays.asList(ALICE, editedAlice);
         UninurseBookStub newData = new UninurseBookStub(newPersons);
 
@@ -73,8 +71,7 @@ public class UninurseBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInUninurseBook_returnsTrue() {
         uninurseBook.addPerson(ALICE);
-        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_ROOM)
-                .build();
+        Patient editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
         assertTrue(uninurseBook.hasPerson(editedAlice));
     }
 

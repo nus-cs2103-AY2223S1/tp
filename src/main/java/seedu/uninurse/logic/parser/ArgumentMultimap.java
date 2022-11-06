@@ -14,16 +14,15 @@ import java.util.Optional;
  * can be inserted multiple times for the same prefix.
  */
 public class ArgumentMultimap {
-
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
-     * Associates the specified argument value with {@code prefix} key in this map.
+     * Associates the specified argument value with prefix key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
      *
-     * @param prefix   Prefix key with which the specified argument value is to be associated
-     * @param argValue Argument value to be associated with the specified prefix key
+     * @param prefix   Prefix key with which the specified argument value is to be associated.
+     * @param argValue Argument value to be associated with the specified prefix key.
      */
     public void put(Prefix prefix, String argValue) {
         List<String> argValues = getAllValues(prefix);
@@ -32,7 +31,10 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the last value of {@code prefix}.
+     * Returns the last value of prefix.
+     *
+     * @param prefix to get value for.
+     * @return The value of the prefix.
      */
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
@@ -40,9 +42,12 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns all values of {@code prefix}.
+     * Returns all values of prefix.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     *
+     * @param prefix to get values for.
+     * @return The values of the prefix.
      */
     public List<String> getAllValues(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
@@ -53,6 +58,8 @@ public class ArgumentMultimap {
 
     /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
+     *
+     * @return The preamble.
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");

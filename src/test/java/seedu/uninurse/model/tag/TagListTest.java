@@ -81,6 +81,11 @@ public class TagListTest {
     }
 
     @Test
+    public void edit_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> emptyTagList.add(null));
+    }
+
+    @Test
     public void edit_emptyList_throwsTagNotFoundException() {
         assertThrows(TagNotFoundException.class, () -> emptyTagList.edit(0, TAG_FALL_RISK));
     }

@@ -26,16 +26,14 @@ public class AddRemarkCommand extends AddGenericCommand {
             + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_REMARK + "Allergic to Amoxicillin";
-
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "New remark added to %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_REMARK = "This remark already exists in %1$s's remark list";
-    public static final CommandType ADD_REMARK_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_SUCCESS = "New remark added to %1$s: %2$s";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final Remark remark;
 
     /**
-     * Creates an AddRemarkCommand to add a {@code Remark} to the specified person.
+     * Creates an AddRemarkCommand to add a Remark to the specified person.
      * @param index The index of the person in the filtered person list to add the remark.
      * @param remark The remark of the person to be added to.
      */
@@ -56,21 +54,20 @@ public class AddRemarkCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        RemarkList updatedRemarkList;
 
         try {
-            updatedRemarkList = patientToEdit.getRemarks().add(remark);
+            RemarkList updatedRemarkList = patientToEdit.getRemarks().add(remark);
+
+            Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
+
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), remark),
+                    COMMAND_TYPE, patientListTracker);
         } catch (DuplicateRemarkException dre) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_REMARK, patientToEdit.getName()));
+            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_REMARK, patientToEdit.getName()));
         }
-
-        Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
-
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
-
-        return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, editedPatient.getName(), remark),
-                ADD_REMARK_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -86,7 +83,7 @@ public class AddRemarkCommand extends AddGenericCommand {
         }
 
         // state check
-        AddRemarkCommand command = (AddRemarkCommand) other;
-        return index.equals(command.index) && remark.equals((command.remark));
+        AddRemarkCommand o = (AddRemarkCommand) other;
+        return index.equals(o.index) && remark.equals((o.remark));
     }
 }

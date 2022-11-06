@@ -1,7 +1,7 @@
 package seedu.uninurse.model.task;
 
 import static java.time.temporal.ChronoUnit.DAYS;
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,7 +12,6 @@ import java.time.format.DateTimeParseException;
  * Represents Date & Time encapsulation for tasks
  */
 public class DateTime implements Comparable<DateTime> {
-
     public static final String DATE_TIME_PATTERN = "d-M-yy HHmm";
     public static final String DATE_PATTERN = "d-M-yy";
     public static final String TIME_PATTERN = "h:mm a";
@@ -34,24 +33,28 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * Constructs a {@code DateTime} with the given {@code validDateTime}.
+     * Constructs a DateTime.
+     *
+     * @param validDateTime to construct the DateTime with.
      */
     public DateTime(String validDateTime) {
-        requireNonNull(validDateTime);
+        requireAllNonNull(validDateTime);
         assert(isValidDateTime(validDateTime));
         dateTime = LocalDateTime.parse(validDateTime, DATE_TIME_FORMATTER);
     }
 
     /**
-     * Constructs a {@code DateTime} with the given {@code localDateTime}.
+     * Constructs a DateTime.
+     *
+     * @param localDateTime the localDateTime to construct DateTime with.
      */
     public DateTime(LocalDateTime localDateTime) {
-        requireNonNull(localDateTime);
+        requireAllNonNull(localDateTime);
         dateTime = localDateTime;
     }
 
     /**
-     * returns if the Date is today's date.
+     * @return If the Date is today's date.
      */
     public boolean isToday() {
         LocalDateTime today = LocalDateTime.now();
@@ -60,16 +63,27 @@ public class DateTime implements Comparable<DateTime> {
                 && today.getYear() == dateTime.getYear();
     }
 
+    /**
+     * @return If the Date has passed.
+     */
     public boolean isPastDate() {
         return dateTime.isBefore(LocalDateTime.now());
     }
 
+    /**
+     * Checks if the DateTime is before another DateTime.
+     *
+     * @param dateTimeToCheck against.
+     * @return Whether this DateTime is before the given DateTime.
+     */
     public boolean isBefore(DateTime dateTimeToCheck) {
         return dateTime.isBefore(dateTimeToCheck.dateTime);
     }
 
     /**
      * Returns the amount of days between today and the Date.
+     *
+     * @return Days between today and the Date.
      */
     public int getDaysFromToday() {
         Long daysBetween = DAYS.between(LocalDate.now(), this.dateTime.toLocalDate());
@@ -77,10 +91,13 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * returns if the {@code test} is a valid date time string.
+     * Checks whether the given String is a valid DateTime.
+     *
+     * @param test String to check.
+     * @return Whether the given String is valid.
      */
     public static boolean isValidDateTime(String test) {
-        requireNonNull(test);
+        requireAllNonNull(test);
         try {
             DATE_TIME_FORMATTER.parse(test);
             return true;
@@ -90,10 +107,13 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * returns if the {@code test} is a valid date string.
+     * Checks whether the given String is a valid Date.
+     *
+     * @param test String to check.
+     * @return Whether the given String is valid.
      */
     public static boolean isValidDate(String test) {
-        requireNonNull(test);
+        requireAllNonNull(test);
         try {
             DATE_FORMATTER.parse(test);
             return true;
@@ -103,8 +123,11 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * Returns a {@code DateTime} that is {@code freq} many {@code Recurrence} from
-     * this {@code DateTime}.
+     * Calculates the new DateTime from the given recurrence and frequency.
+     *
+     * @param recur to add.
+     * @param freq to add.
+     * @return The new DateTime.
      */
     public DateTime plusDuration(Recurrence recur, int freq) {
         switch (recur) {
@@ -126,17 +149,23 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * Factory method to get a {@code DateTime} with {@code validDate} only, the time
+     * Factory method to get a DateTime with validDate only, the time
      * field defaults to 0000 hours.
+     *
+     * @param validDate for the DateTime.
+     * @return The DateTime created.
      */
     public static DateTime ofDate(String validDate) {
-        requireNonNull(validDate);
+        requireAllNonNull(validDate);
         assert(isValidDate(validDate));
         return new DateTime(validDate + " 0000");
     }
 
     /**
-     * returns if the date portion is the given date to check.
+     * Checks if the date portion is the given date to check.
+     *
+     * @param dateToCheck against.
+     * @return Whether the date portion is same as the Date portion of the given date.
      */
     public boolean isDate(DateTime dateToCheck) {
         return this.dateTime.toLocalDate().equals(dateToCheck.dateTime.toLocalDate());
@@ -182,5 +211,4 @@ public class DateTime implements Comparable<DateTime> {
 
         return dateTime.isBefore(o.dateTime) ? -1 : 1;
     }
-
 }

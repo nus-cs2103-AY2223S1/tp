@@ -21,7 +21,7 @@ public class AddConditionCommandParser implements Parser<AddConditionCommand> {
      *
      * @param args The string of arguments given.
      * @return AddConditionCommand
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public AddConditionCommand parse(String args) throws ParseException {
         requireAllNonNull(args);

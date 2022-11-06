@@ -42,8 +42,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_ROOM)
-                .build();
+        Patient editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 

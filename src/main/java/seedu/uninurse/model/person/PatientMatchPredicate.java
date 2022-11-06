@@ -23,24 +23,24 @@ import seedu.uninurse.model.tag.TagContainsKeywordsPredicate;
 import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
 
 /**
- * Tests that a {@code Patient} matches with all descriptors.
+ * Tests that a Patient matches with all descriptors.
  */
 public class PatientMatchPredicate implements Predicate<Patient> {
     private final List<Predicate<? super Patient>> predicates;
 
     /**
-     * Constructs a {@code PatientMatchPredicate}
-     * which tests {@code Patient} with given keywords.
+     * Constructs a PatientMatchPredicate
+     * which tests a Patient with given keywords.
      *
-     * @param keywords
+     * @param keywords the keywords
      */
     public PatientMatchPredicate(List<String> keywords) {
         this(keywords, new ArgumentMultimap());
     }
 
     /**
-     * Constructs a {@code PatientMatchPredicate}
-     * which tests {@code Patient} with all given descriptors.
+     * Constructs a PatientMatchPredicate
+     * which tests a Patient with all given descriptors.
      *
      * @param keywords the keywords
      * @param arg      the argument multimap

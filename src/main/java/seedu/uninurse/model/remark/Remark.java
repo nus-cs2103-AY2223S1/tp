@@ -1,7 +1,7 @@
 package seedu.uninurse.model.remark;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Patient's additional information as remarks.
@@ -9,7 +9,6 @@ import static seedu.uninurse.commons.util.AppUtil.checkArgument;
  */
 public class Remark {
     public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values and should not be blank.";
-
     /*
      * The first character of the remark must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -19,12 +18,12 @@ public class Remark {
     private final String remark;
 
     /**
-     * Constructs a {@code Remark}.
+     * Constructs a Remark.
      *
      * @param remark A valid remark.
      */
     public Remark(String remark) {
-        requireNonNull(remark);
+        requireAllNonNull(remark);
         checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
         this.remark = remark;
     }

@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
@@ -35,23 +34,18 @@ public class EditMedicationCommand extends EditGenericCommand {
             + " 1 " + PREFIX_MEDICATION + "| 0.5 g every 8 hours\n"
             + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX
             + " 1 " + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
-
-
-    public static final String MESSAGE_EDIT_MEDICATION_SUCCESS = "Edited medication %1$d of %2$s:\n"
+    public static final String MESSAGE_SUCCESS = "Edited medication %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final String MESSAGE_NOT_EDITED = "Medication to edit must be provided.";
-    public static final String MESSAGE_EDIT_DUPLICATE_MEDICATION =
-            "This medication already exists in %1$s's medication list.";
-
-    public static final CommandType EDIT_MEDICATION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final String MESSAGE_FAILURE = "At least one field to edit must be provided.";
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index medicationIndex;
     private final EditMedicationDescriptor editMedicationDescriptor;
 
     /**
-     * Creates an EditMedicationCommand to edit a {@code Medication} from the specified patient.
+     * Creates an EditMedicationCommand to edit a Medication from the specified patient.
      *
      * @param patientIndex of the patient in the filtered patient list to edit.
      * @param medicationIndex of the medication to be edited.
@@ -68,7 +62,7 @@ public class EditMedicationCommand extends EditGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -82,27 +76,25 @@ public class EditMedicationCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_MEDICATION_INDEX);
         }
 
-        Medication initialMedication = initialMedicationList.get(medicationIndex.getZeroBased());
-        Medication updatedMedication = new Medication(
-                editMedicationDescriptor.getType().orElse(initialMedication.getType()),
-                editMedicationDescriptor.getDosage().orElse(initialMedication.getDosage()));
-
-        MedicationList updatedMedicationList;
-
         try {
-            updatedMedicationList = initialMedicationList.edit(medicationIndex.getZeroBased(), updatedMedication);
-        } catch (DuplicateMedicationException exception) {
-            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_MEDICATION, patientToEdit.getName()));
+            Medication initialMedication = initialMedicationList.get(medicationIndex.getZeroBased());
+            Medication updatedMedication = new Medication(
+                    editMedicationDescriptor.getType().orElse(initialMedication.getType()),
+                    editMedicationDescriptor.getDosage().orElse(initialMedication.getDosage()));
+            MedicationList updatedMedicationList = initialMedicationList.edit(medicationIndex.getZeroBased(),
+                    updatedMedication);
+
+            Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
+
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS,
+                    medicationIndex.getOneBased(), editedPatient.getName(), initialMedication, updatedMedication),
+                    COMMAND_TYPE, patientListTracker);
+        } catch (DuplicateMedicationException dme) {
+            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_MEDICATION, patientToEdit.getName()));
         }
-
-        Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
-
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_MEDICATION_SUCCESS,
-                medicationIndex.getOneBased(), editedPatient.getName(), initialMedication, updatedMedication),
-                EDIT_MEDICATION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -118,10 +110,10 @@ public class EditMedicationCommand extends EditGenericCommand {
         }
 
         // state check
-        EditMedicationCommand command = (EditMedicationCommand) other;
-        return patientIndex.equals(command.patientIndex)
-                && medicationIndex.equals(command.medicationIndex)
-                && editMedicationDescriptor.equals(command.editMedicationDescriptor);
+        EditMedicationCommand o = (EditMedicationCommand) other;
+        return patientIndex.equals(o.patientIndex)
+                && medicationIndex.equals(o.medicationIndex)
+                && editMedicationDescriptor.equals(o.editMedicationDescriptor);
     }
 
     /**
@@ -133,7 +125,7 @@ public class EditMedicationCommand extends EditGenericCommand {
         private final Optional<String> medicationDosage;
 
         /**
-         * Constructs a {@code EditMedicationDescriptor} that contains optional fields to edit an existing medication.
+         * Constructs a EditMedicationDescriptor that contains optional fields to edit an existing medication.
          *
          * @param medicationType An optional valid medication type.
          * @param medicationDosage An optional valid dosage amount.
@@ -151,6 +143,10 @@ public class EditMedicationCommand extends EditGenericCommand {
             return medicationDosage;
         }
 
+        public boolean isEmpty() {
+            return medicationType.isEmpty() && medicationDosage.isEmpty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -164,10 +160,10 @@ public class EditMedicationCommand extends EditGenericCommand {
             }
 
             // state check
-            EditMedicationDescriptor e = (EditMedicationDescriptor) other;
+            EditMedicationDescriptor o = (EditMedicationDescriptor) other;
 
-            return getType().equals(e.getType())
-                    && getDosage().equals(e.getDosage());
+            return medicationType.equals(o.medicationType)
+                    && medicationDosage.equals(o.medicationDosage);
         }
     }
 }

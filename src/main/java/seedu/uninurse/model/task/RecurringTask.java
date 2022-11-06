@@ -106,6 +106,8 @@ public class RecurringTask extends Task {
             nextRecurringTask = nextRecurringTask.getNextRecurringTask();
         }
 
+        updatedTasks.add(nextRecurringTask);
+
         return updatedTasks;
     }
 

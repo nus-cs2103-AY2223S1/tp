@@ -1,5 +1,6 @@
 package seedu.uninurse.logic.parser;
 
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
@@ -33,10 +34,15 @@ public class EditMedicationCommandParser implements Parser<EditMedicationCommand
             EditMedicationDescriptor editMedicationDescriptor =
                     ParserUtil.parseEditMedicationDescriptor(argMultimap.getValue(PREFIX_MEDICATION).orElseThrow());
 
+            if (editMedicationDescriptor.isEmpty()) {
+                throw new ParseException(EditMedicationCommand.MESSAGE_FAILURE);
+            }
+
             return new EditMedicationCommand(indices.get(0), indices.get(1), editMedicationDescriptor);
         } catch (NoSuchElementException nse) {
             // Handles missing prefix
-            throw new ParseException(EditMedicationCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditMedicationCommand.MESSAGE_USAGE));
         }
     }
 }

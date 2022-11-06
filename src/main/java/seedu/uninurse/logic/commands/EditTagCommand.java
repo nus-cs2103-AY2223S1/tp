@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
@@ -29,21 +28,17 @@ public class EditTagCommand extends EditGenericCommand {
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_TAG_INDEX
             + " 1 " + PREFIX_TAG + "fall-risk";
-
-    public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %1$d of %2$s:\n"
+    public static final String MESSAGE_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final String MESSAGE_EDIT_DUPLICATE_TAG =
-            "This tag already exists in %1$s's tag list.";
-
-    public static final CommandType EDIT_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index tagIndex;
     private final Tag editedTag;
 
     /**
-     * Creates an EditTagCommand to edit a {@code Tag} from the specified patient.
+     * Creates an EditTagCommand to edit a tag from the specified patient.
      *
      * @param patientIndex The index of the patient in the filtered patient list to edit.
      * @param tagIndex The index of the tag in the patient's tag list.
@@ -59,7 +54,7 @@ public class EditTagCommand extends EditGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -73,24 +68,21 @@ public class EditTagCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_INDEX);
         }
 
-        Tag initialTag = initialTagList.get(tagIndex.getZeroBased());
-
-        TagList updatedTagList;
 
         try {
-            updatedTagList = initialTagList.edit(tagIndex.getZeroBased(), editedTag);
-        } catch (DuplicateTagException exception) {
-            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_TAG, patientToEdit.getName()));
+            Tag initialTag = initialTagList.get(tagIndex.getZeroBased());
+            TagList updatedTagList = initialTagList.edit(tagIndex.getZeroBased(), editedTag);
+
+            Patient editedPatient = new Patient(patientToEdit, updatedTagList);
+
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
+                    editedPatient.getName(), initialTag, editedTag), COMMAND_TYPE, patientListTracker);
+        } catch (DuplicateTagException dte) {
+            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
         }
-
-        Patient editedPatient = new Patient(patientToEdit, updatedTagList);
-
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS,
-                tagIndex.getOneBased(), editedPatient.getName(), initialTag, editedTag),
-                EDIT_TAG_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
@@ -106,9 +98,9 @@ public class EditTagCommand extends EditGenericCommand {
         }
 
         // state check
-        EditTagCommand command = (EditTagCommand) other;
-        return patientIndex.equals(command.patientIndex)
-                && tagIndex.equals(command.tagIndex)
-                && editedTag.equals(command.editedTag);
+        EditTagCommand o = (EditTagCommand) other;
+        return patientIndex.equals(o.patientIndex)
+                && tagIndex.equals(o.tagIndex)
+                && editedTag.equals(o.editedTag);
     }
 }

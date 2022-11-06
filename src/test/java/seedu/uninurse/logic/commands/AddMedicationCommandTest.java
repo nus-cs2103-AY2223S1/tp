@@ -3,9 +3,8 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.AddMedicationCommand.ADD_MEDICATION_COMMAND_TYPE;
-import static seedu.uninurse.logic.commands.AddMedicationCommand.MESSAGE_ADD_MEDICATION_SUCCESS;
-import static seedu.uninurse.logic.commands.AddMedicationCommand.MESSAGE_DUPLICATE_MEDICATION;
+import static seedu.uninurse.logic.commands.AddMedicationCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.AddMedicationCommand.MESSAGE_SUCCESS;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -62,14 +61,12 @@ public class AddMedicationCommandTest {
 
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
 
-        String expectedMessage = String.format(MESSAGE_ADD_MEDICATION_SUCCESS,
-                editedPatient.getName(), medicationToAdd);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), medicationToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddMedication, editedPatient);
 
-        assertCommandSuccess(addMedicationCommand, model, expectedMessage,
-                ADD_MEDICATION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -91,15 +88,13 @@ public class AddMedicationCommandTest {
 
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
 
-        String expectedMessage = String.format(MESSAGE_ADD_MEDICATION_SUCCESS,
-                editedPatient.getName(), medicationToAdd);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), medicationToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(patientToAddMedication, editedPatient);
 
-        assertCommandSuccess(addMedicationCommand, model, expectedMessage,
-                ADD_MEDICATION_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(addMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -126,7 +121,7 @@ public class AddMedicationCommandTest {
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
 
         assertCommandFailure(addMedicationCommand, model,
-                String.format(MESSAGE_DUPLICATE_MEDICATION, editedPatient.getName().toString()));
+                String.format(Messages.MESSAGE_DUPLICATE_MEDICATION, editedPatient.getName().toString()));
     }
 
     @Test

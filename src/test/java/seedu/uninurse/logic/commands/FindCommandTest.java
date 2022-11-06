@@ -2,7 +2,6 @@ package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.uninurse.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.testutil.TypicalPersons.CARL;
 import static seedu.uninurse.testutil.TypicalPersons.ELLE;
@@ -20,7 +19,7 @@ import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.PatientMatchPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for FindCommand.
  */
 public class FindCommandTest {
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -55,21 +54,21 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size());
+        String expectedMessage = String.format(FindCommand.MESSAGE_SUCCESS, model.getFilteredPersonList().size());
         PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, FindCommand.COMMAND_TYPE, expectedModel);
         assertNotEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(FindCommand.MESSAGE_SUCCESS, 3);
         PatientMatchPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, FindCommand.COMMAND_TYPE, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

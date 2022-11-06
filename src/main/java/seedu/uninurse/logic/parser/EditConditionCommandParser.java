@@ -22,7 +22,7 @@ public class EditConditionCommandParser implements Parser<EditConditionCommand> 
      *
      * @param args The given string of arguments.
      * @return EditConditionCommand
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public EditConditionCommand parse(String args) throws ParseException {
         requireAllNonNull(args);

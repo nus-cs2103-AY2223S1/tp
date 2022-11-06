@@ -28,10 +28,10 @@ public class EditConditionCommand extends EditGenericCommand {
             + PREFIX_OPTION_CONDITION_INDEX + " CONDITION_INDEX " + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_CONDITION_INDEX
             + " 1 " + PREFIX_CONDITION + "Hypertension";
-    public static final String MESSAGE_EDIT_CONDITION_SUCCESS = "Edited condition %1$d of %2$s:\n"
+    public static final String MESSAGE_SUCCESS = "Edited condition %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final CommandType EDIT_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+    public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index conditionIndex;
@@ -78,9 +78,9 @@ public class EditConditionCommand extends EditGenericCommand {
             PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_CONDITION_SUCCESS,
+            return new CommandResult(String.format(MESSAGE_SUCCESS,
                     conditionIndex.getOneBased(), editedPatient.getName(), initialCondition, editedCondition),
-                    EDIT_CONDITION_COMMAND_TYPE, patientListTracker);
+                    COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }

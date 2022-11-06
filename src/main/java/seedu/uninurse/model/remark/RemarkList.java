@@ -1,6 +1,6 @@
 package seedu.uninurse.model.remark;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,25 +21,26 @@ public class RemarkList implements GenericList<Remark> {
     private final List<Remark> internalRemarkList;
 
     /**
-     * Constructs an empty {@code RemarkList}.
+     * Constructs an empty RemarkList.
      */
     public RemarkList() {
         this.internalRemarkList = new ArrayList<>();
     }
 
     /**
-     * Constructs a {@code RemarkList}.
+     * Constructs a RemarkList.
+     *
      * @param remarkList The given list of remarks.
      */
     public RemarkList(List<Remark> remarkList) {
-        requireNonNull(remarkList);
+        requireAllNonNull(remarkList);
         this.internalRemarkList = remarkList;
     }
 
     @Override
     public RemarkList add(Remark remark) {
-        requireNonNull(remark);
-        if (this.internalRemarkList.contains(remark)) {
+        requireAllNonNull(remark);
+        if (internalRemarkList.contains(remark)) {
             throw new DuplicateRemarkException();
         }
 
@@ -61,6 +62,7 @@ public class RemarkList implements GenericList<Remark> {
 
     @Override
     public RemarkList edit(int index, Remark editedRemark) {
+        requireAllNonNull(editedRemark);
         try {
             List<Remark> updatedRemarks = new ArrayList<>(internalRemarkList);
             updatedRemarks.set(index, editedRemark);
@@ -135,21 +137,21 @@ public class RemarkList implements GenericList<Remark> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         internalRemarkList.forEach(r -> {
             int index = internalRemarkList.indexOf(r);
             if (index == 0) {
-                builder.append(index + 1)
+                sb.append(index + 1)
                         .append(". ")
                         .append(r);
             } else {
-                builder.append("\n")
+                sb.append("\n")
                         .append(index + 1)
                         .append(". ")
                         .append(r);
             }
         });
-        return builder.toString();
+        return sb.toString();
     }
 
     @Override

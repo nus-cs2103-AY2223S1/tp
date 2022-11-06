@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.uninurse.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +13,8 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT,
-                ExitCommand.EXIT_COMMAND_TYPE);
+        CommandResult expectedCommandResult = new CommandResult(ExitCommand.MESSAGE_SUCCESS,
+                ExitCommand.COMMAND_TYPE);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }
