@@ -41,16 +41,19 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         String uppercaseToAdd = toAdd.toUpperCase();
 
         if (!model.isModuleOffered(uppercaseToAdd)) {
             throw new CommandException(String.format(MESSAGE_MODULE_NOT_FOUND, toAdd));
         }
+
         if (!model.isModuleOfferedInSemester(uppercaseToAdd, semester)) {
             throw new CommandException(MESSAGE_MODULE_NOT_OFFERED_IN_SEMESTER);
         }
 
         UserModule moduleToAdd = new UserModule(uppercaseToAdd, semester);
+
         if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
@@ -65,10 +68,13 @@ public class AddCommand extends Command {
 
         for (LessonTypeEnum t : module.getUnselectableLessonTypeEnums(semester)) {
             String lessonId = module.getUnselectableLessonId(t, semester);
-            moduleToAdd.addLesson(t, lessonId);
+            String lessonInfo = lessonId + "\n" + module.getLessonInfo(t, semester, lessonId);
+
+            moduleToAdd.addLesson(t, lessonInfo);
         }
 
         model.addUserModule(moduleToAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, uppercaseToAdd), COMMAND_WORD);
     }
 
