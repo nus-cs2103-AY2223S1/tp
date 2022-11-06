@@ -19,9 +19,9 @@ public class FindPriceCommand extends Command {
 
     public static final String COMMAND_WORD = "findPrice";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eatries whose price matches "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose price matches "
             + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...-r <INT>\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMBER]\n"
             + "Example: " + COMMAND_WORD + " $$ -r 1";
 
 
@@ -43,6 +43,7 @@ public class FindPriceCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        String warning = "";
         requireNonNull(model);
         model.updateFilteredEateryList(predicate);
         if (numRandPicks > 0) {
@@ -53,16 +54,21 @@ public class FindPriceCommand extends Command {
             }
             Collections.shuffle(randomIndexes);
             randomIndexes = randomIndexes.subList(0, numToShow);
-            randomIndexes.sort(null);
 
             ArrayList<Eatery> eateriesChosen = new ArrayList<>(numToShow);
             for (Integer i : randomIndexes) {
                 eateriesChosen.add(model.getFilteredEateryList().get(i));
             }
             model.updateFilteredEateryList(eateriesChosen::contains);
+
+            if (numToShow < numRandPicks) {
+                warning = "\nWarning: there are fewer eateries matching the specified criteria than "
+                        + "the requested number of eateries to randomly select.";
+            }
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_EATERIES_LISTED_OVERVIEW, model.getFilteredEateryList().size()));
+                String.format(Messages.MESSAGE_EATERIES_LISTED_OVERVIEW, model.getFilteredEateryList().size())
+                        + warning);
     }
 
     @Override
