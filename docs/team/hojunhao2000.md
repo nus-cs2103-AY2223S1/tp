@@ -53,14 +53,6 @@ Given below are my contributions to the project.
     * Highlights: Created a parameter constraints summary so that users can see all the constraints at a glance. Added value
       proposition so users will now what they can do and how they can benefit using modtrekt.
 
-* **Major Enhancement**: 
-    * What it does: Added diagrams, added table of contents, parameter constraints summary, value proposition of application
-      and much more.
-    * Justification: Our initial UG was lacking in several aspects causing confusion to users when reading. Through these
-      additions, it can help the user better understand our UG and utilize our application.
-    * Highlights: Created a parameter constraints summary so that users can see all the constraints at a glance. Added value
-      proposition so users will now what they can do and how they can benefit using modtrekt.
-
 * **Minor Enhancement**: Added several JUnit tests.
     * Tested the execution of `AddModuleCommand`, `RemoveModuleCommand`, `EditModuleCommand`, `EditTaskCommand`
 
