@@ -9,10 +9,18 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The implementation of the status field is adapted from this [project's implementation of a similar feature.](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+* The code for the removal of bullet points from the User Guide's table of content is reused from AY2021S1-CS2103T-W16-3's [PR #179](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff) and [PR #190.](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/190/commits/b91ca546a6a41a977a8dbf4d40c969ab07a49ad7)
+* HobbyList's User Guide is adapted from [AB-3's User Guide.](https://se-education.org/addressbook-level3/UserGuide.html)
+* HobbyList's Developer Guide is adapted from [AB-3's Developer Guide.](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+HobbyList is a **desktop app for students to manage their hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -205,6 +213,35 @@ The following is a use case for changing command names.
   * Cons: Harder to implement.
 
 
+### Setting activity status 
+
+The user can set status for an activity by including `s/STATUS` when performing the add or edit command.
+ * `s/STATUS` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS (case-insensitive).
+ * If STATUS is not specified when performing the add command, it will be displayed as **STATUS: NONE** by default.
+ * Different status will have different coloured tag when displayed in the list of activities.
+
+The addition of the status field allows the user to categorise their activities into different status. This way it will be easier
+for the user to check their upcoming, ongoing or completed activities so that they can properly track their progress and plan their schedule.
+
+#### Implementation
+
+Similar to the existing `Name` field, the implementation of the `Status` field is achieved by creating a Status class and letting the Activity class take in a status object.
+
+The following is a scenario of when the user wants to add an activity named "Star Wars", with the description "movie"
+and with a status of "upcoming".
+
+1. `execute("add n/Star Wars d/movie s/upcoming")` of `LogicManager` calls the `parseCommand` method of `HobbyListParser`
+2. `parseCommand("add n/Star Wars d/movie s/upcoming")` parses the string `"add n/Star Wars d/movie s/upcoming"` and calls the `parse` method of `AddCommandParser`
+3. The `parse` method will check if the name, description and status provided are valid. If it is valid,
+it returns a new `AddCommand` object.
+4. The overridden `execute` method from AddCommand is then called which adds the created activity object to the model and return
+a new `CommandResult` object.
+
+The following sequence diagram shows what happens when the user perform `add n/Star Wars d/movie s/upcoming`.
+
+![AddActivityWithStatus](images/AddActivityWithStatus.png)
+
+
 ### Rating and reviewing an activity
 
 #### Implementation
@@ -251,6 +288,7 @@ The following is a use case for changing themes.
 **Aspect:** How to keep the user-preferred settings:
 
 **Current choice:** Save it as a variable in MainWindow class and load it when next time user start the app.
+
 
 
 ### \[Proposed\] Undo/redo feature

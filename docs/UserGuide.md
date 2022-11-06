@@ -16,7 +16,7 @@ title: User Guide
 ## **1. Introduction**
 
 ### 1.1 What is HobbyList?
-HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+HobbyList is a **desktop app for students to manage their hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
 
 If you prefer typing only and want to record your experiences with your hobby activities such as reading books or watching movies, HobbyList is the perfect app for you.
 
@@ -88,7 +88,7 @@ If you encounter an unfamiliar technical term, you can look it up in the glossar
 
 4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. You can see that the app contains some sample data for you to play around with.<br>
    ![Ui](images/default_gui.png)
-
+_<center>Figure 1: HobbyList's default UI</center>_
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -117,7 +117,20 @@ If you encounter an unfamiliar technical term, you can look it up in the glossar
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. HobbyList User Interface**
-to be added
+
+Refer to Figure 2 below to get yourself familiar with the user interface! 
+
+![HobbyList UI](images/annotated_ui.jpg)
+_Figure 2: Annotated GUI of HobbyList_
+{: style="text-align: center;"}
+
+| Section                 | Description                                                                                                                                    |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Toolbar                 | Provides functionality for you to exit the application, rename commands, access the help page and change the appearance of the user interface. |
+| Command Input Box       | This is where you can type and perform the different commands available.                                                                       |
+| Command Result Box      | This box displays information related to the commands you execute.                                                                             |
+| List of Activites       | This section displays the activity list and can display a subset of activities depending on the command you perform.                           |
+| Selected Activity Panel | This box displays an activity's information after you perform the `select` command.                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,19 +192,23 @@ Examples:
 
   *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
+![AddActivityExample](images/add_command_example.png)
+_Figure 3: New activity added after running `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`_
+{: style="text-align: center;"}
+
 <a name="what-is-an-activity"></a>
 <div markdown="block" class="alert alert-info">
 
 :information_source: **What is an activity?**<br>
 
 Every entry in HobbyList is an activity. Each activity contains the fields below.
-* *Name*: What the activity is called. Not optional.
-* *Description*: What the activity is about. Not optional.
-* *Tags*: What type of activity it is. Helps you to organise your activities. For example, you can have different activities tagged "book", "movie" or "recipe". Each activity can have multiple tags. Optional.
-* *Date*: When the activity was/will be done. Currently, each activity can only have one date, which you can set it to be the starting date, the ending date, or anything you like. Optional.
-* *Status*: Whether the activity is upcoming, ongoing or completed. Optional.
-* *Rating*: How good the activity is to you, on a scale of 1 to 5. Optional.
-* *Review*: Your feelings about the activity after completing it. Optional.
+* **Name**: What the activity is called. _Compulsory_.
+* **Description**: What the activity is about. _Compulsory_.
+* **Tags**: What type of activity it is. Helps you to organise your activities. For example, you can have different activities tagged "book", "movie" or "recipe". Each activity can have multiple tags. _Optional_.
+* **Date**: When the activity was/will be done. Currently, each activity can only have one date, which you can set it to be the starting date, the ending date, or anything you like. _Optional_.
+* **Status**: Whether the activity is upcoming, ongoing or completed. _Optional_.
+* **Rating**: How good the activity is to you, on a scale of 1 to 5. _Optional_.
+* **Review**: Your feelings about the activity after completing it. _Optional_.
 
 </div>
 
@@ -296,9 +313,17 @@ Examples:
 
 * `rate 2 r/4 re/Interesting movie`
 
-  *Rates the second activity to be 4 out of 5 stars and gives it a review of `Interesting movie`.*
+*Rates the second activity to be 4 out of 5 stars and gives it a review of `Interesting movie`.*
 
+![BeforeRateActivity](images/rate_command_before.png)
+_Figure 4: List of activities before running the `rate` command_
+{: style="text-align: center;"}
 
+![AfterRateActivity](images/rate_command_after.png)
+_Figure 5: List of activities after running `rate 2 r/4 re/Interesting movie`_
+{: style="text-align: center;"}
+
+  
 ### 5.6 Selecting an activity: `select`
 
 You can display all details of the selected activity from HobbyList on the selected activity panel. This allows you to read the descriptions or reviews that are too long to display in the list.
@@ -318,6 +343,10 @@ Example:
 * `select 1`
 
   *Displays the first activity in the selected activity panel.*
+
+![selectActivity](images/select_command_example.png)
+_Figure 6: Details of the selected activity is now displayed after running `select 1`_
+{: style="text-align: center;"}
 
 ### 5.7 Finding activities: `find`
 
@@ -355,6 +384,10 @@ Examples:
 * `find romance tragedy rate/5 date/2019-10-23`
 
   *Finds all activities with a name or description containing `romance` or `tragedy` or both, or with a rating of 5, or with a date of 23 October 2019.*
+
+![FindActivityExample](images/find_command_example.png)
+_Figure 7: Filtered list of activities after running `find romance tragedy rate/5 date/2019-10-23`_
+{: style="text-align: center;"}
 
 ### 5.8 Finding activities with tags : `findTag`
 
@@ -422,9 +455,17 @@ You can show a list of all activities whose rating value is greater or equal tha
 </div>
 
 Example: 
-* `r/above 1`
+* `r/above 4`
 
-  *Shows a list of all activities with a rating greater than or equal to 1.*
+  *Shows a list of all activities with a rating greater than or equal to 4.*
+
+![BeforeRateAbove](images/rateabove_before.png)
+_Figure 8: List of three activities with rating value of 5, 4 and 2 respectively_
+{: style="text-align: center;"}
+
+![AfterRateAbove](images/rateabove_after.png)
+_Figure 9: Filtered list of activities after running `r/above 4`_
+{: style="text-align: center;"}
 
 ### 5.11 Getting help : `help`
 

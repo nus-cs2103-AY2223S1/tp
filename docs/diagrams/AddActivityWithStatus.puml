@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HobbyListParser" as HobbyListParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+endbox
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+endbox
+
+[-> LogicManager : execute("add n/Star Wars d/movie s/upcoming")
+activate LogicManager
+
+LogicManager -> HobbyListParser : parseCommand("add n/Star Wars d/movie s/upcoming")
+activate HobbyListParser
+
+create AddCommandParser
+HobbyListParser -> AddCommandParser
+activate AddCommandParser
+AddCommandParser --> HobbyListParser
+deactivate AddCommandParser
+
+HobbyListParser -> AddCommandParser : parse("n/Star Wars d/movie s/upcoming")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> HobbyListParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> HobbyListParser
+destroy AddCommandParser
+
+HobbyListParser --> LogicManager : a
+deactivate HobbyListParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addActivity()
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
