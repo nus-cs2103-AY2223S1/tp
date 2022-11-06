@@ -1349,7 +1349,7 @@ It is recommended to have more patients and appointments so that the behaviour o
    1. Expected result: The results hidden in the previous test case should reappear.
 
 ### Finding results
-Section Prerequisites: Those previously mentioned in `Hiding/Unhiding results`.
+Section Prerequisites: Same prerequisites as those in the previous section `Hiding/Unhiding results`.
 
 **Note**: Enter `list all` after performing every test case in this section. Similarly to the previous section, a message
 displaying the number of filtered results should appear after every valid input.
