@@ -36,5 +36,4 @@ public class TypicalTasks {
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(MISSION1, STUDIO, QUEST1, MASTERY_CHECK));
     }
-    
 }
