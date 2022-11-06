@@ -17,7 +17,7 @@
     },
     {
       "name": "Alice Pauline",
-      "employeeId": "1",
+      "employeeId": "2",
       "phone": "94351253",
       "email": "pauline@example.com",
       "position": "Recruiter",
@@ -29,5 +29,6 @@
       "performanceHistory": [],
       "leaveTaken": []
     }
-  ]
+  ],
+  "maxID": 3
 }

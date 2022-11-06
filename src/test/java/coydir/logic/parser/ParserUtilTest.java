@@ -30,6 +30,9 @@ public class ParserUtilTest {
     private static final String INVALID_POSITION = " ";
     private static final String INVALID_DEPARTMENT = "Invalid";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_FILENAME1 = "a";
+    private static final String INVALID_FILENAME2 = " ";
+    private static final String INVALID_FILENAME3 = "coydir.xlsx";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +42,7 @@ public class ParserUtilTest {
     private static final String VALID_DEPARTMENT = "Information Technology";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_FILENAME = "coydir.csv";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -244,5 +248,38 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFileName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFileName((String) null));
+    }
+
+    @Test
+    public void parseFileName_invalidValueNotFile_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileName(INVALID_FILENAME1));
+    }
+
+    @Test
+    public void parseFileName_invalidValueEmptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileName(INVALID_FILENAME2));
+    }
+
+    @Test
+    public void parseFileName_invalidValueNotCsv_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileName(INVALID_FILENAME3));
+    }
+
+    @Test
+    public void parseFileName_validValueWithoutWhitespace_returnsDepartment() throws Exception {
+        String expectedFileName = VALID_FILENAME;
+        assertEquals(expectedFileName, ParserUtil.parseFileName(VALID_FILENAME));
+    }
+
+    @Test
+    public void parseFileName_validValueWithWhitespace_returnsTrimmedDepartment() throws Exception {
+        String whitespaceFileName = WHITESPACE + VALID_FILENAME + WHITESPACE;
+        String expectedFileName = VALID_FILENAME;
+        assertEquals(expectedFileName, ParserUtil.parseFileName(whitespaceFileName));
     }
 }

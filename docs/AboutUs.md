@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Chao Yung
 
-<kbd><img src="images/profiles/chao890.png" width="200px"></kbd>
+<kbd><img src="images/chao890.png" width="200px"></kbd>
 
 [[github](https://github.com/chao890)]
 [[portfolio](team/chao890.md)]
@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Kevin Chang
 
-<kbd><img src="images/profiles/kevinchangjk.png" width="200px"></kbd>
+<kbd><img src="images/kevinchangjk.png" width="200px"></kbd>
 
 [[github](http://github.com/kevinchangjk)]
 [[portfolio](team/kevinchangjk.md)]
@@ -29,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Prittam Ravi
 
-<kbd><img src="images/profiles/prit3010.png" width="200px"></kbd>
+<kbd><img src="images/prit3010.png" width="200px"></kbd>
 
 [[github](https://github.com/prit3010)]
 [[portfolio](team/prit3010.md)]
@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Shawn Kok
 
-<kbd><img src="images/profiles/kok-je.png" width="200px"></kbd>
+<kbd><img src="images/kok-je.png" width="200px"></kbd>
 
 [[github](https://github.com/Kok-je)]
 [[portfolio](team/kok-je.md)]
@@ -49,7 +49,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ng Shi Jun
 
-<kbd><img src="images/profiles/ngshijun.png" width="200px"></kbd>
+<kbd><img src="images/ngshijun.png" width="200px"></kbd>
 
 [[github](http://github.com/ngshijun)]
 [[portfolio](team/ngshijun.md)]

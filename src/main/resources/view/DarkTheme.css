@@ -149,7 +149,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 16pt;
     -fx-font-family: "SF Mono Light";
     -fx-text-fill: #f1f1f1;
     -fx-alignment: center-left;

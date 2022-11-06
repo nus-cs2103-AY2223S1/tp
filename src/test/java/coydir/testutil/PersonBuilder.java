@@ -1,12 +1,18 @@
 package coydir.testutil;
 
+import static coydir.model.person.Leave.COMPARATOR;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
 import coydir.model.person.Address;
 import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
+import coydir.model.person.Leave;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -26,6 +32,8 @@ public class PersonBuilder {
     public static final String DEFAULT_DEPARTMENT = "Information Technology";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final int DEFAULT_LEAVE = 14;
+    public static final PriorityQueue<Leave> DEFAULT_LEAVE_PERIOD = null;
 
     private Name name;
     private EmployeeId employeeId;
@@ -35,7 +43,10 @@ public class PersonBuilder {
     private Department department;
     private Address address;
     private Rating rating;
+    private int totalLeave;
     private Set<Tag> tags;
+    private Queue<Leave> leavePeriod;
+    private ArrayList<Rating> performanceHistory;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -49,7 +60,10 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         address = new Address(DEFAULT_ADDRESS);
         rating = Rating.getNullRating();
+        totalLeave = DEFAULT_LEAVE;
         tags = new HashSet<>();
+        leavePeriod = new PriorityQueue<Leave>(COMPARATOR);
+        performanceHistory = new ArrayList<>();
     }
 
     /**
@@ -64,7 +78,11 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         address = personToCopy.getAddress();
         rating = personToCopy.getRating();
+        totalLeave = personToCopy.getTotalNumberOfLeaves();
         tags = new HashSet<>(personToCopy.getTags());
+        leavePeriod = personToCopy.getLeaves();
+        performanceHistory = personToCopy.getRatingHistory();
+
     }
 
     /**
@@ -156,15 +174,40 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Department} of the {@code Person} that we are building.
+     * Sets the {@code Rating} of the {@code Person} that we are building.
      */
     public PersonBuilder withRating(String rating) {
-        this.rating = new Rating(rating);
+        Rating toAdd = new Rating(rating);
+        this.rating = toAdd;
         return this;
     }
 
+    /**
+     * Sets the {@code Leave} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTotalLeave(int totalLeave) {
+        this.totalLeave = totalLeave;
+        return this;
+    }
+
+    /**
+     * Sets the {@code leave period} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLeavePeriod(Leave leave) {
+        this.leavePeriod.add(leave);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Leave} of the {@code Person} that we are building.
+     */
     public Person build() {
-        return new Person(name, employeeId, phone, email, position, department, address, tags, 14, rating);
+        Person person = new Person(name, employeeId, phone, email, position,
+            department, address, tags, totalLeave, rating);
+        for (Leave leave: leavePeriod) {
+            person.addLeave(leave);
+        }
+        return person;
     }
 
 }
