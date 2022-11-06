@@ -1,5 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-This section covers how to use each [[command:command]] in detail.
+This section shares with you on how to use each [[command:command]] in detail.
+
 Before continuing, ensure you have read the section on [Flags](#flags) and [Placeholders](#placeholders).
 
 What you should expect to find:
