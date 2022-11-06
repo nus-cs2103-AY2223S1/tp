@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -37,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane books;
+    private VBox books;
     @FXML
     private FlowPane tags;
 
@@ -52,10 +53,22 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         person.getLoanedBooksSet().stream()
-                .forEach(book -> books.getChildren().add(new Label(book.toString())));
+                .forEach(book -> books.getChildren().add(newWrappedLabel(book.toString())));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Modify the properties of the label
+     *
+     * @param text Text for the label
+     * @return Modified label with set properties
+     */
+    public Label newWrappedLabel(String text) {
+        Label label = new Label(text);
+        label.setWrapText(true);
+        return label;
     }
 
     @Override
