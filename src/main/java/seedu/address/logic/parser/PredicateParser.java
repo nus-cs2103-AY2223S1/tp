@@ -186,6 +186,13 @@ public class PredicateParser {
         case PET_NAME_PREFIX:
             return new PetNameContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case PRICE_PREFIX:
+            if (!input.matches("[0-9]+")) {
+                throw new ParseException("Input has to be numbers without spaces");
+            };
+            if (inputs.length > 1) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+            }
             return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(input)));
         case SPECIES_PREFIX:
             return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(inputs));
