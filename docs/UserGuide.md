@@ -13,9 +13,11 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 **module-mates** (i.e., students in the same module) to increase their productivity.
 
 Plannit will be the **go-to platform** for them to access all modules links and information
-without needing to tediously navigate through multiple websites.
+without needing to tediously navigate through multiple websites. Students 
+can also use it to track their tasks for each module with this application 
+so that they do not have to worry about unintentionally forgetting their tasks.
 
-Plannit allows tracking of student contacts by module.
+In addition, Plannit allows tracking of student contacts by module.
 Students do not have to worry about forgetting which friend takes which module.
 
 Plannit is **optimized for use via a Command Line Interface (CLI)**
@@ -38,6 +40,7 @@ our app.
 | :bulb:               | A relevant tip which you may find helpful.                                  |
 | :information_source: | Information that you should **must** note of when using a specific feature. |
 | :eye:                | A feature related to the section you are currently looking at.              |
+| :exclamation:        | A disclaimer related to the section you are currently looking at.           |
 
 
 ## 1. Quick start
@@ -439,11 +442,11 @@ Link aliases will be paired with link URLs according to their respective order o
 Plannit provides no guarantee of the link URL's existence.
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Link URL**    | `l/`  | <li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li> |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Link URL**    | `l/`  | {::nomarkdown}<ul><li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li></ul>{:/} |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * Each link must belong to a specific module.
@@ -480,10 +483,10 @@ If there exists a link alias that is detected as invalid within a chained comman
 none of the links in the command will be deleted.
 
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul> {:/} |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -503,8 +506,8 @@ In the above example, we are deleting the links with the URL `https://www.nusmod
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                     | After executing the command                                                     |
-|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Before executing the command                                                       | After executing the command                                                       |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.PNG"/></p>{:/} |
 
 #### 2.3.3. Open link
@@ -526,10 +529,10 @@ Permissions from your operating system may be required for some users to open li
 (They are enabled by default for most users)
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}  |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
