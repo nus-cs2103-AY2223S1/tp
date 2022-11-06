@@ -154,6 +154,7 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -175,8 +176,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram-0.png" width="550" />
 
@@ -184,7 +184,7 @@ The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `TaskListStorage`, `ArchivedtaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage`, `ArchivedTaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
