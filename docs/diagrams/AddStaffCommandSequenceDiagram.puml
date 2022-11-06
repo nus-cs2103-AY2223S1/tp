@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddStaffCommandParser" as AddStaffCommandParser LOGIC_COLOR
+participant "command:AddStaffCommand" as AddStaffCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand()
+activate AddressBookParser
+
+create AddStaffCommandParser
+AddressBookParser -> AddStaffCommandParser
+activate AddStaffCommandParser
+
+AddStaffCommandParser --> AddressBookParser
+deactivate AddStaffCommandParser
+
+AddressBookParser -> AddStaffCommandParser : parse()
+activate AddStaffCommandParser
+
+create AddStaffCommand
+AddStaffCommandParser -> AddStaffCommand
+activate AddStaffCommand
+
+AddStaffCommand --> AddStaffCommandParser
+deactivate AddStaffCommand
+
+AddStaffCommandParser --> AddressBookParser : command
+deactivate AddStaffCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> AddStaffCommand : execute()
+activate AddStaffCommand
+
+
+AddStaffCommand -> Model: getProjectWithIndex()
+activate Model
+Model --> AddStaffCommand
+deactivate Model
+
+AddStaffCommand -> Model: addStaffWithProject()
+activate Model
+Model --> AddStaffCommand
+deactivate Model
+
+create CommandResult
+AddStaffCommand -> CommandResult
+activate CommandResult
+CommandResult -> AddStaffCommand
+deactivate CommandResult
+
+AddStaffCommand --> LogicManager
+deactivate AddStaffCommand
+
+[<--LogicManager : Done
+deactivate LogicManager
+
+@enduml

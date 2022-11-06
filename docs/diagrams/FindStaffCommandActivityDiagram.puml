@@ -1,0 +1,14 @@
+@startuml
+start
+:User inputs findstaff command;
+:Parse input;
+if () then (valid input)
+	:Parser parses keywords;
+	:Model filters the current StaffList;
+	:Model updates the displayed StaffList;
+else (else)
+	:Throw ParseException;
+endif
+
+stop
+@enduml
