@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -71,13 +71,13 @@ The sections below give more details of each component.
 
 ## UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, `StaffListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -102,7 +102,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HrProParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -172,7 +172,7 @@ The `Task` class,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ## Common classes
@@ -395,20 +395,23 @@ will only allow Staff that are displayed to be deleted. Since we do not save whi
 display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
 with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
-It also uses `ModelManager` and the following fields to delete the task.
-* `FilteredStaffList` - get the Staff Name at the specified Index within this list
-* `FilteredProjectList`- get the Project with the specified PROJECT_NAME within this list
+`ModelManager` methods for deleting a staff are:
+* `getFilteredProjectList` - to check if it is empty
+* `getFilteredStaffList` - to check if it is empty
+* `getStaffFromProjectAtIndex` - returns an `Optional` which contains either a `Staff` or not
+* `getProjectWithName` - return a `Optional` which contains either a `Project` or not, based on PROJECT_NAME
+* `isSuccessStaffDelete` - returns a `Boolean` based on whether the `Staff` is deleted from the `Project`
 
 It then searches if the Staff is within the Project's Staff list. If it is, the Staff is deleted and if not, exception is thrown.
 
 Example Usage:
 ```
-Filtered Project list :
+Project list :
 1) CS2103T TP
 2) CS2102 project
 3) Orbital
 
-Filter Staff list:
+Staff list:
 1) Andy
 2) Jayden
 3) Shawn
@@ -422,10 +425,10 @@ within CS2102 project's Staff list and delete Staff Jayden if it exist.
 Exception is thrown for the following cases:
 * If the Staff list or Project list is empty (Nothing is displayed).
 * If the PROJECT_NAME is for a Project not on display or not in HR Pro Max++.
-* If the INDEX is greater than the number of Staff on display currently, or if the INDEX is 0 or negative or exceed Int_MAX.
+* If the INDEX is greater than the number of Staff on display currently, or if the INDEX is 0 or negative or exceed INT_MAX.
 * If there are any missing parameters.
 
-The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
+The activity diagram below shows the logic flow of the `delstaff` command.
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 

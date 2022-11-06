@@ -7,12 +7,11 @@ start
 if () then ([valid input])
     :Check for empty List;
     if () then ([Not empty])
-        :Get INDEX \ninputted;
-        if () then ([Valid INDEX])
-            :Get Staff at INDEX\nof displayed Staff List\nand its STAFF_NAME;
-            :Get PROJECT_NAME\ninputted;
-            if () then ([Within Displayed Project List])
-                : Get Project with\n PROJECT_NAME from\n displayed Project List;
+        :Try to get Staff \nat INDEX;
+        if () then ([Valid INDEX and Staff])
+            :Try to get Project \nwith PROJECT_NAME;
+            if () then ([Successfully get Project])
+
                 : Find Staff with STAFF_NAME\nfrom Project;
                 if () then ([Found])
                     :Delete Staff from Staff List;
