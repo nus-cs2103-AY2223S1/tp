@@ -1,7 +1,6 @@
 package seedu.boba.logic.parser;
 
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -135,16 +134,14 @@ public class CalculationParser {
         assert OPERATORS.containsKey("-") : "Don't have subtraction";
         assert OPERATORS.containsKey("*") : "Don't have multiplication";
         assert OPERATORS.containsKey("/") : "Don't have division";
-        try {
-            String[] input = userInput.split(regex);
-            String[] output = expressionToRpn(input);
-            System.out.println(" ");
-            // Feed the rpn string to rpntoDouble to give result
-            Double result = rpnToDouble(output);
-            resultStr = String.format("%.2f", result);
-        } catch (NumberFormatException | EmptyStackException nfe) {
-            resultStr = "INVALID EXPRESSION";
-        }
+
+        String[] input = userInput.split(regex);
+        String[] output = expressionToRpn(input);
+        System.out.println(" ");
+        // Feed the rpn string to rpntoDouble to give result
+        Double result = rpnToDouble(output);
+        resultStr = String.format("%.2f", result);
+
         return resultStr;
     }
     @Override
