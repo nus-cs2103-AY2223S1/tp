@@ -1,0 +1,145 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "s:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "addressBook:AddressBook" as AddressBook MODEL_COLOR
+participant "students:UniqueStudentList" as StudentList MODEL_COLOR
+participant "tutors:UniqueTutorList" as TutorList MODEL_COLOR
+participant "tuitionClasses:UniqueTuitionClassList" as TuitionClassList MODEL_COLOR
+end box
+
+create AddressBook
+Model -> AddressBook:
+activate AddressBook
+
+create StudentList
+AddressBook -> StudentList
+activate StudentList
+
+StudentList --> AddressBook
+deactivate StudentList
+
+create TutorList
+AddressBook -> TutorList
+activate TutorList
+
+TutorList --> AddressBook
+deactivate TutorList
+
+create TuitionClassList
+AddressBook -> TuitionClassList
+activate TuitionClassList
+
+TuitionClassList --> AddressBook
+deactivate TuitionClassList
+
+AddressBook --> Model:
+deactivate AddressBook
+
+-> LogicManager: execute("sort alpha")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("sort alpha", ListType)
+activate AddressBookParser
+
+create SortCommandParser
+AddressBookParser -> SortCommandParser
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand: new SortCommand(SortBy.ALPHA)
+activate SortCommand
+
+SortCommand --> SortCommandParser:command
+deactivate SortCommand
+
+SortCommandParser --> AddressBookParser:command
+deactivate SortCommandParser
+
+AddressBookParser --> LogicManager:command
+deactivate AddressBookParser
+
+LogicManager -> SortCommand: execute(model)
+activate SortCommand
+
+SortCommand -> Model: getCurrentListType()
+activate Model
+
+Model --> SortCommand: type
+deactivate Model
+
+alt student list
+
+    SortCommand -> Model: sortList(ListType.STUDENT_LIST, SortBy.ALPHA)
+    activate Model
+
+    Model -> AddressBook: sortStudentList(SortBy.ALPHA)
+    activate AddressBook
+
+    AddressBook -> StudentList: sort(SortBy.ALPHA)
+    activate StudentList
+
+    deactivate StudentList
+    deactivate AddressBook
+    deactivate Model
+
+else tutor list
+
+    SortCommand -> Model: sortList(ListType.TUTOR_LIST, SortBy.ALPHA)
+    activate Model
+
+    Model -> AddressBook: sortTutorList(SortBy.ALPHA)
+    activate AddressBook
+
+    AddressBook -> TutorList: sort(SortBy.ALPHA)
+    activate TutorList
+
+    deactivate TutorList
+    deactivate AddressBook
+    deactivate Model
+
+else tuition class list
+
+    SortCommand -> Model: sortList(ListType.TUTIONCLASS_LIST, SortBy.ALPHA)
+    activate Model
+
+    Model -> AddressBook: sortTuitionClassList(SortBy.ALPHA)
+    activate AddressBook
+
+    AddressBook -> TuitionClassList: sort(SortBy.ALPHA)
+    activate TuitionClassList
+
+    deactivate TuitionClassList
+    deactivate AddressBook
+    deactivate Model
+
+end
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+CommandResult -[hidden]-> SortCommand
+destroy CommandResult
+
+SortCommand --> LogicManager: commandResult
+deactivate SortCommand
+
+SortCommand -[hidden]-> LogicManager
+destroy SortCommand
+
+<-- LogicManager
+deactivate LogicManager
+@enduml
