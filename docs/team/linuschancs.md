@@ -22,10 +22,14 @@ It is written in Java and the GUI is build using JavaFX.
       * See PR [#106](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/106)
     * Integrated as another attribute of Student
 * AddStudentCommand
+  * Replaced Address Field with Email Field
+  * Ensure all fields stored in Class-ify are capitalised and filtering is case-insensitive
   * Changed some compulsory fields of a `Student` to optional such as the respective parent details
     * See PR [#139](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/139)
+  * Fixed bug where empty flags were allowed when entering the AddStudent Command
 * ViewClassCommand
   * Implemented ViewClassCommand that displays the list of students in a class
+  * Created ClassPredicate to handle the class filtering logic
   * Add relevant unit test cases and integration test cases
   * See PR [#106](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/106) and [#172](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/172)
 
@@ -51,10 +55,18 @@ It is written in Java and the GUI is build using JavaFX.
   * Added key terms that users of the Developer Guide may be unaware of
 
 #### Contributions to team-based tasks:
-* To be updated
+* Set up Github Issues tracker with relevant labels
+* Created Release for v1.3.1 and v1.3.trial
+  * See [Class-ify Releases](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases)
+* Created weekly agenda and tasks to be completed for team meeting
 
 #### Review/ Mentoring Contributions:
-* To be updated
+* Total Pull Requests reviewed: 37
+* Examples of contribution to reviews:
+  * [#149](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/149): Provided suggestions to viewStats Command implemntation
+  * [#136](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/136): Provided suggestion to better standardise and phrase display message to users
+  * [#93](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/93): Provided suggestion on how to improve code quality
+  * [#47](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/47): Identified a standardisation error in the Command Summary Table
 
 #### Contributions beyond the project team:
-* To be updated
+* [#100](https://github.com/nus-cs2103-AY2223S1/forum/issues/100#issuecomment-1230489545): Provided assistance to classmate in forum
