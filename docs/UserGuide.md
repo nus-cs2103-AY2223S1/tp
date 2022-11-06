@@ -53,7 +53,7 @@ Note that the images are to help with interface only. The actual details of the 
 
 7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
 8. You can use the following commands in the Commission View:
-    * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
+    * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Alex Yeoh.
     * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
     * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
 9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed. <br> ![Ui](images/UiCommissionDetail.png)
