@@ -61,8 +61,8 @@ Already done with the set-up? Jump right straight to the [features](#features) s
 
 ## Purpose of Guide
 
-This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also provides
-experienced or returning users a mini refresher course on how to make the most out of PennyWise.
+This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as 
+a refresher for any experienced or returning users, allowing you to make the most out of PennyWise.
 
 ## How to use this User Guide
 
