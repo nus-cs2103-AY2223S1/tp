@@ -41,17 +41,10 @@ public class UpcomingInterviewPredicateTest {
         // they are considered to have passed
 
         // EP: interview is a minute later
-        Application aMinuteLaterApplication;
-        //Take account of time is 2359
-        if (LocalTime.now().plusMinutes(1).equals(LocalTime.of(0, 0))) {
-            aMinuteLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
-                            .withInterviewTime(LocalTime.of(0, 0)).build()).build();
-        } else {
-            aMinuteLaterApplication = new ApplicationBuilder().withInterview(
-                    new InterviewBuilder().withInterviewDate(LocalDate.now())
-                            .withInterviewTime(LocalTime.now().plusMinutes(1)).build()).build();
-        }
+        LocalDateTime aMinuteLater = LocalDateTime.now().plusMinutes(1);
+        Application aMinuteLaterApplication = new ApplicationBuilder().withInterview(
+                new InterviewBuilder().withInterviewDate(aMinuteLater.toLocalDate()),
+                        .withInterviewTime(aMinuteLater.toLocalTime()).build()).build();
         assertTrue(predicate.test(aMinuteLaterApplication));
 
         // EP: interview is an hour later
