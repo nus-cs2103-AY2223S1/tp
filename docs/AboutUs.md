@@ -30,7 +30,7 @@ and focus on creating their best art.
 [[portfolio](team/seelengxd.md)]
 
 * Role: Developer
-* Responsibilities: Model, Code Qualityg
+* Responsibilities: Model, Code Quality
 
 ### Chloe Lim
 
