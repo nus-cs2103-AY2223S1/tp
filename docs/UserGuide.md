@@ -206,7 +206,7 @@ if it is open. </div>
 
 ---
 
-### **Modifying Resident Data**
+## **Modifying Resident Data**
 
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
 to help you modify resident data within **RC4HDB**.
@@ -219,11 +219,9 @@ Note:
   * email
   * room
 
----
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about resident commands it would be good to have a quick read about the **resident fields**, which will
-be used in the commands.
+be used in the commands. The resident<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-resident-fields">here</a>
 </div>
 
 The resident [fields](#glossary-of-terms) can be found [here](#format-for-resident-fields).
