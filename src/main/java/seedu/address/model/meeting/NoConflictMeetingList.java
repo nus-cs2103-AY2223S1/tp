@@ -72,7 +72,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
      * {@code target} must exist in the list.
      * The {@code editedMeeting} must not conflict with another existing meeting in the list.
      */
-    public void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
 
         int index = internalList.indexOf(target);
@@ -134,9 +134,11 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof NoConflictMeetingList // instanceof handles nulls
-                && internalList.equals(((NoConflictMeetingList) other).internalList));
+        boolean isSameObject = other == this;
+        boolean isSameInternalList = other instanceof NoConflictMeetingList // instanceof handles nulls
+                && internalList.equals(((NoConflictMeetingList) other).internalList);
+
+        return isSameObject || isSameInternalList;
     }
 
     @Override

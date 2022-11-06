@@ -112,9 +112,11 @@ public class UniqueClientList implements Iterable<Client> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueClientList // instanceof handles nulls
-                        && internalList.equals(((UniqueClientList) other).internalList));
+        boolean isSameObject = other == this;
+        boolean isSameInternalList = other instanceof UniqueClientList // instanceof handles nulls
+                && internalList.equals(((UniqueClientList) other).internalList);
+
+        return isSameObject || isSameInternalList;
     }
 
     @Override
