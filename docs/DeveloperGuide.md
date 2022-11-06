@@ -916,24 +916,6 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
        Expected: Similar to previous.
 
-### Pinning an entity
-
-1. Pinning an entity while any list of entities is being shown
-
-    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
-
-    2. Test case: `project -p 3`<br>
-       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
-
-    3. Test case: Repeat `project -p 2` twice.<br>
-       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
-
-    4. Test case: `project -p 0`<br>
-       Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
-
-    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
-       Expected: Similar to previous.
-
 ### Saving data
 
 1. Editing the data file
