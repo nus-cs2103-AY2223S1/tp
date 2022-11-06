@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalSchedules.getTypicalModuleSet;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
@@ -23,6 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
+import seedu.address.model.module.schedule.Weekdays;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ViewScheduleCommand.
@@ -75,6 +78,37 @@ public class ViewScheduleCommandTest {
         // different predicate -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
 
+    }
+
+    @Test
+    public void execute_weekDayPredicate_showScheduleOfWeekdays() {
+        ArrayList<String> weekdays = new ArrayList<>();
+        weekdays.add("Monday");
+        weekdays.add("Friday");
+        ArrayList<String> weekdaysTwo = new ArrayList<>();
+        weekdays.add("Monday");
+        weekdays.add("Wednesday");
+        Set<String> noModules = new HashSet<>();
+
+        ScheduleContainsKeywordsPredicate weekdayPredicate =
+                new ScheduleContainsKeywordsPredicate(weekdays);
+
+        ScheduleContainsKeywordsPredicate weekdayPredicateTwo =
+                new ScheduleContainsKeywordsPredicate(weekdaysTwo);
+
+        assertCommandSuccess(
+                new ViewScheduleCommand(weekdayPredicate, noModules), model,
+                new CommandResult(String.format(
+                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
+                        false, false, false, false,
+                        false, false, true, false, false),
+        expectedModel);
+
+
+    }
+
+    @Test
+    public void execute_ModuleCodePredicate_showScheduleOfModules() {
 
     }
 

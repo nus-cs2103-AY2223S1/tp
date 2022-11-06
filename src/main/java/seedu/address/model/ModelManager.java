@@ -348,6 +348,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return profNus.equals(other.profNus)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTutors.equals(other.filteredTutors)
+                && filteredSchedule.equals(other.filteredSchedule)
+                && filteredModules.equals(other.filteredModules);
+
     }
 }
