@@ -9,9 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TUTORIAL;
+import static seedu.address.testutil.TypicalIndexes.*;
 import static seedu.address.testutil.TypicalQuestions.Q1;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -22,6 +20,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddQCommand;
+import seedu.address.logic.commands.AddResponseCommand;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteQCommand;
@@ -32,7 +31,10 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListStuCommand;
+import seedu.address.logic.commands.MarkTutorialCommand;
+import seedu.address.logic.commands.UnmarkTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Response;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -106,6 +108,33 @@ public class AddressBookParserTest {
         DeleteTutorialCommand command = (DeleteTutorialCommand) parser.parseCommand(
                 DeleteTutorialCommand.COMMAND_WORD + " " + INDEX_FIRST_TUTORIAL.getOneBased());
         assertEquals(new DeleteTutorialCommand(INDEX_FIRST_TUTORIAL), command);
+    }
+
+    @Test
+    public void parseCommand_addresponse() throws Exception {
+        AddResponseCommand command = (AddResponseCommand) parser.parseCommand(
+            AddResponseCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased()
+            + " m/7"
+        );
+        assertEquals(new AddResponseCommand(INDEX_FIRST_STUDENT, new Response("7")), command);
+    }
+
+    @Test
+    public void parseCommand_marktut() throws Exception {
+        MarkTutorialCommand command = (MarkTutorialCommand) parser.parseCommand(
+            MarkTutorialCommand.COMMAND_WORD + " " + INDEX_FIRST_TUTORIAL.getOneBased()
+        );
+        assertEquals(new MarkTutorialCommand(INDEX_FIRST_TUTORIAL), command);
+
+    }
+
+    @Test
+    public void parseCommand_unmarktut() throws Exception {
+        UnmarkTutorialCommand command = (UnmarkTutorialCommand) parser.parseCommand(
+            UnmarkTutorialCommand.COMMAND_WORD + " " + INDEX_FIRST_TUTORIAL.getOneBased()
+        );
+        assertEquals(new UnmarkTutorialCommand(INDEX_FIRST_TUTORIAL), command);
+
     }
 
     @Test
