@@ -128,7 +128,13 @@ The `Model` component,
 
 Similar analogues exist for task and lesson data. The class diagram is similar apart from:
 1. the different naming (`TaskBook` and `LessonBook` instead of `StudentBook`, `UniqueTaskList` and `UniqueLessonList` instead of `UniqueStudentList`)
-2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Lesson` is composed out of `LessonAttendance`, `TimePeriod` etc.
+2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Task` is composed out of `TaskDesc`, `TaskDeadline` etc. 
+
+In particular, the following class diagram shows how a lesson is represented in the `Model` component.
+
+<img src="images/LessonClassDiagram.png" width="450" />
+
+Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit from the abstract `Lesson` class. Each lesson consists of smaller components such as `LessonAttendance`, `TimePeriod` etc.
 
 ### Storage component
 
