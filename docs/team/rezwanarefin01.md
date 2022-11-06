@@ -36,11 +36,16 @@ Given below are my contributions to the project.
         * The generic type `T` implements the `Identity<T>` interface, which makes a way to compare two objects of type `T` with a defined identity, ignoring other data fields.    
         * This change was necessary to reduce code duplication and improve code quality.
     * Updated the `find` command to filter on the current displayed list instead of all students. 
+    * Removed empty fields from the student card in the GUI to not have empty spaces between fields. 
+    * Added text wrapping to the command result box.
 
 * **Documentation**: 
     * Added implementation details and sequence diagrams for the `grade` command to the DG. 
     * Added implementation details and sequence diagrams for the `view` command in the DG.
     * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
+    * Added implementation details regarding loading and saving of `SessionData` and `StudentModuleData` in the DG.
+    * Edited the documents to make them more consistent and readable.  
+    * Updated styling of the website to make it more readable. 
 
 * **Community**: To be added soon.
 

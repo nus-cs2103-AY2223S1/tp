@@ -10,10 +10,10 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.List;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
@@ -57,17 +57,15 @@ public class GradeCommand extends Command {
         requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
         requireSessionExists(session, focusedClass);
-
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToGrade;
         try {
-            studentsToGrade = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
-        } catch (ParseException e) {
-            throw new CommandException(e.getMessage());
+            studentsToGrade = IndexUtil.getAtIndices(lastShownList, indices);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
-
         String message = getSuccessMessage(studentsToGrade, session, grade);
         return new CommandResult(message);
     }

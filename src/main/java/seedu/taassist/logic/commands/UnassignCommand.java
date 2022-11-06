@@ -1,7 +1,6 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.CommandUtil.requireModuleClassExists;
@@ -9,10 +8,10 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
@@ -50,13 +49,14 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         requireModuleClassExists(moduleClassToUnassign, model);
+
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToUnassign;
 
         try {
-            studentsToUnassign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
-        } catch (ParseException pe) {
-            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            studentsToUnassign = IndexUtil.getAtIndices(lastShownList, indices);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(moduleClassToUnassign)));
