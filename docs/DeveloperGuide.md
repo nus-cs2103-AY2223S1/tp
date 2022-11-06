@@ -413,8 +413,8 @@ Aside from rating, the other fields are stored as strings. The accepted format i
 
 | Data field     | Format                                                                                                                                                          |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Address        | Any ASCII text                                                                                                                                                  |
-| Content        | Any ASCII text                                                                                                                                                  |
+| Address        | Any nonempty ASCII text                                                                                                                                         |
+| Content        | Any nonempty ASCII text                                                                                                                                         |
 | Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
 | Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
 | Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
@@ -513,7 +513,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the stall being deleted).
+  * Pros: Will use less memory (e.g. for `sdel`, just save the stall being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 * **Alternative 3 (current choice):** Saves the entire address book, but ensuring that Stall and Review are both immutable.
@@ -558,7 +558,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        | Implemented in current Version                    |
+| Priority | As a …​                    | I want to …​                                                                                                                  | So that I can…​                                                                                                                                         | Implemented in current version                    |
 |----------|---------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
 | `* * *`  | user                      | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             | Yes                                               |
 | `* * *`  | user                      | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             | Yes                                               |
@@ -828,6 +828,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
+
 ****
     
 **Use case 12: Find food reviews**
@@ -852,6 +853,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+****
+
 **Use case 13: Clearing data**
 
 **Preconditions**
@@ -863,6 +866,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FoodWhere sends a confirmation message that all data is cleared and saves all changes to disk.
 
    Use case ends.
+
+****
 
 **Use case 14: Editing the data file**
 
@@ -1135,7 +1140,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `sfind n/Alice's`<br>
        Expected: No stalls are found. Error details shown in the status message. GUI does not update.
 
-    7. Other incorrect stall find commands to try: `sfind`, `sfind n/`, `sfind a/Ang Mo Kio`<br>
+    7. Other incorrect stall find commands to try: `sfind`, `sfind a/Ang Mo Kio`<br>
        Expected: Similar to previous.
 
 ### Find reviews
