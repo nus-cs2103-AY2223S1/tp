@@ -30,7 +30,7 @@ Extensions:
 
 Preconditions: [[ item:Item ]] to edit exists in inventory.
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User chooses to view all items.
 1. FoodRem shows all items.
