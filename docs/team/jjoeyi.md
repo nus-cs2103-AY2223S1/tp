@@ -1,5 +1,6 @@
 ---
-layout: page title: Low Joe Yi's Project Portfolio Page
+layout: page 
+title: Low Joe Yi's Project Portfolio Page
 ---
 
 ### Project: SoConnect

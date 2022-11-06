@@ -563,7 +563,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student   | sort the contact list according to module code                          | I can easily find the professor in charge of my module                                                    |
 | `* * *`  | Student   | export my contact list as a CSV file                                    | I can conveniently share contacts with my peers                                                           |
 | `* * *`  | Student   | import a CSV file containing contact information                        | I can quickly add multiple contacts into my contact book                                                  |
-*{More to be added}*
+
+
 
 ### Use cases
 
