@@ -690,7 +690,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Go to the save file located in the file `data` and add garbage values, for example, add `!` or `-` to a persons' contact number. 
+   1. Open the save file `SoCompiler.json` located in the file `data` and add garbage values. For example, add `!` or `-` to a persons' contact number. 
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: App opens with no person or module loaded. Save file is wiped clean.
    
