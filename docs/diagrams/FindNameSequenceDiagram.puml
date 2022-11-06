@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InTrackParser" as InTrackParser LOGIC_COLOR
 participant ":FindNameCommandParser" as FindNameCommandParser LOGIC_COLOR
-participant "d:FindNameCommand" as FindNameCommand LOGIC_COLOR
+participant "f:FindNameCommand" as FindNameCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("findn google")
+[-> LogicManager : execute("findc google")
 activate LogicManager
 
-LogicManager -> InTrackParser : parseCommand("findn google")
+LogicManager -> InTrackParser : parseCommand("findc google")
 activate InTrackParser
 
 create FindNameCommandParser
@@ -33,16 +33,16 @@ create FindNameCommand
 FindNameCommandParser -> FindNameCommand
 activate FindNameCommand
 
-FindNameCommand --> FindNameCommandParser : d
+FindNameCommand --> FindNameCommandParser : f
 deactivate FindNameCommand
 
-FindNameCommandParser --> InTrackParser : d
+FindNameCommandParser --> InTrackParser : f
 deactivate FindNameCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindNameCommandParser -[hidden]-> InTrackParser
 destroy FindNameCommandParser
 
-InTrackParser --> LogicManager : d
+InTrackParser --> LogicManager : f
 deactivate InTrackParser
 
 LogicManager -> FindNameCommand : execute()

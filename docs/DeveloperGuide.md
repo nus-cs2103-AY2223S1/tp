@@ -23,7 +23,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2223S1-CS2103T-T11-2/tp/tree/master/docs/diagrams) folder. Refer to the 
+[_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+and edit diagrams.
 </div>
 
 ### Architecture
@@ -32,11 +35,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called 
+[`Main`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/Main.java) and 
+[`MainApp`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -61,7 +66,10 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the 
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,24 +77,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +122,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +143,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/src/main/java/seedu/intrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -382,18 +390,18 @@ be empty for each new `Internship` instead of requiring the user to provide one 
 #### About this feature
 
 The find internship application by company name feature allows users to query the list of added internship applications
-for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not
+for applications that match the desired company name via the command `findc COMPANY_NAME`, where `COMPANY_NAME` must not
 be an empty string.
 
 #### How it is implemented
 
-The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`.
+The `findc` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`.
 It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate`
-in order to produce a filtered list containing only entries whose names correspond to `COMPANYNAME`.
+in order to produce a filtered list containing only entries whose names correspond to `COMPANY_NAME`.
 
 #### Parsing user input
 
-1. The user inputs the `findn` command.
+1. The user inputs the `findc` command.
 2. The `InTrackParser` processes the input and creates a new `FindNameCommandParser`.
 3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException`
 would be thrown.
@@ -403,7 +411,7 @@ would be thrown.
 
 1. The `LogicManager` executes the `FindNameCommand`.
 2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the
-current internship list to only show internship applications matching the provided `COMPANYNAME`.
+current internship list to only show internship applications matching the provided `COMPANY_NAME`.
 
 #### Displaying of result
 
@@ -411,17 +419,17 @@ current internship list to only show internship applications matching the provid
 and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in
 list.
 
-The following sequence diagram shows how the `findn` command works:
+The following sequence diagram shows how the `findc` command works:
 ![FindNameSequenceDiagram](images/FindNameSequenceDiagram.png)
 
-The following activity diagram shows what happens when a user executes a `findn` command:
+The following activity diagram shows what happens when a user executes a `findc` command:
 ![FindNameActivityDiagram](images/FindNameActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedInTrack`. It extends `InTrack` with an undo/redo history, stored internally as an `intrackStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInTrack`. It extends `InTrack` with an undo/redo history, stored internally as an `inTrackStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedInTrack#commit()` — Saves the current internship tracker state in its history.
 * `VersionedInTrack#undo()` — Restores the previous internship tracker state from its history.
@@ -435,15 +443,15 @@ Step 1. The user launches the application for the first time. The `VersionedInTr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th internship in the internship tracker. The `delete` command calls `Model#commitInTrack()`, causing the modified state of the internship tracker after the `delete 5` command executes to be saved in the `intrackStateList`, and the `currentStatePointer` is shifted to the newly inserted internship tracker state.
+Step 2. The user executes `delete 5` command to delete the 5th internship in the internship tracker. The `delete` command calls `Model#commitInTrack()`, causing the modified state of the internship tracker after the `delete 5` command executes to be saved in the `inTrackStateList`, and the `currentStatePointer` is shifted to the newly inserted internship tracker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add c/Google …​` to add a new internship. The `add` command also calls `Model#commitInTrack()`, causing another modified internship tracker state to be saved into the `intrackStateList`.
+Step 3. The user executes `add c/Google …​` to add a new internship. The `add` command also calls `Model#commitInTrack()`, causing another modified internship tracker state to be saved into the `inTrackStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInTrack()`, so the internship tracker state will not be saved into the `intrackStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInTrack()`, so the internship tracker state will not be saved into the `inTrackStateList`.
 
 </div>
 
@@ -466,15 +474,15 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoInTrack()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship tracker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `intrackStateList.size() - 1`, pointing to the latest internship tracker state, then there are no undone InTrack states to restore. The `redo` command uses `Model#canRedoInTrack()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `inTrackStateList.size() - 1`, pointing to the latest internship tracker state, then there are no undone InTrack states to restore. The `redo` command uses `Model#canRedoInTrack()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship tracker, such as `list`, will usually not call `Model#commitInTrack()`, `Model#undoInTrack()` or `Model#redoInTrack()`. Thus, the `intrackStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship tracker, such as `list`, will usually not call `Model#commitInTrack()`, `Model#undoInTrack()` or `Model#redoInTrack()`. Thus, the `inTrackStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInTrack()`. Since the `currentStatePointer` is not pointing at the end of the `intrackStateList`, all internship tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInTrack()`. Since the `currentStatePointer` is not pointing at the end of the `inTrackStateList`, all internship tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -494,12 +502,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -521,7 +523,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of internship applications
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -531,7 +533,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Manage internship applications faster than a typical mouse/GUI driven app
 * Manage multiple internships and provide comparisons between them for better decision-making
 * Easily customizable and personalizable to manage internships applications
-* Frequent reminders for deadlines
+* Easy viewing for deadlines
 
 ### User stories
 
@@ -567,8 +569,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |                               
 | `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |                                      
 | `*`      | frequent user                              | send feedback to the developers of the application                    | make them optimize the app more                                    |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -951,7 +951,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. System should be easily usable by the majority of Year 2+ Computing students.
 7. The application is not required to support any other language other than English.
 8. The application is not required to support multiple users on a single device.
-9. The response to any commands carried out by the user should become visible within 3 seconds.
+9. The response to any commands carried out by the user should become visible within 5 seconds.
 10. The user is not required to install Gradle/JavaFx for the application to function. 
 11. The user is not required to have internet connection in order for the application to function.
 
