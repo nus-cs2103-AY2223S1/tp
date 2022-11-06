@@ -63,8 +63,8 @@ Initially, FoodRem contains only the following three tags:
 **Assumptions:**
 
 * The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Carrot" at INDEX value 1.
-* There exists a tag called "Vegetables"
-* The "Carrot" item has not already been tagged under "Vegetables"
+* There exists a tag called "Vegetables".
+* The "Carrot" item has not already been tagged under "Vegetables".
 {% endcapture %}
 {%
   include command-format.md
