@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonExerciseTrackerStorage .up.|> ExerciseTrackerStorage
 JsonExerciseTrackerStorage ..> JsonSerializableExerciseTracker
 JsonSerializableExerciseTracker --> "*" JsonAdaptedExercise
-JsonAdaptedExercise --> "*" JsonAdaptedDate
+JsonAdaptedExercise --> "1" JsonAdaptedDate
 
 @enduml

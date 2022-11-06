@@ -10,7 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Gim is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -55,7 +56,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `:del 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -109,9 +110,9 @@ How the `Logic` component works:
 
 <div style="page-break-after: always;"></div>
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute(":del 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `:del 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -178,7 +179,7 @@ An `Exercise` contains the following attributes:
 2. a `Weight`, which represents the total weight used for a certain Exercise
 3. a `Reps`, which represents the number of times a specific exercise was performed
 4. a `Sets`, which represents the number of cycles of reps that was completed
-5. a `Date`, which represent the date an exercise was performed
+5. a `Date`, which represents the date an exercise was performed
 
 <div style="page-break-after: always;"></div>
 
@@ -209,7 +210,7 @@ of data inside the singleton objects `RegexList` and `FormatterList`. All tests 
 
 #### Design Considerations
 
-**Aspect: Fields of Exercise are Final:**
+**Aspect: Fields of Exercise are Final**
 * **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
   * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
 
@@ -242,12 +243,8 @@ It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableO
 
 <div style="page-break-after: always;"></div>
 
-#### Sorting Execution
-
 When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
 an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
-
-#### Example Usage
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
@@ -264,7 +261,7 @@ The following sequence diagram shows how the sort command is executed.
 
 <div style="page-break-after: always;"></div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Displayed List structure**
 * **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type
@@ -296,8 +293,6 @@ The following sequence diagram shows how the sort command is executed.
 
 <div style="page-break-after: always;"></div>
 
-#### Execution
-
 When the command `:range start/START_DATE end/END_DATE` or `:range last/NUMBER_OF_DAYS` is entered, the `Ui` sends 
 the command to `Logic`. `LogicManager` parses and identifies the `:range` command that was entered, and creates an instance of it.
 
@@ -310,8 +305,6 @@ end date (inclusive), arranged from the most recent first. If two exercise entri
 they will be sorted in alphabetical order.
 
 `Model` will have the list sorted and the sorted list will be displayed by `Ui`.
-
-#### Example Usage
 
 Given below is an example usage scenario and how the date range view mechanism behaves at each step.
 
@@ -329,7 +322,7 @@ The following sequence diagram shows how the date range process is executed.
 
 <div style="page-break-after: always;"></div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Simplicity of command design**
 * **Current choice**: The two variations of the `:range` command uses the same keyword but with different expected arguments.
@@ -374,9 +367,9 @@ The following sequence diagram shows how the `PrCommand` works.
 
 <div style="page-break-after: always;"></div>
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: Type of arguments to accept:**
+**Aspect: Type of arguments to accept**
 * **Alternative 1 (current choice)**: Accept exercise names.
     * Pros: Being able to view and list personal records by Exercise name is more intuitive and convenient, especially since all unique Exercises are listed in the UI (bottom right).
     * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
@@ -430,7 +423,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
@@ -532,13 +525,13 @@ Through this pattern, each observer gets to define exactly what the required dis
 
 **Target user profile**:
 
-* Programmers who love vim and want to hit the gym for some exercise but they are too occupied with work to recall their progressions and don’t know / remember what to do next
+* Programmers who love vim and want to hit the gym for some exercise. However, they are too occupied with work to recall their progressions and don’t know what to do next
 * They may also find it hard to remember their statistics on each exercise
 
 **Value proposition**:
 * Leverage on their blazing speed on vim to save, write and view gym data in a familiar fashion
 * Provides a fast platform for users to track their gym progress or workout routine
-* Has vim-like shortcuts to make things more efficient for vim lovers
+* Has vim-like commands to make things more efficient for vim lovers
 
 
 ### **User stories**
@@ -697,15 +690,15 @@ Actor: User <br>
 
 <div style="page-break-after: always;"></div>
 
-#### Use case 8: Filter exercises by name(s)
+#### Use case 8: Filter exercises by keyword(s)
 
 System: Gim <br>
-Use case: UC08 - Filter exercises by name(s) <br>
+Use case: UC08 - Filter exercises by keyword(s) <br>
 Actor: User <br>
 
 **MSS**
 
-1. User requests to filter the displayed list of exercises by name(s).
+1. User requests to filter the displayed list of exercises by keyword(s).
 2. Gim displays the filtered list of exercises.
    <br>Use case ends.
 
@@ -793,18 +786,24 @@ Actor: User <br>
 3. Should work without an internet connection.
 4. Should be able to support frequent updating of data.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6. Should not be able to verify if the user actually perform the exercises they input.
+7. Users with no coding background should be able to use Gim.
+8. Should be optimised for a single user.
+9. The product file size should not exceed 100MB.
+10. Data should be persisted locally and be in a human-readable format, e.g. JSON.
+11. Should be delivered to a user as a single JAR file.
+12. Should not lose any data if application is closed through external means (i.e. not using exit command).
 
-*{More to be added}*
 
 ### **Glossary**
 * **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 * **Rate of Perceived Exertion (RPE)**: A measure of a physical activity intensity level.
-* **Reps**: Number of times you perform a specific exercise
-* **Sets**: Number of cycles of reps that you complete
+* **Reps**: Number of times you perform a specific exercise.
+* **Sets**: Number of cycles of reps that you complete.
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
-* **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Weight**: Total weight of equipment (in kg).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -885,7 +884,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Filtering exercises
+### Filtering exercises by keyword(s)
 
 1. Filtering displayed list of exercises using keyword(s).
 
@@ -904,7 +903,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting exercises
 
-1. Sorting displayed list of exercises using keyword(s).
+1. Sorting displayed list of exercises by order of date.
 
     1. Prerequisite: There are multiple exercises in the Exercise List.
 
@@ -991,6 +990,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Able to access the `/data` folder (created in the same folder containing the `Gim.jar` file).
 
-1. _{ more test cases …​ }_
+    2. Test Case: Navigate to the `/data` folder and delete the `exercisetracker.json` file. Then reopen the application. <br>
+        Expected: The application will be repopulated with the initial starting data.
