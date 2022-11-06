@@ -29,7 +29,7 @@ public class DeleteReminderCommandParserTest {
                 DeleteReminderCommand.MESSAGE_USAGE));
 
         // index not an integer
-        assertParseFailure(parser, "1.0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "1.923", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteReminderCommand.MESSAGE_USAGE));
     }
 
