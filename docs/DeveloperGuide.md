@@ -240,12 +240,8 @@ The `add` command follows the [general command implementation flow](#logic-compo
 #### Design Considerations
 
 * A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered, including relative dates ("tomorrow") and abbreviations ("2 Jan").
-* Uniquely, the LocalDateTime within Deadline is expected to be formatted to and from strings by the class's users. This is because different formats and strictnesses are appropriate in different situations.
-  * `ParserUtil.parseDeadline` handles user input, so it uses the NaturalDateParser.
-  * The `Storage` component uses a fixed format string so that saved data can be unambiguously restored.
-  * Deadline(String) uses the format used before natural date parsing to reduce changes to test code.
-* Deadline has a validation function for the input to its string constructor, just like other field classes. The validation is performed by attempting to parse it and checking for errors, as there is no cheaper method in this case.
 * When a date range is specified, the end of the range is used; e.g. a task that's due "tomorrow" will be due 23:59 tomorrow. This is the most common interpretation in our experience.
+* `Deadline`, as a thin data class, only provides constructors from preparsed LocalDateTimes and its own serialization. Parsing user input is handled by other methods, such as `ParserUtil.parseDeadline`. This improves cohesion of the class.
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 

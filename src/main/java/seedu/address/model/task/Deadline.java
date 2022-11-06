@@ -26,10 +26,10 @@ public class Deadline {
     public final LocalDateTime deadline;
 
     /**
-     * Constructs a {@code Deadline} from a String written in the CONSTRUCT_FORMATTER format.
-     * This can be used to make constants more readable. For all other cases, use Deadline(LocalDateTime).
+     * Constructs a {@code Deadline} from a String written in the CONSTRUCT_FORMATTER format, such as that
+     * returned by deadlineString().
      *
-     * @param deadlineString A valid deadline written as a string.
+     * @param deadlineString A valid deadline string.
      */
     public Deadline(String deadlineString) {
         requireNonNull(deadlineString);
@@ -57,7 +57,7 @@ public class Deadline {
     }
 
     /**
-     * Returns true if a given string is a valid deadline.
+     * Returns true if a given string is a valid deadline string.
      */
     public static boolean isValidDeadline(String test) {
         try {
@@ -69,13 +69,19 @@ public class Deadline {
         return true;
     }
 
+    /**
+     * Returns a string representation of this Deadline in a format that can be reimported using
+     * Deadline(String).
+     *
+     * @return The string representation.
+     */
+    public String deadlineString() {
+        return deadline.format(CONSTRUCT_FORMATTER);
+    }
+
     @Override
     public String toString() {
         return deadline.format(WRITE_FORMATTER);
-    }
-
-    public String deadlineString() {
-        return deadline.format(CONSTRUCT_FORMATTER);
     }
 
     @Override
