@@ -11,30 +11,31 @@ import seedu.masslinkers.logic.parser.ParserUtil;
  */
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS =
-            "Mod names should be numbers prefixed with alphabet(s) and less than 10 characters.";
+            "Mod names should be numbers prefixed with alphabets and less than 10 characters.";
 
     //@@author jonasgwt
     /** Categories for mods */
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
         GE("General Education"), UE("Unrestricted Elective");
-        private String value;
 
-        ModCategory(String value) {
-            this.value = value;
+        private String modName;
+
+        ModCategory(String modName) {
+            this.modName = modName;
         }
 
-        public String getValue() {
-            return value;
+        public String getModName() {
+            return modName;
         }
 
         @Override
         public String toString() {
-            return this.getValue();
+            return this.getModName();
         }
     }
 
-    public static final String VALIDATION_REGEX = "[A-Z]+\\d+[A-Z]?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,}\\d+[A-Z]?";
     private final String modName;
     private boolean hasTaken;
     private final ModCategory modCategory;

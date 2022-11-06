@@ -12,7 +12,7 @@ import seedu.masslinkers.model.student.Mod;
  */
 class JsonAdaptedMod {
 
-    private final String modName;
+    private String modName;
     private boolean hasTaken;
 
     /**

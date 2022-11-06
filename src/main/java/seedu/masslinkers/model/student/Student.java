@@ -32,7 +32,7 @@ public class Student {
     private final Set<Interest> interests = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
-    private boolean hasIncorrectPhone = false;
+    private boolean hasIncorrectPhone;
 
     /**
      * Every field must be present and not null.
@@ -158,12 +158,10 @@ public class Student {
      * @param mods The list of mods to be marked.
      */
     public void markMods(ObservableList<Mod> mods) {
-        for (int i = 0; i < mods.size(); i++) {
-            for (int j = 0; j < this.mods.size(); j++) {
-
-                Mod currentMod = this.mods.get(j);
+        for (Mod mod : mods) {
+            for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();
-                String targetModName = mods.get(i).getModName();
+                String targetModName = mod.getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.markMod();
@@ -188,12 +186,10 @@ public class Student {
      * @param mods The list of mods to be unmarked.
      */
     public void unmarkMods(ObservableList<Mod> mods) {
-        for (int i = 0; i < mods.size(); i++) {
-            for (int j = 0; j < this.mods.size(); j++) {
-
-                Mod currentMod = this.mods.get(j);
+        for (Mod mod : mods) {
+            for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();
-                String targetModName = mods.get(i).getModName();
+                String targetModName = mod.getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.unmarkMod();

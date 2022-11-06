@@ -9,7 +9,7 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
  */
 public class Interest {
 
-    public static final String MESSAGE_CONSTRAINTS = "Interests should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Interests should be alphanumeric.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String interestName;

@@ -1,8 +1,7 @@
 package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
@@ -42,17 +41,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new ParseException(pe.getMessage());
         }
 
         if (!argMultimap.getAllValues(PREFIX_MOD).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MODS_PASSED_TO_EDIT));
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, EditCommand.MODS_PASSED_TO_EDIT));
         }
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();

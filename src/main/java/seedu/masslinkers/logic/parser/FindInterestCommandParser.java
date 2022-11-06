@@ -1,6 +1,6 @@
 package seedu.masslinkers.logic.parser;
 
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import java.util.Arrays;
 
@@ -22,7 +22,7 @@ public class FindInterestCommandParser implements Parser<FindInterestCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, FindInterestCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, FindInterestCommand.MESSAGE_USAGE));
         }
 
         String[] interestNameKeywords = trimmedArgs.split("\\s+");

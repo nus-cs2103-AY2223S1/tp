@@ -16,7 +16,7 @@ import seedu.masslinkers.model.student.Student;
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
-    private ModListPanel modListPanel;
+    private final ModListPanel modListPanel;
 
     @FXML
     private ListView<Student> studentListView;
@@ -51,7 +51,7 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
-    class StudentListViewCell extends ListCell<Student> {
+    static class StudentListViewCell extends ListCell<Student> {
         @Override
         protected void updateItem(Student student, boolean isEmpty) {
             super.updateItem(student, isEmpty);

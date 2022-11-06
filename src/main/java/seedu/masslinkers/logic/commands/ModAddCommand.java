@@ -11,7 +11,6 @@ import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
-import seedu.masslinkers.ui.MainWindow;
 
 //@@author jonasgwt
 /**
@@ -20,7 +19,7 @@ import seedu.masslinkers.ui.MainWindow;
 public class ModAddCommand extends ModCommand {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_SUCCESS = "Successfully added the specified mod(s).";
-    private MainWindow mainWindow;
+    public static final String MESSAGE_USAGE = "Command Usage:\nmod add INDEX MODULE [MORE_MODULES]...";
     private final Index targetIndex;
     private final ObservableList<Mod> mods;
 
@@ -56,7 +55,7 @@ public class ModAddCommand extends ModCommand {
 
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
         studentToEdit.addMods(mods);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToEdit), false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
     }
 
     @Override

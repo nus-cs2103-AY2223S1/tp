@@ -2,7 +2,7 @@ package seedu.masslinkers.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.masslinkers.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -297,7 +297,7 @@ public class ParserUtilTest {
     }
 
     /**
-     * Tests the behaviour of the {@code parseModsToCategory} method
+     * Tests the behaviour of the {@code parseModsToCategory} method.
      */
     @Test
     public void parseMods_correctAssigmentOfCategory() {

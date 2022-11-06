@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.masslinkers.model.student.Student;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ *  A UI component that displays information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
