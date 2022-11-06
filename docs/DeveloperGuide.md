@@ -3,26 +3,66 @@ layout: page
 title: Developer Guide
 ---
 
-# **Developer Guide**
+# **SoCompiler Developer Guide**
 
-* Table of Contents
-  {:toc}
+
+## **Table of Contents**
+
+1. [Introduction](#1-introduction)
+2. [Getting Started](#2-getting-started)
+3. [Design](#3-design)
+   1. [Architecture](#31-architecture)
+   2. [UI Component](#32-ui-component)
+   3. [Logic Component](#33-logic-component)
+   4. [Model Component](#34-model-component)
+   5. [Storage Component](#35-storage-component)
+   6. [Common Classes](#36-common-classes)
+4. [Implementation](#4-implementation)
+   1. [Module Class](#41-module-class)
+   2. [Add Module Feature](#42-add-module-feature)
+   3. [Delete Module Feature](#43-delete-module-feature)
+   4. [Find Module Feature](#44-find-module-feature)
+5. [Documentation, Logging, Testing, Configuration and Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)
+6. [Acknowledgements: Requirements](#6-acknowledgements)
+7. [Appendix A: Requirements](#7-appendix-a-requirements)
+   1. [Product Scope](#71-product-scope)
+   2. [User Stories](#72-user-stories)
+   3. [Use Cases](#73-use-cases)
+   4. [Non-Functional Requirements](#74-non-functional-requirements)
+   5. [Glossary](#75-glossary)
+8. [Appendix B: Instructions for Manual Testing](#8-appendix-b-instructions-for-manual-testing)
+   1. [Launch and Shutdown](#81-launch-and-shutdown)
+   2. [Deleting a Person](#82-deleting-a-person)
+   3. [Saving Data](#83-saving-data)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. **Introduction**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is built specifically for School of Computing(SOC) students in NUS but can also be used by other students from NUS.
 
---------------------------------------------------------------------------------------------------------------------
+This developer guide will expose the architecture behind SoCompiler and showcase the specifics of how commands are handled by the application.
 
-## **Setting up, getting started**
+In order to be a successful SoCompiler Developer, you need a general understanding of:
+* Java language
+* JavaFx
+
+## 2. **Getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. **Design**
+
+SoCompiler aims to provide features that are intuitive and simple to use. Keeping this in mind, we pursed an iterative approach, adding new features amidst evolving requirements. This gives rise to the following main guiding principles for SoCompiler:
+
+**Maintainability**
+This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/). Ab3 was developed in a manner that facilitates easy modification. We capitilised on this fact and built upon existing components in AB3, such as [UI](#32-ui-component), [Logic](#33-logic-component), [Model](#34-model-component) and [Storage](#35-storage-component).
+
+**Command Line Interface (CLI) Oriented**
+As our target audience is SOC students who usually type fast and are familiar with command line interfaces, we designed SoCompiler to be more efficient at managing contacts and module information using commands compared to other apps in the market.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -32,7 +72,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -81,7 +121,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -105,7 +145,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 3.3. Logic component
 
 **
 API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -132,7 +172,7 @@ call.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="800"/>
 
 How the parsing works:
 
@@ -143,7 +183,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4. Model component
 
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -164,7 +204,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-### Storage component
+### 3.5. Storage component
 
 **
 API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -180,20 +220,17 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Module Class
-
-#### Implementation
+### 4.1. Module Class
 
 The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class
 facilitates the storing of various information related to a student's module that he/she is currently taking.
@@ -214,8 +251,8 @@ All the commands associated with the `Module` Class would have the keyword "Modu
 the command to add a `Module` is referred to as a `AddModuleCommand`.
 
 All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects
-can exist in the `UniqueModuleList` object, where the `UniqueModuleList` was implemented by Ying Ming. This is because
-in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be
+can exist in the `UniqueModuleList` object. This is because
+in NUS, there are no two [modules](#modules) with the same module code. Thus, the notion of equality is defined by default to be
 two `Module` objects containing the same `ModuleCode` object.
 
 All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the
@@ -229,9 +266,37 @@ For the five classes,
 
 <img src="images/ModuleClassDiagram.png" width="550" />
 
-### Delete Module feature
+### 4.2. Add Module feature
 
-#### Implementation
+The AddModule commands extends `Command`, and takes in a `moduleCode`, `lectureDetails`, `tutorialDetails`, `zoomLink`
+and multiple optional `assignmentDetails` to be added. Additionally, it implements the following operation:
+
+* `AddModuleCommand#execute()`— Adds the corresponding module to the model.
+
+This operation is exposed in the `Model` interface as `Model#addModule()`.
+
+Given below is an example usage scenario, and an object diagram to show the objects created during this command.
+
+Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book
+state.
+
+Step 2. The user executes `addm m/CS1101S` command to add a module with the corresponding details in the address book.
+* The `addm` command calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`.
+* The `AddModuleCommandParser` then tokenizes the user input string and returns an `ArgumentMultimap` object that maps
+  prefixes to their respective argument values.
+* Methods in `ParserUtil` is are then called to parse each individual object obtained from the `ArgumentMultimap` using
+  their corresponding parsers.
+* Then, a new `Module` with the corresponding details is created.
+* After creating the `Module`, an `AddModuleCommand` is created, which calls `Model#addModule()`,
+  and adds the newly created module to the model object.
+
+The following object diagram illustrates the above example:
+![AddModuleObjectDiagram](images/AddModuleObjectDiagram.png)
+
+The following sequence diagram shows how the AddModule operation works:
+![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
+
+### 4.3. Delete Module feature
 
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
 
@@ -264,11 +329,9 @@ The following sequence diagram shows how the DeleteModule operation works:
 
 </div>
 
-### Find Module feature
+### 4.4. Find Module feature
 
-#### Implementation
-
-The FindModule command extends `Command`, and takes in an `ModuleCodeContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
+The FindModule command extends `Command`, and takes in an `ModuleDetailsContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
 * `FindModuleCommand#execute()`
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredModuleList()`.
@@ -279,9 +342,9 @@ Step 1. The user launches the application. The `ReadOnlyAddressBook` will be ini
 
 Step 2. The user executes `findm CS2100` command to filter the module list by `CS2100`.
 * The `findm CS2100` command calls `AddressBookParser#parseCommand()`, which creates a `FindModuleCommandParser`.
-* The `FindModuleCommandParser` instantiates a `ModuleCodeContainsKeywordsPredicate` with the given keyword `CS2100`.
+* The `FindModuleCommandParser` instantiates a `ModuleDetailsContainsKeywordsPredicate` with the given keyword `CS2100`.
 * The `FindModuleCommandParser` then creates a `FindModuleCommand` with the keyword.
-* The `FindModuleCommand` then calls `Model#updateFilteredModuleList()` and filter the list to contain only Modules with the given keyword in their module code.
+* The `FindModuleCommand` then calls `Model#updateFilteredModuleList()` and filter the list to contain only [Modules](#modules) with the given keyword in their module code.
 
 The following sequence diagram shows how the FindModule operation works:
 
@@ -291,137 +354,9 @@ The following sequence diagram shows how the FindModule operation works:
 
 </div>
 
-### Add Module feature
-
-#### Implementation
-
-The AddModule commands extends `Command`, and takes in a `moduleCode`, `lectureDetails`, `tutorialDetails`, `zoomLink`
-and multiple optional `assignmentDetails` to be added. Additionally, it implements the following operation:
-
-* `AddModuleCommand#execute()`— Adds the corresponding module to the model.
-
-This operation is exposed in the `Model` interface as `Model#addModule()`.
-
-Given below is an example usage scenario, and an object diagram to show the objects created during this command.
-
-Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book
-state.
-
-Step 2. The user executes `addm m/CS1101S` command to add a module with the corresponding details in the address book. 
-* The `addm` command calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`. 
-* The `AddModuleCommandParser` then tokenizes the user input string and returns an `ArgumentMultimap` object that maps 
-prefixes to their respective argument values. 
-* Methods in `ParserUtil` is are then called to parse each individual object obtained from the `ArgumentMultimap` using
-their corresponding parsers. 
-* Then, a new `Module` with the corresponding details is created. 
-* After creating the `Module`, an `AddModuleCommand` is created, which calls `Model#addModule()`, 
-and adds the newly created module to the model object.
-
-The following object diagram illustrates the above example:
-![AddModuleObjectDiagram](images/AddModuleObjectDiagram.png)
-
-The following sequence diagram shows how the AddModule operation works:
-![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
-
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-    
-_{more aspects and alternatives to be added}_
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -430,16 +365,21 @@ _{more aspects and alternatives to be added}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## 6. **Acknowledgements**
 
-## **Appendix: Requirements**
+SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that serves as a base for Computer Science students to work on.
 
-### Product scope
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. **Appendix A: Requirements**
+
+### 7.1. Product scope
 
 **Target user profile**:
 
 * is from SoC
 * has a need to manage a significant number of contacts
-* has a need to manage the modules they are taking
+* has a need to manage the [modules](#modules) they are taking
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -447,7 +387,7 @@ _{more aspects and alternatives to be added}_
 
 **Value proposition**: Sole app that SoC students need to streamline their everyday routines
 
-### User stories
+### 7.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -477,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Teaching Assistant | access my module website                           | grade my student's submission                                   |
 | `*`      | Teaching Assistant | easily group my students' contacts together        | easily find them at once                                        |
 
-### Use cases
+### 7.3. Use Cases
 
 (For all use cases below, the **System** is the `SoCompiler` and the **Actor** is the `user`, unless specified
 otherwise)
@@ -671,12 +611,11 @@ otherwise)
     * 3c1. SoCompiler shows an error message
 
       Use case ends.
+    
 
-*{More to be added}*
+### 7.4. Non-Functional Requirements
 
-### Non-Functional Requirements
-
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons and modules without a noticeable sluggishness in performance for typical
    usage.
 3. A user with more than 50 words per minute typing speed for regular English text (i.e. not code, not system admin
@@ -684,16 +623,23 @@ otherwise)
 4. The system should be backward compatible with data stored in earlier versions of the system.
 5. The product is not required to handle interaction with other users.
 
-*{More to be added}*
 
-### Glossary
+### 7.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Modules**: University modules offered in NUS
+#### Mainstream OS: 
+
+Operating Systems such as Windows, Linux, Unix, OS-X
+
+#### Modules: 
+
+University modules offered in NUS
+
+
 
 --------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 8. **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -702,46 +648,46 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1. Launch and shutdown
 
 1. Initial launch
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the jar file.<br>
+        Expected: The most recent window size and location is retained.
+    
 
-1. _{ more test cases …​ }_
-
-### Deleting a person
+### 8.2. Deleting a person
 
 1. Deleting a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+    
 
-1. _{ more test cases …​ }_
-
-### Saving data
+### 8.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Go to the save file located in the file `data` and add garbage values, for example, add `!` or `-` to a persons' contact number. 
+   2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: App opens with no person or module loaded. Save file is wiped clean.
+   
+[Back to Top](#socompiler-developer-guide)
