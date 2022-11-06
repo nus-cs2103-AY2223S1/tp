@@ -153,7 +153,7 @@ The `Model` component:
 * stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 #### 4.1.4 Storage component
 
@@ -164,7 +164,7 @@ The `Model` component:
 The `Storage` component,
 * can save both student record data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `StudentRecordStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 #### 4.1.5 Common classes
 
@@ -276,20 +276,20 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 
 Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
-Pros:
-- The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
+- Pros:
+  - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
 
-Cons:
-- The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
+- Cons:
+  - The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
 
 Alternative Design: Split `DeleteCommand` into two different commands, `DeleteStudentByNameCommand` and `DeleteStudentByIDCommand`.
 
-Pros:
-- There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
+- Pros:
+  - There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
 
-Cons:
-- Additional classes need to be implemented.
-- The command name is long.
+- Cons:
+  - Additional classes need to be implemented.
+  - The command name is long.
 
 #### 4.2.3 Edit command
 
@@ -305,19 +305,19 @@ Editing a student record involves 2 main steps:
 
 1. After the user inputs the `EditCommand`, the `StudentRecordParser` will identify the command and create a `EditCommandParser` instance in the `LogicManager`.
 
-2. The `EditCommandParser` parses the rest of the user's input and creates a new `EditCommand` object which will be executed by the `LogicManager`
+2. The `EditCommandParser` parses the rest of the user's input and creates a new `EditCommand` object which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
-The `EditCommand` instance now communicates with the `ModelManager` to execute the command.
+The `EditCommand` object now communicates with the `ModelManager` to execute the command.
 
-1. The `createEditedStudent` method is called to create a new `editedStudent` that with the edited fields updated.
+1. The `createEditedStudent` method is called to create a new `editedStudent` with the edited fields updated.
 
 2. The `editedStudent` replaces the  student to be edited with the `setStudent` method. 
 
 3. The `updateFilteredStudentList` method is called to show all student records.
 
-4. A new `Command Result` instance is created and returned to `LogicManager`
+4. A new `Command Result` instance is created and returned to `LogicManager`.
 
 #### 4.2.4 Find command
 
@@ -331,7 +331,7 @@ The `EditCommand` instance now communicates with the `ModelManager` to execute t
 
 **Step 1: Parsing the command**
 
-The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified to be a `find` command, a `FindCommandParser` instance will be created to further parse the command arguments.
 
 The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively. Both inherit from `Predicate<Student>`.
 
@@ -345,6 +345,8 @@ The `FindCommand` object created will then interact with the `ModelManager` to e
    is called, to filter the list of students.
 2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
    specified keyword(s), or whose Id matches the specified Id.
+
+**Usage scenario**
 
 Given below is an example usage scenario of `FindCommand`.
 
@@ -449,11 +451,7 @@ The following activity diagram shows the events that occur when the user execute
 
 The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The StudentListPanel is dependent on the toggle status in `FilteredStudent` to display or hide the students’ parent details properly in the `StudentCard`.
 
-The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` components. 
-
-*Insert sequence diagram*
-
-Given below is an example usage scenario of how the ToggleView mechanism behaves at each step
+Given below is an example usage scenario of how the ToggleView mechanism behaves at each step: 
 
 Step 1. The user enters the command `toggleView`. 
 
@@ -469,12 +467,12 @@ With the above sequence, the UI is successfully updated to display the relevant 
 
 **Design Considerations**
 
-- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+- Alternative 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
   - Pros:
     - Does not introduce coupling between UI and Model.
   - Cons: 
     - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects.
-- Option 2 (current choice): updates `FilteredStudentList` such that it triggers the listener in `StudentListPanel` to update the `StudentListViewCell`. 
+- Alternative 2 (current choice): updates `FilteredStudentList` such that it triggers the listener in `StudentListPanel` to update the `StudentListViewCell`. 
   - Pros:
     - No need to edit every student in the `FilteredStudentList`.
     - Attribute is associated with the list and not each student. Only need to maintain 1 attribute.
