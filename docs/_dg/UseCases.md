@@ -80,7 +80,7 @@ Extensions:
 
 Preconditions: [[ tag:Tag ]] does not yet exist in FoodRem.
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User adds a new Tag to the inventory.
 1. FoodRem informs user that tag has been successfully created.
