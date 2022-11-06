@@ -7,7 +7,7 @@ title: User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
-SoCompiler is a **desktop app for managing contacts and module details, optimized for use via a [Command Line
+SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line
 Interface](#command-line-interface)** (CLI) while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI).
 
 You can add modules to the app, allowing you to store important information like the location, time and zoom links of your lectures and tutorials.
