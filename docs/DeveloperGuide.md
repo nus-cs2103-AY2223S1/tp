@@ -238,7 +238,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How add item executes:**
 
-* **Alternative 1 (current choice): ** User inputs all required fields in a single input
+* **Alternative 1 (current choice):** User inputs all required fields in a single input
   * Pros: easier to implement
   * Cons: user input is very long and may be more prone to typos
 
