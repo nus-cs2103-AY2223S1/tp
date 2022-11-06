@@ -2,7 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
 ## **Table of Contents**
+
 
 * Table of Contents
 {:toc}
@@ -131,7 +133,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `PinList` and `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -270,6 +272,44 @@ The following activity diagram summarizes what happens when a user executes an a
 
 [Return to top](#table-of-contents)
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filter application status feature
+
+#### Implementation
+
+The filter operation is facilitated by `FilterCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
+
+1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship application status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `filter` and
+   the argument `pending`.
+
+2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
+   which checks that the argument is a valid application status by calling `ApplicationStatus#isValidApplicationStatus()`.
+
+3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
+   with the new `ApplicationStatusPredicate` as an argument.
+
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
+
+The following sequence diagram shows how the filter operation works:
+
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a filter command:
+
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+
+
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Edit applicant feature
@@ -313,6 +353,8 @@ The following sequence diagram shows how the edit operation works:
 The following activity diagram summarizes what happens when a user executes a edit command:
 
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 [Return to top](#table-of-contents)
 
@@ -567,7 +609,7 @@ The following sequence diagram shows how the unpin operation works:
 
 The following activity diagram summarizes what happens when a user executes a unpin command:
 
-![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+![UnPin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
 [Return to top](#table-of-contents)
 
@@ -664,6 +706,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC02 - Delete an applicant**
@@ -696,6 +740,8 @@ be able to view the applicant from the list.
   * 1c2. User agrees by typing YES to confirm deletion. <br>
       Use case ends.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC03 - Edit personal details of an applicant**
@@ -726,6 +772,8 @@ be able to view the applicant from the list.
   * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
       Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC04 - List Applicants**
@@ -746,6 +794,8 @@ be able to view the applicant from the list.
 * 1b. TrackAScholar has no applicants stored.
 
     * 1a1. TrackAScholar shows an empty applicant list.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -773,6 +823,7 @@ be able to view the applicant from the list.
     * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
     * Use case resumes from step 2.
 
+[Return to top](#table-of-contents)
 
 *{More to be added}*
 
@@ -790,11 +841,16 @@ be able to view the applicant from the list.
 
 *{More to be added}*
 
+[Return to top](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
+
 ### Glossary
 
 * **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
 * **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -824,14 +880,109 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding an applicant
+1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
+      an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin Low`.
+   
+   1. Test case: 
+      ```
+      add n/Benjamin Low 
+      p/98765431 
+      e/benLow@gmail.com 
+      s/NUS Global Merit Scholarship 
+      as/pending 
+      m/Medicine 
+      m/Mathematics
+      ```
+      Expected: An applicant named `Benjamin Low` with the above characteristics
+                will be added to the applicant list and displayed on TrackAScholar GUI.
+      
+   1. Test case:
+      ```
+      add n/Alex Yeoh 
+      p/88712345 
+      e/alexYeoh@gmail.com 
+      s/NUS Merit Scholarship 
+      as/pending 
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating applicants with duplicate names are not allowed.
+
+   1. Test case:
+      ```
+      add n/Charles Shum
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating an applicant must have specified phone number, email, scholarship name, application status,
+      as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing an applicant
+1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
+    1. Prerequisites: List all applicants using the `list` command. Two applicants in the list. The list contains
+       an applicant named `Alex Yeoh` with the following characteristics:
+       ```
+       Name: Alex Yeoh 
+       Major(s): Medicine
+       Application Status: pending
+       Scholarship Name: NUS Global Merit Scholarship
+       Email: alexyeoh@yahoo.com
+       Phone Number: 87438807
+       ``` 
+       and another applicant named `Shamus Lee` with the following characteristics:
+       ```
+       Name: Shamus Lee 
+       Major(s): Business
+       Application Status: pending
+       Scholarship Name: NUS Sports Scholarship
+       Email: shamusLee@yahoo.com
+       Phone Number: 87433287
+       ``` 
+
+    1. Test case: `edit 1 n/Samuel Low e/samuelLow@gmail.com` <br>
+       Expected: The name and email of the first applicant in the list will be modified to `Samuel Low` and `samuelLow@gmail.com`
+       respectively, while the rest of the characteristics remains the same.
+
+   1. Test case: `edit 1 n/Shamus Lee` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating the first applicant's name cannot be changed to `Shamus Lee` since an applicant with 
+      name `Shamus Lee` exists in TrackAScholar.
+
+    1. Test case: `edit 1 m/` <br>
+       Expected: The major(s) of the first applicant in the list will be 
+       removed completely, while the rest of the characteristics remains the same.
+
+    1. Test case: `edit 1 m/Mathemetics m/Engineering` <br>
+       Expected: The major(s) of the first applicant in the list will be
+       replaced by `Mathematics` and `Engineering` completely , while the rest of the characteristics remains the same.
+   
+    1. Test case: `edit 0 n/Dexter` <br>
+     Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+     indicating that `0` is an invalid index
+
+    1. Test case: `edit 50 n/Eric` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that `50` is out of bounds since the list contains only one applicant.
+
+    1. Other incorrect edit commands to try: `edit p/88125671` and `edit` <br>
+      Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting an applicant
 
-1. Deleting an applicant while all applicants are being shown
+1. Deleting an applicant while all applicants are being shown.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
@@ -839,7 +990,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
 
 ### Import trackAScholarImport File
 
@@ -849,12 +1000,153 @@ testers are expected to do more *exploratory* testing.
 
 [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)
 
+--------------------------------------------------------------------------------------------------------------------
 
+### Pinning an applicant
+
+1. Pinning an existing applicant while all applicants are being shown.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `pin 1`<br>
+       Expected: First applicant in the list is pinned. Details of the pinned applicant shown in the status message. 
+       Pinned Applicant will be shown on the right list panel. Timestamp in the status bar is updated.
+    
+    1. Test case: `pin 1` followed by `pin 1` <br>
+       Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+       indicating that the first applicant has already been pinned.
+
+    1. Test case: `pin 0`<br>
+       Expected: No applicant is pinned. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect pin commands to try: `pin`, `pin x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unpinning an applicant
+
+1. Unpinning an existing applicant while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+       a pinned applicant named `Alex Yeoh`.
+
+    1. Test case: `unpin Alex Yeoh`<br>
+       Expected: Existing applicant with name `Alex Yeoh` in the list is unpinned. Applicant will be removed from
+       the right list panel. Details of the unpinned applicant shown in the status message. Timestamp in the status bar is updated.
+   
+   1. Test case: `unpin Alex Yeoh` followed by `unpin Alex Yeoh` <br>
+      Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that the applicant named `Alex Yeoh` has already been unpinned.
+   
+    1. Test case: `unpin Benjamin Loy`<br>
+       Expected: No changes displayed on TrackAScholar GUI as the list does not contain an applicant with name `Benjamin Loy`.
+       Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect unpin commands to try: `unpin` and `unpin 123` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Removing applicants by application status
+
+1. Removing existing applicants with the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
+       Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only 
+       contains those applicants with application status `PENDING` or `REJECTED`.
+
+    1. Test case: `remove ACCEPTED` followed by pressing `no` on the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+
+    1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+   
+    1. Test case: `remove PENDING`. <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
+       `REJECTED` can be removed. Error details shown in the status message
+   
+    1. Other incorrect remove commands to try: `remove` and `remove Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filtering applicants by application status
+
+1. Filtering existing applicants based on the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    1. Test case: `filter ACCEPTED` 
+       Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
+
+    1. Test case: `filter Bob` <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and 
+       `REJECTED` can be filtered. Error details shown in the status message.
+
+    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing files
+   1. Prerequisites: Delete `TrackAScholar.json` file in `data` folder and launch TrackAScholar again. <br>
+   Expected: TrackAScholar restarts with a default list of applicants and the missing data files are recovered.
+       
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Saving data in TrackAScholar
+   1. Prerequisites: Some commands will modify the list of applicants permanently. <br>
+   1. Test case: `pin 1` follow by `exit` command and restart TrackAScholar <br>
+   Expected: Upon restarting, the first applicant will be shown on the right list panel.
 
-2. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+Given that the effort for creating AddressBook3(AB3) is rated as a 10, our team believes that the effort required to 
+build TrackAScholar is estimated around 12.
+
+Over the span of 1 month, my group has spent tremendous amount of time and energy in refactoring and transforming
+AB3's model, such that it fulfils the criterion and standards needed by TrackAScholar.
+
+Moreover, this is supported by the fact that our code contributions are approximated around 9k lines of code(LoC), emphasizing 
+our commitment to improving the features and testability of TrackAScholar and improving the overall experience for our users.
+
+
+### Outstanding features
+* Add
+* Edit
+* Remove
+* Clear
+* Find
+* Filter
+* Sort
+* Import
+* Pin / Unpin
+
+
+### Notable design principles used
+* Utilised Test Driven Development
+  * Every time our team puts in either a new feature or a new field to TrackAScholar, 
+  we strive to write JUnit test cases alongside the new functional code added,
+  thus minimising the chances of obtaining bugs at a later stage, where it might be too
+  late or difficult to fix such bugs.
+  * Moreover, we also took turns testing each other's features at various milestones, 
+  thus allowing us to identify and amend bugs much earlier.
+  * After PED, my team start rectifying and filtering the respective bugs immediately,
+  thus mitigating the number of bugs in TrackAScholar.
+
+* Maintaining high code quality and standards
+  * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
+  and thus reducing the amount of code written. This is evident from `Command` and `Ui` interfaces etc.
+  * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
+  maintaining readability of our code. This is evident from the lack of long methods and nesting within TrackAScholar 
+  code base.
+
+[Return to top](#table-of-contents)
+
