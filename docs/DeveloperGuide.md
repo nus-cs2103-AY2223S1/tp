@@ -176,32 +176,31 @@ cleanly displayed seperate from the information releveant to people
 
 #### 2. Implementation of the new UI
 
-In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings
-depending on the `Command` executed:
+As you can see from the diagrm, the `MainWindow` is filled with both the person and task list
+Similar to the person list, the task list will contain all the tasks currently stored in the application
+By having separate list panels, it will be easier to display the tasks and people seperately
 
-By having separate list panels, it will be easier to customise the display of different `Person` types as well
-as `Order` and `Pet` if required by future features and ui improvements.
+Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task. 
+The user can navigate between the dispays using a tab at the top of the UI display.
 
-In each `BuyerCard` as seen in the graph below, the buyer's `Name` will be shown together with an index and a label
-indicating he or she is a `Buyer`.
-The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
-The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of
-each of the `Order` that the `Buyer` makes with an index in a list.
+#### 3. Alternatives considered
 
-<img src="images/BuyerCard.png" width="700"/>
+We went through several iterations and design alternatives when considering the design of our User Interface
 
-The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
+* **1. Display the people on the Left, and the spotlighted person's task on the right**
+Our first idea was reserving the right side of the main window for only a specific person's task. The advantage of this is that it would be able to spotlight a single
+person's tasks and the details regarding those tasks. However, this would make it more difficult to compare tasks between two people, and may result in too much information being displayed.
 
-In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
-Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of
-the `Pet` that the `Supplier` sells with an index in a list.
+Additonally, this implementation results in having no single list of Tasks, which means that displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user. 
 
-By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact
-details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the
-height of each card within a reasonable range
-(e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched
-vertically, potentially to an extent that the whole window can only show information of one single buyer).
+* **1. Display all the people on the Left, and the spotlighted person's task on the right**
+Our first idea was reserving the right side of the main window for only a specific person's task. The advantage of this is that it would be able to spotlight a single
+person's tasks and the details regarding those tasks. However, this would make it more difficult to compare tasks between two people, and may result in too much information being displayed.
 
+Additonally, this implementation results in having no single list of Tasks, which means that displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user. 
+
+* **2. Display all the people on the Left, and all tasks on the right**
+The next design proposal was to display all the people on the Left, and all tasks on the right. This would allow the sorting and filtering of tasks to be carried our much easier. However, it could still result in too much information being present, which could overwhelm the user.
 
 
 ### \[Proposed\] Undo/redo feature
