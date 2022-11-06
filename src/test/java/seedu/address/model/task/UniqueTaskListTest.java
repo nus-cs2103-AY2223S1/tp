@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.COOK;
+import static seedu.address.testutil.TypicalTasks.REVIEW;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 
 import java.util.Arrays;
@@ -107,6 +108,27 @@ public class UniqueTaskListTest {
         expectedUniqueTaskList.add(COOK);
         assertEquals(uniqueTaskList, expectedUniqueTaskList);
     }
+
+    @Test
+    public void delete_containTask_deleteTask() {
+        uniqueTaskList.add(STUDY);
+        uniqueTaskList.delete(0);
+        assertFalse(uniqueTaskList.contains(STUDY));
+    }
+
+    @Test
+    public void getNoOfCompletedTasks_filledWithTasks() {
+        uniqueTaskList.add(STUDY);
+        uniqueTaskList.add(COOK);
+        uniqueTaskList.add(REVIEW);
+        assertEquals(uniqueTaskList.getNoOfCompletedTasks(), 1);
+    }
+
+    @Test
+    public void getNoOfCompletedTasks_filledWithNoTasks() {
+        assertEquals(uniqueTaskList.getNoOfCompletedTasks(), 0);
+    }
+
 
     @Test
     public void setTasks_listWithDuplicateTasks_throwsDuplicateTaskException() {

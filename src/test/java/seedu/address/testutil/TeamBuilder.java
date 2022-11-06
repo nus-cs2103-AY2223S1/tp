@@ -29,8 +29,18 @@ public class TeamBuilder {
      * Creates a {@code TeamBuilder} with the details of teamToCopy.
      */
     public TeamBuilder(Team teamToCopy) {
-        name = teamToCopy.getName();
+        name = new Name(teamToCopy.getName().toString());
+
+        UniquePersonList newMembers = new UniquePersonList();
+        for (Person p : teamToCopy.getMembers()) {
+            newMembers.add(new PersonBuilder(p).build());
+        }
         members = teamToCopy.getMembers();
+
+        UniqueTaskList newTasks = new UniqueTaskList();
+        for (Task t : teamToCopy.getTasks()) {
+            newTasks.add(new TaskBuilder(t).build());
+        }
         tasks = teamToCopy.getTasks();
     }
 
@@ -48,7 +58,7 @@ public class TeamBuilder {
     public TeamBuilder withMembers(Person... members) {
         this.members = new UniquePersonList();
         for (Person p : members) {
-            this.members.add(p);
+            this.members.add(new PersonBuilder(p).build());
         }
         return this;
     }
@@ -59,8 +69,7 @@ public class TeamBuilder {
     public TeamBuilder withTasks(Task... tasks) {
         this.tasks = new UniqueTaskList();
         for (Task t : tasks) {
-            TaskBuilder builder = new TaskBuilder(t);
-            this.tasks.add(builder.build());
+            this.tasks.add(new TaskBuilder(t).build());
         }
         return this;
     }
