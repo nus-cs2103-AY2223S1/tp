@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
 import static seedu.address.testutil.TypicalAttributes.AGE;
 import static seedu.address.testutil.TypicalAttributes.POSITION;
 
@@ -33,6 +35,13 @@ class AttributeListTest {
         List<Object> sampleList = new ArrayList<>();
         assertEquals(attributeList.createAttributeInstance("objectTest", sampleList),
                 new AbstractAttribute<>("Objecttest", sampleList) { });
+    }
+
+    @Test
+    void createAttributeInstance_withSettingAndStyle_success() {
+        AttributeList attributeList = new AttributeList();
+        assertEquals(attributeList.createAttributeInstance("Position" ,"CEO", DEFAULT, DEFAULT_STYLE), 
+                POSITION);
     }
 
     @Test
@@ -85,6 +94,21 @@ class AttributeListTest {
     }
 
     @Test
+    void addAttribute_withSettingAndStyle_success() throws AttributeException {
+        AttributeList attributeList = new AttributeList();
+        attributeList.addAttribute("Age", 20, DEFAULT, DEFAULT_STYLE);
+        assertEquals(attributeList.findAttribute("Age"), AGE);
+    }
+
+    @Test
+    void addAttribute_existingAttributeWithSettingAndStyle_throwsAttributeException() throws AttributeException {
+        AttributeList attributeList = new AttributeList();
+        attributeList.addAttribute(AGE);
+        assertThrows(AttributeException.class, () ->
+                attributeList.addAttribute("Age", 5, DEFAULT, DEFAULT_STYLE));
+    }
+
+    @Test
     void findAttribute_nonExistingAttribute_returnsNull() {
         AttributeList attributeList = new AttributeList();
         assertNull(attributeList.findAttribute("Specialisation"));
@@ -113,10 +137,25 @@ class AttributeListTest {
     }
 
     @Test
+    void editAttribute_nonExistingAttribute_throwsAttributeException() {
+        AttributeList attributeList = new AttributeList();
+        assertThrows(AttributeException.class, () ->
+                attributeList.editAttribute("Position", "President"));
+    }
+
+    @Test
     void removeAttribute_existingAttribute_success() throws AttributeException {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute("Age", 45);
         attributeList.removeAttribute("Age");
+        assertNull(attributeList.findAttribute("Age"));
+    }
+
+    @Test
+    void removeAttribute_existingAttributeWithAttributeInstance_success() throws AttributeException {
+        AttributeList attributeList = new AttributeList();
+        attributeList.addAttribute(AGE);
+        attributeList.removeAttribute(AGE);
         assertNull(attributeList.findAttribute("Age"));
     }
 
@@ -243,4 +282,26 @@ class AttributeListTest {
         attributeList.addAttribute(POSITION);
         assertFalse(attributeList.isEmpty());
     }
+
+    @Test
+    void toString_success() {
+        AttributeList attributeList = new AttributeList();
+        attributeList.addAttribute(AGE);
+        attributeList.addAttribute(POSITION);
+        assertEquals(attributeList.toString(), "Age: 20Position: CEO");
+    }
+
+    @Test
+    void equals_sameObject_returnTrue() {
+        AttributeList attributeList = new AttributeList();
+        assertTrue(attributeList.equals(attributeList));
+    }
+
+    @Test
+    void equals_differentInstances_returnFalse() {
+        AttributeList attributeList = new AttributeList();
+        assertFalse(attributeList.equals("Bunny"));
+    }
+
 }
+
