@@ -26,13 +26,13 @@ If you can type fast, Condonery can get your contact management tasks done faste
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Some example commands you can try:
 
-* **`list -p`** : Lists all properties.
+   * **`list -p`** : Lists all properties.
 
-* **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
+   * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
 
-* **`list -p`** followed by **`delete 3`** : Deletes the 3rd property shown in the current list.
+   * **`list -p`** followed by **`delete 3`** : Deletes the 3rd property shown in the current list.
 
-* **`exit`** : Exits the app.
+   * **`exit`** : Exits the app.
 
 1. Refer to the Features below for details of each command.
 
@@ -44,7 +44,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 **:information_source: Notes about the command format:**<br>
 
-* Flags -p and -c after each command word represent interactions with the property and client directory respectively.
+* Flags `-p` and `-c` after each command word represent interactions with the property and client directory respectively.
   * `add -p` adds a property in the property directory while `add -c` adds a client in the client directory.
 * Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
   * In `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
@@ -64,9 +64,9 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 ### Prefix list
 
-| Prefix | Associated Parameter | Definition                                                                                         | Examples                          | Remarks                                                                                                                                                                                                 |
-| ---- | ------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` | `NAME`              | Refers to the name of a property or client.<br>                                                    | `n/PINNACLE@DUXTON`<br>`n/Walter` | * Each property or client can only have one name.                                                                                                                                                       |
+| Prefix | Associated Parameter | Definition                                                                                         | Examples                          | Remarks                                                                                                                                                                                               |
+| ---- | ------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` | `NAME`              | Refers to the name of a property or client.<br>                                                    | `n/PINNACLE@DUXTON`<br>`n/Walter` | Each property or client can only have one name.                                                                                                                                                       |
 | `a/` | `ADDRESS`           | Refers to the address of a property or client.                                                     | `a/Cantonment Rd, #1G, 085301`    |  Each property or client can only have one address.                                                                                                                                   |
 | `t/` | `TAG`               | Refers to a tag of a property or client.<br> Can be used for labelling important details.          | `t/High-end`, `t/Friend`          |  Tags must be alphanumerical<br> Each property or client can have multiple tags.                                                                                                  |
 | `-i` | `IMAGE`             | Refers to the image for a property or client.<br> User will be prompted to select an image in a separate window upon invoking prefix. | NIL                               |  Each property or client can only have one image.                                                                                                                                     |
