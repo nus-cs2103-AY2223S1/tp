@@ -24,7 +24,7 @@ The [Placeholder](#placeholders) section covers the restrictions for respective 
 
 **Let's try an example!**
 
-Suppose you just bought 30 kg worth of potatoes, today is 5th September 2022, and you do not feel the need to record an [[expiry-date:expiry date]], price or remarks for this item.
+Suppose you just bought 30 kg worth of potatoes, today is 5th September 2022, and you do not feel the need to record an [[ expiry-date:expiry date ]], price or remarks for this item.
 
 `ITEM_NAME`: Potatoes
 
