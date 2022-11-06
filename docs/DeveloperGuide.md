@@ -7,8 +7,8 @@ title: Developer Guide
 
 ## **Introduction**
 
-Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a
-command-line interface. 
+Cobb is a brownfield software project based off of [AddressBook3](https://se-education.org/addressbook-level3/). It is a 
+JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
 ### **Purpose**
 
@@ -27,7 +27,8 @@ of the guide.
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
+Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
+[PlantUML](https://plantuml.com).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -476,7 +477,8 @@ concrete predicate classes were implemented:
 5. `FilterPropsByOwnerNamePredicate`
 
 Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
-`Predicate`, which is then used to filter the `ObservableArrayList` directly.
+`Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding composition behaviour
+can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
 The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
 
@@ -485,13 +487,15 @@ The below UML diagram represents the overall structure of the predicates for `Bu
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
    agents to want to identify properties that fit within a certain price range instead of a fixed price.
-2. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+2. For both `filterBuyers` and `filterProps`, the default composed predicate will be a logical **AND** of all individual
+   predicates, that is, all  predicates need to be satisfied in order for the entry to pass through the filter.
+3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
    a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
    for the entry to pass through the filter.
-3. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
+4. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
    is for Cobb to filter out entries that contain **ALL** of the given characteristics. The `-fuzzy` flag changes this behaviour
    to filter out entries that contain *at least one* of the given characteristics.
-4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
+5. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
    contain the parameter provided to `-n` as a *substring*.
 
 ### Matching properties to a buyer, and vice versa
