@@ -691,7 +691,7 @@ Do the test cases sequentially to ensure correct expectation.
     5. Test case: `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/HIGH`<br>
        Expected:  A new reminder is added to the top of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
-    6. Other incorrect add tutorial commands to try: `add reminders`, `add remind`, `add reminder n/Create D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
+    6. Other incorrect add reminder commands to try: `add reminders`, `add remind`, `add reminder n/Create D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
        Expected: Error message is shown in the result display box.
 
 
@@ -704,7 +704,7 @@ Do the test cases sequentially to ensure correct expectation.
     2. Test case: `edit reminder 1 n/Mark papers`<br>
        Expected: Name of first reminder is edited. Details of the edited reminder shown in the result display box.
 
-    3. Test case: `edit tutorial 0`<br>
+    3. Test case: `edit reminder 0`<br>
        Expected: No reminder is edited. Error message shown in result display box.
 
 #### Deleting a reminder
