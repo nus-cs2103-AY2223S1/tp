@@ -133,7 +133,7 @@ The `Model` component,
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections.
+* `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections. Not all dependencies and composition will be shown.
 
 #### 2.4.2 Client
 
@@ -143,7 +143,7 @@ The `Model` component,
 
 <img src="images/MeetingClassDiagram.png" width="600" />
 
-#### 2.4.2 UniqueProductList
+#### 2.4.2 Product
 
 <img src="images/ProductClassDiagram.png" width="150" />
 
