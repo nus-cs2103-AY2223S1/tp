@@ -165,22 +165,21 @@ Initially, there already exists a tag called "Veggies".
 
 > Filters and shows items that contain a specific tag
 
-**Example Input:**
+**Example:**
 
-```text
-filtertag n/fruits
-```
+{% capture notes %}
+**Assumption:**
 
-**Example Output:**<br>Command Output Box:
+Initially, FoodRem only contains the following items:
 
-```text
-Filtered by tag: fruits
-2 items left after filtering!
-```
-
-Item List Box:
-
-```text
-1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-```
+1. Banana (tagged as "Fruits")
+1. Carrot (tagged as "Vegetables")
+1. Papaya (tagged as "Fruits")
+1. Tomato (tagged as "Vegetables")
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="filtertag n/Fruits"
+  itemListBox="images/tagCommands/itemListBox/filtertag.png"
+%}
