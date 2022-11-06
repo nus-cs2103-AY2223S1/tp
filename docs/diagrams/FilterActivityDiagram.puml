@@ -1,21 +1,26 @@
 @startuml
-start
-:User executes command;
-if () then ([command is valid])
-  if () then ([all input fields are valid])
-  :Update filtered task list;
-  :Display filtered task list;
-  else ([else])
-    if () then([module does not exist])
-      :Display module not found error message;
-    else ([else])
-      :Display response constraints error message;
-    endif
-  endif
-else ([else])
-  :Display invalid command error message and filter message usage;
-endif
 
+start
+:User executes filter command;
+if () then ([command is invalid])
+  :Display invalid command
+  format error message and
+  filter message usage;
+else ([else])
+  if () then ([input fields are invalid])
+    if () then ([module does not exist])
+      :Display module not
+      found error message;
+    else ([else])
+      :Display response
+      constraints error
+      message;
+    endif
+  else ([else])
+    :Update filtered task list;
+    :Display filtered task list;
+  endif
+endif
 stop
 
 @enduml

@@ -241,7 +241,7 @@ Step 4. The user executes `t mark 1`. The first task is no longer in `taskFilter
 
 The following activity diagram summarizes what happens when a user executes the filter command:
 
-<img src="images/FilterActivityDiagram.png" width="1150" />
+<img src="images/FilterActivityDiagram.png" width="700" />
 
 #### Design considerations:
 
@@ -653,6 +653,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 * 1c. The given index is larger than the size of the task list.
     * 1c1. MODPRO shows an error message stating the range of indexes of the task list. </br>
+      Use case ends.
+* 1d. The task is not linked to any exam.
+    * 1d1. MODPRO shows an error message stating that task is already unlinked. </br>
       Use case ends.
 
 **Use case: Showing the tasks of an exam**

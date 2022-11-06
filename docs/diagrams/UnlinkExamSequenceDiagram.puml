@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnlinkExamCommandParser" as UnlinkExamCommandParser LOGIC_COLOR
+participant ":UnlinkExamCommand" as UnlinkExamCommand LOGIC_COLOR
+participant "taskToUnlink:Task" as TargetTask LOGIC_COLOR
+participant "unlinkedTask:Task" as UnlinkedTask LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unlink 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unlink 1")
+activate AddressBookParser
+
+create UnlinkExamCommandParser
+AddressBookParser -> UnlinkExamCommandParser
+activate UnlinkExamCommandParser
+
+UnlinkExamCommandParser --> AddressBookParser
+deactivate UnlinkExamCommandParser
+
+AddressBookParser -> UnlinkExamCommandParser : parse("1")
+activate UnlinkExamCommandParser
+
+create UnlinkExamCommand
+UnlinkExamCommandParser -> UnlinkExamCommand
+activate UnlinkExamCommand
+
+UnlinkExamCommand --> UnlinkExamCommandParser
+deactivate UnlinkExamCommand
+
+UnlinkExamCommandParser --> AddressBookParser
+deactivate UnlinkExamCommandParser
+
+UnlinkExamCommandParser -[hidden]-> AddressBookParser
+destroy UnlinkExamCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> UnlinkExamCommand : execute()
+activate UnlinkExamCommand
+
+UnlinkExamCommand -> Model : getFilteredTaskList().get(targetIndex.getZeroBased())
+activate Model
+
+Model --> UnlinkExamCommand : taskToUnlink
+deactivate Model
+
+UnlinkExamCommand -> TargetTask : unlink()
+activate TargetTask
+
+create UnlinkedTask
+TargetTask -> UnlinkedTask
+activate UnlinkedTask
+
+UnlinkedTask --> TargetTask
+deactivate UnlinkedTask
+
+TargetTask --> UnlinkExamCommand
+deactivate TargetTask
+
+UnlinkExamCommand -> Model : replaceTask(taskToUnlink, unlinkedTask, true)
+activate Model
+
+Model --> UnlinkExamCommand
+deactivate Model
+
+create CommandResult
+UnlinkExamCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnlinkExamCommand
+deactivate CommandResult
+
+UnlinkExamCommand --> LogicManager : result
+deactivate UnlinkExamCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

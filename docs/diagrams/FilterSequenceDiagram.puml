@@ -26,7 +26,7 @@ activate FilterTasksCommandParser
 FilterTasksCommandParser --> AddressBookParser
 deactivate FilterTasksCommandParser
 
-AddressBookParser -> FilterTasksCommandParser: parse("filter c/n")
+AddressBookParser -> FilterTasksCommandParser : parse("filter c/n")
 activate FilterTasksCommandParser
 
 create FilterTasksCommand
@@ -55,7 +55,7 @@ Model --> FilterTasksCommand
 deactivate Model
 
 create CommandResult
-FilterTasksCommand -> CommandResult: CommandResult(MESSAGE_SUCCESS)
+FilterTasksCommand -> CommandResult : CommandResult(MESSAGE_SUCCESS)
 activate CommandResult
 
 CommandResult --> FilterTasksCommand
