@@ -3,6 +3,9 @@ package seedu.address.model.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalAttributes.AGE;
+import static seedu.address.testutil.TypicalAttributes.POSITION;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.HashSet;
@@ -72,30 +75,50 @@ class AbstractDisplayItemTest {
     @Test
     void getAttribute_attributeFound_success() throws AttributeException {
         Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
-        assertEquals(dummy.getAttribute("Github").get(), "dummy123");
+        assertEquals(dummy.getAttribute("Github").get().toString(), "Github: dummy123");
     }
 
     @Test
     void editAttribute_existingAttribute_success() throws AttributeException {
         Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
         dummy.editAttribute("Github", "dummy321");
-        assertEquals(dummy.getAttribute("Github").get(), "dummy321");
+        assertEquals(dummy.getAttribute("Github").get().toString(), "Github: dummy321");
     }
 
     @Test
-    void addAttribute() {
+    void addAttribute_newAttributeInstance_success() {
+        Person dummy = buildDefaultPerson("dummy", "friends");
+        dummy.addAttribute(AGE);
+        assertEquals(dummy.getAttribute("Age").get().toString(), "Age: 20");
     }
 
     @Test
-    void testAddAttribute() {
+    void addAttribute_stringTypeAndValue_success() throws AttributeException {
+        Person dummy = buildDefaultPerson("dummy", "friends");
+        dummy.addAttribute("Position", "CEO");
+        assertEquals(dummy.getAttribute("Position").get(), POSITION);
+    }
+
+    @Test
+    void addAttribute_existingAttribute_throwsAttributeException() throws AttributeException {
+        Person dummy = buildDefaultPerson("dummy", "friends");
+        dummy.addAttribute("Position", "CEO");
+        assertThrows(AttributeException.class, () -> dummy.addAttribute("Position", "President"));
     }
 
     @Test
     void setTags() {
+        Person dummy = buildDefaultPerson("dummy");
+        Set<Tag> tags = new HashSet<Tag>();
+        tags.add(new Tag("president"));
+        tags.add(new Tag("boss"));
+        dummy.setTags(tags);
+        assertEquals(dummy.getTags(), tags);
     }
 
     @Test
     void canBeChildOf() {
+
     }
 
     @Test
