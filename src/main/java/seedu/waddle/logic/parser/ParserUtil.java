@@ -226,7 +226,7 @@ public class ParserUtil {
         String trimmedStartTime = startTime.trim();
         LocalTime time;
         try {
-            time = LocalTime.parse(startTime);
+            time = LocalTime.parse(trimmedStartTime);
         } catch (DateTimeParseException e) {
             throw new ParseException("Start time should be written in HH:MM:SS format. For example, 10:15 or 10:15:30");
         }

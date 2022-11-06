@@ -87,7 +87,7 @@ public class UniqueItemList implements Iterable<Item> {
         return toRemove;
     }
 
-    public void setItemList(UniqueItemList replacement) {
+    public void setItems(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
