@@ -1,6 +1,11 @@
 package seedu.address.model.attribute;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalAttributes.AGE;
 import static seedu.address.testutil.TypicalAttributes.POSITION;
 
@@ -8,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.attribute.exceptions.AttributeException;
 
+import seedu.address.model.attribute.exceptions.AttributeException;
 
 class AttributeListTest {
 
@@ -31,35 +36,35 @@ class AttributeListTest {
     }
 
     @Test
-    void addAttribute_StringAttribute_success() {
+    void addAttribute_stringAttribute_success() {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute(POSITION);
         assertNotNull(attributeList.findAttribute("Position"));
     }
 
     @Test
-    void addAttribute_IntegerAttribute_success() {
+    void addAttribute_integerAttribute_success() {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute(AGE);
         assertNotNull(attributeList.findAttribute("Age"));
     }
 
     @Test
-    void addAttribute_ObjectAttribute_success() {
+    void addAttribute_objectAttribute_success() {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute(objectAttribute);
         assertNotNull(attributeList.findAttribute("Object"));
     }
 
     @Test
-    void addAttribute_StringValue_success() throws AttributeException {
+    void addAttribute_stringValue_success() throws AttributeException {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute("Department", "Marketing");
         assertNotNull(attributeList.findAttribute("Department"));
     }
 
     @Test
-    void addAttribute_IntegerValue_success() throws AttributeException {
+    void addAttribute_integerValue_success() throws AttributeException {
         AttributeList attributeList = new AttributeList();
         attributeList.addAttribute("Age", 23);
         assertNotNull(attributeList.findAttribute("Age"));

@@ -1,6 +1,10 @@
 package seedu.address.model.attribute;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.AccessDisplayFlags.DEFAULT;
 import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
 import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
@@ -8,31 +12,30 @@ import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
 import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
 import static seedu.address.model.AccessDisplayFlags.MENU_OK;
 import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
+import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_DISPLAY_FORMAT;
+import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_STYLE_FORMAT;
+import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_TYPE_NAME;
+import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_VALUE;
 import static seedu.address.testutil.TypicalAttributes.AGE;
 import static seedu.address.testutil.TypicalAttributes.POSITION;
-
-import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_TYPE_NAME;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_VALUE;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_DISPLAY_FORMAT;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_STYLE_FORMAT;
+import org.junit.jupiter.api.Test;
 
 class AbstractAttributeTest {
 
     @Test
     void constructor_validInputs_success() {
-        Attribute<Integer> AGE = new AbstractAttribute<Integer>("Age", 5) { };
-        assertNotNull(AGE);
+        Attribute<Integer> age = new AbstractAttribute<Integer>("Age", 5) { };
+        assertNotNull(age);
     }
 
     @Test
     void constructor_nullTypeName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new AbstractAttribute<Integer>(null, 5) { });
+        assertThrows(NullPointerException.class, () ->
+                new AbstractAttribute<Integer>(null, 5) { });
     }
 
     @Test
@@ -210,8 +213,8 @@ class AbstractAttributeTest {
         AbstractAttribute<String> attr =
                 new AbstractAttribute<>("Position", "Director", DEFAULT, 0b01001010101) { };
         assertEquals(attr.getFormatCss(false),
-                "-fx-font: normal bold 32.000000pt 'Segoe UI'; -fx-underline: true; -fx-effect: dropshadow(three-pass" +
-                        "-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0); -fx-text-alignment: center;");
+                "-fx-font: normal bold 32.000000pt 'Segoe UI'; -fx-underline: true; -fx-effect: dropshadow(three-pass"
+                        + "-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0); -fx-text-alignment: center;");
     }
 
     @Test
