@@ -432,7 +432,7 @@ Example:
 
 ### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
-Show the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
+Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
 
 Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
