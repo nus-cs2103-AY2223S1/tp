@@ -16,8 +16,8 @@ import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
+import seedu.address.logic.commands.task.ProjectTaskCommand;
 import seedu.address.logic.commands.task.SortTaskCommand;
-import seedu.address.logic.commands.task.TaskProjectCommand;
 import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
@@ -72,8 +72,8 @@ public class TaskPanelParser implements Parser<TaskCommand> {
             return new DeadlineTaskCommandParser().parse(arguments);
         case EditTaskCommand.COMMAND_WORD:
             return new EditTaskCommandParser().parse(arguments);
-        case TaskProjectCommand.COMMAND_WORD:
-            return new TaskProjectCommand();
+        case ProjectTaskCommand.COMMAND_WORD:
+            return new ProjectTaskCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -26,7 +26,7 @@ public class TaskUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code teammate}'s details.
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();

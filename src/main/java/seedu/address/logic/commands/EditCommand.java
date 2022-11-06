@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TEAMMATES;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,25 +20,25 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.teammate.Address;
-import seedu.address.model.teammate.Email;
-import seedu.address.model.teammate.Name;
-import seedu.address.model.teammate.Teammate;
-import seedu.address.model.teammate.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.AssignedToContactsPredicate;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Address;
+import seedu.address.model.teammate.Email;
+import seedu.address.model.teammate.Name;
+import seedu.address.model.teammate.Phone;
+import seedu.address.model.teammate.Teammate;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing teammate in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the teammate identified "
+            + "by the index number used in the displayed teammate list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -50,47 +50,47 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s"
+    public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Edited Teammate: %1$s"
             + "\nThe following tasks' assigned contacts have been modified:";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TEAMMATE = "This teammate already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTeammateDescriptor editTeammateDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the teammate in the filtered teammate list to edit
+     * @param editTeammateDescriptor details to edit the teammate with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTeammateDescriptor editTeammateDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTeammateDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editTeammateDescriptor = new EditTeammateDescriptor(editTeammateDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Teammate> lastShownList = model.getFilteredPersonList();
+        List<Teammate> lastShownList = model.getFilteredTeammateList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
         }
 
         Teammate teammateToEdit = lastShownList.get(index.getZeroBased());
-        Teammate editedTeammate = createEditedPerson(teammateToEdit, editPersonDescriptor);
+        Teammate editedTeammate = createEditedTeammate(teammateToEdit, editTeammateDescriptor);
 
-        if (!teammateToEdit.isSamePerson(editedTeammate) && model.hasPerson(editedTeammate)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!teammateToEdit.isSameTeammate(editedTeammate) && model.hasTeammate(editedTeammate)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TEAMMATE);
         }
 
         updateTasksAssignedContacts(model, teammateToEdit, editedTeammate);
-        model.setPerson(teammateToEdit, editedTeammate);
+        model.setTeammate(teammateToEdit, editedTeammate);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTeammate));
+        model.updateFilteredTeammateList(PREDICATE_SHOW_ALL_TEAMMATES);
+        return new CommandResult(String.format(MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate));
     }
 
     private void updateTasksAssignedContacts(Model model, Teammate teammateToEdit,
@@ -110,17 +110,18 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Teammate} with the details of {@code teammateToEdit}
+     * edited with {@code editTeammateDescriptor}.
      */
-    private static Teammate createEditedPerson(Teammate teammateToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Teammate createEditedTeammate(
+            Teammate teammateToEdit, EditTeammateDescriptor editTeammateDescriptor) {
         assert teammateToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(teammateToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(teammateToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(teammateToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(teammateToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(teammateToEdit.getTags());
+        Name updatedName = editTeammateDescriptor.getName().orElse(teammateToEdit.getName());
+        Phone updatedPhone = editTeammateDescriptor.getPhone().orElse(teammateToEdit.getPhone());
+        Email updatedEmail = editTeammateDescriptor.getEmail().orElse(teammateToEdit.getEmail());
+        Address updatedAddress = editTeammateDescriptor.getAddress().orElse(teammateToEdit.getAddress());
+        Set<Tag> updatedTags = editTeammateDescriptor.getTags().orElse(teammateToEdit.getTags());
 
         return new Teammate(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -140,27 +141,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTeammateDescriptor.equals(e.editTeammateDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the teammate with. Each non-empty field value will replace the
+     * corresponding field value of the teammate.
      */
-    public static class EditPersonDescriptor {
+    public static class EditTeammateDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditTeammateDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditTeammateDescriptor(EditTeammateDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -232,12 +233,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTeammateDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditTeammateDescriptor e = (EditTeammateDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

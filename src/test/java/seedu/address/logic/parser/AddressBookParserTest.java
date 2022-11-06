@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTeammateDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -27,9 +27,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.teammate.ContainsTagPredicate;
 import seedu.address.model.teammate.NameContainsKeywordsPredicate;
 import seedu.address.model.teammate.Teammate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditTeammateDescriptorBuilder;
+import seedu.address.testutil.TeammateBuilder;
+import seedu.address.testutil.TeammateUtil;
 
 public class AddressBookParserTest {
 
@@ -37,8 +37,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Teammate teammate = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(teammate));
+        Teammate teammate = new TeammateBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(TeammateUtil.getAddCommand(teammate));
         assertEquals(new AddCommand(teammate), command);
     }
 
@@ -51,17 +51,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TEAMMATE.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_TEAMMATE), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Teammate teammate = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(teammate).build();
+        Teammate teammate = new TeammateBuilder().build();
+        EditTeammateDescriptor descriptor = new EditTeammateDescriptorBuilder(teammate).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_TEAMMATE.getOneBased() + " " + TeammateUtil.getEditTeammateDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_TEAMMATE, descriptor), command);
     }
 
     @Test

@@ -6,10 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_WORKSHOP;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class EditTaskCommandTest {
 
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidTeammateIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         Task editedTask = new TaskBuilder().build();
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
@@ -63,11 +63,11 @@ public class EditTaskCommandTest {
 
     @Test
     public void equals() {
-        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, DESC_HOMEWORK);
+        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TEAMMATE, DESC_HOMEWORK);
 
         // same values -> returns true
         EditTaskCommand.EditTaskDescriptor copyDescriptor = new EditTaskCommand.EditTaskDescriptor(DESC_HOMEWORK);
-        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_TEAMMATE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -80,9 +80,9 @@ public class EditTaskCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_PERSON, DESC_HOMEWORK)));
+        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_TEAMMATE, DESC_HOMEWORK)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_PERSON, DESC_WORKSHOP)));
+        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_TEAMMATE, DESC_WORKSHOP)));
     }
 }

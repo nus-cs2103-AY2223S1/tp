@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.address.model.teammate.Teammate;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Teammate}.
  */
-public class PersonCard extends UiPart<Region> {
+public class TeammateCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TeammateListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,9 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TeammateCard} with the given {@code Teammate} and index to display.
      */
-    public PersonCard(Teammate teammate, int displayedIndex) {
+    public TeammateCard(Teammate teammate, int displayedIndex) {
         super(FXML);
         this.teammate = teammate;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof TeammateCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        TeammateCard card = (TeammateCard) other;
         return id.getText().equals(card.id.getText())
                 && teammate.equals(card.teammate);
     }

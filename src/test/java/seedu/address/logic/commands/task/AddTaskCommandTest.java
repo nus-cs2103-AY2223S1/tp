@@ -7,22 +7,19 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-//import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-//import seedu.address.logic.commands.CommandResult;
-//import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskPanel;
-import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Teammate;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddTaskCommandTest {
@@ -79,7 +76,7 @@ public class AddTaskCommandTest {
         // null -> returns false
         assertNotEquals(null, addTaskOneCommand);
 
-        // different person -> returns false
+        // different teammate -> returns false
         assertNotEquals(addTaskOneCommand, addTaskTwoCommand);
     }
 
@@ -118,7 +115,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void addPerson(Teammate teammate) {
+        public void addTeammate(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -133,22 +130,22 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Teammate teammate) {
+        public boolean hasTeammate(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Teammate target) {
+        public void deleteTeammate(Teammate target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Teammate target, Teammate editedTeammate) {
+        public void setTeammate(Teammate target, Teammate editedTeammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Teammate> getFilteredPersonList() {
+        public ObservableList<Teammate> getFilteredTeammateList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,7 +155,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Teammate> predicate) {
+        public void updateFilteredTeammateList(Predicate<Teammate> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,7 +218,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the teammate being added.
      */
     private static class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();

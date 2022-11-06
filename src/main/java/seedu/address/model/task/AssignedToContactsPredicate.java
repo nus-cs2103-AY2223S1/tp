@@ -37,17 +37,17 @@ public class AssignedToContactsPredicate implements Predicate<Task> {
     /**
      * Constructs an AssignedToContactsPredicate.
      * @param model the model to use when looking for contacts
-     * @param personIndexes the indices which correspond to contacts in the model's address book
+     * @param teammateIndexes the indices which correspond to contacts in the model's address book
      */
-    public AssignedToContactsPredicate(Model model, Set<Index> personIndexes) throws CommandException {
-        List<Teammate> lastShownPersonsList = model.getFilteredPersonList();
+    public AssignedToContactsPredicate(Model model, Set<Index> teammateIndexes) throws CommandException {
+        List<Teammate> lastShownTeammatesList = model.getFilteredTeammateList();
 
-        for (Index personIndex : personIndexes) {
-            if (personIndex.getZeroBased() >= lastShownPersonsList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index teammateIndex : teammateIndexes) {
+            if (teammateIndex.getZeroBased() >= lastShownTeammatesList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
             }
             Contact c =
-                    new Contact(lastShownPersonsList.get(personIndex.getZeroBased()).getName().fullName);
+                    new Contact(lastShownTeammatesList.get(teammateIndex.getZeroBased()).getName().fullName);
             this.contacts.add(c);
         }
     }

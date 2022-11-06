@@ -3,17 +3,15 @@ package seedu.address.logic.commands.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,14 +33,14 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void equals() {
-        UnmarkTaskCommand firstCommand = new UnmarkTaskCommand(INDEX_FIRST_PERSON);
-        UnmarkTaskCommand secondCommand = new UnmarkTaskCommand(INDEX_SECOND_PERSON);
+        UnmarkTaskCommand firstCommand = new UnmarkTaskCommand(INDEX_FIRST_TEAMMATE);
+        UnmarkTaskCommand secondCommand = new UnmarkTaskCommand(INDEX_SECOND_TEAMMATE);
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        UnmarkTaskCommand firstCommandCopy = new UnmarkTaskCommand(INDEX_FIRST_PERSON);
+        UnmarkTaskCommand firstCommandCopy = new UnmarkTaskCommand(INDEX_FIRST_TEAMMATE);
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false
@@ -51,16 +49,16 @@ public class UnmarkTaskCommandTest {
         // null -> returns false
         assertFalse(firstCommand.equals(null));
 
-        // different person -> returns false
+        // different teammate -> returns false
         assertFalse(firstCommand.equals(secondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoTeammate(Model model) {
+        model.updateFilteredTeammateList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredTeammateList().isEmpty());
     }
 }

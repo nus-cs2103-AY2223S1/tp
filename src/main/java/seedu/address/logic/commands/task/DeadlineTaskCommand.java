@@ -41,7 +41,7 @@ public class DeadlineTaskCommand extends TaskCommand {
     private final Deadline newDeadline;
 
     /**
-     * @param targetIndex of the person's task to be updated
+     * @param targetIndex of the teammate's task to be updated
      * @param newDeadline the new deadline for the task
      */
     public DeadlineTaskCommand(Index targetIndex, Deadline newDeadline) {

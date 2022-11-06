@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,53 +39,53 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonAddIndex_throwsCommandException() {
-        Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        HashSet<Index> invalidAssignedPersons = new HashSet<Index>();
-        invalidAssignedPersons.add(outOfBoundPersonIndex);
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, invalidAssignedPersons,
+    public void execute_invalidTeammateAddIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        HashSet<Index> invalidAssignedTeammates = new HashSet<Index>();
+        invalidAssignedTeammates.add(outOfBoundTeammateIndex);
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, invalidAssignedTeammates,
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
-                        outOfBoundPersonIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
     }
 
     @Test
-    public void execute_invalidPersonDeleteIndex_throwsCommandException() {
-        Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        HashSet<Index> invalidAssignedPersons = new HashSet<Index>();
-        invalidAssignedPersons.add(outOfBoundPersonIndex);
+    public void execute_invalidTeammateDeleteIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        HashSet<Index> invalidAssignedTeammates = new HashSet<Index>();
+        invalidAssignedTeammates.add(outOfBoundTeammateIndex);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(), invalidAssignedPersons, new HashSet<>());
+                new HashSet<>(), invalidAssignedTeammates, new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
-                        outOfBoundPersonIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
     }
 
     @Test
-    public void execute_invalidPersonAddName_throwsCommandException() {
+    public void execute_invalidTeammateAddName_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(List.of("NotAName")), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_NAME,
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
                         "NotAName") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
     }
 
     @Test
-    public void execute_invalidPersonDeleteName_throwsCommandException() {
+    public void execute_invalidTeammateDeleteName_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(List.of("NotAName")));
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_NAME,
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
                         "NotAName") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
     }
 
     @Test
-    public void execute_personToAddAlreadyAdded_throwsCommandException() {
+    public void execute_teammateToAddAlreadyAdded_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(Arrays.asList("Alice Pauline")), new HashSet<>(), new HashSet<>());
 
@@ -95,7 +95,7 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_personToDeleteNotAssigned_throwsCommandException() {
+    public void execute_teammateToDeleteNotAssigned_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList("George Best")));
 
@@ -105,7 +105,7 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_validTaskIndexAndAddPersonsName_assignSuccessful() throws Exception {
+    public void execute_validTaskIndexAndAddTeammatesName_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(Arrays.asList("George Best")),
                 new HashSet<>(), new HashSet<>());
@@ -117,9 +117,9 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_validTaskAndAddPersonsIndexes_assignSuccessful() throws Exception {
+    public void execute_validTaskAndAddTeammatesIndexes_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_SECOND_PERSON)), new HashSet<>(),
+                new HashSet<>(Arrays.asList(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
 
         CommandResult commandResult = assignTaskCommand.execute(model);
@@ -129,10 +129,10 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_validTaskAndDeletePersonsIndexes_assignSuccessful() throws Exception {
+    public void execute_validTaskAndDeleteTeammatesIndexes_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(),
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON)), new HashSet<>());
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE)), new HashSet<>());
 
         CommandResult commandResult = assignTaskCommand.execute(model);
 
@@ -141,7 +141,7 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_validTaskIndexAndDeletePersonsName_assignSuccessful() throws Exception {
+    public void execute_validTaskIndexAndDeleteTeammatesName_assignSuccessful() throws Exception {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(Arrays.asList("Alice Pauline")));
@@ -156,26 +156,26 @@ public class AssignTaskCommandTest {
     public void equals() {
 
         AssignTaskCommand firstCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
         AssignTaskCommand secondCommand = new AssignTaskCommand(INDEX_SECOND_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
         AssignTaskCommand thirdCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<Index>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, INDEX_THIRD_PERSON)),
+                new HashSet<Index>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE, INDEX_THIRD_TEAMMATE)),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
         AssignTaskCommand fourthCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Alex", "Bernice")),
                 new HashSet<>(), new HashSet<>());
         AssignTaskCommand fifthCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Alex", "Bernice")),
-                new HashSet<>(List.of(INDEX_THIRD_PERSON)), new HashSet<>());
+                new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>());
         AssignTaskCommand sixthCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Alex", "Bernice")),
-                new HashSet<>(List.of(INDEX_THIRD_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Charlotte", "David")));
 
         // same object -> returns true
@@ -183,9 +183,9 @@ public class AssignTaskCommandTest {
 
         // same values -> returns true
         AssignTaskCommand sixthCommandCopy = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Alex", "Bernice")),
-                new HashSet<>(List.of(INDEX_THIRD_PERSON)), new HashSet<>(Arrays.asList(
+                new HashSet<>(List.of(INDEX_THIRD_TEAMMATE)), new HashSet<>(Arrays.asList(
                 "Charlotte", "David")));
         assertTrue(sixthCommand.equals(sixthCommand));
 

@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TEAMMATES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalTasks.TASK_ONE;
 import static seedu.address.testutil.TypicalTasks.TASK_TWO;
+import static seedu.address.testutil.TypicalTeammates.ALICE;
+import static seedu.address.testutil.TypicalTeammates.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,19 +80,19 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasTeammate_nullTeammate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTeammate(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasTeammate_teammateNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTeammate(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasTeammate_teammateInAddressBook_returnsTrue() {
+        modelManager.addTeammate(ALICE);
+        assertTrue(modelManager.hasTeammate(ALICE));
     }
 
     @Test
@@ -112,13 +112,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredTeammateList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTeammateList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withTeammate(ALICE).withTeammate(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         TaskPanel taskPanel = new TaskPanelBuilder().withTask(TASK_ONE).withTask(TASK_TWO).build();
         TaskPanel differentTaskPanel = new TaskPanel();
@@ -143,11 +143,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTeammateList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(addressBook, taskPanel, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTeammateList(PREDICATE_SHOW_ALL_TEAMMATES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

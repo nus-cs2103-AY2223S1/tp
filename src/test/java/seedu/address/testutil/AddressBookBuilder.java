@@ -6,7 +6,7 @@ import seedu.address.model.teammate.Teammate;
 /**
  * A utility class to help with building AddressBook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withTeammate("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
@@ -21,10 +21,10 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Teammate} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Teammate teammate) {
-        addressBook.addPerson(teammate);
+    public AddressBookBuilder withTeammate(Teammate teammate) {
+        addressBook.addTeammate(teammate);
         return this;
     }
 

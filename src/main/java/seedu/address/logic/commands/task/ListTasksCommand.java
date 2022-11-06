@@ -52,30 +52,30 @@ public class ListTasksCommand extends TaskCommand {
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$s";
 
-    private String keywordFilter;
+    private final String keywordFilter;
     private Optional<Deadline> beforeArgs;
     private Optional<Deadline> afterArgs;
-    private List<String> projectNames;
-    private List<String> flags;
-    private final Set<Index> personIndexes = new HashSet<>();
+    private final List<String> projectNames;
+    private final List<String> flags;
+    private final Set<Index> teammateIndexes = new HashSet<>();
 
     /**
      * Creates a ListTasksCommand to list the {@code Task}s with the specified filters
-     * @param personsIndexes a set of indexes to view only tasks assigned to the corresponding contacts
+     * @param teammatesIndexes a set of indexes to view only tasks assigned to the corresponding contacts
      */
     public ListTasksCommand(String keywordFilter,
                             List<String> projectNames,
                             List<String> flags,
                             Optional<Deadline> beforeArgs,
                             Optional<Deadline> afterArgs,
-                            Set<Index> personsIndexes) {
-        requireAllNonNull(flags, personsIndexes);
+                            Set<Index> teammatesIndexes) {
+        requireAllNonNull(flags, teammatesIndexes);
         this.keywordFilter = keywordFilter;
         this.projectNames = projectNames;
         this.flags = flags;
         this.beforeArgs = beforeArgs;
         this.afterArgs = afterArgs;
-        this.personIndexes.addAll(personsIndexes);
+        this.teammateIndexes.addAll(teammatesIndexes);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ListTasksCommand extends TaskCommand {
         filter = filter.and(new TitleContainsKeywordPredicate(keywordFilter))
                 .and(new ContainsProjectsPredicate(projectNames))
                 .and(parseDeadlineArgs())
-                .and(new AssignedToContactsPredicate(model, personIndexes));
+                .and(new AssignedToContactsPredicate(model, teammateIndexes));
 
         model.updateFilteredTaskList(filter);
 
@@ -121,7 +121,7 @@ public class ListTasksCommand extends TaskCommand {
                 && projectNames.equals(e.projectNames)
                 && beforeArgs.equals(e.beforeArgs)
                 && afterArgs.equals(e.afterArgs)
-                && setIndexEquals(personIndexes, e.personIndexes);
+                && setIndexEquals(teammateIndexes, e.teammateIndexes);
     }
 
     private boolean setIndexEquals(Set<Index> firstSet, Set<Index> secondSet) {
@@ -178,9 +178,9 @@ public class ListTasksCommand extends TaskCommand {
             successMessage.append(" '").append(projectNames.get(numNames - 1)).append("'");
         }
 
-        if (!personIndexes.isEmpty()) {
+        if (!teammateIndexes.isEmpty()) {
             successMessage.append(
-                String.format(" that are also assigned to %s contacts", personIndexes.size())
+                String.format(" that are also assigned to %s contacts", teammateIndexes.size())
             );
         }
 

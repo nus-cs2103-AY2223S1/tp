@@ -72,7 +72,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TeammateListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T08-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T08-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +81,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` and `Task` objects residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Teammate` and `Task` objects residing in the `Model`.
 
 ### Logic component
 
@@ -134,14 +134,14 @@ AddressBook commands:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Teammate` objects (which are contained in a `UniqueTeammateList` object).
 * stores the task panel data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Teammate` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Teammate>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Teammate` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Teammate` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -268,27 +268,27 @@ where the `get` methods return `Optional<T>` objects containing the value to be 
 1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
 2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
 
-### Assign Person(s) to Task Feature
+### Assign Teammate(s) to Task Feature
 
 #### Current Implementation
 
-The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Person` in the filtered `AddressBook`.
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Teammate` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Teammate` in the filtered `AddressBook`.
 
 ![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
 
 #### Example Usage of `task assign`
 
-1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Person` entries respectively.
-2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Person` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Person` in the `AddressBook` to be unassigned.
+1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
+2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
 3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
 4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
 5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
 6. The `LogicManager` executes the command
 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-9. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
+9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
    form, or through matching his full name.
-10. The `Person`s are assigned/unassigned to the `Task`.
+10. The `Teammate`s are assigned/unassigned to the `Task`.
 11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
 The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by 
@@ -298,10 +298,10 @@ contact is to be unassigned from the task's assigned contact list.
 #### Design considerations:
 ![TaskClassDiagram](images/TaskClassDiagram.png)
 
-The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Person` in the `AddressBook`, 
-and contains the name of the `Person`. We chose this implementation over composing `Task` and `Person` directly so 
+The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Teammate` in the `AddressBook`, 
+and contains the name of the `Teammate`. We chose this implementation over composing `Task` and `Teammate` directly so 
 that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated 
-copies of `Person` objects created when we restart the app and populate the `Task`s with their assigned contacts.
+copies of `Teammate` objects created when we restart the app and populate the `Task`s with their assigned contacts.
 
 ### List Tasks feature
 
@@ -783,7 +783,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Repository**: A repository (GitHub) contains all of your project's files
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Task**: An item or activity that needs to be completed and contributes towards the progress of the project
-* **User**: Person in charge of a software engineering project
+* **User**: Teammate in charge of a software engineering project
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------

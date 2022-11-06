@@ -60,7 +60,7 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
                     ListTasksCommand.MESSAGE_USAGE));
         }
 
-        Set<Index> personsIndexes;
+        Set<Index> teammatesIndexes;
         Optional<Deadline> before = Optional.empty();;
         Optional<Deadline> after = Optional.empty();;
 
@@ -74,13 +74,13 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
         }
 
         try {
-            personsIndexes = TaskParserUtil.parseIndexes(contactFilters);
+            teammatesIndexes = TaskParserUtil.parseIndexes(contactFilters);
 
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListTasksCommand.MESSAGE_USAGE), pe);
         }
-        return new ListTasksCommand(keywordFilter, projectNames, flags, before, after, personsIndexes);
+        return new ListTasksCommand(keywordFilter, projectNames, flags, before, after, teammatesIndexes);
     }
 
 }

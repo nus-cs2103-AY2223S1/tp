@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -56,7 +56,7 @@ public class ListTasksCommandParserTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON))
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE))
                 )
         );
 
@@ -70,7 +70,7 @@ public class ListTasksCommandParserTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE))
                 )
         );
     }
@@ -90,7 +90,7 @@ public class ListTasksCommandParserTest {
                         List.of(ListTasksCommand.COMPLETED_FLAG),
                         Optional.empty(),
                         Optional.empty(),
-                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE))
                 )
         );
 
@@ -107,7 +107,7 @@ public class ListTasksCommandParserTest {
                         List.of(ListTasksCommand.ALL_FLAG),
                         Optional.empty(),
                         Optional.empty(),
-                        new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))
+                        new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE))
                 )
         );
     }

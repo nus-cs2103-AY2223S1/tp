@@ -17,11 +17,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.teammate.Teammate;
 
 /**
  * Edits the details of an existing task in the address book.
@@ -72,7 +72,7 @@ public class EditTaskCommand extends TaskCommand {
         }
 
         Task taskToEdit = lastShownTaskList.get(targetIndex.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor, model.getFilteredPersonList());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor, model.getFilteredTeammateList());
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -87,7 +87,7 @@ public class EditTaskCommand extends TaskCommand {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor} and {@code personList}.
+     * edited with {@code editTaskDescriptor} and {@code teammateList}.
      * @throws CommandException
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,

@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
 /**
  * Lists all project names available in task panel.
  */
-public class TaskProjectCommand extends TaskCommand {
+public class ProjectTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "project";
 
@@ -39,6 +39,6 @@ public class TaskProjectCommand extends TaskCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof TaskProjectCommand;
+        return other instanceof ProjectTaskCommand;
     }
 }

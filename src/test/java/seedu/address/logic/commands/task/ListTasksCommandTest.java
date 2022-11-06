@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.hideAllTasks;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showTeammateAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -94,13 +94,13 @@ public class ListTasksCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showTeammateAtIndex(model, INDEX_FIRST_TEAMMATE);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_TEAMMATE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeammateList().size());
 
-        Set<Index> personIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
+        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
 
         ListTasksCommand command =
                 new ListTasksCommand(
@@ -109,10 +109,10 @@ public class ListTasksCommandTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        personIndexes
+                        teammateIndexes
                 );
 
-        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -218,8 +218,8 @@ public class ListTasksCommandTest {
     @Test
     public void execute_contact_singleResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
-        AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, personIndexes);
+        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
+        AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, teammateIndexes);
 
         expectedModel.updateFilteredTaskList(filter);
 
@@ -230,7 +230,7 @@ public class ListTasksCommandTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        personIndexes
+                        teammateIndexes
                 );
 
         assertCommandSuccess(
@@ -244,11 +244,11 @@ public class ListTasksCommandTest {
     @Test
     public void execute_keywordAndContact_noResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
+        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
 
         Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
         AssignedToContactsPredicate assignedToContactsPredicate =
-                new AssignedToContactsPredicate(expectedModel, personIndexes);
+                new AssignedToContactsPredicate(expectedModel, teammateIndexes);
 
         expectedModel.updateFilteredTaskList(basePredicate.and(assignedToContactsPredicate));
 
@@ -259,7 +259,7 @@ public class ListTasksCommandTest {
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
-                        personIndexes
+                        teammateIndexes
                 );
 
         assertCommandSuccess(

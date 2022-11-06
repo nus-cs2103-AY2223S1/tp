@@ -19,16 +19,16 @@ import seedu.address.model.teammate.Teammate;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TEAMMATE = "Teammates list contains duplicate teammate(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTeammate> teammates = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given teammates.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("teammates") List<JsonAdaptedTeammate> teammates) {
+        this.teammates.addAll(teammates);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        teammates.addAll(source.getTeammateList().stream().map(JsonAdaptedTeammate::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Teammate teammate = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(teammate)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedTeammate jsonAdaptedTeammate : teammates) {
+            Teammate teammate = jsonAdaptedTeammate.toModelType();
+            if (addressBook.hasTeammate(teammate)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TEAMMATE);
             }
-            addressBook.addPerson(teammate);
+            addressBook.addTeammate(teammate);
         }
         return addressBook;
     }

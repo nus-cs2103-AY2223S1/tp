@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Teammate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.taskPanel = new TaskPanel(taskPanel);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTeammates = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTeammates = new FilteredList<>(this.addressBook.getTeammateList());
         filteredTasks = new FilteredList<>(this.taskPanel.getTaskList(), PREDICATE_INCOMPLETE_TASKS);
     }
 
@@ -95,37 +95,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Teammate teammate) {
+    public boolean hasTeammate(Teammate teammate) {
         requireNonNull(teammate);
-        return addressBook.hasPerson(teammate);
+        return addressBook.hasTeammate(teammate);
     }
 
     @Override
-    public void deletePerson(Teammate target) {
-        addressBook.removePerson(target);
+    public void deleteTeammate(Teammate target) {
+        addressBook.removeTeammate(target);
     }
 
     @Override
-    public void addPerson(Teammate teammate) {
-        addressBook.addPerson(teammate);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTeammate(Teammate teammate) {
+        addressBook.addTeammate(teammate);
+        updateFilteredTeammateList(PREDICATE_SHOW_ALL_TEAMMATES);
     }
 
     @Override
-    public void setPerson(Teammate target, Teammate editedTeammate) {
+    public void setTeammate(Teammate target, Teammate editedTeammate) {
         requireAllNonNull(target, editedTeammate);
 
-        addressBook.setPerson(target, editedTeammate);
+        addressBook.setTeammate(target, editedTeammate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Teammate List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Teammate} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Teammate> getFilteredPersonList() {
+    public ObservableList<Teammate> getFilteredTeammateList() {
         return filteredTeammates;
     }
 
@@ -139,7 +139,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Teammate> predicate) {
+    public void updateFilteredTeammateList(Predicate<Teammate> predicate) {
         requireNonNull(predicate);
         filteredTeammates.setPredicate(predicate);
     }

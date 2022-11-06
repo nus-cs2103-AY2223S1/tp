@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_TEAMMATES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+import static seedu.address.testutil.TypicalTeammates.CARL;
+import static seedu.address.testutil.TypicalTeammates.ELLE;
+import static seedu.address.testutil.TypicalTeammates.FIONA;
+import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,30 +54,30 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different teammate -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noTeammateFound() {
+        String expectedMessage = String.format(MESSAGE_TEAMMATES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         ContainsTagPredicate emptyTagsPredicate = new ContainsTagPredicate(new ArrayList<>());
         FindCommand command = new FindCommand(predicate, emptyTagsPredicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTeammateList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredTeammateList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleTeammatesFound() {
+        String expectedMessage = String.format(MESSAGE_TEAMMATES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         ContainsTagPredicate emptyTagsPredicate = new ContainsTagPredicate(new ArrayList<>());
         FindCommand command = new FindCommand(predicate, emptyTagsPredicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTeammateList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTeammateList());
     }
 
     /**

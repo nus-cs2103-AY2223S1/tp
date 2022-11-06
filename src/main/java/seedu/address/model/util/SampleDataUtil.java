@@ -10,23 +10,23 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.TaskPanel;
-import seedu.address.model.teammate.Address;
-import seedu.address.model.teammate.Email;
-import seedu.address.model.teammate.Name;
-import seedu.address.model.teammate.Teammate;
-import seedu.address.model.teammate.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.teammate.Address;
+import seedu.address.model.teammate.Email;
+import seedu.address.model.teammate.Name;
+import seedu.address.model.teammate.Phone;
+import seedu.address.model.teammate.Teammate;
 
 /**
  * Contains utility methods for populating {@code AddressBook} and {@code TaskPanel} with sample data.
  */
 public class SampleDataUtil {
-    public static Teammate[] getSamplePersons() {
+    public static Teammate[] getSampleTeammates() {
         return new Teammate[] {
             new Teammate(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -51,8 +51,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Teammate sampleTeammate : getSamplePersons()) {
-            sampleAb.addPerson(sampleTeammate);
+        for (Teammate sampleTeammate : getSampleTeammates()) {
+            sampleAb.addTeammate(sampleTeammate);
         }
         return sampleAb;
     }

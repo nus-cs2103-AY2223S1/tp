@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s tags contains a specified set of tags.
+ * Tests that a {@code Teammate}'s tags contains a specified set of tags.
  */
 public class ContainsTagPredicate implements Predicate<Teammate> {
 
