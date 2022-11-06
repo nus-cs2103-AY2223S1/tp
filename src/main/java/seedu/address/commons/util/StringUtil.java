@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static java.util.Arrays.stream;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -38,7 +39,7 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
+        return stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
@@ -70,5 +71,15 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static String properCase(String s) {
+        return stream(s.split("\\s+"))
+                .map(w -> singleWordProperCase(w))
+                .reduce("", (x, y) -> x + " " + y, (x, y) -> x + y).trim();
+    }
+
+    private static String singleWordProperCase(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
 }

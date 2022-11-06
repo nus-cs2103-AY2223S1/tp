@@ -10,6 +10,8 @@ import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
 import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
 
+import static seedu.address.commons.util.StringUtil.properCase;
+
 /**
  * Represents a Person's custom fields pairings in the address book.
  */
@@ -37,7 +39,7 @@ public class AttributeList {
      * @return an {@code Attribute} instance with the specified attributeName and value.
      */
     public <T> Attribute<T> createAttributeInstance(String attributeName, T value) {
-        String name = formatProperName(attributeName);
+        String name = properCase(attributeName);
         return new AbstractAttribute<T>(name, value) {};
     }
 
@@ -50,7 +52,7 @@ public class AttributeList {
      * @return an {@code Attribute} instance with the specified attributeName and value.
      */
     public <T> Attribute<T> createAttributeInstance(String attributeName, T value, int setting, int style) {
-        String name = formatProperName(attributeName);
+        String name = properCase(attributeName);
         return new AbstractAttribute<T>(name, value, setting, style) {};
     }
 
@@ -243,10 +245,6 @@ public class AttributeList {
         StringBuilder builder = new StringBuilder();
         attributeList.forEach(builder::append);
         return builder.toString();
-    }
-
-    private String formatProperName(String name) {
-        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
 }

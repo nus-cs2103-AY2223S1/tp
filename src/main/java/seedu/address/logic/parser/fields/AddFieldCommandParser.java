@@ -25,7 +25,7 @@ public class AddFieldCommandParser implements Parser<AddFieldCommand> {
         }
         String[] arg2 = args.split("\\s+", 2);
         if (arg2.length < 2) {
-            throw new ParseException("Invalid arguments supplied");
+            throw new ParseException("Invalid arguments supplied.\n" + AddFieldCommand.MESSAGE_USAGE);
         }
         return new AddFieldCommand(null, "0", arg2[0], arg2[1]);
     }
