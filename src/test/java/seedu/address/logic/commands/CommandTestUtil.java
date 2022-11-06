@@ -105,7 +105,8 @@ public class CommandTestUtil {
     public static final String INVALID_TUTORIAL_DETAILS = " " + PREFIX_TUTORIAL + " "; //empty string not allowed
     public static final String INVALID_LECTURE_ZOOM_LINK = " " + PREFIX_LECTURE_ZOOM + "zoom.com"; // TODO add reason
     public static final String INVALID_TUTORIAL_ZOOM_LINK = " " + PREFIX_TUTORIAL_ZOOM + "zoom.com"; // TODO add reason
-    public static final String INVALID_ASSIGNMENT_DETAILS = " " + PREFIX_ASSIGNMENT + "hard&"; // only alphanumerics
+    public static final String INVALID_ASSIGNMENT_DETAILS = " "
+            + PREFIX_ASSIGNMENT + " "; // empty string not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

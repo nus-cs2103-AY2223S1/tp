@@ -37,7 +37,7 @@ public class ParserUtilTest {
     private static final String INVALID_LECTURE_DETAILS = " ";
     private static final String INVALID_TUTORIAL_DETAILS = " ";
     private static final String INVALID_ZOOM_LINK = "zoom.com";
-    private static final String INVALID_ASSIGNMENT_DETAILS = "hard&";
+    private static final String INVALID_ASSIGNMENT_DETAILS = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
