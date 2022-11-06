@@ -40,17 +40,17 @@ public class EditBuyerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the buyer identified "
             + "by the index number used in the displayed buyer list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + " NAME] "
             + "[" + PREFIX_PHONE + " PHONE] "
             + "[" + PREFIX_EMAIL + " EMAIL] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
-            + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]\n"
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
+            + "[" + PREFIX_PRIORITY + " PRIORITY<HIGH/NORMAL/LOW>]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + " 91234567 "
+            + PREFIX_EMAIL + " johndoe@example.com";
 
     public static final String MESSAGE_EDIT_BUYER_SUCCESS = "Edited Buyer!\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

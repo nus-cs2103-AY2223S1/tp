@@ -17,7 +17,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sortcomparators.BuyerComparator;
-import seedu.address.logic.sortcomparators.NameComparator;
+import seedu.address.logic.sortcomparators.BuyerNameComparator;
 import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.sortcomparators.PriceRangeComparator;
 import seedu.address.logic.sortcomparators.PriorityComparator;
@@ -56,7 +56,7 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_NAME).get());
-            Comparator<Name> nameComparator = new NameComparator(order);
+            Comparator<Name> nameComparator = new BuyerNameComparator(order);
             buyerComparator = new BuyerComparator(nameComparator, null, null, null);
         }
 

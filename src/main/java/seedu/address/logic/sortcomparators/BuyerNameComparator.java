@@ -9,7 +9,7 @@ import seedu.address.model.buyer.Name;
 /**
  * A comparator to compare two Names.
  */
-public class NameComparator implements Comparator<Name> {
+public class BuyerNameComparator implements Comparator<Name> {
 
     private final Order order;
 
@@ -18,7 +18,7 @@ public class NameComparator implements Comparator<Name> {
      *
      * @param order The specified order of comparison.
      */
-    public NameComparator(Order order) {
+    public BuyerNameComparator(Order order) {
         requireNonNull(order);
         this.order = order;
     }
