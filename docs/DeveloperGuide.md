@@ -197,6 +197,7 @@ For `list appts`, it follows a similar
 process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
 behaviour as executing both `list patients` and `list appts`.
 
+#### Design considerations:
 
 **Aspect: How the command is implemented:**
 * **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
@@ -299,6 +300,8 @@ This approach is easier to implement, as we do not have to worry about the appoi
 
 ### Group Patient Feature
 
+#### Implementation
+
 The group mechanism implements the following operations:
 
 * Group patients according to their tags.
@@ -330,6 +333,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs.
 
 ### Group Appointment Feature
+
+#### Implementation
 
 The group mechanism implements the following operations:
 
@@ -363,6 +368,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs or the patient attached to the appointment.
 
 ### Ungroup Feature
+
+#### Implementation
 
 The ungroup mechanism implements the following operations:
 
