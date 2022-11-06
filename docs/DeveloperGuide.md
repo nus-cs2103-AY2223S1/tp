@@ -12,6 +12,7 @@ title: Developer Guide
 We'd like to thank:
 
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -85,6 +86,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Tutor` object residing in the `Model`.
 
+In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -147,7 +150,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `tuthubbook.commons` package.
+Classes used by multiple components are in the `tuthub.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
