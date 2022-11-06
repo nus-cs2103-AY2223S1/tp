@@ -1,5 +1,13 @@
 @startuml
-!include style.puml
+
+skinparam Shadowing false
+skinparam ArrowColor #A80036
+
+skinparam activity {
+  BackgroundColor Business
+  BorderColor #A80036
+  BorderThickness 1.5
+}
 
 start
 :User presses up arrow key;

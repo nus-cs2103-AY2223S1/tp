@@ -37,7 +37,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
             + PREFIX_VENUE_NAME + "VENUE_NAME "
             + PREFIX_TIME_PERIOD + "START_TIME-END_TIME "
             + PREFIX_DAY + "DAY \n"
-            + "Example: " + COMMAND_WORD + " 3"
+            + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_VENUE_NAME + "meeting "
             + PREFIX_TIME_PERIOD + "10-14 "
             + PREFIX_DAY + "TUE ";
@@ -87,7 +87,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         assert bookingDescriptor != null && resident != null;
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
-        VenueName venueName = bookingDescriptor.getVenueName().get();
+        VenueName venueName = super.venueName;
         return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);
     }
 
