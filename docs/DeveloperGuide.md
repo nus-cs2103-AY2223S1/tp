@@ -107,9 +107,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackAScholarParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -312,17 +312,37 @@ The following activity diagram summarizes what happens when a user executes a re
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
-### Find applicant by find name feature
+### Find feature
 
 #### Implementation
+
+We will use find name as an example.
 
 The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the find command operates in TrackAScholar:
 
-1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
+1. The user enters `find n/john tan` into the terminal.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `find` and
+   the arguments `n/ john tan`.
 
-2. `TrackAScholarParser` identifies the person and displays it to the user.
+2. `TrackAScholarParser` identifies the `find` command and argument `n/john Tan`. `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
+    
+3. `FindCommandParser#parse()` first checks for a valid prefix which can be of type name, scholarship or major.
+
+4.  If the prefix is valid, `FindCommandParser#parse()` will then call `parsePredicates` with the input and its corresponding prefix.
+
+5. In `parsePredicates` an empty list is first created called `applicantPredicateList`.
+
+6. `parsePredicates` invokes `getKeywordsList`.`getKeywordsList`splits retrieves the keywords after splitting them with white spaces.
+    e.g.  `john` and `tan` are the keywords.
+
+7. After identifying the keyword, `NameContainsKeywordsPredicate` is invoked with keywords as the argument.
+
+8. `NameContainsKeywordsPredicate` will check if any names in the main list contains the keyword.
+    If a name contains the keyword e.g. `tan` all applicants with the `tan` will be saved to `applicantPredicateList` . 
+
+9. `FindCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keywords.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Edit applicant feature
@@ -366,7 +386,9 @@ The following activity diagram summarizes what happens when a user executes a ed
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### Pin applicant feature
+
 
 #### Implementation
 
@@ -416,6 +438,24 @@ The following sequence diagram shows how the unpin operation works:
 The following activity diagram summarizes what happens when a user executes a unpin command:
 
 ![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Proposed features**
+
+Coming soon in future iterations.
+
+For future iterations we plan to implement 2 new features.
+
+1. Sending of application results directly to email of the applicants.
+This will help applicant be notified of their result more quickly.
+It will also cut down the workload for admin staff.
+In this current iteration we still have to message the client manually.
+
+2. Exporting of Json file into Excel.
+The university admin staff might want to process or analyse the result in a more sophisticated manner.
+Excel is needed to aid in more sophisticated analysis as it has more functions.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
