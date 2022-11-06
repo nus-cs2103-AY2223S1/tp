@@ -168,6 +168,30 @@ The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, 
 
 `GRADE_CHART` is an element in enumeration `ModelType` which determines what content is displayed in main screen.
 
+### Finding students
+
+
+The finding students feature, implemented by the `find` command, allows the user to see a filtered list of students.
+The filtering is based on an AND search, for example, `find n/John m/CS2103T` will show only students that have "John" in their name and are also from the CS2103T module.
+
+#### Implementation
+
+The following sequence diagram shows how the `find` command works.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+When a user enters `find n/John m/CS2103T`, the FindCommandParser created will parse the tags in the command.
+For each valid tag, it creates the respective XYZPrediate. In the example command, there are two search criteria
+corresponding to name and module, hence a `NamePredicate` and a `ModulePredicate` is created.
+
+These predicates are stored in a `List`, which is passed to the `createChainedPredicates` internal method that combines the predicates in the AND sense.
+The resulting predicate is a `Predicate<Student>`, and the call to its constructor is not shown in the diagram for brevity.
+The predicate, henceforth referred as `predC`, is stored passed to `FindCommand` constructor.
+
+When the `FindCommand` is executed, it calls the updates the model using `predC`. Hence, the model's student list
+now only contains selected students.
+
+
 ### Extract emails
 
 This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
