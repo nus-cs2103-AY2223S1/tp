@@ -244,8 +244,7 @@ The task parameter has the following constraints:
 * `TASK_DESCRIPTION` accepts any values.
 * `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`. <br>
    e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
-* `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/ week(s)/ month(s)/year(s)` where `X` is a positive integer.
-   e.g. `3 days`, `7 weeks`, `1 month`, `2 months`
+* `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/week(s)/month(s)/year(s)` where `X` is a positive integer.
 
 Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
@@ -461,11 +460,11 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 :information_source: **Notes:**
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
 * If `TIME` is omitted, the task will be created with a default time of `0000` hours.
-* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
-* `INTERVAL TIME_PERIOD` is used to specify a recurring task i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
-* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non recurring task, i.e one off task.
+* `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
+* If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. one off task.
 * Note that tasks are automatically sorted in chronological order upon being added. <br> 
-  e.g. the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
+  e.g. If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
 * If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
   e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
 
@@ -473,7 +472,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 
 <div markdown="block" class="alert alert-warning">
 
-:exclamation: **Caution**
+:exclamation: **Caution:**
 If you enter a `TIME` of `2400`, then the date and time will be set to `0000` hours of the next day.
 
 </div>
