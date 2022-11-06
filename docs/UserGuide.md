@@ -367,14 +367,14 @@ Example: `listdebtors m/10` displays the list of persons that owe more than $10.
 
 ### Sorting list of persons: `sort`
 
-Sorts and displays the list of persons using the given criterion and order. The criteria that you can sort by are:
+Sorts and displays the list of persons using the given criterion and order. You can use the following prefixes to sort by the respective criterion:
 * `n/` - Name of person
-* `m/` - Total amount owed
-* `date/` - Time since date of oldest debt
+* `m/` - Total amount of money owed by person
+* `date/` - Time since date of oldest debt owed by person
 
 Do note that you can only sort by exactly one criterion at a time.
 
-Use the following symbols after the prefix to indicate the order of sorting:
+Use the following symbols after the criteria prefix to indicate the order of sorting:
 * `+` - Ascending order
 * `-` - Descending order
 
@@ -382,7 +382,7 @@ Use the following symbols after the prefix to indicate the order of sorting:
 When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
 </div>
 
-Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
+Format: `sort <criteria prefix><order>`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
@@ -563,7 +563,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
 | **List**          | `list`                                                                                                                                                                                                                                                  |
 | **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
-| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                                                                |
+| **Sort**          | `sort <criteria><order>`<br> e.g., `sort n/+`                                                                                                                                                                                                           |
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                  |
