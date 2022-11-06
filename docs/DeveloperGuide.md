@@ -634,6 +634,8 @@ Internship applications can stretch over a long period of time, making it hard t
     
      Use case resumes at step 1.
 
+<br>
+
 **Use case: Find an application by company name or position applied**
 
 **MSS** 
@@ -655,6 +657,8 @@ Internship applications can stretch over a long period of time, making it hard t
    
      Use case ends.
 
+<br>
+
 **Use case: Clear all existing applications**
 
 **MSS** 
@@ -669,6 +673,8 @@ Internship applications can stretch over a long period of time, making it hard t
    * 1a1. CinternS shows an error message and prompts the user to reenter command
     
      Use case resumes at step 1.
+
+<br>
 
 **Use case: Undo the previous command**
 
@@ -691,6 +697,8 @@ Internship applications can stretch over a long period of time, making it hard t
     
      Use case resumes at step 1.
 
+<br>
+
 **Use case: Redo the previously undone command**
 
 **MSS** 
@@ -711,6 +719,23 @@ Internship applications can stretch over a long period of time, making it hard t
    * 2a1. CinternS shows an error message.
     
      Use case resumes at step 1.
+
+<br>
+
+**Use case: Obtain a list of upcoming interviews**
+
+**MSS**
+
+1. User enters the command to view a list of upcoming interviews.
+2. CinternS displays upcoming interviews in chronological order.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+    * 1a1. CinternS shows an error message and prompts the user to reenter command
+
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
