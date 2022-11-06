@@ -1162,6 +1162,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+<!-- @@author cheeheng -->
 Assumption: The sample data is loaded into Plannit.
 
 ### Launching the application
@@ -1270,27 +1271,7 @@ Assumption: The sample data is loaded into Plannit.
     1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected: Similar to (3).
 
-### Adding a contact
-
-1. Adding a person to Plannit
-
-    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
-
-    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
-       Expected:
-        * A person with name Amy is added to Plannit.
-        * A success message is displayed to the user.
-
-    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
-       Expected:
-        * No person is added to Plannit because there is a missing field (phone number).
-        * Error details indicating invalid command format displayed to the user.
-
-    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
-       Expected:
-        * No person is added to Plannit.
-        * An error message with relevant details is displayed to the user.
-
+<!-- @@author shwene -->
 ### Adding a link
 
 1. Adding a link to a module in Plannit
@@ -1347,6 +1328,32 @@ Assumption: The sample data is loaded into Plannit.
     1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
        Expected: Similar to previous.
 
+<!-- @@author ekweirui -->
+### Adding a contact
+
+1. Adding a person to Plannit
+
+    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+       Expected:
+        * A person with name Amy is added to Plannit.
+        * A success message is displayed to the user.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+       Expected:
+        * No person is added to Plannit because there is a missing field (phone number).
+        * Error details indicating invalid command format displayed to the user.
+
+    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+       Expected:
+        * No person is added to Plannit.
+        * An error message with relevant details is displayed to the user.
+
+<!-- 
+    @@author cheeheng
+    (except for one missing prerequisite ekweirui added in)
+-->
 ### Adding a contact to module
 
 1. Adding a person to a module
@@ -1375,6 +1382,7 @@ Assumption: The sample data is loaded into Plannit.
         * No person is added to module. 
         * Result display shows that the command format is invalid.
 
+<!-- @@author ekweirui -->
 ### Deleting a contact 
 
 1. Deleting a person from Plannit while the contact to be deleted is shown.
@@ -1438,6 +1446,7 @@ Assumption: The sample data is loaded into Plannit.
        Expected:
         * No person is edited. 
         * An error message with relevant details is displayed to the user.
+<!-- @@author -->
 
 ### Saving data
 
