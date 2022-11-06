@@ -659,8 +659,12 @@ For a complete glossary of Minecraft terms, please visit this page on the
 | Terminology   | Definition                                                                                                         |
 |---------------|--------------------------------------------------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Person        | A contact that is created in the app                                                                               |
+| Friend        | A person that is created in the app                                                                                |
 | Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
 | CLI           | An acronym for "command line interface"                                                                            |
+| GUI           | An acronym for "graphical user interface"                                                                          |
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -689,9 +693,9 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a friend
 
-### Deleting a person
+### Deleting a friend
 
 1. Deleting a person while all persons are being shown
 
@@ -706,7 +710,40 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Editing a friend
+
+### Suggesting friends
+
+### Finding a friend
+
+### Clearing all friends
+
+1. Clearing all persons while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   1. Test case: `clear`<br>
+      Expected: All persons are deleted from the list. Details of the deleted persons shown in the status message. Timestamp in the status bar is updated.
+
+### Exiting the app
+
+1. Saving data
+
+   1. Test case: `exit`<br>
+      Expected: The app exits and the data is saved. When the app is restarted, the most recent data should be loaded.
+   2. Test case: `clear` followed by `exit`<br>
+      Expected: The app exits and the data is saved. When the app is restarted, the most recent data should be loaded.
+
+### Help Screen
+
+1. Initial launch
+   1. Prerequisites: data/addressbook.json is not present.
+   1. Expected: The help window is opened. The help window should contain a list of commands and their descriptions.
+
+1. Viewing help
+   1. Test case: `help`<br>
+      Expected: Help window opens with a list of commands and their descriptions. The window size may not be optimum.
 
 ### Saving data
 
@@ -714,7 +751,9 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-2. _{ more test cases …​ }_
+1. Editing data file
+
+   1. _{explain how to edit the data file, and the expected behavior}_
 
 ## **Appendix F: Effort**
 
