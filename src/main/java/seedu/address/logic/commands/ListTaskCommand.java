@@ -7,7 +7,7 @@ import seedu.address.commons.FilterInfo;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all tasks in the address book to the user.
  */
 public class ListTaskCommand extends Command {
 

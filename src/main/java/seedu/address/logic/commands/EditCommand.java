@@ -55,6 +55,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with the same email address already exists in the"
             + " address book.";
 
+    public static final String MESSAGE_DUPLICATE_VALUES = "All edited fields must be different"
+                    + " from the existing values";
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -76,7 +79,11 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        if (!checkNewValues(personToEdit, editPersonDescriptor)) {
+            throw new CommandException(MESSAGE_DUPLICATE_VALUES);
+        }
         assert personToEdit != null;
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -84,8 +91,27 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Task> updatedTask = personToEdit.getTasks();
+        personToEdit.editPerson(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedTask);
+        return personToEdit;
+    }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedTask);
+    /**
+     * Checks that the values entered in edited with {@code editPersonDescriptor} are not the same as the one
+     * in the person to Edit
+     */
+    private static boolean checkNewValues(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        boolean uniqueName = editPersonDescriptor.getName().isEmpty()
+                || !editPersonDescriptor.getName().get().equals(personToEdit.getName());
+        boolean uniquePhone = editPersonDescriptor.getPhone().isEmpty()
+                || !editPersonDescriptor.getPhone().get().equals(personToEdit.getPhone());
+        boolean uniqueEmail = editPersonDescriptor.getEmail().isEmpty()
+                || !editPersonDescriptor.getEmail().get().equals(personToEdit.getEmail());
+        boolean uniqueAddress = editPersonDescriptor.getAddress().isEmpty()
+                || !editPersonDescriptor.getAddress().get().equals(personToEdit.getAddress());
+        boolean uniqueTags = editPersonDescriptor.getTags().isEmpty()
+                || !editPersonDescriptor.getTags().get().equals(personToEdit.getTags());
+        return uniqueName && uniquePhone && uniqueEmail && uniqueAddress && uniqueTags;
+
     }
 
     @Override
@@ -105,9 +131,19 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        for (Task task : personToEdit.getTasks()) {
+            task.setPerson(editedPerson);
+        }
+
         model.setPerson(personToEdit, editedPerson);
+
+        for (Task t : personToEdit.getTasks()) {
+            t.setPerson(editedPerson);
+        }
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.update();
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
