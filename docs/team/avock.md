@@ -49,7 +49,7 @@ Given below are my contributions to the project.
     * Set up Codecov code coverage tracking for project repo.
     * Initial set up and transition of project documentations and website from AB3 to SoCompiler.
     * Managed releases `v1.2.1` and `v1.3` on GitHub.
-    * Set up and managed meeting documents and other important information [here](https://docs.google.com/document/d/1OFhvvTXxh97xsjng3f3Gmx66HFJV9Pazy5gCdhT4o/edit#heading=h.c0ehkba6xb9y).
+    * Set up and managed meeting documents and other important information [here](https://docs.google.com/document/d/1OFhvvTXxh97xsj_ng3f3Gmx66HFJV9Pazy5_gCdhT4o/edit?usp=sharing).
       <br><br/>
 
 * **Documentation**:
