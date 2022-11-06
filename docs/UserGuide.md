@@ -603,7 +603,7 @@ Examples:
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
 
-Switch the tabs displayed.
+Switch command allows users to navigate between different tabs without the mouse which is crucial for our application as the target user are fast-typists who prefer typing over other means of input.
 
 Format: `switch f/FIELD`
 
