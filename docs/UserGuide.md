@@ -328,8 +328,9 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
   * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
     1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
-    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time. 
-    Note that all timings (except for midnight) are considered to be on the same day.
+    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
+       Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
+       
        Some valid examples are:
         - 12pm - 3pm
         - 1:00pm 2:00pm
@@ -454,7 +455,8 @@ To edit a class, <br>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
       2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
-         Note that all timings (except for midnight) are considered to be on the same day.
+         Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
+         
          Some valid examples are:
           - 12pm - 3pm
           - 1:00pm 2:00pm
