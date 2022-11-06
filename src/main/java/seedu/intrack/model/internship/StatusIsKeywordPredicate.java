@@ -8,8 +8,13 @@ import java.util.function.Predicate;
 public class StatusIsKeywordPredicate implements Predicate<Internship> {
     private final String keyword;
 
+    /**
+     * @param keyword Status keyword to test equality with all internships' statuses.
+     */
     public StatusIsKeywordPredicate(String keyword) {
         this.keyword = keyword;
+        assert(keyword.equalsIgnoreCase("Offered") || keyword.equalsIgnoreCase("Rejected")
+                || keyword.equalsIgnoreCase("Progress"));
     }
 
     @Override

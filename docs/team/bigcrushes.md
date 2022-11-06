@@ -45,10 +45,11 @@ Given below are my contributions to the project.
   
 * **Contributions to the DG**: 
   * Added explanation, implementation, diagrams and design considerations for the following feature: `add`.
+  * Added manual testing section.
   
 * **Contributions to team-based tasks**: 
   * Drafted up initial user guide from AB3 to InTrack.
-  * Added position command to morph AB3 to InTrack. (PR: [#54](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/54))
+  * Added position field to morph AB3 to InTrack. (PR: [#54](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/54))
   * Fix duplicate checking to take into account both company and position. (PR: [#67](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/67))
   * Fix duplicate checking to be case-insensitive. (PR: [#78](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/78))
   * Documented team's v1.2 postmortem.
