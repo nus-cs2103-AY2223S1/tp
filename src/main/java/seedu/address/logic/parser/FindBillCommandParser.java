@@ -111,6 +111,24 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
                 finalBillDatePredicate, finalAmountPredicate);
     }
 
+
+    /**
+     * Returns the predicate string to be used in the predicate.
+     *
+     * @param trimmedArgs The trimmed arguments.
+     * @return The predicate string.
+     */
+    public String createPredicateString(String trimmedArgs) {
+        String[] keywords = trimmedArgs.split("\\s+");
+
+        String predicateString = keywords[0];
+        for (int i = 1; i < keywords.length; i++) {
+            predicateString += " " + keywords[i];
+        }
+
+        return predicateString;
+    }
+
     /**
      * Returns true if any of the prefixes contain non-empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
