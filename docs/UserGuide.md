@@ -236,7 +236,7 @@ Optional arguments (at least one field):
 * `t/TAG`
 * `ic/INTERESTED_CLIENT`
 
-<div markdown="span" class="alert alert-primary">  
+<div markdown="block" class="alert alert-primary">:bulb: 
 
 :bulb: **Tips:**
 
