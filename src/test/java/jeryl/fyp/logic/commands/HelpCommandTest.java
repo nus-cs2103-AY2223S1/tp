@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 
-import java.util.List;
-
 public class HelpCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

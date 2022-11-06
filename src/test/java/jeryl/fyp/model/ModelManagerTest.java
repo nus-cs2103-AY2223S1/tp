@@ -15,10 +15,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import jeryl.fyp.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.core.GuiSettings;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentNameContainsKeywordsPredicate;
 import jeryl.fyp.testutil.FypManagerBuilder;
 
@@ -127,8 +127,8 @@ public class ModelManagerTest {
         assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(0), CARL);
         assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(1), BENSON);
         assertEquals(modelManager.getSortedByProjectNameUncompletedStudentList().get(2), ALICE);
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> modelManager.getSortedByProjectNameUncompletedStudentList().get(3));
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager
+                .getSortedByProjectNameUncompletedStudentList().get(3));
     }
 
     @Test
@@ -140,8 +140,8 @@ public class ModelManagerTest {
         assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(0), CARL);
         assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(1), ALICE);
         assertEquals(modelManager.getSortedByProjectStatusUncompletedStudentList().get(2), BENSON);
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> modelManager.getSortedByProjectStatusUncompletedStudentList().get(3));
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager
+                .getSortedByProjectStatusUncompletedStudentList().get(3));
     }
 
     @Test

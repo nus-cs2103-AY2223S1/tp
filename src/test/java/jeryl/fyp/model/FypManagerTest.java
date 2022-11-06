@@ -118,7 +118,8 @@ public class FypManagerTest {
         assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(0), CARL);
         assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(1), BENSON);
         assertEquals(fypManager.getSortedByProjectNameUncompletedStudentList().get(2), ALICE);
-        assertThrows(IndexOutOfBoundsException.class, () -> fypManager.getSortedByProjectNameUncompletedStudentList().get(3));
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager
+                .getSortedByProjectNameUncompletedStudentList().get(3));
     }
 
     @Test
@@ -130,8 +131,8 @@ public class FypManagerTest {
         assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(0), CARL);
         assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(1), ALICE);
         assertEquals(fypManager.getSortedByProjectStatusUncompletedStudentList().get(2), BENSON);
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> fypManager.getSortedByProjectStatusUncompletedStudentList().get(3));
+        assertThrows(IndexOutOfBoundsException.class, () -> fypManager
+                .getSortedByProjectStatusUncompletedStudentList().get(3));
     }
 
     @Test
