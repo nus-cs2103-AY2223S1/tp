@@ -25,6 +25,7 @@ create RemoveCommand
 ModtrektParser -> RemoveCommand:
 activate RemoveCommand
 
+create ModCode
 RemoveCommand -> ModCode
 activate ModCode
 ModCode --> RemoveCommand : c
@@ -41,9 +42,11 @@ activate RemoveCommand
 
 RemoveCommand -> Model : parseModuleFromCode(c)
 activate Model
-
 Model --> RemoveCommand : module
+deactivate Model
+
 RemoveCommand -> Model : deleteModule(module)
+activate Model
 
 Model -> ModuleList : removeModule(module)
 activate ModuleList
