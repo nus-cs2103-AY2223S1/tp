@@ -342,18 +342,18 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
 
 #### Edit Project Command
-Compulsory prefix: p/<valid project id>
-Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
+Compulsory prefix: p/VALID_PROJECT_ID
+Optional prefixes (at least one to be included): n/VALID_NAME, c/VALID_CLIENT_ID, r/VALID_REPOSITORY, d/VALID_DEADLINE
 Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
-Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
+Compulsory prefix: i/VALID_ISSUE_ID
+Optional prefixes (at least one to be included): t/VALID_TITLE, d/VALID_DEADLINE, u/VALID_URGENCY
 Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 #### Edit Client Command
-Compulsory prefix: c/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
+Compulsory prefix: c/VALID_CLIENT_ID
+Optional prefixes (at least one to be included): n/VALID_NAME, m/VALID_MOBILE_NUMBER, e/VALID_EMAIL, p/VALID_PROJECT_ID
 Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
@@ -386,41 +386,43 @@ Next, it is followed by a compulsory argument, representing the `IssueID`, to in
 
 When a user enters a valid Mark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
 Within this method, the `-m` flag is detected, calling `IssueCommandParser#parseMarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
-A new `status` object, initialised with `isCompleted` equals true is created. The parsed issueid and new status object are passed into and returned in an instance of the `MarkIssueCommand`, `MarkIssueCommand#execute` is called, 
+A new `status` object, initialised with `isCompleted` equals `true` is created. The parsed issueid and new status object are passed into and returned in an instance of the `MarkIssueCommand`, `MarkIssueCommand#execute` is called, 
 which retrieves the issue with the parsed issueid from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
 
-Example Use: `issue -m 1`
+Compulsory argument: VALID_ ISSUE_ID
+Example use: `issue -m 1`
 
 #### Unmark Issue Command
 
 When a user enters a valid Unmark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
 Within this method, the `-u` flag is detected, calling `IssueCommandParser#parseUnmarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
-A new `status` object, initialised with `isCompleted` equals false is created. The parsed issueid and new status object are passed into and returned in an instance of the `UnmarkIssueCommand`, `UnmarkIssueCommand#execute` is called,
+A new `status` object, initialised with `isCompleted` equals `false` is created. The parsed issueid and new status object are passed into and returned in an instance of the `UnmarkIssueCommand`, `UnmarkIssueCommand#execute` is called,
 which retrieves the issue with the parsed issueid from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
 
-Example Use: `issue -u 2`
+Compulsory argument: VALID_ISSUE_ID
+Example use: `issue -u 2`
 
 #### The following sequence diagram shows how the mark command operation works for mark an issue entity:
 Example: `issue -m 1`
 
 #### Design Considerations
 
-**Aspect: Number of commands and required inputs**
+**Aspect: Method to mark and unmark issues**
 
-**Alternative 1: (current choice)** Mark command to mark status as completed and Unmark command to mark status as incomplete, regardless of current status of issue.
-* Pros: Requires minimal input from the user. User can set the status regardless of the current status.
-* Cons: User is required to know two different command flags
+**Alternative 1: (current choice)** Separate Mark command to mark status as completed and Unmark command to mark status as incomplete, regardless of current status of issue.
+* Pros: Requires minimal user input and user can set desired status without reference to current status. Responsibilities of each command are separate and clear.
+* Cons: More commands for the user to remember and more duplication of code.
 
-**Alternative 2:** Mark command which flips the status of the issue (completed issues become incomplete and vice versa).
-* Pros: Requires minimal input from the user
-* Cons: Rather than setting the state, it is simply changed from the current state. User has to check current status of each issue before marking it.
+**Alternative 2:** A single Mark command which flips the status of the issue (completed issues become incomplete and vice versa).
+* Pros: Requires minimal user input, only one command to remember and less duplication of code.
+* Cons: Requires user to refer to the current state in order to set it as the desired state. Less separation in terms of responsibilities.
 
-**Alternative 3:** Mark command which takes in issue id as well as the completion status to set the issue to (completed or incomplete)
-* Pros: Requires only one command to set it to the desired status. User can set the status regardless of current status.
-* Cons: Requires user to input the desired status (completed or incomplete) when marking.
+**Alternative 3:** A single Mark command which takes in issue id as well as the completion status to mark the issue as (completed or incomplete)
+* Pros: Only one command to remember, less duplication of code and user can set desired status without reference to current status.
+* Cons: Requires user to remember the valid input state (`completed` and `incomplete`). Less separation in terms of responsibilities.
 
-With user convenience in mind, Alternative 1 was chosen as the design method, since it allowed users to set the desired status regardless of current status 
-with the shortest and easiest to type command possible. 
+Alternative 1 was chosen as the design method since it allowed users to set the desired status regardless of current status 
+with the shortest and easiest to type command possible. It also allowed for command purposes and responsibilities to be kept clear and separate.
 
 ### Pin Feature
 
@@ -941,9 +943,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
-
+   
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -994,6 +994,15 @@ testers are expected to do more *exploratory* testing.
 
     5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
        Expected: Similar to previous.
+
+### Editing an entity
+
+1. Editing an entity when any list of entities is being shown
+
+   1. Prerequisites: Multiple entities in the list.
+
+   2. Test case: `project -e p/1 n/ProjectX c/2`
+      Expected: name of project with projectID '1' is edited to 'ProjectX' and client of project with projectID '1' is edited to client with clientID '2'
 
 ### Pinning an entity
 

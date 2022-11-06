@@ -97,7 +97,7 @@ Format: `exit`
 
 ### Adding a project: `project -a`
 
-Adds a project to the ProjectBook. A unique project ID will be automatically generated.
+Adds a project to the project book. A unique project ID will be automatically generated.
 
 ![add project command](images/AddProjectCommand.png)
 
@@ -238,7 +238,7 @@ Format: `project -v`
 
 ### Adding a client : `client -a`
 
-Adds a client to the ProjectBook. A unique client ID will be automatically generated. 
+Adds a client to the project book. A unique client ID will be automatically generated. 
 
 ![add client command](images/AddClientCommand.png)
 
@@ -377,7 +377,7 @@ Format: `client -v`
 
 ### Adding an issue : `issue -a`
 
-Adds an issue to the ProjectBook. A unique issue ID will be automatically generated. 
+Adds an issue to the project book. A unique issue ID will be automatically generated. 
 
 ![add_issue_command](images/AddIssueCommand.png)
 
