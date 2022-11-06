@@ -11,7 +11,7 @@ import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.model.reminder.Reminder;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of reminders.
  */
 public class ReminderListPanel extends UiPart<Region> {
     private static final String FXML = "ReminderListPanel.fxml";
@@ -26,13 +26,13 @@ public class ReminderListPanel extends UiPart<Region> {
     public ReminderListPanel(ObservableList<Reminder> reminderList) {
         super(FXML);
         reminderListView.setItems(reminderList);
-        reminderListView.setCellFactory(listView -> new PersonListViewCell());
+        reminderListView.setCellFactory(listView -> new ReminderListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Reminder} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Reminder} using a {@code ReminderCard}.
      */
-    class PersonListViewCell extends ListCell<Reminder> {
+    class ReminderListViewCell extends ListCell<Reminder> {
         @Override
         protected void updateItem(Reminder reminder, boolean empty) {
             super.updateItem(reminder, empty);
