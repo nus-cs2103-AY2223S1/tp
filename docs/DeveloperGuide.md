@@ -382,13 +382,12 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Target user profile**:
 
-* **National University of Singapore (NUS) Professors**
-* has to manage a significant number (up to hundreds) of teaching assistant (TA) profiles
-* seeks a more organised and systematic way of managing profiles as compared to Excel sheets
-* prefers desktop apps over other types
+Our target users are **National University of Singapore (NUS) Professors** who:
+* have to manage a significant number (up to hundreds) of teaching assistant (TA) profiles
+* seek a more organised and systematic way of managing profiles as compared to Excel sheets
+* prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* are reasonably comfortable using CLI apps
 
 **Value proposition**:
 
