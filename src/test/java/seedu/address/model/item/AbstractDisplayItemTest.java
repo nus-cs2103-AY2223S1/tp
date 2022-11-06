@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -69,15 +70,16 @@ class AbstractDisplayItemTest {
     }
 
     @Test
-    void getAttribute_attributeFound_success() {
-        Person dummy = buildDefaultPerson("dummy", "friends");
-        assertTrue(dummy.getAttribute("friends").isPresent());
+    void getAttribute_attributeFound_success() throws AttributeException {
+        Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
+        assertEquals(dummy.getAttribute("Github").get(), "dummy123");
     }
 
     @Test
-    void editAttribute_existingAttribute_success() {
-        Person dummy = buildDefaultPerson("dummy", "friends");
-
+    void editAttribute_existingAttribute_success() throws AttributeException {
+        Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
+        dummy.editAttribute("Github", "dummy321");
+        assertEquals(dummy.getAttribute("Github").get(), "dummy321");
     }
 
     @Test
