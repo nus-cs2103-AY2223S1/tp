@@ -36,5 +36,6 @@ Given below are my contributions to the project.
 * **Community**: 
 * Joined all discussion sessions with team members on PR issues and weekly tasks.
 * Found several bugs for  CS2103T-T09-1.
+* Used forum actively to clarify doubts.[Here](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/forum-activities.html)
 
 
