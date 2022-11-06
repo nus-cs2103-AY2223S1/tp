@@ -69,20 +69,21 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API**: [`Ui.java`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`ProjectListPanel`, `IssueListPanel`, `ClientListPanel`, `ResultDisplay`, `HelpWindow` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src//main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component.
+
 
 ### Logic component
 
@@ -157,7 +158,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some details on how certain features are implemented.
 
-### List Feature
+### List Command Feature
 
 The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a `ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
 * `MainWindow#swapProjectListDisplay()` — Changes the current display to a list of projects.
@@ -187,7 +188,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How list executes:**
 
@@ -199,7 +200,7 @@ The following activity diagram summarizes what happens when a user executes a li
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
 
-### Default View Feature
+### Default View Command Feature
 
 The default view mechanism is facilitated by `GuiSettings`. It is stored internally as a `DefaultView` enumeration which can take either of three values, `PROJECT`, `CLIENT` or `ISSUE`. Upon the execution of either a `SetProjectDefaultViewCommand`, `SetClientDefaultViewCommand` or `SetIssueDefaultViewCommand`, the following operation is called:
 * `GuiSettings#setDefaultView()` — Sets the default view variable to the specified `DefaultView` type.
@@ -238,22 +239,22 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 on which entity is added, which retrieves the respective entity list from the system, adds the entity into the list to update it, and have the UI display the updated filtered entity list.   
 
 #### Add Project Command
-Compulsory prefixes: n/<valid name>
-Optional prefixes: c/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
+Compulsory prefixes: n/VALID_NAME  
+Optional prefixes: c/VALID_CLIENT_ID, r/VALID_REPOSITORY, d/VALID_DEADLINE  
+Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`  
 
 #### Add Issue Command
-Compulsory prefixes: p/<valid project id>, t/<valid title>
-Optional prefixes: d/<valid deadline> u/<valid urgency>
-Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`
+Compulsory prefixes: p/VALID_PROJECT_ID, t/VALID_TITLE  
+Optional prefixes: d/VALID_DEADLINE, u/VALID_URGENCY  
+Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`  
 
 #### Add Client Command
-Compulsory prefixes: n/<valid name>, p/<valid project id>
-Optional prefixes: m/<valid mobile number>, e/<valid email>
-Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`
+Compulsory prefixes: n/VALID_NAME, p/VALID_PROJECT_ID  
+Optional prefixes: m/VALID_MOBILE_NUMBER, e/VALID_EMAIL  
+Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`  
 
 #### The following sequence diagram shows how the add command operation works for adding a project entity:
-Example: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
+Example: `project -a n/Team Project`
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
@@ -264,13 +265,13 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
 
 #### Design considerations:
 
-**Aspect: Add command access to the model: **
+**Aspect: Add command access to the model:**
 
 **Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
 * Pros: No coupling between Parser class and Model class.
 * Cons: Mappings could not be performed within the parser.
-* 
-**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
  * Pros: Mappings could be performed within the parser which fitted its responsibility.
  * Cons: May result in extra coupling between Parser class and Model class.
  
@@ -280,9 +281,9 @@ Taking into consideration the extra coupling involved, Alternative 1 was chosen 
 
 A key functionality of DevEnable is the ability to delete projects, issues, and clients into the system. The command 
 word for deleting will be `project`, `issue`, or `client`, depending on which entity is being deleted.
-This is followed by the flag `-d`, representing a Delete command. Next, it is followed by a compulsory argument to 
+This is followed by the flag `-d`, representing a Delete Command. Next, it is followed by a compulsory argument to 
 initialise the entity.
-When a user enters a valid Delete command in the interface, `AddressBookParser#parseCommand` will be called which 
+When a user enters a valid Delete Command in the interface, `AddressBookParser#parseCommand` will be called which 
 processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
 `IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within 
 this method, the flag `-d` will be detected, calling `ProjectCommandParser#parseDeleteProjectCommand`,
@@ -294,42 +295,42 @@ on which entity is deleted, which retrieves the respective entity list from the 
 list to update it, and have the UI display the updated filtered entity list.
 
 #### Delete Project Command
-Compulsory prefix: p/<valid project id>
+
+Compulsory argument: VALID_PROJECT_ID
 Example Use: `project -d 1`
 
 #### Delete Issue Command
-Compulsory prefix: i/<valid issue id>
+Compulsory argument: VALID_ISSUE_ID
 Example Use: `issue -d 2`
 
 #### Delete Client Command
-Compulsory prefix: p/<valid client id>
+Compulsory argument: VALID_CLIENT_ID
 Example Use: `client -d 3`
 
-#### The following sequence diagram shows how the delete command operation works for adding a project entity:
+#### The following sequence diagram shows how the delete command operation works for deleting a client entity:
 Example: `client -d 1`
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `AddProjectCommand` 
+:information_source: **Note:** The lifeline for `DeleteClientCommand` 
 should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Design considerations:
 
-**Aspect: Delete command access to the model: **
+**Aspect: Delete Command's access to the model:**
 
 **Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
 * Pros: No coupling between Parser class and Model class.
 * Cons: Mappings could not be performed within the parser.
-*
-**Alternative 2: ** Refactor `ProjectCommandParser:parseDeleteProjectCommand`, 
-`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to 
-the Model.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseDeleteProjectCommand`,`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to the Model.
 * Pros: Mappings could be performed within the parser which fitted its responsibility.
 * Cons: May result in extra coupling between Parser class and Model class.
 
-Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for delete command access to the model.
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for Delete 
+Command's access to the model.
 
 ### Edit Command Feature
 
@@ -342,23 +343,23 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
 
 #### Edit Project Command
-Compulsory prefix: p/<valid project id>
-Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
+Compulsory prefix: p/VALID_PROJECT_ID  
+Optional prefixes (at least one to be included): n/VALID_NAME, c/VALID_CLIENT_ID, r/VALID_REPOSITORY, d/VALID_DEADLINE  
+Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`  
 
 #### Edit Issue Command
-Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
-Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+Compulsory prefix: i/VALID_ISSUE_ID  
+Optional prefixes (at least one to be included): t/VALID_TITLE, d/VALID_DEADLINE, u/VALID_URGENCY  
+Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`  
 
 #### Edit Client Command
-Compulsory prefix: c/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
+Compulsory prefix: c/VALID_CLIENT_ID  
+Optional prefixes (at least one to be included): n/VALID_NAME, m/VALID_MOBILE_NUMBER, e/VALID_EMAIL, p/VALID_PROJECT_ID  
 Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
-![AddSequenceDiagram](images/EditSequenceDiagram.png)
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
 
@@ -366,21 +367,55 @@ Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 **Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. 
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
-* Pros: Logic is handled within the parser and no creation of a new entity object.
-* Cons: Many new objects being created 
+* Pros: No creation of a new entity object
+* Cons: Requires use of multiple accessors for various fields of each entity.
 
-**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
-* Pros: No new objects being created.
-* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
-
-**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+**Alternative 2:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
-* Pros: Logic is handled within the parser
-* Cons: Creation of a new entity object requiring modification of the entity list 
+* Pros: Only requires getters for fields, preventing field values from being easily edited.
+* Cons:  Creation of a new entity object, requiring modification of entity list.
 
-As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+Taking into consideration the potential issues with ID that came with modifying the entity lists, Alternative 1 was chosen as the current design for editing fields of an entity.
 
-### Pin Feature
+### Sort Command Feature
+
+The sort feature sorts the entities in their respective entity lists in the Model according to a specified `key` and `order`. The View pulls the new entity lists from the Model and displays them. Upon the execution of
+either a `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the `AddressBook#sortXXXByYYY()` is invoked (where XXX is the `entity` and YYY is the `key` to be sorted by) which obtains the entity class's 
+modifiable `ObservableList` as imported from the JavaFX collections, and calls its `sorted()` method that, depending on the specified `order`, takes in a comparator function specifying how to sort the entities.
+
+#### Sort Project Command
+Keys (exactly one key to be included): p, d, i, n  
+Orders (exactly one order to be included): 0, 1  
+General Form: `project -s KEY/ORDER`  
+Example Use: `project -s d/0`  
+
+#### Sort Issue Command
+Keys (exactly one key to be included): i, d, u  
+Orders (exactly one order to be included): 0, 1  
+General Form: `issue -s KEY/ORDER`  
+Example Use: `issue -s u/1`  
+
+#### Sort Client Command
+Keys (exactly one key to be included): c, n  
+Orders (exactly one order to be included): 0, 1  
+General Form: `client -s KEY/ORDER`  
+Example Use: `client -s c/1`  
+
+#### Design considerations:
+
+**Aspect: How sorted entities are stored in the Model:**
+
+* **Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
+    * Pros: Saves lots of space
+    * Cons: Sort commands manipulate the original entity list in order to change the display on view
+
+* **Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
+    * Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
+    * Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
+    
+Alternative 1 was chosen because it saves space when sorting entities. The command to set default view of each entity helped overcome the cons of directly manipulating of the original list. This meant rebooting the app removed the previous entity sort order and revert to the default order. 
+
+### Pin Command Feature
 
 The pin mechanism is facilitated by `AddressBook`. It contains a `UniqueEntityList` for each entity type. Upon the execution of either a `PinProjectCommand`, `PinClientCommand` or `PinIssueCommand`, the following operations are carried out:
 * `AddressBook#sortProjectsByPin()` — Sorts the current project list according to pin.
@@ -394,7 +429,7 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
 
 Step 1. The user creates an entity with a unique ID. The entity is unpinned by default and will be displayed according to the current sorting order.
 
-Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `togglePinned()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
+Step 2. The user executes `client -p 3` to pin the 3rd client in the project book. The `PinClientCommand` is executed and calls `Client#togglePin()`, toggling the `Pin` attribute of the 5th client from `false` to `true`. This is followed by a call to `Model#sortClientsByCurrentCategory()` and `Model#sortClientsByPin()`, which displays the sorted client list with pinned clients (now including the 4th client) at the top.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** If the current client is already pinned, `Client#togglePin()` will toggle the `Pin` attribute of the client from `true` to `false` and call the latest sort order, causing the client to be displayed in its original position.
@@ -413,17 +448,184 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ![PinActivityDiagram](images/PinActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How entities can be unpinned:**
 
-* **Alternative 1 (current choice):** The `togglePinned()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
+* **Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
     * Pros: Less duplication of code and less commands for the user to remember.
     * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
 
-* **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
+* **Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
     * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
     * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
+
+### Find Command Feature
+
+A key functionality of DevEnable is the ability to find projects, issues and clients by searching for specific 
+keywords in different attributes of these entities. The command word for finding will be `project`, `issue`, or 
+`client`, depending on which entity it being edited. This is followed by the flag `-f`, representing a Find command.
+Next, it is followed by a series of prefixes-value pairs, least one which is compulsory, representing the fields and 
+keywords to search and thereby identifying the entity to be found. When a user enters a valid Find command in the 
+interface,`AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance and calls 
+the `ProjectCommandParser#parse`, `IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on 
+which entity is being found. Within this method, the flag `-f` will be detected, calling 
+`ProjectCommandParser#parseFindProjectCommand`, `IssueCommandParser#parseFindIssueCommand`, or 
+`ClientCommandParser#parseFindClientCommand`, depending on which entity is found, which checks for input and 
+prefix-pair validity with methods in `ParserUtil`. Finally, the parsed arguments are passed into and returned in an 
+instance of the Find Command entity and the `FindProjectCommand#execute`, `FindIssueCommand#execute`, or 
+`FindClientCommand#execute` is called depending on which entity is found, which retrieves the respective entity from 
+its entity list in the system, searches for the keywords the fields of the entity, matches it so as to filter the 
+entities with such fields, and have the UI display the updated filtered entity list.
+
+#### Find Project Command
+Optional prefixes (at least one to be included): n/VALID_PROJECT_NAME, p/VALID_PROJECT_ID, c/VALID_CLIENT_ID, 
+r/VALID_REPOSITORY, l/VALID_CLIENT_NAME
+Example Use: `project -f p/1 n/DevEnable c/2 r/Jeffrey/tp l/Jeffrey`
+
+#### Find Issue Command
+Optional prefixes (at least one to be included): t/VALID_TITLE, s/VALID_STATUS, u/VALID_URGENCY, 
+n/VALID_PROJECT_NAME, p/VALID_PROJECT_ID, i/VALID_ISSUE_ID
+Example Use: `issue -f t/Documentation s/Incomplete u/LOW n/DevEnable p/1 i/3`
+
+#### Find Client Command
+Optional prefixes (at least one to be included): n/VALID_CLIENT_NAME, c/VALID_CLIENT_ID, e/VALID_EMAIL, m/VALID_MOBILE
+Example Use: `client -f n/BenTen c/1 m/12345678 e/Ben10@gmail.com`
+
+#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
+Example: `client -f n/Harry`
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `FindCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: Find Command's access to the model:**
+
+**Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseFindProjectCommand`,`IssueCommandParser:parseFindIssueCommand` 
+and `ClientCommandParser:parseFindlientCommand` to have access to the Model.
+* Pros: Mappings could be performed within the parser which fitted its responsibility.
+* Cons: May result in extra coupling between Parser class and Model class.
+
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for Find 
+Command's access to the model.
+
+**Aspect: How Find Command matches a keyword against the target in a given field:**
+
+**Alternative 1: (current choice)** At least one word in the target must match exactly with the keyword.
+* Pros: The search result is more precise and concise which makes it easier for the user to navigate and the 
+  keyword can be validated for each prefix which makes it easier for the user to use a variety of prefixes and keywords.
+* Cons: Partial searches are not supported as the user needs to search by whole words.
+
+**Alternative 2:** At least a part of the target must match with the keyword.
+* Pros: The user can make partial searches and search for parts of a word.
+* Cons: The filtered list might be more cluttered and input validation might not be supported.
+
+Taking into account the ease of use and the benefits of input validation, Alternative 1 was chosen as the current 
+design to match keywords against targets.
+
+**Aspect: How Find Command handles multiple keywords for a prefix:**
+
+**Alternative 1: (current choice)** At least one word in the target must match exactly with at least one keyword.
+* Pros: The user can search for many keywords at once such that the user can filter the list based on multiple criteria.
+* Cons: The user can not search by sentences or phrases.
+
+**Alternative 2:** At least one word in the target must match exactly with all keywords.
+* Pros: The user can search for exact sentences or phrases.
+* Cons: The user can not search based on many keywords and may not remember long phrases.
+
+Taking into account the convenience and intuitiveness of searching for multiple keywords and the limitation 
+of the benefit of searching by phrases being relevant only to name and title arguments due to input validation, 
+Alternative 1 was chosen as the current design to handle multiple keywords for a prefix.
+
+**Aspect: How Find Command handles multiple arguments with the same prefix:**
+
+**Alternative 1: (current choice)** At least one word in the target is in the union of the set of keywords 
+from multiple arguments with the same prefix.
+* Pros: It is easier for the user to remember and more convenient to expand search criteria without having to alter 
+  prefix arguments already typed.
+* Cons: This might be redundant with the search made when multiple keywords are present for an argument.
+
+**Alternative 2:** At least one word in the target matches with at least word from the last argument with the prefix.
+the same prefix.
+* Pros: It prevents redundancy with the search made when multiple keywords are present for an argument.
+* Cons: It does not allow the user to easily expand his search criteria and might be harder to remember.
+
+Taking into account the benefits of improving flexibility of use by allowing the user to expand the search criteria 
+as he types without having to edit a part of the command already typed, Alternative 1 was chosen as the current 
+design to handle multiple arguments with the same prefix.
+
+**Aspect: How Find Command handles multiple arguments with different prefixes:**
+
+**Alternative 1: (current choice)** Find all items that fulfil the search criteria for all prefixes in the input.
+* Pros: The user can search based on criteria across different fields to obtain a more specific list of items.
+* Cons: A mistake in specifying the keyword for one prefix can result in the desired item not appearing on the list.
+
+**Alternative 2:** Find all items that fulfil the search criteria for at least one prefixes in the input.
+* Pros: A mistake in specifying the search criteria for one prefix may not result in the desired item being filtered 
+  out.
+* Cons: May be hard for the user to find specific items on the list that fulfill different criteria.
+
+Taking into account the benefits of improving specificity of use by allowing the user to search based on multiple 
+criteria all of which must be fulfilled, Alternative 1 was chosen as the current design to handle multiple arguments 
+with different prefixes.
+
+### Mark/Unmark Issue Command Feature
+
+An important feature of DevEnable is the ability to mark issues as completed or incomplete.
+The command word will be `issue`, followed by the flag `-m`, representing a Mark command, which marks the issue as completed, or `-u` representing an Unmark command, which marks the issue as incomplete.
+Next, it is followed by a compulsory argument, representing the `issueId`, to initialise the issue.
+
+#### Mark Issue Command
+
+When a user enters a valid Mark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-m` flag is detected, calling `IssueCommandParser#parseMarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals `true` is created. The parsed issueId and new status object are passed into and returned in an instance of the `MarkIssueCommand`, `MarkIssueCommand#execute` is called,
+which retrieves the issue with the parsed issueId from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Compulsory argument: VALID_ ISSUE_ID
+Example use: `issue -m 1`
+
+#### Unmark Issue Command
+
+When a user enters a valid Unmark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-u` flag is detected, calling `IssueCommandParser#parseUnmarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals `false` is created. The parsed issueId and new status object are passed into and returned in an instance of the `UnmarkIssueCommand`, `UnmarkIssueCommand#execute` is called,
+which retrieves the issue with the parsed issueId from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Compulsory argument: VALID_ISSUE_ID
+Example use: `issue -u 2`
+
+#### The following sequence diagram shows how the mark command operation works for mark an issue entity:
+Example: `issue -m 1`
+
+#### Design Considerations
+
+**Aspect: Method to mark and unmark issues**
+
+**Alternative 1: (current choice)** Separate Mark command to mark status as completed and Unmark command to mark status as incomplete, regardless of current status of issue.
+* Pros: Requires minimal user input and user can set desired status without reference to current status. Responsibilities of each command are separate and clear.
+* Cons: More commands for the user to remember and more duplication of code.
+
+**Alternative 2:** A single Mark command which flips the status of the issue (completed issues become incomplete and vice versa).
+* Pros: Requires minimal user input, only one command to remember and less duplication of code.
+* Cons: Requires user to refer to the current state in order to set it as the desired state. Less separation in terms of responsibilities.
+
+**Alternative 3:** A single Mark command which takes in issue id as well as the completion status to mark the issue as (completed or incomplete)
+* Pros: Only one command to remember, less duplication of code and user can set desired status without reference to current status.
+* Cons: Requires user to remember the valid input state (`completed` and `incomplete`). Less separation in terms of responsibilities.
+
+Alternative 1 was chosen as the design method since it allowed users to set the desired status regardless of current status
+with the shortest and easiest to type command possible. It also allowed for command purposes and responsibilities to be kept clear and separate.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -848,8 +1050,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-
-
 ### Non-Functional Requirements
 
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -899,25 +1099,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
+   3. _{ more test cases …​ }_
 
 ### Listing an entity
 
@@ -953,6 +1135,83 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
        Expected: Similar to previous.
 
+### Adding an entity
+
+1. Adding an entity while any list of entities is being shown
+
+    1. Prerequisites: At least one project in project list to test issue and client command.
+
+    2. Test case: `project -a n/Home Project`<br>
+       Expected: Project with `name` Home Project is added to project list. View of project list is shown.
+
+    3. Test case: `issue -s t/Has bugs p/1`<br>
+       Expected: Issue with `title` Has bugs is added to issue list. View of issue list is shown.
+
+    4. Test case: `client -a n/John Doe p/1`<br>
+       Expected: Client with `name` John Doe is added to client list. View of client list is shown.
+
+    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x` where x improperly formatted, `project -a n/Project y/` where y is an invalid prefix, `...` <br>
+       Expected: No adding occurs. Error details shown in the status message. Status bar remains the same.
+
+### Deleting an entity
+
+1. Deleting an entity while all entities are being shown
+
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: Client with `clientId` 1 is deleted from the list. Details of the deleted client shown in the status message. View of client list is shown.
+
+    3. Test case: `issue -d 0`<br>
+       Expected: No issue is deleted. Error details shown in the status message.
+    
+    4. Other incorrect delete commands to try: `project -d`, `project -d x`, `project -d word` (where x is larger than the list
+      size)<br>
+      Expected: Similar to previous.
+
+### Editing an entity
+
+1. Editing an entity while all entities are being shown
+
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
+
+    2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
+       Expected: Client with `clientId` 1 is edited to have new `name` Charles, new `mobile` 92345678 and new `email` 
+       charles@gmail.com. New `name` of the edited client shown in the status message. View of client list is shown.
+
+    3. Test case: `issue -e i/2 t/Finish Work u/2`<br>
+       Expected: Issue with `issueId` 2 is edited to have new `title` Finish Work and new `urgency` medium. New `title`
+       of the edited issue shown in the status message. View of issue list is shown.
+   
+    4. Test case: `issue -e p/1 d/2019-12-12`<br>
+       Expected: Project with `projectId` 1 is edited to have new `deadline` 12 Dec 2019. The `name` of edited project 
+       shown in the status message. View of project list is shown.
+
+    6. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
+       Expected: No client is edited. Error details shown in the status message.
+
+    9. Other incorrect edit commands to try: `client -e`, `client -e c/1`, `client -e c/1 p/&&123456`, `client -e n/Harry c/x`, `...` (where x is larger than the 
+       client list size)<br>
+       Expected: Similar to previous.
+    
+### Sorting an entity
+
+1. Sorting an entity while any list of entities is being shown
+
+    1. Prerequisites: Optional parameters of various entities have values. 
+   
+    2. Test case: `project -s d/1`<br>
+       Expected: Projects sorted in reverse chronological order. View of project list is shown.
+   
+    3. Test case: `issue -s u/1`<br>
+       Expected: Issues sorted in descending levels of `urgency`. View of issue list is shown.
+   
+    4. Test case: `client -s n/0`<br>
+       Expected: Clients sorted in alphabetical order of `name`. View of client list is shown.
+   
+    5. Other incorrect sort commands to try: `project -s`, `project -s d/x` where x is not 0 or 1, `project -s y/0` where y is not a valid key, `project -s i/0 i/1 d/0`. Same for entities `issue` and `client`.<br>
+       Expected: No sorting occurs. Error details shown in the status message. Status bar remains the same.
+    
 ### Pinning an entity
 
 1. Pinning an entity while any list of entities is being shown
@@ -960,10 +1219,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
 
     2. Test case: `project -p 3`<br>
-       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
+       Expected: Project with `projectId` 3 appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
 
     3. Test case: Repeat `project -p 2` twice.<br>
-       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
+       Expected: On the first enter of the command, the project with `projectId` 2 appears as in 2. On the second enter of the command, the project with `projectId` 2 is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
 
     4. Test case: `project -p 0`<br>
        Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
@@ -971,6 +1230,117 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
        Expected: Similar to previous.
 
+### Finding an entity
+
+1. Find client(s) while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list, at least one of
+       which has the `name` Harry.
+
+    2. Test case: `client -f n/Harry Ginny`<br>
+       Expected: All clients whose `name` has the word Harry or Ginny are listed. Number of listed clients
+       shown in the status message.
+
+    3. Test case: `client -f n/Harry Ginny e/harry@gmail.com m/12345 65432`<br>
+       Expected: All clients, if any, whose `name` has the word Harry or Ginny and whose `email` is harry@gmail.com
+       and whose `mobile` is 12345 or 65432 are listed. Number of listed clients shown in the status message.
+
+    4. Test case: `client -f n/Harry c/1 n/Ginny`<br>
+       Expected: All clients, if any, whose `name` has the word Harry or Ginny and whose `clientId` is 1 are listed.
+       Number of listed clients shown in the status message.
+
+    5. Test case: `client -f n/&&invalidname`<br>
+       Expected: No client is listed. Error details shown in the status message.
+
+    6. Test case: `client -f abc`<br>
+       Expected: No client is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `client -f`, `client -f c/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. Find project(s) while all projects are being shown
+
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list, at least one of
+       which has the name DevEnable.
+
+    2. Test case: `project -f n/DevEnable AB3`<br>
+       Expected: All projects whose `name` has the word DevEnable or AB3 are listed. Number of listed projects shown
+       in the status message.
+
+    3. Test case: `project -f n/DevEnable AB3 r/dev/tp l/Harry`<br>
+       Expected: All projects, if any, whose `name` has the word DevEnable or AB3 and `repository` is dev/tp and whose
+       client has the `name` Harry are listed. Number of listed projects shown in the status message.
+
+    4. Test case: `client -f n/DevEnable c/2 p/1 n/AB3`<br>
+       Expected: All projects, if any, whose `name` has the word DevEnable or AB3 and `projectId` is 1 and whose client
+       has the `clientId` 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `project -f r/invalid-repo`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    6. Test case: `project -f abc`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `project -f`, `project -f p/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+3. Find issue(s) while all issues are being shown
+
+    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list, at least one of
+       which has the `title` Testing.
+
+    2. Test case: `issue -f t/Testing Documentation`<br>
+       Expected: All issues whose `title` has the word Testing or Documentation are listed. Number of listed issues
+       shown in the status message.
+
+    3. Test case: `issue -f t/Testing s/Incomplete u/NONE n/DevEnable`<br>
+       Expected: All issues, if any, whose `title` has the word Testing and `status` is incomplete and `urgency` is NONE
+       and whose project has the `name` DevEnable are listed. Number of listed projects shown in the status message.
+
+    4. Test case: `issue -f n/Testing i/1 p/2 t/Documentation`<br>
+       Expected: All issues, if any, whose `title` has the word Testing or Documentation and `issueId` is 1 and whose
+       project has the `projectId` 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `issue -f s/thisIsAnInvalidStatus`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    6. Test case: `issue -f abc`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `issue -f`, `issue -f i/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+### Marking/Unmarking an issue
+
+1. Marking an issue while all issues are being shown
+
+    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list.
+
+    2. Test case: `issue -m 1`<br>
+       Expected: The status of the issue with `issueId` 1 is set as completed. Details of the marked issue shown in the status message.
+    
+    3. Test case: `issue -m 0`<br>
+       Expected: No issue is marked. Error details shown in the status message.
+
+    4. Other incorrect mark commands to try: `issue -m`, `issue -m x`, `issue -m word`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Unmarking an issue while all issues are being shown 
+
+   1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list. 
+
+   2. Test case: `issue -u 1`<br>
+   Expected: The status of the issue with `issueId` 1 is set as incomplete. Details of the unmarked issue shown in the status message. 
+
+   3. Test case: `issue -u 0`<br>
+   Expected: No issue is unmarked. Error details shown in the status message. 
+
+   4. Other incorrect unmark commands to try: `issue -u`, `issue -u x`, `issue -u word`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+   
 ### Saving data
 
 1. Editing the data file
