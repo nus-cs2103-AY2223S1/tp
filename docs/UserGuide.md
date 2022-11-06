@@ -135,13 +135,7 @@ Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:** <br>
-
-* A patient can have 0 to 3 number of tags.
-
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
-
-   e.g. `t/sick` will cause an error message.
+**:bulb: Tip:** A patient can have 0 to 3 number of tags.
 
 </div>
 
@@ -275,15 +269,20 @@ Example:
 
 ### Organisation
 
+
+#### Sorting all patients/appoints
+
+This is the default behavior of idENTify to show patients and appointments.
+
+For a patient list, patients will be sorted by their names first; if there are people with the same name, they will be sorted by their
+phone numbers.
+
+For an appointment list, appointments will be sorted by their datetime first; if there are appointments
+with the same datetime, they will be sorted by their attached patients' information as described above.
+
 #### Listing all patients/appointments : `list`
 
 Shows a list of all patients or appointments, depending on the parameter given. Previously hidden patients and appointments will be unhidden as well.
-
-If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their
-phone numbers.
-
-If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments
-with the same datetime, they will be sorted by their attached patients' information.
 
 Format:
 * `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
