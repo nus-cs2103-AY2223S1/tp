@@ -21,7 +21,6 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.teammate.Teammate;
 
 /**
  * Edits the details of an existing task in the address book.
@@ -72,7 +71,7 @@ public class EditTaskCommand extends TaskCommand {
         }
 
         Task taskToEdit = lastShownTaskList.get(targetIndex.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor, model.getFilteredTeammateList());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -87,11 +86,9 @@ public class EditTaskCommand extends TaskCommand {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor} and {@code teammateList}.
-     * @throws CommandException
+     * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,
-                                         List<Teammate> teammateList) throws CommandException {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
@@ -189,8 +186,8 @@ public class EditTaskCommand extends TaskCommand {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDeadline() == e.getDeadline()
-                    && getProject() == e.getProject();
+                    && getDeadline().equals(e.getDeadline())
+                    && getProject().equals(e.getProject());
         }
     }
 }

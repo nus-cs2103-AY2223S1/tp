@@ -29,9 +29,6 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code teammate}'s details.
      */
     public static String getTaskDetails(Task task) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(task.getTitle().toString() + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
-        return sb.toString();
+        return task.getTitle().toString() + " ";
     }
 }

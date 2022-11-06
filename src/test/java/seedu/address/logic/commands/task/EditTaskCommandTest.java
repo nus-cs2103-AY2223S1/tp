@@ -1,11 +1,13 @@
 package seedu.address.logic.commands.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_HOMEWORK;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_WORKSHOP;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.TaskCommandTestUtil.DESC_HOMEWORK;
+import static seedu.address.logic.commands.TaskCommandTestUtil.DESC_WORKSHOP;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
@@ -55,7 +57,7 @@ public class EditTaskCommandTest {
     public void execute_invalidTeammateIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         Task editedTask = new TaskBuilder().build();
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -63,12 +65,12 @@ public class EditTaskCommandTest {
 
     @Test
     public void equals() {
-        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TEAMMATE, DESC_HOMEWORK);
+        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TASK, DESC_HOMEWORK);
 
         // same values -> returns true
-        EditTaskCommand.EditTaskDescriptor copyDescriptor = new EditTaskCommand.EditTaskDescriptor(DESC_HOMEWORK);
-        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_TEAMMATE, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(DESC_HOMEWORK);
+        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_TASK, copyDescriptor);
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));

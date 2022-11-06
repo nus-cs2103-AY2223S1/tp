@@ -1,5 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_CONTACT_HOMEWORK;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_CONTACT_WORKSHOP;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_DEADLINE_HOMEWORK;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_DEADLINE_WORKSHOP;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_PROJECT_HOMEWORK;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_PROJECT_WORKSHOP;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TITLE_HOMEWORK;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TITLE_WORKSHOP;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +38,18 @@ public class TypicalTasks {
                     .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();
+
+    public static final Task HOMEWORK = new TaskBuilder()
+            .withTitle(VALID_TITLE_HOMEWORK)
+            .withDeadline(VALID_DEADLINE_HOMEWORK)
+            .withProject(VALID_PROJECT_HOMEWORK)
+            .withContacts(VALID_CONTACT_HOMEWORK).build();
+
+    public static final Task WORKSHOP = new TaskBuilder()
+            .withTitle(VALID_TITLE_WORKSHOP)
+            .withDeadline(VALID_DEADLINE_WORKSHOP)
+            .withProject(VALID_PROJECT_WORKSHOP)
+            .withContacts(VALID_CONTACT_WORKSHOP).build();
 
     private TypicalTasks() {} // prevents instantiation
 

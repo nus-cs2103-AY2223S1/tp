@@ -19,6 +19,7 @@ import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskPanel;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 import seedu.address.model.teammate.Teammate;
 import seedu.address.testutil.TaskBuilder;
 
@@ -26,7 +27,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand((Title) null));
     }
 
     // TODO: Update Tests

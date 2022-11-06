@@ -13,7 +13,7 @@ import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.model.task.Title;
 import seedu.address.testutil.TaskUtil;
 
 public class TaskPanelParserTest {
@@ -22,7 +22,7 @@ public class TaskPanelParserTest {
 
     @Test
     public void parse_addTask() throws Exception {
-        Task task = new TaskBuilder().build();
+        Task task = new Task(new Title("Test"));
         AddTaskCommand command = (AddTaskCommand) parser.parse(TaskUtil.getAddTaskCommand(task));
         assertEquals(new AddTaskCommand(task), command);
     }
