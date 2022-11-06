@@ -7,15 +7,15 @@ title: Developer Guide
 
 Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
 
-It provides a **centralised** platform for CS students to 
-  * save their batchmates’ contact and module details 
-  * search for batchmates with common interests or who are taking similar modules **conveniently**
+It provides a **centralised** platform for CS students to
+* save their batchmates’ contact and module details
+* search for batchmates with common interests or who are taking similar modules **conveniently**
 
 
 It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
 
-This *Developer Guide* provides general information for developers who are interested in understanding the design implementation of Mass Linkers for further developments.
+This *Developer Guide* provides general information for developers interested in understanding the design implementation of Mass Linkers for further development.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -53,13 +53,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: Initialises the components in the correct sequence and connects them up with each other.
+* At shutdown: Shuts down the components and invoke cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -68,7 +68,7 @@ The rest of the App consists of four components.
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -82,11 +82,11 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class, which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+The sections below give more details about each component.
 
 ### UI component
 
@@ -94,9 +94,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ModListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ModListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class, which captures the commonalities between classes representing parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts is defined in matching `.fxml` files in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -115,7 +115,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `MassLinkersParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`), which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -123,7 +123,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -131,8 +131,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `MassLinkersParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MassLinkersParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MassLinkersParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name, e.g., `AddCommandParser`), which uses the other classes shown above to parse the user command and create an `XYZCommand` object (e.g., `AddCommand`) which the `MassLinkersParser` returns as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g., during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/model/Model.java)
@@ -142,12 +142,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the mass linkers data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the mass linkers data, i.e., all `Student` objects (contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Interest` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Interest` object per unique tag, instead of each `Student` needing their own `Interest` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Interest` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Interest` object per unique tag, instead of each `Student` needing their own `Interest` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -161,7 +161,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both Mass Linkers data and user preference data in json format, and read them back into corresponding objects.
+* can save both Mass Linker's data and user preference data in JSON format and read them back into corresponding objects.
 * inherits from both `MassLinkersStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
@@ -190,7 +190,7 @@ The following (partial) class diagram shows how the different classes involved i
 
 ![FindInterestClassDiagram](images/FindInterestClassDiagram.png)
 
-The following activity diagram summarises what happens when a student enters a `findInt` command, assuming the command is valid and no error occurs:
+The following activity diagram summarises what happens when a student enters a `findInt` command, assuming the command is valid, and no error occurs:
 
 ![FindInterestActivityDiagram](images/FindInterestActivityDiagram.png)
 
@@ -202,9 +202,9 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `ai` and `swe` will result in a batchmate whose interests are `ai`, `swe` and `algo` to be displayed).
     * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `ai` and `swe` will not result in a batchmate whose only interest is `ai` to be displayed).
 
-* **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
-    * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
-    * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
+* **Alternative 2:** Finds all batchmates whose interests match at least one specified interest.
+    * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests of the student.
+    * Cons: It diminishes the usefulness of searching for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
 
 ### 2. Mod mark feature
 
@@ -212,13 +212,13 @@ The following activity diagram summarises what happens when a student enters a `
 
 The `ModCommandParser` implements the operation `ModCommandParser#parseMarkCommand(String args)` to read inputs entered by the student for execution in `ModMarkCommand`. `ModMarkCommand` extends `ModCommand` to execute the `mod mark` command.
 
-During execution, all modules specified by the student are marked in the `Student` class with the operation `Student#markMods(ObservableList<Mod> mods)`. This is because the list of modules is stored and associated with a `Student`, hence any updates on the module status in the current list of modules will be handled in `Student`. Each individual module is then marked in the `Mod` class with the operation `Mod#markMod()`.
+During execution, all modules specified by the student are marked in the `Student` class with the operation `Student#markMods(ObservableList<Mod> mods)`. This is because the list of modules is stored and associated with a `Student`. Hence any updates on the module status in the current list of modules will be handled in `Student`. Each individual module is then marked in the `Mod` class with the operation `Mod#markMod()`.
 
-The following (partial) class diagram shows how the different classes involved in the mod mark operation interacts with one another:
+The following (partial) class diagram shows how the different classes involved in the mod mark operation interact with one another:
 
 ![ModMarkClassDiagram](images/ModMarkClassDiagram.png)
 
-The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid and no error occurs:
+The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid, and no error occurs:
 
 ![ModMarkWithLoopActivityDiagram](images/ModMarkActivityDiagram.png)
 
@@ -228,11 +228,11 @@ The following activity diagram summarises what happens when a student enters a `
 
 * **Alternative 1 (current choice):** Marks mods of a batchmate whose index is specified.
     * Pros: Easier to implement. Shorter command to enter.
-    * Cons: May be hard to find and locate the index of the batchmate especially when the list of batchmates is long.
+    * Cons: May be hard to find and locate the index of the batchmate, especially when the list of batchmates is long.
 
 * **Alternative 2:** Marks mods of a batchmate whose name is specified.
     * Pros: Easier to find the batchmate by directly entering the name.
-    * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
+    * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name, especially for long and complicated names.
 
 ### 3. Mod find feature
 
@@ -244,15 +244,15 @@ During execution, the user inputs of module codes are passed into a `List` to `M
 
 For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Student student)` returns `true` for a particular `Student` only if every element in `keywords` is in `Mod` of this `Student` (stored as `ObservableList<Mod>`).
 
-Checking of whether the elements in the `keywords` and `Mod` match each other is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
+Checking whether the elements in the `keywords` and `Mod` match each other is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
 
 The result of `ModContainsKeywordsPredicate#test(Student student)` is then used by `Model#updateFilteredStudentList` to filter those `Student` with the specified module(s) when `ModFindCommand#execute(Model model)` is called.
 
-The following sequence diagram shows how the different classes involved in the `mod find` operation interacts with one another:
+The following sequence diagram shows how the different classes involved in the `mod find` operation interact with one another:
 
 ![ModFindSequenceDiagram](images/ModFindSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a student enters a `mod find` command, assuming the command is valid and no error occurs:
+The following activity diagram summarises what happens when a student enters a `mod find` command, assuming the command is valid, and no error occurs:
 
 ![ModFindActivityDiagram](images/ModFindActivityDiagram.png)
 
@@ -266,7 +266,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 * **Alternative 2:** Modules can be identified by partially matching inputs of module codes. For instance, `mod find 123` will return `Student` with the module `CS1231S`.
     * Pros: Shorter commands to enter and grants greater convenience to users.
-    * Cons: If many module codes share the same partial module code that user inputs, many batchmates will be returned, rendering the `mod find` function ineffective as users still need to manually search for batchmates with the desired module.
+    * Cons: If many module codes share the same partial module code that the user inputs, many batchmates will be returned, rendering the `mod find` function ineffective as users still need to manually search for batchmates with the desired module.
 
 ### 4. Module Categorisation
 
@@ -275,7 +275,7 @@ The following activity diagram summarises what happens when a student enters a `
 Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
 A category is assigned to every mod upon creating it through its constructor.
 This categorisation is not saved in Storage.
-The module categories can be viewed [here](UserGuide.md#module-categorisation).
+The module categories can be viewed [here](UserGuide.md# module-categorisation).
 
 Upon calling the constructor of `Mod` to create a new instance, the constructor
 will then call `ParserUtil#parseModsToCategory(String modName)` which returns a `ModCategory`
@@ -308,7 +308,7 @@ Activity: Determines and returns a category.
 * **Alternative 2:** Categories of mods are saved into Storage.
     * Pros: Users can edit mod categories with fewer changes to the code base. Increased performance.
     * Cons: Increased complexity.
-    
+
 ### 5. Add Interest Feature
 
 #### Implementation
@@ -333,10 +333,10 @@ The sequence diagram for the command ```addInt 1 algo``` is as follows.
 
 ![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddInterestCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddInterestCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
-In addition, the sequence diagram below illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
+In addition, the sequence diagram below illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers.
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
@@ -353,8 +353,8 @@ In addition, the sequence diagram below illustrates how the ```AddInterestComman
     * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
 
 * **Alternative 2:** Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```).
-    * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
-    * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
+    * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests is handled by the ```UniqueInterestList``` class.
+    * Cons: The number of ```Interest``` is usually not that large, so Alternative 2 could result in unnecessary implementation overhead.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,12 +375,12 @@ In addition, the sequence diagram below illustrates how the ```AddInterestComman
 **Target user profile**:
 
 * Computer Science students at NUS <br>
-  * Provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. It allows students to save their CS batchmates’ contact details in one place, find common modules and form study groups.
+    * Provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. It allows students to save their CS batchmates’ contact details in one place, find common modules and form study groups.
 
 
-**Value proposition**: Easily find batchmates to form study groups or asking for module-related advice.
+**Value proposition**: Easily find batchmates to form study groups or ask for module-related advice.
 * Provides a centralised platform for students to share their contact info for easier communication.
-* Provides convenience for students to find batchmates who are taking the same modules or have the same interests as them.
+* Provides convenience for students to find batchmates who are taking the same modules or have the same interests.
 * Provides convenience for students to find batchmates who have taken their mods before to ask them for module-related advice.
 
 
@@ -503,20 +503,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student requests the list of batchmates with the specified interests.
-2. Mass Linkers returns the list of batchmates associated with the particular interests.
+2. Mass Linkers return the list of batchmates associated with the particular interests.
    \
    Use case ends.
 
 **Extensions**
-* 1a. Mass Linkers detects an invalid input. (No interests specified by the student).
+* 1a. Mass Linkers detect an invalid input. (No interests specified by the student).
     * 1a1. Mass Linkers requests for at least one interest to be specified.
     * 1a2. Student inputs new interests.
     * Steps 1a1-1a2 are repeated until input is valid.
-    \
-    Use case resumes from step 2.
-* *a. At any time, Student chooses to close Mass Linkers.
       \
-      Use case ends.
+      Use case resumes from step 2.
+* *a. At any time, Student chooses to close Mass Linkers.
+  \
+  Use case ends.
 
 **Use case 5: Mark a module completed**
 
@@ -533,7 +533,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Mass Linkers warns marking a module is invalid.
       \
       Use case ends.
-* 2b. Mass Linkers detects the specified module is invalid (out of range).
+* 2b. Mass Linkers detect the specified module is invalid (out of range).
     * 2b1. Mass Linkers requests for new module.
     * Step 2b1 is repeated until a module is found.
       \
@@ -543,13 +543,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 6: Edit Batchmate**
 
 **MSS**
 
 1. Student requests the list of batchmates.
-2. Mass Linkers displays list of batchmates.
+2. Mass Linkers display a list of batchmates.
 3. Student requests to edit a specific batchmate in the list with the new details.
 4. Mass Linkers updates the details of said batchmate.
    \
@@ -561,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 * 3a. Mass Linkers detects an error in the entered command.
     * 3a1. Mass Linkers requests for the correct command.
-    * 3a2. Student enters new command.
+    * 3a2. Student enters a new command.
       Steps 3a1-3a2 are repeated until the command entered is correct.
       \
       Use case resumes from step 4.
@@ -571,8 +571,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 4.
 * 3c. Mass Linkers could not find the batchmate specified.
     * 3c1. Mass Linkers requests the user to input a valid batchmate.
-    * 3c2. Student enters new command.
-      Steps 3c1-3c2 are repeated until the command entered are correct.
+    * 3c2. Student enters a new command.
+      Steps 3c1-3c2 are repeated until the command entered is correct.
       \
       Use case resumes from step 4.
 
@@ -596,13 +596,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 * 2a. Mass Linkers detects an error in the entered command.
     * 2a1. Mass Linkers requests for the correct command.
-    * 2a2. Student enters new command.
+    * 2a2. Student enters a new command.
       Steps 2a1-2a2 are repeated until the command entered are correct.
       \
       Use case ends.
 * 2b. Mass Linkers could not find the batchmate specified.
     * 2b1. Mass Linkers requests the user to input a valid batchmate.
-    * 2b2. Student enters new command.
+    * 2b2. Student enters a new command.
       Steps 2b1-2b2 are repeated until the command entered are correct.
       \
       Use case ends.
@@ -615,15 +615,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 batchmates without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 batchmates without a noticeable sluggish performance for typical usage.
+3. A user with above-average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than the mouse.
 4. The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
 5. For every action by the user, the result should be visible within 5 seconds.
 6. The project should not depend on any remote servers.
 7. The software and documentation should be accessible to users with a basic command of English.
 8. The packaged JAR file should not exceed 100MB.
 9. The software should work without the need for an installer.
-10. The product should not be able to verify the legitimacy of information provided by the student.
+10. The product should not be able to verify the legitimacy of the information provided by the student.
 
 ### Glossary
 
@@ -639,26 +639,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Due to time and manpower constraints, several good-to-have features were considered for future developments.
 
 ### 1. Undo Command
-Several of the commands can create drastic changes to the data in Mass Linkers, such as `mod mark all` which would mark every module for all students as taken and `clear` which would delete all the data existing in Mass Linkers. 
+Several of the commands can create drastic changes to the data in Mass Linkers, such as `mod mark all`, which would mark every module for all students as taken and `clear`, which would delete all the data existing in Mass Linkers.
 
-Having an `undo` feature would be valuable to help users overcome the problem of executing these commands unintentionally and needing to revert the changes made. 
+Having an `undo` feature would be valuable to help users overcome the problem of executing these commands unintentionally and needing to revert the changes made.
 
 ### 2. Selecting a batchmate using CLI
-Mass Linkers is targeted at users who can type fast and prefer typing as the primary form of input. 
+Mass Linkers is targeted at users who can type fast and prefer typing as the primary form of input.
 
-Currently, the selection of a batchmate in the _Students panel_ to view their modules can only be done via the GUI interface to click on the particular batchmate.
+Currently, the selection of a batchmate in the _Students panel_ to view their modules can only be done via the GUI interface by clicking on the particular batchmate.
 
 Having a `mod view INDEX` command would give users an option to select a batchmate with index ```INDEX``` using the CLI, helping Mass Linkers align more to its typing-preferred characteristic.
 
 ### 3. Auto-scroll when a batchmate is added
-Currently, the _Students panel_ does not scroll to the bottom when a batchmate is added and the row exceeds the currently displayed list of batchmates in the _Students panel_. 
+Currently, the _Students panel_ does not scroll to the bottom when a batchmate is added, and the row exceeds the currently displayed list of batchmates in the _Students panel_.
 
-Implementing the _Students panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
+Implementing the _Students panel_ to display the most-recently added batchmate would help in enhancing the user experience, and users do not need to manually scroll to the bottom each time.
 
-### 4. Display students by alphabetical order
-Currently, students are displayed in the _Students panel_ based on chronological order, the most recently added student would be the last. 
+### 4. Display students in alphabetical order
+Currently, students are displayed in the _Students panel_ based on chronological order; the most recently added student would be the last.
 
-Looking ahead, we would implement the display of students to be based on alphabetical order of their names. This would make it much more intuitive and easier to search for users.
+Looking ahead, we would implement the display of students to be based on the alphabetical order of their names. This would make it much more intuitive and easier to search for users.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
@@ -684,7 +684,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location are retained.
 
 ### Adding a batchmate
 
@@ -694,10 +694,10 @@ testers are expected to do more *exploratory* testing.
        Expected: A new batchmate with the name `John` and telegram handle `johnnn` is added at the bottom of the _Students panel_ in Mass Linkers.
        The status message indicates that a batchmate named `John` has been successfully added.
 
-       1. Prerequisite: A batchmate with the name `Tom` and the telegram `tommmm` is already in Mass Linkers. <br>
-          Test case: `add n/Tom t/tommmm`.<br>
-          Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers. 
-       Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
+        1. Prerequisite: A batchmate with the name `Tom` and the telegram `tommmm` is already in Mass Linkers. <br>
+           Test case: `add n/Tom t/tommmm`.<br>
+           Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
+           Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
     2. Test case: `add n/John t/john i/ai g/john`.<br>
        Expected: A new batchmate with the name `John`, telegram handle `john`, interests `ai` and GitHub `john` is added at the bottom of the _Students panel_ in Mass Linkers.
@@ -717,7 +717,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
     2. Test case: `delete 1`.<br>
-       Expected: First batchmate is deleted from the list. Details of the deleted batchmate is shown in the status message.
+       Expected: First batchmate is deleted from the list. Details of the deleted batchmate are shown in the status message.
 
     3. Test case: `delete 0`.<br>
        Expected: No batchmate is deleted. Error details are shown in the status message.
@@ -734,7 +734,7 @@ testers are expected to do more *exploratory* testing.
     2. Prerequisite: There exists a batchmate with telegram handle `charlie`.<br>
        Test case: `find char`.<br>
        Expected: The batchmate with telegram handle `charlie` appears in the _Students panel_ after executing the command.
-   
+
     3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.<br>
        Test case: `find char Tom`.<br>
        Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
