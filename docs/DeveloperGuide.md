@@ -1297,6 +1297,48 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `cd CS1010`<br>
        Expected: The command is unsuccesful, no changes to modules/tasks, and an error message indicating that the module does not exist is displayed to the user.
 
+### Marking tasks as done (and undone)
+
+1. **Marking a task as done:**
+
+    1. Pre-requisites:
+       - You have at least one undone task (see `add task`).
+       - You are not currently `cd`'d into a module (`cd ..` if you are).
+       - All tasks are being shown (i.e. run `list task -a` first). 
+    1. Test case: `done task 1`<br>
+       Expected: The first task (topmost in the UI) is marked as done (with a "done" label) and a success message is displayed.
+    1. Test case: `done task 1` followed by another `done task 1` <br>
+      Expected: An error message saying that the task is already marked as done is displayed.
+    1. Test case: `done task 0`<br>
+       Expected: No task is marked as done and an error message is displayed.
+
+1. **Hiding the done tasks:**
+
+    1. Pre-requisites:
+       - You have just completed the previous test case - there should only be 1 task and it should be done.
+    1. Test case: `list task`<br>
+       Expected: The task is no longer shown in the UI.
+
+1. **Showing the done tasks:**
+
+    1. Pre-requisites:
+       - You have just completed the previous test case - no tasks should be visible in the UI.
+    1. Test case: `list task -a`<br>
+       Expected: The task is shown in the UI.
+    1. Test case: `list task -A`<br>
+       Expected: A syntax error message is displayed, because the flag is case-sensitive.
+
+1. **Unmarking a task that is shown as done:**
+
+    1. Pre-requisites:
+        - You have just completed the previous test case - there should be at least 1 task and it should be done and visible.
+    1. Test case: `undone task 1` (replace `1` with the top-most undone task number) <br>
+       Expected: The undone task (topmost among those undone in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
+    1. Test case: `undone task 1` followed by another `undone task 1` <br>
+       Expected: An error message saying that the task is already marked as undone is displayed.
+    1. Test case: `undone task 0`<br>
+       Expected: No task is unmarked as done and an error message is displayed.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
