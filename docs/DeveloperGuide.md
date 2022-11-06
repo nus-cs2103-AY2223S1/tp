@@ -206,11 +206,11 @@ If priority is chosen, reminders will be sorted from `HIGH` to `MEDIUM` to `LOW`
 
 1. The user enters `sort reminders by/priority` command in main window to sort the reminders by priority.
 2. `LogicManager#execute` will then call `ModQuikParser#parseCommand` method, which then calls `SortReminderCommandParser#parse` method.
-3. `SortReminderCommandParser` will check the parameter inputted by the user, and create a new instance of SortReminderCommand with the corresponding sorting criteria.
-4. `SortReminderCommandParser` will return the new `SortReminderCommand` instance to ModQuikParser, which in turns return to LogicManager.
+3. `SortReminderCommandParser` will check the parameter inputted by the user, and create a new instance of `SortReminderCommand` with the corresponding sorting criteria.
+4. `SortReminderCommandParser` will return the new `SortReminderCommand` instance to `ModQuikParser`, which in turns return to `LogicManager`.
 5. `LogicManager` calls `SortReminderCommand#execute` method, which will then call either `Model#sortReminderByPriority()` or `Model#sortReminderByDeadline()` depending on the criteria that was initialised with the `SortReminderCommand`.
 6. Reminder list will then be sorted according to the given criteria.
-7. The SortReminderCommand then creates a new instance of CommandResult and return it to LogicManager.
+7. The `SortReminderCommand` then creates a new instance of `CommandResult` and return it to `LogicManager`.
 
 
 ### \[Proposed\] Undo/redo feature
