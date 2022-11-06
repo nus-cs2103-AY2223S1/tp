@@ -11,7 +11,7 @@ activate at LOGIC_COLOR
 
 
 at -[LOGIC_COLOR]> at : findAllPrefixPositions()
-activate at LOGIC_COLOR
+activate at #9D9DDD
 
 loop has next prefix
 at -[LOGIC_COLOR]> prefix : getPrefix()
@@ -20,7 +20,7 @@ prefix --[LOGIC_COLOR]> at : Pattern
 deactivate prefix
 
             at -[LOGIC_COLOR]> at: findPrefixPosition()
-            activate at LOGIC_COLOR
+            activate at #D3D3EC
                    alt pattern matches
 
             at --[LOGIC_COLOR]> at : int
