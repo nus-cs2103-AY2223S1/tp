@@ -458,7 +458,7 @@ In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed i
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
 being tested, consequently, they might give different outputs when applied to a given list.
 
-#### Design Considerations
+#### Design Considerations:
 In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
 `AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
@@ -505,21 +505,26 @@ manipulate the list based on their needs.
 A `Comparator` is used to sort the `ObservableArrayList`. Different comparators with different conditions are used to sort the
 list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
 `Buyer`: `BuyerComparator`
-1. `NameComparator`
-2. `PriceRange Comparator`
-3. `Priority Comparator`
+1. `BuyerNameComparator`: sort by buyer's name
+2. `PriceRangeComparator`: sort by buyer's price range
+3. `PriorityComparator`: sort by buyer's priority
 `Property`: `PropertyComparator`
-4. `PropertyNameComparator`
-5. `PriceComparator`
+4. `PropertyNameComparator`: sort by property's name
+5. `PriceComparator`: sort by property's price
 Both:
-6. `TimeComparator`
+6. `TimeComparator`: sort by entry's time of creation
 
-The UML diagrams below represents the overall structure of the `Comparator`s used.
+A `BuyerComparator` compares two `Buyer`s by using the `Comparator` stored in it on the corresponding `Buyer` fields.
+For example, if a `BuyerComparator` contains a `BuyerNameComparator`, the two `Buyer`s are compared by their `Name`s using the `BuyerNameComparator`.
+As we allow sorting only by one criterion at a time, a `BuyerComparator` will only contain one field `Comparator`. 
+
+The UML diagrams below represent the overall structure of the `Comparator`s used.
 
 ![BuyerComparatorsClassDiagram](images/SortBuyerComparatorsClassDiagram.png)
+
 ![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
 
-#### Design Considerations
+#### Design Considerations:
 Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
 sorted version without modifying the underlying data structure `ObservableArrayList`. This is
 to preserve the chronological order in which users enter the entries so that it can still be displayed with the `list` command.
