@@ -173,10 +173,20 @@ public class StringUtil {
         } else if (time.matches("\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}(am|pm){0,1}")) {
             if (time.matches("\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}")) {
                 if (time.contains(":")) {
+
+                    if (time.equals("24:00")) { //because a PE-D student argued that not accepting 24:00 is a bug lol
+                        time = "00:00";
+                    }
+
                     return time.length() < 5
                             ? "0" + time
                             : time;
                 } else {
+
+                    if (time.equals("2400")) { //because a PE-D student argued that not accepting 24:00 is a bug lol
+                        time = "0000";
+                    }
+
                     return time.length() < 4
                             ? "0" + time.substring(0, 1) + ":" + time.substring(1)
                             : time.substring(0, 2) + ":" + time.substring(2);
