@@ -1,6 +1,5 @@
 package seedu.taassist.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
@@ -142,11 +141,6 @@ class UnassignCommandTest {
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
         }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            return moduleClass;
-        }
     }
 
     /**
@@ -182,12 +176,6 @@ class UnassignCommandTest {
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
-        }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return moduleClass;
         }
     }
 }

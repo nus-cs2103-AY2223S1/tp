@@ -3,18 +3,17 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.CommandUtil.requireModuleClassExists;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -49,27 +48,19 @@ public class AssignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        ModuleClass existingModuleClass;
-
-        try {
-            existingModuleClass = model.getModuleClassWithSameName(moduleClassToAssign);
-        } catch (ModuleClassNotFoundException mcnfe) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
-                    model.getModuleClassList()));
-        }
+        requireModuleClassExists(moduleClassToAssign, model);
 
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToAssign;
         try {
-            studentsToAssign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
-        } catch (ParseException pe) {
+            studentsToAssign = IndexUtil.getAtIndices(lastShownList, indices);
+        } catch (IndexOutOfBoundsException ioobe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(existingModuleClass)));
+        studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(moduleClassToAssign)));
 
-        return new CommandResult(getSuccessMessage(studentsToAssign, existingModuleClass));
+        return new CommandResult(getSuccessMessage(studentsToAssign, moduleClassToAssign));
     }
 
     public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {

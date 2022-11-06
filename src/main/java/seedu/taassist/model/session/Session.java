@@ -7,6 +7,7 @@ import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
 import java.time.LocalDate;
 
+import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.model.uniquelist.Identity;
 
 /**
@@ -33,8 +34,9 @@ public class Session implements Identity<Session>, Comparable<Session> {
      */
     public Session(String sessionName) {
         requireNonNull(sessionName);
-        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
-        this.sessionName = sessionName;
+        String capitalisedName = StringUtil.capitalise(sessionName);
+        checkArgument(isValidSessionName(capitalisedName), MESSAGE_CONSTRAINTS);
+        this.sessionName = StringUtil.capitalise(capitalisedName);
         this.date = new Date(LocalDate.now());
     }
 
@@ -46,8 +48,9 @@ public class Session implements Identity<Session>, Comparable<Session> {
      */
     public Session(String sessionName, Date date) {
         requireAllNonNull(sessionName, date);
-        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
-        this.sessionName = sessionName;
+        String capitalisedName = StringUtil.capitalise(sessionName);
+        checkArgument(isValidSessionName(capitalisedName), MESSAGE_CONSTRAINTS);
+        this.sessionName = capitalisedName;
         this.date = date;
     }
 

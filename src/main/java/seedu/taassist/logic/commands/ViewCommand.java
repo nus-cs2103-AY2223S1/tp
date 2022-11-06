@@ -1,16 +1,15 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
 
 import java.util.List;
 import java.util.StringJoiner;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
+import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.parser.ParserStudentIndexUtil;
-import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.SessionData;
@@ -46,29 +45,26 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
+        requireFocusMode(model, COMMAND_WORD);
 
         ModuleClass focusedClass = model.getFocusedClass();
         List<Student> lastShownList = model.getFilteredStudentList();
 
         Student student;
         try {
-            student = ParserStudentIndexUtil.parseStudentFromIndex(index, lastShownList);
-        } catch (ParseException e) {
-            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            student = IndexUtil.getAtIndex(lastShownList, index);
+        } catch (IndexOutOfBoundsException ioobe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         List<SessionData> sessionDataList = student.findStudentModuleData(focusedClass)
                 .orElseThrow(AssertionError::new)
                 .getSessionDataList();
 
-        return new CommandResult(getCommandMessage(sessionDataList, student));
+        return new CommandResult(getSuccessMessage(sessionDataList, student));
     }
 
-    public static String getCommandMessage(List<SessionData> sessionDataList, Student student) {
+    public static String getSuccessMessage(List<SessionData> sessionDataList, Student student) {
         if (sessionDataList.isEmpty()) {
             return String.format(MESSAGE_EMPTY_GRADES_LIST, student.getName());
         }
