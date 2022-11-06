@@ -31,7 +31,7 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code Deadline} into this class for Jackson use.
+     * Converts a given {@code task} into this class for Jackson use.
      */
     public JsonAdaptedDeadline(Task source) {
         Deadline deadline = (Deadline) source;

@@ -28,7 +28,7 @@ public class JsonAdaptedToDo extends JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code ToDo} into this class for Jackson use.
+     * Converts a given {@code task} into this class for Jackson use.
      */
     public JsonAdaptedToDo(Task source) {
         title = source.getTitle().title;
