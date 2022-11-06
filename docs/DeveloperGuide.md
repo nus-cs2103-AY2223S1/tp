@@ -680,6 +680,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 5. The application can store the changed user data after the application has been closed and load from memory when it is
    opened.
 6. The UI page should load when first launched within 2 seconds.
+7. The application can work without Internet connection.
 
 ### Glossary
 
