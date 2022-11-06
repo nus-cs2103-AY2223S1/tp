@@ -240,8 +240,21 @@ public class ScheduleGridPanel extends UiPart<Region> {
     public void setScrollPaneStyle(Theme theme) {
         if (theme.equals(Theme.DARK)) {
             scrollPane.getStylesheets().add("view/schedule/css/scrollPaneDark.css");
+            gridPane.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
         } else {
             scrollPane.getStylesheets().add("view/schedule/css/scrollPaneLight.css");
+            gridPane.setStyle("-fx-background-color: rgba(245,241,207,0.89)");
+        }
+    }
+
+    /**
+     * Sets the style of gridPane
+     */
+    public void setGridPaneStyle(Theme theme) {
+        if (theme.equals(Theme.DARK)) {
+            gridPane.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
+        } else {
+            gridPane.setStyle("-fx-background-color: rgba(245,241,207,0.89)");
         }
     }
 }

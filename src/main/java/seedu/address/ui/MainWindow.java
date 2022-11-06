@@ -182,6 +182,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        applyDarkTheme();
+
     }
 
     /**
@@ -347,6 +350,7 @@ public class MainWindow extends UiPart<Stage> {
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        scheduleGridPanel.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
@@ -355,6 +359,7 @@ public class MainWindow extends UiPart<Stage> {
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
         scheduleGridPanel.setScrollPaneStyle(theme);
+        scheduleGridPanel.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to dark mode!");
     }
 
