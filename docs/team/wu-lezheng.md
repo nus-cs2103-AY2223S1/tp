@@ -20,11 +20,11 @@ Given below are my contributions to the project.
   * Highlights: Some of the SOLID principles of OOP are applied in these classes.
 
 * **New Feature**: Added a popup window for adding command. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
-  * What it is about: Added a popup window with prompt text for adding buyers with orders and suppliers with pets, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
+  * What it is about: Added a popup window with prompt text for adding buyers with orders and suppliers with pets, without the need to input any prefixes.
   * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer or supplier, which is very demanding in terms of memorisation.
   * Highlights: The popup window is designed to improve the user experience (UX). It also shows how UI, model and logic can be linked.
 
-* **New Feature**: Extended the `EditCommand` to three categories: edit buyer command, edit supplier command, edit deliverer command. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
+* **New Feature**: Extended the `EditCommand` (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
   * What it does: Extended the `EditCommand` to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
   * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing even more distinct attributes are added to them in the future.
   * Highlights: This makes use of polymorphism.
