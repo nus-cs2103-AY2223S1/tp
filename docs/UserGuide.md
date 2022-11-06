@@ -20,7 +20,7 @@ you understand StudMap, so that you can make the best use of our features. Read 
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 # 2. Why StudMap?
 
@@ -116,10 +116,34 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
     * The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands)
       .
     * The **Reply Box** is where StudMap responds to your instructions.
-    * The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
+    * The **Student List** is a list of your students, each represented by a **student card**. StudMap updates this list as you give it commands to do so.
       <br><br>
 
-5. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
+5. Zooming in on the left of each student card, you can see the student's particulars:
+
+    ![Ui](images/ui/ui-student-info.png)
+
+    Take note of the following elements in the student card:
+
+    * The **Index** and **Student Name** are placed together.
+    * **Tags** are text labels for students for easy classification.
+    * **Student ID**
+    * **Phone Number**
+    * **Email**
+    * **GitHub Username**
+    * **Telegram Handle**
+
+   <br><br>
+
+6. Zooming in on the right side of each student card, you can see the information you need as a TA:
+
+    ![Ui](images/ui/ui-ta-info.png)
+
+    Take note of the following elements in the student card:
+
+    <br><br>
+
+7. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
     * `list`
         * This updates the Student List with all the students you have.
@@ -133,14 +157,14 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
         * This deletes all the students, so you can start with a clean slate!
           <br><br>
 
-6. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
+8. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
    you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
    Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
    out this [Example Template](files/example_template.csv), or check out
    [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
-7. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
+8. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
    command.
    We hope you enjoy using StudMap!
 
