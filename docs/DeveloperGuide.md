@@ -752,3 +752,10 @@ As a result, we implemented further checks to ensure that the correct Person is 
 In this way persons can still be found using keywords when they are unique and people with similar names must use their **full name** in the command. 
 E.g. `Mary Sue` can be added to a meeting using `Mary` assuming she's the only one with `Mary` in her name. 
 E.g. `John Tan` and `John Doe` can be added/deleted from a meeting using `John Tan` or `John Doe`specifically.
+
+The implementation of the storage for meetings was not trivial. There was a need to integrate how meetings were created and how they were stored. Meetings were created using user input dd-mm-yyyy hhmm format and stored in EEEE, d MMMM uuuu hh:mm a format and the conversion was done using `DateTimeConverter`.
+Storage of meetings also closely followed how address book was stored but there were many files that had to edited in order to support the functionalities of meeting list.
+
+
+Overall, we have increased the number of commands being parsed by adding additional commands related to meetings and tags for persons. The team has also implemented a storage feature for meetings and created UI cards to view the meetings.
+
