@@ -38,7 +38,7 @@ class JsonAdaptedAssignment {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Assignment.
      */
-    public Assignment toModelType() throws IllegalArgumentException {
+    public Assignment toModelType() throws IllegalValueException {
         String[] values = assignmentName.split(":");
         if (values.length != 2
                 || !Assignment.isValidAssignmentName(values[0])) {
