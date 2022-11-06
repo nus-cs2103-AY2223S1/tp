@@ -319,8 +319,13 @@ Format: `delete <index>`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the person list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Features for Managing Debts
 
@@ -449,6 +454,11 @@ The statement will only sum up the debts that are not marked as paid from the li
 
 Example: `statement` returns `You are owed $583.90 in total.`
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Features for Searching
 
 #### Finding persons by fields: `find`
@@ -546,6 +556,11 @@ Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Features for Data Management
 
 #### Saving the data
@@ -560,6 +575,8 @@ PayMeLah data are saved as a JSON file `[JAR file location]/data/paymelah.json`.
 If your changes to the data file makes its format invalid, PayMeLah will discard all data and start with an empty data file at the next run.
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -567,6 +584,8 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
