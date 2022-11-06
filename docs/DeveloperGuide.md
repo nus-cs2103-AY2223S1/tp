@@ -702,18 +702,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Input format is wrong.
 
-    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+    Use case resumes at step 1.
 
 * 1b. Input parameters is invalid.
 
-    * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
-      Use case resumes at step 1.
+  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
+    Use case resumes at step 1.
 
 * 1c. An applicant with such name does not exist.
 
-    * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
-      Use case resumes at step 1.
+  * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
+    Use case resumes at step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -766,15 +766,14 @@ be able to view the applicant from the list.
 
 * 1a. User specifies more than one applicant status during request.
 
-    * Step 4 repeats as many times as there are requests.
+  * Step 4 repeats as many times as there are requests.
 
 * 1b. TrackAScholar detects an error in the entered applicant status/detects no applicant status input.
 
-    * 1b1. TrackAScholar requests for the correct applicant status.
-    * 1b2. User enters new applicant status.
-    * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
-    * Use case resumes from step 2.
-
+  * 1b1. TrackAScholar requests for the correct applicant status.
+  * 1b2. User enters new applicant status.
+  * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
+  * Use case resumes from step 2.
 
 *{More to be added}*
 
