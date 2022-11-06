@@ -10,38 +10,37 @@ SoCompiler is the sole app that university students will need to streamline thei
 Given below are my contributions to the project.
 
 * **New Feature**:
-    * What it does: Delete Module 
-    * Justification: After a semester is over, or if the student is not taking the module anymore, they would need to be able to delete the module from the list.
-    * Highlights: 
-    * Credits:
-    
-    * What it does: Automatically update module title from input module code
-    * Justification: Ease of use for the user.
-    * Highlights:
-    * Credits:
+
+  * **Delete Module**
+      * What it does: Delete Module 
+      * Justification: After a semester is over, or if the student is not taking the module anymore, they would need to be able to delete the module from the list.
+  * **Sync with NUSMods**  
+      * What it does: Automatically update module title from input module code
+      * Justification: Ease of use for the user.
+      * Highlights: Ability to immediately get title with just the module code.
+      * Credits: Parsing of NUSMods Json file done by `@avock`.
+
 
 * **Code contributed**:
-    * _(to be added soon)_
+  [RepoSense Summary](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yingming&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=avock&tabRepo=AY2223S1-CS2103T-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false&authorshipSortBy=fileName)
+
 
 * **Project management**:
-    * _(to be added soon)_
+    * I helped to review and vet pull requests from teammates on GitHub.
+    * I helped teammates resolve bugs.
+
 
 * **Enhancements to existing features**:
-    * _(to be added soon)_
+    * Enhanced AddressBook class to also take in UniqueModuleList.
+
 
 * **Documentation**:
     * User Guide:
-        * _(to be added soon)_
+        * Edited parts of the User Guide to be more in line with updated parts of the application.
     * Developer Guide:
-        * _(to be added soon)_
+        * Added implementation details for the Delete Module Command.
+
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): _(to be added soon)_
-    * Contributed to forum discussions: _(to be added soon)_
-    * Reported bugs and suggestions for other teams in the class: _(to be added soon)_
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-    * _(to be added soon)_
-    * _(to be added soon)_
-    * _(to be added soon)_
-
-* **Tools**:
+    * Reported bugs and suggestions for other teams in the class: Found 12 bugs in the PE Dry Run.
+    
