@@ -258,7 +258,7 @@ features supported are:
 
 1. `edit` :  `EditCommand`
    <br>Edit basic attributes of a student (E.g. Name, Phone, etc)
-2. `tag`:`TagCommand` and `untag` : `UntagCommand`
+2. `tag` : `TagCommand` and `untag` : `UntagCommand`
    <br>Add and removing tags for a student
 3. `mark` : `MarkCommand` and `unmark` : `UnmarkCommand` :
    <br> Add, modify and remove attendance status of a student
