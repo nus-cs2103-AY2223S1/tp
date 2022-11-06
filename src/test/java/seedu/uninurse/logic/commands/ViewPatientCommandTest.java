@@ -35,12 +35,12 @@ public class ViewPatientCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToView = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         ViewPatientCommand viewPatientCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ViewPatientCommand.MESSAGE_SUCCESS, patientToView.getName());
 
         assertCommandSuccess(viewPatientCommand, model, expectedMessage,
-                ViewPatientCommand.VIEW_PATIENT_COMMAND_TYPE, expectedModel);
+                ViewPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -56,12 +56,12 @@ public class ViewPatientCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
-        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToView = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         ViewPatientCommand viewPatientCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ViewPatientCommand.MESSAGE_SUCCESS, patientToView.getName());
 
         assertCommandSuccess(viewPatientCommand, model, expectedMessage,
-                ViewPatientCommand.VIEW_PATIENT_COMMAND_TYPE, expectedModel);
+                ViewPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

@@ -24,7 +24,7 @@ import seedu.uninurse.model.ReadOnlyUserPrefs;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.testutil.PersonBuilder;
 
 public class AddPatientCommandTest {
@@ -112,47 +112,72 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public PersonListTracker addPerson(Patient person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyUninurseBook getUninurseBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setUninurseBook(ReadOnlyUninurseBook newData) {
+        public void setUninurseBook(ReadOnlyUninurseBook uninurseBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Patient person) {
+        public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PersonListTracker deletePerson(Patient target) {
+        public PersonListTracker addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PersonListTracker clearPersons(List<Patient> targets) {
+        public PersonListTracker setPerson(Person person, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PersonListTracker setPerson(Patient target, Patient editedPerson) {
+        public PersonListTracker addPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Patient> getFilteredPersonList() {
+        public PersonListTracker setPatient(Patient patient, Patient editedPatient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Patient> predicate) {
+        public PersonListTracker deletePerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PersonListTracker clearPersons(List<Person> persons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPatientList(Predicate<Patient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Patient getPatient(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Patient> getPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,12 +192,27 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void setDayOfInterest(DateTime dayOfInterest) {
+        public void setSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Schedule getSchedule() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveCurrentPersonListTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PersonListTracker getPersonListTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersons() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,36 +240,21 @@ public class AddPatientCommandTest {
         public void makeSnapshot(CommandResult commandResult) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void saveCurrentPatientListTracker() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public PersonListTracker getSavedPatientListTracker() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateRecurringTasks() {
-            throw new AssertionError("This method should not be called");
-        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Patient person;
+        private final Person person;
 
-        ModelStubWithPerson(Patient person) {
+        ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Patient person) {
+        public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -239,21 +264,19 @@ public class AddPatientCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        private final ArrayList<Patient> personsAdded = new ArrayList<>();
-        private Patient patientOfInterest;
+        private final ArrayList<Person> personsAdded = new ArrayList<>();
 
         ModelStubAcceptingPersonAdded() {
-            this.patientOfInterest = new PersonBuilder().build();
         }
 
         @Override
-        public boolean hasPerson(Patient person) {
+        public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public PersonListTracker addPerson(Patient person) {
+        public PersonListTracker addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
             return new PersonListTracker();
@@ -263,11 +286,5 @@ public class AddPatientCommandTest {
         public ReadOnlyUninurseBook getUninurseBook() {
             return new UninurseBook();
         }
-
-        @Override
-        public void setPatientOfInterest(Patient patient) {
-            this.patientOfInterest = patient;
-        }
     }
-
 }

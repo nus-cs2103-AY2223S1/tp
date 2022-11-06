@@ -53,7 +53,8 @@ public class AddRemarkCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Remark remarkToAdd = new Remark(TYPICAL_REMARK_MEDICAL_ALLERGY);
-        Patient patientToAddRemark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddRemark =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddRemark)
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 
@@ -81,8 +82,10 @@ public class AddRemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Remark remarkToAdd = new Remark(TYPICAL_REMARK_MEDICAL_ALLERGY);
-        Patient patientToAddRemark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToAddRemark =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, remarkToAdd);
@@ -112,7 +115,8 @@ public class AddRemarkCommandTest {
 
     @Test
     public void execute_invalidDuplicateRemark_throwsCommandException() {
-        Patient patientToAddRemark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddRemark =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddRemark)
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 

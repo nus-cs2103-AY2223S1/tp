@@ -1,5 +1,6 @@
 package seedu.uninurse.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,12 +48,21 @@ public class RedoCard extends UiPart<Region> {
     private Separator horizontalSeparator;
 
     /**
-     * Creates a RedoCard with {@code patientListTracker}.
+     * Creates a RedoCard with {@code personListTracker}.
      */
-    public RedoCard(PersonListTracker patientListTracker) {
+    public RedoCard(PersonListTracker personListTracker) {
         super(FXML);
-        updatedPatients = patientListTracker.getAddedPersons();
-        originalPatients = patientListTracker.getDeletedPersons();
+        // TODO: fix typecasting
+        updatedPatients = personListTracker.getAddedPersons().map(list -> {
+            List<Patient> newList = new ArrayList<>();
+            list.forEach(item -> newList.add((Patient) item));
+            return newList;
+        });
+        originalPatients = personListTracker.getDeletedPersons().map(list -> {
+            List<Patient> newList = new ArrayList<>();
+            list.forEach(item -> newList.add((Patient) item));
+            return newList;
+        });
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");
 

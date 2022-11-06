@@ -17,14 +17,14 @@ public class PersistentUninurseBook {
     private int currentVersion;
 
     /**
-     * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
+     * Creates an UninurseBookSnapshot using the Persons in the toBeCopied
      */
     public PersistentUninurseBook(ReadOnlyUninurseBook toBeCopied) {
         this.workingCopy = new UninurseBook(toBeCopied);
         this.uninurseBookVersions = new ArrayList<UninurseBookSnapshot>();
         this.uninurseBookVersions.add(new UninurseBookSnapshot(toBeCopied));
         this.currentVersion = 0;
-        this.handleChange();
+        handleChange();
     }
 
     /**
@@ -36,6 +36,7 @@ public class PersistentUninurseBook {
 
     private void handleChange() {
         workingCopy.setPersons(uninurseBookVersions.get(currentVersion).getPersonList());
+        workingCopy.setPatients(uninurseBookVersions.get(currentVersion).getPatientList());
     }
 
     /**
@@ -72,8 +73,8 @@ public class PersistentUninurseBook {
         CommandResult commandResult = new CommandResult("", CommandType.EMPTY);
         if (canRedo()) {
             currentVersion++;
-            handleChange();
             commandResult = uninurseBookVersions.get(currentVersion).getCommandResult();
+            handleChange();
         }
         return commandResult;
     }
@@ -93,8 +94,8 @@ public class PersistentUninurseBook {
         handleChange();
     }
 
-    public PersonListTracker getCurrentPair() {
-        Optional<PersonListTracker> ret = uninurseBookVersions.get(currentVersion).getPatientListTracker();
+    public PersonListTracker getCurrentPersonListTracker() {
+        Optional<PersonListTracker> ret = uninurseBookVersions.get(currentVersion).getPersonListTracker();
         assert ret.isPresent();
         return ret.get();
     }

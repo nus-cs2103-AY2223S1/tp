@@ -1,6 +1,5 @@
 package seedu.uninurse.model;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -16,8 +15,9 @@ import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
+import seedu.uninurse.model.exceptions.ScheduleNotFoundException;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Represents the in-memory model of the uninurse book data.
@@ -28,11 +28,11 @@ public class ModelManager implements Model {
     private final PersistentUninurseBook persistentUninurseBook;
 
     private final UserPrefs userPrefs;
-    private final FilteredList<Patient> filteredPersons;
+    private final FilteredList<Person> filteredPersons;
 
     private Optional<Patient> patientOfInterest;
-    private Optional<DateTime> dayOfInterest;
-    private PersonListTracker savedPair;
+    private Optional<Schedule> schedule;
+    private PersonListTracker personListTracker;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -46,14 +46,15 @@ public class ModelManager implements Model {
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
         this.patientOfInterest = Optional.empty();
-        this.savedPair = new PersonListTracker();
+        this.schedule = Optional.empty();
+        this.personListTracker = new PersonListTracker();
     }
 
     public ModelManager() {
         this(new UninurseBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    //=========== UserPrefs =================================================================================
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
@@ -62,7 +63,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
+        requireAllNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
@@ -73,7 +74,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        requireNonNull(guiSettings);
+        requireAllNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
 
@@ -84,11 +85,11 @@ public class ModelManager implements Model {
 
     @Override
     public void setUninurseBookFilePath(Path uninurseBookFilePath) {
-        requireNonNull(uninurseBookFilePath);
+        requireAllNonNull(uninurseBookFilePath);
         userPrefs.setUninurseBookFilePath(uninurseBookFilePath);
     }
 
-    //=========== UninurseBook ================================================================================
+    //=========== UninurseBook ==============================================================================
 
     @Override
     public ReadOnlyUninurseBook getUninurseBook() {
@@ -97,61 +98,94 @@ public class ModelManager implements Model {
 
     @Override
     public void setUninurseBook(ReadOnlyUninurseBook uninurseBook) {
-        this.persistentUninurseBook.getWorkingCopy().resetData(uninurseBook);
+        persistentUninurseBook.getWorkingCopy().resetData(uninurseBook);
     }
 
     @Override
-    public boolean hasPerson(Patient person) {
-        requireNonNull(person);
+    public boolean hasPerson(Person person) {
+        requireAllNonNull(person);
         return persistentUninurseBook.getWorkingCopy().hasPerson(person);
     }
 
     @Override
-    public PersonListTracker deletePerson(Patient target) {
-        persistentUninurseBook.getWorkingCopy().removePerson(target);
-        return new PersonListTracker(Optional.empty(), Optional.of(Arrays.asList(target)));
-    }
-
-    @Override
-    public PersonListTracker clearPersons(List<Patient> targets) {
-        for (Patient target : targets) {
-            persistentUninurseBook.getWorkingCopy().removePerson(target);
-        }
-        return new PersonListTracker(Optional.empty(), Optional.of(targets));
-    }
-
-    @Override
-    public PersonListTracker addPerson(Patient person) {
+    public PersonListTracker addPerson(Person person) {
         persistentUninurseBook.getWorkingCopy().addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new PersonListTracker(Optional.of(Arrays.asList(person)), Optional.empty());
     }
 
     @Override
-    public PersonListTracker setPerson(Patient target, Patient editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
-        return new PersonListTracker(Optional.of(Arrays.asList(editedPerson)), Optional.of(Arrays.asList(target)));
+    public PersonListTracker setPerson(Person person, Person editedPerson) {
+        requireAllNonNull(person, editedPerson);
+        persistentUninurseBook.getWorkingCopy().setPerson(person, editedPerson);
+        return new PersonListTracker(Optional.of(Arrays.asList(editedPerson)), Optional.of(Arrays.asList(person)));
     }
 
-    //=========== Filtered Patient List Accessors =============================================================
+    @Override
+    public PersonListTracker addPatient(Patient patient) {
+        persistentUninurseBook.getWorkingCopy().addPatient(patient);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new PersonListTracker(Optional.of(Arrays.asList(patient)), Optional.empty());
+    }
+
+    @Override
+    public PersonListTracker setPatient(Patient patient, Patient editedPatient) {
+        requireAllNonNull(patient, editedPatient);
+        persistentUninurseBook.getWorkingCopy().setPatient(patient, editedPatient);
+        return new PersonListTracker(Optional.of(Arrays.asList(editedPatient)), Optional.of(Arrays.asList(patient)));
+    }
+
+    @Override
+    public PersonListTracker deletePerson(Person person) {
+        persistentUninurseBook.getWorkingCopy().removePerson(person);
+        return new PersonListTracker(Optional.empty(), Optional.of(Arrays.asList(person)));
+    }
+
+    @Override
+    public PersonListTracker clearPersons(List<Person> persons) {
+        for (Person person : persons) {
+            persistentUninurseBook.getWorkingCopy().removePerson(person);
+        }
+        return new PersonListTracker(Optional.empty(), Optional.of(persons));
+    }
+
+    //=========== Filtered Person List Accessors ============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
-     * {@code versionedUninurseBook}
+     * Returns an unmodifiable view of the list of person backed by the internal list of
+     * versionedUninurseBook
      */
     @Override
-    public ObservableList<Patient> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Patient> predicate) {
-        requireNonNull(predicate);
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireAllNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Other Accessors =============================================================
+    @Override
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
+        requireAllNonNull(predicate);
+        filteredPersons.setPredicate(person -> predicate.test(getPatient(person)));
+    }
+
+    //=========== Filtered Person Accessors =================================================================
+
+    @Override
+    public Patient getPatient(Person person) {
+        requireAllNonNull(person);
+        return persistentUninurseBook.getWorkingCopy().getPatient(person);
+    }
+
+    @Override
+    public ObservableList<Patient> getPatientList() {
+        return persistentUninurseBook.getWorkingCopy().getPatientList();
+    }
+
+    //=========== Other Accessors ===========================================================================
 
     @Override
     public void setPatientOfInterest(Patient patient) {
@@ -160,30 +194,35 @@ public class ModelManager implements Model {
 
     @Override
     public Patient getPatientOfInterest() throws PatientOfInterestNotFoundException {
-        return this.patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
+        return patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
     }
 
     @Override
-    public void setDayOfInterest(DateTime dayOfInterest) {
-        this.dayOfInterest = Optional.ofNullable(dayOfInterest);
+    public void setSchedule(Schedule schedule) {
+        this.schedule = Optional.ofNullable(schedule);
     }
 
     @Override
-    public Schedule getSchedule() {
-        return new Schedule(persistentUninurseBook.getWorkingCopy().getPersonList(), dayOfInterest.get());
+    public Schedule getSchedule() throws ScheduleNotFoundException {
+        return schedule.orElseThrow(() -> new ScheduleNotFoundException());
     }
 
     @Override
-    public void saveCurrentPatientListTracker() {
-        this.savedPair = persistentUninurseBook.getCurrentPair();
+    public void saveCurrentPersonListTracker() {
+        personListTracker = persistentUninurseBook.getCurrentPersonListTracker();
     }
 
     @Override
-    public PersonListTracker getSavedPatientListTracker() {
-        return this.savedPair;
+    public PersonListTracker getPersonListTracker() {
+        return personListTracker;
     }
 
-    //=========== Undo and Redo =============================================================
+    @Override
+    public void updatePersons() {
+        persistentUninurseBook.getWorkingCopy().updatePersons();
+    }
+
+    //=========== Undo and Redo =============================================================================
 
     @Override
     public boolean canUndo() {
@@ -210,13 +249,6 @@ public class ModelManager implements Model {
         persistentUninurseBook.makeSnapshot(commandResult);
     }
 
-    //=========== Other Accessors =============================================================
-
-    @Override
-    public void updateRecurringTasks() {
-        filteredPersons.forEach(p -> p.getTasks().updateTasks());
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -235,5 +267,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

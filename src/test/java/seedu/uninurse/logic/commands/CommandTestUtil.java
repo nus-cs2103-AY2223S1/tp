@@ -132,7 +132,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         UninurseBook expectedUninurseBook = new UninurseBook(actualModel.getUninurseBook());
-        List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedUninurseBook, actualModel.getUninurseBook());
@@ -146,9 +146,9 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Patient person = model.getPatient(model.getFilteredPersonList().get(targetIndex.getZeroBased()));
         final String[] splitName = person.getName().getValue().split("\\s+");
-        model.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.updateFilteredPatientList(new PatientContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

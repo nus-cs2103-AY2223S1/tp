@@ -1,8 +1,6 @@
 package seedu.uninurse.ui;
 
-import java.util.List;
-
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -20,7 +18,7 @@ public class OutputPanel extends UiPart<Region> {
     private StackPane outputView;
 
     /**
-     * Creates a {@code OutputPanel} with the given {@code OutputPanel} to display.
+     * Creates a OutputPanel with the given OutputPanel to display.
      */
     public OutputPanel() {
         super(FXML);
@@ -44,7 +42,7 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patient} if commandResult is task related.
+     * Updates the outputView panel accordingly with patient if commandResult is task related.
      */
     public void handleTask(Patient patient) {
         TaskListPanel taskListPanel = new TaskListPanel(patient);
@@ -56,9 +54,9 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly with a list of {@code patient} if executed command is ListTask.
+     * Updates the outputView panel accordingly with a list of patient if executed command is ListTask.
      */
-    public void handleListTask(List<Patient> patients) {
+    public void handleListTask(ObservableList<Patient> patients) {
         TruncatedTaskListPanel truncatedTaskListPanel = new TruncatedTaskListPanel(patients);
         truncatedTaskListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
         truncatedTaskListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
@@ -68,28 +66,28 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patient} if executed command is ViewPatient.
+     * Updates the outputView panel accordingly with patient if executed command is ViewPatient.
      */
     public void handleViewPatient(Patient patient) {
         handlePatient(patient, "Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patient} if executed command is AddPatient.
+     * Updates the outputView panel accordingly with patient if executed command is AddPatient.
      */
     public void handleAddPatient(Patient patient) {
         handlePatient(patient, "Added Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patient} if executed command is EditPatient.
+     * Updates the outputView panel accordingly with patient if executed command is EditPatient.
      */
     public void handleEditPatient(Patient patient) {
         handlePatient(patient, "Edited Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patient} if executed command is DeletePatient.
+     * Updates the outputView panel accordingly with patient if executed command is DeletePatient.
      */
     public void handleDeletePatient(Patient patient) {
         handlePatient(patient, "Deleted Patient:");
@@ -97,7 +95,7 @@ public class OutputPanel extends UiPart<Region> {
 
     /**
      * Private method that updates the outputView panel
-     * accordingly with {@code patient} and {@code headerString} if executed command is patient related.
+     * accordingly with patient and headerString if executed command is patient related.
      */
     private void handlePatient(Patient patient, String headerString) {
         UpdatedPatientCard updatedPersonCard = new UpdatedPatientCard(patient, headerString);
@@ -109,38 +107,38 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Undo.
+     * Updates the outputView panel accordingly with personListTracker if executed command is Undo.
      */
-    public void handleUndo(PersonListTracker patientListTracker) {
+    public void handleUndo(PersonListTracker personListTracker) {
         outputView.getChildren().clear();
-        if (patientListTracker.isSinglePatient()) {
-            outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, true, false).getRoot());
+        if (personListTracker.isSinglePerson()) {
+            outputView.getChildren().add(new ModifiedPatientCard(personListTracker, true, false).getRoot());
         }
 
-        if (patientListTracker.isMultiplePatients()) {
-            outputView.getChildren().add(new UndoCard(patientListTracker).getRoot());
+        if (personListTracker.isMultiplePerson()) {
+            outputView.getChildren().add(new UndoCard(personListTracker).getRoot());
         }
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Redo.
+     * Updates the outputView panel accordingly with personListTracker if executed command is Redo.
      */
-    public void handleRedo(PersonListTracker patientListTracker) {
+    public void handleRedo(PersonListTracker personListTracker) {
         outputView.getChildren().clear();
-        if (patientListTracker.isSinglePatient()) {
-            outputView.getChildren().add(new ModifiedPatientCard(patientListTracker, false, true).getRoot());
+        if (personListTracker.isSinglePerson()) {
+            outputView.getChildren().add(new ModifiedPatientCard(personListTracker, false, true).getRoot());
         }
 
-        if (patientListTracker.isMultiplePatients()) {
-            outputView.getChildren().add(new RedoCard(patientListTracker).getRoot());
+        if (personListTracker.isMultiplePerson()) {
+            outputView.getChildren().add(new RedoCard(personListTracker).getRoot());
         }
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patients} if executed command is Find.
+     * Updates the outputView panel accordingly with patients if executed command is Find.
      */
-    public void handleFind(List<Patient> patients) {
+    public void handleFind(ObservableList<Patient> patients) {
         outputView.getChildren().clear();
-        outputView.getChildren().add(new UpdatedPersonListPanel(FXCollections.observableList(patients)).getRoot());
+        outputView.getChildren().add(new UpdatedPersonListPanel(patients).getRoot());
     }
 }

@@ -50,7 +50,8 @@ public class AddConditionCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToAddCondition = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddCondition =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddCondition)
                 .withConditions(TYPICAL_CONDITION_DIABETES).build();
         int lastConditionIndex = editedPatient.getConditions().size() - 1;
@@ -80,8 +81,10 @@ public class AddConditionCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
 
-        Patient patientToAddCondition = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToAddCondition =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withConditions(TYPICAL_CONDITION_DIABETES).build();
         int lastConditionIndex = editedPatient.getConditions().size() - 1;
         Condition addedCondition = editedPatient.getConditions().get(lastConditionIndex);
@@ -114,7 +117,7 @@ public class AddConditionCommandTest {
 
     @Test
     public void execute_duplicateCondition_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Condition condition = new Condition("H1N1");
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,

@@ -12,7 +12,7 @@ public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Redone the following command:\n\n";
     public static final String MESSAGE_FAILURE = "No command to redo!";
-    public static final CommandType REDO_COMMAND_TYPE = CommandType.REDO;
+    public static final CommandType COMMAND_TYPE = CommandType.REDO;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -22,7 +22,7 @@ public class RedoCommand extends Command {
         }
 
         CommandResult redoneCommandResult = model.redo();
-        model.saveCurrentPatientListTracker();
-        return new CommandResult(MESSAGE_SUCCESS + redoneCommandResult.getFeedbackToUser(), REDO_COMMAND_TYPE);
+        model.saveCurrentPersonListTracker();
+        return new CommandResult(MESSAGE_SUCCESS + redoneCommandResult.getFeedbackToUser(), COMMAND_TYPE);
     }
 }

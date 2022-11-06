@@ -87,7 +87,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
      */
-    public ModifiedPatientCard(PersonListTracker patientListTracker, boolean isUndo, boolean isRedo) {
+    public ModifiedPatientCard(PersonListTracker personListTracker, boolean isUndo, boolean isRedo) {
         super(FXML);
 
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
@@ -95,42 +95,42 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
 
         // Undo add or Redo delete
-        if (patientListTracker.isAdd() && isUndo || patientListTracker.isDelete() && isRedo) {
+        if (personListTracker.isAdd() && isUndo || personListTracker.isDelete() && isRedo) {
             this.headerPane.setStyle(RED_STYLE);
             this.header.setText("Removed previously added Patient:");
             if (isUndo) {
-                this.patient = patientListTracker.getAddedPersons().get().get(0);
+                this.patient = (Patient) personListTracker.getAddedPersons().get().get(0);
             }
             if (isRedo) {
-                this.patient = patientListTracker.getDeletedPersons().get().get(0);
+                this.patient = (Patient) personListTracker.getDeletedPersons().get().get(0);
             }
         }
 
         // Undo delete or Redo add
-        if (patientListTracker.isDelete() && isUndo || patientListTracker.isAdd() && isRedo) {
+        if (personListTracker.isDelete() && isUndo || personListTracker.isAdd() && isRedo) {
             this.headerPane.setStyle(GREEN_STYLE);
             this.header.setText("Added previously removed Patient:");
             if (isUndo) {
-                this.patient = patientListTracker.getDeletedPersons().get().get(0);
+                this.patient = (Patient) personListTracker.getDeletedPersons().get().get(0);
             }
             if (isRedo) {
-                this.patient = patientListTracker.getAddedPersons().get().get(0);
+                this.patient = (Patient) personListTracker.getAddedPersons().get().get(0);
             }
         }
 
         Patient editedPatient = this.patient;
-        if (patientListTracker.isEdit() && isUndo) {
+        if (personListTracker.isEdit() && isUndo) {
             this.header.setStyle("");
             this.header.setText("Modified Patient:");
-            this.patient = patientListTracker.getDeletedPersons().get().get(0);
-            editedPatient = patientListTracker.getAddedPersons().get().get(0);
+            this.patient = (Patient) personListTracker.getDeletedPersons().get().get(0);
+            editedPatient = (Patient) personListTracker.getAddedPersons().get().get(0);
         }
 
-        if (patientListTracker.isEdit() && isRedo) {
+        if (personListTracker.isEdit() && isRedo) {
             this.header.setStyle("");
             this.header.setText("Modified Patient:");
-            this.patient = patientListTracker.getAddedPersons().get().get(0);
-            editedPatient = patientListTracker.getDeletedPersons().get().get(0);
+            this.patient = (Patient) personListTracker.getAddedPersons().get().get(0);
+            editedPatient = (Patient) personListTracker.getDeletedPersons().get().get(0);
         }
 
         name.setText(patient.getName().getValue());

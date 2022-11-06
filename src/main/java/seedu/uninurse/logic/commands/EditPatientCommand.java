@@ -16,11 +16,13 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
@@ -59,23 +61,30 @@ public class EditPatientCommand extends EditGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(index.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(index.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
-        PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+        PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient),
-                COMMAND_TYPE, patientListTracker);
+                COMMAND_TYPE, personListTracker);
     }
 
     /**

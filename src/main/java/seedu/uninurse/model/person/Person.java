@@ -92,6 +92,29 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public void update() {
+        return;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(getName())
+                .append("\nPhone: ")
+                .append(getPhone())
+                .append("\nEmail: ")
+                .append(getEmail())
+                .append("\nAddress: ")
+                .append(getAddress());
+
+        TagList tags = getTags();
+        if (!tags.isEmpty()) {
+            sb.append("\nTags: ")
+                    .append(tags);
+        }
+        return sb.toString();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -106,36 +129,17 @@ public class Person {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Person o = (Person) other;
+        return o.getName().equals(getName())
+                && o.getPhone().equals(getPhone())
+                && o.getEmail().equals(getEmail())
+                && o.getAddress().equals(getAddress())
+                && o.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("\nPhone: ")
-                .append(getPhone())
-                .append("\nEmail: ")
-                .append(getEmail())
-                .append("\nAddress: ")
-                .append(getAddress());
-
-        TagList tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("\nTags: ")
-                    .append(tags);
-        }
-        return builder.toString();
     }
 }

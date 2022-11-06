@@ -6,15 +6,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a {@code Person}.
  */
 public class PersonListCard extends UiPart<Region> {
-
     private static final String FXML = "PersonListCard.fxml";
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -22,8 +20,7 @@ public class PersonListCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on UninurseBook level 4</a>
      */
-
-    public final Patient patient;
+    private final Person person;
 
     @FXML
     private HBox cardPane;
@@ -45,22 +42,22 @@ public class PersonListCard extends UiPart<Region> {
     private Label header;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
+     * Creates a PersonListCard with the given Person and index to display.
      */
-    public PersonListCard(Patient patient, int displayedIndex) {
+    public PersonListCard(Person person, int displayedIndex) {
         super(FXML);
         cardPane.setSpacing(1);
         cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
 
-        this.patient = patient;
+        this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().getValue());
-        phone.setText(patient.getPhone().getValue());
-        address.setText(patient.getAddress().getValue());
-        email.setText(patient.getEmail().getValue());
-        patient.getTags().getInternalList()
+        name.setText(person.getName().getValue());
+        phone.setText(person.getPhone().getValue());
+        address.setText(person.getAddress().getValue());
+        email.setText(person.getEmail().getValue());
+        person.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
@@ -79,6 +76,6 @@ public class PersonListCard extends UiPart<Region> {
         // state check
         PersonListCard card = (PersonListCard) other;
         return id.getText().equals(card.id.getText())
-                && patient.equals(card.patient);
+                && person.equals(card.person);
     }
 }

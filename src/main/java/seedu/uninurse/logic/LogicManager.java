@@ -17,6 +17,7 @@ import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.storage.Storage;
 
 /**
@@ -48,7 +49,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            model.updateRecurringTasks();
+            model.updatePersons();
             storage.saveUninurseBook(model.getUninurseBook());
             if (command.isUndoable()) {
                 model.makeSnapshot(commandResult);
@@ -66,8 +67,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Patient> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Patient> getPatientList() {
+        return model.getPatientList();
     }
 
     @Override
@@ -96,7 +102,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public PersonListTracker getSavedPatientListTracker() {
-        return model.getSavedPatientListTracker();
+    public PersonListTracker getPersonListTracker() {
+        return model.getPersonListTracker();
     }
 }

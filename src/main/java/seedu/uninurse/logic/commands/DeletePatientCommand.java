@@ -11,6 +11,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Deletes a patient identified using its displayed index from the Patient list.
@@ -32,18 +33,18 @@ public class DeletePatientCommand extends DeleteGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
-        PersonListTracker patientListTracker = model.deletePerson(patientToDelete);
+        Patient patientToDelete = model.getPatient(lastShownList.get(targetIndex.getZeroBased()));
+        PersonListTracker personListTracker = model.deletePerson(patientToDelete);
         model.setPatientOfInterest(patientToDelete);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToDelete),
-                COMMAND_TYPE, patientListTracker);
+                COMMAND_TYPE, personListTracker);
     }
 
     @Override

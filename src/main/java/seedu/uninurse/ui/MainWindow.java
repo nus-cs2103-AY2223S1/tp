@@ -215,7 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isListTask()) {
-                outputPanel.handleListTask(logic.getFilteredPersonList());
+                outputPanel.handleListTask(logic.getPatientList());
             }
 
             if (commandResult.isTaskRelated()) {
@@ -239,15 +239,15 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isUndo()) {
-                outputPanel.handleUndo(logic.getSavedPatientListTracker());
+                outputPanel.handleUndo(logic.getPersonListTracker());
             }
 
             if (commandResult.isRedo()) {
-                outputPanel.handleRedo(logic.getSavedPatientListTracker());
+                outputPanel.handleRedo(logic.getPersonListTracker());
             }
 
             if (commandResult.isFind()) {
-                outputPanel.handleFind(logic.getFilteredPersonList());
+                outputPanel.handleFind(logic.getPatientList());
             }
 
             return commandResult;

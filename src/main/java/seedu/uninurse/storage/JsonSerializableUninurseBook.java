@@ -37,7 +37,7 @@ class JsonSerializableUninurseBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableUninurseBook}.
      */
     public JsonSerializableUninurseBook(ReadOnlyUninurseBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPatientList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**

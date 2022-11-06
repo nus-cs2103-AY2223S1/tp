@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
@@ -14,7 +13,9 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.RecurringTask;
@@ -68,14 +69,21 @@ public class EditTaskCommand extends EditGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        requireAllNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         TaskList initialTaskList = patientToEdit.getTasks();
 
         if (taskIndex.getZeroBased() >= initialTaskList.size()) {
@@ -109,12 +117,12 @@ public class EditTaskCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
-            PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
                     taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask),
-                    EDIT_TASK_COMMAND_TYPE, patientListTracker);
+                    EDIT_TASK_COMMAND_TYPE, personListTracker);
         } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }

@@ -54,7 +54,8 @@ public class DeleteTagCommandTest {
     @Test
     void execute_validIndicesUnfilteredList_success() {
         // use third person in TypicalPersons since there is one tag to delete
-        Patient patientToDeleteTag = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToDeleteTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToDeleteTag).withTags().build();
         Tag deletedTag = patientToDeleteTag.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -85,8 +86,10 @@ public class DeleteTagCommandTest {
     void execute_validIndicesFilteredList_success() {
         // use third person in TypicalPersons since there is one tag to delete
 
-        Patient patientToDeleteTag = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()))
+        Patient patientToDeleteTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased())))
                 .withTags().build();
         Tag deletedTag = patientToDeleteTag.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -120,7 +123,7 @@ public class DeleteTagCommandTest {
 
     @Test
     void execute_invalidTagIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundTagIndex = Index.fromOneBased(patient.getTags().size() + 1);
         DeleteTagCommand deleteTagCommand =
                 new DeleteTagCommand(INDEX_FIRST_PERSON, outOfBoundTagIndex);

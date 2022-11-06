@@ -138,6 +138,55 @@ public class Patient extends Person {
                 && otherPerson.getEmail().equals(getEmail());
     }
 
+    @Override
+    public void update() {
+        tasks.updateTasks();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(getName())
+                .append("\nPhone: ")
+                .append(getPhone())
+                .append("\nEmail: ")
+                .append(getEmail())
+                .append("\nAddress: ")
+                .append(getAddress());
+
+        TagList tags = getTags();
+        if (!tags.isEmpty()) {
+            sb.append("\nTags: ")
+                    .append(tags);
+        }
+
+        TaskList tasks = getTasks();
+        if (!tasks.isEmpty()) {
+            sb.append("\nTasks:\n")
+                    .append(tasks);
+        }
+
+        ConditionList conditions = getConditions();
+        if (!conditions.isEmpty()) {
+            sb.append("\nConditions:\n")
+                    .append(conditions);
+        }
+
+        MedicationList medications = getMedications();
+        if (!medications.isEmpty()) {
+            sb.append("\nMedications:\n")
+                    .append(medications);
+        }
+
+        RemarkList remarks = getRemarks();
+        if (!remarks.isEmpty()) {
+            sb.append("\nRemarks:\n")
+                    .append(remarks);
+        }
+
+        return sb.toString();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -152,64 +201,21 @@ public class Patient extends Person {
             return false;
         }
 
-        Patient otherPerson = (Patient) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getConditions().equals(getConditions())
-                && otherPerson.getTasks().equals(getTasks())
-                && otherPerson.getRemarks().equals(getRemarks())
-                && otherPerson.getTags().equals(getTags());
+        Patient o = (Patient) other;
+        return o.getName().equals(getName())
+                && o.getPhone().equals(getPhone())
+                && o.getEmail().equals(getEmail())
+                && o.getAddress().equals(getAddress())
+                && o.getTags().equals(getTags())
+                && o.getTasks().equals(getTasks())
+                && o.getConditions().equals(getConditions())
+                && o.getMedications().equals(getMedications())
+                && o.getRemarks().equals(getRemarks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(super.hashCode(), conditions, tasks);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("\nPhone: ")
-                .append(getPhone())
-                .append("\nEmail: ")
-                .append(getEmail())
-                .append("\nAddress: ")
-                .append(getAddress());
-
-        TagList tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("\nTags: ")
-                    .append(tags);
-        }
-
-        ConditionList conditions = getConditions();
-        if (!conditions.isEmpty()) {
-            builder.append("\nConditions:\n")
-                    .append(conditions);
-        }
-
-        MedicationList medications = getMedications();
-        if (!medications.isEmpty()) {
-            builder.append("\nMedications:\n")
-                    .append(medications);
-        }
-
-        TaskList tasks = getTasks();
-        if (!tasks.isEmpty()) {
-            builder.append("\nTasks:\n")
-                    .append(tasks);
-        }
-
-        RemarkList remarks = getRemarks();
-        if (!remarks.isEmpty()) {
-            builder.append("\nRemarks:\n")
-                    .append(remarks);
-        }
-
-        return builder.toString();
     }
 }

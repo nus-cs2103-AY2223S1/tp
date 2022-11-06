@@ -55,7 +55,8 @@ public class AddMedicationCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
 
@@ -82,7 +83,8 @@ public class AddMedicationCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
 
@@ -113,7 +115,8 @@ public class AddMedicationCommandTest {
     @Test
     public void execute_duplicateMedication_throwsCommandException() {
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
         model.setPerson(patientToAddMedication, editedPatient);

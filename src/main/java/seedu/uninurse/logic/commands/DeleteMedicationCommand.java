@@ -11,9 +11,11 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Deletes a medication from a patient identified using its displayed index from the patient list.
@@ -48,13 +50,20 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         MedicationList initialMedicationList = patientToEdit.getMedications();
 
         if (medicationIndex.getZeroBased() >= initialMedicationList.size()) {
@@ -66,11 +75,11 @@ public class DeleteMedicationCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-        PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+        PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, medicationIndex.getOneBased(),
-                editedPatient.getName(), deletedMedication), COMMAND_TYPE, patientListTracker);
+                editedPatient.getName(), deletedMedication), COMMAND_TYPE, personListTracker);
     }
 
     @Override

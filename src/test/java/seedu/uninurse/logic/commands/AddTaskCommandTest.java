@@ -55,7 +55,8 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddTask =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddTask)
                 .withTasks(new NonRecurringTask(VALID_TASK_DESC_FIRST,
                         new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
@@ -87,8 +88,10 @@ public class AddTaskCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToAddTask =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTasks(new NonRecurringTask(VALID_TASK_DESC_FIRST,
                         new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
@@ -125,7 +128,7 @@ public class AddTaskCommandTest {
     public void execute_addDuplicateTask_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Task duplicateTask = new NonRecurringTask(VALID_TASK_DESC_FIRST, new DateTime(DATE_TIME_STRING));
         TaskList updatedTaskList = patient.getTasks().add(duplicateTask);
         Patient patientWithTask = new Patient(patient, updatedTaskList);

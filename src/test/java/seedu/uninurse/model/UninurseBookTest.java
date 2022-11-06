@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.person.exceptions.DuplicatePersonException;
 import seedu.uninurse.testutil.PersonBuilder;
 
@@ -45,8 +46,8 @@ public class UninurseBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Patient editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
-        List<Patient> newPersons = Arrays.asList(ALICE, editedAlice);
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
+        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         UninurseBookStub newData = new UninurseBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> uninurseBook.resetData(newData));
@@ -84,15 +85,20 @@ public class UninurseBookTest {
      * A stub ReadOnlyUninurseBook whose persons list can violate interface constraints.
      */
     private static class UninurseBookStub implements ReadOnlyUninurseBook {
-        private final ObservableList<Patient> persons = FXCollections.observableArrayList();
+        private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        UninurseBookStub(Collection<Patient> persons) {
+        UninurseBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
         @Override
-        public ObservableList<Patient> getPersonList() {
+        public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Patient> getPatientList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

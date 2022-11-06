@@ -1,5 +1,6 @@
 package seedu.uninurse.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,12 +53,21 @@ public class UndoCard extends UiPart<Region> {
     private Separator horizontalSeparator;
 
     /**
-     * Creates a UndoCard with {@code patientListTracker}.
+     * Creates a UndoCard with {@code personListTracker}.
      */
-    public UndoCard(PersonListTracker patientListTracker) {
+    public UndoCard(PersonListTracker personListTracker) {
         super(FXML);
-        originalPatients = patientListTracker.getAddedPersons();
-        updatedPatients = patientListTracker.getDeletedPersons();
+        // TODO: fix typecasting
+        updatedPatients = personListTracker.getAddedPersons().map(list -> {
+            List<Patient> newList = new ArrayList<>();
+            list.forEach(item -> newList.add((Patient) item));
+            return newList;
+        });
+        originalPatients = personListTracker.getDeletedPersons().map(list -> {
+            List<Patient> newList = new ArrayList<>();
+            list.forEach(item -> newList.add((Patient) item));
+            return newList;
+        });
 
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");

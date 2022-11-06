@@ -10,12 +10,13 @@ import seedu.uninurse.model.person.Patient;
 
 
 /**
- * TruncatedPersonListCard is a UI component that displays only the name and tags of a {@code Patient}.
+ * TruncatedPatientListCard is a UI component that displays only the name and tags
+ * and the number of remaining tasks of a Patient.
  */
-public class TruncatedPersonListCard extends UiPart<Region> {
-    private static final String FXML = "TruncatedPersonListCard.fxml";
+public class TruncatedPatientListCard extends UiPart<Region> {
+    private static final String FXML = "TruncatedPatientListCard.fxml";
 
-    public final Patient patient;
+    private final Patient patient;
 
     @FXML
     private VBox cardPane;
@@ -29,9 +30,9 @@ public class TruncatedPersonListCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code TruncatedPersonListCard} with the given {@code Patient} and index to display.
+     * Creates a TruncatedPatientListCard with the given Patient and index to display.
      */
-    public TruncatedPersonListCard(Patient patient, int displayedIndex) {
+    public TruncatedPatientListCard(Patient patient, int displayedIndex) {
         super(FXML);
         this.cardPane.setStyle("-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
@@ -74,14 +75,14 @@ public class TruncatedPersonListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TruncatedPersonListCard)) {
+        if (!(other instanceof TruncatedPatientListCard)) {
             return false;
         }
 
         // state check
-        TruncatedPersonListCard card = (TruncatedPersonListCard) other;
-        return id.getText().equals(card.id.getText())
-                && patient.equals(card.patient);
+        TruncatedPatientListCard o = (TruncatedPatientListCard) other;
+        return id.getText().equals(o.id.getText())
+                && patient.equals(o.patient);
     }
 }
 

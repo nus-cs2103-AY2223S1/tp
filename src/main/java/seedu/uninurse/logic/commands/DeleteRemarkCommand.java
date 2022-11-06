@@ -11,7 +11,9 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.remark.RemarkList;
 
@@ -48,13 +50,20 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         RemarkList initialRemarkList = patientToEdit.getRemarks();
 
         if (remarkIndex.getZeroBased() >= initialRemarkList.size()) {
@@ -67,11 +76,11 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
 
-        PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+        PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, remarkIndex.getOneBased(),
-                editedPatient.getName(), deletedRemark), COMMAND_TYPE, patientListTracker);
+                editedPatient.getName(), deletedRemark), COMMAND_TYPE, personListTracker);
     }
 
     @Override

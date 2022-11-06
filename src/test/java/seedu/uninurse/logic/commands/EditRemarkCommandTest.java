@@ -63,7 +63,7 @@ class EditRemarkCommandTest {
     @Test
     public void execute_validIndicesUnfilteredList_success() {
         // Use second patient as the first patient in typical persons does not have a remark
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Remark initialRemark = patientToEdit.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Remark editedRemark = new Remark(REMARK_STUB);
@@ -97,7 +97,7 @@ class EditRemarkCommandTest {
         // use second person in TypicalPersons since there is a remark to edit
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Remark initialRemark = patientToEdit.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Remark editedRemark = new Remark(REMARK_STUB);
@@ -134,7 +134,7 @@ class EditRemarkCommandTest {
 
     @Test
     public void execute_invalidRemarkIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Index outOfBoundIndex = Index.fromOneBased(patient.getRemarks().size() + 1);
         EditRemarkCommand editRemarkCommand =
@@ -145,7 +145,7 @@ class EditRemarkCommandTest {
 
     @Test
     public void execute_duplicateRemark_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Remark initialRemark = patient.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 

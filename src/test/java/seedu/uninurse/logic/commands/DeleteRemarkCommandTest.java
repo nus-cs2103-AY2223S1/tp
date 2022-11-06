@@ -55,7 +55,8 @@ public class DeleteRemarkCommandTest {
     @Test
     void execute_validIndicesUnfilteredList_success() {
         // use second person in TypicalPersons since there is one remark to delete
-        Patient patientToDeleteRemark = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToDeleteRemark =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToDeleteRemark).withRemarks().build();
         Remark deletedRemark = patientToDeleteRemark.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -86,8 +87,10 @@ public class DeleteRemarkCommandTest {
         // use second person in TypicalPersons since there is one remark to delete
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToDeleteRemark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToDeleteRemark =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withRemarks().build();
         Remark deletedRemark = patientToDeleteRemark.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -121,7 +124,7 @@ public class DeleteRemarkCommandTest {
 
     @Test
     void execute_invalidRemarkIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundRemarkIndex = Index.fromOneBased(patient.getRemarks().size() + 1);
         DeleteRemarkCommand deleteRemarkCommand =
                 new DeleteRemarkCommand(INDEX_FIRST_PERSON, outOfBoundRemarkIndex);

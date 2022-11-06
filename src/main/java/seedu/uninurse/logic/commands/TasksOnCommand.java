@@ -4,6 +4,7 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.task.DateTime;
 
 /**
@@ -33,7 +34,7 @@ public class TasksOnCommand extends DisplayTasksGenericCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        model.setDayOfInterest(dayToCheck);
+        model.setSchedule(new Schedule(model.getPatientList(), dayToCheck));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()), COMMAND_TYPE);
     }

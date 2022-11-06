@@ -11,10 +11,12 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Add a medication to an existing patient in the patient list.
@@ -48,24 +50,30 @@ public class AddMedicationCommand extends AddGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(index.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(index.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
 
         try {
             MedicationList updatedMedicationList = patientToEdit.getMedications().add(medication);
 
             Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
-            PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, editedPatient.getName(), medication),
-                    COMMAND_TYPE, patientListTracker);
+                    COMMAND_TYPE, personListTracker);
         } catch (DuplicateMedicationException dme) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_MEDICATION, patientToEdit.getName()));
         }

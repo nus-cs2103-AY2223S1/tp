@@ -54,7 +54,8 @@ public class DeleteConditionCommandTest {
     @Test
     void execute_validIndicesUnfilteredList_success() {
         // use third person in TypicalPersons since there is one condition to delete
-        Patient patientToDeleteCondition = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToDeleteCondition =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToDeleteCondition).withConditions().build();
         Condition deletedCondition = patientToDeleteCondition.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -85,8 +86,10 @@ public class DeleteConditionCommandTest {
     void execute_validIndicesFilteredList_success() {
         // use third person in TypicalPersons since there is one condition to delete
 
-        Patient patientToDeleteCondition = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()))
+        Patient patientToDeleteCondition =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased())))
                 .withConditions().build();
         Condition deletedCondition = patientToDeleteCondition.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -120,7 +123,7 @@ public class DeleteConditionCommandTest {
 
     @Test
     void execute_invalidConditionIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundConditionIndex = Index.fromOneBased(patient.getConditions().size() + 1);
         DeleteConditionCommand deleteConditionCommand =
                 new DeleteConditionCommand(INDEX_FIRST_PERSON, outOfBoundConditionIndex);

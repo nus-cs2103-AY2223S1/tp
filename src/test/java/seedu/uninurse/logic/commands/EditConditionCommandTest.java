@@ -64,7 +64,7 @@ public class EditConditionCommandTest {
     public void execute_validArgsUnfilteredList_success() {
         // Use third patient in typical persons because it only has one condition, so we only have to
         // replace it rather than retrieve the other unedited conditions
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -96,7 +96,7 @@ public class EditConditionCommandTest {
     @Test
     public void execute_validArgsFilteredList_success() {
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -134,7 +134,7 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_duplicateCondition_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Condition condition = new Condition("H1N1");
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, condition);
@@ -144,7 +144,7 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_invalidConditionIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundConditionIndex = Index.fromOneBased(patient.getConditions().size() + 1);
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, outOfBoundConditionIndex, CONDITION_DIABETES);

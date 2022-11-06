@@ -50,7 +50,8 @@ public class AddTagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToAddTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToAddTag).withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
         Tag addedTag = editedPatient.getTags().get(lastTagIndex);
@@ -76,7 +77,7 @@ public class AddTagCommandTest {
 
     @Test
     public void execute_invalidDuplicateTagUnfilteredList_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, tag);
         assertCommandFailure(addTagCommand, model,
@@ -86,8 +87,10 @@ public class AddTagCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
 
-        Patient patientToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToAddTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
         Tag addedTag = editedPatient.getTags().get(lastTagIndex);
@@ -120,7 +123,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_invalidDuplicateTagFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, tag);
         assertCommandFailure(addTagCommand, model,

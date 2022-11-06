@@ -62,7 +62,8 @@
 //     @Test
 //     public void execute_editTask_success() {
 //         // Use second patient as the first patient in typical persons does not have a task
-//         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+//         Patient secondPatient =
+//                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
 //         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 //         Task editedTask = new Task(TASK_STUB);
@@ -111,7 +112,8 @@
 
 //     @Test
 //     public void execute_invalidTaskIndex_failure() {
-//         Patient firstPatient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+//         Patient firstPatient =
+//                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
 //         Index outOfBoundIndex = Index.fromOneBased(firstPatient.getTasks().size() + 1);
 //         EditTaskCommand editTaskCommand =
@@ -122,7 +124,8 @@
 
 //     @Test
 //     public void execute_duplicateTask_throwsCommandException() {
-//         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+//         Patient secondPatient =
+//                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
 //         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 

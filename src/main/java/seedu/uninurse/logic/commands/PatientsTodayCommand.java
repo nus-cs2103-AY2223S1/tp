@@ -7,6 +7,7 @@ import static seedu.uninurse.model.Model.PREDICATE_SHOW_PATIENTS_FOR_TODAY;
 import java.time.LocalDateTime;
 
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.task.DateTime;
 
 /**
@@ -21,8 +22,8 @@ public class PatientsTodayCommand extends DisplayTasksGenericCommand {
     @Override
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_PATIENTS_FOR_TODAY);
-        model.setDayOfInterest(new DateTime(LocalDateTime.now()));
+        model.updateFilteredPatientList(PREDICATE_SHOW_PATIENTS_FOR_TODAY);
+        model.setSchedule(new Schedule(model.getPatientList(), new DateTime(LocalDateTime.now())));
         return new CommandResult(MESSAGE_SUCCESS, COMMAND_TYPE);
     }
 }

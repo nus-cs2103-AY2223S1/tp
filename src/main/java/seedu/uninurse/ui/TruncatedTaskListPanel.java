@@ -1,8 +1,6 @@
 package seedu.uninurse.ui;
 
-import java.util.List;
-
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -24,9 +22,9 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TruncatedTaskListPanel} with the given list of {@code patients}.
      */
-    public TruncatedTaskListPanel(List<Patient> patients) {
+    public TruncatedTaskListPanel(ObservableList<Patient> patients) {
         super(FXML);
-        this.truncatedTaskListView.setItems(FXCollections.observableList(patients));
+        this.truncatedTaskListView.setItems(patients);
         this.truncatedTaskListView.setCellFactory(listview -> new TruncatedTaskListViewCell());
 
         this.header.setText("All Patient's Tasks:");

@@ -51,7 +51,8 @@ class DeleteTaskCommandTest {
     @Test
     void execute_validIndicesUnfilteredList_success() {
         // use third person in TypicalPersons since there is one task to delete
-        Patient patientToDeleteTask = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToDeleteTask =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToDeleteTask).withTasks().build();
         Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -81,8 +82,10 @@ class DeleteTaskCommandTest {
         // use third person in TypicalPersons since there is one task to delete
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
 
-        Patient patientToDeleteTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToDeleteTask =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTasks().build();
         Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -115,7 +118,7 @@ class DeleteTaskCommandTest {
 
     @Test
     void execute_invalidTaskIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundTaskIndex = Index.fromOneBased(patient.getTasks().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, outOfBoundTaskIndex);
 

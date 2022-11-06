@@ -3,7 +3,7 @@ package seedu.uninurse.model;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Represents the persons added and deleted in an undoable command.
@@ -12,15 +12,15 @@ public class PersonListTracker {
     /**
      * List of persons that were added to reach the current snapshot.
      */
-    private final Optional<List<Patient>> addedPersons;
+    private final Optional<List<Person>> addedPersons;
 
     /**
      * List of persons that were deleted to reach the current snapshot.
      */
-    private final Optional<List<Patient>> deletedPersons;
+    private final Optional<List<Person>> deletedPersons;
 
     /**
-     * Creates a PatientListTracker with no persons.
+     * Creates a PersonListTracker with no persons.
      */
     public PersonListTracker() {
         this.addedPersons = Optional.empty();
@@ -28,18 +28,18 @@ public class PersonListTracker {
     }
 
     /**
-     * Creates a PatientListTracker using addedPersons and deletedPersons.
+     * Creates a PersonListTracker using addedPersons and deletedPersons.
      */
-    public PersonListTracker(Optional<List<Patient>> addedPersons, Optional<List<Patient>> deletedPersons) {
+    public PersonListTracker(Optional<List<Person>> addedPersons, Optional<List<Person>> deletedPersons) {
         this.addedPersons = addedPersons;
         this.deletedPersons = deletedPersons;
     }
 
-    public Optional<List<Patient>> getAddedPersons() {
+    public Optional<List<Person>> getAddedPersons() {
         return this.addedPersons;
     }
 
-    public Optional<List<Patient>> getDeletedPersons() {
+    public Optional<List<Person>> getDeletedPersons() {
         return this.deletedPersons;
     }
 
@@ -48,7 +48,7 @@ public class PersonListTracker {
                 || deletedPersons.map(list -> (list.size() <= 1)).orElse(false);
     }
 
-    public boolean isMultiplePersons() {
+    public boolean isMultiplePerson() {
         return addedPersons.map(list -> (list.size() > 1)).orElse(false)
                 || deletedPersons.map(list -> (list.size() > 1)).orElse(false);
     }
@@ -81,9 +81,9 @@ public class PersonListTracker {
         }
 
         // state check
-        PersonListTracker tracker = (PersonListTracker) other;
-        return this.addedPersons.equals(tracker.addedPersons)
-                && this.deletedPersons.equals(tracker.deletedPersons);
+        PersonListTracker o = (PersonListTracker) other;
+        return addedPersons.equals(o.addedPersons)
+                && deletedPersons.equals(o.deletedPersons);
     }
 }
 

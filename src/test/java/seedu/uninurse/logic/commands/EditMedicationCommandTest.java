@@ -71,7 +71,7 @@ class EditMedicationCommandTest {
     @Test
     public void execute_validIndicesUnfilteredList_success() {
         // Use second patient as the first patient in typical persons does not have a medication
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Medication initialMedication = patientToEdit.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Medication editedMedication = new Medication(MEDICATION_TYPE_STUB, MEDICATION_DOSAGE_STUB);
@@ -107,7 +107,7 @@ class EditMedicationCommandTest {
         // use second person in TypicalPersons since there is a medication to edit
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Medication initialMedication = patientToEdit.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Medication editedMedication = new Medication(MEDICATION_TYPE_STUB, MEDICATION_DOSAGE_STUB);
@@ -146,7 +146,7 @@ class EditMedicationCommandTest {
 
     @Test
     public void execute_invalidMedicationIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Index outOfBoundIndex = Index.fromOneBased(patient.getMedications().size() + 1);
         EditMedicationCommand editMedicationCommand =
@@ -157,7 +157,7 @@ class EditMedicationCommandTest {
 
     @Test
     public void execute_duplicateMedication_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Medication initialMedication = patient.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 

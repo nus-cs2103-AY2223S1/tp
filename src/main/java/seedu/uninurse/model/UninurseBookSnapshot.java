@@ -6,6 +6,7 @@ import java.util.Optional;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.CommandType;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * A snapshot of a UninurseBook after a command.
@@ -15,7 +16,7 @@ public class UninurseBookSnapshot {
     private final CommandResult commandResult;
 
     /**
-     * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
+     * Creates an UninurseBookSnapshot using the Persons in the toBeCopied.
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied) {
         this.uninurseBook = new UninurseBook(toBeCopied);
@@ -23,8 +24,8 @@ public class UninurseBookSnapshot {
     }
 
     /**
-     * Creates an UninurseBookSnapshot using the Persons in the {@code toBeCopied}
-     * and the {@code patientListTracker}.
+     * Creates an UninurseBookSnapshot using the Persons in the toBeCopied
+     * and the commandResult.
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied, CommandResult commandResult) {
         this.uninurseBook = new UninurseBook(toBeCopied);
@@ -34,16 +35,23 @@ public class UninurseBookSnapshot {
     /**
      * Returns the person list stored in uninurseBook.
      */
-    public List<Patient> getPersonList() {
+    public List<Person> getPersonList() {
         return uninurseBook.getPersonList();
     }
 
-    public Optional<PersonListTracker> getPatientListTracker() {
-        return commandResult.getPatientListTracker();
+    /**
+     * Returns the patient list stored in uninurseBook.
+     */
+    public List<Patient> getPatientList() {
+        return uninurseBook.getPatientList();
+    }
+
+    public Optional<PersonListTracker> getPersonListTracker() {
+        return commandResult.getPersonListTracker();
     }
 
     public CommandResult getCommandResult() {
-        return this.commandResult;
+        return commandResult;
     }
 
     @Override

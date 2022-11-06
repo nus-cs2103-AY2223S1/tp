@@ -11,6 +11,7 @@ import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 
 /**
@@ -34,7 +35,10 @@ public interface Logic {
     ReadOnlyUninurseBook getUninurseBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Patient> getFilteredPersonList();
+    ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the list of patients */
+    ObservableList<Patient> getPatientList();
 
     /**
      * Returns the user prefs' uninurse book file path.
@@ -62,7 +66,7 @@ public interface Logic {
     Schedule getSchedule();
 
     /**
-     * Returns the saved PatientListTracker.
+     * Returns the saved PersonListTracker.
      */
-    public PersonListTracker getSavedPatientListTracker();
+    public PersonListTracker getPersonListTracker();
 }

@@ -12,7 +12,7 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_SUCCESS = "Undone the following command:\n\n";
     public static final String MESSAGE_FAILURE = "Maximum undo limit reached! ";
-    public static final CommandType UNDO_COMMAND_TYPE = CommandType.UNDO;
+    public static final CommandType COMMAND_TYPE = CommandType.UNDO;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -20,8 +20,8 @@ public class UndoCommand extends Command {
         if (!model.canUndo()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
-        model.saveCurrentPatientListTracker();
+        model.saveCurrentPersonListTracker();
         CommandResult undoneCommandResult = model.undo();
-        return new CommandResult(MESSAGE_SUCCESS + undoneCommandResult.getFeedbackToUser(), UNDO_COMMAND_TYPE);
+        return new CommandResult(MESSAGE_SUCCESS + undoneCommandResult.getFeedbackToUser(), COMMAND_TYPE);
     }
 }

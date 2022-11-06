@@ -11,7 +11,9 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -48,13 +50,20 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         TaskList initialTaskList = patientToEdit.getTasks();
 
         if (taskIndex.getZeroBased() >= initialTaskList.size()) {
@@ -66,11 +75,11 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
 
         Patient editedPerson = new Patient(patientToEdit, updatedTaskList);
 
-        PersonListTracker patientListTracker = model.setPerson(patientToEdit, editedPerson);
+        PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPerson);
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased(),
-                editedPerson.getName(), deletedTask), COMMAND_TYPE, patientListTracker);
+                editedPerson.getName(), deletedTask), COMMAND_TYPE, personListTracker);
     }
 
     @Override

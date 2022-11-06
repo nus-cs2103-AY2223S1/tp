@@ -7,18 +7,22 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /**
-     * {@code Predicate} that always evaluate to true
+     * Predicate for the model to use.
      */
-    Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Patient> PREDICATE_SHOW_PATIENTS_FOR_TODAY = patient -> patient.getTasks().containsTaskToday();
+    Predicate<Patient> PREDICATE_SHOW_PATIENTS_TASK = patient -> !(patient.getTasks().isEmpty());
+
+    //=========== UserPrefs =================================================================================
 
     /**
      * Returns the user prefs.
@@ -26,7 +30,7 @@ public interface Model {
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * Replaces user prefs data with the data in userPrefs.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
@@ -50,90 +54,139 @@ public interface Model {
      */
     void setUninurseBookFilePath(Path uninurseBookFilePath);
 
+    //=========== UninurseBook ==============================================================================
+
     /**
      * Returns the UninurseBook
      */
     ReadOnlyUninurseBook getUninurseBook();
 
     /**
-     * Replaces uninurse book data with the data in {@code uninurseBook}.
+     * Replaces uninurse book data with the data in uninurseBook.
      */
     void setUninurseBook(ReadOnlyUninurseBook uninurseBook);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the uninurse book.
+     * Returns true if a person with the same identity as person exists in the uninurse book.
      */
-    boolean hasPerson(Patient person);
+    boolean hasPerson(Person person);
+
+    /**
+     * Adds the given person.
+     * person must not already exist in the uninurse book.
+     */
+    PersonListTracker addPerson(Person person);
+
+    /**
+     * Replaces the given person with editedPerson.
+     * person must exist in the uninurse book.
+     * The person identity of editedPerson must not be the same as another existing person in the uninurse book.
+     */
+    PersonListTracker setPerson(Person person, Person editedPerson);
+
+    /**
+     * Adds the given patient.
+     * patient must not already exist in the uninurse book.
+     */
+    PersonListTracker addPatient(Patient patient);
+
+    /**
+     * Replaces the given patient with editedPatient.
+     * patient must exist in the uninurse book.
+     * The patient identity of editedPatient must not be the same as another existing patient in the uninurse book.
+     */
+    PersonListTracker setPatient(Patient patient, Patient editedPatient);
 
     /**
      * Deletes the given person.
      * The person must exist in the uninurse book.
      */
-    PersonListTracker deletePerson(Patient target);
+    PersonListTracker deletePerson(Person person);
 
     /**
      * Deletes the given persons.
      * The persons must exist in the uninurse book.
      */
-    PersonListTracker clearPersons(List<Patient> targets);
+    PersonListTracker clearPersons(List<Person> targets);
 
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the uninurse book.
-     */
-    PersonListTracker addPerson(Patient person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the uninurse book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the uninurse book.
-     */
-    PersonListTracker setPerson(Patient target, Patient editedPerson);
+    //=========== Filtered Person List Accessors ============================================================
 
     /**
      * Returns an unmodifiable view of the filtered person list
      */
-    ObservableList<Patient> getFilteredPersonList();
+    ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given predicate.
      *
-     * @throws NullPointerException if {@code predicate} is null.
+     * @throws NullPointerException if predicate is null.
      */
-    void updateFilteredPersonList(Predicate<Patient> predicate);
+    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the patient of interest  with {@code patient} to be accessed by UI components.
+     * Updates the filter of the filtered person list to filter by the given predicate.
+     *
+     * @throws NullPointerException if predicate is null.
+     */
+    void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    //=========== Filtered Person Accessors =================================================================
+
+    /**
+     * Gets the patient from UninurseBook if the given person is a patient.
+     *
+     * @throws PatientNotFoundException if the given person is not a patient.
+     */
+    Patient getPatient(Person person) throws PatientNotFoundException;
+
+    /**
+     * Returns an unmodifiable view of the patient list
+     */
+    ObservableList<Patient> getPatientList();
+
+    //=========== Other Accessors ===========================================================================
+
+    /**
+     * Updates the patient of interest with patient to be accessed by UI components.
      */
     void setPatientOfInterest(Patient patient);
 
     /**
      * Gets the patient of interest.
+     *
      * @return patient of interest.
      */
     Patient getPatientOfInterest();
 
     /**
-     * Updates the day of interest with {@code dateTime} to be accessed by UI components.
+     * Updates the schedule to be accessed by UI components.
      */
-    void setDayOfInterest(DateTime dayOfInterest);
+    void setSchedule(Schedule schedule);
 
     /**
      * Gets the schedule.
+     *
      * @return schedule.
      */
     Schedule getSchedule();
 
     /**
+     * Saves the PatientListTracker in the current snapshot.
+     */
+    void saveCurrentPersonListTracker();
+
+    /**
      * Gets the saved PatientListTracker.
      * @return saved patient pair.
      */
-    PersonListTracker getSavedPatientListTracker();
+    PersonListTracker getPersonListTracker();
 
     /**
-     * Saves the PatientListTracker in the current snapshot.
-     */
-    void saveCurrentPatientListTracker();
+    * Updates each person
+    */
+    void updatePersons();
+
+    //=========== Undo and Redo =============================================================================
 
     /**
      * Returns whether you can revert to an earlier version of UninurseBook.
@@ -159,10 +212,4 @@ public interface Model {
      * Makes a snapshot of the current UninurseBook.
      */
     void makeSnapshot(CommandResult commandResult);
-
-    /**
-    * Updates the TaskList of each patient with new RecurringTasks if the existing RecurringTask are past their
-    * Task date.
-    */
-    void updateRecurringTasks();
 }

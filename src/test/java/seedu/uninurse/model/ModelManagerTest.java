@@ -119,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().getValue().split("\\s+");
-        modelManager.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPatientList(new PatientContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(uninurseBook, userPrefs));
 
         // resets modelManager to initial state for upcoming tests

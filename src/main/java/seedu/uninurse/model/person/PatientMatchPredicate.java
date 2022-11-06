@@ -53,8 +53,8 @@ public class PatientMatchPredicate implements Predicate<Patient> {
         addPredicate(arg.getAllValues(PREFIX_EMAIL), x -> new EmailContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_ADDRESS), x -> new AddressContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_TAG), x -> new TagContainsKeywordsPredicate(x));
-        addPredicate(arg.getAllValues(PREFIX_CONDITION), x -> new ConditionContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_TASK_DESCRIPTION), x -> new TaskContainsKeywordsPredicate(x));
+        addPredicate(arg.getAllValues(PREFIX_CONDITION), x -> new ConditionContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_MEDICATION), x -> new MedicationContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_REMARK), x -> new RemarkContainsKeywordsPredicate(x));
     }
@@ -66,8 +66,8 @@ public class PatientMatchPredicate implements Predicate<Patient> {
     }
 
     @Override
-    public boolean test(Patient person) {
-        return predicates.stream().allMatch(x -> x.test(person));
+    public boolean test(Patient patient) {
+        return predicates.stream().allMatch(x -> x.test(patient));
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PersonListTracker;
-import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Clears the uninurse book.
@@ -20,8 +20,8 @@ public class ClearCommand extends UndoableCommand {
     @Override
     public CommandResult execute(Model model) {
         requireAllNonNull(model);
-        List<Patient> lastShownList = new ArrayList<Patient>(model.getFilteredPersonList());
-        PersonListTracker patientListTracker = model.clearPersons(lastShownList);
-        return new CommandResult(MESSAGE_SUCCESS, CLEAR_COMMAND_TYPE, patientListTracker);
+        List<Person> lastShownList = new ArrayList<>(model.getFilteredPersonList());
+        PersonListTracker personListTracker = model.clearPersons(lastShownList);
+        return new CommandResult(MESSAGE_SUCCESS, CLEAR_COMMAND_TYPE, personListTracker);
     }
 }

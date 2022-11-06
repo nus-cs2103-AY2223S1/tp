@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient personInList = model.getUninurseBook().getPersonList().get(0);
+        Patient personInList = model.getPatient(model.getUninurseBook().getPersonList().get(0));
         assertCommandFailure(new AddPatientCommand(personInList), model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 }

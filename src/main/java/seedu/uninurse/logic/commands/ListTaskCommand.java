@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.SPECIAL_CHARACTER_ALL;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_PATIENTS_TASK;
 
 import seedu.uninurse.model.Model;
 
@@ -22,7 +23,7 @@ public class ListTaskCommand extends DisplayTasksGenericCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredPersonList(p -> !(p.getTasks().isEmpty()));
+        model.updateFilteredPatientList(PREDICATE_SHOW_PATIENTS_TASK);
         return new CommandResult(MESSAGE_SUCCESS, LIST_TASK_COMMAND_TYPE);
     }
 }

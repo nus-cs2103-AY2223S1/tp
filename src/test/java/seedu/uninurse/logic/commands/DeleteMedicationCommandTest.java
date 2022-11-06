@@ -56,7 +56,8 @@ public class DeleteMedicationCommandTest {
     @Test
     void execute_validIndicesUnfilteredList_success() {
         // use second person in TypicalPersons since there is one medication to delete
-        Patient patientToDeleteMedication = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToDeleteMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Patient editedPatient = new PersonBuilder(patientToDeleteMedication).withMedications().build();
         Medication deletedMedication = patientToDeleteMedication.getMedications().get(
                 INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -88,8 +89,10 @@ public class DeleteMedicationCommandTest {
         // use second person in TypicalPersons since there is one medication to delete
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToDeleteMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToDeleteMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PersonBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withMedications().build();
         Medication deletedMedication = patientToDeleteMedication.getMedications().get(
                 INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -124,7 +127,7 @@ public class DeleteMedicationCommandTest {
 
     @Test
     void execute_invalidMedicationIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundMedicationIndex = Index.fromOneBased(patient.getMedications().size() + 1);
         DeleteMedicationCommand deleteMedicationCommand =
                 new DeleteMedicationCommand(INDEX_FIRST_PERSON, outOfBoundMedicationIndex);

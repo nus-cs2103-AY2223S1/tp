@@ -63,11 +63,11 @@ public class AddPatientCommand extends AddGenericCommand {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PATIENT);
         }
 
-        PersonListTracker patientListTracker = model.addPerson(toAdd);
+        PersonListTracker personListTracker = model.addPatient(toAdd);
         model.setPatientOfInterest(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
-                COMMAND_TYPE, patientListTracker);
+                COMMAND_TYPE, personListTracker);
     }
 
     @Override
