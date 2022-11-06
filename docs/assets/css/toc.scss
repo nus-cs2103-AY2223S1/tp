@@ -104,6 +104,7 @@ h6:before {
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
+  opacity: 0;
 }
 
 .toc-button:hover {
