@@ -8,7 +8,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.item.DisplayItem;
 

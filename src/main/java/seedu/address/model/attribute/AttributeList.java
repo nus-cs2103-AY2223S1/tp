@@ -1,5 +1,7 @@
 package seedu.address.model.attribute;
 
+import static seedu.address.commons.util.StringUtil.properCase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -9,8 +11,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
 import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
-
-import static seedu.address.commons.util.StringUtil.properCase;
 
 /**
  * Represents a Person's custom fields pairings in the address book.
