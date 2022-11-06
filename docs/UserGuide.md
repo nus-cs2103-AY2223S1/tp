@@ -99,20 +99,20 @@ The following diagram below shows how you should interpret this display window.
 In the user guide, you may come across some terms you do not understand. The following table provides clarification
 of the terms commonly used in PetCode.
 
-|       Term       | Description                                                                                                                                                                                                                                                                                                                                                   |
-|:----------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                                                  |
-|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status.                                                                                                                                                                                                                   |
-|   **Command**    | A command is a specific instruction you can give to Petcode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                                       |
-|   **Contact**    | A contact is an information entry in PetCode. There are three types of contacts you can add - `Buyer`, `Supplier` and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                                             |
-|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                                                      |
-|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                                          |
-|    **Index**     | The index of the contact or item in the display list for contacts/items.                                                                                                                                                                                                                                                                                      |
-|   **Integer**    | Whole number                                                                                                                                                                                                                                                                                                                                                  |
-|     **Item**     | An item refers to an `Order` or a `Pet`. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                                          |
-|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> For example, the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display. `list buyer` displays your list of buyers, where the KEY parameter is `buyer`.  |
-|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                                          |
-|  **Whitespace**  | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                                           |
+|       Term       | Description                                                                                                                                                                                                                                                                                                                                                  |
+|:----------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                                                 |
+|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status.                                                                                                                                                                                                                  |
+|   **Command**    | A command is a specific instruction you can give to PetCode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                                      |
+|   **Contact**    | A contact is an information entry in PetCode. There are three types of contacts you can add - `Buyer`, `Supplier` and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                                            |
+|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                                                     |
+|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                                         |
+|    **Index**     | The index of the contact or item in the display list for contacts/items.                                                                                                                                                                                                                                                                                     |
+|   **Integer**    | Whole number                                                                                                                                                                                                                                                                                                                                                 |
+|     **Item**     | An item refers to an `Order` or a `Pet`. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                                         |
+|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> For example, the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display. `list buyer` displays your list of buyers, where the KEY parameter is `buyer`. |
+|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                                         |
+|  **Whitespace**  | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                                          |
 
 ## Quick start
 
@@ -213,7 +213,7 @@ Format: `list KEY`
 
 
 Examples:
-* `list buyer` or `list b` lists all Buyer contacts with their orders.
+* `list buyer` or `list b`, lists all Buyer contacts with their orders.
 * `list deliverer` or `list d`, lists all Deliverer contacts.
 * `list supplier` or `list s`, lists all Supplier contacts with their pets.
 * `list all` or `list a`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
@@ -299,9 +299,10 @@ Example:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **What is the difference between address and location?**
-* **Address** is the specific street number and unit number of the place.
-* **Location** is the country this person is based. 
+:information_source: **What is the difference between address and location?** <br>
+
+* **Address** is the specific street number and unit number of the place. <br>
+* **Location** is the country this person is based. <br>
 
 Since PetCode caters to international pet sale, it is good to have location as a separate attribute.
 Different countries have different regulations on pet sale, and you may need to filter persons by their locations for some reason.
@@ -411,7 +412,7 @@ Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COL
 
 :exclamation: **Caution**: `INDEX_OF_BUYER` should be immediately after `add-o`.
 Ensure that at the index is a buyer before executing this command,
-which can be achieved by executing the [List Command](#listing-contacts-or-items--list) or [Find buyer command](#finding-a-buyer--find-b) beforehand.
+which can be achieved by executing the [List Command](#listing-contacts-or-items--list) or [Find buyer command](#finding-a-buyer--find-b) beforehand. <br>
 
 :exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_sp/`. This is because they as a whole specify how the requested pet
@@ -421,7 +422,7 @@ should be like.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **What is a request in an order?**
+:information_source: **What is a request in an order?** <br>
 
 The prefix `o_r/` specifies a request, which contains the **characteristics of a pet** that the buyer wants the pet to have,
 including age, color, color pattern and species.
@@ -439,14 +440,6 @@ Examples:
 
 * To add an order to the buyer at index 1 of the display list: `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/German shepherd o_c/golden o_cp/pure color o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * To add an order to the buyer at index 2 of the display list: `add-o 2 o_st/Negotiating o_r/add-r o_a/3 o_sp/chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: When you input a price range for your orders, the order of the lower bound of the price range and the upper bound does
-not matter because our app will configure the lower bound of the price range to be the smaller input and the upper
-bound to be the larger input.
-
-</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -548,7 +541,7 @@ With this information, you may contact the suppliers who own these pets for furt
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **How does the match command work?**
+:information_source: **How does the match command work?** <br>
 
 This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
 
@@ -651,8 +644,8 @@ For example, if you want to edit a buyer by `edit-b 1`, do ensure at index 1 is 
 </div>
 
 Examples: 
-* `edit-b 1 n/Alex`, modifies the name of the `Buyer` contact at index 1 of Buyer List to Alex, if index is found.
-* `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the `Supplier` contact at index 3 of Supplier List to Alex, if index is found.
+* `edit-b 1 n/Alex`, modifies the name of the Buyer contact at index 1 of Buyer List to Alex, if index is found.
+* `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the Supplier contact at index 3 of Supplier List to Alex, if index is found.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -665,13 +658,13 @@ Examples:
 
 ### Finding contact(s) using keywords : `find`
 
-Displays all contacts which match ONE specific attribute. This command is especially useful when you want to quickly
+Displays **all** contacts which match **one** specific attribute. This command is especially useful when you want to quickly
 find contacts based on a keyword.
 
 There are five possible attributes for finding contact(s):
-Address, Email, Location, Name, Phone.
+Address, Email, Location, Name, Phone. Please provide **one** out of the five when using this command.
 
-Format: `find prefix/INPUT`
+Format: `find prefix/ATTRIBUTE`
 
 #### Attributes and Their Corresponding Prefixes Table
 
@@ -694,11 +687,12 @@ Examples:
 
 #### Finding a buyer : `find-b`
 
-Displays all buyers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all buyers who match **one** specific attribute.
 
-Format: `find-b prefix/INPUT`
+Format: `find-b prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
@@ -711,11 +705,12 @@ Examples:
 
 #### Finding a deliverer : `find-d`
 
-Displays all deliverers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all deliverers who match **one** specific attribute.
 
-Format: `find-d prefix/INPUT`
+Format: `find-d prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
@@ -728,11 +723,12 @@ Examples:
 
 #### Finding a supplier : `find-s`
 
-Displays all suppliers who match ONE specific attribute. Check out
-the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
-for more information.
+Displays all suppliers who match **one** specific attribute.
 
-Format: `find-s prefix/INPUT`
+Format: `find-s prefix/ATTRIBUTE`
+
+Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+for more information on prefixes and attributes.
 
 Examples:
 
@@ -746,12 +742,14 @@ Examples:
 ### Filtering items by attributes : `filter`
 
 Displays items based on the specified attribute(s). This command is especially useful when you want to coordinate
-sales between a Buyer and Supplier, by filtering out orders that are still "Pending" etc.
+sales between a Buyer and Supplier, by filtering out orders that are still "Pending", etc.
+Please provide **at least one** attribute when using this command.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-info">
 
-:exclamation:**Caution:** This command has to be used **AFTER** a list command, i.e When filtering orders, use the
-command `list orders` before using `filter-o`. When filtering pets, use the command `list pets`, before using `filter-p`.
+:information_source: **What is the difference between find command and filter command?** <br>
+* Find command: Finds **contact(s)**; only **one** attribute is allowed. <br>
+* Filter command: Filters **item(s)**; **multiple** attributes are allowed. 
 
 </div>
 
@@ -760,13 +758,15 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
 
-| Attribute           | Prefix | Format                       | Example           |
-|---------------------|--------|------------------------------|-------------------|
-| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding |
-| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating  |
-| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456        |
+Format: `filter-o PREFIX/ATTRIBUTE`
 
-Format: `filter-o PREFIX/INPUT`
+| Attribute           | Prefix | Format                       | Example            |
+|---------------------|--------|------------------------------|--------------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding  |
+| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating   |
+| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456       |
+
+
 
 Examples:
 
@@ -776,16 +776,9 @@ Examples:
 
 Notes:
 
-* For additional requests, there cannot be spaces (ie. filter-o o_ar/good for kids).
+* For additional requests, there cannot be spaces (i.e. filter-o o_ar/good for kids).
 * Having multiple prefixes of the same type is allowed. One example of this is:
-`filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
-* Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
-
-| Order Status | Input word  | Usage                   |
-|--------------|-------------|-------------------------|
-| PENDING      | Pending     | filter-o os/Pending     |
-| NEGOTIATING  | Negotiating | filter-o os/Negotiating |
-| DELIVERING   | Delivering  | filter-o os/Delivering  |
+`filter-o o_st/Pending o_st/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -795,6 +788,8 @@ Notes:
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
 
+Format: `filter-p PREFIX/ATTRIBUTE`
+
 | Attribute          | Prefix | Format      | Example           |
 |--------------------|--------|-------------|-------------------|
 | Color              | p_c    | p_c/KEYWORD | p_c/pink          |
@@ -802,8 +797,6 @@ Price, Species, Vaccination status.
 | Price              | p_p    | p_p/PRICE   | p_p/209           |
 | Species            | p_s    | p_s/KEYWORD | p_s/ostrich       |
 | Vaccination Status | p_v    | p_v/KEYWORD | p_v/false         |
-
-Format: `filter-p PREFIX/INPUT`
 
 Examples:
 
@@ -816,66 +809,33 @@ Examples:
 
 ### Sorting contacts : `sort`
 
-Format: `sort LIST_TYPE [ATTRIBUTES...]`
+Sorts the specified list based on the default or given attribute(s) as sorting criteria.
 
-<div markdown="span" class="alert alert-primary">
+Format: `sort KEY [ATTRIBUTE]…​`
 
-:bulb:**Tip:** Different types of contact / item lists have different ways to sort them. Check out the [List Attribute 
-Table](#list-attribute-table) below for more information.
+<div markdown="span" class="alert alert-info">
+
+:information_source: When no attributes are specified as sorting criteria, the list will be sorted based on the default sorting criteria given below.
 
 </div>
 
-Check out the acceptable List Parameters for different types of contacts /
-items [here](#list-key-types-table).
+#### KEY and ATTRIBUTE Table
 
-#### List Attribute Table
-
-| List type | Attributes                                                                |
-|-----------|---------------------------------------------------------------------------|
-| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                  |
-| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address            |
-| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                  |
-| Order     | *Due Date*, Price Range, Price, Status                                    |
-| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight  |
-
-> The italicised text attribute represents the default sorting attribute for each list. <br>
-> For example, `sort pet` will sort the Pets list in default by the price attribute.
-
-#### Acceptable Attribute Parameters Table
-
-| Attribute             | Acceptable Parameters                        |
-|-----------------------|----------------------------------------------|
-| Name                  | name, na, n, -n, /n                          |
-| Phone                 | phone, ph, p, -p, /p                         |
-| Email                 | email, ema, em, e, -e, /e                    |
-| Location              | location, loc, l, -l, /l                     |
-| Address               | address, addr, a, -a, /a                     |
-| Number of Order       | orders, order                                |
-| Number of Pet On Sale | pets, pet                                    |
-| Due Date              | duedate, due, by, date, bydate, d, -d, /d    |
-| Price Range           | pricerange, prange, pricer, pr, -pr, /pr     |
-| Price                 | price, p, -p, /p                             |
-| Status                | orderstatus, status, os, s, -s, /s           |
-| Color                 | color, c, -c, /c                             |
-| Color Pattern         | colorpattern, cpattern, colorp, cp, -cp, /cp |
-| Birth Date            | birthdate, bdate, birthd, date, bd, -bd, /bd |
-| Species               | species, s, -s, /s                           |
-| Height                | height, h, -h, /h                            |
-| Weight                | weight, w, -w, /w                            |
+| Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE as Sorting Criteria <br> (acceptable parameters)                                                                                                                                               | Examples                                    |
+|:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+|         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort buyer name`, <br> `sort b p n`        |
+|        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort supplier e`, <br> `sort s address`    |
+|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort d location a`, <br>`sort deliverer n` |           
+|         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`            |          
+|          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`             |
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation:**Caution:** This command sorts the specified list in **ascending** order, e.g it will display the buyer with the **lowest** number
+:exclamation:**Caution:** This command sorts the specified list in **ascending** order. For example, it will display the buyer with the **lowest** number
 of orders at the **top** of the buyer list and the buyer with the **highest** number of orders at the **bottom** of the buyer list.
 
 </div>
 
-Examples:
-
-* `sort buyer`
-* `sort pet price height weight`
-* `sort s n /loc`
-* `sort -o pr s p`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
