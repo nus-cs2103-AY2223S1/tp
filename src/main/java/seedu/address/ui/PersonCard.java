@@ -80,13 +80,13 @@ public class PersonCard extends UiPart<Region> {
 
         if (person instanceof Nurse) {
             dateSlots.setText("HomeVisits DateSlot: " + NOT_APPLICABLE);
-            homeVisits.setText("HomeVisits: " + ((Nurse) person).getHomesVisitsInString());
-            unavailableDates.setText("Unavailable Dates: " + ((Nurse) person).getUnavailableDatesInString());
+            homeVisits.setText(((Nurse) person).getHomesVisitsInString());
+            unavailableDates.setText(((Nurse) person).getUnavailableDatesInString());
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
-            physInfo.setText(NOT_APPLICABLE);
-            nokInfo.setText(NOT_APPLICABLE);
+            physInfo.setText("Attending Physician: " + NOT_APPLICABLE);
+            nokInfo.setText("NOK: " + NOT_APPLICABLE);
         } else if (person instanceof Patient) {
-            dateSlots.setText("HomeVisits DateSlot: " + ((Patient) person).getDatesSlotsInString());
+            dateSlots.setText(((Patient) person).getDatesSlotsInString());
             homeVisits.setText("HomeVisits: " + NOT_APPLICABLE);
             unavailableDates.setText("Unavailable Dates: " + NOT_APPLICABLE);
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
