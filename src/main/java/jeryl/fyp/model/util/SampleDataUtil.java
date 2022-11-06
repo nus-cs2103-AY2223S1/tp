@@ -83,7 +83,7 @@ public class SampleDataUtil {
             try {
                 parsedDatetime = LocalDateTime.parse(datetime,
                         DateTimeFormatter.ofPattern(dateTimeFormat)
-                                .withResolverStyle(ResolverStyle.SMART));
+                                .withResolverStyle(ResolverStyle.STRICT));
                 return new Deadline(new DeadlineName(name), parsedDatetime);
             } catch (DateTimeParseException dtpe) {
                 // Go to the next dateTime format
