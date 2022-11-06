@@ -376,7 +376,7 @@ Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multipl
 Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
 </div>
 
-* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
+* One person **cannot** have 2 debts with the same description (case-sensitive), money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
 
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.

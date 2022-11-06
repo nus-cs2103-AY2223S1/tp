@@ -187,6 +187,10 @@ Receiving the `Index` of the specified `Person` from the `ClearDebtsCommandParse
 The `ClearDebtsCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new empty `DebtList`.
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
+Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams below.
+
+<img src="images/ClearDebtsObjectDiagram.png" width="450" />
+<img src="images/ClearDebtsObjectDiagramAfter.png" width="300" />
 
 ### Delete debt feature - `deletedebt`
 
@@ -209,10 +213,10 @@ The sequence diagram below details such behaviour of PayMeLah when a user enters
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the final internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` is executed, is given by the object diagrams below.
+Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` has been executed, is given by the object diagrams below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
-<img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
+<img src="images/DeleteDebtAfterObjectDiagram.png" width="280" />
 
 
 
