@@ -10,8 +10,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+-   This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+-   Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
 ---
 
 ## **Setting up, getting started**
@@ -40,17 +41,17 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
-- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components and invokes cleanup methods where necessary.
+-   At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+-   At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-- [**`UI`**](#ui-component): The UI of the App.
-- [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
-- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+-   [**`UI`**](#ui-component): The UI of the App.
+-   [**`Logic`**](#logic-component): The command executor.
+-   [**`Model`**](#model-component): Holds the data of the App in memory.
+-   [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -60,8 +61,8 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+-   defines its _API_ in an `interface` with the same name as the Component.
+-   implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -81,10 +82,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-- executes user commands using the `Logic` component.
-- listens for changes to `Model` data so that the UI can be updated with the modified data.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+-   executes user commands using the `Logic` component.
+-   listens for changes to `Model` data so that the UI can be updated with the modified data.
+-   keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+-   depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -114,8 +115,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `SurvinParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SurvinParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+-   When called upon to parse a user command, the `SurvinParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SurvinParser` returns back as a `Command` object.
+-   All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -125,10 +126,10 @@ How the parsing works:
 
 The `Model` component,
 
-- stores Survin data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+-   stores Survin data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+-   stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+-   stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+-   does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Survin`, which `Person` references. This allows `Survin` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -144,9 +145,9 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both Survin data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `SurvinStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+-   can save both Survin data and user preference data in json format, and read them back into corresponding objects.
+-   inherits from both `SurvinStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+-   depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -158,15 +159,15 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedSurvin`. It extends `Survin` with an undo/redo history, stored internally as an `survinStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Note that we only implement the undo feature in this iteration. The undo/redo mechanism is facilitated by `VersionedSurvin`. It extends `Survin` with an undo/redo history, stored internally as an `survinStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-- `VersionedSurvin#commit()` — Saves the current Survin state in its history.
-- `VersionedSurvin#undo()` — Restores the previous Survin state from its history.
-- `VersionedSurvin#redo()` — Restores a previously undone Survin state from its history.
+-   `VersionedSurvin#commit()` — Saves the current Survin state in its history.
+-   `VersionedSurvin#undo()` — Restores the previous Survin state from its history.
+-   `VersionedSurvin#redo()` — Restores a previously undone Survin state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitSurvin()`, `Model#undoSurvin()` and `Model#redoSurvin()` respectively.
 
@@ -227,16 +228,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-- **Alternative 1 (current choice):** Saves the entire Survin state.
-  
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
+-   **Alternative 1 (current choice):** Saves the entire Survin state.
 
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+    -   Pros: Easy to implement.
+    -   Cons: May have performance issues in terms of memory usage.
+
+-   **Alternative 2:** Individual command knows how to undo/redo by
+    itself.
+
+    -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    -   Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -303,6 +304,7 @@ For the `DeleteCommand` class, the idea is rather straightforward where we make 
 ### `ViewCommand` feature
 
 This feature allows users to view `Person` objects with specified attributes. The current implementation supports viewing keywords in any of the following fields
+
 1. `Name`
 2. `Phone`
 3. `Email`
@@ -342,11 +344,11 @@ Note that if the new person we cloned is already in Survin, it will trigger a du
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+-   [Documentation guide](Documentation.md)
+-   [Testing guide](Testing.md)
+-   [Logging guide](Logging.md)
+-   [Configuration guide](Configuration.md)
+-   [DevOps guide](DevOps.md)
 
 ---
 
@@ -356,11 +358,11 @@ Note that if the new person we cloned is already in Survin, it will trigger a du
 
 **Target user profile**:
 
-- has a need to manage a significant number of surveyees
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
+-   has a need to manage a significant number of surveyees
+-   prefer desktop apps over other types
+-   can type fast
+-   prefers typing to mouse interactions
+-   is reasonably comfortable using CLI apps
 
 **Value proposition**: manage surveyees faster than a typical mouse/GUI driven app
 
@@ -398,20 +400,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific surveyee in the list
 
 4. Survin deletes the surveyee
-   
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-  
-  Use case ends.
+-   2a. The list is empty.
 
-- 3a. The given index is invalid.
-  
-  - 3a1. Survin shows an error message.
-    
-    Use case resumes at step 2.
+    Use case ends.
+
+-   3a. The given index is invalid.
+
+    -   3a1. Survin shows an error message.
+
+        Use case resumes at step 2.
 
 **Use case: view surveyees**
 
@@ -427,13 +429,14 @@ Preconditions: User can recall the part of a survey name
 
 **Extensions**
 
-- 2a. The survey name is not found.
-  - 2a1. Survin returns an empty list.
-  - 2a2. The user tries again with another survey keyword.
-  
-  Steps 2a1-2a2 are repeated until some keywords are matched
+-   2a. The survey name is not found.
 
-  Use case resumes from step 3.
+    -   2a1. Survin returns an empty list.
+    -   2a2. The user tries again with another survey keyword.
+
+    Steps 2a1-2a2 are repeated until some keywords are matched
+
+    Use case resumes from step 3.
 
 **Use case: Append surveys/tags to a surveyee**
 
@@ -446,20 +449,20 @@ Preconditions: User can recall the part of a survey name
 3. User requests to append surveys and/or tags to a specific surveyee in the list
 
 4. Survin appends requested surveys and/or tags to the surveyee
-   
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-  
-  Use case ends.
+-   2a. The list is empty.
 
-- 4a. The requested surveys and/or tags already exist on the surveyee
-  
-  - 4a1. Survin shows an error message.
-    
-    Use case resumes at step 2.
+    Use case ends.
+
+-   4a. The requested surveys and/or tags already exist on the surveyee
+
+    -   4a1. Survin shows an error message.
+
+        Use case resumes at step 2.
 
 **Use case: Unappend surveys/tags to a surveyee**
 
@@ -472,20 +475,20 @@ Preconditions: User can recall the part of a survey name
 3. User requests to unappend surveys and/or tags from a specific surveyee in the list
 
 4. Survin unappends requested surveys and/or tags from the surveyee
-   
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-  
-  Use case ends.
+-   2a. The list is empty.
 
-- 4a. The requested surveys and/or tags does not exist on the surveyee
-  
-  - 4a1. Survin shows an error message.
-    
-    Use case resumes at step 2.
+    Use case ends.
+
+-   4a. The requested surveys and/or tags does not exist on the surveyee
+
+    -   4a1. Survin shows an error message.
+
+        Use case resumes at step 2.
 
 **Use case: Change theme**
 
@@ -494,8 +497,8 @@ Preconditions: User can recall the part of a survey name
 1. User requests to change the theme of Survin
 
 2. Survin's theme changes
-   
-   Use case ends.
+
+    Use case ends.
 
 **Use case: Show/Hide more detailed information**
 
@@ -504,8 +507,8 @@ Preconditions: User can recall the part of a survey name
 1. User requests to show/hide more detailed information of surveyees
 
 2. Survin shows/hides more detailed information of surveyees
-   
-   Use case ends.
+
+    Use case ends.
 
 _{More to be added}_
 
@@ -519,8 +522,8 @@ _{More to be added}_
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+-   **Mainstream OS**: Windows, Linux, Unix, OS-X
+-   **Private contact detail**: A contact detail that is not meant to be shared with others
 
 ---
 
@@ -536,50 +539,50 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-   
-   1. Download the jar file and copy into an empty folder
-   
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+    1. Download the jar file and copy into an empty folder
+
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
-   
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-   
-   2. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 3. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
-   
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-   
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-   
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
 ### Appending surveys/tags to a surveyee
 
 1. Appending surveys/tags to a surveyee while all surveyees are shown
-   
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   
-   2. Test case: `append 1 s/New Survey`<br>
-      Expected 1: First surveyee in the list has 'New Survey' added to their list of surveys<br>
-      Expected 2: Error shown if first surveyee in the list already has 'New Survey' in their list of surveys before the command.
-   
-   3. Test case: `append 1 s/New Survey s/New Survey2 t/newTag t/newTag2`<br>
-      Expected 1: First surveyee in the list has 'New Survey' and 'New Survey2' added to their list of surveys and has 'newTag' and 'newTag2' added to their list of tags.<br>
-      Expected 2: Error shown if first surveyee in the list already has any of the surveys or tags specified in the command before the command.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case: `append 1 s/New Survey`<br>
+       Expected 1: First surveyee in the list has 'New Survey' added to their list of surveys<br>
+       Expected 2: Error shown if first surveyee in the list already has 'New Survey' in their list of surveys before the command.
+
+    3. Test case: `append 1 s/New Survey s/New Survey2 t/newTag t/newTag2`<br>
+       Expected 1: First surveyee in the list has 'New Survey' and 'New Survey2' added to their list of surveys and has 'newTag' and 'newTag2' added to their list of tags.<br>
+       Expected 2: Error shown if first surveyee in the list already has any of the surveys or tags specified in the command before the command.
 
 ### Unappending surveys/tags from a surveyee
 
@@ -588,54 +591,55 @@ testers are expected to do more *exploratory* testing.
 ### Changing theme
 
 1. Changing theme while in light theme
-   
-   1. Test case: `theme dark`<br>
-      Expected: Survin changes to the dark theme.
-   2. Test case: `theme light`<br>
-      Expected: Survin shows an error message.
-   3. Test case: Click on the `Appearance` tab and select `Dark Theme`<br>
-      Expected: Survin changes to the dark theme.
+
+    1. Test case: `theme dark`<br>
+       Expected: Survin changes to the dark theme.
+    2. Test case: `theme light`<br>
+       Expected: Survin shows an error message.
+    3. Test case: Click on the `Appearance` tab and select `Dark Theme`<br>
+       Expected: Survin changes to the dark theme.
 
 2. Changing theme while in dark theme
-   
-   1. Test case: `theme light`<br>
-      Expected: Survin changes to the light theme.
-   2. Test case: `theme dark`<br>
-      Expected: Survin changes to the dark theme.
-   3. Test case: Click on the `Appearance` tab and select `Light Theme`<br>
-      Expected: Survin changes to the light theme.
+
+    1. Test case: `theme light`<br>
+       Expected: Survin changes to the light theme.
+    2. Test case: `theme dark`<br>
+       Expected: Survin changes to the dark theme.
+    3. Test case: Click on the `Appearance` tab and select `Light Theme`<br>
+       Expected: Survin changes to the light theme.
 
 ### Showing/Hiding more detailed information
 
 1. Showing more detailed information
-   
-   1. Single surveyee
-      
-      1. Test case: Click on the surveyee you wish to show more details (Note: surveyee should be in the hiding more detailed information state)
-         Expected: Surveyee will have their more detailed information shown.
-   
-   2. All surveyees
-      
-      1. Test case: `toggle-list-mode`<br>
-         Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
-      
-      2. Test case: Click on the `Appearance` tab and select `Expanded Cards`<br>
-         Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
+
+    1. Single surveyee
+
+        1. Test case: Click on the surveyee you wish to show more details (Note: surveyee should be in the hiding more detailed information state)
+           Expected: Surveyee will have their more detailed information shown.
+
+    2. All surveyees
+
+        1. Test case: `toggle-list-mode`<br>
+           Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
+
+        2. Test case: Click on the `Appearance` tab and select `Expanded Cards`<br>
+           Expected: All surveyees have their more detailed information shown. (Note: The mode of the list will change, this means that new `PersonCard` will be created in this showing more detailed information state)
 
 2. Hiding more detailed information
-   
-   1. Omitted as it is similar to 'Showing more detailed information'.
+
+    1. Omitted as it is similar to 'Showing more detailed information'.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 
 ### Challenges faced
+
 1. Finding out that the `updateItem()` method was the reason for the buggy implementation of the compacted and expanded PersonCard took some time. There was a need to read a lot of documentation to find the fix.
 2. Finding out how to change the stylesheet took some time. AB3 did not seem to use `Scene` due to the use of `FXMLLoader` and I needed to get the scene to get the stylesheet. Took a few hours to find out that the `Stage` class had a `getScene()` method.
