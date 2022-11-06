@@ -500,6 +500,30 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. _{ more test cases …​ }_
 
+### Switch tabs
+
+1. View different content.
+
+    1. Test case: `switch f/student`<br>
+        Expected: A success message shown and the main display shows student's content.
+
+    2. Test case: `switch f/tutorial`<br>
+       Expected: A success message shown and the main display shows tutorial's content.
+   
+    3. Test case: `switch f/consultation`<br>
+       Expected: A success message shown and the main display shows consultation's content.
+   
+    4. Test case: `switch f/grade`<br>
+       Expected: A success message shown and the main display shows grade chart.
+   
+2. View different content, but command has a typo error.
+
+    1. Test case: `switch f/students`<br>
+       Expected: Error message shown as the command has a typo error.
+   
+    2. Test case: `switchs f/tutorial`<br>
+       Expected: Error message shown as the command has a typo error.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
