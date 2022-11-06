@@ -553,6 +553,10 @@ from the module with module code `CS2040`, using their corresponding link alias 
 <br>
 
 ### 2.4. Contacts
+The terms "contact" and "person" have similar meanings and for the majority of the time, can be understood as referring
+to the same entity. The only scenario that calls for a distinction is when you are inputting a command word; we use person instead 
+of contact.
+
 #### 2.4.1. Add person
 You may add a contact to Plannit using the `add-person` command.
 
@@ -569,10 +573,16 @@ Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 
 Example:
 ```
-add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+add-person n/Bobbie e/bobbie@gmail.com p/91234567
 ```
-In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
-`91234567` into Plannit.
+In the above example, we are adding a contact with name `Bobbie`, email `bobbie@gmail.com`, and phone number
+`91234567` into Plannit. Here's a screenshot of Plannit before and after executing the command:
+
+
+| Before executing the command                                                                                                                               | After executing the command                                                                                   |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Adding a person to Plannit will bring you back to the home page.
@@ -621,9 +631,16 @@ Format: `delete-person n/NAME`
 
 Example:
 ```
-delete-person n/Dinosaur Lim
+delete-person n/Bobbie
 ```
-In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
+In the above example, we are deleting the contact with name `Bobbie` from Plannit. Here's a screenshot of Plannit before
+and after executing the command:
+
+
+| Before executing the command                                                                                                                                  | After executing the command                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-after.png"/></p><p>Bobbie has been deleted!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a person from Plannit will bring you back to the home page.
@@ -648,11 +665,17 @@ Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 Example:
 
 ```
-delete-person-from-module m/CS2103T n/Dinosaur Lim
+delete-person-from-module m/CS2103T n/Charlotte Oliveiro
 ```
-In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+In the above example, we are deleting the person `Charlotte Oliveiro` from the module `CS2103T`. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
+| Before executing the command                                                                                                                                              | After executing the command                                                                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-after.png"/></p><p>Charlotte Oliveiro has been deleted from the module CS2103T!</p>{:/} |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a person will bring you back to the home page.
 </div>
 
@@ -672,20 +695,21 @@ Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 
 Examples:
 ```
-edit-person 1 n/Dinosaur Lim
+edit-person 2 n/Charmander
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim` in Plannit.
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
+`Charmander` in Plannit.
 ```
-edit-person 1 e/dinosaurlim@gmail.com
+edit-person 2 n/Charmander e/charmander@gmail.com
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the
-email `dinosaurlim@gmail.com`in Plannit.
-```
-edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
-```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
+`Charmander` and email `charmander@gmail.com`in Plannit. Here's a screenshot of Plannit before and after executing the 
+command for the last example:
+
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/edit-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-person-after.png"/></p><p>Bernice Yu has been edited to Charmander!</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a person will bring you back to the home page.
