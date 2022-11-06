@@ -307,9 +307,9 @@ to write simpler and cleaner code.
 
 #### Alternatives considered
 
-1. The `Model` instance can be passed directly to the `SuggestCommand` in which the `SuggestCommand` can
-   modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
-   maintainability of the code.
+The `Model` instance can be passed directly to the `SuggestCommand` in which the `SuggestCommand` can
+modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
+maintainability of the code.
 
 ### *Autocomplete Commands*
 
