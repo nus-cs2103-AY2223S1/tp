@@ -22,9 +22,6 @@ public class PriceTest {
 
     @Test
     public void isValidPrice() {
-        // null price
-        assertFalse(Price.isValidPrice(null));
-
         // invalid prices
         assertFalse(Price.isValidPrice("")); // empty string
         assertFalse(Price.isValidPrice(" ")); // spaces only
