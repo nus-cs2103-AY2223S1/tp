@@ -17,7 +17,7 @@ public class JsonSerializableAddressBookTest {
         seedu.travelr.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TRIPS_FILE,
                 seedu.travelr.storage.JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalTripsAddressBook = TypicalTrips.getTypicalAddressBook();
+        AddressBook typicalTripsAddressBook = TypicalTrips.getTypicalTravelr();
         assertEquals(addressBookFromFile, typicalTripsAddressBook);
     }
 

@@ -68,7 +68,7 @@ public class JsonTravelrStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = getTypicalAddressBook();
+        AddressBook original = getTypicalTravelr();
         seedu.travelr.storage.JsonAddressBookStorage jsonAddressBookStorage =
                 new seedu.travelr.storage.JsonAddressBookStorage(filePath);
 

@@ -28,7 +28,11 @@ public class DisplayEventCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex
+     */
     public DisplayEventCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

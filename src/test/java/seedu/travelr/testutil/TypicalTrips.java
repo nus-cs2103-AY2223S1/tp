@@ -6,6 +6,7 @@ package seedu.travelr.testutil;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_EATING;
@@ -40,7 +41,7 @@ public class TypicalTrips {
     public static final Trip MOON = new TripBuilder().withTitle("Moon Exploration")
             .withDescription("One small leap for man").build();
     public static final Trip MARS = new TripBuilder().withTitle("Mars Exploration").withDescription("Colonising Mars")
-           .build();
+            .build();
 
     // Manually added
     public static final Trip PLUTO = new TripBuilder().withTitle("Pluto venture").withDescription("Dwarf planet")
@@ -57,17 +58,25 @@ public class TypicalTrips {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalTrips() {} // prevents instantiation
+    private TypicalTrips() {
+    } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical trips.
+     * Returns an {@code Travelr} with all the typical trips.
      */
-    public static Travelr getTypicalAddressBook() {
+    public static Travelr getTypicalTravelr() {
         Travelr ab = new Travelr();
         for (Trip trip : getTypicalTrips()) {
             ab.addTrip(trip);
         }
         return ab;
+    }
+
+    /**
+     * Returns an empty {@code Travelr}
+     */
+    public static Travelr getEmptyTravelr() {
+        return new Travelr();
     }
 
     public static List<Trip> getTypicalTrips() {

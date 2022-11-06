@@ -3,7 +3,7 @@ package seedu.travelr.logic.commands;
 import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.travelr.logic.commands.CommandTestUtil.showTripAtIndex;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalTravelr;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTravelr(), new UserPrefs());
         expectedModel = new ModelManager(model.getTravelr(), new UserPrefs());
     }
 

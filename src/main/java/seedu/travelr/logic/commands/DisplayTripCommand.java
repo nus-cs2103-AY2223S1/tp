@@ -22,12 +22,16 @@ public class DisplayTripCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DISPLAY_EVENT_SUCCESS = "Display Trip: %1$s \n"
+    public static final String MESSAGE_DISPLAY_TRIP_SUCCESS = "Display Trip: %1$s \n"
             + "at specified index of displayed trips list";
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex
+     */
     public DisplayTripCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -41,7 +45,7 @@ public class DisplayTripCommand extends Command {
         }
 
         Trip tripToDisplay = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DISPLAY_EVENT_SUCCESS, tripToDisplay));
+        return new CommandResult(String.format(MESSAGE_DISPLAY_TRIP_SUCCESS, tripToDisplay));
     }
 
     @Override
