@@ -636,6 +636,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Rate the performance of an employee**
+
+**MSS**
+
+1. User requests to list employees.
+2. Coydir shows a list of employees.
+3. User requests to view details of specified employee.
+4. Coydir shows details of specified employee.
+5. User requests to rate the performance of employee.
+6. Coydir shows updated performance of employee.
+
+**Extensions**
+- 2a. The list is empty.
+  
+  - 2a1. Coydir shows an error message.
+
+    Use case ends.
+
+- 4a. Index to view employee is invalid.
+
+  - 4a1. Coydir shows an error message.
+
+    Use case ends.
+
+- 6a. Index to rate is invalid.
+
+  - 6a1. Coydir shows an error message.
+   
+    Use case ends.
+
+- 6b. Rating input is invalid.
+
+  - 6b1. Coydir shows an error message.
+
+    Use case ends.
+
+- 6c. Employee already rated for the day.
+
+  - 6c1. Coydir shows an error message.
+
+    Use case ends.
+
+
 _{More to be added}_
 
 ### Non-Functional Requirements

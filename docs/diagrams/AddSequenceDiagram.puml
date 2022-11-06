@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/Jon j/Janitor d/General Management")
+[-> LogicManager : execute("add n/Jon j/Janitor \n d/General Management")
 activate LogicManager
 
-LogicManager -> databaseParser : parseCommand("add n/Jon j/Janitor d/General Management")
+LogicManager -> databaseParser : parseCommand("add n/Jon j/Janitor \n d/General Management")
 activate databaseParser
 
 create AddCommandParser
@@ -26,7 +26,7 @@ activate AddCommandParser
 AddCommandParser --> databaseParser
 deactivate AddCommandParser
 
-databaseParser -> AddCommandParser : parse("n/Jon j/Janitor d/General Management")
+databaseParser -> AddCommandParser : parse("n/Jon j/Janitor \n d/General Management")
 activate AddCommandParser
 
 create AddCommand
