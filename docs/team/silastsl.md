@@ -20,6 +20,10 @@ Given below are my contributions to the project.
   * What it does: Allows users to restore any action that was previously undone by the Undo command.
   * Justification: To be able to reverse an accidental undo made by the user.
 
+* **New Feature**: Next Semester Command
+  * What it does: Moves all current modules to become previous modules for the user and all contacts.
+  * Justification: Allows user to start a new semester without needing to manually shift each current module to a previous module.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=silastsl&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=other~test-code~docs~functional-code)
 
@@ -41,6 +45,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added proposed details of the `undo` feature: [#87](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/87)
     * Added proposed details of the `redo` feature: [#87](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/87)
+    * Added details on state management for `undo` `redo` feature: [#225](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/225)
   * README:
     * Updated README to be relevant to ConnectNUS: [#19](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/19)
     * Updated Ui.png to ConnectNUS proposed UI design: [#18](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/18)
@@ -51,11 +56,13 @@ Given below are my contributions to the project.
   * Crafted user stories
   * Created milestones
   * Ideation of additional features
+  * Guided bug fixes
 
 * **Review / Mentoring contributions**:
-  * PRs approved: [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203), [#108](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/108), [#107](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/107), [#93](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/93), [#37](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/37)
+  * PRs approved: [#221](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/221), [#213](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/213), [#203](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/203), [#108](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/108), [#107](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/107), [#93](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/93), [#37](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/37)
   * Guided coding architecture for additional Module classes
   * Guided how the AB3 storage system works
   * Guided potential Timetable UI
-  * Guided bug fix for NextSem command
+  * Guided bug fix for NextSem command with State management
+  * Guided bug fix for Lessons command with State management
   * Reported bugs and suggestions for other team's in the class [FinBook](https://github.com/SilasTSL/ped/issues)
