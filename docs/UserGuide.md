@@ -534,6 +534,15 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+
+## Proposed Features
+
+Features to implement in the coming versions.
+
+### Sort Teammates by name
+Sort Teammates by alphabetical order of their names. Currently, it is difficult to search for specific Teammates if the list becomes too long. This feature would allow easier finding of Teammates as there is an order in the list of Teammates.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
