@@ -1,5 +1,4 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-
 Implementing FoodRem was not a straightforward task. Given below is a summary of the effort our team has put into to develop FoodRem as well as some challenges faced.
 
 ### Morphing of AB3 to FoodRem
@@ -8,7 +7,6 @@ As we wanted to morph AB3 to fit into our idea of FoodRem, we had to refactor a 
 
 One challenge we ran into during the project was implementing a batch feature for our items. We wanted to be able to create same items but of different batches (i.e. same name but different bought date and expiry date). However, this would require another major refactoring of the classes we have, as well as the commands that we have implemented thus far in the project. Given the tight timeline of the team project, we eventually decided to drop this feature since we will not be able to deliver the full functionality (along with updating every other command we have implemented thus far) in time. If given more time, this would have been a feature which we would have implemented as it is a relevant feature that will be used in the real world which brings value to our target users.
 
-
 ### Revamping of UI
 
-We wanted a simple yet appelaing  user interface for our application users. As such we decided to change the original UI of AB3 into our own new FoodRem UI. As our team is not familiar with JavaFX initially, it took us considerable time and effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application. 
+We wanted a simple yet appelaing  user interface for our application users. As such we decided to change the original UI of AB3 into our own new FoodRem UI. As our team is not familiar with JavaFX initially, it took us considerable time and effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application.
