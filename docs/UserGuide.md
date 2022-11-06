@@ -56,11 +56,11 @@ If you are a returning user, the [Command summary](#command-summary) provides yo
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * <code class="language-plaintext highlighter-rouge"><b>profile -a</b> n/John Doe p/98765432 e/johnd@u.nus.edu t/friend</code>: Adds a profile with the name `John Doe`.
+   * `profile -a n/John Doe p/98765432 e/johnd@u.nus.edu t/friend`: Adds a profile with the name `John Doe`.
 
-   * <code class="language-plaintext highlighter-rouge"><b>profile -d</b> 2</code>: Deletes the 2nd profile shown in the current list.
+   * `profile -d 2`: Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`**: Lists all profiles in NUScheduler.
+   * `profile -v`: Lists all profiles in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -94,7 +94,7 @@ The following is the main user interface of NUScheduler.
 
 ## Command format
 
-All commands used in NUScheduler follow this command format:
+All profile and events commands used in NUScheduler follow this command format:
 ```
 <command word> <option flag> <parameters>
 ```
@@ -123,7 +123,7 @@ Parameters are extra inputs the command may require.
 * Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Parameters with `…`​ after them can be used multiple times, including zero times for optional items.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.<br>
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -219,9 +219,9 @@ Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERN
 * You can remove all the profile’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `profile -e 1 p/91234567 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
-* `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
-* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
+* `profile -e 1 p/91234567 e/johndoe@u.nus.edu` edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
+* `profile -e 2 n/Betsy Crower t/` edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
+* `profile -e 3 tg/ t/` clears the telegram username and tags of the 3rd profile.
 
 #### Finding profiles by name: `profile -f`
 
@@ -278,7 +278,7 @@ An event may also contain:
 
 #### Adding an event: `event -a`
 
-Adds an event with a name, a start date and end date.
+Adds an event with a title, a start date and end date.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
@@ -325,7 +325,7 @@ Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 Example:
 * `event -dp 1 pr/1 pr/3`
 ![Before deleting attendees](images/BeforeDeleteAttendee.png)
-Note how the first and third attendee under the first listed event `Discuss presentation` have been deleted.
+Note how the first and third attendees under the first listed event `Discuss presentation` have been deleted.
 ![After deleting attendees](images/AfterDeleteAttendee.png)
 
 #### Viewing upcoming events: `event -u`
@@ -341,12 +341,12 @@ Format: `event -u DAYS`
 
 **:information_source: Notes about usage:**<br>
 
-* DAYS entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
+* `DAYS` entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
 
 </div>
 
 Example:
-* `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.
+* `event -u 5` when used on `22/10/2022` displays all events starting in the next 5 days from `23/10/2022` to `27/10/2022` with both dates included.
 
 #### Viewing all events: `event -v`
 
@@ -371,7 +371,7 @@ The start and end dates can be specified in various formats. See [Accepted Date 
 </div>
 
 Example:
-* `event -e 1 n/Formal Dinner t/RC4` Edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
+* `event -e 1 n/Formal Dinner t/RC4` edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
 
 #### Finding events by date or title: `event -f`
 
@@ -387,8 +387,8 @@ Format: `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`
 * Events matching at least one keyword will be returned (i.e. `OR` search) e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`.
 
 Example:
-* `event -f Presentation` Displays all events with `Presentation` within the event title.
-* `event -f 20/11/2022 05/10/2022` Displays all events that start on either `20/11/2022` or `05/10/2022`.
+* `event -f Presentation` displays all events with `Presentation` within the event title.
+* `event -f 20/11/2022 05/10/2022` displays all events that start on either `20/11/2022` or `05/10/2022`.
 
 #### Deleting an event: `event -d`
 
@@ -458,8 +458,8 @@ Use shortcuts to quickly enter tags.
 
 Example:
 
-* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and the tag `professor`.
-* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` creates a profile with the name `Damith` and the tag `professor`.
+* `event -e 1 t/tut` edits the tag of the first event shown to `tutorial`.
 
 | Shortcut | Result       |
 |----------|--------------|
@@ -473,7 +473,7 @@ Example:
 
 #### Quick links
 
-Get easy access to some of your favourite NUS websites, right from the menu.
+Get easy access to some of your favourite NUS websites, right from the menu bar.
 
 1. Click on `Links` in the menu bar. A dropdown should appear.
 2. Click on the link you want to visit, if you want to visit `Canvas`, click on `Canvas`.
@@ -520,7 +520,7 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 * `DAY` can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
 * `MONTH` can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
-* `YEAR` must be specified with four digits. e.g. `2022`
+* `YEAR` must be specified with four digits. e.g. `2022`.
 
 </div>
 
@@ -548,16 +548,13 @@ Example:
 ### Accepted email formats
 
 NUScheduler checks the following:
-
-* Local part (the characters in your email before `@`) of the emails must follow these rules: 
-
+* Local part (the characters in your email before `@`) of the emails must follow these rules:
   * Only alphanumeric characters and these special characters, `+`, `_`, `.`, `-` are allowed
   * The local part cannot start or end with a special character
   * The local part must begin and end with an alphabet or number 
   * 2 consecutive special characters are not allowed (e.g. `+_`, `..` and `-+` are all not allowed)
 
-* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains:
-
+* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains, domains are case-sensitive:
   * `u.nus.edu`
   * `u.duke.nus.edu`
   * `nus.edu.sg`
@@ -572,7 +569,7 @@ You can simply install the app in the other computer and overwrite the data file
 
 ## Command summary
 
-| Action                             | Format, Examples                                                                       |
+| Action                             | Format                                                                                 |
 |------------------------------------|----------------------------------------------------------------------------------------|
 | **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
 | **Delete Profile**                 | `profile -d INDEX`                                                                     |
@@ -587,3 +584,6 @@ You can simply install the app in the other computer and overwrite the data file
 | **View Events**                    | `event -v`                                                                             |
 | **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
 | **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`                                   |
+| **Clear**                          | `clear`                                                                                |
+| **Help**                           | `help`                                                                                 |
+| **Exit**                           | `exit`                                                                                 |
