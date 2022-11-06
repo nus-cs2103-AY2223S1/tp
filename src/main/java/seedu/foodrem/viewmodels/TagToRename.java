@@ -25,14 +25,23 @@ public class TagToRename {
         this.message = message;
     }
 
+    /**
+     * Returns the original tag.
+     */
     public Tag getOriginalTag() {
         return originalTag;
     }
 
+    /**
+     * Returns the renamed tag.
+     */
     public Tag getRenamedTag() {
         return renamedTag;
     }
 
+    /**
+     * Returns the message.
+     */
     public String getMessage() {
         return message;
     }
