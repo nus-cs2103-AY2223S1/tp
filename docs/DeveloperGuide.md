@@ -464,9 +464,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a client by name         | locate details of clients without having to go through the entire list|
 | `* * *`  | user                                       | save written information      | access previously saved information                                   |
 | `* *`    | user                                       | find a client by address      | locate details of clients in a designated area                        |
-| `* *`    | user                                       | have a schedule reminder      | keep track of when and which clients I am meeting                     |
+| `* *`    | user                                       | keep track of planned meetings| know when to meet which clients                                       |
+| `* *`    | user                                       | be reminded of meetings       | stop missing important meetings                                       |
 | `* *`    | tech-savvy user                            | input shortcut commands       | be more efficient using the app                                       |
 | `* *`    | user                                       | update a client's information | make changes whenever clients' information update                     |
+| `* *`    | user afraid of making mistakes             | quickly revert my actions     | walk back on decisions or correct errors                              |
 | `*`      | user with many persons in the client book  | sort clients by name          | locate a client easily                                                |
 
 *{More to be added}*
@@ -779,6 +781,17 @@ Preconditions: An undoable command has been executed by FABook.
 
 Use case ends.
 
+**Extensions**
+* 1a. No previous commands available.
+    * 1a1. FABook shows an error message that there are no commands to undo.
+
+  Use case ends.
+
+* 1b. The previous command is not undoable.
+    * 1b1. FABook shows an error message that there are no commands to undo.
+
+  Use case ends.
+
 **Use case: UC19 - Redoing an undo command**
 
 **Main Success Scenario (MSS)**
@@ -786,8 +799,6 @@ Use case ends.
 2. User requests to redo the undo command.
 3. FABook redoes the last undo command and updates the relevant information changed.
 4. FABook informs the user of the redone action that has been executed.
-
-Use case ends.
 
 **Use case: UC20 - Exiting FABook**
 
