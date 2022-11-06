@@ -46,6 +46,7 @@ Given below are my contributions to the project.
 * Added implementation details and sequence diagrams for the `grade` command to the DG. 
 * Added implementation details and sequence diagrams for the `view` command in the DG.
 * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
-* Edited the documents to make them more consistent and readable.  
+* Updated implementation details and sequence diagrams for the `assign` command to reflect new changes. In collaboration with [Lin Zechen](/docs/team/bubbl3t.md).
+* Edited UG and DG for consistency and clarity. 
 * Updated styling of the website to make it more visually appealing. 
 

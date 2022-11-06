@@ -497,7 +497,7 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 <img class="center" src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFx and its details are mostly irrelevant to our implementation.
+:information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFX and its details are mostly irrelevant to our implementation.
 </div>
 
 #### Design considerations
