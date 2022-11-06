@@ -35,7 +35,6 @@ public class AlertWindow {
                         setIsConfirmed());
         //@@author
         return isConfirmed;
-        //@@author
     }
 
     public void setIsConfirmed() {
