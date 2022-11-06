@@ -37,6 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -48,7 +49,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
@@ -93,6 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -110,10 +111,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -132,7 +135,6 @@ The `Model` component,
 
 </div>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/storage)
@@ -140,6 +142,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
+
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
@@ -158,24 +161,17 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as
-its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned.
-The command is executed using the `AddTaskCommand`class which extends the `Command` class and the 
-respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input. 
+The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
 
 Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
 
-Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 
-pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if
-the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already 
-exist** error message will be returned to the user.
+Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already exist** error message will be returned to the user.
 
-Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into
-the tasklist. 
+Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
 
-step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls 
+step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls
 `AddressBook#setTasks` to update the tasklist in the model to the latest version.
 
 The following sequence diagram shows how the AddTask operation works:
@@ -184,29 +180,22 @@ The following sequence diagram shows how the AddTask operation works:
 The following activity diagram summarizes what happens when a user executes a AddTask command:
 ![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
 
-
 ### \[Proposed\] Deleting a Task into the TaskList.
 
 #### Proposed Implementation
 
-The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. 
-The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the
-index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
+The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
 
 Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
 
-Step 2. The user wants to delete the second task on the task list. The user executes `deleteTask 2` to delete the second task
-from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task
-to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
-is displayed to the user. 
+Step 2. The user wants to delete the second task on the task list. The user executes `deleteTask 2` to delete the second task from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
+is displayed to the user.
 
-Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the 
-email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks 
-the person is assigned to.
+Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks the person is assigned to.
 
-Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the 
+Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the
 `Model#deleteTask` to delete the task from the tasklist.
 
 step 5. After making a deletion from the tasklist, the `DeleteTaskCommand` calls the `Model#update`, which calls
@@ -218,7 +207,6 @@ The following sequence diagram shows how the DeleteTask operation works:
 The following activity diagram summarizes what happens when a user executes a DeleteTask command:
 ![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
 
-
 ### Edit Task Feature
 
 #### Implementation
@@ -229,6 +217,11 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
 
+### Sort Tasks Feature
+
+#### Implementation
+
+When the `sort` command is entered, a `Comparator<Task>` is created which will be either a `SortByDeadline` or a `SortByPriority`. This `Comparator<Task>` will be reversed if it needs to be in descending order. The `SortedList<Tasks>` in the `Model` will then be updated to use the new `Comparator<Task>`.
 
 ### \[Proposed\] Task and Person display each other
 
@@ -260,12 +253,9 @@ Step 5. James is deleted as a Person. The task is changed to be not assigned to 
 
 To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in hte `Task` object that uniquely identifies the person.
 
-#### Implementation 
+#### Implementation
 
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
-a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
-to this is to keep a person object in a task object but this will prevent the change in the person object that is
-supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
 
 ### Persistent Storage for Task
 
@@ -275,20 +265,15 @@ For creation of new tasks, deletion of tasks and changes of current tasks to per
 
 #### Implementation
 
-When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)).
-Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`. 
+When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)). Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`.
 
 An overview of this process is shown below in the form of an activity diagram.
 
 ![StorageReadActivityDiagram](images/StorageReadActivityDiagram.png)
 
-When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
-This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for
-such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal
-values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
+When reading Json file we also check whether the values saved are valid before converting it back to a Task object. This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
 
-Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. 
-Each `JsonAdaptedTask` object contains the details of the task.
+Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. Each `JsonAdaptedTask` object contains the details of the task.
 
 An overview of this process is shown below in the form of an activity diagram.
 
@@ -310,9 +295,7 @@ An overview of this process is shown below in the form of an activity diagram.
     * Pros: Less computationally expensive as less save operations are performed.
     * Cons: User may forget to enter exit command when closing the program and lose all of their changes.
 
-Our current choice of implementation is preferred considering the main use of HackAssist. 
-HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save.
-Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
+Our current choice of implementation is preferred considering the main use of HackAssist. HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save. Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
 
 ### Persistent Storage for Member
 
@@ -322,8 +305,7 @@ The motivation, implementation and design considerations are similar to [Persist
 
 #### Proposed Implementation
 
-The proposed filter mechanism allows a `Task` to be filtered based on its `Task Category` or `Task Deadline`.
-The command is executed using the `FilterTaskCommand`class which extends the `Command` class and the filter criteria is determined from the `FilterTaskParser` class which parses the user input. The `TaskCategoryAndDeadlinePredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
+The proposed filter mechanism allows a `Task` to be filtered based on its `Task Category` or `Task Deadline`. The command is executed using the `FilterTaskCommand`class which extends the `Command` class and the filter criteria is determined from the `FilterTaskParser` class which parses the user input. The `TaskCategoryAndDeadlinePredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
@@ -341,9 +323,6 @@ Step 5. After looking through all the tasks that are related to backend, the use
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
-
-
-
 **Design considerations**
 
 **Aspect: How filter executes:**
@@ -355,8 +334,6 @@ The following activity diagram summarizes what happens when a user executes a fi
 * **Alternative 2:**
   * Pros:
   * Cons:
-
-
 
 _{more aspects and alternatives to be added}_
 
@@ -391,27 +368,25 @@ Hackathon team leaders, in charge of distributing tasks to the people in his gro
 
 **Value proposition**: help with project management tasks and team formation in Hackathons
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                        | So that I can…​                                                                   |
-|----------|--------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | hackathon team leader                      | see all tasks                       | have an overview of what needs to be done                                            |
-| `* * *`  | hackathon team leader                      | add a task to the task list,        | include task that needs to be done                                                   |
-| `* * *`  | hackathon team leader                      | delete a task                       | remove tasks that are accidentally added                                             |
-| `* * *`  | hackathon team leader                      | edit a task                         | rectify mistakes in task details                                                     |
-| `* * *`  | hackathon team leader                      | assign a task                       | allocate task to a team member                                                       |
-| `* * *`  | hackathon team leader                      | mark task as done                   | I can keep a moving record of what we have done                                      |
-| `* * *`  | hackathon team leader                      | mark task as not done               | in case we have tasks that end up being incomplete or the task requirements modified |
-| `* *`    | hackathon team leader                      | see which tasks are done/ not done  | plan the way forward                                                                 |
-| `* *`    | hackathon team leader                      | add further descriptions to the task | add more details to a task                                                           |                             |
-| `* *`    | hackathon team leader                      | sort tasks by deadline               | know what is most urgent                                                                 |
-| `* *`    | hackathon team leader                      | sort tasks by priority                | know what is most important                                                    |                             |
-
-| `* *`    | hackathon team leader                      | filter tasks by differnt tasks        | focus of tasks of a certain type                                                                 |
-| `* *`    | hackathon team leader                      | find a specific person               | know how much that person has assigned to him                                                      |                             |
+| Priority | As a …​               | I want to …​                         | So that I can…​                                                                      |
+|----------|-----------------------|--------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | hackathon team leader | see all tasks                        | have an overview of what needs to be done                                            |
+| `* * *`  | hackathon team leader | add a task to the task list          | include task that needs to be done                                                   |
+| `* * *`  | hackathon team leader | delete a task                        | remove tasks that are accidentally added                                             |
+| `* * *`  | hackathon team leader | edit a task                          | rectify mistakes in task details                                                     |
+| `* * *`  | hackathon team leader | assign a task                        | allocate task to a team member                                                       |
+| `* * *`  | hackathon team leader | mark task as done                    | I can keep a moving record of what we have done                                      |
+| `* * *`  | hackathon team leader | mark task as not done                | in case we have tasks that end up being incomplete or the task requirements modified |
+| `* *`    | hackathon team leader | see which tasks are done/ not done   | plan the way forward                                                                 |
+| `* *`    | hackathon team leader | add further descriptions to the task | add more details to a task                                                           |                             |
+| `* *`    | hackathon team leader | sort tasks by deadline               | know what is most urgent                                                             |
+| `* *`    | hackathon team leader | sort tasks by priority               | know what is most important                                                          |                             |
+| `* *`    | hackathon team leader | filter tasks by different tasks      | focus of tasks of a certain type                                                     |
+| `* *`    | hackathon team leader | find a specific person               | know how much that person has assigned to him                                        |                             |
 
 *{More to be added}*
 
@@ -421,267 +396,284 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new member
-2.  HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
-3.  User inputs fields
-4.  HackAssist shows list of all members, including new member
+1. User requests to add a new member
+2. HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
+3. User inputs fields
+4. HackAssist shows list of all members, including new member 
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 3a. HackAssist detects that the member already exists
-     * 3a1. Hackassist shows an error message
-     * Use case ends.
-       
- * 3b. HackAssist detects that one of the input fields is incorrectly formated
-   * 3b1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
-   * Use case ends.
 
+* 3a. HackAssist detects that the member already exists
+  * 3a1. HackAssist shows an error message
+  * Use case ends.
+
+* 3b. HackAssist detects that one of the input fields is incorrectly formated
+  * 3b1. HackAssist shows an error message, showing the incorrectly formated field and the specifications of that field
+  * Use case ends.
 
 **Use case: Delete a team member**
 
 **MSS**
 
-1.  User requests to delete a new member
-2.  HackAssist shows a list of fields to input (index)
-3.  User inputs fields
-4.  HackAssist displays confirmation message
-5.  HackAssist removes the user's name and email from all the tasks assigned to that user
-6.  HackAssist shows list of all members, excluding deleted member, and the updated task list
+1. User requests to delete a new member
+2. HackAssist shows a list of fields to input (index)
+3. User inputs fields
+4. HackAssist displays confirmation message
+5. HackAssist removes the user's name and email from all the tasks assigned to that user
+6. HackAssist shows list of all members, excluding deleted member, and the updated task list 
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 3a. HackAssist detects that the index is not a number
-     * 3a1. Hackassist shows an error message warnging that the command format is invalid
-     * Use case resumes from step 2.
-  
-  * 3b. HackAssist detects that the index is invalid
-     * 3b1. Hackassist shows an error message warnging that the index is invalid
-     * Use case resumes from step 2.
+
+* 3a. HackAssist detects that the index is not a number
+    * 3a1. HackAssist shows an error message warning that the command format is invalid
+    * Use case resumes from step 2.
+
+* 3b. HackAssist detects that the index is invalid
+    * 3b1. HackAssist shows an error message warning that the index is invalid
+    * Use case resumes from step 2.
 
 **Use case: Edit a team member**
 
 **MSS**
 
-1.  User requests to edit a new member
-2.  HackAssist shows a list of fields to input (index and one or more of Name, Phone Number, Email Address, Tags)
-3.  User inputs fields
-4.  HackAssist displays confirmation message
-5.  HackAssist shows list of all members, with that particular member's fields updated
+1. User requests to edit a new member
+2. HackAssist shows a list of fields to input (index and one or more of Name, Phone Number, Email Address, Tags)
+3. User inputs fields
+4. HackAssist displays confirmation message
+5. HackAssist shows list of all members, with that particular member's fields updated
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 3a. HackAssist detects that the index is not a number
-     * 3a1. Hackassist shows an error message warning that the command format is invalid
-     * Use case resumes from step 2.
-  
-  * 3b. HackAssist detects that the index is invalid
-     * 3b1. Hackassist shows an error message warning that the index is invalid
-     * Use case resumes from step 2.
-       
-  * 3c. HackAssist detects that none of optional fields were inputed
-     * 3c1. Hackassist shows an error message warning that at least one field must be edited
-     * Use case resumes from step 2.
-     
+
+* 3a. HackAssist detects that the index is not a number
+    * 3a1. HackAssist shows an error message warning that the command format is invalid
+    * Use case resumes from step 2.
+
+* 3b. HackAssist detects that the index is invalid
+    * 3b1. HackAssist shows an error message warning that the index is invalid
+    * Use case resumes from step 2.
+
+* 3c. HackAssist detects that none of the optional fields were entered
+    * 3c1. HackAssist shows an error message warning that at least one field must be edited
+    * Use case resumes from step 2.
+
 * 3d. HackAssist detects that not all the optional fields are different from existing fields
-     * 3d1. Hackassist shows an error message warning that the fields must be different from the ones inputed
-     * Use case resumes from step 2.
-       
- **Use case: Add a task**
+    * 3d1. HackAssist shows an error message warning that the fields must be different from the ones inputed
+    * Use case resumes from step 2.
+
+**Use case: Add a task**
 
 **MSS**
 
-1.  User requests to add a new member
-2.  HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
-3.  User inputs fields
-4.  HackAssist shows list of all members, including new member
+1. User requests to add a new member
+2. HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
+3. User inputs fields
+4. HackAssist shows list of all members, including new member 
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 3a. HackAssist detects that the task already exists
-     * 3a1. Hackassist shows an error message
-     * Use case ends.
- 
- * 3b. HackAssist detects that the deadline has already past
-     * 3b1. Hackassist shows an error message, warning that the deadline must be a future date
-     * Use case ends.
-       
- * 3c. HackAssist detects that the priority or category is not one of the accepted values
-    * 3c1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
+
+* 3a. HackAssist detects that the task already exists
+    * 3a1. HackAssist shows an error message
     * Use case ends.
-      
- * 3d. HackAssist detects that one of the input fields is incorrectly formated
-    * 3d1. Hackassist shows an error message, showing the incorrectly formated field and the specifications of that field
+
+* 3b. HackAssist detects that the deadline has already past
+    * 3b1. HackAssist shows an error message, warning that the deadline must be a future date
     * Use case ends.
-      
+
+* 3c. HackAssist detects that the priority or category is not one of the accepted values
+    * 3c1. HackAssist shows an error message, showing the incorrect priority or category and showing the correct values
+    * Use case ends.
+
+* 3d. HackAssist detects that one of the input fields is incorrectly formatted
+    * 3d1. Hackassist shows an error message, showing the incorrectly formatted field and the specifications of that field
+    * Use case ends.
+
 **Use case: Delete a task**
 
 **MSS**
 
-1.  User requests to delete a new task
-2.  HackAssist shows a list of fields to input (index)
-3.  User inputs fields
-4.  HackAssist displays confirmation message
-5.  HackAssist removes the task from task list and all members assigned to that task
-6.  HackAssist shows list of all tasks, excluding deleted task, and the updated person list
+1. User requests to delete a new task
+2. HackAssist shows a list of fields to input (index)
+3. User inputs fields
+4. HackAssist displays confirmation message
+5. HackAssist removes the task from task list and all members assigned to that task
+6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list 
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 3a. HackAssist detects that the index is not a number
-     * 3a1. Hackassist shows an error message warnging that the command format is invalid
-     * Use case resumes from step 2.
-  
-  * 3b. HackAssist detects that the index is invalid
-     * 3b1. Hackassist shows an error message warnging that the index is invalid
-     * Use case resumes from step 2.
-       
+
+* 3a. HackAssist detects that the index is not a number
+    * 3a1. HackAssist shows an error message warning that the command format is invalid
+    * Use case resumes from step 2.
+
+* 3b. HackAssist detects that the index is invalid
+    * 3b1. HackAssist shows an error message warning that the index is invalid
+    * Use case resumes from step 2.
+
 **Use case: Assign a task to an existing team member**
 
 **MSS**
 
-1.  User requests to see all tasks
-2.  HackAssist shows current list of tasks
-3.  User edits the task to have the email of a current member
-4.  User is updated to be assigned to existing task
-5.  Task is updated to show the user assigned to it, and that user's email
+1. User requests to see all tasks
+2. HackAssist shows current list of tasks
+3. User edits the task to have the email of a current member
+4. User is updated to be assigned to existing task
+5. Task is updated to show the user assigned to it, and that user's email 
+
 Use case ends.
 
 **Extensions**
 
 Extensions:
-  * 2a. There are no tasks
+
+* 2a. There are no tasks
     * Use case ends.
- 
- * 3a. The format of the input email is invalid
-    * 3a1 Hackassist shows an error message that shows what is the expected input
+
+* 3a. The format of the input email is invalid
+    * 3a1 HackAssist shows an error message that shows what is the expected input
     * Use case resumes from step 2.
 
- * 3b. There are no members with the specified email
-    * 3b1 Hackassist shows an error message that there are no members
+* 3b. There are no members with the specified email
+    * 3b1 HackAssist shows an error message that there are no members
     * Use case resumes from step 2.
 
-
- **Use case: Edit a task**
+**Use case: Edit a task**
 
 **MSS**
 
-1.  User requests to edit a new member
-2.  HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
-3.  User inputs fields
-4.  HackAssist displays confirmation message
-5.  HackAssist shows list of all members, with that particular member's fields updated
+1. User requests to edit a new member
+2. HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
+3. User inputs fields
+4. HackAssist displays confirmation message
+5. HackAssist shows list of all members, with that particular member's fields updated 
+
 Use case ends.
 
 Extensions:
-  * 3a. HackAssist detects that the index is not a number
-     * 3a1. Hackassist shows an error message warning that the command format is invalid
-     * Use case resumes from step 2.
-  
-  * 3b. HackAssist detects that the index is invalid
-     * 3b1. Hackassist shows an error message warning that the index is invalid
-     * Use case resumes from step 2.
-       
-  * 3c. HackAssist detects that none of optional fields were inputed
-     * 3c1. Hackassist shows an error message warning that at least one field must be edited
-     * Use case resumes from step 2.
-  
-  * 3d. HackAssist detects that the priority or category is not one of the accepted values
-    * 3d1. Hackassist shows an error message, showing the incorrect priority or category and showing the correct values
+
+* 3a. HackAssist detects that the index is not a number
+    * 3a1. HackAssist shows an error message warning that the command format is invalid
+    * Use case resumes from step 2.
+
+* 3b. HackAssist detects that the index is invalid
+    * 3b1. HackAssist shows an error message warning that the index is invalid
+    * Use case resumes from step 2.
+
+* 3c. HackAssist detects that none of optional fields were inputed
+    * 3c1. HackAssist shows an error message warning that at least one field must be edited
+    * Use case resumes from step 2.
+
+* 3d. HackAssist detects that the priority or category is not one of the accepted values
+    * 3d1. HackAssist shows an error message, showing the incorrect priority or category and showing the correct values
     * Use case ends.
-       
-  * 3e. HackAssist detects that not all the optional fields are different from existing fields
-     * 3e1. Hackassist shows an error message warning that the fields must be different from the ones inputed
-     * Use case resumes from step 2.
-  
+
+* 3e. HackAssist detects that not all the optional fields are different from existing fields
+    * 3e1. HackAssist shows an error message warning that the fields must be different from the ones inputed
+    * Use case resumes from step 2.
+
 **Use case: Filter the tasks by category**
 
 **MSS**
 
-1.  User requests to filter the tasks by category
-2.  User inputs the category
-3.  HackAssist shows a the filtered task list
+1. User requests to filter the tasks by category
+2. User inputs the category
+3. HackAssist shows the filtered task list 
+
 Use case ends.
 
 Extensions:
-  * 2a. HackAssist detects that category is not one of the accepted values
-     * 2a1. Hackassist shows an error message warning that the command format is invalid
-     * Use case resumes from step 2.
-  
-  * 2b. HackAssist detects that the command is incorrectly formated
-     * 2b1. Hackassist shows an error message warning that command is incorrectly formated
-     * Use case resumes from step 2.
-       
+
+* 2a. HackAssist detects that category is not one of the accepted values
+    * 2a1. HackAssist shows an error message warning that the command format is invalid
+    * Use case resumes from step 2.
+
+* 2b. HackAssist detects that the command is incorrectly formatted
+    * 2b1. HackAssist shows an error message warning that command is incorrectly formatted
+    * Use case resumes from step 2.
+
 **Use case: Filter the tasks by deadline**
 
 **MSS**
 
-1.  User requests to filter the tasks by category
-2.  User inputs the category
-3.  HackAssist shows a the filtered task list
+1. User requests to filter the tasks by category
+2. User inputs the category
+3. HackAssist shows the filtered task list 
+
 Use case ends.
 
 Extensions:
-  * 2a. HackAssist detects that deadline has already past
-     * 2a1. Hackassist shows an error message warning that the deadline has past
-     * Use case resumes from step 2.
-  
-  * 2b. HackAssist detects that the command is incorrectly formated
-     * 2b1. Hackassist shows an error message warning that command is incorrectly formated
-     * Use case resumes from step 2.
 
+* 2a. HackAssist detects that deadline has already past
+    * 2a1. HackAssist shows an error message warning that the deadline has past
+    * Use case resumes from step 2.
+
+* 2b. HackAssist detects that the command is incorrectly formatted
+    * 2b1. HackAssist shows an error message warning that command is incorrectly formatted
+    * Use case resumes from step 2.
 
 **Use case: Sort the tasks by priority**
 
 **MSS**
 
-1.  User requests to sort the tasks by priority
-2.  User inputs ascending or descending
-3.  HackAssist shows a the sorted task list
+1. User requests to sort the tasks by priority
+2. User inputs ascending or descending
+3. HackAssist shows the sorted task list 
+
 Use case ends.
 
 Extensions:
- * 2a. HackAssist detects that the command is incorrectly formated
-     * 2a1. Hackassist shows an error message warning that command is incorrectly formated
-     * Use case resumes from step 2.
 
- **Use case: Sort the tasks by deadline**
+* 2a. HackAssist detects that the command is incorrectly formatted
+    * 2a1. HackAssist shows an error message warning that command is incorrectly formatted
+    * Use case resumes from step 2.
+
+**Use case: Sort the tasks by deadline**
 
 **MSS**
 
-1.  User requests to sort the tasks by deadline
-2.  User inputs ascending or descending
-3.  HackAssist shows a the sorted task list
+1. User requests to sort the tasks by deadline
+2. User inputs ascending or descending
+3. HackAssist shows the sorted task list 
+
 Use case ends.
 
 Extensions:
- * 2a. HackAssist detects that the command is incorrectly formated
-     * 2a1. Hackassist shows an error message warning that command is incorrectly formated
-     * Use case resumes from step 2.
-       
 
+* 2a. HackAssist detects that the command is incorrectly formatted
+    * 2a1. HackAssist shows an error message warning that command is incorrectly formatted
+    * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be usable by hackathon team leaders of all skill levels (i.e. novices to highly experienced).
-5.  Product is not required to handle printing.
-6.  System should respond within two seconds.
-7.  Product is expected to be updated with a new set of features or bugfixes once every two weeks.
-8.  Should be able to read from local disk storage (i.e. persistent storage functionality).
-9.  Product is not designed to work between different disk storages (i.e. only can read and write to local disk storage).
-10.  Should work offline without network connectivity.
-11.  Should only be accessible by Hackathon group leaders.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be usable by hackathon team leaders of all skill levels (i.e. novices to highly experienced).
+5. Product is not required to handle printing.
+6. System should respond within two seconds.
+7. Product is expected to be updated with a new set of features or bugfixes once every two weeks.
+8. Should be able to read from local disk storage (i.e. persistent storage functionality).
+9. Product is not designed to work between different disk storages (i.e. only can read and write to local disk storage).
+10. Should work offline without network connectivity.
+11. Should only be accessible by Hackathon group leaders.
 
 *{More to be added}*
 
@@ -706,15 +698,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -723,16 +715,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -740,6 +732,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
