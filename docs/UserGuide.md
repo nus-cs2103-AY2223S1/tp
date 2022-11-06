@@ -271,7 +271,8 @@ See <a href="#553-backing-up-data">here</a> for more instructions.<br>
 
 ### 5.3.4 Importing students from CSV file: `import`
 
-**Function:** Imports student data from a CSV (Comma-separated Values) file stored on your computer.
+**Function:** Imports student data from a [CSV (Comma-separated Values) file](#csv-comma-separated-values-file) stored
+on your computer.
 
 Just starting out with StudMap? Simply copy and paste in the necessary details into a template, and StudMap will handle
 the rest — it's like magic. For your convenience, you can find the import template
@@ -679,7 +680,8 @@ manually.
 
 ### 5.5.3 Backing up data
 
-StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. You can make a copy of this file if you
+StudMap data are saved as a [JSON file](#json-file) `[JAR file location]/data/studmap.json`. You can make a copy of this
+file if you
 want to back up your data.
 
 ### 5.5.4 Editing the data file
@@ -748,6 +750,15 @@ the data of your previous StudMap home folder. See how to back up your data [her
 Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features)
 section
 to see what commands are available.
+
+### CSV (Comma-separated Values) file
+
+This is a file type that many applications use for importing and exporting data. That's why we're using it for import!
+
+### JSON file
+
+This is a file type that many applications use for storing data in a human-readable format. We're also using it, so that
+advanced users can edit their student data easily if they wish.
 
 ### Module
 
