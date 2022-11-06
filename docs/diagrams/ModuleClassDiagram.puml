@@ -8,9 +8,13 @@ AddressBook *-down-> "1" UniqueModuleList
 
 UniqueModuleList -down-> "~* all" Module
 
+ModuleCode -[hidden]right-> TutorialDetails
+TutorialDetails -[hidden]right-> ZoomLink
+
+
 Module *--> ModuleCode
 Module *--> LectureDetails
 Module *--> TutorialDetails
-Module *--> ZoomLink
+Module *--> "0..2" ZoomLink
 Module *--> "*" AssignmentDetails
 @enduml

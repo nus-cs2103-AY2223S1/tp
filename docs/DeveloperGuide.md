@@ -3,9 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
+# **Developer Guide**
+
 * Table of Contents
   {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -163,12 +164,6 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 ### Storage component
 
 **
@@ -199,10 +194,6 @@ This section describes some noteworthy details on how certain features are imple
 ### Module Class
 
 #### Implementation
-
-#### Implemented by: Sun Yu Ting
-
-#### Modified by: Tin Jingyao
 
 The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class
 facilitates the storing of various information related to a student's module that he/she is currently taking.
@@ -242,7 +233,6 @@ For the five classes,
 
 #### Implementation
 
-
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
 
 * `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
@@ -278,8 +268,6 @@ The following sequence diagram shows how the DeleteModule operation works:
 
 #### Implementation
 
-#### Implemented by: Xu Daofu
-
 The FindModule command extends `Command`, and takes in an `ModuleCodeContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
 * `FindModuleCommand#execute()`
 
@@ -302,7 +290,7 @@ The following sequence diagram shows how the FindModule operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-=======
+
 ### Add Module feature
 
 #### Implementation
@@ -319,26 +307,21 @@ Given below is an example usage scenario, and an object diagram to show the obje
 Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book
 state.
 
-Step 2. The user
-executes `addm m/moduleName l/lectureDetails t/tutorialDetails z/zoomLink a/assignment1 a/assignment2` command to add a
-module with the corresponding details in the address book. The `addm` command
-calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`. The `AddModuleCommandParser` then
-tokenizes the user input string and returns an ArgumentMultimap object that maps prefixes to their respective argument
-values.
-
-Methods in `ParserUtil` is are then called to parse each individual object obtained from the ArgumentMultimap using
-their corresponding parsers. Then, a new `module` with the corresponding details is created. A `AddModuleCommand` is
-created, which
-calls `Model#addModule()`, and adds the newly created module to the model object.
+Step 2. The user executes `addm m/CS1101S` command to add a module with the corresponding details in the address book. 
+* The `addm` command calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`. 
+* The `AddModuleCommandParser` then tokenizes the user input string and returns an `ArgumentMultimap` object that maps 
+prefixes to their respective argument values. 
+* Methods in `ParserUtil` is are then called to parse each individual object obtained from the `ArgumentMultimap` using
+their corresponding parsers. 
+* Then, a new `Module` with the corresponding details is created. 
+* After creating the `Module`, an `AddModuleCommand` is created, which calls `Model#addModule()`, 
+and adds the newly created module to the model object.
 
 The following object diagram illustrates the above example:
-(to be added)
-[//]: # (![AddModuleObjectDiagram]&#40;images/AddModuleObjectDiagram.png&#41;)
+![AddModuleObjectDiagram](images/AddModuleObjectDiagram.png)
 
 The following sequence diagram shows how the AddModule operation works:
-(to be added)
-[//]: # (![AddModuleSequenceDiagram]&#40;images/AddModuleSequenceDiagram.png&#41;)
-
+![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -433,12 +416,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
+    
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
