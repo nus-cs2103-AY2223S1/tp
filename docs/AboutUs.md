@@ -11,7 +11,7 @@ You can reach us at the email `sitong.hao@u.nus.edu`
 
 ### Hao Sitong
 
-<img src="images/o-ohst.png" width="200px">
+<img src="images/o-ohst.jpg" width="200px">
 
 [[github](https://github.com/o-ohst)]
 [[portfolio](team/o-ohst.md)]
