@@ -5,17 +5,12 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([criterion prefix is valid])
-    if() then ([only 1 criterion prefix is specified])
+if () then ([exactly 1 criterion prefix is given, and it is valid])
     :Sort person list based on
     the given criterion prefix;
-    else ([else])
-    :Gives an error that only 1 criterion prefix can be
-    specified without changing the person list;
-    endif
 else ([else])
-    :Gives an error that the criterion prefix is
-    unrecognisable without changing the person list;
+    :Gives an error that the command format is
+    invalid without changing the person list;
 endif
 stop
 @enduml
