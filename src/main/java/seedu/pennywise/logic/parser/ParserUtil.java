@@ -96,6 +96,9 @@ public class ParserUtil {
         if (!Amount.isValidAmount(amount)) {
             throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
         }
+        if (!Amount.isAmountWithinLimits(amount)) {
+            throw new ParseException(Amount.MESSAGE_TOO_LARGE);
+        }
         return new Amount(trimmedAmount);
     }
 
