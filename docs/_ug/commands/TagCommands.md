@@ -57,24 +57,21 @@ Initially, FoodRem contains only the following three tags:
 
 > Tags the item at the specified index
 
-**Example Input:**
+**Example:**
 
-```text
-tag 1 n/Vegetables
-```
+{% capture notes %}
+**Assumptions:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Item tagged successfully.
-Name: Onions
-Quantity: 8 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: No Remarks
-Tags: {Vegetables}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Carrot" at INDEX value 1.
+* There exists a tag called "Vegetables"
+* The "Carrot" item has not already been tagged under "Vegetables"
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="tag 1 n/Vegetables"
+  commandOutputBox="images/tagCommands/commandOutputBox/tag.png"
+%}
 
 ---
 
