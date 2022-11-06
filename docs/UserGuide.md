@@ -5,8 +5,8 @@ title: User Guide
 
 Survin is a desktop application for surveyors to use to keep track of people they have surveyed. The surveyor can easily follow up with people they have surveyed for additional information or for confirmation. The user interacts with the application using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
-- Table of Contents
-{:toc}
+-   Table of Contents
+    {:toc}
 
 ---
 
@@ -144,12 +144,12 @@ Creates a new person with updated details based on an existing person in Survin,
 
 Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
-- Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
-- At least one of the unique optional fields (Name, Phone or Email) has to be provided.
-- A new person with updated values in specified field will be added to Survin.
-- When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-- You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
+-   Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
+-   At least one of the unique optional fields (Name, Phone or Email) has to be provided.
+-   A new person with updated values in specified field will be added to Survin.
+-   When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
+-   You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+-   You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
 
 Examples:
 
@@ -162,51 +162,53 @@ Views the attributes of all surveyees with some specified attributes.
 
 Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
 
-- The search is case-insensitive.
-  - `alex` will match `Alex`
-- For all fields except `email` and `birthdate`, only full words are matched.
-  - In the `name` field, `Ale` will not match `Alex`
-- For the `email` and `birthdate` field, only substrings are matched.
-  - In the `email` field, `google` will match `alextan@google.com`.
-  - In the `birthdate` field, `10` will match any of the following
-    - `2010-12-25`, 25th December 2010.
-    - `2022-10-03`, 3rd October 2022.
-    - `2022-03-10`, 10th March 2022.
+-   The search is case-insensitive.
+    -   `alex` will match `Alex`
+-   For all fields except `email` and `birthdate`, only full words are matched.
+    -   In the `name` field, `Ale` will not match `Alex`
+-   For the `email` and `birthdate` field, only substrings are matched.
 
-- If no quotation marks are used, the order of the keywords does not matter.
-  - `Alex Tan` will match `Tan Alex`
-- If a pair of quotation marks are used, `view` matches exact phrases (not substrings) and order matters
-  - `"Alex T"` will not match `Alex Tan`
-  - `"Alex Tan"` will not match `Tan Alex`
-- If multiple words are used, `view` matches any of the words or phrases specified.
-  - `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
-  - `view n/Jane Doe Alex Tan` lists all persons whose names contain any of the following: `Jane`, `Doe`, `Alex`, or `Tan`.
-- If an odd number of quotation marks `"` is used, then its last occurrence is ignored.
-  - `view n/"Jane Doe" Alex Tan"` is equivalent to `view n/"Jane Doe" Alex Tan`
-- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each survey and tag.
-  - Views surveyees who have a survey that contains the word `airport`
-    ```
-    view s/airport
-    > 2 persons listed!
-    > Jane Doe ... [Changi Airport Survey][Food Survey]
-    > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
-    ```
-  - View surveyees who have a survey that contains the word `changi` or `airport`.
-    ```
-    view s/Changi Airport
-    > 2 persons listed!
-    > Jane Doe ... [Changi Airport Survey][Food Survey]
-    > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
-    ```
-  - View surveyees who have a survey that contains the phrase `changi airport`.  
-    ```
-    view s/"Changi Airport"
-    > 1 person listed!
-    > Jane Doe ... [Changi Airport Survey][Food Survey]
-    ```
+    -   In the `email` field, `google` will match `alextan@google.com`.
+    -   In the `birthdate` field, `10` will match any of the following
+        -   `2010-12-25`, 25th December 2010.
+        -   `2022-10-03`, 3rd October 2022.
+        -   `2022-03-10`, 10th March 2022.
 
-- Only the last prefix instance is parsed.
-  - `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
+-   If no quotation marks are used, the order of the keywords does not matter.
+    -   `Alex Tan` will match `Tan Alex`
+-   If a pair of quotation marks are used, `view` matches exact phrases (not substrings) and order matters
+    -   `"Alex T"` will not match `Alex Tan`
+    -   `"Alex Tan"` will not match `Tan Alex`
+-   If multiple words are used, `view` matches any of the words or phrases specified.
+    -   `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
+    -   `view n/Jane Doe Alex Tan` lists all persons whose names contain any of the following: `Jane`, `Doe`, `Alex`, or `Tan`.
+-   If an odd number of quotation marks `"` is used, then its last occurrence is ignored.
+    -   `view n/"Jane Doe" Alex Tan"` is equivalent to `view n/"Jane Doe" Alex Tan`
+-   When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each survey and tag.
+
+    -   Views surveyees who have a survey that contains the word `airport`
+        ```
+        view s/airport
+        > 2 persons listed!
+        > Jane Doe ... [Changi Airport Survey][Food Survey]
+        > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
+        ```
+    -   View surveyees who have a survey that contains the word `changi` or `airport`.
+        ```
+        view s/Changi Airport
+        > 2 persons listed!
+        > Jane Doe ... [Changi Airport Survey][Food Survey]
+        > Jenette Doe ... [Seletar Airport Survey][Academic Survey]
+        ```
+    -   View surveyees who have a survey that contains the phrase `changi airport`.
+        ```
+        view s/"Changi Airport"
+        > 1 person listed!
+        > Jane Doe ... [Changi Airport Survey][Food Survey]
+        ```
+
+-   Only the last prefix instance is parsed.
+    -   `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Fields that are specified must have a non-empty value! The following is a non-exhaustive list of invalid examples.<br />
@@ -309,6 +311,22 @@ Format: `undo`
 
 Example: `undo`
 
+| Commands        | Undoable?          |
+| --------------- | ------------------ |
+| Add             | :heavy_check_mark: |
+| Append/Unappend | :heavy_check_mark: |
+| Clone           | :heavy_check_mark: |
+| Delete          | :heavy_check_mark: |
+| Edit            | :heavy_check_mark: |
+| Mark/Unmark     | :heavy_check_mark: |
+| Clear           | :x:                |
+| View            | :x:                |
+| Exit            | :x:                |
+| List            | :x:                |
+| Help            | :x:                |
+| Theme           | :x:                |
+| ToggleList      | :x:                |
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the app.
@@ -349,7 +367,7 @@ _Details coming soon ..._
 ## Command summary
 
 | Action                  | Format, Examples                                                                                                                                                                                                                                                                  |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**                 | `n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/male b/1998-11-28 ra/Chinese re/Christian s/Shopping survey t/friends t/owesMoney` |
 | **Clear**               | `clear`                                                                                                                                                                                                                                                                           |
 | **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                                                                |
@@ -376,7 +394,7 @@ _Details coming soon ..._
 
 **EMAIL**: Emails should be of the format local-part@domain and adhere to the following constraints:
 
-1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+\_.-). The local-part may not start or end with any special characters.
 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
 3. The domain name must:
     - end with a domain label at least 2 characters long
