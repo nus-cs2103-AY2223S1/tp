@@ -110,7 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -136,30 +136,23 @@ public class ModelManager implements Model {
         return selectedPerson;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void filterPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable sorted and filtered view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Person> getSortedFilteredPersonList() {
         return sortedPersons;
     }
 
     @Override
-    public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
+    public void sortPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         sortedPersons.setComparator(comparator);
     }
@@ -180,7 +173,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && sortedPersons.equals(other.sortedPersons);
     }
 
 }
