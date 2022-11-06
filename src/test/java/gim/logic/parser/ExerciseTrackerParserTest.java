@@ -19,11 +19,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import gim.logic.commands.PrCommand;
-import gim.logic.commands.SortCommand;
-import gim.model.exercise.Name;
-import org.junit.jupiter.api.Test;
-
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.DeleteCommand;
@@ -32,11 +27,16 @@ import gim.logic.commands.FilterCommand;
 import gim.logic.commands.GenerateCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
+import gim.logic.commands.PrCommand;
+import gim.logic.commands.SortCommand;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.Name;
 import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.testutil.ExerciseBuilder;
 import gim.testutil.ExerciseUtil;
+
+import org.junit.jupiter.api.Test;
 
 public class ExerciseTrackerParserTest {
 

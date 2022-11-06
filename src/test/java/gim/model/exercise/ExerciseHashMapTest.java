@@ -4,7 +4,6 @@ import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ABDUCTION;
-import static gim.testutil.TypicalExercises.BENCH_PRESS;
 import static gim.testutil.TypicalExercises.BICEP_CURLS;
 import static gim.testutil.TypicalExercises.CALF_RAISES;
 import static gim.testutil.TypicalExercises.DEADLIFT_HEAVY;
@@ -16,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
