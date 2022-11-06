@@ -42,7 +42,7 @@ public class Company implements Comparable<Company> {
     @Override
     public String toString() {
         if (fullName == null) {
-            return "No Company";
+            return "No company";
         }
         return fullName;
     }

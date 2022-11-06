@@ -132,14 +132,12 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
-        // solution adapted from
-        // https://stackoverflow.com/a/36716166
         return otherInternship.getInternshipId().equals(getInternshipId())
                 && otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getInternshipRole().equals(getInternshipRole())
                 && otherInternship.getInternshipStatus().equals(getInternshipStatus())
                 && Objects.equals(otherInternship.getInternshipId(), getInternshipId())
-                && otherInternship.getContactPersonId().equals(getContactPersonId())
+                && Objects.equals(otherInternship.getContactPersonId(), getContactPersonId())
                 && otherInternship.getInterviewDate().equals(getInterviewDate());
     }
 
@@ -157,7 +155,7 @@ public class Internship {
                 .append(getInternshipRole())
                 .append("; Status: ")
                 .append(getInternshipStatus())
-                .append("; InterviewDate: ")
+                .append("; Interview Date: ")
                 .append(getInterviewDate());
 
         return builder.toString();

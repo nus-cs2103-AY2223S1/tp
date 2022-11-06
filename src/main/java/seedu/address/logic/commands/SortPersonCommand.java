@@ -14,8 +14,8 @@ public class SortPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "sort -p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on person name "
-            + "or company name. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts all persons based on person name or company name.\n"
             + "Parameters: [c/] [n/] (Only 1 criterion can be specified)\n"
             + "Example: " + COMMAND_WORD + " c/";
 

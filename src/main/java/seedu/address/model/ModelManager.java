@@ -143,6 +143,9 @@ public class ModelManager implements Model {
 
     @Override
     public void refreshPersonList() {
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
         FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
         Predicate<? super Person> predicate = personList.getPredicate();
         personList.setPredicate(PREDICATE_SHOW_NO_PERSONS);
@@ -190,6 +193,9 @@ public class ModelManager implements Model {
 
     @Override
     public void refreshInternshipList() {
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
         FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
         Predicate<? super Internship> predicate = internshipList.getPredicate();
         internshipList.setPredicate(PREDICATE_SHOW_NO_INTERNSHIPS);
