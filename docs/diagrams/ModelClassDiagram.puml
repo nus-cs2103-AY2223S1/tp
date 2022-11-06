@@ -26,8 +26,6 @@ Class TaskName
 Class TaskDeadline
 Class TaskDescription
 Class GradeMap
-Class GradeKey
-Class Grade
 }
 
 Class HiddenOutside #FFFFFF

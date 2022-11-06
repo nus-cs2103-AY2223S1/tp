@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `student delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -96,14 +96,14 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TaaParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
    * If the command takes in no arguments, the `Command` is directly created.
    * If the command takes in arguments, a parser is created to create the `Command`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("student delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -116,7 +116,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 - Let `ABC` represent the name of a command that takes in at least one argument. Examples of `ABC` include `TaskDelete` and `TutorialGroupAdd`. 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `ABCCommandParser` that uses the other classes shown above to parse the user command to create an `ABCCommand` object (e.g., `TaskDeleteCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `TaaParser` class creates an `ABCCommandParser` that uses the other classes shown above to parse the user command to create an `ABCCommand` object (e.g., `TaskDeleteCommand`) which the `TaaParser` returns back as a `Command` object.
 - All `ABCCommandParser` classes inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -267,11 +267,15 @@ however, it seemingly would not be as clean as the current implementation, as th
 to handle one or more indices, while the alternative implementation would be doing double work to cover the case with
 one index.
 
-### Expanding `TaskListCard` Feature
+### Expanding `TaskListCard` feature
 
 #### Description
 
 In TAA, the user can specify which `Student`s a `Task` has to be completed for. In the UI, each `Task` is displayed as a `TaskListCard`. The `TaskListCard` can be clicked to show or hide the `Student`s.
+
+The part of the UI highlighted in blue and grey are the `TaskListCard`s. The blue card has been clicked to show the `Student`s, while the grey card has a collapsed `Student` list.
+
+<img src="images/TaskListCard.png" width="650" />
 
 #### Implementation
 
@@ -325,6 +329,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GradeViewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
 the end of diagram.</div>
 
+The following activity diagram summarizes what happens when the user executes this command:
+
+<img src="images/GradeViewActivityDiagram.png" width="650" />
+
 ###### Editing the grade with `grade edit`
 
 The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("grade view 1 2 gr/T")` API call, where `1` is the student index and `2` is the task index.
@@ -333,6 +341,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GradeEditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
 the end of diagram.</div>
+
+The following activity diagram summarizes what happens when the user executes this command:
+
+<img src="images/GradeEditActivityDiagram.png" width="650" />
 
 #### Design Considerations
 
@@ -393,88 +405,7 @@ In the interest of future extensibility and fast implementation, `Grade` was mad
 
 The `HashMap` Java Collection was chosen because of faster lookups, since in the current iteration of TAA, the `GradeMap` is only used to add and retrieve grades. However, in the future, `GradeMap` can be changed easily to use a `TreeMap` instead. A `TreeMap` implementation would prove useful if more than 2 grades are added and a filter feature is desired, for example, get a list of `Student`s who scored more than a `B` in a particular `Task`. `ArrayList` was rejected because it is cumbersome to implement and is not as performant.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 ---
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 - [Documentation guide](Documentation.md)

@@ -6,7 +6,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
+Class TaaParser
 Class ABCCommandParser
 Class ABCCommand
 Class XYZCommand
@@ -29,9 +29,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser .right.> XYZCommand : directly\ncreates >
-AddressBookParser ..> ABCCommandParser : creates >
+LogicManager -right->"1" TaaParser
+TaaParser .right.> XYZCommand : directly\ncreates >
+TaaParser ..> ABCCommandParser : creates >
 ABCCommandParser ..> ABCCommand : creates >
 
 XYZCommand -up-|> Command

@@ -3,7 +3,7 @@
 
 box Parser LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddressBookParser" as TaaParser LOGIC_COLOR
 participant ":TutorialGroupAddCommandParser" as TutorialGroupAddCommandParser LOGIC_COLOR
 participant ":TutorialGroupAddCommand" as TutorialGroupAddCommand LOGIC_COLOR
 
@@ -16,17 +16,17 @@ end box
 
 
 
-LogicManager -> AddressBookParser : parseCommand("group add g/T02")
-activate AddressBookParser
+LogicManager -> TaaParser : parseCommand("group add g/T02")
+activate TaaParser
 
 create TutorialGroupAddCommandParser
-AddressBookParser -> TutorialGroupAddCommandParser
+TaaParser -> TutorialGroupAddCommandParser
 activate TutorialGroupAddCommandParser
 
-TutorialGroupAddCommandParser --> AddressBookParser
+TutorialGroupAddCommandParser --> TaaParser
 deactivate TutorialGroupAddCommandParser
 
-AddressBookParser -> TutorialGroupAddCommandParser : parse("T01")
+TaaParser -> TutorialGroupAddCommandParser : parse("T01")
 activate TutorialGroupAddCommandParser
 
 create TutorialGroupAddCommand
@@ -36,14 +36,14 @@ activate TutorialGroupAddCommand
 TutorialGroupAddCommand --> TutorialGroupAddCommandParser
 deactivate TutorialGroupAddCommand
 
-TutorialGroupAddCommandParser --> AddressBookParser : tutorialGroupAddCommand
+TutorialGroupAddCommandParser --> TaaParser : tutorialGroupAddCommand
 deactivate TutorialGroupAddCommandParser
 
-TutorialGroupAddCommandParser -[hidden]-> AddressBookParser
+TutorialGroupAddCommandParser -[hidden]-> TaaParser
 destroy TutorialGroupAddCommandParser
 
-AddressBookParser --> LogicManager : tutorialGroupAddCommand
-deactivate AddressBookParser
+TaaParser --> LogicManager : tutorialGroupAddCommand
+deactivate TaaParser
 
 LogicManager -> TutorialGroupAddCommand : execute()
 activate TutorialGroupAddCommand

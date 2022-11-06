@@ -1,0 +1,15 @@
+@startuml
+start
+:User enters a GradeViewCommand;
+:GradeViewCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([grade view command is valid])
+    :Create new grade view command which is executed by LogicManager;
+    :UI updates the Command Output box with the requested grade;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml
