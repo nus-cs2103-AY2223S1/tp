@@ -115,7 +115,7 @@ public class EditStuCommand extends Command {
 
         //checks if module exists
         if (editedStudent.getStudentModuleInfo().size() > 0 || editedStudent.isTeachingAssistant()) {
-            List<Module> moduleList = model.getFilteredModuleList();
+            List<Module> moduleList = model.getAllModuleList();
             List<ModuleCode> studentModules = new ArrayList<>();
             studentModules.addAll(editedStudent.getStudentModuleInfo());
             studentModules.addAll(editedStudent.getTeachingAssistantInfo());

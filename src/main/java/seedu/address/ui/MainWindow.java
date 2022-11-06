@@ -32,13 +32,13 @@ import seedu.address.ui.theme.ThemeException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static final int TIMETABLE = 0;
     private static final int STUDENTLIST = 1;
     private static final int MODULELIST = 2;
     private static final int MODULE = 3;
     private static final int SCHEDULE = 4;
-
     private static final int TIMETABLEV = 5;
-    private static final int TIMETABLE = 0;
+
     private static final String FXML = "MainWindow.fxml";
     private int timetableModel = 0;
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -255,7 +255,7 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to modules page.
      */
     @FXML
-    public void handleShowTabModules() {
+    public void handleShowTabModuleInfo() {
         moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getAllScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         if (!logic.getFilteredModuleList().equals(logic.getAllModuleList())) {
@@ -268,6 +268,16 @@ public class MainWindow extends UiPart<Stage> {
         }
         tabPane.getSelectionModel().select(MODULELIST);
         resultDisplay.setFeedbackToUser("Selected a module!");
+    }
+
+    /**
+     * Switch to modules page with all modules shown.
+     */
+    @FXML
+    public void handleShowTabModules() {
+        moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getFilteredScheduleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(MODULELIST);
     }
 
     /**
@@ -423,7 +433,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowModuleList()) {
-                handleShowTabAllModules();
+                handleShowTabModules();
             }
 
             if (commandResult.isShowStudentList()) {
@@ -431,7 +441,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowTargetModule()) {
-                handleShowTabModules();
+                handleShowTabModuleInfo();
             }
 
             if (commandResult.isShowModule()) {

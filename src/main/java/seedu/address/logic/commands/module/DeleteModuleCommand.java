@@ -107,7 +107,7 @@ public class DeleteModuleCommand extends Command {
                 }
                 if (teachingSet.contains(moduleToDelete.getCode())) {
                     Set<ModuleCode> editedSet = new HashSet<>();
-                    editedSet.addAll(studentSet);
+                    editedSet.addAll(teachingSet);
                     editedSet.remove(moduleToDelete.getCode());
                     editStudentDescriptor.setTeachingAssistantInfo(editedSet);
                 }

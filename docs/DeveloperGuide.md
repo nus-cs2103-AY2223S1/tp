@@ -157,8 +157,17 @@ The `Student` component
 
 - represents a student in ProfNUS
 
+#### 4.4.2. Student
 
-#### 4.4.2. Schedule
+**API** : [Module.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/module/Module.java)
+
+<img src="images/ModuleClassDiagram.png"  width="450" />
+
+The `Module` component
+
+- represents a module in ProfNUS
+
+#### 4.4.3. Schedule
 
 **API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
 
