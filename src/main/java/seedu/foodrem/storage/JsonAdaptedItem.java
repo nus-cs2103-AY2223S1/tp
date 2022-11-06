@@ -1,7 +1,6 @@
 package seedu.foodrem.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -78,19 +77,23 @@ class JsonAdaptedItem {
      */
     public Item toModelType() throws IllegalArgumentException {
         checkIfFieldsAreNull();
-
-        final Set<Tag> modelTags = new HashSet<>();
-        modelTags.addAll(tags.stream().map(JsonAdaptedTag::toModelType).collect(Collectors.toList()));
-
-        return new Item(
-                new ItemName(name),
-                new ItemQuantity(quantity),
-                new ItemUnit(unit),
-                ItemBoughtDate.of(boughtDate),
-                ItemExpiryDate.of(expiryDate),
-                new ItemPrice(price),
-                new ItemRemark(remarks),
-                modelTags);
+        final ItemName modelItemName = new ItemName(name);
+        final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
+        final ItemUnit modelItemUnit = new ItemUnit(unit);
+        final ItemBoughtDate modelItemBoughtDate = ItemBoughtDate.of(boughtDate);
+        final ItemExpiryDate modelItemExpiryDate = ItemExpiryDate.of(expiryDate);
+        final ItemPrice modelItemPrice = new ItemPrice(price);
+        final ItemRemark modelItemRemark = new ItemRemark(remarks);
+        final Set<Tag> modelTags = tags.stream()
+                .map(JsonAdaptedTag::toModelType).collect(Collectors.toSet());
+        return new Item(modelItemName,
+                        modelItemQuantity,
+                        modelItemUnit,
+                        modelItemBoughtDate,
+                        modelItemExpiryDate,
+                        modelItemPrice,
+                        modelItemRemark,
+                        modelTags);
     }
 
     /**
