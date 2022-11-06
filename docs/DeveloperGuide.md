@@ -197,6 +197,7 @@ For `list appts`, it follows a similar
 process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
 behaviour as executing both `list patients` and `list appts`.
 
+#### Design considerations:
 
 **Aspect: How the command is implemented:**
 * **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
@@ -299,6 +300,8 @@ This approach is easier to implement, as we do not have to worry about the appoi
 
 ### Group Patient Feature
 
+#### Implementation
+
 The group mechanism implements the following operations:
 
 * Group patients according to their tags.
@@ -330,6 +333,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs.
 
 ### Group Appointment Feature
+
+#### Implementation
 
 The group mechanism implements the following operations:
 
@@ -363,6 +368,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   tag group where a patient belongs or the patient attached to the appointment.
 
 ### Ungroup Feature
+
+#### Implementation
 
 The ungroup mechanism implements the following operations:
 
@@ -1385,4 +1392,4 @@ In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for
 
 In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
 
-Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
+Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a team.
