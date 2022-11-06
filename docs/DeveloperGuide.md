@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * [Mockito](https://github.com/mockito/mockito) framework used for testing
+* [se-edu addressbook-level3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md) reference for developers guide
 
 --------------------------------------------------------------------------------------------------------------------
 
