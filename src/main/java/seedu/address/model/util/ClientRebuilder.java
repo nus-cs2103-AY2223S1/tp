@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
