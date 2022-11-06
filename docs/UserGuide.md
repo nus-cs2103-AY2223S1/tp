@@ -134,7 +134,7 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 </ol>
 3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list. The purpose of the status is to help users in tracking the applications according to their own preferences (e.g. user can put the status as `pending` instead of `interview` for an application even if an interview is received).<br>
 6. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
@@ -182,6 +182,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
 * `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
+* `find` command will not affect the interview list shown in GUI. Please use `list` or `list-archive` command to ensure the interview list is synced to the application list.
 
 Example:
 * `find Software` returns the `Google` and `Wise` applications since their positions contain the keyword "software".
@@ -280,7 +281,7 @@ Format: `archive INDEX`
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of applications in the displayed list.
-* Interview related to the archived application will also be updated in the interview list once the application is archived.
+* Interview related to the specified application will also be updated in the interview list once the application is archived.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
@@ -295,7 +296,8 @@ Format: `retrieve INDEX`
 * The index refers to the index number shown in the displayed list of archived applications.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of archived applications.
-* The `list-archive` command needs to be executed to display the archived applications before using the `retrieve` command.
+* The `list-archive` command is recommended to be executed to display the archived applications before using the `retrieve` command.
+* Interview related to the specified application will also be updated in the interview list once the application is retrieved.
 
 Example:
 * `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list of archived applications.
@@ -335,7 +337,12 @@ Format: `remind`
 
 ### Showing the statistics of applications: `stats`
 
-Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.).
+* Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.). 
+* All the statistics counts include the archived applications.
+* The interview count shown from the `stats` command does not relate to the `interview` status tag. It shows the number of actual interviews associated with the applications in CinternS.
+* The `pending`, `offered` and `rejected` counts are related to the status tag of the applications.
+
+Format: `stats`
 
 ### Clearing all entries: `clear`
 
