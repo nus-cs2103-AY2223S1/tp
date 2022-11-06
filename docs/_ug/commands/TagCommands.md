@@ -108,6 +108,10 @@ Initially, FoodRem contains only the following three tags:
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
 ```
 
+```note
+If you encounter an error message saying "This tag name already exists in FoodRem," it means that the new name you wish to rename the current tag to is already taken by another tag in FoodRem.
+```
+
 **Example:**
 
 {% capture notes %}
