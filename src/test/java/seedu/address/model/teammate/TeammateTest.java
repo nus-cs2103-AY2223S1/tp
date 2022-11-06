@@ -15,7 +15,6 @@ import static seedu.address.testutil.TypicalTeammates.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TeammateBuilder;
 
 public class TeammateTest {
