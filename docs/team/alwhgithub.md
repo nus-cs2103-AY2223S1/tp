@@ -33,12 +33,10 @@ Given below are my contributions to the project.
     * Updated find command image to be consistent with updated UI and command format [\#173]()
     * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [#\169]()
     * Documented what purpose each section of the interface serves [\#169]()
-    * 
   * Developer Guide:
     * Updated appendix to be consistent with new features
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#54](), [\#90]()
   * Reported bugs and suggestions for other teams in the class
- 
 
