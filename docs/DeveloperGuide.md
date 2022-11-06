@@ -3,8 +3,54 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+<p align="center">
+  <img src="./images/Coydir_Logo.png" />
+  <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
+</p>
+
+## **Coydir /(‘kohy-də)/**
+
+> **Financial Resources may be the lifeblood of a company, but human resources are the brains.** - Rob Silzer
+
+**Revolutionize** your company and become an **Industry Leader** today with Coydir!
+
+---
+
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add feature](#add-feature)
+    - [Implementation](#add-feature-implementation)
+  - [Delete feature](#delete-feature)
+    - [Implementation](#delete-feature-implementation)
+  - [Find feature](#find-feature)
+    - [Implementation](#find-feature-implementation)
+  - [View feature](#view-feature)
+  - [Add leave feature](#add-leave-feature)
+    - [Implementation](#add-leave-feature-implementation)
+  - [Delete leave feature](#delete-leave-feature)
+    - [Implementation](#delete-leave-feature-implementation)
+  - [Batch-add feature](#batch-add-feature)
+    - [Implementation](#batch-add-feature-implementation)
+    - [Design Considerations](#batch-add-design-considerations)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-functional requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
 
 ---
 
@@ -158,88 +204,9 @@ Classes used by multiple components are in the `coydirbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/diagrams/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/diagrams/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/diagrams/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/diagrams/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/diagrams/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/diagrams/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/diagrams/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/diagrams/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire Coydir
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
 ### Add feature
 
-#### Implementation
+#### Implementation {#add-feature-implementation}
 
 This section explains the implementation of the `add` feature. The command takes in two compulsory parameters which is the employee name and position, executing the command leads to the addition of an employee person into the records of coydir.
 
@@ -259,7 +226,7 @@ Step 5. `storage#saveDatabase` is then called on the current `database`, updates
 
 ### Delete feature
 
-#### Implementation
+#### Implementation {#delete-feature-implementation}
 
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
@@ -285,7 +252,7 @@ The command takes in a number of parameters, which serve as the "filters" for th
 At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
 Thus it is possible to use these altogether to search for a person with high specificity.
 
-#### Implementation
+#### Implementation {#find-feature-implementation}
 
 The `find` command updates the model's filtered persons list based on the search filters.
 
@@ -327,7 +294,8 @@ Step 4. This finds the `person` from the list from the `model#getFilteredPersonL
 This section explains the implementation of the `add-leave` feature.
 The command takes in 3 parameters: employee ID, start date of leave, and end date of leave.
 
-#### Implementation 
+#### Implementation {#add-leave-feature-implementation}
+
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
 - On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel. 
@@ -356,7 +324,8 @@ Step 7. This returns a `CommandResult` object, which is returned to the `LogicMa
 This section explains the implementation of the `delete-leave` feature.
 The command takes in 2 parameters: employee ID, and the one-based index of leave in the leave table of the employee.
 
-#### Implementation 
+#### Implementation {#delete-leave-feature-implementation}
+
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
 - On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel. 
@@ -414,7 +383,7 @@ If there is any duplicate Person found, the function call will be aborted and th
 
 Step 4. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
 
-#### Design Considerations
+#### Design Considerations {#batch-add-design-considerations}
 
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
   - Pros: Makes use of the Error Handling that the `AddCommand` has.
@@ -560,7 +529,7 @@ _{More to be added}_
 
 _{More to be added}_
 
-### Non-Functional Requirements
+### Non-functional requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
