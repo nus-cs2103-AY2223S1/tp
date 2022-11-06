@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":SortBuyersCommand" as SortBuyersCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":BuyerBook" as BuyerBook MODEL_COLOR
+participant ":UniqueBuyerList" as UniqueBuyerList MODEL_COLOR
+end box
+
+box External EXTERNAL_COLOR
+Participant ":ArrayList" as ArrayList EXTERNAL_COLOR_T1
+Participant ":ObservableArrayList" as ObservableArrayList EXTERNAL_COLOR_T2
+end box
+
+[-[LOGIC_COLOR]> SortBuyersCommand: execute(model)
+activate SortBuyersCommand
+
+SortBuyersCommand -> Model : sortBuyerList(comparator)
+activate Model
+
+Model -> BuyerBook : getBuyerList()
+activate BuyerBook
+
+BuyerBook -> Model : buyerList
+deactivate BuyerBook
+
+Model -> ArrayList : sort(comparator)
+activate ArrayList
+
+ArrayList -> Model
+deactivate ArrayList
+
+Model -> BuyerBook : setBuyers(sortedList)
+activate BuyerBook
+
+BuyerBook -> UniqueBuyerList : setBuyers(buyerList)
+activate UniqueBuyerList
+
+UniqueBuyerList -> ObservableArrayList : setAll(internalList)
+activate ObservableArrayList
+
+ObservableArrayList -> UniqueBuyerList
+deactivate ObservableArrayList
+
+UniqueBuyerList -> BuyerBook
+deactivate UniqueBuyerList
+
+BuyerBook -> Model
+deactivate BuyerBook
+
+Model -> SortBuyersCommand
+deactivate Model
+
+[<[LOGIC_COLOR]-- SortBuyersCommand: CommandResult
+deactivate SortBuyersCommand
+@enduml
