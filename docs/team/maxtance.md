@@ -1,6 +1,9 @@
-# Max Tan's Project Portfolio Page
+---
+layout: page
+title: Max Tan's Project Portfolio Page
+---
 
-## Project: Class-ify
+## Project Class-ify
 
 Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor their students’ academic progress.
 Teachers can generate exam statistics for each class, and Class-ify quickly flags out students who require more support for contacting.
@@ -19,18 +22,21 @@ It is written in Java and the GUI is built using JavaFX.
 - [EditCommand](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/commands/EditCommand.java)
   - Caught and fixed a bug where there was an error with checking for a duplicate student 
   - See PR [#197](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/197)
+- [Exam](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/exam/Exam.java)
+  - Implemented test cases using test case design techniques such as Equivalence partitions and Boundary value analysis
+  - See PR [#188](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/188)
 - User Interface (UI)
   - Enhanced the previous design of AB3 to Class-ify's current design
   - Update the Student Card to show the new fields implemented  
   - See PR [#135](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/135) and [#165](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/165)
 
-#### Contributions to the UG
+#### Contributions to the User Guide
 - [Application layout](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#2-class-ifys-application-window)
   - Introduced the components of the UI and their functionalities
 - [Toggling view](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#434-toggling-view--toggleview)
   - Explained the functionality and usage of the command
 
-#### Contributions to the DG
+#### Contributions to the Developer Guide
 - [Toggle View Command](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#427-toggleview-command)
   - Added implementation details and design considerations
   - Added activity diagram to help readers understand the process flow
@@ -39,5 +45,10 @@ It is written in Java and the GUI is built using JavaFX.
   - Added sequence diagram to explain the internal interactions of the system
 
 #### Review/mentoring contributions
-- [#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91): Suggested to use Optional class instead of assigning null to a variable
-- [#99](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/99): Suggested a more appropriate method name
+- Total Pull Requests reviewed: 40
+- Examples of contribution to reviews:
+  - [#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91): Suggested to use Optional class instead of assigning null to a variable
+  - [#99](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/99): Suggested a more appropriate method name
+
+### Contributions beyond the project team
+- Tested team [CinternS application](https://github.com/AY2223S1-CS2103-F14-3/tp), reported [bugs](https://github.com/maxtance/ped/issues), and gave feedback for improvement
