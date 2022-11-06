@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/eesung00.md)]
 
 * Role: Testing
-* Responsibilities: In charge of `Commons`, assisting in `Model`.
+* Responsibilities: In charge of `Commons` and `Model`.
 
 ### Chee Jer Hong
 
