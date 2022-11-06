@@ -26,7 +26,7 @@ public class MarkTutorialCommand extends Command {
             + "Example: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARKTUT_SUCCESS = "Marked Tutorial %1$s";
+    public static final String MESSAGE_MARKTUT_SUCCESS = "Marked:\n%1$s";
 
     private final Index index;
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
@@ -28,7 +27,7 @@ public class AddStuCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_QUESTION = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
 
     private final Student toAdd;
 
@@ -45,7 +44,7 @@ public class AddStuCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_QUESTION);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addStudent(toAdd);

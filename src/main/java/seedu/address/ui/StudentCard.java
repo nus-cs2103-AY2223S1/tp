@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Student;
 
 /**
@@ -36,6 +42,8 @@ public class StudentCard extends UiPart<Region> {
     private Label response;
     @FXML
     private Label attendance;
+    @FXML
+    private Label helpTag;
 
 
     /**
@@ -49,7 +57,21 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegram().telegram);
         response.setText("Response: " + student.getResponse().value);
-        attendance.setText("Attendance: " + student.getAttendance().attendance + "/10");
+        attendance.setText("Attendance: " + student.getAttendance().attendance);
+        if (student.needsHelp()) {
+            applyStyleToHelpTag();
+        } else {
+            helpTag.setVisible(false);
+        }
+    }
+
+    private void applyStyleToHelpTag() {
+        helpTag.setText(HelpTag.HELP);
+
+        //to be transferred to DarkTheme.css if possible
+        helpTag.setBackground(new Background(
+                new BackgroundFill(Color.rgb(241, 88, 88), new CornerRadii(2), Insets.EMPTY)));
+        helpTag.setPadding(new Insets(1, 5, 1, 5));
     }
 
     @Override

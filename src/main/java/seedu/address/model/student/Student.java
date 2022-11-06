@@ -17,12 +17,14 @@ public class Student {
     // Data fields
     private final Response response;
     private final Attendance attendance;
+    private final HelpTag helpTag;
 
     /**
      * Name, Telegram and Email field must not be null.
      */
 
-    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance) {
+    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance,
+                   HelpTag helpTag) {
 
         requireAllNonNull(name, telegram, email);
         this.name = name;
@@ -30,6 +32,7 @@ public class Student {
         this.email = email;
         this.response = response;
         this.attendance = attendance;
+        this.helpTag = helpTag;
     }
 
     public StuName getName() {
@@ -52,6 +55,23 @@ public class Student {
         return response;
     }
 
+    public HelpTag getHelpTag() {
+        return helpTag;
+    }
+
+    public boolean needsHelp() {
+        return helpTag.getBool();
+    }
+
+    /**
+     * Returns a StuName object with its fullname attribute converted to all lowercase and with spaces removed.
+     */
+    public StuName nameToLowercaseRemoveSpaces(String name) {
+        name = name.replaceAll("\\s", "");
+        name = name.toLowerCase();
+        return new StuName(name);
+    }
+
     /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
@@ -62,7 +82,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && nameToLowercaseRemoveSpaces(otherStudent.getName().fullName)
+                .equals(nameToLowercaseRemoveSpaces(getName().fullName));
     }
 
     /**
@@ -104,7 +125,9 @@ public class Student {
                 .append("; Response: ")
                 .append(getResponse())
                 .append("; Attendance: ")
-                .append(getAttendance());
+                .append(getAttendance())
+                .append("; Help Tag: ")
+                .append(getHelpTag());
 
         return builder.toString();
     }

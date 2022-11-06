@@ -32,7 +32,7 @@ public class Response {
 
     @Override
     public String toString() {
-        return "message count: " + value;
+        return value;
     }
 
     @Override

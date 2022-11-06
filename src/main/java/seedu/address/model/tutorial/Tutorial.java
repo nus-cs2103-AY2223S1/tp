@@ -40,6 +40,11 @@ public class Tutorial {
         return time;
     }
 
+    public String getTimeOrDateStr(String s) {
+
+        return s.equalsIgnoreCase("time") ? time.getUiStringTime() : time.getUiStringDate();
+    }
+
     public boolean getStatus() {
         return status;
     }
@@ -94,8 +99,10 @@ public class Tutorial {
                 .append("; Content: ")
                 .append(getContent())
                 .append("; Time: ")
-                .append(getTime())
-                .append(getStatus() ? "[X]" : "[ ]");
+                .append(getTimeOrDateStr("time"))
+                .append("; Date: ")
+                .append(getTimeOrDateStr("date"))
+                .append(getStatus() ? "\n[X]" : "\n[ ]");
 
         return builder.toString();
     }

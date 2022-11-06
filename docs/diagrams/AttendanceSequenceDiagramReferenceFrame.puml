@@ -1,0 +1,56 @@
+@startuml
+mainframe **sd** execute attendance command
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "a:AttendanceCommand" as AttendanceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternalList" as InternalList MODEL_COLOR
+participant ":UniqueStudentList" as UniqueStudentList MODEL_COLOR
+end box
+
+LogicManager -> AttendanceCommand : execute()
+activate AttendanceCommand
+
+AttendanceCommand -> Model : setStudent()
+activate Model
+
+Model -> InternalList : setStudent()
+activate InternalList
+
+InternalList -> UniqueStudentList: setStudent()
+activate UniqueStudentList
+
+UniqueStudentList -> UniqueStudentList: set()
+
+UniqueStudentList --> InternalList
+deactivate UniqueStudentList
+
+InternalList --> Model
+deactivate InternalList
+
+Model --> AttendanceCommand
+deactivate Model
+
+AttendanceCommand -> Model : updateFilteredStudentList()
+activate Model
+
+Model --> AttendanceCommand
+deactivate Model
+
+create CommandResult
+AttendanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AttendanceCommand
+deactivate CommandResult
+
+AttendanceCommand --> LogicManager : result
+deactivate AttendanceCommand
+
+@enduml

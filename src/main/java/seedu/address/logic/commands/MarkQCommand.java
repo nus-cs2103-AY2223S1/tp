@@ -28,7 +28,12 @@ public class MarkQCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a MarkQCommand to mark the question at the specified {@code Index} as important.
+     */
     public MarkQCommand(Index index) {
+        requireNonNull(index);
+
         this.index = index;
     }
 

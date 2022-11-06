@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteQCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -9,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteQCommand object
  */
-public class DeleteQCommandParser {
+public class DeleteQCommandParser implements Parser<DeleteQCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteQCommand
@@ -22,7 +20,7 @@ public class DeleteQCommandParser {
             return new DeleteQCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteQCommand.MESSAGE_USAGE), pe);
+                    String.format(DeleteQCommand.MESSAGE_USAGE), pe);
         }
     }
 }

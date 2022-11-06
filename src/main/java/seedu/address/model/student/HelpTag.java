@@ -5,35 +5,35 @@ package seedu.address.model.student;
  */
 public class HelpTag {
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String HELP = "Help";
 
-    public final String helpTag;
+    public final boolean toHelp;
 
     /**
      * Constructs a {@code HelpTag}.
-     *
-     * @param helpTag A valid tag name.
      */
-    public HelpTag(String helpTag) {
-        this.helpTag = helpTag;
+    public HelpTag(boolean bool) {
+        this.toHelp = bool;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HelpTag // instanceof handles nulls
-                && helpTag.equals(((HelpTag) other).helpTag)); // state check
+                && toHelp == ((HelpTag) other).toHelp); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return helpTag.hashCode();
+    public boolean getBool() {
+        return toHelp;
     }
-
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return "[help]";
+        if (toHelp) {
+            return "[help]";
+        } else {
+            return "[help not needed]";
+        }
     }
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
@@ -11,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
@@ -20,7 +20,7 @@ import seedu.address.model.student.Telegram;
 /**
  * Parses input arguments and creates a new AddStuCommand object
  */
-public class AddStuCommandParser {
+public class AddStuCommandParser implements Parser<AddStuCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -40,8 +40,9 @@ public class AddStuCommandParser {
         StuEmail email = ParserUtil.parseStuEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Response response = new Response("0");
         Attendance attendance = new Attendance("0");
+        HelpTag helpTag = new HelpTag(false);
 
-        Student student = new Student(name, telegram, email, response, attendance);
+        Student student = new Student(name, telegram, email, response, attendance, helpTag);
 
         return new AddStuCommand(student);
     }
