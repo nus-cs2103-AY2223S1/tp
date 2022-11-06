@@ -10,7 +10,7 @@ title: Developer Guide
 ## **1. Introduction**
 
 ### **1.1 Purpose**
-This document describes the architecture and software design decisions for our CLI-based task management app notionUS.
+This document describes the architecture and software design decisions for our CLI-based task management app NotionUS.
 While the document is in general for anyone who wants to understand the system, it is primarily targeted towards the
 designers, developers and software testers of notionUS.
 
