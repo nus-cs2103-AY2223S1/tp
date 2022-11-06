@@ -30,7 +30,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/diagrams/ArchitectureDiagram.png" width="280" />
+<img src="images/diagrams/DeleteCommandUML.png" width="280" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
@@ -56,7 +56,7 @@ The rest of the App consists of four components.
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/diagrams/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/diagrams/DeleteCommandUML.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -140,7 +140,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/storage/Storage.java)
 
-<img src="images/diagrams/StorageClassiagram.png" width="550" />
+<img src="images/diagrams/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
@@ -259,7 +259,7 @@ Step 5. `storage#saveDatabase` is then called on the current `database`, updates
 
 ### Delete feature
 
-#### Implementation (_Proposed_)
+#### Implementation
 
 This section explains the implementation of the `delete` feature. The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee with that specific employee ID from coydir.
 
@@ -321,6 +321,64 @@ Step 2. User input is parsed by `ViewCommandParser` which created the `ViewComma
 Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
 
 Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a messafe indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel being updated with the correct `person` information.
+
+### Add leave feature
+
+This section explains the implementation of the `add-leave` feature.
+The command takes in 3 parameters: employee ID, start date of leave, and end date of leave.
+
+#### Implementation 
+When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
+
+- On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel. 
+- The "Leaves-Left" field will also be updated accordingly, which is the deduction of the number of days which the new leave spans, from its previous value.
+
+Below is a sequence diagram and explanation of how `add-leave` is executed. In this example, we will look at the command `add-leave id/1 sd/01-01-2022 ed/01-01-2022`.
+
+<img src="images/diagrams/AddLeaveCommandUML.png" />
+
+Step 1. The user enters the command "add-leave id/1 sd/01-01-2022 ed/01-01-2022".
+
+Step 2. The user input is parsed by `AddLeaveCommandParser` which creates an `AddLeaveCommand` object.
+
+Step 3. The `execute` method of `AddLeaveCommand` is then called on the object.
+
+Step 4. This calls the `model#getPersonList` method, which returns a list of employees.
+
+Step 5. The target employee is then taken from the list by their employee ID from the input.
+
+Step 6. The `Person#addLeave` method is then called on the employee, and the new leave period is added to the employee.
+
+Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
+
+### Delete leave feature
+
+This section explains the implementation of the `delete-leave` feature.
+The command takes in 2 parameters: employee ID, and the one-based index of leave in the leave table of the employee.
+
+#### Implementation 
+When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
+
+- On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel. 
+- The "Leaves-Left" field will also be updated accordingly, which is the addition of its previous value and the number of days which the deleted leave spans.
+
+Below is a sequence diagram and explanation of how `delete-leave` is executed. In this example, we will look at the command `delete-leave id/1 i/1`.
+
+<img src="images/diagrams/DeleteLeaveCommandUML.png" />
+
+Step 1. The user enters the command "delete-leave id/1 i/1".
+
+Step 2. The user input is parsed by `DeleteLeaveCommandParser` which creates a `DeleteLeaveCommand`.
+
+Step 3. The `execute` method of `DeleteLeaveCommand` is then called on the object.
+
+Step 4. This calls the `model#getPersonList` method, which returns a list of employees.
+
+Step 5. The target employee is then taken from the list by their employee ID from the input.
+
+Step 6. The leave to be removed is created based of its index in the `Queue<Leave>` of the employee, then `Queue#remove` is called with the leave as parameter.
+
+Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
 
 ### BatchAdd
 
