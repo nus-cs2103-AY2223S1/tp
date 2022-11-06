@@ -27,7 +27,8 @@ Given below are my contributions to the project.
 
 * **Project management**:
 
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Facilitated meetings and task management
+  * Took down meeting minutes
 
 
 * **Enhancements to existing features**:
@@ -35,39 +36,21 @@ Given below are my contributions to the project.
   * Implemented storage for `add` and `delete` commands (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
 
   * Wrote additional tests for `add` and `delete` to increase coverage from 28.88% to 30.86% (Pull requests [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82))
-  
+
   * Implemented UI for all lesson types under the `view` command (Pull requests [\#100](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/100))
 
 
 * **Documentation**:
 
   * User Guide:
-
-    * Added documentation for the features `delete` and `find` [\#72]()
-
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-
+    * Added warnings and notes to highlight potential confusions users might have (Pull requests [\#166](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/166))
+  
   * Developer Guide:
-
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `UI` feature and updated diagram (Pull request [\#169](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/169) )
+    * Updated MSS for `find`, `add`. (Pull request [\#169](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/169) )
+    * Proofread the Developer Guide
 
 
 * **Community**:
 
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-
-* **Tools**:
-
-  * Integrated a third party library (Natty) to the project ([\#42]())
-
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#101](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/101), [\#85](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/85), [\#83](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/83), [\#59](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/59), [\#55](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/55)
