@@ -64,6 +64,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -319,6 +321,8 @@ Step 2: The user executes `:range start/10/10/2022 end/15/10/2022` command to vi
 10 October 2022 and 15 October 2022. The `ExerciseTrackerParser` identifies that the command is a `RangeCommand`.
 The command calls `Model` to `sortFilteredExerciseList(predicate)` and the `Ui` displays the `filteredExercises` list which has all the exercises between the specified dates.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the date range process is executed.
 
 <img src="images/RangeSequenceDiagram.png" width="1000" />
@@ -367,6 +371,8 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
 The following sequence diagram shows how the `PrCommand` works.
 
 ![ListPersonalRecordSequenceDiagram](images/ListPersonalRecordSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -497,6 +503,9 @@ Through this pattern, each observer gets to define exactly what the required dis
         }
     }
 ```
+
+<div style="page-break-after: always;"></div>
+
 * Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
 * This allows for flexibility in having different types of objects having different forms of updating. This keeps the code in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an intermediary to help the UI communicate with `ExerciseHashMap`.
@@ -788,14 +797,14 @@ Actor: User <br>
 *{More to be added}*
 
 ### **Glossary**
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
-* **Reps**: Number of times you perform a specific exercise
-* **Sets**: Number of cycles of reps that you complete
-* **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 * **Rate of Perceived Exertion (RPE)**: A measure of a physical activity intensity level.
+* **Reps**: Number of times you perform a specific exercise
+* **Sets**: Number of cycles of reps that you complete
+* **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
+* **Weight**: Total weight (include barbell if applicable, exclude body weight)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -824,6 +833,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an exercise
 
@@ -920,6 +931,8 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect `:range` commands to try: `:range`, `range last/abc`, `range start/01/01/2022`, ...<br>
        Expected: The Result Display Window will indicate that the command is invalid.
 
+<div style="page-break-after: always;"></div>
+
 ### Generating workout suggestion for exercise(s)
 
 1. Generating workout suggestion using index(es).
@@ -932,8 +945,6 @@ testers are expected to do more *exploratory* testing.
     3. Prerequisite: There is only one exercise in the Exercise List.<br>
        Test case: `:gen 2 level/easy`.<br>
        Expected: The Result Display Window will indicate that the index is invalid.
-
-<div style="page-break-after: always;"></div>
 
 2. Generating workout suggestion using exercise name(s).
 
@@ -952,7 +963,8 @@ testers are expected to do more *exploratory* testing.
 
     5. Other incorrect `:gen` commands to try: `:gen` (no keywords provided).<br>
        Expected: The Result Display Window will indicate that the command is invalid.
-    
+
+<div style="page-break-after: always;"></div>    
 
 ### Listing Personal Records (PR)
 
