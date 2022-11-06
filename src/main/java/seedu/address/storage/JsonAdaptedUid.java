@@ -37,7 +37,7 @@ public class JsonAdaptedUid {
      * @throws IllegalValueException if there were any data constraints violated in the adapted uid.
      */
     public Uid toModelType() throws IllegalValueException {
-        if (uid == null || Uid.isValidUid(uid)) {
+        if (uid == null || !Uid.isValidUid(uid)) {
             throw new IllegalValueException(Uid.MESSAGE_CONSTRAINTS);
         }
         return new Uid(uid);

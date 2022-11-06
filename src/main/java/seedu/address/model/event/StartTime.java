@@ -46,17 +46,19 @@ public class StartTime implements Comparable<StartTime> {
     /**
      * Checks if a given string follows the valid StartTime input format.
      */
-    public static boolean isValidStartTimeFormat(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidStartTimeFormat(String startTimeToTest) {
+        requireNonNull(startTimeToTest);
+        return startTimeToTest.matches(VALIDATION_REGEX);
     }
 
     /**
      * Checks if a given string can be parsed to a valid StartTime value.
-     * @param test string input, the format check for test should be done before calling this function.
+     * @param startTimeToTest string input, the format check for test should be done before calling this function.
      */
-    public static boolean isValidStartTimeValue(String test) {
+    public static boolean isValidStartTimeValue(String startTimeToTest) {
+        requireNonNull(startTimeToTest);
         try {
-            String[] parsedTime = test.split(TIME_DELIMITER, 2);
+            String[] parsedTime = startTimeToTest.split(TIME_DELIMITER, 2);
             LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
         } catch (DateTimeException e) {
             return false;

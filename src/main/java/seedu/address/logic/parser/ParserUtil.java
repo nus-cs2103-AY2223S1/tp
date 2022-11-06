@@ -175,7 +175,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String Date} into a {@code Date}.
-     * {@code isFutureDateAllowed} is trueif a date after the current date is allowed, false otherwise.
+     * The {@code isFutureDateAllowed} flag controls whether a date after the current date is allowed or not.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
@@ -191,7 +191,7 @@ public class ParserUtil {
         }
 
         //Check if date is after current date and if it is allowed.
-        if (Date.isAfterCurrentDate(date) & !isFutureDateAllowed) {
+        if (Date.isAfterCurrentDate(date) && !isFutureDateAllowed) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS_DOB);
         }
         return new Date(trimmedDate);

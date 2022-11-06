@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
-    public static final String MESSAGE_CONSTRAINTS_DOB = "Date must be before current date for date of births";
+    public static final String MESSAGE_CONSTRAINTS_DOB = "Date must be before current date for date of birth";
 
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid date values.";
     private static final String DATE_DELIMITER = "/";
@@ -45,7 +45,6 @@ public class Date implements Comparable<Date> {
 
     /**
      * Checks if a given string is a valid Date input.
-     * @return boolean
      */
     public static boolean isValidDate(String test) {
         return isValidDateFormat(test) && isValidDateValue(test);
@@ -53,19 +52,19 @@ public class Date implements Comparable<Date> {
 
     /**
      * Checks if a given string follows the valid Date input format.
-     * @return boolean
      */
-    public static boolean isValidDateFormat(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidDateFormat(String dateToTest) {
+        requireNonNull(dateToTest);
+        return dateToTest.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given string is a valid Date input.
-     * @return boolean
      */
-    public static boolean isValidDateValue(String test) {
+    public static boolean isValidDateValue(String dateToTest) {
+        requireNonNull(dateToTest);
         try {
-            String[] parsedDate = test.split(DATE_DELIMITER, 3);
+            String[] parsedDate = dateToTest.split(DATE_DELIMITER, 3);
             //To catch corner case of Year 0 which should not exist but #of is unable to detect
             if (Integer.parseInt(parsedDate[2]) == 0) {
                 return false;
@@ -80,15 +79,15 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns true if a given string is after the current date.
-     * @param test string input, the format check for test should be done before calling this function.
+     * @param dateToTest string input, the format check for test should be done before calling this function.
      */
-    public static boolean isAfterCurrentDate(String test) {
-        LocalDate dateToCheck = LocalDate.parse(test, logFormatter);
+    public static boolean isAfterCurrentDate(String dateToTest) {
+        LocalDate dateToCheck = LocalDate.parse(dateToTest, logFormatter);
         return dateToCheck.isAfter(LocalDate.now());
     }
 
     /**
-     * Returns the integer age of a person.
+     * Returns the integer age of this Date object when the Date Object is used as date of birth of a person.
      */
     public int toAge() {
         LocalDate currDate = LocalDate.now();

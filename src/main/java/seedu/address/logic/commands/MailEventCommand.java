@@ -33,7 +33,7 @@ public class MailEventCommand extends Command {
     public static final String MESSAGE_MAIL_EVENT_SUCCESS = " Generated mailing list for event: %s, "
             + "stored %s.csv file in /data folder.";
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save mailing list to file: %s.csv";
-    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no attendees in the event: %s,"
+    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There are no attendees in the event: %s,"
             + " the mailing list file won't be created.";
     private final Index index;
     /**

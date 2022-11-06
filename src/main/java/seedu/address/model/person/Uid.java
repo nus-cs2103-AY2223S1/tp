@@ -14,13 +14,13 @@ public class Uid {
     public final String value;
 
     /**
-     * Constructor that creates an Uid Object.
+     * Constructor that creates a Uid Object.
      */
     public Uid() {
         this.value = String.valueOf(UUID.randomUUID());
     }
     /**
-     * Overloaded constructor that creates an Uid Object.
+     * Overloaded constructor that creates a Uid Object.
      */
     public Uid(String value) {
         requireNonNull(value);

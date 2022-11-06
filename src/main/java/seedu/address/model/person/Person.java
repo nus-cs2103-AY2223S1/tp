@@ -24,7 +24,7 @@ public class Person {
     private final Uid uid;
 
     /**
-     * Constructor to create new Person object.
+     * Constructor to create a new Person object.
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob, Uid uid) {
@@ -33,8 +33,8 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.dob = dob;
         this.gender = gender;
+        this.dob = dob;
         this.uid = uid;
     }
 

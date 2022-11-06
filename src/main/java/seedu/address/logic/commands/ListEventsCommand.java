@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.EventSortField;
 
 /**
- * Lists all events in the event list of the application to the user.
+ * Lists all events in the event list of the application.
  */
 public class ListEventsCommand extends Command {
 

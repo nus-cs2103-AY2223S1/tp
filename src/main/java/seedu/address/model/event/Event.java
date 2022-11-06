@@ -16,7 +16,7 @@ public class Event {
     private final UidList uids;
 
     /**
-     * Constructor to create new Event object
+     * Constructor to create a new Event object.
      * @param eventTitle title of marketing event
      * @param startDate date when marketing event begins
      * @param startTime time when marketing event begins
