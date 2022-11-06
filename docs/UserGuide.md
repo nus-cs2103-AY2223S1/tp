@@ -261,10 +261,11 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
 
 Examples:
-*`find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
-  |       Before        |       After      |
-  |:-------------------------:|:-------------------------:|
-  |![before layout](images/BeforeFind.png) |![after layout](images/AfterFind.png) |
+* `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
+
+  | Before                                   |       After      |
+  |-------------------------|-------------------------|
+  | ![before layout](images/BeforeFindRole.png) |![after layout](images/AfterFindRole.png) |
 
 
 ### 5.6. Deleting your internship application
