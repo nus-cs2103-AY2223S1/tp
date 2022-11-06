@@ -1234,7 +1234,7 @@ More information on usage: [addtask command](UserGuide.html#adding-a-task-to-a-s
 
 1. Adding a task to a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. 
 
     2. Test case: `addtask Technical Interview /at 12-01-2023 15:00`<br>
        Expected: `Technical Interview` task is added to the task list of the selected internship, added in chronological
