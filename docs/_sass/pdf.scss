@@ -117,15 +117,23 @@
   article.post {
     .command-container {
       page-break-before: avoid;
-      display: block;
-      columns: 2;
-      // FIXME: Uneven column height
+
+      * + * {
+        // Use old-style spacing due to unsupported
+        // column-gap for flex items
+        margin-left: 1rem;
+      }
     }
 
     .command-container,
     .input-container,
     .output-image {
       page-break-inside: avoid;
+    }
+
+    .input-container,
+    .output-image {
+      box-sizing: border-box;
     }
 
     .input-container {
