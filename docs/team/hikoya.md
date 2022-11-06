@@ -57,6 +57,7 @@ Given below are my contributions to the project.
   * Improve test coverage of project. ([#329](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/329))
   * Answered questions or helped out to solve tasks posted by others in forum. ([Forum](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+commenter%3AHikoya)) 
   * Set up GitHub Projects as an issue tracker to track project progress. ([GitHub Projects](https://github.com/orgs/AY2223S1-CS2103-W14-2/projects/1))
+  * Create the product demo video as part of our submission requirements.
 * **Tools**
   * IntelliJ IDEA
   * JavaFX Scene Builder
