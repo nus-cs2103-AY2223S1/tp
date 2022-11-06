@@ -33,6 +33,8 @@ public class FilterBuyersContainingAllCharacteristicsPredicate extends AbstractF
         return other == this // short circuit if same object
                 || (other instanceof FilterBuyersContainingAllCharacteristicsPredicate // instanceof handles nulls
                 && givenCharacteristics.equals((
-                        (FilterBuyersContainingAllCharacteristicsPredicate) other).givenCharacteristics)); // state check
+                        // state check
+                        (FilterBuyersContainingAllCharacteristicsPredicate) other).givenCharacteristics));
+
     }
 }

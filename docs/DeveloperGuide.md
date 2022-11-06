@@ -600,21 +600,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 
 1. User chooses to add a new buyer.
-2. User enters the details of the buyer (e.g. their requirements) and his/her status as a buyer/seller.
+2. User enters the details of the buyer.
 3. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The buyer already exists.
-* 2b. Cobb shows an error message.
+* 3a. The buyer already exists.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
 
-Use case ends.
 
-* 3a. User provides incorrectly formatted information.
-* 3b. Cobb shows an error message.
-
-Use case ends.
+* 3b. User provides incorrectly formatted information.<br>
+  3b1. Cobb shows an error message.<br>
+  Use case ends.
 
 ### Use case: Add a property
 
@@ -622,21 +621,20 @@ Use case ends.
 
 1. User chooses to add a new property.
 2. User enters the details of the property.
-3. If available, user enters the details of the buyer/seller.
+3. If available, user enters the details of the owner of the property.
 4. User executes add command.
 
 Use case ends.
 
 **Extensions**
-* 2a. The property already exists.
-* 2b. Cobb shows an error message.
+* 4a. The property already exists.<br>
+  4a1. Cobb shows an error message.<br>
+  Use case ends.
 
-Use case ends.
 
-* 4a. User provides incorrectly formatted information.
-* 4b. Cobb shows an error message.
-
-Use case ends.
+* 4b. User provides incorrectly formatted information.<br>
+  4b1. Cobb shows an error message. <br>
+  Use case ends.
 
 ### Use case: Edit a buyer
 
@@ -649,27 +647,9 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 3a. User provides incorrect information to update.
-* 3b. Cobb shows an error message.
-
-Use case ends.
-
-### Use case: Edit a property
-
-
-**MSS:**
-
-1. User chooses to edit an existing property.
-2. User finds property they want to edit.
-3. User executes update command with relevant information to update.
-
-Use case ends.
-
-**Extensions**
-* 3a. User provides incorrect information to update.
-* 3b. Cobb shows an error message.
-
-Use case ends.
+* 3a. User provides incorrect information to update.<br>
+  3a1. Cobb shows an error message.<br>
+  Use case ends.
 
 
 ### Use case: List properties
@@ -737,17 +717,16 @@ Use case ends.
 3. User tries to <u>match the buyer to a property [(Use case: Match buyer to property)](#use-case-match-buyer-to-properties)</u>.
 
 **Extensions:**
-2a. Buyer already exists.
-2b. User edits the existing buyer with new requirements, if necessary.
-
-Use case continues at 3.
+* 2a. Buyer already exists.<br>
+  2b. User edits the existing buyer with new requirements, if necessary.<br>
+  Use case continues at 3.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on any computer fewer than five years old.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should work on any computer fewer than five years old. 
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
