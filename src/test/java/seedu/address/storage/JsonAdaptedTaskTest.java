@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTask.INVALID_FIELD_MESSAGE_FORMAT;
 import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.DisplayItemUtil.INVALID_NAME_RACHEL;
+import static seedu.address.testutil.DisplayItemSampleData.INVALID_NAME_RACHEL;
 import static seedu.address.testutil.TypicalTasks.FIX_BUG;
 
 import java.time.LocalDateTime;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.task.Task;
 
 public class JsonAdaptedTaskTest {
 
@@ -32,9 +33,16 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DATETIME = "34871";
 
     @Test
-    public void toModelType_validTaskDetails_returnsTag() throws Exception {
+    public void toModelType_validTaskDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(FIX_BUG);
-        assertEquals(FIX_BUG, task.toModelType());
+        Task toModelTask = task.toModelType();
+
+        // Parenting is done when constructing the JsonSerializableAddressBook, and not considered here.
+        assertEquals(FIX_BUG.getName(), toModelTask.getName());
+        assertEquals(FIX_BUG.getAttributes(), toModelTask.getAttributes());
+        assertEquals(FIX_BUG.getTags(), toModelTask.getTags());
+        assertEquals(FIX_BUG.getDescription(), toModelTask.getDescription());
+        assertEquals(FIX_BUG.getCompletedTime(), toModelTask.getCompletedTime());
     }
 
     @Test

@@ -2,7 +2,10 @@ package seedu.address.testutil;
 
 import java.util.Map;
 
-public class DisplayItemUtil {
+/**
+ * A provides sample data for DisplayItem objects.
+ */
+public class DisplayItemSampleData {
 
     public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_ADDRESS_ALICE = "123, Jurong West Ave 6, #08-111";

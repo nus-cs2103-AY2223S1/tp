@@ -1,19 +1,12 @@
 package seedu.address.testutil;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_DISPLAY_FORMAT;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_STYLE_FORMAT;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_TYPE_NAME;
-import static seedu.address.model.attribute.AbstractAttribute.SAVE_KEY_VALUE;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import javafx.scene.Node;
 import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;

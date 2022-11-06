@@ -3,11 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.storage.JsonAdaptedAbstractAttribute.CORRUPTED_FIELD_MESSAGE_FORMAT;
 import static seedu.address.storage.JsonAdaptedAbstractAttribute.isSaveableDataFormat;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.DisplayItemUtil.INVALID_SAVE_ATTRIBUTE;
+import static seedu.address.testutil.DisplayItemSampleData.INVALID_SAVE_ATTRIBUTE;
 import static seedu.address.testutil.TypicalAttributes.PHONE;
 
 import java.util.Map;

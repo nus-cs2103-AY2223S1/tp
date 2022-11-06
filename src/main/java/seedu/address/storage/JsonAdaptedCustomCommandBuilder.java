@@ -2,11 +2,15 @@ package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.CustomCommandBuilder;
+import seedu.address.logic.parser.AddressBookParser;
 
 /**
  * Jackson-friendly version of {@link CustomCommandBuilder}.
@@ -40,7 +44,9 @@ public class JsonAdaptedCustomCommandBuilder {
      * {@code CustomCommandBuilder} object.
      */
     public CustomCommandBuilder toModelType() throws IllegalValueException {
-        if (commandMacroName.isBlank() || commandMacroReplace.isBlank()) {
+        if (!AddressBookParser.isValidName(commandMacroName)
+                || Stream.of(commandMacroName, commandMacroReplace).anyMatch(Objects::isNull)
+                || commandMacroReplace.isBlank()) {
             throw new IllegalValueException(CustomCommandBuilder.MESSAGE_CONSTRAINTS);
         }
         return new CustomCommandBuilder(commandMacroName, commandMacroReplace);

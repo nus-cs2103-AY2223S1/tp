@@ -49,21 +49,21 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-     @Test
-     public void addressBookReadSave_PersonEntries() throws Exception {
-         /*
+    @Test
+    public void addressBookReadSave_personEntries() throws Exception {
+        /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
          * in {@link JsonAddressBookStorageTest} class.
          */
-         AddressBook original = TypicalPersons.getTypicalAddressBook();
-         storageManager.saveAddressBook(original);
-         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-         assertEquals(original, new AddressBook(retrieved));
-     }
+        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        storageManager.saveAddressBook(original);
+        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new AddressBook(retrieved));
+    }
 
     @Test
-    public void addressBookReadSave_GroupEntries() throws Exception {
+    public void addressBookReadSave_groupEntries() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
@@ -76,7 +76,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave_TaskEntries() throws Exception {
+    public void addressBookReadSave_taskEntries() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
