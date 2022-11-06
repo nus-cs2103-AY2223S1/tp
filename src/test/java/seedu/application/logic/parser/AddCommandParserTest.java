@@ -25,6 +25,7 @@ import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_TECH_COMPANY;
+import static seedu.application.logic.commands.CommandTestUtil.UNKNOWN_PREFIX;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
@@ -196,5 +197,27 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
                         + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + STATUS_DESC_GOOGLE + TAG_DESC_TECH_COMPANY
                         + TAG_DESC_PREFERRED, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_unexpectedPrefix_failure() {
+
+        // unknown prefix in front of input
+        assertParseFailure(parser, UNKNOWN_PREFIX + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE
+                        + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                        + TAG_DESC_TECH_COMPANY,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + AddCommand.MESSAGE_USAGE);
+
+        // unknown prefix in back of input
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE
+                        + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                        + TAG_DESC_TECH_COMPANY + UNKNOWN_PREFIX,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + AddCommand.MESSAGE_USAGE);
+
+        // unknown prefix in middle of input
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + UNKNOWN_PREFIX
+                        + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + STATUS_DESC_GOOGLE
+                        + TAG_DESC_TECH_COMPANY,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + AddCommand.MESSAGE_USAGE);
     }
 }

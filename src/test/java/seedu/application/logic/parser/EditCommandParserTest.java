@@ -21,6 +21,7 @@ import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_TECH_COMPANY;
+import static seedu.application.logic.commands.CommandTestUtil.UNKNOWN_PREFIX;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
@@ -128,6 +129,31 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC + VALID_DATE_FACEBOOK
                 + VALID_CONTACT_FACEBOOK + VALID_POSITION_FACEBOOK + VALID_STATUS_FACEBOOK,
                 Company.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_unexpectedPrefix_failure() {
+        Index targetIndex = INDEX_FIRST_APPLICATION;
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + EMAIL_DESC_FACEBOOK;
+
+        // no field specified, only index and unknown prefix
+        assertParseFailure(parser, targetIndex.getOneBased() + UNKNOWN_PREFIX,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + EditCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, UNKNOWN_PREFIX + targetIndex.getOneBased() ,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + EditCommand.MESSAGE_USAGE);
+
+        // field specified
+        assertParseFailure(parser, userInput + UNKNOWN_PREFIX,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + EditCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, UNKNOWN_PREFIX + userInput,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + EditCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + UNKNOWN_PREFIX
+                        + EMAIL_DESC_FACEBOOK, Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                + EditCommand.MESSAGE_USAGE);
+
     }
 
     @Test

@@ -100,6 +100,7 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String UNKNOWN_PREFIX = " k/some#$input l/ xxxi/";
 
     public static final EditCommand.EditApplicationDescriptor DESC_GOOGLE;
     public static final EditCommand.EditApplicationDescriptor DESC_FACEBOOK;
