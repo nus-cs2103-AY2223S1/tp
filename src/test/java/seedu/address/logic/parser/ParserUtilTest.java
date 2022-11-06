@@ -15,6 +15,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -162,5 +163,23 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseCompany_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_NAME));
+    }
+
+    @Test
+    public void parseCompany_validValueWithoutWhitespace_returnsName() throws Exception {
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_NAME));
+    }
+
+    @Test
+    public void parseComapany_validValueWithWhitespace_returnsTrimmedCompany() throws Exception {
+        String companyWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
     }
 }

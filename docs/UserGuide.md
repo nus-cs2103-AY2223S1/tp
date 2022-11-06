@@ -264,10 +264,10 @@ Links an existing person and internship together in InterNUS.
 Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 - Person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` must be initially not linked to any person/internship.
 - Specified person will be displayed as contact person of specified internship and specified internship will be displayed as internship of specified person.
-- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer must be a positive integer 1, 2, 3, …
 
 Examples:
-- `link p/1 i/1` will link the person at index **1** to the internship at index **1**
+- `link p/1 i/1` links the person at index **1** to the internship at index **1**
 
 ### 4.4.2. Unlinking a person and an internship : `unlink`
 
@@ -276,13 +276,13 @@ Unlinks an existing person and internship together in InterNUS.
 Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
 - At least 1 of the optional fields must be provided
 - Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked.
-- If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the person at `PERSON_INDEX` and the internship at `INTERNSHIP_INDEX` must be linked to each other.
-- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
+- If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the specified person and internship must be linked to each other.
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
-- `unlink p/1 i/1` will unlink person at index **1** and internship at index **1**
-- `unlink p/1` will unlink person at index **1** and its linked internship
-- `unlink i/1` will unlink internship at index **1** and its linked person
+- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**
+- `unlink p/1` unlinks person at index **1** and its linked internship
+- `unlink i/1` unlinks internship at index **1** and its linked person
 
 ## 4.5. Find Command
 
@@ -367,18 +367,23 @@ Examples:
 
 ### 4.7.1. Sorting persons in the list: `sort -p`
 
-Sorts the persons list given a sorting criterion.
+Sorts the person list given a sorting criterion.
 
 Format: `sort -p [n/] [c/]`
 - Exactly one of the optional fields must be provided.
 - `n/` sorts persons by their names in alphabetical order, ignoring upper and lower cases.
 - `c/` sorts persons by the attached company name (not the company tied to the internship linked) in alphabetical order, ignoring upper and lower cases.
-- When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
-- The list will remain sorted the same way until InterNUS is closed or until the sort condition for the persons list is changed.
 
-Example:
-- `sort -p n/` would sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
-- `sort -p c/` would sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name would be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+Examples:
+- `sort -p n/` sorts the person list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` sorts the person list by their attached company names in alphabetical order, ignoring upper and lower cases. 
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+- The person list will remain sorted by the last given criterion until InterNUS is closed.
+- The sorted order persists during additions, deletions and editing of persons.
+- When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+</div>
 
 ### 4.7.2. Sorting internships in the list: `sort -i`
 
