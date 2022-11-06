@@ -31,7 +31,11 @@ public class People {
      * Returns true if a given string is a valid number of people.
      */
     public static boolean isValidPeople(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        int people = Integer.parseInt(test);
+        return people >= 1; // at least 1 Waddler
     }
 
 
