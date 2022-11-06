@@ -21,7 +21,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private static final String DEFAULT_ADDRESS_BOOK_NAME = "addressbook";
     private GuiSettings guiSettings = new GuiSettings();
     private int addressBookIndex = 0;
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data" , DEFAULT_ADDRESS_BOOK_NAME + ".json");
     private ArrayList<Path> allAddressBookFilePath = new ArrayList<Path>();
 
     /**
