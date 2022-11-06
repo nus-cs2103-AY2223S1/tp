@@ -362,7 +362,14 @@ If you type `suggest dt/now` on Sunday 8:00pm, you will return friends subjected
 Format: `list`<br>
 
 Shows a list of all of your Minecraft friends. This command
-should be run after a `suggest` or `find` to list out all your friends.
+should be run after a `suggest` or `find` to list out all your friends. 
+
+<div markdown="block" class="alert alert-info">
+
+A `suggest` or `find` will filter out your list of friends to produce of shorter list,
+so `list` will list out all your friends again.
+
+</div>
 
 Example:
 
@@ -429,7 +436,7 @@ the second `Enter` key press will execute the command.
 
 ## Command summary
 
-| Action      | Meaning                                             | Format                                                                                                                                                                              | Examples                                                                                  |
+| Action      | Definition                                          | Format                                                                                                                                                                              | Examples                                                                                  |
 |-------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | **Add**     | Adds a new friend into Minefriends                  | `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`            | `add n/Benson m/benson01 p/92881083 e/bensontan@hotmail.com a/ 4 Leith road s/ig@bensontan01 t/bff`                                                                              |
 | **List**    | Lists out all of your friends in Minefriends        | `list`                                                                                                                                                                              |                                                                                                                                                                          |    
