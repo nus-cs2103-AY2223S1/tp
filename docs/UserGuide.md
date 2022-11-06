@@ -205,6 +205,7 @@ Format: `findproj KEYWORD [MORE_KEYWORDS]`
 ```yaml
 Note:
   - KEYWORD must not be an empty string.
+  - KEYWORD must be alphanumeric.
   - The findproj command is case-insensitive such that 'merger' will match 'MERGER'
   - The findproj command will match Project name if there is a partial match, 'me' or 'mE'
     will both match 'MERGER'
@@ -434,6 +435,7 @@ Format: `findstaff KEYWORD [MORE_KEYWORDS]`
 ```yaml
 Note:
   - KEYWORD must not be an empty string.
+  - KEYWORD must be alphabetic.
   - For `findstaff` to work as expected, the current active Staff list must be non-empty.
   - The findstaff command is case-insensitive such that 'hans' will match 'HANS'.
   - The findstaff command will match Staff name if there is a partial match, 'ha' or
@@ -512,6 +514,7 @@ Format: `findtask KEYWORD [MORE_KEYWORDS]`
 ```yaml
 Note:
   - KEYWORD must not be an empty string.
+  - KEYWORD must be alphanumeric.
   - The search is case-insensitive. e.g `call` will match `Call`
   - The findtask command will match Task description if there is a partial match,
     'Meet' or 'meet' will both match 'Meeting'.
