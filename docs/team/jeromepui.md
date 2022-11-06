@@ -23,6 +23,8 @@ My contributions to the project are documented below.
 - Refactor AB3 `HelpCommand` to show command summary table in [\#150](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/150)
   - AB3's `HelpCommand` only shows a link to its user guide. By adding a reference to a command summary table in the help window, it becomes more useful for the user.
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the User Guide
 
 - Update documentation for `DeleteCommand` in [\#30](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/30), [\#97](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/97), [\#241](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/241), [\#256](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/256)
@@ -34,7 +36,7 @@ My contributions to the project are documented below.
 ### Contributions to the Developer Guide
 
 - Add introduction section in [\#126](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/126), [\#247](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/247)
-- Add implementation details and design considerations for `DeleteCommand` [\#157](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/157), [\#252](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/252)
+- Add implementation details and design considerations for `DeleteCommand` in [\#157](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/157), [\#252](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/252)
 - Update UML diagrams in architecture section in [\#160](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/160), [\#178](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/178)
 - Update instructions for manual testing in [\#163](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/163)
 - Add use cases in [\#252](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/252)
