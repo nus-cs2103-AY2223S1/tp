@@ -38,6 +38,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+<div markdown="span" class="alert alert-info">
+**:information_source: Note:** The lifeline for the sequence diagrams should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -94,7 +98,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Profile` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Profile` and `Event` objects residing in the `Model`.
 
 ### Logic component
 
@@ -134,7 +138,7 @@ Both `Event` and `Profile` data are handled by the `Model` component. Since the 
 
 The `Model` component,
 * stores the NuScheduler data i.e., all `Profile` objects (which are contained in a `UniqueProfileList` object).
-* stores the currently 'selected' `Profile` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Profile>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Profile` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable, sorted `ObservableList<Profile>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -154,7 +158,7 @@ The `Model` component,
 The `Storage` component,
 * can save both NuScheduler data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `NuSchedulerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -315,11 +319,11 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewUpcomingEventsCommandActivityDiagram](images/commands/ViewUpcomingEventsCommandActivityDiagram.png)
 
-### AddProfilesToEventCommand
+### Add Profiles To Event Command
 
 #### Description
 
-In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddAttendeesCommand` is used to add existing `Profile`s to an `Event` as attendees.
+In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddProfilesToEventCommand` is used to add existing `Profile`s to an `Event` as attendees.
 
 The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute` method to add new attendees to an event when called.
 
@@ -328,6 +332,7 @@ The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class.
 Similar to other commands, the user input to add attendees is passed to `LogicManager` to be executed. The following details the key difference in the methods that is invoked when the `AddProfilesToEventCommand#execute()` method is called:
 
 * `Model#addEventAttendees()` - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
+* `Model#addEventToAttendees()` - Adds the specified `Event`  to the `EventsAttending` attribute of each `Profile` specified.
 
 Given below is an example usage scenario on how `AddProfilesToEventCommand` can be used and how it works.
 
@@ -435,6 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC02 - Delete a profile**
 
+**Preconditions**: Must have at least one profile.
+
 **MSS**
 
 1. User requests to <u>view all profiles (UC01)</u>.
@@ -489,6 +496,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC05 - Add attendees to event**
 
+**Preconditions**: Must have at least one profile and one event.
+
 **MSS**
 
 1. User requests to add a profile to the event.
@@ -502,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The given profile to add is invalid
+* 1b. The given profile to add is invalid.
 
     * 1b1. NUScheduler shows an error message.
 
@@ -569,7 +578,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `profile - d 0`<br>
       Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
 
 ### Saving data
