@@ -375,14 +375,13 @@ Format: `sort -p [n/] [c/]`
 - `c/` sorts persons by the attached company name (not the company tied to the internship linked) in alphabetical order, ignoring upper and lower cases.
 
 Examples:
-- `sort -p n/` will sort the person list by their names in alphabetical order, ignoring upper and lower cases.
-- `sort -p c/` will sort the person list by their attached company names in alphabetical order, ignoring upper and lower cases. 
+- `sort -p n/` sorts the person list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` sorts the person list by their attached company names in alphabetical order, ignoring upper and lower cases. 
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:**
-- Both the person list and internship list will remain sorted by the last given criterion 
-until InterNUS is closed.
-- The sorted order persists during additions, deletions and editing of persons and internships.
+**:information_source: Note:**<br>
+- The person list will remain sorted by the last given criterion until InterNUS is closed.
+- The sorted order persists during additions, deletions and editing of persons.
 - When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 </div>
 
