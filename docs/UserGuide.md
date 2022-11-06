@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+{::options toc_levels="1..2" /}
 {:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
 ![StudMapLogo](images/studmap/studmap_hd.png){: logo}
 
