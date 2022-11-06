@@ -7,6 +7,27 @@ import static tracko.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class AddressTest {
+    @Test
+    public void equals() {
+        Address address1 = new Address("75 Clementi Street, Blk 990, #45-09");
+        Address address2 = new Address("23 King Albert Park Street, 632093");
+
+        // same object -> returns true
+        assertTrue(address1.equals(address1));
+
+        //same values -> return true
+        Address address1Copy = new Address("75 Clementi Street, Blk 990, #45-09");
+        assertTrue(address1.equals(address1Copy));
+
+        // different types -> returns false
+        assertFalse(address1.equals(1));
+
+        // null -> returns false
+        assertFalse(address1.equals(null));
+
+        // different predicate -> returns false
+        assertFalse(address1.equals(address2));
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
