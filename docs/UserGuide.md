@@ -140,16 +140,16 @@ java -version
 
 **Here are some of the technical terminologies used:**
 
-| Word                    | Meaning                                                                                                                                                                                                    |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                 | A sentence which the user inputs to.                                                                                                                                                                       |
-| Command word            | The first word of every command.                                                                                                                                                                           |
-| Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                  |
-| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.            |
-| Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                          |
+| Word                    | Meaning                                                                                                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                 | A sentence which the user inputs to perform a function.                                                                                                                                                     |
+| Command word            | The first word of every command.                                                                                                                                                                            |
+| Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                   |
+| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.             |
+| Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
 | Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/`. |
-| Single-valued attribute | A patient's detail that consist of a single value. <br> List of single-valued attributes: name, phone, email address, address.                                                                             |
-| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> List of multi-valued attributes: tags, tasks, medications, conditions, remarks.                                                                  |
+| Single-valued attribute | A patient's detail that consist of a single value. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.                                                                                      |
+| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `MEDICATION`, `CONDITION`, `REMARK`.                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -201,23 +201,27 @@ Things to add:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Patient Overview and Parameter Constraints
+## Patient Parameter Constraints
 
 _To be cleaned up_
 
-A patient's attributes can be categorized into two: single-valued attributes and multi-valued attributes. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
+A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
 ### Single-Valued Attributes
 
 #### `n/NAME`
 
-`NAME` should only contain alphanumeric characters and spaces.
+`NAME` should only contain alphanumeric characters and spaces. 
+
+`NAME` is specified by a prefix `n/`.
 
 Example: `n/John Doe`
 
 #### `p/PHONE`
 
-`PHONE` should only contain numbers, and it should be at least 3 digits long.
+`PHONE` should only contain numbers, and it should be at least 3 digits long. 
+
+`PHONE` is specified by a prefix `p/`.
 
 Example: `p/91234567`
 
@@ -230,11 +234,15 @@ Example: `p/91234567`
   - have each domain label start and end with alphanumeric characters.
   - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
+`EMAIL` is specified by a prefix `e/`.
+
 Example: `johndoe@gmail.com`
 
 #### `a/ADDRESS`
 
 `ADDRESS` accepts any values.
+
+`ADDRESS` is specified by a prefix `a/`.
 
 Example:`a/John street, block 123, #01-01`
 
@@ -243,6 +251,8 @@ Example:`a/John street, block 123, #01-01`
 #### `t/TAG`
 
 `TAG` accepts any values.
+
+`TAG` is specified by a prefix `t/`, and its index by a flag `-t`.
 
 Example:`t/12-A nursing home`
 
@@ -255,11 +265,15 @@ The task parameter has the following constraints:
    e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
 * `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/week(s)/month(s)/year(s)` where `X` is a positive integer.
 
+`TASK` is specified by a prefix `d/`, and its index by a flag `-d`.
+
 Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
 ### `c/CONDITION`
 
 `CONDITION` accepts any values.
+
+`CONDITION` is specified by a prefix `c/`, and its index by a flag `-c`.
 
 Example:`c/Parkinson's disease`
 
@@ -268,29 +282,44 @@ Example:`c/Parkinson's disease`
 `MEDICATION_TYPE` accepts any values.
 `DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
 
+`MEDICATION` is specified by a prefix `m/`, and its index by a flag `-m`.
+
 Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 ### `r/REMARK`
 
 `REMARK` accepts any values.
 
+`REMARK` is specified by a prefix `r/`, and its index by a flag `-r`.
+
 Example:`r/Allergic to peanuts`
 
-#### `c/CONDITION`
-
-`CONDITION` accepts any values.
-
-Example:`c/Parkinson's disease`
-
-#### `m/MEDICATION | DOSAGE`
-
-_To be added_
-
-#### `r/REMARK`
-
-_To be added_
-
 _Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
+
+### Patient Parameter Summary
+
+| Parameter    | Type                    | Flag | Prefix |
+|--------------|-------------------------|------|--------|
+| `NAME`       | Single-Valued Attribute | -    | `n/`   |
+| `PHONE`      | Single-Valued Attribute | -    | `p/`   |
+| `EMAIL`      | Single-Valued Attribute | -    | `e/`   |
+| `ADDRESS`    | Single-Valued Attribute | -    | `a/`   |
+| `TAG`        | Multi-Valued Attribute  | `-t` | `t/`   |
+| `TASK`       | Multi-Valued Attribute  | `-d` | `d/`   |
+| `CONDITION`  | Multi-Valued Attribute  | `-c` | `c/`   |
+| `MEDICATION` | Multi-Valued Attribute  | `-m` | `m/`   |
+| `REMARK`     | Multi-Valued Attribute  | `-r` | `r/`   |
+| `PATIENT`    | -                       | `-p` | -      |
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:**
+* The value of an attribute is prefixed by its prefix.
+* The index of a patient's multi-valued attribute is specified with its flag.
+* The flag and the prefix of a multi-valued attribute are coded with the same letter.
+* The patient index flag `-p` is an exception, as it has no corresponding prefix.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
