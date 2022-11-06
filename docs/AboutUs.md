@@ -5,7 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -17,6 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ryanguai.md)]
 
 * Role: Team Lead
+* In charge of: Model (Tags)
 
 ### Nicole Lee Siying
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/nickeltea.md)]
 
 * Role: Documentation
-* Responsibilities: Quality of project documents
+* In charge of: Model (Tasks)
 
 ### Tan Jun Wei
 
@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/junwei-tan)] [[portfolio](team/junwei-tan.md)]
 
-* Role: Developer
-* Responsibilities: Testing
+* Role: Testing
+* In charge of: Logic
 
 ### Felicia Gan
 
@@ -45,6 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/feliciagan.md)]
 
 * Role: Code Quality
+* In charge of: Storage
 
 ### Alvin Tan
 
@@ -54,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/alvintfl.md)]
 
 * Role: Integration
-* Responsibilities: UI
+* In charge of: UI
