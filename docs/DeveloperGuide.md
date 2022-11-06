@@ -860,7 +860,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. Some filters specified were not previously applied.
+
   * 3a1. Rapportbook only clears the filters that were applied.
+
   * Use case resumes at step 3
 
 #### Use case: Show contact
@@ -872,15 +874,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to show a specific contact in the list.
 
 3. Rapportbook displays the contact in a separate panel for the user.
+
    Use case ends.
 
 **Extensions**
 
 - 1a. The list is empty.
+
   Use case ends.
+
 * 2a. The given index is invalid.
 
   * 2a1. Rapportbook shows an error message.
+
   * Use case resumes at step 2.
 
 #### Use case: Create tag(s)
@@ -897,8 +903,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. At least one of the specified tag(s) already exist.
+
   * 1a1. Rapportbook shows a message indicating that the tag(s) already exists.
+
   * 1a2. Rapportbook creates any tags that does not exist.
+
   * Use case resumes at step 1.
 
 #### Use case: Delete tag(s)
@@ -910,13 +919,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Rapportbook deletes the corresponding tag(s) and removes deleted tags from users.
 
 3. Rapportbook shows success message.
+
    Use case ends.
 
 **Extensions**
 
 - 1a. At least one of the specified tag(s) does not exist.
+
   - 1a1. Rapportbook shows a message indicating that the tag(s) does not exists.
+
   - 1a2. Rapportbook deletes tags that exist.
+
   - Use case resumes at step 1.
 
 #### Use case: List tag(s)
@@ -926,12 +939,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all tags in Rapportbook.
 
 2. Rapportbook shows a list of tags.
+
    Use case ends.
 
 **Extensions**
 
 - 1a. No tags exist in Rapportbook.
+
   - 1a1. Rapportbook shows a message indicating no tags exist in Rapportbook.
+
   - Use case  ends.
 
 #### Use case: Add tag(s) to contact
@@ -948,26 +964,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The list is empty.
+
   Use case ends.
+
 * 2a. The given index is invalid.
 
   * 2a1. Rapportbook shows an error message.
+
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
 
   * 2b1. Rapportbook shows an error message.
+
   * Use case resumes at step 2.
 
 * 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
 
   * 2c1. Rapportbook tags the contact with the missing tag(s).
+
   * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.
+
     Use case resumes at step 2.
 
 * 2d. Contact already tagged with all tag(s) specified.
 
   * 2d1. Rapportbook shows a message indicating that no tags were added.
+
     Use case resumes at step 2.
 
 #### Use case: Remove tag(s) from contact
@@ -979,6 +1002,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to remove certain tag(s) from a specific contact in the list.
 
 3. Rapportbook shows success message.
+
    Use case ends.
 
 **Extensions**
@@ -989,16 +1013,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The given index is invalid.
 
   - 2a1. Rapportbook shows an error message.
+
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
 
   - 2b1. Rapportbook shows an error message.
+
   * Use case resumes at step 2.
 
 * 2c. Contact already has at least one of the tag(s) specified.
 
   - 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
+
   * Use case resumes at step 2.
 
 #### Use case: Generate message templates
