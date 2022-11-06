@@ -2,14 +2,25 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction
+
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
+
+This developer guide serves both as a **guide for new contributors** to navigate and start working on the project and as a reference to various code and feature **design decisions** for existing developers.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We use the following libraries in CodeConnect:
+
+* [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic)
 
 --------------------------------------------------------------------------------------------------------------------
 
