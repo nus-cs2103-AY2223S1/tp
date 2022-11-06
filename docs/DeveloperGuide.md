@@ -697,6 +697,8 @@ Internship applications can stretch over a long period of time, making it hard t
     
      Use case resumes at step 1.
 
+<br>
+
 **Use case: Find an application by company name or position applied**
 
 **MSS** 
@@ -718,6 +720,8 @@ Internship applications can stretch over a long period of time, making it hard t
    
      Use case ends.
 
+<br>
+
 **Use case: Clear all existing applications**
 
 **MSS** 
@@ -732,6 +736,8 @@ Internship applications can stretch over a long period of time, making it hard t
    * 1a1. CinternS shows an error message and prompts the user to reenter command
     
      Use case resumes at step 1.
+
+<br>
 
 **Use case: Undo the previous command**
 
@@ -754,6 +760,8 @@ Internship applications can stretch over a long period of time, making it hard t
     
      Use case resumes at step 1.
 
+<br>
+
 **Use case: Redo the previously undone command**
 
 **MSS** 
@@ -774,6 +782,23 @@ Internship applications can stretch over a long period of time, making it hard t
    * 2a1. CinternS shows an error message.
     
      Use case resumes at step 1.
+
+<br>
+
+**Use case: Obtain a list of upcoming interviews**
+
+**MSS**
+
+1. User enters the command to view a list of upcoming interviews.
+2. CinternS displays upcoming interviews in chronological order.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+    * 1a1. CinternS shows an error message and prompts the user to reenter command
+
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
@@ -807,16 +832,36 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file or use the `java -jar` command in a terminal to launch the application<br>
+      Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file or using the `java -jar` command in a terminal.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. Prerequisites: Non-empty data file containing data in the correct format is present in corresponding file path.
+
+    2. Test case: Delete a line in the data file before launching the application<br>
+       Expected: Application launches with an empty application book (no data)
+
+    3. Test case: Delete the data file before launching the application<br>
+       Expected: Application launches with data from sample application book
+
+2. Launching the application with data from previous session
+
+    1. Perform some commands which change the state of the application, such as `add`, `delete` or `interview` (refer to `UserGuide.md` for guidance on how to use these commands)
+
+    2. Enter `exit` to exit the application book
+
+    3. Re-launch the app<br>
+       Expected: Application data from the previous session persists to the current session.
 
 ### Deleting an application
 
@@ -833,7 +878,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details are shown.
 
-   5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) <br>
       Expected: Similar to previous.
 
 ### List all existing applications
@@ -980,16 +1025,43 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `remove-i 0`<br>
        Expected: Interview failed to be added. Error details are shown.
 
-    3. Other incorrect `remove-i` commands to try: `remove-i`, `remove-i x`, `...` (where x is larger than the interview list size)<br>
+    3. Other incorrect `remove-i` commands to try: `remove-i`, `remove-i x` (where x is larger than the interview list size) <br>
        Expected: Similar to previous.
 
-### Saving data
+### Reminder for upcoming interview(s)
 
-1. Dealing with missing/corrupted data files
+1. Using `remind` command with **Upcoming interviews** window not currently open 
+   
+   1. Prerequisites: 2 non-archived interviews on two different dates within the next 1 week in the interview list (refer to `interview` section of `UserGuide.md` for guidance on how to add interviews)
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   2. Test case: `remind`<br>
+        Expected: **Upcoming interviews** window launches with the 2 upcoming interviews in chronological order
 
-2. _{ more test cases …​ }_
+2. Using `remind` command with **Upcoming interviews** window open in the background 
+
+    1. Use `interview` command to add an upcoming interview 
+
+    2. Test case: `remind`<br>
+        Expected: **Upcoming interviews** window is brought to the front of the screen with the upcoming interview added in Step 1 displayed on the window
+
+3. Using `remind` command with archived upcoming interview
+    
+    1. Prerequisites: No non-archived upcoming interviews displayed in the interview list. 1 or more archived upcoming interview(s)
+
+    2. Test case: `remind`<br>
+        Expected: **Upcoming interviews** window launches without any interviews displayed
+    
+4. Using `remind` with `remove-i` and `undo`
+
+    1. Prerequisites: 1 non-archived upcoming interview in the interview list
+
+    2. Delete the upcoming interview with `remove-i` command 
+
+    3. Test case: `remind`<br>
+        Expected: **Upcoming interviews** window launches without the deleted upcoming interview
+
+    4. Test case: `undo` followed by `remind`<br>
+        Expected: **Upcoming interviews** window is brought to the front of the screen with the upcoming interview displayed on the window
 
 ### Data archiving
 

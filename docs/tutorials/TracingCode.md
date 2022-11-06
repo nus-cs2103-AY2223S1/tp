@@ -78,7 +78,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 
 ![`Find Usages` tool window. `Edit` \> `Find` \> `Find Usages`.](../images/tracing/FindUsages.png)
 
-Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
+Bingo! `MainWindow#executeCommand()` seems to be exactly what we’re looking for!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
  ![LeftGutter](../images/tracing/LeftGutter.png)
