@@ -3,8 +3,6 @@ package seedu.application.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
-import seedu.application.model.CommonRegex;
-
 /**
  * Represents a Tag in the application book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}

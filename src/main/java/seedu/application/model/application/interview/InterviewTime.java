@@ -7,8 +7,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import seedu.application.model.CommonRegex;
-
 /**
  * Represents the Time of Interview for the specific Application.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}

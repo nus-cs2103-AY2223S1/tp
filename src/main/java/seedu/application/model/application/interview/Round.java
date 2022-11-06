@@ -3,8 +3,6 @@ package seedu.application.model.application.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
-import seedu.application.model.CommonRegex;
-
 /**
  * Represents an Interview's Round. e.g. Round 1 online assessment, Round 2 technical interview, etc.
  * Guarantees: immutable; is valid as declared in {@link #isValidRound(String)}

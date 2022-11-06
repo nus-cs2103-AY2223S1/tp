@@ -3,8 +3,6 @@ package seedu.application.model.application;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
-import seedu.application.model.CommonRegex;
-
 /**
  * Represents a Status of an internship application.
  * Must be one of the values: interview, offered, pending, rejected.

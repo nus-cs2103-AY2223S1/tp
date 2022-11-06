@@ -3,8 +3,6 @@ package seedu.application.model.application;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
-import seedu.application.model.CommonRegex;
-
 /**
  * Represents a Company's contact in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidContact(String)}
