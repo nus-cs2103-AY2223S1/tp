@@ -79,6 +79,7 @@ Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
+[Back to Top ↑](#introduction)
 
 <div markdown="block" class="alert alert-info">
 
@@ -371,7 +372,7 @@ After adding an Assignment task
 
 Edits an existing tasks in the task list.
 
-Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, STUDENT_2] [deleteStu/STUDENT_1, STUDENT_2]`
+Format: `edit-task INDEX [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, STUDENT_2] [deleteStu/STUDENT_1, STUDENT_2]`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -406,6 +407,7 @@ Examples:
 * `remove-task 1` removes the 1st task in the task list.
 
 ### 3.3 General Commands
+[Back to Top ↑](#introduction)
 
 #### 3.3.1 Clearing all entries : `clear`
 
@@ -448,6 +450,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. FAQ
+[Back to Top ↑](#introduction)
 
 **Q:** I don't know if I have Java `11` installed in my computer. What do I do?
 <br />
@@ -489,29 +492,43 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
+[Back to Top ↑](#introduction)
 
-| Action                | Format                                                                                                            | Examples                                                                          |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
-| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                                                  | `attendance add 1 c/CS2030 s/10`                                                  |
-| **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                             |
-| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                                               | `attendance mark 1 l/1 m/1`                                                       |
-| **Clear**             | `clear`                                                                                                           |                                                                                   |
-| **Class**             | `class`                                                                                                           | `class 1 c/CS2030S Lab 32`                                                        |
-| **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                        |
-| **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                       |
-| **Find**              | `find KEYWORD [MORE_KEYWORDS]...`                                                                                 | `find James Jake`                                                                 |
-| **List**              | `list`                                                                                                            |                                                                                   |
-| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...]`                                             | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`        |
-| **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                       | 
-| **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                   |
-| **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                    |
-| **Help**              | `help`                                                                                                            |                                                                                   |
+### 5.1 Student Management Commands
 
+| Action                | Format                                                                                   | Examples                                                                          |
+|-----------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Add Student**       | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
+| **List Students**     | `list`                                                                                   |                                                                                   |
+| **Add Class**         | `class`                                                                                  | `class 1 c/CS2030S Lab 32`                                                        |                     |                                                                                          |                                                                                   |
+| **Upload Picture**    | `upload-pic INDEX`                                                                       | `upload-pic 1`                                                                    |
+| **Edit Student**      | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Find Student**      | `find KEYWORD [MORE_KEYWORDS]...`                                                        | `find James Jake`                                                                 |
+| **Delete Student**    | `delete INDEX`                                                                           | `delete 3`                                                                        |
+| **Add Attendance**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                         | `attendance add 1 c/CS2030 s/10`                                                  |
+| **Delete Attendance** | `attendance delete INDEX`                                                                | `attendance delete 1`                                                             |
+| **Mark Attendance**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                      | `attendance mark 1 l/1 m/1`                                                       |
+
+### 5.2 Task Management Commands
+
+| Action                  | Format                                                                                                                  | Examples                                                                   |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| **Add Todo Task**       | `task t/TITLE d/DESC`                                                                                                   | `task t/Work on essay d/GE module`                                         |
+| **Add Deadline Task**   | `task t/TITLE d/DESC by/YYYY-MM-DD`                                                                                     | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` | 
+| **Add Assignment Task** | `task t/TITLE d/DESC addStu/STUDENT_1,STUDENT_2...`                                                                     | `task t/Assignment 3 d/Topic Environment Model addStu/Adam, Ben`           |
+| **Edit Task**           | `edit-task INDEX [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                | 
+| **Remove Task**         | `remove-task INDEX`                                                                                                     | `remove-task 1`                                                            |
+
+### 5.3 General Commands
+| Action          | Format                                                                                                            |
+|-----------------|-------------------------------------------------------------------------------------------------------------------|
+| **Clear**       | `clear`                                                                                                           |
+| **Help**        | `help`                                                                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
+[Back to Top ↑](#introduction)
 
 | Word                                       | Definition                                                                                                                                     |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
