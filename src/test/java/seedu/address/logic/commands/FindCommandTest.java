@@ -20,6 +20,11 @@ public class FindCommandTest {
     private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     @Test
+    public void execute_noSubCommand_throwsError() {
+
+    }
+
+    @Test
     public void equals() {
     }
 

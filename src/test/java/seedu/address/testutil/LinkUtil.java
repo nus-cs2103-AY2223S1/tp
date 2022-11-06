@@ -1,9 +1,17 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.AddLinkCommand;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Link;
 
 /**
@@ -22,5 +30,17 @@ public class LinkUtil {
         sb.append(FLAG_NAME_STR + "\"").append(link.getDisplayedName().toString()).append("\" ");
         sb.append(FLAG_URL_STR + "\"").append(link.getUrl()).append("\" ");
         return sb.toString();
+    }
+
+    /**
+     * Converts {@code Link} to required arguments.
+     */
+    public static String[] convertLinkToArgs(Link link) {
+        List<String> argList = new ArrayList<>();
+        argList.add(FLAG_NAME_STR);
+        argList.add(link.getDisplayedName().toString());
+        argList.add(FLAG_URL_STR);
+        argList.add(link.getUrl().toString());
+        return argList.toArray(new String[0]);
     }
 }
