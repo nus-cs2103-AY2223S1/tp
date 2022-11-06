@@ -1377,7 +1377,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Deleting a module with the module being displayed currently.
 
-    1. Prerequisites: List all modules using the `list` command. At least one module in the list.
+    1. Prerequisites: List all modules using the `list-module` command. At least one module in the list.
 
     2. Test case: `delete-module m/CS2103T`<br>
        Expected:
