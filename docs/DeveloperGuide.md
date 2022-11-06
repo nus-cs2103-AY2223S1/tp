@@ -586,7 +586,7 @@ Internship applications can stretch over a long period of time, making it hard t
 
 **MSS**
 
-1.  User requests the list of applications.
+1.  User requests the list of internship applications.
 2.  CinternS shows the list of internship applications.
 3.  User requests to delete a specific application in the list.
 4.  Cinterns deletes the application and any interview that is a part of this application.
@@ -617,6 +617,67 @@ Internship applications can stretch over a long period of time, making it hard t
     
       Use case resumes at step 2.
 
+<br>
+
+**Use case:  Archive an internship application**
+
+**MSS**
+
+1.  User requests the list of internship applications.
+2.  CinternS shows the list of internship applications.
+3.  User requests to archive a specific application in the list.
+4.  CinternS archives the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+<br>
+
+**Use case:  Retrieve an internship application**
+
+**MSS**
+
+1.  User requests the list of archived internship applications.
+2.  CinternS shows the list of archived internship applications.
+3.  User requests to retrieve a specific application in the list.
+4.  CinternS retrieves the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
 <br>
 
 **Use case: List all existing internship applications**
@@ -768,14 +829,14 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
+   
    2. Double-click the jar file or use the `java -jar` command in a terminal to launch the application<br>
       Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
+   
    2. Re-launch the app by double-clicking the jar file or using the `java -jar` command in a terminal.<br>
        Expected: The most recent window size and location is retained.
 
@@ -805,7 +866,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting an application while all applications are being shown
 
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
-   
+
    2. Test case: `delete 1`<br>
       Expected: First application is deleted from the list. Details of the deleted application are shown.
 
@@ -814,7 +875,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details are shown.
-
+   
    5. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) <br>
       Expected: Similar to previous.
 
@@ -836,39 +897,39 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `find Google` <br>
       Expected: All applications matching keyword "Google" are shown. Success message is also shown.
 
-   1. Test case: `find google` <br>
+   2. Test case: `find google` <br>
       Expected: Similar to previous (case-insensitive).
 
-   1. Test case: `find software` <br>
+   3. Test case: `find software` <br>
       Expected: All applications matching keyword "software" are shown. Success message is also shown.
 
-   1. Test case: `find` <br>
+   4. Test case: `find` <br>
       Expected: Error details are shown.
 
 ### Undo the previous command
 1. Undo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
    
-   1. Test case: `undo` <br>
+   2. Test case: `undo` <br>
       Expected: The previous state before the change is restored. Success message is shown.
 
 2. No such previous command to undo.
    1. Prerequisites: No command used or any command that does not change the application or interview list (e.g. `find`, `sort`, `remind`, etc.)
    
-   1. Test case: `undo` <br>
+   2. Test case: `undo` <br>
       Expected: Error details are shown.
 
 ### Redo the previous command
 1. Redo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
    
-   1. Test case: `redo` <br>
+   2. Test case: `redo` <br>
       Expected: The state after the change is restored. Success message is shown.
 
 2. No such previous command to redo.
    1. Prerequisites: `undo` is not used.
    
-   1. Test case: `redo` <br>
+   2. Test case: `redo` <br>
       Expected: Error details are shown.
 
 ### Reminder for upcoming interview(s)
@@ -905,3 +966,60 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `undo` followed by `remind`<br>
         Expected: **Upcoming interviews** window is brought to the front of the screen with the upcoming interview displayed on the window
+
+### Data archiving
+
+1. Archiving an application while all unarchived application shown
+    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+    2. Test case: `archive 1`<br>
+       Expected: First application is archived from the list. Details of the archived application is shown.
+
+    3. Test case: `archive 0`<br>
+       Expected: No application is archived. Error details are shown.
+
+    4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Archiving an application while all archived application shown
+   1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+   2. Test case: `archive 1`<br>
+      Expected: No application is archived. Error details are shown.
+
+   3. Other incorrect archive commands in this situation are similar to section 1 above.
+
+3. Retrieving an application while all unarchived application shown
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Expected: No application is retrieved. Error details are shown.
+
+   3. Test case: `retrieve 0`<br>
+      Expected: No application is retrieved. Error details are shown.
+
+   4. Other incorrect retrieve commands to try: `retrieve`, `retrieve x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+4. Retrieving an application while all archived application shown
+    1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+    2. Test case: `retrieve 1`<br>
+       Expected: First application is retrieved from the list. Details of the retrieved application are shown.
+
+    3. Other incorrect retrieve commands in this situation are similar to section 3 above.
+
+5. Data archiving with `FindCommand`
+   1. Prerequisites: Use `FindCommand` with keywords that match multiple applications in CinternS. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : First application is retrieved from the list. Details of the retrieved application are shown. The list remains as the filtered list by the keyword.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : No application is retrieved. Error details are shown.
+
+   3. Test case: `archive 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : No application is retrieved. Error details are shown.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : First application is archived from the list. Details of the archived application are shown. The list remains as the filtered list by the keyword.
