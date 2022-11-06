@@ -167,6 +167,7 @@ Format: `remind INDEX r/REMINDER d/DATE`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * The date **must be in the format of** `DD-MM-YYYY`.
+* Duplicate reminders can be created.
 
 
 Examples:
