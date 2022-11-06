@@ -6,8 +6,10 @@ package seedu.address.model.internship;
  */
 public class InternshipStatus {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be BOOKMARKED, PENDING, ACCEPTED, COMPLETED or REJECTED and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Status can only be "
+            + "BOOKMARKED, PENDING, ACCEPTED, COMPLETED or REJECTED "
+            + "(short-forms corresponding to first letter: B, P, A, C, R), and are case-insensitive. "
+            + "Status should not be blank.";
 
     /**
      * Represents the possible states of an InternshipStatus.
@@ -48,15 +50,15 @@ public class InternshipStatus {
             assert shortcut.length() == 1;
             switch (shortcut) {
             case "B":
-                return State.valueOf("BOOKMARKED");
+                return State.BOOKMARKED;
             case "P":
-                return State.valueOf("PENDING");
+                return State.PENDING;
             case "A":
-                return State.valueOf("ACCEPTED");
+                return State.ACCEPTED;
             case "C":
-                return State.valueOf("COMPLETED");
+                return State.COMPLETED;
             case "R":
-                return State.valueOf("REJECTED");
+                return State.REJECTED;
             default:
                 return null;
             }

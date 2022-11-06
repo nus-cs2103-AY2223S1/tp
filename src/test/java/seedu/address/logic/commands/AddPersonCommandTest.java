@@ -154,6 +154,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void refreshPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasInternship(Internship internship) {
             throw new AssertionError("This method should not be called.");
         }
@@ -180,6 +185,11 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredInternshipList(Predicate<Internship> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshInternshipList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -123,6 +123,7 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+    -fx-wrap-text: "true";
 }
 
 .cell_big_label {
@@ -159,7 +160,7 @@
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: white !important;
 }
 
 .status-bar .label {
@@ -345,6 +346,7 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-min-width: 110px;
 }
 
 #tags .label {
@@ -354,6 +356,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+    -fx-max-width: 100px;
+    -fx-wrap-text: "true";
 }
 
 #status .label {
@@ -363,4 +367,24 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#helpContainer, #helpMessageContainer {
+    -fx-background-color: derive(-fx-light-background-primary, 20%);
+}
+
+#copyButton, #helpMessage {
+    -fx-text-fill: black;
+}
+
+#copyButton {
+    -fx-background-color: darkgray;
+}
+
+#copyButton:hover {
+    -fx-background-color: gray;
+}
+
+#copyButton:armed {
+    -fx-background-color: dimgray;
 }

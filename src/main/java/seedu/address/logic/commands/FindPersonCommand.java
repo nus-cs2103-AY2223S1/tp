@@ -20,14 +20,16 @@ public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "find -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all persons whose fields contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + ": Finds all persons whose fields contain any of the specified keywords (case-insensitive) "
+            + "and displays them as a list with index numbers. "
+            + "Absent fields will not be searched. "
+            + "e.g. \"No company\" will not find persons with blank company field.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + " NAME_KEYWORD [MORE_KEYWORDS]...] "
-            + "[" + PREFIX_PHONE + " PHONE_KEYWORD [MORE_KEYWORDS]...] "
-            + "[" + PREFIX_EMAIL + " EMAIL_KEYWORD [MORE_KEYWORDS]...] "
-            + "[" + PREFIX_TAG + " TAG_KEYWORD [MORE_KEYWORDS]...] "
-            + "[" + PREFIX_COMPANY + "COMPANY_KEYWORD [MORE_KEYWORDS]...]\n"
+            + "[" + PREFIX_NAME + " NAME_KEYWORDS...] "
+            + "[" + PREFIX_PHONE + " PHONE_KEYWORDS...] "
+            + "[" + PREFIX_EMAIL + " EMAIL_KEYWORDS...] "
+            + "[" + PREFIX_TAG + " TAG_KEYWORDS...] "
+            + "[" + PREFIX_COMPANY + "COMPANY_KEYWORDS...]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
 
     private final PersonContainsKeywordsPredicate predicate;

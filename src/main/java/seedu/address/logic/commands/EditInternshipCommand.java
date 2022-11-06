@@ -80,6 +80,9 @@ public class EditInternshipCommand extends Command {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        if (editedInternship.getContactPersonId() != null) {
+            model.refreshPersonList();
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
@@ -87,8 +90,8 @@ public class EditInternshipCommand extends Command {
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
      * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedInternship(Internship internshipToEdit,
-                                                     EditInternshipDescriptor editInternshipDescriptor) {
+    private static Internship createEditedInternship(
+            Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
         // internshipId should always be unchanged

@@ -22,13 +22,13 @@ public class UnlinkCommand extends Command {
 
     public static final String COMMAND_WORD = "unlink";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a Person and an Internship. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unlinks a Person and an Internship.\n"
             + "Parameters: "
             + PREFIX_PERSON + "PERSON_INDEX "
-            + PREFIX_INTERNSHIP + "INTERNSHIP_ID "
+            + PREFIX_INTERNSHIP + "INTERNSHIP_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PERSON + "0 "
-            + PREFIX_INTERNSHIP + "0 ";
+            + PREFIX_PERSON + "1 "
+            + PREFIX_INTERNSHIP + "1 ";
     public static final String MESSAGE_SUCCESS = "Person %1$s and Internship %2$s has been unlinked";
     // when only 1 person/internship is provided and person/internship has no link
     public static final String MESSAGE_UNLINKED_INTERNSHIP = "Internship %1$s does not have a contact person";
@@ -98,10 +98,10 @@ public class UnlinkCommand extends Command {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
         }
 
-        if (internshipToUnlink.getContactPersonId() == null) {
-            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
-        } else if (personToUnlink.getInternshipId() == null) {
+        if (personToUnlink.getInternshipId() == null) {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
+        } else if (internshipToUnlink.getContactPersonId() == null) {
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
         }
 
         if (!personToUnlink.getInternshipId().equals(internshipToUnlink.getInternshipId())) {
@@ -162,7 +162,9 @@ public class UnlinkCommand extends Command {
         }
 
         UnlinkCommand otherCommand = (UnlinkCommand) other;
-        return personIndex.equals(otherCommand.personIndex)
-                && internshipIndex.equals(otherCommand.internshipIndex);
+        return ((personIndex == null && otherCommand.personIndex == null)
+                || (personIndex != null && personIndex.equals(otherCommand.personIndex)))
+                && ((internshipIndex == null && otherCommand.internshipIndex == null)
+                || (internshipIndex != null && internshipIndex.equals(otherCommand.internshipIndex)));
     }
 }
