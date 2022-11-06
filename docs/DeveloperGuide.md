@@ -50,13 +50,13 @@ You may refer to the [table of contents](#table-of-contents) below to quick jump
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tips**
+* :bulb: **Tips**
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Notes**
+* :information_source: **Notes**
 
 </div>
 

@@ -71,25 +71,25 @@ This user guide will help you get started and understand how FABook can **seamle
 
 <div markdown="block" class="alert alert-block alert-info">
 
-:white_check_mark: **Input Shortcut:**
+* :white_check_mark: **Input Shortcut:**
 
 </div>
 
 <div markdown="block" class="alert alert-block alert-success">
 
-:bulb: **Note:**
+* :bulb: **Note:**
 
 </div>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
-:heavy_exclamation_mark: **Caution:**
+* :heavy_exclamation_mark: **Caution:**
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-:information_source: **Information**
+* :information_source: **Information**
 
 </div>
 
