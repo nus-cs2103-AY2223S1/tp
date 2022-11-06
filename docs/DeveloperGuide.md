@@ -19,14 +19,14 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Implemented features:](#implemented-features)
-    - [Record features:](#patient-record-features)
+    - Record features:
       - [Add record feature](#implemented-add-record-feature)
       - [List records feature](#implemented-list-records-feature)
       - [Delete record feature](#implemented-delete-record-feature)
       - [Edit record feature](#implemented-edit-record-feature)
       - [Find records feature](#implemented-find-records-feature)
       - [Clear all records feature](#implemented-clear-all-records-feature)
-    - [Appointment features:](#appointment-features)
+    - Appointment features:
       - [Add appointment feature](#implemented-add-appointment-feature)
       - [Clear appointment feature](#implemented-clear-appointment-feature)
   - [Proposed features:](#proposed-features)
@@ -49,6 +49,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Adapted from AB3 https://github.com/nus-cs2103-AY2223S1/tp
+* Icon was adapted from Eatlogos https://www.eatlogos.com/download-logo/vector-medical-logo/96
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,7 +162,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 
 The `Model` component,
@@ -203,18 +204,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
+This section describes the details on how certain noteworthy features are implemented.
 ## Implemented features
-> This section describes the details on how certain noteworthy features are implemented.
 
-### Patient Record features:
-> Features relating to the patient's records
-
-### \[Implemented\] Add record feature
-
-#### Patient Records
-OmniHealth manages patient records generated during patient consultations.  Each `Patient` holds a list of 
+#### About Patient Records
+>OmniHealth manages patient records generated during patient consultations. Each `Patient` holds a list of 
 medical records that the user is able to modify and edit. The `Record` class encapsulates a medical
 record that comprises a date, medical information and medicine prescribed (if any).
+
+### Add record feature
 
 #### Implementation
 
@@ -228,7 +226,7 @@ input string to return a `AddRecordCommand` object with a `Record` derived from 
 
 Given below is an example usage scenario.
 
-Precondition. User should be current viewing a specific patient's record list using the `rlist` command. The current
+Precondition. User should be currently viewing a specific patient's record list using the `rlist` command. The current
 patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 Execution. User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
@@ -259,7 +257,7 @@ displayed
   
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] List records feature
+### List records feature
 
 #### Implementation:
 
@@ -284,10 +282,10 @@ Example usage scenario:
 
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] Delete record feature
+### Delete record feature
 
 #### Implementation:
-The delete record mechanism is facilitated by `DeleteRecordCommandParser`  which extends `AddressbookParser`.
+The delete record mechanism is facilitated by `DeleteRecordCommandParser` which extends `AddressbookParser`.
 
 `DeleteRecordCommandParser` implements the following operations:
 * `DeleteRecordCommandParser#parse()` - Parses the input argument into an `Index` and 
@@ -301,7 +299,7 @@ The `DeleteRecordCommand` object then communicates with the `Model` API when it 
 Given below is an example usage scenario for the command.
 
 * Precondition: 
-  * User should be current viewing a specific patient's record list using the `rlist` command. 
+  * User should be currently viewing a specific patient's record list using the `rlist` command. 
   * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution: 
@@ -309,10 +307,10 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] Edit record feature
+### Edit record feature
 
 #### Implementation:
-The edit record mechanism is facilitated by `EditRecordCommandParser`  which extends `AddressbookParser`.
+The edit record mechanism is facilitated by `EditRecordCommandParser` which extends `AddressbookParser`.
 
 `EditRecordCommandParser` implements the following operations:
 * `EditRecordCommandParser#parse()` - Parses the input argument by storing the index and respective prefix as in `ArgumentMultimap`
@@ -329,7 +327,7 @@ in this case, show all the records.
 Given below is an example usage scenario for the command.
 
 * Precondition:
-    * User should be current viewing a specific patient's record list using the `rlist` command.
+    * User should be currently viewing a specific patient's record list using the `rlist` command.
     * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution:
@@ -338,17 +336,18 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] Find records feature
+### Find records feature
 
-#### Implementation: 
-The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
-which extends `Predicate` and `AddressbookParser` respectively. 
+#### Implementation:
+While the find patient function only searches the name field, the find record function searches for `Record` objects
+based on multiple specified search parameters namely the `recorddata`, `medications` and `recorddate` field. This is done using 
+the `rFind` command implemented in the `FindRecordCommand` class which is facilitated by helper classes
+`RecordContainsKeywordPredicate` and `FindRecordCommandParser`which extends `Predicate` and `AddressbookParser` 
+respectively. The following operations are implemented for the `rfind` command:
 
-`FindRecordCommandParser` implements the following operations:
-* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
-values as an `ArgumentMultimap`.
+* `FindRecordCommandParser#parse()` - Parses the input arguments by extracting the required arguments and creates a new
+`FindRecordCommand` with the correct inputs.
 
-`RecordContainsKeywordPredicate` implements the following operations:
 * `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
 in the correct fields.
 
@@ -356,9 +355,58 @@ Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parse
 
 Given below is an example usage and how the find record mechanism works at each step.
 
+* Precondition:
+  * User should be currently viewing a specific patient's record list using the `rlist` command.
+  * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+* Execution:
+  1. User executes `rfind m/Paracetamol d/10-2022 r/Patient exhibits symptoms of cold`.
+  2. The input is parsed by the `AddressBookParser#Parse()` which calls `FindRecordCommandParser#parse()`. Here, the input <br>
+     is checked for which are the fields that have been specified. A `FindRecordCommand` object is then created containing
+     a `RecordContainsKeywordPredicate` that represents the search parameters to match a `Record` object to.
+  3. The record list that is being displayed is implemented using an `FilteredList`. This means that the 
+     `RecordContainsKeywordPredicate` object can be passed into the `FilteredList#setPredicate()` method. This tests each `record`
+     object stored inside the record list.
+  4. The record list that is displayed is updated to only show `record` objects that pass the test.
+
+The following sequence diagram demonstrates how the find record mechanism works:
+
+![FindRecordSequenceDiagram](images/FindRecordSequenceDiagram.png)
+
+The following activity diagram demonstrates what happens when a find record command is used:
+
+![FindRecordActivityDiagram](images/FindRecordActivityDiagram.png)
+
+
+#### Design Considerations:
+**Aspect: The effect of multiple search parameters**
+* **Alternative 1 (current choice)**: More search parameters tightens the search constraints
+  * Pros: A record needs to match all the specified search parameters for it to be displayed.
+    The user is thus able to narrow down the search to easily find a specific record. This is especially useful
+    when the record list becomes very large. For example, searching by medication alone may not be very effective since
+    medications like Paracetamol are commonly prescribed. Instead, it will be more useful to specify which month was a particular medication prescribed.
+  * Cons: A record may become more difficult to find if the user does not remember the correct details regarding what is stored in the record.
+  
+* **Alternative 2**: More search parameters loosens the search constraints
+  * Pros: Searching for multiple records that may not share commonalities in the data stored becomes easier. 
+  * Cons: Scenerios where this would be useful may not occur frequently. 
+
+**Aspect: How an unspecified field is represented**
+
+Since the search parameters are optional, there is a problem during parsing of differentiating between a parameter that is not specified
+and a parameter that is not specified but is left blank. 
+
+* **Alternative 1 (current choice)**: A specific String is used to replace the value of a parameter that is not specified 
+  * Pros: Since this string acts as an identifier that the parameter is valid even though it was empty, it is easy to implement.
+
+* **Alternative 2**: Use a boolean value to represent if a parameter is specified by the user input
+  * Pros: This is relatively simple to implement.
+  * Cons: This requires constant checks by multiple classes to test if the parameter has been specified and thus breaks the
+          abstraction barrier.
+  
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] Clear all records feature
+### Clear all records feature
 
 The clear record command `rclear` allows the application to clear all the existing records in the current active record
 list.
@@ -375,16 +423,14 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
-### Appointment features:
-> Features relating to the patient's appointments
+#### About Appointment Features
+> Each `Patient` holds an appointment reference for record keeping that the user is able to edit and clear.
+There is currently no support for the automatic removal of appointments which dates have passed. <br>
+Past appointments needs to either be overwritten by a new appointment or be cleared with the `apptcl` command.
 
-### \[Implemented\] Add appointment feature
+### Add appointment feature
 
-The add appointment feature allows OmniHealth to manage future appointments for patients. Each `Patient` holds an appointment
-reference for record keeping that the user is able to edit and clear.
-
-The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
-to override the old appointment or for the existing appointment to be cleared with the `apptcl` command.
+The add appointment feature allows OmniHealth to manage future appointments for patients. 
 
 #### Implementation:
 The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
@@ -429,14 +475,14 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
-### \[Implemented\] Clear appointment feature
+### Clear appointment feature
 
 #### Implementation:
-The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
+The add appointment mechanism is facilitated by `ClearAppointmentCommandParser` which extends `AddressbookParser`.
 
 `ClearAppointmentParser` implements the following operations:
-* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
-  an `ArgumentMultimap.`
+* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective 
+values as an `ArgumentMultimap.`
 
 `ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
 
@@ -454,10 +500,9 @@ Below is an activity diagram illustrating an example process of how the `Appoint
 
 [<*Back to ToC*>](#table-of-contents)
 
->### Proposed features:
+### Proposed features:
 
-### Appointment features (proposed):
-### \[Proposed\] Upcoming appointment tracker feature
+### Upcoming appointment tracker feature
 
 The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
 
@@ -492,14 +537,14 @@ Given below is an example usage scenario for the command.
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
 * private clinic practitioners who do not have access to general health service management applications like Healthhub
 * private clinic practitioners of clinics who still utilise physical paper records to store patient information
+* is reasonably comfortable typing 
+* has a need to manage a significant number of records
+* has a need to find a particular record quickly
 
-**Value proposition**:
-* provide doctors with a place to **store and centrally manage their patients’ information**
-* allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
-  information) to patients using their stored contact information.
+**Value proposition**: OmniHealth is a patient database management tool that centralises and digitalises medical record 
+storage. This makes finding specific details of a patient as well as inputting new details easy and fast.
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -507,21 +552,26 @@ Given below is an example usage scenario for the command.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                             | So that I can…​                                                                           |
-|----------|------------------------|------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user               | view the user guide easily               | learn more about the product usage                                                        |
-| `* * *`  | user                   | add a new patient and their details      | save them for later viewing                                                               |
-| `* * *`  | user                   | view an existing patient's full details  | know more about the patient                                                               |
-| `* * *`  | user                   | delete a patient's records               | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
-| `* * *`  | user                   | clear all of a patient's records         | save time by not deleting one by one                                                      |
-| `* * *`  | user                   | view the entire list of patients         | see all my patients I have added.                                                         |
-| `* * *`  | user                   | view a specific patient’s records        | remember past visits recorded                                                             |
-| `* * *`  | user                   | exit the program                         |                                                                                           |
-| `* *`    | schedule-oriented user | add appointments scheduled for a patient | keep track of my appointments                                                             |
-| `* *`    | user                   | edit a patient's record                  | change details of a record in the future                                                  |
-
-
-*{More to be added}*
+| Priority | As a …​                | I want to …​                                 | So that I can…​                                                                           |
+|----------|------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | user                   | view the entire list of patients             | see all my patients I have added.                                                         |
+| `* * *`  | user                   | add a new patient and their details          | save them for later viewing                                                               |
+| `* * *`  | user                   | delete an existing patient and their details | remove an inactive patient                                                                |
+| `* * *`  | user                   | edit a new patient and their details         | change the personal particulars of that patient                                           |
+| `* *`    | user                   | find an existing patient's details           | know more about the patient                                                               |
+| `* *`    | user                   | clear the patient list                       | save time by not deleting one by one                                                      |
+| `* * *`  | user                   | view a specific patient’s records            | remember past visits recorded                                                             |
+| `* * *`  | user                   | add a patient's record                       | store details of the patient's visit for the future                                       |
+| `* * *`  | user                   | edit a patient's record                      | change details of a record in the future                                                  |
+| `* * *`  | user                   | delete a patient's records                   | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
+| `* *`    | user                   | find a patient's record                      | avoid manually scrolling through multiple records to get to the record that I want        |
+| `* *`    | user                   | clear all of a patient's records             | save time by not deleting one by one                                                      |
+| `* *`    | user                   | clear the search parameters                  | view the whole list of patients or records                                                |
+| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
+| `* *`    | schedule-oriented user | add appointments scheduled for a patient     | keep track of my appointments                                                             |
+| `* *`    | schedule-oriented user | clear an appointment of an existing patient  | stop seeing reminders of a past appointment                                               |
+| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
+| `* * *`  | user                   | exit the program                             |                                                                                           |
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -551,8 +601,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User !!requests to list patients (UC05)!!
-2. User !!requests to display record list of specific patient (UC06)!!
+1. User <u>requests to list patients (UC05)</u>
+2. User <u>requests to display record list of specific patient (UC06)</u>
 3. User requests to add record with given fields into to the patient.
 4. OmniHealth adds a record with given fields to the record list of the patient.
 
@@ -578,6 +628,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+* 2a. The user searches for a specific patient before deleting.
+
+    * 2a1. User requests to find a patient
+    * 2a2. OmniHealth shows a list of patient with given keyword
+    * 2a3. User requests to delete a specific patient in the list
+    * 2a4. OmniHealth deletes the patient
+
+      Use case ends.
+
 * 3a. The list is empty.
     * 3a1. OmniHealth shows an error message.
 
@@ -589,21 +648,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2a. The user searches for a specific patient before deleting.
-
-    * 2a1. User requests to find a patient
-    * 2a2. OmniHealth shows a list of patient with given keyword
-    * 2a3. User requests to delete a specific patient in the list
-    * 2a4. OmniHealth deletes the patient
-
-      Use case ends.
 
 **Use case: UC04 - Delete a record**
 
 **MSS**
 
-1.  User !!requests to list patients (UC05).!!
-2.  User !!requests to display record list of specific patient (UC06).!!
+1.  User <u>requests to list patients (UC05).</u>
+2.  User <u>requests to display record list of specific patient (UC06).</u>
 3.  User requests to delete a specific record in the list.
 4.  OmniHealth deletes the record.
 
@@ -689,8 +740,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User !!requests to list patients (UC05)!!
-2. User !!requests to display record list of specific patient (UC06)!!
+1. User <u>requests to list patients (UC05)</u>
+2. User <u>requests to display record list of specific patient (UC06)</u>
 3. User requests to clear all records from a patient
 4. OmniHealth deletes all patient records
 
@@ -737,8 +788,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User !!requests to list patients (UC05)!!
-2. User !!requests to display record list of specific patient (UC06)!!
+1. User <u>requests to list patients (UC05)</u>
+2. User <u>requests to display record list of specific patient (UC06)</u>
 3. User inputs a keyword to search the record list.
 4. OmniHealth shows all the relevant records of the specified patient.
 
@@ -805,8 +856,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User !!requests to list patients (UC05).!!
-2. User !!requests to display record list of specific patient (UC06).!!
+1. User <u>requests to list patients (UC05).</u>
+2. User <u>requests to display the record list of specific patient (UC06).</u>
 3. User requests to edit a record
 4. OmniHealth replaces the record in the record list with a new edited one
 
@@ -833,7 +884,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User !!requests to list patients (UC05).!!
+1. User <u>requests to list patients (UC05).</u>
 2. User requests to edit a patient's details
 3. OmniHealth replaces the patient in the patient database with a new edited one
 
@@ -856,24 +907,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
-
 [<*Back to ToC*>](#table-of-contents)
 
 ### Non-Functional Requirements
 
 1. Should work as long as Java `11` or above is installed.
-2. Should be secure to use so that patient records are not easily leaked.
-3. Should be able to handle large amounts of data eg. Patient record list, Patient list
-
-*{More to be added}*
+2. Should store personal particulars of patients in a way that it is not at risk of being leaked.
+3. Should be able to handle large amounts of data without feeling sluggish.
+   * Patient list should be able to store up to 500 patients (Target users are small clinics)
+   * Likewise, Patient Record List should be able to store up to 500 records
+4. A typist with average typing speed should be able to perform their desired task faster than 
+when using a mouse. (Designed with CLI in mind)
+5. Should be simple to use for a user that is not proficient with technology. (Target users are used to pen and paper records)
+   * Should have simple and intuitive commands that can be learned within a few minutes
+6. Should be more efficient than using paper records. 
+   * Finding a patients information using Omnihealth is faster than manaully searching for it.
 
 [<*Back to ToC*>](#table-of-contents)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main success scenerio
+* **GUI**: Graphical user interface
+* **CLI**: Command line interface
+* **Address book**: The component of Omnihealth that stores all patients and information related to a patient
+* **Patient**: A patient of the clinic using Omnihealth
+* **Person**: A model representing a patient
+* **Doctor**: A doctor working at the clinic using Omnihealth
+* **(Patient) Record**: Digital copy of a patient's record stored by Omnihealth
+* **Paper Records**: Physical copy of a patient's record
+* **Patient List**: A list of patients stored by Omnihealth
+* **(Patient) Record List**: A list of a patient's records stored by Omnihealth
+* **Appointment**: Date of the next visit of the patient
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -903,35 +969,164 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+[<*Back to ToC*>](#table-of-contents)
+
+### Displaying a patient's record list
+1. View a particular patient's record list while all persons are being shown
+
+   1. Prerequisites: Patient List is currently displayed. At least 1 patient in the list. If record list is displayed instead, use the `list` command.
+   
+   2. Test case: `rlist 1` <br>
+      Expected: Record list of the patient at index 1 will be displayed instead of the patient list.
+
+   3. Test case: `rlist 0`<br>
+      Expected: Patient list remains displayed. Error details shown in the status message. 
+
+   4. Other incorrect delete commands to try: `rlist`, `rlist x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 [<*Back to ToC*>](#table-of-contents)
 
-### Deleting a person
+### Adding a record
+1. Add a record to a particular patient's record list
 
-1. Deleting a person while all persons are being shown
+    1. Prerequisites: Record List is currently displayed. If the patient list is displayed instead, use the `rlist` command.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    2. Test case: `radd d/31-10-2022 1430 r/suffers from common cold m/Paracetamol 500mg`, 
+       `radd d/31-10-2022 1430 r/suffers from common cold`<br>   
+       Expected: Details of the record added will be shown in the status message. Record list will be updated to 
+       include the added record
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    3. Test case: `radd`, <br>
+       Expected: No record is added. Error details shown in the status message. Record list remains the same.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    4. Other incorrect delete commands to try: `radd d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
+       Expected: Similar to previous.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+[<*Back to ToC*>](#table-of-contents)
+
+### Editing a record
+1. Edit an existing record in a particular patient's record list
+
+    1. Prerequisites: Record List is currently displayed. At least 1 record in the list. If the patient list is displayed instead, use the `rlist` command. 
+
+    2. Test case: `redit 1`, `redit 1 d/31-10-2022 1430 r/suffers from common cold m/Paracetamol 500mg`<br>   
+       Expected: Details of the selected record in the record list will be edited and displayed. The updated details of the selected 
+       record is then shown in the status message. 
+
+    3. Test case: `redit`, <br>
+       Expected: No record is edited. Error details shown in the status message. Record list remains the same.
+
+    4. Other incorrect delete commands to try: `redit d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
+       Expected: Similar to previous.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Find a record in a patient's record list
+1. Find an existing record in a particular patient's record list
+
+    1. Prerequisites: Record List is currently displayed. If the patient list is displayed instead, use the `rlist` command. 
+
+    2. Test case: `rfind d/10-2022`, `rfind r/suffers from common cold` `rfind m/Paracetamol 500mg`<br>   
+       Expected: The record list will display all records matching the search parameters. The number of matching
+       records will be shown in the status message.
+
+    3. Test case: `rfind`, <br>
+       Expected: No record is edited. Error details shown in the status message. Record list remains the same.
+
+    4. Other incorrect delete commands to try: `rfind d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
+       Expected: Similar to previous.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Undo a find command
+1. Undo a find command (either `find` or `rfind`)
+   
+    1. Test case: `showall`, `showall 123`, `showall abc`<br>
+       Expected: If a record list is displayed, a record list containing all records is shown. 
+       If a patient list is displayed, a patient list containing all patients is shown instead. 
+       A Status message indicating a successful command execution will be displayed.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Deleting a record
+
+1. Delete a record from a particular patient's record list
+
+    1. Prerequisites: Record List is currently displayed. At least 1 record in the list. If the patient list is displayed instead, use the `rlist` command. 
+
+    2. Test case: `rdelete 1`<br>   
+       Expected: Details of the deleted record will be shown in the status message. Record list will be updated to
+       exclude the deleted record. 
+   
+    3. Test case: `rdelete 0`<br>
+       Expected: No record is deleted. Error details shown in the status message. Record list remains the same.
+
+    4. Other incorrect delete commands to try: `rdelete`, `rdelete x` `rdelete 1 r/record`, `...` (where x is in an out of bound/invalid index)<br>
+       Expected: Similar to previous.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Clearing all records from a patient's record list
+
+1. Clear all records from a particular patient's record list
+
+    1. Prerequisites: Record List is currently displayed. If the patient list is displayed instead, use the `rlist` command.
+
+    2. Test case: `rclear`, `rclear 1`<br>   
+       Expected: A Status message indicating a successful command execution will be displayed. 
+       The record list is now empty and there are no records displayed.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Adding an appointment to a patient
+
+1. Add an upcoming appointment to a particular patient
+
+   1. Prerequisites: Patient List is currently displayed. At least 1 patient in the list. If the record list is displayed instead, use the `list` command. 
+
+   2. Test case: `appt 1 d/01-01-2023 1200`<br>   
+      Expected: Details of the appointment set will be shown in the status message. The specified patient in the patient list will be updated to
+      include the upcoming appointment.
+
+   3. Test case: `appt 0`, <br>
+      Expected: No appointment is added. Error details shown in the status message. Patient list remains the same.
+
+   4. Other incorrect delete commands to try: `appt`, `appt 1 d/x`, `...` (where x is in an invalid datetime format or before the current date)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+[<*Back to ToC*>](#table-of-contents)
 
+### Removing an appointment from a patient
+
+1. Remove an appointment from a particular patient
+
+    1. Prerequisites: Patient List is currently displayed. At least 1 patient in the list. If the record list is displayed instead, use the `list` command.
+
+    2. Test case: `apptcl 1`, <br>   
+       Expected: A Status message indicating a successful command execution will be displayed. The specified patient in the patient list will be updated to
+       not show any upcoming appointment.
+
+    3. Test case: `apptcl 0`, <br>
+       Expected: No appointment is removed. Error details shown in the status message. Patient list remains the same.
+
+    4. Other incorrect delete commands to try: `apptcl`, `apptcl 1 hello`, `...` <br>
+       Expected: Similar to previous.
+   
 [<*Back to ToC*>](#table-of-contents)
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: The file addressbook.json exists.
+    2. Test case: Edit the data in the file manually from outside Omnihealth.<br>
+       Expected: Omnihealth starts up as usual. If the data in the file is readable, Omnihealth displays the data.
+       Else, Omnihealth starts up with no data. 
 
-1. _{ more test cases …​ }_
+1. Dealing with missing data files
+
+   1. Test case: Delete the adressbook.json file if it exists. <br>
+       Expected: Omnihealth starts up as usual but displays a blank list since there is no data found.
 
 [<*Back to ToC*>](#table-of-contents)
