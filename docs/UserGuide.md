@@ -614,7 +614,7 @@ Alphabetical sorting will prioritize valid letters by their ASCII values, meanin
 Example:
 
 1. `contact sort s/a` dislays a contact list where names are sorted by alphabetical order.
-   1. Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering of the list will be: Alpha, Betsy, alfonzo.
+   * Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering of the list will be: Alpha, Betsy, alfonzo.
 
 #### Sorting tasks : `task sort`
 
@@ -644,7 +644,7 @@ Alphabetical sorting will prioritize valid letters by their ASCII values, meanin
 Example:
 
 1. `task sort s/a` displays a task list sorted by description alphabetical order.
-   1. Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
+   * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
 
 ### Marking a task : `task mark`
 
