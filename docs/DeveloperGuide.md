@@ -182,13 +182,35 @@ Here, we are interested in the use of adding a client and associating it with a 
 
 Below is an activity diagram that illustrates how a user might use the addClient feature and associate the added client with a product.
 
-![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
+![AddClientWithProductActivityDiagram](images/AddClientWithProductActivityDiagram.png)
 
 ##### Design Considerations
 
 We decided to only allow adding of a client with its product only after the product is already added using `addProduct`.
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
+
+#### 3.1.3 View Client feature
+
+Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
+
+Purpose: View details associated to the client, such as the client's birthday and address, as well as the meeting details with the client.
+
+##### Implementation
+
+Usage Scenario of `viewClient`:
+
+1) User inputs `viewClient i/1` to view the first client in the `Model`.
+
+:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+
+Below is a sequence diagram that illustrates the execution of `viewClient` command and the interaction with `Model`.
+
+![ViewClientSequenceDiagram](images/ViewClientSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `viewClient`.
+
+![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
 ### 3.2 `Meeting`-related features
 
@@ -232,7 +254,7 @@ the command is executed.
 
 #### 3.2.2 Delete Meeting Feature
 
-Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
+Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
 Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 
@@ -267,7 +289,7 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 
 #### 3.2.3 View Meeting feature
 
-Syntax: `viewMeeting i/INDEX`
+Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
 Purpose: View details associated with a meeting, such as meeting’s date and time.
 
@@ -282,6 +304,10 @@ Usage Scenario of `viewMeeting`:
 Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
 
 ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `viewMeeting`.
+
+![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
 
 #### 3.2.4 List Meeting feature
 
@@ -315,6 +341,26 @@ Below is a sequence diagram that illustrates the execution of `listMeeting d/tom
 
 
 ### 3.3 `Product`-related features
+
+#### 3.3.1 Add Product feature
+
+Syntax: `addProduct pd/PRODUCT_NAME`
+
+Purpose: Add a self-defined product with a name `PRODUCT_NAME` into the product list to keep track of the products that the financial advisor sells.
+
+##### Implementation
+
+Usage Scenario of `addProduct`:
+
+1) User inputs `addProduct pd/PrudenSure` to add PrudenSure in the product list.
+
+Below is a sequence diagram that illustrates the execution of `listMeeting` command.
+
+![AddProductSequenceDiagram](images/AddProductSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `addProduct`.
+
+![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
 
 ### 3.4 UI
 
