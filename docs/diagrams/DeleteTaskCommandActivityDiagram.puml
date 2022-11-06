@@ -1,0 +1,15 @@
+@startuml
+start
+:User enters DeleteTask command;
+
+if () then ([Is invalid index])
+    :HackAssist displays \n error message indicating \n invalid index provided;
+
+else ([Is valid index])
+    :HackAssist searches \n through the personlist \n and updates all the \n contacts assigned to this \n task;
+    :HackAssist deletes task from \n tasklist;
+    :HackAssist updates existing \n tasklist to reflect most updated \n tasklist.;
+
+endif
+stop
+@enduml

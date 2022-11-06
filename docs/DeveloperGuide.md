@@ -238,6 +238,84 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Adding a Task into the TaskList.
+
+#### Proposed Implementation
+
+The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as
+its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned.
+The command is executed using the `AddTaskCommand`class which extends the `Command` class and the 
+respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input 
+
+Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 
+pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if
+the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already 
+exist** error message will be returned to the user.
+
+Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into
+the tasklist. 
+
+step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls 
+`AddressBook#setTasks` to update the tasklist in the model to the latest version
+
+The following sequence diagram shows how the AddTask operation works:
+![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a AddTask command:
+![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
+
+
+
+**Design considerations**
+
+**Aspect: How Adding executes:**
+
+* **Alternative 1 (current choice):** Filters entire tasklist
+    * Pros: Easy to implement.
+    * Cons: May have performance issues as the entire tasklist must be parsed.
+
+* **Alternative 2:**
+    * Pros:
+    * Cons:
+
+### \[Proposed\] Deleting a Task into the TaskList.
+
+#### Proposed Implementation
+
+The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. 
+The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the
+index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
+
+Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user wants to delete the second task on the task list. THe user executes `delete 2` to delete the second task
+from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task
+to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
+is displayed to the user. 
+
+Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the 
+email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks 
+the person is assigned to.
+
+Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the 
+`Model#deleteTask` to delete the task from the tasklist.
+
+step 5. After making a deletion into the tasklist, the `DeleteTaskCommand` calls the `Model#update`, which calls
+`AddressBook#setTasks` to update the tasklist in the model to the latest version
+
+The following sequence diagram shows how the AddTask operation works:
+![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a AddTask command:
+![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+
+
 ### \[Proposed\] Task and Person display each other
 
 #### Proposed Implementation
