@@ -55,7 +55,7 @@ public class SampleDataUtil {
                     new Gender("M"), new House("N"), new MatricNumber("A0088134E"), getTagSet("PublicityHead")
             ),
             new Resident(
-                    new Name("Melvin Chua"), new Phone("91615761"), new Email("melvchua@gmail.com"), new Room("03-09"),
+                    new Name("Melvin Chua"), new Phone("91615761"), new Email("melvchua@gmail.com"), new Room("03-11"),
                     new Gender("M"), new House("A"), new MatricNumber("A0062330F"), getTagSet("TechLead")
             ),
 
@@ -85,7 +85,7 @@ public class SampleDataUtil {
             ),
 
             new Resident(
-                    new Name("Nur Farah"), new Phone("91834331"), new Email("farahnur@gmail.com"), new Room("04-05"),
+                    new Name("Nur Farah"), new Phone("91834331"), new Email("farahnur@gmail.com"), new Room("04-06"),
                     new Gender("F"), new House("N"), new MatricNumber("A0203046L"), getTagSet("HouseHead")
             ),
 
