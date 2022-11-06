@@ -152,11 +152,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Add Module with Semester Feature
+### Add Module with Semester Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed add command allows the user to add for a particular `UserModule` together with `SemesterData`. 
+The add command allows the user to add for a particular `UserModule` together with `SemesterData`. 
 It is facilitated by `AddCommand`.
 It extends the `Command` class.
 
