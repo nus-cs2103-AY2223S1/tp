@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+Title:Finding students
+start
+:Recieves a find command;
+if () then ([valid command])
+  :Parse the find command keywords;
+  :Filter students based on the keywords;
+  :Display filtered students to user;
+  :Shows a success message;
+  else ([else])
+  :Shows an invalid command message;
+  endif
+     stop
+
+@enduml

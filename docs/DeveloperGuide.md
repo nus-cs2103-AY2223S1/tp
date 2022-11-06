@@ -100,7 +100,6 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -147,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `fridaybook.commons` package.
+Classes used by multiple components are in the `friday.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,6 +372,7 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
 
 The following Sequence Diagram shows the aforementioned steps.
+
 <img src="images/GradeSequenceDiagram.png" width="574" />
 
 #### Design considerations:
@@ -395,19 +395,51 @@ The following Sequence Diagram shows the aforementioned steps.
   * Cons: Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement.
 
 ### Find feature
+FRIDAY allows the user to search through all the fields entered for any student and outputs a modified list of students that match the criteria. This list can then be modified and the changes will be reflected in the storage used.
 
 #### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
 logic established. However, it is unique in the sense that it will look through all the possible fields and data
 and return matches.
 
-Example of current implementation of find feature
+Below is the activity diagram depicting how the find function is implemented
 
-1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
-and their data into a list of students.
+![Find command activity diagram](images/FindCommandActivityDiagram.png)
 
-2. When user types in the find command the logic will tell the program to go through all the fields for every
-student inside the student class and return the student if there is a successful match in any of the fields
+The `find` command will be executed by `FindCommand`. Before that, `FindCommandParser` parses the user input and decide what predicate is passed to `FindCommand`. The filtered list
+is stored as `filteredStudents` in `ModelManager`, and is updated every time `FindCommand` is run.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+1. FRIDAY initialises an `ObservableList<Student>` named `students` and
+   a `FilteredList<Student>` named `filteredStudents` upon launch.
+
+2. The user executes `find keyword` command to sort the students by name in ascending order.
+
+3. The user input is passed to
+   `LogicManager`, which then calls the `FindCommandParser#parse` method to parse the argument `keyword`.
+
+4. The `FindCommandParser` checks that the criteria is valid, and creates a `FindCommand` with a `Predicate`
+   that is used to filter the students list.
+
+5. The `LogicManager` calls the `FindCommand#execute` method, which in turn calls  `Model#updateFilteredStudentList`
+   to update `sortedStudents` with the given `Predicate`.
+
+6. The list `students` is set to `filteredStudents`, and the `StudentListPanel#setList` method is called to refresh the
+   `ListView` in the UI with the new `students` list.
+
+The following sequence diagram summarizes the aforementioned steps.
+
+![Find command sequence diagram](images/FindSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: Should we allow users to find block keywords:**
+* **Alternative 1 (current choice): Allow user to find by single keywords**
+    * Pros: Provides more search results and the expected student is part of the list.
+    * Cons: The expected student may not appear at the top of the list due to lexicography.
+* **Alternative 2: Allow users to find by block keywords**
+    * Pros: Possibly more accurate searches.
+    * Cons: Higher possibly that search is unsuccessful due to error in keywords.
 
 --------------------------------------------------------------------------------------------------------------------
 
