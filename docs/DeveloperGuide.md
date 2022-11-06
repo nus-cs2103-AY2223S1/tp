@@ -352,19 +352,19 @@ Additionally, to allow access by the `Logic` component, `Model` implements sette
 
 The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
 
-`ListType` `type` is referred to by any method that need to access to the current list. Given below is an example usage scenario including `ListTuitionClassCommand` and how the list type mechanism behaves in each step.
+`ListType` `type` is referred to by any method that needs to access to the type of the current list. Given below is an example usage scenario including `ListTutorCommand` and how the list type mechanism behaves in each step.
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user executes `list class` command to list out tuition classes by calling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the `type` field in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with `TUTOR_LIST` being the parameter, causing the `type` field in `ModelManager` to update to `TUTOR_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
 Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
 
-Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, `MainWindow#handleList()` will clear the children of `entityListPanelPlaceholder`, and add `tuitionClassListPanel` to it, which holds the list of `Class`.
+Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of `entityListPanelPlaceholder`, and add `tutorListPanel` to it, which holds the `Tutor` list.
 
-Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tuitionClassLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tutorLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
 This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `Class` list.
 
 Another example that makes use of the `ListType` is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how the list type mechanism behaves.
