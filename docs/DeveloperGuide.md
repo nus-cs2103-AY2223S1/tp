@@ -938,7 +938,7 @@ Therefore, we recommend that when performing a test case for an employee (with I
 
    1. **Test Case**: `rate id/x r/5`<br>
       **Expected Outcome**: The "Performance" property of the employee is updated to "5".
-      On the "Performance History" graph, a point with value "5" is now present, with today's date labelled.
+      On the "Performance History" graph, there will be a new node with a rating value of "5", and a timestamp of today's date.
 
    2. **Follow-up Test Case**: `rate id/x r/4`<br>
       **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
