@@ -93,9 +93,10 @@ Format: `add-e n/TITLE d/DESCRIPTION`
 <div class="alert alert-block alert-success">
    
 **:point_up: Use case:**<br> 
-
+   
 Have something new to add to your bucket list? Use the <code>add-e</code> to add a new event to your bucket list! 
-      
+   
+</div>
 
 Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
@@ -109,7 +110,6 @@ After the event has been successfully added, a confirmation message will be show
 
 ![AddEventDone](images/AddEventDone.png)
    
-</div>
 
 
 #### Viewing bucket list: `list-e`
@@ -139,6 +139,8 @@ Format: `display-e INDEX`
 
 Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description.
 
+</div>
+
 The following is an example of how the `display-e` command can be run in the GUI.
 
 ![DisplayEvent](images/DisplayEvent.png)
@@ -147,7 +149,6 @@ After the command has been successfully executed, a full description of the spec
 
 ![DisplayEventDone](images/DisplayEventDone.png)
    
-</div>
 
 ### Managing Trips
 
@@ -163,6 +164,7 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 **:point_up: Use case:**<br> 
    
 Planning an upcoming trip? Use the `add` command to add a new trip to your trip list!
+</div>
 
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
@@ -175,7 +177,7 @@ The following is an example of how the `add` command can be run in the GUI.
 After the trip has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new trip in the trip list display as seen below.
 ![AddTripDone](images/AddTripDone.png)
  
-</div>
+
 
 #### Viewing trips list: `list`
 Shows a list of all trips added.
@@ -201,6 +203,8 @@ Format: `display INDEX`
    
 Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description.
 
+</div>
+
 The following is an example of how the `display` command can be run in the GUI.
 
 ![DisplayTrip](images/DisplayTrip.png)
@@ -209,7 +213,6 @@ After the command has been successfully executed, a full description of the spec
 
 ![DisplayTripDone](images/DisplayTripDone.png)
    
-</div>
 
 ### Managing a Trip's Itinerary
 
@@ -230,6 +233,8 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
    
 <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command.
 
+</div>
+
 Examples:
 - `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
 
@@ -237,7 +242,6 @@ The following is an example of how the `add-et` command can be run in the GUI.
 
 ![AddEventToTrip](images/AddEventToTrip.png)
 
-</div>
 
 #### Removing event from a trip's itinerary: `delete-et`
 Remove the specified event from the specified trip. The event will then be returned to the bucket list.
@@ -252,7 +256,8 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
    
 **:point_up: Use case:**<br> 
    
-Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
+Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. 
+</div>
 
 Examples:
 - `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
@@ -272,6 +277,8 @@ Format: `select INDEX`
    
 Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. 
 
+</div>
+
 The following is an example of how the `select` command can be run in the GUI.
 
 ![SelectTrip](images/SelectTrip.png)
@@ -280,7 +287,7 @@ After the trip has been successfully selected, a confirmation message will be sh
 
 ![SelectTripDone](images/SelectTripDone.png)
    
-</div>
+
 
 ### Managing a Trip's Completion Status
 
@@ -298,6 +305,8 @@ Format: `mark INDEX`
    
 Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command.
 
+</div>
+
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
 
@@ -309,7 +318,7 @@ After the trip has been successfully marked, a confirmation message will be show
 
 ![MarkTripDone](images/MarkTripDone.png)
 
-</div>
+
 
 #### Marking trips as incomplete: `unmark`
 Mark the trip in the specified INDEX as not done. After the specified trip has been marked as incomplete, it will be moved upwards to the set of incomplete trips in the trip list. 
@@ -325,10 +334,11 @@ Format: `unmark INDEX`
    
 Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete.
 
+</div>
+
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
    
-</div>
 
 ### Sorting
 
@@ -375,7 +385,9 @@ Format: `completed`
    
 **:point_up: Use case:**<br> 
    
-Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. </div>
+Take a stroll down memory lane and revisit happy memories as a list of all your completed trips and events are shown to you. 
+
+</div>
 
 #### Viewing all trips and events: `view`
 Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
@@ -399,11 +411,13 @@ Format: `summary`
    
 How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command.
 
+</div>
+
 After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
 
 ![Summary_Window](images/SummaryScreenshot.png)
  
-</div>
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -433,11 +447,13 @@ Format: `help`
    
 **:point_up: Use case:**<br> 
    
-Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. The list of commands will be displayed as shown in the screenshot below.
-
-![help message](images/helpMessage.png)
+Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. 
 
 </div>
+
+After running the `help` command, a list of commands will be displayed as shown in the screenshot below.
+
+![help message](images/helpMessage.png)
 
 #### Exiting the program: `exit`
 Exits the program.
