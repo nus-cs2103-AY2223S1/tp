@@ -42,8 +42,11 @@ activate Model
 Model --> SortCommand
 deactivate Model
 
-SortCommand --> LogicManager
+SortCommand --> LogicManager : result
 deactivate SortCommand
+
+SortCommand -[hidden]-> LogicManager : result
+destroy SortCommand
 
 [<--LogicManager
 deactivate LogicManager
