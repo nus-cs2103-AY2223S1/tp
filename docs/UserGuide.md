@@ -63,7 +63,7 @@ Let's first begin with the commands available in the default mode.
 
 
 | Command    | Format                                                             |
-| ---------- |--------------------------------------------------------------------|
+|------------|--------------------------------------------------------------------|
 | `help`     | `help`                                                             |
 | `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL][a/ADDRESS][c/CLASS_NAME...]` |
 | `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]`          |
@@ -468,8 +468,11 @@ Format: `unfocus`
 
 ### Automated Data Backup
 
-On each launch of TA-Assist, a backup of the save data is made and saved to `data/taassist.json.bak`. In the event that
-you need to revert a catastrophic change, you may simply quit the app and overwrite `data/taassist.json` with the backup file.
+On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made 
+and saved to `data/taassist.json.bak`. 
+
+In the event that you need to revert a catastrophic change, you may simply quit the app and overwrite 
+`data/taassist.json` with the backup file. 
 
 {% include important.html content="
 
