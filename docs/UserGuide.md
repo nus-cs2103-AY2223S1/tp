@@ -645,6 +645,9 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous YellowBook home folder.
 
+**Q**: My contact's full name includes special characters (e.g. s/o). Why can't I add it?<br>
+**A**: YellowBook does not currently support special characters in names as it is not a critical feature for students managing their project contacts. We will be adding support for special characters in future versions.
+
 [[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
