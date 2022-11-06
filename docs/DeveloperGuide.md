@@ -2,12 +2,12 @@
 layout: page
 title: Developer Guide
 ---
-## Table of Contents
+# Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+# **Acknowledgements**
 
 * `Task` and `Project` were inspired by AB3's `Person` object
 * Commands from AB3 were brought over to `Task` and `Project`
@@ -15,20 +15,20 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://github.com/AY2223S1-CS2103T-T09-3/tp/tree/master/docs/diagrams) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+## Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,15 +69,15 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+## UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, `StaffListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -93,16 +93,16 @@ Directly adding or removing `Project`, `Task`, or `Staff` would update the `Proj
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
 
-### Logic component
+## Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HrProParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -119,10 +119,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HrProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HrProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+## Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
@@ -154,7 +154,7 @@ The `Project` class,
 
 The `Staff` class,
 
-* stores the details of a particular staff (i.e. `StaffName`, `StaffContact`, `StaffTitle`).
+* stores the details of a particular staff (e.g. `StaffName`, `StaffContact`, `StaffTitle`).
 
 **API** : [`Task.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/task/Task.java)
 
@@ -164,30 +164,30 @@ The `Task` class,
 
 * stores the details of a particular task (i.e. `TaskDescription`, `TaskDeadline`).
 
-### Storage component
+## Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/hrpro/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+## Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+## \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -250,7 +250,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -265,9 +265,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### View Command
+## View Command
 
-#### Implementation:
+### Implementation:
 * The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
 * This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
 * The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
@@ -278,15 +278,15 @@ The following sequence diagram shows how the view command works.
 
 ![view command](images/ViewCommandSequenceDiagram.png)
 
-#### Design considerations:
+### Design considerations:
 * The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
 * We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
 * The last viewed staff list would also be saved in `Storage` for convenience to users.
 
-### Task List
+## Task List
 
-#### Implementation
+### Implementation
 `Task List` is implemented in a way that is similar to
 `Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
 classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
@@ -300,7 +300,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskStructure.png)
 
-#### Design considerations:
+### Design considerations:
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
@@ -309,27 +309,28 @@ there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
-### Find Task
+## Find Task
 
-#### Implementation
-Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask` 
+### Implementation
+Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask`
 command to match part of the `TaskDescription`.
 
 The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
 ![img.png](images/FindTaskDiagram.png)
 
-#### Design considerations:
+### Design considerations:
 
 * We chose to find task by their `TaskDescription` as it is more specific and more significant information to for example,
-the `Deadline`.
+  the `Deadline`.
 * Users can find their specific task if their keyword matches part of the `TaskDescription`.
-  * Pros: Users can find their tasks more easily, especially if they do not know the exact `TaskDescription` of the `Task`
-  they want to find.
-  * Cons: More tasks will be displayed to the users as there will be more `TaskDescription` that partially matches the keyword.
+    * Pros: Users can find their tasks more easily, especially if they do not know the exact `TaskDescription` of the `Task`
+      they want to find.
+    * Cons: More tasks will be displayed to the users as there will be more `TaskDescription` that partially matches the keyword.
 
-### Mark and unmark task
 
-#### Implementation
+## Mark and unmark task
+
+### Implementation
 For tasks, they can either be marked as being completed or not. The implementation would
 be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or
 `false` value.
@@ -347,7 +348,7 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
-#### Design Considerations:
+### Design Considerations:
 
 * Users when done with a Task might just delete it and thus the need to mark
 Task as complete or not is redundant.
@@ -355,9 +356,9 @@ Task as complete or not is redundant.
   * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
   Having a way to mark task as completed or not will help them manage their task.
 
-### Sort task 
+## Sort task 
 
-#### Implementation
+### Implementation
 Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object 
 and only allow the `TaskDeadline` field to accept a `LocalDate` value.
 
@@ -371,16 +372,16 @@ The following sequence diagram shows how the `sorttask` command will run through
 
 ![sorttask command](images/SortTaskCommandSequenceDiagram.png)
 
-#### Design Considerations:
+### Design Considerations:
 
 * We chose to sort the tasks by their deadlines because it is more significant information compared to for example, the task description.
 * Sorting tasks is an irreversible process. The user will not be able to undo the sorting of tasks.
     * Pros: Less memory and simpler implementation as there is no need to store the original order of the tasks.
     * Cons: Some users might want to undo the sorting to view the tasks in the original order.
 
-### Delete Staff from a project
+## Delete Staff from a project
 
-#### Implementation
+### Implementation
 
 For each Project, there is a Unique Staff list and removing Staff object from this list
 will remove Staff that are part of the project. This can be done using a delete command
@@ -394,20 +395,23 @@ will only allow Staff that are displayed to be deleted. Since we do not save whi
 display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
 with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
-It also uses `ModelManager` and the following fields to delete the task.
-* `FilteredStaffList` - get the Staff Name at the specified Index within this list
-* `FilteredProjectList`- get the Project with the specified PROJECT_NAME within this list
+`ModelManager` methods for deleting a staff are:
+* `getFilteredProjectList` - to check if it is empty
+* `getFilteredStaffList` - to check if it is empty
+* `getStaffFromProjectAtIndex` - returns an `Optional` which contains either a `Staff` or not
+* `getProjectWithName` - return a `Optional` which contains either a `Project` or not, based on PROJECT_NAME
+* `isSuccessStaffDelete` - returns a `Boolean` based on whether the `Staff` is deleted from the `Project`
 
 It then searches if the Staff is within the Project's Staff list. If it is, the Staff is deleted and if not, exception is thrown.
 
 Example Usage:
 ```
-Filtered Project list :
+Project list :
 1) CS2103T TP
 2) CS2102 project
 3) Orbital
 
-Filter Staff list:
+Staff list:
 1) Andy
 2) Jayden
 3) Shawn
@@ -421,14 +425,14 @@ within CS2102 project's Staff list and delete Staff Jayden if it exist.
 Exception is thrown for the following cases:
 * If the Staff list or Project list is empty (Nothing is displayed).
 * If the PROJECT_NAME is for a Project not on display or not in HR Pro Max++.
-* If the INDEX is greater than the number of Staff on display currently, or if the INDEX is 0 or negative or exceed Int_MAX.
+* If the INDEX is greater than the number of Staff on display currently, or if the INDEX is 0 or negative or exceed INT_MAX.
 * If there are any missing parameters.
 
-The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
+The activity diagram below shows the logic flow of the `delstaff` command.
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 
-#### Design Considerations:
+### Design Considerations:
 
 The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
@@ -438,8 +442,9 @@ Pros: Easier to implement then the current implementation
 
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
-### Adding staff feature
-#### Implementation
+## Adding staff feature
+
+### Implementation
 The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
 to add a  `Staff` to a `Project`, both of which are provided via the `addStaff` command.
 
@@ -474,7 +479,7 @@ Step 4. The `Staff` is added to the `Project`. The `execute()` method updates th
 Sequence diagram for the execution of `AddStaffCommand`
 ![AddStaffCommandExecution](images/AddStaffCommandExecution.png)
 
-#### Design Considerations:
+### Design Considerations:
 **Aspect: Finding project to add**
 
 Finding project to add is not straightforward since only `ProjectName` is passed as argument to the `AddStaffCommand`.
@@ -491,7 +496,7 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -501,9 +506,9 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# **Appendix: Requirements**
 
-### Product scope
+## Product scope
 
 **Target user profile**:
 
@@ -530,7 +535,7 @@ know who to find and how to contact them.
 * Team lead can record down different tasks that are needed to be done for their various projects to be reminded
 
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -562,11 +567,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team lead | sort task by deadline                        | know which task is more urgent                |
 | `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  | 
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
-###**Use case: UC01- Add a project**
+### **Use case: UC01- Add a project**
 
 **MSS**
 
@@ -582,7 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 1.
 
-###**Use case: UC02- Add staff member to project**
+### **Use case: UC02- Add staff member to project**
 
 **MSS**
 
@@ -604,7 +609,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-###**Use case: UC03- Delete a Project**
+### **Use case: UC03- Delete a Project**
 
 **MSS**
 
@@ -629,7 +634,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-###**Use case: UC04- Edit Project details**
+### **Use case: UC04- Edit Project details**
 
 **MSS**
 
@@ -639,7 +644,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###**Use case: UC05- Edit Staff details**
+### **Use case: UC05- Edit Staff details**
 
 **MSS**
 
@@ -671,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 5.
 
-###**Use case: UC06- View Staff details**
+### **Use case: UC06- View Staff details**
 
 **MSS**
 
@@ -720,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to run without any additional installations beyond Java 11.
 3. Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
@@ -737,7 +742,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. The fields in the GUI should be clearly labelled such that the user can easily understand what they are for.
 15. The User Guide and Developer Guide should be clearly written and easy to understand.
 
-### Glossary
+## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
@@ -749,7 +754,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -758,7 +763,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
@@ -774,7 +779,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
    
 
-### Deleting a Project
+## Deleting a Project
 
 1. Deleting a Project while all Projects are being shown
 
@@ -792,7 +797,7 @@ testers are expected to do more *exploratory* testing.
    5. Command should be case-insensitive. Other correct delete commands to try: `DELPROJ 1`, `delProj 1`, `dELproJ 1`<br>
       Expected: Similar to first test case.
 
-### Sorting Projects by deadline
+## Sorting Projects by deadline
 
 1. Sorting Projects by deadline 
 
@@ -809,7 +814,7 @@ testers are expected to do more *exploratory* testing.
    
     6. `sortproj` should work on all Projects even if the Project list has been filtered using `findproj` command.
 
-### Viewing the Staff list of a Project
+## Viewing the Staff list of a Project
 
 1. Viewing the Staff list while all projects are being shown
 
@@ -837,7 +842,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Marking a Task
+## Marking a Task
 
 1. Marking a task in an unsorted Task list
 
@@ -887,7 +892,7 @@ testers are expected to do more *exploratory* testing.
     5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
        Expected: Similar to first test case.
 
-### Unmarking a Task
+## Unmarking a Task
 
 1. Unmarking a task in an unsorted Task list
 
@@ -937,7 +942,7 @@ testers are expected to do more *exploratory* testing.
     5. Command should be case-insensitive. Other correct unmark commands to try: `UNMARKTASK 1`, `unmarkTask 1`, `unMarkTask 1`<br>
       Expected: Similar to first test case.
 
-### Finding a Task
+## Finding a Task
 
 1. Finding a Task while all Tasks are being shown
 
@@ -966,7 +971,7 @@ testers are expected to do more *exploratory* testing.
    4. Command should be case-insensitive and allow for partial matching. Other correct find commands to try: `FINDTASK download`, `findtask down`, `FindTask d`<br>
       Expected: Similar to first test case.
 
-### Sorting Tasks by completion status
+## Sorting Tasks by completion status
 
 1. Sorting Tasks by completion status
 
@@ -983,7 +988,7 @@ testers are expected to do more *exploratory* testing.
 
     5. `sortcomplete` should work on all Tasks even if the Task list has been filtered using `findproj` command.
 
-### Saving data
+## Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -994,14 +999,14 @@ testers are expected to do more *exploratory* testing.
       Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
    
 
-## **Appendix: Effort**
+# **Appendix: Effort**
 
 For the effort placed into our group project, we felt that our group might have placed more than the average needed just in case.
 
 The initial AB3 had only `Person`, however our group refactored `Person` into `Project` and from there added `Staff` into each project,
 and a `Task`. While the `Task` is quite similar to the `Person` in terms of implementation for model and logic component, the difficult for both
 lied within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
-initally we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
+initially we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
 
 The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence
 there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of
@@ -1016,15 +1021,15 @@ and had to read Java API such as for `Optional` and `Comparator` to reach a sati
 
 For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we
 had to experiment for ourselves, searching for help through API and suggestion offered online. We tried using VBox and HBox to fit our design but ultimately changed
-to splitpane when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
-change to different colours and also how to make a flowpane display different colours based on different conditions. All of these took lots of time
+to `splitpane` when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
+change to different colours and also how to make a `flowpane` display different colours based on different conditions. All of these took lots of time
 and even back in V1.2, we nearly could not finish by the deadline since we could not figure out some bugs with the UI.
 
 With storage, we also did not have experience with JSON files, and had to learn how they were created and saved using the original for `Person`.
 We had much difficult as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
 own fields to save and load, due to that we had to experiment for numerous days till we saved it.
 
-For the test cases, we started them since V1.2, and faced many challenges when having to due with the many Stubs used and also just the general
+For the test cases, we started them since V1.2, and faced many challenges when having to deal with the many Stubs used and also just the general
 difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we
 keep our code coverage at 75% and above. The biggest challenge was writing test cases for `Staff` since the original stubs used were not applicable as `Staff` cannot
 exist without a `Project`, a dependency that `Person` did not have. Therefore, we could not refer to anything and had to create one for testing purposes.
