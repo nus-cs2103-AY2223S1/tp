@@ -635,11 +635,10 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
-They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly.
-<br>
-
-| Priorities | 🟥 High: Must have | 🟧 Medium: Good to have | 🟨 Low: Nice to have |
-|------------|--------------------|-------------------------|----------------------|
+They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
+1. 🟥 High: Must have
+2. 🟧 Medium: Good to have
+3. 🟨 Low: Nice to have
 
 
 | Priority | As a ...          | I want to ...                                       | So that I can ...                                           |
