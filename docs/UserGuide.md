@@ -7,7 +7,7 @@ title: User Guide
 
 Here, you can find everything you need to know about **SoConnect**, the ultimate solution for your everyday contacts and tasks management headaches!
 
-If you are an [**SoC**](#soc) **student**, you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing your tedious management tasks, so you can focus on **creating real friends and finishing schoolwork quickly**. 
+If you are an [**SoC**](#soc) **student**, you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing your tedious management tasks, so you can focus on **creating real friends and finishing schoolwork quickly**.
 
 Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advanced user, this guide will solve all your problems, just like our app!
 
@@ -28,7 +28,7 @@ SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is ori
 
 SoConnect leverages on the simplicity of Command Line Interface ([CLI](#cli)) to optimize your productivity, while still maintaining user-friendliness through its Graphical User Interface ([GUI](#gui)). If you can type fast, SoConnect can get your contact and task management work done faster than even the popular applications such as Microsoft People and To Do!
 
-Let's look at the overview of our main features. 
+Let's look at the overview of our main features.
 
 ### 3.1. Contact Management
 
@@ -94,7 +94,7 @@ In case you are wondering why certain texts are styled differently, here are the
 4. Double-click the file to start SoConnect. You can head over to the [Quickstart](#6-quickstart) section for a guided tutorial on how to use the app.
 
 <div markdown="block" class="alert alert-primary">
-**:memo: Note** <br/> <br/> 
+**:memo: Note** <br/> <br/>
 Empty folder is needed because all additional storage data and files will be saved in this folder.
 </div>
 
@@ -106,7 +106,7 @@ SoConnect currently can run smoothly on these operating systems:
 2. MacOS
 3. Windows
 
-You can download and use [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases) on any of the above operating systems. 
+You can download and use [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases) on any of the above operating systems.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -364,8 +364,8 @@ Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 
 You can use multiple parameters to sort if you want to organise your contacts even more! Your list will be sorted by the first parameter you provide as per usual. Here's how the other parameters will be used:
 1. Contacts with identical values for the first parameter are identified. (e.g. same phone number, same email, same address, or contains the same tag)
-2. Each group of contacts with the same identical values would appear together on your list. This is where your second parameter will be used. 
-3. Each group will go through another round of sorting by your second parameter to determine the order within the group. If there are still contacts with identical values for the second parameter in the group, the process repeats with the remaining parameters (if provided). 
+2. Each group of contacts with the same identical values would appear together on your list. This is where your second parameter will be used.
+3. Each group will go through another round of sorting by your second parameter to determine the order within the group. If there are still contacts with identical values for the second parameter in the group, the process repeats with the remaining parameters (if provided).
 
 </div>
 
@@ -409,10 +409,10 @@ Format: `clear`
 
 Welcome to the Todo Management Commands section! In this section, you can learn how to manage your todos using SoConnect. A [todo](#todo) represents a task that needs completing. With the todo list in SoConnect, you won't have to worry about forgetting your school tasks and can find all your tasks conveniently in 1 place.
 
-A todo consists of 
+A todo consists of
 1. a description
 2. a date of the deadline of the task
-3. the priority of the task 
+3. the priority of the task
 4. (optional) [tags](#tag) to help you categorise your todos
 
 <div markdown="block" class="alert alert-primary">
