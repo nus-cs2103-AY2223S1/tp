@@ -12,6 +12,7 @@ import seedu.address.logic.commands.task.AssignTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -42,7 +43,7 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
         String indexString = argMultimap.getPreamble();
 
         try {
-            taskIndex = TaskParserUtil.parseIndex(indexString);
+            taskIndex = ParserUtil.parseIndex(indexString);
 
             List<String> contactsAddString = argMultimap.getAllValues(PREFIX_ADD_CONTACT);
             teammatesAddIndexes = TaskParserUtil.parseIndexesMixed(contactsAddString);

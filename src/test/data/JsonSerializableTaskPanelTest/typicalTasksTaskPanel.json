@@ -12,5 +12,11 @@
     "deadline": "1 January 2023",
     "project": "CS2103T",
     "assigned": [ "George Best" ]
-  } ]
+  }, {
+    "title": "Set deadline for a task",
+    "isCompleted": "false",
+    "deadline": "UNSPECIFIED",
+    "project": "",
+    "assigned": []
+  }]
 }

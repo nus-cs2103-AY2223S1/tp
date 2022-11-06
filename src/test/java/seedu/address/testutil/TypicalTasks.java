@@ -38,6 +38,7 @@ public class TypicalTasks {
                     .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();
+    public static final Task TASK_FIVE = new TaskBuilder().withTitle("Last task").build();
 
     public static final Task HOMEWORK = new TaskBuilder()
             .withTitle(VALID_TITLE_HOMEWORK)
@@ -65,6 +66,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK_ONE, TASK_TWO));
+        return new ArrayList<>(Arrays.asList(TASK_ONE, TASK_TWO, TASK_THREE));
     }
 }

@@ -9,6 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Title;
 
 public class TaskParserUtilTest {
+
     private static final String INVALID_TITLE = " ";
 
     private static final String VALID_TITLE = "Task One";

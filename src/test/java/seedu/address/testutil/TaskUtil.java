@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.model.task.Task;

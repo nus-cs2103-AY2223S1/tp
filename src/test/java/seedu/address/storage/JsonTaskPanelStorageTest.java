@@ -3,9 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.TASK_FIVE;
 import static seedu.address.testutil.TypicalTasks.TASK_FOUR;
 import static seedu.address.testutil.TypicalTasks.TASK_ONE;
-import static seedu.address.testutil.TypicalTasks.TASK_THREE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 
 import java.io.IOException;
@@ -72,7 +72,7 @@ public class JsonTaskPanelStorageTest {
         assertEquals(original, new TaskPanel(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(TASK_THREE);
+        original.addTask(TASK_FIVE);
         original.removeTask(TASK_ONE);
         jsonTaskPanelStorage.saveTaskPanel(original, filePath);
         readBack = jsonTaskPanelStorage.readTaskPanel(filePath).get();

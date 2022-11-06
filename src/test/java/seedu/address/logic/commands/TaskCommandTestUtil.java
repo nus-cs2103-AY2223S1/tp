@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -21,8 +22,8 @@ public class TaskCommandTestUtil {
     public static final String VALID_CONTACT_HOMEWORK = "1";
     public static final String VALID_CONTACT_WORKSHOP = "2";
 
-    public static final String TITLE_DESC_HOMEWORK = " " + VALID_TITLE_HOMEWORK;
-    public static final String TITLE_DESC_WORKSHOP = " " + VALID_TITLE_WORKSHOP;
+    public static final String TITLE_DESC_HOMEWORK = " " + PREFIX_TITLE + VALID_TITLE_HOMEWORK;
+    public static final String TITLE_DESC_WORKSHOP = " " + PREFIX_TITLE + VALID_TITLE_WORKSHOP;
     public static final String DEADLINE_DESC_HOMEWORK = " " + PREFIX_DEADLINE + VALID_DEADLINE_HOMEWORK;
     public static final String DEADLINE_DESC_WORKSHOP = " " + PREFIX_DEADLINE + VALID_DEADLINE_WORKSHOP;
     public static final String PROJECT_DESC_HOMEWORK = " " + PREFIX_PROJECT + VALID_PROJECT_HOMEWORK;
@@ -30,7 +31,7 @@ public class TaskCommandTestUtil {
     public static final String CONTACT_DESC_HOMEWORK = " " + PREFIX_CONTACT + VALID_CONTACT_HOMEWORK;
     public static final String CONTACT_DESC_WORKSHOP = " " + PREFIX_CONTACT + VALID_CONTACT_WORKSHOP;
 
-    public static final String INVALID_TITLE_DESC = " "; // empty string not allowed for title
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + " "; // empty string not allowed for title
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "-11/12"; // '-' not allowed in deadlines
     public static final String INVALID_PROJECT_DESC = " " + PREFIX_PROJECT + "&test"; // &' not allowed in projects
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT; // empty string not allowed for contact

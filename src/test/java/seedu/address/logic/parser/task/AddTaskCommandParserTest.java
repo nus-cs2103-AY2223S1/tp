@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.TaskCommandTestUtil.TITLE_DESC_WORKSHOP;
+import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TITLE_WORKSHOP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.WORKSHOP;
@@ -21,7 +21,7 @@ public class AddTaskCommandParserTest {
         Task expectedTask = new TaskBuilder(WORKSHOP).build();
 
         // title present
-        assertParseSuccess(parser, TITLE_DESC_WORKSHOP, new AddTaskCommand(expectedTask));
+        assertParseSuccess(parser, VALID_TITLE_WORKSHOP, new AddTaskCommand(expectedTask));
 
     }
 
