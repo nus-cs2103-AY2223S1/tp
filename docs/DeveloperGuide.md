@@ -2,6 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
+<h2 id="toc-title" class="no-num"> Table of Contents </h2>
+
 * Table of Contents
 {:toc}
 
@@ -9,7 +12,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is built upon the [AddressBook Level-3](https://github.com/se-edu/addressbook-level3) project created as part of the [SE-EDU Initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io), [Jackson](https://github.com/FasterXML/jackson), [JUnit 5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,11 +158,216 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Filter feature
+### Adding a person
+
+In TAB, the addition of a new `Person`(contact) is facilitated by the `AddCommand` command. `AddCommand` extends the abstract `Command` class,
+where it overrides the `Command#execute` method to add in new contacts whenever called.
 
 #### Implementation
 
-The proposed Filter feature is facilitated by `FilterCommand`. It extends `Command` with a checking predicate, stored internally as a `TagContainsKeywordPredicate`. It overwrites the following operations:
+1. The user input to add a `Person` to TAB, is passed to and executed by `LogicManager`, which calls `AddressBookParser#parseCommand` to instantiate a `AddCommandParser`.
+2. The `AddCommandParser#parse` will return a `AddCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AddCommand`, 
+creating a new `Person` through `Model#addPerson` method. 
+4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add a `Person` works:
+
+![AddCommandSequence](images/AddCommandSequence.png)
+
+### Editing a contact
+
+The editing of a contact's details in TAB is facilitated by the `EditCommand` command. `EditCommand` extends the abstract `Command` class,
+where it overrides the `Command#execute` method to edit details of contacts whenever called. 
+
+#### Implementation
+
+1. The user input to edit a contact on TAB, is passed to and executed by `LogicManager`, which calls `AddressBookParser#parseCommand` to instantiate a `EditCommandParser`.
+2. The `EditCommandParser#parse` will return a `EditCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `EditCommand`,
+   replacing the old `Person` with a modified `Person` through `Model#setPerson` method.
+4. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to edit a `Person` works:
+
+![EditCommandSequence](images/EditCommandSequence.png)
+
+### Adding the attendance of a student
+
+The addition of attendance of a `Student` in TAB is facilitated by `AttendanceCommand` and `AttendanceCommandParser`.
+
+#### Implementation
+
+1. The user input to add the attendance of a student in TAB, is passed to and executed by `LogicManager`,
+which calls `AddressBookParser#parseCommand` to instantiate a `AttendanceCommandParser`.
+2. The `AttendanceCommandParser#parse` will return a `AttendanceCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AttendanceCommand`.
+4. The internals of `AttendanceCommand` creates a new `Student` with the updated `attendance`.
+5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add attendance works:
+
+![AttendanceCommandSequence](images/AttendanceCommandSequence.png)
+
+### Adding assignments to all students
+
+The addition of assignments in TAB is facilitated by `AddAssignmentsCommand` and `AddAssignmentsCommandParser`.
+
+This feature allows assignments with weightages to be added to each `Student` in TAB. Weightages are separated from the assignment name with the prefix: `w/`
+
+#### Implementation
+
+The `AddAssignmentsCommandParser` parses the user input to check the validity of the Assignment. Then, every `Student` currently listed in TAB will be assigned these Assignments. This is done with the help of the following methods:
+
+* `Student#addAssignment` Adds a single Assignment into the `ArrayList<Assignment>`
+* `Student#setAssignments` Adds every Assignment in the user input into `ArrayList<Assignment>`
+
+Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
+
+Scenario 1: User inputs assignments with weightage that does not add up to 100%
+
+e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
+
+It will be detected that the weightage of the assignments does not add up to 100 and a `CommandException` is thrown
+
+Scenario 2: User inputs assignments with negative weightage
+
+e.g. `assignments assignments/ Assignment 1 w/-50, Midterms w/50, Finals w/100`
+
+It will be detected that a particular assignment has a negative weightage and a `CommandException` is thrown
+
+Given below is an example usage scenario and how the Add Assignments mechanism behaves at each step.
+
+Step 1. The user launches the application. `TAB` will initially display all Persons
+
+![AddAssignmentsDiagram1](images/AddAssignmentsDiagram1.png)
+
+Step 2. The user executes `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/20, Finals w/50`. The `assignments` keyword
+causes `AddressBookParser#parseCommand()` to call `AddAssignmentsCommandParser#parse()`. This returns a `AddAssignmentsCommand`
+
+Step 3. The internals of `AddAssignmentCommand` loops through all the people in the list, checking if they have the position of student
+
+![AddAssignmentsDiagram2](images/AddAssignmentsDiagram2.png)
+
+Step 4. `Assignment` objects will be created according to the user input and added to the `assignmentsList` field in `Student`
+
+The following sequence diagram shows how the AddAssignments operation works:
+
+![AddAssignmentsDiagram3](images/AddAssignmentsDiagram3.png)
+
+The following activity diagram summarizes what happens in AddressBookParser when a user executes a AddAssignment command:
+
+![AddAssignmentsDiagram4](images/AddAssignmentsDiagram4.png)
+
+Design considerations:
+
+Aspect: How AddAssignments executes:
+* Alternative 1: Only adds assignments to indexed student
+    * Pros: Each student can have different assignments
+    * Cons: Will be tedious when there is a large number of students in `TAB`
+* Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
+    * Pros: Eliminates the need to run AddAssignments command for new students
+    * Cons: Difficulty in implementation
+
+### Adding the grade of a student
+
+#### Implementation
+
+The proposed add grade feature is facilitated by `GradeCommand` which extends `Command` with an index of the student, an index of the assignment, and a grade to be stored.
+It overwrites the following operations:
+* `GradeCommand#execute()` - Executes the command, storing the given grade of an assignment of a specified student.
+* `GradeCommand#equals(Object o)` - Checks if two objects are equal.
+
+A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.`
+
+After the command is parsed, the given grade is stored inside the `Assignment` of the specified `Student`. This is done with the help of the following methods:
+* `Student#updateOverallGrade(Index indexOfAssignment, Sting Grade)` - Calls `setAssignmentGrade()` with the given index and grade, and update the overall grade of the `Student`.
+* `Student#setAssignmentGrade(Index indexOfAssignment, String grade)` - Checks whether the index of the assignment is valid. If so, calls `setGrade()` of the corresponding `Assignment` with the given grade.
+* `Assignment#setGrade(String grade)` - Stores the given grade inside the `Assignment`.
+
+Given below is an example usage scenario and how the add grade feature behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
+
+![AddGradeDiagram0](images/AddGradeDiagram0.png)
+
+Step 2. The user executes `grade 1 assignment/1 grade/86/100`. The `grade` keyword causes `AddressBookParser#parseCommand()` to call `GradeCommandParser#parse()`. This returns a `GradeCommand`.
+
+![AddGradeDiagram1](images/AddGradeDiagram1.png)
+
+Step 3. The grade of the specified `Assignment` is added.
+
+![AddGradeDiagram2](images/AddGradeDiagram2.png)
+
+Step 4. The internals of `GradeCommand` creates a new `Student` with the updated `overallGrade` and `assignmentList`.
+
+Step 5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+
+Step 6. The `AddressBook` displays the updated list of `Person`.
+
+The following sequence diagram shows how the add grade operation works:
+
+![AddGradeSequenceDiagram](images/AddGradeSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student
+    * Pros: The updated `overallGrade` can be easily used to create the new `Student` object.
+    * Cons: Can be confusing as in whether the `assignmentsList` of the `Student` is updated as well.
+* **Alternative 2:** `Student#updateOverallGrade()` does not return a value and only handle the calculation of the overall grade with the updated `assignmentsList` provided
+    * Pros: Separates the operations done on the `overallGrade` and the `assignmentsList`.
+    * Cons: The updated `overallGrade` and `assignmentsList` are not available for creating new `Student` object.
+
+### Editing the availability of a TA
+
+The addition of availability of a `TeachingAssistant` in TAB is facilitated by `AvailabilityCommand` and `AvailabilityCommandParser`.
+
+#### Implementation
+
+1. The user input to add the availability of a TA in TAB, is passed to and executed by `LogicManager`,
+   which calls `AddressBookParser#parseCommand` to instantiate a `AvailabilityCommandParser`.
+2. The `AvailabilityCommandParser#parse` will return a `AvailabilityCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `AvailabilityCommand`.
+4. The internals of `AvailabilityCommand` creates a new `TeachingAssistant` with the updated `availability`.
+5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+   through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add availability works:
+
+![AddAvailabilitySequenceDiagram](images/AddAvailabilitySequenceDiagram.png)
+
+### Editing the roles of a Professor
+
+The addition of roles of a `Professor` in TAB is facilitated by `RolesCommand` and `RolesCommandParser`.
+
+#### Implementation
+
+1. The user input to add the availability of a TA in TAB, is passed to and executed by `LogicManager`,
+   which calls `AddressBookParser#parseCommand` to instantiate a `RolesCommandParser`.
+2. The `RolesCommandParser#parse` will return a `RolesCommand`, provided the user input is valid.
+3. `LogicManager` will then call the `Command#execute` method of `RolesCommand`.
+4. The internals of `RolesCommand` creates a new `Professor` with the updated `role`.
+5. A `Person` object is created with the `Professor` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
+   through the `Model#setPerson` method.
+5. Upon successful execution of the command, a message will be displayed to the user, by returning a `CommandResult `
+   to `LogicManager`.
+
+The sequence diagram below illustrates how the command to add roles works:
+
+![AddRolesSequenceDiagram](images/AddRolesSequenceDiagram.png)
+
+### Filter by tutorial group
+
+#### Implementation
+
+The filtering feature is facilitated by `FilterCommand`. It extends `Command` with a checking predicate, stored internally as a `TagContainsKeywordPredicate`. It overwrites the following operations:
 
 * `FilterCommand#execute()` — Executes the command, filtering the list of people according to whether they have a matching tag.
 * `FilterCommand#equals(Object o)` — Checks if two objects are equal.
@@ -224,117 +433,8 @@ The following activity diagram summarizes what happens in AddressBookParser when
 * **Alternative 2:** Creates a new Address Book.
     * Pros: Does not modify the master address book.
     * Cons: May have performance issues in terms of memory usage.
-
-### Add grade feature
-
-#### Implementation
-
-The proposed add grade feature is facilitated by `GradeCommand` which extends `Command` with an index of the student, an index of the assignment, and a grade to be stored.
-It overwrites the following operations:
-* `GradeCommand#execute()` - Executes the command, storing the given grade of an assignment of a specified student.
-* `GradeCommand#equals(Object o)` - Checks if two objects are equal.
-
-A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.`
-
-After the command is parsed, the given grade is stored inside the `Assignment` of the specified `Student`. This is done with the help of the following methods:
-* `Student#updateOverallGrade(Index indexOfAssignment, Sting Grade)` - Calls `setAssignmentGrade()` with the given index and grade, and update the overall grade of the `Student`.
-* `Student#setAssignmentGrade(Index indexOfAssignment, String grade)` - Checks whether the index of the assignment is valid. If so, calls `setGrade()` of the corresponding `Assignment` with the given grade.
-* `Assignment#setGrade(String grade)` - Stores the given grade inside the `Assignment`.
-
-Given below is an example usage scenario and how the add grade feature behaves at each step.
-
-Step 1. The user launches the application. The `AddressBook` will initially display all Persons with their `Positions`.
-
-![AddGradeDiagram0](images/AddGradeDiagram0.png)
-
-Step 2. The user executes `grade 1 assignment/1 grade/86/100`. The `grade` keyword causes `AddressBookParser#parseCommand()` to call `GradeCommandParser#parse()`. This returns a `GradeCommand`.
-
-![AddGradeDiagram1](images/AddGradeDiagram1.png)
-
-Step 3. The grade of the specified `Assignment` is added.
-
-![AddGradeDiagram2](images/AddGradeDiagram2.png)
-
-Step 4. The internals if `GradeCommand` creates a new `Student` with the updated `overallGrade` and `assignmentList`.
-
-Step 5. A `Person` object is created with the `Student` object as `position`, and replaces the `Person` to be edited in the `AddressBook`.
-
-Step 6. The `AddressBook` displays the updated list of `Person`.
-
-The following sequence diagram shows how the add grade operation works:
-
-![AddGradeSequenceDiagram](images/AddGradeSequenceDiagram.png)
-
-#### Design considerations:
-
-* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student
-    * Pros: The updated `overallGrade` can be easily used to create the new `Student` object.
-    * Cons: Can be confusing as in whether the `assignmentsList` of the `Student` is updated as well.
-* **Alternative 2:** `Student#updateOverallGrade()` does not return a value and only handle the calculation of the overall grade with the updated `assignmentsList` provided
-    * Pros: Separates the operations done on the `overallGrade` and the `assignmentsList`.
-    * Cons: The updated `overallGrade` and `assignmentsList` are not available for creating new `Student` object.
-
-### Add Assignments feature
-
-#### Implementation
-
-The proposed Add Assignments feature is facilitated by `AddAssignmentsCommand` and `AddAssignmentsCommandParser`.
-
-This feature allows assignments with weightages to be added to each `Student` in TAB. Weightages are separated from the assignment name with the prefix: `w/`
-
-The `AddAssignmentsCommandParser` parses the user input to check the validity of the Assignment. Then, every `Student` currently listed in TAB will be assigned these Assignments. This is done with the help of the following methods:
-
-* `Student#addAssignment` Adds a single Assignment into the `ArrayList<Assignment>`
-* `Student#setAssignments` Adds every Assignment in the user input into `ArrayList<Assignment>`
-
-Listed below are the possible scenarios as well as the behavior of the feature in each scenario.
-
-Scenario 1: User inputs assignments with weightage that does not add up to 100%
-
-e.g. `assignments assignments/ Assignment 1 w/50, Finals w/40`
-
-It will be detected that the weightage of the assignments does not add up to 100 and a `CommandException` is thrown
-
-Scenario 2: User inputs assignments with negative weightage
-
-e.g. `assignments assignments/ Assignment 1 w/-50, Midterms w/50, Finals w/100`
-
-It will be detected that a particular assignment has a negative weightage and a `CommandException` is thrown
-
-Given below is an example usage scenario and how the Add Assignments mechanism behaves at each step.
-
-Step 1. The user launches the application. `TAB` will initially display all Persons
-
-![AddAssignmentsDiagram1](images/AddAssignmentsDiagram1.png)
-
-Step 2. The user executes `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/20, Finals w/50`. The `assignments` keyword
-causes `AddressBookParser#parseCommand()` to call `AddAssignmentsCommandParser#parse()`. This returns a `AddAssignmentsCommand`
-
-Step 3. The internals of `AddAssignmentCommand` loops through all the people in the list, checking if they have the position of student
-
-![AddAssignmentsDiagram2](images/AddAssignmentsDiagram2.png)
-
-Step 4. `Assignment` objects will be created according to the user input and added to the `assignmentsList` field in `Student`
-
-The following sequence diagram shows how the AddAssignments operation works:
-
-![AddAssignmentsDiagram3](images/AddAssignmentsDiagram3.png)
-
-The following activity diagram summarizes what happens in AddressBookParser when a user executes a AddAssignment command:
-
-![AddAssignmentsDiagram4](images/AddAssignmentsDiagram4.png)
-
-Design considerations:
-
-Aspect: How AddAssignments executes:
-* Alternative 1: Only adds assignments to indexed student
-  * Pros: Each student can have different assignments
-  * Cons: Will be tedious when there is a large number of students in `TAB`
-* Alternative 2: Save Assignments in a json file to be read so every student added after will be automatically instanciated with those assignments
-  * Pros: Eliminates the need to run AddAssignments command for new students
-  * Cons: Difficulty in implementation
   
-### Display Details of Contacts in Secondary Panel
+### Display details of contacts in secondary panel
 
 #### Implementation
 
