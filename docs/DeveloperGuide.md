@@ -721,7 +721,7 @@ Considering the requirements for venue and booking data, we have come up with th
 
 With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes.
 
-The diagram below showcases the additional classes that were added in the `Model` update to support the venue and booking management feature.
+The diagram below showcases the additional classes that were added into the `Model` component to support the venue and booking management feature.
 
 ![VenueModelUpdateClassDiagram](images/VenueModelUpdateClassDiagram.png)
 
@@ -733,9 +733,11 @@ Additionally, the `BookingTableView` listens in on the `currentlyDisplayedVenue`
 
 #### Storage updates
 
-With the addition of venue and booking data, we have to update the `Storage` component in order to allow for local storage of the new data required. Similarly to how we reused code from `UniqueResidentList` and `ResidentBook`, we reused the existing code that allows for storage of `ResidentBook` data in order to store our `VenueBook` data.
+With the addition of venue and booking data, we have to update the `Storage` component in order to allow for local storage of the new data required. Similarly to how we reused code from `UniqueResidentList` and `ResidentBook`, we reused the existing code that allows for storage of `ResidentBook` data in order to store our `VenueBook` data. 
 
-[Comment]: <> (to be added in)
+The following diagram showcases the additions to the `Storage` component to support the venue and booking data storage:
+
+![VenueStorageUpdateClassDiagram](images/VenueStorageUpdateClassDiagram.png)
 
 <br>
 
@@ -757,6 +759,8 @@ These commands will serve as a basic toolkit for our users to manage venue booki
 ##### Venue command flow
 
 [Comment]: <> (To add sequence diagram to describe an example venue command flow)
+
+<br>
 
 ---
 
