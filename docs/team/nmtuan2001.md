@@ -9,7 +9,7 @@ CinternS is a desktop app for managing internship applications, optimised for us
 
 Given below are my contributions to the project.
 
-* **New Feature**: Undo and redo commands
+* **New Feature**: `undo` and `redo` commands
     * What it does: Allows users to restore the previous state after using a command that changes the state (e.g. add, edit, interview, etc.) and reapply the change after undoing it.
     * Justification: The rationale for this enhancement is that with quite a number of new commands that we have added, it is likely that new users may make mistakes while using the app even with the help of the user guide. One mistake can cause a significant change (e.g. clear), so this feature prevents such unfortunate mistakes, while making it much more convenient for users to use the app.
     * Highlights: Since this enhancement affected many of the existing and future commands, it required a good understanding of all components, especially the model. As new classes were added and existing commands and model had to be changed, it was important to make sure all existing features worked properly, with the help of relevant tests. 
@@ -37,9 +37,11 @@ Given below are my contributions to the project.
         * Added documentation for undo and redo commands (PR [#128](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/128))
         * Added documentation for status field (PR [#128](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/128))
         * Updated documentation to fix minor issues with formatting and consistency (PR [#197](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/197))
+        * Added user stories, use cases and manual testing instructions for the features that were implemented by me. (PR[#211](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/211))
 
     * Developer Guide:
-        * Added the implementation of undo/redo commands (PR [#98](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/98))
+        * Added the implementation of `undo`/`redo` commands (PR [#98](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/98))
+        * Added the implementation of `Status` feature (PR [#211](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/211))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#53](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/53), [#57](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/57), [#123](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/123), [#127](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/127)
