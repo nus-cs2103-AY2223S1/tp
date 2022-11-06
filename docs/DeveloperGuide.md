@@ -1282,7 +1282,7 @@ testers are expected to do more *exploratory* testing.
 1. **Marking a task that is shown as done:**
 
     1. Pre-requisites:
-       - You have exactly one undone task (see `add task`).
+       - You have at least one undone task (see `add task`).
        - You are not currently `cd`'d into a module (`cd ..` if you are).
        - All tasks are being shown (i.e. run `list task -a` first). 
     1. Test case: `done task 1`<br>
@@ -1311,8 +1311,8 @@ testers are expected to do more *exploratory* testing.
 1. **Unmarking as task that is shown as done:**
 
     1. Pre-requisites:
-        - You have just completed the previous test case - there should only be 1 task and it should be done and visible.
-    1. Test case: `undone task 1`<br>
+        - You have just completed the previous test case - there should only be at least 1 task and it should be done and visible.
+    1. Test case: `undone task 1` (replace `1` with the top-most undone task number) <br>
        Expected: The first task (topmost in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
     1. Test case: `undone task 1` followed by another `undone task 1` <br>
        Expected: An error message saying that the task is already marked as undone is displayed.
