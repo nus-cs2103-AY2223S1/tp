@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
 participant "a:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
@@ -33,10 +32,16 @@ deactivate ModtrektParser
 LogicManager -> EditTaskCommand : execute()
 activate EditTaskCommand
 
+EditTaskCommand -> Model : getFilteredTaskList()
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
 EditTaskCommand -> Model : deleteTask(task)
 activate Model
 
-deactivate Model
+
 Model --> EditTaskCommand
 deactivate Model
 
@@ -51,7 +56,7 @@ create CommandResult
 EditTaskCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditTaskCommand
+CommandResult --> EditTaskCommand : result
 deactivate CommandResult
 
 EditTaskCommand --> LogicManager : result

@@ -21,10 +21,10 @@ LogicManager -> ModtrektParser : parseCommand("remove module CS2103T")
 activate ModtrektParser
 
 create RemoveCommand
-ModtrektParser -> RemoveCommand:
+ModtrektParser -> RemoveCommand
 activate RemoveCommand
 
-RemoveCommand --> ModtrektParser
+RemoveCommand --> ModtrektParser : d
 deactivate RemoveCommand
 
 ModtrektParser --> LogicManager : d
@@ -61,7 +61,7 @@ create CommandResult
 RemoveCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> RemoveCommand
+CommandResult --> RemoveCommand : result
 deactivate CommandResult
 
 RemoveCommand --> LogicManager : result

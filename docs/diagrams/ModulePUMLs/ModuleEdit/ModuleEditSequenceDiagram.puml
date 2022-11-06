@@ -13,6 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 participant ":TaskBook" as TaskBook MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
 end box
 
 [-> LogicManager : execute("edit module CS2103T -c CS2100")
@@ -24,6 +25,13 @@ activate ModtrektParser
 create EditModuleCommand
 ModtrektParser -> EditModuleCommand
 activate EditModuleCommand
+
+create Module
+EditModuleCommand -> Module : Module()
+activate Module
+
+Module --> EditModuleCommand
+deactivate Module
 
 EditModuleCommand --> ModtrektParser : a
 deactivate EditModuleCommand
@@ -76,7 +84,7 @@ create CommandResult
 EditModuleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditModuleCommand
+CommandResult --> EditModuleCommand : result
 deactivate CommandResult
 
 EditModuleCommand --> LogicManager : result

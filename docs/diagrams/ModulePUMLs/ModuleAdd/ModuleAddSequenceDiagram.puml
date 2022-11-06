@@ -7,12 +7,12 @@ participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
 participant "a:AddModuleCommand" as AddModuleCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant ":ModuleParser" as ModuleParser LOGIC_COLOR
-
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
 end box
 
 [-> LogicManager : execute("add mod CS2103T")
@@ -25,7 +25,7 @@ create AddModuleCommand
 ModtrektParser -> AddModuleCommand
 activate AddModuleCommand
 
-AddModuleCommand --> ModtrektParser
+AddModuleCommand --> ModtrektParser : a
 deactivate AddModuleCommand
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
@@ -41,6 +41,13 @@ activate AddModuleCommand
 create ModuleParser
 AddModuleCommand -> ModuleParser : fetchModule(CS2103T)
 activate ModuleParser
+
+create Module
+ModuleParser ->Module : Module()
+activate Module
+
+Module --> ModuleParser : module
+deactivate Module
 
 ModuleParser --> AddModuleCommand : module
 deactivate ModuleParser
