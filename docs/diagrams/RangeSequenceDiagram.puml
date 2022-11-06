@@ -5,41 +5,31 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CondoneryParser" as CondoneryParser LOGIC_COLOR
 participant ":RangePropertyCommandParser" as RangePropertyCommandParser LOGIC_COLOR
-participant ":PropertyPriceWithinRangePredicate" as PropertyPriceWithinRangePredicate LOGIC_COLOR
-participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
-participant "r:RangePropertyCommand" as RangePropertyCommand LOGIC_COLOR
+participant ":RangePropertyCommand" as RangePropertyCommand LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("range -p l/<LOWER> u/<UPPER>")
-note left: Full command is truncated for brevity
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":PropertyPriceWithinRangePredicate" as PropertyPriceWithinRangePredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> CondoneryParser : parseCommand("range -p l/<LOWER> u/<UPPER>")
+LogicManager -> CondoneryParser : parseCommand(...)
 activate CondoneryParser
 
-'create TagCommandsParser
-'CondoneryParser -> TagCommandsParser
-'activate TagCommandsParser
-
-'TagCommandsParser --> CondoneryParser
-'deactivate TagCommandsParser
-
 create RangePropertyCommandParser
-CondoneryParser -> RangePropertyCommandParser : parse("l/<LOWER> u/<UPPER>")
+CondoneryParser -> RangePropertyCommandParser
 activate RangePropertyCommandParser
 
 RangePropertyCommandParser --> CondoneryParser
 deactivate RangePropertyCommandParser
 
-CondoneryParser -> RangePropertyCommandParser : parse("l/<LOWER> u/<UPPER>")
+CondoneryParser -> RangePropertyCommandParser : parse(args)
 activate RangePropertyCommandParser
 
-RangePropertyCommandParser -> ParserUtil : parseNumber(int)
-activate ParserUtil
-
-ParserUtil --> RangePropertyCommandParser
-deactivate ParserUtil
-
+create PropertyPriceWithinRangePredicate
 RangePropertyCommandParser -> PropertyPriceWithinRangePredicate
 activate PropertyPriceWithinRangePredicate
 
@@ -50,19 +40,27 @@ create RangePropertyCommand
 RangePropertyCommandParser -> RangePropertyCommand
 activate RangePropertyCommand
 
-RangePropertyCommand --> RangePropertyCommandParser : r
+RangePropertyCommand --> RangePropertyCommandParser
 deactivate RangePropertyCommand
 
-RangePropertyCommandParser --> CondoneryParser : r
+RangePropertyCommandParser --> CondoneryParser
 deactivate RangePropertyCommandParser
 
-RangePropertyCommandParser -[hidden]-> CondoneryParser : r
-destroy RangePropertyCommandParser
-
-CondoneryParser --> LogicManager : a
+CondoneryParser --> LogicManager
 deactivate CondoneryParser
+
+LogicManager -> RangePropertyCommand : execute(...)
+activate RangePropertyCommand
+
+RangePropertyCommand -> Model : updateFilteredPropertyList(...)
+activate Model
+
+Model --> RangePropertyCommand
+deactivate Model
+
+RangePropertyCommand --> LogicManager
+deactivate RangePropertyCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml

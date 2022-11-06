@@ -47,7 +47,7 @@ Given below are my contributions to the project.
 
 ## Contributions to the DG
 
-- Added documentation for the commands `range -p`, `filter -p` and `filter -c` 
+- Added documentation for the commands `range -p`, `filter -p` and `filter -c`
 - Added sequence and activity diagrams for `range -p` command (Pull request [#214](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/214))
 - Added user stories (Pull request [#23](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/23))
 

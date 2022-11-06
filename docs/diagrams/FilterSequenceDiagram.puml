@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CondoneryParser" as CondoneryParser LOGIC_COLOR
+participant ":FilterPropertyCommandParser" as FilterPropertyCommandParser LOGIC_COLOR
+participant ":FilterPropertyCommand" as FilterPropertyCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":PropertyTagContainsKeywordsPredicate" as PropertyTagContainsKeywordsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> CondoneryParser : parseCommand(...)
+activate CondoneryParser
+
+create FilterPropertyCommandParser
+CondoneryParser -> FilterPropertyCommandParser
+activate FilterPropertyCommandParser
+
+FilterPropertyCommandParser --> CondoneryParser
+deactivate FilterPropertyCommandParser
+
+CondoneryParser -> FilterPropertyCommandParser : parse(args)
+activate FilterPropertyCommandParser
+
+create PropertyTagContainsKeywordsPredicate
+FilterPropertyCommandParser -> PropertyTagContainsKeywordsPredicate
+activate PropertyTagContainsKeywordsPredicate
+
+PropertyTagContainsKeywordsPredicate --> FilterPropertyCommandParser
+deactivate PropertyTagContainsKeywordsPredicate
+
+create FilterPropertyCommand
+FilterPropertyCommandParser -> FilterPropertyCommand
+activate FilterPropertyCommand
+
+FilterPropertyCommand --> FilterPropertyCommandParser
+deactivate FilterPropertyCommand
+
+FilterPropertyCommandParser --> CondoneryParser
+deactivate FilterPropertyCommandParser
+
+CondoneryParser --> LogicManager
+deactivate CondoneryParser
+
+LogicManager -> FilterPropertyCommand : execute(...)
+activate FilterPropertyCommand
+
+FilterPropertyCommand -> Model : updateFilteredPropertyList(...)
+activate Model
+
+Model --> FilterPropertyCommand
+deactivate Model
+
+FilterPropertyCommand --> LogicManager
+deactivate FilterPropertyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
