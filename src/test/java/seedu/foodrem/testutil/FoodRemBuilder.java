@@ -11,10 +11,16 @@ import seedu.foodrem.model.item.Item;
 public class FoodRemBuilder {
     private final FoodRem foodRem;
 
+    /**
+     * Constructs a FoodRemBuilder.
+     */
     public FoodRemBuilder() {
         foodRem = new FoodRem();
     }
 
+    /**
+     * Constructs a FoodRemBuilder.
+     */
     public FoodRemBuilder(FoodRem foodRem) {
         this.foodRem = foodRem;
     }
@@ -27,6 +33,9 @@ public class FoodRemBuilder {
         return this;
     }
 
+    /**
+     * Builds a FoodRemBuilder.
+     */
     public FoodRem build() {
         return foodRem;
     }

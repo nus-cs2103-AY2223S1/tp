@@ -24,14 +24,23 @@ public class JsonFoodRemStorage implements FoodRemStorage {
 
     private final Path filePath;
 
+    /**
+     * Constructs a JsonFoodRemStorage.
+     */
     public JsonFoodRemStorage(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns a path to the file of the JsonFoodRemStorage.
+     */
     public Path getFoodRemFilePath() {
         return filePath;
     }
 
+    /**
+     * Returns an optional ReadOnlyFoodRem.
+     */
     @Override
     public Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException {
         return readFoodRem(filePath);
@@ -66,6 +75,9 @@ public class JsonFoodRemStorage implements FoodRemStorage {
         }
     }
 
+    /**
+     * Saves a ReadOnlyFoodRem into the storage.
+     */
     @Override
     public void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException {
         saveFoodRem(foodRem, filePath);

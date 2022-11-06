@@ -37,10 +37,16 @@ public class Index {
         return new Index(oneBasedIndex - 1);
     }
 
+    /**
+     * Returns the zeroBasedIndex.
+     */
     public int getZeroBased() {
         return zeroBasedIndex;
     }
 
+    /**
+     * Returns the oneBasedIndex.
+     */
     public int getOneBased() {
         return zeroBasedIndex + 1;
     }

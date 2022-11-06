@@ -32,10 +32,15 @@ public class FoodRem implements ReadOnlyFoodRem {
         tags = new UniqueTagList();
     }
 
+    /**
+     * Constructs a FoodRem.
+     */
     public FoodRem() {}
 
     /**
      * Creates a FoodRem using the Items in the {@code toBeCopied}
+     *
+     * @param toBeCopied the ReadOnlyFoodRem.
      */
     public FoodRem(ReadOnlyFoodRem toBeCopied) {
         this();
