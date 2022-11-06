@@ -370,18 +370,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *Core Functionalities*
 
-| Priority | As a …​        | I want to …​                                                              | So that I can…​                             |
-|----------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
-| `* * *`  | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
-| `* * *`  | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
-| `* * *`  | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
-| `* * *`  | beginner user  | keep track of deadlines related to added tasks                            | complete tasks on time                      |
-| `* * *`  | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
-| `* *`    | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
-| `* *`    | beginner user  | edit the task names                                                       | rectify mistakes                            |
-| `* *`    | familiar user  | sort my tasks by due date                                                 | easily see which are the most urgent        |
-
-*{More to be added}*
+| Priority | As a …​                                        | I want to …​                                                              | So that I can…​                                                                                         |
+|----------|------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `* * *`  | beginner user                                  | add tasks                                                                 | keep track of the tasks on hand                                                                         |
+| `* * *`  | beginner user                                  | delete tasks                                                              | remove tasks that are no longer relevant                                                                |
+| `* * *`  | beginner user                                  | tag my tasks to a specific module or commitment                           | organise them better                                                                                    |
+| `* * *`  | beginner user                                  | keep track of deadlines related to added tasks                            | complete tasks on time                                                                                  |
+| `* * *`  | beginner user                                  | mark a task as completed                                                  | signify that I have completed that tasks                                                                |
+| `* * *`  | beginner user                                  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on                                                                        |
+| `* * *`  | beginner user                                  | have a help menu and a link to the product guide                          | learn to navigate by myself                                                                             |
+| `* *`    | potential user                                 | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions                                                             |
+| `* *`    | beginner user                                  | edit the task names                                                       | rectify mistakes                                                                                        |
+| `* *`    | familiar user                                  | my tasks have my tasks sorted by due date                                 | easily see which are the most urgent                                                                    |
+| `* *`    | familiar user                                  | see all tasks with names containing a keyword                             | easily find tasks related to the keyword I am looking have                                              |
+| `* *`    | familiar user                                  | see all tasks for a certain deadline                                      | plan ahead and manage my time better                                                                    |
+| `* *`    | familiar user                                  | see all tasks for a certain module                                        | easily see what tasks I have left that is related to that module                                        |
+| `* *`    | familiar user                                  | see all tasks that I have completed                                       | easily see what tasks I've done                                                                         |
+| `* *`    | familiar user                                  | see all tasks that I have tagged with a certain tag                       | easily identify tasks related to that tag                                                               |
+| `* *`    | familiar user                                  | autocomplete my commands                                                  | speed up entering commands or see what options I have if I forgot                                       |
+| `* *`    | familiar user                                  | toggle up/down to use previously used commands                            | speed up entering commands if the previous commands are similar to the command I would like to use next |
+| `* *`    | student                                        | have my tasks presented in an intuitive way                               | view all my tasks at a glance                                                                           |
+| `* *`    | student                                        | quickly put in recurring homework                                         | spend less time keying in a recurring homework that is due every week                                   |
+| `* *`    | long time user                                 | clear all tasks                                                           | remove all tasks so that I can begin a new task list for a new semester                                 |
+| `* *`    | long time user                                 | archive my tasks                                                          | remove it from my current task list but be able to view them if I wish to                               |
+| `* *`    | long time user                                 | open my archived tasks                                                    | view all my archived tasks when I wish to                                                               |
+| `* *`    | long time user                                 | have a channel to report bugs                                             | help the developers in making a better experience for others using the app                              |
+| `* *`    | long time user                                 | archive my tasks                                                          | remove it from my current task list but be able to view them if I wish to                               |
+| `* *`    | long time user                                 | save my tasks as a local file                                             | keep them or transfer them between computers                                                            |
+| `* *`    | long time user                                 | save my archived tasks                                                    | keep them or transfer them between computers                                                            |
+| `*`      | long time user                                 | be able to create shortcuts for certain actions                           | save time on frequently performed actions on tasks                                                      |
+| `*`      | busy student                                   | receive reminders on tasks that are nearing their due date                | keep track of them in case I forget                                                                     |
+| `*`      | busy student                                   | have overdue tasks be coloured differently                                | so I can easily differentiate them and catch up on what I missed                                        |
+| `*`      | student with friends taking the same module    | be able to add friends                                                    | view the tasks they have                                                                                |
+| `*`      | student with friends taking the same module    | tag friends onto tasks                                                    | keep track of common tasks together with them                                                           |
+| `*`      | student with friends taking the same module    | share my tasklist with them                                               | share what tasks I have at any point in time                                                            |
+| `*`      | student without friends taking the same module | be able to find friends taking the same module                            | make friends with people taking the same module and keep track of tasks together                        |
+| `*`      | student with commitments other than school     | have two separate task lists                                              | separate my other commitments from school work                                                          |
+| `*`      | bored user                                     | change the appearance of NotionUS                                         | make the app more interesting to use                                                                    |
+| `*`      | student that uses calendar apps                | sync the tasks to my calendar                                             | keep track of my tasks even when not using NotionUS                                                     |
 
 ### 7.3 Use cases
 
