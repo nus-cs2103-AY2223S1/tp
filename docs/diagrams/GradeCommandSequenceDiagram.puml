@@ -43,7 +43,7 @@ loop for each oldStudent to grade
 end
 
 create CommandResult
-GradeCommand -> CommandResult
+GradeCommand -> CommandResult: successMessage
 activate CommandResult
 
 CommandResult --> GradeCommand

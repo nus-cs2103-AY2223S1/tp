@@ -35,13 +35,8 @@ activate SMD
 SMD --> ViewCommand: sessionDataList
 deactivate SMD
 
-ViewCommand -> ViewCommand: getCommandMessage(sessionDataList, student)
-activate ViewCommand
-ViewCommand --> ViewCommand: message
-deactivate ViewCommand
-
 create CommandResult
-ViewCommand -> CommandResult: message
+ViewCommand -> CommandResult: successMessage
 activate CommandResult
 
 CommandResult --> ViewCommand

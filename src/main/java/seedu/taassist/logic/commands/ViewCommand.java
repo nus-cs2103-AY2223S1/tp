@@ -63,10 +63,10 @@ public class ViewCommand extends Command {
                 .orElseThrow(AssertionError::new)
                 .getSessionDataList();
 
-        return new CommandResult(getCommandMessage(sessionDataList, student));
+        return new CommandResult(getSuccessMessage(sessionDataList, student));
     }
 
-    public static String getCommandMessage(List<SessionData> sessionDataList, Student student) {
+    public static String getSuccessMessage(List<SessionData> sessionDataList, Student student) {
         if (sessionDataList.isEmpty()) {
             return String.format(MESSAGE_EMPTY_GRADES_LIST, student.getName());
         }

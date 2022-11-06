@@ -78,8 +78,7 @@ public class GradeCommand extends Command {
 
         studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, existingSession, grade)));
 
-        String message = getSuccessMessage(studentsToGrade, existingSession, grade);
-        return new CommandResult(message);
+        return new CommandResult(getSuccessMessage(studentsToGrade, existingSession, grade));
     }
 
     public static String getSuccessMessage(List<Student> students, Session session, Double grade) {
