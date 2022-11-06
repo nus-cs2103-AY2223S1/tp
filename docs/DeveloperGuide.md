@@ -241,11 +241,50 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
 
-### 5.3 Returning to a previous command
+### 5.3 List feature 
 
 #### 5.3.1 Implementation
 
-This feature allows the user to traverse through past commands via the up and down keys on the keyboard, similar to how
+The list feature filters through the task list based on the filters entered by user. Its mechanism is facilitated by `ListCommand` and `ListCommandParser`, as well as their subclasses (E.g. `ListDeadlineCommand`, `ListDeadlineCommandParser`).
+
+Multiple filters can be applied in a single list command. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T".
+
+This table summarizes the respective flags that users can use to apply filters of their choice.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**
+Words in `UPPER_CASE` are values of parameters to be supplied by the user
+</div>
+
+| Flag        | Filtered applied                                  | Format                        |
+|-------------|---------------------------------------------------|-------------------------------|
+| `-a`        | List all tasks                                    | `ls -a`                       | 
+| `-u`        | List all unmarked tasks                           | `ls -u`                       | 
+| `-m`        | List all marked tasks                             | `ls -m`                       | 
+| `--module`* | List all tasks under the same module              | `ls --module MODULE`          | 
+| `-t`*       | List all tasks containing the same tag            | `ls -t TAG`                   | 
+| `-d`*       | List all tasks with deadline on or after a date   | `ls -d DATE`                  | 
+| `-n`*       | List all task names with the matching keywords    | `ls -n KEYWORD`               | 
+
+In the table above, flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. 
+These commands have a corresponding Parser that extends `ListCommandParser` to parse the parameter passed in. In the process of that, validity checks are conducted. These are some examples of validity checks conducted in the subclass parsers: 
+* In `ListModuleCommandParser`, the argument is checked to contain only alphanumeric characters with no spaces, and is not blank
+* In `ListDeadlineCommandParser`, the argument is checked to be numbers be in `YYYY-MM-DD` format 
+
+
+`ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
+
+This feature uses the following methods from the `Model` interface: 
+* `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
+* `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.  
+
+Below is the sequence diagram for the execution of `ls -u --module CS2103T`.
+
+### 5.4 Returning to a previous command
+
+#### 5.4.1 Implementation
+
+This feature allows the user to traverse through past commands via the `up` and `down` keys on the keyboard, similar to how
 it works in a terminal.
 
 This mechanism of returning to previous commands is facilitated by `CommandHistory`. It works with `CommandBox`, storing
@@ -259,10 +298,10 @@ Additionally, it implements the following operations:
 Given below is an example usage scenario and how the command history traversal mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `CommandBox` will be initialised, which in turns
-initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands`will be
+initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands` will be
 empty.
 
-Step 2. The user enters a command `add n/Project m/CS2103T d/2022-10-18 t/lowPriority`. Upon entering a new
+Step 2. The user enters a command `add -n Project -m CS2103T -d 2022-10-18 -t lowPriority`. Upon entering a new
 command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to
 stores this command into `previousCommands`.
 
@@ -279,7 +318,7 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 ![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
 
-#### 5.3.2 Design considerations:
+#### 5.4.2 Design considerations:
 
 **Aspect: How command history is stored:**
 
@@ -290,9 +329,9 @@ The following activity diagram summarizes what happens when a user clicks on the
     * Pros: Will be able to restore commands from previous launches.
     * Cons: Difficult to implement as storage architecture will have to be renewed.
 
-### 5.4 Command autocomplete feature
+### 5.5 Command autocomplete feature
 
-#### 5.4.1 Implementation
+#### 5.5.1 Implementation
 
 This feature allows the user to traverse through a drop-down list of possible commands that can be used, and is updated
 as they are typing. This provides convenience for the user as he can click `Enter` to complete the command after
@@ -326,7 +365,7 @@ per normal.
 Below is an activity diagram to display how the feature works:
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
-#### 5.4.2 Design considerations:
+#### 5.5.2 Design considerations:
 
 **Aspect: Filtering commandList to find matching commands:**
 

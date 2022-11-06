@@ -50,8 +50,6 @@ public class ListCommandParser implements Parser<ListCommand> {
                         PREFIX_LIST_ALL, PREFIX_LIST_UNMARKED, PREFIX_LIST_MARKED,
                         PREFIX_LIST_MODULE, PREFIX_LIST_TAG, PREFIX_LIST_DEADLINE, PREFIX_LIST_NAME);
 
-        String[] listTypes = trimmedArgs.split(" ", 2);
-
         Prefix[] prefixes = new Prefix[]
             {PREFIX_LIST_ALL, PREFIX_LIST_UNMARKED, PREFIX_LIST_MARKED,
             PREFIX_LIST_MODULE, PREFIX_LIST_TAG, PREFIX_LIST_DEADLINE, PREFIX_LIST_NAME};
