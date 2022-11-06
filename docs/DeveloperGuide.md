@@ -73,7 +73,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-W14-2/tp/blob/master/src/main/java/foodwhere/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="700" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StallListPanel`, `ReviewListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -101,7 +101,8 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rdel 1")` API call.
-![Interactions inside the Logic Component for the `rdel 1` Command](images/DeleteSequenceDiagram.png)
+
+<img src="images/DeleteSequenceDiagram.png" width="700" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -157,10 +158,10 @@ Classes used by multiple components are in the `foodwhere.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### **Review components**
-* Added Classes into the model Component to encapsulate a Review
+* Added classes into the `Model` component to encapsulate a Review
 
 #### **Implementation**
-<img src="images/ModelReviewClassDiagram.png" width="450" />
+<img src="images/ModelReviewClassDiagram.png" width="700" />
 
 A `Review`,
 - is primarily stored in the Stall associated with it
@@ -212,7 +213,7 @@ Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicke
 
 The following activity diagram summarizes what happens when a user executes a new `radd` command:
 
-<img src="images/AddReviewActivityDiagram.png" width="250" />
+<img src="images/AddReviewActivityDiagram.png" width="350" />
 
 #### Design considerations:
 - The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
@@ -257,7 +258,7 @@ Step 6. When the SFindCommand executes, the predicate will be sent to ModelManag
 
 The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
 
-<img src="images/FindActivityDiagram.png" width="250" />
+<img src="images/FindActivityDiagram.png" width="450" />
 
 #### Design considerations:
 - Allow usage of multiple attributes (name and/ or tag) as search term to filter out stalls/ reviews that has the specified keywords
@@ -317,7 +318,7 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
-<img src="images/DeleteReviewActivityDiagram.png" width="250" />
+<img src="images/DeleteReviewActivityDiagram.png" width="450" />
 
 ### Review editing feature
 
@@ -399,7 +400,7 @@ Step 6. `model.sortReviews()` will interact with the model to sort reviews using
 
 The following activity diagram summarizes what happens when a user executes a new `ssort` or `rsort` command:
 
-<img src="images/SortActivityDiagram.png" width="250" />
+<img src="images/SortActivityDiagram.png" width="300" />
 
 ### File format for FoodWhere
 
@@ -501,7 +502,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.png" width="450" />
 
 #### Design considerations:
 
