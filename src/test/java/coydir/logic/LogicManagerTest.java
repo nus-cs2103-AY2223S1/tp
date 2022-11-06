@@ -1,6 +1,6 @@
 package coydir.logic;
 
-import static coydir.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static coydir.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_ID;
 import static coydir.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static coydir.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.DEPARTMENT_DESC_AMY;
@@ -63,7 +63,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test

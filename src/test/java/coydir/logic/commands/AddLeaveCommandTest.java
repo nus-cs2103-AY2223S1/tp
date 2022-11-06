@@ -104,7 +104,7 @@ public class AddLeaveCommandTest {
                 .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(personWithDuplicateLeave);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(ID_SECOND_EMPLOYEE, leave);
-        assertCommandFailure(addLeaveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addLeaveCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test
