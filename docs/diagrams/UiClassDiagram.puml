@@ -48,6 +48,8 @@ StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+PersonCard -down-> "1" PictureStorageLoader
+PictureStorageLoader ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
