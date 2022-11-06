@@ -76,12 +76,13 @@ Commands have to be written in the correct format to be used. The format for eac
 
 3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI should appear in a few seconds. Notice how the app contains some sample data.
+
    ![Ui](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Different sections of the GUI
-
+:bulb: **Tip:** The following picture shows the different components of the GUI.
+<img src="images/Ui_annotated.png" alt="Annotated UI">
 </div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
