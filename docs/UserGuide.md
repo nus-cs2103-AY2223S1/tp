@@ -166,17 +166,19 @@ Saves a contact person into InterNUS, from the hiring manager you liaise with
 during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
-* The link index (in add -p) refers to the index number shown in the internship list.
-* The company refers to the company the contact person is working at.
+* `PHONE_NUMBER` is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
+  Duplicate persons are not allowed.
+* `LINK_INDEX` refers to the displayed index of the internship the person is in charge of. 
+Specified internship will be linked as the internship of the person
+* `Tags` must be alphanumeric and can only be one word.
+* `COMPANY` refers to the company the contact person is working at.
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0).
 Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list). By default, the list is sorted by date of creation.
 A person is assumed to be in charge of at most one internship position.
-A phone number is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
-Duplicate persons are not allowed.
 A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
-Tags must be alphanumeric and can only be one word.
 </div>
 
 Examples:
