@@ -232,7 +232,19 @@ Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
+Here is a list of the details discussed:
+* [Resident class](#the-resident-class)
+* [Displaying data](#displaying-data)
+* [Show only/Hide only commands](#show-onlyhide-only-commands)
+* [Filter command](#filter-command)
+* [Multiple data files](#multiple-data-files)
+* [Command history](#command-history)
+* [Venue and booking]()
+
+---
+
 ### The Resident Class
+
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
 existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
 `Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
@@ -242,7 +254,10 @@ housing management staff.
 <br>
 
 #### Refactoring of Classes
+
 Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the initial stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.
+
+---
 
 ### Displaying Data
 
@@ -321,7 +336,9 @@ of any sizeable overhead.
 
 <br>
 
-### Show only/hide only feature for resident fields
+---
+
+### Show only/hide only commands
 
 #### Changes to Model component:
 
@@ -409,7 +426,9 @@ that the user did not have to re-specify columns that were already hidden.
 
 <br>
 
-### Filter feature to filter residents according to fields
+---
+
+### Filter command
 
 The previous AddressBook implementation only had a find command to search for specific residents according to the field.
 Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
@@ -472,6 +491,8 @@ considering that this additional benefit does not give our application a boost i
 filtering has been omitted for the tags to accommodate for a faster filtering process.
 
 <br>
+
+---
 
 ### Multiple data files
 
