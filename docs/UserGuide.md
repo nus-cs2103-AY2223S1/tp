@@ -28,8 +28,8 @@ title: InterNUS User Guide
    &emsp; 4.4.1. [Linking a person and an internship : `link`](#441-linking-a-person-and-an-internship--link)<br>
    &emsp; 4.4.2. [Unlinking a person and an internship : `unlink`](#442-unlinking-a-person-and-an-internship--unlink)<br>
    4.5. [Find Command](#45-find-command)<br>
-   &emsp; 4.5.1. [Locating persons by name : `find -p`](#451-locating-persons-by-name--find--p)<br>
-   &emsp; 4.5.2. [Locating internships by name : `find -i`](#452-locating-internships-by-name--find--i)<br>
+   &emsp; 4.5.1. [Finding persons : `find -p`](#451-finding-persons--find--p)<br>
+   &emsp; 4.5.2. [Finding internships : `find -i`](#452-finding-internships--find--i)<br>
    4.6. [Delete Command](#46-delete-command)<br>
    &emsp; 4.6.1. [Deleting a person by index : `delete -p`](#461-deleting-a-person-by-index--delete--p)<br>
    &emsp; 4.6.2. [Deleting an internship by index : `delete -i`](#462-deleting-an-internship-by-index--delete--i)<br>
@@ -81,10 +81,11 @@ For new users you can proceed to our [Quick start](#3-quick-start) while returni
 
 ## 2.1. Icons and symbols
 
-| Symbol               | Meaning                                                                            |
-|----------------------|------------------------------------------------------------------------------------|
-| :information_source: | Additional information that may be useful to know when using InterNUS              |
-| :exclamation:        | Important information or warnings that you should take note of when using InterNUS | 
+| Symbol               | Meaning                                                                        |
+|----------------------|--------------------------------------------------------------------------------|
+| :information_source: | Important information about specific behaviour of key features to take note of |
+| :bulb:               | Tips that can make certain features of InterNUS quicker and easier to use      |
+| :exclamation:        | Cautionary information to avoid unintended behaviour during usage of InterNUS  | 
 
 ## 2.2. Graphical User Interface (GUI) of InterNUS
 
@@ -297,7 +298,7 @@ Examples:
 
 ## 4.5. Find Command
 
-### 4.5.1. Locating persons by name : `find -p`
+### 4.5.1. Finding persons : `find -p`
 
 Finds persons whose fields contain any of the given keywords.
 
@@ -314,9 +315,9 @@ Examples:
 - `find -p e/@u.nus.edu @gmail.com` finds persons with `EMAIL` that contains **@u.nus.edu** or **@gmail.com**.
 - `find -p t/supervisor HR` finds persons with `TAG` that contains **supervisor** or **HR**.
 - `find -p n/john jon e/@u.nus.edu @gmail.com t/supervisor HR` finds persons with all 3 of the above.
-  e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** and **Senior** can be found with this command.
+  e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** can be found with this command.
 
-### 4.5.2. Locating internships by name : `find -i`
+### 4.5.2. Finding internships : `find -i`
 
 Finds internships whose fields contain any of the given keywords.
 
