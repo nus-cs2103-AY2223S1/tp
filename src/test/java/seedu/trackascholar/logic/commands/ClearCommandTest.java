@@ -12,11 +12,6 @@ import seedu.trackascholar.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute() {
-
-    }
-
-    @Test
     public void confirmClear_nonEmptyTrackAScholar_success() {
         ClearCommand clearCommand = new ClearCommand();
         Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());

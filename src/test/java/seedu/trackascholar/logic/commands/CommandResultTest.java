@@ -56,12 +56,6 @@ public class CommandResultTest {
     public void hashcode() {
         CommandResult commandResult = new CommandResult("feedback");
 
-        // same object -> returns same hashcode multiple times
-        int hashCode = commandResult.hashCode();
-        assertEquals(hashCode, commandResult.hashCode());
-        assertEquals(hashCode, commandResult.hashCode());
-        assertEquals(hashCode, commandResult.hashCode());
-
         // same values -> returns same hashcode
         assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
 
