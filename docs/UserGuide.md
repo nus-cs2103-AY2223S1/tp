@@ -117,27 +117,45 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 
 ## Command Features
 
-In this section, we will be explaining our commands. Under every command, you will find it's "Format". This refers to the text that you can enter in order to execute that command. 
-To understand the notation of these "Format"s, read on! 
+In this section, we will be explaining our commands. Before proceeding, we will need to explain how our commands are
+structured!
+
+All commands are structured in the same manner. As seen in the image below, a command begins with a command word. If the
+command requires more information, it can be provided through flags and parameters. All flags begin with a hyphen, and
+any information for that flag is provided directly after, as a parameter.
+
+![Command Structure](images/user-guide/AnnotatedCommand.png)
+
+As you are reading through this section, you will find that each command will have a "Format" section. This is the text
+that you need to enter into the command box in order to execute that command. To understand our format notation, read
+on!
 
 <div markdown="block" class="alert alert-info" >
 
 **:information_source: Notes about the command format:**
 
-* Words in `lower_case` are commands or flags to be typed as-is 
-  * e.g. in `ls -t TAG_NAME`, `ls -t` must be typed as-is and is case-sensitive 
+* Words in `lower_case` are commands or flags to be typed as-is
 * Words in `UPPER_CASE` are values of parameters to be supplied by the user
-  * e.g. in `ls -d DATE`, `DATE` refers to the value of the `-d` parameter supplied to the `ls` command 
-* Words in `[Square brackets]` are optional parameters 
-  * e.g. in `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`, `[-d DATE]` and `[-t TAG_NAME]*` can be omitted 
+* Words in `[Square brackets]` are optional parameters
 * Words that are followed by `*` are parameters that can be used multiple times
-  * e.g. in `tag TASK_NUMBER (-t TAG_NAME)*`, `-t TAG_NAME` can be included multiple times
+
+Add command format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
+
+Using the add command format above as an example, the following are a few good and bad examples of what a command can be:
+
+* Since square brackets are optional, `add -n Project -m GEA1000` is valid
+* Since there is a `*`, we can put multiple tags at one, e.g. `add -n Project -m GEA1000 -t Optional -t Group`
+* Modules **are not** surrounded by square brackets, and so they are compulsory. Hence, `add -n Project` is invalid
+* `add`, `-n` and `-m` are in lower case, and so must be kept that way. Thus, `ADD -N Project -M GEA1000` is invalid
+
+And a few more notes about command structure,
+
 * Command parameters (e.g. `-a`, `-m`) can be made in any order
-  * e.g. `ls -u --module CS2103T` and `ls --module CS2103T -u` will give the same result
+  * e.g. `add -m GEA1000 -n Project` and `add -n Project -m GEA1000` will give the same result
 * If a parameter is expected only once in a command but was specified multiple times, the last occurrence of it will be taken
-  * e.g. if you enter `edit 1 -d 2022-10-22 -d 2022-10-30`, this will be interpreted as `edit 1 -d 2022-10-30`
-* Extraneous parameters for commands (i.e. `help`, `showarchive`, etc.) or flags (i.e. `-a`, `-u`, etc.) that do not take in parameters will be ignored
-  * e.g. if you enter `showarchive 2103`, this will be interpreted as `showarchive`
+  * e.g. if you enter `add -n Project -m GEA1000 -m CS2103T`, this will be interpreted as `add -n Project -m CS2103T`
+* Irrelevant flags and parameters provided to commands will simply be ignored
+  * e.g. Providing `-p abc` to the add command will have no effect on the feature as the add command does not need a `-p` flag
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -145,12 +163,9 @@ To understand the notation of these "Format"s, read on!
 **:information_source: Additional information about task constraints:**
 
 * Task names can only contain letters, numbers and spaces. For example, `Assignment-5` is not a valid name as it
-  contains a hypen.
+  contains a hyphen.
 * Dates must be written in the format YYYY-MM-DD, eg `2022-10-30`.
 * Module names and tags can only contain letters and numbers, no spaces allowed.
-
-* Commands that filter for names find names that **contain** the keyword. (`ls -n`, `find`) 
-* Commands that filter for tags find tags that **match** the keyword. (`ls -t`, `find`)
 
 </div>
 
