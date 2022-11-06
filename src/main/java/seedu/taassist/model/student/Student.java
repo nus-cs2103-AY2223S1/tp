@@ -111,7 +111,7 @@ public class Student implements Identity<Student>, Comparable<Student> {
      *
      * @param moduleClass ModuleClass object to add to the student's {@code StudentModuleData}.
      * @return New student with {@code StudentModuleData} containing all existing module classes
-     * plus {@code moduleClass}.
+     *     plus {@code moduleClass}.
      */
     public Student addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -129,7 +129,7 @@ public class Student implements Identity<Student>, Comparable<Student> {
      *
      * @param moduleClass ModuleClass object to remove from the student's {@code StudentModuleData}.
      * @return New student with {@code StudentModuleData} containing all existing module classes
-     * except {@code moduleClass}.
+     *     except {@code moduleClass}.
      */
     public Student removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);

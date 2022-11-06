@@ -40,7 +40,7 @@ public class AssignCommand extends Command {
      * Creates an AssignCommand to assign the students at the given {@code indices} to {@code moduleClassToAssign}.
      *
      * @param indices List of {@code Index} objects specifying which Student objects to assign to
-     * {@code moduleClassToAssign}.
+     *     {@code moduleClassToAssign}.
      * @param moduleClassToAssign Module class to assign the students to.
      */
     public AssignCommand(List<Index> indices, ModuleClass moduleClassToAssign) {

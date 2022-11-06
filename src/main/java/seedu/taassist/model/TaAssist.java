@@ -221,7 +221,7 @@ public class TaAssist implements ReadOnlyTaAssist {
             // Update student data
             removeSessionFromStudents(moduleClass, session);
             // Update module class data
-            moduleClass = moduleClass.removeSession(session);;
+            moduleClass = moduleClass.removeSession(session);
         }
         setModuleClass(oldModuleClass, moduleClass);
         return moduleClass;

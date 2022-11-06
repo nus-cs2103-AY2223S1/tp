@@ -94,7 +94,7 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
      * @param target Old target to replace.
      * @param editedElement New target that replaces {@code target}.
      * @throws DuplicateElementException If {@code editedElement} already exists or
-     * if {@code target} and {@code editedElement} are the same.
+     *     if {@code target} and {@code editedElement} are the same.
      */
     public void setElement(T target, T editedElement) {
         requireAllNonNull(target, editedElement);

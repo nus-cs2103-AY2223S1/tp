@@ -42,7 +42,7 @@ public class UnassignCommand extends Command {
      * {@code moduleClassToUnassign}.
      *
      * @param indices List of {@code Index} objects specifying which Student objects to unassign from
-     * {@code moduleClassToUnassign}.
+     *     {@code moduleClassToUnassign}.
      * @param moduleClassToUnassign Module class to unassign the students from.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
