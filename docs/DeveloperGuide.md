@@ -1287,7 +1287,7 @@ testers are expected to do more *exploratory* testing.
        - All tasks are being shown (i.e. run `list task -a` first). 
     1. Test case: `done task 1`<br>
        Expected: The first task (topmost in the UI) is marked as done (with a "done" label) and a success message is displayed.
-   1. Test case: `done task 1` followed by another `done task 1` <br>
+    1. Test case: `done task 1` followed by another `done task 1` <br>
       Expected: An error message saying that the task is already marked as done is displayed.
     1. Test case: `done task 0`<br>
        Expected: No task is marked as done and an error message is displayed.
@@ -1314,10 +1314,10 @@ testers are expected to do more *exploratory* testing.
         - You have just completed the previous test case - there should only be 1 task and it should be done and visible.
     1. Test case: `undone task 1`<br>
        Expected: The first task (topmost in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
-   1. Test case: `undone task 1` followed by another `undone task 1` <br>
-      Expected: An error message saying that the task is already marked as undone is displayed.
-   1. Test case: `undone task 0`<br>
-      Expected: No task is unmarked as done and an error message is displayed.
+    1. Test case: `undone task 1` followed by another `undone task 1` <br>
+       Expected: An error message saying that the task is already marked as undone is displayed.
+    1. Test case: `undone task 0`<br>
+       Expected: No task is unmarked as done and an error message is displayed.
 
 
 ### Saving data
