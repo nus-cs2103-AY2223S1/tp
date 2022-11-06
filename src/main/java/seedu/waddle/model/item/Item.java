@@ -83,7 +83,7 @@ public class Item {
         if (this.startTime != null) {
             String endTime = getEndTime().toString();
             if (getEndTime().equals(LocalTime.MAX)) {
-                endTime = LocalTime.MIDNIGHT.toString();
+                endTime = LocalTime.MIDNIGHT.toString() + " (next day)";
             }
             if (this.duration != null) {
                 return Text.indent("Time: " + this.startTime + " - " + endTime, indents);
