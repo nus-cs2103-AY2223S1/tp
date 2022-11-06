@@ -7,6 +7,27 @@ import static tracko.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class EmailTest {
+    @Test
+    public void equals() {
+        Email email1 = new Email("jacksonloh@gmail.com");
+        Email email2 = new Email("debbietan@gmail.com");
+
+        // same object -> returns true
+        assertTrue(email1.equals(email1));
+
+        //same values -> return true
+        Email email1Copy = new Email("jacksonloh@gmail.com");
+        assertTrue(email1.equals(email1Copy));
+
+        // different types -> returns false
+        assertFalse(email1.equals(1));
+
+        // null -> returns false
+        assertFalse(email1.equals(null));
+
+        // different predicate -> returns false
+        assertFalse(email1.equals(email2));
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {

@@ -274,6 +274,17 @@ An inventory item's name must be more than 1 character long.
 An inventory item can have 0 or more tags. A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes on tags:**<br>
+
+* An inventory item can have 0 or more tags.
+* Tags should only consist of 1 word.
+* Tags **cannot** have more than 30 characters.
+* Tags should be alphanumeric.
+
+</div>
+
 Example(s):
 
 - When you enter `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1 t/Souvenir` to our sample data,
@@ -513,8 +524,8 @@ in their address.
 * Only full words will be matched. <br>
   e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
 
-* Orders matching at least one keyword will be returned <br>
-  e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
+* Orders matching at least one keyword will be displayed. <br>
+  e.g. `findo i/apple keychain` will display `apple painting` and `banana keychain`
 
 </div>
 
@@ -530,13 +541,13 @@ data will display the following result:
   
   <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
 
-* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been marked as 
-`delivered`. Executing it on our sample data will display the following result:
+* When you enter `findo -d n/Charlotte`, TrackO displays all orders with the name `Charlotte` which have been marked as `delivered`.
+Executing it on our sample data will display the following result:
 
   <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
   
-* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been marked as `paid` and 
-`delivered`. Executing it on our sample data will display the following result:
+* When you enter `findo -d -p n/Alex` displays all orders with the name `Alex` which have been marked as `paid` and `delivered`.
+Executing it on our sample data will display the following result:
 
     <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
 
@@ -686,8 +697,8 @@ Example(s):
 
 Marks an existing order in the order list as paid and/or delivered. 
 
-<div markdown="block" class="alert alert-info">
-:information_source: **Warning:** `marko` is irreversible. This means that you cannot unmark an order that is marked as 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Warning:** `marko` is irreversible. This means that you cannot unmark an order that is marked as 
 paid and/or delivered. 
 </div>
 
@@ -705,7 +716,7 @@ Format: `marko INDEX [-p] [-d]`
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="block" class="alert alert-info">:bulb: **Note:**
 You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
 mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order.
 </div>
@@ -741,9 +752,13 @@ Shows a window with a link to the user guide.
 
 ### Clearing all data in TrackO: `clear`
 
-If you want clear all sample data present, `clear` is the command for you. 
+If you want to clear all sample data present, `clear` is the command for you. 
 
-The command `clear` clears all data (in both `Order List` and `Inventory List`) from TrackO.
+The command `clear` clears all data (in both [Order List](#layout) and [Inventory List](#layout)) from TrackO.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+This action is **irreversible**. Please make sure you really want to wipe all of your order and inventory data before proceeding.
+</div>
 
 1. Initiate the command to clear all data from TrackO. <br>
     Format: `clear`
