@@ -26,7 +26,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
         - [List all loans](#show-all-books-that-are-loaned--list-loans)
         - [List overdue](#show-all-books-that-are-overdue--list-overdue)
         - [Clear](#clearing-all-entries--clear-all)
-        - [Exit](#exit-bookface-exit)
+        - [Exit](#exit-bookface--exit)
     - [FAQ](#faq)
     - [Command Summary](#command-summary)
 
@@ -38,14 +38,14 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `BookFace.jar` from here.
+2. Download the latest `BookFace.jar` from here.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
+3. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
-1. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list users`** :
@@ -58,7 +58,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -101,10 +101,7 @@ delete the user that is currently displayed.
 Adds a book to the library.
 
 Format: `add book t/TITLE a/AUTHOR`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
-</div>
+* The title and author **must only contain alphanumerical characters and spaces**
 
 Examples:
 * `add book t/The Life of John a/Emily Dunce`
@@ -251,7 +248,13 @@ Examples:
 
 Edits a user who is registered with the library.
 
-Format: `edit user INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+Format: `edit user INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the Edit command:**<br>
+* Although the format specifies that the fields are optional, the command still requires 1 field to be provided in order for it to work
+* If you are inserting additional tags to a user, you must list all the present tags first since the command overrides the current tags with the ones in the Edit command
+</div>
 
 Examples:
 * `edit user 1 p/91234567 e/johndoe@example.com`
@@ -323,6 +326,9 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 **Q**: How do I clear the sample data on BookFace?<br>
 **A**: Simply use the `clear all` command.
+
+**Q**: Is it normal for the order of the books to change upon restarting the application?<br>
+**A**: Yes; it is a perfectly normal behaviour for the application **if there are loaned books in the book list**, as the intention is to show books that have been loaned as a priority in the list upon starting the app. Following this answer, the order of the book list does not immediately change after a `loan` or `return` command in order to prevent confusion in the sudden reordering of books while the app is in use.
 
 --------------------------------------------------------------------------------------------------------------------
 
