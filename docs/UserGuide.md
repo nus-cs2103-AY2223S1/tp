@@ -40,15 +40,14 @@ title: Modtrekt User Guide
 
 ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
 tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
-learning and not be sidetracked by unexpected tasks that you forget. With Modtrekt, you can **quickly add tasks**, see your 
-**latest deadlines**, and **filter your tasks based on its module**.
+learning and not be sidetracked by unexpected tasks that you forget. With ModtRekt, you can **quickly add tasks**, see your 
+**upcoming deadlines**, and **filter your tasks by their module**.
 
-Modtrekt is optimized for use via a Command Line Interface (CLI) for **faster navigation** and input whilst still having
-the benefits of a Graphical User Interface (GUI).
+Modtrekt is optimized for use via a command line interface (CLI) for **faster navigation** and input while retaining
+the benefits of a graphical user interface (GUI).
 
-
-This User Guide contains in-depth information which can help new users learn all the functionalities of Modtrekt. If you
-are an experienced user, there exists a command summary at the bottom which can bring you up to speed.
+This user guide contains in-depth information which can help new users learn all the features of ModtRekt. If you
+are an experienced user, the a command summary at the bottom can get you up to speed.
 
 ## Quick Start
 
@@ -71,7 +70,7 @@ are an experienced user, there exists a command summary at the bottom which can 
 
     1. `cd CS2103T`: Sets the current module page to CS2103T.
 
-    1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called iP week 6, with a deadline of 28/10/2022, to the module tracker.
+    1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called "tP v1.3", with a deadline of 28/10/2022, to the module tracker.
 
     1. `list task`: Lists all the active tasks.
 
@@ -233,13 +232,13 @@ Deletes a module from the program. You have to specify a module code to delete.
 
 Format: `remove module <module code>`
 
-Shorthand: `rm mod <module code>`
+Shorthand: `rm module <module code>`, `rm mod <module code>`
 
 - Module code must match an existing module.
 
 Format: `remove module <module code>`
 
-Shorthand: `rm mod <module code>`
+Shorthand: `rm module <module code>`, `rm mod <module code>`
 
 Examples:
 - `remove module CS2103T`
@@ -288,7 +287,7 @@ Marks a module as done.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 - You cannot execute this command while cd'd into any module.
 
->:warning If there are `undone` tasks of a `done` module, you will be able to mark the module as done again, and the
+>:warning: If there are `undone` tasks of a `done` module, you will be able to mark the module as done again, and the
 `undone` task will be marked as `done`. 
 
 Format: `done module <module code>`
@@ -373,11 +372,11 @@ Format (if `cd`'d previously): `add task <description> [-d <deadline>] [-p <prio
 
 Format (if not `cd`'d): `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`
 
-Examples (CDed into a module):
+Examples (CD'd into a module):
 - `add task "do ip tasks" -d 2022-09-15`
-- `add task -d 15/09/2022 "do ip tasks"`
+- `add task -d 2022-09-15 "do ip tasks"`
 
-Examples (Not CDed into a module):
+Examples (Not CD'd into a module):
 - `add task -c CS2103T "do ip tasks" -d 2022-09-15`
 - `add task -d 2022-09-15 "do ip tasks" -c CS2103T`
 
@@ -455,7 +454,7 @@ Changes current parameters of selected task
 
 
 - You can add priorities into their tasks which will be ordered by decreasing priority in the task list
-- 4 Levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
+- 4 levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
 - can be set by adding: `-p none`, `-p low`, `-p medium`, `-p high` tags
 
 Format: `edit task <task index> [-c <module code>] [-d <deadline>] [-ds <description>] [-p <priority>]`
