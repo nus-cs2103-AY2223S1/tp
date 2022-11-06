@@ -55,12 +55,12 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && identifier.equals(((Assignment) other).identifier)); // identifier check
+                && identifier.equalsIgnoreCase(((Assignment) other).identifier)); // identifier check
     }
 
     @Override
     public int hashCode() {
-        return identifier.hashCode();
+        return identifier.toUpperCase().hashCode();
     }
 
     /**

@@ -45,12 +45,12 @@ public class Attendance extends MultiStateAttribute<String, Attendance.Status> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Attendance // instanceof handles nulls
-                && identifier.equals(((Attendance) other).identifier)); // identifier check
+                && identifier.equalsIgnoreCase(((Attendance) other).identifier)); // identifier check
     }
 
     @Override
     public int hashCode() {
-        return state.hashCode();
+        return identifier.toUpperCase().hashCode();
     }
 
     /**

@@ -50,7 +50,7 @@ public class StudMapParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+        assertEquals(new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT)), command);
     }
 
     @Test

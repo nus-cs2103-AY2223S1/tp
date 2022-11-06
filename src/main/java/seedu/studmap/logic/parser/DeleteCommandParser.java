@@ -1,29 +1,57 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.studmap.logic.parser.ParserUtil.separatePreamble;
 
-import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.DeleteCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteCommand> {
+public class DeleteCommandParser implements IndexCommandParser<DeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Returns empty prefix list.
+     * @return Empty prefix list
      */
-    public DeleteCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
+    @Override
+    public Prefix[] getPrefixes() {
+        return new Prefix[0];
     }
 
+    /**
+     * Returns Usage Message for DeleteCommand.
+     * @return Usage Message for DeleteCommand.
+     */
+    @Override
+    public String getUsageMessage() {
+        return DeleteCommand.MESSAGE_USAGE;
+    }
+
+    /**
+     * Returns a DeleteCommand object for execution.
+     * @param argMultimap        Argument multimap to process
+     * @param indexListGenerator students affected by this command, wrapped in a function to be used later.
+     * @return DeleteCommand object for execution
+     * @throws ParseException if a ParseException is detected
+     */
+    @Override
+    public DeleteCommand getIndexCommand(ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator)
+            throws ParseException {
+        return new DeleteCommand(indexListGenerator);
+    }
+
+    /**
+     * Checks if there is only one preamble, and throws ParseException if not.
+     * @param preamble Preamble provided in command input
+     * @throws ParseException if there is more or less than one preamble
+     */
+    @Override
+    public void validatePreamble(String preamble) throws ParseException {
+        if (separatePreamble(preamble).length != 1) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+    }
 }
