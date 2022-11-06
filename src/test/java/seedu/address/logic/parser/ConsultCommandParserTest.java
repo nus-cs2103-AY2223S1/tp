@@ -1,10 +1,13 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
@@ -13,11 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.tag.Medication;
 import seedu.address.testutil.TypicalIndexes;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 
 class ConsultCommandParserTest {
 
@@ -36,22 +34,40 @@ class ConsultCommandParserTest {
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
-        assertParseFailure(parser, "", invalid_message);
+        Index index = TypicalIndexes.INDEX_FIRST_PERSON;
+        String diagnosis = "fever";
+
+        String toParse = index.getZeroBased() + " " + CliSyntax.PREFIX_DIAGNOSIS + diagnosis;
+
+        assertParseFailure(parser, toParse, invalid_message);
     }
 
     @Test
     public void parse_missingDiagnosis_throwsParseException() {
-        assertParseFailure(parser, "", invalid_message);
+        Index index = TypicalIndexes.INDEX_FIRST_PERSON;
+        String diagnosis = "fever";
+
+        String toParse = String.valueOf(index.getOneBased());
+        assertParseFailure(parser, toParse, invalid_message);
     }
 
     @Test
     public void parse_emptyDiagnosis_throwsParseException() {
-        assertParseFailure(parser, "", invalid_message);
+        Index index = TypicalIndexes.INDEX_FIRST_PERSON;
+        String diagnosis = "fever";
+
+        String toParse = index.getOneBased() + " " + CliSyntax.PREFIX_DIAGNOSIS;
+        assertParseFailure(parser, toParse, invalid_message);
     }
 
     @Test
     public void parse_emptyDiagnosisWithMedication_throwsParseException() {
-        assertParseFailure(parser, "", invalid_message);
+        Index index = TypicalIndexes.INDEX_FIRST_PERSON;
+        String diagnosis = "fever";
+
+        String toParse = index.getOneBased() + " " + CliSyntax.PREFIX_DIAGNOSIS + " " + CliSyntax.PREFIX_MEDICATION
+                + "panadol";
+        assertParseFailure(parser, toParse, invalid_message);
     }
 
     @Test

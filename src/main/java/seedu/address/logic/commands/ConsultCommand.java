@@ -10,8 +10,8 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.appointment.UpcomingAppointment;
@@ -45,6 +45,7 @@ public class ConsultCommand extends Command {
      */
     public ConsultCommand(Index index, PastAppointment appt) {
         requireNonNull(index);
+        requireNonNull(appt);
         this.index = index;
         this.appt = appt;
         this.editPersonDescriptor = new EditPersonDescriptor();
@@ -62,8 +63,7 @@ public class ConsultCommand extends Command {
         }
         Person person = lastShownList.get(index.getZeroBased());
 
-        if (isPresentUpcomingAppointment(person)
-                && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
+        if (isPresentUpcomingAppointment(person) && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
                         .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
@@ -72,7 +72,8 @@ public class ConsultCommand extends Command {
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {
-        return !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
+        return person.getUpcomingAppointment().isPresent() &&
+                !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
     }
 
     @Override
