@@ -117,7 +117,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void getNoOfCompletedTasks_filledWithTasks() {
+    public void getNoOfCompletedTasks_nonEmptyList_returnsNoOfCompletedTasks() {
         uniqueTaskList.add(STUDY);
         uniqueTaskList.add(COOK);
         uniqueTaskList.add(REVIEW);
@@ -125,7 +125,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void getNoOfCompletedTasks_filledWithNoTasks() {
+    public void getNoOfCompletedTasks_emptyList_returnsZero() {
         assertEquals(uniqueTaskList.getNoOfCompletedTasks(), 0);
     }
 
