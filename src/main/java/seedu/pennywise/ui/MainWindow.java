@@ -26,8 +26,6 @@ import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.entry.EntryType;
 import seedu.pennywise.model.entry.GraphType;
 
-import static seedu.pennywise.model.entry.GraphType.GRAPH_TYPE_CATEGORY;
-
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -148,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
             // show pie chart with reset filters
             GraphConfiguration expenditureGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                    new GraphType(GRAPH_TYPE_CATEGORY),
+                    new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult expenditureCommandResult = new CommandResult(
                     "",
@@ -173,7 +171,7 @@ public class MainWindow extends UiPart<Stage> {
             // show pie chart with reset filters
             GraphConfiguration incomeGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                    new GraphType(GRAPH_TYPE_CATEGORY),
+                    new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult incomeCommandResult = new CommandResult(
                     "",
