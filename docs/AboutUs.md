@@ -61,6 +61,8 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities:
   * Implement homepage and module navigation
+  * Pull request reviewer
+  * Team discussion facilitator
 
 ### Teo Yu Qi
 
