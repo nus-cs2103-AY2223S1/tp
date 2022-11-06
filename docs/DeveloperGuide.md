@@ -710,7 +710,7 @@ suppliers.
 * Coordinators who run their business online need delivery. Given the location (country) of the client and the supplier,
   our app will generate a list of deliverers who have a service over the line, based on records.
 * Unlike other products, pets need a certificate to be legally sold - including photos of the animals, whether they are
-  pure-bred etc. Our app will also help manage certificates.
+  purebred etc. Our app will also help manage certificates.
 * Pets, especially younger ones, grow very fast. After a short period of time they may look very different. Their traits
   may change rapidly, too. As such, we will build a notification system that reminds the user to update the information
   of pets regularly. Updating information about a pet on time is useful for coordinators to keep looking for the client
@@ -724,153 +724,178 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ##### Buyer side
 
-| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                             |
-|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                   |                       |
-| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                       |
-| `* * *`  | pet sale coordinator                   | add inquiry from a buyer as an order                                                                                                                                  | know what they want to buy and what their requirements are. |
-| `* * *`  | pet sale coordinator                   | be able to find all contacts (Buyers, Suppliers, Deliverers) by attributes (e.g Email)                                                                                | not waste time searching for a specific contact details.    |
-| `* * *`  | pet sale coordinator                   | be able to filter all orders by attributes (e.g Price range)                                                                                                          | not waste time searching for a specific order.              |
-| `* * *`  | pet sale coordinator                   | be able to filter all pets by attributes (e.g Color)                                                                                                                  | not waste time searching for a specific pet.                |
-| `* * *`  | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                  |
-| `* * *`  | pet sale coordinator with many pets    | find the pet that best matches a specific order                                                                                                                       | efficiently find the best pet for my client.                |
-| `* * *`  | pet sale coordinator                   | edit the details of a particular contact                                                                                                                              | update client information whenever it changes.              |
+| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                                      |         
+|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                                            |                       
+| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                                                |
+| `* * *`  | pet sale coordinator                   | add an order to a buyer                                                                                                                                               | know what they want to buy and what their requirements are.                          |
+| `* * *`  | pet sale coordinator                   | be able to find all contacts (Buyers, Suppliers, Deliverers) by attributes (e.g Email)                                                                                | not waste time searching for a specific contact details.                             |
+| `* * *`  | pet sale coordinator                   | be able to filter all orders by attributes (e.g Price range)                                                                                                          | not waste time searching for a specific order.                                       |
+| `* * *`  | pet sale coordinator                   | be able to filter all pets by attributes (e.g Color)                                                                                                                  | not waste time searching for a specific pet.                                         |
+| `* * *`  | pet sale coordinator with many pets    | find the pet that best matches a specific order                                                                                                                       | efficiently find the best pet for my client.                                         |
+| `* * *`  | pet sale coordinator                   | edit the details of a particular contact                                                                                                                              | update client information whenever it changes.                                       |
+| `* *`    | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                                           |
+| `*`      | pet sale coordinator                   | hide private contact details                                                                                                                                          | protect my client's privacy in case someone else sees their particulars by accident. |
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PetCode` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PetCode` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC01 - List Summary**
+**Use case: UC01 - Listing contacts / items**
 
 **MSS**
 
-1. User specifies which list summary to show
-2. PetCode generates a summary based on the selected list
-3. PetCode formats the list summary
-4. PetCode outputs the list summary
+1. User specifies which list to show.
+2. PetCode displays the specified list.
 
 Use case ends.
 
 **Extensions**
 
-1a. PetCode detects that the list being specified by the user does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies user that the list does not exist.
+1a. PetCode detects that the list being specified by the User does not exist. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies User that the list does not exist.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new list.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the list exists.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.
 
 Use case ends.
 
-**Use case: UC02 - Add an Inquiry from a Buyer**
+**Use case: UC02 - Adding an Order from a Buyer**
 
 **MSS**
 
-1. User specifies who the buyer is
-2. User specifies what the buyer would like
-3. PetCode saves this inquiry
-
-Use case ends.
-
-**Use case: UC03 - Delete**
-
-**MSS**
-
-1. User specifies the type of person/item and the index of the person/item they want to delete
-2. PetCode searches for this person/item
-3. PetCode removes this person/item from the list
-4. PetCode notifies user that person/item has been deleted from the list
+1. User specifies who the buyer is and keys in the buyer's order details.
+2. PetCode saves this order.
+3. PetCode displays the updated buyer list with the specified buyer having a new order.
 
 Use case ends.
 
 **Extensions**
 
-2a. PetCode detects that the specified person/item does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 2a1. PetCode notifies the user that the person/item does not exist.
-&nbsp;&nbsp;&nbsp;&nbsp; 2a2. User specifies new person/item
-&nbsp;&nbsp;&nbsp;&nbsp; Steps 2a1-2a2 are repeated until the person/item exists.
-&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 3.
+1a. PetCode detects that the specified buyer does not exist. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies the User that the buyer does not exist.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new buyer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the buyer exists.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
 
-Use case ends.
+1b. PetCode detects that there are missing / invalid order details. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1b1. PetCode notifies the User that there are missing / invalid order details.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1b2. User specifies keys in new order details.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1b1-1b2 are repeated until the order details are valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
 
-**Use case: UC04 - Find a Buyer, Supplier or Deliverer**
-
-**MSS**
-
-1. User specifies whether he or she is searching for a Buyer, Supplier or Deliverer, or all.
-2. User specifies the target attribute.
-3. PetCode searches for all Buyers, Suppliers or Deliverers with that target attribute, depending on what the user has
-   specified.
-5. PetCode outputs these Buyers, Suppliers, Deliverers or all three.
-
-Use case ends.
-
-**Use case: UC05 - Sort**
+**Use case: UC03 - Deleting a contact / item**
 
 **MSS**
 
-1. User specifies the list to sort and the attribute(s) to sort by
-2. PetCode sorts the specified list in ascending chronological order according to the specified attribute(s)
-3. User could <u>list the summary(UC01)</u> to see the outcome
+1. User specifies the type of contact / item and the index of the contact / item they want to delete.
+2. PetCode searches for this contact / item.
+3. PetCode removes this contact / item from the list.
+4. PetCode notifies user that contact / item has been deleted from the list and displays updated contact / item list.
 
 Use case ends.
 
 **Extensions**
 
-1a. PetCode detects that the specified list does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies user that the list does not exist
+2a. PetCode detects that the specified contact / item does not exist. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2a1. PetCode notifies the User that the contact / item does not exist.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2a2. User specifies new contact / item.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 2a1-2a2 are repeated until the contact / item exists.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 3.<br>
 
 Use case ends.
 
-1b. The PetCode detects that the specified attribute(s) does not exist <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 1b1. PetCode notifies user that the attribute(s) does not exist
-
-Use case ends.
-
-**Use case: UC06 - Filter for a Pet**
+**Use case: UC04 - Finding a contact based on an attribute**
 
 **MSS**
 
-1. User specifies the target attributes he or she is searching for in a Pet.
-2. PetCode searches for all Pets with that target attributes, depending on what the user has specified.
-3. PetCode outputs all Pets that match the target attributes.
+1. User specifies whether (s)he is searching for a Buyer, Supplier or Deliverer, or any kind of contact and the target attribute.
+3. PetCode searches for all Buyers, Suppliers or Deliverers with that specified target attribute. 
+4. PetCode displays these Buyers, Suppliers, Deliverers or all three.
 
 Use case ends.
 
 **Extensions**
 
-1a. The arguments are empty or invalid.
+1a. User inputs an invalid contact type / missing the contact type. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies the User that the contact type is invalid / missing.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new contact type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the contact type is valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
 
-Use case ends.
+1b. User inputs an invalid / missing target attribute. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1b1. PetCode notifies the User that the target attribute is invalid / missing.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1b2. User specifies new target attribute.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1b1-1b2 are repeated until the target attribute is valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
 
-**Use case: UC07 - Filter for an Order**
+**Use case: UC05 - Sorting contacts / items**
 
 **MSS**
 
-1. User specifies the target attributes he or she is searching for in an Order.
-2. PetCode searches for all Orders with the target attributes, depending on what the user has specified.
-3. PetCode outputs all Orders that match the target attributes.
+1. User specifies the contacts / items list to sort and the attribute(s) to sort by.
+2. PetCode sorts the specified list in descending order according to the specified attribute(s).
+3. PetCode displays the sorted list to the User.
 
 Use case ends.
 
 **Extensions**
 
-1a. The arguments are empty or invalid.
+1a. PetCode detects that the specified list is invalid. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies User that the list specified is invalid.
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new list type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the list type is valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
+
+1b. PetCode detects that the specified attribute(s) is / are invalid. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies User that the specified attribute(s) is / are invalid.
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new attribute(s).<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the attribute(s) is / are valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
+
+**Use case: UC06 - Filtering items**
+
+**MSS**
+
+1. User specifies the type of items list to filter and keys in the target attribute(s) (s)he is searching for in an item.
+2. PetCode searches for all specified items with target attribute(s), depending on what the user has specified.
+3. PetCode displays all items that match the target attribute(s).
 
 Use case ends.
 
-**Use case: UC08 - Check for the buyer of an order**
+**Extensions**
+
+1a. PetCode detects that the specified list is invalid. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies User that the list specified is invalid.
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new list type.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the list type is valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
+
+1b. PetCode detects that the specified attribute(s) is / are invalid. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies User that the specified attribute(s) is / are invalid.
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new attribute(s).<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the attribute(s) is / are valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
+
+**Use case: UC07 - Checking the buyer of an order**
 
 **MSS**
 
 1. User specifies the order list and the index of the order to be checked.
 2. PetCode searches for the order at the specified index.
-3. PetCode outputs all the buyer of that Order.
+3. PetCode searches for the buyer of that specified order.
+4. PetCode outputs the buyer of that order.
 
 Use case ends.
 
 **Extensions**
 
 1a. The index is not a valid index. <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies user that the index is invalid.
-
-Use case ends.
+&nbsp;&nbsp;&nbsp;&nbsp; 1a1. PetCode notifies user that the index is invalid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1a2. User specifies new index.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Steps 1a1-1a2 are repeated until the index is valid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Use case resumes from step 2.<br>
 
 ### Non-Functional Requirements
 
@@ -880,15 +905,13 @@ Use case ends.
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The user interface should be intuitive enough for users who are not IT-savvy.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Buyer**: A customer of the pet sale coordinator interested in purchasing a pet.
 * **Deliverer**: A person that is able to provide delivery services from the supplier to buyer/client.
 * **Supplier**: A person that has pets on sale.
 * **Item**: An order or a pet.
-* **Person**: A buyer/client, or a deliverer, or a supplier.
+* **Contact / Person**: A buyer/client, or a deliverer, or a supplier.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
@@ -897,7 +920,9 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -908,8 +933,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    2. Double-click the jar file.
+       * Expected: Shows the GUI with a set of sample contacts. The window size may not be
+          optimum.
 
 1. Saving window preferences
 
@@ -941,8 +967,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Delete the `addressbook.json` file to simulate missing date file. Launch the application.<br>
+       Expected: A new `addressbook.json` file is created with some sample data.
 
-1. _{ more test cases …​ }_
+2. Dealing with invalid data in data file
+
+   1. Open the `addressbok.json` file. Change one of the fields to an invalid data, e.g change one of the `personCategory` 
+      fields under the `buyers` to be `invalid`. Launch the application.<br>
+      Expected: Application starts up with no sample data.
 
 ## **Appendix: Effort**
