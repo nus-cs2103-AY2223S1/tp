@@ -34,6 +34,12 @@ import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewTimeTableCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.schedule.AddScheduleCommandParser;
+import seedu.address.logic.parser.schedule.ClearScheduleCommandParser;
+import seedu.address.logic.parser.schedule.DeleteScheduleCommandParser;
+import seedu.address.logic.parser.schedule.EditScheduleCommandParser;
+import seedu.address.logic.parser.schedule.ViewScheduleCommandParser;
+import seedu.address.logic.parser.schedule.ViewTimeTableCommandParser;
 
 /**
  * Parses user input.

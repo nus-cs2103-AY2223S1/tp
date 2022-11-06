@@ -52,4 +52,11 @@ public class ViewTimeTableCommand extends Command {
 
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewTimeTableCommand)
+                && timetableModel == ((ViewTimeTableCommand) other).timetableModel;
+    }
+
 }
