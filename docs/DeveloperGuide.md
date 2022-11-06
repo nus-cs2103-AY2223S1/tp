@@ -941,6 +941,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+---
+
+**Use case: UC18 - Sending an email**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+2. User requests to email the email address associated with the selected internship application.
+3. Default mail app is launched with the target recipient being the email address fo the selected internship application.
+
+    Use case ends.
+
+---
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
