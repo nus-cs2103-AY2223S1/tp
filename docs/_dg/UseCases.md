@@ -168,7 +168,7 @@ Extensions:
 
 Preconditions: The [[ tag ]] to be removed is tagged to the item currently.
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User chooses to view items.
 1. FoodRem shows a list containing the items.
