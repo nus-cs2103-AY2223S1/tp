@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
         Student student;
         try {
             student = IndexUtil.getAtIndex(lastShownList, index);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException ioobe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 

@@ -62,7 +62,7 @@ public class UnassignCommand extends Command {
         List<Student> studentsToUnassign;
         try {
             studentsToUnassign = IndexUtil.getAtIndices(lastShownList, indices);
-        } catch (IndexOutOfBoundsException pe) {
+        } catch (IndexOutOfBoundsException ioobe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 

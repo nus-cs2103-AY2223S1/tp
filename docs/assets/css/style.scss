@@ -8,10 +8,16 @@
 
 .icon {
     height: 21px;
-    width: 21px
+    width: 21px;
 }
 
 p, li {
   text-align: justify;
   text-justify: inter-character;
+}
+
+@media print {
+  body {
+    background-color: white;
+  }
 }

@@ -72,7 +72,7 @@ public class GradeCommand extends Command {
         List<Student> studentsToGrade;
         try {
             studentsToGrade = IndexUtil.getAtIndices(lastShownList, indices);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException ioobe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
