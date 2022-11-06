@@ -1,6 +1,7 @@
 package seedu.boba.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -38,6 +39,10 @@ public class CalculationParser {
                     + " " + token2);
         }
         return OPERATORS.get(token1) - OPERATORS.get(token2);
+    }
+
+    private double basicCalculate(String a, String b, String operator) {
+        return 0;
     }
 
     /**
@@ -106,11 +111,11 @@ public class CalculationParser {
                 Double d1 = Double.valueOf(stack.pop());
 
                 // Calculate the result
-                Double result = token.compareTo("*") == 0
+                Double result = token.equals("*")
                         ? d1 * d2
-                        : token.compareTo("/") == 0
+                        : token.equals("/")
                         ? d1 / d2
-                        : token.compareTo("+") == 0
+                        : token.equals("+")
                         ? d1 + d2
                         : d1 - d2;
                 // Push result onto stack
@@ -127,7 +132,7 @@ public class CalculationParser {
      * @return The result of calculation, rounded to 2 d.p.
      */
     public static String parseCalculation(String userInput) {
-        String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
+        String regex = "(?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/])";
         String resultStr;
         // System.out.println(userInput);
         assert OPERATORS.containsKey("+") : "Don't have addition";
@@ -136,8 +141,10 @@ public class CalculationParser {
         assert OPERATORS.containsKey("/") : "Don't have division";
 
         String[] input = userInput.split(regex);
+        input = Arrays.stream(input).filter(s -> !s.trim().equals("")).toArray(String[]::new);
+        System.out.println(Arrays.toString(input));
         String[] output = expressionToRpn(input);
-        System.out.println(" ");
+        // System.out.println(" ");
         // Feed the rpn string to rpntoDouble to give result
         Double result = rpnToDouble(output);
         resultStr = String.format("%.2f", result);

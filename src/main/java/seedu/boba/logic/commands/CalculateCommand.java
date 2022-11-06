@@ -56,6 +56,8 @@ public class CalculateCommand extends Command {
                     CalculationParser.parseCalculation(this.expression);
         } catch (NumberFormatException | EmptyStackException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);
         }
         String feedback = this.expression + " = " + calcResult;
         logger.log(Level.INFO, feedback);
