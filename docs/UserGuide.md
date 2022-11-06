@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the NotionUS user guide! 
+## Welcome to the NotionUS! 
 
 **NotionUS** is a lightweight but powerful application that can help you to manage your assignments and tasks. It sports 
-a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance. It provides a command
-line user interface which aids fast typists in managing their assignments quickly, while still providing the benefits of
-a graphical user interface.
+a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance. It operates via a 
+command line user interface which aids fast typists in managing their assignments quickly, while still providing the 
+benefits of a graphical user interface.
+
+**NotionUS'** main strength is its simplicity and optimisation for the university student's task management needs. Upon 
+download, it supports management via deadlines and university modules. Having a gentle learning curve and requiring 
+minimal setup, it is perfect for the contemporary university student.
 
 |   If you are   |                                         You should                                         |
 |:--------------:|:------------------------------------------------------------------------------------------:|
