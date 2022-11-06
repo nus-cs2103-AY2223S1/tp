@@ -13,6 +13,7 @@ Given below are my contributions to the project.
   * Justification: this feature improves the product significantly because it addresses the user's needs to help them recognise students easier.
   * Highlights: This enhancement adds an image of the students in the UI. The implementation was challenging as it required understanding of JavaFX file chooser and its usage.
 
+
 * **New Feature**: Added the ability to create Assignments.
   * What it does: allows the user to add Assignments into their task list. An assignment is a type of task that allows the user to keep track of students who have and have not submitted an assignment.
   * Justification: this feature improves the product by enabling users to monitor their student's work progress.
@@ -24,7 +25,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme for Tasks in the TaskList (Pull request [\#122](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/122)
+  * Updated the GUI color scheme for Tasks in the TaskList (Pull request [\#122](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/122))
   * Refactoring of Address to StudentId, and adding tests for validation of StudentId which also increased coverage by 0.26% (Pull request [\#58](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/58))
 
 * **Documentation**:
@@ -40,7 +41,4 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/60), [\#81](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/81)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/zzthian/ped/issues/2), [2](https://github.com/zzthian/ped/issues/1), [3](https://github.com/zzthian/ped/issues/3))
-
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
+  
