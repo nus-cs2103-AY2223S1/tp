@@ -21,7 +21,7 @@ public class DeleteEventCommand extends EventCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Deletes the event identified by the index number used in the displayed event list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than or equal to 1000)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1";
 
     public static final String MESSAGE_MISSING_INDEX = "Index is required!\n%1$s";

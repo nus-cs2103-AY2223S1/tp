@@ -6,3 +6,6 @@
 {% endcomment %}
 
 <link rel="icon" type="image/x-icon" href="{{ "/images/logo.png" | relative_url }}">
+{%- if page.show-toc -%}
+<link rel="stylesheet" href="{{ "/assets/css/toc.css" | relative_url }}">
+{%- endif -%}

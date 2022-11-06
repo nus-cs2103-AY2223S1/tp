@@ -22,20 +22,33 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+    public static final int MAX_INDEX = 1000;
+    public static final int MAX_DAYS = 9999;
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
+    public static final String MESSAGE_INDEX_GREATER_THAN_MAX = "Index provided is greater than max value allowed.";
+    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer.";
+    public static final String MESSAGE_DAYS_GREATER_THAN_MAX = "Days provided is greater than max value allowed.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer <= 1000).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+
+        int index = Integer.parseInt(trimmedIndex);
+
+        // limits index to 9999
+        if (index > MAX_INDEX) {
+            throw new ParseException(MESSAGE_INDEX_GREATER_THAN_MAX);
+        }
+
+        return Index.fromOneBased(index);
     }
 
     /**
@@ -156,7 +169,14 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
             throw new ParseException(MESSAGE_INVALID_DAYS);
         }
-        return Integer.parseInt(trimmedDays);
+
+        int index = Integer.parseInt(trimmedDays);
+
+        // limits days to 9999
+        if (index > MAX_DAYS) {
+            throw new ParseException(MESSAGE_DAYS_GREATER_THAN_MAX);
+        }
+        return index;
     }
 
     /**

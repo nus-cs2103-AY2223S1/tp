@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Guide
+show-toc: true
 ---
 
 ![NUScheduler](images/logoText.png)
@@ -22,24 +23,31 @@ This user guide provides you with the information necessary to start using NUSch
 
 In this user guide, you may encounter the following icons:
 
-<div markdown="block" class="meaning-icons-container">
+|         Icon         | Description                                                                      |
+|:--------------------:|----------------------------------------------------------------------------------|
+| :information_source: | Provides general information that you might find helpful                         |
+|        :bulb:        | Provides good to know information on how to more effectively utilise NUScheduler |
+|    :exclamation:     | Provides important information to prevent undesired behaviour                    |
 
-* :information_source: **Additional Information:** Provides general information that you might find helpful.
-* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.
+You may also encounter the following text formatting:
 
-</div>
+|     Format     | Description                                      |
+|:--------------:|--------------------------------------------------|
+|  <a>Link</a>   | A link                                           |
+| <kbd>key</kbd> | A keyboard input                                 |
+|  `Highlights`  | A command or application output                  |
 
-If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
+If you are a new user, check out the [Quick start](#quick-start) to get started with NUScheduler.
 
-If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
+If you are a returning user, the [Command summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have **Java 11** or above installed in your Computer.
 
-2. Download the latest `NUScheduler.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
+2. Download the latest **NUScheduler.jar** from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
@@ -48,11 +56,11 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * <code class="language-plaintext highlighter-rouge"><b>profile -a</b> n/John Doe p/98765432 e/johnd@u.nus.edu t/friend</code>: Adds a profile with the name `John Doe`.
+   * `profile -a n/John Doe p/98765432 e/johnd@u.nus.edu t/friend`: Adds a profile with the name `John Doe`.
 
-   * <code class="language-plaintext highlighter-rouge"><b>profile -d</b> 2</code>: Deletes the 2nd profile shown in the current list.
+   * `profile -d 2`: Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`**: Lists all profiles in NUScheduler.
+   * `profile -v`: Lists all profiles in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -84,33 +92,76 @@ The following is the main user interface of NUScheduler.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command format
 
-<div markdown="block" class="alert alert-info">
+All profile and events commands used in NUScheduler follow this command format:
+```
+<command word> <option flag> <parameters>
+```
 
-**:information_source: Notes about the command format:**<br>
+### Command word
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+Command words are used to specify what to perform the operation on.
+
+* Command words are case-sensitive, e.g. `exit` will work, but not `EXIT`.
+
+### Option flag
+
+Option flags are used to specify the operation to perform.
+
+* Option flags are prefixed by `-`, and are case-sensitive, e.g. `-v` will work, but not `-V`.
+* Option flags must be specified right after the command word.
+* Optional flags are only applicable for the profile and event command words.
+
+### Parameters
+
+Parameters are extra inputs the command may require.
+
+* Words in `UPPER_CASE` are the parameters you will specify.<br>
   e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
-
-* Items in square brackets are optional.<br>
+* Parameters may require a prefix, and the prefix is case-sensitive.
+* Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times, including zero times for optional items.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters with `…`​ after them can be used multiple times, including zero times for optional items.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.<br>
   e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
-
-* For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
-
-* The other parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+</div>
+
+| Prefix | Parameter                                   | Description                                               |
+|--------|---------------------------------------------|-----------------------------------------------------------|
+|        | `INDEX`                                     | The position of the profile or event in the list          |
+|        | `EVENT_INDEX`                               | The position of the event in the event list displayed     |
+| `pr/`  | `PROFILE_INDEX`                             | The position of the profile in the profile list displayed |
+| `pr/`  | `ATTENDEE_INDEX`                            | The position of the profile under the particular event    |
+| `n/`   | `NAME`                                      | Name of the profile                                       |
+| `p/`   | `PHONE_NUMBER`                              | Phone number of the profile                               |
+| `e/`   | `EMAIL`                                     | Email of the profile                                      |
+| `tg/`  | `TELEGRAM_USERNAME`                         | Telegram username of the profile                          |
+| `t/`   | `TAG`                                       | Tag of the profile or event                               |
+|        | `KEYWORD`, `MORE_KEYWORDS`                  | The keywords to search for when finding profiles          |
+| `n/`   | `TITLE`                                     | Title of the event                                        |
+| `s/`   | `START`                                     | The start date (and time) of the event                    |
+| `e/`   | `END`                                       | The end date (and time) of the event                      |
+|        | `DAYS`                                      | The number of upcoming days to search for                 |
+|        | `KEYWORD_OR_DATE`, `MORE_KEYWORDS_OR_DATES` | The keyword or dates to search for when finding events    |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `INDEX`:**<br>
+
+* For `Event` and `Profile` commands which require an `INDEX`, the `INDEX` must be provided after the option flag.
+* In addition, the `INDEX` provided must be a positive number less than or equal to 1000 as NUScheduler is designed to handle a maximum of 1000 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
 
 ### Profiles
 
@@ -123,8 +174,8 @@ Each profile is a set of contact information about a person in your NUS communit
 A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
-* A phone number, at least 3 digits and at most 15 digits long
-* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
+* Phone number, limited to numeric characters with at least 3 characters and at most 15 characters
+* A valid NUS email, e.g. `john@u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
 
 A profile may also contain:
 
@@ -160,7 +211,7 @@ Edits an existing profile in NUScheduler.
 
 Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
-* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the profile's telegram username by typing `tg/` without specifying any username after it.
@@ -168,9 +219,9 @@ Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERN
 * You can remove all the profile’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `profile -e 1 p/91234567 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
-* `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
-* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
+* `profile -e 1 p/91234567 e/johndoe@u.nus.edu` edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
+* `profile -e 2 n/Betsy Crower t/` edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
+* `profile -e 3 tg/ t/` clears the telegram username and tags of the 3rd profile.
 
 #### Finding profiles by name: `profile -f`
 
@@ -199,7 +250,7 @@ Format: `profile -d INDEX`
 
 * Deletes the profile at the specified `INDEX`.
 * The index refers to the index number shown in the displayed profile list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `profile -d 1` deletes the first profile listed.
@@ -227,11 +278,11 @@ An event may also contain:
 
 #### Adding an event: `event -a`
 
-Adds an event with a name, a start date and end date.
+Adds an event with a title, a start date and end date.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
-* The start and end dates can be specified in various different formats, see [Accepted Date Time Format](#accepted-date-time-formats) for the full list.
+* The start and end dates can be specified in various formats. See [Accepted Date Time Formats](#accepted-date-time-formats) for the full list of formats.
 * The start and end dates must both contain either date only or date and time i.e. time is optional.
 * The start date must occur before or on the same day and time as the end date.
 
@@ -248,7 +299,7 @@ Adds one or more existing profiles as attendees to an existing event in NUSchedu
 
 Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
-* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
+* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
 * At least one `PROFILE_INDEX` must be provided.
 * Existing attendees will not be overwritten i.e. adding of profiles is cumulative.
@@ -267,27 +318,35 @@ Removes one or more attendees from an existing event in NUScheduler.
 
 Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
-* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
+* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
 * At least one `ATTENDEE_INDEX` must be provided.
 
 Example:
 * `event -dp 1 pr/1 pr/3`
 ![Before deleting attendees](images/BeforeDeleteAttendee.png)
-Note how the first and third attendee under the first listed event `Discuss presentation` have been deleted.
+Note how the first and third attendees under the first listed event `Discuss presentation` have been deleted.
 ![After deleting attendees](images/AfterDeleteAttendee.png)
 
 #### Viewing upcoming events: `event -u`
 
-Displays a list of upcoming events, ordered by the date, for the next specified number of days.
+Displays a list of upcoming events, ordered by the date, which starts in the next specified number of days.
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer** 1, 2, 3, …​
+* The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events starting and occurring on the day the command is entered will not be displayed.
+* The days **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about usage:**<br>
+
+* `DAYS` entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
+
+</div>
 
 Example:
-* `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.
+* `event -u 5` when used on `22/10/2022` displays all events starting in the next 5 days from `23/10/2022` to `27/10/2022` with both dates included.
 
 #### Viewing all events: `event -v`
 
@@ -301,15 +360,18 @@ Edits an existing event in NUScheduler.
 
 Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
-* The start and end dates can be specified in [various formats](#accepted-date-time-formats).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The start and end dates can be specified in various formats. See [Accepted Date Time Formats](#accepted-date-time-formats) for the full list of formats.
+</div>
 
 Example:
-* `event -e 1 n/Formal Dinner t/RC4` Edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
+* `event -e 1 n/Formal Dinner t/RC4` edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
 
 #### Finding events by date or title: `event -f`
 
@@ -325,8 +387,8 @@ Format: `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`
 * Events matching at least one keyword will be returned (i.e. `OR` search) e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`.
 
 Example:
-* `event -f Presentation` Displays all events with `Presentation` within the event title.
-* `event -f 20/11/2022 05/10/2022` Displays all events that start on either `20/11/2022` or `05/10/2022`.
+* `event -f Presentation` displays all events with `Presentation` within the event title.
+* `event -f 20/11/2022 05/10/2022` displays all events that start on either `20/11/2022` or `05/10/2022`.
 
 #### Deleting an event: `event -d`
 
@@ -336,7 +398,7 @@ Format: `event -d INDEX`
 
 * Deletes the events at the specified `INDEX`.
 * The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than or equal to 1000** e.g. 1, 2, 3, …​, 1000
 
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
@@ -367,9 +429,13 @@ Exits the program.
 
 Format: `exit`
 
-### Advanced Features
+#### Saving the data
 
-#### Session-Based Command History
+All data in NUScheduler is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+
+### Advanced features
+
+#### Session-based command history
 
 Access the previous commands you've made within each session.
 
@@ -386,14 +452,14 @@ Access the previous commands you've made within each session.
 
 </div>
 
-#### Tag Shortcuts
+#### Tag shortcuts
 
 Use shortcuts to quickly enter tags.
 
 Example:
 
-* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and the tag `professor`.
-* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` creates a profile with the name `Damith` and the tag `professor`.
+* `event -e 1 t/tut` edits the tag of the first event shown to `tutorial`.
 
 | Shortcut | Result       |
 |----------|--------------|
@@ -405,9 +471,9 @@ Example:
 | ta       | tutor        |
 | tut      | tutorial     |
 
-#### Quick Links
+#### Quick links
 
-Get easy access to some of your favourite NUS websites, right from the menu.
+Get easy access to some of your favourite NUS websites, right from the menu bar.
 
 1. Click on `Links` in the menu bar. A dropdown should appear.
 2. Click on the link you want to visit, if you want to visit `Canvas`, click on `Canvas`.
@@ -423,12 +489,19 @@ Get easy access to some of your favourite NUS websites, right from the menu.
 
 </div>
 
+#### Editing the data
+
+NUScheduler data are saved as a JSON file `[JAR file location]/data/nuscheduler.json`. You can update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, NUScheduler will discard all data and start with an empty data file at the next run.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-### Accepted Date Time Formats
+### Accepted date time formats
 
 NUScheduler accepts date-time formats both with and without a time specified. For example, date-only formats can be used to specify all day events.
 
@@ -447,7 +520,7 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 * `DAY` can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
 * `MONTH` can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
-* `YEAR` must be specified with four digits. e.g. `2022`
+* `YEAR` must be specified with four digits. e.g. `2022`.
 
 </div>
 
@@ -474,13 +547,19 @@ Example:
 
 ### Accepted email formats
 
-NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
+NUScheduler checks the following:
+* Local part (the characters in your email before `@`) of the emails must follow these rules:
+  * Only alphanumeric characters and these special characters, `+`, `_`, `.`, `-` are allowed
+  * The local part cannot start or end with a special character
+  * The local part must begin and end with an alphabet or number 
+  * 2 consecutive special characters are not allowed (e.g. `+_`, `..` and `-+` are all not allowed)
 
-* `@u.nus.edu`
-* `@u.duke.nus.edu`
-* `@nus.edu.sg`
-* `@comp.nus.edu.sg`
-* `@u.yale-nus.edu.sg`
+* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains, domains are case-sensitive:
+  * `u.nus.edu`
+  * `u.duke.nus.edu`
+  * `nus.edu.sg`
+  * `comp.nus.edu.sg`
+  * `u.yale-nus.edu.sg`
 
 ### Transfer data to another computer
 
@@ -505,3 +584,6 @@ You can simply install the app in the other computer and overwrite the data file
 | **View Events**                    | `event -v`                                                                             |
 | **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
 | **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`                                   |
+| **Clear**                          | `clear`                                                                                |
+| **Help**                           | `help`                                                                                 |
+| **Exit**                           | `exit`                                                                                 |
