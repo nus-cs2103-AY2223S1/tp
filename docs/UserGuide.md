@@ -541,12 +541,12 @@ data will display the following result:
   
   <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
 
-* When you enter `findo -d n/Charlotte`, TrackO displays all orders with the name `Charlotte` which have been `delivered`.
+* When you enter `findo -d n/Charlotte`, TrackO displays all orders with the name `Charlotte` which have been marked as `delivered`.
 Executing it on our sample data will display the following result:
 
   <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
   
-* When you enter `findo -d -p n/Alex` displays all orders with the name `Alex` which have been `paid` and `delivered`.
+* When you enter `findo -d -p n/Alex` displays all orders with the name `Alex` which have been marked as `paid` and `delivered`.
 Executing it on our sample data will display the following result:
 
     <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
@@ -697,7 +697,7 @@ Example(s):
 
 Marks an existing order in the order list as paid and/or delivered. 
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :exclamation: **Warning:** `marko` is irreversible. This means that you cannot unmark an order that is marked as 
 paid and/or delivered. 
 </div>
