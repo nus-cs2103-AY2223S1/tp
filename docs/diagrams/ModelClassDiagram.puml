@@ -38,8 +38,8 @@ Class Consultation {
 
 Class Reminder {
     -name: ReminderName
-    -priority: ReminderDescription
-    -description: ReminderPriority
+    -priority: ReminderPriority
+    -description: ReminderDescription
     -status: ReminderStatus
 }
 
