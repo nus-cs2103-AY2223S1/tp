@@ -57,7 +57,7 @@ Given below are my contributions to the project.
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues.
-* Wrote test code for features that I upgraded (delete, add-leave, delete-leave)
+* Wrote test code for features that I upgraded (delete, add-leave, delete-leave).
 * Contributed to manual testing of application to find bugs.
 * Oversaw documentation work.
 
