@@ -65,15 +65,6 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        try {
-            Path taAssistFilePath = userPrefs.getTaAssistFilePath();
-            if (FileUtil.isFileExists(taAssistFilePath)) {
-                storage.backupFile(taAssistFilePath);
-            }
-        } catch (IOException e) {
-            logger.warning("Failed to backup data file");
-        }
-
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
@@ -92,7 +83,9 @@ public class MainApp extends Application {
         ReadOnlyTaAssist initialData;
         try {
             taAssistOptional = storage.readTaAssist();
-            if (!taAssistOptional.isPresent()) {
+            if (taAssistOptional.isPresent()) {
+                backupTaAssist(userPrefs.getTaAssistFilePath());
+            } else {
                 logger.info("Data file not found. Will be starting with a sample TaAssist");
             }
             initialData = taAssistOptional.orElseGet(SampleDataUtil::getSampleTaAssist);
@@ -111,6 +104,21 @@ public class MainApp extends Application {
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
+    }
+
+    /**
+     * Backs up the TA-Assist data file at the specified file path.
+     *
+     * @param taAssistFilePath The path to TA-Assist data file.
+     */
+    private void backupTaAssist(Path taAssistFilePath) {
+        try {
+            if (FileUtil.isFileExists(taAssistFilePath)) {
+                storage.backupFile(taAssistFilePath);
+            }
+        } catch (IOException e) {
+            logger.warning("Failed to backup data file");
+        }
     }
 
     /**

@@ -19,10 +19,9 @@ Given below are my contributions to the project.
         * The `grade` command to allow users to give grades to students for a session.
     * Implemented the `view` command to allow users to view session-wise grades of a student in a module.
     * Implemented feature to display current focused class (if any) in the GUI using bindings. 
-    * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
-        * Additionally, the data file is backed up everytime TA-Assist is opened.
     * Implemented collapsible student cards in the GUI to allow users to hide the student details.
-    * Added functionality to back up the data file each time TA-Assist is opened.
+    * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
+    * Added functionality to back up the data file everytime it is loaded successfully.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RezwanArefin01&breakdown=true).
 
