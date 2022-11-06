@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the main representation of our user's patrons, i.e: The `client` class.
   * Justification: This feature is required to use our application.
-  * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add notes, tag people etc.
+  * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add income, RiskAppetite levels etc.
   * Credits: `LocalDate` Library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 
 
@@ -28,21 +28,24 @@ Given below are my contributions to the project.
   * Helped to organize group meetings, with agenda (together with Marcus)
 
 * **Enhancements to existing features**:
-  * `Add/Delete/Edit` a person
-  * Saving both `Person` and `Event` into the addressBook
+  * `Add/Delete/Edit` a Client
+  * `Add/Delete` an Event
+  * Saving both `Person` and `Event` into LTNS
+  * Updates to Parser Conditions
 
 * **Documentation**:
   * User Guide:
     * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks
-    * Updated segments on adding a person into an AddressBook 
-    * Updated documentation clarifying
+    * Updated segments on adding a person into an AddressBook
     * Edited command summary
   * Developer Guide:
     * Added Activity diagrams for an execution of adding an event 
     * Added Extensions for existing class diagram of a person.
+    * Added Use Cases for Person/Event
+    * Updated Feature Summary for `Add/Delete` for Client / Event
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 5
+  * PRs reviewed (with non-trivial review comments): 8
   * Reported bugs and suggestions for other teams in the class: Mainly for UserGuide
   * Gave more than average comments for all peer-review related activites: E.g: PE-D, iP feedback etc.
 
