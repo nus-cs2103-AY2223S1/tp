@@ -492,7 +492,7 @@ The followings are two ways to use this command:
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tip:** **Useful keyboard shortcuts for the pop-up window:**
+**:bulb: Tip:** **Useful keyboard shortcuts for the pop-up window:** <br>
 
 | Keyboard shortcut | Associated action                                                                      |
 |:-----------------:|:---------------------------------------------------------------------------------------|
@@ -844,13 +844,13 @@ Format: `sort KEY [ATTRIBUTE]…​`
 
 #### KEY and ATTRIBUTE Table
 
-| Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE to Sort <br> (acceptable parameters)                                                                                                                                                           | Examples                                    |
-|:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-|         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort buyer name`, <br> `sort b p n`        |
-|        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort supplier e`, <br> `sort s address`    |
-|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort d location a`, <br>`sort deliverer n` |           
-|         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`            |          
-|          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`             |
+| Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE to Sort <br> (acceptable parameters)                                                                                                                                                           | Examples                                   |
+|:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+|         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort buyer name`, <br> `sort b p n`       |
+|        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort supplier e`, <br> `sort s address`   |
+|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort d location`,  <br>`sort deliverer n` |           
+|         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`           |          
+|          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`            |
 
 <div markdown="span" class="alert alert-info">
 

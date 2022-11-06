@@ -26,8 +26,8 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](http://github.com/wweqg)]
 [[portfolio](team/wweqg.md)]
 
-* Role: *to be added*
-* Responsibilities: *to be added*
+* Role: Developer
+* Responsibilities: Integration
 
 ### Faith Chua
 
