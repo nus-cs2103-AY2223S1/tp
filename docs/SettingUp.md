@@ -3,7 +3,14 @@ layout: page
 title: Setting up and getting started
 ---
 
-## Setting up the project in your computer
+# **Setting up and Getting started**
+
+* [Setting up the project on your computer](#setting-up-the-project-in-your-computer)
+* [Before writing code](#before-writing-code)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Setting up the project on your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 

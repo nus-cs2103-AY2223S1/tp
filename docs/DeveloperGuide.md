@@ -59,7 +59,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 SoCompiler aims to provide features that are intuitive and simple to use. Keeping this in mind, we pursed an iterative approach, adding new features amidst evolving requirements. This gives rise to the following main guiding principles for SoCompiler:
 
 **Maintainability**
-This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/). Ab3 was developed in a manner that facilitates easy modification. We capitilised on this fact and built upon existing components in AB3, such as [UI](#32-ui-component), [Logic](#33-logic-component), [Model](#34-model-component) and [Storage](#35-storage-component).
+This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/), which follows the Model View Controller(MVC) design pattern. Ab3 was developed in a manner that facilitates easy modification. We capitilised on this fact and built upon existing components in AB3, such as [UI](#32-ui-component), [Logic](#33-logic-component), [Model](#34-model-component) and [Storage](#35-storage-component).
 
 **Command Line Interface (CLI) Oriented**
 As our target audience is SOC students who usually type fast and are familiar with command line interfaces, we designed SoCompiler to be more efficient at managing contacts and module information using commands compared to other apps in the market.
@@ -581,7 +581,7 @@ otherwise)
 
       Use case ends.
 
-**Use case:UC10 Edit entry in list of persons**
+**Use case:UC10 Edit entry in list of modules**
 
 **MSS**
 
@@ -606,7 +606,7 @@ otherwise)
 
       Use case ends.
 
-* 3c. The given name already exists.
+* 3c. The given module code already exists.
 
     * 3c1. SoCompiler shows an error message
 
