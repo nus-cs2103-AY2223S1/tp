@@ -113,9 +113,22 @@ However, it is recommended to read through the [Features](#features) section to 
 Loads previous command into the _Command Box_.
 While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
+Click to return to: [GUI Features](#gui-features) | [Back to Top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Features
+
+You can jump to the following sections:
+
+* [Command Structure](#command-structure)
+* [Getting Help](#getting-help--help)
+* [Task Management](#task-management) - For actions like adding, editing and deleting tasks
+* [Viewing Specific Tasks](#viewing-specific-tasks)
+* [Archive Management](#archive-management)
+* [Exiting The Program](#exiting-the-program--exit)
+
+### Command Structure
 
 In this section, we will be explaining our commands. Before proceeding, we will need to explain how our commands are
 structured!
@@ -186,7 +199,21 @@ Format: `help`
 Shortcut key: <kbd>F1</kbd> 
 </div>
 
+Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+
 ### Task Management
+
+We have the following commands in this section:
+
+* [Adding a task](#adding-a-task-add)
+* [Editing a task](#editing-a-task--edit)
+* [Deleting a task](#deleting-a-task--delete)
+* [Marking a task as complete](#marking-a-task-as-complete-mark)
+* [Unmarking a task](#unmarking-a-task-unmark)
+* [Tagging a task](#tagging-a-task-tag)
+* [Clearing all entries](#clearing-all-entries--clear)
+
+Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
 
 #### Adding a task: `add`
 
@@ -251,7 +278,7 @@ Examples:
 ![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
 ![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
 
-#### Marking a task as completed: `mark`
+#### Marking a task as complete: `mark`
 
 Mark a task as complete.
 
@@ -286,7 +313,7 @@ Example: `tag 1 -t optional`
 
 ![Example image of Tag Command](images/user-guide/TagCommandDemo.png)
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries of tasks in the task list.
 
@@ -300,7 +327,7 @@ This command is irreversible!
 
 </div>
 
-### List : `ls`
+### Viewing Specific Tasks
 
 `ls` commands filter the task list. There are multiple ways to filter the task list, such as
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
@@ -310,6 +337,18 @@ Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
+
+We have the following commands in this section
+
+* [Listing all tasks](#listing-all-tasks--ls--a)
+* [Listing all unmarked tasks](#listing-all-unmarked-tasks--ls--u)
+* [Listing all marked tasks](#listing-all-marked-tasks--ls--m)
+* [Listing all tasks under the same module](#listing-all-tasks-under-the-same-module--ls---module)
+* [Listing all tasks containing the same tag](#listing-all-tasks-containing-the-same-tag--ls--t)
+* [Listing all tasks with deadline on or after a date](#listing-all-tasks-with-deadline-on-or-after-a-date--ls--d)
+* [Listing all task names with the matching keywords](#listing-all-task-names-with-the-matching-keywords-ls--n)
+
+Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
 
 #### Listing all tasks : `ls -a`
 
@@ -377,7 +416,7 @@ Example: `ls -n task1`
 Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
 </div>
 
-### Find task names or tags: `find`
+#### Find task names or tags: `find`
 
 The `find` command finds the task names that **contain** the keywords and tags which **exactly match** with the 
 keywords. Meaning that names does not have to be an exact match (Example: searching `tap` with return a task with a 
@@ -398,6 +437,13 @@ finds **any** task name that contain keywords `week` or `tut` or **any** tag tha
 Example multiple word search: ![FindCommandMultiple](images/user-guide/FindCommandMultiple.png)
 
 ### Archive Management
+
+We have the following commands in this section:
+
+* [Archiving tasks](#archiving-tasks--archive)
+* [View archived tasks](#view-archived-tasks--showarchive)
+
+Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
 
 #### Archiving tasks : `archive`
 
@@ -432,6 +478,8 @@ Terminates and exits the program.
 
 Format: `exit`
 
+Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Other Features
@@ -448,6 +496,9 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
 </div>
+
+Click to return to: [Back to Top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -466,6 +517,9 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 
 **Q**: I need help! How can I contact the team?<br>
 **A**: You may contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen). If possible, do provide screenshots demonstrating the problem you are facing. We will assist you as soon as possible! 
+
+Click to return to: [Back to Top](#user-guide)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -494,6 +548,8 @@ Format meanings:
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                   | `unmark 2`                                   |
 | Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
 
+Click to return to: [Back to Top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -505,3 +561,4 @@ Format meanings:
 |         |                                                                              |
 |         |                                                                              |
 
+Click to return to: [Back to Top](#user-guide)
