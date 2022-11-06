@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/L1uY1jun)]
 [[portfolio](team/l1uy1jun.md)]
 
-* Role: Team Member
+* Role: Project Advisor
 * Responsibilities: `to be added soon`
 
 ### Darren Tng

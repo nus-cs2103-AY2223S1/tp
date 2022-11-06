@@ -42,7 +42,7 @@ public class AddCommand extends Command {
     private final Applicant toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Applicant}
+     * Creates an AddCommand to add the specified {@code Applicant}.
      */
     public AddCommand(Applicant applicant) {
         requireNonNull(applicant);

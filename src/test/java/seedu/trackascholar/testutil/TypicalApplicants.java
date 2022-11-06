@@ -4,8 +4,8 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATI
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATION_STATUS_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_MATHEMATICS;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -38,7 +38,8 @@ public class TypicalApplicants {
             .withScholarship("Sports").withApplicationStatus("pending").build();
     public static final Applicant DANIEL = new ApplicantBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com")
-            .withScholarship("Arts").withApplicationStatus("rejected").withMajors("friends").build();
+            .withScholarship("Arts").withApplicationStatus("rejected")
+            .withMajors("Software Engineering").build();
     public static final Applicant ELLE = new ApplicantBuilder().withName("Elle Meyer")
             .withPhone("94821224").withEmail("werner@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
@@ -60,10 +61,11 @@ public class TypicalApplicants {
     // Manually added - Applicant's details found in {@code CommandTestUtil}
     public static final Applicant AMY = new ApplicantBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withScholarship(VALID_SCHOLARSHIP_AMY)
-            .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withMajors(VALID_MAJOR_FRIEND).build();
+            .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withMajors(VALID_MAJOR_MATHEMATICS).build();
     public static final Applicant BOB = new ApplicantBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withScholarship(VALID_SCHOLARSHIP_BOB)
-            .withApplicationStatus(VALID_APPLICATION_STATUS_BOB).withMajors(VALID_MAJOR_HUSBAND, VALID_MAJOR_FRIEND)
+            .withApplicationStatus(VALID_APPLICATION_STATUS_BOB)
+            .withMajors(VALID_MAJOR_COMPUTER_SCIENCE, VALID_MAJOR_MATHEMATICS)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

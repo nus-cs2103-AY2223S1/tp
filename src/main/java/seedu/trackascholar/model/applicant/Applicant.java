@@ -125,7 +125,7 @@ public class Applicant {
         }
 
         return otherApplicant != null
-                && otherApplicant.getFullName().equalsIgnoreCase(this.getFullName());
+                && otherApplicant.getName().equalsIgnoreCase(this.getName());
     }
 
     /**
@@ -207,7 +207,7 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
-                && otherApplicant.getStatusOfApplication().equals(getStatusOfApplication())
+                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
                 && otherApplicant.getPin().equals(getPin())
                 && otherApplicant.getMajors().equals(getMajors());
     }
@@ -229,7 +229,7 @@ public class Applicant {
                 .append("\n Scholarship: ")
                 .append(getScholarship())
                 .append("\n Application Status: ")
-                .append(getStatusOfApplication());
+                .append(getApplicationStatus());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {

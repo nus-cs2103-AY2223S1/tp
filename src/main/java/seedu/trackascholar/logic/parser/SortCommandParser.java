@@ -11,20 +11,21 @@ import seedu.trackascholar.logic.parser.exceptions.ParseException;
 import seedu.trackascholar.model.applicant.Applicant;
 
 /**
- * Parses input arguments and creates a new SortCommand object
+ * Parses input arguments and creates a new SortCommand object.
  */
 
 public class SortCommandParser implements Parser<SortCommand> {
 
-    private static final String NAME = "name";
-    private static final String SCHOLARSHIP = "scholarship";
-    private static final String STATUS = "status";
-    private static final String REVERSE_FLAG = "-r";
+    public static final String NAME = "name";
+    public static final String SCHOLARSHIP = "scholarship";
+    public static final String STATUS = "status";
+    public static final String REVERSE_FLAG = "-r";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public SortCommand parse(String args) throws ParseException {
 

@@ -3,7 +3,7 @@ package seedu.trackascholar.model.applicant;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
@@ -43,7 +43,7 @@ public class UniqueApplicantListTest {
     public void contains_applicantWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicantList.add(ALICE);
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
-                .withMajors(VALID_MAJOR_HUSBAND).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertTrue(uniqueApplicantList.contains(editedAlice));
     }
 
@@ -86,7 +86,7 @@ public class UniqueApplicantListTest {
     public void setApplicant_editedApplicantHasSameIdentity_success() {
         uniqueApplicantList.add(ALICE);
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
-                .withMajors(VALID_MAJOR_HUSBAND).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         uniqueApplicantList.setApplicant(ALICE, editedAlice);
         UniqueApplicantList expectedUniqueApplicantList = new UniqueApplicantList();
         expectedUniqueApplicantList.add(editedAlice);

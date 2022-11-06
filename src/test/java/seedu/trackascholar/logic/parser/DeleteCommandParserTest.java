@@ -18,7 +18,9 @@ import seedu.trackascholar.logic.commands.DeleteCommand;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private static final DeleteCommandParser parser = new DeleteCommandParser();
+    private static final String ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
@@ -27,6 +29,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", ERROR_MESSAGE);
     }
 }

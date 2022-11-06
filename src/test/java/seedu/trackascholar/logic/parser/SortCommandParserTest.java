@@ -10,7 +10,10 @@ import seedu.trackascholar.logic.commands.SortCommand;
 import seedu.trackascholar.model.applicant.Applicant;
 
 public class SortCommandParserTest {
-    private SortCommandParser parser = new SortCommandParser();
+
+    private static final SortCommandParser parser = new SortCommandParser();
+    private static final String ERROR_MESSAGE =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_validArgs_returnsSortCommand() {
@@ -22,38 +25,41 @@ public class SortCommandParserTest {
             new SortCommand(Applicant.sortByStatus());
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, "name", expectedNameSortCommand);
-        assertParseSuccess(parser, "scholarship", expectedScholarshipSortCommand);
-        assertParseSuccess(parser, "status", expectedStatusSortCommand);
+        assertParseSuccess(parser, SortCommandParser.NAME, expectedNameSortCommand);
+        assertParseSuccess(parser, SortCommandParser.SCHOLARSHIP, expectedScholarshipSortCommand);
+        assertParseSuccess(parser, SortCommandParser.STATUS, expectedStatusSortCommand);
 
         // with multiple trailing and leading whitespaces
-        assertParseSuccess(parser, "\n name \n", expectedNameSortCommand);
-        assertParseSuccess(parser, "\n scholarship \n", expectedScholarshipSortCommand);
-        assertParseSuccess(parser, "\n status \n", expectedStatusSortCommand);
+        assertParseSuccess(parser, "\n "
+                + SortCommandParser.NAME + " \n", expectedNameSortCommand);
+        assertParseSuccess(parser, "\n "
+                + SortCommandParser.SCHOLARSHIP + " \n", expectedScholarshipSortCommand);
+        assertParseSuccess(parser, "\n "
+                + SortCommandParser.STATUS + " \n", expectedStatusSortCommand);
     }
 
     @Test
-    public void parse_invalidArgs_throwsError() {
-        assertParseFailure(parser, "ILoveSoftwareEngineering",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "ILoveSoftwareEngineering", ERROR_MESSAGE);
 
-        //Throws error when sort by phone
-        assertParseFailure(parser, "phone",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        // Throws an error when sort by phone
+        assertParseFailure(parser, "phone", ERROR_MESSAGE);
 
-        //Throws error when sort by email
-        assertParseFailure(parser, "email",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        // Throws an error when sort by email
+        assertParseFailure(parser, "email", ERROR_MESSAGE);
 
-        //Throw error when sort by applicationStatuses.It should be status.
-        assertParseFailure(parser, "applicationStatus",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        // Throws an error when sort by applicationStatuses. It should be status.
+        assertParseFailure(parser, "applicationStatus", ERROR_MESSAGE);
     }
 
     @Test
-    public void parse_emptyArg_throwsError() {
-        assertParseFailure(parser, "     ",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "", ERROR_MESSAGE);
+        assertParseFailure(parser, "     ", ERROR_MESSAGE);
     }
 
+    @Test
+    public void parse_multipleArgs_throwsParseException() {
+        assertParseFailure(parser, "rejected pending", ERROR_MESSAGE);
+    }
 }
