@@ -36,7 +36,9 @@ title: Developer Guide
 
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/)
+* Libraries used: [JCommander](https://github.com/cbeust/jcommander), [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5)
+* APIs used: [NUSMods](https://api.nusmods.com/v2/)
 
 ## Setting up, getting started
 
