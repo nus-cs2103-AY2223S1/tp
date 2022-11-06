@@ -117,7 +117,7 @@ If you are ready, let's [get started](#setting-up-getting-started)!
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * Assets used:
   * PennyWise Application Logo:
-  * Icon(s): [Calendar icon from Streamline](https://www.streamlinehq.com/icons/plump-duo/interface-essential/calendar/interface-calendar) 
+  * Icon(s): [Calendar icon from Streamline](https://www.streamlinehq.com/icons/plump-duo/interface-essential/calendar/interface-calendar)
   * Font: [Poppins Font from Google Fonts](https://fonts.google.com/specimen/Poppins)
   * Theme: [Dark Color Palette from ColorHunt](https://colorhunt.co/palette/2c3333395b64a5c9cae7f6f2)
 
@@ -216,7 +216,7 @@ Ready to take your next steps? Read on to find out more about each of the compon
 * [Model component](#model-component)
 * [Storage component](#storage-component)
 * [Common classes](#common-classes)
-* 
+
 ### UI component
 
 The UI component is responsible for handling the interactions on the user-interface.
@@ -283,7 +283,7 @@ How the parsing works:
 
 ### Model component
 
-The Model component is in charge of managing the entities in the application. 
+The Model component is in charge of managing the entities in the application.
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
 
@@ -434,7 +434,7 @@ Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it
 
 ### Edit Entry
 
-The `edit` command allows students to make changes to the description, date, amount or category of existing expenditure and income entries. 
+The `edit` command allows students to make changes to the description, date, amount or category of existing expenditure and income entries.
 
 #### How the `edit` command works
 
