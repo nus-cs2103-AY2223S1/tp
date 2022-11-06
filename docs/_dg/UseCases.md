@@ -56,7 +56,7 @@ Extensions:
 
 #### Use Case 3: Delete Item from Inventory
 
-Preconditions: [[ Item ]] to delete exists in inventory.
+Preconditions: [[ item:Item ]] to delete exists in inventory.
 
 [[ MSS ]]:
 
