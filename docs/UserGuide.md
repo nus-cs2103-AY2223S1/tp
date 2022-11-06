@@ -16,6 +16,7 @@ a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 1. Quick start
 
@@ -47,6 +48,9 @@ a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 
 - When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
 the rightmost prefix and its details, i.e. `Cups` will be taken as input.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
   
 # 3. Visual Guide
 
@@ -68,6 +72,9 @@ A brief display of important information for **inventory** and **tasks**.
 
   * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
     * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3.2 Colors used for Inventory
 
@@ -99,6 +106,8 @@ Inventory Cards for Items
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. Features
 
@@ -351,6 +360,8 @@ all the suppliers. (Refer to [Figure 5](#figure-5-below-after-running-listsuppli
 
 ![afterlistsuppliers](images/listall.png)
 
+<div style="page-break-after: always;"></div>
+
 ## 4.9.2 List all tasks: `listTasks`
 
 Lists all tasks
@@ -397,6 +408,7 @@ re-run Salesy.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. Command summary
 
@@ -420,6 +432,9 @@ re-run Salesy.
 | **delete** (supply item)     | `deleteItem <item index>`                                | `deleteItem 2`                                                                     |
 | **edit stock** (supply item) | `editStock <item index> c/CURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
 | **list** (all items)         | `listAll`                                                | `listAll`                                                                          |                                                    |
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 6. Appendix
 
