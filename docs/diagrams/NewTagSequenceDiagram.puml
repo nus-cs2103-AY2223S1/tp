@@ -1,0 +1,82 @@
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
+participant ":NewTagCommandParser" as NewTagCommandParser LOGIC_COLOR
+participant ":Tag" as Tag LOGIC_COLOR
+participant ":NewTagCommand" as NewTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("newtag n/tagname")
+activate LogicManager
+
+LogicManager -> FoodRemParser : parseCommand("newtag n/tagname")
+activate FoodRemParser
+
+create NewTagCommandParser
+FoodRemParser -> NewTagCommandParser
+activate NewTagCommandParser
+
+
+NewTagCommandParser --> FoodRemParser
+deactivate NewTagCommandParser
+
+
+FoodRemParser -> NewTagCommandParser : parse("newtag n/tagname")
+activate NewTagCommandParser
+
+create Tag
+NewTagCommandParser -> Tag
+activate Tag
+Tag --> NewTagCommandParser
+deactivate Tag
+
+create NewTagCommand
+NewTagCommandParser -> NewTagCommand : NewTagCommand(tag)
+activate NewTagCommand
+
+NewTagCommand --> NewTagCommandParser :
+deactivate NewTagCommand
+
+NewTagCommand --> FoodRemParser :
+deactivate NewTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+NewTagCommandParser -[hidden]-> FoodRemParser
+destroy NewTagCommandParser
+
+FoodRemParser --> LogicManager :
+deactivate FoodRemParser
+
+LogicManager -> NewTagCommand : execute(model)
+activate NewTagCommand
+
+
+NewTagCommand -> Model : addTag(toAdd)
+activate Model
+
+Model --> NewTagCommand
+deactivate Model
+
+create CommandResult
+NewTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> NewTagCommand
+deactivate CommandResult
+
+NewTagCommand --> LogicManager
+deactivate NewTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

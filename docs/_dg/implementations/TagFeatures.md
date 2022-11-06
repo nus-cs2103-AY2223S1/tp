@@ -17,8 +17,6 @@
 
 #### General Implementation Details
 
-<!-- TODO: ADD TAG CLASS DIAGRAM -->
-
 The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
 * Creating, updating and deleting tags will modify the tags within the `UniqueTagList` which contains all existing `Tag` objects.
@@ -30,7 +28,7 @@ Given below is an UML diagram of `Tag` and the classes related to it:
 
 #### General Design Considerations
 
-When storing a tag, these are the alternatives to consider.
+When storing a tag, these are the alternatives considered.
 
 * **Alternative 1 (current choice):** Store `Tag` in a separate `UniqueTagList` and each `Item` stores its own set of associated `Tag`
 
@@ -67,22 +65,44 @@ When storing a tag, these are the alternatives to consider.
     * Java supports only single class inheritance. Limited support for associating `Item` to multiple `Tag`
 
 #### Creating a Tag
-<!-- TODO: Fill up -->
+
+##### Overview
+The `newtag` command creates a new tag in FoodRem which can be subsequently used in another command (`tag`) to tag items for classification.
+
+Here is the sequence diagram showing the interactions between the different components during a `newtag` command.
+![NewTagSequenceDiagram](images/NewTagSequenceDiagram.png)
+
+
+##### Feature Details
+1. The user specifies a tag name for the new tag when creating the new tag
+1. If the tag name of the new tag is not provided, the user will be prompted to enter the command correctly via an error message.
+1. If the new tag ( tag with the same tag name)  already exists in `model`, an error is thrown to inform the user that the tag already exists.
+1. If the tag storage of FoodRem is full, an error will be thrown to inform the user that the maximum limit of tags has been reached and no additional tags can be created and stored on FoodRem.
+1. If the new tag name has an invalid format, an error is thrown to inform the user of the invalid tag name format.
+1. If Step 5 completes without any exceptions, a new tag is successfully created and stored inside the tag storage.
+
+##### Feature Considerations
+`Tag` is implemented as a separate class (rather than having it as a set of `String` in `Item`). With this, we could have a  `newtag` command so that when we can create a `Tag` object independently. This specific `Tag` object can be referenced by different `Item` objects. We will also hence be able to check whether `Tag` objects of the same name has been created before and if so, prevent these duplicate `Tag` objects from being created. Thus, if different `Item` objects wants to reference `Tag` of the same name, they will all reference to the same `Tag` object.  Moreover, this gives us more flexibility in creating other commands such as `deletetag` or `renametag` which we can apply to a specific tag and updates made to this tag  will be reflected across all `Item` objects that reference this `Tag` object.
 
 #### Tagging an Item
 
 ##### Overview
 
-<!-- TODO: ACTIVITY DIAGRAM -->
-
 The `tag item` command tags an item with the provided tag name in FoodRem. If both the item and the tag are valid, the item will be tagged successfully.
 
 ##### Feature Details
 
+Here is the activity diagram showing the process of the `tag` command:
+
+![TagItemActivityDiagram](images/TagItemActivityDiagram.png)
+
+
+Here is the sequence diagram showing the interactions between the different components during a `tag` command.
+
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
-1. The user specifies a tag name and the item index (which corresponds to the index of the item displayed on the item list on FoodRem UI).
-1. If the tag name or index is not provided, the user will be prompted to enter them correctly via an error message.
+1. The user specifies a tag name and the item index (which corresponds to the index of the item displayed on the Item List in FoodRem UI).
+1. If the tag name or index is not provided, the user will be prompted to enter the command correctly via an error message.
 1. The tag name is cross-referenced with the current tags in the database and an error is thrown if the tag does not exist in the database.
 1. The index is cross-referenced to the list of item displayed and an error would be thrown if the index is out of range of the list. This informs the user that the item does not exist.
 1. If the item index and tag name are both valid, the item is checked to determine whether that item contains the specified tag. If the specified tag is already contained in the item, an error would be thrown to inform user about the duplicate tag.
@@ -90,7 +110,7 @@ The `tag item` command tags an item with the provided tag name in FoodRem. If bo
 
 ##### Feature Considerations
 
-* When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
+When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
 
 #### Filtering Items by Tag Name
 <!-- TODO: Fill up -->
