@@ -46,21 +46,10 @@ public class EditPersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PERSON_INDEX (must be a valid positive integer) "
-            + "[" + FLAG_NAME_STR + " NAME] "
-            + "[" + FLAG_PHONE_STR + " PHONE] "
-            + "[" + FLAG_EMAIL_STR + " EMAIL] "
-            + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + FULL_COMMAND + " 1 "
-            + FLAG_PHONE_STR + " 91234567 "
-            + FLAG_EMAIL_STR + " johndoe@example.com";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to edit a person's details.\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the TruthTable.";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_INDEX_DESCRIPTION)
@@ -100,7 +89,7 @@ public class EditPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();

@@ -31,17 +31,11 @@ public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Assigns a task to the specified member in the team.\n"
-            + "Parameters: TASK_INDEX (must be a valid positive integer) "
-            + "MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1 2";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to assign a task to a specific member(s) of the team.\n";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task successfully. %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
-    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
-            + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
@@ -64,7 +58,7 @@ public class AssignTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();

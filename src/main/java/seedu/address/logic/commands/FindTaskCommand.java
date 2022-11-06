@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_SEARCH_KEYWORDS_DESCRIPTION;
 
 import picocli.CommandLine;
@@ -23,13 +22,8 @@ public class FindTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all tasks whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: "
-            + FLAG_NAME_STR + " NAME \n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " teams feature ";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to find a task in the current team's task list.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s): %2$s.\n"
             + "Type `list tasks` to show all tasks again.";
@@ -52,7 +46,7 @@ public class FindTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);

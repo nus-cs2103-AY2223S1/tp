@@ -24,11 +24,9 @@ public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to delete a link from the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Deletes an existing link identified by the index number used in the displayed link list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted Link: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_LINK_INDEX_DESCRIPTION)
@@ -47,7 +45,7 @@ public class DeleteLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();

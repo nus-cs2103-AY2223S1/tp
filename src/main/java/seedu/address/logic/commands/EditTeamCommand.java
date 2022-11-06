@@ -35,23 +35,10 @@ public class EditTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Edits the current team \n"
-            + "Parameters: "
-            + "[" + FLAG_NAME_STR + " TEAM_NAME] "
-            + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
-            + "Example:\n"
-            + "1. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2103T "
-            + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2102 ";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to edit a team's details.\n";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
-
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-
     public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the TruthTable.";
 
     private final EditTeamDescriptor editTeamDescriptor;
@@ -89,7 +76,7 @@ public class EditTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 

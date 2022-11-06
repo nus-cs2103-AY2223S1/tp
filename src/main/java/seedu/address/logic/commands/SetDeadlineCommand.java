@@ -25,12 +25,8 @@ public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     public static final String ALIAS = "d";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Sets a deadline to the specified existing task.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) \n"
-            + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
-            + "Example: " + FULL_COMMAND + " 1" + " 2023-02-25 23:59";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to set a deadline for a task.\n";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
@@ -57,7 +53,7 @@ public class SetDeadlineCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();

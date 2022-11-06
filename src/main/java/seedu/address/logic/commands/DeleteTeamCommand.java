@@ -24,11 +24,8 @@ public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Delete an existing team \n"
-            + "Parameters: TEAM_NAME\n"
-            + "Example: " + FULL_COMMAND + " project";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to delete a team from TruthTable.\n";
 
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Deleted team: %1$s";
     public static final String MESSAGE_AT_LEAST_ONE_TEAM = "You must have at least one team!";
@@ -50,7 +47,7 @@ public class DeleteTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();

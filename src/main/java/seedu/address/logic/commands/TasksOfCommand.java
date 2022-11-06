@@ -24,11 +24,8 @@ public class TasksOfCommand extends Command {
     public static final String COMMAND_WORD = "tasksof";
     public static final String ALIAS = "to";
     public static final String FULL_COMMAND = COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Displays all tasks of a particular team member.\n"
-            + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to view all tasks assigned to a particular team member.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) assigned to %2$s. \n"
             + "Type `list tasks` to show all tasks again.";
@@ -53,7 +50,7 @@ public class TasksOfCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> members = model.getFilteredMemberList();

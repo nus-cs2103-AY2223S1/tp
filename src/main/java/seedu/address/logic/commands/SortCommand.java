@@ -21,6 +21,9 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String ALIAS = "so";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to sort data in TruthTable.\n";
+
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -31,11 +34,12 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

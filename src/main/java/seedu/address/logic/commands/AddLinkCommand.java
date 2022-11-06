@@ -27,18 +27,10 @@ public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a new link \n"
-            + "Parameters: "
-            + FLAG_NAME_STR + " NAME "
-            + FLAG_URL_STR + " PHONE \n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " Google "
-            + FLAG_URL_STR + " https://google.com";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to add links relevant to the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
-
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in team";
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
@@ -63,7 +55,7 @@ public class AddLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         Link toAdd = new Link(name, url);
