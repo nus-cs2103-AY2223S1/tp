@@ -28,9 +28,9 @@ Around 4.3k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 
 ### Contributions to the DG
 - Added implementation details for `view` command.
-- Updated use cases, user stories and instructions for manual testing. 
+- Updated use cases, user stories and instructions for manual testing.
 
 ### Reviewing contributions
 - PRs reviewed: [#77](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/77), [#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129), [#134](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/134), [#139](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/139).
 - Reported 14 bugs for another team in [PED](https://github.com/fannyjian/ped).
-- Participated in the module forum ([#405](https://github.com/nus-cs2103-AY2223S1/forum/issues/405) and [#406](https://github.com/nus-cs2103-AY2223S1/forum/issues/406)). 
+- Participated in the module forum ([#405](https://github.com/nus-cs2103-AY2223S1/forum/issues/405) and [#406](https://github.com/nus-cs2103-AY2223S1/forum/issues/406)).

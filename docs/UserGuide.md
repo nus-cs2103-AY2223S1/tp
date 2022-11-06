@@ -264,7 +264,7 @@ Format: `deletecomment TUTOR_INDEX COMMENT_INDEX` or `dc TUTOR_INDEX COMMENT_IND
 
 :information_source: **Note:**
 * `TUTOR_INDEX` refers to the index number shown in the displayed tutor list.
-* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section. 
+* `COMMENT_INDEX` refers to the index number of the comment shown in the comment section.
 * Both indices **must be positive integers** 1, 2, 3, …​
 
 </div>
