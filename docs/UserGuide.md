@@ -459,6 +459,7 @@ and to look for a person with a debt that falls on a date both before and after 
 Using these input pairs with each other or other inputs looking for people with a specific debt in their debt list behaves similarly to the other inputs; see the examples below.
 
 Examples:
+* `find n/hans p/81234567` will match `Hansel` or `Hans Gruber` if his phone number is `81234567`.
 * `find d/burger n/hans` will match `Hansel` if he owes money for `burger`.
 * `find d/burger m/10` will match anyone who both owes money for `burger` and owes `$10.00` for something (or someone who owes `$10.00` for `burger`).
 * `find above/10 below/20 d/fries` will match anyone who both owes money for `fries` and owes between `$10.00` and `$20.00` inclusive for something (or someone who owes between `$10.00` and `$20.00` inclusive for `fries`).
