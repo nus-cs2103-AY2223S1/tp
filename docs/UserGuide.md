@@ -69,8 +69,8 @@ Commands have to be written in the correct format to be used. The format for eac
 
 1. Ensure you have Java `11` or above installed in your computer. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** JARVIS is supported on Windows, Linux, and OS-X platforms.
-</div>
+   <div markdown="span" class="alert alert-info">:information_source: **Note:** JARVIS is supported on Windows, Linux, and OS-X platforms.
+   </div>
 
 2. Download the latest `jarvis.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
 
@@ -80,10 +80,10 @@ Commands have to be written in the correct format to be used. The format for eac
 
    ![Ui](images/Ui.png)
 
-<div markdown="span" class="alert alert-primary">
+   <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** The following picture shows the different components of the GUI.
-<img src="images/Ui_annotated.png" alt="Annotated UI">
-</div>
+        <img src="images/Ui_annotated.png" alt="Annotated UI">
+   </div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -94,7 +94,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
    * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
 
-   * **`clear`** : Deletes all students, tasks and lessons.
+   * **`clear`** : Deletes all students, tasks and lessons. Use this command to delete the sample data in JARVIS before adding your own data.
 
    * **`exit`** : Exits the app.
 
