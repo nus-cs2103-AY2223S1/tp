@@ -9,19 +9,34 @@ import seedu.address.model.statistics.exceptions.DuplicateDataException;
 
 /**
  * A list of {@code StatisticData} that enforces that no 2 StatisticData points have the same name
- * as the charts require unique data points. As such, adding uses StatisticData#isSameName(StatisticData) in order
- * to ensure the StatisticData being added is unique in terms of name.
+ * as the charts require unique data points. As such, adding uses StatisticData#isSameStatisticData(StatisticData)
+ * in order to ensure the StatisticData being added is unique in terms of name.
  *
  * Supports a minimal set of list operations.
  */
 public class StatisticDataList {
 
-    //ObservableList of StatisticData points.
+    //ObservableList of StatisticData points
     private final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
+    /**
+     * Returns true if the StatisticDataList is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return this.chartDataList.size() == 0;
+    }
 
     /**
-     * Adds {@code toAdd} into the ObservableList of StatisticData points.
-     * {@code toAdd} cannot be null and cannot have the same name as an existing StatisticData point.
+     * Returns true if {@code toCheck} shares the same name as a StatisticData point in the list.
+     */
+    public boolean contains(StatisticData toCheck) {
+        requireNonNull(toCheck);
+        return chartDataList.stream().anyMatch(toCheck::isSameStatisticData);
+    }
+
+    /**
+     * Adds a StatisticData point to the ObservableList.
+     * The StatisticData point must not already exist in the list.
+     * @param toAdd StatisticData point to be added to ObservableList.
      */
     public void addStatistic(StatisticData toAdd) {
         requireNonNull(toAdd);
@@ -32,10 +47,11 @@ public class StatisticDataList {
     }
 
     /**
-     * Increments {@code value} of StatisticData point by 1 with the same name as specified, else add
-     * a new StatisticData point with the specified name.
+     * Increments {@code value} of StatisticData point with name {@code name} by 1.
+     * If StatisticData point with name {@code name} does not exist,
+     * adds a new StatisticData point with the specified name to the list.
      */
-    public void addToStatistic(String name) {
+    public void incrementStatistic(String name) {
         for (StatisticData data : chartDataList) {
             if (data.getName().equals(name)) {
                 data.updateValueByOne();
@@ -44,31 +60,6 @@ public class StatisticDataList {
         }
         this.addStatistic(new StatisticData(name, 1));
     }
-
-    /**
-     * Returns true if {@code toCheck} shares the same name as a StatisticData point in the list,
-     * otherwise returns false.
-     */
-    public boolean contains(StatisticData toCheck) {
-        requireNonNull(toCheck);
-        return chartDataList.stream().anyMatch(toCheck::isSameName);
-    }
-
-    public ObservableList<Data> asUnmodifiableObservableList() {
-        return FXCollections.unmodifiableObservableList(this.toPieChartData());
-    }
-
-    public ObservableList<StatisticData> getChartDataList() {
-        return this.chartDataList;
-    }
-
-    /**
-     * Returns true if the StatisticDataList is empty, false otherwise.
-     */
-    public boolean isEmpty() {
-        return this.chartDataList.size() == 0;
-    }
-
     /**
      * Converts the ObservableList of StatisticData to an ObservableList of PieChart.Data.
      */
@@ -78,5 +69,8 @@ public class StatisticDataList {
             pieChartData.add(statData.getData());
         }
         return pieChartData;
+    }
+    public ObservableList<Data> asUnmodifiableObservableList() {
+        return FXCollections.unmodifiableObservableList(this.toPieChartData());
     }
 }
