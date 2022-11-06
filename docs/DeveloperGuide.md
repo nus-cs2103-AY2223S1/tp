@@ -320,6 +320,8 @@ Below is a sequence diagram that illustrates the execution of `listMeeting d/tom
 
 #### 3.4.1 Different view panels
 
+View panels are one of the main component of the UI and the main component where a user sees the results of their commands. Examples of view panel include `MeetingListPanel`, `ClientDetailedViewPanel` and more.
+
 The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
 
 #### Implementation
@@ -347,7 +349,9 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 **Aspect: Different view panels do not inherit from a single abstract panel class
 
-- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here is an example of over engineering and adds no value to justify the effort of doing so.
+- View panels include not only `ListPanel`, but also `DetailedViewPanel`.
+- Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here to make all the different view panels inherit from a single parent class is an example of over engineering and adds no value to justify the effort of doing so.
+- Only within the three `ListPanel`, there is a single common method `numRecordsString`, which checks for plurality of the word 'record'. As such, a small bit of polymorphism in an abstract class `ListPanel` is incorporated in an attempt to reduce repetition.
 
 
 
@@ -639,7 +643,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 * **Meeting**: An event that the user with the client at a specific date and time.
 * **Product**: A financial product such as life insurance that a financial advisor is selling
 * **Timing conflict**: Time periods that overlap. e.g., a time period spanning from 1400 to 1500 and another time period spanning from 1430 to 1500 are considered to overlap. Time period that start and end at the same time however are considered to not overlap, e.g., a time period spanning from 0900 to 0900 and another time period spanning from 0900 to 0900 are considered to not overlap.
-* **View panel**: The main and largest component of the user interface the user will be interacting with. e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
+* **View panel**: The main and largest component of the user interface. The user sees the result of their commands in the view panel. 
+  * e.g., the view panel is the component that is used to display the list of clients, show detailed information about a meeting, etc.
 
 
 --------------------------------------------------------------------------------------------------------------------
