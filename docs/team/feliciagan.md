@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 * **Project management**:
     * Created milestone v1.1 and v1.4
     * Closed milestone v1.3
-    * Created issues and assigned them
+    * Managed issue tracker
 
 
 * **Enhancements to existing features**:
@@ -47,6 +47,8 @@ Given below are my contributions to the project.
     (Pull request [#128](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/128))
     * Created some test utility data, functions, and classes for tasks
     (Pull request [#155](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/155))
+    * Wrote tests for new and existing features, increasing coverage from 56.87% to 60.57%
+    (Pull request [#255](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/255), [#262](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/262))
 
 
 * **Documentation**:
@@ -73,7 +75,7 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments):
     [#135](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/135).
-    * Reported bugs and suggestions for other teams in the class (examples:
-    [1](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues/151),
-    [2](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues/149),
-    [3](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues/170))
+    * Reported bugs and suggestions for another team in the class (examples:
+    [1](https://github.com/feliciagan/ped/issues/1),
+    [2](https://github.com/feliciagan/ped/issues/3),
+    [3](https://github.com/feliciagan/ped/issues/9))
