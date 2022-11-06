@@ -33,10 +33,10 @@ deactivate FridayParser
 LogicManager -> FindCommand : fc.execute(m)
 activate FindCommand
 
-FindCommand -[MODEL_COLOR]-> Model : m.updateFilteredStudentList(p)
+FindCommand [MODEL_COLOR]-> Model : m.updateFilteredStudentList(p)
 activate Model
 
-Model -[MODEL_COLOR]-> FilteredList : fs.setPredicate(p)
+Model [MODEL_COLOR]-> FilteredList : fs.setPredicate(p)
 activate FilteredList
 
 
@@ -50,7 +50,7 @@ create CommandResult
 FindCommand -> CommandResult :
 activate CommandResult
 
-CommandResult -> FindCommand : r
+CommandResult --> FindCommand : r
 deactivate CommandResult
 FindCommand --> LogicManager : r
 deactivate FindCommand
