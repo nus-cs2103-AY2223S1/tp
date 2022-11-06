@@ -238,22 +238,22 @@ Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/COMPANY] [t/TAG]…​`
 - Does not allow duplicate name when editing name of person
 
 Examples:
-- `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `list -p` followed by `edit -p 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+- `list -p` followed by `edit -p 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### 4.3.2. Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
 
 Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
-- Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
+- Edits the internship at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed internship list. The `INDEX` must be a positive integer 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive). Similar to the `add  -i` command, the shortcuts can be used here.
+- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive). Similar to the `add -i` command, the shortcuts can be used here.
 
 Examples:
-- `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
-- `list -i` followed by `edit -i 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
+- `list -i` followed by `edit -i 1 s/ACCEPTED` edits the status of the 1st internship to be `ACCEPTED`.
+- `list -i` followed by `edit -i 2 s/REJECTED` edits the status of the 2nd internship to `REJECTED`.
 
 ## 4.4. Link and Unlink Command
 
@@ -342,8 +342,8 @@ Deletes the specified person from InterNUS.
 Format: `delete -p INDEX`
 
 * Deletes the person with the specific `INDEX` in the person list.
-* The index refers to the index number shown in the currently displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown in the currently displayed person list.
+* The `INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
 * `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
@@ -356,12 +356,12 @@ Deletes the specified internship from InterNUS.
 Format: `delete -i INDEX`
 
 * Deletes the internship with the specific `INDEX` in the internship list.
-* The index refers to the index number shown in the currently displayed internship list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown in the currently displayed internship list.
+* The `INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
-* `find -i Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
+* `find -i c/Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
 ## 4.7. Sort Command
 
@@ -391,9 +391,15 @@ Format: `sort -i [c/] [d/] [s/]`
 - `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
 
+Examples:
+* `list -i` followed by `sort -i c/` sorts all internships in InterNUS by company name.
+* `find -i c/Meta` followed by `sort -i s/` sorts all internships at **Meta** by status.
+
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** Both the person list and internship list will remain sorted by the last given criterion 
-until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+**:information_source: Note:**<br>
+- The internship list will remain sorted by the last given criterion until InterNUS is closed.
+- The sorted order persists during additions, deletions and editing of persons and internships.
+- Internships with no interview dates appear at the bottom of the list when sorted by interview date.
 </div>
 
 ## 4.8. General
