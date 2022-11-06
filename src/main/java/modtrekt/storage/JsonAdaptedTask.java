@@ -2,6 +2,7 @@ package modtrekt.storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -82,7 +83,13 @@ public class JsonAdaptedTask {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
                 .withResolverStyle(ResolverStyle.STRICT);
-        LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
-        return new Deadline(modelDescription, modCode, dueDateObj, isDone, modelPriority);
+        try {
+            LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
+            return new Deadline(modelDescription, modCode, dueDateObj, isDone, modelPriority);
+        } catch (DateTimeParseException exception) {
+            throw new IllegalValueException(
+                    String.format("%s is an invalid date: %s", dueDate, exception));
+        }
+
     }
 }
