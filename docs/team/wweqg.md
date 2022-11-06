@@ -10,13 +10,13 @@ PetCode is a software app that aims to facilitate better working experience and 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to sort the items in buyer/supplier/deliverer/order/pet list.
-    * What it does: It allows user to sort different list by the supported keys in ascending order. 
+    * What it does: It allows user to sort different list by the supported keys in ascending order.
     * Justification: This feature improves the product significantly because originally any new order/pet/contact added to the program will be automatically appended to the end of their respective list, there were no ways to reorder the items in the list. If the user wants to prioritize the orders that are more urgent, he/she has to scroll through the entire order list to manually compare and choose. Therefore, the application should provide a convenient way to save the hassle.
-    * Highlights: This feature supports entering multiple keys for sorting a single list. The later keys are used to break ties arise from sorting using previous keys. For instance, `sort pet height weight` will sort the pets by their heights, for two pets with the same height, their relative sequence will be decided by their weights. 
+    * Highlights: This feature supports entering multiple keys for sorting a single list. The later keys are used to break ties arise from sorting using previous keys. For instance, `sort pet height weight` will sort the pets by their heights, for two pets with the same height, their relative sequence will be decided by their weights.
 
 * **New Feature**: Added the ability to check which item belongs to which contact.
    * What it does: It checks a contact at specified index, the application will display different windows for each list input. <br> For `check buyer 1`, it will display the list of orders from buyer at buyer list index 1. <br> For `check supplier 1`, it will display the list of pets from supplier at supplier list index 1. <br> For `check order 1`, it will display the buyer of the order at order list index 1. <br> For `check pet 1`, it will display the supplier of the pet at pet list index 1. <br>
-   * Justification: This feature improves the product significantly because originally in the order list, the only buyer related information displayed is the name of the buyer. In order to locate the buyer of a particular order, the user has to memorise the name and navigate to the buyer list look for the matched name. This approach is undesirable and is unlikely to identify the correct buyer, as the user could misremember the names or there could be people with the same names. Therefore, the application should provide a conveninet way to rectify the problem.  
+   * Justification: This feature improves the product significantly because originally in the order list, the only buyer related information displayed is the name of the buyer. In order to locate the buyer of a particular order, the user has to memorise the name and navigate to the buyer list look for the matched name. This approach is undesirable and is unlikely to identify the correct buyer, as the user could misremember the names or there could be people with the same names. Therefore, the application should provide a convenient way to rectify the problem.
    * Highlights: This feature changes the UI display to provide instant feedback to the user.
 
 
@@ -32,7 +32,6 @@ Given below are my contributions to the project.
     * Extended the list command to support five different lists [\#164](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/164)
     * Extended the edit command to support three different lists [\#202](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/202)
     * Fixed several bugs (examples: [\#222](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/222), [\#234](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/234), [\#237](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/237), [\#239](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/239), [\#244](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/244), [\#261](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/261), [\#262](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/262), [\#264](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/264), [\#265](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/265))
-  
 
 * **Documentation**:
     * User Guide:

@@ -14,13 +14,13 @@ Given below are my contributions to the project.
   * Justification: These models provide abstraction of real-world objects and lay the foundation of our project, so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
-* **Functionality**: Extended `person` to different categories in the `modeol` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
+* **Functionality**: Extended `person` to different categories in the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
   * What it does: Extended the `Person` class into three categories -- `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
   * Justification: These models stimulate the different parties involved in pet sales and lay the foundation of our project, so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
 * **Functionality**: Updated the layout of GUI and how each section of the GUI works to suit our app. (Pull request: [#142](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/142))
-  * What it is about: Resigned the UI to have different list panels and list cards for different categories of `Person` as well as `Order` and `Pet`, 
+  * What it is about: Resigned the UI to have different list panels and list cards for different categories of `Person` as well as `Order` and `Pet`,
   * Justification: Since our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`, it is necessary to have a **separate list panel** for each of these three type of `Person`. Initially the UI also primarily makes use of `label` of JavaFx, which is plain text.
                    This is not helpful if we want to display more information in an organised and visually pleasant way. Therefore, we need to rework the whole UI to meet our project's needs.
   * Highlights: This requires a deep understanding of the functions and features of JavaFX and Scene Builder. I also need to think from the users' perspective to make the UI more clear-cut and easier to understand.

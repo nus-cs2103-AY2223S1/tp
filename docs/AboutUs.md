@@ -17,7 +17,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/wu-lezheng.md)]
 
 * Role: *UI designer, Developer, Documentation writer, Proofreader, Manual tester, Project manager*.
-* Responsibilities: Task management, creation and modification of UI, addition and modification of some features, proofreading and editing of documents, manual testing and bug reporting.  
+* Responsibilities: Task management, creation and modification of UI, addition and modification of some features, proofreading and editing of documents, manual testing and bug reporting. 
 
 ### Zhang Weiqiang
 
