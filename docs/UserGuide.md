@@ -233,6 +233,8 @@ Example:
 
 * `copyC CS2103T` returns a string of emails of contacts that contain the label `CS2103T`.
 
+![copyC](images/copyC.png)
+
 [[Back to Table of Contents](#table-of-contents)]
 
 ## Section 2: Tasks
@@ -291,6 +293,8 @@ Format: `listAT`
 * Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
 
 * Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
+
+![listAT](images/listAT.png)
 
 ### Deleting a task: `deleteT`
 
@@ -386,6 +390,8 @@ Examples:
 
 * `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
 
+![markT](images/markT.png)
+
 ### Marking task as incomplete: `unmarkT`
 
 Marks a task in the task list as incomplete.
@@ -437,6 +443,8 @@ Example:
 
 * `remindT 12-09-2022` will list all tasks with deadlines up to and including 12-09-2022.
 
+![remindT](images/remindT.png)
+
 ### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
 Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
@@ -460,6 +468,8 @@ Example:
 
 * `progressT cs2103t` will show the percentage of tasks with label `cs2103t` that are completed, then list all tasks with labels matching at least one keyword.
 
+![progressT](images/progressT.png)
+
 ### Sorting all tasks by deadline: `sortD`
 
 Sorts all tasks in the task list by deadline.
@@ -469,6 +479,8 @@ Sorts all tasks in the task list by deadline.
 * The list remains in this sorted order until a different sort command is used.
 
 Format: `sortD`
+
+![sortD](images/sortD.png)
 
 ### Sorting all tasks by id: `sortI`
 
@@ -481,6 +493,8 @@ Sorts all tasks in the task list by id.
 * The list remains in this sorted order until a different sort command is used.
 
 Format: `sortI`
+
+![sortI](images/sortI.png)
 
 [[Back to Table of Contents](#table-of-contents)]
 
@@ -571,6 +585,8 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
+
+![deleteA](images/deleteA.png)
 
 [[Back to Table of Contents](#table-of-contents)]
 
