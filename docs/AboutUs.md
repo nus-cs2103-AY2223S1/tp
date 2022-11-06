@@ -5,7 +5,7 @@ title: About Us
 <!-- Due to grading script explicitly checking for an `img` tag -->
 <!-- markdownlint-disable-file no-inline-html -->
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team based in the [School of Computing, National University of Singapore](https://comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ferusel.png" width="200px">
 
 [[github](https://github.com/ferusel)]
-[[portfolio](team/ferusel.md)]
+[[portfolio](team/ferusel)]
 
 * Role: Team Lead
 
@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/bryanljx.png" width="200px">
 
 [[github](https://github.com/bryanljx)]
-[[portfolio](team/bryanljx.md)]
+[[portfolio](team/bryanljx)]
 
 * Role: Tech Lead
 
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/richdom2185.png" width="200px">
 
 [[github](https://github.com/RichDom2185)]
-[[portfolio](team/richdom2185.md)]
+[[portfolio](team/richdom2185)]
 
 * Role: Tech Lead
 
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/eugenetanwl3881.png" width="200px">
 
 [[github](https://github.com/eugenetanwl3881)]
-[[portfolio](team/eugenetanwl3881.md)]
+[[portfolio](team/eugenetanwl3881)]
 
 * Role: Documentation
 
@@ -52,6 +52,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yixiann.png" width="200px">
 
 [[github](https://github.com/yixiann)]
-[[portfolio](team/yixiann.md)]
+[[portfolio](team/yixiann)]
 
 * Role: Secretary
