@@ -11,7 +11,7 @@ My role in this project was to design features related to order management. The 
 illustration of my contributions as well as the relevant documentation I have added to the user guide and developer guide.
 
 ### Summary of Contributions
-- **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=melissaharijanto&breakdown=true) <br/>
+- **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=janelleljt&breakdown=true) <br/>
 
 - **Features and Enhancements Implemented**:
   - Feature: **List Order Command**
@@ -65,10 +65,10 @@ illustration of my contributions as well as the relevant documentation I have ad
       - `PhoneTest`
     - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209)
 
-- **Review/mentoring contributions:**: 
+- **Review/mentoring contributions**:
   - Provided timely feedback and suggestions to the pull requests of teammates.
   - Suggested alternative implementation details.
             
-- **Contributions beyond the project team:**:
+- **Contributions beyond the project team**:
   - Assisted in detecting an above average number of bugs for other teams and offered solutions to resolving the bugs 
   detected during the [Practical Exam Dry Run](https://github.com/janelleljt/ped)
