@@ -1,5 +1,7 @@
 package jeryl.fyp.ui;
 
+import static javafx.scene.control.OverrunStyle.CLIP;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import jeryl.fyp.model.student.Student;
 
 /**
@@ -47,7 +50,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane deadlineList;
+    private VBox deadlineList;
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -87,7 +90,11 @@ public class StudentCard extends UiPart<Region> {
             deadlineList.getChildren().add(new Label("No deadline at the moment!"));
         } else {
             student.getDeadlineList().asUnmodifiableObservableList().stream()
-                    .forEach(ddl -> deadlineList.getChildren().add(new Label(index.incrementAndGet() + ". " + ddl)));
+                    .forEach(ddl -> {
+                        Label newLabel = new Label(index.incrementAndGet() + ". " + ddl);
+                        newLabel.setWrapText(true);
+                        deadlineList.getChildren().add(newLabel);
+                    });
         }
         deadlineList.getChildren().stream().forEach(child -> child.setStyle("-fx-font-size: 12"));
     }

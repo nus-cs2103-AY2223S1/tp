@@ -14,92 +14,118 @@
 <VBox maxHeight="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="cardPane" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
-         <HBox maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-            <opaqueInsets>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </opaqueInsets>
+         <GridPane HBox.hgrow="ALWAYS">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
             <children>
-              <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;">
-                <columnConstraints>
-                     <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
-                     <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
-                </columnConstraints>
-                  <rowConstraints>
-                     <RowConstraints maxHeight="-Infinity" percentHeight="95.0" vgrow="ALWAYS" />
-                  </rowConstraints>
-                  <HBox.margin>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                  </HBox.margin>
+               <HBox maxHeight="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
+                  <opaqueInsets>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </opaqueInsets>
                   <children>
-                   <VBox maxHeight="1.7976931348623157E308" minHeight="105" GridPane.columnSpan="2" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
-                     <padding>
-                       <Insets bottom="5" left="15" right="5" top="5" />
-                     </padding>
-                     <HBox alignment="CENTER_LEFT" spacing="5" VBox.vgrow="SOMETIMES">
-                       <Label fx:id="id" styleClass="cell_big_label">
-                         <minWidth>
-                           <!-- Ensures that the label text is never truncated -->
-                           <Region fx:constant="USE_PREF_SIZE" />
-                         </minWidth>
-                       </Label>
-                       <Label fx:id="name" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS">
-                              <font>
-                                 <Font name="System Bold" size="15.0" />
-                              </font>
-                           </Label>
-                           <VBox.margin>
-                              <Insets right="5.0" top="5.0" />
-                           </VBox.margin>
-                     </HBox>
-                     <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
-                        <Label fx:id="projectStatus" style="-fx-background-radius: 20" text="\$projectStatus">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
-                           </padding>
-                        </Label>
-                        <Region prefHeight="15.0" />
-                     <Label fx:id="projectName" styleClass="cell_medium_label" text="\$projectName">
-                           <font>
-                              <Font name="System Italic" size="13.0" />
-                           </font>
-                        </Label>
-                        <Region prefHeight="5.0" />
-                        <Label fx:id="email" styleClass="cell_small_label" text="\$email">
-                           <font>
-                              <Font name="System Italic" size="11.0" />
-                           </font>
-                        </Label>
-                        <Region prefHeight="5.0" />
-                     <FlowPane fx:id="tags" minHeight="-Infinity" VBox.vgrow="ALWAYS" />
-                   </VBox>
-                     <VBox maxHeight="-Infinity" GridPane.columnIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                        <padding>
-                           <Insets bottom="5" left="15" right="5" top="5" />
-                        </padding>
+                    <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="NEVER">
+                      <columnConstraints>
+                           <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                           <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                      </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints maxHeight="-Infinity" percentHeight="95.0" vgrow="ALWAYS" />
+                        </rowConstraints>
+                        <HBox.margin>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                        </HBox.margin>
                         <children>
-                           <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="156.0" spacing="5" VBox.vgrow="NEVER">
-                              <children>
-                                 <Label alignment="TOP_LEFT" styleClass="cell_big_label" text="Deadlines" HBox.hgrow="NEVER">
+                         <VBox maxHeight="1.7976931348623157E308" minHeight="105" GridPane.columnSpan="2" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
+                           <padding>
+                             <Insets bottom="5" left="15" right="5" top="5" />
+                           </padding>
+                           <HBox alignment="CENTER_LEFT" spacing="5" VBox.vgrow="SOMETIMES">
+                             <Label fx:id="id" styleClass="cell_big_label">
+                               <minWidth>
+                                 <!-- Ensures that the label text is never truncated -->
+                                 <Region fx:constant="USE_PREF_SIZE" />
+                               </minWidth>
+                             </Label>
+                             <Label fx:id="name" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS">
                                     <font>
-                                       <Font size="12.0" />
+                                       <Font name="System Bold" size="15.0" />
                                     </font>
-                                    <padding>
-                                       <Insets top="4.0" />
-                                    </padding>
                                  </Label>
-                              </children>
+                                 <VBox.margin>
+                                    <Insets right="5.0" top="5.0" />
+                                 </VBox.margin>
                            </HBox>
-                            <FlowPane fx:id="deadlineList" VBox.vgrow="ALWAYS" />
+                           <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+                              <Label fx:id="projectStatus" style="-fx-background-radius: 20" text="\$projectStatus">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                                 </padding>
+                              </Label>
+                              <Region prefHeight="15.0" />
+                           <Label fx:id="projectName" styleClass="cell_medium_label" text="\$projectName">
+                                 <font>
+                                    <Font name="System Italic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Region prefHeight="5.0" />
+                              <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                                 <font>
+                                    <Font name="System Italic" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Region prefHeight="5.0" />
+                           <FlowPane fx:id="tags" minHeight="-Infinity" VBox.vgrow="ALWAYS" />
+                         </VBox>
                         </children>
-                     </VBox>
+                    </GridPane>
+                     <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="ALWAYS" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints maxHeight="-Infinity" percentHeight="95.0" vgrow="ALWAYS" />
+                        </rowConstraints>
+                        <children>
+                           <VBox maxHeight="-Infinity" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                              <padding>
+                                 <Insets bottom="5" left="15" right="5" top="5" />
+                              </padding>
+                              <children>
+                                 <HBox alignment="CENTER_LEFT" spacing="5" VBox.vgrow="ALWAYS">
+                                    <children>
+                                       <Label alignment="TOP_LEFT" styleClass="cell_big_label" text="Deadlines" wrapText="true" HBox.hgrow="ALWAYS">
+                                          <font>
+                                             <Font size="12.0" />
+                                          </font>
+                                          <padding>
+                                             <Insets top="4.0" />
+                                          </padding>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox VBox.vgrow="ALWAYS">
+                                    <children>
+                                       <VBox fx:id="deadlineList" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                        <HBox.margin>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                        </HBox.margin>
+                     </GridPane>
                   </children>
-              </GridPane>
+               </HBox>
             </children>
-         </HBox>
+         </GridPane>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
