@@ -539,15 +539,15 @@ Internship applications can stretch over a long period of time, making it hard t
 |----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | High     | user with many applications    | get a list of all existing applications                                                     | avoid accidentally applying for the same company and position twice.              |
 | High     | user                              | delete entries I've added in previously                                                  | change my mind about those entries.                             |
-| High     | user                              | view a list of all my upcoming interviews                                                | recall which interviews I need to attend and their details. |
-| High     | user with many application emails | add details such as round, date, time and any other remark for an interview              | avoid sieving through my emails to remind myself of these details. |
+| High     | user                              | view a list of all my interviews                                                         | recall what interviews I have planned and their details. |
+| High     | user with many application emails | add details such as round, date, time and location for an interview              | avoid sieving through my emails to remind myself of these details. |
 | Medium     | user with many applications    | find applications by the company name or the position                                       | quickly check the details of the applications I need.              |
 | Medium     | user starting a new round of applications    | clear all existing applications                                       | avoid having to delete applications one by one to start fresh.              |
 | Medium   | user                              | add tags to my applications                                                              | include miscellaneous remarks of note for each application.         |
 | Medium   | user                              | sort my applications by their attributes                                                 | find applications based on their attributes more easily.               |
 | Medium   | user                              | save the sort order that I used most recently                                            | avoid having to sort my applications in the same order I want every time I open the app.      |
-| Medium   | user                              | archive the past applications                                                            | keep those applications for future references to help with my current applications.      |
-| Medium   | user                              | view upcoming interviews happening within 1 week from now                                | prepare for them accordingly.                                   |
+| Medium   | user                              | archive old applications                                                                 | keep those applications for future reference without crowding my application list.      |
+| Medium   | user                              | view upcoming interviews happening within 1 week from now                                | know which interviews I need to prepare for soon.                                   |
 | Medium   | careless user                     | undo/redo the previous command                                                           | reverse the command that I accidentally executed/undid.                                   |
 | Low      | user who can type fast            | be able to exit the program without using a mouse                                        | use the app more efficiently.                                   |
 
@@ -767,7 +767,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 1`<br>
       Expected: First application (originally second) is deleted from the list. Its interview is also deleted. Details of the deleted application are shown.
 
-   1. Test case: `delete 0` <br>
+   1. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details are shown.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
