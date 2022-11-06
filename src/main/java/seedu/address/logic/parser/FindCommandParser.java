@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 public class FindCommandParser implements Parser<FindCommand> {
 
     private static final Prefix[] commandPrefixes =
-            {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+        {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
             PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END, PREFIX_TAG_APPOINTMENT};
 
     /**
