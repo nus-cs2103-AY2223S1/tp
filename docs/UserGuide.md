@@ -74,7 +74,7 @@ Throughout this user guide, there are hyperlinks which you can click on to get m
 If you are already familiar with the features of HobbyList and just want a quick summary of the commands, you can refer to this [command summary table](#8-command-summary).
 
 #### Glossary
-If you encounter an unfamiliar technical term, you can look it up in the glossary at the bottom, you can refer to this [glossary](#9-glossary)
+If you encounter an unfamiliar technical term, you can look it up in the glossary at the bottom, you can refer to this [glossary](#9-glossary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -583,9 +583,9 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## 9. Glossary
 
-|              Terms | Description                                                                                                                                           |
-|-------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-|            **CLI** | Stands for Command Line Interface, which is a text-based user interface used that uses mainly keyboard to manage interaction with the system.         |
-|        **Command** | A directive to perform a specific task in HobbyList                                                                                                   |
-|            **GUI** | Stands for Graphical User Interface, which is a graphical-based user interface that uses icons, menus, a mouse to manage interaction with the system. |
-| **User Interface** | The points of interaction and communication between a human and a computer                                                                            |
+| Terms              | Description                                                                                                                                           |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**            | Stands for Command Line Interface, which is a text-based user interface used that uses mainly keyboard to manage interaction with the system.         |
+| **Command**        | A directive to perform a specific task in HobbyList.                                                                                                  |
+| **GUI**            | Stands for Graphical User Interface, which is a graphical-based user interface that uses icons, menus, a mouse to manage interaction with the system. |
+| **User Interface** | The points of interaction and communication between a human and a computer.                                                                           |
