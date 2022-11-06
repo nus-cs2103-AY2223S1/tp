@@ -552,7 +552,7 @@ from the module with module code `CS2040`, using their corresponding link alias 
 <br>
 
 ### 2.4. Contacts
-The terms "contact" and "person" has similar meanings and for the majority of the time, can be understood as referring
+The terms "contact" and "person" have similar meanings and for the majority of the time, can be understood as referring
 to the same entity. The only scenario that calls for a distinction is when you are inputting a command word; we use person instead 
 of contact.
 
