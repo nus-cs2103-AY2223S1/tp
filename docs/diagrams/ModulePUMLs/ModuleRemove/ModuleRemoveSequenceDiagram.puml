@@ -10,6 +10,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "c:ModCode" as ModCode MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 participant ":TaskBook" as TaskBook MODEL_COLOR
 end box
@@ -24,6 +25,12 @@ create RemoveCommand
 ModtrektParser -> RemoveCommand:
 activate RemoveCommand
 
+create ModCode
+RemoveCommand -> ModCode
+activate ModCode
+ModCode --> RemoveCommand : c
+deactivate ModCode
+
 RemoveCommand --> ModtrektParser
 deactivate RemoveCommand
 
@@ -33,10 +40,15 @@ deactivate ModtrektParser
 LogicManager -> RemoveCommand : execute()
 activate RemoveCommand
 
-RemoveCommand -> Model : deleteModule(Module)
+RemoveCommand -> Model : parseModuleFromCode(c)
+activate Model
+Model --> RemoveCommand : module
+deactivate Model
+
+RemoveCommand -> Model : deleteModule(module)
 activate Model
 
-Model -> ModuleList : removeModule(Module)
+Model -> ModuleList : removeModule(module)
 activate ModuleList
 
 ModuleList --> Model
@@ -45,10 +57,10 @@ deactivate ModuleList
 Model --> RemoveCommand
 deactivate Model
 
-RemoveCommand -> Model : deleteTasksOfModule(Module)
+RemoveCommand -> Model : deleteTasksOfModule(module)
 activate Model
 
-Model -> TaskBook : deleteTasksOfModule(Module)
+Model -> TaskBook : deleteTasksOfModule(module)
 activate TaskBook
 
 TaskBook --> Model
