@@ -81,10 +81,14 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 ## Icons
 
 **Meaning of the icons used:**
-  * :information source: Useful information.
-  * :bulb: Tip.
-  * :warning: Warning on incorrect usage.
-  * :exclamation: Caution.
+
+:information_source:: Useful information.
+
+:bulb:: Tip.
+
+:warning:: Warning on incorrect usage.
+
+:exclamation:: Caution.
 
 ## Features
 
@@ -131,12 +135,9 @@ Adds a contact to the address book.
 
 Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
-<div markdown="span" class="alert alert-warning">:warning:
-
-Adding a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
-
+<div markdown="span" class="alert alert-warning">:warning: Adding a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
 </div>
-
+   
 Examples:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -266,10 +267,7 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-<div markdown="span" class="alert alert-warning">:warning:
-
-- Adding a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.
-
+<div markdown="span" class="alert alert-warning">:warning: Adding a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.
 </div>
    
 Example:
@@ -427,10 +425,7 @@ Format: `remindT DEADLINE`
 
 * Task with deadlines that are already past are also listed.
 
-<div markdown="span" class="alert alert-info">:bulb:
-
-* Tasks that are complete are also listed so users are reminded to delete them.
-
+<div markdown="span" class="alert alert-info">:bulb:Tasks that are complete are also listed so users are reminded to delete them.
 </div>
 
 Example:
@@ -488,15 +483,13 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
-<div markdown="span" class="alert alert-info">:information source:
+<div markdown="span" class="alert alert-info">:information_source::
 
 * Labels must be alphanumeric and one word long.
 
 * Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.
 
-*:bulb:
-
-* Multiple labels can be specified.
+:bulb: Multiple labels can be specified.
 
 </div>
 
@@ -512,7 +505,7 @@ This list is unique, meaning each label with a distinct name is only shown once,
 
 Only a maximum of one contact and one task can be labelled within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning:
+<div markdown="span" class="alert alert-warning">:warning::
 
 - Contact/task does not exist.
 - Contact/task already has the required label.
@@ -535,7 +528,7 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Only a maximum of one contact and one task can be edited within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning:
+<div markdown="span" class="alert alert-warning">:warning::
 
 - Contact/task does not exist.
 - Label does not exist on specified contact/task.
@@ -560,10 +553,7 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
 
-<div markdown="span" class="alert alert-warning">:warning:
-
-- Label does not exist.
-
+<div markdown="span" class="alert alert-warning">:warning: Label does not exist.
 </div>
 
 [[Back to Table of Contents](#table-of-contents)]
