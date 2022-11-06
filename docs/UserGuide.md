@@ -155,6 +155,7 @@ The scores are optional, but there should be at least one parameter.
 </div>
 
 Example after entering `grade 1 ra1/90 ra2/80 pa/100 mt/85 ft/78`:
+
 ![GradeCommand.png](images/GradeCommand.png)
 
 ### Finding individual student details: `find`
