@@ -105,7 +105,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API 
-  `interface` mentioned in the previous point.
+  `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
@@ -183,7 +183,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
-The partial class diagram above shows the classes that make up the `Model` component. Classes used by Person objects
+The partial class diagram above shows the classes that make up the `Model` component. Classes used by `Person` objects
 through composition are omitted for brevity and shown later. 
 
 The `Model` component,
@@ -336,10 +336,11 @@ in addition to the prefix. The command `get /hw North` will be used for this exa
 
 All get commands are implemented in the following steps:
 1. User input prefix is matched in `GetCommandParser` class
-2. Parser for the get command corresponding to the prefix is called and parses the user input
+2. If the get command takes in both a prefix and parameter, the parser for the get command corresponding to the prefix 
+   is called and parses the parameters inputted
 3. Specific child classes of `GetCommand` is instantiated and executed
 4. The model is then updated such that the *filtered* list only displays patients whose details match the query
-arguments of that prefix
+   arguments of that prefix
 
 #### Floor Number (/fn)
 
@@ -395,38 +396,25 @@ Getting the list of patients in th query appointment date involves the following
 
 To ease the parsing of date inputs, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
-#### Patient type (`/inp` & `/outp`)
+#### Patient type (/inp & /outp)
 
 Getting the list of inpatients and outpatients involves the following steps:
-1. prefix `/inp` or `/outp` is matched using an instance of `GetCommandParser`
+1. prefix "/inp" or "/outp" is matched using an instance of `GetCommandParser`
 2. the respective `GetInpatientCommand` or `GetOutpatientCommand` instance is created and returned
 3. the model is updated such that the *filtered* list only displays inpatients or outpatients
 
 If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
 how `help`, `list`, `exit` and `clear` are executed.
 
-#### Getting the past appointments of a patient (`/appt`)
+#### Getting the past appointments of a patient (/appt)
 
 Getting the past appointments of a patient involves the following steps:
-1. prefix `/appt` is matched using an instance of `GetCommandParser`
+1. prefix "/appt" is matched using an instance of `GetCommandParser`
 2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specifically the index inputted)
 3. a `GetPastAppointmentCommand` instance containing the index of the patient to be updated is created and returned
 4. the `GetPastAppointmentCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
-
-#### Getting patients with an appointment on a specified date (`get /appton`)
-
-Getting patients with an appointment on a specified date involves the following steps:
-1. prefix `/appton` is matched using an instance of `GetCommandParser`
-2. a new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
-3. a `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
-4. the `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
-   to be returned in a `CommandResult`
-5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
-   date.
-
-The date inputted is parsed using `LocalDate`
 
 ### New Add Command
 The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
