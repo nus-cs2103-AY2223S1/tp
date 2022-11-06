@@ -51,8 +51,7 @@ public class Date implements Comparable<Date> {
     public static boolean hasAPrefix(String test) {
         String[] filteredTest = test.split(" ");
         if (filteredTest.length == 2) {
-            return filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
-                    || filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
+            return filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_DATE_TIME);
         }
         return false; //error not cause by extra prefix
     }

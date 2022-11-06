@@ -5,7 +5,6 @@ package seedu.application.model;
  */
 public class CommonRegex {
 
-    public static final String VALIDATION_REGEX_FOR_EXTRA_PREFIX = "[\\s][\\p{Alnum}]*[\\/]";
-    public static final String VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT = "[\\s][\\p{Alnum}]*[\\/]"
-            + "[^\\s]*";
+    public static final String VALIDATION_REGEX_FOR_EXTRA_PREFIX = "[\\s][\\p{Alnum}]*[\\/].*";
+    public static final String VALIDATION_REGEX_FOR_EXTRA_PREFIX_DATE_TIME = "[\\p{Alnum}]*[\\/].*";
 }

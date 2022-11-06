@@ -44,8 +44,7 @@ public class Round {
      * Returns true if a given string contains another prefix or prefix, argument pair.
      */
     public static boolean hasAPrefix(String test) {
-        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX)
-                || test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX_AND_ARGUMENT);
+        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX);
     }
 
 
