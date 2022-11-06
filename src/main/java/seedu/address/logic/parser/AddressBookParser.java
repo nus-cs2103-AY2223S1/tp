@@ -79,7 +79,7 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case GroupPatientCommand.COMMAND_WORD:
-            return parseGroupPatientCommand(descriptor, arguments);
+            return parseGroupCommand(descriptor, arguments);
 
         case UngroupCommand.COMMAND_WORD:
             return parseUngroupCommand(descriptor, arguments);
@@ -129,7 +129,7 @@ public class AddressBookParser {
         }
     }
 
-    private Command parseGroupPatientCommand(String descriptor, String arguments) throws ParseException {
+    private Command parseGroupCommand(String descriptor, String arguments) throws ParseException {
         if (descriptor.equals(GroupPatientCommand.DESCRIPTOR_WORD)) {
             return new GroupPatientCommand();
         } else if (descriptor.equals(GroupAppointmentCommand.DESCRIPTOR_WORD)) {
