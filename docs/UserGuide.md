@@ -75,7 +75,7 @@ Track the internships you're interested in and all the relevant information -- t
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
 
-We have created this user manual for new users who want to use our app and returning users who need reference to the command summary. 
+We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
 For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
 
 
