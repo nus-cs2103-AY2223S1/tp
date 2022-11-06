@@ -310,7 +310,8 @@ public class Class {
     }
 
     /**
-     * Returns -1 if this {@code Class} starts before the given {@code aClass} and 1 otherwise.
+     * Returns compared result between {@code this} and the given {@code aClass} by Start Time in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      * {@code Class} and {@code aClass} must be non-null and on the same day;
      */
     public int compareToByStartTime(Class aClass) {
@@ -320,7 +321,8 @@ public class Class {
     }
 
     /**
-     * Returns -1 if the {@code Class} starts before the given {@code aClass}, 0 if same and 1 otherwise.
+     * Returns compared result between {@code this} and the given {@code aClass} by Class Time in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByClassTime(Class aClass) {
         requireAllNonNull(this.date, this.startTime, aClass.date, aClass.startTime);

@@ -235,10 +235,8 @@ public class Student {
     }
 
     /**
-     * Compare the current {@code student} object with another {@code student} object
-     * based on startTime.
-     * @param student a student object to compare with.
-     * @return the result of comparing the two {@code student} object startTime.
+     * Returns compared result between {@code this} and the given {@code student} by Class Start Time.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByClassStartTimeAsc(Student student) {
         if (student.aClass.startTime == null && this.aClass.startTime == null) {
@@ -252,14 +250,16 @@ public class Student {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Name in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByNameAsc(Student student) {
         return this.name.compareTo(student.name);
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Name in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByNameDesc(Student student) {
         // return opposite result as this::compareToByNameAsc
@@ -267,7 +267,8 @@ public class Student {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Class Time in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
@@ -284,7 +285,8 @@ public class Student {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Class Time in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
@@ -301,7 +303,8 @@ public class Student {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Money Owed in ascending order.
+     * Returns positive integer if {@code this} should be placed after, and negative if before.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByMoneyOwedAsc(Student student) {
@@ -314,7 +317,8 @@ public class Student {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * Returns compared result between {@code this} and the given {@code student} by Money Owed in descending order.
+     * Returns positive integer if {@code this} should be placed after, and negative if before.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByMoneyOwedDesc(Student student) {

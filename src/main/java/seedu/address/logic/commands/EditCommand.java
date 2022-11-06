@@ -67,9 +67,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
-    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
+    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "The student has been marked today,"
+            + " so the student cannot have another lesson on the same day.";
     private static final String MESSAGE_PHONE_SAME_AS_NOK_PHONE = "Please be advised that the student's "
             + "phone number is the same as the next-of-kin's, but the student will still be updated.\n";
+
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
 

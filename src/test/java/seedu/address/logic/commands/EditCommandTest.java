@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,7 +37,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalTeachersPet(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws DataConversionException {
         Student editedStudent = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);

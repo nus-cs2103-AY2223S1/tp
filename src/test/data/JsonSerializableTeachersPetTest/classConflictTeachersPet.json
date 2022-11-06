@@ -1,0 +1,26 @@
+{
+  "students": [
+    {
+      "name": "Bernice Yu",
+      "phone": "99272758",
+      "nokPhone": "91628263",
+      "email": "berniceyu@example.com",
+      "address": "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+      "classDateTime": "2022-05-05 1100-1200",
+      "moneyOwed": 0,
+      "moneyPaid": 0,
+      "additionalNotes": "Bring textbook A"
+    },
+    {
+      "name": "Charlie Brown",
+      "phone": "99900078",
+      "nokPhone": "90901234",
+      "email": "charlie@gmail.com",
+      "address": "Sentosa Cove Pyramid of Mummies",
+      "classDateTime": "2022-05-05 1100-1200",
+      "moneyOwed": 0,
+      "moneyPaid": 0,
+      "additionalNotes": "Bring textbook A"
+    }
+  ]
+}

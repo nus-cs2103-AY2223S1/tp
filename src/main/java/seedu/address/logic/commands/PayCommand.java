@@ -30,8 +30,8 @@ public class PayCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Indicates that the student has paid an amount of money "
-            + "by the index number shown in the schedule list.\n"
-            + "Parameters: INDEX AMOUNT_PAID (must be positive and non-negative integers respectively)\n"
+            + "by the index number shown in the schedule list on the right.\n"
+            + "Parameters: INDEX-s AMOUNT_PAID (must be positive and non-negative integers respectively)\n"
             + "Example: " + COMMAND_WORD + " 1 300";
 
     public static final String MESSAGE_HAS_NO_DEBT = "Student has no debt to pay";
