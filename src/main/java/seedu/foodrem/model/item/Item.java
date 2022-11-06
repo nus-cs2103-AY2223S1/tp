@@ -98,6 +98,7 @@ public class Item {
      * Returns the item name.
      */
     public ItemName getName() {
+        assert name != null;
         return name;
     }
 
@@ -105,6 +106,7 @@ public class Item {
      * Returns the item quantity.
      */
     public ItemQuantity getQuantity() {
+        assert quantity != null;
         return quantity;
     }
 
@@ -112,6 +114,7 @@ public class Item {
      * Returns the item unit.
      */
     public ItemUnit getUnit() {
+        assert unit != null;
         return unit;
     }
 
@@ -119,6 +122,7 @@ public class Item {
      * Returns the item bought date.
      */
     public ItemBoughtDate getBoughtDate() {
+        assert boughtDate != null;
         return boughtDate;
     }
 
@@ -126,6 +130,7 @@ public class Item {
      * Returns the item expiry date.
      */
     public ItemExpiryDate getExpiryDate() {
+        assert expiryDate != null;
         return expiryDate;
     }
 
@@ -133,6 +138,7 @@ public class Item {
      * Returns the item price.
      */
     public ItemPrice getPrice() {
+        assert price != null;
         return price;
     }
 
@@ -140,6 +146,7 @@ public class Item {
      * Returns the item remarks.
      */
     public ItemRemark getRemarks() {
+        assert remarks != null;
         return remarks;
     }
 
@@ -149,6 +156,7 @@ public class Item {
      * @return The total value of purchasing the specified units of the item.
      */
     public boolean isExpired() {
+        assert expiryDate != null;
         return expiryDate.isAfterOrOnDate(LocalDate.now());
     }
 
@@ -158,6 +166,7 @@ public class Item {
      * @return The total value of purchasing the specified units of the item.
      */
     public boolean hasNonZeroQuantity() {
+        assert quantity != null;
         return !quantity.isZero();
     }
 
@@ -167,6 +176,7 @@ public class Item {
      * @return The total value of purchasing the specified units of the item.
      */
     public double getItemValue() {
+        assert price != null && quantity != null;
         // TODO: Possibly refactor to avoid using getter methods in ItemPrice and ItemQuantity fields
         return price.getItemPrice() * quantity.getItemQuantity();
     }
@@ -177,6 +187,7 @@ public class Item {
      * @return a new set containing the tags of this item.
      */
     public Set<Tag> getTagSet() {
+        assert tagSet != null;
         // Instantiate new set to preserve immutability of item.
         return new HashSet<>(tagSet);
     }
