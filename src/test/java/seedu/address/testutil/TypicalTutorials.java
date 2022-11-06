@@ -14,7 +14,7 @@ import seedu.address.model.tutorial.Tutorial;
  */
 public class TypicalTutorials {
 
-    public static final Tutorial TUTORIAL1 = new TutorialBuilder().withContent("UML Diagram")
+    public static final Tutorial TUTORIAL1 = new TutorialBuilder().withContent("UML Diagrams")
             .withGroup("T08").withTime("2022-10-01 0800")
             .withStatus(false).build();
 
