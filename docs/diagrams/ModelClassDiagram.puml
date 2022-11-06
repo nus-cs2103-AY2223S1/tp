@@ -26,7 +26,6 @@ Class Student {
     -email: Email
     -name: Name
     -phone: Phone
-    -tags: Tag
     -attendance: Attendance
     -participation: Participation
     -telegramHandle: TelegramHandle
@@ -46,6 +45,8 @@ Class Reminder {
 
 Class Tutorial
 Class TutorialName
+
+Class Tag
 
 package Commons {
 Class ModuleCode
@@ -80,6 +81,7 @@ AddressBook *-down-> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 Student *--> ModuleCode
 Student *--> TutorialName
+Student *--> "*" Tag
 
 AddressBook *-down-> "1" UniqueConsultationList
 UniqueConsultationList --> "~* all" Consultation
