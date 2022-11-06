@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
+
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.DeleteCommand;
@@ -35,8 +37,6 @@ import gim.model.exercise.Name;
 import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.testutil.ExerciseBuilder;
 import gim.testutil.ExerciseUtil;
-
-import org.junit.jupiter.api.Test;
 
 public class ExerciseTrackerParserTest {
 
