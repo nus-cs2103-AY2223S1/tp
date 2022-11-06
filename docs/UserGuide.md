@@ -69,6 +69,13 @@ section of this user guide or to an external website.
 ### Locations of the components
 ![UiComponentLabels](images/UiComponentLabels.png)
 
+<div markdown="block" class="alert alert-success">
+
+**:bulb: Tip:**<br>
+* By using your mouse to hover over the icons in the application itself, the names of the 
+components will be visible.
+</div>
+
 ### Use of the components
 
 | Component                              | Use                                                                                                                                                               |
