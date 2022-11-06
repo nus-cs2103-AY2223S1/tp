@@ -78,9 +78,9 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 Note how the app contains some sample data. If the app does not start and an `error` appears on your screen, do refer to the [FAQ](#faq).<br>
 
 5. The picture below shows the _main window_ of **Arrow**.
-* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
-* The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
-* The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
+- The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
+- The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
+- The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
 ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -184,10 +184,9 @@ Format: `clear`
 Clears the tasks from tasks list.
 
 Format: `task clear`
-* Clear the `task list` and create a new empty one.
 
 Examples:
-* `task list` followed by `task clear` clear the entire task list.
+- `task list` followed by `task clear` to delete all incomplete tasks.
 
 ---
 ### Viewing help : `help`
@@ -207,16 +206,18 @@ Format: `exit`
 
 ---
 ## Teammate Commands
-Teammate entails all of the members that you can assign tasks to in the future. This section documents how to add, delete, edit and list operations on teammate records.
+
+Teammate entails all the members that you can assign tasks to in the future. This section documents how to add, delete, edit and list operations on teammate records.
 
 ### Adding a new Teammate: `add`
 
 Adds a new Teammate to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+- `TAG` can only be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A teammate can have any number of tags (including 0)
+A teammate can have 0 or more tags.
 </div>
 
 Examples:
@@ -259,6 +260,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `TAG` can only be 1 word.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
