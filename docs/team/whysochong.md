@@ -39,7 +39,7 @@ Given below are my contributions to the project.
     * Fixed minor grammatical/style issues (Pull Request [\#206](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/206))
   * Developer Guide:
     * Added implementation details and UML diagrams of the modified `add` feature. (Pull Request [\#96](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/96))
-    * Added Use Cases for task-related - `deadline` and student-related - `edit` and `delete` commands (Pull Request [/#118](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/118))
+    * Added Use Cases for task-related - `deadline` and student-related - `edit` and `delete` commands (Pull Request [\#118](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/118))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#81](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/81), [\#83](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/83), [\#95](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/95), [\#112](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/112), [\#117](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/117)
