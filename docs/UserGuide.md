@@ -352,6 +352,7 @@ running the command <code>addcus n/Betsy Crowe e/betsycrowe@example.com p/123458
 
 ![ArtBuddy's UI](images/ab-quick-start-addcus.png) 
 
+{:start="2"}
 2. Now suppose you want to delete a customer, Bernice, because she has decided to cancel her commission. This time, try
 running <code>delcus 2</code>. 
    1. Ta-da! After executing the command, Bernice is now deleted from ArtBuddy.
@@ -363,12 +364,14 @@ commission commands.
 
 ![ArtBuddy's UI](images/ab-quick-start-commission-tab.png)
 
+{:start="3"}
 3. Suppose you want to manage Betsy's commissions. Let ArtBuddy know this by first 'opening' up Betsy's details in the
 **Customers Tab**. You can do this by clicking on Betsy's entry in the **Customer List**, or by executing the command `opencus 2`.
    1. You should notice that Betsy's details appear in the **Customer Details** pane as shown below.
 
 ![ArtBuddy's UI](images/ab-quick-start-opencus.png)
 
+{:start="4"}
 4. Now, switch to the **Commissions Tab** where all of Betsy's commissions are displayed. This tab should be empty
 right now because Betsy has no commissions yet. Let's change that!
 
