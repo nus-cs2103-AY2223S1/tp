@@ -280,7 +280,6 @@ Example:
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 5.6. Viewing all exercises within a time period : `:range`
 
