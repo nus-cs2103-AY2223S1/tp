@@ -250,7 +250,8 @@ To add a **tutor**,<br>
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -266,9 +267,11 @@ To add a **tutor**,<br>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+    <p></p>
 
 
-* For students,
+* For students,  
+
   * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
   * `<level>` field should be one of the valid academic levels.
@@ -280,6 +283,7 @@ To add a **tutor**,<br>
 
 
 * For tutors,
+
   * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
     <p></p>
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
@@ -316,7 +320,8 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
+* Generally,  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
     <p></p>
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full. 
@@ -431,7 +436,8 @@ To edit a **class**, <br>
 * If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* The constraints of each optional field must be followed. They are:
+* The constraints of each optional field must be followed. They are:  
+
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
