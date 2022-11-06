@@ -43,14 +43,13 @@ Given below are my contributions to the project:
   * Added implementation details for `ViewStatsCommand`
   * Added a UML Diagram.` 
   * See PR [#177](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/177)
-  
-#### Contributions to Team-based Tasks
-*To be updated*
 
 #### Reviewing / Mentoring contributions
+* [#263](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/263)
 * [#199](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/199)
 
 #### Contributions beyond the project team
-*To be updated*
+* Reviewed and provided feedback for the User Guides and Developer Guides for other teams in the same tutorial group.
+* Found and reported [bugs](https://github.com/minjiunn/ped/issues) for team [CodeConnect](https://github.com/AY2223S1-CS2103T-T14-2/tp).
 
 
