@@ -1282,7 +1282,7 @@ testers are expected to do more *exploratory* testing.
 1. **Marking a task that is shown as done:**
 
     1. Pre-requisites:
-       - You have exactly least one undone task (see `add task`).
+       - You have exactly one undone task (see `add task`).
        - You are not currently `cd`'d into a module (`cd ..` if you are).
        - All tasks are being shown (i.e. run `list task -a` first). 
     1. Test case: `done task 1`<br>
