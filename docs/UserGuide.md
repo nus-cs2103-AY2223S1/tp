@@ -242,16 +242,14 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 * At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
-* You can remove all the appointment’s tags by typing `t/` without
-  specifying any tags after it. <br>
-  e.g. `edit appts 1 t/`
-* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. <br>
-  e.g. `edit appts 1 pe/`
+* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it. 
+* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. 
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
 respectively. Existing time period and tags will not be edited.
 * `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason, date and tags will not be edited.
+* `edit appts 2 pe/ t/` Edits the second appointment to be non-recurring and clears all existing tags. Existing reason and date will not be edited.
 
 #### Mark an appointment as completed:  `mark`
 
