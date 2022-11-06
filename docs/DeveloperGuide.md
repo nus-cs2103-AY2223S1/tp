@@ -795,7 +795,7 @@ testers are expected to do more *exploratory* testing.
 
 This feature requires the use of csv files. To follow the subsequent tests, create and save two csv files with the contents as given below.
 
-If you wish to test using custom csv files, ensure that you do not have any commas in the values of the parameters, as this will result in incorrect parsing of the file.
+If you wish to test using custom csv files, ensure that you do not have any commas in the values for the parameters, as this will result in incorrect parsing of the file.
 Additionally, ensure that the order of the columns is the same as specified below.
 
 **1st csv file**: save as `data/success.csv`.
@@ -942,6 +942,9 @@ Therefore, we recommend that when performing a test case for an employee (with I
 
    2. **Follow-up Test Case**: `rate id/x r/4`<br>
       **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
+
+   3. **Test Case**: `rate id/x r/6`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the number provided is not a valid rating.
 
 ### Viewing department overview
 
