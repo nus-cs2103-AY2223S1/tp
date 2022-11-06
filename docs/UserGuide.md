@@ -160,8 +160,10 @@ You can add an activity to HobbyList using this command.
 :information_source: **Additional information for `add`:**<br>
 
 * `[t/TAG]...` only accepts alphanumeric with underscores and can only be at most 15 characters long.
+* `[date/DATE]` only accepts date with a format of **yyyy-mm-dd** with the year greater than 0.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
+* If multiple dates or status are detected, the last one will be taken to add. But any number of tags will be accepted and added.
 
 </div>
 
@@ -190,6 +192,7 @@ Every entry in HobbyList is an activity. Each activity contains the fields below
 
 </div>
 
+
 ### 5.2 Editing an activity : `edit`
 
 You can edit an activity already in HobbyList using this command.
@@ -205,6 +208,7 @@ You can edit an activity already in HobbyList using this command.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+* You can remove the date by typing `date/` without specifying any date after it.
 * `[s/STATUS]` only accepts `UPCOMING`, `ONGOING` or `COMPLETED` (case-insensitive) as `STATUS`. e.g. `s/ongoing`.
 
 </div>
@@ -484,6 +488,12 @@ If you really want to, you can shorten the commands to a single character to spe
 
 </div>
 
+### 5.15 Changing appearance of the user interface.
+
+If you do not like the current appearance of the theme. You can change it by clicking `Theme` in the menu bar and select different themes.
+
+When you open the app next time, the default theme will be the last theme that you used.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. Managing data**
@@ -522,7 +532,7 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 | **Find activity**                 | `find KEYWORDS`                                                          | `find horror comedy` <br/> `find date/2021 pastry` <br/> `find rate/3 date/2021-06 romance tragedy` <br/> `find date/2022-11-03 rate/1 terrible movie` |
 | **Find activity by tag**          | `findTag KEYWORD`                                                        | `findTag movie`                                                                                                                                        |
 | **Find activity by status**       | `findStatus STATUS`                                                      | `findStatus completed`                                                                                                                                 |
-| **Find activity by rating value** | `r/above VALUE`                                                          | `r/above 3`                                                                                                                                            |
+| **Find activity above a rating**  | `r/above VALUE`                                                          | `r/above 3`                                                                                                                                            |
 | **Help**                          | `help`                                                                   | `help`                                                                                                                                                 |
 | **Clear**                         | `clear`                                                                  | `clear`                                                                                                                                                | 
 | **Exit**                          | `exit`                                                                   | `exit`                                                                                                                                                 |
