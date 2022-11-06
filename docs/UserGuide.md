@@ -15,7 +15,7 @@ see. If you type fast, StudMap can get your student management tasks done faster
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 # 2. Why StudMap?
 
@@ -34,7 +34,7 @@ As a TA, you will find yourself juggling various tasks:
 Managing these may be initially easy, but they can quickly pile up and become more tedious if not handled properly,
 especially with the tools available.
 
-## What tools do TA currently use?
+## 2.2 What tools do TA currently use?
 
 ### Spreadsheets
 
@@ -55,7 +55,7 @@ After being annoyed by all the Excel sheets, some TAs fall back to personal note
 Notes, Microsoft OneNote, or Notepad. If you use these, however, you realize that formatting is often difficult to do.
 Useful functionalities like sorting and filtering are also difficult to access, if not non-existent.
 
-## The Lament of TAs
+## 2.3 The Lament of TAs
 
 After trying all of these tools, you may start wondering: why am I wasting time on admin work when it can be better
 spent doing more productive tasks for myself or my students? You’re tired, and you just want to catch up on your sleep
@@ -65,7 +65,7 @@ Be assured that you are not alone in this endeavor. According to an analysis don
 Teaching and Learning International Survey, a significant portion of teachers consider too much admin work as a source
 of their workload stress, which can in turn affect their mental well-being. You wouldn’t want this to happen to you!
 
-## Our Solution
+## 2.4 Our Solution
 
 StudMap is our solution for you. It is a lightweight desktop app that addresses your needs as a TA. With a set of
 essential yet easy-to-use features, we aim to fill the void between Excel spreadsheets and traditional note-taking apps,
@@ -74,22 +74,23 @@ you know how to make the most out of StudMap.
 
 ---
 
-# How to use this User Guide
+# 3. How to use this User Guide
 
 Thank you for choosing StudMap! This user guide will help you navigate our beloved software.
 
-1. You can head off to the [Quick Start](#quick-start) section for a quick tutorial.
-2. If you’re already using StudMap, check out the [Features](#features) section to get in-depth information about each
+1. You can head off to [Section 4: Quick Start](#quick-start) section for a quick tutorial.
+2. If you’re already using StudMap, check out [Section 5: Features](#features) section to get in-depth information about each
    command
    you can give StudMap.
-3. For advanced users, check out the [Command Summary](#command-summary) for an easy all-in-one record for all the
+3. For advanced users, check out [Section 7: Command Summary](#command-summary) for an easy all-in-one record for all the
    commands.
-4. If you see any unfamiliar terms, check out the [Glossary](#glossary) for more information.
+4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#glossary) for more information.
+5. If you still have any other questions regarding StudMap and its usage, check out [Section 6: FAQ](#6-frequently-asked-questions)
 
 
 ---
 
-# Quick Start
+# 4. Quick Start
 
 If you’re new to StudMap, this is the tutorial for you! Here are the steps for you to get started:
 
@@ -139,9 +140,9 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 
 ---
 
-# Features
+# 5. Features
 
-## Introduction
+## 5.1 Introduction
 
 Welcome to the Features section of StudMap. We have three categories of
 features: [Student List Management](#student-list-management), and
@@ -153,7 +154,7 @@ curve? StudMap is designed to be extremely intuitive, with in-built help message
 
 Follow the guide below, and you would be on track to mastering all the necessary commands in no time.
 
-## How to use this section
+## 5.2 How to use this section
 
 Before we start looking at each feature in detail, let’s take note of some conventions that we will use in this guide.
 This will help you understand the guide better!
@@ -185,9 +186,9 @@ This will help you understand the guide better!
 
 </div>
 
-## Student List Management
+## 5.3 Student List Management
 
-### Adding a student: `add`
+### 5.3.1 Adding a student: `add`
 
 Adds a student to the StudMap.
 
@@ -208,7 +209,7 @@ Examples:
 * `add n/Silos Yao t/StrongStudent g/silosyao id/E1234567 m/MA5203` adds student named `Silos Yao` taking `MA5203` with
   student id `E1234567` and tagged as `StrongStudent`.
 
-### Deleting a student : `delete`
+### 5.3.2 Deleting a student : `delete`
 
 Deletes the specified student from the StudMap.
 
@@ -230,13 +231,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the StudMap.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### 5.3.3 Clearing all entries : `clear`
 
 Clears all entries from the StudMap.
 
 Format: `clear`
 
-### Import students from CSV file: `import`
+### 5.3.4 Import students from CSV file: `import`
 
 Imports student data from a CSV file stored on your computer.
 
@@ -263,13 +264,13 @@ Example Usage: Importing a fresh batch of students as a new StudMap user
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
-### Listing all students : `list`
+### 5.3.5 Listing all students : `list`
 
 Shows a list of all students in the StudMap.
 
 Format: `list`
 
-### Locating students by name: `find`
+### 5.3.6 Locating students by name: `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -290,7 +291,7 @@ Examples:
   <!-- TODO: ![result for 'find alex david'](images/findAlexDavidResult.png) -->
   [Sample UI To be added]
 
-### Sorting the students: `sort`
+### 5.3.7 Sorting the students: `sort`
 
 Sorts the list by the specified attribute in the specified order.
 
@@ -334,7 +335,7 @@ Examples:
 * `sort asc a/name` sorts list by `NAME` in **ascending** order
 * `sort dsc a/phone` sorts list by `PHONE` in **descending** order
 
-### Filtering the students: `filter`
+### 5.3.8 Filtering the students: `filter`
 
 Filters students from the StudMap based on different
 categories.
@@ -364,9 +365,9 @@ Example:
 * `filter t/friends family` will return a filtered list of
   students that are tagged as friends family or both.
 
-## Student Updating
+## 5.4 Student Updating
 
-### Editing a student : `edit`
+### 5.4.1 Editing a student : `edit`
 
 Edits an existing student in the StudMap.
 
@@ -392,7 +393,7 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Mark attendance of student: `mark`
+### 5.4.2 Mark attendance of student: `mark`
 
 Mark students as present or absent for a specified class.
 
@@ -413,7 +414,7 @@ Examples:
 * `mark 1 present c/T01` marks the first student as present for class `T01`
 * `mark all absent c/T04` marks all students in the list as absent for class `T04`
 
-### Unmark attendance of a student: `unmark`
+### 5.4.3 Unmark attendance of a student: `unmark`
 
 Removes the attendance record of a specific class from students.
 
@@ -432,7 +433,7 @@ Examples:
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the first student
 * `unmark all c/T04` removes the attendance record for class `T04` from all students in the list
 
-### Grade assignment for student: `grade`
+### 5.4.4 Grade assignment for student: `grade`
 
 You can change the grading status for the assignments using this command. If the record of the assignment does not yet
 exist for the specified student, a new entry for the assignment will be automatically created for the student. This can
@@ -463,7 +464,7 @@ Examples:
 * `grade all marked a/A02` changes the assignment grading status for assignment `A02` of every student in the list
   to `marked`.
 
-### Remove assignment from student: `ungrade`
+### 5.4.5 Remove assignment from student: `ungrade`
 
 You can remove the specified assignment from the student's record.
 
@@ -479,7 +480,7 @@ Examples:
 * `ungrade 1 a/A01` removes assignment `A01` from the first student.
 * `ungrade all a/A01` removes assignment `A01` from all students in the currently displayed list
 
-### Recording participation of a student: `participate`
+### 5.4.6 Recording participation of a student: `participate`
 
 You can record participation of student(s)
 
@@ -497,7 +498,7 @@ Examples:
 * `participate 1 no p/P02` records first student as having **not participated** for participation component `P01`.
 * `participate all yes p/P03` records all student as having **participated** for participation component `P03`.
 
-### Removing participation of a student: `unparticipate`
+### 5.4.7 Removing participation of a student: `unparticipate`
 
 You can remove participation of student(s)
 
@@ -513,7 +514,7 @@ Examples:
 * `unparticipate 1 p/P01` removes participation component `P01` from first student in currently displayed list.
 * `unparticipate all p/P03 ` removes participation component `P03` from all students in currently displayed list.
 
-### Add tag to student: `tag`
+### 5.4.8 Add tag to student: `tag`
 
 You can tag the student(s) with one or more text labels. This can help you to better identify and keep track of them.
 
@@ -548,7 +549,7 @@ Examples:
 * `tag all t/goodstudent t/potentialTA` add both `goodStudent` and `potentialTA` tag to the all student in the current
   list.
 
-### Remove tag from student: `untag`
+### 5.4.9 Remove tag from student: `untag`
 
 Remove the specified tag(s) from the student(s).
 
@@ -567,20 +568,20 @@ Examples:
 * `untag 1 t/needMoreTime` removes the tag of `needMoreTime `from the first student in the current list.
 * `untag all t/needMoreTime t/late` removes the tag of `needMoreTime` and `late` from all students in the current list.
 
-## Miscellaneous
+## 5.5 Miscellaneous
 
-### Exiting the program : `exit`
+### 5.5.1 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 5.5.2 Saving the data
 
 StudMap data are saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
 
-### Editing the data file
+### 5.5.3 Editing the data file
 
 StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. Advanced users are welcome to update data
 directly by editing that data file.
@@ -589,7 +590,7 @@ directly by editing that data file.
 If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run.
 </div>
 
-### Viewing help : `help`
+### 5.5.4 Viewing help : `help`
 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
@@ -602,7 +603,7 @@ Format: `help`
 
 ---
 
-# FAQ
+# 6. Frequently Asked Questions
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -610,7 +611,7 @@ the data of your previous StudMap home folder.
 
 ---
 
-# Command Summary
+# 7. Command Summary
 
 | Action                                                                         | Format, Examples                                                                                                                                                                                         |
 |--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -635,7 +636,7 @@ the data of your previous StudMap home folder.
 
 ---
 
-# Glossary
+# 8. Glossary
 
 ### Commands
 
