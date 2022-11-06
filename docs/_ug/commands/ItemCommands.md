@@ -254,24 +254,25 @@ The command will produce a detailed view of this item.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-edit 1 qty/100 n/Potatoes
-```
+{% capture notes %}
+**Assumptions:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Edited Item:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has the following values:
+  * Bought Date: 10-10-2022
+  * Expiry Date: 10-11-2022
+  * Price: 6.00
+  * Remarks: -
+  * Tags: Vegetables
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="edit 1 qty/100 n/Spring Onion"
+  commandOutputBox="images/itemCommands/commandOutputBox/edit.png"
+%}
 
 ---
 
