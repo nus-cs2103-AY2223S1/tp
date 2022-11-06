@@ -24,7 +24,7 @@ import seedu.foodrem.model.tag.Tag;
  * Jackson-friendly version of {@link Item}.
  */
 class JsonAdaptedItem {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
+    private static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String name;
     private final String quantity;
@@ -77,61 +77,55 @@ class JsonAdaptedItem {
      * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalArgumentException {
+        checkIfFieldsAreNull();
+
+        final Set<Tag> modelTags = new HashSet<>();
+        modelTags.addAll(tags.stream().map(JsonAdaptedTag::toModelType).collect(Collectors.toList()));
+
+        return new Item(
+                new ItemName(name),
+                new ItemQuantity(quantity),
+                new ItemUnit(unit),
+                ItemBoughtDate.of(boughtDate),
+                ItemExpiryDate.of(expiryDate),
+                new ItemPrice(price),
+                new ItemRemark(remarks),
+                modelTags);
+    }
+
+    /**
+     * Checks if the fields in the JsonAdaptedItem are null.
+     *
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
+     */
+    private void checkIfFieldsAreNull() {
         if (name == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemName.class.getSimpleName()));
         }
-        final ItemName modelItemName = new ItemName(name);
-
         if (quantity == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemQuantity.class.getSimpleName()));
         }
-        final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
-
         if (unit == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemUnit.class.getSimpleName()));
         }
-        final ItemUnit modelItemUnit = new ItemUnit(unit);
-
         if (boughtDate == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemBoughtDate.class.getSimpleName()));
         }
-        final ItemBoughtDate modelItemBoughtDate = ItemBoughtDate.of(boughtDate);
-
         if (expiryDate == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemExpiryDate.class.getSimpleName()));
         }
-        final ItemExpiryDate modelItemExpiryDate = ItemExpiryDate.of(expiryDate);
-
         if (price == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemPrice.class.getSimpleName()));
         }
-        final ItemPrice modelItemPrice = new ItemPrice(price);
-
         if (remarks == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemRemark.class.getSimpleName()));
         }
-        final ItemRemark modelItemRemark = new ItemRemark(remarks);
-
-        final List<Tag> itemTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            itemTags.add(tag.toModelType());
-        }
-
-        final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelItemName,
-                modelItemQuantity,
-                modelItemUnit,
-                modelItemBoughtDate,
-                modelItemExpiryDate,
-                modelItemPrice,
-                modelItemRemark,
-                modelTags);
     }
 }
