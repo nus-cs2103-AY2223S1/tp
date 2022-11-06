@@ -19,9 +19,9 @@ class DebtIndex3 as "__3:Index__"
 
 package Person {
 
-class NewPerson as "__updatedPerson1:Person__"
+class NewPerson as "__newPerson1:Person__"
     package Debt {
-
+    class DebtList as "__newList:DebtList__"
     class Debt1Copy as "__copyOf1:Debt__"
     }
 }
@@ -39,7 +39,8 @@ DeleteDebtCommand ---right[hidden]-> "updated debtor" NewPerson
 
 
 
-NewPerson ---> Debt1Copy
+NewPerson --> DebtList
+DebtList --> Debt1Copy
 
 
 
