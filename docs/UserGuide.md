@@ -292,6 +292,8 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 * Extraneous or incorrect parameters for commands that take in parameters (such as `editClient` and `editMeeting`) will be considered as part of the preceding valid parameter in the command.<br>
   e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230` (this input is invalid because it is not alphanumeric)
 
+* All incorrect parameters up until the first valid parameter will be ignored for commands that take in parameters (such as `editClient` and `delMeeting`). <br> e.g. `delMeeting n/Alex i/1` will be parsed correctly since `i/1` is the first valid parameter and the incorrect parameter `n/Alex` before that is ignored.
+
 </div>
 
 ### 7.1 Client commands
