@@ -283,9 +283,9 @@ Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
 
-### Removing a tasks: `deleteT`
+### Deleting a task: `deleteT`
 
-Removes a task from the task list.
+Deletes a task from the task list.
 
 Format: `deleteT INDEX`
 
