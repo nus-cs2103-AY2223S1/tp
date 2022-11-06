@@ -94,7 +94,7 @@ As such, the features available to you are split into **4** main features:
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -128,7 +128,7 @@ Format: `help`
 
 Example Usage: `help`
 
-Example Result: Help message Pop up appears
+Example Result: Help message pop up appears
 
 ### Clearing all entries : `clear`
 
@@ -222,6 +222,19 @@ Example Usage:
 * `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
 * `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
 
+### Switching to the view of currently listed clients : `clients`
+Switches the display to show the current list of clients.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you previously filtered the client list and switched to view events/policy/income, this command will allow you to return to the filtered list of clients. 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to view the **full** list of clients, you may do so with the command `allClients`. 
+</div>
+
+Format: `clients`
+
+Example Usage: `clients`
 
 ### Listing all clients : `allClients`
 
@@ -343,7 +356,8 @@ Below is an example of what you will expect to see when you call `sort email`:
 ### Pin a Client: `pin`
 Allows pin and unpin of important clients to be viewed separately with command `viewPin`
 * Format: `pin INDEX` <br>
-Example Usage: 
+
+Example Usage:
 * `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
@@ -407,7 +421,7 @@ Example Usage:
 ### Switching to the view of currently listed policies : `policies`
 Switches the display to show the current list of policies.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you previously filtered the policy list and switched to view events/contacts/income, this command will allow you to return to the filtered list of policies. 
+If you previously filtered the policy list and switched to view events/clients/income, this command will allow you to return to the filtered list of policies. 
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -567,11 +581,11 @@ If you have not added this Client to your Client list, you can refer to the [Add
 
 ### Deleting an Event: `deleteEvent`
 
+Deletes the event at the specified `EVENT_INDEX`. The index refers to the index number shown in the displayed event list.
+The index **must be a positive integer** 1, 2, 3, …​
+
 Format: `deleteEvent EVENT_INDEX`
 
-* Deletes the event at the specified `EVENT_INDEX`.
-* The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
 * Example Usage: `deleteEvent 2`
 * Example Result: deletes the 2nd event from the list.
 
@@ -581,8 +595,8 @@ Format: `deleteEvent EVENT_INDEX`
 This allows you to view all Events that have been previously added.
 * Note that events are automatically sorted in chronological order.
 
-Format: `allEvents`
-Example Usage: `allEvents`
+Format: `allEvents` <br>
+Example Usage: `allEvents` <br>
 Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
@@ -731,11 +745,11 @@ Note: `allEvents` shows all existing events inside LTNS, while `events` show all
 
 ### Miscellaneous Commands
 
-| Action          | Format, Examples                                    |
-|-----------------|-----------------------------------------------------|
-| **Sort**        | `sort [COMPARABLE_METRIC]` <br><br> e.g: `sort AGE` |
-| **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`       |
-| **View Pinned** | `viewPin`                                           |
+| Action          | Format, Examples                                  |
+|-----------------|---------------------------------------------------|
+| **Sort**        | `sort COMPARABLE_METRIC` <br><br> e.g: `sort AGE` |
+| **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`     |
+| **View Pinned** | `viewPin`                                         |
 
 #### Additional Notes:
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
