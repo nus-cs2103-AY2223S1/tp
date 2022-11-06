@@ -294,22 +294,15 @@ Before executing the above command:<br>
 
 ![before sorting](images/BeforeSortName.png)
 
-After executing the command: ![after sorting](images/AfterSortName.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `A-Z` order.
-</div>
+After executing the command: <br>
+![after sorting](images/AfterSortName.png)
 
 Format: `sort Z-A n/`
 
 Example Command: `sort Z-A n/`
 
 After executing the command:<br>
-
 ![after sorting descending](images/AfterSortNameDesc.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `Z-A` order.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
