@@ -5,6 +5,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AssignCommandParser" as AssignCommandParser LOGIC_COLOR
 participant "a:AssignCommand" as AssignCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -21,20 +22,33 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("assign 1 n/P2 maths")
 activate AddressBookParser
 
+create AssignCommandParser
+AddressBookParser -> AssignCommandParser
+activate AssignCommandParser
+
+AssignCommandParser --> AddressBookParser
+deactivate AssignCommandParser
+
+AddressBookParser -> AssignCommandParser : parse("1 n/P2 maths")
+activate AssignCommandParser
+
 create AssignCommand
-AddressBookParser -> AssignCommand
+AssignCommandParser -> AssignCommand
 activate AssignCommand
 
-AssignCommand --> AddressBookParser
+AssignCommand --> AssignCommandParser
 deactivate AssignCommand
+
+AssignCommandParser --> AddressBookParser : a
+deactivate AssignCommandParser
 
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
-LogicManager --> AssignCommand : execute(model)
+LogicManager -> AssignCommand : execute(model)
 activate AssignCommand
 
-AssignCommand --> Model : getCurrentListType()
+AssignCommand -> Model : getCurrentListType()
 activate Model
 
 Model --> AssignCommand
@@ -42,19 +56,25 @@ deactivate Model
 
 alt student list
 
-AssignCommand --> Model : getFilteredStudentList().get(Index.getZeroBased())
+AssignCommand -> Model : getFilteredStudentList()
 activate Model
 
-Model --> AssignCommand : studentToAssign
+Model --> AssignCommand : filteredStudents
 deactivate Model
 
-AssignCommand --> Model : getTuitionClass(className)
+AssignCommand -> StudentToAssign : get(1)
+activate StudentToAssign
+
+StudentToAssign --> AssignCommand : studentToAssign
+deactivate StudentToAssign
+
+AssignCommand -> Model : getTuitionClass(className)
 activate Model
 
 Model --> AssignCommand : tuitionClassToBeAssigned
 deactivate Model
 
-AssignCommand --> StudentToAssign : assignClassToStudent(tuitionClassToBeAssigned)
+AssignCommand -> StudentToAssign : assignClassToStudent(tuitionClassToBeAssigned)
 activate StudentToAssign
 
 StudentToAssign --> AssignCommand
@@ -62,19 +82,25 @@ deactivate StudentToAssign
 
 else tutor list
 
-AssignCommand --> Model : getFilteredTutorList().get(Index.getZeroBased())
+AssignCommand -> Model : getFilteredTutorList()
 activate Model
 
-Model --> AssignCommand : tutorToAssign
+Model --> AssignCommand : filteredTutors
 deactivate Model
 
-AssignCommand --> Model : getTuitionClass(className)
+AssignCommand -> TutorToAssign : get(1)
+activate TutorToAssign
+
+TutorToAssign --> AssignCommand : tutorToAssign
+deactivate TutorToAssign
+
+AssignCommand -> Model : getTuitionClass(className)
 activate Model
 
 Model --> AssignCommand : tuitionClassToBeAssignedTo
 deactivate Model
 
-AssignCommand --> TutorToAssign : assignClassToTutor(tuitionClassToBeAssignedTo)
+AssignCommand -> TutorToAssign : assignClassToTutor(tuitionClassToBeAssignedTo)
 activate TutorToAssign
 
 TutorToAssign --> AssignCommand
@@ -83,7 +109,7 @@ deactivate TutorToAssign
 end
 
 create CommandResult
-AssignCommand --> CommandResult
+AssignCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> AssignCommand
