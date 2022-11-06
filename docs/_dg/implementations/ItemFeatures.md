@@ -48,6 +48,10 @@ It should be noted that the `UniqueItemList` referenced in `ModelManager` is imm
 ##### Overview
 The `new` command creates a new `Item` in FoodRem, which forms the core business logic of being able to represent an inventory item. 
 
+The activity diagram is as such:
+
+![ItemSequenceDiagram](images/NewItemActivityDiagram.png)
+
 The sequence diagram to show the interactions between the different components during a `new` command is as such:
 
 ![ItemSequenceDiagram](images/NewItemSequenceDiagram.png)
@@ -62,10 +66,6 @@ This diagram excludes the instantiation of the objects that represents attribute
 1. If the item storage of FoodRem is full, an error is thrown to inform the user that the maximum item limit is reached, and that no new items can be added.
 1. If step 4 completes without any exceptions, then the new `Item` is successfully created and stored inside the Item.
 
-The activity diagram is as such:
-
-![ItemSequenceDiagram](images/NewItemActivityDiagram.png)
-
 ##### Feature Considerations
 It should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. This is because allowing Items with the same name will introduce additional complexity for other commands, and also presents confusingly to the user. This is room for improvement, as items ideally can have the same name. For example, the user should ideally have multiple `Potato` items with different bought and expiry dates. 
 
@@ -75,7 +75,11 @@ When providing multiple arguments with the same delimiter, the last instance of 
 
 ##### Overview
 
-The `edit` feature edits the attached attributes of a specified `Item`, which is specified by the one-indexed `itemList` presented to the user. 
+The `edit` feature edits the attached attributes of a specified `Item`, which is specified by the one-indexed `itemList` presented to the user.
+
+The activity diagram is as such:
+
+![ItemSequenceDiagram](images/EditItemActivityDiagram.png)
 
 Here is the activity diagram showing the process of the `edit` command:
 
@@ -90,10 +94,6 @@ This diagram excludes the instantiation of the objects that represents attribute
 1. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
 1. Finally, if an index that is not in the valid range of the Item List is provided, an error is thrown and the user is prompted to enter the command correctly via an error message.
 1. If step 4 completes without any exceptions, then the new `Item` is successfully edited.
-
-The activity diagram is as such:
-
-![ItemSequenceDiagram](images/EditItemActivityDiagram.png)
 
 ##### Feature Considerations
 Similar to the `new` command, it should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. For example, if an `Item` with the name `Potato` already exists inside the inventory, then you cannot edit an existing `Item` to have the name `Potato`.
