@@ -150,7 +150,7 @@ public class TrackO implements ReadOnlyTrackO {
      */
     public void setItem(InventoryItem target, InventoryItem editedInventoryItem) {
         requireNonNull(editedInventoryItem);
-        if (orders.containsOrderWithItem(target)) {
+        if (orders.containsOrderWithItem(target) && !target.areRecordedItemFieldsEqual(editedInventoryItem)) {
             throw new ItemUnmodifiableException();
         }
         items.setItem(target, editedInventoryItem);

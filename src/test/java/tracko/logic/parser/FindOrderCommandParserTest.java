@@ -30,11 +30,11 @@ public class FindOrderCommandParserTest {
                 new FindOrderCommand(
                         new OrderMatchesFlagsAndPrefixPredicate(nameList, addressList,
                                  itemList, false, true, false, true));
-        CommandParserTestUtil.assertParseSuccess(parser,
+        assertParseSuccess(parser,
                 " -d n/Alice Bob a/Clementi Geylang i/Keychain Pillow", expectedFindOrderCommand);
 
         // multiple whitespaces between keywords
-        CommandParserTestUtil.assertParseSuccess(parser,
+        assertParseSuccess(parser,
                 " -d \n n/ \n Alice \n \t Bob  \t a/ \n Clementi \n \t Geylang  \t i/ \n Keychain \n \t Pillow  \t",
                 expectedFindOrderCommand);
     }

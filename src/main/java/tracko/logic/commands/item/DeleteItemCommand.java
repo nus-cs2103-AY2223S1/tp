@@ -20,14 +20,15 @@ public class DeleteItemCommand extends Command {
     public static final String COMMAND_WORD = "deletei";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the item identified by the index number used in the displayed item list.\n"
+            + ": Deletes the item identified by the index number used in the displayed inventory list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item:\n%1$s";
+    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Inventory Item Deleted:\n%1$s";
 
-    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be deleted, there exists uncompleted "
-        + "orders for item:\n%1$s";
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "You cannot delete an item that is involved in "
+        + "uncompleted (unpaid/undelivered) orders.\n"
+        + "There are uncompleted orders for the item:\n%1$s";
 
     private final Index targetIndex;
 

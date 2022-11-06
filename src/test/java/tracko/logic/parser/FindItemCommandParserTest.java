@@ -1,6 +1,8 @@
 package tracko.logic.parser;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 
 import java.util.Arrays;
 

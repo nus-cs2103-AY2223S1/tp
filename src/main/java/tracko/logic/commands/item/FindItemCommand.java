@@ -15,8 +15,8 @@ import tracko.model.item.ItemContainsKeywordsPredicate;
 public class FindItemCommand extends Command {
     public static final String COMMAND_WORD = "findi";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds item(s) which have names containing any of "
+            + "the specified keywords (case-insensitive) and displays them in the inventory list.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " blue shirt";
 

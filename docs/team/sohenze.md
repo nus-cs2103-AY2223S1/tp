@@ -54,7 +54,7 @@ CLI, and the application responds with its GUI, created with JavaFX.
       purpose for the user.
     * Relevant pull request(s): [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
     
-    * Feature: **Sort Order Command**
+  * Feature: **Sort Order Command**
     * Function: Allows the user to sort the displayed order list in the application based on the orders' time
     of creation.
     * Purpose: Supplementary feature of an application that manages orders which provides users further ease of use.
@@ -67,15 +67,14 @@ CLI, and the application responds with its GUI, created with JavaFX.
       to the user instead. This supported both features and allowed the user to sort filtered orders as well.
     * Relevant pull request(s): [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
 
-* **Contributions to the UG**: to be added soon
+* **Contributions to the UG**:
   * Features Section:
     * Deleting an order
     * Deleting an item
     * Editing an item
     * Sorting orders
   * Relevant pull request(s): [#101](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/101),
-  [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108),
-  [#203](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/203)
+  [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
 
 * **Contributions to the DG**:
   * Design Section:

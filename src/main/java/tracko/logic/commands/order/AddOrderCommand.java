@@ -61,7 +61,7 @@ public class AddOrderCommand extends MultiLevelCommand {
 
     public static final String MESSAGE_COMMAND_ABORTED = "Add order command aborted";
 
-    public static final String MESSAGE_SUCCESS = "New order added:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Order Added:\n%1$s";
 
     private final Order toAdd;
     private Pair<String, Quantity> itemNameQuantityPairInput;
