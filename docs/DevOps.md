@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps guide
+title: DevOps Guide
 ---
 {% include toc.md header=true ordered=true %}
 
@@ -55,8 +55,6 @@ Any warnings or errors will be printed out to the console.
   * FILENAME is the path to the file relative to the current directory.
   * LINE is the line of the file where the error occurred and MESSAGE is the message explaining the error.
 * Check scripts must exit with a non-zero exit code if any errors occur.
-
----
 
 ## Making a release
 

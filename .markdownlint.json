@@ -16,7 +16,7 @@
     "style": "---"
   },
   "MD044": { // Proper names should have the correct capitalization
-    "names": ["FoodRem", "User Guide", "Developer Guide"],
+    "names": ["FoodRem", "User Guide", "Developer Guide", "Command Input Box", "Command Output Box", "Item List Box"],
     "code_blocks": false
   },
   "MD046": { // Code block style
@@ -30,5 +30,6 @@
   },
   "MD050": { // Strong style should be consistent
     "style": "asterisk"
-  }
+  },
+  "MD051": false // Link fragments should be valid
 }
