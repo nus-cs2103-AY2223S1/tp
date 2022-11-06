@@ -27,7 +27,7 @@
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </opaqueInsets>
                   <children>
-                    <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
+                    <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="NEVER">
                       <columnConstraints>
                            <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
                            <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
