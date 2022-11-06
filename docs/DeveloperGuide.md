@@ -7,6 +7,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+PayMeLah is a desktop application that helps users track the debts that they are owed. It uses a Command Line Interface (CLI), and executes commands input by the user accordingly to perform actions such as adding a person/debt to track, sorting the data etc.
+
+This Developer Guide documents the architecture, design choices, and implementations of key features of PayMeLah.
+
+If you are a developer that recently joined the PayMeLah development team, or a developer who is simply interested in the inner workings of PayMeLah, this guide would be able to provide you with the relevant technical details.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -176,7 +185,7 @@ The activity diagrams below detail the behaviour of PayMeLah when a user inputs 
 <img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
 
-### Clear debts feature - `cleardebts`
+### Clear debts feature: `cleardebts`
 
 #### Implementation
 This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
@@ -188,7 +197,7 @@ The `ClearDebtsCommand` object will create a new `Person` object with identical 
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
 
-### Delete debt feature - `deletedebt`
+### Delete debt feature: `deletedebt`
 
 #### Implementation
 This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
@@ -283,6 +292,7 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
