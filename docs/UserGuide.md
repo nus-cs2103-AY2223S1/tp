@@ -226,7 +226,7 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
 | Field        | TAG | Description                     | Requirement    | Default Value |
 | ------------ | --- | ------------------------------- | -------------- | ------------- |
@@ -749,4 +749,3 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
 | **Clear**           | `clear`                                                                                                                                                                              |
-

@@ -578,7 +578,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file.
+   2. Double-click the jar file.<br>
       **Expected Outcome**: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences:
@@ -590,14 +590,20 @@ testers are expected to do more *exploratory* testing.
 
 3. Utility Commands:
 
-   1. With the app open, key in `help` and enter.
+   1. With the app open, key in `help` and enter.<br>
       **Expected Outcome**: The help window appears in front of the main app window.
 
-   2. Click the button labelled "User Guide" at the bottom of the window.
+   2. Click the button labelled "User Guide" at the bottom of the window.<br>
       **Expected Outcome**: A new tab opens in browser, leading to the Coydir User Guide.
 
-   3. In the main app window, type `exit` and enter.
+   3. In the main app window, type `exit` and enter.<br>
       **Expected Outcome**: The window closes, the same way it closed previously by clicking on the close button.
+
+### Adding an employee
+
+1. Adding an employee with all fields specified.
+
+   1. Test case: `
 
 ### Deleting a person
 
