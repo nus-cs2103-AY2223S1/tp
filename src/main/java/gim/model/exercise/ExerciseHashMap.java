@@ -42,6 +42,7 @@ public class ExerciseHashMap {
      * @param arrL
      */
     public ExerciseHashMap(ArrayList<Observer> arrL) {
+        assert arrL != null;
         logger.info("Initialising new Exercise Hashmap with given ArrayList");
         this.exerciseHashMap = new HashMap<>();
         this.observerArrayList = arrL;
