@@ -196,9 +196,10 @@ The command will produce a detailed view of this item.
 **Example:**
 
 {% capture notes %}
-**Assumption:**
+**Assumptions:**
 
-The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has a `QUANTITY` value of 8.
 {% endcapture %}
 {%
   include command-format.md
@@ -222,9 +223,10 @@ The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the i
 **Example:**
 
 {% capture notes %}
-**Assumption:**
+**Assumptions:**
 
-The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has a `QUANTITY` value of 11.
 {% endcapture %}
 {%
   include command-format.md
