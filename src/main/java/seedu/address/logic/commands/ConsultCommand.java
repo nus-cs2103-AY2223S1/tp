@@ -11,8 +11,10 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -35,17 +37,18 @@ public class ConsultCommand extends Command {
 
     private final Index index;
     private final PastAppointment appt;
-    private final EditCommand.EditPersonDescriptor editPersonDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * Creates a command to add a past appointment to a patient's record and update the upcoming appointment if needed.
      * @param index of the patient in the filtered patient list to edit
      */
-    public ConsultCommand(Index index, PastAppointment appt, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    public ConsultCommand(Index index, PastAppointment appt) {
         requireNonNull(index);
         this.index = index;
         this.appt = appt;
-        this.editPersonDescriptor = editPersonDescriptor;
+        this.editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setUpcomingAppointment(new UpcomingAppointment(""));
     }
 
     @Override
@@ -59,11 +62,30 @@ public class ConsultCommand extends Command {
         }
         Person person = lastShownList.get(index.getZeroBased());
 
-        if (person.getUpcomingAppointment().get().value.equals(LocalDate.now()
-                .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
+        if (isPresentUpcomingAppointment(person)
+                && person.getUpcomingAppointment().get().value.equals(LocalDate.now()
+                        .format(DateTimeFormatter.ofPattern("dd-MM-uuuu")))) {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
     }
+
+    private boolean isPresentUpcomingAppointment(Person person) {
+        return !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof ConsultCommand) {
+            ConsultCommand otherConsult = (ConsultCommand) other;
+            return index.equals(otherConsult.index) && appt.equals(otherConsult.appt);
+        }
+        return false;
+    }
+
 }

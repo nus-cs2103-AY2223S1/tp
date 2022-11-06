@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":GetCommandParser" as GetCommandParser LOGIC_COLOR
 participant ":GetHospitalWingParser" as GetHospitalWingParser LOGIC_COLOR
-participant ":GetHospitalWingCommand" as GetHospitalWingCommand LOGIC_COLOR
+participant "hw:GetHospitalWingCommand" as GetHospitalWingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -44,22 +44,22 @@ create GetHospitalWingCommand
 GetHospitalWingParser -> GetHospitalWingCommand
 activate GetHospitalWingCommand
 
-GetHospitalWingCommand --> GetHospitalWingParser
+GetHospitalWingCommand --> GetHospitalWingParser : hw
 deactivate GetHospitalWingCommand
 
-GetHospitalWingParser --> GetCommandParser
+GetHospitalWingParser --> GetCommandParser : hw
 deactivate GetHospitalWingParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GetHospitalWingParser -[hidden]-> GetCommandParser
 destroy GetHospitalWingParser
 
-GetCommandParser --> AddressBookParser
+GetCommandParser --> AddressBookParser : hw
 deactivate GetCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GetCommandParser -[hidden]-> AddressBookParser
 destroy GetCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : hw
 deactivate AddressBookParser
 
 LogicManager -> GetHospitalWingCommand : execute()

@@ -38,7 +38,8 @@ public class GetAppointmentByDateCommandTest {
                 new AppointmentByDatePredicate(Collections.singletonList(LocalDate.of(2022, Month.MAY, 12)));
 
         GetAppointmentByDateCommand getFirstAppointmentByDateCommand = new GetAppointmentByDateCommand(firstPredicate);
-        GetAppointmentByDateCommand getSecondHospitalWingCommand = new GetAppointmentByDateCommand(secondPredicate);
+        GetAppointmentByDateCommand getSecondAppointmentByDateCommand =
+                new GetAppointmentByDateCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(getFirstAppointmentByDateCommand.equals(getFirstAppointmentByDateCommand));
@@ -54,8 +55,8 @@ public class GetAppointmentByDateCommandTest {
         // null -> returns false
         assertFalse(getFirstAppointmentByDateCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(getFirstAppointmentByDateCommand.equals(getSecondHospitalWingCommand));
+        // different appointment by date command -> returns false
+        assertFalse(getFirstAppointmentByDateCommand.equals(getSecondAppointmentByDateCommand));
     }
 
     @Test
@@ -69,7 +70,7 @@ public class GetAppointmentByDateCommandTest {
     }
 
     @Test
-    public void execute_multiplePersonsFound() {
+    public void execute_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         AppointmentByDatePredicate predicate = preparePredicate(LocalDate.of(2022, Month.JUNE, 14).toString());
         GetAppointmentByDateCommand command = new GetAppointmentByDateCommand(predicate);

@@ -29,11 +29,11 @@ PastAppointment : medication = {"paracetamol"}
 
 UpcomingAppointment : date = "16-06-2022"
 
-Name -left-> John
-Phone -up-> John
-NextofKin -down-> John
-PatientType -right-> John
-Email -down-> John
-PastAppointment -up-> John
-UpcomingAppointment -down-> John
+Name <-left- John
+Phone <-up- John
+NextofKin <-down- John
+PatientType <-right- John
+Email <-down- John
+PastAppointment <-up- John
+UpcomingAppointment <-down- John
 @enduml

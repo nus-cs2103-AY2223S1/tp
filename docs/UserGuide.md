@@ -193,23 +193,27 @@ Format: `add {Prefix}/{Parameter}…​`
 
 **The prefixes and their respective parameters are as follows:**
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                 |
-|---------|--------|-----------------------------------------|------------------------------------------------------------------------------|
-| `+`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                     |
-| `+`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                          |
-| `+`     | e/     | EMAIL                                   | **local-part**@**domain**. See below for more information.                   |
-| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.  |
-| `+`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                  |
-| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                   |
-| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                       |
-| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                            |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                |
-| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                     |
+| Status  | Prefix | Parameter                               | Restrictions                                                                |
+|---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
+| `+`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
+| `+`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
+| `+`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
+| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
+| `+`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
+| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
+| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                      |
+| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                           |
+| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
+| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
 
-* **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
+**Email Format**
+
+* Must follow the format `username@domain`.
+* **username**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
 * **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only
   and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
   and before `gmail` is empty).
+* Examples: `john@checkup.com`, `john-doe@checkup.com`, `john.doe@checkup.com`,  `john_doe@check-up.com`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
@@ -259,7 +263,7 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 | `+`     |        | INDEX                                   | Positive integer only.                                                      |
 | `-`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                    |
 | `-`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                         |
-| `-`     | e/     | EMAIL                                   | **local-part**@**domain**. See below for more information.                  |
+| `-`     | e/     | EMAIL                                   | Must follow a valid email format. See below for more information.           |
 | `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only. |
 | `-`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                 |
 | `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                  |
@@ -268,11 +272,16 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 | `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                               |
 | `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                    |
 
-* **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
-* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only 
-  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
-  and before `gmail` is empty).
+**Email Format**
 
+* Must follow the format `username@domain`.
+* **username**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
+* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only
+  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
+  and before `gmail` is empty).
+* Examples: `john@checkup.com`, `john-doe@checkup.com`, `john.doe@checkup.com`,  `john_doe@check-up.com`.
+
+**Requirements**
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
