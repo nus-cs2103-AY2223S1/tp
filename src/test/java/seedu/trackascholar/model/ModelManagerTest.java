@@ -4,20 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
-import static seedu.trackascholar.model.Model.PREDICATE_SHOW_PINNED_APPLICANTS;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
-import static seedu.trackascholar.testutil.TypicalApplicants.*;
+import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
+import static seedu.trackascholar.testutil.TypicalApplicants.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import seedu.trackascholar.commons.core.GuiSettings;
-import seedu.trackascholar.model.applicant.Applicant;
 import seedu.trackascholar.model.applicant.NameContainsKeywordsPredicate;
 import seedu.trackascholar.testutil.TrackAScholarBuilder;
 

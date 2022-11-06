@@ -13,11 +13,13 @@ import static seedu.trackascholar.testutil.TypicalApplicants.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.trackascholar.commons.core.GuiSettings;
 import seedu.trackascholar.logic.commands.AddCommand;
 import seedu.trackascholar.logic.commands.CommandResult;
 import seedu.trackascholar.logic.commands.ListCommand;
@@ -26,6 +28,7 @@ import seedu.trackascholar.logic.parser.exceptions.ParseException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.ModelManager;
 import seedu.trackascholar.model.ReadOnlyTrackAScholar;
+import seedu.trackascholar.model.TrackAScholar;
 import seedu.trackascholar.model.UserPrefs;
 import seedu.trackascholar.model.applicant.Applicant;
 import seedu.trackascholar.storage.JsonTrackAScholarStorage;
@@ -97,6 +100,25 @@ public class LogicManagerTest {
     @Test
     public void getPinnedApplicantList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getPinnedApplicantList().remove(0));
+    }
+
+    @Test
+    public void getTrackAScholar_validSetUp_getsTrackAScholar() {
+        TrackAScholar trackAScholar = new TrackAScholar();
+        assertEquals(trackAScholar, logic.getTrackAScholar());
+    }
+
+    @Test
+    public void getTrackAScholarFilePath_validSetUp_getsTrackAScholarFilePath() {
+        Path path = Paths.get("data", "trackAScholar.json");
+        assertEquals(path, logic.getTrackAScholarFilePath());
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**

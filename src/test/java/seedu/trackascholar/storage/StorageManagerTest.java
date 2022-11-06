@@ -34,6 +34,12 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void getUserPrefsFilePath_getsUserPrefsFilePath() {
+        Path path = getTempFilePath("prefs");
+        assertEquals(path, storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
     public void prefsReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
