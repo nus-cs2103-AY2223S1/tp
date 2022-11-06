@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "description" : "Very risk-averse.",
     "netWorth" : "$54400",
-    "meetingTime" : [ "10-08-2022-15:00" ],
+    "meetingTime" : [],
     "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
     "tagged" : [ "SECURED" ]
   }, {

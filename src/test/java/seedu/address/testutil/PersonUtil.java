@@ -14,7 +14,6 @@ import java.util.Set;
 
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
-import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -83,14 +82,6 @@ public class PersonUtil {
                 -> sb.append(PREFIX_DESCRIPTION).append(description.getValue()).append(" "));
         descriptor.getNetWorth().ifPresent(netWorth
                 -> sb.append(PREFIX_NETWORTH).append(netWorth.getValue()).append(" "));
-        if (descriptor.getMeetingTimes().isPresent()) {
-            Set<MeetingTime> meetingTimes = descriptor.getMeetingTimes().get();
-            if (meetingTimes.isEmpty()) {
-                sb.append(PREFIX_MEETING_TIME);
-            } else {
-                meetingTimes.forEach(s -> sb.append(PREFIX_MEETING_TIME).append(s.value).append(" "));
-            }
-        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

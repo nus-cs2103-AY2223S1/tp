@@ -132,8 +132,8 @@ public class UpdateCommand extends UndoableCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
-        Set<MeetingTime> updatedMeetingTimes = editPersonDescriptor.getMeetingTimes()
-                .orElse(personToEdit.getMeetingTimes());
+        Set<MeetingTime> updatedMeetingTimes = personToEdit.getMeetingTimes();
+        // edit command does not allow editing meeting times
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         FilePath updatedFilePath = personToEdit.getFilePath(); // edit command does not allow editing file paths
 
@@ -170,7 +170,6 @@ public class UpdateCommand extends UndoableCommand {
         private Address address;
         private Description description;
         private NetWorth netWorth;
-        private Set<MeetingTime> meetingTimes;
         private Set<Tag> tags;
         public EditPersonDescriptor() {}
 
@@ -185,7 +184,6 @@ public class UpdateCommand extends UndoableCommand {
             setAddress(toCopy.address);
             setDescription(toCopy.description);
             setNetWorth(toCopy.netWorth);
-            setMeetingTimes(toCopy.meetingTimes);
             setTags(toCopy.tags);
         }
 
@@ -193,7 +191,7 @@ public class UpdateCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, description, netWorth, meetingTimes, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, description, netWorth, tags);
         }
 
         public void setName(Name name) {
@@ -235,20 +233,13 @@ public class UpdateCommand extends UndoableCommand {
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
+
         public void setNetWorth(NetWorth netWorth) {
             this.netWorth = netWorth;
         }
 
         public Optional<NetWorth> getNetWorth() {
             return Optional.ofNullable(netWorth);
-        }
-
-        public void setMeetingTimes(Set<MeetingTime> meetingTimes) {
-            this.meetingTimes = (meetingTimes != null) ? new HashSet<>(meetingTimes) : null;
-        }
-
-        public Optional<Set<MeetingTime>> getMeetingTimes() {
-            return (meetingTimes != null) ? Optional.of(Collections.unmodifiableSet(meetingTimes)) : Optional.empty();
         }
 
         /**
@@ -287,9 +278,8 @@ public class UpdateCommand extends UndoableCommand {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getDescription().equals(e.getDescription())
                     && getNetWorth().equals(e.getNetWorth())
-                    && getMeetingTimes().equals(e.getMeetingTimes())
+                    && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }
     }
