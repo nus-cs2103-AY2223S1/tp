@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * [Mockito](https://github.com/mockito/mockito) framework used for testing
+* [se-edu addressbook-level3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md) reference for developers guide
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -318,19 +319,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains all the keywords given by the user.
+The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains any of the keywords given by the user.
+
+Every instance of `FindContactCommand` is created with a `PersonContainsKeywordsPredicate` instance which encapsulates the keywords given by the user.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
 
 Step 1. The user enters with findC command with one or more of the contact's fields as parameters (e.g. name, address, phone, email)
 
-Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
+Step 2. The `FindContactCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
 
 Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter.
 
 Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step.
-
 ![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+The find task feature uses the same mechanism as the find contact feature, except that it uses classes and methods for `Task` instead of `Person`.
 
 #### Design considerations:
 
@@ -441,7 +446,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -506,12 +511,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book (Momento design pattern).
+* **Alternative 1 - Momento design pattern (current choice):** Saves the entire address book.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: May have performance issues due to higher memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself (Command design pattern).
+* **Alternative 2 - Command design pattern:** Individual command knows how to undo/redo by
+  itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command is correct.
 
@@ -831,23 +836,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 30,000 persons without a _noticeable sluggishness_ in performance for typical usage.
-3. Should be able to hold up to 30,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
+2. Should be able to hold up to 1,000 persons without a _noticeable sluggishness_ in performance for typical usage.
+3. Should be able to hold up to 1,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
 4. A user with _above average typing speed_ for _regular text_ should be able to accomplish
 most of the tasks faster using commands than using the mouse.
-5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
-6. Contact/task/tag names should be case-insensitive.
-7. Contact phone numbers should contain numbers only.
-8. Should be usable by first-time user without referencing external guides.
-9. GUI should be usable by colour blind users.
-10. Should work on both 32-bit and 64-bit environments.
-11. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
-12. Should display a visual prompt when YellowBook is processing an user input.
-13. The project is expected to deliver a _new iteration_ every 2 weeks.
-14. Should work without an active internet connection.
-15. Data files from YellowBook v1.1 onwards should be compatible with the future versions.
-
-*{More to be added}*
+5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or certain allowed symbols.
+6. Contact and task fields should be case-insensitive.
+7. Tag names should be case-sensitive.
+8. Contact phone numbers should contain numbers only.
+9. Should be usable by first-time user without referencing external guides.
+10. GUI should be usable by colour blind users.
+11. Should work on both 32-bit and 64-bit environments.
+12. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
+13. Should display a visual prompt when YellowBook is processing an user input.
+14. The project is expected to deliver a _new iteration_ every 2 weeks.
+15. Should work without an active internet connection.
+16. Data files from YellowBook v1.4 onwards should be compatible with the future versions.
 
 ### Glossary
 
