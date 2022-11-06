@@ -192,8 +192,6 @@ The `Assignment` component,
 
 --- 
 
-<div style="page-break-after: always;"></div>
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -206,8 +204,6 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 --- 
-
-<div style="page-break-after: always;"></div> 
 
 ### Common classes
 
@@ -928,6 +924,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC10: Add a person to a group
 
@@ -1064,6 +1061,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC13: Remove a task from a member
 
