@@ -322,7 +322,7 @@ Step 3. The `execute` method of `ViewCommand` is then called on the object, whic
 
 Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a messafe indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel being updated with the correct `person` information.
 
-### BatchAdd
+### Batch-add feature
 
 This feature is created for users to add multiple entries at once.
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
@@ -513,7 +513,7 @@ _{More to be added}_
 #### Performance Requirements
 
 1. Should be able to hold up to 100 employees without a noticeable sluggishness in performance for typical usage.
-2. The system should be able to execute all commands within half a second (given constraint 1).
+2. The system should be able to execute all commands within half a second (given constraint #1).
 
 #### Quality Requirements
 
@@ -522,11 +522,13 @@ _{More to be added}_
 3. Application should be accessible, and readily available to new users.
 4. It should be easy to begin adopting usage of the application for its intended use.
 5. The application should not create unnecessary files/hidden files that clog up the user's disk.
+6. The product should offer at least two different themes (at least a light and dark setting) to accommodate different lighting environments.
 
 #### Documentation Requirements
 
 1. User guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 2. Developer guide should be sufficiently clear such that any external readers can peruse it to understand the codebase thoroughly, enough to possibly add a new feature/property.
+3. Users should be able to access the relevant documentations from the application easily, if they require it.
 
 #### Non-requirements
 
@@ -537,13 +539,23 @@ _{More to be added}_
 
 #### Technical Terminology
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **Entries**: Profile of a person which contains all the necessary details about the person
+- **Mainstream OS**: For the purpose of this project, we define the mainstream operating systems as: Windows, Linux, Unix, OS-X.
+- **Private contact detail**: A contact detail that is not meant to be shared with others.
+- **Entries**: Profile of a person which contains all the necessary details about the person.
+- **User Interface (UI)**: A platform that acts as the medium between the user, and the application. This is what the user sees the application as.
+- **Command Line Interface (CLI)**: A user interface that relies on typing into a command line for user interaction with the application.
+- **Graphical User Interface (GUI)**: A user interface that relies on graphical usage (such as using a mouse) for user interaction with the application.
+- **jar**: Stands for Java ARchive. A file format for aggregated Java class files, metadata, and resources for distribution and deployment.
+- **Diagram / Unified Modeling Language (UML) Diagram**: A graphical model used to illustrate and represent processes, relationships, and concepts.
+  UML is the format most widely adopted for designing and interpreting such diagrams.
 
 #### Coydir Terminology
 
-- **HR**: Human Resources - a core function of companies and businesses that involves the management of staff.
+- **Human Resources (HR)**: A core function of companies and businesses that involves the management of staff.
+- **Company**: The overarching organization that is the context for the application's usage.
+- **Employee**: Any person or staff that is part of or under the management of the company.
+- **Profile**: A collection of particulars and records applying to an individual employee.
+- **Department**: A sub-division or group within the company. **Note**: for Coydir, we have a set of pre-defined Departments.
 
 #### Miscellaneous
 
