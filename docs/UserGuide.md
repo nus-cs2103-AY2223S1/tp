@@ -816,7 +816,7 @@ _Details coming soon ..._
 | [Delete a module](#424-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                                           | `mdel c/CS1101S`                                                                     |
 | [View students and teaching assistants of a module](#425-viewing-module-details-mview)                       | `mview c/MODULE_CODE`                                                          | `mview c/CS1101S`                                                                    |
 | [View more information about a module](#426-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                                | `vtarget 3`                                                                          |
-| [List all modules](#427-viewing-list-of-modules-mlist)                                                       | `mlist`                                                                        | `mlist`                                                                              |                                                                                  |
+| [List all modules](#427-viewing-list-of-modules-mlist)                                                       | `mlist`                                                                        | `mlist`                                                                              |
 
 ### 6.3 Student Manager Command Summary
 
