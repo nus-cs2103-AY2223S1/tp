@@ -103,7 +103,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 
 2. Download the latest `studmap.jar` [here](https://github.com/AY2223S1-CS2103T-W13-1/tp/releases).
 
-3. Create a folder where you want to use StudMap, and copy `StudMap.jar` into it. This will be the home folder
+3. Create a folder where you want to use StudMap, and copy `studmap.jar` into it. This will be the home folder
    for StudMap.
 
 4. Double click StudMap.jar to start the app. In a few seconds, you should see a new window similar to the figure below.
