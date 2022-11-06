@@ -162,7 +162,7 @@ An `Exercise` contains the following attributes:
 5. a `Date`, which represent the date an exercise was performed
 
 #### **Date Implementation**
-<img src="images/DateClassDiagram.png" width="450" />
+<img src="images/DateClassDiagram.png" width="250" />
 
 The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
 under strict parsing by the Java API `DateTimeFormatter`, such as those exceptions related to year-of-era.
