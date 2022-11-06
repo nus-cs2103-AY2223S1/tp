@@ -24,7 +24,6 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
 
     public static final String DEFAULT_NAME = "Make your bed";
     public static final String DEFAULT_DESCRIPTION = "Making your bed is important!";
-    public static final String DEFAULT_COMPLETED_TIME = "2022-10-30T16:02:48.649155";
 
     private Description description;
     private LocalDateTime completedTime;
@@ -36,7 +35,6 @@ public class TaskBuilder extends AbstractSingleItemBuilder {
     public TaskBuilder() {
         super(new Name(DEFAULT_NAME), new ArrayList<>(), new HashSet<>());
         this.description = new Description(DEFAULT_DESCRIPTION);
-        this.completedTime = LocalDateTime.parse(DEFAULT_COMPLETED_TIME);
         this.assignedParents = new HashSet<>();
     }
 

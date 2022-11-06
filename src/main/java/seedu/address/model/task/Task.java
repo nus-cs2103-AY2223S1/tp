@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -129,8 +130,9 @@ public class Task extends AbstractSingleItem {
             return false;
         }
         Task task = (Task) o;
-        return completedTime.equals(task.completedTime) && description.equals(task.description)
-            && getAttributes().equals(task.getAttributes());
+        return Objects.equals(completedTime, task.completedTime)
+                && Objects.equals(description, task.description)
+                && Objects.equals(getAttributes(), task.getAttributes());
     }
 
     /**
