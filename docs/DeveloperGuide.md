@@ -724,17 +724,39 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
       Expected Outcome: Similar to previous.
 
-### Batch-adding employees (Not sure how to test)
-
 ### Finding employees
 
-1. Finding an employee with just one filter:
+To follow the subsequent tests for the find feature, load the default sample data to Coydir.
+You can do this by exiting the app, deleting whatever data file you currently have (located at `data/database.json`), then launching the app again.
 
-   1.
+1. Finding employees with just one filter:
+
+   1. **Test Case**: `find n/Alex`<br>
+      **Expected Outcome**: One employee is displayed on the left, with the name "Alex Yeoh". The right panel displays their profile.
+
+   2. **Test Case**: `find n/alex`<br>
+      **Expected Outcome**: Same as previous.
+
+   3. **Test Case**: `find d/general`<br>
+      **Expected Outcome**: Three employees are displayed on the left, all in the "General Management" department. The right panel displays the first employee's profile, "Alex Yeoh".
+
+   4. **Test Case**: `find j/a`<br>
+      **Expected Outcome**: Three employees are displayed on the left (IDs 2, 4, 5). The right panel displays the first employee's profile, "Bernice Yu".
+
+2. Finding an employee with multiple filters:
+
+   1. **Test Case**: `find n/Roy j/UI d/Tech`<br>
+      **Expected Outcome**: One employee is displayed on the left. The right panel displays that employee's profile, "Roy Balakrishnan".
+
+   2. **Follow-up Test Case**: `edit 1 d/Technology`<br>
+      **Expected Outcome**: The right panel updates to show that Roy is now in the "Technology" department.
+
+   2. **Follow-up Test Case**: `edit 1 d/Sales`<br>
+      **Expected Outcome**: The left panel now displays nobody. The right panel shows the home panel. Upon entering `list` followed by `view 6`, observe that Roy's department is now "Sales".
 
 ### Adding employee leaves
 
-For all of the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+For the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
 If there are more than one, any of these employees can be used, and can be used for different test cases as well.
 In each of the test cases, we will refer to this employee's ID as `x`, for generality.
 
@@ -771,7 +793,7 @@ Therefore, we recommend that when performing a test case for an employee (with I
 
 ### Deleting employee leaves
 
-For all of the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+For the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
 If there are more than one, any of these employees can be used, and can be used for different test cases as well.
 In each of the test cases, we will refer to this employee's ID as `x`, for generality.
 
@@ -795,7 +817,7 @@ Therefore, we recommend that when performing a test case for an employee (with I
 
 ### Rating employee performance
 
-For all of the following tests, ensure that there is at least 1 employee, who has never been rated prior.
+For the following tests, ensure that there is at least 1 employee, who has never been rated prior.
 If there are more than one, any of these employees can be used, and can be used for different test cases as well.
 In each of the test cases, we will refer to this employee's ID as `x`, for generality.
 
@@ -812,3 +834,24 @@ Therefore, we recommend that when performing a test case for an employee (with I
       **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
 
 ### Viewing department overview
+
+For the following tests, ensure that there is at least 1 employee (who will be in 1 department).
+Any department (that has at least 1 person) can be used, but for ease and simplicity, we will be using "Sales" in our examples, as it is has the fewest letters.
+
+We also recommend having more employees in the department of your testing choice so that you can more easily observe the outcome.
+
+1. Viewing the department overview
+   
+   1. **Test Case**: `view-department Sales`<br>
+      **Expected Outcome**: On the right panel, the department name ("Sales") is shown.
+      Other information includes number of employees (available, on leave), and ratings of all employees.
+
+   2. **Follow-up Test Case**: `add n/viewDeptTest j/Position d/Sales`<br>
+      **Expected Outcome**: The new employee is displayed on the left panel.
+      On the right panel, the number of employees increments by 1, and a new row is added to the "Rating Table" with the rating "N/A" for the new employee.
+
+   3. **Follow-up Test Case**: `rate id/x r/5`, where `x` is the employee ID of the employee added in the previous test<br>
+      **Expected Outcome**: The rating table is updated with the new rating of the previously added employee.
+
+   4. Other follow-up test cases include adding/deleting data relevant to employees in the department, such as leaves, performance, or their presence in the database.
+      In each scenario, the right side panel should update itself to display the new information immediately, if there is any.
