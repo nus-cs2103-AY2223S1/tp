@@ -776,6 +776,7 @@ Sorts the current list chronologically, alphabetically, or in reverse order.
 Format: `sort <order>`
 
 * `<order>` field should be a valid sort order. The valid orders are as follows:
+
   * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
     <p></p>   
   * **alpha**: Sorts the list alphabetically with reference to the name.
