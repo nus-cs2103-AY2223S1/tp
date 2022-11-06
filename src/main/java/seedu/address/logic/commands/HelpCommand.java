@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
             + "9. exit\n"
             + "10. help [COMMAND]\n"
             + "11. list\n"
-            + "12. remark INDEX REMARK [t/TAG]...\n"
+            + "12. remark INDEX REMARK\n"
             + "13. sort INDEX ORDER (ORDER must be 'latest' or 'oldest')\n"
             + "14. user_guide\n"
             + "15. clear";
