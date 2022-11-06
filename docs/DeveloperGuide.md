@@ -886,14 +886,72 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+### Adding an inventory item
+1. Adding an inventory item
+   1. Prerequisites: None
+
+   2. Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile`
+   
+      Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
+   
+   3. Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile`
+      
+      Expected: No inventory item is added. Error details shown in the status message.
+   
+   4. Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x contains the inventory item details but is missing a required parameter)
+      
+      Expected: similar to previous.
+
+### Listing all inventory items
+1. Display all inventory items of a populated inventory list
+   1. Prerequisites: Have an inventory list containing 1 or more inventory items
+   
+   2. Test case: `listi`
+
+      Expected: All inventory items are displayed.
+
+2. Display all inventory items of an empty inventory list
+   1. Prerequisites: Have an inventory list containing 0 inventory items
+
+   2. Test case: `listi`
+
+      Expected: No inventory items are displayed.
+
+### Finding an inventory item
+1. Finding an inventory item that exists in the inventory list
+   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+
+   2. Test case: `findi chair`
+
+      Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
+      found shown in the status message.
+
+   3. Test case: `findi pen`
+
+      Expected: No inventory item is displayed. Number of inventory items
+      found shown in the status message.
+   
+   4. Test case: `findi`
+      
+      Expected: No inventory item is found, no change to current displayed inventory item list.
+      Error details shown in the status message.
+
+2. Finding an inventory item that does not exist in the inventory list
+   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+
+   2. Test case: `findi pen`
+
+      Expected: No inventory item is displayed in the inventory list. 0 inventory items
+      found shown in the status message.
 
 ### Deleting a person
 
