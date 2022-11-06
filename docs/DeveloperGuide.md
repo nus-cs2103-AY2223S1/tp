@@ -607,7 +607,7 @@ testers are expected to do more *exploratory* testing.
 
 Do the test cases sequentially to ensure correct expectation.
 
-1. Adding a tutorial while tutorial tab is being shown. 
+1. Adding a tutorial while tutorial tab is being shown.
 
    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
 
@@ -618,18 +618,18 @@ Do the test cases sequentially to ensure correct expectation.
       Expected: Conflicting tutorial error message is shown.
 
    4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
-      Expected: Error message is shown as time range is invalid. No tutorial is added. 
+      Expected: Error message is shown as time range is invalid. No tutorial is added.
 
    5. Test case: `add tutorial n/G02 m/CS2101`<br>
       Expected: Error message is shown as missing prefix. No tutorial is added.
-   
+
    6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
       Expected: Error message is shown in the result display box.
 
 2. Adding a tutorial while tutorial tab is not being shown.
 
-   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command. 
-    
+   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command.
+
    2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
       Expected:  Error message is shown as day is invalid. Main display remains the same.
 
@@ -755,18 +755,18 @@ Do the test cases sequentially to ensure correct expectation.
 
     2. Test case: `switch f/tutorial`<br>
        Expected: A success message shown and the main display shows tutorial's content.
-   
+
     3. Test case: `switch f/consultation`<br>
        Expected: A success message shown and the main display shows consultation's content.
-   
+
     4. Test case: `switch f/grade`<br>
        Expected: A success message shown and the main display shows grade chart.
-   
+
 2. View different content, but command has a typo error.
 
     1. Test case: `switch f/students`<br>
        Expected: Error message shown as the command has a typo error.
-   
+
     2. Test case: `switchs f/tutorial`<br>
        Expected: Error message shown as the command has a typo error.
 

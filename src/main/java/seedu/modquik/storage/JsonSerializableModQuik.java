@@ -71,10 +71,10 @@ class JsonSerializableModQuik {
         ModQuik modQuik = new ModQuik();
         for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (modQuik.hasPerson(student)) {
+            if (modQuik.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            modQuik.addPerson(student);
+            modQuik.addStudent(student);
         }
 
         for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {

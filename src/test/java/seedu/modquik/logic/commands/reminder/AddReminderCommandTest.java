@@ -116,7 +116,7 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public void addPerson(Student person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -131,22 +131,22 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student person) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Student target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Student target, Student editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Student> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,7 +156,7 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Student> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

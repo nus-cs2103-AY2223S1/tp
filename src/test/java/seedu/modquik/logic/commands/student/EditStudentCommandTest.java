@@ -12,22 +12,22 @@ import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modquik.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.modquik.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.modquik.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.modquik.commons.core.Messages;
 import seedu.modquik.commons.core.index.Index;
 import seedu.modquik.logic.commands.ClearCommand;
-import seedu.modquik.logic.commands.student.EditStudentCommand.EditPersonDescriptor;
+import seedu.modquik.logic.commands.student.EditStudentCommand.EditStudentDescriptor;
 import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelManager;
 import seedu.modquik.model.ModelType;
 import seedu.modquik.model.UserPrefs;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.testutil.EditPersonDescriptorBuilder;
-import seedu.modquik.testutil.PersonBuilder;
+import seedu.modquik.testutil.EditStudentDescriptorBuilder;
+import seedu.modquik.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -38,42 +38,42 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedStudent = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedStudent).build();
+        Student editedStudent = new StudentBuilder().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new ModQuik(model.getModQuik()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Student lastStudent = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredStudentList().size());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastStudent);
+        StudentBuilder personInList = new StudentBuilder(lastStudent);
         Student editedStudent = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new ModQuik(model.getModQuik()), new UserPrefs());
-        expectedModel.setPerson(lastStudent, editedStudent);
+        expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, new EditStudentDescriptor());
 
         assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_UNCHANGED_FIELD);
     }
@@ -82,47 +82,47 @@ public class EditStudentCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student studentInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student editedStudent = new PersonBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new ModQuik(model.getModQuik()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Student firstStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstStudent).build();
+    public void execute_duplicateStudentUnfilteredList_failure() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateStudentFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in modquik book
         Student studentInList = model.getModQuik().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(studentInList).build());
+                new EditStudentDescriptorBuilder(studentInList).build());
 
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_invalidStudentIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -130,16 +130,16 @@ public class EditStudentCommandTest {
      * but smaller than size of modquik book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidStudentIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of modquik book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModQuik().getPersonList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -147,7 +147,7 @@ public class EditStudentCommandTest {
         final EditStudentCommand standardCommand = new EditStudentCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditStudentDescriptor copyDescriptor = new EditStudentDescriptor(DESC_AMY);
         EditStudentCommand commandWithSameValues = new EditStudentCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
