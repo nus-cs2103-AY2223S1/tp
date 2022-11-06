@@ -9,9 +9,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction  
-
-This is an overview of the application.
+## Introduction
 
 #### What is TrackAScholar?
 
@@ -27,6 +25,8 @@ TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultan
 (GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
+
+This user guide is designed for individuals who wish to discover how to utilize our application.
 
 Based on our research, many universities often take an extended period of several months to process scholarship applications.
 Administrative staff at the university frequently works overtime to process this enormous volume of applications.
@@ -64,8 +64,8 @@ Here are certain indicators explained so that the user may better comprehend the
 
 ## Glossary
 
-* GUI: Graphical User Interface: Refers to the user interface that the user interacts with.
-* CLI: Command Line Interface: Refers to a computer program that accepts text inputs.
+* **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
+* **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ An applicant can have at most 2 majors (including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Application status is **case-insensitive**, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable.
+Application status is **case-insensitive**, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable. This applies to the other features which make use of application status in our guide
 </div>
 
 Examples:

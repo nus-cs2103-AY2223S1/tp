@@ -16,7 +16,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "predicate:ApplicationStatusPredicate" as ApplicationStatusPredicate MODEL_COLOR
 end box
 
-[-> LogicManager : execute(filter pending)
+[-> LogicManager : execute("filter pending")
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -32,7 +32,7 @@ deactivate FilterCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FilterCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 
-TrackAScholarParser -> FilterCommandParser : parse(pending)
+TrackAScholarParser -> FilterCommandParser : parse("pending")
 activate FilterCommandParser
 
 create ApplicationStatusPredicate

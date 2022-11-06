@@ -4,19 +4,20 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-TrackAScholar *-right-> "1" UniqueApplicantList
-TrackAScholar *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueApplicantList
-UniqueTagList -[hidden]down- UniqueApplicantList
+TrackAScholar *-down-> "1" UniqueApplicantList
+TrackAScholar *-right-> "1" UniqueMajorList
+UniqueMajorList -[hidden]left- UniqueApplicantList
+UniqueMajorList -[hidden]up- UniqueApplicantList
 
-UniqueTagList *-right-> "*" Tag
+UniqueMajorList *-right-> "*" Major
 UniqueApplicantList -right-> Applicant
 
-Applicant -up-> "*" Tag
+Applicant -up-> "*" Major
 
 Applicant *--> "1" Name
-Applicant *--> "1" Scholarship
-Applicant *--> "1" ApplicationStatus
 Applicant *--> "1" Phone
 Applicant *--> "1" Email
+Applicant *--> "1" Scholarship
+Applicant *--> "1" ApplicationStatus
+Applicant --> "1" Pin
 @enduml

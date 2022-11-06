@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the TrackAScholar application to add optional remarks to people in their TrackAScholar and edit it if required. The command should have the following format:
+This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -23,12 +23,12 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 **`RemarkCommand.java`:**
 
 ``` java
-package seedu.trackascholar.logic.commands;
+package seedu.address.logic.commands;
 
-import seedu.trackascholar.model.Model;
+import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing applicant in TrackAScholar.
+ * Changes the remark of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -43,7 +43,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `TrackAScholarParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -65,8 +65,8 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the applicant identified "
-            + "by the index number used in the last applicant listing. "
+            + ": Edits the remark of the person identified "
+            + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -91,7 +91,7 @@ Let’s change `RemarkCommand` to parse input from the user.
 We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended.
 
 ``` java
-import static seedu.trackascholar.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 //...
 public class RemarkCommand extends Command {
     //...
@@ -101,8 +101,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the applicant in the filtered applicant list to edit the remark
-     * @param remark of the applicant to be updated to
+     * @param index of the person in the filtered person list to edit the remark
+     * @param remark of the person to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -142,7 +142,7 @@ Your code should look something like [this](https://github.com/se-edu/addressboo
 
 Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
 
-Create a `RemarkCommandParser` class in the `seedu.trackascholar.logic.parser` package. The class must extend the `Parser` interface.
+Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
 ![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
 
@@ -216,7 +216,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: Don’t forget to update `TrackAScholarParser` to use our new `RemarkCommandParser`!
+:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
 
 </div>
 
@@ -225,11 +225,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of applicant data. We achieve that by working with the `Applicant` model. Each field in an Applicant is implemented as a separate class (e.g. a `Name` object represents the applicant’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to an applicant.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.trackascholar.model.applicant`. Since a `Remark` is a field that is similar to `Scholarship`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -240,9 +240,9 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each applicant.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
 
-Simply add the following to [`seedu.trackascholar.ui.ApplicantCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
+Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
 **`PersonCard.java`:**
 
@@ -266,21 +266,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Applicant` to support a `Remark` field
+## Modify `Person` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Applicant`, we need to update `Applicant` to get our `Remark` displayed!
+Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
 
-### Modify `Applicant`
+### Modify `Person`
 
-We change the constructor of `Applicant` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Applicant`
+### Update other usages of `Person`
 
-Unfortunately, a change to `Applicant` will cause other commands to break, you will have to modify these commands to use the updated `Applicant`!
+Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Applicant` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
 
 </div>
 
@@ -289,13 +289,13 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-TrackAScholar stores data by serializing `JsonAdaptedApplicant` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedApplicant` to work with our new `Applicant`!
+AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete TrackAScholar’s storage file located at `/data/trackAScholar.json` before running it! Not doing so will cause TrackAScholar to default to an empty data file!
+:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
 </div>
 
@@ -304,16 +304,16 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Applicant` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Applicant applicant, int displayedIndex) {
+public PersonCard(Person person, int displayedIndex) {
     //...
-    remark.setText(applicant.getRemark().value);
+    remark.setText(person.getRemark().value);
 }
 ```
 
@@ -325,43 +325,43 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of an `Applicant`. Since all fields in an `Applicant` are immutable, we create a new instance of an `Applicant` with the values that we want and
-save it with `Model#setApplicant()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
+save it with `Model#setPerson()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Applicant: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Applicant: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Applicant> lastShownList = model.getFilteredApplicantList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Applicant applicantToEdit = lastShownList.get(index.getZeroBased());
-        Applicant editedApplicant = new Applicant(
-                applicantToEdit.getName(), applicantToEdit.getPhone(), applicantToEdit.getEmail(),
-                applicantToEdit.getScholarship(), remark, applicantToEdit.getTags());
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), remark, personToEdit.getTags());
 
-        model.setApplicant(applicantToEdit, editedApplicant);
-        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedApplicant));
+        return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code applicantToEdit}.
+     * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Applicant applicantToEdit) {
+    private String generateSuccessMessage(Person personToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, applicantToEdit);
+        return String.format(message, personToEdit);
     }
 ```
 
@@ -398,4 +398,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to TrackAScholar.
+This concludes the tutorial for adding a new `Command` to AddressBook.
