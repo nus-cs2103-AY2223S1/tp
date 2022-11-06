@@ -261,7 +261,7 @@ The following activity diagram summarizes what happens when a user executes the 
 _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------
-### \[Proposed\] Editing feature for transactions
+### Editing feature for transactions
 #### Implementation
 The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
 `EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with

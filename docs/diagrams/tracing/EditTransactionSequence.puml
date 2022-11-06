@@ -9,6 +9,10 @@ participant "d:EditTransactionCommand" as EditTransactionCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
 [-> LogicManager : execute("edit")
 activate LogicManager
 
@@ -43,6 +47,12 @@ deactivate JeeqTrackerParser
 
 LogicManager -> EditTransactionCommand : execute()
 activate EditTransactionCommand
+
+EditTransactionCommand -> Model : EditTransaction(1)
+activate Model
+
+Model --> EditTransactionCommand
+deactivate Model
 
 create CommandResult
 EditTransactionCommand -> CommandResult
