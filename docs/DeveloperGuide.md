@@ -383,14 +383,14 @@ The above is the sequence diagram for the case where the user inputs `sort alpha
 Since the list displayed is linked to each `Student`, `Tutor` and `TuitionClass` internal list through an observer, we can just sort it and the displayed list will be updated accordingly. The list to be sorted will be the one that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
 Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, where default uses a custom-defined comparator, and sorting in reverse is done using `java.util.Collections`.
 
-<table>
+<table markdown="block">
 <tr>
 <td>Sort by</td> <td>Method</td> <td>Remarks</td>
 </tr>
 
 <tr>
 <td>Default</td>
-<td markdown="block">
+<td >
 
 ```java
 (first, second) -> {
