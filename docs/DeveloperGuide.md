@@ -35,8 +35,9 @@ title: Developer Guide
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Delete a client](#deleting-a-client)
-  * [Delete a transaction]()
-  * [Delete a remark]()
+  * [Delete a transaction](#deleting-a-transaction)
+  * [Delete a remark](#deleting-a-remark)
+  * [Filtering transactions](#filtering-transactions-from-all-clients)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -174,14 +175,13 @@ The diagrams below show the Transaction and Remark Model and how they are stored
 **`Transaction` Class <br>**
 Each `Client` Class has a `TransactionLog` which stores all transactions of the client in a List. The `Transaction` object contains the `Goods` transacted,
 `Price` of the goods, `Quantity` of goods and `Date` of the transaction. <br>
-<img src="images/TransactionModelClassDiagram2.png" width="350"/>
-
+<img src="images/TransactionModelClassDiagram2.png" width="350"/><br>
 
 **`Remark` Class <br>**
 Each `Client` Class has a `UniqueRemarkList` which stores `Remark` object that do not 
 have the same `Text` (case-insensitive). The `Remark` object contains the 
 `Text` which represents the remark's text. <br>
-<img src="images/RemarkModelClassDiagram.png" width="350"/>
+<img src="images/RemarkModelClassDiagram.png" width="350"/><br>
 </div>
 
 
