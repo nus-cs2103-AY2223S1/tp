@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-F12-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -117,19 +117,20 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Task` objects (which are contained in a `TaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Task` objects (e.g., results of a filter query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** With regards to relationship of `Person` object, perhaps an alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -247,15 +248,31 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
-### Email Address in Task as Reference (Foreign Key) to Member
+### Email Address in Task as Reference (Foreign Key) to Member in Saved Data
 
 #### Motivation
 
-To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in hte `Task` object that uniquely identifies the person.
+To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
 
 #### Implementation
 
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+#### Design Considerations
+
+**Aspect: How to Relate a Task and a Person in the Saved Data**
+
+* **Alternative 1 (current choice):** Foreign Key Method: Save Person's Email Address in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: -.
+
+* **Alternative 2:** Foreign Key Method: Save Person Phone Number in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: Compared to email address, phone number is more likely to be identical e.g. people may have the same phone number if they put their home phone number and they live in the same house.
+
+* **Alternative 3:** Save JSonAdaptedPerson in JSonAdaptedTask.
+  * Pros: -.
+  * Cons: Changes in `person` object are more prone to not be reflected in their associated `task`.
 
 ### Persistent Storage for Task
 
