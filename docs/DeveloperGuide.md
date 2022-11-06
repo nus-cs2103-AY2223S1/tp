@@ -480,15 +480,21 @@ Sequence diagram for the execution of `AddStaffCommand`
 ### Design Considerations:
 **Aspect: Whether to pass `Project` through `Index` or `ProjectName`**
 - **Alternative 1**: Users pass in the `Index` of the `Project` in the displayed `ProjectList` (Current Implementation)
-  - Pros: This makes an easier command for users to use, since instead of typing `pn/Some Project Name`, users can instead 
-  just refer to the index of the project in the currently displayed project list. 
+  - Pros: This makes an easier command for users to use, since instead of typing `pn/Some Project Name`, users can instead
+    just refer to the index of the project in the currently displayed project list.
   - Cons: Users might confuse this command for the `Index` used in the `editstaff` command for instance, since this command
-  uses `Index` to represent the index of the project, not the staff.
+    uses `Index` to represent the index of the project, not the staff.
 - **Alternative 2**: Users pass in the `ProjectName` of the `Project`
   - Pros: This solution is more correct and precise, since there is less room for error, in the sense that if a user types
-  `pn/Project_A`, then the staff will be added to Project_A (assuming the other checks in the command don't fail).
+    `pn/Project_A`, then the staff will be added to Project_A (assuming the other checks in the command don't fail).
   - Cons: Users will have to know the full name of the project, and this approach does not allow rooms for typos, so a careless
-  user might add a staff to the wrong project.
+    user might add a staff to the wrong project.
+
+### Edit Staff in Project
+#### Implementation
+The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to
+edit the `Staff` at a certain place in the Staff list belonging to a given `Project`, using the `INDEX` and `ProjectName` provided to the `EditStaffCommand`.
+The `Project` must be the `Project` which has its `StaffList` currently displayed in the staff panel.
 
 The following operations are implemented:
 - `execute(Model model)` - Executes an `EditStaffCommand`.
