@@ -280,7 +280,7 @@ This feature is achieved by saving `addressBookHistories` in the `ModelManager` 
 
 When the user gives an `undo` command, the most recent AddressBook will be popped from the `addressBookHistories` and replace the current one.
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: How undo executes:**
 
@@ -507,10 +507,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons with debts
-1.  PayMeLah shows the list of persons
+1. User requests to list persons who owe more than or equal to a certain amount of money
+1. PayMeLah shows the list of persons satisfying the condition
 
     Use case ends.
+
+**Extensions**
+
+* 1a. The user did not specify the amount.
+
+    * 1a1. PayMeLah shows the list of persons who owe any debts to the user 
+    
+      Use case ends.
+
+* 2a. There are no persons satisfying the condition.
+  
+    * 2a1. PayMeLah informs user that there are no persons that satisfy the condition.
+
+      Use case ends.
 
 **Extensions**
 
@@ -606,16 +620,33 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample persons and debts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person with valid inputs
+
+    1. Test cases: refer to UG for examples<br>
+       Expected: The corresponding person is added to PayMeLah.
+
+1. Adding a person with invalid inputs
+
+    1. Test cases: `add n/adam tele/a`, `add n/bob p/1`, etc.<br>
+       Expected: PayMeLah throws an error and shows which input was invalid
+
+1. Adding a duplicate person
+
+    1. Prerequisites: Have a person named `Alex Yeoh` in the persons list
+   
+    1. Test case: `add n/Alex Yeoh`<br>
+       Expected: PayMeLah throws an error informing that there is already an `Alex Yeoh` in the list
 
 ### Deleting a person
 
@@ -624,23 +655,56 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message (invalid index).
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect `delete` commands to try: `delete`, `delete x`, etc. (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while only some persons are shown
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. One or more persons remaining.
+
+    1. Test cases and expected behaviours are similar to the ones above.
+
+### Adding a debt
+
+1. Adding a debt with valid inputs
+
+    1. Test cases: refer to UG for examples<br>
+       Expected: The corresponding debt is added to the person(s) in the list.
+
+1. Adding a debt with invalid inputs
+
+    1. Test case: `adddebt 0 d/kfc m/$10.95`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid index).
+
+    1. Other incorrect `adddebt` commands to try: `adddebt 1 d/ m/5`, `adddebt 1 d/burger m/-2.5`, etc.<br>
+       Expected: Similar to previous.
+
+1. Adding a duplicate debt
+
+    1. Prerequisites: The first person in the list has a debt with description `Taxi`, money `$20.00`, date `2022-10-11`, time `00:00`.
+
+    1. Test case: `adddebt 1 d/Taxi m/20 date/2022-10-11`<br>
+       Expected: PayMeLah throws an error informing that there is already an identical debt belonging to the first person
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites: PayMeLah has been launched at least once and an `addressbook.json` has been created in the `data` folder.
+   
+   1. Test case: delete the `addressbook.json` and launch PayMeLah<br>
+      Expected: PayMeLah launches with the sample persons and debts again, and the corresponding `addressbook.json` has been created in the `data` folder.
+   
+   1. Test case: open `addressbook.json` and delete a few random lines to corrupt the data. Then launch PayMeLah.<br>
+      Expected: PayMeLah launches with an empty list of persons, and `addressbook.json` is cleared to show an empty person list as well.
+   
+   1. Test case: while PayMeLah is open, delete or modify `addressbook.json`, then execute any valid command in PayMeLah.<br>
+      Expected: PayMeLah functions normally and overwrites any corrupted data
 
 
 --------------------------------------------------------------------------------------------------------------------
