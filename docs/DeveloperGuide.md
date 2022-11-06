@@ -602,7 +602,7 @@ date, status, etc.)
 
 1.  User requests the list of internship applications.
 2.  CinternS shows the list of internship applications.
-3.  User requests to archive a specific application in the list
+3.  User requests to archive a specific application in the list.
 4.  CinternS archives the application.
 
     Use case ends.
@@ -633,7 +633,7 @@ date, status, etc.)
 
 1.  User requests the list of archived internship applications.
 2.  CinternS shows the list of archived internship applications.
-3.  User requests to retrieve a specific application in the list
+3.  User requests to retrieve a specific application in the list.
 4.  CinternS retrieves the application.
 
     Use case ends.
@@ -697,7 +697,6 @@ date, status, etc.)
 
 ## **Appendix: Instructions for manual testing**
 
-
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -711,16 +710,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting an application
 
@@ -794,7 +793,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `retrieve 1`<br>
       Situation 1: First application is an archived application.<br>
-      Expected   : First application is retrieved from the list. Details of the retrieved application shown in the status message.<br>
+      Expected   : First application is retrieved from the list. Details of the retrieved application shown in the status message. The list remains as the filtered list by the keyword.<br>
       Situation 2: First application is an unarchived application.<br>
       Expected   : No application is retrieved. Error details shown in the status message. Status bar remains the same.
 
@@ -802,4 +801,4 @@ testers are expected to do more *exploratory* testing.
       Situation 1: First application is an archived application.<br>
       Expected   : No application is retrieved. Error details shown in the status message. Status bar remains the same.<br>
       Situation 2: First application is an unarchived application.<br>
-      Expected   : First application is archived from the list. Details of the archived application shown in the status message.
+      Expected   : First application is archived from the list. Details of the archived application shown in the status message. The list remains as the filtered list by the keyword.

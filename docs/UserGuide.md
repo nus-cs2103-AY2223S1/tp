@@ -182,7 +182,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
 * `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
-* `find` command will not affect the interview list shown in GUI. Please use `list` or `list-archive` command to ensure the interview list is sync to the application list.
+* `find` command will not affect the interview list shown in GUI. Please use `list` or `list-archive` command to ensure the interview list is synced to the application list.
 
 Example:
 * `find Software` returns the `Google` and `Wise` applications since their positions contain the keyword "software".
