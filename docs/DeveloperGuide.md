@@ -139,8 +139,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/JeeqTrackerStorageDiagram.png" width="550" />
-<img src="images/UserPrefsStorageDiagram.png" width="350" />
+<img src="images/StorageDiagram.png" width="700" />
 
 The `Storage` component,
 
