@@ -131,7 +131,6 @@ public class EditModuleCommand extends Command {
         ModuleDescription updatedDescription = editModuleDescriptor
                 .getDescription().orElse(moduleToEdit.getDescription());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
-
         return new Module(updatedName, updatedCode, updatedDescription, updatedTags, originalSchedules);
     }
 
