@@ -347,7 +347,7 @@ UML Diagram:
 
 **Steps:**
 
-**Step 1**: User launches tha application.
+**Step 1**: User launches the application.
 
 **Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
@@ -362,7 +362,7 @@ into a `List<AddCommand>`.
 
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
-**Step 4**: Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`
+**Step 4**: Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
 If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
 
 **Step 5**: `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
