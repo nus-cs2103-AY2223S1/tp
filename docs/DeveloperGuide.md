@@ -445,10 +445,6 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
     - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
     - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
