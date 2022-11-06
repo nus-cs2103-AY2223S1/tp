@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,11 +24,12 @@ public class AddClientCommand extends Command {
 
     public static final String COMMAND_WORD = "add -c";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to Condonery. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to Condonery. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_INTERESTEDPROPERTIES + "INTERESTED_PROPERTIES]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice Tan "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
