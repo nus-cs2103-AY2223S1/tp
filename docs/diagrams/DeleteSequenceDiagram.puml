@@ -48,7 +48,13 @@ deactivate ApplicationBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteApplication(1)
+DeleteCommand -> Model : getFilteredApplicationList()
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : deleteApplication(applicationToDelete)
 activate Model
 
 Model --> DeleteCommand
@@ -64,6 +70,10 @@ deactivate CommandResult
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
-[<--LogicManager
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
+
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

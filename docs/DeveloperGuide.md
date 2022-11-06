@@ -122,10 +122,10 @@ How the parsing works:
 The `Model` component,
 
 * stores the application book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
-* stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the `Application` objects which have existing `Interview` present in them. It is an `ObservableList<Application>` which is used to create the interview list in the UI.
-* stores the `Application` objects which have the `Interview` within one week from the time the user is using the application as another _filtered_ list.
-* stores the `Application` objects sorted by different possible orders as a _sorted_ list. It acts as an important list for the user to select the index for `EditCommand`, `DeleteCommand`, etc.
+* stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list.
+* stores the filtered `Application` objects in another _sorted_ list that is sorted by one of several possible orders. This list is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes. When the user selects the application index for an `EditCommand`, `DeleteCommand`, etc., this is the list that is referred to.
+* stores a list of `Application` objects which have an existing `Interview` present in them. It is an `ObservableList<Application>` which is used to create the interview list in the UI.
+* stores the `Application` objects which have an `Interview` within one week from the time the user is using the application as another _filtered_ list. This list is shown to the user in the remind window.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -251,6 +251,7 @@ The features of the new and modified commands are summarized as follows:
 * `ListCommand`: Show the user the unarchived applications in CinternS.
 
 The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
+
 ![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
 
 After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archived application to the `FilterList` in `Model` and the archived application will be hidden from the updated list shown in UI.
@@ -409,6 +410,7 @@ The `remind` feature allows the user to view a list of upcoming interviews withi
 The rationale for this enhancement is that the interview list on the main GUI window shows all non-archived interviews, including interviews that have passed and interviews scheduled weeks to months later. This feature enables a focused view of only approaching interviews within the next week.
 
 The sequence diagram below shows the crucial components involved in executing the `remind` command:
+
 ![Remind Sequence Diagram](images/RemindSequenceDiagram.png)
 
 #### Design Considerations
@@ -535,21 +537,21 @@ Internship applications can stretch over a long period of time, making it hard t
 
 ### User stories
 
-| Priority | As a/an...                         | I want to...                                                                             | So that I can...                                                     |
-|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| High     | user with many applications    | get a list of all existing applications                                                     | avoid accidentally applying for the same company and position twice.              |
-| High     | user                              | delete entries I've added in previously                                                  | change my mind about those entries.                             |
-| High     | user                              | view a list of all my interviews                                                         | recall what interviews I have planned and their details. |
-| High     | user with many application emails | add details such as round, date, time and location for an interview              | avoid sieving through my emails to remind myself of these details. |
-| Medium     | user with many applications    | find applications by the company name or the position                                       | quickly check the details of the applications I need.              |
-| Medium     | user starting a new round of applications    | clear all existing applications                                       | avoid having to delete applications one by one to start fresh.              |
-| Medium   | user                              | add tags to my applications                                                              | include miscellaneous remarks of note for each application.         |
-| Medium   | user                              | sort my applications by their attributes                                                 | find applications based on their attributes more easily.               |
-| Medium   | user                              | save the sort order that I used most recently                                            | avoid having to sort my applications in the same order I want every time I open the app.      |
-| Medium   | user                              | archive old applications                                                                 | keep those applications for future reference without crowding my application list.      |
-| Medium   | user                              | view upcoming interviews happening within 1 week from now                                | know which interviews I need to prepare for soon.                                   |
-| Medium   | careless user                     | undo/redo the previous command                                                           | reverse the command that I accidentally executed/undid.                                   |
-| Low      | user who can type fast            | be able to exit the program without using a mouse                                        | use the app more efficiently.                                   |
+| Priority | As a/an...                                | I want to...                                                        | So that I can...                                                                         |
+|----------|-------------------------------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| High     | user with many applications               | get a list of all existing applications                             | avoid accidentally applying for the same company and position twice.                     |
+| High     | user                                      | delete entries I've added in previously                             | change my mind about those entries.                                                      |
+| High     | user                                      | view a list of all my interviews                                    | recall what interviews I have planned and their details.                                 |
+| High     | user with many application emails         | add details such as round, date, time and location for an interview | avoid sieving through my emails to remind myself of these details.                       |
+| Medium   | user with many applications               | find applications by the company name or the position               | quickly check the details of the applications I need.                                    |
+| Medium   | user starting a new round of applications | clear all existing applications                                     | avoid having to delete applications one by one to start fresh.                           |
+| Medium   | user                                      | add tags to my applications                                         | include miscellaneous remarks of note for each application.                              |
+| Medium   | user                                      | sort my applications by their attributes                            | find applications based on their attributes more easily.                                 |
+| Medium   | user                                      | save the sort order that I used most recently                       | avoid having to sort my applications in the same order I want every time I open the app. |
+| Medium   | user                                      | archive old applications                                            | keep those applications for future reference without crowding my application list.       |
+| Medium   | user                                      | view upcoming interviews happening within 1 week from now           | know which interviews I need to prepare for soon.                                        |
+| Medium   | careless user                             | undo/redo the previous command                                      | reverse the command that I accidentally executed/undid.                                  |
+| Low      | user who can type fast                    | be able to exit the program without using a mouse                   | use the app more efficiently.                                                            |
 
 ### Use cases
 
@@ -906,6 +908,60 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `find` <br>
       Expected: Error details are shown.
 
+### Sorting the applications list
+
+1. Default sort setting
+
+    1. Prerequisites: Use an instance of CinternS that has never ran a `sort` command yet. Multiple applications in the list.
+
+    1. Expected: The list is being sorted in chronological order of application date.
+
+1. Sorting the application list
+
+    1. Prerequisites: Multiple different applications in the list. Multiple applications with interviews.
+
+    1. Test case: `sort`<br>
+       Expected: The applications list is sorted in chronological order of application date. This is the default sort order when no parameters are supplied to the `sort` command. The interview list should not change.
+
+    1. Test case: `sort o/company`<br>
+       Expected: The applications list is sorted in alphabetical order of company. The interview list should not change.
+
+    1. Test case: `sort r/`<br>
+       Expected: The applications list is sorted in reverse chronological order of application date. The interview list should not change.
+
+    1. Test case: `sort o/interview r/`<br>
+       Expected: The applications list is sorted in reverse chronological order of interview date. Applications with no interviews are all at the bottom of the list. The interview list should not change.
+
+    1. Test case: `sort o/email`<br>
+       Expected: The application list order does not change. Error details are shown.
+
+1. Adding applications to sorted list
+
+    1. Add an application into the list.<br>
+       Expected: It appears in the application list in the correct position such that the list remains sorted in its current order.
+
+1. Modifying interviews in sorted list
+
+    1. Prerequisites: Sort the applications list by interview (either in forward or reverse order). Multiple different applications in list. Multiple applications with interviews and without interviews.
+
+    1. Test case: Add an interview to an application without an interview.<br>
+       Expected: The application moves from near the bottom of the application list to the correct position such that the list remains sorted in order of interview date.
+
+    1. Test case: Remove an interview from an application with an interview.<br>
+       Expected: The application moves to near the bottom of the application list together with the other applications with no interview.
+
+    1. Test case: Modify the interview date of an application with an interview.<br>
+       Expected: The application moves to the correct position in the application list such that the list remains sorted in order of interview date.
+
+1. Saving sort setting
+
+    1. Prerequisites: Multiple different applications in the list.
+
+    1. Run a sort command, for example `sort o/position r/`. Close the app.
+
+    1. Re-launch the app by double-clicking the jar file or using the `java -jar` command in a terminal.<br>
+       Expected: The list is still sorted in the order used before closing the app.
+
 ### Undo the previous command
 1. Undo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
@@ -920,6 +976,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error details are shown.
 
 ### Redo the previous command
+
 1. Redo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
    
@@ -931,7 +988,7 @@ testers are expected to do more *exploratory* testing.
    
    2. Test case: `redo` <br>
       Expected: Error details are shown.
-
+   
 ### Reminder for upcoming interview(s)
 
 1. Using `remind` command with **Upcoming interviews** window not currently open 
