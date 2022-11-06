@@ -232,7 +232,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add applicant feature
 
-#### Implementation
+**Implementation**
 
 The add operation is facilitated by `AddCommandParser`. `AddCommandParser` will map the creation of an
 `Applicant` based on the user input to be added to the applicant list in the `Model`.
@@ -274,7 +274,7 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ### Edit applicant feature
 
-#### Implementation
+**Implementation**
 
 The edit operation is facilitated by `EditCommandParser`. `EditComamndParser` will map the creation of an
 `EditApplicantDescriptor` based on the input prefixes. `EditApplicantDescriptor` stores the details to edit the 
@@ -320,7 +320,7 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 ### Remove applicants feature
 
-#### Implementation
+**Implementation**
 
 The remove operation is facilitated by `RemoveCommandParser`. `RemoveCommandParser` parses the user input into an
 `ApplicationStatus` to compare with and remove, hence assisting the deletion of applicants from the applicant list
@@ -364,7 +364,7 @@ The following activity diagram summarizes what happens when a user executes a re
 
 ### Find applicant feature
 
-#### Implementation
+**Implementation**
 
 The find operation is facilitated by `FindCommandParser`. `FindCommandParser` will map the creation of a
 `Predicate<Applicant>` based on the input prefixes. The following implementations support the creation of
@@ -416,7 +416,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ### Filter applicants feature
 
-#### Implementation
+**Implementation**
 
 The filter operation is facilitated by `FilterCommandParser`. `FilterCommandParser` parses the user input into an
 `ApplicationStatusPredicate` which assist the filtering of applicant list in the `Model`.
@@ -455,7 +455,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ### Sort applicants feature.
 
-#### Implementation
+**Implementation**
 
 The sort operation is facilitated by `SortCommandParser`. `SortCommandParser` will map the creation of a
 `Comparator<Applicant>` based on the user input which assist in the sorting of the applicant list in the `Model`.
@@ -488,13 +488,17 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** There should only be one arrowhead at the end of every line
+in the Activity Diagram but due to limitation of PlantUML, the arrowhead converges on another.
+</div>
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Import feature
 
-#### Implementation
+**Implementation**
 
 [Return to top](#table-of-contents)
 
@@ -502,7 +506,7 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ### Pin applicant feature
 
-#### Implementation
+**Implementation**
 
 The pin operation is facilitated by `PinCommandParser`. `PinCommandParser` parses the user input into an `Index` to
 assist in identifying the applicant to pin from the applicant list in the `Model`.
@@ -538,7 +542,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ### UnPin applicant feature
 
-#### Implementation
+**Implementation**
 
 The unpin operation is facilitated by `UnPinCommandParser`. `UnPinCommandParser` parses the user input into an `Name` to
 assist in identifying the applicant to unpin from the applicant list in the `Model`.
@@ -606,14 +610,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |---------|------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *` | administrator (new user)                             | see usage instructions easily                                               | discover functionalities provided by the application                                        |
 | `* * *` | administrator (new user)                             | operate with clear and concise commands                                     | learn easily and grow proficiency with time                                                 |
-| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored database easily                                                               |
+| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored data easily                                                                   |
 | `* * *` | administrator                                        | save fresh data easily                                                      | avoid losing all my data                                                                    |
-| `* * *` | administrator                                        | add a new applicant to my database                                          | keep track of organize all the scholarship applications                                     |
-| `* * *` | administrator                                        | delete an applicant from my database                                        | remove data of scholarship applications that is no longer needed                            |
+| `* * *` | administrator                                        | add a new applicant to my app                                               | keep track of all the scholarship applications                                              |
+| `* * *` | administrator                                        | delete an applicant from my app                                             | remove data of scholarship applications that is no longer needed                            |
 | `* * *` | administrator                                        | edit the details of an applicant in my database                             | keep track of their most updated details                                                    |
-| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in the list of applications                  |
+| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in one go                                    |
 | `* * *` | administrator managing many scholarship applications | find applicants by their name                                               | retrieve details of an applicant without having to go through the entire list               |
-| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarships                    |
+| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarship                     |
 | `* * *` | administrator managing many scholarship applications | find applicants by their majors taken                                       | retrieve details of all applicants who has taken the specified majors                       |
 | `* *`   | administrator managing many scholarship applications | pinpoint applicants by their name, scholarship applied for and majors taken | identify and retrieve details of an exact applicant easily                                  |
 | `* *`   | administrator managing many scholarship applications | filter for applicants by status of their application                        | focus on the applicants whose application status is now of relevance to me                  |
@@ -621,9 +625,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | administrator managing many scholarship applications | sort the applicants by the scholarship they applied for                     | have an overview of all applicants with their scholarship applied for in alphabetical order |
 | `* *`   | administrator managing many scholarship applications | sort the applicants by status of their application                          | have an overview of all applicants grouped by their application status                      |
 | `* *`   | experienced administrator                            | remove all completed scholarship applications together                      | avoid clutter of data                                                                       |
-| `* *`   | experienced administrator                            | pin important applications that require further attention                   | refer to them easily when i need to                                                         |
-| `* *`   | experienced administrator                            | unpin applications that has been completed                                  | focus on the other important scholarship applications                                       |
-| `*`     | experienced administrator                            | run the application on different operating systems                          | access the same database/storage on different operating systems                             |
+| `* *`   | experienced administrator                            | pin important applicants that require further attention                     | refer to them easily when i need to                                                         |
+| `* *`   | experienced administrator                            | unpin applicants that has been completed                                    | focus on the other important scholarship applications                                       |
+| `*`     | experienced administrator                            | run the app on different operating systems                                  | access the same database/storage on different operating systems                             |
 | `*`     | experienced administrator                            | import scholarship application data easily                                  | combine scholarship application data from external sources with my own easily               |
 
 [Return to top](#table-of-contents)

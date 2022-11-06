@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TrackAScholar (v1.2)
+title: TrackAScholar (v1.4)
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W10-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-W10-3/tp/actions/workflows/gradle.yml)

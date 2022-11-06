@@ -87,7 +87,12 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return A chain of combined predicate list.
      */
     public static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
+        //@@author L1uY1jun-reused
+        //Reused from https://stackoverflow.com/questions/47424197/how-to
+        // -combine-all-predicates-from-listpredicatemyclass
+        // with minor modifications
         return applicantPredicateList.stream().reduce(Predicate::and).orElse(x -> true);
+        //@@author
     }
 
     /**
