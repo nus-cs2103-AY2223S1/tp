@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import seedu.rc4hdb.logic.commands.residentcommands.AddCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
-import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.Prefix;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
@@ -33,7 +32,7 @@ import seedu.rc4hdb.model.resident.fields.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser implements CommandParser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

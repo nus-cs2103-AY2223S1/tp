@@ -206,6 +206,14 @@ if it is open. </div>
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
 to help you modify resident data within **RC4HDB**.
 
+Note:
+* **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
+* Two residents are considered duplicates of each other if any of the following are same:
+  * matriculation number
+  * phone number
+  * email
+  * room
+
 ---
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -221,7 +229,7 @@ The resident [fields](#glossary-of-terms) can be found [here](#format-for-reside
 
 ### Adding a resident : `add`
 
-Adds a resident into **RC4HDB**.
+Adds a resident into **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
@@ -243,7 +251,7 @@ Examples:
 
 ### Editing an existing resident : `edit`
 
-Edits the data of an existing resident in **RC4HDB**.
+Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
@@ -328,13 +336,13 @@ Deleted data can not be retrieved. Do use this command cautiously!
 ### Format for resident fields
 
 `n/NAME`
-* Whitespaces are allowed *i.e. `n/Michael B. Jordan` is allowed*
+* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*
 
 `p/PHONE_NUMBER`
 * Must be an **8**-digit non-negative integer
 
 `e/EMAIL`
-* Must follow the formatting for all standard emails *i.e. `e/Example@email.com` is accepted*
+* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*
 * Can be both valid or invalid emails
 
 `r/FLOOR-UNIT`
@@ -343,14 +351,17 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `g/GENDER`
 * `M` or `F`
+* Not case-sensitive *i.e. `m` and `f` is also valid*
 
 `h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
 * Must be either `A`, `D`, `L`, `N`, `U`
 * `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
+* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*
 
 `m/MATRIC_NUMBER`
 * Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
+* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
 
 `t/TAG`
 * Represents any other key that could be used to identify a resident
@@ -376,16 +387,14 @@ Lists *all* the residents in the **RC4HDB** database. If the table view is showi
 calling `list` will restore and display the full list of residents.
 
 Format:
-
-- `list` to display *all* residents from the database with *all* columns shown in the table.
+* `list` to display *all* residents from the database with *all* columns shown in the table.
   Calling `list` on our sample data will produce the following result:
   
 
   ![list command](images/ug-photos/list_command.png)
 
 Note:
-
-- Any input entered after the `list` command will be ignored.
+* Any input entered after the `list` command will be ignored.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -427,13 +436,13 @@ Sequential examples:
 
 Note:
 
-- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-  - This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
-- Letters *must* be separated by a single whitespace.
-- The order of each letter does not matter.
-- Duplicate letters are ignored. 
-- There needs to be at least one column shown in the table at all times.
-- You can always use `reset` to restore the full table view!
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+  * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored. 
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -470,13 +479,13 @@ Sequential examples:
 
 Note:
 
-- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-    - This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
-- Letters *must* be separated by a single whitespace.
-- The order of each letter does not matter.
-- Duplicate letters are ignored.
-- There needs to be at least one column shown in the table at all times.
-- You can always use `reset` to restore the full table view!
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -494,9 +503,9 @@ Use this when you have called `showonly` or `hideonly` on the table!
 Format: `reset`
 
 Note:
-- Any input entered after the `reset` command will be ignored.
-- This command is different from the `list` command in that it does not affect the list of residents being displayed.
-  - However, both commands cause the full set of resident fields to be displayed in the table.
+* Any input entered after the `reset` command will be ignored.
+* This command is different from the `list` command in that it does not affect the list of residents being displayed.
+  * However, both commands cause the full set of resident fields to be displayed in the table.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -689,7 +698,7 @@ Format: `file import FILE_NAME`
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1046,7 +1055,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Create File** | `file create FOLDER_NAME` <br> e.g. `file create rc4_data_2022` |
 | **Delete File** | `file delete FOLDER_NAME` <br> e.g. `file delete rc4_data_2022` |
 | **Switch File** | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
-| **Import File** | `import FOLDER_NAME` <br> e.g. `import students`                |
+| **Import File** | `file import FILE_NAME` <br> e.g. `file import students`        |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
