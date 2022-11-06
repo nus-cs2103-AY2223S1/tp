@@ -547,12 +547,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use Case 6: Filtering contacts**
+**Use Case 6: Finding contacts**
 
 **MSS**
 
-1. User requests to filter contacts based on a given field
-2. Friendnancial shows the list of people that match the criteria
+1. User requests to finding contacts based on a given field.
+2. Friendnancial shows the list of people that match the criteria.
 
     Use case ends.
 
@@ -563,9 +563,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1b. The user does not indicate any prefix.
+* 1a. The user enters multiple prefixes.
 
-  * 1b1. Friendnancial shows all the people in the list of people.
+    * 1a1. Friendnancial shows an error message.
+
+      Use case ends.
+
+* 1b. The user does not indicate any prefix or parameters.
+
+  * 1b1. Friendnancial shows all the contacts in the list.
 
     Use case ends.
 
