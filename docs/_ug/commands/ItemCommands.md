@@ -164,23 +164,21 @@ The command will sort the items by their names.
 * Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-view 1
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+The currently displayed Item List Box in FoodRem shows the item named "Onion" at INDEX value 1.
 
-```text
-Name: Onions
-Quantity: 8 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The command will produce a detailed view of this item.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="view 1"
+  commandOutputBox="images/itemCommands/commandOutputBox/view.png"
+%}
 
 ---
 
