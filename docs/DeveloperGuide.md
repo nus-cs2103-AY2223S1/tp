@@ -322,27 +322,25 @@ The find operation is facilitated by `FindCommand`. It extends `Command` and imp
 
 Given below is an example usage scenario and how the find command operates in TrackAScholar:
 
-1. The user enters `find n/john tan` into the terminal.
+1. The user enters `find n/john` into the terminal.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `find` and
-   the arguments `n/ john tan`.
+   the arguments `n/ john`.
 
-2. `TrackAScholarParser` identifies the `find` command and argument `n/john Tan`. `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
-    
-3. `FindCommandParser#parse()` first checks for a valid prefix which can be of type name, scholarship or major.
+2. `TrackAScholarParser` identifies the `find` command and `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
+    It checks for a valid prefix which can be of type name, scholarship or major.It throws out an error if a valid prefix is not found.
 
-4.  If the prefix is valid, `FindCommandParser#parse()` will then call `parsePredicates` with the input and its corresponding prefix.
+3. Since a valid prefix for name is present `FindCommandParser#parse()` will then call `parsePredicates` with the argument `john`.
 
-5. In `parsePredicates` an empty list is first created called `applicantPredicateList`.
+4. In `parsePredicates` an empty is first created `applicantPredicateList` before, it checks for the type of prefix accompanying the argument which be of type  name, scholarship or major.
 
-6. `parsePredicates` invokes `getKeywordsList`.`getKeywordsList`splits retrieves the keywords after splitting them with white spaces.
-    e.g.  `john` and `tan` are the keywords.
+5. After identifying the prefix is of type name it will call `getKeywordsList` to get the keyword for searching and in this case it will be `john`.
 
-7. After identifying the keyword, `NameContainsKeywordsPredicate` is invoked with keywords as the argument.
+6. After identifying the keyword `john` the method, `NameContainsKeywordsPredicate` will be invoked with the argument `john`.
 
-8. `NameContainsKeywordsPredicate` will check if any names in the main list contains the keyword.
-    If a name contains the keyword e.g. `tan` all applicants with the `tan` will be saved to `applicantPredicateList` . 
+7. `NameContainsKeywordsPredicate` will check if any names in the main list has `john` present in their names.If `john` is present, that name in the main
+    list will be added to `applicantPredicateList`.All valid names are added to `applicantPredicateList`
 
-9. `FindCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keywords.
+8. `FilterCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keyword `john`. 
 
 --------------------------------------------------------------------------------------------------------------------
 ### Edit applicant feature

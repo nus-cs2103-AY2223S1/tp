@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+'participant "applicant:Applicant" as Applicant MODEL_COLOR
+end box
+
+[-> LogicManager : execute(find n/John)
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create FindCommandParser
+TrackAScholarParser -> FindCommandParser : FindCommandParser()
+activate FindCommandParser
+
+FindCommandParser --> TrackAScholarParser
+deactivate FindCommandParser
+
+
+TrackAScholarParser -> FindCommandParser : parse(n/John)
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SCHOLARSHIP, PREFIX_MAJOR)
+activate FindCommandParser
+deactivate FindCommandParser
+
+FindCommandParser -> FindCommandParser : isPrefixPresent()
+activate FindCommandParser
+deactivate FindCommandParser
+
+FindCommandParser -> FindCommandParser : getKeywordsList(ArgumentMultimap argumentMultimap,Prefix prefix)
+activate FindCommandParser
+deactivate FindCommandParser
+
+FindCommandParser -> FindCommandParser : combinePredicateList(List<Predicate<Applicant>> applicantPredicateList)
+activate FindCommandParser
+deactivate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicate)
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+FindCommandParser --> TrackAScholarParser
+deactivate FindCommandParser
+destroy FindCommandParser
+
+deactivate FindCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> TrackAScholarParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> FindCommand: execute()
+
+activate FindCommand
+
+FindCommand -> Model : updateFilteredApplicantList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : getFilteredApplicantList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+@enduml

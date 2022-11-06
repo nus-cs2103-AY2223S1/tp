@@ -13,9 +13,11 @@ Given below are my contributions to the project.
 *  Refer to https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master and
 * https://github.com/AY2223S1-CS2103T-W10-3/tp/pulls?q=is%3Apr+author%3ADarrenCsAcc
 
-* **Project management**: `to be added soon`
+* **Project management**:
+* Designed TrackAScholar logo
 
-* **Enhancements to existing features**: `to be added soon`
+* **Enhancements to existing features**: 
+* * Added `SortCommandParserTest`
 
 * **Documentation**: `to be added soon`
   * User Guide: Added sort command in features.
