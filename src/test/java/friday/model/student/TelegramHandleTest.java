@@ -14,9 +14,9 @@ public class TelegramHandleTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = ".";
-        assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidPhone));
+    public void constructor_invalidTelegramHandle_throwsIllegalArgumentException() {
+        String invalidTelegramHandle = ".";
+        assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidTelegramHandle));
     }
 
     @Test
@@ -26,10 +26,12 @@ public class TelegramHandleTest {
 
         // invalid Telegram handles
         assertFalse(TelegramHandle.isValidTelegramHandle("")); // empty handle is not allowed
-        assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
+        assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // "+" symbols are not allowed
+        assertFalse(TelegramHandle.isValidTelegramHandle("john")); // must be 5 characters or more
 
         // valid Telegram handles
         assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
+        assertTrue(TelegramHandle.isValidTelegramHandle("john1")); // 5 characters length
         assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
         assertTrue(TelegramHandle.isValidTelegramHandle("John_Doe")); // capital letters are allowed
     }
