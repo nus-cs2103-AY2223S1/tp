@@ -48,8 +48,8 @@
                     <FXCollections fx:factory="observableArrayList">
                       <HelpWindowCell action="Add" format="add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY"
                                       example="add t/e d/Lunch a/15.60 da/10-10-2022 c/Food"/>
-                      <HelpWindowCell action="Delete" format="del INDEX_OF_ENTRY t/ENTRY_TYPE"
-                                      example="del 2 t/e"/>
+                      <HelpWindowCell action="Delete" format="delete INDEX_OF_ENTRY t/ENTRY_TYPE"
+                                      example="delete 2 t/e"/>
                       <HelpWindowCell action="Edit" format="edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]"
                                       example="edit 2 t/i a/150.00 da/22-10-2022"/>
                       <HelpWindowCell action="Summary" format="summary [mo/MONTH]"
