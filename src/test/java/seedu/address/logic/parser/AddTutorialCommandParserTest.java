@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-
-
 import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_TUTORIAL1;
@@ -14,8 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_TUTORIAL2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_TUTORIAL1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_TUTORIAL1;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -54,7 +52,8 @@ public class AddTutorialCommandParserTest {
                 new AddTutorialCommand(expectedTutorial));
 
         // multiple time - last time accepted
-        assertParseSuccess(parser, GROUP_DESC_TUTORIAL1 + CONTENT_DESC_TUTORIAL1 + TIME_DESC_TUTORIAL2 + TIME_DESC_TUTORIAL1,
+        assertParseSuccess(parser, GROUP_DESC_TUTORIAL1 + CONTENT_DESC_TUTORIAL1 + TIME_DESC_TUTORIAL2
+                        + TIME_DESC_TUTORIAL1,
                 new AddTutorialCommand(expectedTutorial));
     }
 
