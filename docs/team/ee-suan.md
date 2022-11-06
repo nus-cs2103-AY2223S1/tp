@@ -19,10 +19,10 @@ Given below are my contributions to the project.
     * Highlights:
         * Applied Command pattern in designing how the suggested workout is generated.
         * Supports both indexes and exercise names as input.
+        * Added tests and increased project coverage by +5.73% ([PR #227](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/227))
+      
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ee-suan&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**:
-    * to be added soon
 
 * **Enhancements to existing features**:
     Added Weight as field for Exercise ([PR #51](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/51))
@@ -31,6 +31,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for `:gen` command ([PR #129](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/129))
+        * Updated UML diagrams ([PR #213](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/213))
 
     * Developer Guide:
         * Added implementation and design details to support `:gen` command ([PR #104](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/104))
