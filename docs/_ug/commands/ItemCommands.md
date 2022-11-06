@@ -190,7 +190,7 @@ The command will produce a detailed view of this item.
 
 ```info
 * If a quantity is not provided, the item quantity will be incremented by 1.
-* If two or more `QUANTITY` values are provided, the last `QUANTITY` will be taken.
+* If two or more `QUANTITY` values are provided, only the last `QUANTITY` will be taken.
 ```
 
 **Example:**
@@ -217,7 +217,7 @@ The command will produce a detailed view of this item.
 
 ```info
 * If a quantity is not provided, the item quantity will be decremented by 1.
-* If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+* If two or more `QUANTITY` values are provided, only the last `QUANTITY` will be taken.
 ```
 
 **Example:**
@@ -251,7 +251,7 @@ The command will produce a detailed view of this item.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
   * yyyy: The current year. For example, "2019" would represent the year 2019.
 * `PRICE` do not require you to include the currency. Only include the value.
-* If two or more of the same parameters are provided, the last parameter will be taken.
+* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 ```
 
 **Example:**
