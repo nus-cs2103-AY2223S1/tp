@@ -28,6 +28,8 @@ public class EditBillDescriptorBuilder {
         descriptor.setBillDate(bill.getBillDate());
     }
 
+
+
     /**
      * Sets the {@code Name} of the {@code EditBillDescriptor} that we are building.
      */

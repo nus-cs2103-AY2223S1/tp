@@ -57,7 +57,7 @@ public class EditBillCommand extends Command {
         List<Bill> lastShownList = model.getFilteredBillList();
 
         if (indexOfBill.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BILL_DISPLAYED_INDEX);
         }
 
         Bill billToEdit = lastShownList.get(indexOfBill.getZeroBased());

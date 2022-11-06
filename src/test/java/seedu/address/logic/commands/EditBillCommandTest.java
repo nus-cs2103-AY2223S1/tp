@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BILL_DATE_7;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBillAtIndex;
+import static seedu.address.testutil.TypicalBills.BILL_1;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BILL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BILL;
 import static seedu.address.testutil.TypicalBills.getTypicalBillsHealthContact;
@@ -23,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.PaymentStatus;
 import seedu.address.testutil.BillBuilder;
 import seedu.address.testutil.EditBillDescriptorBuilder;
 
@@ -36,7 +38,9 @@ public class EditBillCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Bill editedBill = new BillBuilder().build();
+
+        Bill editedBill = new BillBuilder().withPaymentStatus(BILL_1.getPaymentStatus().toString()).build();
+
         EditBillDescriptor descriptor = new EditBillDescriptorBuilder(editedBill).build();
         EditBillCommand editBillCommand = new EditBillCommand(INDEX_FIRST_BILL, descriptor);
 
@@ -112,7 +116,7 @@ public class EditBillCommandTest {
      * but smaller than size of HealthContact
      */
     @Test
-    public void execute_invalidPatientIndexFilteredList_failure() {
+    public void execute_invalidBillIndexFilteredList_failure() {
         showBillAtIndex(model, INDEX_FIRST_BILL);
         Index outOfBoundIndex = INDEX_SECOND_BILL;
         // ensures that outOfBoundIndex is still in bounds of HealthContact list
@@ -146,6 +150,6 @@ public class EditBillCommandTest {
         assertFalse(standardCommand.equals(new EditBillCommand(INDEX_SECOND_BILL, DESC_BILL_8)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditBillCommand(INDEX_FIRST_BILL, DESC_BILL_7)));
+        assertFalse(standardCommand.equals(new EditBillCommand(INDEX_FIRST_BILL, DESC_BILL_8)));
     }
 }
