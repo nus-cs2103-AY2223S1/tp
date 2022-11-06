@@ -4,14 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_MARK;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_ATTENDANCE;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_GRADE_PROGRESS;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_HOMEWORK;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_LESSON_PLAN;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_PHONE;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_SESSIONS;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_TAGS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.setModelFullView;
@@ -69,17 +61,36 @@ public class UnmarkCommandTest {
     }
 
     @Test
+    public void execute_allFieldsSpecifiedFilteredList_success() {
+        Person firstPerson = model.getFilteredPersonList().get(0);
+
+        setFullView(INDEX_FIRST_PERSON);
+        Person unmarkedPerson = new PersonBuilder(firstPerson).build();
+        unmarkedPerson.getHomeworkList().unmarkAtIndex(INDEX_FIRST_ITEM);
+        unmarkedPerson.getAttendanceList().unmarkAtIndex(INDEX_FIRST_ITEM);
+
+        MarkPersonDescriptor descriptor = new MarkPersonDescriptorBuilder()
+                .withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withAttendanceIndex(INDEX_FIRST_ITEM)
+                .build();
+
+        UnmarkCommand unmarkCommand = new UnmarkCommand(descriptor);
+
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARKED_PERSON_SUCCESS, unmarkedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, unmarkedPerson);
+        setModelFullView(expectedModel, unmarkedPerson.getName().fullName);
+
+        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_oneFieldSpecifiedFilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(0);
 
         setFullView(INDEX_FIRST_PERSON);
-        PersonBuilder blankPerson = new PersonBuilder();
-        Person unmarkedPerson = blankPerson.withName(FIRST_PERSON_NAME)
-                .withPhone(FIRST_PERSON_PHONE).withLessonPlan(FIRST_PERSON_LESSON_PLAN)
-                .withTags(FIRST_PERSON_TAGS).withAttendance(FIRST_PERSON_ATTENDANCE)
-                .withGradeProgress(FIRST_PERSON_GRADE_PROGRESS)
-                .withSession(FIRST_PERSON_SESSIONS)
-                .withHomework(FIRST_PERSON_HOMEWORK).build();
+        Person unmarkedPerson = new PersonBuilder(firstPerson).build();
 
         // checking for homework field
         unmarkedPerson.getHomeworkList().unmarkAtIndex(INDEX_FIRST_ITEM);
