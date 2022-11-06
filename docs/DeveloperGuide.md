@@ -679,89 +679,83 @@ For a complete glossary of Minecraft terms, please visit this page on the
 
 ## **Appendix E: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. 
+These instructions only provide a starting point for testers to work on;
+testers are expected to do more exploratory testing.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:** Please follow the test cases **in order** as some of the later test cases
+depend on the state resulting from the earlier test cases.
 
 </div>
 
 ### Launch and shutdown
 
-1. Initial launch
+Initial launch
+1. Download the jar file and copy into an empty folder
+2. Double-click the jar file
 
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Expected:** Shows a window with an empty contact list
 
 ### Adding a friend
 
+Run `add n/Victoria Tan m/vicky12345 ms/myserver@127.0.0.1 gt/Minecraft BTS gt/survival s/fb@Victoria Tan s/ig@vicky1234 t/amiga 
+p/+3412345678901 e/victoria.tan@gmail.com a/500 Calle de las Flores, Madrid c/Spain ti/sun@0900-sun@2300 ti/mon@1500-mon@1900`
+
+**Expected:** Creates a new person called `Victoria Tan` in the friend list, with all the above-listed attributes. 
+
+Run `add n/Alma m/almaaaa1`
+
+**Expected:** Creates a new person called `Alma` in the friend list, with all the above-listed attributes.
+
 ### Deleting a friend
 
-1. Deleting a person while all persons are being shown
+Run `delete 2`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
+**Expected:** Removes the contact with name `Alma` from the friend list.
 
 ### Editing a friend
 
+Run `edit 1 a/Plaza Mayor, Sta. Cruz de Tenerife, Canary Islands`
+
+**Expected:** The address for `Victoria Tan` is replaced with `Plaza Mayor, Sta. Cruz de Tenerife, Canary Islands`.
+
+Run `edit 1 t/spanish t/french t/noEnglish`
+
+**Expected:** The tags for `Victoria Tan` are replaced with the aforementioned three. `amiga` is no longer there.
+
 ### Suggesting friends
 
-### Finding a friend
+Run `add n/Alma m/almaaaa1`
 
-### Clearing all friends
+Run `suggest k/Alma`
 
-1. Clearing all persons while all persons are being shown
+**Expected:** Only `Alma` shows up.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Run `suggest dt/mon@1855`
 
-   1. Test case: `clear`<br>
-      Expected: All persons are deleted from the list. Details of the deleted persons shown in the status message. Timestamp in the status bar is updated.
+**Expected:** Only `Victoria Tan` shows up.
 
-### Exiting the app
+Run `list`
 
-1. Saving data
+**Expected:** Both friends show up.
 
-   1. Test case: `exit`<br>
-      Expected: The app exits and the data is saved. When the app is restarted, the most recent data should be loaded.
-   2. Test case: `clear` followed by `exit`<br>
-      Expected: The app exits and the data is saved. When the app is restarted, the most recent data should be loaded.
+### Data persistence
+
+Exit Minefriends, then reopen it.
+
+**Expected:** The data from the last session remains the same.
 
 ### Help Screen
 
-1. Initial launch
-   1. Prerequisites: data/addressbook.json is not present.
-   1. Expected: The help window is opened. The help window should contain a list of commands and their descriptions.
+Initial launch: `data/addressbook.json` is not present.
 
-1. Viewing help
-   1. Test case: `help`<br>
-      Expected: Help window opens with a list of commands and their descriptions. The window size may not be optimum.
+**Expected:** The help window is opened. The help window should contain a list of commands and their descriptions.
 
-### Saving data
+Run `help`
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. Editing data file
-
-   1. _{explain how to edit the data file, and the expected behavior}_
+**Expected:** Help window opens with a list of commands and their descriptions. The window size may not be optimum.
 
 ## **Appendix F: Effort**
 
