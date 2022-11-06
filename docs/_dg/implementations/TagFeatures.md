@@ -49,7 +49,7 @@ When storing a tag, these are the alternatives considered.
     * Easily extensible (defining a new `Tag` or `Item` can be as simple as creating a new node in the tree)
 
   * Cons:
-    * Example of over-engineering, unnecessarily complicating things, as compared to alternative 1
+    * Example of over-engineering, unnecessarily complicates things when compared to alternative 1
     * Unlikely to have deeply nested relationships for `Tag`, adding each `Tag` to an `Item` is much simpler
     * Unlikely to need so many `Tag`, in which case alternative one would result in faster operations by using hash tables instead of a tree
 
