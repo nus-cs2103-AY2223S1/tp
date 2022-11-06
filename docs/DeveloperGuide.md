@@ -187,13 +187,13 @@ The `Model` component,
 **
 API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram-0.png" width="550" />
 
 The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage`, `ArchivedtaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -208,25 +208,31 @@ Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 5.1 Hide Command
+### 5.1 Archive Command
 
-In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (
-archived) tasks will still be stored and can be retrieved using `listAllCommand`.
+A user is able to archive a task when a task is completed or has been due. This helps to reduce clutter whenever a user enters the command. 
+Archived tasks will be stored and can be retrieved using `showarchive`.
 
 Command takes input
 
-* `archive <index>` where `<index>` is the index of the tasks based on the displayed index shown in Main Window.
-* `archive -d date` where `date` should be formatted as `YYYY-MM-DD` and all tasks before and on `date` will be hidden (
-  archived).
+* `archive TASK_NUMBER` where `TASK_NUMBER` is the index of the tasks based on the displayed index shown in Main Window.
 
-Command result will tell us number of tasks remaining.
+Command result will if the task is archived successfully. Should there be a duplicate of the same task in the archived task list. The new archived task will be removed from current task list. 
 
-Should `date` be improperly formatted or `<index>` entered is out of bound, a generic CommandResult and an error message
+Should the `TASK_NUMBER` entered is out of bound, a generic CommandResult and an error message
 will be given. Model will not be updated.
 
-Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound.
+Below is the sequence diagram for an execution of `archive TASK_NUMBER`, assuming `TASK_NUMBER` is not out of bound.
 
-![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram.png)
+![Sequence diagram when command `archive 1` is executed](images/ArchiveSequenceDiagram-0.png)
+
+The above sequence diagram shows how the archive command works when user input `archive 1` is entered. 
+It first parses the index of the task to archive to retrieve the task. Next, it removes the task from the task list and adds it to the archived task list. 
+
+Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` does not allow the user to modify or edit the tasks stored in archived task list. 
+
+The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`. 
+The .json file for archived task is named as `archivedTaskList.json`
 
 ### 5.2 Mark/unmark feature
 

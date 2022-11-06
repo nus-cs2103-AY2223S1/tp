@@ -19,16 +19,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
-    private ArchivedTaskBookStorage archivedTaskBookStorage;
+    private ArchivedTaskListStorage archivedTaskListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, ArchivedTaskBookStorage archivedTaskBookStorage,
+    public StorageManager(AddressBookStorage addressBookStorage, ArchivedTaskListStorage archivedTaskListStorage,
                           UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.archivedTaskBookStorage = archivedTaskBookStorage;
+        this.archivedTaskListStorage = archivedTaskListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -81,30 +81,30 @@ public class StorageManager implements Storage {
     // ================ Archived Task methods ==============================
 
     @Override
-    public Path getArchivedTaskBookFilePath() {
-        return archivedTaskBookStorage.getArchivedTaskBookFilePath();
+    public Path getArchivedTaskListFilePath() {
+        return archivedTaskListStorage.getArchivedTaskListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook() throws DataConversionException, IOException {
-        return readArchivedTaskBook(archivedTaskBookStorage.getArchivedTaskBookFilePath());
+    public Optional<ReadOnlyAddressBook> readArchivedTaskList() throws DataConversionException, IOException {
+        return readArchivedTaskList(archivedTaskListStorage.getArchivedTaskListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath)
+    public Optional<ReadOnlyAddressBook> readArchivedTaskList(Path filePath)
             throws DataConversionException, IOException {
-        return archivedTaskBookStorage.readArchivedTaskBook(filePath);
+        return archivedTaskListStorage.readArchivedTaskList(filePath);
     }
 
     @Override
-    public void saveArchivedTaskBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveArchivedTaskBook(addressBook, archivedTaskBookStorage.getArchivedTaskBookFilePath());
+    public void saveArchivedTaskList(ReadOnlyAddressBook addressBook) throws IOException {
+        saveArchivedTaskList(addressBook, archivedTaskListStorage.getArchivedTaskListFilePath());
     }
 
     @Override
-    public void saveArchivedTaskBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveArchivedTaskList(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write data file: " + filePath);
-        archivedTaskBookStorage.saveArchivedTaskBook(addressBook, filePath);
+        archivedTaskListStorage.saveArchivedTaskList(addressBook, filePath);
     }
 
 }

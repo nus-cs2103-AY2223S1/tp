@@ -53,13 +53,13 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to the [**Features**](#features) section below.
+      please refer to the [**Features**](#command-features) section below.
 
 3. Main task list:
     * This displays all your *current* tasks.
 
 4. Result display:
-    * The result display displays any information regarding command inputs, such as success or err    rs.
+    * The result displays any information regarding command inputs, such as success or errors.
 
 5. Command box:
     * This is where you enter commands to control the app.
@@ -92,6 +92,8 @@ The GUI should be updated as shown below:
 
    You can also continue reading the [**command features**](#command-features) section to read more about how to use each command!
 
+Click to return to: [Quick Start](#quick-start), [Back to Top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## GUI Features
@@ -113,31 +115,68 @@ However, it is recommended to read through the [Features](#features) section to 
 Loads previous command into the _Command Box_.
 While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
+Click to return to: [GUI Features](#gui-features), [Back to Top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Features
 
-In this section, we will be explaining our commands. Under every command, you will find it's "Format". This refers to the text that you can enter in order to execute that command. 
-To understand the notation of these "Format"s, read on! 
+You can jump to the following sections:
+
+* [Command Structure](#command-structure)
+* [Getting Help](#getting-help--help)
+* [Task Management](#task-management) - For actions like adding, editing and deleting tasks
+* [Viewing Specific Tasks](#viewing-specific-tasks)
+* [Archive Management](#archive-management)
+* [Exiting The Program](#exiting-the-program--exit)
+
+Click to return to: [Back to Top](#)
+
+### Command Structure
+
+In this section, we will be explaining our commands. Before proceeding, we will need to explain how our commands are
+structured!
+
+As seen in the image below, a command begins with a command word. If the command requires more information, it can be 
+provided through flags and parameters. All flags begin with a hyphen, and any information for that flag is provided 
+directly after, as a parameter.
+
+![Command Structure](images/user-guide/AnnotatedCommand.png)
+
+As you are reading through this section, you will find that each command will have a "Format" section. This is the text
+that you need to enter into the command box in order to execute that command. To understand our format notation, read
+on!
 
 <div markdown="block" class="alert alert-info" >
 
 **:information_source: Notes about the command format:**
 
-* Words in `lower_case` are commands or flags to be typed as-is 
-  * e.g. in `ls -t TAG_NAME`, `ls -t` must be typed as-is and is case-sensitive 
+* Words in `lower_case` are commands or flags to be typed as-is
 * Words in `UPPER_CASE` are values of parameters to be supplied by the user
-  * e.g. in `ls -d DATE`, `DATE` refers to the value of the `-d` parameter supplied to the `ls` command 
-* Words in `[Square brackets]` are optional parameters 
-  * e.g. in `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`, `[-d DATE]` and `[-t TAG_NAME]*` can be omitted 
+* Words in `[Square brackets]` are optional parameters
 * Words that are followed by `*` are parameters that can be used multiple times
-  * e.g. in `tag TASK_NUMBER (-t TAG_NAME)*`, `-t TAG_NAME` can be included multiple times
-* Command parameters (e.g. `-a`, `-m`) can be made in any order
-  * e.g. `ls -u --module CS2103T` and `ls --module CS2103T -u` will give the same result
+
+Add command format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
+
+Using the add command format above as an example, the following are a few good and bad examples of what a command can be:
+
+* Since square brackets are optional, `add -n Project -m GEA1000` is valid
+* Since there is a `*`, we can put multiple tags at one, e.g. `add -n Project -m GEA1000 -t Optional -t Group`
+* Modules **are not** surrounded by square brackets, and so they are compulsory. Hence, `add -n Project` is invalid
+* `add`, `-n` and `-m` are in lower case, and so must be kept that way. Thus, `ADD -N Project -M GEA1000` is invalid
+
+And a few more notes about command structure,
+
+* Command flags (e.g. `-a`, `-m`) can be made in any order
 * If a parameter is expected only once in a command but was specified multiple times, the last occurrence of it will be taken
-  * e.g. if you enter `edit 1 -d 2022-10-22 -d 2022-10-30`, this will be interpreted as `edit 1 -d 2022-10-30`
-* Extraneous parameters for commands (i.e. `help`, `showarchive`, etc.) or flags (i.e. `-a`, `-u`, etc.) that do not take in parameters will be ignored
-  * e.g. if you enter `showarchive 2103`, this will be interpreted as `showarchive`
+* Irrelevant flags and parameters provided to commands will simply be ignored
+
+For example, `add -m GEA1000 -m CS2100 -p -n Project` will be interpreted as `add -n Project -m CS2100`, since
+
+* Flag order does not matter
+* Last occurrence of the duplicate flag `-m` is taken
+* The `-p` flag is not expected by the add command and is thus ignored
+
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -145,12 +184,9 @@ To understand the notation of these "Format"s, read on!
 **:information_source: Additional information about task constraints:**
 
 * Task names can only contain letters, numbers and spaces. For example, `Assignment-5` is not a valid name as it
-  contains a hypen.
+  contains a hyphen.
 * Dates must be written in the format YYYY-MM-DD, eg `2022-10-30`.
 * Module names and tags can only contain letters and numbers, no spaces allowed.
-
-* Commands that filter for names find names that **contain** the keyword. (`ls -n`, `find`) 
-* Commands that filter for tags find tags that **match** the keyword. (`ls -t`, `find`)
 
 </div>
 
@@ -167,7 +203,23 @@ Format: `help`
 Shortcut key: <kbd>F1</kbd> 
 </div>
 
-### Adding a task: `add`
+Click to return to: [Command Features](#command-features), [Back to Top](#)
+
+### Task Management
+
+We have the following commands in this section:
+
+* [Adding a task](#adding-a-task-add)
+* [Editing a task](#editing-a-task--edit)
+* [Deleting a task](#deleting-a-task--delete)
+* [Marking a task as complete](#marking-a-task-as-complete-mark)
+* [Unmarking a task](#unmarking-a-task-unmark)
+* [Tagging a task](#tagging-a-task-tag)
+* [Clearing all entries](#clearing-all-entries--clear)
+
+Click to return to: [Command Features](#command-features), [Back to Top](#)
+
+#### Adding a task: `add`
 
 Adds a task to the task list.
 
@@ -180,7 +232,8 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 * **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
-  will be placed at the end of the task list.
+  will be placed at the end of the task list. You can have a task with no deadline by either not providing the `-d`
+  flag, or providing the `-d` flag with no parameter.
 * **Ordering of tasks** - Tasks are first ordered by their deadlines, followed by the module name and then the task
   name, in alphabetical order.
 </div>
@@ -194,7 +247,7 @@ Examples:
 ![Before image of Add Command](images/user-guide/AddCommandBefore.png)
 ![After image of Add Command](images/user-guide/AddCommandAfter.png)
 
-### Editing a task : `edit`
+#### Editing a task : `edit`
 
 Edits an existing task in the task list, at least one field needs to be edited.
 
@@ -215,7 +268,7 @@ Examples:
 
 ![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
 
-### Deleting a task : `delete`
+#### Deleting a task : `delete`
 
 Allows user to delete a task from task list.
 
@@ -229,7 +282,7 @@ Examples:
 ![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
 ![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
 
-### Marking a task as completed: `mark`
+#### Marking a task as complete: `mark`
 
 Mark a task as complete.
 
@@ -241,7 +294,7 @@ Example: `mark 2`
 
 ![Example image of Mark Command](images/user-guide/MarkCommandDemo.png)
 
-### Unmarking a task: `unmark`
+#### Unmarking a task: `unmark`
 
 Unmark a task, ie mark a task as incomplete.
 
@@ -251,7 +304,7 @@ Format: `unmark TASK_NUMBER`
 
 Example: `unmark 2`
 
-### Tagging a task: `tag`
+#### Tagging a task: `tag`
 
 Allows you to tag a task.
 
@@ -264,14 +317,27 @@ Example: `tag 1 -t optional`
 
 ![Example image of Tag Command](images/user-guide/TagCommandDemo.png)
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries of tasks in the task list.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+Clear command does not clear archived task list.  
+
+</div>
+
 Format: `clear`
 
+<div markdown="span" class="alert alert-warning">
 
-### List : `ls`
+:warning: **Warning:**
+
+This command is irreversible!
+
+</div>
+
+### Viewing Specific Tasks
 
 `ls` commands filter the task list. There are multiple ways to filter the task list, such as
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
@@ -281,6 +347,18 @@ Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
+
+We have the following commands in this section:
+
+* [Listing all tasks](#listing-all-tasks--ls--a)
+* [Listing all unmarked tasks](#listing-all-unmarked-tasks--ls--u)
+* [Listing all marked tasks](#listing-all-marked-tasks--ls--m)
+* [Listing all tasks under the same module](#listing-all-tasks-under-the-same-module--ls---module)
+* [Listing all tasks containing the same tag](#listing-all-tasks-containing-the-same-tag--ls--t)
+* [Listing all tasks with deadline on or after a date](#listing-all-tasks-with-deadline-on-or-after-a-date--ls--d)
+* [Listing all task names with the matching keywords](#listing-all-task-names-with-the-matching-keywords-ls--n)
+
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 #### Listing all tasks : `ls -a`
 
@@ -348,7 +426,7 @@ Example: `ls -n task1`
 Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive.
 </div>
 
-### Find task names or tags: `find`
+#### Find task names or tags: `find`
 
 The `find` command finds the task names that **contain** the keywords and tags which **exactly match** with the 
 keywords. Meaning that names does not have to be an exact match (Example: searching `tap` with return a task with a 
@@ -367,7 +445,17 @@ finds **any** task name that contain keywords `week` or `tut` or **any** tag tha
 <br>(Note that it is not limited to only 2 keywords)
 
 Example multiple word search: ![FindCommandMultiple](images/user-guide/FindCommandMultiple.png)
-### Archiving data files : `archive`
+
+### Archive Management
+
+We have the following commands in this section:
+
+* [Archiving tasks](#archiving-tasks--archive)
+* [View archived tasks](#view-archived-tasks--showarchive)
+
+Click to return to: [Command Features](#command-features), [Back to Top](#)
+
+#### Archiving tasks : `archive`
 
 Allows you to remove a task from task list and store in archived file.
 
@@ -386,7 +474,7 @@ This command is irreversible!
 </div>
 
 
-### View Archived Tasks : `showarchive`
+#### View archived tasks : `showarchive`
 
 Displays a list of archived tasks.
 
@@ -394,41 +482,13 @@ Displays a list of archived tasks.
 
 Format: `showarchive`
 
-### Editing a task : `edit`
-
-Edits an existing task in the task list, at least one field needs to be edited. 
-
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
-
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
-* (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
-* (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:**<br>
-The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
-will be removed if no date or tag is given. 
-</div>
-
-Examples:
-* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
-
-![Example image of Edit Command](images/user-guide/EditCommandDemo.png)
-  
-### Clearing all entries : `clear`
-
-Clears all entries of tasks in the task list. 
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Terminates and exits the program.  
 
 Format: `exit`
+
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -446,6 +506,9 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
 </div>
+
+Click to return to: [Back to Top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -464,6 +527,9 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 
 **Q**: I need help! How can I contact the team?<br>
 **A**: You may contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen). If possible, do provide screenshots demonstrating the problem you are facing. We will assist you as soon as possible! 
+
+Click to return to: [Back to Top](#)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -492,14 +558,17 @@ Format meanings:
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                   | `unmark 2`                                   |
 | Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
 
+Click to return to: [Back to Top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Word    | Definition                                                                   |
-|---------|------------------------------------------------------------------------------|
-| **GUI** | Graphical User Interface - what the user sees when interacting with the app. |
-|         |                                                                              |
-|         |                                                                              |
-|         |                                                                              |
+| Word             | Definition                                                                   |
+|------------------|------------------------------------------------------------------------------|
+| **GUI**          | Graphical User Interface - what the user sees when interacting with the app. |
+| **Alphanumeric** | A combination of both letters and numbers without space.                     |
+| **Terminal**     | A text-based interface for the computer.                                     |
+| **Interface**    | A program or device that allows the user to communicate with the computer.   |
 
+Click to return to: [Back to Top](#)
