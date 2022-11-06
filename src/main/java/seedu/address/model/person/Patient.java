@@ -55,8 +55,7 @@ public class Patient extends Person {
      * Initialise patient with given attending physician and next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-            Set<Tag> tags, List<DateSlot> dateSlot,
-            Optional<Physician> p, Optional<NextOfKin> n) {
+            Set<Tag> tags, List<DateSlot> dateSlot, Optional<Physician> p, Optional<NextOfKin> n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateSlot);
         this.dateSlots.addAll(dateSlot);
