@@ -100,7 +100,10 @@ public class Resident implements BookingField {
         }
 
         return otherResident != null
-                && otherResident.getName().equals(getName());
+                && (otherResident.matricNumber.equals(this.matricNumber)
+                || otherResident.phone.equals(this.phone)
+                || otherResident.email.equalsIgnoreCase(this.email)
+                || otherResident.room.equals(this.room));
     }
 
     /**
