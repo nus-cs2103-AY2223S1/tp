@@ -744,3 +744,11 @@ Compared to AB3, Yellow Pages makes extensive use of dates. This caused plenty o
 Creating a utility class that let us convert dates in String to actual LocalDateTime objects or converting dates in String to other formats
 helped us to centralize and better manage this issue.
 
+Similarly, we utilized a Person's name to identify them, in that way, they must be entirely unique in the contact list. 
+This implementation comes with some unforeseen consequences when it is used in tandem with the predicate system.
+Primarily the issue lay in having two people with similar names e.g. `John Tan` and `John Doe`. 
+Using `John` in the command default adds or deletes the first(by creation order) `John` to/in the meeting which should not happen.
+As a result, we implemented further checks to ensure that the correct Person is being returned, while still using the predicate system. 
+In this way persons can still be found using keywords when they are unique and people with similar names must use their **full name** in the command. 
+E.g. `Mary Sue` can be added to a meeting using `Mary` assuming she's the only one with `Mary` in her name. 
+E.g. `John Tan` and `John Doe` can be added/deleted from a meeting using `John Tan` or `John Doe`specifically.
