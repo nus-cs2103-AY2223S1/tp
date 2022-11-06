@@ -263,7 +263,7 @@ Examples:
 * `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the person with email `charlotte@example.com`.
 * `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
 
-### Finding a Task using keywords : `findTask`
+#### Finding a Task using keywords : `findTask`
 
 Finds tasks with names or descriptions that contain any of the given keywords.
 
@@ -321,21 +321,21 @@ Examples:
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                       |
-|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                  |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                    |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                            |
-| **List People**  | `list`                                                                                                                                                                                                                 |
-| **Clear**        | `clear`                                                                                                                                                                                                                |
-| **Help**         | `help`                                                                                                                                                                                                                 |
-| **Add Task**     | `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**    | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
-| **Delete Task**  | `deleteTask INDEX` <br> e.g., `deleteTask 1`                                                                                                                                                                           |
-| **List Tasks**   | `listTasks`                                                                                                                                                                                                            |
-| **Filter Tasks** | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                        |
-| **Sort Tasks**   | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                  |
+| Action                | Format, Examples                                                                                                                                                                                                       |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                  |
+| **Delete Person**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                    |
+| **Edit Person**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                           |
+| **Find Person**       | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                            |
+| **List People**       | `list`                                                                                                                                                                                                                 |
+| **Clear All Entries** | `clear`                                                                                                                                                                                                                |
+| **Help**              | `help`                                                                                                                                                                                                                 |
+| **Add Task**          | `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
+| **Edit Task**         | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
+| **Delete Task**       | `deleteTask INDEX` <br> e.g., `deleteTask 1`                                                                                                                                                                           |
+| **List Tasks**        | `listTasks`                                                                                                                                                                                                            |
+| **Filter Tasks**      | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                        |
+| **Sort Tasks**        | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
