@@ -21,7 +21,7 @@ public class DeleteCommentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a comment identified by the index number used in the displayed tutor list.\n"
-            + "Parameters: INDEX OF TUTOR, INDEX OF COMMENT (must be positive integers)\n"
+            + "Parameters: TUTOR_INDEX COMMENT_INDEX (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_INVALID_DELETE_COMMENT_COMMAND = "Invalid deletecomment command.";
