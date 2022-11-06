@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NON_EXISTING_PRODUCT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DateKeyword;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.product.Product;
+
 
 /**
  * Lists all persons in MyInsuRec to the user.
@@ -35,18 +38,15 @@ public class ListClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (this.object == null) {
-            model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        }
+        Predicate<Client> pred = PREDICATE_SHOW_ALL_CLIENTS;
+
         if (this.object instanceof DateKeyword) {
-            model.updateFilteredClientList(client -> client.isBirthdayInPeriod((DateKeyword) object));
+            pred = client -> client.isBirthdayInPeriod((DateKeyword) object);
         }
         if (this.object instanceof Product) {
-            if (!model.hasProduct((Product) object)) {
-                throw new CommandException(MESSAGE_NON_EXISTING_PRODUCT);
-            }
-            model.updateFilteredClientList(client -> client.hasProduct((Product) object));
+            pred = client -> client.hasProduct((Product) object);
         }
+        model.updateFilteredClientList(pred);
         return new CommandResult(MESSAGE_SUCCESS, CommandSpecific.CLIENT);
     }
 }
