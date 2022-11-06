@@ -133,26 +133,24 @@ public class PlanCommandTest {
 
     @Test
     public void equals() {
-        Itinerary summer = new ItineraryBuilder().withName("Summer").build();
-        Itinerary winter = new ItineraryBuilder().withName("Winter").build();
-        AddCommand addSummerCommand = new AddCommand(summer);
-        AddCommand addWinterCommand = new AddCommand(winter);
+        PlanCommand planCommand1 = new PlanCommand(Index.fromZeroBased(0), new DayNumber("1"), LocalTime.NOON);
+        PlanCommand planCommand2 = new PlanCommand(Index.fromZeroBased(1), new DayNumber("2"), LocalTime.MIDNIGHT);
 
         // same object -> returns true
-        assertTrue(addSummerCommand.equals(addSummerCommand));
+        assertTrue(planCommand1.equals(planCommand1));
 
         // same values -> returns true
-        AddCommand addSummerCommandCopy = new AddCommand(summer);
-        assertTrue(addSummerCommand.equals(addSummerCommandCopy));
+        PlanCommand planCommand1Copy = new PlanCommand(Index.fromZeroBased(0), new DayNumber("1"), LocalTime.NOON);
+        assertTrue(planCommand1.equals(planCommand1Copy));
 
         // different types -> returns false
-        assertFalse(addSummerCommand.equals(1));
+        assertFalse(planCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addSummerCommand.equals(null));
+        assertFalse(planCommand1.equals(null));
 
-        // different itinerary -> returns false
-        assertFalse(addSummerCommand.equals(addWinterCommand));
+        // different inputs -> returns false
+        assertFalse(planCommand1.equals(planCommand2));
     }
 
     private Model getModelStub() {
