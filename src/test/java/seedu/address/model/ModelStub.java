@@ -155,6 +155,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean isSameCustomerAsSelectedCustomer(Customer customer) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableObject<Commission> getSelectedCommission() {
         throw new AssertionError("This method should not be called.");
     }
