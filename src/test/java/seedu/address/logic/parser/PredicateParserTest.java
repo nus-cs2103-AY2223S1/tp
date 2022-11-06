@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.SPECIES_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -367,8 +368,8 @@ public class PredicateParserTest {
         ColorContainsKeywordsPredicate<Pet> expected = new ColorContainsKeywordsPredicate<>(
                 Arrays.asList("white"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(COLOR_PREFIX + "/ white");
-            Predicate<Pet> result2 = PredicateParser.parsePet(COLOR_PREFIX + "/white \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet("white", PREFIX_PET_COLOR.getPrefix());
+            Predicate<Pet> result2 = PredicateParser.parsePet("white \n", PREFIX_PET_COLOR.getPrefix());
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -381,8 +382,8 @@ public class PredicateParserTest {
         PetNameContainsKeywordsPredicate<Pet> expected = new PetNameContainsKeywordsPredicate<>(
                 Arrays.asList("plum"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(PET_NAME_PREFIX + "/ plum");
-            Predicate<Pet> result2 = PredicateParser.parsePet(PET_NAME_PREFIX + "/plum \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet("plum", PREFIX_PET_NAME.getPrefix());
+            Predicate<Pet> result2 = PredicateParser.parsePet("\tplum \n", PREFIX_PET_NAME.getPrefix());
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -395,10 +396,8 @@ public class PredicateParserTest {
         PriceContainsKeywordsPredicate<Pet> expected = new PriceContainsKeywordsPredicate<>(
                 Arrays.asList(5.67));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(PRICE_PREFIX + "/ 5.67");
-            Predicate<Pet> result2 = PredicateParser.parsePet(PRICE_PREFIX + "/ 5.67 \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet("5.67", PREFIX_PET_PRICE.getPrefix());
             assertEquals(result1, expected);
-            assertEquals(result2, expected);
         } catch (IllegalValueException e) {
             assert false;
         }
@@ -409,8 +408,8 @@ public class PredicateParserTest {
         SpeciesContainsKeywordsPredicate<Pet> expected = new SpeciesContainsKeywordsPredicate<>(
                 Arrays.asList("cat"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(SPECIES_PREFIX + "/ cat");
-            Predicate<Pet> result2 = PredicateParser.parsePet(SPECIES_PREFIX + "/cat \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet("cat", PREFIX_PET_SPECIES.getPrefix());
+            Predicate<Pet> result2 = PredicateParser.parsePet("\t cat \n", PREFIX_PET_SPECIES.getPrefix());
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -422,8 +421,9 @@ public class PredicateParserTest {
     public void parsePet_vaccination_vaccinationPredicate() {
         VaccinationStatusPredicate<Pet> expected = new VaccinationStatusPredicate<>(true);
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true");
-            Predicate<Pet> result2 = PredicateParser.parsePet(VACCINATION_PREFIX + "/true \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet("true", PREFIX_PET_VACCINATION_STATUS.getPrefix());
+            Predicate<Pet> result2 = PredicateParser.parsePet("\t true \n",
+                    PREFIX_PET_VACCINATION_STATUS.getPrefix());
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -433,34 +433,36 @@ public class PredicateParserTest {
 
     @Test
     public void parsePet_invalidVaccination_throwsParseException() {
-        String input = VACCINATION_PREFIX + "/ hi";
+        String input = "hi";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE);
 
-        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parsePet(input));
+        assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parsePet(input,
+                PREFIX_PET_VACCINATION_STATUS.getPrefix()));
     }
 
     @Test
     public void parsePet_emptyString_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(""));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("",
+                PREFIX_PET_VACCINATION_STATUS.getPrefix()));
     }
 
     @Test
     public void parsePet_invalidPrefix_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("z/"));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("z", "HH"));
     }
 
     @Test
     public void parsePet_invalidPrefixInvalidInput_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("z/ungur"));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("zungur", PET_NAME_PREFIX));
     }
 
     @Test
     public void parsePet_emptyArguments_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(SPECIES_PREFIX));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("", PREFIX_PET_SPECIES.getPrefix()));
     }
 
     //Parse order
@@ -576,6 +578,6 @@ public class PredicateParserTest {
     @Test
     public void parseOrder_emptyArguments_throwParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(PREFIX_ORDER_STATUS.getPrefix()));
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("", PREFIX_ORDER_STATUS.getPrefix()));
     }
 }
