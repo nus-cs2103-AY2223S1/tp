@@ -120,7 +120,7 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Model testModel = new ModelBuilder().build();
-        Index outOfBoundIndex = INDEX_FOURTH_PERSON;
+        Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
 
         Appointment appointmentToAdd = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand =

@@ -1,17 +1,22 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-
 import seedu.address.model.AddressBook;
 import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * A utility class to help with building Appointment objects.
  */
 public class ModelBuilder {
+    private String aliceUniqueLocation = "SuperDuperUniqueLocationOnlyAliceKnows";
+    private String aliceUniqueDateTime = "29-02-2000 00:00";
+    private Appointment aliceUniqueAppointment = new AppointmentBuilder()
+            .withLocation(aliceUniqueLocation)
+            .withDateTime(aliceUniqueDateTime)
+            .build();
     private AddressBook addressBook =
                     new AddressBookBuilder()
                     .withPerson(new PersonBuilder()
@@ -25,6 +30,7 @@ public class ModelBuilder {
                             .withPlanTag("Savings Plan")
                             .withClientTag("POTENTIAL")
                             .withTags("friends")
+                            .withAppointment(aliceUniqueAppointment)
                             .build())
                     .withPerson(new PersonBuilder()
                             .withName("Benson Meier")
