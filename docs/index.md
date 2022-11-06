@@ -6,7 +6,7 @@ title: StudMap
 [![CI Status](https://github.com/AY2223S1-CS2103T-W13-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W13-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W13-1/tp/branch/master/graph/badge.svg?token=OWNSY6SWHW)](https://codecov.io/gh/AY2223S1-CS2103T-W13-1/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/ui/ui-daily-usage.png)
 
 **StudMap (SM) is a desktop app for managing your students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).** If you can type fast, SM can get your student management tasks done faster than traditional GUI apps.
 

@@ -100,7 +100,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 4. Double click StudMap.jar to start the app. You should see a new window similar to the figure below appear in a few
    seconds. Notice that StudMap contains some sample data.
 
-   ![Ui](images/Ui.png)
+   ![Ui](images/ui/ui-getting-started.png)
 
    Take note of the following elements in the interface:
 
