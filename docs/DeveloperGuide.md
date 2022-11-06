@@ -421,7 +421,10 @@ which stores all the exams.`AddExamCommand#execute()` method returns a `CommandR
 object to display that the exam was successfully added.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">
+:information_source: 
+
+**Note:**
 
 * For step 4, the `Exam` object will not be created if the exam description or exam date or module 
 is not valid. Exam description is not valid if it is an empty string, exam date is not valid 
@@ -441,7 +444,7 @@ The following activity diagram summarises what happens when AddExamCommand is ex
 `t find KEYWORD` where `KEYWORD` is the keyword inputted by user.
 
 #### What is the feature about: 
-The `t find` is a find tasks command that allows users to find tasks whose task description matches the keyword inputted by them fully or partially.
+The command allows users to find tasks whose task description matches the keyword inputted by them fully or partially.
 The keyword is case-insensitive. For example, "TASK" will match "task".
 
 #### Why is the feature implemented in this way: 
@@ -475,7 +478,10 @@ Step 5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Mo
 by the predicate (which is the `DescriptionContainsKeywordsPredicate` object created previously) to only 
 display the tasks which match the keyword. Then, a `CommandResult` object is returned to the `LogicManager` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">
+:information_source: 
+
+**Note:**
 
 * For Step 4, `FindTasksCommandParser#parse` will not return a new `FindTasksCommand` object if the keyword is empty. 
 
@@ -753,7 +759,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1g1. MODPRO shows an error message </br> 
       Use case ends. 
 * 1h. The provided command is in an invalid command format.
-    * 1ih. MODPRO shows an error message. </br>
+    * 1h1. MODPRO shows an error message. </br>
       Use case ends.
 * 1i. No fields are provided to edit the exam. 
     * 1i1. MODPRO shows an error message. </br>
