@@ -113,7 +113,7 @@ understanding of basic functionalities of `Arrow`, before diving into specific c
     2. Listing all Teammates
     3. Deleting a Teammate
     4. Editing a Teammate's information
-    5. Finding Teammate(s) based on name/keyword
+    5. Finding Teammate(s) based on name/keyword/tag
 3. **Managing Task Information**
     1. Adding a new Task
     2. Assigning a Task to a Teammate
@@ -246,6 +246,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+Note:
+* This teammate will also be deleted from all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
+* Enter `task list` to view all tasks again.
+
 ---
 ### Editing a Teammate's information : `edit`
 
@@ -264,22 +268,30 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+Note:
+* This teammate's details will also be edited under all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
+* Enter `task list` to view all tasks again.
+
 ---
-### Finding Teammate(s) based on name/keyword: `find`
+### Finding Teammate(s) based on name/keyword/tags: `find`
 
-Finds persons whose names contain any of the given name/keywords.
+Finds persons whose names contain any of the given name/keywords, or persons who contain any of the given tags.
 
-Format: `find NAME [MORE_KEYWORDS]`
+Format: `find [NAME/KEYWORD]… [t/TAG]…`
 
+* At least one keyword/tag has to be provided.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* For names/keywords, only the name is searched.
+* Partial names/keywords will be matched e.g. `Han` will match `Hans`
+* Only full tags will be matched e.g. `t/frontend` will only match with `t/frontend`
+* Persons matching at least one keyword/tag will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `find John` returns `john` and `John Doe`
+* `find t/frontend` returns `Alex Yeoh`
+* `find John t/frontend` returns `john`, `John Doe` and `Alex Yeoh`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -544,7 +556,7 @@ This summary provides a list of useful and straightforward instructions on how t
 | List    | `list`                                                                 | -                                                                                                  |
 | Delete  | `delete INDEX`                                                         | `delete 3`                                                                                         |
 | Edit    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                                        |
-| Find    | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                                  |
+| Find    | `find [KEYWORD]… [t/TAG]…`                                             | `find James Jake t/frontend t/backend`                                                             |
 
 
 ### Task Commands
