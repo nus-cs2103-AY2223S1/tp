@@ -81,16 +81,12 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 
 1. You can head off to [Section 4: Quick Start](#4-quick-start) section for a quick tutorial.
 2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information
-   about each
-   command
-   you can give StudMap.
+   about each command you can give StudMap.
 3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all
-   the
-   commands.
+   the commands.
 4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#8-glossary) for more information.
 5. If you still have any other questions regarding StudMap and its usage, check
-   out [Section 6: FAQ](#6-frequently-asked-questions)
-   for answers to some frequently asked questions.
+   out [Section 6: FAQ](#6-frequently-asked-questions) for answers to some frequently asked questions.
 
 ---
 
@@ -117,7 +113,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
       .
     * The **Reply Box** is where StudMap responds to your instructions.
     * The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
-   <br><br>
+      <br><br>
 
 5. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
@@ -131,7 +127,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
         * This deletes the 3rd student currently shown in the Student List.
     * `clear`
         * This deletes all the students, so you can start with a clean slate!
-    <br><br>
+          <br><br>
 
 6. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
    you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
@@ -151,7 +147,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 ## 5.1 Introduction
 
 Welcome to the Features section of StudMap. We have three categories of
-features: 
+features:
 
 * [5.3 Student List Management](#53-student-list-management)
 * [5.4 Student Updating](#54-student-updating)
@@ -296,10 +292,11 @@ that has commas in the CSV.
 **Example Use Case:** Importing a fresh batch of students as a new StudMap user
 
 1. Remove the default list of students by typing `clear`
-2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
+2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)<br><br>
    ![example CSV](images/exampleCSV.png)
-   <br/>
-   *Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)*
+   <br><br>
+   _Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)_
+   <br><br>
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
@@ -485,8 +482,8 @@ The index **must be a positive integer** 1, 2, 3, …​
 **Format:** `unmark INDEX/ALL c/CLASS`
 
 * `INDEX`: You can specify the index of the student you want to remove attendance record for. The index refers to the
-index number shown in the displayed student list.
-The index **must be a positive integer** 1, 2, 3, …​
+  index number shown in the displayed student list.
+  The index **must be a positive integer** 1, 2, 3, …​
 * `ALL`: You can remove attendance record for all students currently displayed.
 
 * StudMap allows for attendances to be removed even if the student never had any record for that class
