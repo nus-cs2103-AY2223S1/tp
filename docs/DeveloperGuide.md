@@ -7,9 +7,9 @@ title: Developer guide
 * Table of Contents
 {:toc}
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -25,9 +25,9 @@ title: Developer guide
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -81,9 +81,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -102,9 +102,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it can display `Person`, `Group`, `Assignment` objects residing in the `Model`.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -137,9 +137,9 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -190,9 +190,9 @@ The `Assignment` component,
 * is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
 * has an optional `Deadline` attribute which is a `LocalDateTime` object.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -205,17 +205,17 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-<div style="page-break-after: always;"></div>
-
 --- 
+
+<div style="page-break-after: always;"></div> 
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -293,9 +293,9 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
     - Run risk of not accounting for future features, have to design workarounds that weaken the data structure.
     - May violate immutability principle employed in the existing system architecture.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Add/Delete member feature**
 
@@ -376,9 +376,9 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
     - Deleting group/performing groupwide assignment or deletion of task is even more difficult as
       will have to perform linear scan of the entire `Person` list to surface affected members.
     
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Display/List Group feature**
 
@@ -415,9 +415,9 @@ For simplicity, only the `DisplayGroupCommand`'s execution is shown below. Both 
 
 <img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Assign/Delete Task feature**
 
@@ -504,9 +504,9 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
   - Cons:
     - Deleting tasks from a `Person` requires modification of the `Person` object. This is compounded when multiple `Person`s are updated in one command i.e. bulk commands.
     
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
@@ -596,9 +596,9 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
   - Cons:
     - In addition to the difficulties mentioned in Alternative 1, must also replace tasks inside a `Person` object; most difficult option to implement.
     
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -608,9 +608,9 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 ### Product scope
@@ -663,9 +663,9 @@ Project team leaders with many projects, members and tasks to assign.
 | `*`      | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
 | `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## Use cases
 
@@ -1220,9 +1220,9 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
-<div style="page-break-after: always;"></div>
+--- 
 
----
+<div style="page-break-after: always;"></div>
 
 ## Non-functional requirements
 
