@@ -159,7 +159,6 @@ This section describes some noteworthy details on how certain features are imple
 #### About this feature
 
 The add internship application feature allows users to quickly add an internship application in the tracker via the
-The add internship application feature allows users to quickly add an internship application in the tracker via the
 command `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]...`.
 
 #### How it is implemented
