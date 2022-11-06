@@ -733,31 +733,88 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
       an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin low`.
    
-      1. Test case: <br>
-                    ```
-                    add n/Benjamin low 
-                    p/98765431 
-                    e/benLow@gmail.com 
-                    s/NUS Global Merit Scholarship 
-                    as/pending 
-                    m/Medicine 
-                    m/Mathematics
-                    ``` 
-                   <br>
-         Expected: An applicant named Benjamin Low with the above characteristics
-                   will be added to the applicant list and displayed on TrackAScholar GUI.
-                 
+   1. Test case: 
+      ```
+      add n/Benjamin low 
+      p/98765431 
+      e/benLow@gmail.com 
+      s/NUS Global Merit Scholarship 
+      as/pending 
+      m/Medicine 
+      m/Mathematics
+      ```
+      Expected: An applicant named `Benjamin Low` with the above characteristics
+                will be added to the applicant list and displayed on TrackAScholar GUI.
+      
+   1. Test case:
+      ```
+      add n/Alex Yeoh 
+      p/88712345 
+      e/alexYeoh@gmail.com 
+      s/NUS Merit Scholarship 
+      as/pending 
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating applicants with duplicate names are not allowed.
+
+   1. Test case:
+      ```
+      add n/Alex Yeoh
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating an applicant must have specified phone number, email, scholarship name, application status,
+      as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing an applicant
+1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
+    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+       an applicant named `Alex Yeoh` with the following characteristics:
+       ```
+       Name: Alex Yeoh 
+       Major(s): Medicine
+       Application Status: pending
+       Scholarship Name: NUS Global Merit Scholarship
+       Email: alexyeoh@yahoo.com
+       Phone Number: 87438807
+       ```
+
+    1. Test case: `edit 1 n/Samuel Low e/samuelLow@gmail.com` <br>
+       Expected: The name and email of the first applicant in the list will be modified to `Samuel Low` and `samuelLow@gmail.com`
+       respectively, while the rest of the characteristics remains the same.
+
+    1. Test case: `edit 1 m/` <br>
+       Expected: The major(s) of the first applicant in the list will be 
+       removed completely, while the rest of the characteristics remains the same.
+
+    1. Test case: `edit 1 m/Mathemetics m/Engineering` <br>
+       Expected: The major(s) of the first applicant in the list will be
+       replaced by `Mathematics` and `Engineering` completely , while the rest of the characteristics remains the same.
+   
+    1. Test case: `edit 0 n/Dexter` <br>
+     Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+     indicating that `0` is an invalid index
+
+    1. Test case: `edit 50 n/Eric` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that `50` is out of bounds since the list contains only one applicant.
+
+    1. Other incorrect edit commands to try: `edit p/88125671` and `edit` <br>
+      Expected: Similar to previous.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting an applicant
 
-1. Deleting an applicant while all applicants are being shown
+1. Deleting an applicant while all applicants are being shown.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
@@ -779,17 +836,81 @@ testers are expected to do more *exploratory* testing.
 
 ### Pinning an applicant
 
-1. Pinning an existing applicant while all applicants are being shown
+1. Pinning an existing applicant while all applicants are being shown.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `pin 1`<br>
+       Expected: First applicant in the list is pinned. Details of the pinned applicant shown in the status message. 
+       Pinned Applicant will be shown on the right list panel. Timestamp in the status bar is updated.
+
+    1. Test case: `pin 0`<br>
+       Expected: No applicant is pinned. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect pin commands to try: `pin`, `pin x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unpinning an applicant
+
+1. Unpinning an existing applicant while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+       a pinned applicant named `Alex Yeoh`.
+
+    1. Test case: `unpin Alex Yeoh`<br>
+       Expected: Existing applicant with name `Alex Yeoh` in the list is unpinned. Applicant will be removed from
+       the right list panel. Details of the unpinned applicant shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `unpin Benjamin Loy`<br>
+       Expected: No changes displayed on TrackAScholar GUI as the list does not contain an applicant with name `Benjamin Loy`.
+       Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect unpin commands to try: `unpin` and `unpin 123` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Removing applicants by application status
+
+1. Removing existing applicants with the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
+       Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only 
+       contains those applicants with application status `PENDING` or `REJECTED`.
+
+    1. Test case: `remove ACCEPTED` followed by pressing `no` on the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+
+    1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+   
+    1. Test case: `remove PENDING` followed by pressing `yes` on the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
+       `REJECTED` can be removed. Error details shown in the status message
+   
+    1. Other incorrect remove commands to try: `remove` and `remove Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filtering applicants by application status
+
+1. Filtering existing applicants based on the specified application status while all applicants are being shown
 
     1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `filter ACCEPTED` 
+       Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
 
-    1. Test case: `delete 0`<br>
-       Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `filter Bob` <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and 
+       `REJECTED` can be filtered. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
        Expected: Similar to previous.
 
 --------------------------------------------------------------------------------------------------------------------
