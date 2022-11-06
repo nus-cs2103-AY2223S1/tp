@@ -110,7 +110,6 @@ public class ModelManager implements Model {
     @Override
     public PersonListTracker addPerson(Person person) {
         persistentUninurseBook.getWorkingCopy().addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new PersonListTracker(Optional.of(Arrays.asList(person)), Optional.empty());
     }
 
@@ -124,7 +123,6 @@ public class ModelManager implements Model {
     @Override
     public PersonListTracker addPatient(Patient patient) {
         persistentUninurseBook.getWorkingCopy().addPatient(patient);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new PersonListTracker(Optional.of(Arrays.asList(patient)), Optional.empty());
     }
 

@@ -33,7 +33,7 @@ public class TruncatedPatientListCard extends UiPart<Region> {
      * Creates a TruncatedPatientListCard with the given Patient and index to display.
      */
     public TruncatedPatientListCard(Patient patient, int displayedIndex) {
-        super(FXML);        
+        super(FXML);
         this.patient = patient;
 
         this.cardPane.setId("person_list_card");

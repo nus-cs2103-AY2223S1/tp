@@ -9,11 +9,11 @@ import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 
-/*
+/**
  * Utility class to provide dynamically generated Ui parts.
  */
 public class UiUtil {
-    public static double LIST_VIEW_OFFSET = 20.0;
+    public static final double LIST_VIEW_OFFSET = 20.0;
 
     private UiUtil() {} // prevents instantiation
 
@@ -30,7 +30,6 @@ public class UiUtil {
         indexBox.getChildren().add(indexLabel);
         return indexBox;
     }
-
 
     public static HBox getEmptyConditionBox() {
         HBox conditionBox = new HBox();

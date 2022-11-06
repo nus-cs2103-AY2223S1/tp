@@ -1,10 +1,10 @@
 package seedu.uninurse.ui;
 
+import static seedu.uninurse.ui.UiUtil.getConditionBox;
 import static seedu.uninurse.ui.UiUtil.getEmptyConditionBox;
 import static seedu.uninurse.ui.UiUtil.getEmptyMedicationBox;
 import static seedu.uninurse.ui.UiUtil.getEmptyRemarkBox;
 import static seedu.uninurse.ui.UiUtil.getEmptyTaskBox;
-import static seedu.uninurse.ui.UiUtil.getConditionBox;
 import static seedu.uninurse.ui.UiUtil.getMedicationBox;
 import static seedu.uninurse.ui.UiUtil.getRemarkBox;
 import static seedu.uninurse.ui.UiUtil.getTaskBox;

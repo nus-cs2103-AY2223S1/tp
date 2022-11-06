@@ -285,6 +285,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            return;
+        }
+
+        @Override
         public void setPatientOfInterest(Patient patient) {
             requireNonNull(patient);
             patientOfInterest = patient;

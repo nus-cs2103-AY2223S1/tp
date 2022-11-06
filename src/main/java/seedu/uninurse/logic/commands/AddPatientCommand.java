@@ -10,6 +10,7 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
@@ -64,6 +65,7 @@ public class AddPatientCommand extends AddGenericCommand {
         }
 
         PersonListTracker personListTracker = model.addPatient(toAdd);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPatientOfInterest(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
