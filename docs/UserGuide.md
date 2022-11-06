@@ -543,7 +543,7 @@ The following scenarios should not happen for your command to run successfully:
 
 [[Back to Table of Contents](#table-of-contents)]
 
-## General Features
+## Section 4: Other Useful Features
 
 ### Viewing help : `help`
 
