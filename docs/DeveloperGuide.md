@@ -7,7 +7,9 @@ title: Developer guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -17,15 +19,15 @@ title: Developer guide
 
 * The formula used to determine the colour gradient for the [`workload`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Workload.java) used in [`PersonCard`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/PersonCard.java) is adapted from [`here`](https://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter)
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -41,6 +43,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -69,11 +73,17 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -91,6 +101,10 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it can display `Person`, `Group`, `Assignment` objects residing in the `Model`.
+
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -113,6 +127,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -120,6 +136,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -137,6 +157,8 @@ unmodifiable `ObservableList<Person>` and `ObservableList<Group>`that can be 'ob
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 **Person** : [`Person.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
 The `Person` component in relation to `Addressbook` and `UniquePersonList` is given in further detail here.
@@ -147,7 +169,7 @@ The `Person` component,
 
 * is composed of `Name`, `Phone`, `Email`, `Address` mandatory attributes
 * references any number of `Tags` from the `UniqueTagList` in `Addressbook`. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
-* references any number of `Assignments` stored in a `Hashmap<String, ArrayList<Assignment>>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
+* references any number of `Assignments` stored in a `Hashmap<key:String, value:ArrayList<ssignment>>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
 
 **Group** : [`Group.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
 
@@ -159,12 +181,18 @@ The `Group` component,
 * is composed of `GroupName` mandatory attribute
 * references any number of `Persons` from the `UniquePersonList` in Addressbook. This allows `AddressBook` to only require one `Person` object per unique person, instead of each `Group` needing their own `Person` objects.
 
+<div style="page-break-after: always;"></div>
+
 **Assignment** : [`Assignment.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Assignment.java)
 
 The `Assignment` component,
 * is composed of `Task` mandatory attribute, which is a string description of the `Assignment`.
 * is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
 * has an optional `Deadline` attribute which is a `LocalDateTime` object.
+
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -177,11 +205,16 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+--- 
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -203,6 +236,8 @@ the `AddressBook` model looks like this (some Persons removed for simplicity):
 
 <img src="images/AddDeleteGroupState0.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 2.**
 User executes `addgroup g/CS2103T`. This causes a new group with `GroupName` "CS2103T" and no members to be
 added to the `AddressBook` model, reflected below:
@@ -219,6 +254,8 @@ Then, the user assigns `Alice` a task named Task1 under the group CS2103T as dem
 The `AddressBook` model now looks like this:
 
 <img src="images/AddDeleteGroupState2.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 4.**
 User executes `deletegroup g/CS2103T`. This deletes the group with `GroupName` "CS2103T" and additionally:
@@ -254,7 +291,9 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
     - Run risk of not accounting for future features, have to design workarounds that weaken the data structure.
     - May violate immutability principle employed in the existing system architecture.
 
------
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Add/Delete member feature**
 
@@ -292,6 +331,8 @@ Suppose the user assigns `Alice` a task under the group. The `AddressBook` model
 
 <img src="images/AddDeleteMemberState2.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 4.**
 User executes `deletemember g/CS2103T n/Alice`. This removes `Alice` from `CS2103T` and removes any tasks
 associated with the group. The associated command `DeleteGroupMemberCommand` first
@@ -309,6 +350,8 @@ The `AddressBook` model now looks like this:
 For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteGroupMemberCommandExecutesSequenceDiagram.png" width="400" />
+
+<div style="page-break-after: always;"></div>
 
 **Design Considerations:**
 
@@ -330,8 +373,10 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
   - Cons:
     - Deleting group/performing groupwide assignment or deletion of task is even more difficult as
       will have to perform linear scan of the entire `Person` list to surface affected members.
+    
+--- 
 
------
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Display/List Group feature**
 
@@ -358,6 +403,8 @@ to display just the group with that name.
 `ObservableList<Group>` from `Model#getFilteredGroupList()`. If the input `GroupName` does not correspond
 to a group in this list, a `CommandException` will be thrown notifying the user accordingly.
 
+<div style="page-break-after: always;"></div>
+
 **Step 3.**
 User executes `listgroups`. The associated command `ListGroupsCommand` calls
 `Model#updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS)`to display all groups in the app.
@@ -366,7 +413,9 @@ For simplicity, only the `DisplayGroupCommand`'s execution is shown below. Both 
 
 <img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
-----
+--- 
+
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Assign/Delete Task feature**
 
@@ -389,6 +438,8 @@ the group `CS2103T`. The `AddressBook` model is reflected below:
 
 <img src="images/AddDeleteMemberState1.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 2.**
 User executes `assigntask Alice g/CS2103T task/Task w/High`. This:
 - Constructs an Assignment with `Task` "Task" and `Workload` "High".
@@ -408,9 +459,13 @@ such as `Task` being non-empty, `Deadline` being a valid date, etc.
 exist in the app, that the person is a member of the group, and the person doesn't already have a similar task under
 the group.
 
+<div style="page-break-after: always;"></div>
+
 The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 3.**
 User executes `deletetask Alice g/CS2103T task/Task`. This constructs an `editedPerson`
@@ -426,6 +481,8 @@ The `AddressBook` model is reflected below:
 exist in the app, that the person is a member of the group, and the person has the specified task under
 the group.
 
+<div style="page-break-after: always;"></div>
+
 For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteTaskCommandExecuteSequenceDiagram.png" width="400" />
@@ -439,13 +496,15 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Deleting tasks from a `Person` does not require modification of the `Person` object.
   - Cons:
     - If the `Person` is part of multiple groups, retrieving all tasks to display on their card requires referencing multiple `Group` objects.
-- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:Assignment>` where the String is the group name.
+- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:ArrayList<ssignment>>` where the String is the group name.
   - Pros:
     - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
   - Cons:
     - Deleting tasks from a `Person` requires modification of the `Person` object. This is compounded when multiple `Person`s are updated in one command i.e. bulk commands.
+    
+--- 
 
-----
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
@@ -455,9 +514,9 @@ It is facilitated by the following operations:
 
 - `Model#assignTaskAll(GroupName, Task, Workload, [Deadline]` - Creates an `Assignment` with `Task` (description),
   `Workload` and optional `Deadline`. This `Assignment` will be added to all members in the group
-  with the input groupname. A member who has a duplicate assignment is skipped over.
+  with the input groupname. A member who has the same task name is skipped over.
 - `Model#deleteTask(GroupName, Name, Task)`. Deletes the `Assignment` with description `Task` from all members
-  in the group with the input groupname. A member who does not have this assignment is skipped over.
+  in the group with the input groupname. A member who does not have this task is skipped over.
 
 Given below is an example usage scenario and how tasks are assigned/deleted in bulk.
 
@@ -467,6 +526,8 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 the group `CS2103T`. The `AddressBook` model is reflected below:
 
 <img src="images/BulkAssignDeleteTaskState0.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 2.**
 User executes `assigntaskall g/CS2103T task/Task1 w/High`. This:
@@ -497,6 +558,8 @@ User executes `deletetaskall g/CS2103T task/Task`. Similar to above:
   - Calls `Model#setPerson()` and `Model#setGroup()` with the respective
     edits to change member and `CS2103T` in the `AddressBook`.
 
+<div style="page-break-after: always;"></div>
+
 The `AddressBook` model is reflected below:
 
 <img src="images/BulkAssignDeleteTaskState0.png" width="300" />
@@ -508,6 +571,8 @@ and are not edited.
 For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteTaskAllCommandExecuteSequenceDiagram.png" width="400" />
+
+<div style="page-break-after: always;"></div>
 
 **Design Considerations:**
 
@@ -530,8 +595,10 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
     - Since task objects are replaced, no duplication of tasks exists.
   - Cons:
     - In addition to the difficulties mentioned in Alternative 1, must also replace tasks inside a `Person` object; most difficult option to implement.
+    
+--- 
 
-----
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -541,7 +608,8 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+--- 
+
 ## **Appendix: Requirements**
 ### Product scope
 **Target user profile**:
@@ -553,6 +621,7 @@ Project team leaders with many projects, members and tasks to assign.
 * see an estimate of how much workload each member has.
 * receive information regarding upcoming deadlines.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -593,7 +662,10 @@ Project team leaders with many projects, members and tasks to assign.
 | `*`      | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
 | `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
 
----
+--- 
+
+<div style="page-break-after: always;"></div>
+
 ## Use cases
 
 For all use cases below, the **System** is `TABS` and the **Actor** is the user, unless specified otherwise.
@@ -638,7 +710,6 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case resumes at step 2.
-
 
 ### UC2: Edit a person’s details
 
@@ -703,6 +774,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC4: List every person
 
@@ -810,6 +882,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC8: List all groups
 
@@ -853,6 +926,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC10: Add a person to a group
 
@@ -988,7 +1062,6 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
-
 
 ### UC13: Remove a task from a member
 
@@ -1145,8 +1218,8 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+--- 
 
----
 ## Non-functional requirements
 
 1. Should work on any **mainstream** OS (Windows, Linux, Unix, OS-X) as long as it has `Java 11` or above installed.
