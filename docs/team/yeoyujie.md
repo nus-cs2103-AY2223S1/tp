@@ -4,7 +4,7 @@ title: Yeo Yu Jie's Project Portfolio Page
 ---
 
 # Overview
-ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks.
 
 ## Summary of contributions
 Given below are my contributions to the project.
