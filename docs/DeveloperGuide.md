@@ -128,10 +128,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `JeeqTracker`, which `Client` references. This allows `JeeqTracker` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **How Transaction and Remark are modelled:** 
+The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br>
 
-<img src="images/BetterModelClassDiagram2.png" width="450" />
+**`Transaction` Class <br>**
+Each `Client` Class has a `TransactionLog` which stores all transactions of the client in a List. The `Transaction` object contains the `Goods` transacted,
+`Price` of the goods, `Quantity` of goods and `Date` of the transaction. <br>
+<img src="images/TransactionModelClassDiagram2.png" width="350"/>
 
+
+**`Remark` Class <br>**
+Each `Client` Class has a `UniqueRemarkList` which stores `Remark` object that do not 
+have the same `Text` (case-insensitive). The `Remark` object contains the 
+`Text` which represents the remark's text. <br>
+<img src="images/RemarkModelClassDiagram.png" width="350"/>
 </div>
 
 
