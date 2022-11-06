@@ -44,7 +44,7 @@ public class EditConsultationCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2103T "
-            + PREFIX_DESCRIPTION + "Review past years' papers";
+            + PREFIX_DESCRIPTION + "Review paper AY2020-2021 Question 3,5,16";
 
     public static final String MESSAGE_EDIT_CONSULTATION_SUCCESS = "Edited Consult: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
