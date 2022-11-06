@@ -78,4 +78,11 @@ public class TagType {
     public Prefix getPrefix() {
         return this.p;
     }
+
+    /**
+     * Returns a copy of the tag type.
+     */
+    public TagType copy() {
+        return new TagType(tagType, p.copy());
+    }
 }

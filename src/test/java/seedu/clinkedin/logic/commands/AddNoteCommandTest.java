@@ -15,6 +15,7 @@ import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 
 public class AddNoteCommandTest {
@@ -58,8 +59,10 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
         Person personToEdit = model.getFilteredPersonList().get(0);
         Note newNote = personToEdit.mergeNote(note);
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(), newNote,
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), newNote,
                 personToEdit.getRating(), personToEdit.getLinks());
         String expectedMessage = String.format(AddNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
         expectedModel.setPerson(personToEdit, editedPerson);

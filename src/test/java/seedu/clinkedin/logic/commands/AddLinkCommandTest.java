@@ -21,6 +21,7 @@ import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 public class AddLinkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -63,8 +64,10 @@ public class AddLinkCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddLinkCommand addLinkCommand = new AddLinkCommand(Index.fromOneBased(1), linksToAdd);
         linksToAdd.addAll(personToEdit.getLinks());
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(),
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(),
                 personToEdit.getNote(),
                 personToEdit.getRating(), linksToAdd);
         String expectedMessage = String.format(AddLinkCommand.MESSAGE_ADD_LINKS_SUCCESS, editedPerson);

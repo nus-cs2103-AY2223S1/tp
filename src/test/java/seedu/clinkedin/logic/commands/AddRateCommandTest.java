@@ -15,6 +15,7 @@ import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 
 public class AddRateCommandTest {
@@ -64,8 +65,10 @@ public class AddRateCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(1);
         Rating rating = new Rating("6");
         AddRateCommand rateCommand = new AddRateCommand(Index.fromOneBased(2), rating);
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTagTypeMap(),
+                personToEdit.getAddress(), tagMap,
                 personToEdit.getStatus(), personToEdit.getNote(), rating, personToEdit.getLinks());
 
         String expectedMessage = String.format(AddRateCommand.MESSAGE_ADD_RATING_SUCCESS, editedPerson);

@@ -16,12 +16,14 @@ public class EditTagTypeCommandParser implements Parser<EditTagTypeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditTagTypeCommand parse(String args) throws ParseException {
-        String[] tagTypeAndPrefix = args.trim().split("\\s+", 2);
-        if (tagTypeAndPrefix.length != 2) {
+        int seperatorIndex = args.trim().lastIndexOf(" ");
+        if (seperatorIndex == -1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTagTypeCommand.MESSAGE_USAGE));
         }
-        String[] oldNewTagTypeStrings = ParserUtil.parseHyphen(tagTypeAndPrefix[0]);
-        String[] oldNewPrefixStrings = ParserUtil.parseHyphen(tagTypeAndPrefix[1]);
+        String prefixPair = args.trim().substring(seperatorIndex + 1).trim();
+        String tagTypePair = args.trim().substring(0, seperatorIndex).trim();
+        String[] oldNewTagTypeStrings = ParserUtil.parseHyphen(tagTypePair);
+        String[] oldNewPrefixStrings = ParserUtil.parseHyphen(prefixPair);
         Prefix[] oldNewPrefixes = new Prefix[2];
         oldNewPrefixes[0] = ParserUtil.parsePrefix(oldNewPrefixStrings[0]);
         oldNewPrefixes[1] = ParserUtil.parsePrefix(oldNewPrefixStrings[1]);

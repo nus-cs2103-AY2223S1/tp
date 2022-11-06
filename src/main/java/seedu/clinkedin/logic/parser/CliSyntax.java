@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -125,7 +126,7 @@ public class CliSyntax {
      */
     public static void setTagPrefix(List<Prefix> pref) {
         prefixes.removeAll(prefixTags);
-        prefixTags = new ArrayList<>(pref);
+        prefixTags = new ArrayList<>(pref.stream().map(p -> p.copy()).collect(Collectors.toList()));
         prefixes.addAll(prefixTags);
     }
 
