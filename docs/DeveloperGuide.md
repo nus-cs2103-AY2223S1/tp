@@ -510,12 +510,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book (Momento design pattern).
+* **Alternative 1 - Momento design pattern (current choice):** Saves the entire address book.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: May have performance issues due to higher memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself (Command design pattern).
+* **Alternative 2 - Command design pattern:** Individual command knows how to undo/redo by
+  itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command is correct.
 
