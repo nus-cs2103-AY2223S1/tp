@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `sitong.hao@u.nus.edu`
 
 ## Project team
 
@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/o-ohst.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/o-ohst)]
 [[portfolio](team/o-ohst.md)]
 
