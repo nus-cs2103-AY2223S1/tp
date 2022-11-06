@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+skinparam classBackgroundColor MODEL_COLOR
+
+package Model {
+class ModelManager
+class VenueBook
+class UniqueVenueList
+class Booking
+class Venue
+}
+
+ModelManager --> Venue
+ModelManager --> VenueBook
+ModelManager --> Booking
+
+VenueBook --> "          1" UniqueVenueList
+UniqueVenueList --> "*" Venue
+
+@enduml

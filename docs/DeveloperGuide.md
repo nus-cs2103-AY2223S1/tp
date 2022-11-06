@@ -729,19 +729,29 @@ The diagram [here](#model-component) showcases the addition of the following cla
 
 #### Storage updates
 
+With the addition of venue and booking data, we have to update the `Storage` component in order to allow for local storage of the new data required. Similarly to how we reused code from `UniqueResidentList` and `ResidentBook`, we reused the existing code that allows for storage of `ResidentBook` data in order to store our `VenueBook` data.
 [Comment]: <> (to be added in)
 
 <br>
 
 #### Logic updates
 
-To support basic venue creation and deletion, we added the 
+However, due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to add another venue command, `VenueViewCommand`, to allow users to switch between viewing the bookings of a specified venue.
 
-Due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to 
+To support basic venue creation and deletion, booking and un-booking, and the switching of venue view we added the following venue commands:
+* `VenueAddCommand`
+* `VenueDeleteCommand`
+* `VenueViewCommand`
+* `BookCommand`
+* `UnbookCommand`
+
+These commands will serve as a basic toolkit for our users to manage venue bookings.
 
 <br>
 
-#####
+##### Venue command flow
+
+[Comment]: <> (To add sequence diagram to describe an example venue command flow)
 
 ---
 
