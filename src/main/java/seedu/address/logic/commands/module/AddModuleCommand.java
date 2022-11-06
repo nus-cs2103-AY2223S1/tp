@@ -56,7 +56,7 @@ public class AddModuleCommand extends Command {
         model.addModule(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
     }
 
     @Override

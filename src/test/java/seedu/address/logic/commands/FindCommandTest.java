@@ -64,7 +64,7 @@ public class FindCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0),
                 false, false, false,
-                false, true, false, false, false);
+                false, false, true, false, false, false);
         NameContainsKeywordsPredicate predicate = preparePredicate("none");
         StudentNameContainsKeywordsPredicate studentPredicate = prepareStudentPredicate("none");
         FindCommand command = new FindCommand(predicate, studentPredicate);
@@ -80,7 +80,7 @@ public class FindCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3),
                 false, false, false,
-                false, true, false, false, false);
+                false, false, true, false, false, false);
         NameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson Carl");
         StudentNameContainsKeywordsPredicate studentPredicate = prepareStudentPredicate("Alice Benson Carl");
         FindCommand command = new FindCommand(predicate, studentPredicate);

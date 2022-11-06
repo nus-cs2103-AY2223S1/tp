@@ -74,7 +74,7 @@ public class DeleteModuleCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
                 false, false, true,
-                false, false, false, false, false);
+                false, false, false, false, false, false);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class DeleteModuleCommand extends Command {
                 }
                 if (teachingSet.contains(moduleToDelete.getCode())) {
                     Set<ModuleCode> editedSet = new HashSet<>();
-                    editedSet.addAll(studentSet);
+                    editedSet.addAll(teachingSet);
                     editedSet.remove(moduleToDelete.getCode());
                     editStudentDescriptor.setTeachingAssistantInfo(editedSet);
                 }

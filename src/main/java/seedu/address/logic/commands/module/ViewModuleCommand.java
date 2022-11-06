@@ -61,7 +61,7 @@ public class ViewModuleCommand extends Command {
         moduleToView = moduleList.get(targetIndex.getZeroBased());
         model.viewModuleDetails(moduleToView.getCode());
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView), false, false,
-                false, false, true, false, false, false);
+                false, false, false, true, false, false, false);
     }
 
     @Override

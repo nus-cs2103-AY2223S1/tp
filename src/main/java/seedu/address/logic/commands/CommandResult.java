@@ -29,6 +29,9 @@ public class CommandResult {
     /** Student information should be shown to the user. */
     private final boolean showStudentList;
 
+    /** Target module information should be shown to the user. */
+    private final boolean showTargetModule;
+
     /** Module information should be shown to the user. */
     private final boolean showModule;
 
@@ -46,13 +49,15 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
                          boolean showModuleList, boolean showStudentList,
-                         boolean showModule, boolean showScheduleList, boolean showHorizontalTimeTable,
+                         boolean showTargetModule, boolean showModule,
+                         boolean showScheduleList, boolean showHorizontalTimeTable,
                          boolean showVerticalTimeTable, boolean showLight, boolean showDark) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showModuleList = showModuleList;
         this.showStudentList = showStudentList;
+        this.showTargetModule = showTargetModule;
         this.showModule = showModule;
         this.showScheduleList = showScheduleList;
         this.showHorizontalTimeTable = showHorizontalTimeTable;
@@ -67,7 +72,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false, false,
+                false, false, false, false,
                 false, false, false, false);
     }
 
@@ -76,10 +81,10 @@ public class CommandResult {
      * and showTimeTable(vertical/horizontal) set to the default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showModuleList, boolean showStudentList,
+                         boolean showModuleList, boolean showStudentList, boolean showTargetModule,
                          boolean showModule, boolean showScheduleList, boolean showLight, boolean showDark) {
         this(feedbackToUser, showHelp, exit, showModuleList,
-                showStudentList, showModule, showScheduleList,
+                showStudentList, showTargetModule, showModule, showScheduleList,
                 false, false, false, false);
     }
 
@@ -103,6 +108,9 @@ public class CommandResult {
         return showStudentList;
     }
 
+    public boolean isShowTargetModule() {
+        return showTargetModule;
+    }
     public boolean isShowModule() {
         return showModule;
     }
@@ -144,6 +152,7 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showModuleList == otherCommandResult.showModuleList
                 && showStudentList == otherCommandResult.showStudentList
+                && showTargetModule == otherCommandResult.showTargetModule
                 && showModule == otherCommandResult.showModule
                 && showScheduleList == otherCommandResult.showScheduleList
                 && showHorizontalTimeTable == otherCommandResult.showHorizontalTimeTable
@@ -155,7 +164,7 @@ public class CommandResult {
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, showModuleList,
-                showStudentList, showModule, showScheduleList, showHorizontalTimeTable,
+                showStudentList, showTargetModule, showModule, showScheduleList, showHorizontalTimeTable,
                 showVerticalTimeTable, showLight, showDark);
     }
 

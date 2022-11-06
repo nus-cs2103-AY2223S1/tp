@@ -44,7 +44,7 @@ public class FindCommand extends Command {
         return new CommandResult(String.format(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size())),
                 false, false, false,
-                false, true, false, false, false);
+                false, false, true, false, false, false);
     }
 
     @Override

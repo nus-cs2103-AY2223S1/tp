@@ -199,7 +199,7 @@ Deletes a module stored in ProfNUS.
 * `mdel c/CS2103T`
 
 
-### 4.3 Student Manager
+### 4.3. Student Manager
 
 As SOC Professors, you certainly have many students and teaching assistants to keep track of.
 In ProfNUS, you are able to add students / teaching assistants in to our contact list.
@@ -215,7 +215,7 @@ As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as s
 teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will 
 be saved on both sides.
 
-#### 4.3.1 Student Manager Command Parameters
+#### 4.3.1. Student Manager Command Parameters
 
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you 
 continue!
@@ -230,11 +230,11 @@ continue!
 | `TELEGRAM`    | This parameter represents the telegram username of the student you are adding into ProfNUS.<br/>The telegram username of the student should start with `@` and only consist of alphanumeric characters and underscores, and it should be at least 6 characters long inclusive of `@`.<br/>Students in ProfNUS are allowed to have the same telegram username.                                                                                | `@good_student`                     |
 | `TAG`         | This parameter represents the tag you want to attach to the student.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                                                                                                                                                                                     | `attentive`                         |
 | `MODULE_CODE` | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                                                                                                                                                                                                                                                               | `CS2030S`                           |
-| `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups.<br/>There are no restrictions on the information added to class groups.                                                                                                                                                                                                                                                        | `CS2030S:L1`                        |
+| `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups.<br/>There are no restrictions on the information added to class groups. When a module is deleted, the class group will still remain.                                                                                                                                                                                           | `CS2030S:L1`                        |
 | `INDEX`       | This parameter represents the index of the student / teaching assistant in thier respective lists.<br/>The index must be in the range of the numbers provided.                                                                                                                                                                                                                                                                               | `1`                                 |
 
 
-#### 4.3.2 Adding a student or teaching assistant: `add`
+#### 4.3.2. Adding a student or teaching assistant: `add`
 
 You can add a student / teaching assistant by using this command.
 
@@ -274,7 +274,7 @@ Now, let's use `add` to add a student with the following information.
 ![add_step2](images/userguide/student/add_step2.png)
 
 
-#### 4.3.3 Editing a student: `editstu`
+#### 4.3.3. Editing a student: `editstu`
 
 You can use this command to edit a student in the Student Manager.
 
@@ -313,7 +313,7 @@ Press `Enter` to execute the command.
 ![edit_step2](images/userguide/student/edit_step2.png)
 
 
-#### 4.3.4 Editing a teaching assistant: `editta`
+#### 4.3.4. Editing a teaching assistant: `editta`
 
 You can use this command to edit a teaching assistant from the teaching assistant list.
 
@@ -337,7 +337,7 @@ You can use this command to edit a teaching assistant from the teaching assistan
 *  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
-#### 4.3.5 Deleting a student: `delstu`
+#### 4.3.5. Deleting a student: `delstu`
 
 You can use this command to delete a student from the student list.
 
@@ -377,7 +377,7 @@ Now, let's use the `delstu` command to delete the student 'John Doe'.
 ![delstu_step2](images/userguide/student/delstu_step2.png)
 
 
-#### 4.3.6 Deleting a teaching assistant: `delta`
+#### 4.3.6. Deleting a teaching assistant: `delta`
 
 You can use this command to delete a teaching assistant from the teaching assistant list.
 
@@ -409,7 +409,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 * Executing the command `delta 2` deletes the second teaching assistant in the list.
 
 
-#### 4.3.7 Locating students and teaching assistants by name: `find`
+#### 4.3.7. Locating students and teaching assistants by name: `find`
 
 You can find your students / teaching assistants by searching for keywords in their name. 
 
@@ -441,7 +441,7 @@ Now, let's use the `find` command to find students / teaching assistants with th
 
 ![find_step2](images/userguide/student/find_step2.png)
 
-#### 4.3.8 Listing all students: `list`
+#### 4.3.8. Listing all students: `list`
 
 You can use this command to view the list of all the students and teaching assistants.
 
@@ -488,8 +488,8 @@ You can add a schedule by using this command.
 
 :exclamation: **Caution:**
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
-- If the schedule to be added conflicts with any existing schedule, ProfNUS will not perform any operation.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
 
@@ -528,7 +528,7 @@ Edits a schedule in ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be edited by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be edited by ProfNUS.
 
 </div>
 
@@ -565,7 +565,7 @@ Deletes a schedule from ProfNUS.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be deleted by ProfNUS.
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, there will be an error message and **no** schedule will be deleted by ProfNUS.
 
 </div>
 
@@ -600,7 +600,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 :exclamation: **Caution:**
 
-- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will **not** clear any schedule you have
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
 
 </div>
 
@@ -621,13 +621,22 @@ You can use this command to view the list of selected/all schedules.
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+
+:exclamation: **Caution:**
+
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
+
+</div>
+
 **Example:** `view c/CS2030S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
 **Step 1:** Type the command `view c/CS2030S w/Monday` in the command box.
 
-![view_step1](images/userguide/view_step1.png)
+![ ](images/userguide/view_step1.png)
 
 **Step 2:** Press enter, you will see all schedules related to CS2030S and Monday.
 
@@ -701,15 +710,15 @@ _Details coming soon ..._
 
 ### 6.3 Student Manager Command Summary
 
-| Action                                                                                           | Format                                                                                                             | Example                                                                                                                                                                     |
-|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [list all students/teaching assistants](#438-listing-all-students-list)                          | `list`                                                                                                             | `list`                                                                                                                                                                      |
-| [add a student/teaching assistant](#432-adding-a-student-or-teaching-assistant-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S` |
-| [edit a student](#433-editing-a-student-editstu)                                                 | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
-| [edit a teaching assistant](#434-editing-a-teaching-assistant-editta)                            | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
-| [delete a student](#435-deleting-a-student-delstu)                                               | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                                  |
-| [delete a teaching assistant](#436-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                                   |
-| [find a student/teaching assistant](#437-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
+| Action                                                                                           | Format                                                                                                             | Example                                                                                                                                                                |
+|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [list all students/teaching assistants](#438-listing-all-students-list)                          | `list`                                                                                                             | `list`                                                                                                                                                                 |
+| [add a student/teaching assistant](#432-adding-a-student-or-teaching-assistant-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/Peter Lim p/98413235 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/A0243456G h/@good_student c/CS2030S ta/CS1101S cg/CS2030S:Tut07` |
+| [edit a student](#433-editing-a-student-editstu)                                                 | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                        |
+| [edit a teaching assistant](#434-editing-a-teaching-assistant-editta)                            | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                         |
+| [delete a student](#435-deleting-a-student-delstu)                                               | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                             |
+| [delete a teaching assistant](#436-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                              |
+| [find a student/teaching assistant](#437-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                         |
 
 ### 6.4 Schedule Manager Command Summary
 

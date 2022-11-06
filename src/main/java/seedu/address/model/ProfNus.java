@@ -256,7 +256,7 @@ public class ProfNus implements ReadOnlyProfNus {
      * Removes all selected schedules from this {@code ProfNus}.
      */
     public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
-        if (modulesToClear == null) {
+        if (modulesToClear.isEmpty()) {
             for (Module module : getModuleList()) {
                 module.clearSchedules();
             }

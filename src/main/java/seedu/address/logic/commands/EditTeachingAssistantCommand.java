@@ -93,7 +93,7 @@ public class EditTeachingAssistantCommand extends EditStuCommand {
 
         //checks if module exists
         if (editedStudent.getStudentModuleInfo().size() > 0 || editedStudent.isTeachingAssistant()) {
-            List<Module> moduleList = model.getFilteredModuleList();
+            List<Module> moduleList = model.getAllModuleList();
             List<ModuleCode> studentModules = new ArrayList<>();
             studentModules.addAll(editedStudent.getStudentModuleInfo());
             studentModules.addAll(editedStudent.getTeachingAssistantInfo());
@@ -129,6 +129,6 @@ public class EditTeachingAssistantCommand extends EditStuCommand {
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false, false, false);
+                true, false, false, false, false, false);
     }
 }

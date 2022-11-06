@@ -41,15 +41,22 @@ public class ViewTimeTableCommand extends Command {
         if (this.timetableModel == 0) { // Horizontal
             return new CommandResult(String.format(SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
-                    false, false, true, false, false, false);
+                    false, false, false, true, false, false, false);
         } else if (this.timetableModel == 1) { // Vertical
             return new CommandResult(String.format(SHOWING_VERTICAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
-                    false, false, false, true, false, false);
+                    false, false, false, false, true, false, false);
         }
 
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTimeTableCommand.MESSAGE_USAGE));
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewTimeTableCommand)
+                && timetableModel == ((ViewTimeTableCommand) other).timetableModel;
     }
 
 }
