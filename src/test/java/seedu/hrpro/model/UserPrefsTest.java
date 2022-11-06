@@ -4,6 +4,9 @@ import static seedu.hrpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains test cases for UserPrefs
+ */
 public class UserPrefsTest {
 
     @Test

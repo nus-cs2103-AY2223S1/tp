@@ -32,6 +32,9 @@ import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
 import seedu.hrpro.testutil.TaskBuilder;
 
+/**
+ * Contains test cases for HrPro
+ */
 public class HrProTest {
 
     private final HrPro hrPro = new HrPro();

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -34,7 +33,6 @@ public class ModelManager implements Model {
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Staff> filteredStaff;
     private final FilteredList<Task> filteredTasks;
-    private final ArrayList<Task> targetTask = new ArrayList<>();
 
     /**
      * Initializes a ModelManager with the given {@code hrPro} and {@code userPrefs}.
@@ -395,8 +393,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects)
                 && filteredTasks.equals(other.filteredTasks)
-                && filteredStaff.equals(other.filteredStaff)
-                && targetTask.equals(other.targetTask);
+                && filteredStaff.equals(other.filteredStaff);
     }
 
 }

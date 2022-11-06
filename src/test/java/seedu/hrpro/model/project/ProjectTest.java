@@ -9,12 +9,17 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.hrpro.testutil.Assert.assertThrows;
 import static seedu.hrpro.testutil.TypicalProjects.APPLE;
 import static seedu.hrpro.testutil.TypicalProjects.BOB;
+import static seedu.hrpro.testutil.TypicalStaff.STAFF_ANDY;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for Projects.
+ */
 public class ProjectTest {
 
     @Test
@@ -55,6 +60,8 @@ public class ProjectTest {
     public void equals() {
         // same values -> returns true
         Project appleCopy = new ProjectBuilder(APPLE).build();
+        Project anoAppleCopy = new ProjectBuilder(APPLE).build();
+
         assertTrue(APPLE.equals(appleCopy));
 
         // same object -> returns true
@@ -84,5 +91,17 @@ public class ProjectTest {
         // different tags -> returns false
         editedApple = new ProjectBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(APPLE.equals(editedApple));
+
+        //same object with same staff
+        Staff staff = new StaffBuilder().build();
+        appleCopy.getStaffList().add(staff);
+        anoAppleCopy.getStaffList().add(staff);
+        assertTrue(anoAppleCopy.equals(appleCopy));
+
+        //different Staff in StaffList -> return false
+        Project editedAppleCopy = new ProjectBuilder(APPLE).build();
+        Staff diffStaff = new StaffBuilder(STAFF_ANDY).build();
+        editedAppleCopy.getStaffList().add(diffStaff);
+        assertFalse(editedAppleCopy.equals(appleCopy));
     }
 }

@@ -20,6 +20,9 @@ import seedu.hrpro.commons.core.GuiSettings;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.hrpro.testutil.HrProBuilder;
 
+/**
+ * Contains test cases for ModelManager
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();

@@ -26,7 +26,8 @@ public class TagTest {
 
         // multiple tag words
         assertTrue(Tag.isValidTagName("in progress"));
-        assertTrue(Tag.isValidTagName("Check limit of 50 works by using a long input here"));
+        assertTrue(Tag.isValidTagName("Check limit of 50 works by using a long input here")); //50 char input
+        assertTrue(Tag.isValidTagName("C                                                e")); // 50 char
 
         //Word and numbers
         assertTrue(Tag.isValidTagName("123456"));
@@ -36,8 +37,9 @@ public class TagTest {
         assertFalse(Tag.isValidTagName("!!!"));
         assertFalse(Tag.isValidTagName("Symb@ls not allowed."));
 
-        //Limit between 1-50 characters
-        assertFalse(Tag.isValidTagName("Here is a very long tag line to input to check that it fails"));
+        //Check limit between 1-50 characters
+        assertFalse(Tag.isValidTagName("Here is a very long tag line to input to check that it fails")); //60 char
+        assertFalse(Tag.isValidTagName("C                                                 e")); // 51 char
     }
 
 }

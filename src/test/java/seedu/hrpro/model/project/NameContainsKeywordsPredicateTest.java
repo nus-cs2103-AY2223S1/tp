@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.testutil.ProjectBuilder;
 
+/**
+ * Contains test cases for NameContainsKeywordsPredicateTest.
+ */
 public class NameContainsKeywordsPredicateTest {
 
     @Test
@@ -63,7 +66,6 @@ public class NameContainsKeywordsPredicateTest {
         //Partial matching keyword
         predicate = new ProjectNameContainsKeywordsPredicate(Arrays.asList("aL"));
         assertTrue(predicate.test(new ProjectBuilder().withName("Alice Bob").build()));
-        
     }
 
     @Test

@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for StaffNameContainsKeywordsPredicateTest.
+ */
 public class StaffNameContainsKeywordsPredicateTest {
 
     @Test

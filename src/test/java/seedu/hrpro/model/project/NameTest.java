@@ -6,6 +6,9 @@ import static seedu.hrpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains test cases for Name.
+ */
 public class NameTest {
 
     @Test
@@ -15,8 +18,11 @@ public class NameTest {
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "";
+        String invalidName = ""; //no blanks allowed
         assertThrows(IllegalArgumentException.class, () -> new ProjectName(invalidName));
+
+        String nameWithSymbols = "Pr@ject!";
+        assertThrows(IllegalArgumentException.class, () -> new ProjectName(nameWithSymbols));
     }
 
     @Test

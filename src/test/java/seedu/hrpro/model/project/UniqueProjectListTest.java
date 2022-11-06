@@ -18,6 +18,9 @@ import seedu.hrpro.model.project.exceptions.DuplicateProjectException;
 import seedu.hrpro.model.project.exceptions.ProjectNotFoundException;
 import seedu.hrpro.testutil.ProjectBuilder;
 
+/**
+ * Contains test Cases for UniqueProjectList
+ */
 public class UniqueProjectListTest {
 
     private final UniqueProjectList uniqueProjectList = new UniqueProjectList();

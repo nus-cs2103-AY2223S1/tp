@@ -10,7 +10,8 @@ import static seedu.hrpro.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tags names should be alphanumeric, with a limit of 50 characters ";
+            "Tags names should be alphanumeric, with a limit of 50 characters starting from "
+                    + "the first character. ";
 
     /*
      * Tags should only contain alphanumeric characters with a limit of 50.

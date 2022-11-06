@@ -18,6 +18,9 @@ import seedu.hrpro.model.staff.exceptions.DuplicateStaffException;
 import seedu.hrpro.model.staff.exceptions.StaffNotFoundException;
 import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for UniqueStaffList.
+ */
 public class UniqueStaffListTest {
 
     private final UniqueStaffList uniqueStaffList = new UniqueStaffList();

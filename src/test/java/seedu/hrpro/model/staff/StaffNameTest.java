@@ -6,6 +6,9 @@ import static seedu.hrpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains test cases for StaffName.
+ */
 public class StaffNameTest {
 
     @Test
@@ -36,7 +39,7 @@ public class StaffNameTest {
         // valid staff name
         assertTrue(StaffName.isValidStaffName("peter jack")); // alphabets only
         assertTrue(StaffName.isValidStaffName("Capital Tan")); // with capital letters
-        assertTrue(StaffName.isValidStaffName("abDUL"));
+        assertTrue(StaffName.isValidStaffName("abDUL")); //combination of small and big letters
     }
 }
 

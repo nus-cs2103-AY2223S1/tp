@@ -18,6 +18,9 @@ import seedu.hrpro.model.task.exceptions.DuplicateTaskException;
 import seedu.hrpro.model.task.exceptions.TaskNotFoundException;
 import seedu.hrpro.testutil.TaskBuilder;
 
+/**
+ * Contains test cases for UniqueTaskList.
+ */
 public class UniqueTaskListTest {
     private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
 
@@ -37,7 +40,7 @@ public class UniqueTaskListTest {
         assertTrue(uniqueTaskList.contains(TASK_5));
     }
     @Test
-    public void contains_staffWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(TASK_5);
         Task editedTask5 = new TaskBuilder(TASK_5).withDeadline(VALID_TASKDEADLINE_ALPHA)
                 .build();
@@ -112,7 +115,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void remove_staffDoesNotExist_throwsTaskNotFoundException() {
+    public void remove_taskDoesNotExist_throwsTaskNotFoundException() {
         assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.remove(TASK_5));
     }
 
@@ -146,8 +149,8 @@ public class UniqueTaskListTest {
     @Test
     public void setTasks_list_replacesOwnListWithProvidedList() {
         uniqueTaskList.add(TASK_5);
-        List<Task> staffList = Collections.singletonList(TASK_6);
-        uniqueTaskList.setTasks(staffList);
+        List<Task> taskList = Collections.singletonList(TASK_6);
+        uniqueTaskList.setTasks(taskList);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(TASK_6);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);

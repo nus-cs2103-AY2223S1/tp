@@ -34,6 +34,8 @@ public class StaffLeaveTest {
         assertFalse(StaffLeave.isValidStaffLeave("peter the 2nd")); // alphanumeric characters
         assertFalse(StaffLeave.isValidStaffLeave("Capital Tan")); // with capital letters
         assertFalse(StaffLeave.isValidStaffLeave("David Roger Jackson Ray Jr 2nd")); // long names
+        assertFalse(StaffLeave.isValidStaffLeave("TRUE")); // CAPS not allowed
+        assertFalse(StaffLeave.isValidStaffLeave("FALSE")); // CAPS not allowed
 
         // valid staff leave
         assertTrue(StaffLeave.isValidStaffLeave("true")); // On leave
