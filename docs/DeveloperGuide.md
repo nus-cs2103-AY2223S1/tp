@@ -772,8 +772,6 @@ Use case ends.
 
 **Use case: UC18 - Undoing a previous command**
 
-Preconditions: An undoable command has been executed by FABook.
-
 **Main Success Scenario (MSS)**
 1. User requests to undo a previous command.
 2. FABook undoes the last undoable action and updates the relevant information changed.
@@ -799,6 +797,8 @@ Use case ends.
 2. User requests to redo the undo command.
 3. FABook redoes the last undo command and updates the relevant information changed.
 4. FABook informs the user of the redone action that has been executed.
+
+Use case ends.
 
 **Use case: UC20 - Exiting FABook**
 
