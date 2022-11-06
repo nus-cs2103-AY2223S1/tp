@@ -2,9 +2,9 @@ package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
-import static jarvis.testutil.TypicalLessons.DT1;
-import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
+import static jarvis.testutil.TypicalLessons.TP1;
+import static jarvis.testutil.TypicalLessons.TP2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,7 +54,7 @@ public class UniqueLessonListTest {
 
         uniqueLessonList.add(STUDIO_1);
         Lesson lessonWithPeriodClash =
-                new LessonBuilder(CONSULT_1).withTimePeriod(new TimePeriod(DT1, DT2)).buildConsult();
+                new LessonBuilder(CONSULT_1).withTimePeriod(TP2).buildConsult();
         assertTrue(uniqueLessonList.hasPeriodClash(lessonWithPeriodClash));
     }
 
@@ -129,7 +129,7 @@ public class UniqueLessonListTest {
     public void setLesson_editedLessonHasClashTiming_throwsLessonClashException() {
         uniqueLessonList.add(STUDIO_1);
         uniqueLessonList.add(CONSULT_1);
-        Lesson editedLesson = new LessonBuilder(CONSULT_1).withTimePeriod(new TimePeriod(DT1, DT2)).buildConsult();
+        Lesson editedLesson = new LessonBuilder(CONSULT_1).withTimePeriod(TP2).buildConsult();
         assertThrows(LessonClashException.class, () -> uniqueLessonList.setLesson(CONSULT_1, editedLesson));
     }
 

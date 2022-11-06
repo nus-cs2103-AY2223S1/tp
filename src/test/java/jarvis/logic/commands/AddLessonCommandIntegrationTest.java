@@ -4,20 +4,17 @@ import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
 import static jarvis.testutil.TypicalLessons.CONSULT_DESCRIPTION_1;
-import static jarvis.testutil.TypicalLessons.DT1;
-import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.STUDIO_DESCRIPTION_2;
+import static jarvis.testutil.TypicalLessons.TP1;
 import static jarvis.testutil.TypicalLessons.getTypicalLessonBook;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static jarvis.testutil.TypicalStudents.getTypicalStudents;
-import static jarvis.testutil.TypicalTasks.MASTERY_CHECK;
 import static jarvis.testutil.TypicalTasks.getTypicalTaskBook;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,7 +26,6 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.model.Consult;
-import jarvis.model.Lesson;
 import jarvis.model.MasteryCheck;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
@@ -111,14 +107,14 @@ public class AddLessonCommandIntegrationTest {
         // one of the lesson in lesson list is Mastery Check 1 with 1st and 2nd student in student list
         Set<Index> studentIndexesForMasteryCheck = studentIndexesForLesson;
         assertCommandFailure(new AddMasteryCheckCommand(MASTERY_CHECK_DESCRIPTION_1,
-                new TimePeriod(DT1, DT2), studentIndexesForMasteryCheck), model,
+                TP1, studentIndexesForMasteryCheck), model,
                 AddMasteryCheckCommand.MESSAGE_DUPLICATE_MASTERY_CHECK);
     }
 
     @Test
     public void execute_lessonTimeClash_throwsCommandException() {
         // Studio with same timing as one of the lesson in lesson list
-        assertCommandFailure(new AddStudioCommand(STUDIO_DESCRIPTION_2, new TimePeriod(DT1, DT2)), model,
+        assertCommandFailure(new AddStudioCommand(STUDIO_DESCRIPTION_2, TP1), model,
                 AddStudioCommand.MESSAGE_TIME_PERIOD_CLASH);
     }
 }

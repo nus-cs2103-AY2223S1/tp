@@ -4,8 +4,7 @@ import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.LessonBuilder.DEFAULT_LESSON_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_MASTERY_CHECK_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_TIME_PERIOD;
-import static jarvis.testutil.TypicalLessons.DT3;
-import static jarvis.testutil.TypicalLessons.DT4;
+import static jarvis.testutil.TypicalLessons.TP3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.MasteryCheck;
-import jarvis.model.TimePeriod;
 import jarvis.testutil.LessonBuilder;
 
 public class AddMasteryCheckCommandTest extends AddLessonCommandTest {
@@ -105,9 +103,9 @@ public class AddMasteryCheckCommandTest extends AddLessonCommandTest {
                 new AddMasteryCheckCommand(DEFAULT_LESSON_DESC, DEFAULT_TIME_PERIOD, VALID_STUDENT_INDEX);
         assertFalse(addMasteryCheck1Command.equals(addMasteryCheckNullDescCommand));
 
-        // different time period ->returns false
+        // different time period -> returns false
         AddMasteryCheckCommand addMasteryCheck1DiffTimeCommand =
-                new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC, new TimePeriod(DT3, DT4), VALID_STUDENT_INDEX);
+                new AddMasteryCheckCommand(DEFAULT_MASTERY_CHECK_DESC, TP3, VALID_STUDENT_INDEX);
         assertFalse(addMasteryCheck1Command.equals(addMasteryCheck1DiffTimeCommand));
 
         // different studentIndex

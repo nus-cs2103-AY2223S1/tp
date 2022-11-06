@@ -4,8 +4,7 @@ import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.LessonBuilder.DEFAULT_LESSON_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_STUDIO_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_TIME_PERIOD;
-import static jarvis.testutil.TypicalLessons.DT3;
-import static jarvis.testutil.TypicalLessons.DT4;
+import static jarvis.testutil.TypicalLessons.TP3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Studio;
-import jarvis.model.TimePeriod;
 import jarvis.testutil.LessonBuilder;
 
 public class AddStudioCommandTest extends AddLessonCommandTest {
@@ -89,8 +87,7 @@ public class AddStudioCommandTest extends AddLessonCommandTest {
         assertFalse(addStudio1Command.equals(addStudioNullDescCommand));
 
         // different time period ->returns false
-        AddStudioCommand addStudio1DiffTimeCommand =
-                new AddStudioCommand(DEFAULT_STUDIO_DESC, new TimePeriod(DT3, DT4));
+        AddStudioCommand addStudio1DiffTimeCommand = new AddStudioCommand(DEFAULT_STUDIO_DESC, TP3);
         assertFalse(addStudio1Command.equals(addStudio1DiffTimeCommand));
     }
 }

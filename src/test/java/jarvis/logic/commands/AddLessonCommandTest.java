@@ -1,7 +1,6 @@
 package jarvis.logic.commands;
 
-import static jarvis.testutil.TypicalLessons.DT1;
-import static jarvis.testutil.TypicalLessons.DT2;
+import static jarvis.testutil.TypicalLessons.TP1;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
@@ -31,7 +30,7 @@ import javafx.collections.transformation.FilteredList;
 
 public abstract class AddLessonCommandTest {
 
-    public static final TimePeriod VALID_TIME_PERIOD = new TimePeriod(DT1, DT2);
+    public static final TimePeriod VALID_TIME_PERIOD = TP1;
     public static final Set<Index> VALID_STUDENT_INDEX = getFirstStudentIndex();
 
     public static Set<Index> getFirstStudentIndex() {
