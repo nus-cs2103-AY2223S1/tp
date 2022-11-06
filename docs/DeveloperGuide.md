@@ -666,7 +666,7 @@ testers are expected to do more *exploratory* testing.
     * Increased user-friendliness of UG significantly
     * Maintenance (inclusive of revisions and updates) of existing DG documentation
     * Inclusion of new features and corresponding insights in DG
-    
+
 * Challenges faced:
   * Learning of regex to ensure continuity with AB3 parse format
   * Learning of JavaFX to update GUI

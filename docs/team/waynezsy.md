@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to add debts to the persons in PayMeLah, enabling them to track information related to the debts such as a description, money amount, date and time.
   * Justification: This is the core feature of PayMeLah that enables users to keep track of debts and associate them with the persons who own the debts.
   * Highlights: Use of OOP ensures that changes made to the validity of user inputs relating to `debt` classes such as the `<money>` input will not affect the functionality of the code related to `adddebt`.
-  
+
 * **New Feature**: Enable calculation of GST/Service Charge when adding debts
   * What it does: allows the user to (optionally) specify to include Service Charge and GST in money amounts for debts added to PayMeLah.
   * Justification: This feature helps simplify debt-adding processes for users who are confused about how to calculate GST and Service Charge by doing the calculation for them.
