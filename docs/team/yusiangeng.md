@@ -27,10 +27,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the parameters related to task commands
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation and potential use cases for task-related commands.
+    * Added documentation for the parameters used for task commands.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `editTask` and `sort` features.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#70](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/70), [\#71](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/71)
