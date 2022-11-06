@@ -93,6 +93,8 @@ public class UserPrefsTest {
 
         Path testPath = Paths.get(testDirString, testFileString);
         File testFile = testPath.toFile();
+        testFile.getParentFile().mkdir();
+        testFile.getParentFile().deleteOnExit();
         testFile.createNewFile();
         testFile.deleteOnExit();
 
