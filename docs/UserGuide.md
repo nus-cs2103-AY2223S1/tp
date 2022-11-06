@@ -120,7 +120,9 @@ java -version
 
 </div>
 
+{:refdef: style="text-align: center;"}
 ![Ui](images/Ui.png)
+{: refdef}
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
@@ -269,7 +271,7 @@ The task parameter has the following constraints:
 
 Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
-### `c/CONDITION`
+#### `c/CONDITION`
 
 `CONDITION` accepts any values.
 
@@ -277,7 +279,7 @@ Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
 Example:`c/Parkinson's disease`
 
-### `m/MEDICATION_TYPE | DOSAGE`
+#### `m/MEDICATION_TYPE | DOSAGE`
 
 `MEDICATION_TYPE` accepts any values.
 `DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
@@ -286,7 +288,7 @@ Example:`c/Parkinson's disease`
 
 Example:`m/Amoxicillin | 0.5g every 8 hours`
 
-### `r/REMARK`
+#### `r/REMARK`
 
 `REMARK` accepts any values.
 
@@ -328,10 +330,9 @@ _Clean up Task parameters, some should be put in the feature, while things like 
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:** You can navigate through your command history by using the `↑` and `↓` arrow keys.
-
-:information_source: **Notes:**
-* _Only successful commands are saved in the command history._
-* _Two or more consecutive identical commands are saved once._
+* Two or more consecutive identical commands are saved once.
+* Only successful commands are saved in the command history.
+* The command history saves up to 100 previous commands.
 
 </div>
 
@@ -343,8 +344,10 @@ You can access the help page with the `help` command.
 
 Format: **`help`**
 
-![help message](images/helpMessage.png)<br>
-_Help window displayed after running the `help` command_
+{:refdef: style="text-align: center;"}
+![help message](images/helpMessage.png)
+{: refdef}
+<div align="center"><i> Help window displayed after running the </i><code>help</code><i> command </i></div>
 
 <br>
 
@@ -840,8 +843,11 @@ Examples:
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find alice meier` returns `Alice Tan` & `Benson Meier`.
-  ![result for 'find alice meier'](images/findAliceMeierResult.png)
-  _Patient list displayed after running the `find alice meier` command_
+
+{:refdef: style="text-align: center;"}
+![result for 'find alice meier'](images/findAliceMeierResult.png)
+{: refdef}
+<div align="center"><i> Patient list displayed after running the </i><code>find alice meier</code><i> command </i></div>
 
 <br>
 
@@ -873,8 +879,10 @@ Let's say you added the following patients and their tasks:
 
 If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
+{:refdef: style="text-align: center;"}
 ![result for `view --today`](images/viewTodayResult.png)
-_<div align="center"> Patient and task list displayed after running the `view --today` command </div>_
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view --today</code><i> command </i></div>
 
 <br>
 
@@ -888,8 +896,10 @@ Examples:
 
 * `view -p --all` will show a list of all tasks belonging to patients with tasks.
 
+{:refdef: style="text-align: center;"}
 ![result for `view -p --all`](images/viewAllTaskResult.png)
-_<div align="center"> Patient and task list displayed after running the `view -p --all` command </div>_
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view -p --all</code><i> command </i></div>
 
 <br>
 
@@ -903,8 +913,10 @@ Examples:
 
 * `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
 
+{:refdef: style="text-align: center;"}
 ![result for `view -p 2`](images/viewBerniceTaskResult.png)
-_<div align="center"> Patient and task list displayed after running the `view -p 2` command </div>_
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view -p 2</code><i> command </i></div>
 
 <br>
 
@@ -945,9 +957,10 @@ Examples:
 * `view 5-9-22` lists the tasks on 5th September 2022
 * `view 25-11-22` lists the tasks on 25th November 2022
 
+{:refdef: style="text-align: center;"}
 ![result for `view 25-11-22`](images/viewSpecificDayResult.png)
-_<div align="center"> Patient and task list displayed after running the `view 25-11-22` command </div>_
-
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view 25-11-22</code><i> command </i></div>
 
 <br>
 
