@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     private ListView<Debt> debts;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person}.
+     * Creates a {@code PersonCard} with the given {@code Person}.
      */
     public PersonCard(Person person) {
         super(FXML);
