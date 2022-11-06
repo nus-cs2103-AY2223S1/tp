@@ -402,7 +402,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 - The internship list will remain sorted by the last given criterion until InterNUS is closed.
-- The sorted order persists during additions, deletions and editing of persons and internships.
+- The sorted order persists during additions, deletions and editing of internships.
 - When sorted by interview date, internships with no interview dates appear at the bottom of the list.
 </div>
 
