@@ -629,3 +629,35 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+Every member in our group agrees that we have put in **a lot more** effort personally compared to the individual project (IP).
+We faced tremendous difficulties when we were dealing with transactions and remarks. On hindsight, it may seem as simple
+as coding while referencing how AB3 handle the logic and rendering of Person. However, it was a lot more challenging than
+it seem, because the transactions and remarks are unique to every client. Thus, it took a lot of time and effort for us to
+have an idea of how we should render transactions and remarks on the screen, and how the different commands such as delete,
+edit can be evolved to handle them. The lack of references in AB3 made it a lot harder since the Person class in
+AB3 does not have a **List** attribute, and we have to add it.
+
+Furthermore, we felt like we have created two additional AB3 in total, twice the effort of what it takes to create AB3.
+The **transactions** and **remarks** each are almost like an AB3. They have their own storage, user interface, model,
+and have its own CRUD (Create, Read, Update, Delete) functionality. We also have to spend a lot of time learning about
+JavaFX, Jackson, since none of us have any experience with these prior to CS2103T. It definitely took more time and
+effort to create the user interface that we have now compared to the one in IP, since it was basically hand-holding in
+IP.
+
+We also have to refactor the application once at around week 10, because we realise that there isn't a real value
+proposition for our application. Hence, thousands of lines were refactored at that period, and it took effort to
+get used to the new terms within the code.
+
+We spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
+new sections that AB3 doesn't have, and more user-friendly screenshots of the application with annotations.
+
+For Developer Guide, we have to change almost every single diagram within the application to align to our current
+code, and add more explanations to it. When appropriate, we also included new diagrams which are relevant, and
+created much more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
+It is definitely much more than the original developer guide.
+
+Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
+AB3.
