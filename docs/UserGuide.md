@@ -324,6 +324,10 @@ Format: `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`
 * If task does not have a deadline, you can put `by/?` and there will be no deadline.
 * `PERSON_INDEX` refers to the index number shown in the displayed person list.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If the current task list only shows completed task (via `task list -c`), the newly added will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
+</div>
+
 Examples:
 * `task add Task 1 by/next friday #CS2103T @1`
 * `task add Finish GUI by/sunday #CS2100 @2`
