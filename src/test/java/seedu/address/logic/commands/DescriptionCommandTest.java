@@ -68,7 +68,7 @@ public class DescriptionCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
@@ -129,7 +129,7 @@ public class DescriptionCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new DescriptionCommand(INDEX_SECOND_PERSON,
                 new Description(VALID_DESCRIPTION_AMY))));
-        // different remark -> returns false
+        // different description -> returns false
         assertFalse(standardCommand.equals(new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(VALID_DESCRIPTION_BOB))));
     }
