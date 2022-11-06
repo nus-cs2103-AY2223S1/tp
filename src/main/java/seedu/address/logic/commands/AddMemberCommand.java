@@ -29,7 +29,7 @@ public class AddMemberCommand extends Command {
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
-    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
+    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid person index provided";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index personIndex;
