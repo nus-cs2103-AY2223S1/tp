@@ -389,7 +389,6 @@ Format: `sort -i [c/] [d/] [s/]`
 - `c/` sorts internships by company name (in alphabetical order).
 - `d/` sorts internships by interview date.
 - `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
-- When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
 
 Examples:
 * `list -i` followed by `sort -i c/` sorts all internships in InterNUS by company name.
@@ -399,7 +398,7 @@ Examples:
 **:information_source: Note:**<br>
 - The internship list will remain sorted by the last given criterion until InterNUS is closed.
 - The sorted order persists during additions, deletions and editing of persons and internships.
-- Internships with no interview dates appear at the bottom of the list when sorted by interview date.
+- When sorted by interview date, internships with no interview dates appear at the bottom of the list.
 </div>
 
 ## 4.8. General
