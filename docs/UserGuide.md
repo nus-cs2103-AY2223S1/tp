@@ -894,7 +894,7 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 **Q:** I can export my data to .csv files, but can I import .csv files into myStudent?  
 **A:** No, currently the import feature is still a work in progress. Stay tuned for it!
 
-**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?
+**Q:** I can't seem to open myStudent when I tried to double-click it like a normal application. What do I do?  
 **A:** You can refer to our troubleshooting guide [here](#troubleshooting).
 
 **Q:** What if I'm still having trouble using myStudent?  
