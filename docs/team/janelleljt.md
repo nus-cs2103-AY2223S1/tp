@@ -44,9 +44,12 @@ illustration of my contributions as well as the relevant documentation I have ad
   - Relevant pull request(s): [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
 
 - **Contributions to the Developer Guide**:
-  - Added implementation details for the find order command as well as a sequence diagram depicting the program flow.
-  - Added design considerations for the find order command.
-  - Added **user stories** with differing priorities. 
+  - Added implementation details and design considerations for the find order command as well as a sequence diagram depicting the program flow.
+    - Relevant pull request(s): [#206](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/206)
+  - Added user profile, value proposition and user stories with differing priorities. 
+    - Relevant pull request(s): [#43](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/43)
+  - Added instructions for testing for `findo`, `listo` and `sorto` commands.
+    - Relevant pull request(s): [#224](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/224)
 
 - **Contributions to team-based tasks**:
   - Facilitated team discussions and delegation of work.
