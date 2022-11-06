@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CobbParser" as CobbParser LOGIC_COLOR
+participant ":EditBuyerCommandParser" as EditBuyerCommandParser LOGIC_COLOR
+participant "e:EditBuyerCommand" as EditBuyerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editbuyer 1 -r 10000-50000")
+activate LogicManager
+
+LogicManager -> CobbParser : parseCommand("editbuyer 1 -r 10000-50000")
+activate CobbParser
+
+create EditBuyerCommandParser
+CobbParser -> EditBuyerCommandParser
+activate EditBuyerCommandParser
+
+EditBuyerCommandParser --> CobbParser
+deactivate EditBuyerCommandParser
+
+CobbParser -> EditBuyerCommandParser : parse("1 -r 10000-50000")
+activate EditBuyerCommandParser
+
+create EditBuyerCommand
+EditBuyerCommandParser -> EditBuyerCommand
+activate EditBuyerCommand
+
+EditBuyerCommand --> EditBuyerCommandParser : e
+deactivate EditBuyerCommand
+
+EditBuyerCommandParser --> CobbParser : e
+deactivate EditBuyerCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditBuyerCommandParser -[hidden]-> CobbParser
+destroy EditBuyerCommandParser
+
+CobbParser --> LogicManager : e
+deactivate CobbParser
+
+LogicManager -> EditBuyerCommand : execute()
+activate EditBuyerCommand
+
+EditBuyerCommand -> EditBuyerCommand : createEditedBuyer(buyerToEdit, editBuyerDescriptor)
+activate EditBuyerCommand
+EditBuyerCommand --> EditBuyerCommand : editedBuyer
+deactivate EditBuyerCommand
+
+EditBuyerCommand -> Model : setBuyer(buyerToEdit, editedBuyer)
+
+EditBuyerCommand -> Model : updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS)
+
+create CommandResult
+EditBuyerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditBuyerCommand
+deactivate CommandResult
+
+EditBuyerCommand --> LogicManager : result
+deactivate EditBuyerCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

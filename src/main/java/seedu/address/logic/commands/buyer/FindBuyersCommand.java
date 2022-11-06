@@ -18,8 +18,7 @@ public class FindBuyersCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all buyers whose names contain the specified string (case insensitive).\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " bala";
+            + "Example: " + COMMAND_WORD + " John";
 
     private final BuyerNameContainsSubstringPredicate predicate;
 
