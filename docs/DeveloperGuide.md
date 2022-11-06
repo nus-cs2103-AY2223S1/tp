@@ -213,7 +213,7 @@ the abstraction of commands.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-![UML diagram for Model component](./images/LatestModelClassDiagram.png)
+![UML diagram for Model component](./images/ModelClassDiagram.png)
 
 
 The `Model` component,
@@ -365,7 +365,7 @@ update its columns based on user commands that affected the model. There needed 
 `ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
 From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
-![MainWindowRelationships](images/MainWindowRelationships.png)
+![Reference relationships between MainWindow and the other components](images/MainWindowRelationships.png)
 
 One possible implementation was to store a reference to `ResidentTableView` in `ModelManager`, to update the 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
@@ -403,7 +403,7 @@ view, with two exceptions:
 The activity diagram shown below for the column manipulation feature models the intended behaviour of RC4HDB based on 
 user input, assuming the user enters the valid command format.
 
-![ManipulatingColumnsActivityDiagram](images/ManipulatingColumnsActivityDiagram.png)
+![Activity diagram for intended behaviour of RC4HDB for column manipulation feature](images/ManipulatingColumnsActivityDiagram.png)
 
 #### Use of abstract classes for `showonly` and `hideonly`
 
@@ -420,7 +420,7 @@ Our solution was to abstract some of these commonalities into an abstract class,
 and `ColumnManipulatorCommandParser` for the `showonly` and`hideonly` command parsers. The UML diagram for the 
 inheritance relationship is shown below. 
 
-![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+![Use of abstract classes for column manipulation feature](images/AbstractClassesForShowHideFeature.png)
 
 Adding these abstract classes also increased the extendability of our application, as one of the future developments
 for RC4HDB would be to implement the column manipulation features for the venue booking tables.
