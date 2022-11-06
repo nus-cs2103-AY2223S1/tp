@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InTrackParser" as InTrackParser LOGIC_COLOR
 participant ":StatusCommandParser" as StatusCommandParser LOGIC_COLOR
-participant "d:StatusCommand" as StatusCommand LOGIC_COLOR
+participant "sc:StatusCommand" as StatusCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,16 +33,16 @@ create StatusCommand
 StatusCommandParser -> StatusCommand
 activate StatusCommand
 
-StatusCommand --> StatusCommandParser : d
+StatusCommand --> StatusCommandParser : sc
 deactivate StatusCommand
 
-StatusCommandParser --> InTrackParser : d
+StatusCommandParser --> InTrackParser : sc
 deactivate StatusCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 StatusCommandParser -[hidden]-> InTrackParser
 destroy StatusCommandParser
 
-InTrackParser --> LogicManager : d
+InTrackParser --> LogicManager : sc
 deactivate InTrackParser
 
 LogicManager -> StatusCommand : execute()

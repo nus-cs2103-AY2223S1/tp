@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `InTrackParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `InTrackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InTrackParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
+* stores the internship application data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
 * stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Internship` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `InTrack`, which `Internship` references. This allows `InTrack` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,13 +140,13 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both internship application data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `InTrackStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.intrack.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,12 +160,12 @@ This section describes some noteworthy details on how certain features are imple
 
 The add internship application feature allows users to quickly add an internship application in the tracker via the
 The add internship application feature allows users to quickly add an internship application in the tracker via the
-command `add n/NAME p/POSITION hp/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+command `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]...`.
 
 #### How it is implemented
 
 The `add` command is facilitated by the `AddCommand` and the `AddCommandParser`. It uses the `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)`
-to extract the relevant inputs for each field. A new `Internship` object is then created with the corresponding name, position, phone, email, address and tag.
+to extract the relevant inputs for each field. A new `Internship` object is then created with the corresponding company name, position, email, website, salary and tag.
 The status field, by default, will be set to `Progress`. The `InTrack#addInternship(Internship target)` which is exposed in the `Model` interface as
 `Model#addInternship(Internship target, Internship editedInternship)` is called to add the new `Internship` object to the list of internship applications.
 
@@ -175,7 +175,7 @@ The status field, by default, will be set to `Progress`. The `InTrack#addInterns
 2. The `InTrackParser` processes the input and creates a new `AddCommandParser`.
 3. The `AddCommandParser` then calls `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)` to extract the relevant inputs for each field.
    If any prefix is absent but compulsory or invalid, a `ParseException` would be thrown.
-4. The respective `Name`, `Position`, `Phone`, `Email`, `Address` and `Tag` constructors then check for the validity of parsed inputs.
+4. The respective `Name`, `Position`, `Email`, `Website`, `Salary` and `Tag` constructors then check for the validity of parsed inputs.
    If any of the parsed inputs are absent but compulsory or invalid, a `ParseException` would be thrown.
 5. The `AddCommandParser` then creates the `AddCommand` based on the processed input.
 
@@ -259,6 +259,7 @@ The following activity diagram shows what happens when a user executes a `status
 #### Design considerations
 
 **Aspect: Command to update status of an internship application**
+
 Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
 each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
 a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command
@@ -319,7 +320,7 @@ The following activity diagram shows what happens when a user executes a `addtas
 The add internship remark feature allows users to add a remark to his/her internship interview information via the command
 `remark` `INDEX` `r/`.
 
-### How it is implemented
+#### How it is implemented
 The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
 It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
 get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
@@ -421,37 +422,37 @@ The following activity diagram shows what happens when a user executes a `findn`
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInTrack`. It extends `InTrack` with an undo/redo history, stored internally as an `intrackStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInTrack#commit()` — Saves the current internship tracker state in its history.
+* `VersionedInTrack#undo()` — Restores the previous internship tracker state from its history.
+* `VersionedInTrack#redo()` — Restores a previously undone internship tracker state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitInTrack()`, `Model#undoInTrack()` and `Model#redoInTrack()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedInTrack` will be initialized with the initial internship tracker state, and the `currentStatePointer` pointing to that single internship tracker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th internship in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th internship in the internship tracker. The `delete` command calls `Model#commitInTrack()`, causing the modified state of the internship tracker after the `delete 5` command executes to be saved in the `intrackStateList`, and the `currentStatePointer` is shifted to the newly inserted internship tracker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new internship. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add c/Google …​` to add a new internship. The `add` command also calls `Model#commitInTrack()`, causing another modified internship tracker state to be saved into the `intrackStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInTrack()`, so the internship tracker state will not be saved into the `intrackStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the internship was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the internship was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInTrack()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous internship tracker state, and restores the internship tracker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InTrack state, then there are no previous InTrack states to restore. The `undo` command uses `Model#canUndoInTrack()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -464,17 +465,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoInTrack()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship tracker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `intrackStateList.size() - 1`, pointing to the latest internship tracker state, then there are no undone InTrack states to restore. The `redo` command uses `Model#canRedoInTrack()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship tracker, such as `list`, will usually not call `Model#commitInTrack()`, `Model#undoInTrack()` or `Model#redoInTrack()`. Thus, the `intrackStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInTrack()`. Since the `currentStatePointer` is not pointing at the end of the `intrackStateList`, all internship tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -486,7 +487,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire internship tracker.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -579,24 +580,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions.
+
 2. InTrack displays the usage instructions.
 
     Use case ends.
 
-**Use case: UC02 - View all current internship applications**
+---
+
+**Use case: UC02 - View all internship applications**
 
 **MSS**
 
-1. User requests to list internship applications.
-2. InTrack displays a list of internship applications.
+1. User requests to list all internship applications.
+
+2. InTrack displays a list of all internship applications.
 
    Use case ends.
+
+---
 
 **Use case: UC03 - Add a new internship application**
 
 **MSS**
 
 1. User requests to add a new internship application to the list.
+
 2. InTrack adds the new internship application.
 
    Use case ends.
@@ -609,25 +617,330 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The given internship application already exists in InTrack.
+
+    * 1b1. InTrack shows an error message.
+
+      Use case ends.
+    
+---
+
 **Use case: UC04 - Delete an internship application**
 
 **MSS**
 
-1. User <u>views list of current internship applications (UC02)</u>.
+1. User <u>views list of internship applications (UC02)</u>.
+
 2. User requests to delete a specific internship application in the list.
+
 3. InTrack deletes the internship application.
 
    Use case ends.
 
 **Extensions**
 
-* 2a The given index is invalid.
+* 2a. The given index is invalid.
 
     * 2a1. InTrack shows an error message.
 
       Use case resumes at step 2.
-    
-*{More to be added}*
+
+---
+
+**Use case: UC05 - Update the status of an internship application**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to update the status of a specific internship application in the list.
+
+3. InTrack updates the status of the internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given status is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC06 - Add a tag to an internship application**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to add a tag to a specific internship application in the list.
+
+3. InTrack adds the tag to the internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given tag already exists in the internship application.
+
+    * 2c1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC07 - Delete a tag from an internship application**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to delete a tag from a specific internship application in the list.
+
+3. InTrack deletes the tag from the internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag is invalid.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given tag does not exist in the internship application.
+
+    * 2c1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC08 - Select an internship application**
+
+**MSS**
+
+1. User <u>views list of current internship applications (UC02)</u>.
+
+2. User requests to select a specific internship application in the list.
+
+3. InTrack selects the internship application and displays its full details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC09 - Edit an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to edit the selected internship application.
+
+3. InTrack edits the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The edited internship application already exists in InTrack.
+
+    * 2b1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC10 - Add a task to an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to add a task to the selected internship application.
+
+3. InTrack adds the task to the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC11 - Delete a task from an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to delete a task from the selected internship application.
+
+3. InTrack deletes the task from the selected internship application.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given task index is invalid.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC12 - Add a remark to an internship application**
+
+**MSS**
+
+1. User <u>selects an internship application (UC08)</u>.
+
+2. User requests to add a remark to the selected internship application.
+
+3. InTrack adds the remark to the selected internship application.
+
+   Use case ends.
+
+---
+
+**Extensions**
+
+* 2a. The given command has an invalid format.
+
+    * 2a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC13 - Clear all internship applications**
+
+**MSS**
+
+1. User requests to clear all internship applications.
+
+2. InTrack clears all internship applications. 
+
+   Use case ends.
+
+---
+
+**Use case: UC14 - Find internship applications**
+
+**MSS**
+
+1. User requests to find internship applications.
+
+2. InTrack finds and displays the internship applications that match the given input parameters.
+
+   Use case ends.
+
+---
+
+**Use case: UC15 - Filter internship applications by status**
+
+**MSS**
+
+1. User requests to filter internship applications by status.
+
+2. InTrack filters and displays the internship applications with the given status.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given status is invalid.
+
+    * 1a1. InTrack shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: UC16 - Sort internship applications**
+
+**MSS**
+
+1. User requests to sort internship applications.
+
+2. InTrack sorts the internship applications via the given parameter in the given order.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given parameter is invalid.
+
+    * 1a1. InTrack shows an error message.
+
+      Use case ends.
+
+* 1b. The given order is invalid.
+
+    * 1b1. InTrack shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: UC17 - View statistics of internship applications**
+
+**MSS**
+
+1. User <u>views list of internship applications (UC02)</u>.
+
+2. User requests to view statistics of internship applications.
+
+3. InTrack displays the statistics of the list of internship applications.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 

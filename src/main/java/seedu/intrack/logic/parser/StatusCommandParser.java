@@ -31,6 +31,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
 
         try {
             index = ParserUtil.parseIndex(splitCommand[1]);
+            assert index.getOneBased() > 0 : "index should be a positive unsigned integer";
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE), ive);
         }
