@@ -126,13 +126,14 @@ e.g. `help`
 
 ### 6.2.2 Parameter
 
-A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and is what specifies what type of information you are providing SoConnect with. <br>
+A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and is what specifies what type of information you are providing SoConnect with. Do note that some commands only requires the prefix as a parameter.  <br>
 
 e.g. `n/NAME`
 
 ### 6.3. Command Format
 
-To use SoConnect features, you would need to type the [command](#621-command) that you would like to use along with the [parameters](#622-parameter) it might require. The [parameters](#622-parameter) required for each feature can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
+To use SoConnect features, you would need to type the [command](#621-command) that you would like to use along with the [parameters](#622-parameter) it requires. If a parameter is optional, it will be wrapped with square brackets. e.g. `[e/EMAIL]` <br>
+The [parameters](#622-parameter) required for each feature can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
 
 <div markdown="block" class="alert alert-info"> 
 
