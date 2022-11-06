@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBillAtIndex;
 import static seedu.address.testutil.TypicalBills.BILL_1;
+import static seedu.address.testutil.TypicalBills.getTypicalBillsHealthContact;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BILL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BILL;
-import static seedu.address.testutil.TypicalBills.getTypicalBillsHealthContact;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bill.Bill;
-import seedu.address.model.bill.PaymentStatus;
 import seedu.address.testutil.BillBuilder;
 import seedu.address.testutil.EditBillDescriptorBuilder;
 
@@ -60,7 +59,8 @@ public class EditBillCommandTest {
         BillBuilder billInList = new BillBuilder(lastBill);
         Bill editedBill = billInList.withBillDate(VALID_BILL_DATE_7).withAmount(VALID_AMOUNT_7).build();
 
-        EditBillDescriptor descriptor = new EditBillDescriptorBuilder().withBillDate(VALID_BILL_DATE_7).withAmount(VALID_AMOUNT_7).build();
+        EditBillDescriptor descriptor = new EditBillDescriptorBuilder().withBillDate(VALID_BILL_DATE_7)
+                .withAmount(VALID_AMOUNT_7).build();
         EditBillCommand editBillCommand = new EditBillCommand(indexLastBill, descriptor);
 
         String expectedMessage = String.format(EditBillCommand.MESSAGE_EDIT_BILL_SUCCESS, editedBill);
