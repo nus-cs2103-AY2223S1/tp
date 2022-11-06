@@ -128,7 +128,7 @@ The `Model` component,
 
 Similar analogues exist for task and lesson data. The class diagram is similar apart from:
 1. the different naming (`TaskBook` and `LessonBook` instead of `StudentBook`, `UniqueTaskList` and `UniqueLessonList` instead of `UniqueStudentList`)
-2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Task` is composed out of `TaskDexc`, `TaskDeadline` etc. 
+2. the components of the `Task` and `Lesson` classes. For example, instead of `StudentName` and `MatricNumber`, `Task` is composed out of `TaskDesc`, `TaskDeadline` etc. 
 
 In particular, the Lesson class diagram is shown below.
 
