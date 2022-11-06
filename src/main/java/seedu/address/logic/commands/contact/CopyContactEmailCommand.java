@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
@@ -31,9 +33,13 @@ public class CopyContactEmailCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(Messages.MESSAGE_LABEL_DOES_NOT_EXIST);
+        }
 
         StringBuilder builder = new StringBuilder();
         List<Person> people = model.getFilteredPersonList();

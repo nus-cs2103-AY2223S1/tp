@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandUtil.createEditedPerson;
-import static seedu.address.logic.commands.CommandUtil.createEditedTask;
+import static seedu.address.logic.commands.CommandUtil.createEditedPersonWithDeleteTags;
+import static seedu.address.logic.commands.CommandUtil.createEditedTaskWithDeleteTags;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -88,19 +88,24 @@ public class DeleteTagCommand extends Command {
 
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPersonWithDeleteTags(personToEdit, editPersonDescriptor);
 
         List<Task> lastShownTaskList = model.getFilteredTaskList();
         Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Task editedTask = createEditedTaskWithDeleteTags(taskToEdit, editTaskDescriptor);
 
         if (contactIndex.getZeroBased() >= lastShownPersonList.size()
             || taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX);
         }
 
-        if (!personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))
-            || !taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
+        if (deleteTagFromContact
+            && !personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))) {
+            throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
+        }
+
+        if (deleteTagFromTask
+            && !taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
             throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
         }
 

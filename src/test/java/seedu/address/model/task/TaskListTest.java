@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_EARLIEST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_QUIZ;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_2101;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.READ_BOOK;
 import static seedu.address.testutil.TypicalTasks.WRITE_TEST_CASES;
@@ -88,7 +88,7 @@ public class TaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         taskList.addTask(READ_BOOK);
-        Task editedReadBook = new TaskBuilder(READ_BOOK).withDeadline(VALID_DEADLINE_QUIZ).withTags(VALID_TAG_HUSBAND)
+        Task editedReadBook = new TaskBuilder(READ_BOOK).withDeadline(VALID_DEADLINE_QUIZ).withTags(VALID_TAG_2101)
                 .build();
         taskList.setTask(READ_BOOK, editedReadBook);
         TaskList expectedTaskList = new TaskList();

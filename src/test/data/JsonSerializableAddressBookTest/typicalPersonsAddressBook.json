@@ -8,7 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "free on monday",
     "tagged" : [ {
-      "tagName" : "friends",
+      "tagName" : "CS2103T",
       "tagCount" :  1
     } ]
   }, {
@@ -19,10 +19,10 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "free on tuesday",
     "tagged" : [ {
-      "tagName" : "friends",
+      "tagName" : "CS2103T",
       "tagCount" :  1
     }, {
-    "tagName": "owesMoney",
+    "tagName": "CS2101",
     "tagCount": 1
     } ]
   }, {
@@ -41,7 +41,7 @@
     "address" : "10th street",
     "remark" : "",
     "tagged" : [ {
-      "tagName" : "friends",
+      "tagName" : "CS2102",
       "tagCount" :  1
     } ]
   }, {
@@ -75,11 +75,15 @@
   },
   "tags" : [
     {
-      "tagName" : "friends",
-      "tagCount" : 3
+      "tagName" : "CS2103T",
+      "tagCount" : 2
     },
     {
-      "tagName" : "owesMoney",
+      "tagName" : "CS2101",
+      "tagCount" : 1
+    },
+    {
+      "tagName" : "CS2102",
       "tagCount" : 1
     } ]
 }

@@ -23,7 +23,8 @@ Given below are my contributions to the project.
   * What it does: Executing the `remindT` command filters the task list to show only tasks with deadlines that fall before or on the day of the date specified.
   * Justification: Users juggling many tasks may need to be reminded of what tasks are due most urgently, thus this allows them to clearly see what tasks should be completed by their specified date.
   * Highlights: Tasks past their deadline are still shown by remindT as users may still need to complete them.
-
+<div style="page-break-after: always;"></div>
+  
 * **New Feature**: Added command to show users their task completion progress for tasks with any of the specified tags.
   * What it does: Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
   * Justification: Users keeping track of many tasks for different projects may need to see how close they are to completing their tasks for certain projects, so they can better manage their time and effort.
@@ -61,7 +62,9 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
-    [#236](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/236)
+    [#236](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/236),
+    [#255](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/255),
+    [#258](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/258)
   * Reported bugs and suggestions for other teams in the class (examples:
     [1](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/114),
     [2](https://github.com/AY2223S1-CS2103T-T11-1/tp/issues/98),

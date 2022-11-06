@@ -39,6 +39,14 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
      */
     public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        String trimmedArgs = args.trim();
+
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONTACT, PREFIX_TASK, PREFIX_TAG);
 

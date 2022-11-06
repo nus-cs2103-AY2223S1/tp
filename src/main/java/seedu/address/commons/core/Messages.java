@@ -13,6 +13,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX = "The person/task index "
         + "provided is invalid";
     public static final String NEW_LINE_CHARACTER = "\n";
-
+    public static final String MESSAGE_LABEL_DOES_NOT_EXIST = "The label provided is invalid";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
 }
