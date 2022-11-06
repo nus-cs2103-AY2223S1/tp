@@ -90,7 +90,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
-[//]: # (TODO: The UI component needs to be updated)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -572,8 +571,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to edit contact number of a specific student in the list.
-2. Teacher’s Pet updates the student with the new contact number.
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to edit contact number of a specific student in the list.
+4. Teacher’s Pet updates the student with the new contact number.
 
    Use case ends.
 
@@ -593,8 +594,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to edit class date of a specific student in the list.
-2. Teacher’s Pet updates the student with the new class date.
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to edit class date of a specific student in the list.
+4. Teacher’s Pet updates the student with the new class date.
 
    Use case ends.
 
@@ -647,7 +650,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find a student by address.
+1. Teacher requests to find all the students with address matching the keywords.
 2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
@@ -668,10 +671,9 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students.
-2. Teacher’s Pet shows a list of students.
-3. Teacher requests to mark a specific student in the list as present for class.
-4. Teacher’s Pet marks the student as present for class.
+1. Teacher requests to mark a specific student in the list as present for class.
+2. Teacher’s Pet marks the student as present for class.
+3. A cross will be displayed beside the student on the schedule list panel.
 
     Use case ends.
 
