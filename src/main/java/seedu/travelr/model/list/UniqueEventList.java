@@ -49,6 +49,7 @@ public class UniqueEventList extends EventList {
 
     /**
      * Returns the internalList
+     *
      * @return
      */
     @Override
@@ -67,29 +68,6 @@ public class UniqueEventList extends EventList {
         }
         internalList.add(toAdd);
         addEvent(toAdd);
-    }
-
-    /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
-     */
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EventNotFoundException();
-        }
-
-        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.set(index, editedEvent);
-        removeEvent(target);
-        addEvent(editedEvent);
-
     }
 
     /**
@@ -184,10 +162,6 @@ public class UniqueEventList extends EventList {
 
     private void removeEvent(Event event) {
         events.remove(event);
-    }
-
-    private void removeEvent(int i) {
-        events.remove(events.toArray()[i - 1]);
     }
 
     public Event getEvent(int i) {
