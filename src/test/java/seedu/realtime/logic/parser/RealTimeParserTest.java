@@ -14,30 +14,45 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.realtime.logic.commands.AddClientCommand;
+import seedu.realtime.logic.commands.AddOfferCommand;
 import seedu.realtime.logic.commands.ClearCommand;
 import seedu.realtime.logic.commands.DeleteClientCommand;
+import seedu.realtime.logic.commands.DeleteOfferCommand;
 import seedu.realtime.logic.commands.EditClientCommand;
 import seedu.realtime.logic.commands.EditClientCommand.EditClientDescriptor;
+import seedu.realtime.logic.commands.EditOfferCommand;
+import seedu.realtime.logic.commands.EditOfferCommand.EditOfferDescriptor;
 import seedu.realtime.logic.commands.ExitCommand;
 import seedu.realtime.logic.commands.FindClientCommand;
 import seedu.realtime.logic.commands.HelpCommand;
 import seedu.realtime.logic.commands.ViewClientListCommand;
 import seedu.realtime.logic.parser.exceptions.ParseException;
+import seedu.realtime.model.offer.Offer;
 import seedu.realtime.model.person.Client;
 import seedu.realtime.model.person.NameContainsKeywordsPredicate;
 import seedu.realtime.testutil.ClientBuilder;
 import seedu.realtime.testutil.ClientUtil;
 import seedu.realtime.testutil.EditClientDescriptorBuilder;
+import seedu.realtime.testutil.EditOfferDescriptorBuilder;
+import seedu.realtime.testutil.OfferBuilder;
+import seedu.realtime.testutil.OfferUtil;
 
 public class RealTimeParserTest {
 
     private final RealTimeParser parser = new RealTimeParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addClient() throws Exception {
         Client client = new ClientBuilder().build();
         AddClientCommand command = (AddClientCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
         assertEquals(new AddClientCommand(client), command);
+    }
+
+    @Test
+    public void parseCommand_addOffer() throws Exception {
+        Offer offer = new OfferBuilder().build();
+        AddOfferCommand command = (AddOfferCommand) parser.parseCommand(OfferUtil.getAddCommand(offer));
+        assertEquals(new AddOfferCommand(offer), command);
     }
 
     @Test
@@ -47,19 +62,35 @@ public class RealTimeParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteClient() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + FIRST_INDEX.getOneBased());
         assertEquals(new DeleteClientCommand(FIRST_INDEX), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_deleteOffer() throws Exception {
+        DeleteOfferCommand command = (DeleteOfferCommand) parser.parseCommand(
+                DeleteOfferCommand.COMMAND_WORD + " " + FIRST_INDEX.getOneBased());
+        assertEquals(new DeleteOfferCommand(FIRST_INDEX), command);
+    }
+
+    @Test
+    public void parseCommand_editClient() throws Exception {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
                 + FIRST_INDEX.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditClientCommand(FIRST_INDEX, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editOffer() throws Exception {
+        Offer offer = new OfferBuilder().build();
+        EditOfferDescriptor descriptor = new EditOfferDescriptorBuilder(offer).build();
+        EditOfferCommand command = (EditOfferCommand) parser.parseCommand(EditOfferCommand.COMMAND_WORD + " "
+                + FIRST_INDEX.getOneBased() + " " + OfferUtil.getEditOfferDescriptorDetails(descriptor));
+        assertEquals(new EditOfferCommand(FIRST_INDEX, descriptor), command);
     }
 
     @Test
