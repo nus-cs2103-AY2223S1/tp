@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Samuel Cheong's Project Portfolio Page
+title: samuelcheongws's Project Portfolio Page
 ---
 
 ### Project: TrackAScholar
@@ -19,13 +19,17 @@ Given below are my contributions to the project.
 
 * **Code contributed**: Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=samuelcheongws&zR=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&zACS=134.73076923076923&zS=2022-09-16&zFS=w10-3&zU=2022-11-04&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
+* **Project management**:
+  * Managed releases `v1.4` on GitHub
+
 * **Enhancements to existing features**: 
 * Added `ApplicationStatusTest` and `SortCommandTest` and other Import command tests to increase code coverage and ensure that programs work as expected.
 
-* **Documentation**: `to be added soon`
+* **Documentation**: 
   * User Guide: Added documentation for the features import and edit
   * Developer Guide: Added documentation, sequence diagrams, and activity diagrams for the features import and edit
 
 * **Community**:
-* * Reviewed several PRs, including https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92.
+* Reviewed several PRs, including [#97](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
 * Found several bugs for CS2103T-W12-3 and suggested improvements.
+* Reported bugs for another team [here](https://github.com/samuelcheongws/ped/issues)

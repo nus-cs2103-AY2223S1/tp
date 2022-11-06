@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.trackascholar.commons.exceptions.DataConversionException;
-import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.ModelManager;
 import seedu.trackascholar.model.ReadOnlyTrackAScholar;
