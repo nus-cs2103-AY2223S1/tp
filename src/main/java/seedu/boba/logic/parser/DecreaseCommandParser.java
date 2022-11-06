@@ -14,7 +14,7 @@ import seedu.boba.model.customer.Reward;
 /**
  * Parses input arguments and creates a new DecreaseCommand object
  */
-public class DecreaseCommandParser implements Parser<DecreaseCommand> {
+public class DecreaseCommandParser implements CommandParser<DecreaseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DecreaseCommand
