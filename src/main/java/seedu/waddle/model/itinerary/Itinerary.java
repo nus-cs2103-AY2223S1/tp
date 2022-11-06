@@ -277,7 +277,7 @@ public class Itinerary {
     public String getVacantSlots() {
         StringBuilder vacantSlots = new StringBuilder();
         for (Day day : this.days) {
-            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
+            vacantSlots.append(day.getVacantSlots()).append(System.lineSeparator());
         }
         return vacantSlots.toString();
     }

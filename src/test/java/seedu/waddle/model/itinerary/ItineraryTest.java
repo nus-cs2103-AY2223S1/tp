@@ -1,5 +1,6 @@
 package seedu.waddle.model.itinerary;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
@@ -7,12 +8,16 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
+import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.waddle.commons.core.Text;
+import seedu.waddle.model.item.Duration;
 import seedu.waddle.testutil.ItineraryBuilder;
+import seedu.waddle.testutil.TypicalItineraries;
 
 public class ItineraryTest {
 
@@ -43,6 +48,24 @@ public class ItineraryTest {
         String nameWithTrailingSpaces = VALID_ITINERARY_DESC_WINTER + " ";
         editedWinter = new ItineraryBuilder(WINTER).withName(nameWithTrailingSpaces).build();
         assertFalse(WINTER.isSameItinerary(editedWinter));
+    }
+
+    @Test
+    public void getVacantSlots_correctOutput() {
+        String expectedString = "Day 1:" + System.lineSeparator() +
+                "    Free!" + System.lineSeparator() + System.lineSeparator()
+                + "Day 2:" + System.lineSeparator()
+                + "    Free!" + System.lineSeparator() + System.lineSeparator();
+        String actualString = new ItineraryBuilder(AUTUMN).withDuration("2").build().getVacantSlots();
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void getTimeString_correctOutput() {
+        String expectedString = "Dates: 2022-02-02 - 2022-02-03";
+        String actualString = new ItineraryBuilder(AUTUMN).withDuration("2").build()
+                .getTimeString(Text.INDENT_NONE);
+        assertEquals(expectedString, actualString);
     }
 
     @Test
