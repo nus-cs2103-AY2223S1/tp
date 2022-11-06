@@ -20,7 +20,7 @@ title: User Guide
 ## 1. Introduction
 
 ### 1.1. What is Gim?
-Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#8-glossary-of-terminologies). Gim is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#8-glossary-of-terminologies). Gim is optimised for use via a [Command Line Interface (CLI)](#8-glossary-of-terminologies) while still having the benefits of a [Graphical User Interface (GUI)](#8-glossary-of-terminologies).
 
 ### 1.2. Who is this guide for?
 Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
@@ -126,7 +126,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* Words in `UPPER_CASE` are the [parameters](#8-glossary-of-terminologies) to be supplied by you.<br>
   E.g. In `n/NAME w/WEIGHT`, `NAME` and `WEIGHT` are parameters which can be used as `n/Squat w/100`.
 
 * Items in square brackets are optional.<br>
@@ -168,11 +168,11 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 Parameter constraints:
 * The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
   * Examples: Squat, Bench press, Deadlift...
-* The weight **must be a non-negative decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
+* The [weight](#8-glossary-of-terminologies) **must be a non-negative decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
   * Examples: 0, 0.55, 35, 100.1, 200.00...
-* The sets **must be a positive integer, up to 3 digits, with no leading zeroes**.
+* The [sets](#8-glossary-of-terminologies) **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
-* The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
+* The [reps](#8-glossary-of-terminologies) **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
   * Accepted formats:
@@ -199,7 +199,7 @@ Examples:
 
 ### 5.2. Deleting an exercise : `:del`
 
-Deletes a particular exercise from our list. The index refers to the index number shown in the current [Exercise List](#42-exercise-list).
+Deletes a particular exercise from our list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -211,7 +211,7 @@ If the deleted exercise was the last exercise with the same name, then the exerc
 Format: `:del INDEX`
 
 Parameter constraints:
-* The index **must be a positive integer**.
+* The [index](#8-glossary-of-terminologies) **must be a positive integer**.
   * Example: 1, 2, 3, ...
 
 Example:
@@ -380,7 +380,7 @@ Example:
 
 ### 5.9. Generating a sample workout based on Personal Records: `:gen`
 
-Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated either by their index numbers shown in the displayed exercise list or their exercise names.
+Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated either by their [index](#8-glossary-of-terminologies) or their exercise names.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -488,7 +488,7 @@ Format: `:wq`
 
 **Q**: How is data stored in Gim?
 <br>
-**A**: Gim data is stored in `[JAR file location]/data/exercisetracker.json`. If you are comfortable working with json files, you are welcome to update Gim's data by editing the data file directly.
+**A**: Gim data is stored in `[JAR file location]/data/exercisetracker.json`. If you are comfortable working with [JSON](#8-glossary-of-terminologies) files, you are welcome to update Gim's data by editing the data file directly.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
@@ -530,13 +530,13 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 * **Command Line Interface (CLI)**: Interface that relies on keyboard inputs to interact with the system.
 * **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Graphical User Interface (GUI)**: Interface that relies on mouse inputs on visible components to interact with the system.
-* **Index**: Number associated to an Exercise in the Exercise List.
+* **Index**: Number associated to an Exercise in the [Exercise List](#42-exercise-list).
 * **JavaScript Object Notation (JSON)**: Filetype used for storing the user's data that can be edited using a text editor. 
 * **Parameters**: Inputs for commands that you come up with.
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 * **Reps**: Number of times you perform a specific exercise.
 * **Sets**: Number of cycles of reps that you complete.
 * **Vim**: A text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
-* **Weight**: Total weight (include barbell if applicable, exclude body weight).
+* **Weight**: Total weight of equipment (in kg).
 
 <a href="#toc">Back To Table of Contents</a>
