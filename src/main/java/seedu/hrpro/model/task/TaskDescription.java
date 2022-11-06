@@ -19,7 +19,7 @@ public class TaskDescription {
     public final String taskDescription;
 
     /**
-     * Constructs a {@code Description}.
+     * Constructs a {@code TaskDescription}.
      *
      * @param description A valid description.
      */

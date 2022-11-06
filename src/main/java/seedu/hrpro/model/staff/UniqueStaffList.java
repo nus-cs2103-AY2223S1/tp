@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.model.staff.exceptions.DuplicateStaffException;
 import seedu.hrpro.model.staff.exceptions.StaffNotFoundException;
 
@@ -80,11 +79,6 @@ public class UniqueStaffList implements Iterable<Staff> {
         }
     }
 
-    public void setStaffs(UniqueStaffList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code staffs}.
      * {@code staffs} must not contain duplicate staffs.
@@ -98,21 +92,17 @@ public class UniqueStaffList implements Iterable<Staff> {
         internalList.setAll(staffs);
     }
 
+    public void setStaffs(UniqueStaffList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     /**
      * Returns the size of the {@code UniqueStaffList}.
      */
     public int size() {
         return internalList.size();
     }
-
-    /**
-     * Returns the {@code Staff} at {@code Index} of the {@code UniqueStaffList}.
-     */
-    public Staff getStaff(Index index) {
-        return internalList.get(index.getZeroBased());
-    }
-
-
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

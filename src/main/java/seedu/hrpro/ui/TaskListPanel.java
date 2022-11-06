@@ -35,14 +35,6 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets a {@code TaskListPanel} with the given {@code ObservableList}.
-     */
-    public void updateTaskList(ObservableList<Task> taskList) {
-        taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
     class TaskListViewCell extends ListCell<Task> {

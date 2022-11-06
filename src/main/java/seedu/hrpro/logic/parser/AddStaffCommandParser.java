@@ -65,7 +65,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
 
         // do staff creation
         Staff staff = new Staff(staffName, staffContact, staffTitle, staffDepartment, staffLeave, tagList);
-        // do project name parsing
+
         // return new add staff command
         return new AddStaffCommand(staff, index);
     }
