@@ -323,6 +323,22 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 **Q**: I accidentally made the data file invalid and now my old data does not show in FRIDAY. How do I fix this?<br>
 **A**: To retrieve the old data, revert all invalid changes in the data file **before running any commands** in FRIDAY.
 
+**Q**: Which computers can run this software?<br>
+**A**: All computers can run this software as it not limited by hardware. However on the software side Windows computers <br>
+       minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
+
+**Q**: What if I am not good at typing. Is FRIDAY for me?<br>
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typer <br>
+       you will be saving time as compared to pen and paper or an excel sheet. <br>
+       Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
+
+**Q**: What are the additional features coming to FRIDAY?<br>
+**A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see. 
+       1. Shared databases 
+       2. Larger storage limits 
+       3. Cloud compatibility 
+       4. Easy import and export of data
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -346,3 +362,31 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+##Glossary
+
+1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+
+2. GUI: GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+
+3. Java : Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+
+4. .jar : Specifies the file format of the file.
+
+5. Command: The text that you enter in the input box is a command.
+
+6. Parameter: The text that follows the first word of your input in the input box.
+
+7. RA1: Reading assessment 1 a minor assessment in the CS1101S module that tests the content of the first half of the module.
+
+8. RA2: Reading assessment 2 a minor assessment in the CS1101S module that tests the content of the second half of the module.
+
+9. Midterm: Midterm examination a major assessment that occurs halfway through the CS1101S module.
+
+10. Practical: Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+
+11. Final: Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+
+12. Mastery Check: A pass/fail for of assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+
+13. Alias: A nickname or an alternate name for a command that you can set.
