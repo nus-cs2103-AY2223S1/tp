@@ -39,13 +39,13 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * Words in `UPPER_CASE` are the parameters to be supplied by you.
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.
-  * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
+  * e.g. `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
   * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
 * Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
-* If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
+* If a parameter is expected only once in a command, but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
   * e.g. if you specify `help 123`, the parser interprets it as `help`.
@@ -63,7 +63,7 @@ Let's first begin with the commands available in the default mode.
 
 
 | Command    | Format                                                             |
-| ---------- |--------------------------------------------------------------------|
+|------------|--------------------------------------------------------------------|
 | `help`     | `help`                                                             |
 | `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL][a/ADDRESS][c/CLASS_NAME...]` |
 | `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]`          |
@@ -468,6 +468,20 @@ Exits focus mode.
 
 Format: `unfocus`
 * Alternatively, you can exit focus mode by clicking on the button shown [here](#enter-focus-mode-focus).
+
+### Automated Data Backup
+
+On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made 
+and saved to `data/taassist.json.bak`. 
+
+In the event that you need to revert a catastrophic change, you may simply quit the app and overwrite 
+`data/taassist.json` with the backup file. 
+
+{% include important.html content="
+
+Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will be overwritten if it exists.
+
+" %}
 
 ## Frequently Asked Questions (FAQ)
 
