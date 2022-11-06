@@ -490,6 +490,8 @@ Format: `exit`
 | **Assign Task <br/> All** | `assigntaskall g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`         |
 | **Delete Task <br/> All** | `deletetaskall g/GROUP task/TASK` <br/> e.g. `deletetaskall g/CS2103T task/TeamProject`                                                                |
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4 Miscellaneous Commands
 
 | Action    | Format, Examples |
