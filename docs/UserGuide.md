@@ -279,7 +279,7 @@ Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer must be a positive integer 1, 2, 3, …
 
 Examples:
-- `link p/1 i/1` links the person at index **1** to the internship at index **1**
+- `link p/1 i/1` links the person at index **1** to the internship at index **1**.
 
 ### 4.4.2. Unlinking a person and an internship : `unlink`
 
@@ -292,9 +292,9 @@ Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
-- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**
-- `unlink p/1` unlinks person at index **1** and its linked internship
-- `unlink i/1` unlinks internship at index **1** and its linked person
+- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**.
+- `unlink p/1` unlinks person at index **1** and its linked internship.
+- `unlink i/1` unlinks internship at index **1** and its linked person.
 
 ## 4.5. Find Command
 
@@ -308,7 +308,7 @@ Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
 - Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
-- Partial words will be matched. e.g. **Han** will match **Hans**
+- Partial words will be matched. e.g. **Han** will match **Hans**.
 
 Examples:
 - `find -p n/john jon` finds persons with `NAME` that contains **john** or **jon**.
