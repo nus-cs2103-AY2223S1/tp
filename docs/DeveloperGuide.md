@@ -422,7 +422,7 @@ Implementation:
 1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
 2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField` 
 to listen for the event when a valid command word is typed 
-3. When the event occurs, `ResultDisplay` will call `setFeedbackToUser()` to display the command's message usage in the `ResultDisplay`
+3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
