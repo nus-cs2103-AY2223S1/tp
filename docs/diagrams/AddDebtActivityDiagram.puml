@@ -21,7 +21,7 @@ else ([person does not have same debt])
 :Model is updated;
 endif
 repeat while () is ([debtor list has more persons])
-->[debtor list has no more persons]);
+->[debtor list has no more persons];
 
 :User informed that debt is added to each person;
 stop
