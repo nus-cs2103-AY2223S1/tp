@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Team description should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Team descriptions cannot contain either single (') or double quotes (\"), and should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[^'\\s\"][^'\"]+$";
     public static final String NO_DESCRIPTION_STRING = "No description added";
     public static final Description NO_DESCRIPTION = new Description(NO_DESCRIPTION_STRING);
     public static final Description DEFAULT_DESCRIPTION = new Description("A default team created just for you");
