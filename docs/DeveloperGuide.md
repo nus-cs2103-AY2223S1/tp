@@ -367,11 +367,11 @@ The implementation of unassigning students from module classes is similar to how
 Refer to [Assigning students to module classes](#assigning-students-to-module-classes) for more information.
 
 ### Grading a student for a session
-<img src="images/GradeCommandSequenceDiagram.png" width="700" />
-
 Giving grades for a session is only possible when a `ModuleClass` is focused. It requires updating the student's list of
-`StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect 
+`StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect
 the given grade.
+
+<img src="images/GradeCommandSequenceDiagram.png" width="700" />
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
@@ -379,8 +379,9 @@ Given bellow are the steps taken when the user gives grade to a student for a se
 student indices, session name, and grade. 
 
 **Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
-current curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndices` method. For each 
-student, steps 3 to 5 are repeated.
+current curated list of students in `Model`. For each student, steps 3 to 5 are repeated.
+
+<img src="images/StudentGradeUpdate.png" width="700" />
 
 **Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
 The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
@@ -399,18 +400,18 @@ is used to replace the old `Student` object with the updated one in our model.
 to the user. 
 
 ### Viewing session-wise grades of a student in a class
-<img src="images/ViewCommandSequenceDiagram.png" width="700" />
-
 Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through
 the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
 the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
+
+<img src="images/ViewCommandSequenceDiagram.png" width="700" />
 
 Given bellow are the steps taken when the user wants to view a student's session-wise grades:
 
 **Step 1**: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
 
 **Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
-curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method.  
+curated list of students in `Model`.  
 
 **Step 3**: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
 `Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData`
