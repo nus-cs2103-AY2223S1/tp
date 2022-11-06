@@ -332,8 +332,8 @@ Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
 Examples:
-* `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with 1st and 2nd student in your student list.
-* `addmc sd/2022-11-13 st/23:00 ed/2022-11-14 et/00:00 si/1` adds a mastery check lesson from `Nov-13-2022 23:00` to `Nov-14-2022 00:00` with 1st student in your student list.
+* `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with the 1st and 2nd student in your student list.
+* `addmc sd/2022-11-13 st/23:00 ed/2022-11-14 et/00:00 si/1` adds a mastery check lesson from `Nov-13-2022 23:00` to `Nov-14-2022 00:00` with the 1st student in your student list.
 
 ### Deleting a lesson : `deletelesson`
 
@@ -384,7 +384,7 @@ Format: `markstudent li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `markstudent li/2 si/3` marks the 3rd student in the student list within the 2nd lesson in your lesson list as present.
+* `markstudent li/2 si/3` marks the 3rd student in the 2nd lesson in your lesson list as present.
 
 
 ### Marking a student as absent for a lesson : `unmarkstudent`
@@ -398,7 +398,7 @@ Format: `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `unmarkstudent li/2 si/3` marks the 3rd student in the student list within the 2nd lesson in your lesson list as absent.
+* `unmarkstudent li/2 si/3` marks the 3rd student in the 2nd lesson in your lesson list as absent.
 
 ### Adding a note to a lesson : `addnote`
 
@@ -414,7 +414,7 @@ Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student in the student list within the 1st lesson in your lesson list.
+* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student in the 1st lesson in your lesson list.
 * `addnote n/Get back to the class on streams li/2` adds a note for the 2nd lesson in your lesson list.
 
 ### Deleting a note from a lesson : `deletenote`
@@ -430,7 +430,7 @@ Format: `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `NOTE_INDEX`, `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `deletenote ni/1 li/1 si/2` deletes the 1st note for the 2nd student in the student list within the 1st lesson in your lesson list.
+* `deletenote ni/1 li/1 si/2` deletes the 1st note for the 2nd student in the 1st lesson in your lesson list.
 * `deletenote ni/2 li/1` deletes the 2nd note from the 1st lesson in your lesson list.
 
 ### Adding participation for a student in a lesson : `addpart`
@@ -446,7 +446,7 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addpart p/100 li/1 si/2` sets participation for the 2nd student in the student list within the 1st lesson in your lesson list to be 100.
+* `addpart p/100 li/1 si/2` sets participation for the 2nd student in the 1st lesson in your lesson list to be 100.
 
 <div style="page-break-after: always;"></div>
 
