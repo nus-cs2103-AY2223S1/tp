@@ -12,10 +12,7 @@
 -%}
 {{ nodes.first }}
 {%- for node in nodes offset:1 -%}
-  {% assign data = node | split: ']]' %}
-  {% assign tag = data | first | strip | split: ':' %}
-  {% assign key = tag | first | strip %}
-  {% assign label = tag | last | strip %}
+  {% assign data = node | split: ']]' %}{% assign tag = data | first | strip | split: ':' %}{% assign key = tag | first | strip %}{% assign label = tag | last | strip %}
   {%- if entry_keys contains key -%}
     {%- for entry in site.glossary -%}
       {%- if entry_keys[forloop.index0] == key -%}
@@ -25,8 +22,7 @@
             <i>Click to view glossary</i>
           </span>
         </span>{% break %}
-      {% endif %}
-    {% endfor %}
+      {% endif %}{% endfor %}
     {%- for tail in data offset:1 -%}
       {{ tail }}
     {%- endfor -%}
