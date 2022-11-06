@@ -76,13 +76,14 @@ A good place to start off with would be to take a look at the [design](#design) 
 
 [comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
 
-RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
+RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
 a starting point for Software Engineering (SE) students enrolled in CS2103T.
 
 ### Credits for code adapted from external sources
 
-1. `populateTagColumn` in `ResidentTableView`, and `populateNthColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
-2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
+1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
+   * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
+   * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
 3. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
 
 ---
@@ -110,7 +111,7 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-:bulb: **Tip:** For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
+For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
 the following colours.
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
@@ -217,11 +218,13 @@ the abstraction of commands.
 
 The `Model` component,
 
-* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object), and the venue book data, i.e. all `Venue` objects (which are contained in a `UniqueVenueList` object)
-* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
-* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` of venues and bookings to display in the UI. 
-* stores two `ObservableList<String>` objects of columns to show and hide in the UI.
+* stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
+  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively)
+* stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
+  separate `ObservableList` objects
+    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an `ObservableList`.
+    * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
+* stores a `UserPref` object that represents the user's preferences.
 * does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
@@ -352,14 +355,14 @@ of any sizeable overhead.
 
 <br>
 
-### Show/hide feature for resident fields
+### Show only/hide only feature for resident fields
 
-**Changes to Model component:**
+#### Changes to Model component:
 
-For the show/hide features, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
-columns based on user commands that affected the model. There needed to be some way for the `ResidentTableView` class 
-to synchronise its columns with the corresponding field lists in `ModelManager`. From the below diagram, we can see
-that there is no reference between `ModelManager` and `ResidentTableView`. 
+For the `showonly` and `hideonly` features, we wanted to allow the `ResidentTableView` class in the UI to automatically 
+update its columns based on user commands that affected the model. There needed to be some way for the 
+`ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
+From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
 ![MainWindowRelationships](images/MainWindowRelationships.png)
 
@@ -367,15 +370,78 @@ One possible implementation was to store a reference to the `ResidentTableView` 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution was to store lists of fields to show and hide in *both* `ModelManager` and the `ResidentTableView` classes.
-Using listeners to propagate changes in the `ModelManager` field lists to the `ResidentTableView` field lists, we were
-able to minimise coupling between both components. 
+Our solution for this was to use getters to obtain the unmodifiable `ObservableList<String>` instances of the 
+fields to show and hide from `ModelManager`, before passing them into the constructor of `ResidentTableView`. 
+Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists, updating the column visibilities 
+whenever the base `ObservableList<String>` objects in `ModelManager` changed.
 
-Additionally, the use of `ObservableList<String>` as our choice of field lists allowed us to use the Observer pattern 
-in our application. Moving forward, our design for the Observer pattern could be better improved, 
-for example, by combining `Observer` and `Observable` interfaces to remove the need to instantiate listeners 
-in separate classes.
+This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
+and `ModelManager`.
 
+One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
+instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
+around and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
+(unmodifiable) list is held, it would end up being garbage collected. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
+
+<br>
+
+#### Use of abstract classes for `showonly` and `hideonly`
+
+The `hideonly` command alone is sufficient for users to hide their unwanted columns from the table view. However, 
+we added support for both commands in order to improve the quality-of-life of RC4HDB users. Users can save time by 
+using the complement command depending on the relative number of fields they want to show or hide. 
+
+After making this change, however, there were instances of undesirable code duplication in both the commands and the 
+command parsers for the `showonly` and `hideonly` features.
+
+Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
+the `showonly` and `hideonly` commands (as well as `list` and `reset), and `ColumnManipulatorCommandParser` for the 
+`showonly` and`hideonly` command parsers.
+
+![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+
+Some of these commonalities include input validation for the column identifiers, as well as utility methods for 
+generating the complement list from a given list. 
+
+Adding these abstract classes also increased the extendability of our application, as one of the future developments
+for our application would be to implement column manipulation features for the venue booking tables.
+
+<br>
+
+#### Choice of `ObservableList<String>` over `ObservableList<Field>`
+
+While the lists of fields to show and hide could be represented in either an `ObservableList<String>`
+or an `ObservableList<Field>`, we decided to use an `ObservableList<String>` to minimise the additional need for 
+getters if `Field` was used instead. 
+
+The only information required by the lists of fields to show and hide in `ModelManager` was the column identifier, 
+and hence the use of an `ObservableList<Field>` was redundant as none of the additional `Field` attributes 
+had to be referenced.
+
+<br>
+
+#### Optional reading: Predecessors to `showonly` and `hideonly`
+
+For our previous iteration of RC4HDB, the `showonly` and `hideonly` features were handled by the `list /i` and 
+`list /e` features, which have since been removed. 
+
+For these overloaded `list` commands, the user could show or hide columns by specifying which columns should be 
+included or excluded when listing. 
+
+However, there were two main issues with `list /i` and `list /e`:
+
+1. These commands would cause the full list of residents to be displayed, removing the effects of the `filter` and 
+`find` commands.
+   
+2. The columns to include or exclude were based on the full, default set of columns. Columns that were already 
+excluded from the table had to be re-specified if additional columns were to be excluded. 
+   
+While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
+to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
+commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
+that the user did not have to re-specify columns that were already hidden.
+
+<br>
 
 ### Filter feature to filter residents according to fields
 
@@ -646,8 +712,8 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 | Priority | As a ...      | I want to ...                                                                      | So that ...                                                                         | Story Type |
 |----------|---------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------|
 | `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                                                     | Story      |
-| `***`    | user          | specify which fields to include or exclude when listing residents                  | my screen is less cluttered                                                         | Story      |
-| `***`    | advanced user | show or hide columns without affecting the list of residents displayed             | I can de-clutter my screen without affecting the list of residents already filtered | Story      |
+| `***`    | user          | view the full list of residents                                                    |                                                                                     | Story      |
+| `***`    | advanced user | show, hide and reset columns without affecting the list of residents displayed     | I can de-clutter my screen without affecting the current list of residents          | Story      |
 | `***`    | user          | import my old data into the application                                            |                                                                                     | Story      |
 | `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                                                     | Story      |
 | `**`     | advanced user | give residents roles                                                               | I can further categorize them                                                       | Epic       |
@@ -712,11 +778,6 @@ MSS:
 
 Extensions:
 
-[comment]: <> (&ensp; 1a. The user wants to view only certain fields in the list. <br>)
-
-[comment]: <> (&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>)
-
-[comment]: <> (&ensp; &emsp; &nbsp; Use case resumes at step 2.)
 
 &ensp; 2a. The list is empty. <br>
 &ensp; &emsp; &nbsp; Use case ends.
@@ -1181,8 +1242,6 @@ testers are expected to do more *exploratory* testing.
     7. Note the incorrect command: `filter` or `filter /all`<br>
        Expected: The list of residents displayed does not change. Error details shown in the status message. 
        
-    8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
-       Expected: Similar to previous.
 
 2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
 
@@ -1200,9 +1259,7 @@ testers are expected to do more *exploratory* testing.
        
     4. Note the incorrect command: `showonly` or `hideonly`.
        Expected: The set of fields displayed does not change. Error details shown in the status message.
-       
-    5. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
-       Expected: Similar to previous.
+
        
 #### Showing/hiding and resetting resident fields
 
@@ -1216,8 +1273,8 @@ testers are expected to do more *exploratory* testing.
        columns are shown in the table.
        
     3. Enter `showonly r m g h`.
-       Expected: The set of resident fields being displayed does not change as the specified fields are not present
-       in the current table. Error details are shown in the status message. 
+       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
+       fields are not present in the current table. Error details are shown in the status message. 
        
     4. Enter `showonly n`.
        Expected: The list of residents being displayed does not change, but only the `name` column is shown in 
@@ -1241,8 +1298,8 @@ testers are expected to do more *exploratory* testing.
        columns are shown in the table.
 
     3. Enter `hideonly r h`.
-       Expected: The set of resident fields being displayed does not change as the specified fields are not present
-       in the current table. Error details are shown in the status message.
+       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
+       fields are not present in the current table. Error details are shown in the status message.
 
     4. Enter `hideonly p e`.
        Expected: The list of residents being displayed does not change, but only the `name` column is shown in
@@ -1344,33 +1401,6 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Viewing residents
-
-#### Listing residents
-
-[Comment]: <> (To be added)
-
-#### Showing resident fields
-
-[Comment]: <> (To be added)
-
-#### Hiding resident fields
-
-[Comment]: <> (To be added)
-
-#### Resetting hidden resident fields
-
-[Comment]: <> (To be added)
-
-#### Finding residents
-
-[Comment]: <> (To be added)
-
-#### Filtering residents
-
-[Comment]: <> (To be added)
-
-<br>
 
 ### File management
 
