@@ -358,13 +358,13 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 **Examples:**
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find tom` returns `Tom Aito`
 
-    ![Ui](images/ui/ui-find-before.png)
-    ![Ui](images/ui/ui-find-after.png)
+    ![Ui](images/ui/ui-find.png)
     <br><br>
+
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
 **See Also:**
 [`filter`](#538-filtering-the-students-filter)
