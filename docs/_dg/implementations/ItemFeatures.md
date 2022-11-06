@@ -74,7 +74,9 @@ The `edit` feature edits the attached attributes of a specified `Item`, which is
 
 Here is the activity diagram showing the process of the `edit` command:
 
-<!-- TODO -->
+![ItemSequenceDiagram](images/EditItemSequenceDiagram.png)
+
+This diagram excludes the instantiation of the objects that represents attributes in an Item, e.g. `ItemQuantity`, `ItemUnit`. This is because including all of them would cause the UML diagram to be cluttered and too small to read.
 
 ##### Feature Details
 1. The user specifies an item index that represents an `Item` to be edited.  
