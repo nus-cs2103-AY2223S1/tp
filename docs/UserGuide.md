@@ -231,8 +231,7 @@ Pressing <kbd> F1 </kbd> will also open up the help message.
 
 #### Undoing a command: `undo`
 
-This is the command to use when you made a mistake, and want to undo previous command(s) that modified PayMeLah's data.<br>
-Be careful though, your undo history will be gone when you close the app!
+This is the command to use when you make a mistake, and want to undo previous command(s) that modified PayMeLah's data. After you undo a command, PayMeLah will automatically show the full list of persons for you to check whether the correct changes have been reverted. Be careful though, your undo history will be gone when you close the app!
 
 Format: `undo`
 
