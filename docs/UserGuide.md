@@ -25,6 +25,8 @@ title: User Guide
     * [Showing the statistics of applications: `stats`](#showing-the-statistics-of-applications-stats)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * _[[COMING SOON: `edit-i`]](#coming-soon-edit-i)_
+    * _[[COMING SOON: `find-i`]](#coming-soon-find-i)_
     * [Saving the data](#saving-the-data)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
@@ -79,15 +81,15 @@ title: User Guide
   e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`.
 
 * Items in square brackets are optional.
-  e.g `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
+  e.g. `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
 
 * Items with `...` after them can be used multiple times including zero times.
   e.g. `c/COMPANY [t/TAG]...` can be used as `c/Google` (i.e. 0 tags), `c/Google t/preferred`, `c/Google t/preferred t/techCompany`, etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `d/DATE_APPLIED p/POSITION`, `p/POSITION d/DATE_APPLIED` is also acceptable.
+* A parameter without a prefix needs to be specified before other parameters, but the rest of the parameters with prefixes can be specified in any order.<br>
+  e.g. if the command specifies `INDEX d/DATE_APPLIED p/POSITION`, `INDEX p/POSITION d/DATE_APPLIED` is also acceptable but `d/DATE_APPLIED p/POSITION INDEX` is not.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+* If a parameter with a prefix is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
   e.g. if you specify `ct/12341234 ct/62226222`, only `ct/62226222` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
@@ -176,12 +178,12 @@ Finds applications whose companies or positions contain any of the given keyword
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g `google` will match `Google`.
+* The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Tech Micron` will match `Micron Tech`.
 * The keywords are only searched for inside the applications' companies and positions.
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
-* `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
+* The `find` command is also able to search for archived applications with matching keywords, then the `retrieve` command can be used on this resulting list. However, please ensure that the index provided is within the size of the list and the selected application is an archived one.
 * `find` command will not affect the interview list shown in GUI. Please use `list` or `list-archive` command to ensure the interview list is synced to the application list.
 
 Example:
@@ -203,7 +205,7 @@ Format: `edit INDEX [c/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPL
 * Provided fields must follow the same formats as specified in `add` command.
 * Existing values will be updated to the input values.
 * Changes to the company name and the position will also be reflected in the interview list.
-* When editing tags, the existing tags of the application will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the application will be removed i.e. adding of tags is not cumulative.
 * You can remove all the application’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -219,7 +221,9 @@ Format: `sort [o/ORDER] [r/]`
 * `ORDER` can be `company`, `position`, `date` (for application date), or `interview` (for interview date).
 * Including `r/` causes the sort order to be reversed (to become reverse alphabetical or reverse chronological).
 * When sorting by interview dates, any applications with no associated interview will always get sorted to the bottom of the list.
+* Newly added applications will follow the current sort order when being inserted into the application list.
 * The sort order persists even after closing and reopening CinternS.
+* Note that before the very first `sort` command is run, CinternS starts out sorted in chronological order of application date.
 
 Examples:
 * `sort o/company` sorts the application list in alphabetical order of company.
@@ -293,10 +297,11 @@ Retrieves the specified internship application from the list of archived applica
 Format: `retrieve INDEX`
 
 * Retrieves the internship application at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of archived applications.
+* The application specified must be archived.
+* The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The index cannot be greater than the number of archived applications.
-* The `list-archive` command is recommended to be executed to display the archived applications before using the `retrieve` command.
+* The index cannot be greater than the number of applications in the displayed list.
+* The `list-archive` command is recommended to be executed to display the archived applications before using the `retrieve` command. Alternatively, the `find` command can also display archived applications, so then the `retrieve` command can be used on them.
 * Interview related to the specified application will also be updated in the interview list once the application is retrieved.
 
 Example:
@@ -309,7 +314,7 @@ Restores the state of CinternS before the change made by the previous command.
 Format: `undo`
 
 * There must be a previous state to restore to.
-* Commands that do not change the state, e.g. list, find, sort, etc., will not be undone.
+* Commands that do not change the data stored in CinternS, e.g. list, find, sort, etc., will not be undone.
 
 Example:
 * `delete 1` followed by `undo` makes no change to the application list or the interview list.
@@ -346,7 +351,7 @@ Format: `stats`
 
 ### Clearing all entries: `clear`
 
-Clears all entries from CinternS.
+Clears all entries from CinternS (including archived ones).
 
 Format: `clear`
 
@@ -355,6 +360,14 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### COMING SOON: `edit-i`
+
+A separate command for editing an interview in CinternS.
+
+### COMING SOON: `find-i`
+
+Find interviews based on their fields.
 
 ### Saving the data
 
@@ -387,7 +400,7 @@ We will assist you as soon as possible.
 **A**: No. All your data will remain the same as long as you keep your data file.
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the original empty data file with the save file that contains the data of your previous **CinternS** home folder.
+**A**: Install the app in the other computer and overwrite the created data file with the save file from your previous **CinternS** home folder that contains your data.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -401,7 +414,7 @@ We will assist you as soon as possible.
 | **List**        | `list`                                                                                                                                                                                                         |
 | **ListArchive** | `list-archive`                                                                                                                                                                                                 |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                            |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                                       |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find engineer`                                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                                     |
 | **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                                               |
 | **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`                           |
@@ -421,4 +434,4 @@ We will assist you as soon as possible.
 
 * Application: To distinguish "internship application" and "CinternS application", we only use the word "application" for internships and instead use "app" when we are talking about CinternS.
 * GUI: Graphical user interface, the main window where you can interact with while using CinternS.
-* Parameters: Fields that you may be required to provide for each command.
+* Parameters: Fields that you may be required to provide for each command. They may start with a prefix or they may not. E.g. `INDEX` or `c/COMPANY`.
