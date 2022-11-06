@@ -12,6 +12,7 @@ title: Developer Guide
 * In order to change the contents page for User Guide and Developer Guide to follow numbering order, we reused code from https://github.com/lesterong/tp/blob/master/docs/assets/css/style.scss with minor modifications.
 * We have reused code from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Caramel.css and https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Cinnamon.css
 for styling our User Interface (UI).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -663,8 +664,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | ungroup my appointments                          | view the original appointment list                                            |
 | `*`      | user          | hide my patients by some conditions              | concentrate on other patients not satisfying the conditions                   |
 | `*`      | user          | hide my appointments by some conditions          | deal with appointments that do not satisfy the conditions better              |
-| `*`      | user          | unhide my patients                               | view the original patient list                                                |
-| `*`      | user          | unhide my appointments                           | view the original appointment list                                            |
+| `*`      | user          | unhide my patients                               | view hidden patients and their appointments to work with                      |
+| `*`      | user          | unhide my appointments                           | view hidden appointments to work with                                         |
 | `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over again     |
 
 *{More to be added}*
@@ -1018,7 +1019,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters command to hide patients with specified conditions.
-2. idENTify displays the patient list without hidden patients.
+2. idENTify updates the patient and appointment list to exclude hidden patients.
 
     Use case ends.
 
@@ -1037,7 +1038,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters command to hide appointments with specified conditions.
-2. idENTify displays the appointment list without hidden appointments.
+2. idENTify updates the appointment list to exclude hidden appointments.
 
    Use case ends.
 
@@ -1056,7 +1057,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters command to unhide patients.
-2. idENTify displays the <ins>whole patient list (UC01)<ins>.
+2. idENTify updates the patient and appointment list to include unhidden patients.
 
    Use case ends.
 
@@ -1067,7 +1068,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters command to unhide appointments.
-2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
+2. idENTify updates the appointment list to include unhidden appointments.
 
     Use case ends.
 
