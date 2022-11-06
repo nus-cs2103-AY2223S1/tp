@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_PEOPLE)) {
             people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
         } else {
-            people = ParserUtil.parsePeople("0");
+            people = ParserUtil.parsePeople("1");
         }
 
         Budget budget;
