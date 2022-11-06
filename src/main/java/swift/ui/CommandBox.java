@@ -117,7 +117,7 @@ public class CommandBox extends UiPart<Region> {
             }
             updateCommandSuggestion(commandTextField.getText());
             e.consume();
-        } else if (e.getCode() != KeyCode.LEFT && e.getCode() != KeyCode.RIGHT){
+        } else if (e.getCode() != KeyCode.LEFT && e.getCode() != KeyCode.RIGHT) {
             commandTextField.setText(userInput);
             commandTextField.end();
             updateCommandSuggestion(commandTextField.getText());
