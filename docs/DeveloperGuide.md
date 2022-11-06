@@ -266,7 +266,7 @@ in the addressBook.
 
 The following class diagram shows the organization of the classes for `edit`.
 
-<img src="images/EditCommand.png" width="250" />
+<img src="images/editCommand.png" width="250" />
 
 ### *Suggest a Friend*
 
