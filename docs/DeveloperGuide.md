@@ -418,7 +418,7 @@ Initially, there is only one `PersonListPanel` that displays the person list usi
 However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
 Therefore, it is necessary to have a **separate list panel** for each of these three type of `Person`.
 
-In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess,
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess (not implemented for deliverers yet),
 besides their contact information.
 A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not
 helpful in helping the user obtain information quickly.
@@ -452,8 +452,6 @@ The right side of the card is visually enhanced by adding a `ListView` of `Order
 each of the `Order` that the `Buyer` makes with an index in a list.
 
 <img src="images/BuyerCard.png" width="700"/>
-
-The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
 
 In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
 Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of
