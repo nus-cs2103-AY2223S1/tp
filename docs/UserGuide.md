@@ -136,7 +136,7 @@ No time to waste, let's start _Working_! :muscle:
 
 ## 5. What you can do
 
-| Your action | Command format <br> e.g. `Example command`                                                                                                                                                                |
+| Your action | Command format <br> e.g. Example command                                                                                                                                                                  |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**     | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
 | **Edit**    | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
@@ -158,10 +158,14 @@ No time to waste, let's start _Working_! :muscle:
 
 ### 5.1. Adding your internship application
 
-Congrats! You have already done the hard work - applying for that internship you've always wanted. 
-Now, simply add the details into WorkBook and we can begin tracking your application!
+Have you taken the first step to apply for that internship you've always wanted?
+Or do you want to start keeping track of the different internship applications you have? <br> <br>
+Well, simply follow the command format below and add the relevant details into WorkBook and you can begin tracking your all applications!
 
-Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
+Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]…​ [t/TAG]…​`
+
+Example: `add c/Meta r/Web Developer s/Application Sent d/20-Oct-2022 10:00 l/Java e/metaHires@meta.com` <br><br>
+What you will see: ![AddCommandResult](images/AddCommandResult.png)
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** The date and time you provide could represent multiple things:<br>
@@ -172,12 +176,11 @@ Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**
 * adding DateTime like `d/24-Sep-2022 24:00` will be read as `d/25-Sep-2022 00:00`
+* Note the sorted order!
 </div>
 
-
-
-Examples:
-* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
+Other examples:
+* `add c/Shopback r/Blockchain Developer s/Technical Interview`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
 ### 5.2. Editing your internship application
@@ -217,21 +220,20 @@ For some application stages, we have included a list of useful tips to help you 
 
 Below are the application stages that we have included tips for.
 
-| Application Stage |
-|--------|
-| `Application Sent` |
-| `Online Assessment` |
-| `Technical Interview` |
+| Application Stage      |
+|------------------------|
+| `Application Sent`     |
+| `Online Assessment`    |
+| `Technical Interview`  |
 | `Behavioral Interview` |
-| `Phone Interview` |
-| `Rejected` |
+| `Phone Interview`      |
+| `Rejected`             |
 
 If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application. A window will appear showing all the tips for that application.
 
-Light Bulb Button            |  Tips Window
-:-------------------------:|:-------------------------:
-![light bulb button](images/ClickLightBulb.png) |   ![tips window](images/TipsWindow.png)
-
+|                Light Bulb Button                |              Tips Window              |
+|:-----------------------------------------------:|:-------------------------------------:|
+| ![light bulb button](images/ClickLightBulb.png) | ![tips window](images/TipsWindow.png) |
 
 To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
@@ -455,10 +457,6 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
-
-### 5.12. Viewing daily tips
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
