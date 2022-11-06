@@ -85,6 +85,8 @@ The `Command Box` is where you can input your commands.
 
 The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the** `Exercise List`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Result Display
 
 The `Result Display Window` displays feedback after executing a command. This includes feedback for both correctly and incorrectly entered commands.
@@ -102,6 +104,8 @@ Notice that there are two counts.
 For illustrative purposes, let us refer to the image below. There are multiple Squat entries in the system registered under the same name Squat, which is reflected by **Count #1**. On the other hand, because **Count #2** includes duplicates, it will count both "Squat" entries individually even if they are registered under the same name.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Use the list circled in green to identify any mispellings in your exercise entries!<br><br>
@@ -231,6 +235,8 @@ Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> E.
 Example:
 * `:clear confirm/` Clears all saved exercises, resetting the data in the system.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4. Filtering exercises by keyword(s) : `:filter`
 
 Filters exercises, in the current [Exercise List](#42-exercise-list), with names containing any of the given keywords.
@@ -261,6 +267,8 @@ Example:
 
 ![FilterCommand](images/FilterCommand.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 5.5. Sorting exercises : `:sort`
 
 Sorts the exercises, in the current [Exercise List](#42-exercise-list), according to their date of completion, with the latest exercise completed displayed at the top of the list.
@@ -283,6 +291,8 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 **:information_source: There are 2 formats supported for this command.**<br>
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Format (1) : `:range start/START_DATE end/END_DATE`
 
@@ -344,6 +354,8 @@ If you want to view your squat progression over the past week, here's a nifty se
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.8. Listing Personal Records (PR): `:pr`
 
 Finds the [Personal Record](#8-glossary-of-terminologies) of certain exercises in the exercise tracker.
@@ -378,6 +390,8 @@ Example:
 * `:pr all/` Lists the personal records for all uniquely registered exercises in the exercise tracker.
 
 ![PrCommandExample2](images/PrCommandExample2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5.9. Generating a sample workout based on Personal Records: `:gen`
 
@@ -440,6 +454,7 @@ Format: `:help`
 
 ![HelpCommand](images/HelpCommand.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 5.11. Exiting the program : `:wq`
 
@@ -503,22 +518,22 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 ## 7. Command Summary
 
-| Action                          | Format                                         | Examples                                  |
-|---------------------------------|------------------------------------------------|-------------------------------------------|
-| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27/10/2022 |
-| **Delete exercise**             | :del INDEX                                     | :del 3                                    |
-| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                           |
-| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                    |
-| **Sort exercises**              | :sort                                          | :sort                                     |
-| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022    |
-| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                             |
-| **List all exercises**          | :list                                          | :list                                     |
-| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                    |
-| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                  |
-| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                      |
-| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy                |
-| **Help menu**                   | :help                                          | :help                                     |
-| **Exit program**                | :wq                                            | :wq                                       |
+| Action                             | Format                                         | Examples                                  |
+|------------------------------------|------------------------------------------------|-------------------------------------------|
+| **Add exercise**                   | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27/10/2022 |
+| **Delete exercise**                | :del INDEX                                     | :del 3                                    |
+| **Clear all exercises**            | :clear confirm/                                | :clear confirm/                           |
+| **Filter exercise(s)**             | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                    |
+| **Sort exercises**                 | :sort                                          | :sort                                     |
+| **View range (1)**                 | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022    |
+| **View range (2)**                 | :range last/NUMBER_OF_DAYS                     | :range last/3                             |
+| **List all exercises**             | :list                                          | :list                                     |
+| **List Personal Record(s) (1)**    | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                    |
+| **List Personal Record(s) (2)**    | :pr all/                                       | :pr all/                                  |
+| **Generate workout (1)**           | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                      |
+| **Generate workout (2)**           | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy                |
+| **Help menu**                      | :help                                          | :help                                     |
+| **Exit program**                   | :wq                                            | :wq                                       |
 
 <a href="#toc">Back To Table of Contents</a>
 
