@@ -238,8 +238,8 @@ This section describes some noteworthy details on how certain features are imple
 In GuestBook, a user can add a guest using the `add` command. This feature is necessary for hotel operations.
 
 <span style="font-size: large; color: #e46c0a">Implementation:</span>
-* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`)
-and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields
+* The `add` command takes in 6 compulsory fields (`name`, `phone`, `email`, `room`, `dateRange` and `numberOfGuests`)
+and 1 optional field (`request`) and is supported by the `AddCommandParser` that extracts out each of the fields
 from their respective prefixes.
 
 The following activity diagram summarizes what happens when a user enters an `add` command.

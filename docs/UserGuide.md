@@ -339,7 +339,7 @@ or **decreased** respectively by the value you provide.
 
 #### Locating guests: `find`
 
-This command locates guests whose details contain any of the given search terms.
+This command locates guests whose details contain any of the given keywords.
 This allows you to search through all guests' fields.
 
 This command is typically used when searching for guest(s) of **specific characteristic(s)**.
@@ -360,7 +360,7 @@ will display the guests that already have their rooms cleaned.
 
 **Examples**:
 * `find John` returns _john_ and _John Doe_
-* `find 01/01/23 - 07/01/23` returns _Alex Yeoh_ and _Bernice Yu_ (_Alex Yeoh_ was returned as the find command searches every individual search term. As such, **"-" is also a search term** and hence guests with no requests will be returned as well).
+* `find 01/01/23 - 07/01/23` returns _Alex Yeoh_ and _Bernice Yu_ (_Alex Yeoh_ was returned as the find command searches every individual keyword. As such, **"-" is also a keyword** and hence guests with no requests will be returned as well).
 * `find alex 99272758 03-68` returns _Alex Yeoh_, _Bernice Yu_, _Charlotte Oliveiro_
 (refer to the image below for the details of the guests)<br>
 <br>
