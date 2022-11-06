@@ -51,5 +51,6 @@ Venue --> "~*" Booking
 VenueBook -[hidden]right-> UserPrefs
 VenueBook -[hidden]right-> ModelManager
 Venue -[hidden]right-> Booking
+Booking -right-> Resident
 
 @enduml

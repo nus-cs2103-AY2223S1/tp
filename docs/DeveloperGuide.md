@@ -240,7 +240,7 @@ Here is a list of the details discussed:
 * [Filter command](#filter-command)
 * [Multiple data files](#multiple-data-files)
 * [Command history](#command-history)
-* [Venue and booking]()
+* [Venue and booking](#venue-and-booking)
 
 ---
 
@@ -514,7 +514,7 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 ### Multiple data files
 
-#### Background
+#### Motivation
 
 In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
 
@@ -554,15 +554,17 @@ With our earlier issue of a lack of `Storage` reference in `Command` resolved, a
 
 #### Create and delete file commands
 
-Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, resulting in new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
 
 <br>
 
 #### Switch file command
 
-Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implemented `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences and use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+---
 
 ### Command history
 
@@ -590,8 +592,164 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
+<<<<<<< HEAD
+<br>
+
+---
+
+### Venue and booking
+
+#### Motivation
+
+As our [target user](#target-user-profile) would benefit greatly from being able to manage venues and bookings in RC4, we have decided to add a venue booking system in **RC4HDB**.
+
+<br>
+
+#### Planning the Ui
+
+Using the top-down approach, we started by deciding on how we could display booking data in a format that our **target user** would benefit most. 
+
+After consideration, we came up with two different formats for booking representation:
+* Booking list display for each venue
+* Weekly timetable (similar to NUSMods)
+
+<br>
+
+##### Booking list
+
+Pros:
+* Well suited for adhoc bookings
+* Easier to implement commands to check if a venue has been booked during a certain date and time period
+
+Cons:
+* Does not represent empty time slots well
+* Not temporally intuitive
+
+<br>
+
+##### Weekly timetable
+
+Pros:
+* Easier for users to distinguish between time periods where venue is booked and venue is not booked
+* Well suited for recurrent bookings
+* Format is familiar to **target user**
+* Temporally intuitive
+
+Cons:
+* Difficult to implement adhoc bookings
+* Only able to display the week's bookings for a single venue at a time
+
+After considering both choices, we decided that a weekly timetable format would better serve our **target user**. However, due to limitations in time, we decided to implement only recurrent bookings and leave adhoc bookings to be implemented in a future iteration.
+
+<br>
+
+#### Ui implementation
+
+Considering the fact that our Ui has no space for a timetable to be added in, we decided to make use of `Tab` and `TabView` from the JavaFX library. This allows us to keep our [`ResidentTableView`](#resident-information), while adding our timetable. However, we realised that users will need a way to view what venues are currently being tracked in **RC4HDB**. Thus, we decided to complement our timetable with a `ListView` which contains the list of venues being tracked.
+
+With this, we went on implementing the following Ui parts:
+* `VenueTabView`
+* `BookingTableView`
+* `VenueListView`
+* `VenueListCard`
+
+<br>
+
+##### Venue tab view
+
+This is just the Ui container component which contains the `BookingTableView` and `VenueListView`. We included this to reduce the clutter from having everything in the `MainWindow` class.
+
+<br>
+
+##### Booking table view
+
+In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units.
+
+<br>
+
+##### Venue list view
+
+To complement our `BookingTableView`, we added a `VenueListView` to display the venues that are currently being tracked by **RC4HDB**. The `VenueListView` is implemented with a `ListView` as a base, and each venue in the list is wrapped by a `VenueListCard` class which serves to beautify the list.
+
+<br>
+
+##### Interaction between each Ui part
+
+The following diagram describes the interactions between each newly introduced Ui component.
+
+![VenueBookingUiClassDiagram](images/VenueBookingUiClassDiagram.png)
+
+<br>
+
+#### Planning the data format
+
+After deciding on how we would like to display our venue and booking data, we had to design our `Venue` and `Booking` data classes to fit our chosen `Ui` design.
+
+<br>
+
+##### Booking data
+
+Considering that we are only going to implement `RecurrentBooking`, we minimally require:
+* an association to the venue or venue identifier that is being booked by the booking
+* an association to the resident that is making the booking
+* a time period for the booking
+* a day of the week for the booking
+
+<br>
+
+##### Venue data
+
+In order to be able to keep track of venues, we implemented a `Venue` class, which has a unique identifier, in the form of `VenueName`. `VenueName` was implemented with the `Name` field in `Resident` in mind, as both are `VenueName` and `Name` served similar purposes before `Name` was no longer the unique identifier for `Resident`. Since each booking was tagged to a venue, we decided to add a list of bookings in `Venue`, to keep track of the bookings made for each venue.
+
+<br>
+
+##### Daily schedule
+
+However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a week, for a specified venue.
+
+<br>
+
+#### Data format implementation
+
+Considering the requirements for venue and booking data, we have come up with the following design to suit our venue and booking data needs.
+
+![VenueBookingClassDiagram](images/VenueBookingClassDiagram.png)
+
+<br>
+
+#### Model updates
+
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes. 
+
+The diagram [here](#model-component) showcases the addition of the following classes in order to support the venue data tracking in `Model`:
+* `UniqueVenueList`
+* `VenueBook`
+
+<br>
+
+#### Storage updates
+
+[Comment]: <> (to be added in)
+
+<br>
+
+#### Logic updates
+
+To support basic venue creation and deletion, we added the 
+
+Due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to 
+
+<br>
+
+#####
+
+---
+
+### \[Proposed\] Undo/redo feature (To be removed)
+=======
 <!--
 ### \[Proposed\] Export feature
+>>>>>>> baafcf51577a98cb45f524b7831b8ca51b960f17
 
 #### Proposed Implementation
 -->
@@ -628,13 +786,13 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Project requirements**
 
 ### Product scope
 
-**Target user profile**:
+#### Target user profile:
 
 * works in the housing management team for [**RC4**](#glossary) with several other co-workers
 * has a need to manage a significant number of residents in [**RC4**](#glossary)
@@ -645,7 +803,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * prefers typing to mouse interactions
 * is reasonably comfortable using [**CLI**](#glossary) apps
 
-**Value proposition**:
+#### Value proposition:
 
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
