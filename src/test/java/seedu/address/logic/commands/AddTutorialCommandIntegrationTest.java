@@ -39,7 +39,8 @@ public class AddTutorialCommandIntegrationTest {
     @Test
     public void execute_duplicateTutorial_throwsCommandException() {
         Tutorial tutorialInList = model.getAddressBook().getTutorialList().get(0);
-        assertCommandFailure(new AddTutorialCommand(tutorialInList), model, AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL);
+        assertCommandFailure(new AddTutorialCommand(tutorialInList), model,
+                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL);
     }
 
 }
