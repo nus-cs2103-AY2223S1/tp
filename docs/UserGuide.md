@@ -656,6 +656,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## Command summary
 
 | Command        | Mnemonic                                        | Format, Examples                                                                                                                                           |
