@@ -246,6 +246,7 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 Activity diagram for AttendanceDeleteCommand
 ![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
 Sequence diagram for AttendanceDeleteCommand
+
 #### Design considerations:
 
 **Aspect: Command Syntax**
@@ -279,7 +280,6 @@ Activity diagram for PictureUploadCommand
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
 Sequence diagram for PictureUploadCommand
 
-
 #### Design considerations:
 
 **Aspect: How to select an image**
@@ -303,24 +303,34 @@ Sequence diagram for PictureUploadCommand
 - Pros: Clearer instruction and prevents error from user.
 - Cons: User will have to be more familiar with more commands.
 
-### Add/delete Task feature
-The add/delete `Task` feature allows users to create and remove tasks. This feature uses the following commands:
-* `task` t/TITLE d/DESCRIPTION
-* `remove-task` INDEX
+### Task feature
+The Task feature allows users to create, edit and remove tasks. Each `Task` has non-optional title and description fields.
+Currently, there are 3 types of `Tasks` - `ToDo`, `Deadline` and `Assignment`, which differ based on their input fields.
+Task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+This feature uses the following commands:
+* `TaskCommand` - Adds a task to the task list.
+* `EditTaskCommand` - Edits an existing task in the task list.
+* `RemoveTaskCommand` - Removes the task from the task list.
 
-which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
 These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
 
-#### About Task
-Each `Task` has compulsory title and description fields. There are three different types of `Task` - `ToDo`, `Deadline` and `Assignment`.
-Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+**Add Task command**
+
+Implementation:
+
 
 The following is a more detailed explanation on how the `TaskCommand` works.
-1. If the title or description fields are missing or invalid, a 'ParserException' will be thrown and the new `Task` will not be added.
-2. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created.
-3. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
-4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
-5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+1. If the title or description fields are missing or invalid, a `ParserException` will be thrown and the new `Task` will not be added.
+2. If the deadline or student list fields are present and invalid, a `ParserException` will be thrown and the new `Task` will not be added.
+3. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created with a `Task` object.
+
+   - If only title and description fields are present, `ToDo` Task object is created.
+   - If deadline field is also present, `Deadline` Task object is created.
+   - If student list field is also present, `Assignment` Task object is created.
+
+4. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
+5. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+6. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
@@ -329,6 +339,30 @@ Sequence diagram for TaskCommand
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 Activity diagram for TaskCommand
+
+**Edit Task command**
+
+Implementation:
+
+The following is a more detailed explanation on how the `EditTaskCommand` works.
+1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
+2. If the title, description, deadline or student list fields are missing (at least one must be present) or invalid,a `ParserException` will be thrown and the `Task` will not be edited.
+3. After the successful parsing of user input into `EditTaskCommandParser`, the `EditTaskCommand` object is created with a new updated `Task` object.
+4. Following which, `EditTaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#setTask(Task target, Task editedTask)` method, replacing the old `Task` object to the internal list with the new updated one.
+5. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+6. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)
+
+Sequence diagram for EditTaskCommand
+
+![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)
+
+Activity diagram for EditTaskCommand
+
+**Remove Task command**
+
+Implementation:
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -346,6 +380,22 @@ The following is a more detailed explanation on how the `RemoveTaskCommand` work
 - Alternatives considered: We considered integrating `TaskBook` into the given `AddressBook` infrastructure, meaning that we will be storing `Task` data together with `Student` data into `addressbook.json`
 - Pros: Easier to implement, less code to write
 - Cons: Higher coupling, since any change in `TaskBook` could potentially affect `AddressBookStorage`
+
+**Aspect: Command Syntax**
+- Current implementation: Using a common single command word syntax ```task```
+- Pros: Easier to type since the same command can be used to create all 3 types of tasks. Increases flexibility when more types of tasks are added in future iterations.
+- Cons: Users may be unsure of the type of task they create.
+- Alternatives considered: We considered using three different commands - `todo`, `deadline` and `assignments` to separately create the different types of tasks.
+- Pros: Clearer for users.
+- Cons: Users will have to remember more command words.
+
+**Aspect: Changing type of task**
+- Current implementation: Task type is fixed when created and cannot be changed using the `edit-task` command.
+- Pros: Easier the implement since the type of task is fixed during the execution of `TaskCommand`.
+- Cons: Users may be unsure of the type of task they need at point of creation and may want to change it later.
+- Alternatives considered: `edit-task` can be modified to accommodate changing the task type while changing the field.
+- Pros: More flexibility for users making the user experience smoother.
+- Cons: Implementation will be more complicated since many combinations of user inputs will need to be handled.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -481,7 +531,7 @@ Activity Diagram for Improved AddCommand Feature
 
 **Target user profile**:
 
-* Tech savvy university teaching assistants
+* Tech-savvy university teaching assistants
 * has a need to manage student contacts
 * Prefer desktop apps over other types
 * Can type fast
@@ -629,48 +679,7 @@ Use case ends.
     * Repeat steps until data is correct.
     Use case resumes in step 2.
 
-**Use case: UC09 - Add a ToDo Task**
-
-**Guarantees:** A user can add a ToDo task to the TaskBook with a given title and description.
-
-**MSS**
-1. User enters correct command with title and description into the command input.
-2. GREWZ adds the ToDo task to the TaskBook and displays it.
-Use case ends.
-
-**Extensions**
-* 1a. GREWZ detects an error in the given command format.
-    * 1a1. GREWZ responds with an error message.
-    * 1a2. User re-enters the command with title and description.
-    * Repeat steps until command input is correct.
-    Use case resumes in step 2.
-
-**Use case: UC10 - Add a Deadline Task**
-
-**Guarantees:**  A user can add a deadline to the TaskBook along with a given deadline.
-
-**MSS**
-1. User adds task to student by entering command with title, description and deadline.
-2. Task is added to the TaskBook and the deadline is displayed as well.
-   Use case ends.
-
-**Extensions**
-* 1a. GREWZ detects an error in the given date format.
-    * 1a1. GREWZ responds with an error message.
-    * 1a2. User enters command with corrected date format.
-    * Repeat steps until data is correct.
-      Use case resumes in step 2.
-
-**Use case: UC11 - Add an Assignment Task**
-
-**Guarantees:**  A user can add an assignment to the TaskBook along with a given list of student names.
-
-**MSS**
-1. User adds task to student by entering command with title, description and list of students.
-2. Task is added to the TaskBook and the list of students is displayed as well.
-   Use case ends.
-
-**Use case: UC12 - Uploading a Student Picture**
+**Use case: UC09 - Uploading a Student Picture**
 
 **MSS**
 1. User enters a upload picture command with the index of student.
@@ -688,9 +697,115 @@ Use case ends.
 * 3a. Picture is not of JPG format.
   * 3a1. GREWZ detects invalid file.
   * 3a2. GREWZ responds with an error message.
-  Use case ends.
+    Use case ends.
 
-**Use case: UC13 - Remove a Task**
+
+**Use case: UC10 - Add a ToDo Task**
+
+**Guarantees:** A user can add a ToDo task to the TaskBook with a given title and description.
+
+**MSS**
+1. User enters correct command with title and description into the command input.
+2. GREWZ adds the ToDo task to the TaskBook and displays it.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given command format.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User re-enters the command with title and description.
+    * Repeat steps until command input is correct.
+    Use case resumes in step 2.
+
+**Use case: UC11 - Add a Deadline Task**
+
+**Guarantees:**  A user can add a deadline to the TaskBook along with a given deadline.
+
+**MSS**
+1. User adds task to student by entering command with title, description and deadline.
+2. Task is added to the TaskBook and the deadline is displayed as well.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given date format.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with corrected date format.
+    * Repeat steps until data is correct.
+      Use case resumes in step 2.
+
+**Use case: UC12 - Add an Assignment Task**
+
+**Guarantees:**  A user can add an assignment to the TaskBook along with a given list of student names.
+
+**MSS**
+1. User adds task to student by entering command with title, description and list of students.
+2. Task is added to the TaskBook and the list of students is displayed as well.
+   Use case ends.
+
+**Use case: UC13 - Edit a ToDo Task**
+
+**Guarantees:** A user can edit a ToDo task in the TaskBook with a given title and description.
+
+**MSS**
+1. User enters correct command with task index, title and description into the command input.
+2. GREWZ edits the ToDo task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+
+
+**Use case: UC14 - Edit a Deadline Task**
+
+**Guarantees:** A user can edit a Deadline task in the TaskBook with a given title, description and deadline.
+
+**MSS**
+1. User enters correct command with task index, title, description and deadline into the command input.
+2. GREWZ edits the Deadline task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+* 1b. GREWZ detects an error in the given date format.
+  * 1b1. GREWZ responds with an error message.
+  * 1b2. User enters command with corrected date format.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+* 1c. GREWZ detects wrong task type being edited.
+  * 1c1. GREWZ responds with an error message.
+  * 1c2. User enters command with corrected format for that task or changes task index to correct task.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+
+**Use case: UC15 - Edit an Assignment Task**
+
+**Guarantees:** A user can edit a Assignment task in the TaskBook with a given title, description and student list.
+
+**MSS**
+1. User enters correct command with task index, title, description and student list into the command input.
+2. GREWZ edits the Assignment task to the TaskBook and displays it.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repeat steps until index is valid.
+    Use case resumes in step 2.
+* 1b. GREWZ detects wrong task type being edited.
+  * 1b1. GREWZ responds with an error message.
+  * 1b2. User enters command with corrected format for that task or changes task index to correct task.
+  * Repeat steps until data is correct.
+    Use case resumes in step 2.
+
+**Use case: UC16 - Remove a Task**
 
 **Guarantees:** A user can remove a task from the TaskBook with the given index.
 
@@ -702,10 +817,10 @@ Use case ends.
 * 1a. GREWZ detects an invalid task index.
   * 1a1. GREWZ responds with an error message.
   * 1a2. User enters command with correct task index.
-  * Repat steps until index is valid.
+  * Repeat steps until index is valid.
   Use case resumes in step 2.
 
-**Use case: UC14 - Navigating through previously keyed in commands**
+**Use case: UC17 - Navigating through previously keyed in commands**
 
 **MSS**
 1. User goes to previous command by pressing a key.
