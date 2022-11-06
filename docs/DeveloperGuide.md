@@ -194,27 +194,6 @@ The following sequence diagram shows what happens in the `model` component when 
 
 ![RenameAliasModelSequenceDiagram](images/EditAliasesModelSequenceDiagram.png)
 
-The following is a use case for changing command names.
-
-**Use case: Changing command names**
-**System**: HobbyList
-**Actor**: User
-
-**MSS**
-1. User requests to change command names
-2. HobbyList prompts the user for changes
-3. User sets the changes and confirms
-4. HobbyList saves the changes
-
-    Use case ends.
-
-**Extensions**
-* 2a. User enters invalid command names
-  * 2a1. HobbyList alerts user of the error
-
-    Use case resumes at step 2.
-
-
 #### Design Considerations
 
 **Aspect: How to store the list of command names:**
@@ -279,19 +258,6 @@ Each css file applies a set of different stylesheets to `MainWindow`, `ActivityC
 The following sequence diagram shows what happens when the user decide to change a theme. Take change the theme to Dark as an example.
 
 ![SettingThemesSequenceDiagram](images/SettingThemesSequenceDiagram.jpg)
-
-The following is a use case for changing themes.
-
-**Use case: Changing to a different theme**
-**System**: HobbyList
-**Actor**: User
-
-**MSS**
-1. User change a theme
-2. HobbyList show the target theme
-3. HobbyList saves the change as default ui for next time when user open the app.
-
-   Use case ends.
 
 #### Design Considerations
 
@@ -576,6 +542,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. HobbyList shows an error message.
       
          Use case resumes at step 1.
+    
+**Use case: Changing command names**
+
+**MSS**
+1. User requests to change command names
+2. HobbyList prompts the user for changes
+3. User sets the changes and confirms
+4. HobbyList saves the changes
+
+   Use case ends.
+
+**Extensions**
+* 2a. User enters invalid command names
+    * 2a1. HobbyList alerts user of the error
+
+      Use case resumes at step 2.
+
+**Use case: Changing to a different theme**
+
+**MSS**
+1. User change a theme
+2. HobbyList show the target theme
+3. HobbyList saves the change as default ui for next time when user open the app.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
