@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_NAME_GOOGLE = "Google";
-    public static final String VALID_NAME_FACEBOOK = "Facebook";
+    public static final String VALID_NAME_GOOGLE = "google";
+    public static final String VALID_NAME_FACEBOOK = "facebook";
     public static final String VALID_URL_GOOGLE = "https://google.com";
     public static final String VALID_URL_FACEBOOK = "https://facebook.com";
 
