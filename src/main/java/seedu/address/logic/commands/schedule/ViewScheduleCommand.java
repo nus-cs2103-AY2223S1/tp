@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -37,8 +39,8 @@ public class ViewScheduleCommand extends Command {
      * Creates a view schedule command without predicate
      */
     public ViewScheduleCommand() {
-        this.predicate = null;
-        this.modules = null;
+        this.predicate = new ScheduleContainsKeywordsPredicate(new ArrayList<>());
+        this.modules = new HashSet<>();
     }
 
     /**
@@ -53,7 +55,7 @@ public class ViewScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        if (this.predicate == null) {
+        if (this.predicate.equals(new ScheduleContainsKeywordsPredicate(new ArrayList<>()))) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         } else {
             for (String module: modules) {
