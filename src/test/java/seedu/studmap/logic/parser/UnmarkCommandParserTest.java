@@ -20,7 +20,8 @@ public class UnmarkCommandParserTest {
         String className = "T01";
         assertParseSuccess(parser, "1 c/   " + className,
                 new UnmarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
-                        new UnmarkCommand.UnmarkCommandStudentEditor(new Attendance(className, true))));
+                        new UnmarkCommand.UnmarkCommandStudentEditor(new Attendance(className,
+                                Attendance.Status.PRESENT))));
     }
 
     @Test

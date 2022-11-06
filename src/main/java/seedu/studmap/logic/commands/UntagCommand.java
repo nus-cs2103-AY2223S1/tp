@@ -44,6 +44,10 @@ public class UntagCommand extends EditStudentCommand<UntagCommand.UntagCommandSt
 
     public static final String MESSAGE_MULTI_DEL_TAGS_SUCCESS = "Deleted tags %1$s for %2$d students";
 
+    public static final String MESSAGE_SINGLE_UNEDITED = "Tags %1$s not found on Student: %2$s";
+
+    public static final String MESSAGE_MULTI_UNEDITED = "Tags %1$s not found on %2$d students";
+
     public static final String MESSAGE_TAGS_NOT_DELETED = "At least one tag must be deleted";
 
     public UntagCommand(IndexListGenerator indexListGenerator, UntagCommandStudentEditor editor) {
@@ -61,6 +65,19 @@ public class UntagCommand extends EditStudentCommand<UntagCommand.UntagCommandSt
         return String.format(MESSAGE_MULTI_DEL_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(studentEditor.tags),
                 editedStudents.size());
+    }
+
+    @Override
+    public String getSingleUneditedMessage(Student uneditedStudent) {
+        return String.format(MESSAGE_SINGLE_UNEDITED, CollectionUtil.collectionToString(studentEditor.tags),
+                uneditedStudent.getName());
+    }
+
+    @Override
+    public String getMultiUneditedMessage(List<Student> uneditedStudents) {
+        return String.format(MESSAGE_MULTI_UNEDITED,
+                CollectionUtil.collectionToString(studentEditor.tags),
+                uneditedStudents.size());
     }
 
     @Override
@@ -102,15 +119,15 @@ public class UntagCommand extends EditStudentCommand<UntagCommand.UntagCommandSt
         }
 
         @Override
-        public Student editStudent(Student studentToEdit) {
+        public EditResult editStudent(Student studentToEdit) {
             assert studentToEdit != null;
 
             StudentData studentData = studentToEdit.getStudentData();
             Set<Tag> newTags = studentData.getTags();
-            newTags.removeAll(tags);
+            boolean isEdited = newTags.removeAll(tags);
             studentData.setTags(newTags);
 
-            return new Student(studentData);
+            return new EditResult(new Student(studentData), isEdited);
         }
 
         @Override

@@ -16,6 +16,8 @@ import seedu.studmap.model.student.Attendance;
 public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.MarkCommandStudentEditor> {
 
     public static final String MESSAGE_INVALID_OPTION = "Option must either be 'present' or 'absent' for attendance";
+    public static final String OPTION_PRESENT = "present";
+    public static final String OPTION_ABSENT = "absent";
 
     @Override
     public Prefix[] getPrefixes() {
@@ -41,7 +43,7 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
 
         MarkCommand.MarkCommandStudentEditor editor = null;
 
-        boolean attended = parseOption(preamble[1]);
+        Attendance.Status attended = parseOption(preamble[1]);
 
         if (argMultimap.getValue(PREFIX_CLASS).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
@@ -55,12 +57,13 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
 
     }
 
-    private boolean parseOption(String option) throws ParseException {
-        if (option.equals("present")) {
-            return true;
-        } else if (option.equals("absent")) {
-            return false;
-        } else {
+    private Attendance.Status parseOption(String option) throws ParseException {
+        switch (option) {
+        case OPTION_PRESENT:
+            return Attendance.Status.PRESENT;
+        case OPTION_ABSENT:
+            return Attendance.Status.ABSENT;
+        default:
             throw new ParseException(MESSAGE_INVALID_OPTION);
         }
     }

@@ -32,13 +32,16 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withId("E1234561").withGitName("user1")
             .withTeleHandle("@user1").withPhone("94351253").withModule("CS2103T")
-            .withTags("friends").build();
+            .withTags("friends")
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432").withModule("CS2103T")
             .withId("E1234562").withGitName("user2")
             .withTeleHandle("@user2").withTags("owesMoney", "friends")
             .addAttended("T01", "T02")
-            .addNotAttended("T03").build();
+            .addNotAttended("T03")
+            .addParticipations("P01")
+            .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withModule("CS2103T")
             .withId("E1234563").withGitName("user3")
@@ -48,7 +51,7 @@ public class TypicalStudents {
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withModule("CS2103T").withId("E1234564").withGitName("user4")
             .withTeleHandle("@user4").withTags("friends")
-            .addParticipated("P01")
+            .addParticipations("P01")
             .addNotParticipated("P02").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withModule("CS2103T").withId("E1234565").withGitName("user5")

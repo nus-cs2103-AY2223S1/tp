@@ -103,6 +103,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Adds attendances which the student has.
+     */
+    public StudentBuilder addAttendances(Attendance ... attendances) {
+        this.attendances.addAll(Set.of(attendances));
+        return this;
+    }
+
+    /**
      * Parses the {@code classNames} which the student has attended into a
      * {@code Set<Attendance>} and adds it to the {@code Student} that we are building.
      */
@@ -138,6 +146,14 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Adds participations which the student has.
+     */
+    public StudentBuilder addAssignments(Assignment ... assignments) {
+        this.assignments.addAll(Set.of(assignments));
+        return this;
+    }
+
     public StudentBuilder setAttended(Set<Attendance> attendances) {
         this.attendances = attendances;
         return this;
@@ -157,7 +173,7 @@ public class StudentBuilder {
      * Parses the {@code participationComponent} which the student has participated into a
      * {@code Set<Participation>} and adds it to the {@code Student} that we are building.
      */
-    public StudentBuilder addParticipated(String ... participationComponent) {
+    public StudentBuilder addParticipations(String ... participationComponent) {
         this.participations.addAll(SampleDataUtil.getParticipatedSet(participationComponent));
         return this;
     }
@@ -168,6 +184,14 @@ public class StudentBuilder {
      */
     public StudentBuilder addNotParticipated(String ... notParticipatedComponent) {
         this.participations.addAll(SampleDataUtil.getNotParticipatedSet(notParticipatedComponent));
+        return this;
+    }
+
+    /**
+     * Adds participations which the student has.
+     */
+    public StudentBuilder addParticipation(Participation ... participations) {
+        this.participations.addAll(Set.of(participations));
         return this;
     }
 

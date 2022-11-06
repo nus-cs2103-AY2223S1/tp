@@ -28,7 +28,7 @@
     "gitName" : "user3",
     "handle" : "@user3",
     "tagged" : [ ],
-    "assigned" : [ "A01:marked", "A02:marked", "A03:received", "A04:new" ]
+    "assigned" : [ "A01:Marked", "A02:Marked", "A03:Received", "A04:New" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",

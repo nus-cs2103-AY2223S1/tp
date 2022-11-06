@@ -40,16 +40,18 @@ class JsonAdaptedParticipation {
      */
     public Participation toModelType() throws IllegalValueException {
         String[] values = participationComponent.split(":");
-        boolean hasParticipated;
+        Participation.Status status;
         if (values.length != 2 || !Participation.isValidParticipationName(values[0])) {
             throw new IllegalValueException(Participation.MESSAGE_CONSTRAINTS);
         }
-        if (values[1].equals(Participation.PARTICIPATION_TRUE)) {
-            hasParticipated = true;
-        } else {
-            hasParticipated = false;
+
+        try {
+            status = Participation.Status.fromString(values[1]);
+        } catch (IllegalArgumentException iae) {
+            throw new IllegalValueException(iae.getMessage());
         }
-        return new Participation(values[0], hasParticipated);
+
+        return new Participation(values[0], status);
     }
 
 }

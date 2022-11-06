@@ -38,10 +38,18 @@ public class Student {
      * @param studentData StudentData parameter object.
      */
     public Student(StudentData studentData) {
-        requireAllNonNull(studentData.getId(), studentData.getGitUser(),
-                studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
-                studentData.getEmail(), studentData.getModule(), studentData.getTags(),
-                studentData.getAttendances(), studentData.getAssignments(), studentData.getParticipations());
+        requireAllNonNull(
+                studentData.getId(),
+                studentData.getGitUser(),
+                studentData.getTeleHandle(),
+                studentData.getName(),
+                studentData.getPhone(),
+                studentData.getEmail(),
+                studentData.getModule(),
+                studentData.getTags(),
+                studentData.getAttendances(),
+                studentData.getAssignments(),
+                studentData.getParticipations());
 
         this.id = studentData.getId();
         this.module = studentData.getModule();
@@ -197,7 +205,7 @@ public class Student {
      */
     public float getAttendancePercentage() {
         float numOfClasses = getAttendances().size();
-        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        float presentFor = (float) getAttendances().stream().filter(x -> x.state == Attendance.Status.PRESENT).count();
         return presentFor / numOfClasses * 100;
     }
 
@@ -209,7 +217,7 @@ public class Student {
         if (numOfClasses == 0) {
             return -Float.MIN_VALUE;
         }
-        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        float presentFor = (float) getAttendances().stream().filter(x -> x.state == Attendance.Status.PRESENT).count();
         return presentFor / numOfClasses * 100;
     }
 
@@ -221,7 +229,7 @@ public class Student {
         if (numOfClasses == 0) {
             return Float.MAX_VALUE;
         }
-        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        float presentFor = (float) getAttendances().stream().filter(x -> x.state == Attendance.Status.PRESENT).count();
         return presentFor / numOfClasses * 100;
     }
 
@@ -242,7 +250,8 @@ public class Student {
         if (numOfPart == 0) {
             return -Float.MIN_VALUE;
         }
-        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        float participatedFor =
+                (float) getParticipations().stream().filter(x -> x.state == Participation.Status.PARTICIPATED).count();
         return participatedFor / numOfPart * 100;
     }
 
@@ -254,7 +263,8 @@ public class Student {
         if (numOfPart == 0) {
             return Float.MAX_VALUE;
         }
-        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        float participatedFor =
+                (float) getParticipations().stream().filter(x -> x.state == Participation.Status.PARTICIPATED).count();
         return participatedFor / numOfPart * 100;
     }
 
@@ -263,7 +273,8 @@ public class Student {
      */
     public float getParticipationPercentage() {
         float numOfPart = getParticipations().size();
-        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        float participatedFor =
+                (float) getParticipations().stream().filter(x -> x.state == Participation.Status.PARTICIPATED).count();
         return participatedFor / numOfPart * 100;
     }
 
@@ -272,7 +283,7 @@ public class Student {
      */
     public int getAssignmentMarkedCount() {
         return (int) getAssignments().stream()
-                .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+                .filter(x -> x.state == Assignment.Status.MARKED).count();
     }
 
     /**
@@ -283,7 +294,7 @@ public class Student {
             return Integer.MIN_VALUE;
         } else {
             return (int) getAssignments().stream()
-                                         .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+                    .filter(x -> x.state == Assignment.Status.MARKED).count();
         }
     }
 
@@ -295,7 +306,7 @@ public class Student {
             return Integer.MAX_VALUE;
         } else {
             return (int) getAssignments().stream()
-                                         .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+                    .filter(x -> x.state == Assignment.Status.MARKED).count();
         }
     }
 
@@ -304,7 +315,7 @@ public class Student {
      */
     public int getAssignmentUnmarkedCount() {
         return (int) getAssignments().stream()
-                .filter(x -> x.markingStatus == Assignment.Status.RECEIVED).count();
+                .filter(x -> x.state == Assignment.Status.RECEIVED).count();
     }
 
     /**
