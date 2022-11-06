@@ -7,7 +7,7 @@ title: User Guide
 
 Here, you can find everything you need to know about **SoConnect**, the ultimate solution for your everyday contacts and tasks management headaches!
 
-If you are an **<a href="#soc"> SoC </a> student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
+If you are an **<a href="#soc"> SoC </a> student**, you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing your tedious management tasks, so you can focus on **creating real friends and finishing schoolwork quickly**. 
 
 Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advanced user, this guide will solve all your problems, just like our app!
 
@@ -52,7 +52,7 @@ SoConnect helps you keep track of your <a href="#todo">todo</a> list, so that yo
 
 ### 4.1. Navigate Around
 
-As a first time user, we understand that you might be confused on how to even start up the application in the first place. Therefore, you can go to the [Installation](#5-installation) section to download SoConnect, if you have not done so.
+If you are a first time user, we understand that you might be confused on how to even start up the application in the first place. Therefore, you can go to the [Installation](#5-installation) section to download SoConnect, if you have not done so.
 
 Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart) section, where we will cover the basics of using SoConnect.
 
@@ -79,7 +79,7 @@ In order to help you pay attention, we have used some icons along with highlight
 In case you are wondering why certain texts are styled differently, here are the meaning behind them:
 
 1. Text that are numbered and in purple font are headers which mark the beginning of a section or subsection of the guide.
-2. **Words in bold** are phrases that we want you to read.
+2. **Words in bold** are phrases that we want you to pay attention to.
 3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
 
 --------------------------------------------------------------------------------------------------------------------
