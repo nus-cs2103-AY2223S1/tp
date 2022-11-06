@@ -268,7 +268,7 @@ public class ModCommandParser implements Parser<ModCommand> {
     }
 
     /**
-     * Gets the index of the student from user input.
+     * Returns the index of the student from user input.
      *
      * @param trimmedArgs The user input.
      * @return The index from the command.
@@ -290,7 +290,7 @@ public class ModCommandParser implements Parser<ModCommand> {
     }
 
     /**
-     * Get an ObservableList of mods from user input.
+     * Returns an ObservableList of mods from user input.
      *
      * @param trimmedArgs The user input.
      * @return An ObservableList of Mods
