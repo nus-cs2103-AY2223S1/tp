@@ -102,8 +102,8 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 3. Create a folder where you want to use StudMap, and copy `StudMap.jar` into it. This will be the home folder
    for StudMap.
 
-4. Double click StudMap.jar to start the app. You should see a new window similar to the figure below appear in a few
-   seconds. Notice that StudMap contains some sample data.
+4. Double click StudMap.jar to start the app. In a few seconds, you should see a new window similar to the figure below.
+   Notice that StudMap contains some sample data.
 
    ![Ui](images/ui/ui-getting-started.png)
 
