@@ -14,14 +14,14 @@ import hobbylist.model.activity.Activity;
  * Select an activity in the current list by its index to display all details about it
  */
 public class SelectCommand extends Command {
+    public static final String MESSAGE_SELECT_ACTIVITY_SUCCESS = "Selected activity: %1$s";
+
     private static String commandWord = "select";
 
     public static final String MESSAGE_USAGE = commandWord + ": Select an activity in the current list "
             + "by the index number used in the displayed list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + commandWord + " 1";
-
-    private static final String MESSAGE_SELECT_ACTIVITY_SUCCESS = "Selected activity: %1$s";
 
     private final Index targetIndex;
 
