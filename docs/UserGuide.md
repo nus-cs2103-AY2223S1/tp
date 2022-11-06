@@ -283,6 +283,9 @@ Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag
 A person can have any number of tags (including 0).
 </div>
 
+* You can only have 1 person of a certain `name`. This means you *cannot* store 2 `Isaac Lee`s with different phone numbers in PayMeLah.
+* However, `name` is case-sensitive. If you have 2 friends of the same name and would prefer to store both of them under their actual name, you *can* store an `Isaac Lee` and an `isaac lee`.
+
 Examples:
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
 * `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
