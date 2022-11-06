@@ -4,9 +4,19 @@ title: User Guide
 ---
 
 ## Introduction
-_Not sure what food options there are in NUS? Stuck on what to eat for lunch?_ <br>
-NUSEatWhere is a **Command Line (CLI) application** which helps you search for the available 
-food options in NUS and  make an informed decision on where to eat.
+_Are you a new NUS student that's not sure what food options there are in NUS? 
+Or perhaps are you stuck on what to eat for lunch?_ <br>
+
+Presenting to you, NUSEatWhere's `Food Guide`! Our `Food Guide` is a desktop application that stores
+information on NUS canteens and eateries, as well as supporting search functions and the ability to randomly generate
+eateries to eat at! 
+
+`Food Guide` is designed for all NUS Students who have a hard time remembering 
+all the food options in NUS and/or cannot decide on a place to eat. 
+Additionally, `Food Guide`'s **Command-line Interface (CLI)** is optimized for fast-typists to 
+quickly execute complicated commands in a simple manner, and is simple to pick up for all users!
+
+With `Food Guide`, you can search for the available food options in NUS and make an informed decision on where to eat!
 
 ## Table of Contents
 * [Introduction](#introduction)
@@ -23,29 +33,54 @@ food options in NUS and  make an informed decision on where to eat.
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
+## Using the User Guide
+This user guide aims to orientate users (such as yourself!) on how to install, use, and troubleshoot `Food Guide`.
+
+For all new users, we highly recommend you start at the [Quick Start](#Quick-start) section, which covers
+installation instructions and the basic features of our application.
+
+After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section which
+lists down all of our features in detail and how they work!
+
+Are you an experienced user that just needs a summary on how to use our application? <br>
+You might want to head on over to the [Command Summary](#command-summary) section
+instead for a quick overview of all our supported commands.
+
+Got any other burning questions? Try looking in our [FAQ](#faq) section! <br>
+If your queries cannot be answered, you can try contacting the development team
+by referring to our [About Us](AboutUs.md) page or
+raising an issue on our [GitHub](https://github.com/AY2223S1-CS2103T-W11-1/tp)!
 
 --------------------------------------------------------------------------------------------------------------------
 
+## First Glance
+The following image describes how `Food Guide` looks like upon opening the application.
+
+![Ui](images/Ui.png)
+
 ## Quick start
 
-1. Install `Java 11` from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. First, start by installing `Java 11` from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-2. Download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
+2. Next, download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
-3. Move the file to your intended **home folder** for the NUSEatWhere application.
+3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. <br> 
+It should like the picture above in the [First Glance](#first-glance) section. 
 
-5. Type commands into the command box and press Enter to execute it. 
+5. You're done setting up the `Food Guide`! <br> 
+Go ahead and type some commands into the command box and press Enter to execute it. <br>
 e.g. typing **`help`** and pressing Enter will open the help window. <br>
+
    Here are some example commands you can try:
 
    * **`help`** : Lists all commands
-
    * **`list`**: Lists all eateries
+   * **`find mala`**: List all eateries with 'mala' in its name
+   * **`exit`**: Closes the application
 
-7. You can refer to [Features](#features) below for the details of each command.
+6. You can refer to [Features](#features) below for the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
