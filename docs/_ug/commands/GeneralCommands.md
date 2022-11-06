@@ -8,6 +8,7 @@
 
 ```note
 COMMAND_WORD is strictly any of the following:
+
 * exit
 * help
 * reset
