@@ -120,3 +120,4 @@ Currently, sorting is performed ascendingly. A future implementation will allow 
 
 There is a `SortedList` obtained from an immutable item list. When the `SortCommand` is executed to sort the list of items, depending on the input, the appropriate comparator is chosen and applied. The UI tracks changes to the `SortedList` and displays the updated sorted item list.
 
+It should be noted that if multiple comparators are provided as arguments, only the last argument is considered when selecting comparators.
