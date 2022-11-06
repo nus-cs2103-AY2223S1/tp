@@ -64,7 +64,7 @@ class HelpCommandParserTest {
         assertEquals(EXPECTED_ALL_COMMANDS, CommandType.listAllCommandWords());
 
         // Not a command constant
-        assertEquals("\"testing\" is not a valid command\n\n"
+        assertEquals("\"testing\" is not a valid command.\n\n"
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + EXPECTED_ALL_COMMANDS
