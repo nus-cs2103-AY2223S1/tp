@@ -4,7 +4,7 @@ title: User Guide
 ---
 This guide provides everything a CS1101S Teaching Assistant needs to know to get the most out of JARVIS!
 
-To use this guide, simply click on the items you would like to learn more about in the table of contents below, or scroll down to the relevant sections below.
+To use this guide, simply click on the items you would like to learn more about in the table of contents, or scroll down to the relevant sections.
 
 * Table of Contents
 {:toc}
