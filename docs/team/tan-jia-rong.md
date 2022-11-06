@@ -28,6 +28,8 @@ Given below are my contributions to the project.
     proper integration between `Logic`, `Model` and `Ui` to ensure what is executed matches what is seen by the user
     and that `isHome` status is set to the correct state as an incorrect state would jeopardize a user's experience.
 
+<div style="page-break-after: always;"></div>
+
 ##### Search ([#81](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/81))
 **Enhancements to existing features:** `find` and `list` commands <br>
 To ensure that the search functionality complements the navigation functionality, much thought 
