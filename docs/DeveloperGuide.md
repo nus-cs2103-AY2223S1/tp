@@ -473,14 +473,14 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `Coydir` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Coydir shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Coydir deletes the person
+1.  User requests to list persons.
+2.  Coydir shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Coydir deletes the person.
 
     Use case ends.
 
@@ -492,21 +492,20 @@ _{More to be added}_
 
     Use case ends.
 
-- 3a. The given index is invalid.
+- 3a. The given ID is invalid.
 
   - 3a1. Coydir shows an error message.
 
   Use case resumes at step 2.
 
-**Use case: Edit details of a person**
+**Use case: UC02 - Edit details of a person**
 
 **MSS**
 
-1. User requests to list persons
-2. Coydir shows a list of persons
-3. User requests to delete a specific person in the list
-4. Coydir deletes the person
-5. User adds specific person back with the updated changes.
+1. User requests to list persons.
+2. Coydir shows a list of persons.
+3. User requests to edit a specific person in the list.
+4. Coydir replaces the data of the employee based on the user's specified inputs.
 
    Use case ends.
 
@@ -514,51 +513,229 @@ _{More to be added}_
 
 - 2a. The list is empty.
 
-  - 2a1. Coydir shows an error message
+  - 2a1. Coydir shows an error message.
 
     Use case ends.
 
 - 3a. The given index is invalid.
 
   - 3a1. Coydir shows an error message.
+  
+    Use case resumes at step 2.
+
+- 3b. The edited fields from the user is not in the correct format.
+
+  - 3b1. Coydir shows an error message informing user which field has invalid input and why it is invalid.
+
+    Use case resumes at step 2.
+  
+- 3c. Fields are empty.
+
+  - 3c1. Coydir shows an error message .
 
     Use case resumes at step 2.
 
-**Use case: Find details of a person**
+
+**Use case: UC03 - Find details of a person**
 
 **MSS**
 
-1. User requests to find details of specific person
-2. Coydir shows the details of person specific person
+1. User requests to find all employees of a certain query (Name, Department, Position).
+2. Coydir shows a list of all employees adhering to the query made.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no such person in the list
+- 2a. The query is empty.
 
-  - 2a1. Coydir shows an error message
+  - 2a1. Coydir shows an error message.
 
     Use case ends.
 
-**Use case: View details of a person**
+- 2b. The fields in the query are not in the correct format.
+
+  - 2b1. Coydir shows error message informing user which field has invalid input and why it is invalid.
+  
+  Use case ends.
+
+**Use case: UC04 - View details of a person**
 
 **MSS**
 
-1. User request to view details of a specific person in the list
-2. Coydir shows the details of the specific person
+1. User requests to list persons.
+2. Coydir shows a list of persons.
+3. User request to view details of a specific person in the list.
+4. Coydir shows the details of the specific person.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. The given index is invalid.
+- 2a. The list is empty.
 
-  - 1a1. Coydir shows an error message.
+    - 2a1. Coydir shows an error message.
+
+      Use case ends.
+
+- 4a. The given index is invalid.
+
+  - 4a1. Coydir shows an error message.
 
     Use case ends.
 
-_{More to be added}_
+**Use case: UC05 - Batch-Add multiple employees**
+
+Preconditions: `.csv` file with the data you want to import needs to be in `/data` folder.
+
+**MSS**
+
+1. User specifies which filename of the file they want to batch-add from.
+2. Coydir finds the file and shows the updated list with all the new employees added.
+
+Use case ends.
+
+**Extensions**
+
+- 2a. No file found.
+
+  - 2a1. Coydir shows an error message stating that no file is found.
+  
+    Use case ends.
+
+- 2b. File found but not CSV format.
+
+  - 2b1. Coydir shows an error message.
+
+      Use case ends.
+
+- 2c. Compulsory fields (Name, Department, Position) in the `.csv` are missing.
+
+  - 2c1. Coydir shows an error message.
+    
+    Use case ends.
+
+- 2d. Fields in the `.csv` are not in the correct format.
+
+    - 2d1. Coydir shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - Allocate leave to employee**
+
+**MSS**
+1. User requests to list persons.
+2. Coydir shows a list of persons.
+3. User requests to add leave to specified employee and includes duration.
+4. User requests to view specified employee (UC04).
+5. Coydir shows the updated details of the employee.
+
+**Extensions**
+- 2a. The list is empty.
+
+    - 2a1. Coydir shows an error message.
+
+      Use case ends.
+
+- 3a. The given ID of employee is invalid.
+
+    - 3a1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. Date provided by user is invalid.
+
+    - 3b1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3c. Date provided by user is overlaps with leave that the employee already has.
+
+    - 3c1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3d. Start Date provided by user after End Date provided by user.
+
+    - 3d1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3e. Date provided by user in the wrong format
+
+    - 3e1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC07 - Delete leave from employee**
+
+**MSS**
+1. User requests to list persons.
+2. Coydir shows a list of persons.
+3. User requests to view details of specified employee (UC04). 
+4. Coydir shows details of specified employee.
+5. User requests to delete leave from employee indicating index of leave to delete.
+6. Coydir shows updated leave of employee.
+
+**Extensions**
+- 2a. The list is empty.
+
+    - 2a1. Coydir shows an error message.
+
+      Use case ends.
+
+- 4a. Index to view employee is invalid.
+
+  - 4a1. Coydir shows an error message.
+  
+    Use case ends.
+  
+- 6a. Index to delete leave is invalid.
+
+  - 6a1. Coydir shows an error message.
+  
+    Use case ends.
+
+**Use case: UC08 - Add/Delete leave amount to employee**
+
+**MSS**
+1. User requests to list employees.
+2. Coydir shows a list of employees.
+3. User requests to edit details of specified employee to the updated leave (UC02).
+4. User requests to view specified employee (UC04).
+5. Coydir shows updated leave amount of employee
+
+**Extensions**
+- 2a. The list is empty.
+
+    - 2a1. Coydir shows an error message.
+
+      Use case ends.
+
+- 3a. The given index to edit employee is invalid.
+
+  - 3a1. Coydir shows an error message.
+
+    Use case resumes at step 2.
+  
+- 3b. Leave inputted by User is in the wrong format.
+
+    - 3b1. Coydir shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC09 - View details of department**
+
+**MSS**
+1. User requests to view details of department.
+2. Coydir shows details of requested department.
+
+**Extensions**
+- 2a. Department does not exist.
+  - 2a1. Coydir shows an error message.
+  
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
