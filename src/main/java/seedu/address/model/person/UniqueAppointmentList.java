@@ -50,6 +50,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
 
     /**
      * Returns true if the list contains an equivalent appointment as the given argument.
+     *
+     * @return Whether the list contains given appointment.
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
@@ -59,6 +61,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Adds an appointment to the list.
      * The appointment must not already exist in the list.
+     *
+     * @param toAdd Appointment to be added to the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
@@ -73,6 +77,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Removes the equivalent appointment from the list.
      * The appointment must exist in the list.
+     *
+     * @param toRemove Appointment to remove from the list.
      */
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
@@ -104,6 +110,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Replaces the contents of this list with {@code appointments}.
      * {@code appointments} must not contain duplicate appointments.
+     *
+     * @param appointments List of appointments to be changed to.
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
@@ -119,6 +127,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * {@code target} must exist in the list.
      * The appointment of {@code editedAppointment} must not be the same as another existing appointment
      * in the list.
+     *
+     * @param target Appointment to be edited.
+     * @param editedAppointment Appointment after editing.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -137,6 +148,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return Unmodifiable list of appointments.
      */
     public ObservableList<Appointment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
@@ -161,6 +174,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
 
     /**
      * Returns true if {@code appointments} contains only unique appointments.
+     *
+     * @return Whether all appointments in the list are unique.
      */
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
@@ -175,6 +190,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
 
     /**
      * Sorts the contents of the appointment list with {@code comparator}.
+     *
+     * @param comparator Comparator that determines how appointment list is ordered.
      */
     public void sort(Comparator<Appointment> comparator) {
         this.comparator = comparator;

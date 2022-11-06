@@ -25,6 +25,10 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage} and
      * {@code JsonCommandHistoryStorage}.
+     *
+     * @param addressBookStorage Storage of address book entries.
+     * @param userPrefsStorage Storage of user preferences.
+     * @param commandHistoryStorage Storage of the command history of the app.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
                           JsonCommandHistoryStorage commandHistoryStorage) {

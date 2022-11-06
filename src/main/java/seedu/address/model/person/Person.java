@@ -32,8 +32,8 @@ public class Person {
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList(extractor);
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    /**
-     * Every field must be present and not null.
+    /*
+      Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, List<Appointment> listOfAppointments,
                   Set<Tag> tags) {
@@ -84,6 +84,8 @@ public class Person {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return Set of tags associated with the person.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -92,6 +94,8 @@ public class Person {
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
+     *
+     * @return Whether this person is same as the given person.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -138,6 +142,7 @@ public class Person {
      * returns 1 if this person appears after the other person.
      *
      * @param person The other person to compare with.
+     * @return Relative positioning of this person compared to the given person.
      */
     public int compareTo(Person person) {
         return this.getName().compareTo(person.getName()) < 0
@@ -151,6 +156,7 @@ public class Person {
      * Returns the group number where this person belongs to, which is determined
      * by its tags.
      *
+     * @return Group that the person belongs to.
      */
     public int getGroupNumber() {
         Set<Tag> tags = this.getTags();
@@ -177,6 +183,7 @@ public class Person {
      * makes sure that people with the same tag group are grouped together.
      *
      * @param person The other person to compare with.
+     * @return Relative positioning of this person compared to given person after accounting for grouping.
      */
     public int groupCompareTo(Person person) {
         int tagWeight = 10;
@@ -185,9 +192,9 @@ public class Person {
             + nameWeight * this.compareTo(person);
     }
 
-    /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+    /*
+     Returns true if both persons have the same identity and data fields.
+     This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {

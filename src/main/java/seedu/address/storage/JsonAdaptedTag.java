@@ -15,6 +15,8 @@ class JsonAdaptedTag {
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     *
+     * @param tagName Given tag name to be converted.
      */
     @JsonCreator
     public JsonAdaptedTag(String tagName) {
@@ -23,6 +25,8 @@ class JsonAdaptedTag {
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
+     *
+     * @param source Given tag to be converted.
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.toString();

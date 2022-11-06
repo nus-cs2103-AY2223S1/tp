@@ -93,9 +93,11 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Converts given collection of tags to set of tags to be used.
+     *
+     * @param tags Given collection of tags for conversion.
+     * @return Set of tags after editing
+     * @throws ParseException If there is an issue parsing the collection of tags.
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;

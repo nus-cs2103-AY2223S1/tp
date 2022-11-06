@@ -25,11 +25,12 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
 
     /**
      * Creates a {@code CombinedAppointmentPredicate} object that tests if a given appointment contains a given
-     * reason, and has a date between startDateTime and endDateTime.
+     * reason, has a date between startDateTime and endDateTime, and the given list of tags.
      *
      * @param reason The string to test on an {@code Appointment}'s reason.
      * @param startDateTime Start date to test.
      * @param endDateTime End date of test.
+     * @param tagList List of tags to test.
      */
     public CombinedAppointmentPredicate(
             String reason, LocalDateTime startDateTime, LocalDateTime endDateTime, List<String> tagList) {

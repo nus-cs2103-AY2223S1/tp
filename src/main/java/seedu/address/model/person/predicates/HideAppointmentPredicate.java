@@ -24,6 +24,7 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
 
     /**
      * Constructor to initialise the hide appointment predicate.
+     *
      * @param condition The condition to hide appointment by.
      * @param keywords The keywords to search for within the tag/reason/status.
      */

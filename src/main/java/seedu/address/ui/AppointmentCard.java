@@ -37,6 +37,9 @@ public class AppointmentCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     *
+     * @param appointment Appointment to be shown on the UI.
+     * @param displayedIndex Index to be shown on the UI.
      */
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);

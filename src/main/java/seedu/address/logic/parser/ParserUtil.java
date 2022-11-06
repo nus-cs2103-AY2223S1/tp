@@ -41,12 +41,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a string of {@code oneBasedIndex}es seperated by spaces into a list of {@code Index} of exactly size
+     * Parses a string of {@code oneBasedIndex}es separated by spaces into a list of {@code Index} of exactly size
      * {@code parseCount} and returns it. Leading and trailing whitespaces will be trimmed.
      *
-     * @param parseCount The exact amount of indexes to parse.
+     * @param oneBasedIndexes String of indexes.
+     * @param parseCount The exact number of indexes to parse.
+     * @return List of indexes of size {@code parseCount}
      * @throws ParseException if the specified indexes is invalid (not non-zero unsigned integer), or if the amount of
-     *     indexes is not exactly {@code parseCount}
+     * indexes is not exactly {@code parseCount}
      */
     public static List<Index> parseIndexes(String oneBasedIndexes, int parseCount) throws ParseException {
         String indexSeparator = "\\s+";
@@ -69,7 +71,9 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @param name Name before parsing.
+     * @return Name after parsing.
+     * @throws ParseException if the given name is invalid.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -84,7 +88,9 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param phone Phone number before parsing.
+     * @return Phone number after parsing.
+     * @throws ParseException if the given phone is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
@@ -99,7 +105,9 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @param address Address before parsing.
+     * @return Address after parsing.
+     * @throws ParseException if the given address is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         if (address.isEmpty()) {
@@ -116,7 +124,9 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @param email Email before parsing.
+     * @return Email after parsing.
+     * @throws ParseException if the given email is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
         if (email.isEmpty()) {
@@ -133,7 +143,9 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @param tag Tag name before parsing.
+     * @return Tag after parsing.
+     * @throws ParseException if the given tag is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
@@ -148,7 +160,9 @@ public class ParserUtil {
      * Parses a {@code String key} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @param key Key before parsing.
+     * @return Key after parsing.
+     * @throws ParseException if the given key is invalid.
      */
     public static Key parseKey(String key) throws ParseException {
         requireNonNull(key);
@@ -163,6 +177,11 @@ public class ParserUtil {
      * Parses a {@code String reason} and {@code String dateTime} into a {@code Appointment}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param reason Reason for making an appointment.
+     * @param dateTime Date and time of the appointment.
+     * @param period Time period of the recurring appointments.
+     * @param tags Related tags of the appointment.
+     * @return An Appointment after parsing of information.
      * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
     public static Appointment parseAppointment(String reason, String dateTime, String period, Set<Tag> tags)
@@ -189,6 +208,10 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags Collection of tags to be parsed
+     * @return Set of tags to be used.
+     * @throws ParseException If there is an issue with parsing given tags.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);

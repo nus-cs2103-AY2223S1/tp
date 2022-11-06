@@ -315,6 +315,7 @@ public class Appointment {
      * Returns the group number where this appointment belongs to, which is determined
      * by its tags.
      *
+     * @return Group that the appointment belongs to.
      */
     public int getGroupNumber() {
         Set<Tag> tags = this.getTags();
@@ -340,6 +341,7 @@ public class Appointment {
      * returns 1 if this appointment appears after the other appointment.
      *
      * @param appointment The other appointment to compare with.
+     * @return Relative positioning of this appointment and given appointment.
      */
     public int compareTo(Appointment appointment) {
         return this.dateTime.isBefore(appointment.dateTime)
@@ -356,6 +358,7 @@ public class Appointment {
      * makes sure that appointments with the same tag group are grouped together.
      *
      * @param appointment The other person to compare with.
+     * @return Relative positioning of this appointment and given appointment after accounting grouping.
      */
     public int groupCompareTo(Appointment appointment, Key key) {
         int tagWeight = 10;
@@ -396,6 +399,8 @@ public class Appointment {
     /**
      * Returns true if both appointments have the same reason, dateTime, timePeriod and status.
      * This defines a weaker notion of equality between two appointments.
+     *
+     * @return whether this appointment is same as given appointment.
      */
     public boolean isSameAppointment(Appointment appointment) {
         return appointment.reason.equals(reason)

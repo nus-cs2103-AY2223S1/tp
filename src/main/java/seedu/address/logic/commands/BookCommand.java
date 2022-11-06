@@ -42,7 +42,7 @@ public class BookCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a BookCommand with the given index and appointment.
+     * Creates a BookCommand with the given patient index and appointment.
      *
      * @param targetIndex The given index to retrieve the patient.
      * @param appointment The given appointment to book for the patient.

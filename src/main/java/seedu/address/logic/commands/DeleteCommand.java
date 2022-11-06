@@ -35,6 +35,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Overloaded constructor to allow deletion of patients in a range.
+     *
      * @param startIndex Patient index to start deletion.
      * @param endIndex Index of last patient to be deleted.
      */
@@ -72,6 +73,11 @@ public class DeleteCommand extends Command {
     /**
      * Checks whether the given indices are valid (start <= end and within list size)
      * @throws CommandException if the indices given are not valid for deletion in the patient list.
+     *
+     * @param start First index in given range to delete.
+     * @param end Last index in given range to delete.
+     * @param currList Current list of patients.
+     * @throws CommandException If range given by start and end is invalid.
      */
     public void checkValidIndices(int start, int end, List<Person> currList) throws CommandException {
         if (start > end || end > currList.size() - 1) {

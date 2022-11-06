@@ -28,7 +28,7 @@ public enum Tag {
      * Checks whether the given input is in the restricted list of possible names.
      *
      * @param test The given input.
-     * @return True if valid.
+     * @return Whether tag name is valid.
      */
     public static boolean isValidTagName(String test) {
         return test.equalsIgnoreCase("ear")

@@ -25,24 +25,23 @@ import seedu.address.model.tag.Tag;
 public class EditPatientCommandParser implements Parser<EditPatientCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditPatientCommand
-     * and returns an EditPatientCommand object for execution.
+     * Parses given arguments in the context of the EditPatientCommand to determine {@code EditPatientCommand}
+     * for execution.
+     *
+     * @param args Given string of arguments.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditPatientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditPatientCommand.MESSAGE_USAGE), pe);
         }
-
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -57,18 +56,18 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditPatientCommand(index, editPersonDescriptor);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Converts given collection of tags to set of tags to be used.
+     *
+     * @param tags Given collection of tags for conversion.
+     * @return Set of tags after editing
+     * @throws ParseException If there is an issue parsing the collection of tags.
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;

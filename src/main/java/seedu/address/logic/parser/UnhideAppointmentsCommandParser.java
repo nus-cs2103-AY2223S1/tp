@@ -24,6 +24,8 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
     /**
      * Parses the given {@code String} of arguments in the context of the FilterPatientCommand
      * and returns a FilterPatientCommand object for execution.
+     *
+     * @param args String of arguments to be parsed.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnhideAppointmentsCommand parse(String args) throws ParseException {
@@ -66,6 +68,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
 
     /**
      * Checks if input status is valid (marked/unmarked/m/um).
+     *
      * @param status The given input from the user after s/ prefix.
      * @return Whether the status given is valid.
      */
@@ -76,6 +79,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
 
     /**
      * Checks if given tags match ear, nose or throat.
+     *
      * @param tags The values gotten from the user after the t/ prefix.
      * @return Whether tags are all valid.
      */

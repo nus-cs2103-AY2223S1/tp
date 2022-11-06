@@ -32,6 +32,10 @@ public class LogicManager implements Logic {
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     *
+     * @param model Model of the app.
+     * @param storage Storage of the app.
+     * @param commandHistory Command history of the app.
      */
     public LogicManager(Model model, Storage storage, CommandHistory commandHistory) {
         this.model = model;

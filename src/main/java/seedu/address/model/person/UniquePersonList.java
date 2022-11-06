@@ -55,6 +55,8 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
+     *
+     * @return Whether list contains given person.
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
@@ -64,6 +66,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     *
+     * @param toAdd Person to be added to the list.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
@@ -77,6 +81,9 @@ public class UniquePersonList implements Iterable<Person> {
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     *
+     * @param target Person to edit.
+     * @param editedPerson Person after editing.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -96,6 +103,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
+     *
+     * @param toRemove Person to be removed from the list.
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
@@ -112,6 +121,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
+     *
+     * @param persons List of person to replace current list.
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
@@ -124,6 +135,8 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return Unmodifiable list of person.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
@@ -148,6 +161,8 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Returns true if {@code persons} contains only unique persons.
+     *
+     * @return Whether all person in the list are unique.
      */
     private boolean personsAreUnique(List<Person> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
@@ -162,6 +177,8 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Sorts the contents of the person list with {@code comparator}.
+     *
+     * @param comparator Comparator that determines order of person.
      */
     public void sort(Comparator<Person> comparator) {
         this.comparator = comparator;

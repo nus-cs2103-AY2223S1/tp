@@ -23,6 +23,7 @@ public class CancelCommand extends SelectAppointmentCommand {
 
     /**
      * Creates a cancel command that specifies the patient and appointment index.
+     *
      * @param apptIndex The index of the appointment we want to cancel for in the appointment list.
      */
     public CancelCommand(Index apptIndex) {
@@ -31,6 +32,7 @@ public class CancelCommand extends SelectAppointmentCommand {
 
     /**
      * Removes the appointment in the specified index for the specified patient.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return Feedback to the user in the form of a success message.
      * @throws CommandException If the input index is out of valid range.

@@ -40,6 +40,9 @@ public class PersonCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     *
+     * @param person Person to be shown in the UI
+     * @param displayedIndex Index of the person in the list.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);

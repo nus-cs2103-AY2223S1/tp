@@ -56,8 +56,10 @@ public class EditPatientCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates the command to edit patient data.
+     *
+     * @param index of the person in the filtered patient list to edit
+     * @param editPersonDescriptor details to edit the patient with
      */
     public EditPatientCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
@@ -87,7 +89,8 @@ public class EditPatientCommand extends Command {
     }
 
     /**
-     * updates the current names to be shown on idENTify.
+     * Updates the current names to be shown on idENTify.
+     *
      * @param model current model shown to the user.
      * @param personToEdit person's information to be updated.
      * @param editedPerson person with updated information.
@@ -104,9 +107,14 @@ public class EditPatientCommand extends Command {
         model.updateFilteredAppointmentList(new AppointmentOfFilteredPersonsPredicate(currentList));
         model.CURRENT_NAMES.clear();
     }
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
+     *
+     * @param personToEdit Patient whose details are about to be edited.
+     * @param editPersonDescriptor Description of the patient after editing.
+     * @return the patient after editing.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -161,6 +169,8 @@ public class EditPatientCommand extends Command {
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param toCopy Description of patient to copy.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -172,6 +182,8 @@ public class EditPatientCommand extends Command {
 
         /**
          * Returns true if at least one field is edited.
+         *
+         * @return whether any field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
@@ -212,6 +224,8 @@ public class EditPatientCommand extends Command {
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param tags Set of tags that patient is tagged under.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -220,7 +234,8 @@ public class EditPatientCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         *
+         * @return Set of tags the patient may have.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();

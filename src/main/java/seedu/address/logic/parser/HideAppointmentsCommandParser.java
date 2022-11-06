@@ -23,8 +23,10 @@ import seedu.address.model.person.predicates.HideAppointmentPredicate;
 public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterPatientCommand
+     * Parses given arguments in the context of the FilterPatientCommand
      * and returns a FilterPatientCommand object for execution.
+     *
+     * @param args Given string of arguments.
      * @throws ParseException if the user input does not conform the expected format
      */
     public HideAppointmentsCommand parse(String args) throws ParseException {
@@ -67,6 +69,7 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
 
     /**
      * Checks if input status is valid (marked/unmarked/m/um).
+     *
      * @param status The given input from the user after s/ prefix.
      * @return Whether the status given is valid.
      */
@@ -77,6 +80,7 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
 
     /**
      * Checks if given tags match ear, nose or throat.
+     *
      * @param tags The values gotten from the user after the t/ prefix.
      * @return Whether tags are all valid.
      */
