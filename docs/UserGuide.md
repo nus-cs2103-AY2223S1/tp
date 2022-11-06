@@ -212,7 +212,7 @@ Be very careful with how a command is formatted! If the `…` is found within th
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Using `help` will provide you with a link to our online user guide.<br>
 If you get lost while using PayMeLah, this is the one command to remember!
@@ -225,6 +225,43 @@ Format: `help`
 **:star: Advanced Tip:**
 Pressing <kbd> F1 </kbd> will also open up the help message.
 </div>
+
+### Undoing a command: `undo`
+
+This is the command to use when you made a mistake, and want to undo previous command(s) that modified PayMeLah's data.<br>
+Be careful though, your undo history will be gone when you close the app!
+
+Format: `undo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command will only undo commands that directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The undo history of PayMeLah will only save your 10 most recent commands that modified its data! Make sure to check the list of persons regularly if you are making many changes in one session!
+</div>
+
+### Clearing all entries: `clear`
+
+Clears all entries from PayMeLah.<br>
+You can use this command to delete all info from PayMeLah and start afresh!
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
+</div>
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
+</div>
+
 
 ### Adding a person: `add`
 
@@ -240,6 +277,42 @@ A person can have any number of tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
 * `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
+
+### Editing a person: `edit`
+
+Edits an existing person in PayMeLah.<br>
+You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or Telegram handle have changed.
+
+Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
+
+* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
+* Cannot be used to modify a person's debts
+
+Examples:
+*  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
+*  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
+
+
+### Deleting a person: `delete`
+
+Deletes the specified person from PayMeLah.<br>
+You can use this to remove people you no longer need to track debts for from PayMeLah.
+
+Format: `delete <index>`
+
+* Deletes the person at the specified `<index>`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
 
 ### Adding a debt: `adddebt`
 
@@ -293,6 +366,16 @@ Examples:
 * `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
 * `splitdebt 0 2 5 d/KFC Fish m/13+ date/2022-10-12`
 
+### Deleting a debt: `deletedebt`
+
+Deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified. <br>
+This command will help you fully remove debts from people in PayMeLah, so that their current debts can be better organised.
+
+Format: `deletedebt <person index> debt/<debt index…>`
+
+Example:
+* `deletedebt 2 debt/2 3`
+
 ### Clearing debts: `cleardebts`
 
 Clears all of a debtor's debts from PayMeLah. <br>
@@ -323,15 +406,6 @@ Format: `unmark <person index> debt/<debt index…>`
 Example:
 * `unmark 2 debt/2 3`
 
-### Deleting debts: `deletedebt`
-
-Deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified. <br>
-This command will help you fully remove debts from people in PayMeLah, so that their current debts can be better organised.
-
-Format: `deletedebt <person index> debt/<debt index…>`
-
-Example:
-* `deletedebt 2 debt/2 3`
 
 ### Getting the statement: `statement`
 
@@ -349,6 +423,46 @@ The statement will only sum up the debts that are not marked as paid from the li
 </div>
 
 Example: `statement` returns `You are owed $583.90 in total.`
+
+### Finding persons by fields: `find`
+
+Finds persons who match all the given conditions.
+
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
+[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
+[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
+
+* Name and Address are case-insensitive partial matches. All other fields are exact matches.
+* The above and below fields look for people with a debt that lies in the specified monetary range.
+* The before and after fields look for people with a debt that lies within the specified date range.
+* The order of the conditions does not matter.
+  e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
+* Only persons matching all conditions will be returned (i.e. `AND` search).
+  e.g. `d/burger d/fries n/hans` will return `Hans Gruber` only if he owes money for a burger and fries,
+  but not `Hansel`  if he only owes money for a burger and not for fries.
+
+Examples:
+* `find n/John` returns `john` and `John Doe`
+* `find d/burger n/hans` returns `Hansel` if he owes money for a burger
+* `find d/burger d/fries n/hans` returns `Hans Gruber` if he owes money for both a burger and fries,
+  but not `Hansel`  if he only owes money for a burger and not for fries.
+
+### Finding persons by debt description: `finddebt`
+
+Finds persons who are associated with any debts that match any of the given keywords.
+
+Format: `finddebt <keyword>…`
+
+* The search is case-insensitive. e.g `burger` will match `Burger`
+* The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
+* Only the name is searched.
+* Only full words will be matched e.g. `Burger` will not match `Burgers`
+* Persons with debts matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
+
+Examples:
+* `finddebt Burger` returns people associated with debts that have descriptions `burger` or `Chicken Burger`
+* `finddebt burger meal` returns people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
 
 ### Listing all persons: `list`
 
@@ -376,116 +490,6 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
-
-### Editing a person: `edit`
-
-Edits an existing person in PayMeLah.<br>
-You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or Telegram handle have changed.
-
-Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
-
-* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-* Cannot be used to modify a person's debts
-
-Examples:
-*  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
-*  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
-
-### Locating persons by fields: `find`
-
-Finds persons who match all the given conditions.
-
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
-[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
-[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
-
-* Name and Address are case-insensitive partial matches. All other fields are exact matches.
-* The above and below fields look for people with a debt that lies in the specified monetary range.
-* The before and after fields look for people with a debt that lies within the specified date range.
-* The order of the conditions does not matter.
-  e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
-* Only persons matching all conditions will be returned (i.e. `AND` search).
-  e.g. `d/burger d/fries n/hans` will return `Hans Gruber` only if he owes money for a burger and fries,
-  but not `Hansel`  if he only owes money for a burger and not for fries.
-
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find d/burger n/hans` returns `Hansel` if he owes money for a burger
-* `find d/burger d/fries n/hans` returns `Hans Gruber` if he owes money for both a burger and fries,
-  but not `Hansel`  if he only owes money for a burger and not for fries.
-
-### Locating persons by debt description: `finddebt`
-
-Finds persons who are associated with any debts that match any of the given keywords.
-
-Format: `finddebt <keyword>…`
-
-* The search is case-insensitive. e.g `burger` will match `Burger`
-* The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
-* Only the name is searched.
-* Only full words will be matched e.g. `Burger` will not match `Burgers`
-* Persons with debts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
-
-Examples:
-* `finddebt Burger` returns people associated with debts that have descriptions `burger` or `Chicken Burger`
-* `finddebt burger meal` returns people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
-
-### Deleting a person: `delete`
-
-Deletes the specified person from PayMeLah.<br>
-You can use this to remove people you no longer need to track debts for from PayMeLah.
-
-Format: `delete <index>`
-
-* Deletes the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries: `clear`
-
-Clears all entries from PayMeLah.<br>
-You can use this command to delete all info from PayMeLah and start afresh!
-
-Format: `clear`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
-</div>
-
-### Undoing a command: `undo`
-
-This is the command to use when you made a mistake, and want to undo previous command(s) that modified PayMeLah's data.<br>
-Be careful though, your undo history will be gone when you close the app!
-
-Format: `undo`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This command will only undo commands that directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The undo history of PayMeLah will only save your 10 most recent commands that modified its data! Make sure to check the list of persons regularly if you are making many changes in one session!
-</div>
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
-</div>
 
 ### Saving the data
 
@@ -538,37 +542,39 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                        |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                            |
-| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                                                            |
-| **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                                                                 |
-| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                                                                   |
-| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                                                               |
-| **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                                                                   |
-| **Delete debts**  | `deletedebt <person index> debt/<debt index…>` <br> e.g., `deletedebt 2 debt/2 3`                                                                                                                                                                       |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                 |
-| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                                                                   |
-| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                                                                    |
+| *Actions for* <br> **General Utility** | Format, Examples |
+|----------------------------------------|------------------|
+| [**Help**](#viewing-help-help)         | `help`           |
+| [**Undo**](#undoing-a-command-undo)    | `undo`           |
+| [**Clear**](#exiting-the-program-exit) | `clear`          |
+| [**Exit**](#exiting-the-program-exit)  | `exit`           |
 
 
+| *Actions for* <br> **Managing Persons**        | Format, Examples                                                                                                                                                             |
+|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add person**](#adding-a-person-add)         | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| [**Edit person**](#editing-a-person-edit)      | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                         |
+| [**Delete person**](#deleting-a-person-delete) | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
 
-| Action            | Format, Examples                                                                                                                                                                                                                                        |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
-| **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
-| **List**          | `list`                                                                                                                                                                                                                                                  |
-| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
-| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                                                                |
-| **Get statement** | `statement`                                                                                                                                                                                                                                             |
 
-| Action    | Format, Examples |
-|-----------|------------------|
-| **Clear** | `clear`          |
-| **Help**  | `help`           |
-| **Undo**  | `undo`           |
-| **exit**  | `exit`           |
-                                                                                                                                                                                                                                                |
+| *Actions for* <br> **Managing Debts**                 | Format, Examples                                                                                                                                        |
+|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add debt**](#adding-a-debt-adddebt)                | `adddebt <person index…> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                           |
+| [**Split debt**](#splitting-a-debt-splitdebt)         | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00` |
+| [**Delete debt**](#deleting-a-debt-deletedebt)        | `deletedebt <person index> debt/<debt index…>` <br> e.g., `deletedebt 2 debt/2 3`                                                                       |
+| [**Clear debts**](#clearing-debts-cleardebts)         | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                   |
+| [**Mark debts**](#marking-debts-as-paid-mark)         | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                   |
+| [**Unmark debts**](#marking-debts-as-unpaid-unmark)   | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                               |
+| [**Get statement**](#getting-the-statement-statement) | `statement`                                                                                                                                             |
+
+
+| *Actions for* <br> **Searching**                                | Format, Examples                                                                                                                                                                                                                                        |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Find person**](#finding-persons-by-fields-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
+| [**Find debts**](#finding-persons-by-debt-description-finddebt) | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
+| [**List persons**](#listing-all-persons-list)                   | `list`                                                                                                                                                                                                                                                  |
+| [**List debtors**](#listing-all-debtors-listdebtors)            | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
+| [**Sort**](#sorting-list-of-persons-sort)                       | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
 
 [Return to Table of Contents](#table-of-contents)
 
