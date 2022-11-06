@@ -22,12 +22,10 @@ import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ReadOnlyModQuik;
 import seedu.modquik.model.ReadOnlyUserPrefs;
-import seedu.modquik.model.commons.ModuleCode;
 import seedu.modquik.model.consultation.Consultation;
 import seedu.modquik.model.reminder.Reminder;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
 import seedu.modquik.testutil.PersonBuilder;
 
 public class AddStudentCommandTest {
@@ -315,16 +313,6 @@ public class AddStudentCommandTest {
         public void unmarkReminder(Reminder reminderToUnmark) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public boolean hasModuleCode(ModuleCode moduleCode) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTutorialName(TutorialName tutorialName) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
@@ -361,18 +349,6 @@ public class AddStudentCommandTest {
         public void addPerson(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
-        }
-
-        @Override
-        public boolean hasModuleCode(ModuleCode moduleCode) {
-            requireNonNull(moduleCode);
-            return true;
-        }
-
-        @Override
-        public boolean hasTutorialName(TutorialName tutorialName) {
-            requireNonNull(tutorialName);
-            return true;
         }
 
         @Override

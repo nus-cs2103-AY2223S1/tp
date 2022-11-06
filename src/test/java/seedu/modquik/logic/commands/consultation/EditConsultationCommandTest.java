@@ -115,18 +115,6 @@ public class EditConsultationCommandTest {
     }
 
     @Test
-    public void execute_invalidConsultationModuleNotExist_failure() {
-        Consultation firstConsultation = model.getFilteredConsultationList()
-                .get(INDEX_FIRST_CONSULTATION.getZeroBased());
-        EditConsultationCommand.EditConsultDescriptor descriptor =
-                new EditConsultationDescriptorBuilder(firstConsultation).withModuleCode("CS1101S").build();
-        EditConsultationCommand editConsultationCommand =
-                new EditConsultationCommand(INDEX_FIRST_CONSULTATION, descriptor);
-
-        assertCommandFailure(editConsultationCommand, model, EditConsultationCommand.MESSAGE_NON_EXISTING_MODULE);
-    }
-
-    @Test
     public void equals() {
         final EditConsultationCommand standardCommand =
                 new EditConsultationCommand(INDEX_FIRST_CONSULTATION, DESC_CONSULTATION1);

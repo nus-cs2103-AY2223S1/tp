@@ -20,12 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.modquik.model.ModQuik;
-import seedu.modquik.model.commons.ModuleCode;
-import seedu.modquik.model.commons.Venue;
-import seedu.modquik.model.datetime.WeeklyTimeslot;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -114,8 +109,6 @@ public class TypicalPersons {
         for (Student student : getTypicalPersons()) {
             ab.addPerson(student);
         }
-        ab.addTutorial(new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"), new Venue("Zoom"),
-                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
         return ab;
     }
 

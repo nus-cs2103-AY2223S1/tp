@@ -143,24 +143,6 @@ public class EditStudentCommandTest {
     }
 
     @Test
-    public void execute_invalidStudentModuleNotExist_failure() {
-        Student firstStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstStudent).withModule("CS1101S").build();
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
-
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NON_EXISTING_MODULE);
-    }
-
-    @Test
-    public void execute_invalidStudentTutorialNameNotExist_failure() {
-        Student firstStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstStudent).withTutorial("T01").build();
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
-
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NON_EXISTING_TUTORIAL);
-    }
-
-    @Test
     public void equals() {
         final EditStudentCommand standardCommand = new EditStudentCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
