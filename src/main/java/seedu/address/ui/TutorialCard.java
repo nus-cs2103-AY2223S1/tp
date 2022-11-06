@@ -53,6 +53,8 @@ public class TutorialCard extends UiPart<Region> {
         date.setText(tutorial.getTimeOrDateStr("date"));
         status.setText("");
         status.setSelected(tutorial.getStatus());
+        status.setDisable(true);
+        status.setStyle("-fx-opacity: 1");
     }
 
     @Override

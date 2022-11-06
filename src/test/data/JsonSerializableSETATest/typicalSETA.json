@@ -1,0 +1,91 @@
+{
+  "_comment": "SETA save file which contains the same Stud values as in TypicalStudents#getTypicalAddressBook()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "telegram" : "@AlicePauline",
+    "email" : "alice@example.com",
+    "response" : "2",
+    "attendance" : "1",
+    "toHelp" : "false"
+  }, {
+    "name" : "Benson Meier",
+    "telegram" : "@bensonM",
+    "email" : "johnd@example.com",
+    "response" : "1",
+    "attendance" : "2",
+    "toHelp" : "true"
+  }, {
+    "name" : "Carl Kurz",
+    "telegram" : "@Carl",
+    "email" : "heinz@example.com",
+    "response" : "4",
+    "attendance" : "1",
+    "toHelp" : "false"
+  }, {
+    "name" : "Daniel Meier",
+    "telegram" : "@daniell",
+    "email" : "cornelia@example.com",
+    "response" : "2",
+    "attendance" : "3",
+    "toHelp" : "false"
+  }, {
+    "name" : "Elle Meyer",
+    "telegram" : "@Ellee",
+    "email" : "werner@example.com",
+    "response" : "0",
+    "attendance" : "1",
+    "toHelp" : "false"
+  }, {
+    "name" : "Fiona Kunz",
+    "telegram" : "@FionaK",
+    "email" : "lydia@example.com",
+    "response" : "1",
+    "attendance" : "5",
+    "toHelp" : "false"
+  }, {
+    "name" : "George Best",
+    "telegram" : "@GeorgeBest",
+    "email" : "anna@example.com",
+    "response" : "1",
+    "attendance" : "4",
+    "toHelp" : "false"
+  } ],
+  "questions" : [ {
+    "description" : "What's the difference between composition and aggregation?",
+    "isImportant" : "false"
+  }, {
+    "description" : "Why are association roles used?",
+    "isImportant" : "true"
+  } ],
+  "tutorials" : [ {
+    "group" : "T08",
+    "content" : "UML Diagrams",
+    "time" : "2022-10-01 0800",
+    "status" : false
+  }, {
+    "group" : "T09",
+    "content" : "Developer Guide",
+    "time" : "2022-10-01 0900",
+    "status" : false
+  }, {
+    "group" : "T10",
+    "content" : "Defensive Coding",
+    "time" : "2022-11-02 1300",
+    "status" : true
+  }, {
+    "group" : "T11",
+    "content" : "Coding Standards",
+    "time" : "2022-10-02 0730",
+    "status" : true
+  }, {
+    "group" : "T12",
+    "content" : "Design Considerations",
+    "time" : "2022-09-04 0900",
+    "status" : false
+  }, {
+    "group" : "T09",
+    "content" : "Developer Guide",
+    "time" : "2022-10-09 0900",
+    "status" : true
+  } ]
+}

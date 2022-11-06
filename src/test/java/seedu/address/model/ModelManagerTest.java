@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.TypicalTutorials.TUTORIAL1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,6 +87,36 @@ public class ModelManagerTest {
     public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
+    }
+
+    @Test
+    public void hasStudent_deletedStudentNotInAddressBook_returnsFalse() {
+        modelManager.addStudent(ALICE);
+        modelManager.deleteStudent(ALICE);
+        assertFalse(modelManager.hasStudent(ALICE));
+    }
+
+    @Test
+    public void getFilteredTutorialList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTutorialList().remove(0));
+    }
+
+    @Test
+    public void hasTutorial_tutorialNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTutorial(TUTORIAL1));
+    }
+
+    @Test
+    public void hasTutorial_tutorialInAddressBook_returnsTrue() {
+        modelManager.addTutorial(TUTORIAL1);
+        assertTrue(modelManager.hasTutorial(TUTORIAL1));
+    }
+
+    @Test
+    public void hasTutorial_deletedTutorialNotInAddressBook_returnsFalse() {
+        modelManager.addTutorial(TUTORIAL1);
+        modelManager.deleteTutorial(TUTORIAL1);
+        assertFalse(modelManager.hasTutorial(TUTORIAL1));
     }
 
     @Test
