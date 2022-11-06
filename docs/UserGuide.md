@@ -21,7 +21,7 @@ title: Modtrekt User Guide
         - [cd module command](#entering-a-module-cd)
         - [exit module command](#exiting-a-module-cd)
         - [done module command](#marks-a-module-as-done-done-module)
-        - [undone module command](#marks-undone-a-module-undone-module)
+        - [undone module command](#marks-a-module-as-undone-undone-module)
         - [list module command](#listing-all-modules-list-module)
         - [edit module command](#editing-modules-edit-module)
     - [Tasks](#tasks)
@@ -312,7 +312,7 @@ Sample execution of command `done module CS2100`:
 
 <div style="page-break-after: always;"></div>
 
-#### Marks undone a module: `undone module`
+#### Marks a module as undone: `undone module`
 
 Marks a module as undone.
 
