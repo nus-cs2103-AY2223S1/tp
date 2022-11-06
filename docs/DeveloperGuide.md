@@ -430,35 +430,41 @@ The following activity diagram summarizes what happens when a user executes a pi
 A key functionality of DevEnable is the ability to find projects, issues and clients by searching for specific 
 keywords in different attributes of these entities. The command word for finding will be `project`, `issue`, or 
 `client`, depending on which entity it being edited. This is followed by the flag `-f`, representing a Find command.
-Next, it is followed by a series of prefixes-value pairs, one compulsory pair for identifying the entity to be edited, and at least one pair indicating the fields to be edited.
-When a user enters a valid Edit command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance and calls the `ProjectCommandParser#parse`,
-`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being edited. Within this method, the flag `-e` will be detected, calling `ProjectCommandParser#parseEditProjectCommand`,
-`IssueCommandParser#parseEditIssueCommand`, or `ClientCommandParser#parseEditClientCommand`, depending on which entity is edited, which checks for input and prefix-pair validity with methods in `ParserUtil`.
-Finally, the parsed arguments are passed into and returned in an instance of the Edit Command entity and the `EditProjectCommand#execute`, `EditIssueCommand#execute`, or `EditClientCommand#execute` is called depending on
-which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
+Next, it is followed by a series of prefixes-value pairs, least one which is compulsory, representing the fields and 
+keywords to search and thereby identifying the entity to be found. When a user enters a valid Find command in the 
+interface,`AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance and calls 
+the `ProjectCommandParser#parse`, `IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on 
+which entity is being found. Within this method, the flag `-f` will be detected, calling 
+`ProjectCommandParser#parseFindProjectCommand`, `IssueCommandParser#parseFindIssueCommand`, or 
+`ClientCommandParser#parseFindClientCommand`, depending on which entity is found, which checks for input and 
+prefix-pair validity with methods in `ParserUtil`. Finally, the parsed arguments are passed into and returned in an 
+instance of the Find Command entity and the `FindProjectCommand#execute`, `FindIssueCommand#execute`, or 
+`FindClientCommand#execute` is called depending on which entity is found, which retrieves the respective entity from 
+its entity list in the system, searches for the keywords the fields of the entity, matches it so as to filter the 
+entities with such fields, and have the UI display the updated filtered entity list.
 
-#### Edit Project Command
-Compulsory prefix: p/<valid project id>
-Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
+#### Find Project Command
+Optional prefixes (at least one to be included): n/<valid name>, p/<valid project id>, c/<valid client id>, r/<valid 
+repository>, l/<valid client name>
+Example Use: `project -f p/1 n/DevEnable c/2 r/Jeffrey/tp l/Jeffrey`
 
-#### Edit Issue Command
-Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
-Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+#### Find Issue Command
+Optional prefixes (at least one to be included): t/<valid title>, s/<valid status>, u/<valid urgency>, n/<valid project 
+name>, p/<valid project id>, i/<valid issue id>
+Example Use: `issue -f t/Documentation s/Incomplete u/LOW n/DevEnable p/1 i/3`
 
-#### Edit Client Command
-Compulsory prefix: c/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
-Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
+#### Find Client Command
+Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, e/<valid email>, m/<valid 
+client mobile>
+Example Use: `client -f n/BenTen c/1 m/12345678 e/Ben10@gmail.com`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
-Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
-![AddSequenceDiagram](images/EditSequenceDiagram.png)
+Example: `client -f n/Harry`
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 #### Design considerations:
 
-**Aspect: Editing of entity fields:**
+**Aspect: Searching for keywords entity fields:**
 
 **Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
