@@ -163,11 +163,12 @@ Initially, FoodRem only contains the following items:
 > Deletes a tag that exists in FoodRem
 
 ```warning
-There is no additional confirmation for deleting a tag that is in use. Deleting a tag that is already in use will also untag the items under that tag.
+* There is **no** additional confirmation for deleting a tag that is in use
+* Deleting a tag that is already in use will also untag the items under that tag
 ```
 
 ```tip
-You might find the [Filtertag Command](#filter-by-a-tag-filtertag) useful to check that a tag is not in use before deleting it. 
+You might find the abovementioned [Filtertag Command](#filter-by-a-tag-filtertag) useful to check that a tag is not in use before deleting it. 
 ```
 
 **Example:**
