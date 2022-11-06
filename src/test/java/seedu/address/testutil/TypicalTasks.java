@@ -36,4 +36,7 @@ public class TypicalTasks {
     public static final Task TASK_2_DETAILS = new Task(new TaskName("task 123"),
             TYPICAL_MEMBERS_CARL, false,
             LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+    public static final Task TASK_MARKED = new Task(new TaskName("task"),
+            List.of(), true, null);
 }
