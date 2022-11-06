@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import swift.model.tag.Tag;
 
 public class TaskNameTest {
 
