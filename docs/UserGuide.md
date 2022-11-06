@@ -8,7 +8,7 @@ This document contains everything you need to know about TruthTable.
 ## About TruthTable
 
 TruthTable is a **desktop application** that enables team leaders to **manage their software
-engineering teams** in one application.
+engineering teams** using a single application.
 
 TruthTable is **optimised for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
 the benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
@@ -27,19 +27,19 @@ Click [here](#getting-started) to get started with TruthTable.
 ### Too many cooks spoil the Truth
 
 Managing project documents and information has always been an annoying task to do. Besides the multitude of
-links and slides created by the team, you may be using task management applications to track your team's
-progress as well. This is where TruthTable comes in.
+links and slides created by your team, you may be using task management applications to track your team's progress as 
+well. This is where TruthTable comes in.
 
-TruthTable allows you to **collate and organise all your tasks**, links, and member information all in one spot.
+TruthTable allows you to collate and organise your tasks, links, and members' information **all in one place**.
 
 ### Seeing is believing
 
 It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this
-through its ergonomic user interface.
+through its clean and comprehensive user interface.
 
 At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**.
 
-TruthTable allows you to see which members are assigned to the tasks, enabling you to **delegate work in a fair and
+TruthTable allows you to see which members are assigned to which tasks, enabling you to **delegate work in a fair and
 equitable manner**.
 
 ### Built for convenience and speed
@@ -55,15 +55,17 @@ switching.
 
 TruthTable's command syntax is actually very similar to other command line applications like
 [git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/)!
+
+Hence, you will become familiar with TruthTable's commands in no time.
 </div>
 
 ## Using This Guide
 
-If you are a software engineering team leader looking to get started with TruthTable, make sure that you have the 
+If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the 
 [pre-requisites installed](#getting-started).
 
 This document will also guide you on how to 
-[migrate your existing project information onto TruthTable](#migrating-to-truthtable), and familiarise you with all 
+[migrate your existing project information onto TruthTable](#migrating-to-truthtable), and get familiar with all 
 of TruthTable's [features](#key-features-of-truthtable). 
 
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
@@ -124,7 +126,7 @@ The file can be located under the "Assets" section of the page as seen in the im
 appear in a few seconds. We have also added some sample data for you to play around and familiarise yourself with 
    TruthTable's [features](#commands)! ![Ui](images/Ui.png)
 
-4. Before we dive into TruthTable's features, make sure you understand how to 
+4. Before we dive into TruthTable's features, let's try and understand how to 
 [navigate the application](#navigating-truthtables-application-interface) first.
 
 [Back to Table of Contents](#table-of-contents)
@@ -145,33 +147,33 @@ components are numbered, and their names and descriptions will be displayed in a
 ![Teams Section](images/TeamsSection.png)
 
 [//]: # (TODO: reference to team explanation / why at least 1 will always appear)
-This section displays all the teams that you have created in TruthTable. Only the names of each team is listed.  
+This section displays the names of all the teams that you have created in TruthTable. Only the names of each team 
+is listed.  
 
-| Number | Component | Description                                    |
-|--------|-----------|:-----------------------------------------------|
-| 1      | Index     | The index of the team in the list of all teams |  
-| 2      | Name      | The name of the team at the specified index    |
-
+| Number | Component       | Description                                    |
+|--------|-----------------|:-----------------------------------------------|
+| 1      | [Index](#index) | The index of the team in the list of all teams |  
+| 2      | Name            | The name of the team at the specified index    |
 
 ### Current Team Section
 
 ![Current Team Section](images/CurrentTeamSection.png)
 
-This section contains information about your current team. It displays the currently selected team, team description, 
-links, tasks, and members related to said team.
+This section contains information about your current team. It displays the currently selected team, along with the 
+team description, links, tasks, and members related to said team.
 
-| Number | Component                 | Description                                                                                                   |
-|--------|---------------------------|:--------------------------------------------------------------------------------------------------------------|
-| 1      | Selected Team Name        | The name of the team currently being selected                                                                 |  
-| 2      | Selected Team Description | The description of the team at the specified index                                                            |
-| 3      | Link Name                 | The name of a link related to the selected team                                                               |
-| 4      | Member Index              | The index of a member in the team's list of members                                                           |
-| 5      | Member Name               | The name of a member at the specified member index                                                            |
-| 6      | Task Index                | The index of a task in the team's list of tasks                                                               |
-| 7      | Task Name                 | The name of a task at the specified task index                                                                |
-| 8      | Task Assignee             | The name of the member assigned to the task                                                                   |
-| 9      | Task Completion Status    | The completion status of a task, `[X]` is displayed if task is completed, else `[ ]` is displayed             |
-| 10     | Task Completion Rate      | The number of tasks completed is displayed, along with its relative <br/>percentage to total number of tasks. |
+| Number | Component              | Description                                                                                                                     |
+|--------|------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
+| 1      | Team Name              | The name of the selected team                                                                                                   |  
+| 2      | Team Description       | The description of the selected team                                                                                            |
+| 3      | Link Name              | The name of a link related to the selected team                                                                                 |
+| 4      | Member [Index](#index) | The index of a member in the team's list of members                                                                             |
+| 5      | Member Name            | The name of a member at the specified member index                                                                              |
+| 6      | Task [Index](#index)   | The index of a task in the team's list of tasks                                                                                 |
+| 7      | Task Name              | The name of a task at the specified task index                                                                                  |
+| 8      | Task Assignee          | The name(s) of the member(s) assigned to the task                                                                               |
+| 9      | Task Completion Status | The completion status of a task. `[X]` is displayed if task is completed, whereas `[ ]` is displayed if the task is incomplete. |
+| 10     | Task Completion Rate   | The number (and percentage) of tasks that have been completed by the selected team.                                             |
 
 ### Persons Section
 
@@ -180,15 +182,13 @@ links, tasks, and members related to said team.
 This section displays the names, phone number, email, address, and tags of all persons that you have created in 
 TruthTable. This section is also known as the "Contacts" section.
 
-| Number | Component    | Description                                            |
-|--------|--------------|--------------------------------------------------------|
-| 1      | Index        | The index of a person in all the persons in TruthTable |
-| 2      | Name         | The name of a person at a specific index               |
-| 3      | Tags         | The tags associated with a person                      |
-| 4      | Phone Number | The phone number of a person                           |
-| 5      | Email        | The email address of a person                          |
-| 6      | Address      | The address of a person                                |
-
+| Number | Component       | Description                                |
+|--------|-----------------|--------------------------------------------|
+| 1      | [Index](#index) | The index of a person in TruthTable        |
+| 2      | Name            | The name of the person at a specific index |
+| 3      | Tags            | The tags associated with a person          |
+| 4      | Phone Number    | The phone number of a person               |
+| 5      | Email           | The email address of a person              |
 
 ### Command Section
 
@@ -215,7 +215,7 @@ may seem daunting.
 
 But fret not! This section will cover what all these terms actually mean. 
 
-While you're going through this section, don't worry too much about memorising the details for every "command", 
+While you're going through this section, don't worry too much about memorising the details of every "command", 
 as they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
 designed to be **easy to remember** and **natural**, so you will get up to speed in no time! 
 
@@ -224,8 +224,8 @@ designed to be **easy to remember** and **natural**, so you will get up to speed
 All instructions are executed through **commands**. Each command can have **flags specified after the command**, 
 which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **parameters** specified after it. But, not all commands
-require flags to **appear before parameters**.
+For each of these flags, there may be **parameters** specified after it. But, **not all commands**
+require flags to appear before parameters.
 
 Note that flags and parameters always **come after the command**.
 
@@ -245,10 +245,10 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has their own flags and parameters, but it is not feasible for you to remember them all. 
+Every command in TruthTable has their own flags and parameters, you don't have to remember all of them.
 
-To address this, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags 
-and parameters for the command. Alternatively, you can also refer to this user guide to find out the specifications for 
+Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags
+and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of
 any command.
 
 #### Example Command Help Message: `add person --help`
@@ -259,7 +259,7 @@ Here's a summary of what each highlighted section represents.
 
 | Number | Name                            | Special Syntax         | Remarks                                                                        |
 |--------|---------------------------------|------------------------|:-------------------------------------------------------------------------------|
-| 1      | Command                         | -                      | Strictly alphabets only (all commands can be found [here](#command-summary))   |
+| 1      | Command                         | -                      | Only alphabets and spaces (all commands can be found [here](#commands))        |
 | 2      | Optional Flag with no Parameter | `[-flag]`              | -                                                                              |
 | 3      | Optional Flag with Parameters   | `[-flag=<parameters>]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
 | 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
@@ -303,7 +303,7 @@ For instance,
 <div markdown="block" class="alert alert-primary">
 **:bulb: Flags with multiple parameters**
 
-If a flag is displayed with `...` behind it, this means that the flag can take in more than 1 parameter.
+If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
 
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
@@ -419,7 +419,7 @@ the help message that TruthTable displays whenever you run a command with `-h`.
 
 ### Commands to Manage Persons
 
-Summary of commands can be found [here](#summary-of-person-commands)
+Summary of the commands to manage persons can be found [here](#summary-of-person-commands)
 
 #### Creating a new person: `add person`
 
@@ -502,12 +502,14 @@ Deletes the specified person from TruthTable.
 - `d p`
 
 **Examples:**
-* `list persons` followed by `delete person 2` deletes the 2nd person in TruthTable.
-* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
+* [`list persons`](#listing-all-persons-list-persons) followed by `delete person 2` deletes the 
+2nd person in TruthTable.
+* [`find person Betsy`](#finding-a-person-find-person) followed by `delete person 1` deletes the 1st person in the 
+results of the `find person` command.
 
 #### Finding a person: `find person`
 
-Finds person whose names contain any of the given keywords.
+Finds all persons whose names contain any of the given keywords.
 
 **Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
@@ -530,7 +532,9 @@ Finds person whose names contain any of the given keywords.
 **Examples:**
 * `find person John` returns `john` and `John Doe`
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find person alex david'](images/findAlexDavidResult.png)
+ 
+For instance, the output of running `find person alex david` is shown below:
+![result for 'find person alex david'](images/findPersonAlexDavidResult.png)
 
 #### Listing all persons: `list persons`
 
@@ -549,12 +553,12 @@ Shows a list of all persons in TruthTable.
 
 ### Commands to Manage Members
 
-Summary of commands can be found [here](#summary-of-member-commands)
+Summary of the commands to manage members can be found [here](#summary-of-member-commands)
 
 #### Adding a new member to the team: `add member`
 
-Adds a new team member to the user’s currently selected team. Will throw an error if the member already exists in 
-the team.
+Adds a new team member to the user’s currently selected team. If the member already exists in 
+the team, an error message will be displayed.
 
 **Format:** `add member [-h] <PERSON_INDEX>`
 
@@ -600,8 +604,8 @@ Delete a team member from the user’s team.
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** You can only find members using **either** emails or names. This means that you 
-should not use both `-n` and `-e` in the `find member` command. 
+:information_source: **Note:** You can find members using **either** emails or names. This means that you 
+should **not** use both `-n` and `-e` in the `find member` command. 
 </div>
 
 **Format:** `find member [-h] (-n=<MEMBER_NAME_KEYWORDS> | -e=<MEMBER_EMAIL_KEYWORDS>)`
@@ -655,11 +659,11 @@ Sorts all members in the current team by name and displays them in the member li
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-| Order Value | Description                                                                  |
-|-------------|------------------------------------------------------------------------------|
-| `asc`       | Sorts team members in **alphabetical** order (based on their names).         |
-| `dsc`       | Sorts team members in **reverse alphabetical** order (based on their names). |
-| `res`       | **Resets** the order of the team members shown                               |
+| Order Value | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| `asc`       | Sorts team members in **alphabetical** order (based on their names)         |
+| `dsc`       | Sorts team members in **reverse alphabetical** order (based on their names) |
+| `res`       | **Resets** the order of the team members shown back to default (unsorted)   |
 
 **Command Aliases:**
 - `sort m`
@@ -673,7 +677,7 @@ Sorts all members in the current team by name and displays them in the member li
 
 ### Commands to Manage Teams
 
-Summary of commands can be found [here](#summary-of-team-commands)
+Summary of the commands to manage teams can be found [here](#summary-of-team-commands)
 
 #### Creating a new team: `add team`
 
@@ -766,7 +770,7 @@ displayed if team does not exist.
 
 ### Commands to Manage Tasks
 
-Summary of commands can be found [here](#summary-of-task-commands)
+Summary of the commands to manage tasks can be found [here](#summary-of-task-commands)
 
 #### Add task to team: `add task`
 
@@ -794,13 +798,13 @@ Add a new task to your current team. Each task can have multiple assignees and a
 
 * `add task "Create PR"` will add a task with the name "Create PR", to the current team's task list.
 * `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assigned to the first 
-member in the members list with a deadline of 2nd Dec 2022 23:59, to the current team's task list.
+member of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
 * `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assigned to the first 
-and third member in your members list with a deadline of 2nd Dec 2022 23:59, to the current team's task list.
+and third members of your team's members list, and a deadline of 2nd Dec 2022 23:59, to the current team's task list.
 
 #### Edit task in team: `edit task`
 
-Edits a specified task in the current team. 
+Edits a specified task in the current team's task list.
 
 **Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
 
@@ -862,7 +866,7 @@ Delete an existing task from the team at the given task index.
 
 #### Finding a task: `find task`
 
-Find all tasks in the current team whose names matches any of the given keywords.
+Find all tasks in the current team's task list whose names matches any of the given keywords.
 
 To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
 
@@ -949,7 +953,7 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 
 - `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 Dec 2023 23:59
 
-#### Assign task to team member: `assign task`
+#### Assign a task to team member: `assign task`
 
 Assign an existing task to a team member in the user’s team.
 
@@ -962,6 +966,7 @@ Assign an existing task to a team member in the user’s team.
 
 * `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
+* To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
 **Command Aliases:**
 - `assign ta`
@@ -974,7 +979,7 @@ Assign an existing task to a team member in the user’s team.
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
 - `assign task 2 -a 1 2` will assign the second task on the task list to the first and second member in the team.
 
-#### Assign task to random team member: `assign random`
+#### Assign a task to random team member: `assign random`
 
 Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty
 or if the task has already been assigned to all members of the team.
@@ -1051,11 +1056,11 @@ Sorts all tasks in the current team by name and displays them in the task list.
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-| Order Value | Description                                                           |
-|-------------|-----------------------------------------------------------------------|
-| `asc`       | Sorts tasks in **alphabetical** order (based on their names).         |
-| `dsc`       | Sorts tasks in **reverse alphabetical** order (based on their names). |
-| `res`       | **Resets** the order of the tasks shown                               |
+| Order Value | Description                                                          |
+|-------------|----------------------------------------------------------------------|
+| `asc`       | Sorts tasks in **alphabetical** order (based on their names)         |
+| `dsc`       | Sorts tasks in **reverse alphabetical** order (based on their names) |
+| `res`       | **Resets** the order of the tasks shown back to default (unsorted)   |
 
 **Command Aliases:**
 - `sort ta`
@@ -1083,7 +1088,7 @@ View the number of tasks assigned to each member in the team.
 
 ### Commands to Manage Links / URLs
 
-Summary of commands can be found [here](#summary-of-link-commands)
+Summary of the commands to manage links can be found [here](#summary-of-link-commands)
 
 #### Add a new link: `add link`
 
@@ -1153,11 +1158,11 @@ Delete the specified link from the currently selected team.
 
 ### General Commands
 
-Summary of commands can be found [here](#summary-of-general-commands)
+Summary of the general commands can be found [here](#summary-of-general-commands)
 
 #### Clearing all entries: `clear`
 
-Deletes all the people from the application.
+Deletes everything from the application, including persons, teams, tasks, links, and member information.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution: This action is irreversible!**
 </div>
@@ -1198,7 +1203,7 @@ Closes the program after 3 seconds.
 
 #### Viewing help: `help`
 
-Shows the URL to this help page, which will list all available commands.
+Shows the available commands in TruthTable as well as URL to this help page at the bottom.
 
 **Format:** `help [-h]`
 
@@ -1271,8 +1276,8 @@ the data of your previous TruthTable home folder.
 | Mark tasks as done                       | `mark`          | `m`                             |
 | Unmark tasks as done                     | `unmark`        | `u`                             |
 | Set Deadline for task                    | `set deadline`  | `s d`, `set d`, `s deadline`    |
-| Assign task to team member               | `assign task`   | `as ta`, `assign ta`, `as task` |
-| Assign task to random team member        | `assign random` | `as r`, `assign r`, `as random` |
+| Assign a task to team member             | `assign task`   | `as ta`, `assign ta`, `as task` |
+| Assign a task to random team member      | `assign random` | `as r`, `assign r`, `as random` |
 | Filter tasks by team member              | `tasksof`       | `to`                            |
 | List tasks in team                       | `list tasks`    | `l ta`, `list ta`, `l tasks`    |
 | Sort tasks                               | `sort tasks`    | `so ta`, `sort ta`, `so tasks`  |
@@ -1361,8 +1366,8 @@ the data of your previous TruthTable home folder.
 | Mark tasks as done                       | `mark [-h] <TASK_INDEX>`<br/> e.g. `mark 1`                                                                                                      |
 | Unmark tasks as done                     | `unmark [-h] <TASK_INDEX>`<br/> e.g. `unmark 1`                                                                                                  |
 | Set Deadline for task                    | `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`<br/> e.g. `set deadline 1 2023-12-25 23:59`                                                     |
-| Assign task to team member               | `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`<br/> e.g. `assign task 1 -a 1`                            |
-| Assign task to random team member        | `assign random [-h] <TASK_INDEX>`<br/> e.g. `assign random 1`                                                                                    |
+| Assign a task to team member             | `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`<br/> e.g. `assign task 1 -a 1`                            |
+| Assign a task to random team member      | `assign random [-h] <TASK_INDEX>`<br/> e.g. `assign random 1`                                                                                    |
 | Filter tasks by team member              | `tasksof [-h] <MEMBER_INDEX>`<br/> e.g. `tasksof 1`                                                                                              |
 | List tasks in team                       | `list tasks [-h] [-c] [-i]`<br/> e.g. `list tasks -i`                                                                                            |
 | Sort tasks                               | `sort tasks [-h] <ORDER>`<br/> e.g. `sort tasks asc`                                                                                             |
