@@ -129,7 +129,12 @@ Here are some examples of what deadline formats are accepted:
 * "this tuesday 05:00" or "this tuesday 0500" will format it to the coming tuesday, 5.00am
 * "may 27th" will format it to the 27th of may of the current year, 11.59pm
 
-Due to the library's limitations, "6/4/2022" will format it to 4 June.
+The following dates and times are known **not to work**:
+* "6/4/2022" will be read as 4 June.
+* "11.30pm" will not be understood. ("11:30pm" is understood)
+* "2022-02-31" will be read as 3 March.
+
+We will attempt to resolve these issues in a future version.
 
 </div>
 
