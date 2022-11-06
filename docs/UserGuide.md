@@ -441,6 +441,9 @@ Format: `view t/ENTRY_TYPE`
 
 You went on a shopping spree today. Find out how today's expenditure compared to the rest of the month.
 
+You were tipped for your exceptional service as a part-time server today. Find out how today's income weighs up to the
+rest of the month.
+
 Format: `view t/ENTRY_TYPE mo/MONTH`
 
 | Input              | Explanation                                                                              |
