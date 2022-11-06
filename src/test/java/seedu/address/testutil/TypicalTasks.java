@@ -1,5 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.TEST_CATEGORY_FRONTEND;
+import static seedu.address.logic.commands.CommandTestUtil.TEST_CATEGORY_OTHERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_B;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +36,16 @@ import seedu.address.model.task.TaskName;
  */
 public class TypicalTasks {
 
+    // Manually added - Task's details found in {@code CommandTestUtil}
+    public static final Task TASK_AMY =
+            new TaskBuilder().withName(VALID_TASK_NAME_A).withDescription(new Description(VALID_DESCRIPTION_A))
+                    .withCategory(TEST_CATEGORY_FRONTEND).withPriority(PriorityEnum.LOW)
+                    .withDeadline(LocalDate.parse(VALID_DEADLINE_A)).withStatus(false).build();
+    public static final Task TASK_BOB =
+            new TaskBuilder().withName(VALID_TASK_NAME_B).withDescription(new Description(VALID_DESCRIPTION_B))
+                    .withCategory(TEST_CATEGORY_OTHERS).withPriority(PriorityEnum.MEDIUM)
+                    .withDeadline(LocalDate.parse(VALID_DEADLINE_B)).withStatus(true).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
     private static final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private static final TaskCategory testCat2 = new TaskCategory(TaskCategoryType.BACKEND);
@@ -37,19 +56,19 @@ public class TypicalTasks {
             new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
 
 
-    public static final Task ALICE = new Task(new TaskName("A"),
+    public static final Task TASK_ALICE = new Task(new TaskName("A"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task BENSON = new Task(new TaskName("B"),
+    public static final Task TASK_BENSON = new Task(new TaskName("B"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task CARL = new Task(new TaskName("C"),
+    public static final Task TASK_CARL = new Task(new TaskName("C"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task DANIEL = new Task(new TaskName("D"),
+    public static final Task TASK_DANIEL = new Task(new TaskName("D"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task ELLE = new Task(new TaskName("E"),
+    public static final Task TASK_ELLE = new Task(new TaskName("E"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task FIONA = new Task(new TaskName("F"),
+    public static final Task TASK_FIONA = new Task(new TaskName("F"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task GEORGE = new Task(new TaskName("G"),
+    public static final Task TASK_GEORGE = new Task(new TaskName("G"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
 
@@ -59,11 +78,6 @@ public class TypicalTasks {
     public static final Task IDA = new Task(new TaskName("I"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
-    // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new Task(new TaskName("Amy"),
-            testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    public static final Task BOB = new Task(new TaskName("Bob"),
-            testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
     //added for filterTask testing
     public static final Task HILLARY = new Task(new TaskName("H"),
@@ -88,7 +102,8 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILLARY, IVY));
+        return new ArrayList<>(Arrays.asList(TASK_ALICE, TASK_BENSON, TASK_CARL, TASK_DANIEL, TASK_ELLE, TASK_FIONA,
+                TASK_GEORGE, HILLARY, IVY));
     }
 
 }

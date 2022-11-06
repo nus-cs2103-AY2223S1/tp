@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASK_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.BENSON;
-import static seedu.address.testutil.TypicalTasks.CARL;
-import static seedu.address.testutil.TypicalTasks.DANIEL;
-import static seedu.address.testutil.TypicalTasks.ELLE;
-import static seedu.address.testutil.TypicalTasks.FIONA;
-import static seedu.address.testutil.TypicalTasks.GEORGE;
 import static seedu.address.testutil.TypicalTasks.HILLARY;
 import static seedu.address.testutil.TypicalTasks.IVY;
+import static seedu.address.testutil.TypicalTasks.TASK_ALICE;
+import static seedu.address.testutil.TypicalTasks.TASK_BENSON;
+import static seedu.address.testutil.TypicalTasks.TASK_CARL;
+import static seedu.address.testutil.TypicalTasks.TASK_DANIEL;
+import static seedu.address.testutil.TypicalTasks.TASK_ELLE;
+import static seedu.address.testutil.TypicalTasks.TASK_FIONA;
+import static seedu.address.testutil.TypicalTasks.TASK_GEORGE;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -106,7 +106,8 @@ public class FilterTaskCommandTest {
                 testFilterInfo);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK_ALICE, TASK_BENSON, TASK_CARL, TASK_DANIEL, TASK_ELLE, TASK_FIONA, TASK_GEORGE),
+                model.getFilteredTaskList());
     }
 
     @Test
@@ -151,8 +152,8 @@ public class FilterTaskCommandTest {
                 testFilterInfo);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA,
-                GEORGE, HILLARY, IVY), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK_ALICE, TASK_BENSON, TASK_CARL, TASK_DANIEL, TASK_ELLE, TASK_FIONA,
+                TASK_GEORGE, HILLARY, IVY), model.getFilteredTaskList());
     }
 
     @Test
@@ -169,6 +170,7 @@ public class FilterTaskCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

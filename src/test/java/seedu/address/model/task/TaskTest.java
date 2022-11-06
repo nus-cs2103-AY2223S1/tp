@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.TASK_ALICE;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,29 +46,29 @@ public class TaskTest {
     @Test
     public void isSameTask() {
         // same object -> returns true
-        assertTrue(ALICE.isSameTask(ALICE));
+        assertTrue(TASK_ALICE.isSameTask(TASK_ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameTask(null));
+        assertFalse(TASK_ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
         Task task1 = new Task(new TaskName("A"),
                 testDisc2, testPriority2, testCat2, testDeadline2, testPerson2, false);
-        assertTrue(ALICE.isSameTask(task1));
+        assertTrue(TASK_ALICE.isSameTask(task1));
 
         // different name, all other attributes same -> returns false
         Task task2 = new Task(new TaskName("B"),
                 testDisc, testPriority, testCat, testDeadline, testPerson, false);
-        assertFalse(ALICE.isSameTask(task2));
+        assertFalse(TASK_ALICE.isSameTask(task2));
 
         // name differs in case, all other attributes same -> returns false
         Task task3 = new Task(new TaskName("a"),
                 testDisc, testPriority, testCat, testDeadline, testPerson, false);
-        assertFalse(ALICE.isSameTask(task3));
+        assertFalse(TASK_ALICE.isSameTask(task3));
 
         // name has trailing spaces, all other attributes same -> returns false
         Task task4 = new Task(new TaskName("A   "),
                 testDisc, testPriority, testCat, testDeadline, testPerson, false);
-        assertFalse(ALICE.isSameTask(task4));
+        assertFalse(TASK_ALICE.isSameTask(task4));
     }
 }

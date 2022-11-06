@@ -273,11 +273,17 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
+
+        if ((otherTask.getPerson() == null && getPerson() != null)
+                || (otherTask.getPerson() != null && getPerson() == null)) {
+            return false;
+        }
+
         return otherTask.getName().equals(getName())
                 && otherTask.getCategory().equals(getCategory())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getPerson().equals(getPerson())
+                && (otherTask.getPerson() == null || otherTask.getPerson().equals(getPerson()))
                 && otherTask.getPriority().equals(getPriority())
                 && (otherTask.isDone() == (this.isDone()));
     }
