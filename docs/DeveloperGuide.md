@@ -797,7 +797,7 @@ Use case ends.
   
   Use case ends.
 
-**Use case: UC10 Rate the performance of an employee**
+**Use case: UC10 - Rate the performance of an employee**
 
 **MSS**
 
