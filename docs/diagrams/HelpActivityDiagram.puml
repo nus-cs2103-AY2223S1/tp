@@ -1,0 +1,18 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters help command;
+if () then ([Specified command not provided])
+    :Help window opens and shows
+    the general help message;
+    stop
+else ( [Specified command provided])
+    if () then ([Specified command exist])
+        :Help window opens and shows help for
+        the command with the general help message;
+        stop
+    else ([Specified command does not exist])
+        :Help window opens and shows invalid command
+        message with the general help message;
+        stop
+@enduml
