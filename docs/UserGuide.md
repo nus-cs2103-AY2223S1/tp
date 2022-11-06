@@ -3,44 +3,122 @@ layout: page
 title: User Guide
 ---
 
-SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect is also **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
+## 1. Welcome to SoConnect's User Guide!
 
-* Table of Contents
-{:toc}
+Here, you can find everything you need to know about **SoConnect**, the ultimate solution for your everyday contacts and tasks management headaches!
 
---------------------------------------------------------------------------------------------------------------------
+If you are an **<a href="#soc"> SoC </a> student**, you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing your tedious management tasks, so you can focus on **creating real friends and finishing schoolwork quickly**. 
 
-# Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-2. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your SoConnect.
-
-4. Double-click the file to start the app. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your SoConnect.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits SoConnect.
-
-6. Refer to the [Features](#features) below for details of each command.
+Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advanced user, this guide will solve all your problems, just like our app!
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+## 2. Table of Contents
 
-<div markdown="block" class="alert alert-info">
+<div class="toc-remove-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Introduction
+
+SoConnect is a **2-in-1 desktop app for managing contacts and tasks**. It is originally built to help <a href="#nus">NUS</a> SoC students stay better connected to their school life, in terms of social connections and school tasks.
+
+SoConnect leverages on the simplicity of Command Line Interface (<a href="#cli">CLI</a>) to optimize your productivity, while still maintaining user-friendliness through its Graphical User Interface (<a href="#gui">GUI</a>). If you can type fast, SoConnect can get your contact and task management work done faster than even the popular applications such as Microsoft People and To Do!
+
+Let's look at the overview of our main features. 
+
+### 3.1. Contact Management
+
+SoConnect allows you to store all your contact information, so that you no longer need to stress about forgetting someone. You can:
+1. Quickly **add, view, edit and delete** your contact.
+2. **Sort** your displayed contact list by name, email, address, phone number and tag.
+3. **Tag** specific people in your contact list.
+4. **Search** efficiently, just like using Google.
+5. What's more, we even let you **customise** how you want your contact list to be shown!
+
+### 3.2. Todo Management
+
+SoConnect helps you keep track of your <a href="#todo">todo</a> list, so that you can focus on finishing tasks quickly. You can:
+1. Quickly **add, view, edit and delete** your todo.
+2. **Filter** your todo according to deadline, tag and priority.
+3. **Tag** specific todo in your list, so that you can leverage on our Contact Management feature to find people who might be able to help you finish the task quickly!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Using This Guide
+
+### 4.1. Navigate Around
+
+If you are a first time user, we understand that you might be confused on how to even start up the application in the first place. Therefore, you can go to the [Installation](#5-installation) section to download SoConnect, if you have not done so.
+
+Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart) section, where we will cover the basics of using SoConnect.
+
+If you are a returning user, you can head over to the [Command Summary](#9-command-summary) section for a quick overview of all commands in SoConnect. Alternatively, you can also read the detailed explanation of each command in the [Commands](#7-commands) section.
+
+Have a question regarding the app? You might find the answer you are looking for in the [FAQ](#8-faq) section.
+
+You can also refer to the [Glossary](#10-glossary) section for definitions of commonly used terms in SoConnect.
+
+### 4.2. Icons
+
+In order to help you pay attention, we have used some icons along with highlighted text throughout this guide.
+
+| Icon                          | Meaning                                       |
+|-------------------------------|-----------------------------------------------|
+| **:memo: Note**               | You should pay attention to this.             |
+| **:bulb: Tip**                | You might find this useful.                   |
+| **:information_source: Info** | You can get additional information from this. |
+| **:warning: Warning**         | You should be cautious about this.            |
+| **:rotating_light: Danger**   | You should pay **extra** attention to this.   |
+
+### 4.3. Formatting and Notation
+
+In case you are wondering why certain texts are styled differently, here are the meaning behind them:
+
+1. Text that are numbered and in purple font are headers which mark the beginning of a section or subsection of the guide.
+2. **Words in bold** are phrases that we want you to pay attention to.
+3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Installation
+
+### 5.1. How to Install
+
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) installed on your computer.
+2. Download the latest `SoConnect.jar` file from our [release page](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
+3. Copy the file to an empty folder you want to use as the _home folder_ for SoConnect. You can find more on how to do that [here](https://www.digitaltrends.com/computing/how-to-create-folder-on-desktop/#:~:text=Create%20a%20folder%20on%20a%20Windows%20desktop,-Creating%20a%20folder&text=Step%201%3A%20Right%2Dclick%20a,a%20name%20of%20your%20own.).
+4. Double-click the file to start SoConnect. You can head over to the [Quickstart](#6-quickstart) section for a guided tutorial on how to use the app.
+
+<div markdown="block" class="alert alert-primary">
+**:memo: Note** <br/> <br/> 
+Empty folder is needed because all additional storage data and files will be saved in this folder.
+</div>
+
+### 5.2. Operating Systems
+
+SoConnect currently can run smoothly on these operating systems:
+
+1. Ubuntu
+2. MacOS
+3. Windows
+
+You can download and use [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases) on any of the above operating systems. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Quickstart
+
+Upon completing this section, you should be able to explore SoConnect on your own. We will start by explaining [different parts of the GUI](#61-layout), [key definitions](#62-key-definitions), [command format](#63-command-format), as well as [trying out simple commands](#64-how-to-use-the-cli).
+
+### 6.1. Layout
+
+### 6.2. Key Definitions
+
+### 6.3. Command Format
 
 **:information_source: Notes about the command format:**<br>
 
@@ -63,11 +141,58 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 * `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
+### 6.4. How to Use the CLI
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Commands
+
+
+### 7.1. General Commands
+
+#### 7.1.1. Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<br>
+
+#### 7.1.2. Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<br>
+
+#### 7.1.3. Saving the data
+
+SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<br>
+
+#### 7.1.4. Editing the data file
+
+SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.<br>
+SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.<br>
+Advanced users are welcome to update data directly by editing these data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
 </div>
 
-## Contact Management Features
+<br>
 
-### Adding a contact: `add`
+#### 7.1.5. Archiving data files `[coming in v2.0]`
+
+<br>
+
+### 7.2. Contact Management Commands
+
+#### 7.2.1. Adding a contact: `add`
 
 Adds a contact to your SoConnect.
 
@@ -86,7 +211,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-### Editing a contact : `edit`
+<br>
+
+#### 7.2.2. Editing a contact : `edit`
 
 Edits an existing contact in your SoConnect.
 
@@ -100,13 +227,17 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd contact to be `Betsy Crower`.
 
-### Listing all contacts : `list`
+<br>
+
+#### 7.2.3. Listing all contacts : `list`
 
 Shows a list of all contacts in your SoConnect.
 
 Format: `list`
 
-### Searching for a contact: `search`
+<br>
+
+#### 7.2.4. Searching for a contact: `search`
 
 Search for contacts using partial information.
 
@@ -126,13 +257,13 @@ Example:
 * `search or t/friends t/family` returns all contacts tagged with either friends or family.
 * `search n/Johm` is supposed to return an empty result since there is no contact named `Johm` in the list of contacts, but now it will return contacts with names similar to that. For example, `John`.
 
-### Autocompleting search: `search`
+Autocompleting search: `search`
 
 Displays a list of search queries based on the current search query with the last parameter completed. The completed parameter will depend on the contacts that match the current search query. User can choose one of the search queries and perform the searching without having to type the full parameter.
 
-Format: Refer to the [`search`](#Search for a Contact) command format above.
+Format: Refer to the [`search`](#724-searching-for-a-contact-search) command format above.
 
-* This feature is only available when search command is entered (i.e. the command entered matches the [`search`](#Search for a Contact) format stated above).
+* This feature is only available when search command is entered (i.e. the command entered matches the [`search`](#724-searching-for-a-contact-search) format stated above).
 * Only the last parameter will be completed (e.g. `search and n/NAME p/PHONE`, only the last parameter `PHONE` will be completed).
 * The list of search queries will include the current search query.
 * No result will be displayed if there is no contact matches the current search query.
@@ -145,7 +276,9 @@ Example:
 * `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
 * `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
 
-### Sorting contacts : `sort`
+<br>
+
+#### 7.2.5. Sorting contacts : `sort`
 
 Sorts the list of contacts displayed by 1 or more parameter(s) chosen by you.
 
@@ -180,7 +313,9 @@ Example:
 * `sort t/!friend` sorts by the `friend` tag in reverse. (e.g. `Mike` appears before `David` who has the `friend` tag)
 * `sort t/friend n/` sorts by the `friend` tag first, followed by names. (e.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
-### Deleting a contact : `delete`
+<br>
+
+#### 7.2.6. Deleting a contact : `delete`
 
 Deletes the specified contact from your SoConnect.
 
@@ -192,193 +327,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-### Clearing all contacts : `clear`
+<br>
+
+#### 7.2.7. Clearing all contacts : `clear`
 
 Clears all contacts from your SoConnect.
 
 Format: `clear`
 
-## Tag Management Features
+<br>
 
-### Creating a Tag: `tag create`
+### 7.3. Todo Management Commands
 
-You can create a new `TAG` and add it into the tag list.
-
-Format: `tag create t/TAG`
-
-Steps to take:
-1. Input `tag create t/Test` into the Command box and press `Enter` on your keyboard. 
-2. You should now see `New Tag added: [Test]` in the Command result box just like the image below.
-
-(insert image of a successful creation of the `Test` tag)
-
-3. Great! You have successfully added the first `TAG` you have made. Now, you can start utilising the other tag features.
-
-### Adding a Tag to a Contact: `tag add`
-
-You can now add a `TAG` from the tag list to a contact.
-* `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
-
-Format: `tag add INDEX t/TAG`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact can have any number of tags. Add as many as you want.
-</div>
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be created first before you can add it into a contact.
-
-Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
-</div>
-
-Steps to take:
-1. Input `tag add 1 t/Test` into the Command box and press `Enter` on your keyboard.
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-
-This example is a follow-up of [`Creating a Tag`](#creating-a-tag-tag-create). Feel free to replace `1` and Test` with the contact index and tag of your choice.
-</div>
-
-2. You should now see `Tag added: [Test]` in the Command result box just like the image below.
-
-(insert image of a successful addition of the `Test` tag to contact `1`)
-
-3. Awesome! You have successfully added the `Test` tag to the first contact in your contact list.
-
-### Editing a Tag: `tag edit`
-
-If you make a mistake or want to update your tags, you can simply update them accordingly.
-
-Format: `tag edit t/TAG1 t/TAG2`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-
-* The new Tag must not have the same name as any other existing tags.
-* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
-
-</div>
-
-Steps to take:
-1. Input `tag edit t/Test t/Test2` into the Command box and press `Enter` on your keyboard.
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-
-This example is a follow-up of [`Adding a tag`](#adding-a-tag-to-a-contact-tag-add). Feel free to replace `Test` with any existing tag and `Test2` with a new name for the tag.
-</div>
-
-2. You should now see `Tag has changed from [Test] to [Test2]` in the Command result box. You can also refer to the Before and After comparison below. Within each contact, those with the `Test` tag, will now display `Test2` instead.
-
-Before:
-(insert image a contact with `Test` tag)
-
-After:
-(insert image of the same contact with `Test2` tag instead of `Test`)
-
-3. Fantastic! You have successfully changed the `Test` tag to the `Test2` tag.
-
-### Removing a Tag from a Contact: `tag remove`
-
-You can remove a tag from a contact.
-* `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
-
-Format: `tag remove INDEX t/TAG`
-
-Steps to take:
-1. Input `tag remove 1 t/Test2` into the Command box and press `Enter` on your keyboard.
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-
-This example is a follow-up of [`Editing a Tag`](#editing-a-tag-tag-edit). Feel free to replace `1` and `Test2` with the index of any contact and a tag of that contact.
-</div>
-
-2. You should now see `Tag removed: [Test2]` in the Command result box just like the image below.
-
-(insert image of contact `1` without the `Test2` tag)
-
-3. Nice! You have successfully removed a tag from a contact.
-
-### Deleting a Tag: `tag delete`
-
-You can delete a tag from the tag list.
-
-Format: `tag delete t/TAG`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
-</div>
-
-Steps to take:
-1. Input `tag delete t/Test2` in the Command box and press `Enter` on your keyboard.
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-
-This example is a follow-up of [`removing a Tag`](#removing-a-tag-from-a-contact-tag-remove). Feel free to replace `Test2` with any existing tag.
-</div>
-
-2. You should now see `Tag deleted: [Test2]` in the Command result box just like the image below.
-
-(insert successful deletion og `Test2` tag)
-
-3. Wonderful! You have successfully deleted a tag.
-
-### Viewing tags `[Coming soon in v1.5]`
-
-Congratulations on completing this section on Tag Management Features, you have successfully mastered the tag features! Refer to the [Command summary](#command-summary) for a quick reference to all tag commands. Let us move on to the [Customisation Features](#customisation-features).
-
-## Customisation Features
-
-### Customising order of details: `customise order`
-
-Customise the order of information shown in all contacts shown.
-
-Format: `customise order [t/] [p/] [e/] [a/]`
-
-* Name of contact will always be at the top of each contact and cannot have its order changed.
-* Information that can have its order changed: Tags, Phone Number, Email, Address.
-* Information that are not specified will be ordered last and follow the default order. (Tags > Phone Number > Email > Address)
-
-Example:
-
-* `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
-* `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
-
-### Hiding contact details: `customise hide`
-
-Hide certain information of all contacts displayed.
-
-Format: `customise hide [t/] [p/] [e/] [a/]`
-
-* Information that can be hidden: Tags, Phone Number, Email, Address.
-* After using the command, the information specified is hidden.
-* If the information specified is already hidden, it will stay hidden.
-
-Example:
-* `customise hide e/` The application no longer shows emails in the list of contacts.
-* `customise hide p/ t/` The application no longer shows phone numbers and tags in the list of contacts.
-
-### Showing contact details: `customise show`
-
-Show certain information of all contacts displayed.
-
-Format: `customise show [t/] [p/] [e/] [a/]`
-
-* Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
-* After using the command, the information specified is shown.
-* If the information specified is already shown, it will stay shown.
-* `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
-
-Example:
-* `customise show a/` The application now shows addresses in the list of contacts.
-* `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
-
-## Todo Management Features
-
-A [todo](#glossary-todo) is a task that needs completing. A todo consists of 
+A <a href="#todo">todo</a> is a task that needs completing. A todo consists of 
 1. a description
 2. a date for the deadline of the task
 3. the priority of the task 
@@ -392,7 +353,9 @@ A [todo](#glossary-todo) is a task that needs completing. A todo consists of
 
 </div>
 
-### Adding a todo: `todo add`
+<br>
+
+#### 7.3.1. Adding a todo: `todo add`
 
 Adds a todo to your SoConnect.
 
@@ -405,13 +368,15 @@ Examples:
 * `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
 * `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
 
-### Editing a todo : `todo edit`
+<br>
+
+#### 7.3.2. Editing a todo : `todo edit`
 
 Edits an existing todo in your SoConnect.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified [`INDEX`](#command-format-index).
+* Edits the todo at the specified [`INDEX`](#).
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
   * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
@@ -421,7 +386,9 @@ Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
 *  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
 
-### Deleting a todo : `todo delete`
+<br>
+
+#### 7.3.3. Deleting a todo : `todo delete`
 
 Deletes the specified todo from your SoConnect.
 
@@ -432,13 +399,17 @@ Format: `delete INDEX`
 Examples:
 * `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
 
-### Clearing all todos : `todo clear`
+<br>
+
+#### 7.3.4. Clearing all todos : `todo clear`
 
 Clears all todos from your SoConnect.
 
 Format: `todo clear`
 
-### Filtering todos shown : `todo show`
+<br>
+
+#### 7.3.5. Filtering todos shown : `todo show`
 
 Shows a filtered list of todos in your SoConnect.
 
@@ -457,61 +428,147 @@ Examples:
 * `todo show pr/high`: Shows all todos with the priority `high`.
 * `todo show t/friends`: Shows all todos with the tag `friends`.
 
-## General Features
+<br>
 
-### Viewing help : `help`
+### 7.4. Tag Management Commands
 
-Shows a message explaining how to access the help page.
+#### 7.4.1. Creating a Tag: `tag create`
 
-![help message](images/helpMessage.png)
+Creates a new tag
 
-Format: `help`
+Format: `tag create t/TAG`
 
-### Exiting the program : `exit`
+Example:
+* `tag create t/family` creates a `family` tag.
 
-Exits the program.
+<br>
 
-Format: `exit`
+#### 7.4.2. Deleting a Tag: `tag delete`
 
-### Saving the data
+Deletes a tag.
 
-SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Format: `tag delete t/TAG`
 
-### Editing the data file
-
-SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.<br>
-SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.<br>
-Advanced users are welcome to update data directly by editing these data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+Example:
+* `tag delete t/family` deletes the `family` tag.
+
+<br>
+
+#### 7.4.3. Editing a Tag: `tag edit`
+
+Renames an existing tag.
+
+Format: `tag edit t/TAG1 t/ TAG2`
+
+* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+
+Example:
+* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+
+<br>
+
+#### 7.4.4. Adding a Tag to a Contact: `tag add`
+
+Adds an existing tag to an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
+
+Format: `tag add INDEX t/TAG`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A contact can have any number of tags. Add as many as you want.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The tag has to be made first before you can add it into a contact.
+</div>
+
+* Adds a `TAG` to the contact at the specified `INDEX`.
+
+Example:
+* `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
+
+<br>
+
+#### 7.4.5. Removing a Tag from a Contact: `tag remove`
+
+Removes an existing tag from an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
+
+Format: `tag remove INDEX t/TAG`
+
+* Removes a `TAG` from the contact at the specified `INDEX`.
+
+Example:
+* `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
+
+<br>
+
+### 7.5. Customisation Commands
+
+#### 7.5.1. Customising order of details: `customise order`
+
+Customise the order of information shown in all contacts shown.
+
+Format: `customise order [t/] [p/] [e/] [a/]`
+
+* Name of contact will always be at the top of each contact and cannot have its order changed.
+* Information that can have its order changed: Tags, Phone Number, Email, Address.
+* Information that are not specified will be ordered last and follow the default order. (Tags > Phone Number > Email > Address)
+
+Example:
+
+* `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
+* `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
+
+<br>
+
+#### 7.5.2. Hiding contact details: `customise hide`
+
+Hide certain information of all contacts displayed.
+
+Format: `customise hide [t/] [p/] [e/] [a/]`
+
+* Information that can be hidden: Tags, Phone Number, Email, Address.
+* After using the command, the information specified is hidden.
+* If the information specified is already hidden, it will stay hidden.
+
+Example:
+* `customise hide e/` The application no longer shows emails in the list of contacts.
+* `customise hide p/ t/` The application no longer shows phone numbers and tags in the list of contacts.
+
+<br>
+
+#### 7.5.3. Showing contact details: `customise show`
+
+Show certain information of all contacts displayed.
+
+Format: `customise show [t/] [p/] [e/] [a/]`
+
+* Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
+* After using the command, the information specified is shown.
+* If the information specified is already shown, it will stay shown.
+* `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
+
+Example:
+* `customise show a/` The application now shows addresses in the list of contacts.
+* `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+## 8. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SoConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **CLI**: A text-based user interface used to run programs.
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
-* **JavaFX**: A Java library used to develop client applications.
-* **kLoC**: Stands for thousands of lines of code.
-* **NUS**: National University of Singapore.
-* **SoC**: School of Computing, a computing school in NUS.
-* **Private Contact Detail**: A contact detail that is not meant to be shared with others.
-* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full.
-* **Todo**: A task that the user needs to complete. <a id="glossary-todo"></a>
-
-# Command summary
+## 9. Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                                     |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -520,17 +577,79 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 | **Customise**   | `customise order [t/] [p/] [e/] [a/]` <br> `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> e.g. `customise order a/ p/` `customise hide a/ e/ p/` `customise show a/`            |
 | **Delete**      | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                                                                    |
-| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g. `seach or n/John Doe t/cs2103t`                                                                                                                         |
+| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g. `seach or n/John Doe t/cs2103t`                                                                                                                            |
 | **List**        | `list`                                                                                                                                                                                                               |
-| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g. `sort t/!friend n/`                                                                                                                                                |
+| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g. `sort t/!friend n/`                                                                                                                                                   |
 | **Help**        | `help`                                                                                                                                                                                                               |
 | **Create Tag**  | `tag create t/TAG` <br> e.g. `tag create t/friend`                                                                                                                                                                   |
 | **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g. `tag edit t/friend t/bestFriend`                                                                                                                                                 |
 | **Add Tag**     | `tag add INDEX t/TAG` <br> e.g. `tag add 1 t/friend`                                                                                                                                                                 |
 | **Delete Tag**  | `tag delete t/TAG` <br> e.g. `tag delete t/friend`                                                                                                                                                                   |
 | **Remove Tag**  | `tag remove INDEX t/TAG` <br> e.g. `tag remove 1 t/friend`                                                                                                                                                           |
-| **Add Todo**    | `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​` <br> e.g. `todo add d/Revise priority/high`                                                                                                              |
-| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​` <br> e.g. `todo edit t/CS2101`                                                                                                              |
+| **Add Todo**    | `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​` <br> e.g. `todo add d/Revise priority/high`                                                                                                                 |
+| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​` <br> e.g. `todo edit t/CS2101`                                                                                                                 |
 | **Delete Todo** | `todo delete INDEX` <br> e.g. `todo delete 3`                                                                                                                                                                        |
 | **Clear Todo**  | `todo clear`                                                                                                                                                                                                         |
 | **Show Todo**   | `todo show`<br> `todo show today` <br> `todo show date/DATE` <br> `todo show date/DATE to DATE` <br> `todo show t/TAG` <br> `todo show pr/Priority` <br> e.g. `todo show`, `todo show pr/high`, `todo show t/CS2100` |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 10. Glossary
+
+**<a id="autocomplete">Autocomplete</a>**
+
+A feature that shows a list of completed words or strings without the user needing to type them in full.
+
+<br>
+
+**<a id="cli">CLI</a>**
+
+A text-based user interface used to run programs.
+
+<br>
+
+**<a id="gui">GUI</a>**
+
+A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
+
+<br>
+
+**<a id="javafx">JavaFX</a>**
+
+A Java library used to develop client applications.
+
+<br>
+
+**<a id="kloc">kLoC</a>**
+
+Stands for thousands of lines of code.
+
+<br>
+
+**<a id="mainstream-os">Mainstream OS</a>**
+
+Windows, Linux, Unix, OS-X.
+
+<br>
+
+**<a id="nus">NUS</a>**
+
+National University of Singapore.
+
+<br>
+
+**<a id="contact">Private Contact Detail</a>**
+
+A contact detail that is not meant to be shared with others.
+
+<br>
+
+**<a id="soc">SoC</a>**
+
+School of Computing, a computing school in NUS.
+
+<br>
+
+**<a id="todo">Todo</a>**
+
+A task that the user needs to complete.
