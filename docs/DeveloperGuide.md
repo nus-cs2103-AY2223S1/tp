@@ -921,9 +921,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   i. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
+   ii. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
    The window automatically expands to occupy the entire screen.
 
 ### Listing all orders
@@ -932,9 +932,9 @@ testers are expected to do more *exploratory* testing.
   * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
     Of these orders, there exist 2 orders made by customers with `Chan` in their names.
   * Before testing, enter `findo n/Chan`<br/>
-    Expected: 2 orders by customers with `Chan` in their name.
+    Expected: Order list displays 2 orders by customers with `Chan` in their name.
   * Test case: Enter `listo` into the command box.<br/>
-    Expected: ALl orders listed.
+    Expected: ALl orders listed in the order list.
   * Alternative negative test case: Enter `listO` into the command box.<br/>
     Expected: Result display shows `Unknown command`.
 
