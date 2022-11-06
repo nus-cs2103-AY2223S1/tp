@@ -10,7 +10,7 @@ PetCode is a software app that aims to facilitate better working experience and 
 Given below are my contributions to the project.
 
 * **Functionality**: Added the `order` package to the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
-  * What it does: Added an `Order` class and its different components to simulate pet trade in the real-world.
+  * What it does: Added an `Order` class and its subcomponents to simulate pet trade in the real-world.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
@@ -19,14 +19,14 @@ Given below are my contributions to the project.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
-* **Functionality**: Added a popup window for adding buyer and supplier. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
-  * What it is about: Added a popup window with prompt text for adding `Buyer` with any number of `Order`and `Supplier` with any number of `Pet`, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
-  * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer with orders or add a supplier with pets, which is very demanding in terms of memorisation. The popup window reduces the memory work and makes it easier to execute the add command.
-  * Highlights: The popup window is designed with the aim to improve the user experience (UX), with keyboard shortcuts and prompt text. It also shows how UI, model and logic can be linked.
+* **New Feature**: Added a popup window for adding buyer and supplier. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
+  * What it is about: Added a popup window with prompt text for adding buyer with orders and suppliers with pets, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
+  * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer or supplier, which is very demanding in terms of memorisation.
+  * Highlights: The popup window is designed to improve the user experience (UX), with keyboard shortcuts and prompt text. It also shows how UI, model and logic can be linked.
 
 * **New Feature**: Extended the `EditCommand` to three categories: edit buyer command, edit supplier command, edit deliverer command. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
   * What it does: Extended the `EditCommand` to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
-  * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing and also leaves space for future implementations if more distinct attributes are added them.
+  * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing and leaves space if more distinct attributes are added them in the future.
   * Highlights: This makes use of polymorphism as there is a need to abstract out the common logic in all three types of `EditCommand`.
 
 
@@ -50,18 +50,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features:
-      * `Adding a person with a popup window` (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
-      * `Editing attributes of a contact` (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
-    * Edited the existing documentation of features: `Listing contacts or items`.
+    * Added documentation for the features: `Adding a person with a popup window` (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159)), `Editing attributes of a contact` (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
     * Proofread the whole UG and made amendments.
       (Pull requests: [#356](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/356), [#364](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/364), [#365](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/365))
   * Developer Guide:
     * Updated the `UI component`. (Pull request: [#180](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/180))
     * Added implementation details of the `Display of person list`. (Pull request: [#180](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/180))
     * Added implementation details of the `Pop-up window for add command`. (Pull request: [#204](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/204))
-    * Updated `Deleting a buyer` under `Appendix: Instructions for manual testing`. (Pull request: [#325](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/325))
-  * JavaDoc: JavaDocs are added along the way for all classes related to the added or modified features and functionalities stated above.
+  * JavaDoc: JavaDocs are added along the way for all added classes.
     (Pull requests: [#119](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/119),
                     [#142](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/142),
                     [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159),
