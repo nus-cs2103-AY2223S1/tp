@@ -333,10 +333,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add an entry
-2. System adds the entry
-3. System displays the success message
-
+1. User requests to add an entry.
+2. System adds the entry.
+3. System displays the success message. 
+   
     Use case ends.
 
 **Extensions**
@@ -344,24 +344,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The input does not follow the format.
 
     * 1a1. System shows an error message.
-
+      
         Use case ends.
 
 * 1b. The input does not include all required parameters.
 
     * 1b1. System shows an error message.
-
+      
         Use case ends.
 
 **Use case: Edit an entry**
 
 **MSS**
 
-1. User requests to edit a specific entry in the list
-2. System edits the entry
-3. System displays the success message
-
-   Use case ends.
+1. User requests to edit a specific entry in the list.
+2. System edits the entry.
+3. System shows the updated entry. 
+   
+    Use case ends.
 
 **Extensions**
 
@@ -371,67 +371,110 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The input does not include all required parameters.
+* 1b. The given index is invalid.
 
-    * 1b1. System shows an error message.
+    * 1b1. System shows an error message that the index of the entry is invalid. 
+      
+        Use case ends.
 
-      Use case ends.
+* 1c. The input did not include any parameter.
+
+    * 1c1. System shows an error message that at least one field to edit must be provided. 
+      
+        Use case ends.
 
 **Use case: Delete an entry**
 
 **MSS**
 
-1. User requests the list of entries
-2. System shows the list of tutorial slot
-3. User requests to delete a certain tutorial slot
-4. System deletes the specified tutorial slot 
-5. System displays the success message
-
+1. User requests to delete a specific entry in the list.
+2. System deletes the entry.
+3. System shows updated list. 
+   
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 1a. The given index is invalid.
 
+    * 1a1. System shows an error message that the index of the entry is invalid. 
+      
+        Use case ends.
+
+**Use case: List all students**
+
+**MSS**
+
+1. User requests to list all existing students.
+2. System shows the list of all students. 
+   
     Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions**
 
-    * 3a1. System shows an error message.
+* 1a. The list is empty. 
+  
+    Use case ends.
 
-      Use case resumes at step 2.
+
+**Use case: Find students**
+
+**MSS**
+
+1. User requests to find all students matching fields of interest.
+2. System shows list of students matching inputted fields of interest.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid command format.
+
+    * 1a1. System shows an error message that command is invalid.
+      
+        Use case ends.
+
+* 1b. The input did not include any parameter.
+
+    * 1b1. System shows an error message that at least one field must be provided.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Mark a reminder**
 
 **MSS**
 
 1. User requests to mark a reminder.
-2. System updates the completion status of the reminder as complete.
-
-   Use case ends.
+2. System updates the completion status of the reminder as complete. 
+   
+    Use case ends.
 
 **Extensions**
 
 * 1a. The reminder is already marked as done.
 
-    * 1a1. System shows an error message that the reminder is already completed.
-
-      Use case ends.
+    * 1a1. System shows an error message that the reminder is already completed. 
+      
+        Use case ends.
 
 * 1b. The reminder does not exist.
 
-    * 1b1. System shows an error message that the reminder does not exist.
-
-      Use case ends.
+    * 1b1. System shows an error message that the reminder does not exist. 
+      
+        Use case ends.
 
 **Use case: Unmark a reminder**
 
 **MSS**
 
 1. User requests to unmark a reminder.
-2. System updates the completion status of the reminder as incomplete.
-
-   Use case ends.
+2. System updates the completion status of the reminder as incomplete. 
+   
+    Use case ends.
 
 **Extensions**
 
@@ -439,13 +482,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. System shows an error message that the reminder is already incomplete. 
       
-      Use case ends.
+        Use case ends.
 
 * 1b. The reminder does not exist.
 
-    * 1b1. System shows an error message that the reminder does not exist.
-
-      Use case ends.
+    * 1b1. System shows an error message that the reminder does not exist. 
+      
+        Use case ends.
 
 **Use case: Sort reminder**
 
@@ -455,6 +498,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User chooses the sorting criteria.
 3. System sort the reminders by the given criteria.
    
+   Use case ends.
+
+**Extensions**
+
+* 2a. The sorting criteria is invalid.
+
+    * 2a1. System shows an error message. 
+      
+        Use case ends.
+
+**Use case: Clear entries**
+
+**MSS**
+
+1. User requests to clear specified entries.
+2. The specified entries are cleared from the system.
+
    Use case ends.
 
 **Extensions**
@@ -479,14 +539,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to exit the application.
-2. System exist.
-
-   Use case ends.
-
-    
-
-
-*{More to be added}*
+2. System exist. 
+   
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -498,9 +553,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. The source code should be open source.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **TAs**: Teaching Assistants
+| Term                               | Description                                                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Teaching Assistant (TA)**        | Tutors who support module coordinators in content creation, preparation of educational resources and course materials.                                                                         |
+| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
+| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
+| **Mainstream OS**                  | Windows, Linux, Unix, OS-X                                                                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
