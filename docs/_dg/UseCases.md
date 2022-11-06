@@ -144,7 +144,7 @@ Extensions:
 
 #### Use Case 7: Rename a tag
 
-Preconditions: [[ Tag ]] has been created in FoodRem.
+Preconditions: [[ tag:Tag ]] has been created in FoodRem.
 
 [[ MSS ]]:
 
