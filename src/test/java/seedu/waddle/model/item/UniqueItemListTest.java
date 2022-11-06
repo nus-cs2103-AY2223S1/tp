@@ -1,17 +1,5 @@
 package seedu.waddle.model.item;
 
-import seedu.waddle.model.item.exceptions.DuplicateItemException;
-import seedu.waddle.model.item.exceptions.ItemNotFoundException;
-import seedu.waddle.model.itinerary.exceptions.DuplicateItineraryException;
-import seedu.waddle.testutil.ItemBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,6 +8,16 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SKINNY;
 import static seedu.waddle.testutil.Assert.assertThrows;
 import static seedu.waddle.testutil.TypicalItems.SHOPPING;
 import static seedu.waddle.testutil.TypicalItems.SKINNY;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
+import seedu.waddle.model.item.exceptions.ItemNotFoundException;
+import seedu.waddle.testutil.ItemBuilder;
 
 public class UniqueItemListTest {
     private final UniqueItemList uniqueItemList = new UniqueItemList();
