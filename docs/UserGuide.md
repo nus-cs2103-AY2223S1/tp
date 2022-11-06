@@ -42,9 +42,9 @@ It consists of a simple to follow step-by-step installation guide and explains t
    1. Navigate to the folder where you placed your WorkBook at.
    2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
 
-|       Wide Layout         |       Narrow Layout       | 
-|:-------------------------:|:-------------------------:|
-|![wide layout](images/Ui.png) |![narrow layout](images/UiNarrow.png) |
+|          Wide Layout           |             Narrow Layout             | 
+|:------------------------------:|:-------------------------------------:|
+| ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
 
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
@@ -55,13 +55,13 @@ Below shows the main elements of WorkBook's GUI, in wide and narrow layouts.
 
 For the narrow layout, everything else is the same excpet for the labelled light bulb icon, which represents 'tips'.
 
-|       Wide Layout         |
-|:-------------------------:|
-|![wide layout](images/AnnotatedUi.png) |
+|              Wide Layout               |
+|:--------------------------------------:|
+| ![wide layout](images/AnnotatedUi.png) |
 
-|       Narrow Layout       |  
-|:-------------------------:|
-|![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
+|                     Narrow Layout                      |  
+|:------------------------------------------------------:|
+| ![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -94,9 +94,9 @@ For the narrow layout, everything else is the same excpet for the labelled light
 
 ## 4. Things to note
 
-<div markdown="block" class="alert alert-info">
+This section describes important information for you to take note of before and while using WorkBook. In order to make WorkBook work best for you, do familiarise yourself with the items in this section.
 
-**:information_source: Notes about the command format:**<br>
+### 4.1 Notes about the command format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Meta`.
@@ -116,13 +116,13 @@ For the narrow layout, everything else is the same excpet for the labelled light
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-#### Parameter-specific behaviour
+### 4.2 Parameter-specific behaviour
 
 * Whenever `[d/DATETIME]` is specified as a parameter, you should input it in the format `dd-MMM-yyy hh:mm` where `y` is year, `M` is month, `d` is day, `h` is hour in the 24-hour format and `m` is minutes. <br>
   e.g. October 2 2022 5:00pm should be inputted as `02-Oct-2022 17:00`.
   * Month is not case-sensitive
 
-#### Behaviour of sorted internship applications
+### 4.3 Behaviour of sorted internship applications
 
 * The list of applications are sorted downwards from the closest upcoming application to furthest.
 * Those with no `DATETIME` attached to it will be placed below those with upcoming dates.
@@ -138,25 +138,23 @@ For the narrow layout, everything else is the same excpet for the labelled light
 
 * Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
-|       Wide Layout         |
-|:-------------------------:|
-|![wide layout](images/AnnotatedUi.png) |
+|              Wide Layout               |
+|:--------------------------------------:|
+| ![wide layout](images/AnnotatedUi.png) |
 
-|       Narrow Layout       |  
-|:-------------------------:|
-|![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
-
-
-|     Resizing Example      |
-|:-------------------------:|
-|![ResponsiveUI](images/ResponsiveUi.gif) |
+|                     Narrow Layout                      |  
+|:------------------------------------------------------:|
+| ![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
-</div>
+|             Resizing Example             |
+|:----------------------------------------:|
+| ![ResponsiveUI](images/ResponsiveUi.gif) |
+
 
 ## 5. What you can do
 
-| Your action | Command format <br> e.g. Example command                                                                                                                                                                  |
+| Your action | Command format <br> e.g. Example command (If applicable)                                                                                                                                                  |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**     | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
 | **Edit**    | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
@@ -228,9 +226,11 @@ Example: `edit 2 s/Tecnical Interview d/28-Dec-2022 08:00`
 
 What you'll see before and after executing the command: <br>
 
-|                   Before                    |                    After                    |
-|:-------------------------------------------:|:-------------------------------------------:|
-| ![Before edit](images/EditCommandInput.png) | ![After edit](images/EditCommandResult.png) |
+| State      | What you'll see                             |
+|------------|---------------------------------------------|
+| **Before** | ![Before edit](images/EditCommandInput.png) |
+| **After**  | ![After edit](images/EditCommandResult.png) |
+
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**: Adding of tags is not cumulative: When editing tags, the existing tags of the internship will be **removed**.
