@@ -25,8 +25,8 @@ public class FindInternshipCommand extends Command {
             + "e.g. \"No interviews scheduled\" will not find internships with blank interview date.\n"
             + "Parameters: "
             + "[" + PREFIX_COMPANY_NAME + " COMPANY_NAME_KEYWORDS...] "
-            + "[" + PREFIX_INTERNSHIP_ROLE + " INTERNSHIP_ROLE_KEYWORDS...] "
-            + "[" + PREFIX_INTERNSHIP_STATUS + " INTERNSHIP_STATUS_KEYWORDS...] "
+            + "[" + PREFIX_INTERNSHIP_ROLE + " ROLE_KEYWORDS...] "
+            + "[" + PREFIX_INTERNSHIP_STATUS + " STATUS_KEYWORDS...] "
             + "[" + PREFIX_INTERVIEW_DATE + " INTERVIEW_DATE_KEYWORDS...]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_COMPANY_NAME + "abc pte ltd";
 
