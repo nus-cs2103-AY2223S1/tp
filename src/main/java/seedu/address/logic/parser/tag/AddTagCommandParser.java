@@ -31,6 +31,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
 
     public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only add a label to a maximum of "
         + "one contact and one task at a time.";
+    public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTagCommand
@@ -50,11 +51,19 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONTACT, PREFIX_TASK, PREFIX_TAG);
 
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
+
         Index contactIndex;
         Index taskIndex;
 
         boolean addTagToContact = argMultimap.getValue(PREFIX_CONTACT).isPresent();
         boolean addTagToTask = argMultimap.getValue(PREFIX_TASK).isPresent();
+
+        if (!addTagToContact && !addTagToTask) {
+            throw new ParseException(MESSAGE_MISSING_INDEX);
+        }
 
         if (argMultimap.getAllValues(PREFIX_CONTACT).size() > 1 || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
             throw new ParseException(MESSAGE_TOO_MANY_CONTACTS_OR_TASKS);
