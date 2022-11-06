@@ -26,7 +26,7 @@ import seedu.masslinkers.logic.commands.ListCommand;
 import seedu.masslinkers.logic.commands.ModAddCommand;
 import seedu.masslinkers.logic.commands.ModCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
-import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
+import seedu.masslinkers.model.student.DetailsContainKeywordsPredicate;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
 import seedu.masslinkers.testutil.StudentBuilder;
@@ -77,7 +77,7 @@ public class MassLinkersParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new DetailsContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DetailsContainKeywordsPredicate(keywords)), command);
     }
 
     @Test

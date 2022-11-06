@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.masslinkers.model.student.Mod;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * A UI component that displays information of a {@code Student}.
  */
 public class ModCard extends UiPart<Region> {
 
@@ -35,7 +35,7 @@ public class ModCard extends UiPart<Region> {
     private Label takenStatus;
 
     /**
-     * Creates a {@code ModCode} with the given {@code Mod} and index to display.
+     * Creates a {@code ModCard} with the given {@code Mod} and index to display.
      */
     public ModCard(Mod module, int displayedIndex) {
         super(FXML);
@@ -63,7 +63,7 @@ public class ModCard extends UiPart<Region> {
 
         boolean hasTaken = module.getModStatus();
         if (hasTaken) {
-            takenStatus.setStyle("-fx-background-color: #00b400;");
+            takenStatus.setStyle("-fx-background-color: #30c776;");
             takenStatus.setText("Taken");
         } else {
             takenStatus.setStyle("-fx-background-color: #adadad;");

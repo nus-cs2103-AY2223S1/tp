@@ -32,7 +32,7 @@ public class Student {
     private final Set<Interest> interests = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
-    private boolean hasIncorrectPhone = false;
+    private boolean hasIncorrectPhone;
 
     /**
      * Every field must be present and not null.
@@ -158,12 +158,10 @@ public class Student {
      * @param mods The list of mods to be marked.
      */
     public void markMods(ObservableList<Mod> mods) {
-        for (int i = 0; i < mods.size(); i++) {
-            for (int j = 0; j < this.mods.size(); j++) {
-
-                Mod currentMod = this.mods.get(j);
+        for (Mod mod : mods) {
+            for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();
-                String targetModName = mods.get(i).getModName();
+                String targetModName = mod.getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.markMod();
@@ -188,12 +186,10 @@ public class Student {
      * @param mods The list of mods to be unmarked.
      */
     public void unmarkMods(ObservableList<Mod> mods) {
-        for (int i = 0; i < mods.size(); i++) {
-            for (int j = 0; j < this.mods.size(); j++) {
-
-                Mod currentMod = this.mods.get(j);
+        for (Mod mod : mods) {
+            for (Mod currentMod : this.mods) {
                 String currentModName = currentMod.getModName();
-                String targetModName = mods.get(i).getModName();
+                String targetModName = mod.getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.unmarkMod();
@@ -204,7 +200,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name and telegram.
+     * Returns true if both students have the same Telegram handle/GitHub username/email/phone.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -215,25 +211,10 @@ public class Student {
             return false;
         }
 
-        boolean hasOverlaps = false;
-
-        if (otherStudent.getTelegram() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getTelegram().equals(getTelegram());
-        }
-
-        if (otherStudent.getEmail() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getEmail().equals(getEmail());
-        }
-
-        if (otherStudent.getGitHub() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getGitHub().equals(getGitHub());
-        }
-
-        if (otherStudent.getPhone() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getPhone().equals(getPhone());
-        }
-
-        return hasOverlaps;
+        return (otherStudent.getTelegram() != null && otherStudent.getTelegram().equals(getTelegram()))
+                || (otherStudent.getEmail() != null && otherStudent.getEmail().equals(getEmail()))
+                || (otherStudent.getGitHub() != null && otherStudent.getGitHub().equals(getGitHub()))
+                || (otherStudent.getPhone() != null && otherStudent.getPhone().equals(getPhone()));
     }
     /**
      * Returns true if both students have the same identity and data fields.

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Tests that a {@code Student}'s {@code Interest} matches all the interests (case-insensitive) specified by Student.
  */
 public class StudentContainsInterestPredicate implements Predicate<Student> {
-    private final List<String> keywords;
+    private List<String> keywords;
 
     public StudentContainsInterestPredicate(List<String> keywords) {
         this.keywords = keywords;

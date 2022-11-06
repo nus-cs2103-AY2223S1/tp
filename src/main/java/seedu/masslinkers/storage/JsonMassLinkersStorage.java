@@ -47,7 +47,7 @@ public class JsonMassLinkersStorage implements MassLinkersStorage {
 
         Optional<JsonSerializableMassLinkers> jsonMassLinkers = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMassLinkers.class);
-        if (!jsonMassLinkers.isPresent()) {
+        if (jsonMassLinkers.isEmpty()) {
             return Optional.empty();
         }
 
