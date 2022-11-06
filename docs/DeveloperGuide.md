@@ -477,211 +477,327 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Requesting for help**
 
-**MSS**
-1. User requests for help
+**Main Success Scenario (MSS)**
+1. User requests for help.
+2. FABook shows an external link for help.
+3. User refers to link for help.
 
-2. FABook shows an external link for help
+Use case ends.
 
-3. User refers to link for help
+**Use case: UC02 - Listing all clients**
 
-    Use case ends.
+**Main Success Scenario (MSS)**
+1. User requests to list clients.
+2. FABook shows a list of clients.
 
-**Use case: UC02 - Creating a client**
-
-**MSS**
-1. User creates a client
-
-2. FABook adds the client to its contents
-
-3. FABook informs user that input client has been added
-
-4. FABook deletes the person
-
-    Use case ends.
-
-**Extensions**
-* 1a. Format of creation is invalid.
-
-    * 1a1. FABook shows an error message with suggested format
-
-    Use case ends.
-
-**Use case: UC03 - List all clients**
-
-**MSS**
-1. User requests to list clients
-
-2. FABook shows a list of clients
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
 
     Use case ends.
 
-**Use case: UC04 - Updating a client's information**
+**Use case: UC03 - Creating a client contact**
 
-**MSS**
-1. User requests to update a specific client's information
+**Main Success Scenario (MSS)**
+1. User requests to create a client contact.
+2. FABook adds the client contact to its contents.
+3. FABook informs user that input client contact has been successfully added.
 
-2. FABook updates the given client's information
-
-3. FABook informs user of updated client's information
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
-* 1a. The name is not found.
-
-  * 1a1. FABook shows an error message with suggested format.
-
-    Use case ends.
-
-* 1b. No input optional field was given.
-
-  * 1b1. FABook shows an error message with suggested format
+* 1a. Format of creation is invalid.
+    * 1a1. FABook shows an error message with suggested format of client contact creation.
 
     Use case ends.
 
-* 1c. Input optional field is in the wrong format.
+* 1b. Input information field is in the wrong format.
+    * 1b1. FABook shows an error message with suggested format of the input information field.
 
-    * 1c. FABook shows an error message with suggested format
+    Use case ends.
 
-      Use case ends.
+**Use case: UC04 - Assigning a PDF file to a client**
 
-**Use case: UC05 - Adding description to a client**
+**Main Success Scenario (MSS)**
+1. User prepares the file path to the intended PDF file.
+2. User assigns the file to the client.
+3. FABook informs user that file path has been successfully added to the chosen client.
 
-**MSS**
-1. User requests to add a description of any form to a specific client
-
-2. FABook adds the description
-
-3. FABook informs user the description has been added
+Use case ends.
 
 **Extensions**
-* 1a. The client is not found.
-
-  * 1a1. FABook shows an error message with command explanation.
-
-    Use case ends.
-
-* 1b. No description was given.
-
-  * 1b1. FABook shows an error message with suggested format
+* 1a. Format of file assignment is invalid.
+    * 1a1. FABook shows an error message with suggested format of file assignment.
 
     Use case ends.
 
-**Use case: UC06 - Finding a client by name**
+**Use case: UC05 - Finding a client by name**
 
-**MSS**
-1. User requests to find a specific client by name
+**Main Success Scenario (MSS)**
+1. User requests to find clients by a specific name.
+2. FABook shows a list of matching clients.
+3. FABook informs the user of number of clients found.
 
-2. FABook shows a list of matching clients
-
-3. FABook informs the user of number of clients found
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 * 1a. No client name was provided.
-
-    * 1a1. FABook shows an empty list
-
-      Use case ends.
-
-* 1b. No such client name was found.
-
-    * 1b1. FABook shows an error message with suggested format
-
-      Use case ends.
-
-**Use case: UC07 - Finding a client by phone number**
-
-**MSS**
-1. User requests to find a specific client by phone number
-
-2. FABook shows a list of matching clients
-
-3. FABook informs the user of number of clients found
+    * 1a1. FABook shows an empty list.
 
     Use case ends.
+
+* 1b. No such client with the specified name is found.
+    * 1b1. FABook shows an error message with suggested format of finding by name.
+
+    Use case ends.
+
+**Use case: UC06 - Finding a client by phone number**
+
+**Main Success Scenario (MSS)**
+1. User requests to find clients by a specific phone number.
+2. FABook shows a list of matching clients.
+3. FABook informs the user of number of clients found.
+
+Use case ends.
 
 **Extensions**
 * 1a. No client number was provided.
+    * 1a1. FABook shows an error message with suggested format of finding by phone number.
 
-    * 1a1. FABook shows an error message with suggested format
+    Use case ends.
 
-      Use case ends.
+* 1b. No such client with the specified number is found.
+    * 1b1. FABook shows an empty list.
 
-* 1b. No such client number was found.
+    Use case ends.
 
-    * 1b1. FABook shows an empty list
+**Use case: UC07 - Finding a client by address**
 
-      Use case ends.
+**Main Success Scenario (MSS)**
+1. User requests to find clients by a specific address.
+2. FABook shows a list of matching clients.
+3. FABook informs the user of number of clients found.
 
-* 1c. No full phone number provided.
-
-    * 1c1. FABook shows an error message with suggested format
-
-      Use case ends.
-
-**Use case: UC08 - Finding a client by address**
-
-**MSS**
-1. User requests to find a specific client by address
-
-2. FABook shows a list of matching clients
-
-3. FABook informs the user of number of clients found
-
-   Use case ends.
+Use case ends.
 
 **Extensions**
 * 1a. No client address was provided.
-
-    * 1a1. FABook shows an error message with suggested format
-
-      Use case ends.
-
-* 1b. No such client address was found.
-
-    * 1b1. FABook shows an empty list
-
-      Use case ends.
-
-**Use case: UC09 - Delete a person**
-
-**MSS**
-1. User requests to <u>find a client by name(UC05)</u>
-
-2. User requests to delete a specific client by name in the list
-
-3. FABook deletes the person
+    * 1a1. FABook shows an error message with suggested format of finding by address.
 
     Use case ends.
 
-**Use case: UC10 - Clearing all entries**
-
-**MSS**
-1. User requests to clear all entries
-
-2. FABook removes all clients' information
-
-3. FABook informs the user that all information has been cleared
+* 1b. No such client with the specified address is found.
+    * 1b1. FABook shows an empty list.
 
     Use case ends.
 
-**Use case: UC11 - Exiting FABook**
+**Use case: UC08 - Finding a client by tag**
+
+**Main Success Scenario (MSS)**
+1. User requests to find clients by a specific tag.
+2. FABook shows a list of matching clients.
+3. FABook informs the user of number of clients found.
+
+Use case ends.
+
+**Extensions**
+* 1a. No tag was provided.
+    * 1a1. FABook shows an error message with suggested format of finding by address.
+
+  Use case ends.
+
+* 1b. No such client with the specified tag is found.
+    * 1b1. FABook shows an empty list.
+
+  Use case ends.
+
+**Use case: UC09 - Opening the PDF file of a client**
+
+**Main Success Scenario (MSS)**
+1. User requests to open a specific client's PDF file.
+2. FABook informs the user that the PDF file has been successfully opened.
+3. Client's PDF file is opened on the user's operating system according to their default PDF file reader.
+
+Use case ends.
+
+**Extensions**
+* 1a. No PDF file was assigned to the client beforehand.
+  * 1a1. FABook shows an error message that file path of client has not been assigned yet.
+
+  Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. FABook shows an error message that the index provided is invalid.
+  
+  Use case ends.
+
+* 1c. FABook detects that the assigned PDF file was moved, edited or deleted.
+  * 1c1. FABook shows an error message that the file path has been modified.
+
+  Use case ends.
+
+**Use case: UC10 - Checking for upcoming meetings**
+
+**Main Success Scenario (MSS)**
+1. User opens up the upcoming meetings.
+2. FABook shows upcoming meetings in a new window.
+
+Use case ends.
+
+**Extensions**
+* 1a. There are no upcoming meetings
+    * 1a1. FABook shows an empty list in the upcoming meetings window.
+
+  Use case ends.
+
+**Use case: UC11 - Updating a client's information**
+
+Preconditions: There are existing clients in FABook's contents.
+
+**Main Success Scenario (MSS)**
+1. User requests to update a specific client's information.
+2. FABook updates the given client's information.
+3. FABook informs user of updated client's information.
+
+Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+  * 1a1. FABook shows an error message that the index provided is invalid.
+
+  Use case ends.
+
+* 1b. No input information field was given.
+  * 1b1. FABook shows an error message that an information field must be provided.
+
+  Use case ends.
+
+* 1c. Input information field is in the wrong format.
+  * 1c1. FABook shows an error message with suggested format of the input information field.
+
+  Use case ends.
+
+**Use case: UC12 - Updating a client's description**
+
+Preconditions: There are existing clients in FABook's contents.
+
+**Main Success Scenario (MSS)**
+1. User requests to update the description of a specific client.
+2. FABook updates the description of the specified client.
+3. FABook informs user that the description has been updated.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. FABook shows an error message that the index provided is invalid.
+
+  Use case ends.
+
+**Use case: UC13 - Adding new meeting(s) to an existing client**
+
+Preconditions: There are existing clients in FABook's contents.
+
+**Main Success Scenario (MSS)**
+1. User requests to add new meeting(s) to a specific client.
+2. FABook adds new meeting(s) to the specified client.
+3. FABook informs user that new meeting(s) have been added to the specified client.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. FABook shows an error message that the index provided is invalid.
+
+  Use case ends.
+
+* 1b. Format of meeting time given is invalid.
+  * 1b1. FABook shows an error message with suggested format of meeting time.
+
+  Use case ends.
+
+**Use case: UC14 - Deleting a client**
+
+**Main Success Scenario (MSS)**
+1. User requests to <u>find a client by specified name(UC05)</u>.
+2. User requests to delete a specific client by name in the list.
+3. FABook deletes the client.
+4. FABook informs the user that the specified client has been successfully deleted.
+
+Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+    * 2a1. FABook shows an error message that the index provided is invalid.
+
+  Use case ends.
+
+**Use case: UC15 - Deleting meetings from a client**
+
+**Main Success Scenario (MSS)**
+1. User requests to <u>find a client by specified name(UC05)</u>.
+2. User requests to delete a specific meeting from the client.
+3. FABook deletes the specified meeting from the client.
+4. FABook informs the user that the specified meeting has been successfully deleted from the client.
+
+Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+    * 2a1. FABook shows an error message that the index provided is invalid.
+
+  Use case ends.
+
+* 2b. Format of meeting time given is invalid.
+    * 2b1. FABook shows an error message with suggested format of meeting time.
+
+  Use case ends.
+
+**Use case: UC16 - Removing all past meetings**
 
 **MSS**
-1. User requests to exit
+1. User requests to remove all meetings that have past.
+2. FABook deletes all meetings that have past from every client.
+3. FABook informs the user that all past meetings have been successfully deleted.
 
-2. FABook closes
+Use case ends.
 
-   Use case ends.
+**Use case: UC17 - Clearing all entries**
 
-{More to be added}*
+**Main Success Scenario (MSS)**
+1. User requests to clear all entries.
+2. FABook deletes all clients and their information.
+3. FABook informs the user that all information has been cleared.
+
+Use case ends.
+
+**Use case: UC18 - Undoing a previous command**
+
+Preconditions: An undoable command has been executed by FABook.
+
+**Main Success Scenario (MSS)**
+1. User requests to undo a previous command.
+2. FABook undoes the last undoable action and updates the relevant information changed.
+3. FABook informs the user of the undoable action that has been executed.
+
+Use case ends.
+
+**Use case: UC19 - Redoing an undo command**
+
+**Main Success Scenario (MSS)**
+1. User requests to <u>undo a previous command(UC18)</u>.
+2. User requests to redo the undo command.
+3. FABook redoes the last undo command and updates the relevant information changed.
+4. FABook informs the user of the redone action that has been executed.
+
+Use case ends.
+
+**Use case: UC20 - Exiting FABook**
+
+**Main Success Scenario (MSS)**
+1. User requests to exit.
+2. FABook closes.
+
+Use case ends.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
