@@ -178,20 +178,21 @@ In real life, these fields would always be unique for each individual, so there 
 
 #### Task
 
-Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
+Each field is implemented by a class with the same name.
 
 Id is unique and automatically generated when task is added.
 Tasks with the same fields in all of description, deadline and tag are not allowed.
 This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
 As we are maintaining a unique task list in our app, this is disallowed.
 
-| Field Name  | Description                                                                        | Constraints                                                     |
-|-------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Id          | Unique identifier for Task                                                         | -                                                               |
-| Description | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
-| Deadline    | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
-| Status      | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
-| Tag         | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
+| Field Name        | Description                                                                        | Constraints                                                     |
+|-------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| Id                | Unique identifier for Task                                                         | -                                                               |
+| Description       | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
+| Deadline          | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
+| Completion Status | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
+| Archival Status   | Archival status of task, defaults to false (not archived) when new task is added   | Boolean (Archived or Not Archived)                              |
+| Tag               | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
 
 #### Tag
 
