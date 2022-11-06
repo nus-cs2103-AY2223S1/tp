@@ -9,6 +9,7 @@ import seedu.address.logic.commands.task.ArchiveTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.ArchivalStatus;
 
 /**
  * Parses input arguments and creates a new ArchiveTaskCommand object
@@ -32,7 +33,7 @@ public class ArchiveTaskCommandParser implements Parser<ArchiveTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setArchivalStatus(true);
+        editTaskDescriptor.setArchivalStatus(new ArchivalStatus(true));
 
         return new ArchiveTaskCommand(index, editTaskDescriptor);
     }

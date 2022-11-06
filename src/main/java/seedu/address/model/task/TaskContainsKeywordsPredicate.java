@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     private final List<Description> descriptionKeywords;
     private final List<Deadline> deadlineKeywords;
-    private final List<Boolean> completionStatusKeywords;
+    private final List<CompletionStatus> completionStatusKeywords;
     private final Set<Tag> tags;
 
     /**
@@ -29,7 +29,7 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
      */
     public TaskContainsKeywordsPredicate(List<Description> descriptionKeywords,
                                          List<Deadline> deadlineKeywords,
-                                         List<Boolean> completionStatusKeywords) {
+                                         List<CompletionStatus> completionStatusKeywords) {
         this.descriptionKeywords = descriptionKeywords;
         this.deadlineKeywords = deadlineKeywords;
         this.completionStatusKeywords = completionStatusKeywords;

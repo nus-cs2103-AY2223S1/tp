@@ -16,6 +16,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
@@ -48,7 +49,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
         List<Description> descriptions = getDescriptions(argMultimap);
         List<Deadline> deadlines = getDeadlines(argMultimap);
-        List<Boolean> completionStatuses = getCompletionStatuses(argMultimap);
+        List<CompletionStatus> completionStatuses = getCompletionStatuses(argMultimap);
 
         return new FindTaskCommand(
                 new TaskContainsKeywordsPredicate(descriptions, deadlines, completionStatuses));
@@ -68,7 +69,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         return ParserUtil.parseDeadlines(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
     }
 
-    private List<Boolean> getCompletionStatuses(ArgumentMultimap argMultimap) throws ParseException {
+    private List<CompletionStatus> getCompletionStatuses(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_TASK_COMPLETION_STATUS).isEmpty()) {
             return new ArrayList<>();
         }

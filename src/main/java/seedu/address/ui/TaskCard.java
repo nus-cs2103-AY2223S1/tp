@@ -63,13 +63,13 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        status.setText(task.getCompletionStatusForDisplay());
-        if (task.getCompletionStatus()) {
+        status.setText(task.getCompletionStatus().toString());
+        if (task.getIsCompleted()) {
             status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_COMPLETED));
         } else {
             status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_NOT_COMPLETED));
         }
-        if (task.getArchivalStatus()) {
+        if (task.getIsArchived()) {
             archivalStatus.setText(MESSAGE_TASK_ARCHIVED);
             archivalStatus.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_ARCHIVED));
         } else {

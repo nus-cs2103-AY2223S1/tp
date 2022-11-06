@@ -275,4 +275,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void decreaseTagCount(Tag toDelete) {
         tags.decreaseTagCount(toDelete);
     }
+
+    public ReadOnlyAddressBook getCopyOfAddressBook() {
+        AddressBook copy = new AddressBook();
+        copy.setPersons(this.getPersonList());
+        copy.setTasks(this.getTaskList());
+        copy.setTags(this.getTagList());
+        return copy;
+    }
 }

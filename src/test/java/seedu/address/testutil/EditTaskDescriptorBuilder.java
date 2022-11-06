@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.ArchivalStatus;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Id;
@@ -58,16 +60,16 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the completion status of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withCompletionStatus(Boolean isDone) {
-        descriptor.setCompletionStatus(isDone);
+    public EditTaskDescriptorBuilder withCompletionStatus(Boolean completionStatus) {
+        descriptor.setCompletionStatus(new CompletionStatus(completionStatus));
         return this;
     }
 
     /**
      * Sets the archival status of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withArchivalStatus(Boolean isArchived) {
-        descriptor.setArchivalStatus(isArchived);
+    public EditTaskDescriptorBuilder withArchivalStatus(Boolean archivalStatus) {
+        descriptor.setArchivalStatus(new ArchivalStatus(archivalStatus));
         return this;
     }
 
