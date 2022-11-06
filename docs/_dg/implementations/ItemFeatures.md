@@ -57,10 +57,14 @@ This diagram excludes the instantiation of the objects that represents attribute
 
 ##### Feature Details
 1. The user specifies an item name for the Item to create. Optionally, the user can specify the item quantity, bought date, expiry date, price, and any remarks.
-1. If the item name is not provided, or if a wrong command input is provided, the user will be prompted to enter the command correctly via an error message.
+1. If the item name is not provided, or if an invalid command arguments are provided, the user will be prompted to enter the command correctly via an error message.
 1. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
 1. If the item storage of FoodRem is full, an error is thrown to inform the user that the maximum item limit is reached, and that no new items can be added.
 1. If step 4 completes without any exceptions, then the new `Item` is successfully created and stored inside the Item.
+
+The activity diagram is as such:
+
+![ItemSequenceDiagram](images/NewItemActivityDiagram.png)
 
 ##### Feature Considerations
 It should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. This is because allowing Items with the same name will introduce additional complexity for other commands, and also presents confusingly to the user. This is room for improvement, as items ideally can have the same name. For example, the user should ideally have multiple `Potato` items with different bought and expiry dates. 
