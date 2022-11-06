@@ -10,8 +10,8 @@ This document contains everything you need to know about TruthTable.
 TruthTable is a **desktop application** that enables team leaders to **manage their software
 engineering teams** in one application.
 
-TruthTable is **optimised for use via a Command Line Interface (CLI)** while still having the benefits of a
-Graphical User Interface (GUI). 
+TruthTable is **optimised for use via a [Command Line Interface (CLI)](#command-line-interface)** while still having 
+the benefits of a [Graphical User Interface (GUI)](#graphical-user-interface). 
 
 <div markdown="block" class="alert alert-info">**Unsure what CLI means?**
 Head over [to this section](#understanding-truthtables-cli) to learn more
@@ -1310,21 +1310,83 @@ the data of your previous TruthTable home folder.
 
 ## Glossary
 
-### Command                  
+### Command
 
-### Parameter                
+An instruction that is used to perform some feature.
 
-### Positional Parameter     
+Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
 
-### Index                    
+### Parameter
 
-### Alias                     
+Information that is used to modify [commands](#command), often used with [flags](#flag).
 
-### Command Line Interface   
+For instance, in the `edit person 1 -n Name` example command, 
+- `1` is the parameter for the `edit person` command (in this case, `1` refers to the index of a person).
+- `Name` is the parameter for the flag `-n` (in this case, `Name` is the new name to be assigned to the person at 
+  index `1`).
+
+Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
+
+### Flag
+
+Specific characters that are used to modify [commands](#command), often used with [flags](#flag).
+
+For instance, in the `edit person 1 -n Name` example command,
+- `-n` is a flag for the `edit person` command (in this case, `-n` is used to update the person's name)
+
+Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
+
+### Positional Parameter
+
+### Index
+
+Refers to the position of an item in some collection.
+
+Indexes must be positive integers, so they can only be 1, 2, 3, ...
+
+For instance, in a list of 3 alphabets containing ("a", "b", "c") in that order,
+- index 1 would refer to "a"
+- index 2 would refer to "b"
+- index 3 would refer to "c"
+
+### Alias
+
+An alias is used to indicate that a named item is also known as another specified name.
+
+For instance,
+- `e` is an alias for the `edit` command in TruthTable.
+
+### Command Line Interface
+
+A text-based [user interface](#user-interface) which allows the user to perform some action through the use of 
+[commands](#command).
+
+Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
+
+Examples include
+- <a href="https://en.wikipedia.org/wiki/Unix_shell" target="_blank">Unix shells</a> like (sh, zsh, Bash)
+- <a href="https://en.wikipedia.org/wiki/Cmd.exe" target="_blank">Command Prompt</a> in the Windows Operating System
 
 ### Graphical User Interface 
 
+A visual [user interface](#user-interface) which allows the user to interact with a program using visual elements 
+such as shapes, diagrams, and buttons. 
+
+Examples include
+- Operating systems like (Microsoft Windows, Apple's macOS, Apple's IOS, Linux)
+
+### User Interface
+
+The user interface is some interface of which we interact with computers and communicate with the device in.
+
+Examples include
+- Monitors
+- Keyboards
+
 ### JSON File
+
+A file which is used to store data in, which adheres to a format called 
+<a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JavaScript Object Notation (JSON)</a>.
 
 [Back to Table of Contents](#table-of-contents)
 
