@@ -11,7 +11,7 @@ There are two core features that FoodRem provides:
 FoodRem allows you to track your inventory during your daily operations.
 
 1. Quickly **create, view, edit, and remove** your available inventory.
-1. **Sort** your inventory items by name, [[ quantity ]], unit, [[ bought-date:bought date]], [[ expiry-date:expiry date]], price and remarks.
+1. **Sort** your inventory items by name, [[ quantity ]], unit, [[ bought-date:bought date]], [[ expiry-date:expiry date ]], price and remarks.
 1. **Tag** [[item:items]] in your inventory using an efficient tagging system where you can create, rename and delete existing [[tag:tags]].
 1. **Filter** your inventory items by item name and tag.
 
