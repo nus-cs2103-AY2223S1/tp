@@ -64,7 +64,7 @@ public class SortBillCommand extends Command {
     public class AppointmentComparator implements Comparator<Bill> {
         @Override
         public int compare(Bill first, Bill second) {
-            return first.getAppointment().toString().compareTo(second.getAppointment().toString());
+            return first.getAppointment().toString().compareToIgnoreCase(second.getAppointment().toString());
         }
     }
 
@@ -84,7 +84,7 @@ public class SortBillCommand extends Command {
     public class DateComparator implements Comparator<Bill> {
         @Override
         public int compare(Bill first, Bill second) {
-            return first.getBillDate().toString().compareTo(second.getBillDate().toString());
+            return first.getBillDate().toString().compareToIgnoreCase(second.getBillDate().toString());
         }
     }
 
@@ -94,7 +94,7 @@ public class SortBillCommand extends Command {
     public class StatusComparator implements Comparator<Bill> {
         @Override
         public int compare(Bill first, Bill second) {
-            return first.getPaymentStatus().toString().compareTo(second.getPaymentStatus().toString());
+            return first.getPaymentStatus().toString().compareToIgnoreCase(second.getPaymentStatus().toString());
         }
     }
 

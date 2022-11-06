@@ -37,6 +37,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
+        EditAppointmentDescriptor editAppointmentDescriptor = createEditAppointmentDescriptor(argMultimap);
+
+        return new EditAppointmentCommand(index, editAppointmentDescriptor);
+    }
+
+    private EditAppointmentDescriptor createEditAppointmentDescriptor(ArgumentMultimap argMultimap)
+            throws ParseException {
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editAppointmentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -54,7 +61,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new EditAppointmentCommand(index, editAppointmentDescriptor);
+        return editAppointmentDescriptor;
     }
 }

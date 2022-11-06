@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
 
 import java.util.List;
 import java.util.Optional;
@@ -64,7 +63,6 @@ public class EditBillCommand extends Command {
         Bill editedBill = createEditedBill(billToEdit, editBillDescriptor);
 
         model.setBill(billToEdit, editedBill);
-        model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
         return new CommandResult(String.format(MESSAGE_EDIT_BILL_SUCCESS, editedBill));
     }
 

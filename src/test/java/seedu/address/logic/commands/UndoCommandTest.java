@@ -22,7 +22,7 @@ public class UndoCommandTest {
         try {
             expectedModel.undo();
         } catch (CommandException e) {
-            assertEquals(e.getMessage(), "Undo cannot be done as there was no previous change in data");
+            assertEquals(e.getMessage(), "Undo cannot be done as there was no previous action");
         }
     }
 }

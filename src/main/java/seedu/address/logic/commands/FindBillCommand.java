@@ -79,4 +79,5 @@ public class FindBillCommand extends Command {
     public Predicate<Bill> getPredicate() {
         return predicate;
     }
+
 }
