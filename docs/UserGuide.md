@@ -209,7 +209,11 @@ The examples in this guide are formatted with the following conventions:
 
 Shows you either the list of commands available or information about a particular command.
 
-Format: `help [c/COMMAND]`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** Format: `help [c/COMMAND]`
+
+</div>
 
 Examples:
 1. `help` shows the list of commands available.
@@ -222,13 +226,21 @@ Examples:
 
 Shows you a list of all contacts in your TaskBook in the order they were added.<br>
 
-Format: `contact list`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** Format: `contact list`
+
+</div>
 
 #### Listing all Tasks : `task list`
 
 Shows you a list of all assigned tasks in your TaskBook in the order they were added.<br>
 
-Format: `task list`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task list`
+
+</div>
 
 ### Adding
 
