@@ -36,6 +36,7 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" TutorListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "0..1" TutorDetailsPanel
 
 TutorListPanel -down-> "*" TutorListCard
 
@@ -57,6 +58,8 @@ TutorListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
+TutorDetailsPanel -[hidden]left- TutorListCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml

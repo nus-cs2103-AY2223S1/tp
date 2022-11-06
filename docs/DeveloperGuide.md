@@ -90,6 +90,8 @@ The `UI` component,
 
 In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
 
+![Implementation of UI Parts](images/CommandExecutorClassDiagram.png)
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)

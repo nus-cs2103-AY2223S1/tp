@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class MainWindow
+Class TutorListPanel
+Class TutorListCard
+Class CommandBox
+Class "<<interface>>\nCommandExecutor" as CommandExecutor
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+MainWindow *-down->  "1" CommandBox
+MainWindow *-down->  "1" TutorListPanel
+
+TutorListPanel -down-> "*" TutorListCard
+
+CommandBox -down-> "1" CommandExecutor
+TutorListCard -down-> "1" CommandExecutor
+
+MainWindow ..> CommandExecutor :creates >
+
+CommandExecutor --> Logic
+
+TutorListPanel -[hidden]left- CommandBox
+@enduml
