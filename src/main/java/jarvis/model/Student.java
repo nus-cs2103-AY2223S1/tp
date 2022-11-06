@@ -2,15 +2,11 @@ package jarvis.model;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
-
 /**
  * Represents a Student in the student book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student {
-    // Comparator
-    public static final Comparator<Student> NAME_COMPARATOR = Comparator.comparing(s -> s.getName().toString());
+public class Student implements Comparable<Student> {
 
     // Identity fields
     private final StudentName studentName;
@@ -68,6 +64,15 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getMatricNum().equals(getMatricNum());
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        int result = studentName.toString().toLowerCase().compareTo(s.getName().toString().toLowerCase());
+        if (result == 0) {
+            return matricNum.toString().compareTo(s.getMatricNum().toString());
+        }
+        return result;
     }
 
     @Override
