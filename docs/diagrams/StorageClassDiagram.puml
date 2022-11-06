@@ -18,6 +18,7 @@ package "BookFace Storage" #F4F6F6{
 Class "<<interface>>\nBookFaceStorage" as BookFaceStorage
 Class JsonBookFaceStorage
 Class JsonSerializableBookFace
+Class JsonAdaptedBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -38,6 +39,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonBookFaceStorage .up.|> BookFaceStorage
 JsonBookFaceStorage ..> JsonSerializableBookFace
 JsonSerializableBookFace --> "*" JsonAdaptedPerson
+JsonSerializableBookFace --> "*" JsonAdaptedBook
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
 @enduml
