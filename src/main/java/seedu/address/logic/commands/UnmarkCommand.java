@@ -5,6 +5,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Unmarks an appointment for the given patient as incomplete.
@@ -31,7 +32,6 @@ public class UnmarkCommand extends SelectAppointmentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person person = getTargetPerson(model);
         Appointment appointmentToUnmark = getTargetAppointment(model);
 
         if (!appointmentToUnmark.isMarked()) {
@@ -39,6 +39,8 @@ public class UnmarkCommand extends SelectAppointmentCommand {
         }
 
         appointmentToUnmark.unmark();
+        model.updateFilteredLists(HiddenPredicateSingleton.getInstance().getCurrPersonPredicate(),
+                HiddenPredicateSingleton.getInstance().getCurrApptPredicate());
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased()));
     }
