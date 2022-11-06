@@ -115,7 +115,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void setInput_test() throws seedu.address.logic.commands.exceptions.CommandException {
+    public void setInput_test() throws CommandException {
         DisplayItem dataStub = model.getFromFilteredPerson(Index.fromZeroBased(1));
 
         DeleteCommand delCommandStub = new DeleteCommand(Index.fromZeroBased(1), P_GETTER, P_DELETER, P_TESTER);
