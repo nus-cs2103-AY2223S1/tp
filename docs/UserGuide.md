@@ -20,7 +20,7 @@ you understand StudMap, so that you can make the best use of our features. Read 
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 # 2. Why StudMap?
 
