@@ -2,7 +2,6 @@ package seedu.clinkedin.logic.commands;
 
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
