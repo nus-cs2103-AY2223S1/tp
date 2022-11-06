@@ -35,8 +35,8 @@ public enum Subject {
             + "physics|phys{0,1}|"
             + "chemistry|chem|"
             + "biology|bio|"
-            + "(e|elem|elementary)\\s*(mathematics|maths{0,1}){0,1}|"
-            + "(a|add|additional)\\s*(mathematics|maths{0,1}){0,1}";
+            + "(e|elem|elementary)\\s*(mathematics|maths{0,1})|"
+            + "(a|add|additional)\\s*(mathematics|maths{0,1})";
 
     public final String subject;
 

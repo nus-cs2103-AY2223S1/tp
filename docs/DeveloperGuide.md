@@ -257,11 +257,14 @@ tuition classes in the student/tutor.
   * Cons: Hard and tedious to implement the storing of information in Json. 
 
 
-### \[Implemented\] Find by fields feature
+### \[Implemented\] Search by multiple fields feature
 
 #### Implementation
 
 The proposed find by fields mechanism searches the currently displayed list based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
+
+The following activity diagram shows how the `find` operation works:
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 Given below is an example usage scenario and how the find by fields mechanism behaves at each step.
 
@@ -271,18 +274,66 @@ Step 2. The user execute `list tutor` command to list out all tutors by calling 
 
 Step 3. The user executes `find n/john q/computing i/nus` command to search for all tutors who are named John and have graduated from NUS with computing qualifications. The user's input is first parsed into the `AddressBookParser`, where the `COMMAND_WORD` and the `arguments` are separated, and the `Model.ListType` is determined.
 
-Step 4. After checking that the `COMMAND_WORD`, a new `FindCommandParser` is returned with the `arguments` parsed into it.
+Step 4. After checking that the `COMMAND_WORD` is `find`, a new `FindCommandParser` is returned with the `arguments` parsed into it.
 
-Step 5. In the `FindCommandParser`, the `arguments` are tokenized into an `ArgumentMultimap`, where the respective `prefixes` and `keywords` are extracted from the `arguments` and mapped to each other. Afterwards, the pairs of `prefixes` and `keywords` are put into a `HashMap<Prefix, String>`. A `FindCommand` is then returned with the `HashMap<Prefix, String>` parsed into it.
+Step 5. In the `FindCommandParser`, the `arguments` are tokenized into an `ArgumentMultimap`, where the respective `prefixes` and `keywords` are extracted from the `arguments` and mapped to each other. Following that, `validateArguments` is executed to ensure that the arguments are valid.
 
-Step 6. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is created with the `keywords` as input, which tests if the `keywords` are contained by the respective fields in the tutors.
+Step 6. Afterwards, the pairs of `prefixes` and `keywords` are put into a `HashMap<Prefix, String>`, and a `FindCommand` is then returned with the `HashMap<Prefix, String>` parsed into it.
 
-Step 7. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
+Step 7. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is created with the `keywords` as input, which tests if the `keywords` are contained by the respective fields in the tutors.
 
-Step 8. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
+Step 8. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
 
-_{more aspects and alternatives to be added}_
+Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
 
+The following sequence diagram shows how the `find` operation works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Proposed implementations / add-ons ####
+
+#### 1. Filter feature ####
+
+The `find` feature works very similarly to a "filter" feature, where the list of items is reduced to fit a set of criteria. Currently, the feature "finds" students, tutors or tuition classes by checking if the respective fields contains a keyword string. 
+However, many of the field classes of each entity are implemented as enums, where the values of the enums are constant and predictable. For example, the `Day` class has enum values such as `Monday`, `Tuesday`, `Wednesday` etc. 
+In such cases, users can input keywords like "day" that matches every single possible enum value for this class, which ends up fulfilling the predicate for every entity on the list.
+
+Therefore, we could let the user use the feature as a "filter", where the user cannot simply input a partial search keyword such as "Mon" and check if the value of the actual `Day` object is a `Monday`. Instead, the user has to input the entire enum value as a filter (e.g. `Monday`) in order for the
+function to pass through. Below are some considerations for this approach:
+
+Pros:
+- Blocks off unintended use cases, such as giving the input "day" that matches every single entity on the list.
+- Reduces unintended errors by limiting the inputs that the user can give. E.g. Can only input `Monday`, `Tuesday`, `Wednesday` etc. for the `Day` field
+
+Cons:
+- Much more inflexible as users cannot give inputs that are more lenient and that matches more entities on the list.
+- It would be much more troublesome to use on a CLI-centric application as users may have to key in the full spelling of the filter being applied.
+
+Alternatively, the filter feature can be implemented as a separate feature altogether in future iterations.
+
+#### 2. Add more fields for find feature ####
+
+The find feature currently doesn't allow users to search by the following critera:
+
+Student:
+1. Details of `NextOfKins`
+2. Details of `TuitionClasses` that they are attending
+
+Tutor:
+1. Details of `TuitionClasses` that they are teaching
+
+TuitionClass:
+1. Details of `Students` that are attending
+2. Details of `Tutors` that are teaching
+
+These could be added in future iterations to give users more flexibility in their search.
+
+#### 3. Add interactive UI interactions ####
+
+The find feature is currently a full CLI-centric feature, where users have to key in the command in the correct format to execute the command.
+While the application was indeed intended for fast typists, we could consider adding elements of UI interaction to accommodate more user preferences.
+For example, we can implement clickable elements to allow users to select a set of "commonly used searches" so that they don't have to re-type predicates that they frequently use.
+Furthermore, we can add individual search boxes for each searchable field so that it is much more intuitive for the users to input their predicates.
+Therefore, there is a lot of potential for UI to be integrated with the find feature in future iterations.
 
 ### \[Implemented\] List type feature
 

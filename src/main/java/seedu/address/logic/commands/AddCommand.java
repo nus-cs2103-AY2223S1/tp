@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.CommandResult.CommandType.ADD;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDSTUDENT;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADDTUTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -24,9 +25,12 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.School;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
+import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
 import seedu.address.model.tuitionclass.Subject;
@@ -252,19 +256,25 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (this.classToAdd == null) {
+            assert (!(this.personToAdd instanceof NextOfKin));
             requireNonNull(this.personToAdd);
             if (model.hasPerson(this.personToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
             model.addPerson(this.personToAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, this.personToAdd), ADD);
+            if (this.personToAdd instanceof Student) {
+                return new CommandResult(String.format(MESSAGE_SUCCESS, this.personToAdd), ADDSTUDENT);
+            } else {
+                assert (this.personToAdd instanceof Tutor);
+                return new CommandResult(String.format(MESSAGE_SUCCESS, this.personToAdd), ADDTUTOR);
+            }
         } else {
             requireNonNull(this.classToAdd);
             if (model.hasTuitionClass(this.classToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_CLASS);
             }
             model.addTuitionClass(this.classToAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, this.classToAdd), ADD);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.classToAdd));
         }
     }
 
