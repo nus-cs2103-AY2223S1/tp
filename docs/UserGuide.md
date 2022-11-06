@@ -6,9 +6,9 @@ title: User Guide
 * Table of Contents
 {:toc}
 
-## Introduction
+## 1. Introduction
 
-### About GREWZ
+### 1.1 About GREWZ
 Tired of opening multiple applications for your teaching needs? Proficient in typing? Look no further!
 
 GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
@@ -24,20 +24,19 @@ GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glo
 
 Hopefully our application has grown on you! 
 
-### Navigation
+### 1.2 Navigation
 The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the 
 steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
 
 If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
 
-If you want to find out more about GREWZ features and commands, jump over to [Features](#features).
+For understanding more about GREWZ features and commands, head over to [Features](#features).
+
+To have a look at frequently asked question, refer to [FAQs](#faq)
 
 If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
 
-If you have a question, jump over to [FAQs](#faq)
-
 Take note of the following symbols and formatting used in this document:
-
 
 | Symbol               | Meaning                                               |
 |----------------------|-------------------------------------------------------|
@@ -47,7 +46,9 @@ Take note of the following symbols and formatting used in this document:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick start
+
+### 2.1 Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#faq).
 
@@ -58,8 +59,10 @@ Take note of the following symbols and formatting used in this document:
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui with annotations](images/Ui_annotated.png "GREWZ UI")
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+
+### 2.2 First Use
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Some example commands you can try:
 
    * **`list`** : Lists all students.
 
@@ -71,11 +74,11 @@ Take note of the following symbols and formatting used in this document:
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -101,10 +104,10 @@ Take note of the following symbols and formatting used in this document:
 
 </div>
 
-## Student Contact Commands
+### 3.1 Student Contact Commands
 [Back to Top ↑](#introduction)
 
-### Adding a student: `add`
+#### 3.1.1 Adding a student: `add`
 
 Adds a student to the class list.
 
@@ -137,13 +140,13 @@ Examples:
 Below is an example of how the UI will look like after executing this two commands:
   ![Display of the UI](images/UpdatedUI.jpg)
 
-### Listing all students : `list`
+#### 3.1.2 Listing all students : `list`
 
 Shows a list of all students in the student list.
 
 Format: `list`
 
-### Adding a class field to a student: `class`
+#### 3.1.3 Adding a class field to a student: `class`
 
 Add the class group to the specified student from the student list.
 
@@ -157,7 +160,7 @@ Examples:
 * ```class 1 c/CS2030S Lab 32``` Edits the class group of the 1st student in the list to be CS2030S Lab 32.
 * ```class 1 c/ ``` Clears the class group of the 1st student in the list.
 
-### Uploading/ Changing student profile picture: `upload-pic`
+#### 3.1.4 Uploading/ Changing student profile picture: `upload-pic`
 
 GREWZ allows you to upload image of your students into your application. The following steps will help you upload photos of your students into the student list.
 
@@ -172,7 +175,7 @@ Format: `upload-pic INDEX`
 You are recommended to select an image of dimensions ratio of about 1:1 otherwise the selected picture may not appear nicely.
 </div>
 
-### Editing student information : `edit`
+#### 3.1.5 Editing student information : `edit`
 
 Edits an existing student in the student list.
 
@@ -192,7 +195,7 @@ Examples:
 * `edit 2 n/Jackie Chan t/` Edits the name of the 2nd student to be `Jackie Chan` and clears all existing tags.
 * `edit 3 p/ e/ c/` Clears the stored phone number, email and class of the 3rd student in the list.
 
-### Locating students: `find`
+#### 3.1.6 Locating students: `find`
 
 Finds students whose student details contain any of the given keywords.
 
@@ -210,7 +213,7 @@ Examples:
 * `find alex dav` returns `Wong Alex, David Lim`
 
 
-### Deleting a student : `delete`
+#### 3.1.7 Deleting a student : `delete`
 
 Deletes the specified student from the student list.
 
@@ -224,14 +227,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-## Attendance commands
-[Back to Top ↑](#introduction)
+#### 3.1.8 Attendance commands
 
 We developed a feature to add an attendance list of a maximum of 12 lessons to help you record attendance for your students. 
 You can mark/unmark attendance of your students. 
 Currently, we only support one attendance list per student.
 
-### Adding an attendance list to a student: `attendance add`
+##### Adding an attendance list to a student: `attendance add`
 
 Adds an attendance list to a student in contacts. 
 
@@ -254,7 +256,7 @@ Expected outcome:
 ![AttendanceAdd](images/AttendanceAdd.png)
 After using ```attendance add``` command
 
-### Marking attendance of student: `attendance mark`
+##### Marking attendance of student: `attendance mark`
 
 Marks attendance of given student in class list. In this case, we use 0 for absent and 1 for present.
 
@@ -275,7 +277,7 @@ Expected outcome:
 
 After using ```attendance mark``` command
 
-### Deleting attendance of a student: `attendance delete`
+##### Deleting attendance of a student: `attendance delete`
 
 Deletes the entire attendance list of a student in the student list.
 
@@ -289,10 +291,10 @@ Expected outcome:<br>
 ![AttendanceDelete](images/AttendanceDelete.png)<br>
 After using ```attendance delete``` command
 
-## Task Commands
+### 3.2 Task Commands
 [Back to Top ↑](#introduction)
 
-### Adding a Task : `task`
+#### 3.2.1 Adding a Task : `task`
 
 Adds a task to the Task List.
 There is three different types of Task - ***ToDo***, ***Deadline*** and ***Assignment***.
@@ -301,70 +303,71 @@ There is three different types of Task - ***ToDo***, ***Deadline*** and ***Assig
 You can have multiple same tasks as tasks can be duplicated.
 </div>
 
-#### Adding a ToDo
+##### Adding a ToDo
 
 Adds a ***ToDo*** (A type of Task) to the Task List.
 
 Format: `task t/TITLE d/DESC`
 
-* A ToDo should always include a title and description and should not be left blank.
+* A ToDo Task should always include a title and description and should not be left blank.
 * Both title and description should not be left blank.
 
 Examples:
-* `task t/Prepare studio slides d/Topic Environment Model` adds a ToDo with title "Prepare studio slides" and description "Topic Environment Model" to the task list.
-* `task t/Collect robot d/At MakersLab` adds a ToDo with title "Collect robot" and description "MakersLab" to the task list.
+* `task t/Prepare studio slides d/Topic Environment Model` adds a ToDo Task with title `Prepare studio slides` and description `Topic Environment Model` to the task list.
+* `task t/Collect robot d/At MakersLab` adds a ToDo Task with title `Collect robot` and description `At MakersLab` to the task list.
 
 Expected outcome:<br>
 ![AddingToDo](images/AddingToDo.png)<br>
 After adding a ToDo task
 
-#### Adding a Deadline
+##### Adding a Deadline
 
 Adds a ***Deadline*** (A type of Task) to the Task List.
 
 Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 
-* A Deadline should always include a title, description and date and should not be left blank.
+* A Deadline Task should always include a title, description and date and should not be left blank.
+* The `by/` prefix **MUST** be present for the task to be a deadline.
 * Both title and description should not be left blank.
 * A date should strictly follow the format of YYYY-MM-DD.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
-0000-00-00 is <strong>not</strong> considered a valid date.
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+Valid dates are only dates you can find on a calendar. 0000-00-00 is <strong>not</strong> considered a valid date.
 </div>
 
 Examples:
-* `task t/Prepare studio slides d/Topic Lists by/2020-12-12` adds a Deadline with title "Prepare studio slides", description "Topic Lists" and date 2020-12-12 to the task list.
-* `task t/Collect robot d/At MakersLab by/2019-09-10` adds a Deadline with title "Collect robot", description "At MakersLab" and date 2019-09-10 to the task list.
+* `task t/Prepare studio slides d/Topic Lists by/2020-12-12` adds a Deadline Task with title `Prepare studio slides`, description `Topic Lists` and date `12 Dec 2020` to the task list.
+* `task t/Collect robot d/At MakersLab by/2019-09-10` adds a Deadline Task with title `Collect robot`, description `At MakersLab` and date `10 Sep 2019` to the task list.
 
 Expected outcome: <br>
 ![AddingDeadline](images/AddingDeadline.png) <br>
 After adding a Deadline task
 
-#### Adding an Assignment
+##### Adding an Assignment
 
 Adds an ***Assignment*** (A type of Task) to the Task List.
 
-Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2 ...`
 
-* An Assignment task should always include a title, description that should not be left blank.
-* The `addStu/` **MUST** be present for the task to be an assignment.
+* An Assignment Task should always include a title, description that should not be left blank.
+* The `addStu/` prefix **MUST** be present for the task to be an assignment.
 * The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
 * Both title and description should not be left blank.
 
 Examples:
-* `task t/Assignment 1 d/Midterm addStu/Adam Tan, Wong Zhu Yi` adds an Assignment with title "Assignment 1", description "Midterm" and two students, to the task list.
-* `task t/Mock PE d/Simulates actual PE addStu/Alvin, Simon, Theodore` adds an Assignment with title "Mock PE", description "Simulates actual PE" and three students, to the task list.
+* `task t/Assignment 1 d/Midterm addStu/Adam Tan, Wong Zhu Yi` adds an Assignment Task with title `Assignment 1`, description `Midterm` and two students `Adam Tan`, `Wong Zhu Yi`, to the task list.
+* `task t/Mock PE d/Simulates actual PE addStu/Alvin, Simon, Theodore` adds an Assignment Task with title `Mock PE`, description `Simulates actual PE` and three students `Alvin`, `Simon`, `Theodore`, to the task list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Currently, we allow Assignment tasks to take in any student name, even if they do not exist in the Student list yet.
-However we will link the students to the Assignments in future versions of GREWZ such that only students in the Student list can be added.
+However, we will link the students to the Assignments in future versions of GREWZ such that only students in the Student list can be added.
 </div>
 
 Expected outcome: <br>
 ![AddingAssignment](images/AddingAssignment.png) <br>
 After adding an Assignment task
 
-### Editing Tasks : `edit-task`
+#### 3.2.2 Editing a Tasks : `edit-task`
 
 Edits an existing tasks in the task list.
 
@@ -388,7 +391,7 @@ Examples:
   Edits the title, description and adds to student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and adds `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
 
-### Removing a Task : `remove-task`
+#### 3.2.3 Removing a Task : `remove-task`
 
 Removes a specified task from the Task List (Can be a ToDo, Deadline or Assignment).
 
@@ -403,23 +406,25 @@ Examples:
 * `remove-task 1` removes the 1st task in the task list.
 ---
 
-### Clearing all entries : `clear`
+### 3.3 General Commands
+
+#### 3.3.1 Clearing all entries : `clear`
 
 Clears all entries from the student list as well as task list.
 
 Format: `clear`
 
-### Navigating User Input History: `↑`, `↓`
+#### 3.3.1 Navigating User Input History: `↑`, `↓`
 
 Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
 
 Format: `↑`, `↓`
 
-### Saving the data
+#### 3.3.1 Saving the data
 
 GREWZ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### 3.3.1 Editing the data file
 
 GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -427,7 +432,7 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Viewing help : `help`
+#### 3.3.1 Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -435,7 +440,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Exiting the program : `exit`
+#### 3.3.1 Exiting the program : `exit`
 
 Exits the program.
 
@@ -443,7 +448,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q:** I don't know if I have Java `11` installed in my computer. What do I do?
 <br />
@@ -484,7 +489,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 | Action                | Format                                                                                                            | Examples                                                                          |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
@@ -507,7 +512,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## 6. Glossary
 
 | Word                                       | Definition                                                                                                                                     |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
