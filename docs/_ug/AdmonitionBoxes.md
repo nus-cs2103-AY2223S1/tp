@@ -15,5 +15,5 @@ Throughout this guide, you may find coloured boxes containing highlighted pieces
 
 Besides icons, there are also some special notations that are used in this guide:
 
-* <a href="javascript:;">Links in blue</a> point to other sections in this document, or places on the internet.
+* <a href="javascript:;">Links in blue</a> point to other sections of this document or places on the internet.
 * <span class="def-tooltip"><a href="javascript:;">Words with a dotted underline</a></span> represent terms, which when clicked, take you to the corresponding entry in the glossary section below.
