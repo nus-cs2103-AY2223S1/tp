@@ -2,7 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents
+
+# **Table of Contents**
 
 * Table of Contents
 {:toc}
@@ -30,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://github.com/AY2223S1-CS2103T-T09-3/tp/tree/master/docs/diagrams) to learn how to create and edit diagrams.
 </div>
 
-## Architecture
+## **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -71,7 +72,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-## UI component
+## **UI component**
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/Ui.java)
 
@@ -88,14 +89,14 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays objects such as `Project` residing in the `Model`.
 
-### Current implementation
+### **Current implementation**
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
 There are 3 main columns, which from left to right are for `Task`, `Project` and `Staff` from model.
 Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
 
-## Logic component
+## **Logic component**
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/logic/Logic.java)
 
@@ -124,7 +125,7 @@ How the parsing works:
 * When called upon to parse a user command, the `HrProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HrProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
+## **Model component**
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
@@ -168,7 +169,7 @@ The `Task` class,
 
 * stores the details of a particular task (i.e. `TaskDescription`, `TaskDeadline`).
 
-## Storage component
+## **Storage component**
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/storage/Storage.java)
 
@@ -179,7 +180,7 @@ The `Storage` component,
 * inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-## Common classes
+## **Common classes**
 
 Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
@@ -189,9 +190,9 @@ Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## \[Proposed\] Undo/redo feature
+## **\[Proposed\] Undo/redo feature**
 
-### Proposed Implementation
+### **Proposed Implementation**
 
 The proposed undo/redo mechanism is facilitated by `VersionedHrPro`. It extends `HrPro` with an undo/redo history, stored internally as an `hrProStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -254,7 +255,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-### Design considerations:
+### **Design considerations:**
 
 **Aspect: How undo & redo executes:**
 
@@ -269,9 +270,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-## View Command
+## **View Command**
 
-### Implementation:
+### **Implementation:**
 * The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
 * This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
 * The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
@@ -282,15 +283,15 @@ The following sequence diagram shows how the view command works.
 
 ![view command](images/ViewCommandSequenceDiagram.png)
 
-### Design considerations:
+### **Design considerations:**
 * The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
 * We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
 * The last viewed staff list would also be saved in `Storage` for convenience to users.
 
-## Task List
+## **Task List**
 
-### Implementation
+### **Implementation:**
 `Task List` is implemented in a way that is similar to
 `Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
 classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
@@ -304,7 +305,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskStructure.png)
 
-### Design considerations:
+### **Design considerations:**
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
@@ -313,16 +314,16 @@ there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
-## Find Task
+## **Find Task**
 
-### Implementation
+### **Implementation:**
 Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask`
 command to match part of the `TaskDescription`.
 
 The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
 ![img.png](images/FindTaskDiagram.png)
 
-### Design considerations:
+### **Design considerations:**
 
 * We chose to find tasks by their `TaskDescription` as users are more likely to search for tasks by name.
 * We allowed for partial matching of the keyword to the `TaskDescription` as users may not remember the full name or a full word of the task.
