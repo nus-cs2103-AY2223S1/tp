@@ -107,12 +107,20 @@ public class CommandBox extends UiPart<Region> {
      * Auto-completes user input when the user presses the Tab key.
      */
     public void handleKeyPressed(KeyEvent e) {
+        String userInput = commandTextField.getText();
         if (e.getCode() == KeyCode.TAB) {
-            commandTextField.setText(commandSuggestor.autocompleteCommand(commandTextField.getText(),
-                commandSuggestionTextField.getText()));
+            String commandSuggestion = commandSuggestionTextField.getText();
+            String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
+            if (!autocompletedCommand.equals("")) {
+                commandTextField.setText(autocompletedCommand);
+                commandTextField.end();
+            }
             updateCommandSuggestion(commandTextField.getText());
-            commandTextField.positionCaret(commandTextField.getText().length());
             e.consume();
+        } else {
+            commandTextField.setText(userInput);
+            commandTextField.end();
+            updateCommandSuggestion(commandTextField.getText());
         }
     }
 
@@ -126,6 +134,7 @@ public class CommandBox extends UiPart<Region> {
         }
         try {
             commandSuggestionTextField.setText(commandSuggestor.suggestCommand(commandText));
+            commandSuggestionTextField.positionCaret(commandTextField.getText().length());
         } catch (CommandException e) {
             logger.info("Invalid Command Entered");
             commandSuggestionTextField.setText(commandText);
