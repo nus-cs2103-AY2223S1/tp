@@ -33,6 +33,7 @@ public class MailEventCommand extends Command {
             + "stored %s.csv file in /data folder.";
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save mailing list to file: %s.csv";
     public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no person in the event: %s.";
+    public static final String INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE = "Event index given is out of event list range.";
     private final Index eventIndex;
     /**
      * Constructor of MailEvent Command.
@@ -48,6 +49,10 @@ public class MailEventCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
+        //check if index is in range of eventlist
+        if (eventIndex.getZeroBased() >= lastShownEventList.size() || eventIndex.getZeroBased() < 0) {
+            throw new CommandException(INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE);
+        }
         Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
         String eventTitle = eventToMail.getEventTitle().toString();
         // check if index is valid
