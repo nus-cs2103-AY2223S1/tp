@@ -78,7 +78,7 @@ public class AddModuleCommandParserTest {
                 + LECTURE_ZOOM_LINK_CS2103T + TUTORIAL_ZOOM_LINK_CS2103T + ASSIGNMENT_DETAILS_NORMAL,
                 new AddModuleCommand(expectedModule));
 
-        // multiple asssignments - all accepted
+        // multiple assignments - all accepted
         Module expectedModuleMultipleTags =
             new ModuleBuilder(CS2103T).withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_HARD,
                 VALID_ASSIGNMENT_DETAILS_NORMAL).build();
