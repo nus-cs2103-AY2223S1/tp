@@ -395,19 +395,6 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## FAQ
-
-**Q**: How do I save my data in Tuthub?<br>
-**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
-
-**Q**: Why is my previous data not loaded properly into Tuthub?<br>
-**A**: It is highly likely that your data storage file has something in the wrong format. It is recommended to check the log files to see what happened when Tuthub started up.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command Summary
 
 | Action                     | Format                                                                                                                             | Examples (if any)                                                                                      |
@@ -428,6 +415,19 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+## FAQ
+
+**Q**: How do I save my data in Tuthub?<br>
+**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
+
+**Q**: Why is my previous data not loaded properly into Tuthub?<br>
+**A**: It is highly likely that your data storage file has something in the wrong format. It is recommended to check the log files to see what happened when Tuthub started up.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
