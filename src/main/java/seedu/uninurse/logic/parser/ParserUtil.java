@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 
@@ -90,7 +90,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
+        requireAllNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -105,7 +105,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
+        requireAllNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -120,7 +120,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
+        requireAllNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -135,7 +135,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        requireAllNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -150,7 +150,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code condition} is invalid.
      */
     public static Condition parseCondition(String condition) throws ParseException {
-        requireNonNull(condition);
+        requireAllNonNull(condition);
         String trimmedCondition = condition.trim();
         if (!Condition.isValidCondition(trimmedCondition)) {
             throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
@@ -162,7 +162,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> conditions} into a {@code ConditionList}.
      */
     public static ConditionList parseConditions(Collection<String> conditions) throws ParseException {
-        requireNonNull(conditions);
+        requireAllNonNull(conditions);
         final List<Condition> conditionList = new ArrayList<>();
         for (String condition : conditions) {
             conditionList.add(parseCondition(condition));
@@ -177,7 +177,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code String medication} is invalid.
      */
     public static Medication parseMedication(String medication) throws ParseException {
-        requireNonNull(medication);
+        requireAllNonNull(medication);
         String[] medicationTypeAndDosage = medication.split("\\|");
 
         if (medicationTypeAndDosage.length != 2) {
@@ -198,7 +198,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> medications} into a {@code MedicationList}.
      */
     public static MedicationList parseMedications(Collection<String> medications) throws ParseException {
-        requireNonNull(medications);
+        requireAllNonNull(medications);
         final List<Medication> medicationList = new ArrayList<>();
         for (String medication : medications) {
             medicationList.add(parseMedication(medication));
@@ -213,7 +213,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code String medication} is invalid.
      */
     public static EditMedicationDescriptor parseEditMedicationDescriptor(String medication) throws ParseException {
-        requireNonNull(medication);
+        requireAllNonNull(medication);
         String[] medicationTypeAndDosage = medication.split("\\|");
 
         if (medicationTypeAndDosage.length > 2) {
@@ -252,7 +252,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code taskDescription} is invalid.
      */
     public static Task parseTask(String taskDescription) throws ParseException {
-        requireNonNull(taskDescription);
+        requireAllNonNull(taskDescription);
         String[] descriptionAndTime = taskDescription.trim().split("\\|");
 
         if (descriptionAndTime.length == 1) {
@@ -328,7 +328,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> tasks} into a {@code TaskList}.
      */
     public static TaskList parseTasks(Collection<String> taskDescriptions) throws ParseException {
-        requireNonNull(taskDescriptions);
+        requireAllNonNull(taskDescriptions);
         final ArrayList<Task> tasks = new ArrayList<>();
         for (String taskDescription : taskDescriptions) {
             tasks.add(parseTask(taskDescription));
@@ -343,7 +343,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code String task} is invalid.
      */
     public static EditTaskDescriptor parseEditTaskDescriptor(String task) throws ParseException {
-        requireNonNull(task);
+        requireAllNonNull(task);
         String[] taskArguments = task.split("\\|");
 
         if (taskArguments.length > 3) {
@@ -399,7 +399,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
+        requireAllNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -411,7 +411,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> tags} into a {@code TagList}.
      */
     public static TagList parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+        requireAllNonNull(tags);
         final List<Tag> tagList = new ArrayList<>();
         for (String tagName : tags) {
             tagList.add(parseTag(tagName));
@@ -426,7 +426,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code remark} is invalid.
      */
     public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
+        requireAllNonNull(remark);
         String trimmedRemark = remark.trim();
         if (!Remark.isValidRemark(trimmedRemark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
@@ -438,7 +438,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> remarks} into a {@code RemarkList}.
      */
     public static RemarkList parseRemarks(Collection<String> remarks) throws ParseException {
-        requireNonNull(remarks);
+        requireAllNonNull(remarks);
         final List<Remark> remarkList = new ArrayList<>();
         for (String remark : remarks) {
             remarkList.add(parseRemark(remark));
@@ -456,8 +456,8 @@ public class ParserUtil {
      * Parses the value of {@code String option} from {@code String arguments}.
      */
     private static Optional<String> parseOption(String arguments, String option) {
-        requireNonNull(arguments);
-        requireNonNull(option);
+        requireAllNonNull(arguments);
+        requireAllNonNull(option);
         String[] options = arguments.trim().split("\\s+");
         Optional<String> ret = Optional.empty();
         for (int i = 0; i < options.length; i++) {
@@ -476,8 +476,8 @@ public class ParserUtil {
      * and return them in a {@code ArgumentMultimap}.
      */
     public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
-        requireNonNull(arguments);
-        requireNonNull(options);
+        requireAllNonNull(arguments);
+        requireAllNonNull(options);
         ArgumentMultimap optionValues = new ArgumentMultimap();
         for (int i = 0; i < options.length; i++) {
             Optional<String> value = parseOption(arguments, options[i].toString());
@@ -493,8 +493,8 @@ public class ParserUtil {
      * and return the resulting {@code String}.
      */
     private static String eraseOption(String arguments, String option) {
-        requireNonNull(arguments);
-        requireNonNull(option);
+        requireAllNonNull(arguments);
+        requireAllNonNull(option);
         String[] options = arguments.trim().split("\\s+");
         int ret = -1;
         for (int i = 0; i < options.length; i++) {
@@ -517,8 +517,8 @@ public class ParserUtil {
      * and return the resulting {@code String}.
      */
     public static String eraseOptions(String arguments, Prefix... options) {
-        requireNonNull(arguments);
-        requireNonNull(options);
+        requireAllNonNull(arguments);
+        requireAllNonNull(options);
         for (int i = 0; i < options.length; i++) {
             arguments = eraseOption(arguments, options[i].toString());
         }
@@ -529,8 +529,8 @@ public class ParserUtil {
      * Checks if in the given argumentMultimap, *only* the given validOptions occur.
      */
     public static boolean optionsOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
-        requireNonNull(argumentMultimap);
-        requireNonNull(validOptions);
+        requireAllNonNull(argumentMultimap);
+        requireAllNonNull(validOptions);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
                 Arrays.stream(validOptions).anyMatch(x -> x.equals(option))
@@ -541,8 +541,8 @@ public class ParserUtil {
      * Checks if in the given argumentMultimap, *only* the given validParameters occur.
      */
     public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
-        requireNonNull(argumentMultimap);
-        requireNonNull(validParameters);
+        requireAllNonNull(argumentMultimap);
+        requireAllNonNull(validParameters);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(option ->
                 Arrays.stream(validParameters).anyMatch(x -> x.equals(option))

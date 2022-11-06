@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
@@ -28,8 +29,8 @@ public class AddGenericCommandParser implements Parser<AddGenericCommand> {
     public AddGenericCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
 
-        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX);
-        args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX);
+        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
+        args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
 
         ArgumentMultimap parameters = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 

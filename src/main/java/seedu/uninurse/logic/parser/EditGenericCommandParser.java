@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
@@ -24,7 +24,7 @@ public class EditGenericCommandParser implements Parser<EditGenericCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditGenericCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
         args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);

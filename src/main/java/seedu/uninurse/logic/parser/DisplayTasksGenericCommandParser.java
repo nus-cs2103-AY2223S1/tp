@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.SPECIAL_CHARACTER_ALL;
@@ -23,7 +23,7 @@ public class DisplayTasksGenericCommandParser implements Parser<DisplayTasksGene
      * @throws ParseException if the user input does not conform the expected format
      */
     public DisplayTasksGenericCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+        requireAllNonNull(args);
 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
         args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
