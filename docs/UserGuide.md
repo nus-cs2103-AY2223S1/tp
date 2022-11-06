@@ -646,7 +646,9 @@ Example:
 1. `task sort s/a` displays a task list sorted by description alphabetical order.
    * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
 
-### Marking a task : `task mark`
+### Marking as done
+
+#### Marking a task : `task mark`
 
 Marks the specified task from your task list as done.
 
@@ -659,7 +661,7 @@ Format: `task mark i/INDEX`
 Example:
 1. `task list` followed by `task mark i/2` marks the 2nd task in your task list.
 
-### Unmarking a task : `task unmark`
+#### Unmarking a task : `task unmark`
 
 Marks the specified task from your task list as not done.
 
@@ -672,7 +674,9 @@ Format: `task unmark i/INDEX`
 Example:
 1. `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
 
-### Undo Command : `undo`
+### Undo and Redo
+
+#### Undo Command : `undo`
 
 Undoes the previous command and reverts your TaskBook to the previous state.
 
@@ -693,7 +697,7 @@ Example:
 
 2. `undo` will undo the previous command
 
-### Redo Command : `redo`
+#### Redo Command : `redo`
 
 Redoes the previous undo action and reverts your TaskBook to a previously undone state.
 
