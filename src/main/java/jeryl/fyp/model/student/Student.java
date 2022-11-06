@@ -127,7 +127,6 @@ public class Student {
                 && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getProjectName().equals(getProjectName())
-                && otherStudent.getDeadlineList().equals(getDeadlineList())
                 && otherStudent.getTags().equals(getTags());
     }
 

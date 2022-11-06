@@ -79,7 +79,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setProjectStatus(new ProjectStatus(projectStatus));
         return this;
     }
-
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
