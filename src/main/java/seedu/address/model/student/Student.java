@@ -2,7 +2,6 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -31,9 +30,7 @@ public class Student {
     private final AdditionalNotes additionalNotes;
     private Class aClass;
     private final Set<Tag> tags = new HashSet<>();
-    private final Mark mark;
-    private Class displayedClass;
-
+    private Mark mark;
 
     /**
      * Constructs a {@code Student} class when first initialized with add command.
@@ -52,7 +49,6 @@ public class Student {
         this.additionalNotes = new AdditionalNotes("");
         this.tags.addAll(tags);
         this.mark = new Mark();
-        this.displayedClass = new Class();
     }
 
     /**
@@ -61,7 +57,7 @@ public class Student {
      */
     public Student(Name name, Phone phone, Phone nokPhone, Email email, Address address, Class aClass,
                    Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
-                   Set<Tag> tags, Mark mark, Class displayedClass) {
+                   Set<Tag> tags, Mark mark) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
@@ -75,7 +71,6 @@ public class Student {
         this.additionalNotes = additionalNotes;
         this.tags.addAll(tags);
         this.mark = mark;
-        this.displayedClass = displayedClass;
     }
 
     public Name getName() {
@@ -109,19 +104,6 @@ public class Student {
         this.aClass = aClass;
     }
 
-    /**
-     * Updates the class to be displayed according to the Student's attendance status.
-     *
-     * @param displayedClass class that should be displayed on the schedule if present.
-     */
-    public void setDisplayClass(Class displayedClass) {
-        if (mark.isMarked()) {
-            this.displayedClass = displayedClass;
-        } else {
-            this.displayedClass = aClass;
-        }
-    }
-
     public Money getMoneyOwed() {
         return moneyOwed;
     }
@@ -140,10 +122,6 @@ public class Student {
 
     public Mark getMarkStatus() {
         return mark;
-    }
-
-    public Class getDisplayedClass() {
-        return displayedClass;
     }
 
     /**
@@ -204,15 +182,14 @@ public class Student {
                 && otherStudent.getAdditionalNotes().equals(getAdditionalNotes())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.getMarkStatus().equals(getMarkStatus())
-                && otherStudent.getDisplayedClass().equals(getDisplayedClass());
+                && otherStudent.getMarkStatus().equals(getMarkStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
-                additionalNotes, tags, mark, displayedClass);
+                additionalNotes, tags, mark);
     }
 
     @Override
@@ -238,9 +215,7 @@ public class Student {
                 .append("; Additional notes: ")
                 .append(getAdditionalNotes())
                 .append("; Mark: ")
-                .append(getMarkStatus())
-                .append("; Displayed Class: ")
-                .append(getDisplayedClass());
+                .append(getMarkStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -356,45 +331,31 @@ public class Student {
     }
 
     /**
-     * Returns compared result between {@code this} and the given {@code student} by displayed class in ascending order.
-     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
-     */
-    public int compareToByDisplayClass(Student student) {
-        requireAllNonNull(this.displayedClass, student.displayedClass);
-        return this.displayedClass.compareToByStartTime(student.displayedClass);
-    }
-
-    /**
-     * Updates the class to be displayed if the dates match.
-     *
-     * @param date to be checked with.
-     */
-    public void updateDisplayClass(LocalDate date) {
-        if (aClass.date != null && aClass.isSameDateAs(date)) {
-            this.displayedClass = aClass;
-            mark.reset();
-        }
-    }
-
-    /**
-     * Checks whether a student has multiple classes per day.
-     *
-     * @return true if the student has multiple classes in one day.
-     */
-    public boolean hasMultipleClasses() {
-        if (!mark.isMarked()) {
-            return false;
-        }
-
-        return (aClass.isSameDateAs(displayedClass.date));
-    }
-
-    /**
      * Checks if the student has a phone number that is the same as the next-of-kin's.
      *
      * @return true if phone number equals next-of-kin's phone.
      */
     public boolean hasSharedPhone() {
         return phone.equals(nokPhone);
+    }
+
+    /**
+     * Validates whether a student has 2 classes on the same date.
+     *
+     * @param student the student to check against.
+     * @return true if the student is not marked and have the same date.
+     */
+    public boolean hasSameDateAs(Student student) {
+        if (!mark.isMarked()) {
+            return false;
+        }
+        return aClass.isSameDateAs(student.aClass.date);
+    }
+
+    /**
+     * Resets the mark status to being not present.
+     */
+    public void resetMarkStatus() {
+        this.mark = new Mark(Boolean.FALSE);
     }
 }

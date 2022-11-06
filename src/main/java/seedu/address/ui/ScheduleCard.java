@@ -47,7 +47,7 @@ public class ScheduleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
-        classTime.setText(student.getDisplayedClass().toTimeString());
+        classTime.setText(student.getAClass().toTimeString());
         setWarningIfOwed(student);
         setMarkStatus(student);
     }
