@@ -19,7 +19,7 @@ import jarvis.commons.exceptions.DataConversionException;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.StudentBook;
 
-public class JsonTaskBookStorageTest {
+public class JsonStudentBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonStudentBookStorageTest");
 
     @TempDir

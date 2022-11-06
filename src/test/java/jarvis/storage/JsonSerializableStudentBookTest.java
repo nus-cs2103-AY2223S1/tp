@@ -13,7 +13,7 @@ import jarvis.commons.util.JsonUtil;
 import jarvis.model.StudentBook;
 import jarvis.testutil.TypicalStudents;
 
-public class JsonSerializableTaskBookTest {
+public class JsonSerializableStudentBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableStudentBookTest");
     private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsStudentBook.json");
