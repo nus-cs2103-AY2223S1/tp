@@ -87,9 +87,11 @@ Given below are my contributions to the project.
   * ListCommand
 * Added Add feature implementation with sequence diagram.
 * Added Edit feature implementation with sequence diagram.
+* Added Effort for Edit feature implementation.
 
 ### Contributions to the team-based tasks:
 
+* Tested the application and report bugs.
 * Added class Bill to represent the bill of the appointment with the bill information including
   bill amount, bill date and the payment status of the bill.
 * Added test cases for EditAppointmentCommandParser class.
