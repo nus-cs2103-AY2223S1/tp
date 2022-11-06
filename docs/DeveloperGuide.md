@@ -923,7 +923,7 @@ testers are expected to do more *exploratory* testing.
    
    1. Create a PDF file on your computer.
    
-   2. Test case: `filepath INDEX f/FILEPATH` where FILEPATH is the absolute file path of the PDF file from step 1.<br>
+   2. Test case: `filepath INDEX f/FILEPATH` where `FILEPATH` is the absolute file path of the PDF file from step 1.<br>
       Expected: PDF file assigned. Client details shown in the command display.
       
       1. Click on the client in the result display.
@@ -934,7 +934,7 @@ testers are expected to do more *exploratory* testing.
       3. Click on the `Client Information` button<br>
          Expected: The PDF file is opened.
    
-   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where RELATIVE FILEPATH is the file path of the PDF relative to the directory of FABook.
+   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
       Expected: PDF file not assigned. Error details shown in the command display.
       
       1. Click on the client in the result display.
@@ -945,7 +945,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect inputs to try: Incorrect filepaths, filepaths for other file types (e.g. .doc)<br>
       Expected: PDF file not assigned. Error details shown in the command display. See previous.
    
-   5. See `Opening PDF file` below for more related testing.
+   5. See [Opening PDF file](#opening-pdf-file) below for more related testing.
 
 1. Assigning a PDF file to a person already with PDF file assigned.
    
@@ -953,7 +953,7 @@ testers are expected to do more *exploratory* testing.
    
    2. Create a new PDF file on your computer.
    
-   2. Test case: `filepath INDEX f/FILEPATH` where NEWFILEPATH is the absolute file path of the new PDF file from step 2.<br>
+   2. Test case: `filepath INDEX f/NEWFILEPATH` where `NEWFILEPATH` is the absolute file path of the new PDF file from step 2.<br>
       Expected: PDF file assigned. Client details shown in the command display.
       
       1. Click on the client in the result display.
@@ -964,7 +964,7 @@ testers are expected to do more *exploratory* testing.
       3. Click on the `Client Information` button<br>
          Expected: The new PDF file is opened.
    
-   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where RELATIVE FILEPATH is the file path of the PDF relative to the directory of FABook.
+   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
       Expected: new PDF file not assigned. Error details shown in the command display.
       
       1. Click on the client in the result display.
