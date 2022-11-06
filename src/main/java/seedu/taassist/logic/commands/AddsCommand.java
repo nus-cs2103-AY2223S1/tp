@@ -1,9 +1,9 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
@@ -49,21 +49,16 @@ public class AddsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        requireFocusMode(model, COMMAND_WORD);
 
         Set<Session> duplicateSessions = new HashSet<>();
         Set<Session> newSessions = new HashSet<>();
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
 
         ModuleClass focusedClass = model.getFocusedClass();
 
         for (Session session: sessions) {
             if (focusedClass.hasSession(session)) {
-                // session is guaranteed to exist. No exception will be thrown.
-                Session existingSession = focusedClass.getSessionWithSameName(session);
-                duplicateSessions.add(existingSession);
+                duplicateSessions.add(session);
             } else {
                 newSessions.add(session);
             }

@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -46,6 +47,24 @@ public class StringUtil<T> {
      */
     public static boolean caseInsensitiveEquals(String string1, String string2) {
         return string1.toLowerCase().equals(string2.toLowerCase());
+    }
+
+    /**
+     * Capitalises the first letter of each word in the trimmed {@code str} and sets the remaining characters
+     * to lowercase.
+     *
+     * @param str String to capitalized.
+     * @return Capitalised string.
+     */
+    public static String capitalise(String str) {
+        requireNonNull(str);
+        String trimmedString = str.trim();
+        if (trimmedString.length() <= 1) {
+            return trimmedString.toUpperCase();
+        }
+        return Arrays.stream(trimmedString.toLowerCase().split(" "))
+                .map(w -> w.substring(0, 1).toUpperCase() + w.substring(1))
+                .collect(Collectors.joining(" "));
     }
 
     /**

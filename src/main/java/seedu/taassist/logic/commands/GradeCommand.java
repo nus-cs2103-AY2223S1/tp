@@ -3,6 +3,8 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
+import static seedu.taassist.logic.commands.CommandUtil.requireFocusMode;
+import static seedu.taassist.logic.commands.CommandUtil.requireSessionExists;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
@@ -14,7 +16,6 @@ import seedu.taassist.commons.core.index.IndexUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 
@@ -57,21 +58,9 @@ public class GradeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.isInFocusMode()) {
-            throw new CommandException(String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
-        }
-
+        requireFocusMode(model, COMMAND_WORD);
         ModuleClass focusedClass = model.getFocusedClass();
-        Session existingSession;
-
-        try {
-            existingSession = focusedClass.getSessionWithSameName(session);
-        } catch (SessionNotFoundException snfe) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SESSION,
-                    session.getSessionName(), focusedClass));
-        }
-
+        requireSessionExists(session, focusedClass);
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Student> studentsToGrade;
         try {
@@ -80,9 +69,9 @@ public class GradeCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, existingSession, grade)));
+        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
+        String message = getCommandMessage(studentsToGrade, session, grade);
 
-        String message = getCommandMessage(studentsToGrade, existingSession, grade);
         return new CommandResult(message);
     }
 
