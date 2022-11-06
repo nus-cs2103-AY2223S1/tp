@@ -83,6 +83,11 @@ for you.
 any unexpected behaviour of ArtBuddy.
 </div>
 
+<div align="right">
+
+[ <a href="#using-this-guide">To start section: Using this guide</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 # Introduction
 
@@ -127,6 +132,11 @@ More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy 
 [Graphical User Interface (GUI)](#glossary). This means that you can also interact with ArtBuddy using visual controls
 like buttons and pop-ups. There's something for everyone!
 
+<div align="right">
+
+[ <a href="#introduction">To start section: Introduction</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 # Quick start
 
@@ -164,6 +174,11 @@ to run ArtBuddy.
 
 6. And...that's it! You now have ArtBuddy installed on your laptop!
 
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 ## Starting up ArtBuddy
 
 Nice! Now that you've downloaded ArtBuddy (if not, our [installation instructions](#installation-instructions)
@@ -178,6 +193,11 @@ may not work as expectedly. To avoid this, please refer to the section
 
 1. To start ArtBuddy, simply open up the folder where your downloaded `artbuddy.jar` file is and double-click the file to start the app.
 2. And...ta-da! You should now see ArtBuddy running on your computer!
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Starting up ArtBuddy (macOS)
 
@@ -200,6 +220,11 @@ the Terminal window and hit **return** on your keyboard.
 ![Starting up ArtBuddy (macOS) Step 1](images/start-ab-mac-step2.png)
 
 5. And...ta-da! You should now see ArtBuddy running on your computer!
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Getting familiar with ArtBuddy's interface
 
@@ -238,6 +263,11 @@ As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all com
 | 1   | Commission List    | By default, all the commissions of your currently selected customer will be displayed in the Commission List here.                       |
 | 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane. |
 | 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## ArtBuddy's Command Line Interface (CLI)
 
@@ -295,6 +325,12 @@ each of these parameters.
 [Appendix: Further notes on command parameters](#further-notes-on-command-parameters).
 </div>
 
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 ## Quick tutorial
 Itching to get started with ArtBuddy? Let's run you through some simple commands to get you warmed up
 before you dive right into ArtBuddy's full feature list!
@@ -344,6 +380,11 @@ right now because Betsy has no commissions yet. Let's change that!
 
 Good job! Now that you're getting the hang of things, check out our [Features](#features) section to explore the full
 capabilities of ArtBuddy.
+
+<div align="right">
+
+[ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,6 +469,11 @@ Examples:
 * <code>delcus <em>2</em></code> Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
 
+<div align="right">
+
+[ <a href="#customer-related-commands">To start of Customer related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 ## Commission related commands
 
 A customer may ask for multiple commissions with different needs.
@@ -495,6 +541,10 @@ Format: `delcom INDEX`
 Example:
 * <code>delcom <em>14</em></code>
 
+<div align="right">
+
+[ <a href="#commission-related-commands">To start of Commission related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Iteration related commands
 
@@ -590,6 +640,12 @@ Example:
 
 ![Delete Iteration](images/DeleteIteration.png)
 
+
+<div align="right">
+
+[ <a href="#iteration-related-commands">To start of Iteration related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 ## Statistical commands
 
 Supercharge your business with ArtBuddy's integrated statistical commands. It's now possible to leverage on your business data at the snap of your fingers. 
@@ -661,6 +717,10 @@ Examples:
 * <code>find -all t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions which are tagged both `oil painting` and `canvas`.
 * <code>find -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
+<div align="right">
+
+[ <a href="#statistical-commands">To start of Statistical commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 ## Miscellaneous
 
@@ -683,6 +743,11 @@ This command cannot be undone. So only execute this command when you are 100% su
 Exits the program.
 
 Format: `exit`
+
+<div align="right">
+
+[ <a href="#miscellaneous">To start of Miscellaneous commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -750,6 +815,11 @@ To easily copy a filepath of a file:
 * On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
 * On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
 
+<div align="right">
+
+[ <a href="#appendix>To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Glossary
@@ -770,6 +840,11 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 | File path                      | A string of words that represents where a file in your computer is located. You may refer to [Appendix: What are file paths and root directories?](#what-are-file-paths-and-root-directories) for a more detailed explanation.                                                                                                            |
 | Root directory                 | The mother of all folder in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.                                                                                                                                                                                             |
 
+<div align="right">
+
+[ <a href="#glossary">To start section: Glossary</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # FAQ
@@ -780,6 +855,11 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 **Q**: Why isn't my file path being recognised by ArtBuddy?
 **A**: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
 So do check that the file path you specified starts with a '/'. If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
+
+<div align="right">
+
+[ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -807,3 +887,8 @@ So do check that the file path you specified starts with a '/'. If all else fail
 | **Find commissions**     | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                                                                              |
 | **Clear everything**     | `clear`                                                                                                                                                                                                                                                                                                                               |
 | **Exit**                 | `exit`                                                                                                                                                                                                                                                                                                                                |
+
+<div align="right">
+
+[ <a href="#command-summary>To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
+</div>
