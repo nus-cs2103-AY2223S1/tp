@@ -60,12 +60,8 @@ something in Cobb. See [Features](#features) for a list of commands.
 2. **Syntax**: The format in which is a Command String is to be typed.
 3. **Flag**: Comes before an input to a command. For Cobb, in the command `findbuyer -k Tim`, `-k` is the flag, 
 and `Tim` is the input.
-4. **Fuzzy**: A flag that signifies loose filtering, that is, given a set of filter requirements, any user that matches at least one
-   the given requirements will be returned.
-5. **Strict**: A flag that signifies tight filtering, that is, given a set of filter requirements, any user matching all of the
-   given requirements will be returned.
-6. **Ascending**: Related to order; from low to high or minimum to maximum.
-7. **Descending**: Related to order; from high to low or maximum to minimum. 
+4. **Ascending**: Related to order; from low to high or minimum to maximum.
+5. **Descending**: Related to order; from high to low or maximum to minimum. 
 
 ### Buyer-specific terms
 1. **Name**: The name of the buyer.
@@ -85,8 +81,8 @@ and `Tim` is the input.
 4. **Description**: A short description of the property.
 5. **Characteristics**: The characteristics associated with a property. For example, a property that has characteristics
    `windy; roomy` is both `windy` and `roomy`.
-6. **Owner**: The name of the owner of the property.
-7. **Phone**: The phone number of the owner of the property.
+6. **Owner Name**: The name of the owner of the property.
+7. **Owner Phone**: The phone number of the owner of the property.
 
 
 ## Interface Layout
@@ -184,7 +180,7 @@ Take a look at the [command summary](#command-summary) for a quick summary of th
 
 
 * Inputs can be in any order.<br>
-  e.g. if the command specifies `[-n NAME] [-ph PHONE NUMBER]`, `[-ph PHONE NUMBER] [-n NAME]` is also acceptable.
+  e.g. if the command specifies `[-n NAME] [-ph PHONE]`, `[-ph PHONE] [-n NAME]` is also acceptable.
 
 
 * For commands immediately followed by an `INDEX`, `INDEX` refers to the index of the entry on the currently visible list that you want to execute the command on.
@@ -230,7 +226,7 @@ Examples:<br>
 #### Adding a property to the database: `addprop`
 
 Adds a property to the database along with relevant information.<br>
-Syntax: `addprop -n NAME -p PRICE -a ADDRESS -d DESCRIPTION -o OWNER NAME -ph PHONE [-c CHARACTERISTICS]`
+Syntax: `addprop -n NAME -p PRICE -a ADDRESS -d DESCRIPTION -o OWNER NAME -ph OWNER PHONE [-c CHARACTERISTICS]`
 
 The `-n` flag indicates the property's name.<br>
 The `-p` flag indicates the property’s price.<br>
@@ -257,11 +253,6 @@ Adds a property called "Peak Residences" owned by Bob with a phone number of 912
 It is in "Toa Payoh" and "Bright".
 
 ### Delete Commands
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-No flags are used for these commands and the index of the buyer or property is to be supplied directly.
-</div>
-
 #### Deleting buyers from the database: `deletebuyer`
 
 Deletes the buyer at the specified index in the [Buyer List](#2-buyer-list).<br>
@@ -305,7 +296,7 @@ Examples:<br>
 #### Edit a property entry in database: `editprop`
 
 Edits a property’s details with specified information in specified categories.<br>
-Syntax: `editprop INDEX [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] [-c CHARACTERISTICS] [-owner OWNERNAME] [-ph PHONE]`
+Syntax: `editprop INDEX [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] [-c CHARACTERISTICS] [-owner OWNER NAME] [-ph OWNER PHONE]`
 
 The `INDEX` indicates the property in the list we are choosing to edit.
 The `-n` flag indicates the property's new name.<br>
@@ -344,7 +335,7 @@ Syntax: `listprops`
 ### Find Commands
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-No flags are used for these commands and the search word is to be supplied directly.
+No flags are used for these commands and the search word(s) are to be supplied directly.
 </div>
 
 #### Find buyer entry in database: `findbuyers`
@@ -422,7 +413,7 @@ Examples:<br>
 #### Sort buyers in database: `sortbuyers`
 
 Sorts buyers in the database according to a single given condition, and updates the [Buyer List](#2-buyer-list).
-Syntax: `sortbuyers [-n NAME<ASC/DESC>] [-r PRICE RANGE<ASC/DESC>] [-pr PRICE<ASC/DESC>] [-t ENTRY TIME<ASC/DESC>]`
+Syntax: `sortbuyers [-n NAME<ASC/DESC>] [-r PRICE RANGE<ASC/DESC>] [-pr PRIORITY<ASC/DESC>] [-t ENTRY TIME<ASC/DESC>]`
 
 The `-n` flag indicates to sort buyers by name in ascending or descending order.<br>
 The `-r` flag indicates to sort buyers by price range in ascending (by lower bound) or descending order (by upper bound).<br>
