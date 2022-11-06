@@ -27,7 +27,6 @@ public class TypicalStudents {
             .withEmail("alice@example.com").withStudentId("A1351253P")
             .withProjectName("Using CRISP to generate crisps")
             .withProjectStatus("YTS")
-            .withDeadlines(new String[]{"Research, deadline: 15-12-2022 12:30"})
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withStudentName("Benson Meier")
             .withEmail("johnd@example.com").withStudentId("A1765432B")

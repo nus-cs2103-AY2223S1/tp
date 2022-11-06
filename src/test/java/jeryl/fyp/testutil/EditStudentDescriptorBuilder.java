@@ -1,12 +1,10 @@
 package jeryl.fyp.testutil;
 
-import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
-import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -14,7 +12,6 @@ import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
-import jeryl.fyp.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.
@@ -40,7 +37,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
         descriptor.setProjectName(student.getProjectName());
-        descriptor.setDeadlineList(student.getDeadlineList());
         descriptor.setTags(student.getTags());
     }
 
@@ -83,22 +79,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setProjectStatus(new ProjectStatus(projectStatus));
         return this;
     }
-
-    /**
-     * Parses the {@code deadlines} into a {@code Set<Deadline>} and set it to the descriptor that we are building.
-     * @param deadlines a list of Deadlines represented by a list of string.
-     * @return EditStudentDescriptorBuilder with the deadline list.
-     */
-    public EditStudentDescriptorBuilder withDeadlines(String[] deadlines) {
-        DeadlineList deadlineList = new DeadlineList();
-        Arrays.stream(deadlines)
-                .map(ddl -> SampleDataUtil.getDeadline(ddl.split(", deadline: ")[0],
-                        ddl.split(", deadline: ")[1])).collect(Collectors.toList())
-                .forEach(ddl -> deadlineList.add(ddl));
-        descriptor.setDeadlineList(deadlineList);
-        return this;
-    }
-
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.

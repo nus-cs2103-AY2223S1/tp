@@ -74,7 +74,9 @@ public class EditCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
+        DeadlineList deadlineList = studentToEdit.getDeadlineList();
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+        editedStudent.getDeadlineList().setDeadlines(deadlineList);
 
         if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
@@ -98,12 +100,10 @@ public class EditCommand extends Command {
         ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
         ProjectStatus updatedProjectStatus =
                 editStudentDescriptor.getProjectStatus().orElse(studentToEdit.getProjectStatus());
-        DeadlineList updatedDeadlineList =
-                editStudentDescriptor.getDeadlineList().orElse(studentToEdit.getDeadlineList());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedStudentName, updatedStudentId, updatedEmail,
-                updatedProjectName, updatedProjectStatus, updatedDeadlineList, updatedTags);
+                updatedProjectName, updatedProjectStatus, updatedTags);
     }
 
     @Override
@@ -123,6 +123,15 @@ public class EditCommand extends Command {
         return studentId.equals(e.studentId)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Student ID: ")
+                .append(studentId)
+                .append("; EditStudentDescriptor: ")
+                .append(editStudentDescriptor);
+        return builder.toString();
+    }
 
     /**
      * Stores the details to edit the student with. Each non-empty field value will replace the
@@ -134,7 +143,6 @@ public class EditCommand extends Command {
         private Email email;
         private ProjectName projectName;
         private ProjectStatus projectStatus;
-        private DeadlineList deadlineList;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -149,7 +157,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setProjectName(toCopy.projectName);
             setProjectStatus(toCopy.projectStatus);
-            setDeadlineList(toCopy.deadlineList);
             setTags(toCopy.tags);
         }
 
@@ -199,15 +206,6 @@ public class EditCommand extends Command {
         public Optional<ProjectStatus> getProjectStatus() {
             return Optional.ofNullable(projectStatus);
         }
-
-        public void setDeadlineList(DeadlineList deadlineList) {
-            this.deadlineList = deadlineList;
-        }
-
-        public Optional<DeadlineList> getDeadlineList() {
-            return Optional.ofNullable(deadlineList);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -244,8 +242,26 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getStudentId().equals(getStudentId())
                     && getProjectName().equals(e.getProjectName())
-                    && getTags().equals(e.getTags())
-                    && getDeadlineList().equals(e.getDeadlineList());
+                    && getTags().equals(e.getTags());
+        }
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(getStudentName())
+                    .append("; Student ID: ")
+                    .append(getStudentId())
+                    .append("; Email: ")
+                    .append(getEmail())
+                    .append("; ProjectName: ")
+                    .append(getProjectName())
+                    .append("; ProjectStatus: ")
+                    .append(getProjectStatus());
+
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+            return builder.toString();
         }
     }
 }
