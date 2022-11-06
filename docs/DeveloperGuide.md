@@ -84,6 +84,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component.
 
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -157,7 +158,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some details on how certain features are implemented.
 
-### List Feature
+### List Command Feature
 
 The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a `ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
 * `MainWindow#swapProjectListDisplay()` — Changes the current display to a list of projects.
@@ -199,7 +200,7 @@ The following activity diagram summarizes what happens when a user executes a li
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
 
-### Default View Feature
+### Default View Command Feature
 
 The default view mechanism is facilitated by `GuiSettings`. It is stored internally as a `DefaultView` enumeration which can take either of three values, `PROJECT`, `CLIENT` or `ISSUE`. Upon the execution of either a `SetProjectDefaultViewCommand`, `SetClientDefaultViewCommand` or `SetIssueDefaultViewCommand`, the following operation is called:
 * `GuiSettings#setDefaultView()` — Sets the default view variable to the specified `DefaultView` type.
@@ -354,11 +355,11 @@ Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 #### Edit Client Command
 Compulsory prefix: c/VALID_CLIENT_ID  
 Optional prefixes (at least one to be included): n/VALID_NAME, m/VALID_MOBILE_NUMBER, e/VALID_EMAIL, p/VALID_PROJECT_ID  
-Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`  
+Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
-![AddSequenceDiagram](images/EditSequenceDiagram.png)
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
 
@@ -366,21 +367,17 @@ Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 **Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. 
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
-* Pros: Logic is handled within the parser and no creation of a new entity object.
-* Cons: Many new objects being created 
+* Pros: No creation of a new entity object
+* Cons: Requires use of multiple accessors for various fields of each entity.
 
-**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
-* Pros: No new objects being created.
-* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
-
-**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+**Alternative 2:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
 Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
-* Pros: Logic is handled within the parser
-* Cons: Creation of a new entity object requiring modification of the entity list 
+* Pros: Only requires getters for fields, preventing field values from being easily edited.
+* Cons:  Creation of a new entity object, requiring modification of entity list.
 
-As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+Taking into consideration the potential issues with ID that came with modifying the entity lists, Alternative 1 was chosen as the current design for editing fields of an entity.
 
-### Sort Feature
+### Sort Command Feature
 
 The sort feature sorts the entities in their respective entity lists in the Model according to a specified `key` and `order`. The View pulls the new entity lists from the Model and displays them. Upon the execution of
 either a `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the `AddressBook#sortXXXByYYY()` is invoked (where XXX is the `entity` and YYY is the `key` to be sorted by) which obtains the entity class's 
@@ -418,7 +415,7 @@ Example Use: `client -s c/1`
     
 Alternative 1 was chosen because it saves space when sorting entities. The command to set default view of each entity helped overcome the cons of directly manipulating of the original list. This meant rebooting the app removed the previous entity sort order and revert to the default order. 
 
-### Pin Feature
+### Pin Command Feature
 
 The pin mechanism is facilitated by `AddressBook`. It contains a `UniqueEntityList` for each entity type. Upon the execution of either a `PinProjectCommand`, `PinClientCommand` or `PinIssueCommand`, the following operations are carried out:
 * `AddressBook#sortProjectsByPin()` — Sorts the current project list according to pin.
@@ -580,6 +577,54 @@ design to handle multiple arguments with the same prefix.
 Taking into account the benefits of improving specificity of use by allowing the user to search based on multiple 
 criteria all of which must be fulfilled, Alternative 1 was chosen as the current design to handle multiple arguments 
 with different prefixes.
+
+### Mark/Unmark Issue Command Feature
+
+An important feature of DevEnable is the ability to mark issues as completed or incomplete.
+The command word will be `issue`, followed by the flag `-m`, representing a Mark command, which marks the issue as completed, or `-u` representing an Unmark command, which marks the issue as incomplete.
+Next, it is followed by a compulsory argument, representing the `issueId`, to initialise the issue.
+
+#### Mark Issue Command
+
+When a user enters a valid Mark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-m` flag is detected, calling `IssueCommandParser#parseMarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals `true` is created. The parsed issueId and new status object are passed into and returned in an instance of the `MarkIssueCommand`, `MarkIssueCommand#execute` is called,
+which retrieves the issue with the parsed issueId from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Compulsory argument: VALID_ ISSUE_ID
+Example use: `issue -m 1`
+
+#### Unmark Issue Command
+
+When a user enters a valid Unmark command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser and calls the `IssueCommandParser#parse` method.
+Within this method, the `-u` flag is detected, calling `IssueCommandParser#parseUnmarkIssueCommand`, which checks for input argument validity (only positive integers) with the `ParserUtil#parseIssueID` method.
+A new `status` object, initialised with `isCompleted` equals `false` is created. The parsed issueId and new status object are passed into and returned in an instance of the `UnmarkIssueCommand`, `UnmarkIssueCommand#execute` is called,
+which retrieves the issue with the parsed issueId from the `IssueList` in the system. The status of the issue is set to the new status object, list is updated and the UI displays the updated filtered issue list.
+
+Compulsory argument: VALID_ISSUE_ID
+Example use: `issue -u 2`
+
+#### The following sequence diagram shows how the mark command operation works for mark an issue entity:
+Example: `issue -m 1`
+
+#### Design Considerations
+
+**Aspect: Method to mark and unmark issues**
+
+**Alternative 1: (current choice)** Separate Mark command to mark status as completed and Unmark command to mark status as incomplete, regardless of current status of issue.
+* Pros: Requires minimal user input and user can set desired status without reference to current status. Responsibilities of each command are separate and clear.
+* Cons: More commands for the user to remember and more duplication of code.
+
+**Alternative 2:** A single Mark command which flips the status of the issue (completed issues become incomplete and vice versa).
+* Pros: Requires minimal user input, only one command to remember and less duplication of code.
+* Cons: Requires user to refer to the current state in order to set it as the desired state. Less separation in terms of responsibilities.
+
+**Alternative 3:** A single Mark command which takes in issue id as well as the completion status to mark the issue as (completed or incomplete)
+* Pros: Only one command to remember, less duplication of code and user can set desired status without reference to current status.
+* Cons: Requires user to remember the valid input state (`completed` and `incomplete`). Less separation in terms of responsibilities.
+
+Alternative 1 was chosen as the design method since it allowed users to set the desired status regardless of current status
+with the shortest and easiest to type command possible. It also allowed for command purposes and responsibilities to be kept clear and separate.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1005,8 +1050,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-
-
 ### Non-Functional Requirements
 
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1056,138 +1099,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
-
-
-### Deleting an entity
-
-1. Deleting an entity while all entities are being shown
-
-    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
-
-    2. Test case: `client -d 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
-
-    3. Test case: `client -d 0`<br>
-       Expected: No client is deleted. Error details shown in the status message.
-
-    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
-### Editing an entity
-
-1. Editing an entity while all entities are being shown
-
-    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
-
-    2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
-       Expected: Client with client id 1 is edited to have new name Charles, new mobile 92345678 and new email 
-       charles@gmail.com. New name of the edited client shown in the status message.
-
-    3. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
-       Expected: No client is edited. Error details shown in the status message.
-
-    4. Test case: `client -e c/1`<br>
-       Expected: No client is edited. Error details shown in the status message.
-   
-    5. Test case: `client -e c/1 e/invalidArgument`<br>
-       Expected: No client is edited. Error details shown in the status message.
-
-    6. Other incorrect edit commands to try: `client -e`, `client -e n/Harry c/x`, `...` (where x is larger than the 
-       client list size)<br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
-### Finding an entity
-
-1. Find client(s) while all clients are being shown
-
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list, at least one of 
-       which has the name Harry.
-
-    2. Test case: `client -f n/Harry Ginny`<br>
-       Expected: All clients whose name has the word Harry or Ginny are listed. Number of listed clients 
-       shown in 
-       the status message.
-
-    3. Test case: `client -f n/Harry Ginny e/harry@gmail.com m/12345 65432`<br>
-       Expected: All clients, if any, whose name has the word Harry or Ginny and whose email is harry@gmail.com 
-       and whose mobile is 12345 or 65432 are listed. Number of listed clients shown in the status message.
-
-    4. Test case: `client -f n/Harry c/1 n/Ginny`<br>
-       Expected: All clients, if any, whose name has the word Harry or Ginny and whose client id is 1 are listed. 
-       Number of listed clients shown in the status message.
-   
-    5. Test case: `client -f n/&&invalidname`<br>
-       Expected: No client is listed. Error details shown in the status message.
-
-    6. Test case: `client -f abc`<br>
-       Expected: No client is listed. Error details shown in the status message. 
-   
-    7. Other incorrect find commands to try: `client -f`, `client -f c/x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
-2. Find project(s) while all projects are being shown
-
-    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list, at least one of
-       which has the name DevEnable.
-
-    2. Test case: `project -f n/DevEnable AB3`<br>
-       Expected: All projects whose name has the word DevEnable or AB3 are listed. Number of listed projects shown 
-       in the status message.
-
-    3. Test case: `project -f n/DevEnable AB3 r/dev/tp l/Harry`<br>
-       Expected: All projects, if any, whose name has the word DevEnable or AB3 and repository is dev/tp and whose 
-       client has the name Harry are listed. Number of listed projects shown in the status message.
-
-    4. Test case: `client -f n/DevEnable c/2 p/1 n/AB3`<br>
-       Expected: All projects, if any, whose name has the word DevEnable or AB3 and project id is 1 and whose client 
-       has the id 2 are listed. Number of listed projects shown in the status message.
-
-    5. Test case: `project -f r/invalid-repo`<br>
-       Expected: No project is listed. Error details shown in the status message.
-
-    6. Test case: `project -f abc`<br>
-       Expected: No project is listed. Error details shown in the status message.
-
-    7. Other incorrect find commands to try: `project -f`, `project -f p/x`, `...` (where x is larger than the list 
-       size)<br>
-       Expected: Similar to previous.
-
-3. Find issue(s) while all issues are being shown
-
-    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list, at least one of
-       which has the title Testing.
-
-    2. Test case: `issue -f t/Testing Documentation`<br>
-       Expected: All issues whose title has the word Testing or Documentation are listed. Number of listed issues 
-       shown in the status message.
-
-    3. Test case: `issue -f t/Testing s/Incomplete u/NONE n/DevEnable`<br>
-       Expected: All issues, if any, whose title has the word Testing and status is incomplete and urgency is NONE 
-       and whose project has the name DevEnable are listed. Number of listed projects shown in the status message.
-
-    4. Test case: `issue -f n/Testing i/1 p/2 t/Documentation`<br>
-       Expected: All issues, if any, whose title has the word Testing or Documentation and issue id is 1 and whose 
-       project has the id 2 are listed. Number of listed projects shown in the status message.
-
-    5. Test case: `issue -f s/thisIsAnInvalidStatus`<br>
-       Expected: No issue is listed. Error details shown in the status message.
-
-    6. Test case: `issue -f abc`<br>
-       Expected: No issue is listed. Error details shown in the status message.
-
-    7. Other incorrect find commands to try: `issue -f`, `issue -f i/x`, `...` (where x is larger than the list
-       size)<br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
+   3. _{ more test cases …​ }_
 
 ### Listing an entity
 
@@ -1227,18 +1139,61 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an entity while any list of entities is being shown
 
-    1. Test case: `project -a n/Home Project`<br>
-       Expected: project with name 'Home Project' is added to project list. View of project list is shown.
-   
-    2. Test case: `issue -s t/Has bugs p/1`<br>
-       Expected: issue with title 'Has bugs' is added to issue list. View of issue list is shown.
-   
-    3. Test case: `client -a n/John Doe p/1`<br>
-       Expected: client with name 'John Doe' is added to client list. View of client list is shown.
-   
-    4. Incorrect add commands for `project` entity: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x` where x improperly formatted, `project -a n/Project y/` where y is an invalid prefix
+    1. Prerequisites: At least one project in project list to test issue and client command.
+
+    2. Test case: `project -a n/Home Project`<br>
+       Expected: Project with `name` Home Project is added to project list. View of project list is shown.
+
+    3. Test case: `issue -s t/Has bugs p/1`<br>
+       Expected: Issue with `title` Has bugs is added to issue list. View of issue list is shown.
+
+    4. Test case: `client -a n/John Doe p/1`<br>
+       Expected: Client with `name` John Doe is added to client list. View of client list is shown.
+
+    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x` where x improperly formatted, `project -a n/Project y/` where y is an invalid prefix, `...` <br>
        Expected: No adding occurs. Error details shown in the status message. Status bar remains the same.
 
+### Deleting an entity
+
+1. Deleting an entity while all entities are being shown
+
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
+
+    2. Test case: `client -d 1`<br>
+       Expected: Client with `clientId` 1 is deleted from the list. Details of the deleted client shown in the status message. View of client list is shown.
+
+    3. Test case: `issue -d 0`<br>
+       Expected: No issue is deleted. Error details shown in the status message.
+    
+    4. Other incorrect delete commands to try: `project -d`, `project -d x`, `project -d word` (where x is larger than the list
+      size)<br>
+      Expected: Similar to previous.
+
+### Editing an entity
+
+1. Editing an entity while all entities are being shown
+
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
+
+    2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
+       Expected: Client with `clientId` 1 is edited to have new `name` Charles, new `mobile` 92345678 and new `email` 
+       charles@gmail.com. New `name` of the edited client shown in the status message. View of client list is shown.
+
+    3. Test case: `issue -e i/2 t/Finish Work u/2`<br>
+       Expected: Issue with `issueId` 2 is edited to have new `title` Finish Work and new `urgency` medium. New `title`
+       of the edited issue shown in the status message. View of issue list is shown.
+   
+    4. Test case: `issue -e p/1 d/2019-12-12`<br>
+       Expected: Project with `projectId` 1 is edited to have new `deadline` 12 Dec 2019. The `name` of edited project 
+       shown in the status message. View of project list is shown.
+
+    6. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
+       Expected: No client is edited. Error details shown in the status message.
+
+    9. Other incorrect edit commands to try: `client -e`, `client -e c/1`, `client -e c/1 p/&&123456`, `client -e n/Harry c/x`, `...` (where x is larger than the 
+       client list size)<br>
+       Expected: Similar to previous.
+    
 ### Sorting an entity
 
 1. Sorting an entity while any list of entities is being shown
@@ -1246,17 +1201,17 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Optional parameters of various entities have values. 
    
     2. Test case: `project -s d/1`<br>
-       Expected: projects sorted in reverse chronological order. View of project list is shown.
+       Expected: Projects sorted in reverse chronological order. View of project list is shown.
    
     3. Test case: `issue -s u/1`<br>
-       Expected: issues sorted in descending levels of urgency. View of issue list is shown.
+       Expected: Issues sorted in descending levels of `urgency`. View of issue list is shown.
    
     4. Test case: `client -s n/0`<br>
-       Expected: clients sorted in alphabetical order of names. View of client list is shown.
+       Expected: Clients sorted in alphabetical order of `name`. View of client list is shown.
    
-    5. Incorrect sort commands for `project` entity: `project -s`, `project -s d/x` where x is not 0 or 1, `project -s y/0` where y is not a valid key, `project -s i/0 i/1 d/0`. Same for entities `issue` and `client`.<br>
+    5. Other incorrect sort commands to try: `project -s`, `project -s d/x` where x is not 0 or 1, `project -s y/0` where y is not a valid key, `project -s i/0 i/1 d/0`. Same for entities `issue` and `client`.<br>
        Expected: No sorting occurs. Error details shown in the status message. Status bar remains the same.
-
+    
 ### Pinning an entity
 
 1. Pinning an entity while any list of entities is being shown
@@ -1264,10 +1219,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list.
 
     2. Test case: `project -p 3`<br>
-       Expected: Third project appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
+       Expected: Project with `projectId` 3 appears with a pin symbol at the top of the list. Details of the pinned project shown in the status message.
 
     3. Test case: Repeat `project -p 2` twice.<br>
-       Expected: On the first enter of the command, the second project appears as in 2. On the second enter of the command, the second project is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
+       Expected: On the first enter of the command, the project with `projectId` 2 appears as in 2. On the second enter of the command, the project with `projectId` 2 is no longer at the top of the list and does not have any pin symbol in its display. Details of the unpinned project shown in the status message.
 
     4. Test case: `project -p 0`<br>
        Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
@@ -1275,6 +1230,117 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
        Expected: Similar to previous.
 
+### Finding an entity
+
+1. Find client(s) while all clients are being shown
+
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list, at least one of
+       which has the `name` Harry.
+
+    2. Test case: `client -f n/Harry Ginny`<br>
+       Expected: All clients whose `name` has the word Harry or Ginny are listed. Number of listed clients
+       shown in the status message.
+
+    3. Test case: `client -f n/Harry Ginny e/harry@gmail.com m/12345 65432`<br>
+       Expected: All clients, if any, whose `name` has the word Harry or Ginny and whose `email` is harry@gmail.com
+       and whose `mobile` is 12345 or 65432 are listed. Number of listed clients shown in the status message.
+
+    4. Test case: `client -f n/Harry c/1 n/Ginny`<br>
+       Expected: All clients, if any, whose `name` has the word Harry or Ginny and whose `clientId` is 1 are listed.
+       Number of listed clients shown in the status message.
+
+    5. Test case: `client -f n/&&invalidname`<br>
+       Expected: No client is listed. Error details shown in the status message.
+
+    6. Test case: `client -f abc`<br>
+       Expected: No client is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `client -f`, `client -f c/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+2. Find project(s) while all projects are being shown
+
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list, at least one of
+       which has the name DevEnable.
+
+    2. Test case: `project -f n/DevEnable AB3`<br>
+       Expected: All projects whose `name` has the word DevEnable or AB3 are listed. Number of listed projects shown
+       in the status message.
+
+    3. Test case: `project -f n/DevEnable AB3 r/dev/tp l/Harry`<br>
+       Expected: All projects, if any, whose `name` has the word DevEnable or AB3 and `repository` is dev/tp and whose
+       client has the `name` Harry are listed. Number of listed projects shown in the status message.
+
+    4. Test case: `client -f n/DevEnable c/2 p/1 n/AB3`<br>
+       Expected: All projects, if any, whose `name` has the word DevEnable or AB3 and `projectId` is 1 and whose client
+       has the `clientId` 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `project -f r/invalid-repo`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    6. Test case: `project -f abc`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `project -f`, `project -f p/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+3. Find issue(s) while all issues are being shown
+
+    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list, at least one of
+       which has the `title` Testing.
+
+    2. Test case: `issue -f t/Testing Documentation`<br>
+       Expected: All issues whose `title` has the word Testing or Documentation are listed. Number of listed issues
+       shown in the status message.
+
+    3. Test case: `issue -f t/Testing s/Incomplete u/NONE n/DevEnable`<br>
+       Expected: All issues, if any, whose `title` has the word Testing and `status` is incomplete and `urgency` is NONE
+       and whose project has the `name` DevEnable are listed. Number of listed projects shown in the status message.
+
+    4. Test case: `issue -f n/Testing i/1 p/2 t/Documentation`<br>
+       Expected: All issues, if any, whose `title` has the word Testing or Documentation and `issueId` is 1 and whose
+       project has the `projectId` 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `issue -f s/thisIsAnInvalidStatus`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    6. Test case: `issue -f abc`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `issue -f`, `issue -f i/x`, `...` (where x is larger than the list
+       size)<br>
+       Expected: Similar to previous.
+
+### Marking/Unmarking an issue
+
+1. Marking an issue while all issues are being shown
+
+    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list.
+
+    2. Test case: `issue -m 1`<br>
+       Expected: The status of the issue with `issueId` 1 is set as completed. Details of the marked issue shown in the status message.
+    
+    3. Test case: `issue -m 0`<br>
+       Expected: No issue is marked. Error details shown in the status message.
+
+    4. Other incorrect mark commands to try: `issue -m`, `issue -m x`, `issue -m word`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Unmarking an issue while all issues are being shown 
+
+   1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list. 
+
+   2. Test case: `issue -u 1`<br>
+   Expected: The status of the issue with `issueId` 1 is set as incomplete. Details of the unmarked issue shown in the status message. 
+
+   3. Test case: `issue -u 0`<br>
+   Expected: No issue is unmarked. Error details shown in the status message. 
+
+   4. Other incorrect unmark commands to try: `issue -u`, `issue -u x`, `issue -u word`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+   
 ### Saving data
 
 1. Editing the data file
