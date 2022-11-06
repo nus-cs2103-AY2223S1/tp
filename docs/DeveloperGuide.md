@@ -15,8 +15,9 @@ This developer's guide consists of the following sections. Note that TaskBook is
 
 ## **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project is based on the AddressBook-Level3 (AB-3) project created by the [SE-EDU initiative](https://se-education.org).
 * The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp), a project also based on AddressBook-Level3.
+* The saving and storing of TaskBook in StorageManager was adapted from AddressBook-Level3 to include support for Tasks.
 * Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,7 +38,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of TaskBook.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -54,12 +55,12 @@ The rest of the App consists of four components.
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data in JSON format to local storage.
 
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `task delete i/1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -144,19 +145,20 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both task book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* saves contacts and tasks in JSON format to local storage, and reads them back into corresponding objects.
+* saves user preferences in JSON format to local storage, and reads them back into corresponding objects.
+* inherits from both `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as either (if only the functionality of only one is needed).
+* depends on corresponding classes in the `Model` component for serialization (converting objects to JSON format) and deserialization (recreating objects from JSON format).
 
 ### Common classes
 
-Classes used by multiple components are in the `taskbook.commons` package.
+Classes commonly used by multiple components are in the `taskbook.commons` package. This promotes reusable code that must be maintained with care as there may be multiple dependencies.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes details on how certain noteworthy features are implemented.
 
 ### Command History Navigation
 
@@ -168,28 +170,28 @@ The command history navigation mechanism is facilitated by `CommandHistoryManage
 * `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
 * `CommandHistory#addCommand(String command)` — Adds a new command into its history.
 
-The methods will handle cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
+The methods successfully handles edge cases where the command history is empty, full and when there are no more previous or next commands to navigate to.
 
 `CommandHistoryManager` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the command history exceeds double the allocated capacity, the older half of the history is pruned.
 
-`LogicManager` will store an instance of a `CommandHistoryManager`.
+`LogicManager` will store an instance of `CommandHistoryManager`.
 
-* Set the `setOnKeyPressed` for the `commandTextField` to detect key presses `UP` and `DOWN` arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
-* Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+To detect key presses `UP` and `DOWN` arrow keys, set the `setOnKeyPressed` for the `commandTextField` and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
+When handling user input to save the user's input into the command history, call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()`. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
 
 ![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
-Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
+Note: Some intermediate steps are omitted for simplicity. Full details are in the sequence diagram below.
 
-Given below is an example usage scenario and how the command history mechanism behaves at each step.
+Given below is an example of a usage scenario and how the command history mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `CommandHistoryManager` will be initialized in `CommandBox`. The internal `commandsHistoryList` will be empty and the `commandsHistoryPointer` will point to the `0`th element.
 
-Step 2. The user executes a few commands. It does not matter if these commands are invalid. Each of these inputs will fire `CommandHistory#addCommand` once with their respective command texts.
+Step 2. The user executes a few commands. Regardless whether these commands are valid or invalid, each of these inputs fires `CommandHistory#addCommand` once with their respective command texts.
 
-Step 3. The user decides to navigate to a previous command by clicking the `UP` arrow key. `CommandHistory#getPreviousCommmand()` will be called.
+Step 3. The user navigates to a previous command by clicking the `UP` arrow key. `CommandHistory#getPreviousCommmand()` will be called.
 
-Step 4. The user decides to navigate to a next command by clicking the `DOWN` arrow key. `CommandHistory#getNextCommmand()` will be called.
+Step 4. The user navigates to a next command by clicking the `DOWN` arrow key. `CommandHistory#getNextCommmand()` will be called.
 
 The following sequence diagram shows how the next command history navigation works, if there is a next command to navigate to:
 
@@ -200,36 +202,36 @@ The following sequence diagram shows how the next command history navigation wor
 **Aspect: Saving invalid commands:**
 
 * **Alternative 1 (chosen choice):** Invalid commands are saved in the command history.
-    * Pros: Allows the user to navigate to an invalid command and modify it, before re-executing it.
-    * Cons: May clutter the command history.
+    * Pros: Allows the user to navigate to an invalid command and rectify before re-executing it, so that the user does not have to retype the entire command.
+    * Cons: Clutters the command history.
 
 * **Alternative 2:** Invalid commands are not saved in the command history, only valid commands are saved.
-    * Pros: Will use less memory.
-    * Cons: Does not allow the user to modify an incorrect command.
+    * Pros: Uses less memory, command history is not cluttered with incorrect commands.
+    * Cons: Does not allow the user to access and rectify a previous incorrect command.
 
 **Aspect: Saving empty commands:**
 
 * **Current choice:** Empty commands are not saved in the command history.
-    * Rationale: Does not clutter the command history.
+    * Rationale: To not clutter the command history.
 
 **Aspect: How many commands to be supported:**
 
 * **Current choice:** 1000 commands.
-    * Rationale: To keep memory usage low, minimise the number of commands saved in the history. 1000 commands is a reasonably large enough number of commands to store and is sufficient for even advanced users.
+    * Rationale: To keep memory usage low, minimise the number of commands saved in the history. 1000 commands is a reasonably large enough number of commands to store and is sufficient even for advanced users.
 
 ### Sorting Task List
 
 #### Sorting Implementation
 
-This section details how the sorting of the tasks is implemented. The sorting of contacts is a slightly simplified version.
+This section details how the sorting of tasks is implemented. The sorting of contacts is a slightly simplified version.
 
-The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`.
+The sorting of tasks is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the `TaskList` of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`.
 
-A second field, `sortedTasks`, then stores `filteredTasks` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredTasks` will be reflected in `sortedTasks` as the latter is the former with a `SortedList` wrapper.
+A second field, `sortedTasks`, then stores `filteredTasks` wrapped in a `SortedList` from `javafx.collections.transformation`. Commands executed on `filteredTasks` will also be reflected in `sortedTasks` as the latter is the former in a `SortedList` wrapper.
 
-`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedTasks`.
+`SortedList` implements the method `SortedList#setComparator(Comparator<? super E> comparator)` that takes in a comparator used to sort the tasks. The method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` is thus implemented to allow for setting of a comparator in `sortedTasks`.
 
-When the comparator is null, `sortedTasks` will be of the same order as `filteredTasks`. The default list order is chronological, by date and time the tasks were added.
+By default, the sorting comparator is `null`. `sortedTasks` will be of the same order as `filteredTasks` in chronological order that the tasks were added in.
 
 The `Ui` displays the `sortedTasks` version of the task list by default on the right side panel.
 
@@ -241,7 +243,7 @@ There is one sort command specifically for you to set the comparator to null. Do
 
 #### Example Usage
 
-Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+Given below is an example of a usage scenario and how the sorting mechanism behaves at each step.
 
 Step 1: The user launches the application, which already contains a task list from previous usage. `sortedList` will be initialized in `ModelManager`. The initial `comparator` in `sortedList` will be null, so the tasks are sorted by the date and time they were added.
 
@@ -266,8 +268,8 @@ The following sequence diagram shows how a sort by description alphabetical comm
 
 #### Aspect: Sorted List structure:
 
-* **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
-    * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedTasks` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
+* **Current choice:** Wrap the task list in a `FilteredList`, and the `FilteredList` in a `SortedList`.
+    * Rationale: Commands on the filtered list will also be reflected in the sorted list. This means that the `Ui` can display `sortedTasks`, which reflects both filter and sorting order.
 
 ### Undo/redo feature
 
@@ -283,7 +285,7 @@ The undo/redo mechanism is facilitated by `VersionedTaskBook`. It stores various
 
 These operations are exposed in the `Model` interface as `Model#commitTaskBook()`, `Model#undoTaskBook()` and `Model#redoTaskBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example of a usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `pointer` pointing to that single task book state.
 
@@ -381,7 +383,7 @@ The methods will handle cases where the index from the user input is out of boun
 
 Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
 
-Given below is an example usage scenario for how the task mark command mechanism behaves at each step.
+Given below is an example of a usage scenario for how the task mark command mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
@@ -422,7 +424,7 @@ It implements the following operations:
 
 Cases such as where the index from the user input is out of bounds, are handled by the methods.
 
-Given below is an example usage scenario for how the `TaskTagCommand` mechanism behaves at each step.
+Given below is an example of a usage scenario for how the `TaskTagCommand` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. 
 
