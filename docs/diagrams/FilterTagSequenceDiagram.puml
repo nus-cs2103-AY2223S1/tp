@@ -1,0 +1,90 @@
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
+participant ":FilterTagCommandParser" as FilterTagCommandParser LOGIC_COLOR
+participant ":Tag" as Tag LOGIC_COLOR
+participant ":FilterTagCommand" as FilterTagCommand LOGIC_COLOR
+participant ":TagSetContainsTagPredicate" as TagSetContainsTagPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("filtertag n/tagname")
+activate LogicManager
+
+LogicManager -> FoodRemParser : parseCommand("filtertag n/tagname")
+activate FoodRemParser
+
+create FilterTagCommandParser
+FoodRemParser -> FilterTagCommandParser
+activate FilterTagCommandParser
+
+
+FilterTagCommandParser --> FoodRemParser
+deactivate FilterTagCommandParser
+
+
+FoodRemParser -> FilterTagCommandParser : parse("n/tagname")
+activate FilterTagCommandParser
+
+create Tag
+FilterTagCommandParser -> Tag
+activate Tag
+Tag --> FilterTagCommandParser
+deactivate Tag
+
+create FilterTagCommand
+FilterTagCommandParser -> FilterTagCommand : FilterTagCommand(tag)
+activate FilterTagCommand
+
+create TagSetContainsTagPredicate
+FilterTagCommand --> TagSetContainsTagPredicate
+activate TagSetContainsTagPredicate
+
+TagSetContainsTagPredicate --> FilterTagCommand
+deactivate TagSetContainsTagPredicate
+
+FilterTagCommand --> FilterTagCommandParser :
+deactivate FilterTagCommand
+
+FilterTagCommand --> FoodRemParser :
+deactivate FilterTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterTagCommandParser -[hidden]-> FoodRemParser
+destroy FilterTagCommandParser
+
+FoodRemParser --> LogicManager :
+deactivate FoodRemParser
+
+LogicManager -> FilterTagCommand : execute(model)
+activate FilterTagCommand
+
+
+FilterTagCommand -> Model : updateFilteredItemList(pred)
+activate Model
+
+Model --> FilterTagCommand
+deactivate Model
+
+create CommandResult
+FilterTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterTagCommand
+deactivate CommandResult
+
+FilterTagCommand --> LogicManager
+deactivate FilterTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

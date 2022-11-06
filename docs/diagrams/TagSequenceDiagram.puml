@@ -28,7 +28,7 @@ activate TagCommandParser
 TagCommandParser --> FoodRemParser
 deactivate TagCommandParser
 
-FoodRemParser -> TagCommandParser : parse("tag 1 n/tagname")
+FoodRemParser -> TagCommandParser : parse("1 n/tagname")
 activate TagCommandParser
 
 create TagCommand
