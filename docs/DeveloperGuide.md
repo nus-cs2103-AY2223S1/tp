@@ -2,14 +2,54 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementations)
+    * [Filter transaction feature](#filter-feature-for-transactions)
+    * [Buy / Sell transaction feature](#buy-feature-for-transactions)
+    * [Edit transaction feature](#editing-feature-for-transactions)
+    * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
+    * [Sort feature]()
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use cases](#use-cases)
+      * [Delete a client](#use-case-uc01---delete-a-client)
+      * [Delete a transaction](#use-case-uc02---delete-a-transaction)
+      * [Delete a remark](#use-case-uc03---delete-a-remark)
+      * [Find a client](#use-case-uc04---find-a-client)
+      * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
+      * [Requesting help](#use-case-uc06---requesting-help)
+      * [Clearing all data](#use-case-uc07---clearing-all-data)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Delete a client](#deleting-a-client)
+  * [Delete a transaction]()
+  * [Delete a remark]()
+  * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the **AddressBook-Level3** project created by the **[SE-EDU initiative](https://se-education.org)**
+
+The following are some **reused/adapted** ideas, code, and documentation from AB3:
+* `client` is inspired from [Person](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
+* `find` is reused
+* The User Interface is adapted from [AB3](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+* Developer Guide is built up from [AB3](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,13 +203,9 @@ Classes used by multiple components are in the `seedu.jeeqtracker.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementations**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Filter feature for transactions
 
@@ -216,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
-### \[Proposed\] Buy feature for transactions
+### Buy feature for transactions
 
 The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
 To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
@@ -263,10 +299,8 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Easy to see every past buy transaction with all the clients.
     * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
 
-_{more aspects and alternatives to be added}_
-
 --------------------------------------------------------------------------------------------------------------
-### \[Proposed\] Editing feature for transactions
+### Editing feature for transactions
 #### Implementation
 The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
 `EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
@@ -290,25 +324,30 @@ The following sequence diagram shows how the edit operation works in Logic Manag
 
 ![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}_
-
 ### Delete Client/Transaction/Remark feature
 
-#### Current Implementation
+This feature allows the user to delete a specific `client`, `transaction`, or `remark` of their choice.
+Deletion removes the whole entity, and none of its fields are kept.
+
+**Implementation details**
 
 The deletion mechanism for `clients`, `transactions`, and `remarks` is facilitated by a `DeleteCommandParser` and `DeleteCommand`.
 
-The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. The concrete classes consists of the logic to delete an item stated by the name of their command.
+The `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` extends the `DeleteCommand` abstract class. These classes contains the logic to delete an entity stated by the name of their command, as depicted by the **class diagram** below.
 
 ![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
 
-The `DeleteCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality.
+The deletion process occurs in these `3` main steps:
 
-This process of deleting the first client in the list is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+1) The `DeleteCommandParser` will parse the `userInput`, and return one of the concrete class `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand`.<br/>
+2) The Command received in step 1 will be executed to delete the entity of its type, and return a `CommandResult`<br/>
+3) The `CommandResult` contains the message to print to the `Application's Reply`<br/>
+
+The **sequence diagram** below shows how a client is deleted for user input `delete 1 m/client`.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The process for deleting `transaction` and `remark` is almost the same as the process stated above, with just the following changes:
+The sequence diagram above is applicable for deleting `transaction` and `remark`, with just the following changes:
 - For delete transaction:
     - `userInput` is changed to `delete 1 m/transaction`
     - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
@@ -317,12 +356,13 @@ The process for deleting `transaction` and `remark` is almost the same as the pr
     - `userInput` is changed to `delete 1 m/remark`
     - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
     - `deleteClient(1)` is changed to `deleteRemark(1)`
+    
 
 #### Design Considerations:
 
 **Aspect: How delete executes:**
 
-* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` selected by `index`
+* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` after the index.
     * Pros: Easy to implement and lesser commands overall since flag is used to specify each command.
     * Cons: May be more clunky to use as users have to type in a longer command.
 
@@ -351,11 +391,18 @@ Step 2. The user executes `sort 1 latest` command to sort the transaction of the
 Step 3. The `Execute` of `SortCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
 get the client at the index to copy. The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
 
-Step 4. The `MainWindow#excecuteCommand()` will read that the `commandText` is a sort command and call `MainWindow#handleSortTransaction()` to sort the client's transaction by 
-latest or oldest transactions.
+Step 4. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleSortTransaction()`,
+to display the sorted transactions from the `Client#getSortLatestTransaction()` while the client panel list will display the clients.
 
-![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+ </div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
 
 #### Design Considerations:
 
@@ -445,7 +492,7 @@ The **use case diagram** below showcases the tasks that the user can perform in 
 
 Users are able to perform several tasks within the application that is broken down into **Client tasks**, **Transaction tasks**, and **Remark tasks**. For a more detailed interaction between user and the system, read the use case descriptions below.
 
-**Use case: UC01 - Delete a client**
+#### **Use case: UC01 - Delete a client**
 
 **MSS**
 
@@ -468,7 +515,7 @@ Users are able to perform several tasks within the application that is broken do
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Delete a transaction**
+#### **Use case: UC02 - Delete a transaction**
 
 **MSS**
 
@@ -488,7 +535,7 @@ Users are able to perform several tasks within the application that is broken do
     
     Use case resumes at step 2.
 
-**Use case: UC03 - Delete a remark**
+#### **Use case: UC03 - Delete a remark**
 
 1. User requests to view remark details of a client
 2. JeeqTracker displays a list of remarks of that client
@@ -505,13 +552,7 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case resumes at step 2.
 
-**Use case: UC04 - Sort a client by `latest`**
-
-1. User requests to sort the transactions of a client by `latest`
-2. JeeqTracker displays 
-
-
-**Use case: Find a Client**
+#### **Use case: UC04 - Find a Client**
 
 **MSS**
 
@@ -526,8 +567,8 @@ Users are able to perform several tasks within the application that is broken do
 
   Use case ends.
 
-**Use case: Add a Remark to a Client** <br>
-**Preconditions: Alice is a valid Client in JeeqTracker** 
+#### **Use case: UC05 - Add a Remark to a Client** <br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
@@ -545,7 +586,7 @@ Users are able to perform several tasks within the application that is broken do
 
         Use case resumes at 2.
 
-**Use case: Requesting help**
+#### **Use case: UC06 - Requesting help**
 
 **MSS**
 
@@ -556,21 +597,24 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-**Use case: Clearing all data**
+#### **Use case: UC07 - Clearing all data**
 
 **MSS**
 
 1. User requests to clear all data in JeeqTracker
-2. JeeqTracker returns a confirmation to clear all data
-3. User confirms
-4. JeeqTracker clears all data in JeeqTracker
+2. JeeqTracker clears all data in JeeqTracker (All `clients`, `transactions`, `remarks` are deleted)
 
-**Extensions**
+    Use case ends.
 
-* 3a. User inputs the wrong word for confirmation.
-    * 3a1. JeeqTracker shows an error message.
+#### **Use case: UC08 - Sort client by latest transaction** <br>
+**Preconditions: JeeqTracker has at least 1 client**
 
-      Use case resumes at 2.
+**MSS**
+
+1. User requests to sort the client at index 1 by latest transactions
+2. JeeqTracker displays the list of transactions of client at index 1 sorted with the latest dates first.
+
+    Use case ends.
 
 
 *{More to be added}*
@@ -615,7 +659,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br/>Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -623,8 +667,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
 
 ### Deleting a client
 
@@ -666,11 +709,57 @@ testers are expected to do more *exploratory* testing.
    If there are no buy transactions, the transaction list panel will be empty.
    2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
    3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
+
+### Sorting transactions from a client
+
+1. Sorting transactions.
+
+   1. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
+   If there are no transactions, the transaction list panel will be empty.
+   2. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
     
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the `jeeqtracker.json` file to simulate missing data file. Launch the application<br/>Expected: A new `jeeqtracker.json` file is created with sample some sample data.
+   
+2. Dealing with invalid data in data file
+
+    1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+Every member in our group agrees that we have put in **a lot more** effort personally compared to the individual project (IP).
+We faced tremendous difficulties when we were dealing with transactions and remarks. On hindsight, it may seem as simple
+as coding while referencing how AB3 handle the logic and rendering of Person. However, it was a lot more challenging than
+it seem, because the transactions and remarks are unique to every client. Thus, it took a lot of time and effort for us to
+have an idea of how we should render transactions and remarks on the screen, and how the different commands such as delete,
+edit can be evolved to handle them. The lack of references in AB3 made it a lot harder since the Person class in
+AB3 does not have a **List** attribute, and we have to add it.
+
+Furthermore, we felt like we had created two additional AB3 in total, twice the effort of what it takes to create AB3.
+The **transactions** and **remarks** each are almost like an AB3. They have their own storage, user interface, model,
+and have its own CRUD (Create, Read, Update, Delete) functionality. We also had to spend a lot of time learning about
+JavaFX, Jackson, since none of us has any experience with these prior to CS2103T. It definitely took more time and
+effort to create the user interface that we have now compared to the one in IP, since it was basically hand-holding in
+IP.
+
+We also have to refactor the application once at around week 10, because we realised that there wasn't a real value
+proposition for our application. Hence, thousands of lines were refactored at that period, and it took much effort to
+get used to the new terms within the code.
+
+We have spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
+new sections that AB3 doesn't have, and more user-friendly screenshots of the application with annotations.
+
+For Developer Guide, we had to change almost every single diagram within the application to align to our current
+code, and add more explanations to it. When appropriate, we also included new diagrams which were relevant, and
+created many more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
+It is definitely much more than the original developer guide.
+
+Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
+AB3.
+
