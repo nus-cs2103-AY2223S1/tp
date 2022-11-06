@@ -157,7 +157,7 @@ The `Student` component
 
 - represents a student in ProfNUS
 
-#### 4.4.2. Student
+#### 4.4.2. Module
 
 **API** : [Module.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/module/Module.java)
 
@@ -753,13 +753,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   2. Test case: `deletestu 1`<br>
+   2. Test case: `delstu 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `deletestu 0`<br>
+   3. Test case: `delstu 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `del`, `del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ## **9. Appendix C: Effort**
