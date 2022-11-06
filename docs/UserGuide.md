@@ -62,9 +62,9 @@ TruthTable's command syntax is actually very similar to other command line appli
 If you are a software engineering team leader looking to get started with TruthTable, make sure that you have the 
 [pre-requisites installed](#getting-started).
 
-[//]: # (TODO: link to team migration/onboarding section)
-This document will also guide you on how to migrate your existing project information onto TruthTable, and 
-familiarise you with all of TruthTable's [features](#key-features-of-truthtable). 
+This document will also guide you on how to 
+[migrate your existing project information onto TruthTable](#migrating-to-truthtable), and familiarise you with all 
+of TruthTable's [features](#key-features-of-truthtable). 
 
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
 productivity while using TruthTable.
@@ -101,7 +101,6 @@ This alert contains helpful information
 <div markdown="block" class="alert alert-warning">**Warning alert**:
 This alert contains important information to be wary of.
 </div>
-
 
 ## Table of Contents
 
@@ -1240,11 +1239,42 @@ the data of your previous TruthTable home folder.
 
 ### Command Aliases
 
-| Action | Command | Aliases |
-|--------|:--------|---------|
-|        |         |         |
-|        |         |         |
-|        |         |         |
+| Action                                   | Command         | Aliases                         |
+|------------------------------------------|:----------------|---------------------------------|
+| Creating a new person                    | `add person`    | `a p`, `add p`, `a person`      |
+| Listing all persons                      | `list persons`  | `l p`, `list p`, `l person`     |
+| Editing a person                         | `edit person`   | `e p`, `edit p`, `e person`     |
+| Locating persons by name                 | `find person`   | `f p`, `find p`, `f person`     |
+| Deleting a person                        | `delete person` | `d p`, `delete p`, `d person`   |
+| Adding a new member to the team          | `add member`    | `a m`, `add m`, `a member`      |
+| Delete a member from team                | `delete member` | `d m`, `delete m`, `d member`   |
+| Find members                             | `find member`   | `f m`, `find m`, `f member`     |
+| Listing all members of the team          | `list members`  | `l m`, `list m`, `l members`    |
+| Sort members                             | `sort members`  | `so m`, `sort m`, `so members`  |
+| Creating a new team                      | `add team`      | `a te`, `add te`, `a team`      |
+| Set a new team                           | `set team`      | `s te`, `set te`, `s team`      |
+| Edit current team                        | `edit team`     | `e te`, `edit te`, `e team`     |
+| Delete an existing team                  | `delete team`   | `d te`, `delete te`, `d team`   |
+| Add task to team                         | `add task`      | `a ta`, `add ta`, `a task`      |
+| Edit task in team                        | `edit task`     | `e ta`, `edit ta`, `e task`     |
+| Assign task to team member               | `assign task`   | `as ta`, `assign ta`, `as task` |
+| Assign task to random team member        | `assign random` | `as r`, `assign r`, `a random`  |
+| Set Deadline for task                    | `set deadline`  | `s d`, `set d`, `s deadline`    |
+| Delete task from team                    | `delete task`   | `d ta`, `delete ta`, `d task`   |
+| Mark tasks as done                       | `mark`          | `m`                             |
+| Unmark tasks as done                     | `unmark`        | `u`                             |
+| Find tasks                               | `find task`     | `f ta`, `find ta`, `f task`     |
+| List tasks in team                       | `list tasks`    | `l ta`, `list ta`, `l tasks`    |
+| View summary of task assignments in team | `summary`       | `su`, `sum`                     |
+| Sort tasks                               | `sort tasks`    | `so ta`, `sort ta`, `so tasks`  |
+| Filter tasks by team member              | `tasksof`       | `to`                            |
+| Add a new link                           | `add link`      | `a l`, `add l`, `a link`        |
+| Edit an existing link                    | `edit link`     | `e l`, `edit l`, `e link`       |
+| Delete an existing link                  | `delete link`   | `d l`, `delete l`, `d link`     |
+| Clearing all entries                     | `clear`         |                                 |
+| Switching between light and dark theme   | `theme`         | `th`                            |
+| Exiting the program                      | `exit`          | `ex`, `bye`, `quit`             |
+| Viewing help                             | `help`          | `h`                             |
 
 [Back to Table of Contents](#table-of-contents)
 
