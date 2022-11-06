@@ -510,7 +510,7 @@ Examples:
 [//]: # (Image to be added later)
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
-### Deleting a client profile: `delete -c INDEX`
+### Deleting a client profile: `delete -c`
 
 Deletes the client profile at the specified INDEX from the client directory.
 
@@ -549,7 +549,7 @@ Examples:
 * `filter -c best-friend` returns all client profiles with the `Best-friend` tag.
 * `filter -c thrifty` returns all client profiles with the `Thrifty` tag.
 
-### Selecting a client profile: `select -c INDEX`
+### Selecting a client profile: `select -c`
 
 Selects the specified client profile in the client directory for its details to be displayed.
 
