@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.application.logic.commands.CommandTestUtil.UNKNOWN_PREFIX;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -145,6 +148,12 @@ public class ArgumentTokenizerTest {
 
         assertNotEquals(aaa, "aaa");
         assertNotEquals(aaa, new Prefix("aab"));
+    }
+
+    @Test
+    public void findPrefix_validPrefix_prefixFound() {
+        Set<Prefix> foundPrefixes = ArgumentTokenizer.findPrefix(UNKNOWN_PREFIX);
+        assertTrue(foundPrefixes.size() == 3);
     }
 
 }

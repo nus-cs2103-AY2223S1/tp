@@ -13,6 +13,7 @@ import seedu.application.logic.commands.SortByInterviewCommand;
 import seedu.application.logic.commands.SortByPositionCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -28,6 +29,13 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ORDER,
                 PREFIX_REVERSE);
+
+        for (Prefix prefix : ArgumentTokenizer.findPrefix(args)) {
+            if (!argMultimap.hasPrefix(prefix)) {
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                        + SortCommand.MESSAGE_USAGE);
+            }
+        }
 
         boolean shouldReverse = argMultimap.hasPrefix(PREFIX_REVERSE);
         Optional<String> orderKeyword = argMultimap.getValue(PREFIX_ORDER);

@@ -2,7 +2,11 @@ package seedu.application.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -15,6 +19,8 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
+    private static final String REGEX_PREFIX = "\\s\\p{Alnum}*\\/";
+
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -26,6 +32,24 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    //@@author eesung00-reused
+    //Reused from https://stackoverflow.com/questions/4662215/how-to-extract-a-substring-using-regex
+    // with minor modifications
+    /**
+     * Returns a Set of prefixes found from the arguments.
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @return           Set of Prefixes found.
+     */
+    public static Set<Prefix> findPrefix(String argsString) {
+        Pattern pattern = Pattern.compile(REGEX_PREFIX);
+        Matcher matcher = pattern.matcher(argsString);
+        Set<Prefix> prefixInArgs = new HashSet<>();
+        while (matcher.find()) {
+            prefixInArgs.add(new Prefix(matcher.group().trim()));
+        }
+        return prefixInArgs;
     }
 
     /**

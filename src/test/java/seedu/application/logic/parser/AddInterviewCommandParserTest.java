@@ -9,6 +9,7 @@ import static seedu.application.logic.commands.CommandTestUtil.INVALID_LOCATION_
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_ROUND_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.LOCATION_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.ROUND_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.UNKNOWN_PREFIX;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GOOGLE;
@@ -71,7 +72,8 @@ public class AddInterviewCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                + AddInterviewCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -130,5 +132,25 @@ public class AddInterviewCommandParserTest {
         assertParseFailure(parser, INDEX_FIRST_APPLICATION.getOneBased() + ROUND_DESC_GOOGLE
                         + INTERVIEW_DATE_DESC_GOOGLE + INTERVIEW_TIME_DESC_GOOGLE + INVALID_LOCATION_DESC,
                 Location.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_unexpectedPrefix_failure() {
+        String userInput = INDEX_FIRST_APPLICATION.getOneBased() + ROUND_DESC_GOOGLE + INTERVIEW_DATE_DESC_GOOGLE
+                + INTERVIEW_TIME_DESC_GOOGLE + LOCATION_DESC_GOOGLE;
+
+        // unexpected prefix in front of input
+        assertParseFailure(parser, UNKNOWN_PREFIX + userInput, Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+            + AddInterviewCommand.MESSAGE_USAGE);
+
+        // unexpected prefix in back of input
+        assertParseFailure(parser, userInput + UNKNOWN_PREFIX, Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                + AddInterviewCommand.MESSAGE_USAGE);
+
+        // unexpected prefix in middle of input
+        assertParseFailure(parser, INDEX_FIRST_APPLICATION.getOneBased() + ROUND_DESC_GOOGLE
+                        + INTERVIEW_DATE_DESC_GOOGLE + UNKNOWN_PREFIX + INTERVIEW_TIME_DESC_GOOGLE
+                        + LOCATION_DESC_GOOGLE, Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                + AddInterviewCommand.MESSAGE_USAGE);
     }
 }
