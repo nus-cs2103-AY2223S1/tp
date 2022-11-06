@@ -68,20 +68,22 @@ public class Meeting {
      * Returns true only if both {@code Meetings} refer to the same {@code Client}, have the same description, time and
      * date. This defines a strong notion of equality between two {@code Meetings}.
      */
-    public boolean equals(Meeting other) {
+    @Override
+    public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        if (other == null) {
+        if (!(other instanceof Meeting)) {
             return false;
         }
 
-        boolean isSameClient = this.getClient().equals(other.getClient());
-        boolean isSameDescription = this.getDescription().equals(other.getDescription());
-        boolean isSameMeetingDate = this.getMeetingDate().equals(other.getMeetingDate());
-        boolean isSameMeetingStartTime = this.getMeetingStartTime().equals(other.getMeetingStartTime());
-        boolean isSameMeetingEndTime = this.getMeetingEndTime().equals(other.getMeetingEndTime());
+        Meeting otherMeeting = (Meeting) other;
+        boolean isSameClient = this.getClient().equals(otherMeeting.getClient());
+        boolean isSameDescription = this.getDescription().equals(otherMeeting.getDescription());
+        boolean isSameMeetingDate = this.getMeetingDate().equals(otherMeeting.getMeetingDate());
+        boolean isSameMeetingStartTime = this.getMeetingStartTime().equals(otherMeeting.getMeetingStartTime());
+        boolean isSameMeetingEndTime = this.getMeetingEndTime().equals(otherMeeting.getMeetingEndTime());
 
         return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingStartTime && isSameMeetingEndTime;
     }
