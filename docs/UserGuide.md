@@ -141,7 +141,6 @@ Before we start, here are some definitions that will be used in this section:
 - For commands that take an index, you can parse multiple indexes at once to do the action for multiple items at once.
   * You can remove multiple students at once by separating the indices with a space. e.g. `student delete 1 2 3`
 </div>
-</div>
 
 ### Student Management
 #### Add students
