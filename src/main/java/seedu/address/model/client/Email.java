@@ -57,7 +57,7 @@ public class Email {
     }
 
     public boolean isEmpty() {
-        return value == "";
+        return value.equals("");
     }
 
     @Override
