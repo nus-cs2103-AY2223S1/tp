@@ -1,6 +1,6 @@
 ---
 layout: page
-title: WorkBook User Guide
+title: User Guide
 ---
 
 <div class="toc-no-bullet-points">
@@ -14,8 +14,8 @@ title: WorkBook User Guide
 Welcome to WorkBook! :wave:
 
 WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to secure that internship.
-This minimalistic tool allows you to effortlessly collate and easily manage all of your internship application progress.
-Furthermore, tips are given for relevant stages of your internship applications to give you an edge over other applicants!
+This minimalistic tool allows you to effortlessly collate and easily manage all of your internship applications' progress.
+Furthermore, **tips are given for relevant stages** of your internship applications to give you an edge over other applicants!
 
 This guide provides a step-by-step guide on how you can get started using WorkBook, gives an overview of what you can do in WorkBook and how you can best utilise it to transform your internship hunt positively.
 Each documented feature introduces a potential problem you face, how it can be resolved and examples on using the feature.
@@ -26,9 +26,9 @@ No time to waste, let's start _Working_! :muscle:
 
 ## 2. Getting started
 
-This section helps get you started to use WorkBook.
+This section helps you get started with WorkBook.
 
-It consists of a simple to follow step-by-step installation guide and explains the key elements of the GUI.
+It consists of a step-by-step installation guide and an explanation of the key GUI elements.
 
 ### 2.1 Installation
 
@@ -40,20 +40,20 @@ It consists of a simple to follow step-by-step installation guide and explains t
 
 4. Using your command terminal:
    1. Navigate to the folder where you placed your WorkBook at.
-   2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
+   2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of the two layouts, should appear within seconds.<br>
 
 |          Wide Layout           |             Narrow Layout             | 
 |:------------------------------:|:-------------------------------------:|
 | ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
 
-5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
+5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
 
 ### 2.1 Understanding WorkBook's GUI
 
 Below shows the main elements of WorkBook's GUI, in wide and narrow layouts.
 
-For the narrow layout, everything else is the same excpet for the labelled light bulb icon, which represents 'tips'.
+For the narrow layout, everything else is the same except for the labelled light bulb icon, which displays tips.
 
 |              Wide Layout               |
 |:--------------------------------------:|
@@ -130,7 +130,7 @@ This section describes important information for you to take note of before and 
 * An example is shown below:
 ![SortExample](images/SortExample.png)
 
-#### Responsive UI when resizing window
+### 4.4 Responsive UI when resizing window
 
 * The UI will change dynamically depending on the window width.
 
@@ -222,7 +222,7 @@ Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL
   * Within the number range of your list of internship applications.
 * At least one of the optional fields **must** be provided.
 
-Example: `edit 2 s/Tecnical Interview d/28-Dec-2022 08:00`
+Example: `edit 2 s/Technical Interview d/28-Dec-2022 08:00`
 
 What you'll see before and after executing the command: <br>
 
@@ -246,7 +246,7 @@ Other examples:
 
 ### 5.3. Listing all existing internship applications
 
-Lists all of your internship applications in WorkBook in a [sorted order](#3-things-to-note).
+Lists all of your internship applications in WorkBook in a [sorted order](#43-behaviour-of-sorted-internship-applications).
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** Your most recent upcoming internship application will be at the top of the list!
@@ -269,13 +269,13 @@ Below are the application stages that we have included tips for.
 | `Phone Interview`      |
 | `Rejected`             |
 
-If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application. A window will appear showing all the tips for that application.
+If WorkBook is in the [narrow layout](#44-responsive-ui-when-resizing-window), simply click on the light bulb icon to view the tips for that application. A window will appear showing all the tips for that application.
 
 |                Light Bulb Button                |              Tips Window              |
 |:-----------------------------------------------:|:-------------------------------------:|
 | ![light bulb button](images/ClickLightBulb.png) | ![tips window](images/TipsWindow.png) |
 
-To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
+To view the tips in the [wide layout](#44-responsive-ui-when-resizing-window), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
 ### 5.5. Finding your internships
 
@@ -306,7 +306,7 @@ Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
 
   | Before                                   |       After      |
-  |-------------------------|-------------------------|
+  |:-------------------------:|:-------------------------:|
   | ![before layout](images/BeforeFindRole.png) |![after layout](images/AfterFindRole.png) |
 
 
