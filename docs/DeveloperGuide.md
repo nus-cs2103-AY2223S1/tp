@@ -88,14 +88,17 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Notes` object residing in the `Model`.
 
-#### UI Elements
+This component may be controlled by commands through the `CommandResult` class, which specifies an optional `UiState` that the program should be in at the end of the command execution. This is parsed finally in the `MainWindow::executeCommand` which invokes necessary changes to the UI.
 
+For more information related to the implementation of the UI, please review the section [UI Features](#ui-features).
+
+#### UI Elements
+![](images/UiLabeled.png)
 1. **Command Box**: A text box that allows users to enter in commands for later execution.
 2. **ResultDisplay**: A readonly text box that serves as a console to give feedback from the `Logic` component to the user, such as error messages or logs.
 3. **Person List**: A horizontal sliding list that displays all persons in the SectresBook. This list can be filtered to display only relevant people according to some predicate.
 4. **Note List**: A vertical sliding list that displays all notes in the SectresBook. This list can be filtered to display only relevant notes according to some predicate.
 5. **Person Inspect Panel**: This Panel displays data of a person, using the UI command `inspect`.
-6. **Status Bar Footer**: This footer displays the address where the data file is saved to.
 
 ### Logic component
 
@@ -183,11 +186,13 @@ A person object contains editable properties:
 5. Tag
     - Optionally tags the person with a variable number of tags for easy reference within the SectresBook.
 
-And a non-editable property:
+And a non-editable properties:
 1. Loan
     - Tracks the current loan amount of the person. A positive number means that the person currently owes money to the club, a negative number means that money is due to be paid to the person.
+2. List of Loan Histories
+    - Tracks the transactional history of incoming and outgoing loans. Each Loan History comprises a Loan and a Record.
 
-During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command to transform its data.
+During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command `editLoan` to transform its data.
 
 ## Properties of Note Objects
 
@@ -211,7 +216,11 @@ During instantiation, a note object can be declared with any of these properties
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Person Features
+
 ### Edit Feature
+
+#### Implementation
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
@@ -272,92 +281,10 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </
   * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
   * Cons: Longer input required for the same output.
 
-### addNote feature
-
-#### Implementation
-
-The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
-- `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
-
-Given below is an example usage scenario and how the addNote mechanism behaves at each step.
-
-Step 1. The user launches the application and wishes to keep track of a note with the following attributes :
-1. Title : Club meeting
-2. Content : 3rd October 9pm, brief everybody on upcoming events.
-
-Step 2. The user executes `addNote title/Meeting content/3rd October 9pm`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
-which will create a `AddNoteCommandParser` object and call `AddNoteCommandParser#parse()`. This method will take the user's input and make sense of it to create a `Note` object.
-
-Step 3. An `AddNoteCommand` will be created and `AddNoteCommand#execute()` will be called by `LogicManager#execute()`.
-
-Step 4. `AddNoteCommand#execute()` will call the following method from `Model` :
-- `addNote(toAdd)`
-
-Step 5. `AddNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
-> New note added: Title: Meeting, Content: 3rd October 9pm
-
-The following sequence diagram shows how the addNote operation works:
-
-![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
-
-#### Design considerations
-
-**Aspect: How Title and Content are represented:**
-
-* **Alternative 1 (current choice):** Title and Content as separate objects.
-    * Pros: Easy to validate Title/Content. (In the respective classes)
-    * Cons: May have performance issues in terms of memory usage(Many objects might be created).
-
-* **Alternative 2:** Title and Content as fields of Note
-    * Pros: Will use less memory (Fewer objects created).
-    * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
-
-### deleteNote feature
-
-#### Proposed implementation
-
-The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
-- `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
-
-Given below is an example usage scenario and how the addNote mechanism behaves at each step.
-
-Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
-1. Title: Meeting, Content: 3rd October 9pm
-2. Title: Event, Content: Remind club members to attend.
-
-The user has decided to delete note 1.
-
-Step 2. The user executes `deleteNote 1`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
-which will create a `DeleteNoteCommandParser` object and call `DeleteNoteCommandParser#parse()`. This method will take the user's input and make sense of it to get the index of note to be deleted.
-
-Step 3. A `DeleteNoteCommand` object will be created and `DeleteNoteCommand#execute()` will be called by `LogicManager#execute()`.
-
-Step 4. `DeleteNoteCommand#execute()` will call the following method from `Model` :
-- `getAddressBook()`
-- `deleteNote(noteToDelete)`
-
-Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
-> Deleted Note: Title: Meeting, Content: 3rd October 9pm
-
-The following sequence diagram shows how the addNote operation works:
-
-![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
-
-#### Design considerations
-
-**Aspect: How the note to be deleted is specified:**
-
-* **Alternative 1 (current choice):** Note is specified by index.
-    * Pros: Easy to implement.
-    * Cons: Would need to use listNotes command or gui to allow easy identification of index of note.
-
-* **Alternative 2:** Note is specified by Title.
-    * Pros: Would be more precise (Title of notes are unique).
-    * Cons: Long command would be needed to delete a note with a long Title.
 
 ### Find Person
 
-### Implementation
+#### Implementation
 
 The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
 
@@ -423,6 +350,281 @@ The following sequence diagram shows how the findTag command works:
     * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
     * Cons: Implementation would be more complicated.
 
+
+## Notes Features
+
+### addNote feature
+
+#### Implementation
+
+The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to keep track of a note with the following attributes :
+1. Title : Club meeting
+2. Content : 3rd October 9pm, brief everybody on upcoming events.
+
+Step 2. The user executes `addNote title/Meeting content/3rd October 9pm`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `AddNoteCommandParser` object and call `AddNoteCommandParser#parse()`. This method will take the user's input and make sense of it to create a `Note` object.
+
+Step 3. An `AddNoteCommand` will be created and `AddNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `AddNoteCommand#execute()` will call the following method from `Model` :
+- `addNote(toAdd)`
+
+Step 5. `AddNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> New note added: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How Title and Content are represented:**
+
+* **Alternative 1 (current choice):** Title and Content as separate objects.
+    * Pros: Easy to validate Title/Content. (In the respective classes)
+    * Cons: May have performance issues in terms of memory usage(Many objects might be created).
+
+* **Alternative 2:** Title and Content as fields of Note
+    * Pros: Will use less memory (Fewer objects created).
+    * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
+
+### deleteNote feature
+
+#### Implementation
+
+The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
+1. Title: Meeting, Content: 3rd October 9pm
+2. Title: Event, Content: Remind club members to attend.
+
+The user has decided to delete note 1.
+
+Step 2. The user executes `deleteNote 1`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `DeleteNoteCommandParser` object and call `DeleteNoteCommandParser#parse()`. This method will take the user's input and make sense of it to get the index of note to be deleted.
+
+Step 3. A `DeleteNoteCommand` object will be created and `DeleteNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `DeleteNoteCommand#execute()` will call the following method from `Model` :
+- `getAddressBook()`
+- `deleteNote(noteToDelete)`
+
+Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> Deleted Note: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be deleted is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index.
+    * Pros: Easy to implement.
+    * Cons: Would need to use listNotes command or gui to allow easy identification of index of note.
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Would be more precise (Title of notes are unique).
+    * Cons: Long command would be needed to delete a note with a long Title.
+
+### editNote feature
+
+#### Implementation
+
+The editNote mechanism is facilitated by `EditNoteCommand` and utilises the `FindNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `EditNoteCommand#execute()` : edits the note at the specified index (or with matching title) from the note list.
+
+Given below is an example usage scenario and how the editNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to edit a note's title with a new title. The user lists the current notes: 
+1. Title: Meeting, Content: 3rd October 9pm
+2. Title: Event, Content: Remind club members to attend.
+
+The user has decided to edit the first note titled `Meeting` with a new title, `Club Meeting`.
+
+Step 2a. If an index is entered (user executes `editNote 1 title/Club Meeting`), the `EditNoteCommandParser` carries this index to the `EditNoteCommand`, which retrieves the `Note` to edit by getting the `Model`'s current `FilteredList<Note>` and retrieving by index.
+
+Step 2b. If a non-number is entered (user executes `editNote meeting title/Club Meeting`), `EditNoteCommandParser` calls `FindNoteCommandParser#parse()` and executes `FindNoteCommand#execute()` concurrently. 
+
+`FilteredList<Note>` is then checked to ensure that exactly one note corresponds with the search term. 
+
+Otherwise, the method short-circuits with ambiguity errors (more than 1 note) or invalid note errors (no notes at all). If successful, `EditNoteCommandParser` returns a new `EditNoteCommand` object.
+
+
+- Example of ambiguity error message:
+> There is more than 1 note with meeting in their title!
+> 
+> Please use a more unique specifier or use indices to edit.
+
+- Example of invalid title error message:
+> There are no notes with meeting in their titles in the list!
+
+Step 3. `EditNoteCommand#execute()` will be called by `LogicManager#execute()`. The note to edit is retrieved by the index given and a new edited note is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedNote` is then set to replace the previous state of the `Note` object in the `Model` with `Model#setNote`.
+
+The following sequence diagram shows how the `editNote` feature works.
+
+![EditNoteSequenceDiagram](images/EditNoteSequenceDiagram.png)
+
+The following activity diagram shows the workflow of `editNote` feature.
+
+![EditNoteActivityDiagram](images/EditNoteActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be edited is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index or title.
+    * Pros: Better convenience for users.
+    * Cons: Would need to use findNote command for notes specified by title. (more dependencies)
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Easy to implement
+    * Cons: Not flexible for users.
+
+
+## UI Features
+
+### General UI Design and Mechanism
+
+#### Implementation
+
+During the creation of the new UI, a lot of the FXML structure and the relationships between containers of the UI had to be refactored.
+
+![](images/UIComponentsLabeled.png)
+
+The UI is divided into 2 major sections - one occupied by the `CommandBox` and another occupied by the `WindowAnchorPane`.
+
+The `WindowAnchorPane` consists of an StackPane.
+- The `ResultDisplay` is in the first layer
+- The `PersonListPanel`, `InspectionPanel` and the `NotesListPanel` are in the second layer below.
+
+The `ResultDisplay` is _click-through_ (does not capture any mouse clicks) and normally has an opacity of 0, so it is effectively hidden.
+
+The `InspectionPanel` is another anchor pane divided into two left and right elements:
+    - A basic information `HBox` on the left
+    - A loan history list view display on the right
+
+These two elements in the `InspectionPanel` will always maintain the same ratio, basic information to loan history list view, of 2:3.
+
+When the user clicks the `CommandBox` or presses the `SPACE` key, this triggers an event on the `CommandBox` that invokes a transition to the `ResultDisplay` to show the display. As it is on the first layer, the `ResultDisplay` will partially cover the elements below it.
+
+Note that the `ResultsDisplay` never reach full opacity, instead an opacity of 0.8 allows the elements below to be partially visible.
+
+Here are the anchor points of the three major panes within the second layer of `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+- The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+- The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+The arbitrary values above are actually boundaries shared by the three panels and may be manipulated to change the view of the three major elements together. We may imagine the `PersonListPanel` to be glued to the `NotesListPanel` on its right and the `InspectionPanel` below, likewise for the other two elements. This allows the ratios to be adjusted together by simply change the vertical anchor or horizontal anchors.
+
+The Observer Pattern is prevalent throughout the UI design in order to update other components in response to any change to the UI. One such example is the [`inspect` command](#inspect-feature).
+
+This activity diagram details how interactions with the UI is controlled
+
+![](images/UIActivityDiagram.png)
+
+#### Design Considerations
+
+As the main window of the application is resizable, the ratio of the anchors maintains the aspect of each panel with respect to the window size (unlike constant values which will not change according to window size).
+
+The resizing is handled through the _Observer Pattern_, thankfully existing by default in JavaFX, which updates the proportions of the components upon any change to the height or width of the window.
+
+The main problem came from estimating the correct current space allocated by the window size.
+
+As the three main components are within the `WindowAnchorPane`, and the `WindowAnchorPane` shares its space with an unnamed `StackPane` described by the structure above, this meant that the `WindowAnchorPane` has less space than the actual window size. To make things worse, JavaFX overestimates the actual scene proportions in relation to the window size.
+
+A padding of around 200px was used to help `WindowAnchorPane` displace it's top height to the true position it is at and a bottom padding of 20px was added to give some room from the bottom of the window. The height and width passed into function resizing the anchor panes must always be adjusted according the scene size and the offsets.
+
+A visual defect exists when the screen size exceeds 1080p, as the Inspection Panel is no longer able to stay attached to the anchor point at the bottom of the screen. This defect worsens as the window gets taller.
+
+### Inspect Feature
+
+#### Implementation
+
+The inspect command is a UI-Centric command that controls which person's details are currently shown in the inspection panel.
+
+This is functionally similar to clicking on a person's card, which also updates the information in the inspection panel.
+
+This features uses an Observer on the `SelectionModel` of the `ListView` of persons, updating the `InspectionPanel` whenever a new person is selected.
+
+Step 1. The user executes `'inspect David'` command to view the details of David.
+
+Step 2. An `InspectCommandParser` is parsed with `David`.
+
+Step 3. The `InspectCommand` is created containing a keyword `David`.
+
+Step 4. The `InspectCommand` is executed and a `CommandResult` is created with the `UiState` `inspect` and arguments `David`.
+
+Step 5. The `MainWindow` is receives the `CommandResult` and reads the `UiState` part of the result. This directs it to update the inspect panel.
+
+Step 6. The Person List is retrieved from the `MainWindow` and its selection model is accessed. From here, if the given argument is a number, we will index the person through the order in the list. Otherwise, we will search through the entire list until first person matching the keywords is returned.
+
+Step 7. The Inspection Panel is retrieved from the main window and has its properties updated from the person's information that was returned.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/InspectSequenceDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InspectCommandSequence` and `InspectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How to design a UI command**
+
+Unlike other command, this command does not mutate any underlying data. One challenge is that the execution flow is different from other commands which mutate data, making the implementation less direct.
+
+We had to find a good insertion point where the information carried from the user input could be used in the program without the need for major refactoring. We realised that the user's input is first taken in through the `MainWindow` class, and through following the function calls, would be used in `MainWindow::executeCommand`. So the inspection operation is effectively added at the end of the executeCommand just before it terminates.
+
+Inspiration was taken from the execution flow of `handleExit` and `handleHelp` prior to the construction of the new UI.
+
+The procedures for `handleExit` and `handleHelp` were changed by refactoring `CommandResult` to carry an ideal state that the UI is expected to be in by the end of the execution. A switch statement was added to the bottom of the `executeCommand` function, much like how the normal commands are parsed, to deal with UI-Centric commands like `help`, `exit` and `inspect`.
+
+### Showing and Hiding the Notes Panel Feature
+
+#### Implementation
+
+Here are the anchor points of the three major panes within the `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+- The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+- The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+Notice that the `PersonListPanel` and `InspectionPanel` share a boundary of the ratio `0.45` with respect to the window height and the both of them share a boundary of `0.6` with respect to screen width with the `NotesListPanel`.
+
+The command `hideNotes` is effectively accomplished by interpolating the ratios smoothly over time to create a sliding effect. To maintain the aspect ratio of the notes panel and prevent deformities, the right anchor interpolates from 0 to `0.6 - 1 = -0.4`, as the left anchor interpolates from `0.6` to `1`.
+
+This maintains the constant size of `x0.4` with respect to window size during the transition.
+
+A fading transition is applied across the same time to smoothly reduce the opacity of the panel.
+
+The time interval set for this transition is `0.3` seconds.
+
+The `showNotes` implementation is exactly the inverse of the `hideNotes` implementation across time.
+
+
+#### Design considerations:
+
+**Aspect: Challenges related to resizing**
+
+Because hiding the notes panel will also pull the inspection panel longer, and that the inspection panel is divided into two parts itself, the `InspectionPanel` is also further another anchor pane that maintains the ratio of the width between the basic information display and the loans history property.
+
+This concept was only implemented after the implementation of hideNotes, where visual inconsistencoes will start appearing due to disobeying the original ratio.
+
+The padding of the `InspectionPanel` also causes an issue if the right anchor of the pane is not manipulated with the left anchor, as the padding will snap the left anchor to the right of the right anchor. This causes the `InspectionPanel` to be pulled through the entire width of the `NotesListPanel` cause the entire `WindowAnchorPane` to overflow its allocated width. The consideration to slide the right anchor at a constant difference with respect to the left anchor was introduced to combat this issue.
 
 ### \[Proposed\] Undo/redo feature
 
