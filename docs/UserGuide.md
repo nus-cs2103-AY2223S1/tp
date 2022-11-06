@@ -10,7 +10,7 @@ Are you a student who enjoys participating in group buys? Or perhaps do you just
 <div style="page-break-after: always;"></div>
 
 ### Using this guide
-If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
+If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#tutorial-adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
 
 If you are already familiar with the basic features of PayMeLah, this guide can also provide you with tips and tricks to get the most out of PayMeLah!
 
@@ -41,7 +41,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 <div style="page-break-after: always;"></div>
 
 ## Quick start
-### Installing PayMeLah
+### Tutorial: Installing PayMeLah
 
 1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
@@ -66,7 +66,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### Adding your first debt
+### Tutorial: Adding your first debt
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
@@ -77,7 +77,7 @@ As this section is meant for new users, it will not cover how to navigate the ap
 
 </div>
 
-1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-debts-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-debts-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
    will be filled with the information you actually want instead.
 
 1. You should see that the person list is now empty.
