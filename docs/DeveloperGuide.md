@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/docs/diagrams) folder. Refer to the [PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -370,6 +370,15 @@ The following activity diagram summarizes how an `AddEventCommand` is parsed at 
 
 #### Design considerations:
 
+**Aspect: Encapsulation of client vs event:**
+
+* **Alternative 1 (current choice):** Event class is a stand-alone class with reference to a Client
+    * Pros: Object-Oriented Programming approach, easier to implement, more scalable in handling Event features
+
+* **Alternative 2:** An event becomes an attribute of Client 
+    * Pros: Also an intuitive Object-Oriented Programming approach
+    * Cons: Difficult and less efficient to implement Event features such as searching
+
 ## General Features
 ### Find feature
 
@@ -446,8 +455,8 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 **Target user profile**:
 
 * has a need to manage a significant number of clients
-* Is a financial advisor
-* Has a  need to store additional client-related information
+* is a financial advisor
+* has a  need to store additional client-related information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -705,8 +714,10 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: A client is a person being served by the financial advisor.
-*  **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
-*  **Financial advisor**: A professional paid to offer financial advice to clients
+* **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
+* **Financial advisor**: A professional paid to offer financial advice to clients
+* **Event**: Any event or appointment that involves a client in the client list 
+* **Risk Appetite**: Level of risk a client is willing to accept or tolerate when making financial decisions
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -794,7 +805,15 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
 
 
-#### Sorting a client 
+#### Sorting the client list 
+1. Sorting the client list 
+   1. Prerequisites: List of clients is not empty, currently viewing list of clients. Client names do not contain numbers.
+   2. Test case: `sort name`
+      Expected: Sort client message shown to user in status message, client list sorted in alphabetical order
+   3. Test case: `sort risk appetite`
+      Expected: Sort client message shown to user in status message, client list sorted by Risk Appetite from high to low
+   4. Test case: `sort address`
+      Expected: An error message indicating that the sorting metric does not exist should be displayed 
 
 #### Searching for a client
 1. Searching for a client
@@ -935,6 +954,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `findEvent date/2023-05-05`
        Suppose that there are no events which occur on `5th May 2023` in LTNS
        Expected: Message indicating that no events were found is displayed
+
+       
 
 ## Effort
 
