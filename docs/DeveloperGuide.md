@@ -1098,7 +1098,7 @@ More information on usage: [status command](UserGuide.html#updating-status-of-an
     4. Other incorrect status commands to try: `status 1 j`, `status x o` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. Deleting an internship while internships are being filtered.
+2. Updating status of an internship while internships are being filtered.
 
    1. Prerequisites: Filter the internship list using either `findc`, `findp` or `findt` command. Multiple internships in the list.
 
