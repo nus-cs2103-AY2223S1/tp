@@ -1,9 +1,7 @@
 package seedu.boba.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.commands.CalculatorGuiCommand.SHOWING_CALC_MESSAGE;
 
 import org.junit.jupiter.api.Test;
@@ -22,15 +20,28 @@ public class CalculatorGuiCommandTest {
     }
 
     @Test
-    public void equals_same_object() {
+    public void equals() {
         final CalculatorGuiCommand calculatorGuiCommand = new CalculatorGuiCommand();
         assertEquals(calculatorGuiCommand, calculatorGuiCommand);
-    }
 
-    @Test
-    public void equals_different_object() {
         final CalculatorGuiCommand cmd1 = new CalculatorGuiCommand();
         final CalculatorGuiCommand cmd2 = new CalculatorGuiCommand();
         assertEquals(cmd1, cmd2);
+    }
+
+    @Test
+    public void not_equals() {
+        final CalculatorGuiCommand calculatorGuiCommand = new CalculatorGuiCommand();
+
+        assertNotEquals(null, calculatorGuiCommand);
+
+        final HelpCommand helpCommand = new HelpCommand();
+        assertNotEquals(helpCommand, calculatorGuiCommand);
+
+        final ExitCommand exitCommand = new ExitCommand();
+        assertNotEquals(exitCommand, calculatorGuiCommand);
+
+        final CalculateCommand calculateCommand = new CalculateCommand("1+1");
+        assertNotEquals(calculateCommand, calculatorGuiCommand);
     }
 }

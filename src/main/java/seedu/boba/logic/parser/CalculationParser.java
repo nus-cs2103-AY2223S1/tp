@@ -147,4 +147,9 @@ public class CalculationParser {
         }
         return resultStr;
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || other instanceof CalculationParser;
+    }
 }
