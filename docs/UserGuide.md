@@ -413,19 +413,17 @@ The following section highlights **all** commands related to `remarks`.
 
 Creates a new remark for the specified client.
 
-Format: `remark INDEX REMARK [t/TAG]...`
+Format: `remark INDEX REMARK`
 
 | Parameter | Constraints                                                                                                                                                                                     |
 |:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`   | - Refers to the index number shown in the **displayed list of clients.**<br/>- **Must be a positive integer within the range displayed.**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `REMARK`  | - Refers to the new remark.<br/>- **Must be filled**                                                                                                                                            |
-| `TAG`     | - Refers to the tag for the new remark.<br/> - Multiple tags can be tagged to the remark.                                                                                                       |
+| `REMARK`  | - Refers to the new remark.<br/>- **Must be filled**                                                                                                                                            |                                                                                                      |
 
 
 Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
-* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark
-  also has a tag `favourite`.
+
 
 > <div markdown="span" class="alert alert-primary">:bulb: Tip: If you use the "remark" command while the "Client List Panel" has more than one client, you will not be able to see the addition.<br/>Use the "view" command to see it.</div>
 
