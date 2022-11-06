@@ -28,30 +28,28 @@ to use and what it does for all the features available in myStudent. If you don'
 :information_source: Notes about the command format in this user guide:
 
 * **Prefixes** are characters (case-sensitive) followed by a slash and are usually prepended to a field.  
-  e.g. `n/` or `p/`
+  (E.g., `n/` or `p/`.)
 
 
 * **Fields** are information to be supplied to the command by the user for the application to execute.  
-  e.g. `name` or `phone`
+  (E.g., `name` or `phone`)
 
 
 * `< >` - indicate that enclosing field is *mandatory*.   
-  e.g. `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.
+  (E.g., `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.)
 
 
 * `[ ]` - indicate that the enclosing elements (prefixes and/or fields) are *optional*.  
-        e.g `n/<name> [#/<tag>]`, where valid inputs could be `add n/John Doe` or `n/John Doe #/male`.
+  (E.g., `n/<name> [#/<tag>]`, where valid inputs could be `add n/John Doe` or `n/John Doe #/male`.)
 
 
-* Users can input fields of prefixes in any order.
-
-  e.g. `nok <index> n/<name> p/<phone>`, where valid inputs could be `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
-  However, `nok n/John Doe p/91234567 2`, where the `<index>` is at the end of the input, is not valid.
+* Users can input fields of prefixes in any order.  
+  (E.g., `nok <index> n/<name> p/<phone>`, where valid inputs could be `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`. However, `nok n/John Doe p/91234567 2`, where the `<index>` is at the end of the input, is not valid.)
 
 
 
 * Extra input from the user for commands that do not take in any fields will be ignored.  
-  e.g. the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.
+  (E.g., the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.)
 
 
 </div>
@@ -790,16 +788,16 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
 
 
-* The input `PREFIX` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+* The input `PREFIX` is case-sensitive and must be in lowercase (e.g., `n/hans e/notgmail.com`).
 
 
-* The input `KEYWORD` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+* The input `KEYWORD` is case-insensitive (e.g., `n/hans` will match a student named “Hans”).
 
 
-* Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
+* Partial `KEYWORDS` will be matched (e.g., `n/Ha` will match a student named “Hans Jones”).
 
 
-* The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
+* The order of the `PREFIX/KEYWORD` pair does not matter (e.g., `n/Alice p/12345678` vs `p/12345678 n/Alice`).
 
 
 * `KEYWORDS` must not contain the `/` character.
@@ -808,10 +806,10 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
 
-* The `<time>` field should be searched in the `HH:MM-HH:MM` format. e.g. `find t/18:00` or `find t/09:00-11:00`
+* The `<time>` field should be searched in the `HH:MM-HH:MM` format (e.g., `find t/18:00` or `find t/09:00-11:00`).
 
 
-* When searching the `<level>` field, a space must be included between the level and number if the number is to be specified. e.g. `find l/secondary 1` instead of `find l/secondary1`
+* When searching the `<level>` field, a space must be included between the level and number if the number is to be specified (e.g., `find l/secondary 1` instead of `find l/secondary1`).
 
 Examples:
 * `find n/john` 
