@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddQCommand;
 import seedu.address.logic.commands.AddStuCommand;
-import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteQCommand;
 import seedu.address.logic.commands.DeleteStuCommand;
