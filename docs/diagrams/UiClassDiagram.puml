@@ -57,7 +57,6 @@ MainWindow -left-> Logic
 FoodListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 StatusBarFooter -[hidden]left- ProgressBarController
 
 MainWindow -[hidden]-|> UiPart

@@ -97,11 +97,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of the following parts:
-* `ProgressBarController`
-* `StatusBarFooter`
 * `ResultDisplay`
 * `CommandBox`
 * `HelpWindow`
+* `ProgressBarController`
+* `StatusBarFooter`
 * `FoodListPanel`
 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -158,7 +158,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
