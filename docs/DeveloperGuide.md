@@ -282,6 +282,65 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Tips feature
+
+The tips feature shows curated tips for internship applications for specific application stages in order to help the user prepare for their certain deliverables, interviews and tests. The tips are currently only curated for common stages of internship applications due to the feasibility constraints.
+
+#### Implementation
+
+The tips feature is implemented in the `Model` component inside the `StageUtil` class. The list of supported stages is stored inside as a `List<Stage>`. The tips are stored in a `HashMap` that maps each `Stage` object to their respective `List<String>` of tips. The `getStageSpecificTips()` method will retrieve the list of tips for a supported stage as a `List<String>`. 
+
+The tips are then stored and shown inside a `TipsCard` object that extends from `UiPart<Region>` and consists of one `Hbox` housing 2 `Hbox`s with each inner `Hbox` containing a `Label`. The first `Label` shows the index while the second `Label` shows the Tip itself.
+
+The tips are show to the user in one of two ways depending on the UI layout.
+
+##### Narrow UI implementation
+In the narrow UI layout, the tips can be accessed through a `tipsButton` which has a light bulb icon on the `NarrowInternshipCard` which will open the `TipsWindow`. The `TipsWindow` is a member of every `NarrowInternshipCard` object and is created when the constructor is called. 
+
+The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `hasNoTips()` method from the `Stage` class that returns a boolean `hasNoTips` depending on whether the stage of the application has tips.
+
+If the application stage has tips and the button is pressed, the `TipsWindow` UI component of the `InternshipCard` will have its `GridPane` populated with `TipsCard` vertically after retrieving the tips using the `getStageSpecificTips()` method and building the `TipsCard` for each tip. The tips window is then opened.
+
+If the application stage does not have tips, the tips button will be set to hidden and the `TipsWindow` will not be populated and will be inaccessible.
+
+For more details on the UI implementation, please refer to the [Responsive UI](#responsive-ui-feature) section of the DG.
+
+##### Wide UI implementation
+In the wide UI layout, the tips are shown to the right of the internship list using the `TipsPanel` that extends `UiPart<Region>`. A listener is implemented in the `WideInternshipListPanel` to check which `NarrowInternshipCard` is currently selected.
+
+
+If the internship card currently selected is at a supported stage, the `TipsPanel` will have its `GridPane` populated with `TipCard`s vertically after retrieving the tips using the `getStageSpecificStips()` method and building the `TipCard` for each tip.
+
+If the internship card currently selected is not at a supported stage, the default `TipsPanel` will be shown which only has `Label` message telling the user that there are no tips for the stage yet.
+
+For more detail on the UI implementation, please refer to the [Responsive UI](#responsive-ui-feature) section of the DG.
+
+### Responsive UI feature
+
+Workbook had two UI layouts depending on the size of the `MainWindow`. A narrow UI layout is shown when the window is resized narrower than the 1000 pixel breakpoint and a wide UI layout is shown when the window is resized wider than the 1000 pixel breakpoint. This is to improve readability and usability on narrow and wide screens.
+
+#### Implementation
+
+The implementation starts at the `MainWindow` class. The class has two UI layouts as members, the `WideInternshipListPanel` class and the `NarrowInternshipListPanel` class that both extend `UiPart<Region>`. The two UI layout objects are instantiated on calling the constructer of `MainWindow` and are populated with the internship applications on instantiation. This is to enable fast switching between the two layouts. 
+
+The `setWidthEventHandlers()` listener will listen to the current window width. Whenever the window width passes the breakpoint, the `internshipListPanelPlaceholder` is cleared and populated with either the `WideInternshipListPanel` or the `NarrowInternshipListPanel` depending on the window width.
+
+##### Narrow UI
+
+The narrow UI layout uses the `NarrowInternshipListPanel` and populates its `ListView` with the `InternshipCard` that extends `UiPart<Region>`. It has a tips button that can open the tips window. Other than the tips button, the implementation is very similar to AB3 with minor styling changes.
+
+For more details on the implementation of the tips button and tips window, refer to the [Tips section](#tips-feature) of the DG.
+
+##### Wide UI
+The wide UI layout uses the `WideInternshipListPanel` and populates its `ListView` with the `NarrowInternshipCard` that extends `UiPart<Region>`. It differs from the `InternshipCard` in that it does not have the tips button. The implementation is very similar to the original `InternshipCard` from AB3 with minor styling changes. 
+
+The `WideInternshipListPanel` has a `TipsPanel` beside the `ListView` that extends `UiPart<Region>`. The `TipsPanel` is contained inside a `HBox` `tipsPanelContainer` which is a member of the `WideInternshipListPanel`. 
+
+A listener `setInternshipSelectedEventHandlers()` is implemented in the `WideInternshipListPanel` class that listens to to which `NarrowInternshipCard` is currently selected. It will call the `tipPanelBuilder()` method which takes in a `Stage` and creates a `TipsPanel` object and populates it with tips.
+
+For more details on the implementation of the tips button, tips window and tips panel, refer to the [Tips section](#tips-feature) of the DG.
+
+
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
