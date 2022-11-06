@@ -39,6 +39,32 @@ public class SortCommandParserTest {
     }
 
     @Test
+    public void parse_validArgsWithReverseFlag_returnsSortCommand() {
+        SortCommand expectedReverseNameSortCommand =
+                new SortCommand(Applicant.sortByName().reversed());
+        SortCommand expectedReverseScholarshipSortCommand =
+                new SortCommand(Applicant.sortByScholarship().reversed());
+        SortCommand expectedReverseStatusSortCommand =
+                new SortCommand(Applicant.sortByStatus().reversed());
+
+        // reverse flag after argument
+        assertParseSuccess(parser, SortCommandParser.NAME
+                + "  " + SortCommandParser.REVERSE_FLAG, expectedReverseNameSortCommand);
+        assertParseSuccess(parser, SortCommandParser.SCHOLARSHIP
+                + "  " + SortCommandParser.REVERSE_FLAG, expectedReverseScholarshipSortCommand);
+        assertParseSuccess(parser, SortCommandParser.STATUS
+                + "  " + SortCommandParser.REVERSE_FLAG, expectedReverseStatusSortCommand);
+
+        // reverse flag before argument
+        assertParseSuccess(parser, SortCommandParser.REVERSE_FLAG + "   "
+                + SortCommandParser.NAME, expectedReverseNameSortCommand);
+        assertParseSuccess(parser, SortCommandParser.REVERSE_FLAG + "   "
+                + SortCommandParser.SCHOLARSHIP, expectedReverseScholarshipSortCommand);
+        assertParseSuccess(parser, SortCommandParser.REVERSE_FLAG + "   "
+                + SortCommandParser.STATUS, expectedReverseStatusSortCommand);
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "ILoveSoftwareEngineering", ERROR_MESSAGE);
 
@@ -59,7 +85,9 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_multipleArgs_throwsParseException() {
-        assertParseFailure(parser, "rejected pending", ERROR_MESSAGE);
+    public void parse_tooManyValidArgs_throwsParseException() {
+        assertParseFailure(parser, SortCommandParser.NAME + " " + SortCommandParser.NAME, ERROR_MESSAGE);
+        assertParseFailure(parser, SortCommandParser.SCHOLARSHIP + " "
+                + SortCommandParser.STATUS + " " + SortCommandParser.REVERSE_FLAG, ERROR_MESSAGE);
     }
 }

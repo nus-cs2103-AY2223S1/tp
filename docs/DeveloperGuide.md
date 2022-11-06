@@ -408,7 +408,7 @@ The following sequence diagram shows how the find operation works:
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
-![Find command activity diagram](images/FindActivityDiagram.png)
+![Find command activity diagram](images/FindCommandActivityDiagram.png)
 
 [Return to top](#table-of-contents)
 
