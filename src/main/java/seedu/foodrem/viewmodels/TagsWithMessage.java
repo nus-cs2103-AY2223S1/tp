@@ -23,10 +23,16 @@ public class TagsWithMessage {
         this.message = message;
     }
 
+    /**
+     * Returns the tags.
+     */
     public Tag[] getTags() {
         return tags;
     }
 
+    /**
+     * Returns the message.
+     */
     public String getMessage() {
         return message;
     }

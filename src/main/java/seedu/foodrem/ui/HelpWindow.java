@@ -36,6 +36,9 @@ public class HelpWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Sets the message to display.
+     */
     public void setMessageToDisplay(String messageToDisplay) {
         helpMessage.setText(messageToDisplay);
     }

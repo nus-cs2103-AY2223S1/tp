@@ -25,14 +25,23 @@ public class FilterByTag {
         this.secondaryMessage = secondaryMessage;
     }
 
+    /**
+     * Returns the tag.
+     */
     public Tag getTag() {
         return tag;
     }
 
+    /**
+     * Returns the primary message.
+     */
     public String getPrimaryMessage() {
         return primaryMessage;
     }
 
+    /**
+     * Returns the secondary message.
+     */
     public String getSecondaryMessage() {
         return secondaryMessage;
     }
