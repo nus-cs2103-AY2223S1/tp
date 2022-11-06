@@ -14,8 +14,11 @@ UniqueClientList -right-> Client
 
 Client -up-> "*" Tag
 
-Client *--> Name
-Client *--> Phone
-Client *--> Email
-Client *--> Address
+Client *--> "1" Name
+Client *--> "1" Address
+Client *--> "1" ClientPhone
+Client *--> "1" ClientEmail
+Client *--> "1" UniqueRemarkList
+Client *--> "1" TransactionLog
+
 @enduml
