@@ -362,7 +362,7 @@ Getting the list of patients in the query hospital wing involves the following s
 4. the model is updated such that the *filtered* list only displays patients who are in the query hospital wing
 
 Strict restrictions are placed to prevent too many varieties of hospital wings. Hospital wings only accepts 
-the following values (case-insensitive) `south` `north` `east` `west` as valid inputs. 
+the following values (case-insensitive) as valid inputs: `south`, `north`, `east`, and `west`. 
 
 #### Next of Kin (/nok)
 
