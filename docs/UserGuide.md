@@ -315,7 +315,7 @@ Examples:
 - `find -p e/@u.nus.edu @gmail.com` finds persons with `EMAIL` that contains **@u.nus.edu** or **@gmail.com**.
 - `find -p t/supervisor HR` finds persons with `TAG` that contains **supervisor** or **HR**.
 - `find -p n/john jon e/@u.nus.edu @gmail.com t/supervisor HR` finds persons with all 3 of the above.
-  e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** and **Senior** can be found with this command.
+  e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** can be found with this command.
 
 ### 4.5.2. Finding internships : `find -i`
 
