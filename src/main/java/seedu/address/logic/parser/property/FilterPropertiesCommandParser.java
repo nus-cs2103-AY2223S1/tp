@@ -54,7 +54,7 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
             if (priceRange.isReset()) {
-                throw new ParseException("If -r flag is used, it cannot be empty.");
+                throw new ParseException("-r flag should not be left empty.");
             }
             predicatesList.add(new FilterPropsByPriceRangePredicate(priceRange));
         }
@@ -63,7 +63,7 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
             if (characteristics.isReset()) {
-                throw new ParseException("If -c flag is used, it cannot be empty.");
+                throw new ParseException("-c flag should not be left empty.");
             }
             if (argMultimap.getValue(PREFIX_FUZZY).isPresent()) {
                 predicatesList.add(new FilterPropsContainingAnyCharacteristicPredicate(characteristics));
