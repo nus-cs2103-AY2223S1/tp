@@ -74,6 +74,10 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
         final Set<Tag> modelTags = new HashSet<>(taskTags);
 
         LocalDateTime modelLocalDateTime = null;
+        if (localDateTime == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+        }
         try {
             if (!localDateTime.isEmpty()) {
                 modelLocalDateTime = LocalDateTime.parse(localDateTime);

@@ -5,10 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import javafx.scene.Node;
+import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
@@ -80,66 +79,6 @@ abstract class AbstractDisplayItemBuilder {
      * Adds a custom attribute. Refer to {@link #withAttribute(Attribute)} for more information.
      */
     protected <U> void addAttribute(String name, U data) {
-        this.attributes.add(new Attribute<U>() {
-            @Override
-            public String getAttributeType() {
-                return name;
-            }
-
-            @Override
-            public U getAttributeContent() {
-                return data;
-            }
-
-            @Override
-            public boolean isVisibleInMenu() {
-                return true;
-            }
-
-            @Override
-            public boolean isDisplayable() {
-                return true;
-            }
-
-            @Override
-            public boolean isAllFlagMatch(int flag) {
-                return false;
-            }
-
-            @Override
-            public boolean isAnyFlagMatch(int flag) {
-                return false;
-            }
-
-            @Override
-            public boolean isAnyStyleMatch(int flag) {
-                return false;
-            }
-
-            @Override
-            public boolean isAllStyleMatch(int flag) {
-                return false;
-            }
-
-            @Override
-            public Node getJavaFxRepresentation() {
-                return null;
-            }
-
-            @Override
-            public <T> boolean isSameType(Attribute<T> o) {
-                return false;
-            }
-
-            @Override
-            public Map<String, Object> toSaveableData() {
-                return null;
-            }
-
-            @Override
-            public boolean isNameMatch(String name) {
-                return false;
-            }
-        });
+        this.attributes.add(new AbstractAttribute<U>(name, data) {});
     }
 }

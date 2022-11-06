@@ -1,0 +1,37 @@
+{
+  "persons" : [ ],
+  "groups" : [ {
+    "name" : "Wrong name: @$^!External-Storage",
+    "uid" : "921eacb2-f171-3862-9ac5-271cbff03ca3",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Priority",
+        "content" : "High",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  }, {
+    "name" : "Wrong name: Internal_Sto2$$rage",
+    "uid" : "da78ceee-3544-30f6-95ac-ed3e600b20d9",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Priority",
+        "content" : "High",
+        "display_format" : 31,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "tasks" : [ ],
+  "itemRelationship" : {
+    "da78ceee-3544-30f6-95ac-ed3e600b20d9" : [ ],
+    "921eacb2-f171-3862-9ac5-271cbff03ca3" : [ ]
+  },
+  "jsonAdaptedAddressBookParser" : {
+    "alias" : { },
+    "macros" : { }
+  }
+}

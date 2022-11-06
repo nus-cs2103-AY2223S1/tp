@@ -25,6 +25,9 @@ public class TypicalGroups {
     public static final Group TEAM_B = new GroupBuilder().withName("Team_B").withParent(TEAM_A).build();
     public static final Group AUTOMATION = new GroupBuilder().withName("Automation").build();
 
+    /**
+     * Returns an {@code AddressBook} with all the typical groups.
+     */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Group group : getTypicalGroups()) {

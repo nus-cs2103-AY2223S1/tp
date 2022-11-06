@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CustomCommandBuilder;
 
 public class JsonAdaptedCustomCommandBuilderTest {
 
-    private static final String INVALID_MACRO_NAME = "";
+    private static final String INVALID_MACRO_NAME = "@$%!";
     private static final String INVALID_MACRO_REPLACE = "";
 
     private static final String VALID_MACRO_NAME = DEFAULT_INFO_COMMAND.getRepr();
@@ -32,28 +32,27 @@ public class JsonAdaptedCustomCommandBuilderTest {
         assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
     }
 
-    //    @Test
-    //    public void toModelType_nullMacroName_throwsIllegalArgumentException() {
-    //        JsonAdaptedCustomCommandBuilder customCommandBuilder = new JsonAdaptedCustomCommandBuilder(null,
-    //                VALID_MACRO_REPLACE);
-    //        String expectedMessage = CustomCommandBuilder.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
-    //    }
+    @Test
+    public void toModelType_nullMacroName_throwsIllegalArgumentException() {
+        JsonAdaptedCustomCommandBuilder customCommandBuilder = new JsonAdaptedCustomCommandBuilder(null,
+                VALID_MACRO_REPLACE);
+        String expectedMessage = CustomCommandBuilder.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
+    }
 
     @Test
-    public void toModelType_invalidMacroReplace_throwsIllegalArgumentException() {
+    public void toModelType_invalidMacroReplace_throwsIllegalArgumentException() throws Exception {
         JsonAdaptedCustomCommandBuilder customCommandBuilder = new JsonAdaptedCustomCommandBuilder(VALID_MACRO_NAME,
                 INVALID_MACRO_REPLACE);
         String expectedMessage = CustomCommandBuilder.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
     }
 
-    //    @Test
-    //    public void toModelType_nullMacroReplace_throwsIllegalArgumentException() {
-    //        JsonAdaptedCustomCommandBuilder customCommandBuilder = new JsonAdaptedCustomCommandBuilder(
-    //        VALID_MACRO_NAME,
-    //                null);
-    //        String expectedMessage = CustomCommandBuilder.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
-    //    }
+    @Test
+    public void toModelType_nullMacroReplace_throwsIllegalArgumentException() {
+        JsonAdaptedCustomCommandBuilder customCommandBuilder = new JsonAdaptedCustomCommandBuilder(
+            VALID_MACRO_NAME, null);
+        String expectedMessage = CustomCommandBuilder.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, customCommandBuilder::toModelType);
+    }
 }
