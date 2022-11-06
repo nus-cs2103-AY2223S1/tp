@@ -679,19 +679,19 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Ensure reminder data are empty by using `clear f/reminder` (you may skip this if you do not have any reminders).
 
-    2. Test case: `add tutorial n/G08 m/CS2101 v/COM2-0209 T/16:00-18:00 D/2`<br>
-       Expected:  A new tutorial is added to the tutorial list. A success message containing details of the added tutorial is shown in result display box and the list of tutorials is shown.
+    2. Test case: `add reminder n/Mark HW 1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
-    3. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/15:00-17:00 D/2`<br>
-       Expected: Conflicting tutorial error message is shown.
+    3. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected: Error message is shown as reminder already exists. No reminder is added.
 
-    4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
-       Expected: Error message is shown as time range is invalid. No tutorial is added.
+    4. Test case: `add reminder n/Mark HW2 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the bottom of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
-    5. Test case: `add tutorial n/G02 m/CS2101`<br>
-       Expected: Error message is shown as missing prefix. No tutorial is added.
+    5. Test case: `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the top of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
-    6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
+    6. Other incorrect add tutorial commands to try: `add reminders`, `add remind`, `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
        Expected: Error message is shown in the result display box.
 
 
@@ -726,15 +726,15 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Sorting all reminders while all reminders are being shown.
 
-    1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
+    1. Prerequisites: At least 2 reminders in the reminder list.
 
-    1. Test case: `delete tutorial 1`<br>
-       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
+    1. Test case: `sort reminder by/priority`<br>
+       Expected: Reminders are first sorted by priority. If the reminders have the same priority, it will be sorted by deadline. If the reminders have the same priority and deadline, it will be sorted lexicographically.
 
-    1. Test case: `delete tutorial 0`<br>
-       Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
+    1. Test case: `sort reminder by/deadline`<br>
+       Expected: Reminders are first sorted by deadline. If the reminders have the same deadline, it will be sorted by priority. If the reminders have the same priority and deadline, it will be sorted lexicographically.
 
-    1. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Switch tabs
