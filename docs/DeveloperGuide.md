@@ -167,6 +167,27 @@ The `Storage` component,
 * inherits from both `TeachersPetStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+#### ClassStorage
+
+![ClassStorageDiagram](images/DG-images/ClassStorageDiagram.png)
+
+The `ClassStorage` component,
+* is a mini database, storing all the upcoming classes of the students in the form of a HashMap
+* contains attributes such as
+    1. `Model`
+    2. `TeachersPet`
+    3. `HashMap<LocalDate, List<Student>>`
+       1. Maps a list of Student objects to a LocalDate object.
+       2. Example: A list of all Students with classes on 19 April 2022 will
+          be mapped to a LocalDate object (19 April 2022).
+* contains main methods such as
+    1. `initialiseClass`
+       1. Initialises the HashMap when the application opens up.
+    2. `saveClass`
+       1. Stores the new class and the student in the HashMap
+    3. `refresh`:
+       1. Re-initialises the HashMap in `ClassStorage`.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
