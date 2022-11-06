@@ -433,6 +433,14 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 _{more aspects and alternatives to be added}_
 
+### Edit Task Feature
+
+#### Implementation
+
+When the `editTask` command is entered, an `EditTaskCommand.EditTaskDescriptor` is created which stores the new details to edit the task with. If the inputs are invalid, an exception will be thrown and the corresponding error message will be displayed. If the inputs are valid, then the `model` is updated with the edited task. 
+
+![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
