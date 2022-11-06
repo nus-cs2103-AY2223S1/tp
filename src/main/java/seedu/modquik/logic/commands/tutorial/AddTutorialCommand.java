@@ -7,12 +7,15 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.logic.commands.Command;
 import seedu.modquik.logic.commands.CommandResult;
 import seedu.modquik.logic.commands.exceptions.CommandException;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelType;
 import seedu.modquik.model.tutorial.Tutorial;
+
+import java.util.logging.Logger;
 
 /**
  * Adds a tutorial to ModQuik.
@@ -40,6 +43,8 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_CLASH_TUTORIAL =
             "There exists a tutorial with overlapping timeslot in the ModQuik";
 
+    private final Logger logger = LogsCenter.getLogger(AddTutorialCommand.class);
+
     private final Tutorial toAdd;
 
     /**
@@ -53,6 +58,7 @@ public class AddTutorialCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.info("Tutorial to add [" + toAdd + "]");
 
         if (model.hasTutorial(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);

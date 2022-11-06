@@ -6,6 +6,7 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.logic.commands.tutorial.AddTutorialCommand;
 import seedu.modquik.logic.parser.ArgumentMultimap;
 import seedu.modquik.logic.parser.ArgumentTokenizer;
@@ -19,18 +20,25 @@ import seedu.modquik.model.datetime.WeeklyTimeslot;
 import seedu.modquik.model.tutorial.Tutorial;
 import seedu.modquik.model.tutorial.TutorialName;
 
+import java.util.logging.Logger;
+
 
 /**
  * Parses input arguments and creates a new AddTutorialCommand object
  */
 public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
 
+    private final Logger logger = LogsCenter.getLogger(AddTutorialCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddTutorialCommand
      * and returns an AddTutorialCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTutorialCommand parse(String args) throws ParseException {
+        logger.info("Parsing add tutorial args [" + args + "]");
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE,
                         PREFIX_TIME, PREFIX_DATE_DAY);
