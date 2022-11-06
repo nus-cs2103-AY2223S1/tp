@@ -490,7 +490,7 @@ ArtBuddy offers the following commands to help you manage your commissions:
 
 Commissions stored in ArtBuddy have the following details:
 
-| Detail               | Explanation                                                                                                          |                                                                                                |
+| Detail               | Explanation                                                                                                          | Constraints                                                                                    |
 |----------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | Title                | The name of the commission                                                                                           | Alphanumeric and space characters                                                              |
 | Deadline             | The due date of the commission                                                                                       | <code>YYYY-MM-DD</code> format                                                                 |
@@ -563,7 +563,7 @@ ArtBuddy offers the following commands to help you manage your iterations:
 
 Iterations stored in ArtBuddy have the following details:
 
-| Detail      | Explanation                                                                           |                                                                                         |
+| Detail      | Explanation                                                                           | Constraints                                                                             |
 |-------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
 | Description | Describes the progress that was made in the iteration                                 |                                                                                         |
 | Date        | Records the date tied to the iteration (for instance, when the iteration was created) | <code>YYYY-MM-DD</code> format                                                          |
