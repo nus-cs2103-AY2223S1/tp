@@ -82,9 +82,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void backupFile(Path filePath) throws IOException {
-        if (!FileUtil.isFileExists(filePath)) {
-            return;
-        }
+        assert FileUtil.isFileExists(filePath);
         Path backupFilePath = filePath.resolveSibling(filePath.getFileName() + ".bak");
         FileUtil.writeToFile(backupFilePath, FileUtil.readFromFile(filePath));
     }

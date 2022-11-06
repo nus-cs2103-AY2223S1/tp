@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.session.SessionData;
 
 /**
  * Handles the view of a Student for UI, i.e. a Student's identity along with their grade.

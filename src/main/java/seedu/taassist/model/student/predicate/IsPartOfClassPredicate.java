@@ -1,10 +1,11 @@
-package seedu.taassist.model.student;
+package seedu.taassist.model.student.predicate;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.student.Student;
 
 /**
  * Tests that a {@code Student} is part of a class.

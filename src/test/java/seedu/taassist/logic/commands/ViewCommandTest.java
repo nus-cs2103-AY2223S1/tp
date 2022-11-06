@@ -138,8 +138,8 @@ class ViewCommandTest {
         // Assumption of the view command is that the student is in the focused class.
         private final ObservableList<Student> students = FXCollections.observableArrayList(
             ALICE.addModuleClass(CS1231S)
-                .updateGrade(CS1231S, ASSIGNMENT_1, 50)
-                .updateGrade(CS1231S, LAB_1, 100)
+                .updateGrade(CS1231S, ASSIGNMENT_1, 50.0)
+                .updateGrade(CS1231S, LAB_1, 100.0)
         );
 
         @Override

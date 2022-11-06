@@ -22,12 +22,13 @@ Given below are my contributions to the project.
     * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
         * Additionally, the data file is backed up everytime TA-Assist is opened.
     * Implemented collapsible student cards in the GUI to allow users to hide the student details.
+    * Added functionality to back up the data file each time TA-Assist is opened.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RezwanArefin01&breakdown=true).
 
 * **Project management**: To be added soon.
-    * Authored 28 issues to help keep track of current issues and progress.
-    * Reviewed 34 pull requests to ensure quality and consistency across the database.
+    * Authored 29 issues to help keep track of current issues and progress.
+    * Reviewed 30 pull requests to ensure quality and consistency across the project.
 
 * **Enhancements to existing features**: 
     * Fixed the help window not being loaded in Linux environment.
@@ -35,11 +36,16 @@ Given below are my contributions to the project.
         * The generic type `T` implements the `Identity<T>` interface, which makes a way to compare two objects of type `T` with a defined identity, ignoring other data fields.    
         * This change was necessary to reduce code duplication and improve code quality.
     * Updated the `find` command to filter on the current displayed list instead of all students. 
+    * Removed empty fields from the student card in the GUI to not have empty spaces between fields. 
+    * Added text wrapping to the command result box.
 
 * **Documentation**: 
     * Added implementation details and sequence diagrams for the `grade` command to the DG. 
     * Added implementation details and sequence diagrams for the `view` command in the DG.
     * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
+    * Added implementation details regarding loading and saving of `SessionData` and `StudentModuleData` in the DG.
+    * Edited the documents to make them more consistent and readable.  
+    * Updated styling of the website to make it more readable. 
 
 * **Community**: To be added soon.
 
