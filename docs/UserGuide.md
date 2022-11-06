@@ -344,13 +344,19 @@ Examples:
 
 Unmarks a task and sets it as incomplete.
 
+Note;
+* To unmark a task, we need to show the full list of tasks with the completed (disappeared) tasks.
+* By executing `task list -a` command, we can fully display the task panel with both complete and incomplete tasks.
+* Thus we can `unmark` a task from complete to incomplete.
+
 Format: `task unmark TASK_INDEX`
+* Show the full task lists by using `task list -a`.
 * Unmarks the task at the specified `TASK_INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
+* `task list -a` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
 
 ---
 ### Deleting a Task: `task delete`
