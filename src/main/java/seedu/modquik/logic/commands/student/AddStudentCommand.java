@@ -50,9 +50,9 @@ public class AddStudentCommand extends Command {
             + PREFIX_TUTORIAL + "W17 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the modquik book";
-    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
-    public static final String MESSAGE_NON_EXISTING_TUTORIAL = "The tutorial does not exist in Modquik";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in ModQuik";
+    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in ModQuik";
+    public static final String MESSAGE_NON_EXISTING_TUTORIAL = "The tutorial does not exist in ModQuik";
 
     private final Student toAdd;
 

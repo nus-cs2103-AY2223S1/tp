@@ -16,7 +16,7 @@ import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.Model;
 
 /**
- * Clears the modquik book.
+ * Clears ModQuik's data.
  */
 public class ClearCommand extends Command {
 

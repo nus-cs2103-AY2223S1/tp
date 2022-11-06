@@ -15,7 +15,7 @@ import seedu.modquik.model.tutorial.Tutorial;
 import seedu.modquik.model.tutorial.UniqueTutorialList;
 
 /**
- * Wraps all data at the modquik-book level
+ * Wraps all data at the modquik level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class ModQuik implements ReadOnlyModQuik {
@@ -103,7 +103,7 @@ public class ModQuik implements ReadOnlyModQuik {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the modquik book.
+     * Returns true if a person with the same identity as {@code person} exists in ModQuik.
      */
     public boolean hasPerson(Student student) {
         requireNonNull(student);
@@ -111,8 +111,8 @@ public class ModQuik implements ReadOnlyModQuik {
     }
 
     /**
-     * Adds a person to the modquik book.
-     * The person must not already exist in the modquik book.
+     * Adds a person to ModQuik.
+     * The person must not already exist in ModQuik.
      */
     public void addPerson(Student p) {
         persons.add(p);
@@ -120,8 +120,8 @@ public class ModQuik implements ReadOnlyModQuik {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the modquik book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the modquik book.
+     * {@code target} must exist in ModQuik.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in ModQuik.
      */
     public void setPerson(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -131,7 +131,7 @@ public class ModQuik implements ReadOnlyModQuik {
 
     /**
      * Removes {@code key} from this {@code ModQuik}.
-     * {@code key} must exist in the modquik book.
+     * {@code key} must exist in the ModQuik.
      */
     public void removePerson(Student key) {
         persons.remove(key);
@@ -140,7 +140,7 @@ public class ModQuik implements ReadOnlyModQuik {
     //// reminder-level operations
 
     /**
-     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuilk.
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuik.
      */
     public boolean hasReminder(Reminder reminder) {
         requireNonNull(reminder);
@@ -168,7 +168,7 @@ public class ModQuik implements ReadOnlyModQuik {
 
     /**
      * Removes {@code key} from this {@code ModQuik}.
-     * {@code key} must exist in the modquik book.
+     * {@code key} must exist in ModQuik.
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
@@ -197,7 +197,7 @@ public class ModQuik implements ReadOnlyModQuik {
     //// tutorial-level operations
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
      */
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
@@ -238,14 +238,14 @@ public class ModQuik implements ReadOnlyModQuik {
 
     /**
      * Removes {@code key} from this {@code ModQuik}.
-     * {@code key} must exist in the modquik book.
+     * {@code key} must exist in the ModQuik.
      */
     public void removeTutorial(Tutorial key) {
         tutorials.remove(key);
     }
     //// consultation-level operations
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in ModQuik.
      */
     public boolean hasConsultation(Consultation consultation) {
         requireNonNull(consultation);
@@ -281,7 +281,7 @@ public class ModQuik implements ReadOnlyModQuik {
 
     /**
      * Removes {@code key} from this {@code ModQuik}.
-     * {@code key} must exist in the modquik book.
+     * {@code key} must exist in the ModQuik.
      */
     public void removeConsultation(Consultation key) {
         consultations.remove(key);

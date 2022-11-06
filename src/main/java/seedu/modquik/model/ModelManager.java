@@ -84,16 +84,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModQuikFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setModQuikFilePath(addressBookFilePath);
+    public void setModQuikFilePath(Path modQuikFilePath) {
+        requireNonNull(modQuikFilePath);
+        userPrefs.setModQuikFilePath(modQuikFilePath);
     }
 
     //=========== ModQuik ================================================================================
 
     @Override
-    public void setModQuik(ReadOnlyModQuik addressBook) {
-        this.modQuik.resetData(addressBook);
+    public void setModQuik(ReadOnlyModQuik modQuik) {
+        this.modQuik.resetData(modQuik);
     }
 
     @Override

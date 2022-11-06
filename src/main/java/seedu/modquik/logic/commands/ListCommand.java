@@ -7,7 +7,7 @@ import static seedu.modquik.model.ModelType.STUDENT;
 import seedu.modquik.model.Model;
 
 /**
- * Lists all persons in the modquik book to the user.
+ * Lists all persons in the ModQuik to the user.
  */
 public class ListCommand extends Command {
 

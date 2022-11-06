@@ -44,44 +44,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' modquik book file path.
+     * Returns the user prefs' modquik file path.
      */
     Path getModQuikFilePath();
 
     /**
-     * Sets the user prefs' modquik book file path.
+     * Sets the user prefs' modquik file path.
      */
-    void setModQuikFilePath(Path addressBookFilePath);
+    void setModQuikFilePath(Path modQuikFilePath);
 
     /**
-     * Replaces modquik book data with the data in {@code addressBook}.
+     * Replaces modquik data with the data in {@code modQuik}.
      */
-    void setModQuik(ReadOnlyModQuik addressBook);
+    void setModQuik(ReadOnlyModQuik modQuik);
 
     /** Returns the ModQuik */
     ReadOnlyModQuik getModQuik();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the modquik book.
+     * Returns true if a person with the same identity as {@code person} exists in ModQuik.
      */
     boolean hasPerson(Student student);
 
     /**
      * Deletes the given person.
-     * The person must exist in the modquik book.
+     * The person must exist in ModQuik.
      */
     void deletePerson(Student target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the modquik book.
+     * {@code person} must not already exist in ModQuik.
      */
     void addPerson(Student student);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the modquik book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the modquik book.
+     * {@code target} must exist in ModQuik.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in ModQuik.
      */
     void setPerson(Student target, Student editedStudent);
 

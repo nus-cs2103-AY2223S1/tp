@@ -27,7 +27,7 @@ import seedu.modquik.model.tutorial.Tutorial;
 import seedu.modquik.model.tutorial.TutorialName;
 
 /**
- * Edits the details of an existing tutorial in the modquik book.
+ * Edits the details of an existing tutorial in the ModQuik.
  */
 public class EditTutorialCommand extends Command {
 
@@ -49,7 +49,7 @@ public class EditTutorialCommand extends Command {
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the modquik book.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in ModQuik.";
     public static final String MESSAGE_CLASH_TUTORIAL =
             "There exists a tutorial with overlapping timeslot in the ModQuik";
 

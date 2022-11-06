@@ -14,7 +14,7 @@ import seedu.modquik.model.ModelType;
 import seedu.modquik.model.consultation.Consultation;
 
 /**
- * Deletes a consultation identified using it's displayed index from the modquik book.
+ * Deletes a consultation identified using it's displayed index from ModQuik.
  */
 public class DeleteConsultationCommand extends Command {
     public static final String COMMAND_WORD = "delete consultation";

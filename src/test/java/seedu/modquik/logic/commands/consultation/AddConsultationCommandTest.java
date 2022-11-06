@@ -114,12 +114,12 @@ public class AddConsultationCommandTest {
         }
 
         @Override
-        public void setModQuikFilePath(Path addressBookFilePath) {
+        public void setModQuikFilePath(Path modQuikFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setModQuik(ReadOnlyModQuik newData) {
+        public void setModQuik(ReadOnlyModQuik modQuik) {
             throw new AssertionError("This method should not be called.");
         }
 

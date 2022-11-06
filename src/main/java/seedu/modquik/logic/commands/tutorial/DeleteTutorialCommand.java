@@ -14,7 +14,7 @@ import seedu.modquik.model.ModelType;
 import seedu.modquik.model.tutorial.Tutorial;
 
 /**
- * Deletes a tutorial identified using it's displayed index from the modquik book.
+ * Deletes a tutorial identified using it's displayed index from ModQuik.
  */
 public class DeleteTutorialCommand extends Command {
 
