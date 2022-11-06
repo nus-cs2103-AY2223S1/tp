@@ -347,14 +347,18 @@ Shows the list of clients in MyInsuRec.
 
 A valid filter can also be applied to show a selected list of clients.
 
-Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+Format: `listClient [pd/PRODUCT || b/PERIOD]`
 
-* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`.
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `PERIOD`.
 * `PRODUCT` must exists already.
-* `BIRTHDAY` is specified by keywords. The possible keywords are:
+* `PERIOD` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
   * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+The valid inputs for `b/PERIOD` differs from that of `b/BIRTHDAY`! `b/PERIOD` can only accept keywords, while `b/BIRTHDAY` can only accept specific dates. 
+</div>
 
 Use case:
 1. You want to find out all your clients with upcoming birthdays so that you can prepare ahead and ensure that every client gets some birthday well wishes!
@@ -368,8 +372,11 @@ Examples:
 * List all clients with their birthdays in the next week
   * `listClient b/week`
 
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:** Both filters cannot exist simultaneously.
-A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+
+* Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
+
+* Extraneous parameters will not be taken into account. For example, `listClient n/Alex` will be considered as `listClient` without any error messages.
 </div>
 
 #### 7.1.3 View client: `viewClient`
@@ -504,6 +511,11 @@ Examples:
     * `listMeeting`
 * List meetings happening in the next week
     * `listMeeting d/week`
+
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+
+* Extraneous parameters will not be taken into account. For example, `listMeeting n/Alex` will be considered as `listMeeting` without any error messages.
+</div>
 
 #### 7.2.3 View meeting: `viewMeeting`
 
