@@ -571,6 +571,12 @@ Iterations stored in ArtBuddy have the following details:
 Adds an iteration to the currently selected commission. This can be done either by the
 [CLI](#adding-by-the-command-line-interface) or [GUI](#adding-by-graphical-interface).
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** There are some known limitations with images in ArtBuddy. Please refer
+to [Appendix: Limitations with images in ArtBuddy](#limitations-with-images-in-artbuddy) for more details.
+</div>
+
 {: .no_toc}
 ##### Adding by the Command-Line Interface
 
@@ -791,6 +797,12 @@ because ArtBuddy does not know whether <code>f/<em>image.png</em></code> is the 
 
 If you wish to upload the image, either rename the folder name, or [upload the image by the GUI](#adding-by-graphical-interface).
 
+### Limitations with images in ArtBuddy
+ArtBuddy might not properly handle extreme image sizes. If your images are too small, they might not render
+properly on ArtBuddy, or might appear very pixelated. If your image is too big (the recommended image
+size limit is around 10MB), ArtBuddy might not be able to open the image at all, or you may start to
+experience significant lag with ArtBuddy.
+
 ### What are file paths and root directories?
 Just like how we use addresses to tell specify locations when talking to people, computers
 do the same! Each file in your computer has a unique address that can be used to identify the
@@ -817,7 +829,7 @@ To easily copy a filepath of a file:
 
 <div align="right">
 
-[ <a href="#appendix>To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
+[ <a href="#appendix">To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -890,5 +902,5 @@ So do check that the file path you specified starts with a '/'. If all else fail
 
 <div align="right">
 
-[ <a href="#command-summary>To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
+[ <a href="#command-summary">To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
