@@ -1282,7 +1282,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: No current module is set, i.e. The user is not currently `cd`'d into any module.
 
-    1. Test case: `cd..`<br>
+    1. Test case: `cd ..`<br>
        Expected: No change to modules/tasks, an error message "Already showing all modules" is displayed to the user.
 
 1. Using the `cd` command with an invalid module code
