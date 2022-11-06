@@ -1,64 +1,78 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.schedules;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCHEDULE;
+import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.schedule.AddScheduleCommand;
+import seedu.address.logic.commands.schedule.EditScheduleCommand;
+import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.testutil.EditScheduleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ScheduleBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditScheduleCommand.
+ */
+public class EditScheduleCommandTest {
 
-public class AddScheduleCommandTest {
+    private Model model = new ModelManager(getTypicalProfNusWithSchedules(), new UserPrefs());
 
     @Test
     public void constructor_null_throwNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddScheduleCommand(null));
+        assertThrows(NullPointerException.class, () -> new EditScheduleCommand(null, null));
     }
 
     @Test
     public void execute_moduleDoesNotExist_throwCommandException() {
-        Schedule schedule = new ScheduleBuilder().build();
-        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
-        ModelStubWithModuleNotExist modelStub = new ModelStubWithModuleNotExist(schedule);
-        assertThrows(CommandException.class, AddScheduleCommand.MESSAGE_MODULE_NOT_EXIST, () ->
-                addScheduleCommand.execute(modelStub));
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().withModule("CS2309S")
+                .build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(INDEX_FIRST_SCHEDULE, editScheduleDescriptor);
+        ModelStubWithModuleNotExist modelStub = new ModelStubWithModuleNotExist();
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_MODULE_NOT_EXIST, () ->
+                editScheduleCommand.execute(model));
     }
 
     @Test
-    public void execute_conflictWithOtherSchedule_throwCommandException() {
-        Schedule schedule = new ScheduleBuilder().build();
-        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
-        ModelStubWithScheduleConflict modelStub = new ModelStubWithScheduleConflict(schedule);
-        assertThrows(CommandException.class, AddScheduleCommand.MESSAGE_CONFLICT_SCHEDULE, () ->
-                addScheduleCommand.execute(modelStub));
+    public void execute_conflictWithOtherSchedule_throwCommandException() throws CommandException {
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().withStartTime("16:00")
+                .withEndTime("18:00").withWeekday(Weekdays.Friday).build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(INDEX_FIRST_SCHEDULE, editScheduleDescriptor);
+        ModelStubWithScheduleConflict modelStub = new ModelStubWithScheduleConflict();
+        // CommandResult result = editScheduleCommand.execute(modelStub);
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_CONFLICT_SCHEDULE, () ->
+                editScheduleCommand.execute(model));
     }
 
     @Test
-    public void execute_scheduleAcceptedByModel_addSuccessful() throws CommandException {
-        Module module = new ModuleBuilder().build();
-        Schedule schedule = new ScheduleBuilder().build();
-        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
-        ModelStubWithAcceptingScheduleAdded modelStub = new ModelStubWithAcceptingScheduleAdded(module);
-        CommandResult commandResult = addScheduleCommand.execute(modelStub);
-        assertEquals(String.format(AddScheduleCommand.MESSAGE_SUCCESS, schedule), commandResult.getFeedbackToUser());
+    public void execute_invalidScheduleIndex_throwCommandException() {
+        Index indexOutOfBound = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(indexOutOfBound, editScheduleDescriptor);
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_SCHEDULE_NOT_EXIST, () -> editScheduleCommand
+                .execute(model));
     }
 
     /**
@@ -238,11 +252,11 @@ public class AddScheduleCommandTest {
         public ObservableList<Schedule> getFilteredScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ObservableList<Schedule> getAllScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
@@ -278,11 +292,10 @@ public class AddScheduleCommandTest {
      * A Model stub that contains a schedule which cannot find the target module
      */
     private class ModelStubWithModuleNotExist extends ModelStub {
-        private final Schedule schedule;
-
-        ModelStubWithModuleNotExist(Schedule schedule) {
-            requireNonNull(schedule);
-            this.schedule = schedule;
+        private List<Schedule> filteredScheduleList;
+        ModelStubWithModuleNotExist() {
+            filteredScheduleList = new ArrayList<>();
+            filteredScheduleList.add(new ScheduleBuilder().build());
         }
 
         @Override
@@ -301,12 +314,7 @@ public class AddScheduleCommandTest {
      * A Model stub that always has schedule conflict.
      */
     private class ModelStubWithScheduleConflict extends ModelStub {
-        private final Schedule schedule;
-
-        ModelStubWithScheduleConflict(Schedule schedule) {
-            requireNonNull(schedule);
-            this.schedule = schedule;
-        }
+        ModelStubWithScheduleConflict() {}
 
         @Override
         public Module getModuleByModuleCode(String moduleCode) {
@@ -320,12 +328,9 @@ public class AddScheduleCommandTest {
         }
     }
 
-    private class ModelStubWithAcceptingScheduleAdded extends ModelStub {
-        private final Module module;
+    private class ModelStubWithAcceptingScheduleEdited extends ModelStub {
 
-        ModelStubWithAcceptingScheduleAdded(Module module) {
-            this.module = module;
-        }
+        ModelStubWithAcceptingScheduleEdited() {}
         @Override
         public Module getModuleByModuleCode(String moduleCode) {
             requireNonNull(moduleCode);
@@ -336,9 +341,16 @@ public class AddScheduleCommandTest {
         public boolean conflictSchedule(Schedule schedule) {
             return false;
         }
+
         @Override
-        public void addSchedule(Schedule schedule) {
-            module.addSchedule(schedule);
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            target.setModule(editedSchedule.getModule());
+            target.setVenue(editedSchedule.getVenue());
+            target.setStartTime(editedSchedule.getStartTime());
+            target.setEndTime(editedSchedule.getEndTime());
+            target.setWeekday(editedSchedule.getWeekday());
+            target.setClassType(editedSchedule.getClassType());
         }
     }
 }
+
