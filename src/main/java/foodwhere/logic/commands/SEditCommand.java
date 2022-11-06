@@ -52,6 +52,8 @@ public class SEditCommand extends Command {
     private final EditStallDescriptor editStallDescriptor;
 
     /**
+     * Creates an SEditCommand to edit the specified {@code Stall}.
+     *
      * @param index of the stall in the filtered stall list to edit
      * @param editStallDescriptor details to edit the stall with
      */

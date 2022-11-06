@@ -31,6 +31,9 @@ public class UniqueReviewList implements Iterable<Review> {
 
     /**
      * Returns true if the list contains an equivalent review as the given argument.
+     *
+     * @param toCheck {@code Review} to be checked.
+     * @return Whether the list contains the {@code Review}.
      */
     public boolean contains(Review toCheck) {
         requireNonNull(toCheck);
@@ -40,6 +43,8 @@ public class UniqueReviewList implements Iterable<Review> {
     /**
      * Adds a review to the list.
      * The review must not already exist in the list.
+     *
+     * @param toAdd {@code Review} to be added in.
      */
     public void add(Review toAdd) {
         requireNonNull(toAdd);
@@ -53,6 +58,9 @@ public class UniqueReviewList implements Iterable<Review> {
      * Replaces the review {@code target} in the list with {@code editedReview}.
      * {@code target} must exist in the list.
      * The review identity of {@code editedReview} must not be the same as another existing review in the list.
+     *
+     * @param target {@code Review} to be edited.
+     * @param editedReview {@code Review} that is edited.
      */
     public void setReview(Review target, Review editedReview) {
         requireAllNonNull(target, editedReview);
@@ -72,6 +80,8 @@ public class UniqueReviewList implements Iterable<Review> {
     /**
      * Removes the equivalent review from the list.
      * The review must exist in the list.
+     *
+     * @param toRemove {@code Review} to be removed.
      */
     public void remove(Review toRemove) {
         requireNonNull(toRemove);
@@ -85,7 +95,12 @@ public class UniqueReviewList implements Iterable<Review> {
         internalList.sort(comparator);
     }
 
-    public void setStalls(UniqueReviewList replacement) {
+    /**
+     * Sets the list of stalls from the given replacement list.
+     *
+     * @param replacement {@code UniqueReviewList} to be replaced.
+     */
+    public void setReviews(UniqueReviewList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -93,6 +108,8 @@ public class UniqueReviewList implements Iterable<Review> {
     /**
      * Replaces the contents of this list with {@code reviews}.
      * {@code reviews} must not contain duplicate reviews.
+     *
+     * @param reviews List of reviews.
      */
     public void setReviews(List<Review> reviews) {
         requireAllNonNull(reviews);

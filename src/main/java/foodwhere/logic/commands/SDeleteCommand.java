@@ -31,6 +31,11 @@ public class SDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an SDeleteCommand to delete the specified {@code Stall}.
+     *
+     * @param targetIndex Index of the Stall in the observed list.
+     */
     public SDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

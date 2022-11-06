@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 
 /**
  * An UI component that displays information of a {@code Stall}.
- * Will be updated to a Stall for later iterations.
  */
 public class StallCard extends UiPart<Region> {
 

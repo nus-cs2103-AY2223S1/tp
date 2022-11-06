@@ -27,6 +27,11 @@ public class SFindCommand extends Command {
 
     private final StallContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an SFindCommand to find the specified {@code Stall}s.
+     *
+     * @param predicate Predicate to filter the stall list.
+     */
     public SFindCommand(StallContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

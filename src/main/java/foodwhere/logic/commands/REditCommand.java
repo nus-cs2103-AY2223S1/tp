@@ -53,6 +53,8 @@ public class REditCommand extends Command {
     private final EditReviewDescriptor editReviewDescriptor;
 
     /**
+     * Creates an REditCommand to edit the specified {@code Review}.
+     *
      * @param index of the review in the filtered review list to edit
      * @param editReviewDescriptor details to edit the review with
      */

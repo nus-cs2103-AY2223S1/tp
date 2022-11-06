@@ -22,6 +22,7 @@ public class SEditCommandParser implements Parser<SEditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SEditCommand
      * and returns an SEditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public SEditCommand parse(String args) throws ParseException {

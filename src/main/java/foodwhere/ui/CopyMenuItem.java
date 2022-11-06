@@ -58,7 +58,7 @@ public class CopyMenuItem<T> extends MenuItem {
         /**
          * Returns the content of the Review according to the type.
          *
-         * @param reviewItem Stall object.
+         * @param reviewItem Review object.
          * @param action Type of content to return.
          * @return String content to be copied to clipboard.
          */

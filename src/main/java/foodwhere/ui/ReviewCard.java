@@ -14,7 +14,6 @@ import javafx.scene.layout.Region;
 
 /**
  * An UI component that displays information of a {@code Review}.
- * Will be updated to a Review for later iterations.
  */
 public class ReviewCard extends UiPart<Region> {
 

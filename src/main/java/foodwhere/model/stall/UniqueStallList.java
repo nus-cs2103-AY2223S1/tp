@@ -40,6 +40,8 @@ public class UniqueStallList implements Iterable<Stall> {
     /**
      * Adds a stall to the list.
      * The stall must not already exist in the list.
+     *
+     * @param toAdd {@code Stall} to be added.
      */
     public void add(Stall toAdd) {
         requireNonNull(toAdd);
@@ -53,6 +55,9 @@ public class UniqueStallList implements Iterable<Stall> {
      * Replaces the stall {@code target} in the list with {@code editedStall}.
      * {@code target} must exist in the list.
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the list.
+     *
+     * @param target {@code Stall} to be edited.
+     * @param editedStall {@code Stall} that is edited.
      */
     public void setStall(Stall target, Stall editedStall) {
         requireAllNonNull(target, editedStall);
@@ -72,6 +77,8 @@ public class UniqueStallList implements Iterable<Stall> {
     /**
      * Removes the equivalent stall from the list.
      * The stall must exist in the list.
+     *
+     * @param toRemove {@code Stall} to be removed.
      */
     public void remove(Stall toRemove) {
         requireNonNull(toRemove);
@@ -85,6 +92,11 @@ public class UniqueStallList implements Iterable<Stall> {
         internalList.sort(comparator);
     }
 
+    /**
+     * Sets the list of stalls from the given replacement list.
+     *
+     * @param replacement {@code UniqueStallList} to be replaced.
+     */
     public void setStalls(UniqueStallList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -93,6 +105,8 @@ public class UniqueStallList implements Iterable<Stall> {
     /**
      * Replaces the contents of this list with {@code stalls}.
      * {@code stalls} must not contain duplicate stalls.
+     *
+     * @param stalls List of stalls.
      */
     public void setStalls(List<Stall> stalls) {
         requireAllNonNull(stalls);

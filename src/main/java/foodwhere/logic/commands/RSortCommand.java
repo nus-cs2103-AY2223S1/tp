@@ -22,6 +22,11 @@ public class RSortCommand extends Command {
 
     private final ReviewsComparatorList reviewsComparator;
 
+    /**
+     * Creates an RSortCommand to sort the specified {@code Review}s based on a criteria.
+     *
+     * @param reviewsComparator Comparator for the {@code Review}s
+     */
     public RSortCommand(ReviewsComparatorList reviewsComparator) {
         this.reviewsComparator = reviewsComparator;
     }

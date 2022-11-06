@@ -10,7 +10,7 @@ import foodwhere.model.ReadOnlyUserPrefs;
 import foodwhere.model.UserPrefs;
 
 /**
- * A class to access UserPrefs stored in the hard disk as a json file
+ * A class to access UserPrefs stored in the hard disk as a JSON file
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
