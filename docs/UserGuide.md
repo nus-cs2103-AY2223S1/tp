@@ -331,7 +331,7 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
@@ -346,7 +346,7 @@ Be very careful! The default behaviour is slightly different across the differen
 
 <div markdown="block" class="alert alert-info"> **:star: Advanced Tip:**
 Description is case-sensitive! In case you need to store 2 separate debts with the same description, money, date and time for a single person, you can consider storing the first with capital letters and the second without.<br>
-For example, you can have a `McDonalds` debt and a `mcdonalds` debt.
+For example, you can have a `Lunch` debt and a `lunch` debt. However, you are recommended to store the debts with more specific descriptions to make it easier to figure out what they really are in the future! You can still find both `lunch drink` and `lunch meal` debts by making use of the [`finddebt` command](#locating-persons-by-debt-description-finddebt).
 </div>
 
 Example:
@@ -365,7 +365,7 @@ You can split a debt among as many people as you want. You can even include your
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -405,7 +405,7 @@ You can use this command to delete all of a person’s debts and your relationsh
 Format: `cleardebts <person index>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 
@@ -443,7 +443,7 @@ Format: `statement`
 
 **:information_source: Note:**
 
-The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
+The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
 
 </div>
 
@@ -451,7 +451,7 @@ Example: `statement` returns `You are owed $583.90 in total.`
 
 ### Features for Searching
 
-#### Finding persons by fields: `find`
+#### Locating persons by inputs: `find`
 
 Finds persons who match all the given conditions.<br>
 This is one of the most powerful tools available to look through your person list, as you can search by almost anything.
@@ -501,7 +501,7 @@ Examples:
 * `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who both owes money for something between `2022-11-01` and `2022-11-30` inclusive (the month of November 2022) and owes money for something at `11:00` (or someone who owes money for something at `11:00` during the month of November 2022).
 * `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022). 
 
-#### Finding persons by debt description: `finddebt`
+#### Locating persons by debt description: `finddebt`
 
 Finds persons who are associated with any debts that match any of the given keywords.<br>
 This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
@@ -625,13 +625,13 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                             |
 
 
-| *Actions for* <br> [**Searching**](#features-for-searching)     | Format, Examples                                                                                                                                                                                                                                        |
-|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Find person**](#finding-persons-by-fields-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
-| [**Find debts**](#finding-persons-by-debt-description-finddebt) | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
-| [**List persons**](#listing-all-persons-list)                   | `list`                                                                                                                                                                                                                                                  |
-| [**List debtors**](#listing-all-debtors-listdebtors)            | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
-| [**Sort**](#sorting-list-of-persons-sort)                       | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
+| *Actions for* <br> [**Searching**](#features-for-searching)      | Format, Examples                                                                                                                                                                                                                                        |
+|------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Find person**](#locating-persons-by-inputs-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
+| [**Find debts**](#locating-persons-by-debt-description-finddebt) | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
+| [**List persons**](#listing-all-persons-list)                    | `list`                                                                                                                                                                                                                                                  |
+| [**List debtors**](#listing-all-debtors-listdebtors)             | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
+| [**Sort**](#sorting-list-of-persons-sort)                        | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
 
 [Return to Table of Contents](#table-of-contents)
 
