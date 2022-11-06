@@ -497,10 +497,7 @@ Do the test cases sequentially to ensure correct expectation.
     5. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00` <br>
        Expected: Error message is shown as missing prefix. No consultation is added.
 
-    6. Test case: `add consultation n/Review past year paper m/CS2101 v/COM2-0109 D/2022-12-12 T/10:00-12:00 d/AY2019-2020 Question 3,6,8` <br>
-       Expected: Error message is shown as module does not exist. No consultation is added.
-
-    7. Other incorrect add consultation commands to try: `add consultation`, `add consultation n/testing m/sususu v/ T/ D/`, `...` <br>
+    6. Other incorrect add consultation commands to try: `add consultation`, `add consultation n/testing m/sususu v/ T/ D/`, `...` <br>
        Expected: Error message is shown in the result display box.
 
 2. Adding a consultation while consultation tab is not being shown.
@@ -510,7 +507,7 @@ Do the test cases sequentially to ensure correct expectation.
     2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/1900-1700 d/AY2019-2020 Question 3,6,8`<br>
        Expected: Error message is shown as time range format is invalid. Main display remains the same.
 
-    3. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`<br>
+    3. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2023-12-12 T/16:00-18:00 d/AY2020-2021 Question 1, 2, 3`<br>
        Expected:  A success message containing details of the added consultation is shown. Main display changes to consultation and consultation list is updated.
 
 
