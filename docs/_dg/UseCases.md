@@ -188,7 +188,7 @@ Extensions:
 
 #### Use Case 9: Increment/Decrement Quantity of Item
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User chooses to view [[ item:items ]].
 1. FoodRem shows a list containing the items.
