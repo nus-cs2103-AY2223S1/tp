@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,11 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> phoneColumn = new TableColumn<>(Phone.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
     private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
+
+    // The COLUMN_WIDTH_SIZE fields are provided here for ease of change.
+    private final int COLUMN_WIDTH_SMALL = 90; // Index, Gender, House columns use this width.
+    private final int COLUMN_WIDTH_MEDIUM = 140; // Phone, Room, Matric columns use this width.
+    private final int COLUMN_WIDTH_LARGE = 300; // Name, Email columns use this width.
 
     /**
      * Creates a {@code ResidentTableView} with the given {@code ObservableList}.
@@ -136,32 +142,35 @@ public class ResidentTableView extends UiPart<Region> {
     }
 
     /**
-     * Stylizes the {@code ResidentTableView} to maximise column width.
+     * Configures {@code ResidentTableView} properties, column widths and resizability .
      */
     private void configureTableProperties() {
         this.residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        setResizeable();
+        setColumnWidth();
+    }
 
-        indexColumn.setResizable(false);
-        indexColumn.setPrefWidth(70);
+    /**
+     * Sets the columns for constant-sized fields to be un-resizable.
+     */
+    private void setResizeable() {
+        List<TableColumn<Resident, ResidentField>> unResizeable  = List.of(indexColumn, phoneColumn, roomColumn,
+                genderColumn, houseColumn, matricColumn);
+        unResizeable.forEach(x -> x.setResizable(false));
+    }
 
-        nameColumn.setMinWidth(300);
-
-        phoneColumn.setResizable(false);
-        phoneColumn.setPrefWidth(120);
-
-        emailColumn.setMinWidth(300);
-
-        roomColumn.setResizable(false);
-        roomColumn.setPrefWidth(140);
-
-        genderColumn.setResizable(false);
-        genderColumn.setPrefWidth(90);
-
-        houseColumn.setResizable(false);
-        houseColumn.setPrefWidth(90);
-
-        matricColumn.setResizable(false);
-        matricColumn.setPrefWidth(140);
+    /**
+     * Sets the individual width of several columns.
+     */
+    private void setColumnWidth() {
+        indexColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        nameColumn.setMinWidth(COLUMN_WIDTH_LARGE);
+        phoneColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
+        emailColumn.setMinWidth(COLUMN_WIDTH_LARGE);
+        roomColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
+        genderColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        houseColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        matricColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
     }
 
     /**
