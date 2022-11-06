@@ -1,7 +1,7 @@
 package friday.model.student;
 
 import static friday.logic.commands.CommandTestUtil.VALID_CONSULTATION_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
@@ -34,7 +34,7 @@ public class StudentTest {
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withTelegramHandle(VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(VALID_CONSULTATION_BOB)
-                .withMasteryCheck(VALID_MASTERYCHECK_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB, false).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -78,7 +78,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB, false).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
