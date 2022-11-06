@@ -13,9 +13,8 @@ package Model {
 package Person {
 
 class NewPerson as "__newPerson1:Person__"
-    package Debt {
     class NewDebtList as "__newList:DebtList__"
-    }
+
 }
 }
 

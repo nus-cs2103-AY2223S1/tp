@@ -7,7 +7,7 @@ hide empty methods
 hide empty members
 
 
-title Initial state after parsing the <plain><font:monospaced><back:lightgray>deletedebt</back></font></plain> example
+title State after parsing the <plain><font:monospaced><back:lightgray>deletedebt</back></font></plain> example
 
 class DeleteDebtCommand as "__:DeleteDebtCommand__"
 together {
@@ -19,12 +19,10 @@ class DebtIndex3 as "__3:Index__"
 Package Model {
 package Person {
 class OldPerson as "__person1:Person__"
-    package Debt {
     class DebtList as "__initialList:DebtList__"
     class Debt1 as "__1:Debt__"
     class Debt2 as "__2:Debt__"
     class Debt3 as "__3:Debt__"
-    }
 }
 }
 
