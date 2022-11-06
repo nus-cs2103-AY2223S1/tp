@@ -36,15 +36,3 @@ ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand .up.|> Command
 @enduml
-
-
-
-
-
-
-
-
-
-
-
-

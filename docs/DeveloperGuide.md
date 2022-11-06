@@ -96,7 +96,7 @@ To make it easier for readers to identify the components each class belong to in
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -121,7 +121,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -157,7 +157,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
@@ -167,7 +167,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -178,8 +178,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `Rc4hdbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Rc4hdbParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-* Note that not all `CommandParser` classes
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
+* Note that not all `CommandParser` classes depend on `CliSyntax`, `ArgumentTokenizer`, `ArgumentMultimap` and `ParserUtil`. e.g. `FileCommandParser` and `VenueCommandParser`.
 
 ![Class structure of Command](images/CommandDiagram.png)
 
@@ -195,7 +195,6 @@ the abstraction of commands.
 
 ![UML diagram for Model component](./images/LatestModelClassDiagram.png)
 
-
 The `Model` component,
 
 * stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
@@ -209,14 +208,11 @@ The `Model` component,
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
-
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save resident book data, venue book data and user preference data in json format, and read them back into corresponding objects.
@@ -238,8 +234,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### The Resident Class
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
-existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
-information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
 `Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
 we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
 housing management staff.
@@ -247,26 +242,17 @@ housing management staff.
 <br>
 
 #### Refactoring of Classes
-Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
-stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
-required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
-`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
-shows the updated Sequence diagram for the executing of our `delete` command.
-<img src="images/DeleteSequenceDiagram2.png" />
-
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the initial stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.
 
 ### Displaying Data
 
-There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`.
-As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
-responsible for displaying the respective information.
+There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`. As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are responsible for displaying the respective information.
 
 #### Resident Information
 
-The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
-as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-##### Design considerations
+#### Design considerations
 
 Aspect: Display format
 
@@ -565,7 +551,7 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature (To be removed)
 
 #### Proposed Implementation
 
