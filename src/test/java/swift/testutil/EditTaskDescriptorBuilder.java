@@ -5,7 +5,7 @@ import swift.model.task.Task;
 import swift.model.task.TaskName;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditTaskDescriptor objects.
  */
 public class EditTaskDescriptorBuilder {
 
@@ -27,6 +27,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setTaskName(task.getName());
         descriptor.setDescription(task.getDescription().orElse(null));
         descriptor.setDeadline(task.getDeadline().orElse(null));
+        descriptor.setIsDone(task.isDone());
     }
 
     /**
@@ -34,6 +35,14 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withName(String name) {
         descriptor.setTaskName(new TaskName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code isDone} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withIsDone(boolean isDone) {
+        descriptor.setIsDone(isDone);
         return this;
     }
 
