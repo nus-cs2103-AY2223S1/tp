@@ -59,6 +59,12 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Modify the properties of the label
+     *
+     * @param text Text for the label
+     * @return Modified label with set properties
+     */
     public Label newWrappedLabel(String text) {
         Label label = new Label(text);
         label.setWrapText(true);
