@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | 16  | **       | As a user, I can edit the details of a task, so that I can update the deadline or the deliverables.                                                                              |
 | 17  | **       | As a user, I can create a task without assigning it to any contact, so that I can always choose to assign it later when I have more details of the task or project.              |
 | 18  | **       | As a user, I can filter tasks by whether or not it has been assigned to a contact, so that I can identify the tasks I have to assign later on.                                   |
-| 19  | *        | As a user, I can associate a task with multiple contacts, so that I can assign a task with a higher workload to more than one teammate to work on it.                              |
+| 19  | *        | As a user, I can associate a task with multiple contacts, so that I can assign a task with a higher workload to more than one teammate to work on it.                            |
 | 20  | *        | As a user, I can associate a task with a project (which are collections of tasks), so that I can group related tasks together and separate them by the many projects I may have. |
 | 21  | *        | As a user, I can tag tasks to milestones/versions, so that I can ensure each version is ready by the delivery date.                                                              |
 | 22  | *        | As a user, I can associate a contact with a project, so that I can assign a task to only contacts with the specific project.                                                     |

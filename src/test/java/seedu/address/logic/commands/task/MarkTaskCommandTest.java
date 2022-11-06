@@ -21,7 +21,7 @@ import seedu.address.model.UserPrefs;
  * Contains integration tests (interaction with the Model) and unit tests for MarkTaskCommand.
  */
 public class MarkTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -51,14 +51,5 @@ public class MarkTaskCommandTest {
 
         // different teammate -> returns false
         assertFalse(firstCommand.equals(secondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTeammate(Model model) {
-        model.updateFilteredTeammateList(p -> false);
-
-        assertTrue(model.getFilteredTeammateList().isEmpty());
     }
 }

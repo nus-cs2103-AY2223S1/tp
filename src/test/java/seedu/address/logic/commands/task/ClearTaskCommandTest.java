@@ -38,7 +38,7 @@ public class ClearTaskCommandTest {
         ClearTaskCommand secondCommand = new ClearTaskCommand();
 
         // same object -> returns true
-        assertEquals(firstCommand, firstCommand);
+        assertEquals(firstCommand, secondCommand);
 
         // same values -> returns true
         ClearTaskCommand firstCommandCopy = new ClearTaskCommand();

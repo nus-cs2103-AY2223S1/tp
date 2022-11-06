@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.task.AddTaskCommand;
-import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,13 +13,6 @@ public class TaskUtil {
      */
     public static String getAddTaskCommand(Task task) {
         return AddTaskCommand.COMMAND_WORD_FULL + " " + getTaskDetails(task);
-    }
-
-    /**
-     * Returns a list command string for adding the {@code Task}.
-     */
-    public static String getListTasksCommand() {
-        return ListTasksCommand.COMMAND_WORD_FULL;
     }
 
     /**

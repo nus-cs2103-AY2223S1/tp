@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,9 +44,10 @@ public class AssignTaskCommandParserTest {
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList("Bernice", "Alex"))));
 
         assertParseSuccess(parser, "1 +@1 +@Bernice -@2 -@John", new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE)), new HashSet<>(Arrays.asList("Bernice")),
-                new HashSet<>(Arrays.asList(INDEX_SECOND_TEAMMATE)),
-                new HashSet<>(Arrays.asList("John"))));
+                new HashSet<>(List.of(INDEX_FIRST_TEAMMATE)),
+                new HashSet<>(List.of("Bernice")),
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)),
+                new HashSet<>(List.of("John"))));
     }
 
     @Test

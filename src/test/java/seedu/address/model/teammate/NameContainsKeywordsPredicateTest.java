@@ -66,7 +66,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new TeammateBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new NameContainsKeywordsPredicate(List.of("Carol"));
         assertFalse(predicate.test(new TeammateBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name

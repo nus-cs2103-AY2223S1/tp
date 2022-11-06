@@ -97,13 +97,4 @@ public class DeleteCommandTest {
         // different teammate -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTeammate(Model model) {
-        model.updateFilteredTeammateList(p -> false);
-
-        assertTrue(model.getFilteredTeammateList().isEmpty());
-    }
 }

@@ -18,10 +18,6 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
     }
 
-    public EditTaskDescriptorBuilder(EditTaskDescriptor descriptor) {
-        this.descriptor = new EditTaskDescriptor(descriptor);
-    }
-
     /**
      * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details
      */

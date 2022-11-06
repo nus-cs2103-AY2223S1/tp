@@ -100,7 +100,7 @@ public class ListTasksCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeammateList().size());
 
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(outOfBoundIndex));
 
         ListTasksCommand command =
                 new ListTasksCommand(
@@ -218,7 +218,7 @@ public class ListTasksCommandTest {
     @Test
     public void execute_contact_singleResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(INDEX_FIRST_TEAMMATE));
         AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, teammateIndexes);
 
         expectedModel.updateFilteredTaskList(filter);
@@ -244,7 +244,7 @@ public class ListTasksCommandTest {
     @Test
     public void execute_keywordAndContact_noResults() throws CommandException {
         hideAllTasks(model);
-        Set<Index> teammateIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_TEAMMATE));
+        Set<Index> teammateIndexes = new HashSet<>(List.of(INDEX_FIRST_TEAMMATE));
 
         Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
         AssignedToContactsPredicate assignedToContactsPredicate =
