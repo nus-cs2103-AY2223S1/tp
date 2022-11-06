@@ -266,8 +266,42 @@ The following activity diagram summarizes what happens when a user executes the 
 _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------
-### Editing feature for transactions
-#### Implementation
+### Editing client feature
+#### Current Implementation
+The edit client mechanism is facilitated by EditClientCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditTransactionCommand` implements the `EditClientCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `edit 2 m/client n/John p/1234567` command to edit the information of the client at index 2 in the current Client list displayed on the left panel.
+This is done by and executing `Model#setClient(clientToEdit, editedClient)`
+
+The following sequence diagram shows how the edit client operation works in Logic Manager:
+
+![EditClientSequenceDiagram](images/EditClientSequence.png)
+
+
+#### Design considerations:
+
+**Aspect: How edit Client executes:**
+
+* **Alternative 1 (current choice):** Edit client by using model to update filtered client list.
+    * Pros: Easy to implement and allow the user to edit the client displayed on the left client lis panel.
+    * Cons: Users can only edit clients they can see in the current displayed list.
+* **Alternative 2:** Edit client using their index within a list of all clients in JeeqTracker.
+    * Pros: Be able to edit any client even if they are not displayed.
+    * Cons: Users will take a long time navigating through the list of all client to find the index of the client they want to edit.
+
+### Editing transactions feature
+#### Current Implementation
 The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
 `EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
 `EditCommandParser#parse()` and returns the edit command if the arguments are valid.
@@ -277,20 +311,63 @@ message in a `CommandResult` object.
 
 The operation is exposed in the `Logic` interface as `Logic#execute()`.
 
-Give below is the usage scenario and how the edit mechanism behaves at each step.
+Given below is the usage scenario and how the edit mechanism behaves at each step.
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
 
 Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of transactions.
 
-Step 3. The user executes `edit 2 m/transaction q/10` command to edit the information of transaction at index 2 in the focused client's transaction list.
+Step 3. The user executes `edit 1 m/transaction g/Apple price/5` command to edit the name of goods and price of transaction at index 1 in the focused client's transaction list.
 This is done by accessing the `TransactionLog` of the focused client, and executing `TransactionLog#setTransaction(index, editedTransaction)`
 
-The following sequence diagram shows how the edit operation works in Logic Manager:
+The following sequence diagram shows how the edit transaction operation works in Logic Manager:
 
-![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
+![EditTransactionSequenceDiagram](images/EditTransactionSequence.png)
 
-_{more aspects and alternatives to be added}_
+The following activity diagram summarizes what happens when a user executes the edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How edit transaction executes:**
+
+* **Alternative 1 (current choice):** Edit transaction by accessing transaction log of each client.
+    * Pros: Easy to implement and allow the user to edit their transactions for each client seen in the Transactionlog.
+    * Cons: Users can only edit transactions of one client at a time.
+* **Alternative 2:** Edit transactions by using a common transaction log that keeps all transactions of all clients.
+    * Pros: Be able to edit any transaction without viewing a client.
+    * Cons: Users will take a long time navigating through the list of all transactions to edit.
+
+### Editing remarks feature
+#### Current Implementation
+The edit remark mechanism is facilitated by EditRemarkCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditRemarkCommand` implements the `EditRemarkCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of remarks.
+
+Step 3. The user executes `edit 2 m/remark Fast and responsive` command to replace the remark at index 2 in the focused client's remarks list.
+This is done by accessing the `UniqueRemarkList` of the focused client, and executing `UniqueRemarkList#replaceRemark(index, editedTransaction)`
+
+The following sequence diagram shows how the edit transaction operation works in Logic Manager:
+
+![EditRemarkSequenceDiagram](images/EditTransactionSequence.png)
+
+#### Design considerations:
+
+**Aspect: How edit remark executes:**
+
+* The design consideration for editing remark is similar to that of the editing transaction feature
 
 ### Delete Client/Transaction/Remark feature
 
