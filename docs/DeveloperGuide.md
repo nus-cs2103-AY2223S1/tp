@@ -80,25 +80,17 @@ RC4HDB aims to provide a complex set of features which are simple to use. Keepin
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
 This gives rise to the following main guiding principles for RC4HDB:
 
-**Maintainability**
+#### Maintainability
 
-This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/).
-`AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities
-implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we are to
-add additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component) , [**`Model`**](#model-component), [**`Storage`**](#storage-component).
+This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/). `AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we have added additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component), [**`Model`**](#model-component), [**`Storage`**](#storage-component).
 
-**Command Line Interface (CLI) Oriented**
+#### Command Line Interface (CLI) Oriented
 
-[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks
-using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
+[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
 
-<div markdown="span" class="alert alert-primary">
+#### Color coding of components
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
-the following colours.
+To make it easier for readers to identify the components each class belong to in our UML diagrams, we have color coded each of our main components, `Model`, `Logic`, `Storage`, and `UI` with the following colors .
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
 
