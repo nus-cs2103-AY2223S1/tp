@@ -5,11 +5,11 @@ title: User Guide
 
 ## 1. Welcome to SoConnect's User Guide!
 
-Everything you need to know about **SoConnect**, an ultimate solution for your everyday contacts and tasks management problem, is finally here!
+Here, you can find everything you need to know about **SoConnect**, the ultimate solution for your everyday contacts and tasks management headaches!
 
 If you are an **<a href="#soc"> SoC </a> student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
 
-Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advance user, this guide will solve all your problems, just like our app!
+Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advanced user, this guide will solve all your problems, just like our app!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,9 +35,9 @@ Let's look at the overview of our main features.
 SoConnect allows you to store all your contact information, so that you no longer need to stress about forgetting someone. You can:
 1. Quickly **add, view, edit and delete** your contact.
 2. **Sort** your displayed contact list by name, email, address, phone number and tag.
-3. **Tag** specific people in your contact list, which can also be edited and removed.
-4. **Search** efficiently, just like how Google works.
-5. What's more, we even let you **customise** how you want the contact list to be shown!
+3. **Tag** specific people in your contact list.
+4. **Search** efficiently, just like using Google.
+5. What's more, we even let you **customise** how you want your contact list to be shown!
 
 ### 3.2. Todo Management
 
@@ -56,9 +56,9 @@ As a first time user, we understand that you might be confused on how to even st
 
 Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart) section, where we will cover the basics of using SoConnect.
 
-If you are a returning user, you can head over to the [Command Summary](#9-command-summary) section for a quick overview of all SoConnect's commands. Alternatively, you can also read the detailed explanation of each command in the [Commands](#7-commands) section.
+If you are a returning user, you can head over to the [Command Summary](#9-command-summary) section for a quick overview of all commands in SoConnect. Alternatively, you can also read the detailed explanation of each command in the [Commands](#7-commands) section.
 
-Feeling stuck? The [FAQ](#8-faq) section might help find the answer you are looking for.
+Have a question regarding the app? You might find the answer you are looking for in the [FAQ](#8-faq) section.
 
 You can also refer to the [Glossary](#10-glossary) section for definitions of commonly used terms in SoConnect.
 
@@ -76,12 +76,11 @@ In order to help you pay attention, we have used some icons along with highlight
 
 ### 4.3. Formatting and Notation
 
-In case you are wondering why certain texts are styled differently, here are the meaning behind:
+In case you are wondering why certain texts are styled differently, here are the meaning behind them:
 
-1. Words in big size, numbered and in purple color are section titles and subtitles.
+1. Text that are numbered and in purple font are headers which mark the beginning of a section or subsection of the guide.
 2. **Words in bold** are phrases that we want you to read.
 3. [Links in blue](#) will navigate you to place where you can find more explanation about the words.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +106,7 @@ SoConnect currently can run smoothly on these operating systems:
 2. MacOS
 3. Windows
 
-You only need to download [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases), regardless of which one is your operating system.
+You can download and use [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases) on any of the above operating systems. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +196,13 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 
 Adds a contact to your SoConnect.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The tag has to be created first before you can add it into a contact. 
+
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
+</div>
 
 * Duplicate name is not allowed. A name is considered duplicate if it has the exact same characters (case-sensitive) with an existing contact's name. For example, `Alex Yeoh` and `Alex yeoh` is considered different. This is to increase users' easiness in differentiating between contacts in the future. It is also to prevent users from creating new contacts when their actual intention is to edit a field from existing contacts.
 * `NAME` currently only accepts alphanumeric values. This is to prevent users from supplying mistyped names into their contacts. However, numbers are still accepted to provide users a mean to differentiate between similar names and to account for special names that originally have numbers in it. 

@@ -11,6 +11,10 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final String MESSAGE_TAG_TOO_LONG =
+            "The Tag is too long. Keep it within %1$s characters, including whitespaces.";
+    private static final int CHARACTER_LIMIT = 10;
+    public static final String MESSAGE_TOO_LONG = String.format(MESSAGE_TAG_TOO_LONG, CHARACTER_LIMIT);
 
     public final String tagName;
 
@@ -22,6 +26,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(tagName), MESSAGE_TOO_LONG);
         this.tagName = tagName;
     }
 
@@ -30,6 +35,16 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string does not exceed the character limit.
+     *
+     * @param text The given string.
+     * @return True if it does not exceed the character limit. False if otherwise.
+     */
+    public static boolean isValidLength(String text) {
+        return !(text.length() > CHARACTER_LIMIT);
     }
 
     @Override

@@ -8,6 +8,7 @@ import static soconnect.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -188,12 +189,22 @@ public class AddCommandTest {
 
         @Override
         public void deleteTag(Tag tag) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Tag getTagFromList(Tag tag) {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Tag> getTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTagList(List<Tag> tagList) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
