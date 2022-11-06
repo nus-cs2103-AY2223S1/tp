@@ -53,7 +53,7 @@ deactivate AddressBookParser
 LogicManager -> DeleteAppointmentCommand : execute()
 activate DeleteAppointmentCommand
 
-DeleteAppointmentCommand -> MaximumSortedList : remove(1)
+DeleteAppointmentCommand -> MaximumSortedList : remove(0)
 activate MaximumSortedList
 
 MaximumSortedList --> DeleteAppointmentCommand
