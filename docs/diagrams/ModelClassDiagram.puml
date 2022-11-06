@@ -19,7 +19,11 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class Remark
+Class "{abstract}\nPosition" as Position
+Class Student
+Class TeachingAssistant
+Class Professor
 }
 
 Class HiddenOutside #FFFFFF
@@ -34,17 +38,23 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+Student .up.|> Position
+TeachingAssistant .up.|> Position
+Professor .up.|> Position
+
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Remark
 Person *--> "*" Tag
+Person *--> Position
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager ----->"~* filtered" Person
 @enduml
