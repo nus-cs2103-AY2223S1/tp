@@ -164,7 +164,7 @@ Examples:
 * `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
 * `find alex david` returns `Alex Yeoh`, `David Li`.
 
-  <img src="images/findAlexDavidResult.png" width="600"/>
+  <img class="center" src="images/findAlexDavidResult.png" width="600"/>
 
 {% include tip.html content="
 
@@ -288,7 +288,7 @@ Format: `focus c/CLASS_NAME`
 * If successful, the GUI changes to one that is similar to the one below:
 
 
-  <img src="images/sampleFocusedGui.png" width="600"/>
+  <img class="center" src="images/sampleFocusedGui.png" width="600"/>
 
 Example:
 * `focus c/CS1231S` enters focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
@@ -413,7 +413,7 @@ Example:
 
 * `scores s/tutorial 1` shows the grades of all students for the session **tutorial 1**, as shown below.
   
-  <img src="images/sampleScoresGui.png" width="600"/>
+  <img class="center" src="images/sampleScoresGui.png" width="600"/>
 
   In the above example,
   * **Bernice Yu** has been allocated a score of **10.0** for **Tutorial 1**.
