@@ -140,27 +140,6 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireNonNull(editedTrip);
-
-        trips.setTrip(target, editedTrip);
-    }
-
-    /**
-     * Replaces the given {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in Travelr.
-     * The new event must not be the same as another existing event in Travelr.
-     */
-    public void setEvent(Event target, Event editedEvent) {
-        requireNonNull(editedEvent);
-        bucketList.setEvent(target, editedEvent);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

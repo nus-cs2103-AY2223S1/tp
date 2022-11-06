@@ -41,6 +41,7 @@ Given below are my contributions to the project.
     * Changed data file from addressbook.json to travelr.json
     * Added new Sample data
     * Modified command outputs to be more specific
+    * Wrote additional tests for existing features to increase coverage by 10% 
 
 * **Documentation**:
     * User Guide:

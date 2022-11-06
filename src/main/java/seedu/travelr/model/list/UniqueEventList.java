@@ -164,11 +164,6 @@ public class UniqueEventList extends EventList {
         events.remove(event);
     }
 
-    public Event getEvent(int i) {
-        Object temp = events.toArray()[i - 1];
-        Event event = (Event) temp;
-        return event;
-    }
 
     public Event getEvent(Event event) {
         Object[] temp = events.toArray();
