@@ -311,7 +311,7 @@ to write simpler and cleaner code.
    modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
    maintainability of the code.
 
-### Autocomplete Commands
+### *Autocomplete Commands*
 
 The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
 
@@ -334,11 +334,11 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 ### *Available timings*
 
-The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
+The user can save the available timings of a friend to their profile, as a time interval during the week. 
 
 #### Implementation
 
-The available timings of a friend is stored as a `TimeInterval` attribute in the `Person` class. 
+The available timings of a friend are stored as `TimeInterval` attributes in the `Person` class. 
 Each `TimeInterval` object will have two `DayTimeInWeek` fields, representing its start time and its end time.
 
 The time stamp that is parsed into the `DayTimeInWeek` class is then saved as the number of elapsed minutes since Monday 12am.
@@ -359,13 +359,12 @@ distinct coloured tags under the friend's profile.
 #### Implementation
 
 The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
-and configured using the `DarkTheme.css` **FXML** file.
+and configured using the `DarkTheme.css` file.
 
 The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
 Inside the `PersonCard` class, there are multiple `FlowPane` fields, each representing a type of user preference.
-Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
 
-Everytime the user updates a friend's information, a new `PersonCard` object is created. The object 
+Everytime the user updates a friend's information, a new `PersonCard` object is created. The `PersonCard` object 
 will retrieve the corresponding friend's information using the `toDisplayString()` method in the `Person` class, and add
 their in-game preferences and social handles as labelled tags under the friend's profile.
 
@@ -374,7 +373,7 @@ easy differentiation of information.
 
 The following class diagram shows the relationship between the classes in the UI system:
 
-<img src="images/TagClassDiagram.png" width="250" />
+<img src="images/PersonTagClassDiagram.png" width="250" />
 
 #### Design Considerations:
 

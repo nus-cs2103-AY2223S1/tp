@@ -15,9 +15,9 @@ Class MainWindow
 
 MainWindow *-- "1" "PersonListPanel"
 PersonListPanel --> "*" PersonCard
-"PersonCard" "0...1   " --> "*" "HBox"
-"PersonCard" "0...1" --> "*" "Label"
-"PersonCard" "   0...1" --> "*" "FlowPane"
+"PersonCard" --> "*" "HBox"
+"PersonCard" --> "*" "Label"
+"PersonCard" --> "*" "FlowPane"
 "{abstract}\nUIPart" <|-- PersonCard
 "{abstract}\nUIPart" <|-- PersonListPanel
 PersonCard ..> Person
