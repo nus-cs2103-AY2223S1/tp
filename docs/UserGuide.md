@@ -208,11 +208,11 @@ to help you modify resident data within **RC4HDB**.
 
 Note:
 * **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
-* Two residents are considered duplicate if they satisfy any of the following conditions:
-  * have the same **matriculation number**
-  * have the same **phone number**
-  * have the same **email**
-  * have the same **room**
+* Two residents are considered duplicate if they have the same:
+  * matriculation number
+  * phone number
+  * email
+  * room
 
 ---
 
