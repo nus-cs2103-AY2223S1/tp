@@ -23,9 +23,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) or risk tags, \n"
-            + "and displays them as a list with index numbers.\n\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds clients who match the find criteria "
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/ KEYWORD [MORE_KEYWORDS]\n"
             + PREFIX_NAME.getPrefix() + " NAME [MORE_NAMES]...\n"
             + PREFIX_RISKTAG.getPrefix() + " RISK_APPETITE [MORE_RISK_APPETITES]...\n"
