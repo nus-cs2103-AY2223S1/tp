@@ -343,9 +343,9 @@ The `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` ext
 
 The deletion process occurs in these `3` main steps:
 
-1) The `DeleteCommandParser` will parse the `userInput`, and return one of the concrete class `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand`.
-2) The Command received in step 1 will be executed to delete the entity of its type, and return a `CommandResult`
-3) The `CommandResult` contains the message to print to the `Application's Reply`
+1) The `DeleteCommandParser` will parse the `userInput`, and return one of the concrete class `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand`.<br/>
+2) The Command received in step 1 will be executed to delete the entity of its type, and return a `CommandResult`<br/>
+3) The `CommandResult` contains the message to print to the `Application's Reply`<br/>
 
 The **sequence diagram** below shows how a client is deleted for user input `delete 1 m/client`.
 
@@ -363,9 +363,7 @@ The sequence diagram above is applicable for deleting `transaction` and `remark`
     - `userInput` is changed to `delete 1 m/remark`
     - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
     - `deleteClient(1)` is changed to `deleteRemark(1)`
-
-There are certain **restrictions** in place when deleting a `transaction` or `remark`. 
-Take a look at use cases for [delete transaction](#use-case-uc02---delete-a-transaction) and [delete remark](#use-case-uc03---delete-a-remark)
+    
 
 #### Design Considerations:
 
