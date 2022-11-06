@@ -215,8 +215,10 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     @Override
     public String toString() {
-        return clients.asUnmodifiableObservableList().size() + " clients";
-        // TODO: refine later
+        return String.format("MyInsuRec: %d clients, %d meetings, %d products",
+                clients.asUnmodifiableObservableList().size(),
+                meetings.asUnmodifiableObservableList().size(),
+                products.asUnmodifiableObservableList().size());
     }
 
     @Override

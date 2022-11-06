@@ -78,7 +78,7 @@ class JsonAdaptedClient {
             ? ""
             : source.getBirthday().get().toString();
         meetings.addAll(source.getMeetings().stream()
-                .map(meeting -> new JsonAdaptedMeeting(meeting))
+                .map(JsonAdaptedMeeting::new)
                 .collect(Collectors.toList()));
         products.addAll(source.getProducts().stream()
                 .map(JsonAdaptedProduct::new)
