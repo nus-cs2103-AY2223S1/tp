@@ -6,7 +6,8 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindTagCommandParser" as FindTagCommandParser LOGIC_COLOR
 participant ":FindTagCommand" as FindTagCommand LOGIC_COLOR
-participant "predicate:TagsContainsKeywordsPredicate" as TagsContainsKeywordsPredicate LOGIC_COLOR
+participant ":PersonTagsContainsKeywordsPredicate" as PersonTagsContainsKeywordsPredicate LOGIC_COLOR
+participant ":NoteTagsContainsKeywordsPredicate" as NoteTagsContainsKeywordsPredicate LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -27,12 +28,20 @@ create FindTagCommand
 FindTagCommandParser -> FindTagCommand
 activate FindTagCommand
 
-create TagsContainsKeywordsPredicate
-FindTagCommand -> TagsContainsKeywordsPredicate
-activate TagsContainsKeywordsPredicate
+create PersonTagsContainsKeywordsPredicate
+FindTagCommand -> PersonTagsContainsKeywordsPredicate
+activate PersonTagsContainsKeywordsPredicate
 
-TagsContainsKeywordsPredicate --> FindTagCommand
-deactivate TagsContainsKeywordsPredicate
+PersonTagsContainsKeywordsPredicate --> FindTagCommand
+deactivate PersonTagsContainsKeywordsPredicate
+
+create NoteTagsContainsKeywordsPredicate
+FindTagCommand -> NoteTagsContainsKeywordsPredicate
+activate NoteTagsContainsKeywordsPredicate
+
+NoteTagsContainsKeywordsPredicate --> FindTagCommand
+deactivate NoteTagsContainsKeywordsPredicate
+
 
 FindTagCommand --> FindTagCommandParser
 deactivate FindTagCommand
@@ -48,8 +57,12 @@ deactivate AddressBookParser
 LogicManager -> FindTagCommand :execute(model)
 activate FindTagCommand
 
-FindTagCommand -> Model :updateFilteredPersonList(predicate)
+FindTagCommand -> Model :updateFilteredPersonList()
 activate Model
+
+Model --> FindTagCommand
+
+FindTagCommand -> Model :updateFilteredNoteList()
 
 Model --> FindTagCommand
 deactivate Model

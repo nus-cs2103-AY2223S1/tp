@@ -58,7 +58,7 @@ public class EditLoanCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
 
         // invalid preamble
-        assertParseFailure(parser, "313-" + VALID_AMOUNT + VALID_REASON,
+        assertParseFailure(parser, "313-" + AMOUNT_DESC + REASON_DESC,
                 MESSAGE_INVALID_FORMAT);
     }
 

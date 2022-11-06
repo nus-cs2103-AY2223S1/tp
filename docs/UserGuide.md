@@ -42,7 +42,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
       - [Editing Notes : `editNote`](#editing-notes--editnote)
       - [Deleting Notes : `deleteNote`](#deleting-notes--deletenote)
       - [Locating a note by title : `findNote`](#locating-a-note-by-title--findnote)
-      - [Listing Notes : `listNotes`](#listing-notes--listnote)
+      - [Listing Notes : `listNote`](#listing-notes--listnote)
       - [Sorting Notes : `sortNotes` `[coming in v2.0]`](#sorting-notes--sortnotes-coming-in-v20)
       - [Hiding notes panel : `hideNotes`](#hiding-notes-panel--hidenotes)
       - [Showing notes panel : `showNotes`](#showing-notes-panel--shownotes)
@@ -616,7 +616,7 @@ To delete everyone at the same time, please refer to the <a href="#clearing-all-
 [Back to Table of Contents](#table-of-contents)
 
 #### Locating persons by name or contact number : `find`
-Finds the names of persons that match the given keywords, or phone numbers of persons that start with any of the given keywords (in digits).
+
 Finds persons whose names match any of the given keywords, or persons whose phone numbers start with any of the given keywords (in digits).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -877,7 +877,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Copy the link to your clipboard by clicking the `Copy Link` button and paste it in your favourite browser to come back to this page anytime.
+Copy the link to your clipboard by clicking the `Copy URL` button and paste it in your favourite browser to come back to this page anytime.
 
 Format: `help`
 

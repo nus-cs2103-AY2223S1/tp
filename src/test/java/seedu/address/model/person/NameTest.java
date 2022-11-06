@@ -28,16 +28,30 @@ public class NameTest {
 
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("12345")); // numbers only
+        assertFalse(Name.isValidName("2 Captain Jack Sparrow")); // standalone number
+        assertFalse(Name.isValidName("Captain Jack 2 Sparrow")); // standalone number
+        assertFalse(Name.isValidName("Captain Jack Sparrow 2")); // standalone number
+        assertFalse(Name.isValidName("313%$#")); // inclusion of invalid characters
+        assertFalse(Name.isValidName("314a!")); // inclusion of invalid characters
+        assertFalse(Name.isValidName("313-")); // inclusion of invalid characters
+        assertFalse(Name.isValidName("alpha 313-")); // first word valid, second invalid
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("Capital Tan no2")); // with capital letters and valid alphanumeric sequence
+        assertTrue(Name.isValidName("a2b"));
+        assertTrue(Name.isValidName("a987b"));
+        assertTrue(Name.isValidName("a98b76c543d2"));
+        assertTrue(Name.isValidName("a2"));
+        assertTrue(Name.isValidName("ab2"));
+        assertTrue(Name.isValidName("2a"));
+        assertTrue(Name.isValidName("2abc"));
+        assertTrue(Name.isValidName("a2b a234b"));
     }
 
     @Test

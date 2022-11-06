@@ -16,6 +16,9 @@ Class UniquePersonList
 Class UniqueTagMapping
 Class Person
 Class Address
+Class Birthday
+Class Loan
+Class LoanHistory
 Class Email
 Class Name
 Class Phone
@@ -33,10 +36,10 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+Model ..> ReadOnlyUserPrefs
+Model ..> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+ModelManager -up-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *---> "1" UniquePersonList
@@ -52,6 +55,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Birthday
+Person *--> Loan
+Person *--> LoanHistory
 Person "*" <--> "*" Tag
 
 Name -[hidden]right-> Phone

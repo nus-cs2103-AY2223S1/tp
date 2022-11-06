@@ -15,10 +15,10 @@ public class Name implements DeepCopyable {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Disallows only numbers or Strings that contain numbers surrounded by whitespaces.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX =
+            "^(?:[a-zA-Z]+|(?:[a-zA-Z0-9]*[a-zA-Z]\\d+[a-zA-Z0-9]*|[a-zA-Z0-9]*\\d+[a-zA-Z][a-zA-Z0-9]*)| )+$";
 
     public final String fullName;
 
