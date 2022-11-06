@@ -18,7 +18,7 @@ Given below are my contributions to the project.
       <br>This enhancement acts as the backbone of other newly implemented features, e.g. `Sort`, `Remind`, `Archive`, etc. It also involves every component of the app to implement this feature, hence complete understanding of the components is necessary.
     * Credits: N.A.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jhchee18&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jhchee18&breakdown=true)
 
 * **Project management**:
     * Managed milestones to ensure issues and deliverables are completed on time.
