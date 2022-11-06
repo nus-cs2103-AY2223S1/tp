@@ -74,7 +74,6 @@ A brief display of important information for **inventory** and **tasks**.
     * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.2 Colors used for Inventory
 
