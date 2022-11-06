@@ -206,7 +206,7 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
     * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
 
-### 2. Mod mark feature
+### 2. Mod Mark Feature
 
 #### Implementation
 
@@ -234,7 +234,7 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: Easier to find the batchmate by directly entering the name.
     * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
 
-### 3. Mod find feature
+### 3. Mod Find Feature
 
 #### Implementation
 
