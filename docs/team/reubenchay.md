@@ -21,6 +21,8 @@ Code Contributions can be found at [this link](https://nus-cs2103-ay2223s1.githu
   * Highlight 1: Events contain description, date, start and end time and is also tagged to a client 
   * Highlight 2: Users can view Events in 2 ways, either all Events or upcoming Events in the next 7 days
 
+* **Test Enhancement**: Wrote model stubs and main testing for Event class 
+
 ## Project Management 
 - Organized issue tracker and helped resolve merge conflicts 
 - Ensure deadlines are all in check 
