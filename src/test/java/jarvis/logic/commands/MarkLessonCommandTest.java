@@ -17,6 +17,7 @@ import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,8 @@ import jarvis.model.UserPrefs;
  */
 public class MarkLessonCommandTest {
 
-    private static final Index lessonIndex = Index.fromZeroBased(0);
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int lessonInt = lessonIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
 
@@ -40,7 +42,7 @@ public class MarkLessonCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         MarkLessonCommand markLessonCommand = new MarkLessonCommand(lessonIndex);
 
-        Lesson lessonToMark = model.getFilteredLessonList().get(0);
+        Lesson lessonToMark = model.getFilteredLessonList().get(lessonInt);
         CommandResult commandResult = markLessonCommand.execute(model);
         assertEquals(String.format(MarkLessonCommand.MESSAGE_MARK_LESSON_SUCCESS, lessonToMark),
                 commandResult.getFeedbackToUser());
@@ -51,7 +53,7 @@ public class MarkLessonCommandTest {
         for (Lesson l: lessonList) {
             l.markAsCompleted();
         }
-        lessonToMark = model.getFilteredLessonList().get(0);
+        lessonToMark = model.getFilteredLessonList().get(lessonInt);
         commandResult = markLessonCommand.execute(model);
         assertEquals(String.format(MarkLessonCommand.MESSAGE_MARK_LESSON_SUCCESS, lessonToMark),
                 commandResult.getFeedbackToUser());
@@ -70,7 +72,7 @@ public class MarkLessonCommandTest {
     @Test
     public void equals() {
         MarkLessonCommand markLessonCommand = new MarkLessonCommand(lessonIndex);
-        MarkLessonCommand markLessonCommandDifferentIndex = new MarkLessonCommand(Index.fromZeroBased(1));
+        MarkLessonCommand markLessonCommandDifferentIndex = new MarkLessonCommand(Index.fromZeroBased(lessonInt + 1));
 
         // same object -> returns true
         assertTrue(markLessonCommand.equals(markLessonCommand));

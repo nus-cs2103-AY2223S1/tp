@@ -17,6 +17,7 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Task;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,8 @@ import jarvis.model.UserPrefs;
  */
 public class MarkTaskCommandTest {
 
-    private static final Index taskIndex = Index.fromZeroBased(0);
+    private static final Index taskIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int taskInt = taskIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
 
@@ -40,7 +42,7 @@ public class MarkTaskCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(taskIndex);
 
-        Task taskToMark = model.getFilteredTaskList().get(0);
+        Task taskToMark = model.getFilteredTaskList().get(taskInt);
         CommandResult commandResult = markTaskCommand.execute(model);
         assertEquals(String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark),
                 commandResult.getFeedbackToUser());
@@ -51,7 +53,7 @@ public class MarkTaskCommandTest {
         for (Task t: taskList) {
             t.markAsDone();
         }
-        taskToMark = model.getFilteredTaskList().get(0);
+        taskToMark = model.getFilteredTaskList().get(taskInt);
         commandResult = markTaskCommand.execute(model);
         assertEquals(String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark),
                 commandResult.getFeedbackToUser());
@@ -70,7 +72,7 @@ public class MarkTaskCommandTest {
     @Test
     public void equals() {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(taskIndex);
-        MarkTaskCommand markTaskCommandDifferentIndex = new MarkTaskCommand(Index.fromZeroBased(1));
+        MarkTaskCommand markTaskCommandDifferentIndex = new MarkTaskCommand(Index.fromZeroBased(taskInt + 1));
 
         // same object -> returns true
         assertTrue(markTaskCommand.equals(markTaskCommand));

@@ -16,6 +16,7 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -23,14 +24,16 @@ import jarvis.model.UserPrefs;
  */
 public class UnmarkStudentCommandTest {
 
-    private static final Index lessonIndex = Index.fromZeroBased(0);
-    private static final Index studentIndex = Index.fromZeroBased(0);
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int lessonInt = lessonIndex.getZeroBased();
+    private static final int studentInt = studentIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
 
     @BeforeEach
     public void setUp() {
-        Lesson lessonToMark = model.getFilteredLessonList().get(0);
+        Lesson lessonToMark = model.getFilteredLessonList().get(lessonInt);
         for (Student s: lessonToMark.getStudentList()) {
             lessonToMark.markAsPresent(s);
         }
@@ -40,8 +43,8 @@ public class UnmarkStudentCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         UnmarkStudentCommand unmarkStudentCommand = new UnmarkStudentCommand(lessonIndex, studentIndex);
 
-        Lesson lessonToUnmark = model.getFilteredLessonList().get(0);
-        Student studentToUnmark = lessonToUnmark.getStudentList().get(0);
+        Lesson lessonToUnmark = model.getFilteredLessonList().get(lessonInt);
+        Student studentToUnmark = lessonToUnmark.getStudentList().get(studentInt);
         CommandResult commandResult = unmarkStudentCommand.execute(model);
         assertEquals(String.format(UnmarkStudentCommand.MESSAGE_MARK_STUDENT_SUCCESS, studentToUnmark, lessonToUnmark),
                 commandResult.getFeedbackToUser());
@@ -68,10 +71,10 @@ public class UnmarkStudentCommandTest {
     @Test
     public void equals() {
         UnmarkStudentCommand unmarkStudentCommand = new UnmarkStudentCommand(lessonIndex, studentIndex);
-        UnmarkStudentCommand unmarkStudentCommandDifferentLessonIndex = new UnmarkStudentCommand(Index.fromZeroBased(1),
-                studentIndex);
+        UnmarkStudentCommand unmarkStudentCommandDifferentLessonIndex = new UnmarkStudentCommand(
+                Index.fromZeroBased(lessonInt + 1), studentIndex);
         UnmarkStudentCommand unmarkStudentCommandDifferentStudentIndex = new UnmarkStudentCommand(lessonIndex,
-                Index.fromZeroBased(1));
+                Index.fromZeroBased(studentInt + 1));
 
         // same object -> returns true
         assertTrue(unmarkStudentCommand.equals(unmarkStudentCommand));

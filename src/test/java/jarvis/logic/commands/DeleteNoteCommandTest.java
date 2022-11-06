@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.commands.CommandTestUtil.VALID_NOTE;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.testutil.TypicalLessons.getTypicalLessonBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +18,7 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,46 +26,48 @@ import jarvis.model.UserPrefs;
  */
 public class DeleteNoteCommandTest {
 
-    private static final Index lessonIndex = Index.fromZeroBased(0);
-    private static final Index studentIndex = Index.fromZeroBased(0);
-    private static final Index noteIndex = Index.fromZeroBased(0);
-    private static final String validNote = "This is a valid note";
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index noteIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int lessonInt = lessonIndex.getZeroBased();
+    private static final int studentInt = studentIndex.getZeroBased();
+    private static final int noteInt = noteIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
     private LessonNotes expectedNotes;
 
     @BeforeEach
     public void setUp() throws Exception {
-        Student studentToAdd = model.getFilteredLessonList().get(0).getStudent(studentIndex);
-        model.getFilteredLessonList().get(0).addOverallNote(validNote);
-        model.getFilteredLessonList().get(0).addStudentNote(validNote, studentToAdd);
+        Student studentToAdd = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
+        model.getFilteredLessonList().get(lessonInt).addOverallNote(VALID_NOTE);
+        model.getFilteredLessonList().get(lessonInt).addStudentNote(VALID_NOTE, studentToAdd);
 
-        expectedNotes = new LessonNotes(model.getFilteredLessonList().get(0).getStudentList());
-        expectedNotes.addNote(validNote);
-        expectedNotes.addNote(studentToAdd, validNote);
+        expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
+        expectedNotes.addNote(VALID_NOTE);
+        expectedNotes.addNote(studentToAdd, VALID_NOTE);
     }
 
     @Test
     public void execute_overallNotesWithValidIndex_success() throws Exception {
-        expectedNotes.deleteNote(0);
+        expectedNotes.deleteNote(noteInt);
 
         CommandResult commandResult = new DeleteNoteCommand(noteIndex, lessonIndex, null).execute(model);
 
-        Lesson lessonToDelete = model.getFilteredLessonList().get(0);
-        assertEquals(String.format(DeleteNoteCommand.MESSAGE_DELETE_OVERALL_NOTE_SUCCESS, lessonToDelete, validNote),
+        Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
+        assertEquals(String.format(DeleteNoteCommand.MESSAGE_DELETE_OVERALL_NOTE_SUCCESS, lessonToDelete, VALID_NOTE),
                 commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, model.getFilteredLessonList().get(0).getLessonNotes());
+        assertEquals(expectedNotes, lessonToDelete.getLessonNotes());
     }
 
     @Test
     public void execute_overallNotesWithInvalidIndex_throwsCommandException() {
         int lessonCount = model.getFilteredLessonList().size();
-        int noteCount = model.getFilteredLessonList().get(0).getGeneralNotes().size();
+        int noteCount = model.getFilteredLessonList().get(lessonInt).getGeneralNotes().size();
         assertCommandFailure(
                 new DeleteNoteCommand(noteIndex, Index.fromZeroBased(lessonCount), null), model,
                 Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX); // invalid lesson index
 
-        Lesson lessonToDelete = model.getFilteredLessonList().get(0);
+        Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
         assertCommandFailure(
                 new DeleteNoteCommand(Index.fromZeroBased(noteCount), lessonIndex, null), model,
                 String.format(Messages.MESSAGE_OVERALL_NOTE_NOT_FOUND, noteCount + 1, lessonToDelete));
@@ -72,28 +76,29 @@ public class DeleteNoteCommandTest {
 
     @Test
     public void execute_studentNotesWithValidIndex_success() throws Exception {
-        Student studentToDelete = model.getFilteredLessonList().get(0).getStudent(studentIndex);
-        expectedNotes.deleteNote(studentToDelete, 0);
+        Student studentToDelete = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
+        expectedNotes.deleteNote(studentToDelete, noteInt);
 
         CommandResult commandResult = new DeleteNoteCommand(noteIndex, lessonIndex, studentIndex).execute(model);
 
-        Lesson lessonToDelete = model.getFilteredLessonList().get(0);
+        Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
         assertEquals(String.format(DeleteNoteCommand.MESSAGE_DELETE_STUDENT_NOTE_SUCCESS, studentToDelete,
-                lessonToDelete, validNote), commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, model.getFilteredLessonList().get(0).getLessonNotes());
+                lessonToDelete, VALID_NOTE), commandResult.getFeedbackToUser());
+        assertEquals(expectedNotes, lessonToDelete.getLessonNotes());
     }
 
     @Test
     public void execute_studentNotesWithInvalidIndex_throwsCommandException() throws Exception {
+        Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
+        Student studentToDelete = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
+
         int lessonCount = model.getFilteredLessonList().size();
-        int studentCount = model.getFilteredLessonList().get(0).getStudentList().size();
-        int noteCount = model.getFilteredLessonList().get(0).getGeneralNotes().size();
+        int studentCount = model.getFilteredLessonList().get(lessonInt).getStudentList().size();
+        int noteCount = model.getFilteredLessonList().get(lessonInt).getStudentNotes().get(studentInt).size();
         assertCommandFailure(
                 new DeleteNoteCommand(noteIndex, Index.fromZeroBased(lessonCount), studentIndex), model,
                 Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX); // invalid lesson index
 
-        Lesson lessonToDelete = model.getFilteredLessonList().get(0);
-        Student studentToDelete = model.getFilteredLessonList().get(0).getStudent(studentIndex);
         assertCommandFailure(
                 new DeleteNoteCommand(noteIndex, lessonIndex, Index.fromZeroBased(studentCount)), model,
                 Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX); // invalid student index
@@ -107,17 +112,17 @@ public class DeleteNoteCommandTest {
     public void equals() {
         DeleteNoteCommand overallDeleteNoteCommand = new DeleteNoteCommand(noteIndex, lessonIndex, null);
         DeleteNoteCommand overallDeleteNoteCommandDifferentLesson = new DeleteNoteCommand(noteIndex,
-                Index.fromZeroBased(1), null);
+                Index.fromZeroBased(lessonInt + 1), null);
         DeleteNoteCommand overallDeleteNoteCommandDifferentNote = new DeleteNoteCommand(Index.fromZeroBased(1),
                 lessonIndex, null);
 
         DeleteNoteCommand studentDeleteNoteCommand = new DeleteNoteCommand(noteIndex, lessonIndex, studentIndex);
         DeleteNoteCommand studentDeleteNoteCommandDifferentLesson = new DeleteNoteCommand(noteIndex,
-                Index.fromZeroBased(1), studentIndex);
+                Index.fromZeroBased(lessonInt + 1), studentIndex);
         DeleteNoteCommand studentDeleteNoteCommandDifferentStudent = new DeleteNoteCommand(noteIndex,
-                lessonIndex, Index.fromZeroBased(1));
-        DeleteNoteCommand studentDeleteNoteCommandDifferentNote = new DeleteNoteCommand(Index.fromZeroBased(1),
-                lessonIndex, studentIndex);
+                lessonIndex, Index.fromZeroBased(studentInt + 1));
+        DeleteNoteCommand studentDeleteNoteCommandDifferentNote = new DeleteNoteCommand(
+                Index.fromZeroBased(noteInt + 1), lessonIndex, studentIndex);
 
         // same object -> returns true
         assertTrue(overallDeleteNoteCommand.equals(overallDeleteNoteCommand));

@@ -17,6 +17,7 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Task;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,8 @@ import jarvis.model.UserPrefs;
  */
 public class UnmarkTaskCommandTest {
 
-    private static final Index taskIndex = Index.fromZeroBased(0);
+    private static final Index taskIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int taskInt = taskIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
 
@@ -40,7 +42,7 @@ public class UnmarkTaskCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(taskIndex);
 
-        Task taskToUnmark = model.getFilteredTaskList().get(0);
+        Task taskToUnmark = model.getFilteredTaskList().get(taskInt);
         CommandResult commandResult = unmarkTaskCommand.execute(model);
         assertEquals(String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark),
                 commandResult.getFeedbackToUser());
@@ -51,7 +53,7 @@ public class UnmarkTaskCommandTest {
         for (Task t: taskList) {
             t.markAsNotDone();
         }
-        taskToUnmark = model.getFilteredTaskList().get(0);
+        taskToUnmark = model.getFilteredTaskList().get(taskInt);
         commandResult = unmarkTaskCommand.execute(model);
         assertEquals(String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark),
                 commandResult.getFeedbackToUser());
@@ -70,7 +72,7 @@ public class UnmarkTaskCommandTest {
     @Test
     public void equals() {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(taskIndex);
-        UnmarkTaskCommand unmarkTaskCommandDifferentIndex = new UnmarkTaskCommand(Index.fromZeroBased(1));
+        UnmarkTaskCommand unmarkTaskCommandDifferentIndex = new UnmarkTaskCommand(Index.fromZeroBased(taskInt + 1));
 
         // same object -> returns true
         assertTrue(unmarkTaskCommand.equals(unmarkTaskCommand));

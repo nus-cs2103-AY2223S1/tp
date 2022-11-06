@@ -17,6 +17,7 @@ import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,8 @@ import jarvis.model.UserPrefs;
  */
 public class UnmarkLessonCommandTest {
 
-    private static final Index lessonIndex = Index.fromZeroBased(0);
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int lessonInt = lessonIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
 
@@ -40,7 +42,7 @@ public class UnmarkLessonCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         UnmarkLessonCommand unmarkLessonCommand = new UnmarkLessonCommand(lessonIndex);
 
-        Lesson lessonToUnmark = model.getFilteredLessonList().get(0);
+        Lesson lessonToUnmark = model.getFilteredLessonList().get(lessonInt);
         CommandResult commandResult = unmarkLessonCommand.execute(model);
         assertEquals(String.format(UnmarkLessonCommand.MESSAGE_MARK_LESSON_SUCCESS, lessonToUnmark),
                 commandResult.getFeedbackToUser());
@@ -51,7 +53,7 @@ public class UnmarkLessonCommandTest {
         for (Lesson l: lessonList) {
             l.markAsNotCompleted();
         }
-        lessonToUnmark = model.getFilteredLessonList().get(0);
+        lessonToUnmark = model.getFilteredLessonList().get(lessonInt);
         commandResult = unmarkLessonCommand.execute(model);
         assertEquals(String.format(UnmarkLessonCommand.MESSAGE_MARK_LESSON_SUCCESS, lessonToUnmark),
                 commandResult.getFeedbackToUser());
@@ -70,7 +72,8 @@ public class UnmarkLessonCommandTest {
     @Test
     public void equals() {
         UnmarkLessonCommand unmarkLessonCommand = new UnmarkLessonCommand(lessonIndex);
-        UnmarkLessonCommand unmarkLessonCommandDifferentIndex = new UnmarkLessonCommand(Index.fromZeroBased(1));
+        UnmarkLessonCommand unmarkLessonCommandDifferentIndex = new UnmarkLessonCommand(
+                Index.fromZeroBased(lessonInt + 1));
 
         // same object -> returns true
         assertTrue(unmarkLessonCommand.equals(unmarkLessonCommand));

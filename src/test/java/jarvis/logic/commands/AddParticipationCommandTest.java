@@ -21,6 +21,7 @@ import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.Studio;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,7 +29,8 @@ import jarvis.model.UserPrefs;
  */
 public class AddParticipationCommandTest {
 
-    private static final Index studentIndex = Index.fromZeroBased(0);
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int studentInt = studentIndex.getZeroBased();
     private static final int participation = 100;
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
@@ -54,7 +56,7 @@ public class AddParticipationCommandTest {
     @Test
     public void execute_participationWithValidIndex_success() throws Exception {
         Studio studioToAdd = (Studio) model.getFilteredLessonList().get(studioIndex.getZeroBased());
-        Student studentToAdd = studioToAdd.getStudentList().get(0);
+        Student studentToAdd = studioToAdd.getStudentList().get(studentInt);
 
         CommandResult commandResult = new AddParticipationCommand(participation, studioIndex, studentIndex)
                 .execute(model);
@@ -95,7 +97,7 @@ public class AddParticipationCommandTest {
         AddParticipationCommand addParticipationCommandDifferentLesson = new AddParticipationCommand(participation,
                 consultIndex, studentIndex);
         AddParticipationCommand addParticipationCommandDifferentStudent = new AddParticipationCommand(participation,
-                studioIndex, Index.fromZeroBased(1));
+                studioIndex, Index.fromZeroBased(studentInt + 1));
 
         // same object -> returns true
         assertTrue(addParticipationCommand.equals(addParticipationCommand));

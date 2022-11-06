@@ -16,6 +16,7 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -23,14 +24,16 @@ import jarvis.model.UserPrefs;
  */
 public class MarkStudentCommandTest {
 
-    private static final Index lessonIndex = Index.fromZeroBased(0);
-    private static final Index studentIndex = Index.fromZeroBased(0);
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
+    private static final int lessonInt = lessonIndex.getZeroBased();
+    private static final int studentInt = studentIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
 
     @BeforeEach
     public void setUp() {
-        Lesson lessonToMark = model.getFilteredLessonList().get(0);
+        Lesson lessonToMark = model.getFilteredLessonList().get(lessonInt);
         for (Student s: lessonToMark.getStudentList()) {
             lessonToMark.markAsAbsent(s);
         }
@@ -40,8 +43,8 @@ public class MarkStudentCommandTest {
     public void execute_withValidIndex_success() throws Exception {
         MarkStudentCommand markStudentCommand = new MarkStudentCommand(lessonIndex, studentIndex);
 
-        Lesson lessonToMark = model.getFilteredLessonList().get(0);
-        Student studentToMark = lessonToMark.getStudentList().get(0);
+        Lesson lessonToMark = model.getFilteredLessonList().get(lessonInt);
+        Student studentToMark = lessonToMark.getStudentList().get(studentInt);
         CommandResult commandResult = markStudentCommand.execute(model);
         assertEquals(String.format(MarkStudentCommand.MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, lessonToMark),
                 commandResult.getFeedbackToUser());
@@ -67,10 +70,10 @@ public class MarkStudentCommandTest {
     @Test
     public void equals() {
         MarkStudentCommand markStudentCommand = new MarkStudentCommand(lessonIndex, studentIndex);
-        MarkStudentCommand markStudentCommandDifferentLessonIndex = new MarkStudentCommand(Index.fromZeroBased(1),
-                studentIndex);
+        MarkStudentCommand markStudentCommandDifferentLessonIndex = new MarkStudentCommand(
+                Index.fromZeroBased(lessonInt + 1), studentIndex);
         MarkStudentCommand markStudentCommandDifferentStudentIndex = new MarkStudentCommand(lessonIndex,
-                Index.fromZeroBased(1));
+                Index.fromZeroBased(studentInt + 1));
 
         // same object -> returns true
         assertTrue(markStudentCommand.equals(markStudentCommand));
