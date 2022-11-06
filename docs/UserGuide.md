@@ -249,34 +249,36 @@ You can use [Find](#536-locating-students-by-name-find) to help locate the stude
 
 Need to start afresh? Delete all the entries from StudMap with this command.
 
+**Format:** `clear`
+
 <div markdown="span" class="alert alert-warning">
 :exclamation: <b>Caution:</b>
 This can be dangerous! Make sure you back up your data before executing this command.
 See <a href="#553-backing-up-data">here</a> for more instructions.<br>
 </div>
 
-**See Also**
+**See Also:**
 [`Delete`](#532-deleting-a-student-delete)
-
-**Format:** `clear`
 
 ### 5.3.4 Importing students from CSV file: `import`
 
-Imports student data from a CSV file stored on your computer.
+**Function:** Imports student data from a CSV (Comma-separated Values) file stored on your computer.
+
+Just starting out with StudMap? Simply copy and paste in the necessary details into a template, and StudMap will handle
+the rest — it's like magic. For your convenience, you can find the import template
+[here](files/import_template.csv).
 
 **Format:** `import`
 
 * Importing student data will add students to the existing student list, and will not clear any existing students
 * Running the command will open a file browser for you to select the CSV file to import
-* The CSV format accepted by StudMap is strict! Please use the template provided in the link below
+* The CSV format accepted by StudMap is strict! Please use the template provided.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: <b>Caution:</b>
 StudMap currently does not support any commas in any data field (cell) when importing a CSV file. Please avoid inputting any data
 that has commas in the CSV.
 </div>
-
-For your convenience, please download the import template here: [template csv](files/import_template.csv)
 
 **Example Use Case:** Importing a fresh batch of students as a new StudMap user
 
@@ -288,25 +290,32 @@ For your convenience, please download the import template here: [template csv](f
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
+**See Also:**
+[`Add`](#531-adding-a-student-add)
+
 ### 5.3.5 Listing all students: `list`
 
-Shows a list of all students in the StudMap.
+**Function:** Shows a list of all students in the StudMap.
+
+Want to take a look at all your students? This is the command you're looking for.
 
 **Format:** `list`
 
 ### 5.3.6 Locating students by name: `find`
 
-Finds students whose names contain any of the given keywords.
+**Function:** Finds students whose names contain any of the given keywords.
+
+If you're searching for a student by name, this is a fast shortcut for you. If you're looking for more specific
+filtering, such as by their module, see [`filter`](#538-filtering-the-students-filter).
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Students with name matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will
-  return `Hans Gruber`
-  , `Bo Yang`
+  return `Hans Gruber`, `Bo Yang`.
 
 **Examples:**
 
@@ -315,12 +324,15 @@ Finds students whose names contain any of the given keywords.
   <!-- TODO: ![result for 'find alex david'](images/findAlexDavidResult.png) -->
   [Sample UI To be added]
 
+**See Also:**
+[`filter`](#538-filtering-the-students-filter)
+
 ### 5.3.7 Sorting the students: `sort`
 
-Sorts the list by the specified attribute in the specified order.
+**Function:** Sorts the list by the specified attribute in the specified order.
 
 When managing your students, you might want to focus on a certain aspect of the module to track. For instance, you may
-wish to clamp down on absenteeism and identify students who are constantly missing from class. To achieve this, we can
+wish to clamp down on absenteeism and identify students who are constantly missing from class. To achieve this, you can
 sort the StudMap by `ATTENDANCE`.
 
 **Format:** `sort ORDER a/ATTRIBUTE`
@@ -361,15 +373,14 @@ Examples:
 
 ### 5.3.8 Filtering the students: `filter`
 
-Filters students from the StudMap based on different
-categories.
+**Function:** Filters students from the StudMap based on different categories.
 
-You might want to check on the progress of weaker students you tagged as `NeedsMoreHelp`, filter by tag to focus on
-these students. You may be teaching multiple modules at the same time, filter by module so that your students from
-another module do not clutter your screen. You might want to keep track of the number of assignment submissions you have
-yet to grade, filter by assignment to achieve this.
+If you want to check on the progress of weaker students you tagged as `NeedsMoreHelp`, for example, you can filter by
+tag to focus on them. If you're teaching multiple modules at once, you can filter by module to focus on the module
+you're currently interested in. If you want to find those assignment submissions you have yet to grade, you can filter
+by assignment.
 
-Formats:
+**Formats:**
 
 - `filter t/Keyword [MORE_KEYWORDS]`
     * Filters students specific to the category "tag" represented with the prefix `t/`
@@ -378,22 +389,25 @@ Formats:
 - `filter a/Keyword [MORE_KEYWORDS]`
     * Filters students specific to the category "assignment" represented with the prefix `a/`
 
-Example:
+**Example:**
 
 * `filter t/ friends` will return a filtered list of students
   that are tagged as friends
 * `filter m/ cs2103t` will return a filtered list of students
-  that are enrolled in the module cs2103t.
+  that are enrolled in the module `CS2103T`.
 * `filter a/ a01` will return a filtered list of students
-  that are working on assignment A01.
-* `filter t/friends family` will return a filtered list of
-  students that are tagged as friends family or both.
+  that are working on assignment `A01`.
+* `filter t/PotentialTA StrongStudent` will return a filtered list of
+  students that are tagged as potential teaching assistants, strong students, or both.
+
+**See Also:**
+[`find`](#536-locating-students-by-name-find)
 
 ## 5.4 Student Updating
 
 ### 5.4.1 Editing a student: `edit`
 
-Edits an existing student in the StudMap.
+**Function:** Edits an existing student in the StudMap.
 
 Need to update outdated student details? You can easily edit that field without deleting and re-adding the student.
 
@@ -419,7 +433,7 @@ Need to update outdated student details? You can easily edit that field without 
 
 ### 5.4.2 Marking attendance of student: `mark`
 
-Mark students as present or absent for a specified class.
+**Function:** Mark students as present or absent for a specified class.
 
 **Format:** `mark INDEX/ALL ATTENDANCE c/CLASS`
 
@@ -438,9 +452,12 @@ The index **must be a positive integer** 1, 2, 3, …​
 * `mark 1 present c/T01` marks the first student as present for class `T01`
 * `mark all absent c/T04` marks all students in the list as absent for class `T04`
 
+**See Also:**
+[`unmark`](#543-unmarking-attendance-of-student-unmark)
+
 ### 5.4.3 Unmarking attendance of student: `unmark`
 
-Removes the attendance record of a specific class from students.
+**Function:** Removes the attendance record of a specific class from students.
 
 **Format:** `unmark INDEX/ALL c/CLASS`
 
@@ -457,7 +474,12 @@ The index **must be a positive integer** 1, 2, 3, …​
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the first student
 * `unmark all c/T04` removes the attendance record for class `T04` from all students in the list
 
+**See Also:**
+[`mark`](#542-marking-attendance-of-student-mark)
+
 ### 5.4.4 Grading assignment for student: `grade`
+
+**Function:** Changes the grading status for a specific assignment for students.
 
 You can change the grading status for the assignments using this command. If the record of the assignment does not yet
 exist for the specified student, a new entry for the assignment will be automatically created for the student. This can
@@ -488,9 +510,12 @@ you include any lower case in the assignment name, it will be automatically conv
 * `grade all marked a/A02` changes the assignment grading status for assignment `A02` of every student in the list
   to `marked`.
 
+**See Also:**
+[`ungrade`](#545-removing-assignment-from-student-ungrade)
+
 ### 5.4.5 Removing assignment from student: `ungrade`
 
-You can remove the specified assignment from the student's record.
+**Function:** Remove the specified assignment from the student's record.
 
 **Format:** `ungrade INDEX/ALL a/ASSIGNMENT`
 
@@ -504,9 +529,12 @@ You can remove the specified assignment from the student's record.
 * `ungrade 1 a/A01` removes assignment `A01` from the first student.
 * `ungrade all a/A01` removes assignment `A01` from all students in the currently displayed list
 
+**See Also:**
+[`grade`](#544-grading-assignment-for-student-grade)
+
 ### 5.4.6 Recording participation of student: `participate`
 
-You can record participation of student(s)
+**Function:** Records the participation of students in a given participation component.
 
 **Format:** `participate INDEX/ALL STATUS p/COMPONENT`
 
@@ -522,9 +550,12 @@ You can record participation of student(s)
 * `participate 1 no p/P02` records first student as having **not participated** for participation component `P01`.
 * `participate all yes p/P03` records all student as having **participated** for participation component `P03`.
 
+**See Also:**
+[`unparticipate`](#547-removing-participation-of-student-unparticipate)
+
 ### 5.4.7 Removing participation of student: `unparticipate`
 
-You can remove participation of student(s)
+**Function:** Removes the record of participation for students in the given participation component.
 
 **Format:** `unparticipate INDEX/ALL p/COMPONENT`
 
@@ -538,9 +569,15 @@ You can remove participation of student(s)
 * `unparticipate 1 p/P01` removes participation component `P01` from first student in currently displayed list.
 * `unparticipate all p/P03 ` removes participation component `P03` from all students in currently displayed list.
 
+**See Also:**
+[`participate`](#546-recording-participation-of-student-participate)
+
 ### 5.4.8 Adding tag to student: `tag`
 
-You can tag the student(s) with one or more text labels. This can help you to better identify and keep track of them.
+**Function:** Adds one or more text labels to students.
+
+With this feature, you can keep small tidbits about your students on their entry.
+This can help you to better identify and keep track of them.
 
 <div markdown="block" class="alert alert-info">
 
@@ -574,9 +611,14 @@ below. <br>
 * `tag all t/goodstudent t/potentialTA` add both `goodStudent` and `potentialTA` tag to the all student in the current
   list.
 
+**See Also:**
+[`untag`](#549-removing-tag-from-student-untag)
+
 ### 5.4.9 Removing tag from student: `untag`
 
-Remove the specified tag(s) from the student(s).
+**Function:** Removes the specified tag(s) from the student(s).
+
+Accidentally tagged a student wrongly, or simply don't want it there anymore? This is the command for the job.
 
 **Format:** `untag INDEX/ALL t/TAG [t/OTHER]`
 
@@ -593,11 +635,14 @@ Remove the specified tag(s) from the student(s).
 * `untag 1 t/needMoreTime` removes the tag of `needMoreTime `from the first student in the current list.
 * `untag all t/needMoreTime t/late` removes the tag of `needMoreTime` and `late` from all students in the current list.
 
+**See Also:**
+[`tag`](#548-adding-tag-to-student-tag)
+
 ## 5.5 Miscellaneous
 
 ### 5.5.1 Exiting the program: `exit`
 
-Exits the program.
+**Function:** Exits the program.
 
 **Format:** `exit`
 
@@ -622,10 +667,10 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 ### 5.5.5 Viewing help: `help`
 
+**Function:** Shows a message linking to the online User Guide.
+
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
-
-Shows a message linking to the online User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -637,7 +682,10 @@ Shows a message linking to the online User Guide.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous StudMap home folder.
+the data of your previous StudMap home folder. See how to back up your data [here](#553-backing-up-data).
+
+**Q**: How can I transfer my data from an existing spreadsheet to StudMap?<br>
+**A**: You can use the [`import`](#534-importing-students-from-csv-file-import) command.
 
 ---
 
