@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.masslinkers.commons.core.GuiSettings;
-import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
+import seedu.masslinkers.model.student.DetailsContainKeywordsPredicate;
 import seedu.masslinkers.testutil.MassLinkersBuilder;
 //@@author chm252
 public class ModelManagerTest {
@@ -162,7 +162,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new DetailsContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredStudentList(new DetailsContainKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(massLinkers, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

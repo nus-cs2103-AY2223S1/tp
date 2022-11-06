@@ -19,7 +19,7 @@ import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.MassLinkers;
 import seedu.masslinkers.model.Model;
-import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
+import seedu.masslinkers.model.student.DetailsContainKeywordsPredicate;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
 
@@ -141,7 +141,7 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new DetailsContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredStudentList(new DetailsContainKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }

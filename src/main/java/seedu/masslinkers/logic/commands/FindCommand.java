@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.masslinkers.commons.core.Messages;
 import seedu.masslinkers.model.Model;
-import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
+import seedu.masslinkers.model.student.DetailsContainKeywordsPredicate;
 
 /**
  * Finds and lists all students in mass linkers whose name contains any of the argument keywords.
@@ -18,9 +18,9 @@ public class FindCommand extends Command {
             +
             "\nfind KEYWORD [MORE_KEYWORDS]...";
 
-    private final DetailsContainsKeywordsPredicate predicate;
+    private final DetailsContainKeywordsPredicate predicate;
 
-    public FindCommand(DetailsContainsKeywordsPredicate predicate) {
+    public FindCommand(DetailsContainKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
