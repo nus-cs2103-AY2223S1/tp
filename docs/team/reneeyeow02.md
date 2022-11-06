@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     Changes to the MainWindow.java and FXML files were also required to allow the display of the new windows.
     New java and FXML files also had to be created for the cards and panels involved in the display.
     * Credits: Took inspiration from AB3's person object.
-    
+
   * Refactor insurance to leave status.
     * What it does: Allows user to view the leave status of a staff member.
     * Justification: Allowing the user to view the availability of a staff member is part of the main features of HR Pro Max++.
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * What it does: Allows user to view the Staff list attached to each Project.
     * Justification: Allowing the user to view the Staff list of a Project is part of the main features of HR Pro Max++.
 
-  * Added Staff class to contain Staff fields. 
+  * Added Staff class to contain Staff fields.
     * What it does: Allows user to create Staff objects.
     * Justification: Allowing the user to create Staff objects is part of the main features of HR Pro Max++.
 
@@ -51,8 +51,8 @@ Given below are my contributions to the project.
     * Justification: Sometimes long text is entered into the fields, and it is better to allow the text to wrap around instead of cutting it off.
   * Adjust app window size to fit all the display.
     * Justification: The app window size is adjusted to fit all the display so that the user does not have to scroll to see the entire display.
-   
- 
+
+
 * **Documentation**:
   * General outline of the User Guide. Standardise the format of the User Guide and fix grammatical errors.
   * Added documentation for the features `list` and `sort` for Projects.
@@ -65,6 +65,5 @@ Given below are my contributions to the project.
   * Added to Glossary in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
   * Added to manual testing in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
   * Added sorttask section in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
-  * Overall language and formatting edits for Developer Guide and User Guide. (Pull request [\#222](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/222)), 
+  * Overall language and formatting edits for Developer Guide and User Guide. (Pull request [\#222](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/222)),
   (Pull request [\#203](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/203)), (Pull request [\#192](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/192)), (Pull request [\#141](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/141))
-  

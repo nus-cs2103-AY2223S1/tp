@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 # Table of Contents
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ The `Project` class,
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
 
-Additional information: 
+Additional information:
 * The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders.
 * The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
 
@@ -353,17 +353,17 @@ The following sequence diagram shows how the mark command will run throughout HR
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
 ### Design Considerations:
-* We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`, 
+* We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`,
 so as to make it easier for the user to identify the completion status of the `Task` at a glance.
 
-## Sort task 
+## Sort task
 
 ### Implementation
-Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object 
+Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object
 and only allow the `TaskDeadline` field to accept a `LocalDate` value.
 
-The `LocalDate` is an immutable date-time object that represents a date, often viewed as year-month-day. 
-The `LocalDate` class has a `compareTo` method that can be used to compare the dates of two tasks. 
+The `LocalDate` is an immutable date-time object that represents a date, often viewed as year-month-day.
+The `LocalDate` class has a `compareTo` method that can be used to compare the dates of two tasks.
 This method will be used to sort the tasks by their deadline.
 
 * `sorttask` This will sort the `Task` objects in the `Task List` by their deadlines, with the earliest deadline at the top.
@@ -437,7 +437,7 @@ The activity diagram below shows the logic flow of the `delstaff` command.
 An alternative implementation of the `delstaff` command could be to implement it in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
 * The `STAFF_NAME` would then refer to the Staff specified by the STAFF_NAME to delete from the Project's Staff list.
-  * Pros: Easier to implement then the current implementation 
+  * Pros: Easier to implement then the current implementation
   * Cons: Does not require Staff to be displayed to be deleted, user would be able to randomly delete Staff, and may lose track of where they are deleting Staff from.
 
 ### Add Staff to Project
@@ -503,7 +503,7 @@ An example of an `FindStaffCommand` is:
 `editstaff 1 pn/CS2103T sn/John Doe`
 
 The arguments passed into the command are as follows:
-- `INDEX` is the `Index` of the `Staff` to be edited. 
+- `INDEX` is the `Index` of the `Staff` to be edited.
 - `pn` is the `Project` name of the project to add the staff to.
 - `sn` is the name of the `Staff` to add
 - `sp` is the phone number of the `Staff`
@@ -515,11 +515,11 @@ The usage scenario and how the edit staff mechanism behaves is described as foll
 
 Step 1. The user launches the application, and uses the `editStaff` command as described in the UserGuide.
 The `HrProParser` calls the `EditStaffCommandParser`, which parses the user inputs to create an `EditStaffCommand`.
-The `EditStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs into an `Index`, 
-`ProjectName` and an `EditStaffDescriptor`, which serves as a wrapper class for Staff attributes to be edited. 
+The `EditStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs into an `Index`,
+`ProjectName` and an `EditStaffDescriptor`, which serves as a wrapper class for Staff attributes to be edited.
 
 Step 2. The `execute()` method in `EditStaffCommand` first checks if the passed `ProjectName` is valid, and whether the
-`Index` is a valid `Index` of a `Staff` inside the `FilteredStaffList`. These are done by checking if the `Optional` returned 
+`Index` is a valid `Index` of a `Staff` inside the `FilteredStaffList`. These are done by checking if the `Optional` returned
 from `Model.getStaffFromProjectAtIndex()` and `Model.getProjectWithName()` are empty. If they are, a `CommandException` is thrown
 for each failed check.
 
@@ -527,8 +527,8 @@ Step 3. A new `Staff` object is created based on the `EditStaffDescriptor`, and 
 to ensure that the new `Staff` object doesn't already exist inside the `FilteredStaffList`.
 
 Step 4. The `Staff` at `Index` inside the `Project` with the given `ProjectName` is edited with the `Model.isSuccessStaffEdit()` method.
-If the method returns `false`, it means that editing was not successful since an invalid staff was passed into the `Model`, so 
-a `CommandException` is thrown. 
+If the method returns `false`, it means that editing was not successful since an invalid staff was passed into the `Model`, so
+a `CommandException` is thrown.
 
 Sequence diagram for the `EditStaffCommand`
 ![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
@@ -545,18 +545,18 @@ Sequence diagram for the `EditStaffCommand`
 - **Alternative 2**: `EditStaffCommand` does not check if the `Project` is the currently displayed `Project` list.
     - Pros: Users might have an easier experience with using the command, since they are not required to call `view` before
   `editstaff`. This streamlines the user experience and leads to higher productivity.
-    - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to 
-    ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from. 
+    - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to
+    ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from.
 
 ### Find Staff in Project
-#### Implementation 
+#### Implementation
 
 The find staff feature is facilitated by the `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
 active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
 This functionality is provided by the `findstaff` command.
 
-The `FindStaffCommand` has a `Predicate`, which is `StaffNameContainsKeywordsPredicate`. This predicate checks whether 
-a staff name contains any of the keywords provided to the predicate. 
+The `FindStaffCommand` has a `Predicate`, which is `StaffNameContainsKeywordsPredicate`. This predicate checks whether
+a staff name contains any of the keywords provided to the predicate.
 
 The following operations are implemented:
 - `execute(Model model)` - Executes a `FindStaffCommand`.
@@ -573,11 +573,11 @@ Step 1. The user launches the application, and uses the `findStaff` command as d
 The `HrProParser` calls the `FindStaffCommandParser`, which parses user arguments to create a `FindStaffCommand`.
 The `FindStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates a
 `StaffNameContainsKeywordsPredicate`, which is a predicate that checks whether a given `StaffName` contains any one of the
-keywords. 
+keywords.
 
 Step 2. The `execute()` method of `FindStaffCommand` runs the `StaffNameContainsKeywordsPredicate` on the `FilteredStaffList`.
 
-Step 3. The `FindStaffCommand` updates the `FilteredStaffList` before exiting. 
+Step 3. The `FindStaffCommand` updates the `FilteredStaffList` before exiting.
 
 Sequence diagram for the `FindStaffCommand`
 ![FindStaffCommandSequenceDiagram](images/FindStaffCommandSequenceDiagram.png)
@@ -589,7 +589,7 @@ Activity diagram for the `FindStaffCommand`
 **Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
 
 - **Alternative 1**: Parse based on keywords (Current Implementation)
-  - Pros: Allows users to search by multiple keywords, so if a user wants to perform a search query that finds all staff whose names contain one of the keywords, 
+  - Pros: Allows users to search by multiple keywords, so if a user wants to perform a search query that finds all staff whose names contain one of the keywords,
     this implementation allows them to do so.
   - Cons: Non-standard behaviour when it comes to finding staff, since if the user queries a precise staff name, all staff whose names contain
   even one of the keyword will be listed. For staff lists that may contain multiple staff with the same surname, this affects the effectiveness
@@ -598,7 +598,7 @@ Activity diagram for the `FindStaffCommand`
   - Pros: Allows precise Staff name finding. For instance, if the whole argument is passed as a singular keyword, then doing
   `findstaff Alex Lau` will either return no staff if there is no staff in the staff list with the name "Alex Lau", or only the staff "Alex Lau"
   - Cons: Users who want to perform search queries on the staff list such as finding all Jareds and all Laus, will have to do two separate
-  `findstaff` calls when they could just call `findstaff Jared Lau` in an implementation that supports searching multiple keywords. 
+  `findstaff` calls when they could just call `findstaff Jared Lau` in an implementation that supports searching multiple keywords.
 --------------------------------------------------------------------------------------------------------------------
 
 # **Documentation, logging, testing, configuration, dev-ops**
@@ -670,7 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team lead | sort projects by deadline                    | know which projects are due                   |
 | `* *`    | team lead | find task by name                            | find out more information about the task      |
 | `* *`    | team lead | sort task by deadline                        | know which task is more urgent                |
-| `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  | 
+| `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  |
 
 ## Use cases
 
@@ -834,7 +834,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to run without any additional installations beyond Java 11.
 3. Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. User data should be stored locally in a text file and should be human editable.
 6. The application should be able to handle invalid inputs and recover from them.
 7. Commands should be able to be executed in a case-insensitive manner.
@@ -882,7 +882,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
+
 
 ## Deleting a Project
 
@@ -904,7 +904,7 @@ testers are expected to do more *exploratory* testing.
 
 ## Sorting Projects by deadline
 
-1. Sorting Projects by deadline 
+1. Sorting Projects by deadline
 
     1. Prerequisites: Multiple projects in the list.
 
@@ -916,7 +916,7 @@ testers are expected to do more *exploratory* testing.
 
     5. Command should be case-insensitive and ignore extra input following the command word. Other correct sort commands to try: `SORTPROJ`, `sortProj xsf01`, `sortproj vfdwl`<br>
        Expected: Similar to first test case.
-   
+
     6. `sortproj` should work on all Projects even if the Project list has been filtered using `findproj` command.
 
 ## Viewing the Staff list of a Project
@@ -936,14 +936,14 @@ testers are expected to do more *exploratory* testing.
 
 2. Viewing the Staff list while only some projects are being shown
 
-   1. Prerequisites: Find projects using the `find` command such that only some projects are shown in the list. 
+   1. Prerequisites: Find projects using the `find` command such that only some projects are shown in the list.
 
    2. Test case: `view 1`<br>
       Expected: Staff list of the first Project in the list is displayed. Success message shown in the Result Display.
 
    3. Test case: `view 0`<br>
       Expected: No Staff list is shown. Error details shown in the Result display. Status bar remains the same.
-   
+
    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -955,13 +955,13 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `marktask 1`<br>
        Expected: First Task is marked as completed. Success message shown in the Result Display.
-   
+
     3. Test case: `delproj 0`<br>
        Expected: No Task is marked. Error details shown in the Result Display.
-   
+
     4. Other incorrect mark commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-   
+
     5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
        Expected: Similar to first test case.
 
@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First Task in the filtered list is marked as completed. Success message shown in the Result Display.
 
     3. Test case: `marktask 0`<br>
-       Expected: No Task is marked. Error details shown in the Result Display. 
+       Expected: No Task is marked. Error details shown in the Result Display.
 
     4. Other incorrect mark commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -1037,7 +1037,7 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `unmarktask 1`<br>
       Expected: First Task in the filtered list is marked as not completed. Success message shown in the Result Display.
-   
+
     3. Test case: `unmarktask 0`<br>
       Expected: No Task is unmarked. Error details shown in the status message.
 
@@ -1051,8 +1051,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a Task while all Tasks are being shown
 
-   1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. 
-   
+   1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list.
+
    2. Test case: `findtask download`<br>
       Expected: Only Tasks with names containing `download` are shown. Number of Tasks being listed is displayed in the Result Display.
 
@@ -1065,14 +1065,14 @@ testers are expected to do more *exploratory* testing.
 2. Finding a Task while only some Tasks are being shown
 
    1. Prerequisites: Filter the Task list using the `findtask` command such that at least 1 Task is left in the list.
-   
+
    2. Test case: `findtask download`<br>
-      Expected: Only Tasks with names containing `download` are shown. Tasks not initially displayed that exist in the app 
+      Expected: Only Tasks with names containing `download` are shown. Tasks not initially displayed that exist in the app
       and contain `download` should be displayed as well. Number of Tasks being listed is displayed in the Result Display.
-   
+
    3. Test case: `findtask`<br>
       Expected: No Tasks are shown. Error details shown in the Result Display.
-   
+
    4. Command should be case-insensitive and allow for partial matching. Other correct find commands to try: `FINDTASK download`, `findtask down`, `FindTask d`<br>
       Expected: Similar to first test case.
 
@@ -1099,10 +1099,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: Delete the data file directly (for example, by deleting the `hrpro.json` file)<br>
       Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
-   
+
    2. Test case: Add invalid characters such as `^` to the data file directly (for example, by editing the `hrpro.json` file)<br>
       Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
-   
+
 
 # **Appendix: Effort**
 
