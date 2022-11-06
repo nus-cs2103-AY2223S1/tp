@@ -124,6 +124,8 @@ Contact management has never been this simple.
 
 <div markdown="block" class="alert alert-info">
 
+:information_source::<br>
+
 * Contacts have no labels by default.<br>
 
 * Contact remarks are limited to alphanumeric characters and spaces.<br>
@@ -250,6 +252,8 @@ Monitor your progress, track deadlines and archive tasks with a few simple comma
 Leave your task management to YellowBook, so you can do your best work.
 
 <div markdown="block" class="alert alert-info">
+
+:information_source::<br>
 
 * Tasks have no labels by default.<br>
 
@@ -484,7 +488,9 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
-<div markdown="span" class="alert alert-info">:information_source::
+<div markdown="span" class="alert alert-info">
+
+:information_source::<br>
 
 * Labels must be alphanumeric and one word long.<br>
 
