@@ -367,18 +367,18 @@ Examples:
 
 ### 4.7.1. Sorting persons in the list: `sort -p`
 
-Sorts the persons list given a sorting criterion.
+Sorts the person list given a sorting criterion.
 
 Format: `sort -p [n/] [c/]`
 - Exactly one of the optional fields must be provided.
 - `n/` sorts persons by their names in alphabetical order, ignoring upper and lower cases.
 - `c/` sorts persons by the attached company name (not the company tied to the internship linked) in alphabetical order, ignoring upper and lower cases.
 - When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
-- The list will remain sorted the same way until InterNUS is closed or until the sort condition for the persons list is changed.
+- The list will remain sorted the same way until InterNUS is closed or until the sort condition for the person list is changed.
 
 Examples:
-- `sort -p n/` will sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
-- `sort -p c/` will sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name will be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+- `sort -p n/` will sort the person list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` will sort the person list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name will be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** Both the person list and internship list will remain sorted by the last given criterion 
