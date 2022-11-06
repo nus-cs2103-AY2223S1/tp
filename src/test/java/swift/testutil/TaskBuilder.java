@@ -17,11 +17,13 @@ public class TaskBuilder {
     public static final String DEFAULT_TASK_NAME = "Default Task";
     public static final String DEFAULT_DESCRIPTION = "Default description";
     public static final String DEFAULT_DEADLINE = "12-12-2022 1200";
+    public static final boolean DEFAULT_IS_DONE = false;
 
     private UUID id;
     private TaskName taskName;
     private Optional<Description> description;
     private Optional<Deadline> deadline;
+    private boolean isDone;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -31,6 +33,7 @@ public class TaskBuilder {
         taskName = new TaskName(DEFAULT_TASK_NAME);
         description = Optional.of(new Description(DEFAULT_DESCRIPTION));
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
+        isDone = DEFAULT_IS_DONE;
     }
 
     /**
@@ -41,6 +44,7 @@ public class TaskBuilder {
         taskName = taskToCopy.getName();
         description = taskToCopy.getDescription();
         deadline = taskToCopy.getDeadline();
+        isDone = taskToCopy.isDone();
     }
 
     /**
@@ -75,7 +79,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isDone} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withIsDone(boolean isDone) {
+        this.isDone = isDone;
+        return this;
+    }
+
     public Task build() {
-        return new Task(id, taskName, description, deadline);
+        return new Task(id, taskName, description, deadline, isDone);
     }
 }

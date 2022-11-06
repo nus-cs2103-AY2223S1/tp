@@ -112,7 +112,10 @@ public class CommandSuggestor {
         ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInputArray[1]);
+            if (userInput.charAt(userInput.length() - 1) == ' ') {
+                userInput = userInput.substring(0, userInput.length() - 1);
+            }
+            return userInput + suggestArguments(argPrefixes, userInputArray[1]);
         } else {
             return suggestedCommand + suggestArguments(argPrefixes, "");
         }
@@ -140,7 +143,11 @@ public class CommandSuggestor {
         if (autocompleteUptoIndex == 0) {
             autocompleteUptoIndex = suggestedCommand.length();
         }
-        userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
+
+        String autocompletedCommand = suggestedCommand.substring(0, autocompleteUptoIndex);
+        if (!autocompletedCommand.contains("<")) {
+            userInput = userInput + autocompletedCommand;
+        }
         return userInput;
     }
 
@@ -157,7 +164,7 @@ public class CommandSuggestor {
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
-        String[] userInputArray = userInput.split(" ");
+        String[] userInputArray = userInput.trim().split(" ");
         Prefix currPrefix = null;
         boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
         boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
