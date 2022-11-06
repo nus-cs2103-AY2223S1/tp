@@ -119,7 +119,7 @@ public class AddMasteryCheckCommand extends Command {
         if (masteryCheckDesc == null) {
             masteryCheckDescEquality = mc.masteryCheckDesc == null;
         } else {
-            masteryCheckDescEquality = mc.equals(mc.masteryCheckDesc);
+            masteryCheckDescEquality = masteryCheckDesc.equals(mc.masteryCheckDesc);
         }
         return masteryCheckDescEquality
                 && masteryCheckPeriod.equals(mc.masteryCheckPeriod)

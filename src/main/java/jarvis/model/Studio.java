@@ -49,6 +49,10 @@ public class Studio extends Lesson {
         return resMap;
     }
 
+    public StudioParticipation getStudioParticipation() {
+        return participation;
+    }
+
     @Override
     public void setStudent(Student targetStudent, Student editedStudent) {
         super.setStudent(targetStudent, editedStudent);
