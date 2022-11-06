@@ -1,12 +1,12 @@
 {
   "lessons" : [ {
-    "type" : "consult",
-    "lessonDesc" : "Consultation on recursion",
-    "startDateTime" : "2022-10-14T16:00:00",
-    "endDateTime" : "2022-10-14T14:00:00",
+    "type" : "mastery check",
+    "lessonDesc" : "Mastery Check 1",
+    "startDateTime" : "2022-12-12T10:00:00",
+    "endDateTime" : "2022-12-12T11:00:00",
     "studentList" : [ {
-      "name" : "Bunny",
-      "matricNum" : "A2833958J",
+      "name" : "Alice Pauline",
+      "matricNum" : "A0000000F",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -52,8 +52,8 @@
         }
       }
     }, {
-      "name" : "Sarah",
-      "matricNum" : "A4325833C",
+      "name" : "Benson Meier",
+      "matricNum" : "A0345385G",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -101,7 +101,7 @@
     } ],
     "attendance" : {
       "0" : false,
-      "1" : true
+      "1" : false
     },
     "generalNotes" : [ ],
     "studentNotes" : {
@@ -111,12 +111,12 @@
     "isCompleted" : false
   }, {
     "type" : "studio",
-    "lessonDesc" : "Studio 3",
-    "startDateTime" : "2022-10-12T14:00:00",
-    "endDateTime" : "2022-10-12T16:00:00",
+    "lessonDesc" : "Studio 1",
+    "startDateTime" : "2022-12-12T11:00:00",
+    "endDateTime" : "2022-12-12T12:00:00",
     "studentList" : [ {
-      "name" : "Alex Yeoh",
-      "matricNum" : "A0123456A",
+      "name" : "Alice Pauline",
+      "matricNum" : "A0000000F",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -162,8 +162,8 @@
         }
       }
     }, {
-      "name" : "Bernice Yu",
-      "matricNum" : "A0000000D",
+      "name" : "Benson Meier",
+      "matricNum" : "A0345385G",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -209,8 +209,8 @@
         }
       }
     }, {
-      "name" : "Bunny",
-      "matricNum" : "A2833958J",
+      "name" : "Carl Kurz",
+      "matricNum" : "A0532453D",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -256,8 +256,8 @@
         }
       }
     }, {
-      "name" : "David Li",
-      "matricNum" : "A8353285P",
+      "name" : "Daniel Meier",
+      "matricNum" : "A9353548C",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -303,8 +303,8 @@
         }
       }
     }, {
-      "name" : "Roy Balakrishnan",
-      "matricNum" : "A0033458L",
+      "name" : "Elle Meyer",
+      "matricNum" : "A0573537F",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -350,8 +350,55 @@
         }
       }
     }, {
-      "name" : "Sarah",
-      "matricNum" : "A4325833C",
+      "name" : "Fiona Kunz",
+      "matricNum" : "A0385938L",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "George Best",
+      "matricNum" : "A0395839D",
       "gradeProfile" : {
         "gradeMap" : {
           "MC1" : {
@@ -403,7 +450,8 @@
       "2" : false,
       "3" : false,
       "4" : false,
-      "5" : false
+      "5" : false,
+      "6" : false
     },
     "generalNotes" : [ ],
     "studentNotes" : {
@@ -412,16 +460,79 @@
       "2" : [ ],
       "3" : [ ],
       "4" : [ ],
-      "5" : [ ]
+      "5" : [ ],
+      "6" : [ ]
     },
-    "isCompleted" : true,
+    "isCompleted" : false,
     "studioParticipation" : {
       "0" : 0,
-      "1" : 100,
+      "1" : 0,
       "2" : 0,
       "3" : 0,
       "4" : 0,
-      "5" : 0
+      "5" : 0,
+      "6" : 0
     }
+  }, {
+    "type" : "consult",
+    "lessonDesc" : "Recursion Consultation",
+    "startDateTime" : "2022-12-12T12:00:00",
+    "endDateTime" : "2022-12-12T13:00:00",
+    "studentList" : [ {
+      "name" : "Alice Pauline",
+      "matricNum" : "A0000000F",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    } ],
+    "attendance" : {
+      "0" : false
+    },
+    "generalNotes" : [ ],
+    "studentNotes" : {
+      "0" : [ ]
+    },
+    "isCompleted" : false
   } ]
 }

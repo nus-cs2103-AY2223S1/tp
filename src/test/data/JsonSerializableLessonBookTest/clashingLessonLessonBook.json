@@ -2,7 +2,7 @@
   "lessons" : [ {
     "type" : "consult",
     "lessonDesc" : "Consultation on recursion",
-    "startDateTime" : "2022-10-14T16:00:00",
+    "startDateTime" : "2022-10-14T10:00:00",
     "endDateTime" : "2022-10-14T14:00:00",
     "studentList" : [ {
       "name" : "Bunny",
@@ -112,8 +112,8 @@
   }, {
     "type" : "studio",
     "lessonDesc" : "Studio 3",
-    "startDateTime" : "2022-10-12T14:00:00",
-    "endDateTime" : "2022-10-12T16:00:00",
+    "startDateTime" : "2022-10-14T13:00:00",
+    "endDateTime" : "2022-10-14T16:00:00",
     "studentList" : [ {
       "name" : "Alex Yeoh",
       "matricNum" : "A0123456A",

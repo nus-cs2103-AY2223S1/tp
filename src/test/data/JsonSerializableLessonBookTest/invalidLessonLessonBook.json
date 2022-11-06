@@ -1,0 +1,113 @@
+{
+  "lessons" : [ {
+    "type" : "consult",
+    "lessonDesc" : "Consultation on recursion",
+    "startDateTime" : "2022-10-14T16:00:00",
+    "endDateTime" : "2022-10-14T14:00:00",
+    "studentList" : [ {
+      "name" : "Bunny",
+      "matricNum" : "A2833958J",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    }, {
+      "name" : "Sarah",
+      "matricNum" : "A4325833C",
+      "gradeProfile" : {
+        "gradeMap" : {
+          "MC1" : {
+            "assessment" : "MC1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MC2" : {
+            "assessment" : "MC2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA1" : {
+            "assessment" : "RA1",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "RA2" : {
+            "assessment" : "RA2",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "MIDTERM" : {
+            "assessment" : "MIDTERM",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "PRACTICAL_ASSESSMENT" : {
+            "assessment" : "PRACTICAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "FINAL_ASSESSMENT" : {
+            "assessment" : "FINAL_ASSESSMENT",
+            "isGraded" : false,
+            "marks" : 0.0
+          },
+          "STUDIO_ATTENDANCE" : {
+            "assessment" : "STUDIO_ATTENDANCE",
+            "isGraded" : false,
+            "marks" : 0.0
+          }
+        }
+      }
+    } ],
+    "attendance" : {
+      "0" : false,
+      "1" : true
+    },
+    "generalNotes" : [ ],
+    "studentNotes" : {
+      "0" : [ ],
+      "1" : [ ]
+    },
+    "isCompleted" : false
+  } ]
+}

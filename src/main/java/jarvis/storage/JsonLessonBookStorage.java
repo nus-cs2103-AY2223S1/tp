@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.FileUtil;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.ReadOnlyLessonBook;
