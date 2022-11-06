@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.TaskBook;
 import taskbook.model.person.Name;
@@ -45,7 +46,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_validEventDetails_returnsTask() throws Exception {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         Assertions.assertEquals(TypicalTaskBook.PARTYING, task.toModelType());
     }
 
@@ -53,7 +55,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(INVALID_NAME, VALID_ASSIGNMENT, VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(INVALID_NAME, VALID_ASSIGNMENT,
+                VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -62,7 +65,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(null, VALID_ASSIGNMENT, VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(null, VALID_ASSIGNMENT,
+                VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = String.format(JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT, "Name");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -71,7 +75,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_invalidAssignment_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, INVALID_ASSIGNMENT, VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, INVALID_ASSIGNMENT,
+                VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = Assignment.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -80,7 +85,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_nullAssignment_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, null, VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, null,
+                VALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = String.format(JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT, "Assignment");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -89,7 +95,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, INVALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                INVALID_DESCRIPTION, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -98,7 +105,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_nullDescription_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, null, true, VALID_EVENT, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                null, true, VALID_EVENT, VALID_TAGS);
         String expectedMessage = String.format(JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT, "Description");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -107,7 +115,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_invalidEventDate_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, VALID_DESCRIPTION, true, INVALID_Event, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                VALID_DESCRIPTION, true, INVALID_Event, VALID_TAGS);
         String expectedMessage = "Event Date should be in supported date formats.";
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -116,7 +125,8 @@ public class JsonAdaptedEventTest {
     public void toModelType_nullEventDate_throwsIllegalValueException() {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.CARL);
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, VALID_EVENT, true, null, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                VALID_EVENT, true, null, VALID_TAGS);
         String expectedMessage = String.format(JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT, "Event Date");
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -127,7 +137,8 @@ public class JsonAdaptedEventTest {
         taskBook.addPerson(TypicalTaskBook.CARL);
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT, null, true, VALID_EVENT, invalidTags);
+        JsonAdaptedTask task = new JsonAdaptedEvent(VALID_NAME, VALID_ASSIGNMENT,
+                null, true, VALID_EVENT, invalidTags);
         String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
