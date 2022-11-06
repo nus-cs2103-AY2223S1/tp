@@ -45,8 +45,10 @@ public class LessonIndexCommand extends LessonCommand {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person newPerson = new Person(personToEdit);
 
-        personToEdit.addLesson(lesson);
+        newPerson.addLesson(lesson);
+        model.setPerson(personToEdit, newPerson);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString(),
                 index.getZeroBased(), personToEdit.getName()));

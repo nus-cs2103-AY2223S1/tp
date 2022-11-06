@@ -55,6 +55,22 @@ public class ExistingUser extends User {
         this.planModules.addAll(planModules);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public ExistingUser(User user) {
+        requireAllNonNull(user);
+        this.name = user.getName();
+        this.phone = user.getPhone();
+        this.email = user.getEmail();
+        this.address = user.getAddress();
+        this.github = user.getGithub();
+        this.currModules.addAll(user.getCurrModules());
+        this.prevModules.addAll(user.getPrevModules());
+        this.planModules.addAll(user.getPlanModules());
+        this.lessons.addAll(user.getLessons());
+    }
+
     public Name getName() {
         return name;
     }
