@@ -524,13 +524,8 @@ in their address.
 * Only full words will be matched. <br>
   e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
 
-<<<<<<< HEAD
 * Orders matching at least one keyword will be displayed. <br>
   e.g. `findo i/apple keychain` will display `apple painting` and `banana keychain`
-=======
-* Orders matching at least one keyword will be returned <br>
-  e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
->>>>>>> 0af011ddecbfb6fcda934f73849256cb40cd006c
 
 </div>
 
@@ -546,7 +541,6 @@ data will display the following result:
   
   <img src="./images/user-guide/FindoExample2.png" alt="FindoExample2">
 
-<<<<<<< HEAD
 * When you enter `findo -d n/Charlotte`, TrackO displays all orders with the name `Charlotte` which have been `delivered`.
 Executing it on our sample data will display the following result:
 
@@ -554,15 +548,6 @@ Executing it on our sample data will display the following result:
   
 * When you enter `findo -d -p n/Alex` displays all orders with the name `Alex` which have been `paid` and `delivered`.
 Executing it on our sample data will display the following result:
-=======
-* When you enter `findo -d n/Charlotte`, TrackO returns all orders with the name `Charlotte` which have been marked as 
-`delivered`. Executing it on our sample data will display the following result:
-
-  <img src="./images/user-guide/FindoExample3.png" alt="FindoExample3">
-  
-* When you enter `findo -d -p n/Alex` returns all orders with the name `Alex` which have been marked as `paid` and 
-`delivered`. Executing it on our sample data will display the following result:
->>>>>>> 0af011ddecbfb6fcda934f73849256cb40cd006c
 
     <img src="./images/user-guide/FindoExample4.png" alt="FindoExample4">
 
