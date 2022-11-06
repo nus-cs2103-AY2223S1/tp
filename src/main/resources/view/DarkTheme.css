@@ -305,10 +305,11 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#FAFAFA, 50%);
+    -fx-background-color: derive(#888EA4, 50%);
 }
 
 .context-menu .label {
+    -fx-background-color: transparent;
     -fx-text-fill: white;
 }
 
