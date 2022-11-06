@@ -43,7 +43,7 @@ MainWindow --> "0..1" HelpWindow
 MainWindow *-down-> "1" CalendarDisplay
 
 PersonListPanel -down> "*" PersonCard
-CalendarDisplay -down--> "*" CalendarButton
+CalendarDisplay -down--> "2..*" CalendarButton
 
 MainWindow -left-|> UiPart
 
