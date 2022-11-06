@@ -195,7 +195,13 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        applyDarkTheme();
+        applyTheme(Theme.DARK);
+        scheduleGridPanel.setScrollPaneStyle(theme);
+        scheduleGridPanel.setGridPaneStyle(theme);
+        scheduleGridPanelVertical.setScrollPaneStyle(theme);
+        scheduleGridPanelVertical.setGridPaneStyle(theme);
+
+        resultDisplay.setFeedbackToUser("Welcome to ProfNUS!");
 
     }
 
