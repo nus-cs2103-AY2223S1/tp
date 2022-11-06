@@ -117,6 +117,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
       .
     * The **Reply Box** is where StudMap responds to your instructions.
     * The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
+    <br>
 
 5. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
@@ -130,6 +131,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
         * This deletes the 3rd student currently shown in the Student List.
     * `clear`
         * This deletes all the students, so you can start with a clean slate!
+    <br>
 
 6. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
    you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
@@ -461,10 +463,10 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 **Format:** `unmark INDEX/ALL c/CLASS`
 
-*`INDEX`: You can specify the index of the student you want to remove attendance record for. The index refers to the
+* `INDEX`: You can specify the index of the student you want to remove attendance record for. The index refers to the
 index number shown in the displayed student list.
 The index **must be a positive integer** 1, 2, 3, …​
-*`ALL`: You can remove attendance record for all students currently displayed.
+* `ALL`: You can remove attendance record for all students currently displayed.
 
 * StudMap allows for attendances to be removed even if the student never had any record for that class
   (i.e. no error will be thrown)
