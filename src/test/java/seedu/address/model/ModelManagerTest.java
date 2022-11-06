@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalQuestions.Q1;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalTutorials.TUTORIAL1;
@@ -95,6 +96,30 @@ public class ModelManagerTest {
         modelManager.deleteStudent(ALICE);
         assertFalse(modelManager.hasStudent(ALICE));
     }
+
+    @Test
+    public void hasQuestion_nullQuestion_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasQuestion(null));
+    }
+
+    @Test
+    public void hasQuestion_questionNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasQuestion(Q1));
+    }
+
+    @Test
+    public void hasQuestion_questionInAddressBook_returnsTrue() {
+        modelManager.addQuestion(Q1);
+        assertTrue(modelManager.hasQuestion(Q1));
+    }
+
+    @Test
+    public void hasQuestion_deletedQuestionNotInAddressBook_returnsFalse() {
+        modelManager.addQuestion(Q1);
+        modelManager.deleteQuestion(Q1);
+        assertFalse(modelManager.hasQuestion(Q1));
+    }
+
 
     @Test
     public void getFilteredTutorialList_modifyList_throwsUnsupportedOperationException() {
