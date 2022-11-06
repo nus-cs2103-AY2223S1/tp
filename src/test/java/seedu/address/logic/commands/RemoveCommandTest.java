@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_REM;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_REM;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_LESSON_PLAN;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_PHONE;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_TAGS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.setModelFullView;
@@ -54,10 +50,12 @@ public class RemoveCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(0);
 
         setFullView(INDEX_FIRST_PERSON);
-        PersonBuilder blankPerson = new PersonBuilder();
-        Person removedPerson = blankPerson.withName(FIRST_PERSON_NAME)
-                .withPhone(FIRST_PERSON_PHONE).withLessonPlan(FIRST_PERSON_LESSON_PLAN)
-                .withTags(FIRST_PERSON_TAGS).build();
+        Person removedPerson = new PersonBuilder(firstPerson).build();
+        removedPerson.getHomeworkList().removeAtIndex(INDEX_FIRST_ITEM);
+        removedPerson.getAttendanceList().removeAtIndex(INDEX_FIRST_ITEM);
+        removedPerson.getSessionList().removeAtIndex(INDEX_FIRST_ITEM);
+        removedPerson.getGradeProgressList().removeAtIndex(INDEX_FIRST_ITEM);
+
         RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
                 .withHomeworkIndex(INDEX_FIRST_ITEM)
                 .withAttendanceIndex(INDEX_FIRST_ITEM)

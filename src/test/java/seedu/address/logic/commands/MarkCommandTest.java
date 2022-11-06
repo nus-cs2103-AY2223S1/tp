@@ -4,14 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_MARK;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_ATTENDANCE;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_GRADE_PROGRESS;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_HOMEWORK;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_LESSON_PLAN;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_PHONE;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_SESSIONS;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_PERSON_TAGS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.setModelFullView;
@@ -53,17 +45,36 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_allFieldsSpecifiedFilteredList_success() {
+        Person firstPerson = model.getFilteredPersonList().get(0);
+
+        setFullView(INDEX_FIRST_PERSON);
+        Person markedPerson = new PersonBuilder(firstPerson).build();
+        markedPerson.getHomeworkList().markAtIndex(INDEX_FIRST_ITEM);
+        markedPerson.getAttendanceList().markAtIndex(INDEX_FIRST_ITEM);
+
+        MarkPersonDescriptor descriptor = new MarkPersonDescriptorBuilder()
+                .withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withAttendanceIndex(INDEX_FIRST_ITEM)
+                .build();
+
+        MarkCommand markCommand = new MarkCommand(descriptor);
+
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARKED_PERSON_SUCCESS, markedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, markedPerson);
+        setModelFullView(expectedModel, markedPerson.getName().fullName);
+
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_oneFieldSpecifiedFilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(0);
 
         setFullView(INDEX_FIRST_PERSON);
-        PersonBuilder blankPerson = new PersonBuilder();
-        Person markedPerson = blankPerson.withName(FIRST_PERSON_NAME)
-                .withPhone(FIRST_PERSON_PHONE).withLessonPlan(FIRST_PERSON_LESSON_PLAN)
-                .withTags(FIRST_PERSON_TAGS).withAttendance(FIRST_PERSON_ATTENDANCE)
-                .withGradeProgress(FIRST_PERSON_GRADE_PROGRESS)
-                .withSession(FIRST_PERSON_SESSIONS)
-                .withHomework(FIRST_PERSON_HOMEWORK).build();
+        Person markedPerson = new PersonBuilder(firstPerson).build();
 
         // checking for homework field
         markedPerson.getHomeworkList().markAtIndex(INDEX_FIRST_ITEM);
