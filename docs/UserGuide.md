@@ -445,7 +445,8 @@ Here is a summary of the inputs this command accepts:
 | `time/<time>`      | Looks for people who owe money for a debt at the given `<time>`; using this with `date/<date>`, `before/<date>` or `after/<date>` does _not_ look for a debt at the given date and time, but rather looks for people with both a debt at the given `<time>`, and a debt that matches the other `<date>` condition (which may or may not be the same as the previous debt; see the [details on combining inputs](#combining-inputs-to-find) below) | `find time/11:00` will find people with a debt in their debt list at `11:00`, but not `11:30` or `23:00`                                                                                                                                                                                                                        |
 
 Note:
-* `name/<name>` and `address/<address>` are case-insensitive (they ignore capitalisation) and perform partial matching (they match anything that contains them).
+* Inputs `name/<name>` and `address/<address>` are case-insensitive (they ignore capitalisation) and perform partial matching (they match anything that contains them).
+* All other inputs (including `d/<description>`) are case-sensitive (capitalisation is important), and perform exact matching (they only match if the parts they are matching are exactly the same).
 * The order of the conditions does not matter.
 * At least one input must be provided, `find` cannot work with no inputs.
 
