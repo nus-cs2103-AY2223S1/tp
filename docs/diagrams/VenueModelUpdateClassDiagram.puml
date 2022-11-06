@@ -3,20 +3,22 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor BLACK
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 package Model {
-class ModelManager
+class ModelManager {
+- currentlyDisplayedVenue: ObservableItem<Venue>
+}
 class VenueBook
 class UniqueVenueList
 class Booking
 class Venue
 }
 
-ModelManager --> Venue
-ModelManager --> VenueBook
-ModelManager --> Booking
+ModelManager --> "     1" VenueBook
 
-VenueBook --> "          1" UniqueVenueList
+VenueBook --> "    1" UniqueVenueList
 UniqueVenueList --> "*" Venue
+Venue -right-> "*" Booking
 
 @enduml

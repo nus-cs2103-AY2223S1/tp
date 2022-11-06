@@ -663,7 +663,7 @@ This is just the Ui container component which contains the `BookingTableView` an
 
 ##### Booking table view
 
-In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units.
+In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units. To be consistent with our previous implementation of `ResidentTableView`, where we made use of the Observer pattern, we will be adding a listener to a `Venue` that exists in the `Model` component.
 
 <br>
 
@@ -719,17 +719,22 @@ Considering the requirements for venue and booking data, we have come up with th
 
 #### Model updates
 
-With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes. 
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes.
 
-The diagram [here](#model-component) showcases the addition of the following classes in order to support the venue data tracking in `Model`:
-* `UniqueVenueList`
-* `VenueBook`
+The diagram below showcases the additional classes that were added in the `Model` update to support the venue and booking management feature.
+
+![VenueModelUpdateClassDiagram](images/VenueModelUpdateClassDiagram.png)
+
+As seen in the diagram, the `ModelManager` component contains a `VenueBook` and an `ObservableItem<Venue>`. Similarly to how `UniqueResidentList` contains an internal list which is wrapped with a `FilteredList` and listened to by the `ResidentTableView`, the `VenueListView` listens in on an unmodifiable version of the internal list in `UniqueVenueList` to update the list of venues that are tracked in our `Model`.
+
+Additionally, the `BookingTableView` listens in on the `currentlyDisplayedVenue` for any additions to the list of bookings stored within the venue in `currentlyDisplayedVenue` and for when the venue in `currentlyDisplayedVenue` is replaced by another venue. This provides us an avenue to update the `BookingTableView` from the `ModelManager`.
 
 <br>
 
 #### Storage updates
 
 With the addition of venue and booking data, we have to update the `Storage` component in order to allow for local storage of the new data required. Similarly to how we reused code from `UniqueResidentList` and `ResidentBook`, we reused the existing code that allows for storage of `ResidentBook` data in order to store our `VenueBook` data.
+
 [Comment]: <> (to be added in)
 
 <br>
