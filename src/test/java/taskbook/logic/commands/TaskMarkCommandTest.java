@@ -9,6 +9,7 @@ import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 import org.junit.jupiter.api.Test;
+
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.model.Model;
