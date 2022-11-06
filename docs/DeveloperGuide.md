@@ -214,15 +214,15 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 
 Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
 
-Step 2. The user executes `filter m/CS2103T c/y l/n` command to filter the task list to show all CS2103T tasks that have been marked complete and are not linked to any exam. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `module`, `isCompleted` and `isLinked`.
+Step 2. The user executes `t filter m/CS2103T c/y l/n` command to filter the task list to show all CS2103T tasks that have been marked complete and are not linked to any exam. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `module`, `isCompleted` and `isLinked`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `module`, `isCompleted` and `isLinked` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
 
 </div>
 
-Step 3. The user executes `filter m/CS2103T c/n` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
+Step 3. The user executes `t filter m/CS2103T c/n` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
 
-Step 4. The user executes `mark 1`. The first task is no longer in `taskFilteredList` since its `isCompleted` is now false and no longer fulfils the conditions.
+Step 4. The user executes `t mark 1`. The first task is no longer in `taskFilteredList` since its `isCompleted` is now false and no longer fulfils the conditions.
 
 The following sequence diagram shows how the filter operation works:
 
