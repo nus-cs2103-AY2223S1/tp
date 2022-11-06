@@ -187,7 +187,7 @@ Examples:
   *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
 ![AddActivityExample](images/add_command_example.png)
-_<center>Figure 3: New activity added after running `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`</center>_
+_<center>Figure 3: New activity added after running ``add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed``</center>_
 
 <a name="what-is-an-activity"></a>
 <div markdown="block" class="alert alert-info">
