@@ -7,6 +7,8 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.logging.Logger;
+
 import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.logic.commands.Command;
 import seedu.modquik.logic.commands.CommandResult;
@@ -14,8 +16,6 @@ import seedu.modquik.logic.commands.exceptions.CommandException;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelType;
 import seedu.modquik.model.tutorial.Tutorial;
-
-import java.util.logging.Logger;
 
 /**
  * Adds a tutorial to ModQuik.

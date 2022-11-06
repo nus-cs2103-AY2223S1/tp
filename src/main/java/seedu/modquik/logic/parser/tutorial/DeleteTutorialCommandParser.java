@@ -2,14 +2,14 @@ package seedu.modquik.logic.parser.tutorial;
 
 import static seedu.modquik.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.logging.Logger;
+
 import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.commons.core.index.Index;
 import seedu.modquik.logic.commands.tutorial.DeleteTutorialCommand;
 import seedu.modquik.logic.parser.Parser;
 import seedu.modquik.logic.parser.ParserUtil;
 import seedu.modquik.logic.parser.exceptions.ParseException;
-
-import java.util.logging.Logger;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

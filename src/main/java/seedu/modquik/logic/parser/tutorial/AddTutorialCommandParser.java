@@ -6,6 +6,8 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.logging.Logger;
+
 import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.logic.commands.tutorial.AddTutorialCommand;
 import seedu.modquik.logic.parser.ArgumentMultimap;
@@ -19,9 +21,6 @@ import seedu.modquik.model.datetime.DatetimeCommonUtils;
 import seedu.modquik.model.datetime.WeeklyTimeslot;
 import seedu.modquik.model.tutorial.Tutorial;
 import seedu.modquik.model.tutorial.TutorialName;
-
-import java.util.logging.Logger;
-
 
 /**
  * Parses input arguments and creates a new AddTutorialCommand object
