@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modquik.logic.parser.exceptions.ParseException;
 import seedu.modquik.logic.parser.student.StudentParserUtil;
-import seedu.modquik.model.student.Address;
 import seedu.modquik.model.student.Email;
 import seedu.modquik.model.student.Name;
 import seedu.modquik.model.student.Phone;
@@ -101,29 +100,6 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, StudentParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StudentParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> StudentParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, StudentParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, StudentParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
