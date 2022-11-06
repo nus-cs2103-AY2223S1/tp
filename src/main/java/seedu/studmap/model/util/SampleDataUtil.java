@@ -73,6 +73,7 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E2345229"));
         studentData.setGitUser(new GitName("piyopp"));
         studentData.setTeleHandle(new TeleHandle("@piyo"));
+        data.add(studentData);
 
         studentData = new StudentData();
         studentData.setName(new Name("Po-Hsien"));
@@ -82,6 +83,7 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E0998281"));
         studentData.setGitUser(new GitName("popopo"));
         studentData.setTeleHandle(new TeleHandle("@popo"));
+        data.add(studentData);
 
         studentData = new StudentData();
         studentData.setName(new Name("Po Taeto"));
@@ -91,6 +93,7 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E0982113"));
         studentData.setGitUser(new GitName("potatopo"));
         studentData.setTeleHandle(new TeleHandle());
+        data.add(studentData);
 
         studentData = new StudentData();
         studentData.setName(new Name("Salad Yo"));
@@ -100,6 +103,7 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E0123111"));
         studentData.setGitUser(new GitName("saladydy"));
         studentData.setTeleHandle(new TeleHandle("@salad"));
+        data.add(studentData);
 
         studentData = new StudentData();
         studentData.setName(new Name("Tom Aito"));
@@ -109,6 +113,7 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1728221"));
         studentData.setGitUser(new GitName("tomatoto"));
         studentData.setTeleHandle(new TeleHandle());
+        data.add(studentData);
 
         return data.stream()
                 .map(Student::new)
