@@ -5,14 +5,51 @@ title: Developer Guide
 
 # **Developer Guide**
 
-* Table of Contents
-  {:toc}
+# **Welcome to SoCompiler Developer Guide**
+
+This guide is for anyone who wants to know more about the development of SoCompiler, as well as how SoCompiler works behind the scenes.
+
+___________________________________________________________________________________
+
+## **Introduction**
+
+SoCompiler is the sole app that university students will need to streamline their everyday routines. Students can save their semester's module information in SoCompiler to ensure they never forget about them. SoCompiler also helps to store contact information for students to easily find everything they need about their classes in a one-stop application.
+
+
+## **Table of Contents**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up & Getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+  * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+  * [Module Class](#module-class)
+  * [Delete Module Feature](#delete-module-feature)
+  * [Find Module Feature](#find-module-feature)
+  * [Add Module Feature](#add-module-feature)
+* [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix-Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix-Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Deleting a person](#deleting-a-person)
+  * [Saving data](#saving-data)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+SoCompiler is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project for Software Engineering students enrolled in CS2103.
+### Credit for code adapted from external sources
+* Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,6 +60,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The design of SoCompiler is similar to AddressBook-Level3, and follows the Model View Controller(MVC) design pattern.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -641,7 +679,7 @@ otherwise)
 
       Use case ends.
 
-**Use case:UC10 Edit entry in list of persons**
+**Use case:UC10 Edit entry in list of modules**
 
 **MSS**
 
@@ -666,13 +704,11 @@ otherwise)
 
       Use case ends.
 
-* 3c. The given name already exists.
+* 3c. The given module code already exists.
 
     * 3c1. SoCompiler shows an error message
 
       Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -683,8 +719,6 @@ otherwise)
    commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be backward compatible with data stored in earlier versions of the system.
 5. The product is not required to handle interaction with other users.
-
-*{More to be added}*
 
 ### Glossary
 
