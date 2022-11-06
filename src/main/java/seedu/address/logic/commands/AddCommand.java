@@ -25,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
@@ -255,6 +256,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (this.classToAdd == null) {
+            assert (!(this.personToAdd instanceof NextOfKin));
             requireNonNull(this.personToAdd);
             if (model.hasPerson(this.personToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);

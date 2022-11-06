@@ -55,6 +55,29 @@ public class NextOfKin extends Person {
                 && otherNextOfKin.getRelationship().equals(getRelationship());
     }
 
+    /**
+     * Returns true if this next of kin and {@code otherPerson} are same except tags.
+     * This defines a weaker notion of equality between two persons.
+     */
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof NextOfKin)) {
+            return false;
+        }
+
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && ((NextOfKin) otherPerson).getRelationship().equals(getRelationship());
+
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

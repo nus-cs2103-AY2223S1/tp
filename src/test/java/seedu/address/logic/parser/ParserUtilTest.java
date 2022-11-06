@@ -250,7 +250,9 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("chemist"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("biolo"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("elementa"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseSubject("e"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("addition"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseSubject("a"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("english eubject"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("mathematics eubject"));
         assertThrows(ParseException.class, () -> ParserUtil.parseSubject("physics eubject"));
@@ -581,8 +583,6 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
-    //TODO: add more for other methods in ParserUtil
-
     @Test
     public void parseRelationship_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRelationship((String) null));
@@ -605,10 +605,5 @@ public class ParserUtilTest {
         Relationship expectedRelationship = Relationship.createRelationship(VALID_RELATIONSHIP);
         assertEquals(expectedRelationship, ParserUtil.parseRelationship(relationshipWithWhitespace));
     }
-
-
-
-
-
 
 }
