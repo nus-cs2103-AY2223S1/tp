@@ -17,7 +17,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ish1506.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Testing
+  * In-charge of `Model` component
 
 ### Tan Xuan Yun
 
@@ -29,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: 
   * Integration of components 
-  * In-charge of logic component 
+  * In-charge of `Logic` component 
 
 ### Lee Cheng Da
 
