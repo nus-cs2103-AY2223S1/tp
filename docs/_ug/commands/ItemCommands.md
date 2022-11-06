@@ -190,27 +190,22 @@ The command will produce a detailed view of this item.
 
 ```info
 * If a quantity is not provided, the item quantity will be incremented by 1.
-* If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+* If two or more `QUANTITY` values are provided, the last `QUANTITY` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-inc 1 qty/3
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Incremented Item:
-Name: Onions
-Quantity: 11 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="inc 1 qty/3"
+  commandOutputBox="images/itemCommands/commandOutputBox/inc.png"
+%}
 
 ---
 
