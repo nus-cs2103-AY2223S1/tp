@@ -122,10 +122,10 @@ How the parsing works:
 The `Model` component,
 
 * stores the application book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
-* stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the `Application` objects which have existing `Interview` present in them. It is an `ObservableList<Application>` which is used to create the interview list in the UI.
-* stores the `Application` objects which have the `Interview` within one week from the time the user is using the application as another _filtered_ list.
-* stores the `Application` objects sorted by different possible orders as a _sorted_ list. It acts as an important list for the user to select the index for `EditCommand`, `DeleteCommand`, etc.
+* stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list.
+* stores the filtered `Application` objects in another _sorted_ list that is sorted by one of several possible orders. This list is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes. When the user selects the application index for an `EditCommand`, `DeleteCommand`, etc., this is the list that is referred to.
+* stores a list of `Application` objects which have an existing `Interview` present in them. It is an `ObservableList<Application>` which is used to create the interview list in the UI.
+* stores the `Application` objects which have an `Interview` within one week from the time the user is using the application as another _filtered_ list. This list is shown to the user in the remind window.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
