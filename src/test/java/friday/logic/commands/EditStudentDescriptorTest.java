@@ -3,7 +3,7 @@ package friday.logic.commands;
 import static friday.logic.commands.CommandTestUtil.DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.DESC_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_CONSULTATION_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
@@ -49,7 +49,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

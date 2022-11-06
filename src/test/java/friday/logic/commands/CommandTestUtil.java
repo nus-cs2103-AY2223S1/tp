@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAMHANDLE_BOB = "b0b_choo";
     public static final LocalDate VALID_CONSULTATION_AMY = LocalDate.of(2022, 9, 1);
     public static final LocalDate VALID_CONSULTATION_BOB = LocalDate.of(2022, 7, 12);
-    public static final LocalDate VALID_MASTERYCHECK_AMY = LocalDate.of(2022, 11, 2);
-    public static final LocalDate VALID_MASTERYCHECK_BOB = LocalDate.of(2022, 8, 24);
+    public static final LocalDate VALID_MASTERYCHECK_DATE_AMY = LocalDate.of(2022, 11, 2);
+    public static final LocalDate VALID_MASTERYCHECK_DATE_BOB = LocalDate.of(2022, 8, 24);
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String TELEGRAMHANDLE_DESC_BOB = " " + PREFIX_TELEGRAMHANDLE + VALID_TELEGRAMHANDLE_BOB;
     public static final String CONSULTATION_DESC_AMY = " " + PREFIX_CONSULTATION + VALID_CONSULTATION_AMY;
     public static final String CONSULTATION_DESC_BOB = " " + PREFIX_CONSULTATION + VALID_CONSULTATION_BOB;
-    public static final String MASTERYCHECK_DESC_AMY = " " + PREFIX_MASTERYCHECK + VALID_MASTERYCHECK_AMY;
-    public static final String MASTERYCHECK_DESC_BOB = " " + PREFIX_MASTERYCHECK + VALID_MASTERYCHECK_BOB;
+    public static final String MASTERYCHECK_DESC_AMY = " " + PREFIX_MASTERYCHECK + VALID_MASTERYCHECK_DATE_AMY;
+    public static final String MASTERYCHECK_DESC_BOB = " " + PREFIX_MASTERYCHECK + VALID_MASTERYCHECK_DATE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -68,10 +68,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_TELEGRAMHANDLE_AMY).withConsultation(VALID_CONSULTATION_AMY)
-                .withMasteryCheck(VALID_MASTERYCHECK_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withMasteryCheck(VALID_MASTERYCHECK_DATE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_TELEGRAMHANDLE_BOB).withConsultation(VALID_CONSULTATION_BOB)
-                .withMasteryCheck(VALID_MASTERYCHECK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMasteryCheck(VALID_MASTERYCHECK_DATE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

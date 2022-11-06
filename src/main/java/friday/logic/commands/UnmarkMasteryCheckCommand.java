@@ -17,6 +17,7 @@ public class UnmarkMasteryCheckCommand extends Command {
             + " the index number.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
+    public static final String MESSAGE_SUCCESS = "Unmarked Mastery Check of Student: %s";
     public static final String MESSAGE_NOT_MARKED = "Can't unmark as %s's Mastery Check has not been marked as passed!";
     public static final String MESSAGE_EMPTY_MASTERYCHECK = " currently does not have any scheduled Mastery Check to be"
             + " unmarked.";
@@ -48,6 +49,6 @@ public class UnmarkMasteryCheckCommand extends Command {
     }
 
     private String generateSuccessMessage(Student studentToMark) {
-        return String.format("Unmarked Mastery Check of Student: %s", studentToMark.getName());
+        return String.format(MESSAGE_SUCCESS, studentToMark.getName());
     }
 }

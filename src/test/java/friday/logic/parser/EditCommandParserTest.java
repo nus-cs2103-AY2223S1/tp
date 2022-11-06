@@ -94,7 +94,7 @@ public class EditCommandParserTest {
                 .withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).withMasteryCheck(
-                        CommandTestUtil.VALID_MASTERYCHECK_AMY)
+                        CommandTestUtil.VALID_MASTERYCHECK_DATE_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -141,7 +141,7 @@ public class EditCommandParserTest {
         // address
         userInput = targetIndex.getOneBased() + CommandTestUtil.MASTERYCHECK_DESC_AMY;
         descriptor = new EditStudentDescriptorBuilder()
-                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_AMY).build();
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -169,7 +169,7 @@ public class EditCommandParserTest {
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_BOB)
-                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB).withTags(
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB).withTags(
                         CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -195,7 +195,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB;
         descriptor = new EditStudentDescriptorBuilder().withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_BOB)
-                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB).build();
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
