@@ -758,6 +758,8 @@ These commands will serve as a basic toolkit for our users to manage venue booki
 
 ##### Venue command flow
 
+
+
 [Comment]: <> (To add sequence diagram to describe an example venue command flow)
 
 <br>
