@@ -8,6 +8,11 @@ title: MineFriends 👾
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
+:bulb: Before we begin, it is important to note that:
+* Minefriends is not affiliated with Minecraft, Mojang Studios or Microsoft in any way.
+* Minefriends is an independently developed software. It is not a product owned by Mojang Studios or Microsoft.
+* Team Minefriends do not own Minecraft, in whole or in part.
+
 MineFriends is a **desktop app for avid Minecraft players to manage information about their online friends**. 
 
 With MineFriends, you can:
