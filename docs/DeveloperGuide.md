@@ -504,21 +504,50 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
-5. The product should be easy to use by person with little experience of using a command line application.
+#### Technical Requirements
 
-_{More to be added}_
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The application should look and perform the same regardless of which _mainstream OS_ is used.
+3. The data state should be persistent.
+
+#### Performance Requirements
+
+1. Should be able to hold up to 100 employees without a noticeable sluggishness in performance for typical usage.
+2. The system should be able to execute all commands within half a second (given constraint 1).
+
+#### Quality Requirements
+
+1. A user with above average typing speed (above 40 WPM) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. The product should be easy to use by users with little experience of using a command line application.
+3. Application should be accessible, and readily available to new users.
+4. It should be easy to begin adopting usage of the application for its intended use.
+5. The application should not create unnecessary files/hidden files that clog up the user's disk.
+
+#### Documentation Requirements
+
+1. User guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
+2. Developer guide should be sufficiently clear such that any external readers can peruse it to understand the codebase thoroughly, enough to possibly add a new feature/property.
+
+#### Non-requirements
+
+1. This product is not required to manage/handle the on-site execution of HR processes (such as `add` - hire an employee, `delete` - fire an employee).
+2. This product is not required to support applicant screening and processing for HR recruitment.
 
 ### Glossary
+
+#### Technical Terminology
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 - **Entries**: Profile of a person which contains all the necessary details about the person
 
-_{More to be added}_
+#### Coydir Terminology
+
+- **HR**: Human Resources - a core function of companies and businesses that involves the management of staff.
+
+#### Miscellaneous
+
+- **WPM**: Words Per Minute, a unit of measurement for typing speed.
 
 ---
 
