@@ -2,14 +2,14 @@
 layout: page
 title: User Guide 
 ---
-## Table of Contents
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## **Introduction**
 
 #### What is TrackAScholar?
 
@@ -48,11 +48,11 @@ This user guide is optimized for TrackAScholar's most recent version, v1.4.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend 
+## **Legend** 
 
 Here are certain indicators explained so that the user may better comprehend the documentation.
 
-:information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+:information_source: **Notes:** Notes are placed in this guide to provide more information.
 
 :bulb: **Tip:** Tips are placed in this guide to provide a suggestion.
 
@@ -62,14 +62,14 @@ Here are certain indicators explained so that the user may better comprehend the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 * **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
 * **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start - How to get started
+## **Quick start** - How to get started
 
 1. Ensure `Java 11` or a later version is installed on your computer. Otherwise, check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
 
@@ -92,7 +92,7 @@ Here are certain indicators explained so that the user may better comprehend the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Overview of TrackAScholar app  
+## **Overview of TrackAScholar app**  
 
 This is how the application will look like when opened.
 
@@ -100,7 +100,7 @@ This is how the application will look like when opened.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -503,7 +503,7 @@ exit
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Further details
+## **Further details**
 
 ### Saving the data
 
@@ -521,7 +521,7 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 | Action     | Format, Examples                                                                                                                                                                           |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

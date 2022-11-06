@@ -47,7 +47,9 @@ This developer guide is optimized for TrackAScholar's most recent version, v1.4.
 
 Here are certain indicators explained so that the user may better comprehend the documentation.
 
-:information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+:information_source: **Notes:** Notes are placed in this guide to provide more information.
+
+:bulb: **Tip:** Tips are placed in this guide to provide a suggestion.
 
 [Return to top](#table-of-contents)
 
