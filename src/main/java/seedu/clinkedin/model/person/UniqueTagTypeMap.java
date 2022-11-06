@@ -261,6 +261,14 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return Collections.unmodifiableMap(prefixMap);
     }
 
+    public static Map<Prefix, TagType> getPrefixMapCopy() {
+        Map<Prefix, TagType> copy = new HashMap<>();
+        for (Prefix p : prefixMap.keySet()) {
+            copy.put(p.copy(), prefixMap.get(p).copy());
+        }
+        return copy;
+    }
+
     public static void setPrefixMap(Map<Prefix, TagType> map) {
         Map<Prefix, TagType> newMap = new HashMap<>();
         for (Prefix p: map.keySet()) {
@@ -320,5 +328,18 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
 
     public static boolean isExist(String otherTagType) {
         return prefixMap.values().stream().anyMatch(tagType -> tagType.getTagTypeName().equals(otherTagType));
+    }
+
+    /**
+     * Returns a copy of the UniqueTagTypeMap.
+     */
+    public UniqueTagTypeMap copy() {
+        UniqueTagTypeMap copy = new UniqueTagTypeMap();
+        for (TagType tagType: this) {
+            for (Tag tag: this.getTagList(tagType)) {
+                copy.mergeTag(tagType, tag);
+            }
+        }
+        return copy;
     }
 }
