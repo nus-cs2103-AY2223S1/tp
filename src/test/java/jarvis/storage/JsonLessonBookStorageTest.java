@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.LessonBook;
+import jarvis.model.ReadOnlyLessonBook;
 
 public class JsonLessonBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonLessonBookStorageTest");
@@ -96,10 +96,10 @@ public class JsonLessonBookStorageTest {
     /**
      * Saves {@code LessonBook} at the specified {@code filePath}.
      */
-    private void saveLessonBook(ReadOnlyLessonBook LessonBook, String filePath) {
+    private void saveLessonBook(ReadOnlyLessonBook lessonBook, String filePath) {
         try {
             new JsonLessonBookStorage(Paths.get(filePath))
-                    .saveLessonBook(LessonBook, addToTestDataPathIfNotNull(filePath));
+                    .saveLessonBook(lessonBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

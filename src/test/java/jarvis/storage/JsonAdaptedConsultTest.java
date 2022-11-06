@@ -33,77 +33,77 @@ public class JsonAdaptedConsultTest {
             new ArrayList<>(List.of(new JsonAdaptedStudent(ALICE), new JsonAdaptedStudent(BENSON),
                     new JsonAdaptedStudent(CARL)));
     private static final HashMap<Integer, Boolean> VALID_ATTENDANCE = new HashMap<>();
-    private static ArrayList<String> VALID_GENERAL_NOTES;
-    private static Map<Integer, ArrayList<String>> VALID_STUDENT_NOTES;
+    private static ArrayList<String> validGeneralNotes;
+    private static Map<Integer, ArrayList<String>> validStudentNotes;
 
     @BeforeEach
     public void setUp() {
         VALID_ATTENDANCE.put(1, false);
         VALID_ATTENDANCE.put(0, false);
-        VALID_GENERAL_NOTES = new ArrayList<>();
-        VALID_GENERAL_NOTES.addAll(List.of("General"));
-        VALID_STUDENT_NOTES = new HashMap<>();
-        VALID_STUDENT_NOTES.put(0, new ArrayList<>(List.of("1", "2")));
+        validGeneralNotes = new ArrayList<>();
+        validGeneralNotes.addAll(List.of("General"));
+        validStudentNotes = new HashMap<>();
+        validStudentNotes.put(0, new ArrayList<>(List.of("1", "2")));
     }
 
     @Test
     public void toModelType_validConsultDetails_returnsConsult() throws Exception {
-        JsonAdaptedConsult Consult = new JsonAdaptedConsult(CONSULT_1);
-        assertEquals(CONSULT_1, Consult.toModelType());
+        JsonAdaptedConsult consult = new JsonAdaptedConsult(CONSULT_1);
+        assertEquals(CONSULT_1, consult.toModelType());
     }
 
     @Test
     public void toModelType_invalidTimePeriod_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult(VALID_DESC, DT2, DT1, VALID_STUDENT_LIST, VALID_ATTENDANCE,
-                        VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
+                        validGeneralNotes, validStudentNotes, false);
         String expectedMessage = TimePeriod.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 
     @Test
     public void toModelType_nullDate_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult((String) null, (LocalDateTime) null, DT1, VALID_STUDENT_LIST, VALID_ATTENDANCE,
-                        VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
+                        validGeneralNotes, validStudentNotes, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 
     @Test
     public void toModelType_nullStudents_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult((String) null, DT1, DT2, null, VALID_ATTENDANCE,
-                        VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
+                        validGeneralNotes, validStudentNotes, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Student.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 
     @Test
     public void toModelType_nullAttendance_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult((String) null, DT1, DT2, VALID_STUDENT_LIST, null,
-                        VALID_GENERAL_NOTES, VALID_STUDENT_NOTES, false);
+                        validGeneralNotes, validStudentNotes, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LessonAttendance.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 
     @Test
     public void toModelType_nullGeneralNotes_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult((String) null, DT1, DT2, VALID_STUDENT_LIST, VALID_ATTENDANCE,
-                        null, VALID_STUDENT_NOTES, false);
+                        null, validStudentNotes, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LessonNotes.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 
     @Test
     public void toModelType_nullStudentNotes_throwsIllegalArgumentException() {
-        JsonAdaptedConsult Consult =
+        JsonAdaptedConsult consult =
                 new JsonAdaptedConsult((String) null, DT1, DT2, VALID_STUDENT_LIST, VALID_ATTENDANCE,
-                        VALID_GENERAL_NOTES, null, false);
+                        validGeneralNotes, null, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LessonNotes.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Consult::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, consult::toModelType);
     }
 }
 

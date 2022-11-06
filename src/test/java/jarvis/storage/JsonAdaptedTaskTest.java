@@ -20,23 +20,23 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask Task = new JsonAdaptedTask(MISSION1);
-        assertEquals(MISSION1, Task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(MISSION1);
+        assertEquals(MISSION1, task.toModelType());
     }
 
     @Test
     public void toModelType_invalidDesc_throwsIllegalArgumentException() {
-        JsonAdaptedTask Task =
+        JsonAdaptedTask task =
                 new JsonAdaptedTask(INVALID_DESC, VALID_DATE, false);
         String expectedMessage = TaskDesc.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, Task::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalArgumentException() {
-        JsonAdaptedTask Task =
+        JsonAdaptedTask task =
                 new JsonAdaptedTask((String) null, VALID_DATE, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDesc.class.getSimpleName());
-        assertThrows(IllegalArgumentException.class, expectedMessage, Task::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, task::toModelType);
     }
 }

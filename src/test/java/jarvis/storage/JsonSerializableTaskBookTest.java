@@ -22,9 +22,9 @@ public class JsonSerializableTaskBookTest {
     public void toModelType_typicalTasksFile_success() throws Exception {
         JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskBook.class).get();
-        TaskBook TaskBookFromFile = dataFromFile.toModelType();
+        TaskBook taskBookFromFile = dataFromFile.toModelType();
         TaskBook typicalPersonsTaskBook = TypicalTasks.getTypicalTaskBook();
-        assertEquals(TaskBookFromFile, typicalPersonsTaskBook);
+        assertEquals(taskBookFromFile, typicalPersonsTaskBook);
     }
 
     @Test

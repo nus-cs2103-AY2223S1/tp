@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.LessonBook;
 import jarvis.model.exceptions.LessonClashException;
@@ -25,9 +24,9 @@ public class JsonSerializableLessonBookTest {
     public void toModelType_typicalLessonsFile_success() throws Exception {
         JsonSerializableLessonBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_LESSONS_FILE,
                 JsonSerializableLessonBook.class).get();
-        LessonBook LessonBookFromFile = dataFromFile.toModelType();
+        LessonBook lessonBookFromFile = dataFromFile.toModelType();
         LessonBook typicalPersonsLessonBook = TypicalLessons.getTypicalLessonBook();
-        assertEquals(LessonBookFromFile, typicalPersonsLessonBook);
+        assertEquals(lessonBookFromFile, typicalPersonsLessonBook);
     }
 
     @Test

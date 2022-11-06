@@ -2,8 +2,8 @@ package jarvis.storage;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalTasks.FOLLOW_UP;
-import static jarvis.testutil.TypicalTasks.REPLY_STUDENTS;
 import static jarvis.testutil.TypicalTasks.QUEST1;
+import static jarvis.testutil.TypicalTasks.REPLY_STUDENTS;
 import static jarvis.testutil.TypicalTasks.getTypicalTaskBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -94,10 +94,10 @@ public class JsonTaskBookStorageTest {
     /**
      * Saves {@code TaskBook} at the specified {@code filePath}.
      */
-    private void saveTaskBook(ReadOnlyTaskBook TaskBook, String filePath) {
+    private void saveTaskBook(ReadOnlyTaskBook taskBook, String filePath) {
         try {
             new JsonTaskBookStorage(Paths.get(filePath))
-                    .saveTaskBook(TaskBook, addToTestDataPathIfNotNull(filePath));
+                    .saveTaskBook(taskBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
