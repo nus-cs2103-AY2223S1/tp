@@ -8,6 +8,9 @@ header_pages:
 
 markdown: kramdown
 
+kramdown:
+  parse_block_html: true
+
 repository: "AY2223S1-CS2103T-W15-1/tp"
 github_icon: "images/github-icon.png"
 
