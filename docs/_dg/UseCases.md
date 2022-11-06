@@ -2,7 +2,7 @@
 
 #### Use Case 1: Add Item to Inventory
 
-Preconditions: [[ Item ]] to add does not yet exist in inventory.
+Preconditions: [[ item:Item ]] to add does not yet exist in inventory.
 
 [[ MSS ]]:
 
