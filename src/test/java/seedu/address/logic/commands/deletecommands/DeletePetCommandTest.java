@@ -65,9 +65,15 @@ public class DeletePetCommandTest {
 
         String expectedMessage = String.format(DeletePetCommand.MESSAGE_DELETE_PET_SUCCESS, personToDelete);
 
+        //set up modelForPets
+        modelForPets.updateFilteredPetList(pet -> true);
+        modelForPets.switchToPetList();
+
+        //set up expectedModel
         Model expectedModel = new ModelManager(modelForPets.getAddressBook(), new UserPrefs());
         expectedModel.deletePet(personToDelete);
         showNoPet(expectedModel);
+        expectedModel.updateFilteredPetList(pet -> true);
 
         assertCommandSuccess(deletePetCommand, modelForPets, expectedMessage, expectedModel);
     }
@@ -105,7 +111,7 @@ public class DeletePetCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-        }
+    }
 
     /**
      * Updates {@code model}'s filtered list to show no Pets.
