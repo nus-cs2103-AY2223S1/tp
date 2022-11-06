@@ -78,7 +78,7 @@ public class RateCommandTest {
                 .withEmployeeId("1").build();
         model.addPerson(person);
         RateCommand rateCommand = new RateCommand(ID_SECOND_EMPLOYEE, rating);
-        assertCommandFailure(rateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(rateCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test

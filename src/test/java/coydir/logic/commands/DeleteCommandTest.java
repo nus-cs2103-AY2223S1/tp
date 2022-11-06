@@ -45,7 +45,7 @@ public class DeleteCommandTest {
         EmployeeId outOfBoundId = new EmployeeId(Integer.toString(model.getFilteredPersonList().size() + 1));
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundId);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("2"));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test

@@ -177,7 +177,10 @@ We will explore each of these fields in great detail as we continue along, but b
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: **Integer input values cannot be too large**: any values greater than $2^{31}-1$ is not supported.
+- If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
+  e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
+
+:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
 
 ### Managing Employee Profiles
 
