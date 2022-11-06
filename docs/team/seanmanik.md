@@ -29,17 +29,18 @@ Given below are my contributions to the project.
    - **Justification:** UI is key when it comes to keeping users engaged, and thus the addition of these icons helps to make the navigation of the app more fun.
    - **Highlights:** Icons are all selectively picked to ensure that they match each other in terms of art style, aesthetics, and colour scheme.
 
-- New Feature: Modified the UI to display both events and trips
+- **New Feature:** Modified the UI to display both events and trips
    - **What it does:** Events and trips can now be both displayed simulaneously, side by side.
    - **Justification:** This is highly necessary, as the manipulation of events and trips are both equally important features of our application.
    - **Highlights:** UI is designed in the most user friendly way possible, to provide users with the most information at a single glance.
-- New Feature: Modified the UI to display an Events and Trips Label
+- **New Feature:** Modified the UI to display an Events and Trips Label
    - **What it does:** Above the events and trips list, there is now a label which tells users which list they are looking at.
    - **Justification:** This enhances the user experience, as they are now able to differentiate between the two lists shown due to the provision of a visual indicator.
-- New Feature: Modified the GUI colour scheme to coordinated blue colour scheme
+- **New Feature:** Modified the GUI colour scheme to coordinated blue colour scheme
    - **What it does:** The new colour scheme gives Travelr a unique identity, and allows users to navigate an aesthetically pleasing application.
    - **Justification:** Having a unique colour scheme enhances the user experience as it gives a completely different visual experience as compared to using addressbook.
    - **Highlights:** Different colour schemes were trialed and tested, before we settled on blue.
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=seanmanik&breakdown=true)
 
 ### Documentation
 #### User Guide

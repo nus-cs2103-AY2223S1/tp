@@ -46,12 +46,12 @@ EventListPanel -down-> "*" EventCard
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
-CommandBox --|> UiPart
+CommandBox -up-|> UiPart
 TripListPanel --|> UiPart
-TripCard --|> UiPart
-SelectedTripCard --|> UiPart
+TripCard -up-|> UiPart
+SelectedTripCard -up-|> UiPart
 EventListPanel --|> UiPart
-EventCard --|> UiPart
+EventCard -up-|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
@@ -62,7 +62,6 @@ UiManager -right-> Logic
 MainWindow -left-> Logic
 
 TripListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
