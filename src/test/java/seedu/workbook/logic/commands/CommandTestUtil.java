@@ -30,7 +30,7 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_AMY = "Amy Bee";
     public static final String VALID_COMPANY_BOB = "Bob Choo";
     public static final String VALID_ROLE_AMY = "Software Engineer";
-    public static final String VALID_ROLE_BOB = "Software Engineer";
+    public static final String VALID_ROLE_BOB = "Backend Engineer";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_STAGE_AMY = "Technical Interview";
@@ -55,9 +55,12 @@ public class CommandTestUtil {
 
     // CHECKSTYLE.OFF: LineLength
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&"; // '&' not allowed in company name
+    public static final String NO_ARGS_COMPANY = " " + PREFIX_COMPANY + ""; // arguments must be present after company prefix
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "James&"; // '&' not allowed in roles
+    public static final String NO_ARGS_ROLE = " " + PREFIX_ROLE + ""; // arguments must be present after role prefix
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_STAGE_DESC = " " + PREFIX_STAGE + "H&Interview"; // '&' not allowed in stage
+    public static final String NO_ARGS_STAGE = " " + PREFIX_STAGE + ""; // arguments must be present after stage prefix
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "12-20-2020 12:00"; // MMM instead of MM
     // CHECKSTYLE.ON: LineLength
 

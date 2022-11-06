@@ -22,6 +22,8 @@ import seedu.workbook.logic.commands.ExitCommand;
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.commands.HelpCommand;
 import seedu.workbook.logic.commands.ListCommand;
+import seedu.workbook.logic.commands.RedoCommand;
+import seedu.workbook.logic.commands.UndoCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 import seedu.workbook.model.internship.Internship;
@@ -67,6 +69,18 @@ public class WorkBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 
     @Test

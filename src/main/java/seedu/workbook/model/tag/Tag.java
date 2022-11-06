@@ -1,7 +1,6 @@
 package seedu.workbook.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in WorkBook.
@@ -20,7 +19,6 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 
