@@ -297,7 +297,7 @@ The tips are show to the user in one of two ways depending on the UI layout.
 ##### Narrow UI implementation
 In the narrow UI layout, the tips can be accessed through a `tipsButton` which has a light bulb icon on the `NarrowInternshipCard` which will open the `TipsWindow`. The `TipsWindow` is a member of every `NarrowInternshipCard` object and is created when the constructor is called. 
 
-The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `stageHasTips()` method from the `StageUtil` class that returns a boolean true or false depending on whether the stage of the application has tips.
+The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `stageHasTips()` method from the `StageUtil` class that returns a boolean `isXXX` depending on whether the stage of the application has tips.
 
 If the application stage has tips and the button is pressed, the `TipsWindow` UI component of the `InternshipCard` will have its `GridPane` populated with `TipsCard` vertically after retrieving the tips using the `getStageSpecificStips()` method and building the `TipsCard` for each tip. The tips window is then opened.
 
