@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -22,7 +23,8 @@ public class StudioParticipation {
      * @param students Students involved in the lesson.
      */
     public StudioParticipation(Collection<Student> students) {
-        participation = new TreeMap<>(Student.NAME_COMPARATOR);
+        participation = new TreeMap<>();
+
         for (Student stu : students) {
             participation.put(stu, 0);
         }
@@ -35,7 +37,7 @@ public class StudioParticipation {
      * @param indexMap The participation data for each student mapped by student index.
      */
     public StudioParticipation(List<Student> studentList, Map<Integer, Integer> indexMap) {
-        TreeMap<Student, Integer> participation = new TreeMap<>(Student.NAME_COMPARATOR);
+        TreeMap<Student, Integer> participation = new TreeMap<>();
         for (int i : indexMap.keySet()) {
             participation.put(studentList.get(i), indexMap.get(i));
         }
@@ -43,7 +45,9 @@ public class StudioParticipation {
     }
 
     public void setParticipationForStudent(Student student, int i) {
-        assert i >= 0 && i <= 500 : "Participation value must be between 0 and 500 inclusive";
+        if (i < 0 || i > 500) {
+            throw new InvalidParticipationException("Participation value must be between 0 and 500 inclusive");
+        }
         if (!participation.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -58,6 +62,9 @@ public class StudioParticipation {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
+        if (!participation.containsKey(targetStudent)) {
+            return;
+        }
         int studentParticipation = participation.get(targetStudent);
         participation.remove(targetStudent);
         participation.put(editedStudent, studentParticipation);

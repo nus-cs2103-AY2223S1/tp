@@ -1,4 +1,4 @@
-package jarvis.model.student;
+package jarvis.model;
 
 import static jarvis.logic.commands.CommandTestUtil.VALID_MATRIC_NUM_AMY;
 import static jarvis.logic.commands.CommandTestUtil.VALID_MATRIC_NUM_BOB;
@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import jarvis.model.MatricNum;
 
 public class StudentMatricNumTest {
 

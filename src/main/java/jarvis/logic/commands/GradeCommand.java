@@ -5,6 +5,7 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_MIDTERM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PRACTICAL_ASST;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA1;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA2;
+import static jarvis.logic.parser.CliSyntax.PREFIX_STUDIO_ATTENDANCE;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
@@ -29,7 +30,7 @@ public class GradeCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_RA1 + "MARKS] [" + PREFIX_RA2 + "MARKS] "
             + "[" + PREFIX_MIDTERM + "MARKS] [" + PREFIX_PRACTICAL_ASST + "MARKS] "
-            + "[" + PREFIX_FINAL_ASST + "MARKS]\n"
+            + "[" + PREFIX_FINAL_ASST + "MARKS] [" + PREFIX_STUDIO_ATTENDANCE + "MARKS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RA1 + "17 " + PREFIX_MIDTERM + "55";
 

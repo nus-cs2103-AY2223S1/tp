@@ -3,7 +3,6 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,23 +23,6 @@ import javafx.collections.ObservableList;
  * @see Task#equals(Object)
  */
 public class UniqueTaskList implements Iterable<Task> {
-
-    private static final Comparator<Task> TASK_COMPARATOR = (t1, t2) -> {
-        if (t1.isDone() != t2.isDone()) {
-            return t1.isDone() ? 1 : -1;
-        }
-        if (t1.hasDeadline() != t2.hasDeadline()) {
-            return t1.hasDeadline() ? -1 : 1;
-        }
-        if (!(t1.hasDeadline() || t2.hasDeadline())) {
-            return 0;
-        }
-        if (t1.isDone()) {
-            return t2.getDeadline().compareTo(t1.getDeadline());
-        } else {
-            return t1.getDeadline().compareTo(t2.getDeadline());
-        }
-    };
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -64,7 +46,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
-        FXCollections.sort(internalList, TASK_COMPARATOR);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -85,7 +67,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
-        FXCollections.sort(internalList, TASK_COMPARATOR);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -97,13 +79,13 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
-        FXCollections.sort(internalList, TASK_COMPARATOR);
+        FXCollections.sort(internalList);
     }
 
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        FXCollections.sort(internalList, TASK_COMPARATOR);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -117,7 +99,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
-        FXCollections.sort(internalList, TASK_COMPARATOR);
+        FXCollections.sort(internalList);
     }
 
     /**

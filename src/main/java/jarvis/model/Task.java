@@ -9,7 +9,7 @@ import java.util.Objects;
  * Represents a Task in JARVIS.
  * Guarantees: task description is present and not null.
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     // Identity fields
     private final TaskDesc taskDesc;
@@ -56,6 +56,23 @@ public class Task {
         isDone = false;
     }
 
+    @Override
+    public int compareTo(Task t) {
+        if (isDone != t.isDone()) {
+            return isDone ? 1 : -1;
+        }
+        if (this.hasDeadline() != t.hasDeadline()) {
+            return this.hasDeadline() ? -1 : 1;
+        }
+        if (!(this.hasDeadline() || t.hasDeadline())) {
+            return 0;
+        }
+        if (isDone) {
+            return t.getDeadline().compareTo(this.getDeadline());
+        } else {
+            return this.getDeadline().compareTo(t.getDeadline());
+        }
+    }
     /**
      * Returns true if both tasks have the same description and data fields.
      * This defines a stronger notion of equality between two tasks.

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,9 +28,14 @@ import jarvis.model.TimePeriod;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_MARK = "Mark has to be a non-negative number.";
+    public static final String MESSAGE_INVALID_MARK_FORMAT = "Mark has to be a non-negative number.";
+    public static final String MESSAGE_INVALID_MARK_VALUE = "Mark cannot be greater than the total mark"
+                                                            + " for the assessment.";
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
     public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -98,7 +104,7 @@ public class ParserUtil {
     public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         try {
-            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
+            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim(), DATE_FORMATTER);
             return new TaskDeadline(trimmedDeadline);
         } catch (DateTimeParseException e) {
             throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
@@ -144,23 +150,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String marks} into the corresponding double that indicates the mark.
+     * Parses a {@code String marks} into the corresponding double that indicates the mark
+     * for the given {@code Assessment assessment}.
      *
      * @return A double representing the mark.
      * @throws ParseException If the given {@code String mark} is invalid.
      */
-    public static double parseMarks(String marks) throws ParseException {
+    public static double parseMarks(String marks, Assessment assessment) throws ParseException {
         requireNonNull(marks);
         String trimmedMarks = marks.trim();
         double value;
         try {
             value = Double.parseDouble(trimmedMarks);
+            if (value > assessment.getTotalMarks()) {
+                throw new ParseException(MESSAGE_INVALID_MARK_VALUE);
+            }
         } catch (NumberFormatException nfe) {
-            throw new ParseException(MESSAGE_INVALID_MARK);
+            throw new ParseException(MESSAGE_INVALID_MARK_FORMAT);
         }
 
         if (value < 0) {
-            throw new ParseException(MESSAGE_INVALID_MARK);
+            throw new ParseException(MESSAGE_INVALID_MARK_FORMAT);
         }
         return value;
     }
@@ -190,7 +200,7 @@ public class ParserUtil {
         requireNonNull(date);
 
         try {
-            return LocalDate.parse(date.trim());
+            return LocalDate.parse(date.trim(), DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_DATE);
         }
@@ -206,7 +216,7 @@ public class ParserUtil {
         requireNonNull(time);
 
         try {
-            return LocalTime.parse(time.trim());
+            return LocalTime.parse(time.trim(), TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_TIME);
         }

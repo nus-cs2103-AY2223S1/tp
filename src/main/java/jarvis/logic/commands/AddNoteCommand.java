@@ -40,6 +40,7 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_ADD_OVERALL_NOTE_SUCCESS = "Noted for lesson %1$s: %2$s";
     public static final String MESSAGE_ADD_STUDENT_NOTE_SUCCESS = "Noted for %1$s in lesson %2$s: %3$s";
+    public static final String MESSAGE_NOTE_EMPTY = "Note cannot be empty";
 
     private final Index lessonIndex;
     private final Index studentIndex;
