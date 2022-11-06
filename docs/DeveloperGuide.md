@@ -440,7 +440,7 @@ Step 2. The user executes `delete 5` command to delete the 5th internship in the
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new internship. The `add` command also calls `Model#commitInTrack()`, causing another modified internship tracker state to be saved into the `intrackStateList`.
+Step 3. The user executes `add c/Google …​` to add a new internship. The `add` command also calls `Model#commitInTrack()`, causing another modified internship tracker state to be saved into the `intrackStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -475,7 +475,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInTrack()`. Since the `currentStatePointer` is not pointing at the end of the `intrackStateList`, all internship tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInTrack()`. Since the `currentStatePointer` is not pointing at the end of the `intrackStateList`, all internship tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
