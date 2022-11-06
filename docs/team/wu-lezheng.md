@@ -10,24 +10,24 @@ PetCode is a software app that aims to facilitate better working experience and 
 Given below are my contributions to the project.
 
 * **Functionality**: Added the `order` package to the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
-  * What it does: Added an `Order` class and its subcomponents to simulate pet trade in the real-world.
+  * What it does: Added an `Order` class and its subcomponents.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
 * **Functionality**: Extended `person` to different categories in the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
-  * What it does: Extended the `Person` class into three categories -- `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
+  * What it does: Extended the `Person` class into `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
 * **New Feature**: Added a popup window for adding buyer and supplier. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
   * What it is about: Added a popup window with prompt text for adding buyer with orders and suppliers with pets, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
   * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer or supplier, which is very demanding in terms of memorisation.
-  * Highlights: The popup window is designed to improve the user experience (UX), with keyboard shortcuts and prompt text. It also shows how UI, model and logic can be linked.
+  * Highlights: The popup window is designed to improve the user experience (UX). It also shows how UI, model and logic can be linked.
 
 * **New Feature**: Extended the `EditCommand` to three categories: edit buyer command, edit supplier command, edit deliverer command. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
   * What it does: Extended the `EditCommand` to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
-  * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing and leaves space if more distinct attributes are added them in the future.
-  * Highlights: This makes use of polymorphism as there is a need to abstract out the common logic in all three types of `EditCommand`.
+  * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing even more distinct attributes are added to them in the future.
+  * Highlights: This makes use of polymorphism.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wu-lezheng&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Wu-Lezheng&tabRepo=AY2223S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -73,6 +73,5 @@ Given below are my contributions to the project.
     [#195](https://github.com/AY2223S1-CS2103T-W08-2/tp/issues/195).
 
 * **Tools**:
-  * Used JavaFX to modify the UI.
-  * Used Scene Builder to create more FXML files.
+  * Used JavaFX and Scene Builder to modify the UI.
   * Used PlantUML to add more UML diagrams in the developer guide.
