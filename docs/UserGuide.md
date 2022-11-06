@@ -251,8 +251,8 @@ To add a **tutor**,<br>
 
 
 * Generally,
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<p></p>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
     1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
     2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -260,12 +260,13 @@ To add a **tutor**,<br>
        - end with a domain label at least 2 characters long;
        - have each domain label start and end with alphanumeric characters;
        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * `<address>` field can take any values but should not be left blank.
-  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+    <p></p>
+  * `<address>` field can take any values but should not be left blank.<p></p>
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.<p></p>
   
 
 * For students,
-  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
@@ -275,8 +276,8 @@ To add a **tutor**,<br>
 
 
 * For tutors,
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.<p></p>
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
 
 Examples:
 * `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
@@ -311,36 +312,38 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
 
 * Generally,
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
-  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
-    The valid subjects are:
-    1. English
-    2. Mathematics
-    3. Physics
-    4. Chemistry
-    5. Biology
-    6. Elementary Mathematics
-    7. Additional Mathematics
+    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.<p></p>
+    * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
+      The valid subjects are:
+      1. English
+      2. Mathematics
+      3. Physics
+      4. Chemistry
+      5. Biology
+      6. Elementary Mathematics
+      7. Additional Mathematics
+    
+      (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
+    * `<level>` field should be one of the valid academic levels.
+      The valid academic levels are:
+        1. Primary 1 to 6
+        2. Secondary 1 to 4
 
-    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
-  * `<level>` field should be one of the valid academic levels.
-    The valid academic levels are:
-      1. Primary 1 to 6
-      2. Secondary 1 to 4
-
-    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
-  * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
-    1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
-    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
-       Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
-       
-       Some valid examples are:
-        - 12pm - 3pm
-        - 1:00pm 2:00pm
-        - 2200 to 2400
-        - 23:00 - 00:00
-  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+      (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+    * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)<p></p>
+    * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
+      1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
+      2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
+         Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
+         <p></p>
+         Some valid examples are:
+         
+          - 12pm - 3pm
+          - 1:00pm 2:00pm
+          - 2200 to 2400
+          - 23:00 - 00:00
+         <p></p>
+    * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 
 Examples:
@@ -424,8 +427,8 @@ To edit a **class**, <br>
 
 
 * The constraints of each optional field must be followed. They are:
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<p></p>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
       1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
       2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -433,17 +436,18 @@ To edit a **class**, <br>
           - end with a domain label at least 2 characters long
           - have each domain label start and end with alphanumeric characters
           - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * `<address>` field can take any values but should not be left blank.
-  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
-  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+      <p></p>
+  * `<address>` field can take any values but should not be left blank.<p></p>
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.<p></p>
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
       2. Secondary 1 to 4
 
     (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.<p></p>
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
     The valid subjects are:
       1. English
@@ -455,7 +459,7 @@ To edit a **class**, <br>
       7. Additional Mathematics
 
     (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
-  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)<p></p>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
       2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
@@ -466,6 +470,7 @@ To edit a **class**, <br>
           - 1:00pm 2:00pm
           - 2200 to 2400
           - 23:00 - 00:00
+      <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -590,8 +595,8 @@ Formats:
 
 
 * The constraints of each field must be followed. They are:
-    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-    * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<p></p>
+    * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<p></p>
     * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
         1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
         2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -599,13 +604,15 @@ Formats:
             - end with a domain label at least 2 characters long
             - have each domain label start and end with alphanumeric characters
             - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-    * `<address>` field can take any values but should not be left blank.
+        <p></p>
+    * `<address>` field can take any values but should not be left blank.<p></p>
     * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
         1. Father
         2. Mother
         3. Brother
         4. Sister
         5. Guardian
+      <p></p>
     * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
