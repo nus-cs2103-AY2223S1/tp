@@ -7,7 +7,7 @@ hide empty methods
 hide empty members
 
 
-title Final state
+title Final state after executing the <plain><font:monospaced><back:lightgray>DeleteDebtCommand</back></font></plain>
 
 class DeleteDebtCommand as "__:DeleteDebtCommand__"
 together {

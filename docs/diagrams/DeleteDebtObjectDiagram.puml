@@ -7,7 +7,7 @@ hide empty methods
 hide empty members
 
 
-title Initial state
+title Initial state after parsing the <plain><font:monospaced><back:lightgray>deletedebt</back></font></plain> example
 
 class DeleteDebtCommand as "__:DeleteDebtCommand__"
 together {
