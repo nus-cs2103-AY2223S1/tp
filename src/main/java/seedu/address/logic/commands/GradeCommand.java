@@ -34,6 +34,7 @@ public class GradeCommand extends Command {
     public static final String MESSAGE_PERSON_NOT_STUDENT = "The person to edit is not a student, there is no "
             + "grade to be edited.";
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Edited grade to student: %1$s";
+    public static final String MESSAGE_INVALID_INDEX = "The assignment number is too big, please input a smaller number.";
 
     private final Index indexOfStudent;
     private final Index indexOfAssignment;
@@ -72,6 +73,9 @@ public class GradeCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_STUDENT);
         }
         Student currPosition = (Student) personToEdit.getPosition();
+        if (!currPosition.isValidAssignmentIndex(indexOfAssignment)) {
+            throw new CommandException(MESSAGE_INVALID_INDEX);
+        }
         Student editedPosition = new Student(currPosition.getAttendance(),
                 currPosition.updateOverallGrade(indexOfAssignment, grade),
                 currPosition.getAssignmentsList(), currPosition.getFilePath());
