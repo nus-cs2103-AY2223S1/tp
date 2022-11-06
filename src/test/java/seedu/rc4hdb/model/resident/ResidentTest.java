@@ -34,23 +34,17 @@ public class ResidentTest {
         // null -> returns false
         assertFalse(ALICE.isSameResident(null));
 
-        // same name, all other attributes different -> returns true
-        Resident editedAlice = new ResidentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withRoom(VALID_ROOM_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameResident(editedAlice));
+        // EP: same everything but not same of one of the following:
+        // matricNumber, phone, email or room -> return true
+        assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withMatricNumber(VALID_MATRIC_NUMBER_BOB).build()));
+        assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build()));
+        assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build()));
+        assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withRoom(VALID_ROOM_BOB).build()));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new ResidentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameResident(editedAlice));
-
-        // name differs in case, all other attributes same -> returns false
-        Resident editedBob = new ResidentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameResident(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new ResidentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameResident(editedBob));
+        // EP: all 4 of the following not same:
+        // matricNumber, phone, email and room -> return false
+        assertFalse(ALICE.isSameResident(new ResidentBuilder(ALICE).withMatricNumber(VALID_MATRIC_NUMBER_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoom(VALID_ROOM_BOB).build()));
     }
 
     @Test
@@ -68,7 +62,7 @@ public class ResidentTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different resident -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
