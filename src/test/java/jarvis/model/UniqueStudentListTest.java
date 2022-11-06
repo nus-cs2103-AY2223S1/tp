@@ -1,4 +1,4 @@
-package jarvis.model.student;
+package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.ALICE;
@@ -13,8 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.Student;
-import jarvis.model.UniqueStudentList;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.testutil.StudentBuilder;
