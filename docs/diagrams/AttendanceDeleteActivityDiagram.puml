@@ -10,11 +10,11 @@ if() then ([command is valid])
     if() then ([student index is valid])
         :Creates new empty
         attendance list;
-    else([student index is valid])
+    else([student index is invalid])
         :Show invalid student
         index error;
     endif
-else([Command is missing arguments])
+else([command is missing arguments])
     :Show parse error message;
 endif
 stop
