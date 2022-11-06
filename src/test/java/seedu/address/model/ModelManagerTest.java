@@ -82,7 +82,7 @@ public class ModelManagerTest {
 
     @Test
     public void setArchivedTaskBookFilePath_validPath_setsArchivedTaskBookFilePath() {
-        Path path = Paths.get("data/archivedTaskBook.json");
+        Path path = Paths.get("data/archivedTaskList.json");
         modelManager.setArchivedTaskBookFilePath(path);
         assertEquals(path, modelManager.getArchivedTaskBookFilePath());
     }
