@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kangqiao322.md)]
 
 * Role: Developer
-* Responsibilities: Something
+* Responsibilities: Features, Testing, Documentation
 
 ### Jet
 

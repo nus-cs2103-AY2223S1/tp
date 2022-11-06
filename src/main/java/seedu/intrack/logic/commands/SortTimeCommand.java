@@ -8,6 +8,7 @@ import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
+//@@author kangqiao322
 /**
  * Sorts all the internships in the internship list by the dates and time of their respective tasks
  */
