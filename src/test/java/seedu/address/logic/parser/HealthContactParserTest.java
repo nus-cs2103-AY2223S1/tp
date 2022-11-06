@@ -25,8 +25,10 @@ import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
@@ -79,7 +81,7 @@ public class HealthContactParserTest {
         DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
                 DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_APPOINTMENT.getOneBased());
         assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT), command);
-    }    
+    }
     @Test
     public void parseCommand_deleteBill() throws Exception {
         DeleteBillCommand command = (DeleteBillCommand) parser.parseCommand(
@@ -132,6 +134,14 @@ public class HealthContactParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD.toString()) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD.toString()) instanceof UndoCommand);
+    }
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD.toString()) instanceof RedoCommand);
     }
     @Test
     public void parseCommand_selectPatient() throws Exception {

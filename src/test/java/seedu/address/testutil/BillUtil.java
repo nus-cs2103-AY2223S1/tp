@@ -1,17 +1,13 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.AddBillCommand;
-import seedu.address.logic.commands.EditBillCommand.EditBillDescriptor;
-import seedu.address.model.bill.Bill;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+
+import seedu.address.logic.commands.AddBillCommand;
+import seedu.address.logic.commands.EditBillCommand.EditBillDescriptor;
+import seedu.address.model.bill.Bill;
 
 /**
  * A utility class for Bill.
