@@ -13,9 +13,9 @@ class Keyword
 
 Predicate <|- PersonSuggestionPredicate
 Command <|- SuggestCommand
-SuggestCommand o-- "1" PersonSuggestionPredicate
-PersonSuggestionPredicate o-- "0..*" DayTimeInWeek
-PersonSuggestionPredicate o-- "0..*" Keyword
+SuggestCommand *-- "1" PersonSuggestionPredicate
+PersonSuggestionPredicate *-- "0..*" DayTimeInWeek
+PersonSuggestionPredicate *-- "0..*" Keyword
 
 class Command {
     CommandResult execute(Model model)
