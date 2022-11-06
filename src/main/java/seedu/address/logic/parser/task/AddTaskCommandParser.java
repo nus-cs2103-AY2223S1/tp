@@ -16,6 +16,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -41,10 +42,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(""));
-        Boolean isDone = false;
+        CompletionStatus completionStatus = new CompletionStatus(false);
         Set<Tag> tags = new HashSet<>();
 
-        Task task = new Task(description, deadline, isDone, tags);
+        Task task = new Task(description, deadline, completionStatus, tags);
 
         return new AddTaskCommand(task);
     }

@@ -255,7 +255,7 @@ public class ModelManager implements Model {
 
         for (int i = 0; i < numOfTasks; i++) {
             Task currTask = filteredTasks.get(i);
-            if (currTask.getCompletionStatus()) {
+            if (currTask.getIsCompleted()) {
                 numCompleted += 1;
             }
         }

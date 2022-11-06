@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -46,12 +47,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Description("Prepare meeting agenda"), new Deadline("10-10-2022"), true,
-                getTagSet("CS2101")),
-            new Task(new Description("Update user guide"), new Deadline("12-12-2022"), false,
-                getTagSet("CS2103T")),
-            new Task(new Description("Finish report"), new Deadline("20-11-2022"), false,
-                getTagSet("GEA1000"))
+            new Task(new Description("Prepare meeting agenda"), new Deadline("10-10-2022"),
+                    new CompletionStatus(true), getTagSet("CS2101")),
+            new Task(new Description("Update user guide"), new Deadline("12-12-2022"),
+                    new CompletionStatus(false), getTagSet("CS2103T")),
+            new Task(new Description("Finish report"), new Deadline("20-11-2022"),
+                    new CompletionStatus(false), getTagSet("GEA1000"))
         };
     }
 

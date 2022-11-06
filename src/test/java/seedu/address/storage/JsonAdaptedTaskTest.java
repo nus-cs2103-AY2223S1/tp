@@ -24,8 +24,8 @@ public class JsonAdaptedTaskTest {
 
     private static final String VALID_DESCRIPTION = PREPARE_SLIDES.getDescription().toString();
     private static final String VALID_DEADLINE = PREPARE_SLIDES.getDeadline().toString();
-    private static final Boolean VALID_COMPLETION_STATUS = PREPARE_SLIDES.getCompletionStatus();
-    private static final Boolean VALID_ARCHIVAL_STATUS = PREPARE_SLIDES.getArchivalStatus();
+    private static final Boolean VALID_COMPLETION_STATUS = PREPARE_SLIDES.getIsCompleted();
+    private static final Boolean VALID_ARCHIVAL_STATUS = PREPARE_SLIDES.getIsArchived();
     private static final String VALID_ID = PREPARE_SLIDES.getId().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = PREPARE_SLIDES.getTags().stream()
             .map(JsonAdaptedTag::new)

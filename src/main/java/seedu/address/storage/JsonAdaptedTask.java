@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.ArchivalStatus;
+import seedu.address.model.task.CompletionStatus;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Id;
@@ -53,8 +55,8 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         description = source.getDescription().taskDescription;
         deadline = source.getDeadline().value;
-        isDone = source.getCompletionStatus();
-        isArchived = source.getArchivalStatus();
+        isDone = source.getIsCompleted();
+        isArchived = source.getIsArchived();
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -98,13 +100,13 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Boolean.class.getSimpleName()));
         }
-        final Boolean modelIsDone = isDone;
+        final CompletionStatus modelIsDone = new CompletionStatus(isDone);
 
         if (isArchived == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Boolean.class.getSimpleName()));
         }
-        final Boolean modelIsArchived = isArchived;
+        final ArchivalStatus modelIsArchived = new ArchivalStatus(isArchived);
 
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

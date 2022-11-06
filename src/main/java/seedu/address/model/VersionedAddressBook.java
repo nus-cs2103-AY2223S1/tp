@@ -7,7 +7,7 @@ import java.util.List;
  * Manages the versioning of the address book data.
  */
 public class VersionedAddressBook extends AddressBook {
-    /** List of adressbook states **/
+    /** List of addressbook states **/
     private final List<ReadOnlyAddressBook> addressBookStateList;
     /** Index of current state **/
     private int currentStatePointer;
