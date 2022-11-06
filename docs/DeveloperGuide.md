@@ -261,21 +261,21 @@ Archived applications cannot be archived again. Doing so will cause `CommandExce
 
 #### Design considerations:
 
-Aspect: How should data archiving be implemented?
+**Aspect: How should data archiving be implemented?**
 
-- Alternative 1 (current choice): Add a boolean attribute to Application class.
+- **Alternative 1 (current choice):** Add a boolean attribute to Application class.
     - Pros: Concise implementation as only predicates and a few new commands are added to make it work.
     - Cons: Current tests need to be modified.
-- Alternative 2: Adding archived application to a list similar to UniqueApplicationList as record.
+- **Alternative 2:** Adding archived application to a list similar to UniqueApplicationList as record.
     - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
     - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
 
-Aspect: Should the user be allowed to edit archived application directly?
+**Aspect: Should the user be allowed to edit archived application directly?**
 
-- Alternative 1 (current choice): User are allowed to edit archived application
+- **Alternative 1 (current choice):** User are allowed to edit archived application
     - Pros: A more convenient usage for the user.
     - Cons: Less "hidden" nature of archiving data.
-- Alternative 2: User are not allow to edit archived application
+- **Alternative 2:** User are not allow to edit archived application
     - Pros: Usage of archive is more intuitive as archive applications are only used for future references.
     - Cons: Inconvenient usage as the user need to retrieve archived application before editing it.
 - Alternative 1 is chosen in this case by referencing Whatsapp archived chat where the user can still send message (make modification) in the archived chat.
@@ -315,12 +315,12 @@ In order for the Interview fields to make sense, several constraints are added:
 
 #### Design considerations:
 
-Aspect: How should Interview be presented?
+**Aspect: How should Interview be presented?**
 
-- Alternative 1 (current choice): Interview exists as one of the fields under Application.
+- **Alternative 1 (current choice):** Interview exists as one of the fields under Application.
   - Pros: Easy to implement, represent the real world OOP model.
   - Cons: Current tests need to be modified.
-- Alternative 2: Interview exists as another separate list, stored under another new list, called `InterviewBook`.
+- **Alternative 2:** Interview exists as another separate list, stored under another new list, called `InterviewBook`.
   - Pros: Tests do not need to be modified, only new tests need to be added.
   - Cons: Too much duplication of code (Another copy of ApplicationBook).
 
@@ -328,12 +328,12 @@ Aspect: How should Interview be presented?
 
 #### Design considerations: 
 
-Aspect: What fields should the `find` command search through? 
+**Aspect: What fields should the `find` command search through?** 
 
-- Alternative 1 (current choice): `find` command finds all applications whose company name and/or position contain any of the specified keywords.
+- **Alternative 1 (current choice):** `find` command finds all applications whose company name and/or position contain any of the specified keywords.
   - Pros: Aligns with the definition of duplicate application, where applications are uniquely identified by their company name AND position. 
   - Cons: Tests need to be modified to take into consideration finding by more than 1 field.
-- Alternative 2: `find` command finds only all applications whose company name contain any of the specified keywords.
+- **Alternative 2:** `find` command finds only all applications whose company name contain any of the specified keywords.
   - Pros: Easy to implement, with minimal modification to existing tests.
   - Cons: Limited breadth of search, does not align with definition of unique application. 
 
@@ -377,27 +377,27 @@ The user can only sort based on one field at a time.
 
 #### Design Considerations
 
-Aspect: What method(s) to add to the `Model` interface:
+**Aspect: What method(s) to add to the `Model` interface?**
 
-* Alternative 1: Add a single `sortApplicationList` method that takes in a boolean `shouldReverse` and an enum value `order` that specifies what order to use for sorting.
+* **Alternative 1:** Add a single `sortApplicationList` method that takes in a boolean `shouldReverse` and an enum value `order` that specifies what order to use for sorting.
     * Pros: Only one method is required. Potentially prevents duplication of similar code.
     * Cons: Implementation of the method can become long and complex if many more possible sort orders are added in the future, especially if each sort order's implementation turn out not to be similar.
 
-* Alternative 2 (current choice): Add separate methods for every sort order, each only taking a boolean `shouldReverse` as argument
+* **Alternative 2 (current choice):** Add separate methods for every sort order, each only taking a boolean `shouldReverse` as argument
     * Pros: Avoids the need for switch statements to control the behaviour. Implementation of forward and reversed orders likely similar, so code can be shared.
     * Cons: `Model` interface may have many sort methods if many possible orders are added later.
 
-* Alternative 3: Have 2 methods for each order, one for forward order and one for reverse order.
+* **Alternative 3:** Have 2 methods for each order, one for forward order and one for reverse order.
     * Pros: Removes the need for any flag argument.
     * Cons: Leads to a lot of code duplication since implementing a reversed sort is likely very similar to implementing the original sort in most if not all cases. Also creates a lot more methods.
 
-Aspect: How to allow the `SortCommand` to sort using different possible orders when executed:
+**Aspect: How to allow the `SortCommand` to sort using different possible orders when executed?**
 
-* Alternative 1 (current choice): Create separate subclasses of `SortCommand` each for sorting based on a different order.
+* **Alternative 1 (current choice):** Create separate subclasses of `SortCommand` each for sorting based on a different order.
     * Pros: Better follows the Open-Closed Principle since none of the current `SortCommand` subclasses need to be edited when a new sort order is implemented.
     * Cons: Multiple classes associated with a single command word.
 
-* Alternative 2: Store an enum value inside each `SortCommand` instance indicating what order to use for sorting. Then, in the `execute` method, use a switch statement to make the appropriate function calls on the `Model`.
+* **Alternative 2:** Store an enum value inside each `SortCommand` instance indicating what order to use for sorting. Then, in the `execute` method, use a switch statement to make the appropriate function calls on the `Model`.
     * Pros: Will avoid the need for creating multiple classes.
     * Cons: Seems redundant to use another switch statement for controlling the `SortCommand` behaviour after already using one in `SortCommandParser` for determining the order to use.
 
@@ -415,23 +415,23 @@ The sequence diagram below shows the crucial components involved in executing th
 
 #### Design Considerations
 
-Aspect: How should the `remind` feature be presented? 
+**Aspect: How should the `remind` feature be presented?**
 
-* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by the user.
+* **Alternative 1 (current choice):** Upcoming interviews presented in a pop-up window upon `remind` command input by the user.
     * Pros: Behaviour lines up better with the rest of CinternS where changes to the display are driven by commands. Better code testability. 
     * Cons: Users are not reminded of upcoming interviews if they do not enter the `remind` command.
 
-* Alternative 2: Pop-up window appears alongside main GUI window upon starting up the application.
+* **Alternative 2:** Pop-up window appears alongside main GUI window upon starting up the application.
     * Pros: Better aligns with the purpose of a reminder as a prompt to the user without the user having to input any commands.
     * Cons: Could complicate the UI design of the application with the use of more than one primary stage or scene in JavaFX.
 
-Aspect: How should the remind command filter out upcoming interviews? 
+**Aspect: How should the remind command filter out upcoming interviews?**
 
-* Alternative 1 (current choice): By using an `UpcomingInterviewPredicate`.
+* **Alternative 1 (current choice):** By using an `UpcomingInterviewPredicate`.
     * Pros: Better aligns with the Separation of Concerns principle where the definition of an 'upcoming' interview in terms of time is contained within the predicate.
     * Cons: Increased coupling between RemindCommand in Logic and a separate predicate class in Model.
 
-* Alternative 2: By maintaining a list of upcoming interviews in the ModelManager.
+* **Alternative 2:** By maintaining a list of upcoming interviews in the ModelManager.
     * Pros: Reduced coupling between different classes.
     * Cons: Each time an action is performed on an application or interview (such as archiving, adding or editing), the list of upcoming interviews has to be informed and updated as well. 
 
@@ -450,13 +450,13 @@ The statistics of the applications will only show when the user enter `stats` co
 
 #### Design Considerations
 
-Aspect: How should the statistic feature be presented?
+**Aspect: How should the statistic feature be presented?**
 
-* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show the user the statistics.
+* **Alternative 1 (current choice):** Utilise `ResultDisplay` section in UI to show the user the statistics.
     * Pros: Does not need extra space in the UI to show the statistics, and simpler and more straightforward implementation.
     * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
 
-* Alternative 2: Create a new section in UI to show the user real-time statistics.
+* **Alternative 2:** Create a new section in UI to show the user real-time statistics.
     * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
     * Cons: Space usage for UI might be inefficient as the user will not always want to review the statistics of the applications.
 
@@ -474,13 +474,13 @@ In order to provide better visualisation of `Status` with added colours and easy
 
 #### Design Considerations
 
-Aspect: How should the `Status` feature be implemented? 
+**Aspect: How should the `Status` feature be implemented?** 
 
-* Alternative 1 (current choice): `Status` is implemented as an enum.
+* **Alternative 1 (current choice):** `Status` is implemented as an enum.
     * Pros: Allows the Statistic feature to easily provide a summary of current applications with application progress already added as status. Can be displayed easily with different colors based on the statuses as the status values are fixed.
     * Cons: More restrictive for the users as only a few statuses are allowed (i.e. no custom statuses).
 
-* Alternative 2: `Status` is implemented as a normal class.
+* **Alternative 2:** `Status` is implemented as a normal class.
     * Pros: Gives more freedom to the users to add statuses that they want.
     * Cons: Logically `Status` will become the same as `Tag`, which undermines the purpose of `Status`.
 
@@ -497,12 +497,12 @@ The sequence diagram below shows the crucial components involved in the find int
 
 #### Design Considerations
 
-Aspect: Should `find` and `find-i` be combined?
+**Aspect: Should `find` and `find-i` be combined?**
 
-* Alternative 1 (proposed choice): No, they should be separated.
+* **Alternative 1 (proposed choice):** No, they should be separated.
      * Pros: Adhere to Single Responsibility Principle as `find` command should only be responsible to search for application list.
      * Cons: Increases LoC while the majority of the codes are similar.
-* Alternative 2: Yes, they should be combined.
+* **Alternative 2:** Yes, they should be combined.
      * Pros: Reduces code duplication by just parsing a new prefix into `find` command e.g. `i/` to indicate for finding under interview list.
      * Cons: Violates Single Responsibility Principle.
 
@@ -884,18 +884,21 @@ testers are expected to do more *exploratory* testing.
 ### List all existing applications
 
 1. List all applications.
+
    1. Test case: `list` <br>
       Expected: All applications (if any) are shown. Success message is also shown.
 
 ### Clear all existing applications
 
 1. Clear all applications.
+
    1. Test case: `clear` <br>
       Expected: All applications (if any) are deleted. Success message is also shown.
 
 ### Find an application by company name or position
 
 1. Find an application matching the specified keyword(s).
+
    1. Test case: `find Google` <br>
       Expected: All applications matching keyword "Google" are shown. Success message is also shown.
 
@@ -965,12 +968,14 @@ testers are expected to do more *exploratory* testing.
 ### Undo the previous command
 
 1. Undo a command that has made changes to the application or interview list.
+
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
    
    2. Test case: `undo` <br>
       Expected: The previous state before the change is restored. Success message is shown.
 
 2. No such previous command to undo.
+
    1. Prerequisites: No command used or any command that does not change the application or interview list (e.g. `find`, `sort`, `remind`, etc.)
    
    2. Test case: `undo` <br>
@@ -979,12 +984,14 @@ testers are expected to do more *exploratory* testing.
 ### Redo the previous command
 
 1. Redo a command that has made changes to the application or interview list.
+
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
    
    2. Test case: `redo` <br>
       Expected: The state after the change is restored. Success message is shown.
 
 2. No such previous command to redo.
+
    1. Prerequisites: `undo` is not used.
    
    2. Test case: `redo` <br>
@@ -993,6 +1000,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding an interview
 
 1. Adding an interview to an application without interview.
+
     1. Prerequisites: Targeted application does not contain an existing interview.
 
     1. Test case: `interview 1 ir/Technical interview id/2022-12-12 it/1400 il/Zoom`<br>
@@ -1005,12 +1013,14 @@ testers are expected to do more *exploratory* testing.
        Expected: Interview failed to be added. Error details are shown.
 
 2. Adding an interview to an application with an existing interview.
+
     1. Prerequisites: Targeted application does contain an existing interview.
 
     1. Test case: `interview 1 ir/Technical interview id/2022-12-12 it/1400 il/Zoom`<br>
        Expected: Interview is successfully edited to the application with display index 1 by overwriting the old interview, success message with application and interview details is shown.
 
 3. Adding a duplicated interview to an application.
+
     1. Prerequisites: Interview with clashing interview date and time is already existing in one of the other applications, e.g. `ir/Technical interview id/2022-12-12 it/1400 il/Zoom`.
 
     2. Test case: `interview 1 ir/Online assessment id/2022-12-12 it/1400 il/Online`.
@@ -1019,6 +1029,7 @@ testers are expected to do more *exploratory* testing.
 ### Removing an interview
 
 1. Removing an interview from an application.
+
     1. Test case: `remove-i 1`<br>
        Expected: Interview with displayed index 1 is successfully removed from its application, success message with interview details is shown.
 
@@ -1066,6 +1077,7 @@ testers are expected to do more *exploratory* testing.
 ### Data archiving
 
 1. Archiving an application while all unarchived application shown
+
     1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
     2. Test case: `archive 1`<br>
@@ -1078,6 +1090,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 2. Archiving an application while all archived application shown
+
    1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
 
    2. Test case: `archive 1`<br>
@@ -1086,6 +1099,7 @@ testers are expected to do more *exploratory* testing.
    3. Other incorrect archive commands in this situation are similar to section 1 above.
 
 3. Retrieving an application while all unarchived application shown
+
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
    2. Test case: `retrieve 1`<br>
@@ -1098,6 +1112,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 4. Retrieving an application while all archived application shown
+
     1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
 
     2. Test case: `retrieve 1`<br>
@@ -1106,6 +1121,7 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect retrieve commands in this situation are similar to section 3 above.
 
 5. Data archiving with `FindCommand`
+
    1. Prerequisites: Use `FindCommand` with keywords that match multiple applications in CinternS. Multiple applications in the list.
 
    2. Test case: `retrieve 1`<br>
