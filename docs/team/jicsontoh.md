@@ -60,6 +60,9 @@ Given below are my contributions to the project.
     * Added documentation for the `filter` command implementation (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
     * Created the activity diagram for the `filter` command (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
     * Created the sequence diagram for the `filter` command (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
+    * Updated model diagrams (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
+    * Added filter in `Appendix: Manual testing section` (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
+    * Added use cases for find/add remark (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
 
 
 * **Community**:
