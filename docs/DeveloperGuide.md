@@ -164,9 +164,7 @@ The class group feature allows a student to have a class group. The feature cons
 The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
 
-**Class Group command**
-
-Implementation:
+#### Class Group command implementation:
 
 The following is a more detailed explanation on how ```ClassCommand``` works.
 
@@ -207,8 +205,7 @@ The attendance commands when executed will use methods exposed by the ```Model``
 2. The ```AttendanceCommandParser#parse``` will select another AttendanceParser to parse in the arguments.
 3. The arguments are tokenized and the respective refined inputs of each argument is created.
 
-**Add Attendance command**
-Implementation:
+#### Add Attendance command implementation:
 
 The following is a more detailed explanation on how ```AttendanceAddCommand``` works.
 
@@ -220,9 +217,7 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
-**Mark Attendance command**
-
-Implementation:
+#### Mark Attendance command implementation:
 
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
 
@@ -231,9 +226,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
-**Delete Attendance command**
-
-Implementation:
+#### Delete Attendance command Implementation:
 
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
 
@@ -267,6 +260,8 @@ The address book is able to have profile pictures assigned to each student. The 
 This feature comprises a single ```UploadPictureCommand```
 
 The command when executed uses methods exposed by the ```Model``` interface and ```ImageStorage``` Class.
+
+#### Upload picture command implementation:
 
 The following is a more detailed explanation of how the `UploadPictureCommand` works.
 1. After the successful parsing of user input into ```UploadPictureCommandParser```, the ```UploadPictureCommand``` object is created.
@@ -314,10 +309,7 @@ This feature uses the following commands:
 
 These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
 
-**Add Task command**
-
-Implementation:
-
+##### Add Task command implementation:
 
 The following is a more detailed explanation on how the `TaskCommand` works.
 1. If the title or description fields are missing or invalid, a `ParserException` will be thrown and the new `Task` will not be added.
@@ -340,9 +332,7 @@ Sequence diagram for TaskCommand
 
 Activity diagram for TaskCommand
 
-**Edit Task command**
-
-Implementation:
+#### Edit Task command implementation:
 
 The following is a more detailed explanation on how the `EditTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -360,9 +350,7 @@ Sequence diagram for EditTaskCommand
 
 Activity diagram for EditTaskCommand
 
-**Remove Task command**
-
-Implementation:
+#### Remove Task command implementation:
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
