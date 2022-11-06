@@ -216,7 +216,6 @@ public class TaAssist implements ReadOnlyTaAssist {
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
     }
 
     @Override

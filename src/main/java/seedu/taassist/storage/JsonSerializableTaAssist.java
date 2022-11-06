@@ -31,7 +31,6 @@ class JsonSerializableTaAssist {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
 
-    // TODO: Find out what this method is supposed to be used for. There are currently no usages of this method.
     /**
      * Constructs a {@code JsonSerializableTaAssist} with the given students.
      */
