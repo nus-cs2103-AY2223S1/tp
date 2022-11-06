@@ -29,7 +29,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         try {
             order = ParserUtil.parseOrder(argumentMultimap.getPreamble());
         } catch (IllegalArgumentException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Order.VALID_ORDER), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);
         }
         SortPersonListDescriptor sortPersonListDescriptor = new SortPersonListDescriptor();
         if (argumentMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
@@ -38,9 +38,12 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
             sortPersonListDescriptor.setName(true);
         }
-
+        if (argumentMultimap.getValue(PREFIX_NAME).isPresent()
+                && argumentMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MULTIPLE_SELECTED));
+        }
         if (!sortPersonListDescriptor.isAnyFieldSelected()) {
-            throw new ParseException(SortCommand.MESSAGE_NOT_SELECTED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_NOT_SELECTED));
         }
         return new SortCommand(order, sortPersonListDescriptor);
     }
