@@ -196,9 +196,9 @@ public class EditModuleCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return moduleCode.equals(e.moduleCode)
-                    && moduleName.equals(e.moduleName)
-                    && moduleCredit.equals(e.moduleCredit);
+            return getModuleCode().equals(e.getModuleCode())
+                    && getModuleName().equals(e.getModuleName())
+                    && getModuleCredit().equals(e.getModuleCredit());
         }
     }
 }

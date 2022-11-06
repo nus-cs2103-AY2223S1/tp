@@ -10,6 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_COMPLETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_LINKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -61,11 +64,22 @@ public class CommandTestUtil {
 
     public static final String MODULE_1 = " " + PREFIX_MODULE + VALID_MODULE_1;
     public static final String MODULE_2 = " " + PREFIX_MODULE + VALID_MODULE_2;
+    public static final String MODULE_CREDIT_ONE = " " + PREFIX_MOD_CREDIT + VALID_MODULE_CREDIT_ONE;
+    public static final String MODULE_CREDIT_TWO = " " + PREFIX_MOD_CREDIT + VALID_MODULE_CREDIT_TWO;
+    public static final String MODULE_NAME_ONE = " " + PREFIX_MOD_NAME + VALID_MODULE_NAME_ONE;
+    public static final String MODULE_NAME_TWO = " " + PREFIX_MOD_NAME + VALID_MODULE_NAME_TWO;
+    public static final String MODULE_CODE_ONE = " " + PREFIX_MOD_CODE + VALID_MODULE_CODE_ONE;
+    public static final String MODULE_CODE_TWO = " " + PREFIX_MOD_CODE + VALID_MODULE_CODE_TWO;
+
     public static final String TASK_DESCRIPTION_1 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_1;
     public static final String TASK_DESCRIPTION_2 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_2;
 
     public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
     public static final String INVALID_TASK_DESCRIPTION = " " + PREFIX_DESCRIPTION + " ";
+
+    public static final String INVALID_MODULE_CODE = " " + PREFIX_MOD_CODE + "mod";
+    public static final String INVALID_MODULE_NAME = " " + PREFIX_MOD_NAME + " ";
+    public static final String INVALID_MODULE_CREDIT = " " + PREFIX_MOD_CREDIT + "55";
 
     public static final String INVALID_EXAM_DESCRIPTION = " " + PREFIX_EXAM_DESCRIPTION + " ";
     public static final String INVALID_FORMAT_EXAM_DATEONE = " " + PREFIX_EXAM_DATE + "2022-08-20";
