@@ -196,17 +196,17 @@ public class StudentAddCommandTest {
         }
 
         @Override
-        public boolean hasGradeKey(GradeKey gradeKey) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addGrade(GradeKey gradeKey, Grade grade) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableMap<GradeKey, Grade> getGradeMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateGrades(Task taskToEdit, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 

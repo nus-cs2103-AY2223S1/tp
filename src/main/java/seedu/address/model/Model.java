@@ -165,7 +165,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
-    boolean hasGradeKey(GradeKey gradeKey);
+
     void addGrade(GradeKey gradeKey, Grade grade);
     ObservableMap<GradeKey, Grade> getGradeMap();
+
+    /**
+     * Updates the grade map by updating the tasks in the map.
+     * @param taskToEdit the current task associated with student(s)
+     * @param editedTask the task to be associated with taskToEdit's student(s) after the update
+     */
+    void updateGrades(Task taskToEdit, Task editedTask);
 }

@@ -5,12 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeKey;
-import seedu.address.model.student.exceptions.DuplicateGradeKeyException;
 import seedu.address.model.student.exceptions.GradeKeyNotFoundException;
 
 
@@ -40,6 +40,14 @@ public class GradeMap implements Iterable<Grade> {
         internalMap.put(gradeKey, grade);
     }
 
+    /**
+     * Gets the {@code Grade} associated with the given {@code GradeKey}
+     * @param gradeKey whose grade is required
+     * @return the required grade
+     */
+    public Grade get(GradeKey gradeKey) {
+        return internalMap.get(gradeKey);
+    }
 
     /**
      * Removes entry with the equivalent {@code GradeKey} key from the map.
@@ -53,21 +61,21 @@ public class GradeMap implements Iterable<Grade> {
         internalMap.remove(toRemove);
     }
 
-    public void setGradeMap(GradeMap replacement) {
-        requireNonNull(replacement);
-        internalMap.putAll(replacement.internalMap);
-    }
-
     /**
      * Replaces the contents of this list with {@code grades}.
      * {@code grades} will not contain duplicate .
      */
     public void setGradeMapWithMap(Map<GradeKey, Grade> grades) {
         requireAllNonNull(grades);
-        if (!gradesAreUnique(grades)) {
-            throw new DuplicateGradeKeyException();
-        }
         internalMap.putAll(grades);
+    }
+
+    /**
+     * Remove all entries from the map with the keys in the given key set.
+     * @param gradeKeySet the given key set
+     */
+    public void removeAll(Set<GradeKey> gradeKeySet) {
+        internalMap.keySet().removeAll(gradeKeySet);
     }
 
     /**
@@ -95,9 +103,10 @@ public class GradeMap implements Iterable<Grade> {
     }
 
     /**
-     * Returns true if {@code grades} contains only unique @code{GradeKey}s.
+     * Adds all the entries from the given map to the internal map.
+     * @param toAdd entries to be added
      */
-    private boolean gradesAreUnique(Map<GradeKey, Grade> grades) {
-        return true;
+    public void addAll(Map<GradeKey, Grade> toAdd) {
+        internalMap.putAll(toAdd);
     }
 }

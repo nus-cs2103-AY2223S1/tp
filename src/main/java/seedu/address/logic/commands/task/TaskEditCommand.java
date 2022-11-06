@@ -91,22 +91,22 @@ public class TaskEditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(
-            Task taskToEdit, EditTaskDescriptor editStudentDescriptor, Model model
+            Task taskToEdit, EditTaskDescriptor editTaskDescriptor, Model model
     ) throws CommandException {
         assert taskToEdit != null;
 
-        TaskName updatedTaskName = editStudentDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
-        TaskDescription updatedTaskDescription = editStudentDescriptor.getTaskDescription()
+        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
+        TaskDescription updatedTaskDescription = editTaskDescriptor.getTaskDescription()
                 .orElse(taskToEdit.getTaskDescription());
-        TaskDeadline updatedTaskDeadline = editStudentDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
+        TaskDeadline updatedTaskDeadline = editTaskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
 
         Set<Student> students = new HashSet<>();
-        if (editStudentDescriptor.getStudentNames() != null) {
-            for (String studentName : editStudentDescriptor.getStudentNames()) {
+        if (editTaskDescriptor.getStudentNames() != null) {
+            for (String studentName : editTaskDescriptor.getStudentNames()) {
                 if (isNull(model.findStudent(studentName))) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT);
                 }

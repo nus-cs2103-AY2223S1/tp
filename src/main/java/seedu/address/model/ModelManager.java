@@ -109,6 +109,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
+        addressBook.deleteStudentInTask(this, target);
     }
 
     @Override
@@ -127,6 +128,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         addressBook.setStudent(target, editedStudent);
+        addressBook.editStudentInTask(this, target, editedStudent);
     }
 
     @Override
@@ -247,17 +249,15 @@ public class ModelManager implements Model {
     //=========== Grade ================================================================================
 
     @Override
-    public boolean hasGradeKey(GradeKey gradeKey) {
-        requireNonNull(gradeKey);
-        return addressBook.hasGradeKey(gradeKey);
-    }
-
-    @Override
     public void addGrade(GradeKey gradeKey, Grade grade) {
         addressBook.addGrade(gradeKey, grade);
         //TODO: Show grade somehow
     }
 
+    @Override
+    public void updateGrades(Task taskToEdit, Task editedTask) {
+        addressBook.updateGrades(taskToEdit, editedTask);
+    }
 
     @Override
     public boolean equals(Object obj) {
