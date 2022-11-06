@@ -377,16 +377,50 @@ Sorting by default means sorting by oldest to newest updated entry. Editing an e
 *(To be added)*: sort by class timings, level.
 
 #### Implementation
+<img src="images/SortSequenceDiagram.png">
+The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.  
+
 Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
-Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
-** *TODO: add PlantUML diagram* ** 
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.
+
+<table markdown="block">
+<tr>
+<td>Sort by</td> <td>methods</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>
+```java
+(first, second) -> {
+    HashMap&ltInteger, Object&gt a = first.getUniqueId();
+    HashMap<Integer, Object> b = second.getUniqueId();
+    Instant t = (Instant) a.get(0);
+    int result = t.compareTo((Instant) b.get(0));
+    if (result == 0) {
+        return ((int) a.get(1)) - ((int) b.get(1));
+    }
+        return result;
+    }
+```
+</td>
+</tr>
+<tr>
+<td>Alphabetical</td>
+<td>`Comparator.compare&#40;Tutor::getName&#41;`</td>
+</tr>
+</table>
 
 
-| Sort by 	     | methods 	|
-|---------------|---	|
-| Default 	     | Comparator.compare(Student::getUniqueId) 	|
-| Alphabetical 	 | Comparator.compare(Tutor::getName) 	|
-| Reverse 	     | Collections.reverse(internalList) 	|
+
+[//]: # (| Sort by 	     | methods 	|)
+
+[//]: # (|---------------|---	|)
+
+[//]: # (| Default 	     | Comparator.compare&#40;Student::getUniqueId&#41; 	|)
+
+[//]: # (| Alphabetical 	 | Comparator.compare&#40;Tutor::getName&#41; 	|)
+
+[//]: # (| Reverse 	     | Collections.reverse&#40;internalList&#41; 	|)
 
 #### Design considerations:
 
