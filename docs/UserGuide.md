@@ -99,6 +99,8 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <img src="images/DebtList.png" width="800" /> <br>
 
+<div style="page-break-after: always;"></div>
+
 <div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-secondary">
 **:star: Advanced keyboard shortcuts:**
 Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so.
@@ -189,7 +191,13 @@ Be very careful with how a command is formatted! If the `…` is found within th
 * Any inputs for commands that do not accept inputs will be ignored.<br>
   e.g. entering `help 123` will be equivalent to entering `help`, as it does not accept any inputs.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
 </div>
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 #### Input-specific behaviour
 <div markdown="block" class="alert alert-info">
@@ -209,9 +217,6 @@ Be very careful with how a command is formatted! If the `…` is found within th
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
-</div>
 
 ### Viewing help : `help`
 
