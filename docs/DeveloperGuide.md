@@ -15,7 +15,9 @@ title: Developer Guide
 * [Implementation](#implementations)
     * [Filter transaction feature](#filter-feature-for-transactions)
     * [Buy / Sell transaction feature](#buy-feature-for-transactions)
-    * [Edit transaction feature](#editing-feature-for-transactions)
+    * [Editing client feature](#editing-client-feature)
+    * [Editing transactions feature](#editing-transactions-feature)
+    * [Editing remarks feature](#editing-remarks-feature)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
     * [Sort feature]()
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -37,6 +39,9 @@ title: Developer Guide
   * [Delete a client](#deleting-a-client)
   * [Delete a transaction]()
   * [Delete a remark]()
+  * [Editing a client](#editing-a-client)
+  * [Editing a transaction](#editing-a-transaction)
+  * [Editing a remark](#editing-a-remark)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -778,7 +783,6 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete 0 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
     4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
 
-
 2. Deleting a transaction while more than one client is shown in the client list.
    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
    2. Test case: `delete 1 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
@@ -794,24 +798,14 @@ testers are expected to do more *exploratory* testing.
    If there are no buy transactions, the transaction list panel will be empty.
    2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
    3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
-    
-### Saving data
-
-1. Dealing with missing/corrupted data file
-
-   1. Delete the `jeeqtracker.json` file to simulate missing data file. Launch the application<br/>Expected: A new `jeeqtracker.json` file is created with sample some sample data.
-   
-2. Dealing with invalid data in data file
-
-    1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
 
 ### Editing a client
 
 1. Editing a client in the client list.
 
-   1. Test case: `edit 1 m/client n/JohnDoe`<br/>Expected: First client's name is changed to JohnDoe. Details of the edited client shown in the `Application's Reply` panel.
-   2. Test case: `edit 0 m/client`<br/>Expected: No client is edited. Error details shown in the `Application's Reply` panel.
-   3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
+    1. Test case: `edit 1 m/client n/JohnDoe`<br/>Expected: First client's name is changed to JohnDoe. Details of the edited client shown in the `Application's Reply` panel.
+    2. Test case: `edit 0 m/client`<br/>Expected: No client is edited. Error details shown in the `Application's Reply` panel.
+    3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
 
 ### Editing a transaction
 
@@ -838,6 +832,17 @@ testers are expected to do more *exploratory* testing.
 2. Editing a remark while more than one client is shown in the client list.
     1. Prerequisites: List all clients using the `list` command. More than one client in the list.
     2. Test case: `edit 1 m/remark newRemark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
+
+### Saving data
+
+1. Dealing with missing/corrupted data file
+
+   1. Delete the `jeeqtracker.json` file to simulate missing data file. Launch the application<br/>Expected: A new `jeeqtracker.json` file is created with sample some sample data.
+   
+2. Dealing with invalid data in data file
+
+    1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
+
 
 _{ more test cases …​ }_
 
