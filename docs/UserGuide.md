@@ -41,7 +41,7 @@ This section will explain the parameters and the format of commands.
 
 1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp/releases).
 
-  1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
+  1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds.
      ![Ui](images/Ui.png)
 
 1. Refer to the [Features](#3-features) below for details of each command.
@@ -280,7 +280,9 @@ Example Command: `sort A-Z n/`
 Sort will only account for the first alphabet of the name. Sort by name will sort by alphabetical order.
 </div>
 
-Before executing the above command: ![before sorting](images/BeforeSortName.png)
+Before executing the above command:<br>
+
+![before sorting](images/BeforeSortName.png)
 
 After executing the command: ![after sorting](images/AfterSortName.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -291,7 +293,10 @@ Format: `sort Z-A n/`
 
 Example Command: `sort Z-A n/`
 
-After executing the command: ![after sorting descending](images/AfterSortNameDesc.png)
+After executing the command:<br>
+
+![after sorting descending](images/AfterSortNameDesc.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Contacts are sorted by name in `Z-A` order.
 </div>
@@ -300,12 +305,17 @@ Contacts are sorted by name in `Z-A` order.
 
 Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
 
-Format: `sort A-Z m/`
+Format: `sort A-Z m/`, sorts in ascending order
 
 Example Command: `sort A-Z m/`
 
-Before executing the above command: ![before sorting](images/BeforeModuleCode.png)
-After executing the above command: ![after sorting](images/AfterModuleCodeA.png)
+Before executing the above command: 
+
+![before sorting](images/BeforeModuleCode.png)
+
+After executing the above command: 
+
+![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Module Codes sorted in ascending order. 
 The level of a module is defined by the value of the 4-digits within the module code whereby
@@ -313,8 +323,11 @@ higher in numerical value means a high-level module.
 </div>
 
 Suppose the level of module code is the same (evey module has the same 4-digit), shown below:
+
 ![same level](images/SameLevel.png)
+
 After executing the command `sort A-Z m/`:
+
 ![sort same level](images/SortSameLevel.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -324,7 +337,7 @@ alphabetically.
 </div>
 
 You can also sort module codes in a descending manner whereby higher level module codes will appear higher. 
-Format: `sort Z-A m/`
+Format: `sort Z-A m/`, sorts in descending order
 
 Example Command: `sort Z-A m/`
 
@@ -353,10 +366,6 @@ Examples:
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 If there is no GitHub username associated with the person at the specified `INDEX', an error will be thrown.
 </div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-</div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,10 +411,10 @@ Export will always export every single contact saved regardless of what  is curr
 Format: `export FILENAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-FILENAME must fit the following restrictions:
+FILENAME must fit the following restrictions:<br>
 
-- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)
-- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)<br>
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)<br>
 </div>
 
 Examples:
@@ -437,10 +446,10 @@ User can import a comma-separated values (CSV) file that is created via the expo
 Format: `import FILENAME.csv`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-FILENAME must fit the following restrictions:
+FILENAME must fit the following restrictions:<br>
 
-- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)
-- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)<br>
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)<br>
 </div>
 
 Examples:
