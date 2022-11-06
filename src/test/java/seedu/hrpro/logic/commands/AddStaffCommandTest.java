@@ -27,8 +27,14 @@ import seedu.hrpro.testutil.StaffBuilder;
 public class AddStaffCommandTest {
 
     @Test
-    public void constructor_nullProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null, null));
+    public void constructor_nullStaff_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null, INDEX_FIRST_PROJECT));
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        Staff validStaff = new StaffBuilder().build();
+        assertThrows(NullPointerException.class, () -> new AddStaffCommand(validStaff, null));
     }
 
     @Test

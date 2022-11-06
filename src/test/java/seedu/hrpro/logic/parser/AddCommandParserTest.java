@@ -35,6 +35,9 @@ import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.tag.Tag;
 import seedu.hrpro.testutil.ProjectBuilder;
 
+/**
+ * Contains test cases for AddCommandParser.
+ */
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 

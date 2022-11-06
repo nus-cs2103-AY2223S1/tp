@@ -14,12 +14,14 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "HrPro Storage" #F4F6F6{
+Class "<<interface>>\nHrProStorage" as HrProStorage
+Class JsonHrProStorage
+Class JsonSerializableHrPro
+Class JsonAdaptedProject
 Class JsonAdaptedTag
+Class JsonAdaptedStaff
+Class JsonAdaptedTask
 }
 
 }
@@ -29,15 +31,17 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" HrProStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> HrProStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
-
+JsonHrProStorage .up.|> HrProStorage
+JsonHrProStorage ..> JsonSerializableHrPro
+JsonSerializableHrPro --> "*" JsonAdaptedProject
+JsonAdaptedProject --> "*" JsonAdaptedTag
+JsonSerializableHrPro --> "*" JsonAdaptedStaff
+JsonSerializableHrPro --> "*" JsonAdaptedTask
+JsonAdaptedStaff --> "*" JsonAdaptedTag
 @enduml

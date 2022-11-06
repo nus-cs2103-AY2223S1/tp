@@ -19,6 +19,9 @@ import seedu.hrpro.model.project.Budget;
 import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.tag.Tag;
 
+/**
+ * Contains test cases for ParserUtil.
+ */
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_BUDGET = "+651234";
