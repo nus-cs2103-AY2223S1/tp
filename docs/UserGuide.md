@@ -434,9 +434,9 @@ Shows only the active tasks (i.e. tasks which are undone) by default.
   1) Done status
   2) Priority level
   3) Deadline
-  4) Lexicographical order of description
+  4) Alphabetical order of description
 
->The sorting criteria is applied in order. For instance, a task that is undone will *always* appear before a task that is done, regardless of priority level, deadline or lexograhpic order.
+>The sorting criteria is applied in order. For instance, a task that is undone will *always* appear before a task that is done, regardless of priority level, deadline or alphabetical order.
 > 
 >If two tasks are tied on the same criteria (e.g. both tasks have the same priority level), they will be tiebroken based on the next criteria.
 > 
