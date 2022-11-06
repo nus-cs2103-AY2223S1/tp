@@ -512,11 +512,15 @@ This list is unique, meaning each label with a distinct name is only shown once,
 
 Only a maximum of one contact and one task can be labelled within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning::
+<div markdown="span" class="alert alert-warning">
 
-- Contact/task does not exist.<br>
-- Contact/task already has the required label.<br>
-- More than one contact or more than one task is specified.<br>
+:warning::<br>
+
+* Contact/task does not exist.<br>
+ 
+* Contact/task already has the required label.<br>
+ 
+* More than one contact or more than one task is specified.<br>
 
 </div>
 
@@ -535,11 +539,15 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Only a maximum of one contact and one task can be edited within the same command.
 
-<div markdown="span" class="alert alert-warning">:warning::
+<div markdown="span" class="alert alert-warning">
 
-- Contact/task does not exist.<br>
-- Label does not exist on specified contact/task.<br>
-- More than one contact or more than one task is specified.<br>
+:warning::<br>
+
+* Contact/task does not exist.<br>
+ 
+* Label does not exist on specified contact/task.<br>
+ 
+* More than one contact or more than one task is specified.<br>
 
 </div>
 
