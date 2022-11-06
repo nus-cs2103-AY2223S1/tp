@@ -441,21 +441,6 @@ A person can have any number of tags (including 0)
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com`
 * `a p -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
 
-#### Listing all persons: `list persons`
-
-Shows a list of all persons in TruthTable.
-
-**Format:** `list persons [-h]`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-**Command Aliases:**
-- `list p`
-- `l persons`
-- `l p`
-
 #### Editing a person: `edit person`
 
 Edits an existing person in TruthTable.
@@ -472,8 +457,8 @@ Edits an existing person in TruthTable.
 
 :asterisk: - at least one of the flags must be specified
 
-* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the 
-[persons section](#persons-section) 
+* Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+  [persons section](#persons-section)
 * `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing tags, the existing tags of the person will be **completely replaced** by the new tags specified.
@@ -484,11 +469,34 @@ Edits an existing person in TruthTable.
 - `e person`
 - `e p`
 
-**Examples:** 
+**Examples:**
 *  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing
    tags.
+
+#### Deleting a person: `delete person`
+
+Deletes the specified person from TruthTable.
+
+**Format:** `delete person [-h] <PERSON_INDEX>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
+  [persons section](#persons-section)
+* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `delete p`
+- `d person`
+- `d p`
+
+**Examples:**
+* `list persons` followed by `delete person 2` deletes the 2nd person in TruthTable.
+* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
 #### Locating persons by name: `find person`
 
@@ -504,7 +512,7 @@ Finds person whose names contain any of the given keywords.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will return `Hans Gruber`, `Bo 
+* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will return `Hans Gruber`, `Bo
   Yang`.
 
 **Command Aliases:**
@@ -512,33 +520,25 @@ Finds person whose names contain any of the given keywords.
 - `f person`
 - `f p`
 
-**Examples:** 
+**Examples:**
 * `find person John` returns `john` and `John Doe`
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find person alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a person: `delete person`
+#### Listing all persons: `list persons`
 
-Deletes the specified person from TruthTable.
+Shows a list of all persons in TruthTable.
 
-**Format:** `delete person [-h] <PERSON_INDEX>`
+**Format:** `list persons [-h]`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-* Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
-[persons section](#persons-section)
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
-
 **Command Aliases:**
-- `delete p`
-- `d person`
-- `d p`
-
-**Examples:** 
-* `list persons` followed by `delete person 2` deletes the 2nd person in TruthTable.
-* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
+- `list p`
+- `l persons`
+- `l p`
 
 ### Commands to Manage Members
 
@@ -694,26 +694,6 @@ Team name must consist only of alphanumeric characters (i.e., **spaces are NOT a
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
-#### Set a new team: `set team`
-
-Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
-displayed if team does not exist.
-
-**Format:** `set team [-h] <TEAM_NAME>`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-**Command Aliases:**
-- `set te`
-- `s team`
-- `s te`
-
-**Examples:** 
-
-- `set team CS2103T` will change the currently selected team to be the "CS2103T" team.
-
 #### Edit current team: `edit team`
 
 **Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
@@ -731,9 +711,9 @@ displayed if team does not exist.
 - `e team`
 - `e te`
 
-**Examples:** 
-- `edit team -n CS2103T -d "Software Engineering"` will edit the name of the 
-[currently selected team](#current-team-section) to CS2103T and description to "Software Engineering"
+**Examples:**
+- `edit team -n CS2103T -d "Software Engineering"` will edit the name of the
+  [currently selected team](#current-team-section) to CS2103T and description to "Software Engineering"
 
 #### Delete an existing team: `delete team`
 
@@ -753,9 +733,29 @@ Delete an existing team, and an error is displayed if
 - `d team`
 - `d te`
 
-**Examples:** 
+**Examples:**
 
 - `delete team CS2103T` will delete the team with the name "CS2103T"
+
+#### Set a new team: `set team`
+
+Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
+displayed if team does not exist.
+
+**Format:** `set team [-h] <TEAM_NAME>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+**Command Aliases:**
+- `set te`
+- `s team`
+- `s te`
+
+**Examples:** 
+
+- `set team CS2103T` will change the currently selected team to be the "CS2103T" team.
 
 ### Commands to Manage Tasks
 
@@ -831,6 +831,115 @@ in this example.
 * `edit task 1 -a` will edit the first task in the current team's task list, removing all assignees from the task. 
 The name and deadline are not modified in this example.
 
+#### Delete task from team: `delete task`
+
+Delete an existing task from the team at the given task index.
+
+**Format:** `delete task [-h] <TASK_INDEX>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `delete ta`
+- `d task`
+- `d ta`
+
+**Examples:**
+
+- `delete task 1` will delete the first task of the current team.
+
+#### Find tasks: `find task`
+
+Find all tasks in the current team whose names matches any of the given keywords.
+
+To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
+
+**Format:** `find task [-h] <KEYWORDS>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* Only the task name is searched.
+* The search is case-insensitive. e.g. `user guide` will match `User Guide`
+* The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
+* Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
+* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will return `use case`, `user
+  guide`.
+
+**Command Aliases:**
+- `find ta`
+- `f task`
+- `f ta`
+
+**Examples:**
+* `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
+
+#### Mark tasks as done: `mark`
+
+Mark a specified task as done. To undo this command, see the [unmark command](#unmark-tasks-as-done-unmark)
+
+**Format:** `mark [-h] <TASK_INDEX>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `m`
+
+**Examples:**
+
+- `mark 1` will mark the first task in the team as done.
+
+#### Unmark tasks as done: `unmark`
+
+Mark a specified task as incomplete. This will undo the [mark command](#mark-tasks-as-done-mark).
+
+**Format:** `unmark [-h] <TASK_INDEX>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `u`
+
+**Examples:**
+
+- `unmark 1` will mark the first task in the team as incomplete.
+
+#### Set Deadline for task: `set deadline`
+
+Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
+
+**Format:** `set deadline [-h] <TASK_INDEX> <DEADLINE>`
+
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+  around the parameter**.
+
+**Command Aliases:**
+- `set d`
+- `s deadline`
+- `s d`
+
+**Examples:**
+
+- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 Dec 2023 23:59
+
 #### Assign task to team member: `assign task`
 
 Assign an existing task to a team member in the user’s team.
@@ -878,114 +987,23 @@ or if the task has already been assigned to all members of the team.
 
 - `assign random 1` will assign the first task on the task list to a random team member.
 
-#### Set Deadline for task: `set deadline`
+#### Filter tasks by team member: `tasksof`
 
-Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
+Find all tasks that have been assigned to a particular member in the currently selected team.
 
-**Format:** `set deadline [-h] <TASK_INDEX> <DEADLINE>`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
-* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
-  around the parameter**.
-
-**Command Aliases:**
-- `set d`
-- `s deadline`
-- `s d`
-
-**Examples:** 
-
-- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 Dec 2023 23:59
-
-#### Delete task from team: `delete task`
-
-Delete an existing task from the team at the given task index.
-
-**Format:** `delete task [-h] <TASK_INDEX>`
+**Format:** `tasksof [-h] <MEMBER_INDEX>`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
 
 **Command Aliases:**
-- `delete ta`
-- `d task`
-- `d ta`
-
-**Examples:** 
-
-- `delete task 1` will delete the first task of the current team.
-
-#### Mark tasks as done: `mark`
-
-Mark a specified task as done. To undo this command, see the [unmark command](#unmark-tasks-as-done-unmark)
-
-**Format:** `mark [-h] <TASK_INDEX>`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
-
-**Command Aliases:**
-- `m`
-
-**Examples:** 
-
-- `mark 1` will mark the first task in the team as done.
-
-#### Unmark tasks as done: `unmark`
-
-Mark a specified task as incomplete. This will undo the [mark command](#mark-tasks-as-done-mark).
-
-**Format:** `unmark [-h] <TASK_INDEX>`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
-
-**Command Aliases:**
-- `u`
-
-**Examples:** 
-
-- `unmark 1` will mark the first task in the team as incomplete.
-
-#### Find tasks: `find task`
-
-Find all tasks in the current team whose names matches any of the given keywords.
-
-To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
-
-**Format:** `find task [-h] <KEYWORDS>`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-* Only the task name is searched.
-* The search is case-insensitive. e.g. `user guide` will match `User Guide`
-* The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
-* Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
-* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will return `use case`, `user 
-  guide`.
-
-**Command Aliases:**
-- `find ta`
-- `f task`
-- `f ta`
+- `to`
 
 **Examples:**
-* `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
+* `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
 #### List tasks in team: `list tasks`
 
@@ -1014,20 +1032,6 @@ as the `find task` command filters the current team’s tasks based on some keyw
 - `list tasks -c` will list all the completed tasks of the current team.
 - `list tasks -ic` will list all tasks of the current team.
 
-#### View summary of task assignments in team: `summary`
-
-View the number of tasks assigned to each member in the team.
-
-**Format:** `summary [-h]`
-
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
-
-**Command Aliases:**
-- `sum`
-- `su`
-
 #### Sort tasks: `sort tasks`
 
 Sorts all tasks in the current team by name and displays them in the task list.
@@ -1054,23 +1058,19 @@ Sorts all tasks in the current team by name and displays them in the task list.
 * `sort tasks dsc` sorts tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
 
-#### Filter tasks by team member: `tasksof`
+#### View summary of task assignments in team: `summary`
 
-Find all tasks that have been assigned to a particular member in the currently selected team.
+View the number of tasks assigned to each member in the team.
 
-**Format:** `tasksof [-h] <MEMBER_INDEX>`
+**Format:** `summary [-h]`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
-
 **Command Aliases:**
-- `to`
-
-**Examples:**
-* `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
+- `sum`
+- `su`
 
 ### Commands to Manage Links / URLs
 
@@ -1212,7 +1212,7 @@ need to save manually.
 ## Editing the data file
 
 TruthTable data is saved as a [JSON file](#json-file), which can be found in the location where `truthtable.jar` 
-is opened from (`TRUTHTABLE_LOCATION`) and going to `TRUTHTABLE_LOCATION/data/truthtable.json`. 
+is opened from (let's call it `TRUTHTABLE_LOCATION`) and going to `TRUTHTABLE_LOCATION/data/truthtable.json`. 
 
 Advanced users are welcomed to update data directly by editing that data file.
 
