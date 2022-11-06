@@ -52,7 +52,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane buyerStatusBarPlaceholder;
+
+    @FXML
+    private StackPane propertyStatusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -123,9 +126,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter buyerStatusBarFooter = new StatusBarFooter(logic.getBuyerBookFilePath(),
-                logic.getPropertyBookFilePath());
-        statusbarPlaceholder.getChildren().add(buyerStatusBarFooter.getRoot());
+        BuyerStatusBarFooter buyerStatusBarFooter = new BuyerStatusBarFooter(logic.getBuyerBookFilePath());
+        buyerStatusBarPlaceholder.getChildren().add(buyerStatusBarFooter.getRoot());
+
+        PropertyStatusBarFooter propertyStatusBarFooter = new PropertyStatusBarFooter(logic.getPropertyBookFilePath());
+        propertyStatusBarPlaceholder.getChildren().add(propertyStatusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
