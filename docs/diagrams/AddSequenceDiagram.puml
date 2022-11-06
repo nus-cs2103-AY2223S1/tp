@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InTrackParser" as InTrackParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant ":Internship" as Internship LOGIC_COLOR
-participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -34,23 +34,23 @@ create Internship
 AddCommandParser -> Internship
 activate Internship
 
-Internship -> AddCommandParser
+Internship --> AddCommandParser
 deactivate Internship
 
 create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
 
-AddCommand --> AddCommandParser : d
+AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> InTrackParser : d
+AddCommandParser --> InTrackParser : a
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> InTrackParser
 destroy AddCommandParser
 
-InTrackParser --> LogicManager : d
+InTrackParser --> LogicManager : a
 deactivate InTrackParser
 
 LogicManager -> AddCommand : execute()
