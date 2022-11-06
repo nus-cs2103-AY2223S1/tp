@@ -261,8 +261,12 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
 
 Examples:
-* `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
-* `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
+* `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
+
+  | Before                                   |       After      |
+  |-------------------------|-------------------------|
+  | ![before layout](images/BeforeFindRole.png) |![after layout](images/AfterFindRole.png) |
+
 
 ### 5.6. Deleting your internship application
 
