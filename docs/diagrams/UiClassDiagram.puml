@@ -10,7 +10,6 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class ResidentTabView
 Class VenueTabView
 Class ResidentTableView
 Class BookingTableView
@@ -31,14 +30,13 @@ HiddenOutside ..> Ui
 UiManager .up.|> Ui
 UiManager -down-> "1" MainWindow
 
-MainWindow *-down-> "1" ResidentTabView
+MainWindow *-down-> "1" ResidentTableView
 MainWindow *-down-> "1" VenueTabView
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" CurrentWorkingFileFooter
 MainWindow *--> "0..1" HelpWindow
 
-ResidentTabView *-down-> "1" ResidentTableView
 VenueTabView *-down-> "1" BookingTableView
 VenueTabView *-down-> "1" VenueListView
 VenueListView *-down-> "0..*" VenueListCard

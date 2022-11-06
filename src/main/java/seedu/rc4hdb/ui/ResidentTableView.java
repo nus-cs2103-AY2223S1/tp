@@ -2,10 +2,10 @@ package seedu.rc4hdb.ui;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,6 +32,11 @@ public class ResidentTableView extends UiPart<Region> {
 
     private static final String FXML = "ResidentTableView.fxml";
 
+    // The COLUMN_WIDTH_SIZE fields are provided here for ease of change.
+    private static final int COLUMN_WIDTH_SMALL = 90; // Index, Gender, House columns use this width.
+    private static final int COLUMN_WIDTH_MEDIUM = 140; // Phone, Room, Matric columns use this width.
+    private static final int COLUMN_WIDTH_LARGE = 300; // Name, Email columns use this width.
+
     @FXML
     private TableView<Resident> residentTableView;
 
@@ -45,10 +50,6 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
     private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
-    private final ObservableList<String> visibleFields = FXCollections.observableArrayList(
-            ResidentField.LOWERCASE_FIELDS);
-    private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
-
     /**
      * Creates a {@code ResidentTableView} with the given {@code ObservableList}.
      */
@@ -60,16 +61,15 @@ public class ResidentTableView extends UiPart<Region> {
 
         assert(residentTableView != null);
 
-        this.residentTableView.setItems(residentList);
+        // Set up table
+        residentTableView.setItems(residentList);
         addColumns();
         populateRows();
         configureTableProperties();
 
-        this.visibleFields.setAll(visibleFields);
-        this.visibleFields.addListener(showColumnsOnChange());
-
-        this.hiddenFields.setAll(hiddenFields);
-        this.hiddenFields.addListener(hideColumnsOnChange());
+        // Set up listeners
+        visibleFields.addListener(showColumnsOnChange());
+        hiddenFields.addListener(hideColumnsOnChange());
     }
 
     /**
@@ -142,32 +142,35 @@ public class ResidentTableView extends UiPart<Region> {
     }
 
     /**
-     * Stylizes the {@code ResidentTableView} to maximise column width.
+     * Configures {@code ResidentTableView} properties, column widths and resizability .
      */
     private void configureTableProperties() {
         this.residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        setResizeable();
+        setColumnWidth();
+    }
 
-        indexColumn.setResizable(false);
-        indexColumn.setPrefWidth(70);
+    /**
+     * Sets the columns for constant-sized fields to be un-resizable.
+     */
+    private void setResizeable() {
+        List<TableColumn<Resident, ResidentField>> unResizeable = List.of(indexColumn, phoneColumn, roomColumn,
+                genderColumn, houseColumn, matricColumn);
+        unResizeable.forEach(x -> x.setResizable(false));
+    }
 
-        nameColumn.setMinWidth(300);
-
-        phoneColumn.setResizable(false);
-        phoneColumn.setPrefWidth(120);
-
-        emailColumn.setMinWidth(300);
-
-        roomColumn.setResizable(false);
-        roomColumn.setPrefWidth(140);
-
-        genderColumn.setResizable(false);
-        genderColumn.setPrefWidth(90);
-
-        houseColumn.setResizable(false);
-        houseColumn.setPrefWidth(90);
-
-        matricColumn.setResizable(false);
-        matricColumn.setPrefWidth(140);
+    /**
+     * Sets the individual width of several columns.
+     */
+    private void setColumnWidth() {
+        indexColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        nameColumn.setMinWidth(COLUMN_WIDTH_LARGE);
+        phoneColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
+        emailColumn.setMinWidth(COLUMN_WIDTH_LARGE);
+        roomColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
+        genderColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        houseColumn.setPrefWidth(COLUMN_WIDTH_SMALL);
+        matricColumn.setPrefWidth(COLUMN_WIDTH_MEDIUM);
     }
 
     /**
@@ -183,7 +186,7 @@ public class ResidentTableView extends UiPart<Region> {
             // Recall that column headers is in title-case, i.e. first letter is capitalised
             residentTableView.getColumns()
                     .stream()
-                    .filter(column -> this.visibleFields.contains(column.getText().toLowerCase()))
+                    .filter(column -> c.getList().contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(true));
 
             // Ensure that index column is properly rendered
@@ -204,7 +207,7 @@ public class ResidentTableView extends UiPart<Region> {
             // Recall that column headers is in title-case, i.e. first letter is capitalised
             residentTableView.getColumns()
                     .stream()
-                    .filter(column -> this.hiddenFields.contains(column.getText().toLowerCase()))
+                    .filter(column -> c.getList().contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(false));
 
             // Ensure that index column is properly rendered
@@ -212,20 +215,4 @@ public class ResidentTableView extends UiPart<Region> {
         };
     }
 
-    /**
-     * Updates the list of fields to be shown when invoking {@code show}.
-     * @param fieldsToShow The list of fields to be shown
-     */
-    public void setVisibleFields(ObservableList<String> fieldsToShow) {
-        this.visibleFields.setAll(fieldsToShow);
-    }
-
-    /**
-     * Updates the list of fields to be hidden when invoking {@code hide}.
-     * @param fieldsToHide The list of fields to be hidden
-     */
-    public void setHiddenFields(ObservableList<String> fieldsToHide) {
-        this.hiddenFields.setAll(fieldsToHide);
-    }
 }
-
