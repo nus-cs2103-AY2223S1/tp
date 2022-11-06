@@ -65,30 +65,8 @@ public class EditAppointmentCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (personIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personWithAppointmentToEdit = lastShownList.get(personIndex.getZeroBased());
-        MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToEdit.getAppointments();
-
-        if (appointmentIndex.getZeroBased() >= appointmentSet.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
-
-        if (appointmentSet.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
-        }
-
-        Appointment appointmentToEdit;
-        try {
-            appointmentToEdit = appointmentSet.get(appointmentIndex.getZeroBased());
-        } catch (SortedListException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
+        MaximumSortedList<Appointment> appointmentSet = getAppointmentSet(model);
+        Appointment appointmentToEdit = getAppointmentToEdit(appointmentSet);
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
         if (editAppointmentDescriptor.getDateTime().isPresent()
@@ -115,6 +93,37 @@ public class EditAppointmentCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment));
     }
 
+    private MaximumSortedList<Appointment> getAppointmentSet(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (personIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personWithAppointmentToEdit = lastShownList.get(personIndex.getZeroBased());
+        MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToEdit.getAppointments();
+        return appointmentSet;
+    }
+
+    private Appointment getAppointmentToEdit(MaximumSortedList<Appointment> appointmentSet) throws CommandException {
+        if (appointmentIndex.getZeroBased() >= appointmentSet.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
+        if (appointmentSet.isEmpty()) {
+            throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
+        }
+
+        Appointment appointmentToEdit;
+        try {
+            appointmentToEdit = appointmentSet.get(appointmentIndex.getZeroBased());
+        } catch (SortedListException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
+        return appointmentToEdit;
+    }
 
     @Override
     public boolean equals(Object other) {
