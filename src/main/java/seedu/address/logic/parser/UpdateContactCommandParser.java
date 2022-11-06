@@ -32,17 +32,16 @@ public class UpdateContactCommandParser implements Parser<UpdateContactCommand> 
         Supplier<ParseException> exceptionSupplier = () -> new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE));
 
-        Uid uid;
-        Name name;
-        Phone phone;
-        Email email;
-        Category category;
-
-        uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).orElseThrow(exceptionSupplier));
-        name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElseThrow(exceptionSupplier));
-        phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElseThrow(exceptionSupplier));
-        email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElseThrow(exceptionSupplier));
-        category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElseThrow(exceptionSupplier));
+        Uid uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID)
+                .orElseThrow(exceptionSupplier));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
+                .orElseThrow(exceptionSupplier));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)
+                .orElseThrow(exceptionSupplier));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)
+                .orElseThrow(exceptionSupplier));
+        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY)
+                .orElseThrow(exceptionSupplier));
 
         return new UpdateContactCommand(uid, name, phone, email, category);
     }
