@@ -16,8 +16,9 @@ import taskbook.logic.parser.Parser;
 import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.contacts.enums.SortTypes;
 import taskbook.logic.parser.exceptions.ParseException;
+
 /**
- * Parses input arguments and creates a new ContactSortCommand.
+ * Parses input arguments and creates a new ContactSortCommand object.
  */
 public class ContactSortCommandParser implements Parser<ContactSortCommand> {
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
@@ -27,6 +28,7 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TaskSortCommand
      * and returns an TaskSortCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

@@ -24,13 +24,14 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new ContactEditCommand object
+ * Parses input arguments and creates a new ContactEditCommand object.
  */
 public class ContactEditCommandParser implements Parser<ContactEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ContactEditCommand parse(String args) throws ParseException {

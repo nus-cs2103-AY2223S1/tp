@@ -13,6 +13,7 @@ import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.index.Index;
+import taskbook.logic.commands.categoryless.ExitCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
@@ -100,7 +101,7 @@ public class TaskEditCommandTest {
         assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        assertNotEquals(standardCommand, new ExitCommand());
 
         // different index -> returns false
         assertNotEquals(standardCommand, new TaskEditCommand(INDEX_SECOND_TASK, TASK_WORK));
