@@ -50,7 +50,9 @@ The `new` command creates a new `Item` in FoodRem, which forms the core business
 
 The sequence diagram to show the interactions between the different components during a `new` command is as such:
 
-<!-- TODO: UML Diagram -->
+![ItemSequenceDiagram](images/NewItemSequenceDiagram.png)
+
+Depending on your screen, the image may appear blurry or too small. This cannot be helped as the number of objects that are instantiated is quite large. Please save the image to your computer if you cannot view it. Failing that (or if you are on a PDF), zoom in onto the image to view it clearly.
 
 ##### Feature Details
 1. The user specifies an item name for the Item to create. Optionally, the user can specify the item quantity, bought date, expiry date, price, and any remarks.
