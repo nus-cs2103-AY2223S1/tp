@@ -313,13 +313,13 @@ to write simpler and cleaner code.
 
 ### *Autocomplete Commands*
 
-The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
+The autocomplete feature matches the current text to all the commands for the user when the user types in the command box.
 
 #### Implementation
 
 The autocomplete feature is facilitated through the `TextFields` class under the ControlsFX library.
-The `TextFields` class provides a static method `bindAutoCompletion` that will create a new auto-completion binding between
-the given TextField using the given auto-complete suggestions.
+The `TextFields` class provides a static method `bindAutoCompletion` that will create a new autocompletion binding between
+the given TextField using the given autocomplete suggestions.
 
 Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
 The object will display a list of suggestions that matches the current text in the text field.
