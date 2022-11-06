@@ -546,6 +546,7 @@ _{More to be added}_
 - **Command Line Interface (CLI)**: A user interface that relies on typing into a command line for user interaction with the application.
 - **Graphical User Interface (GUI)**: A user interface that relies on graphical usage (such as using a mouse) for user interaction with the application.
 - **jar**: Stands for Java ARchive. A file format for aggregated Java class files, metadata, and resources for distribution and deployment.
+- **csv**: Stands for Comma-Separated Values. A file format for storing grouped data in a table-like format.
 - **Diagram / Unified Modeling Language (UML) Diagram**: A graphical model used to illustrate and represent processes, relationships, and concepts.
   UML is the format most widely adopted for designing and interpreting such diagrams.
 
@@ -724,7 +725,45 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
       **Expected Outcome**: Similar to previous.
 
-### Batch-adding employees (Not sure how to test)
+### Batch-adding employees
+
+This feature requires the use of csv files. To follow the subsequent tests, create and save two csv files with the contents as given below.
+
+**1st csv file**: save as `data/success.csv`.
+
+```csv
+Name,Phone,Email,Position,Department,Address,Leave,Tags,
+Kim Meier,84824249,kimmeier@example.com ,Frontend Engineer,Information Technology,Little India,20,Promotion coming,
+Petris Mueller,96722343,,Marketing Intern,Marketing,,13,,
+Paul Morty,,paul@example.com,UI/UX Engineer,Sales,,,Innovation Lead,
+```
+
+**2nd csv file**: save as `data/duplicatePerson.csv`.
+
+```csv
+Name,Phone,Email,Position,Department,Address,Leaves,Tags
+Prittam Ravi,87438807,prittam@example.com,Chief Technology Officer,General Management,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Peter Lim,99272758,peter@example.com,Accountant,Finance,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Shawn Kok,99272758,shawn@example.com,Recruiter,Human Resources,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Kevin Chang,99272758,kevin@example.com,Factory Worker,Production,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Ng Shi Jun,99272758,shijun@example.com,Frontend Developer,Information Technology,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+Prittam Ravi,87438807,prittam@example.com,Chief Technology Officer,General Management,Blk 30 Lorong 3 Serangoon Gardens #07-18,14,collegaues/friends
+```
+
+1. Batch-adding multiple employees:
+
+   1. Prerequisites: Must not have used any of the names provided in `data/success.csv`.
+      We recommend that you load the default sample data to Coydir.
+      You can do this by exiting the app, deleting whatever data file you currently have (located at `data/database.json`), then launching the app again.
+
+   2. **Test Case**: `batch-add success.csv`
+      **Expected Outcome**: Three new employees are added, with the names "Kim Meier", "Petris Mueller", "Paul Morty".
+
+   3. **Test Case**: `batch-add duplicatePerson.csv`
+      **Expected Outcome**: No changes occured. An error message appears, saying that one person is found to be a duplicate.
+
+   4. **Follow-up Test Case**: `batch-add success.csv`
+      **Expected Outcome**: Same as previous.
 
 ### Finding employees
 
@@ -835,13 +874,6 @@ Therefore, we recommend that when performing a test case for an employee (with I
    2. **Follow-up Test Case**: `rate id/x r/4`<br>
       **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
 
-2. Rating an employee multiple times
-
-   To work-around the intra-day rating limit, you can arbitrarily add new ratings by [_editing the data file with a text editor_](#saving-data).
-   Here are some ways in which you can edit the ratings for an employee (with ID `x`), for testing:
-
-   1. **Test Case**: Multiple ratings, 
-
 ### Viewing department overview
 
 For the following tests, ensure that there is at least 1 employee (who will be in 1 department).
@@ -862,11 +894,3 @@ Any department (that has at least 1 person) can be used, but for ease and simpli
 
    4. Other follow-up test cases include adding/deleting data relevant to employees in the department, such as leaves, performance, or their presence in the database.
       In each scenario, the right side panel should update itself to display the new information immediately, if there is any.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
