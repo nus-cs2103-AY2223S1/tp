@@ -33,7 +33,7 @@
 
 <!-- TODO: ACTIVITY DIAGRAM -->
 
-The `sort` feature sorts the list of items currently displayed to the user by specified flag(s). It is possible to sort by one or more criteria. A list of available criteria for sorting includes:
+The `sort` feature sorts the list of items currently displayed to the user by specified [[ flag:flag(s) ]]. It is possible to sort by one or more criteria. A list of available criteria for sorting includes:
 
 * Name
 * Quantity
