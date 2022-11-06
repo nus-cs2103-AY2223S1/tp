@@ -288,7 +288,7 @@ The tips feature shows curated tips for internship applications for specific app
 
 #### Implementation
 
-The tips feature is implemented in the `Model` component inside the `StageUtil` class. The list of supported stages is stored inside as a `List<Stage>`. The tips are stored in a `HashMap` that maps each `Stage` object to their respective `List<String>` of tips. The `getStageSpecificStips()` method will retrieve the list of tips for a supported stage as a `List<String>`. 
+The tips feature is implemented in the `Model` component inside the `StageUtil` class. The list of supported stages is stored inside as a `List<Stage>`. The tips are stored in a `HashMap` that maps each `Stage` object to their respective `List<String>` of tips. The `getStageSpecificTips()` method will retrieve the list of tips for a supported stage as a `List<String>`. 
 
 The tips are then stored and shown inside a `TipsCard` object that extends from `UiPart<Region>` and consists of one `Hbox` housing 2 `Hbox`s with each inner `Hbox` containing a `Label`. The first `Label` shows the index while the second `Label` shows the Tip itself.
 
@@ -297,7 +297,7 @@ The tips are show to the user in one of two ways depending on the UI layout.
 ##### Narrow UI implementation
 In the narrow UI layout, the tips can be accessed through a `tipsButton` which has a light bulb icon on the `NarrowInternshipCard` which will open the `TipsWindow`. The `TipsWindow` is a member of every `NarrowInternshipCard` object and is created when the constructor is called. 
 
-The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `stageHasTips()` method from the `StageUtil` class that returns a boolean `isXXX` depending on whether the stage of the application has tips.
+The light bulb button will only appear if the internship application is at a supported stage, The implementation of this is through the `hasNoTips()` method from the `Stage` class that returns a boolean `hasNoTips` depending on whether the stage of the application has tips.
 
 If the application stage has tips and the button is pressed, the `TipsWindow` UI component of the `InternshipCard` will have its `GridPane` populated with `TipsCard` vertically after retrieving the tips using the `getStageSpecificTips()` method and building the `TipsCard` for each tip. The tips window is then opened.
 
@@ -313,7 +313,7 @@ If the internship card currently selected is at a supported stage, the `TipsPane
 
 If the internship card currently selected is not at a supported stage, the default `TipsPanel` will be shown which only has `Label` message telling the user that there are no tips for the stage yet.
 
-For more detail on the UI implementation, please refer to the [Responsive UI]() section of the DG.
+For more detail on the UI implementation, please refer to the [Responsive UI](#responsive-ui-feature) section of the DG.
 
 ### Responsive UI feature
 
@@ -329,7 +329,7 @@ The `setWidthEventHandlers()` listener will listen to the current window width. 
 
 The narrow UI layout uses the `NarrowInternshipListPanel` and populates its `ListView` with the `InternshipCard` that extends `UiPart<Region>`. It has a tips button that can open the tips window. Other than the tips button, the implementation is very similar to AB3 with minor styling changes.
 
-For more details on the implementation of the tips button and tips window, refer to the [Tips section]() of the DG.
+For more details on the implementation of the tips button and tips window, refer to the [Tips section](#tips-feature) of the DG.
 
 ##### Wide UI
 The wide UI layout uses the `WideInternshipListPanel` and populates its `ListView` with the `NarrowInternshipCard` that extends `UiPart<Region>`. It differs from the `InternshipCard` in that it does not have the tips button. The implementation is very similar to the original `InternshipCard` from AB3 with minor styling changes. 
@@ -338,7 +338,7 @@ The `WideInternshipListPanel` has a `TipsPanel` beside the `ListView` that exten
 
 A listener `setInternshipSelectedEventHandlers()` is implemented in the `WideInternshipListPanel` class that listens to to which `NarrowInternshipCard` is currently selected. It will call the `tipPanelBuilder()` method which takes in a `Stage` and creates a `TipsPanel` object and populates it with tips.
 
-For more details on the implementation of the tips button, tips window and tips panel, refer to the [Tips section]() of the DG.
+For more details on the implementation of the tips button, tips window and tips panel, refer to the [Tips section](#tips-feature) of the DG.
 
 
 _{more aspects and alternatives to be added}_
