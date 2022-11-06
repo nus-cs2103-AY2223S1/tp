@@ -7,8 +7,12 @@ start
 
 if () then ([return command is valid])
     :Create new return command which is executed by LogicManager;
-    :UI updates that book is available;
-    :UI deletes the book from the books that are loaned by loanee;
+    if () then ([book is loaned])
+        :UI updates that book is available;
+        :UI deletes the book from the books that are loaned by loanee;
+    else ([else])
+        :Show error message;
+    endif
 else ([else])
     :Show error message;
 endif
