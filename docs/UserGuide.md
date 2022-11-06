@@ -95,11 +95,27 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 5. If you still have any other questions regarding StudMap and its usage, check
    out [Section 6: FAQ](#6-frequently-asked-questions) for answers to some frequently asked questions.
 
+# 3.1 User Guide Notation Overview
+
+Throughout the guide, various types of notation are used to convey important information about its usage.
+
+Here are some of the symbols and syntax to look out for:
+
+| Symbol / Syntax      | Meaning                                                                    |
+|----------------------|----------------------------------------------------------------------------|
+| :information_source: | Information about commands or formats that you should be aware of          |
+| :exclamation:        | Warning of potential user scenarios you might face that can lead to errors |
+| :bulb:               | Tips that can help you save time using StudMap                             |
+| `code`               | Indicates command or parameter that can be inputted into StudMap           |
+
+
 ---
 
 # 4. Quick Start
 
 If you’re new to StudMap, this is the tutorial for you! Here are the steps for you to get started:
+
+## 4.1 Installation
 
 1. Ensure you have Java 11 or above installed in your computer. See
    [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for more detailed
@@ -111,67 +127,120 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
    for StudMap.
 
 4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window similar to the figure
-   below. We have added some sample data for you to play around with before you start using StudMap for yourself.
+   below. 
+
+## 4.2 Understanding the User Interface
+
+When you first load StudMap, you will likely be greeted with a display similar to the one below, containing some sample data.
+**Don't be overwhelmed!** While there may be many fields and objects to take in at first, let's go through the User Interface and
+explore each element one by one.
 
    ![Ui](images/ui/ui-getting-started.png)
 
-   Take note of the following elements in the interface:
+   Take note of the three main elements of the interface:
 
-    * The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands)
-      .
-    * The **Reply Box** is where StudMap responds to your instructions.
-    * The **Student List** is a list of your students, each represented by a **student card**. StudMap updates this list
-      as you give it commands to do so.
-      <br><br>
+| Element      | Purpose                                                                                                                                                   |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands) |
+| Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                              |
+| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                     |
 
-5. Zooming in on the left of each student card, you can see the student's particulars:
+### Student Cards
 
+As a student management tool, the core of StudMap is naturally your students. StudMap can store information about your student,
+such as personal particulars or module-related progress, and represents it in a single rectangular panel called a **student card**.
+
+The **left half** of each student card contains the student's particulars. Let's zoom in and find out more:
    ![Ui](images/ui/ui-student-info.png)
 
-   Take note of the following elements in the student card:
 
-    * The **Index** and **Student Name** are placed together.
-    * **Tags** are text labels for students for easy classification.
-    * **Student ID**
-    * **Phone Number**
-    * **Email**
-    * **GitHub Username**
-    * **Telegram Handle**
+| Element         | Purpose                                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------------------------|
+| Index           | Order of the student in the list. Used to indicate which student card you want to target with a command. |
+| Student Name    | Name of your student. **Is Compulsory!**                                                                 |
+| Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                 |
+| Phone Number    | Phone number of your student, if available.                                                              |
+| Email           | Email address of your student, if available.                                                             |
+| GitHub Username | GitHub username of your student, if available.                                                           |
+| Telegram Handle | Telegram handle of your student, if available.                                                           |
 
    <br><br>
 
-6. Zooming in on the right side of each student card, you can see the information you need as a TA:
+The **right half** of each student card contains module information related to your TA responsibilities:
 
    ![Ui](images/ui/ui-ta-info.png)
 
-   Take note of the following elements in the student card:
+| Element                  | Purpose                                                                                                                                                                                                                                                                         |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                        |
+| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                |
+| Classes                  | Detailed record of classes for your student. Each box represents one class: <li>the text in the box indicates the name of the class<li>the colour indicates attendance status (Green for present, Red for absent)                                                               |
+| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                     |
+| Participation Components | Detailed record of participation for your student. Each box represents one component: <li>the text in the box indicates the name of the component<li>the colour indicates participation status (Green for yes, Red for no)                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                |
+| Telegram Handle          | Detailed record of assignments for your student. Each box represents one assignment: <li>the text in the box indicates the name of the assignment<li>the colour indicates assignment status (There are 3 assignment states: Green for graded, Red for received, Yellow for new) |
 
-   <br><br>
+## 4.3 Understanding Commands
 
-7. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
+Now that you understand the User Interface of StudMap, what can you do to interact with it?
 
-    * `list`
-        * This updates the Student List with all the students you have.
-    * `n/John Doe m/CS2103T id/E1234567`
-        * This adds a student named John Doe with student ID `E1234567` into StudMap, who is taking the module `CS2103T`
-          .
-          This is one of the ways you can add a new student into StudMap.
-    * `delete 3`
-        * This deletes the 3rd student currently shown in the Student List.
-    * `clear`
-        * This deletes all the students, so you can start with a clean slate!
-          <br><br>
+StudMap is designed around the use of a Command Line Interface (CLI). This means that accessing or modifying data on StudMap
+has to be done by typing instructions, or `commands`, that StudMap can understand and execute. 
 
-8. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
-   you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
+### Command Word
+The format of any command is standard. The command is first identified by its **command word**, which usually describes its 
+main functionality. Examples of some useful commands are:
+
+* `list`, which **lists** the entire student list on StudMap
+* `sort`, which **sorts** the student list in a certain order
+* `grade`, which adds information about an assignment you have **graded** for a student
+
+### Parameters
+Sometimes, you may need to include extra details about your instruction to perform a certain task (e.g. what way do you want to
+`sort` the list?). You can do this by adding **parameters**, or extra options, behind the command word to specify further instructions
+
+Here's an example of how parameters can be used:
+
+* You wish to change the name of the second student to "Salad".
+* You can type the `edit` command word, which will indicate to StudMap you want to edit a student
+* You can then provide two parameters: `2`, which is the index of the student to be edited, and `n/Salad`, which is the name
+you want
+* The final command will look like this: `edit 2 n/Salad`!
+
+<div markdown="block" class="alert alert-info">
+:bulb: Confused about which commands use what parameters? Do not fret! Keying in the command word into the command box 
+and pressing enter will give you all the information about the command: what it does, what parameters it takes and so on!
+</div>
+
+To learn more about parameters, do check out the section on [Parameters](#52-information-about-parameters)!
+
+### Example Commands
+
+Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
+
+* `list`
+    * This updates the Student List with all the students you have.
+* `n/John Doe m/CS2103T id/E1234567`
+    * This adds a student named John Doe with student ID `E1234567` into StudMap, who is taking the module `CS2103T`
+      .
+      This is one of the ways you can add a new student into StudMap.
+* `delete 3`
+    * This deletes the 3rd student currently shown in the Student List.
+* `clear`
+    * This deletes all the students, so you can start with a clean slate!
+      <br><br>
+
+## 4.4 Migrating to StudMap
+
+You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – 
+and you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
    Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
    out this [Example Template](files/example_template.csv), or check out
    [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
-9. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
-   command.
-   We hope you enjoy using StudMap!
+
+That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each command. We hope you enjoy using StudMap!
 
 ---
 
@@ -191,7 +260,7 @@ curve? StudMap is designed to be extremely intuitive, with in-built help message
 
 Follow the guide below, and you would be on track to mastering all the necessary commands in no time.
 
-## 5.2 How to use this section
+## 5.2 Information about Parameters
 
 Before we start looking at each feature in detail, let’s take note of some conventions that we will use in this guide.
 This will help you understand the guide better!
@@ -500,7 +569,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 *`ALL`: You can mark attendance for all students currently displayed.
 
 * Attendance accepts two values only: `present` and `absent`
-* :warning: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other
+* :exclamation: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other
   character will lead to your class name being **rejected**
 * Marking an **existing class** as either `present` or `absent` will **overwrite** the existing record
 
@@ -739,6 +808,7 @@ Guide.
 ![help message](images/helpMessage.png)
 
 **Format:** `help`
+
 
 ---
 
