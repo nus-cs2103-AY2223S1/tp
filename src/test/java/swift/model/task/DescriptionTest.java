@@ -1,12 +1,12 @@
 package swift.model.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class DescriptionTest {
 
@@ -36,7 +36,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription(" ")); // spaces only
         assertTrue(Description.isValidDescription("buy milk")); // alphabets only
         assertTrue(Description.isValidDescription("12345")); // numbers only
-        assertTrue(Description.isValidDescription("buy milk for the 2nd time!")); // alphanumeric characters and allowed symbols
+        assertTrue(Description.isValidDescription("2nd time!")); // alphanumeric characters and symbols
         assertTrue(Description.isValidDescription("Buy Milk")); // with capital letters
     }
 
