@@ -172,14 +172,23 @@ The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, 
 
 This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
 1. Use the `find` command to show a selected group of students of interest.
-2. Use the `extract emails` command to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link, which is copied to the clipboard
-3. Open mailto: link using a mail app, typically on the browser.
+2. Use the `extract emails` command to generate a [deep link](https://en.wikipedia.org/wiki/Deep_linking), which is copied to the clipboard
+3. When the deep link is opened in the browser, the user is redirected to NUS WebMail with a draft email and selected recipients.
 
 #### Current Implementation
-The following sequence diagram shows how the extract emails command works.
-
+The following sequence diagram shows how the extract emails command works. As it is a high-level diagram, `Ui`, `Logic` and `Model` refer to
+components in ModQuik, rather than classes. `Clipboard` refers to the Java 11 Clipboard class.
 
 ![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
+
+Upon the user issuing the `extract emails` command, an `ExtractEmailCommand` is created. This step is not shown in the sequence diagram for breivity.
+
+When the command is executed, the current list of students shown is retrieved from Model as an ObservableList of students.
+This list is passed to the helper method `generateUrl`, which creates the deeplink required. This link is then pasted to the system clipboard via
+an instance of Clipboard's method `setContent`.
+
+An alternative is to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
+does not attach itself as a mailto: handler.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -598,7 +607,7 @@ testers are expected to do more *exploratory* testing.
 
 Do the test cases sequentially to ensure correct expectation.
 
-1. Adding a tutorial while tutorial tab is being shown. 
+1. Adding a tutorial while tutorial tab is being shown.
 
    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
 
@@ -609,18 +618,18 @@ Do the test cases sequentially to ensure correct expectation.
       Expected: Conflicting tutorial error message is shown.
 
    4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
-      Expected: Error message is shown as time range is invalid. No tutorial is added. 
+      Expected: Error message is shown as time range is invalid. No tutorial is added.
 
    5. Test case: `add tutorial n/G02 m/CS2101`<br>
       Expected: Error message is shown as missing prefix. No tutorial is added.
-   
+
    6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
       Expected: Error message is shown in the result display box.
 
 2. Adding a tutorial while tutorial tab is not being shown.
 
-   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command. 
-    
+   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command.
+
    2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
       Expected:  Error message is shown as day is invalid. Main display remains the same.
 
@@ -746,18 +755,18 @@ Do the test cases sequentially to ensure correct expectation.
 
     2. Test case: `switch f/tutorial`<br>
        Expected: A success message shown and the main display shows tutorial's content.
-   
+
     3. Test case: `switch f/consultation`<br>
        Expected: A success message shown and the main display shows consultation's content.
-   
+
     4. Test case: `switch f/grade`<br>
        Expected: A success message shown and the main display shows grade chart.
-   
+
 2. View different content, but command has a typo error.
 
     1. Test case: `switch f/students`<br>
        Expected: Error message shown as the command has a typo error.
-   
+
     2. Test case: `switchs f/tutorial`<br>
        Expected: Error message shown as the command has a typo error.
 

@@ -37,8 +37,8 @@ import seedu.modquik.model.ModelType;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.modquik.testutil.EditConsultationDescriptorBuilder;
-import seedu.modquik.testutil.EditPersonDescriptorBuilder;
 import seedu.modquik.testutil.EditReminderDescriptorBuilder;
+import seedu.modquik.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -171,22 +171,22 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditStudentCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditStudentCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
     public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER1;
     public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER2;
     public static final EditConsultationCommand.EditConsultDescriptor DESC_CONSULTATION1;
     public static final EditConsultationCommand.EditConsultDescriptor DESC_CONSULTATION2;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withId(VALID_ID_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withModule(VALID_MODULE_TUT1).withTutorial(VALID_NAME_TUT1)
                 .withAttendance(VALID_ATTENDANCE_AMY)
                 .withParticipation(VALID_PARTICIPATION_AMY).withGrade(VALID_GRADE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withModule(VALID_MODULE_TUT1).withTutorial(VALID_NAME_TUT1)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
@@ -266,23 +266,23 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ModQuik expectedModQuik = new ModQuik(actualModel.getModQuik());
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedModQuik, actualModel.getModQuik());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s modquik book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
-        Student student = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredStudentList().size());
     }
 }

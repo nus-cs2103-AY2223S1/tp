@@ -2,6 +2,9 @@ package seedu.modquik.logic.parser.tutorial;
 
 import static seedu.modquik.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.logging.Logger;
+
+import seedu.modquik.commons.core.LogsCenter;
 import seedu.modquik.commons.core.index.Index;
 import seedu.modquik.logic.commands.tutorial.DeleteTutorialCommand;
 import seedu.modquik.logic.parser.Parser;
@@ -13,12 +16,17 @@ import seedu.modquik.logic.parser.exceptions.ParseException;
  */
 public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand> {
 
+    private final Logger logger = LogsCenter.getLogger(DeleteTutorialCommand.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTutorialCommand
      * and returns a DeleteTutorialCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTutorialCommand parse(String args) throws ParseException {
+        logger.info("Parsing delete tutorial args [" + args + "]");
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteTutorialCommand(index);

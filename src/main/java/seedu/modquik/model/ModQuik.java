@@ -20,7 +20,7 @@ import seedu.modquik.model.tutorial.UniqueTutorialList;
  */
 public class ModQuik implements ReadOnlyModQuik {
 
-    private final UniqueStudentList persons;
+    private final UniqueStudentList students;
     private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
     private final UniqueConsultationList consultations;
@@ -33,7 +33,7 @@ public class ModQuik implements ReadOnlyModQuik {
      *   among constructors.
      */
     {
-        persons = new UniqueStudentList();
+        students = new UniqueStudentList();
         reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
         consultations = new UniqueConsultationList();
@@ -52,11 +52,11 @@ public class ModQuik implements ReadOnlyModQuik {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the students list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> students) {
-        this.persons.setPersons(students);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ModQuik implements ReadOnlyModQuik {
     public void resetData(ReadOnlyModQuik newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStudents(newData.getPersonList());
 
         setReminders(newData.getReminderList());
 
@@ -105,36 +105,36 @@ public class ModQuik implements ReadOnlyModQuik {
     /**
      * Returns true if a person with the same identity as {@code person} exists in ModQuik.
      */
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return persons.contains(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to ModQuik.
-     * The person must not already exist in ModQuik.
+     * Adds a student to ModQuik.
+     * The student must not already exist in ModQuik.
      */
-    public void addPerson(Student p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in ModQuik.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in ModQuik.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in ModQuik.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedStudent);
+        students.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code ModQuik}.
      * {@code key} must exist in the ModQuik.
      */
-    public void removePerson(Student key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
     }
 
     //// reminder-level operations
@@ -303,7 +303,7 @@ public class ModQuik implements ReadOnlyModQuik {
      */
     public int[] getGradeData() {
         int[] gradeArr = new int[5];
-        for (Student student : persons) {
+        for (Student student : students) {
             String grade = student.getGrade().value;
             switch (grade) {
             case "A":
@@ -332,7 +332,7 @@ public class ModQuik implements ReadOnlyModQuik {
 
     @Override
     public String toString() {
-        String result = persons.asUnmodifiableObservableList().size() + " persons, "
+        String result = students.asUnmodifiableObservableList().size() + " students, "
                 + tutorials.asUnmodifiableObservableList().size() + " tutorials"
                 + consultations.asUnmodifiableObservableList().size() + " consultations"
                 + reminders.asUnmodifiableObservableList().size() + " reminders";
@@ -343,7 +343,7 @@ public class ModQuik implements ReadOnlyModQuik {
 
     @Override
     public ObservableList<Student> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
@@ -365,11 +365,11 @@ public class ModQuik implements ReadOnlyModQuik {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModQuik // instanceof handles nulls
-                && persons.equals(((ModQuik) other).persons));
+                && students.equals(((ModQuik) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }
