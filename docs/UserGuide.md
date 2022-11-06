@@ -12,7 +12,14 @@ To use this guide, simply click on the items you would like to learn more about 
 --------------------------------------------------------------------------------------------------------------------
 ## What is JARVIS?
 
-JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JARVIS can help you manage teaching your class efficiently and effectively.
+JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+Using JARVIS, the TA can
+* keep track of their students' grades for each graded assignment
+* see the tasks that they have do and their respective deadlines
+* plan for upcoming tutorial classes and consultations
+
+If you are a CS1101S TA who is familiar with Command Line Interface and can type fast, JARVIS will allow you to efficiently manage your students, tasks and lessons.
 
 --------------------------------------------------------------------------------------------------------------------
 ## The Basics
@@ -60,14 +67,22 @@ Commands have to be written in the correct format to be used. The format for eac
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer. 
 
-2. Download the latest `JARVIS.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
+<div markdown="span" class="alert alert-info">:information_source: **Note:** JARVIS is supported on Windows, Linux, and OS-X platforms.
+</div>
+
+2. Download the latest `jarvis.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Different sections of the GUI
+
+</div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
