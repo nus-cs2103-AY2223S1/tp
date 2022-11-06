@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.TASK_ALICE;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -27,20 +27,20 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_IS_DONE = "True";
 
-    private static final String VALID_NAME = ALICE.getName().toString();
-    private static final String VALID_CATEGORY_NAME = ALICE.getCategory().getTaskCategoryType().toString();
-    private static final String VALID_DESCRIPTION = ALICE.getDescription().getTaskDescription();
-    private static final String VALID_PRIORITY = ALICE.getPriority().getPriority().toString();
-    private static final String VALID_DEADLINE = ALICE.getDeadline().toString();
-    private static final String VALID_EMAIL = ALICE.getEmail().toString();
-    private static final String VALID_IS_DONE = Task.convertIsDoneFromBooleanToString(ALICE.isDone());
+    private static final String VALID_NAME = TASK_ALICE.getName().toString();
+    private static final String VALID_CATEGORY_NAME = TASK_ALICE.getCategory().getTaskCategoryType().toString();
+    private static final String VALID_DESCRIPTION = TASK_ALICE.getDescription().getTaskDescription();
+    private static final String VALID_PRIORITY = TASK_ALICE.getPriority().getPriority().toString();
+    private static final String VALID_DEADLINE = TASK_ALICE.getDeadline().toString();
+    private static final String VALID_EMAIL = TASK_ALICE.getEmail().toString();
+    private static final String VALID_IS_DONE = Task.convertIsDoneFromBooleanToString(TASK_ALICE.isDone());
 
     private static final ObservableList<Person> persons = getTypicalAddressBook().getPersonList();
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(ALICE);
-        assertEquals(ALICE, task.toModelType(persons));
+        JsonAdaptedTask task = new JsonAdaptedTask(TASK_ALICE);
+        assertEquals(TASK_ALICE, task.toModelType(persons));
     }
 
     @Test

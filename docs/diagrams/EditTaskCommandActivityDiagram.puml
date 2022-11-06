@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters editTask command;
+
+if () then ([invalid index or \ninvalid parameters])
+    :Throw ParseException;
+
+else ([else])
+
+    if () then ([Some input fields \nare not changed])
+        :Throw CommandException;
+    else ([else])
+        :Update task;
+    endif
+
+endif
+stop
+@enduml

@@ -7,8 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class Priority {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Priority must be one of the following: " + PriorityEnum.getValidPriorities();
+    public static final String MESSAGE_CONSTRAINTS = "\"%s\" is not a valid priority! Priority must be one of the "
+            + "following: " + PriorityEnum.getValidPriorities();
 
     private final PriorityEnum priority;
 

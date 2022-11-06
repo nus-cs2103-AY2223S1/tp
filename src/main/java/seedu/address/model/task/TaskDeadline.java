@@ -12,7 +12,7 @@ import seedu.address.model.task.exceptions.DatePastException;
  */
 public class TaskDeadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in YYYY-MM-DD format";
+            "Deadline should be in YYYY-MM-DD format";
     private final LocalDate deadline;
 
     /**
@@ -51,6 +51,7 @@ public class TaskDeadline {
 
     /**
      * Compares another object with the Deadline object.
+     *
      * @param other the other object to be compared to
      * @return true if the two objects are equal
      */
@@ -63,6 +64,7 @@ public class TaskDeadline {
 
     /**
      * Checks if this {@code deadline} is before another date.
+     *
      * @param other the other date to compare {@code deadline} to
      * @return true if this {@code deadline} is before the other date
      */
@@ -72,6 +74,7 @@ public class TaskDeadline {
 
     /**
      * Checks if this {@code deadline} is after another date.
+     *
      * @param other the other date to compare {@code deadline} to
      * @return true if this {@code deadline} is after the other date
      */
@@ -81,6 +84,7 @@ public class TaskDeadline {
 
     /**
      * Returns true if deadline is valid.
+     *
      * @param test String to test
      * @return true if the String is a valid deadline
      */
