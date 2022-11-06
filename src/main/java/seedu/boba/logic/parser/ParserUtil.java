@@ -17,7 +17,7 @@ import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *CommandParser classes.
  */
 public class ParserUtil {
 

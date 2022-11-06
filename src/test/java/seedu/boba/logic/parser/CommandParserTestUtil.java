@@ -11,13 +11,13 @@ import seedu.boba.logic.parser.exceptions.ParseException;
 public class CommandParserTestUtil {
 
     /**
-     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * Asserts that the parsing of {@code userInput} by {@code commandParser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
-            Command expectedCommand) {
+    public static void assertParseSuccess(CommandParser<? extends Command> commandParser, String userInput,
+                                          Command expectedCommand) {
         try {
-            Command command = parser.parse(userInput);
+            Command command = commandParser.parse(userInput);
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
@@ -25,12 +25,12 @@ public class CommandParserTestUtil {
     }
 
     /**
-     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * Asserts that the parsing of {@code userInput} by {@code commandParser} is unsuccessful and the error message
      * equals to {@code expectedMessage}.
      */
-    public static void assertParseFailure(Parser<? extends Command> parser, String userInput, String expectedMessage) {
+    public static void assertParseFailure(CommandParser<? extends Command> commandParser, String userInput, String expectedMessage) {
         try {
-            parser.parse(userInput);
+            commandParser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
         } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());

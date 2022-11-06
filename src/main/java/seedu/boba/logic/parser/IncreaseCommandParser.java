@@ -14,7 +14,7 @@ import seedu.boba.model.customer.Reward;
 /**
  * Parses input arguments and creates a new IncreaseCommand object
  */
-public class IncreaseCommandParser implements Parser<IncreaseCommand> {
+public class IncreaseCommandParser implements CommandParser<IncreaseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the IncreaseCommand

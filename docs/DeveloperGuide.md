@@ -121,8 +121,8 @@ How the parsing works:
 The class diagram below expands the details of Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
 
 Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `BobaBotParser`<br/>
-To parse complex commands with arguments, including `add` `find` `edit` `delete`, `BobaBotParser` will create customized parser corresponding to the command. <br/>
-The customized parser will parse the arguments and create the command
+To parse complex commands with arguments, including `add` `find` `edit` `delete`, `BobaBotParser` will create customized commandParser corresponding to the command. <br/>
+The customized commandParser will parse the arguments and create the command
 
 The diagram also includes some new classes involved. For example, the `find` command depends on new predicates in the `BobaBotModel` component to allow all-info and fuzzy search (more detail in the `find` command description)
 

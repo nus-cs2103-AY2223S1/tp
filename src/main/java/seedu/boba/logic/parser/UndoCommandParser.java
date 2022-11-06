@@ -7,7 +7,7 @@ import seedu.boba.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new UndoCommand object
  */
-public class UndoCommandParser implements Parser<UndoCommand> {
+public class UndoCommandParser implements CommandParser<UndoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UndoCommand
      * and returns a UndoCommand object for execution.
