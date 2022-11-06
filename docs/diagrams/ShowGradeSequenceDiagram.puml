@@ -1,14 +1,18 @@
 @startuml
 !include style.puml
+skinparam ParticipantPadding 5
 
 box Ui UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
 end box
 
+note left MainWindow
+input is "switch f/grade"
+end note
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
-participant ": SwitchCommandParser" as SwitchCommandParser LOGIC_COLOR
 participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -18,36 +22,21 @@ participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":ModQuik" as ModQuik MODEL_COLOR
 end box
 
-[-> MainWindow : executeCommand("switch f/grade")
+[-> MainWindow : executeCommand(input)
 activate MainWindow
 
-MainWindow -> LogicManager: execute("switch f/grade")
+MainWindow -> LogicManager: execute(input)
 activate LogicManager
 
-LogicManager -> ModQuikParser : parseCommand("switch f/grade")
+LogicManager -> ModQuikParser : parseCommand(input)
 activate ModQuikParser
 
-create SwitchCommandParser
-ModQuikParser -> SwitchCommandParser
-activate SwitchCommandParser
-
-SwitchCommandParser --> ModQuikParser
-deactivate SwitchCommandParser
-
-ModQuikParser -> SwitchCommandParser : parse(" f/grade")
-activate SwitchCommandParser
-
 create SwitchCommand
-SwitchCommandParser -> SwitchCommand
+ModQuikParser -> SwitchCommand
 activate SwitchCommand
 
-SwitchCommand --> SwitchCommandParser : s
+SwitchCommand --> ModQuikParser : s
 deactivate SwitchCommand
-
-SwitchCommandParser --> ModQuikParser : s
-deactivate SwitchCommandParser
-SwitchCommandParser -[hidden]-> ModQuikParser
-destroy SwitchCommandParser
 
 ModQuikParser --> LogicManager : s
 deactivate ModQuikParser
@@ -62,7 +51,7 @@ activate CommandResult
 CommandResult --> SwitchCommand
 deactivate CommandResult
 
-SwitchCommand --> LogicManager : result
+SwitchCommand --> LogicManager
 deactivate SwitchCommand
 
 LogicManager --> MainWindow
