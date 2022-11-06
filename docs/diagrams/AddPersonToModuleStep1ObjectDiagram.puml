@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+show members
+
+Package "Step 1\nSome initial state" <<Rectangle>>{
+object "<u>:UniquePersonList</u>" as persons {
+}
+
+object "<u>Alan:Person</u>" as alan {
+}
+
+object "<u>Emma:Person</u>" as emma {
+}
+
+
+
+persons ---> alan : contains
+persons ---> emma : contains
+
+object "<u>:UniqueModuleList</u>" as modules {
+}
+
+object "<u>CS2106:Module</u>" as cs2106 {
+}
+
+object "<u>:Task</u>" as task {
+taskDescription = "Submit quiz"
+}
+
+object "<u>:Link</u>" as link {
+linkUrl = "www.coursemology.com"
+}
+
+modules --> cs2106 : contains
+cs2106 --> task : contains
+cs2106 --> link : contains
+
+@enduml

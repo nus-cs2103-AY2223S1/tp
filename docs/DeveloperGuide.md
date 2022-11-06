@@ -295,7 +295,11 @@ The delete person mechanism is facilitated by `DeletePersonCommand` and `DeleteP
 `DeletePersonCommand` then calls the `Model#deletePerson()` operation, which in turn calls
 `AddressBook#removePerson()` to delete a contact in Plannit.
 
-Given below is an example usage scenario and how the delete person mechanism behaves at each step.
+
+Given below is an example usage scenario and how the delete person mechanism behaves at each important step.
+Before proceeding on with this section, it is highly recommended that you read the
+[Module-Person association](#Module-and-Person-association) section to be able to fully comprehend the example scenario 
+below.
 
 **Step 1**. There currently exists 3 persons in Plannit, with 2 of them already 
 added to a module.
@@ -404,12 +408,75 @@ to combine the contents of the two different `AddressBook`-like classes into one
 both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not 
 significantly decrease.
 
-### \[Coming soon\] Add person to module
+### Module and Person association
 
-A person can take several modules. The relationship between `Person` and `Model` is displayed 
-in the Object Oriented Domain Model diagram below:
+A person can take several modules. To model this interaction, every person in Plannit thus has the ability to be
+associated to a module. The relationship between `Person` and `Model` is displayed in the Object Oriented Domain Model diagram below:
 
 ![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
+
+#### Add Person To Module Feature
+One feature related to the module-person association is the add person to module feature. The feature allows an already
+existing contact in Plannit to have an association with a module. This particular feature is highlighted because it is 
+an implementation that involves interactions between two different kinds of `Model` objects, namely `Person` and 
+`Module`. Note that the implementation of this feature is largely similar to the other feature under this section,
+namely the delete person from module feature.
+
+#### Implementation of add person to module feature
+The add person to module mechanism is facilitated by `AddPersonToModuleCommand` and `AddPersonToModuleCommandParser`.
+`AddPersonToModuleCommandParser` parses the user input in a meaningful way and uses it to create a `AddPersonToModuleCommand`.
+`AddPersonToModuleCommand` then calls the `Model#getModuleUsingModuleCode()` and `Model#getPersonUsingName()` operations
+to obtain the concerned module and person instances. Note that the specified instances must be in the currently filtered
+display lists, else an exception is thrown. The obtained module instance is then copied over and used to construct a 
+new module object. Finally, the person instance of concern is added to the newly created module object, and we then replace
+the old module object in `UniqueModuleList` with the new module object.
+
+
+Given below is an example usage scenario and how the add person to module mechanism behaves at each important step.
+
+**Step 1**. There currently exists 2 persons (Alan and Emma) in Plannit, and the user wants to add an association 
+between Alan and the module CS2106.
+
+![AddPersonToModuleStep1ObjectDiagram](images/AddPersonToModuleStep1ObjectDiagram.png)
+
+**Step 2**. The user executes `add-person-to-module m/CS2106 n/Alan` command and this creates a 
+`addPersonToModuleCommand`. Upon execution, `Model#getModuleUsingModuleCode()` and `Model#getPersonUsingName()` are used
+to obtain the existing CS2106 module and Alan person instances. `AddPersonToModuleCommand#createModuleWithAddedPerson()`
+is then called to create a new CS2106 module instance by copying all fields of the old CS2106 instance and also adding 
+the Alan person instance in.
+
+![AddPersonToModuleStep2ObjectDiagram](images/AddPersonToModuleStep2ObjectDiagram.png)
+
+**Step 3**. `Model#setModule()` replaces the old CS2106 instance with the new CS2106 instance in `UniqueModuleList`.
+Afterwards, there would no longer be any references to the old CS2106 object, and Java will eventually remove it
+from memory.
+
+![AddPersonToModuleStep3ObjectDiagram](images/AddPersonToModuleStep3ObjectDiagram.png)
+
+#### Design considerations:
+**Aspect: Implementation direction:**
+
+* **Alternative 1 (current choice)**: Store `Person` as a `Set` field in `Module`.
+    * Pros: No need for extra classes, making it easier to implement.
+    * Cons: Does not fully model the bidirectional relationship that a module has with a person.
+
+* **Alternative 2:** Store `Person` as a `Set` field in `Module` and at the same time, store `Module` as a `Set` field
+  in `Person`
+    * Pros: The bidirectional relationship is fully reflected in code.
+    * Cons: Harder to implement as deleting a module object now requires deletion of that module in every person's set
+      of modules as well.
+
+* **Alternative 3:** Have an association class that models the "person is taking module" association.
+  * Pros: The dependencies of the `Module` and `Person` class does not increase as no direct reference to the other type
+    is now required.
+  * Cons: Harder to implement as this requires creation of new classes and many more test cases.
+
+Rationale behind current choice:
+1. Despite the benefit of having code that fully reflects the relationship in the real world, going for a simpler 
+  implementation helps to reduce code complexity and lowers risk of bugs.
+2. Despite the benefit of having lower dependencies, the use of an association class substantially increases the risk of
+  bugs as the implementation would be very different from existing (heavily-tested) code.
+
 
 ### Task component
 
@@ -943,7 +1010,41 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC12 - Navigate to Home Page
+#### Use case: UC12 - Add person to module
+**Main Success Scenario (MSS)**
+1. User chooses to add a person to a module (have an association between person and module).
+2. Plannit requests for module code of the module and name of person.
+3. User enters the module's module code and person's name.
+4. Plannit searches for both the module and person and adds the person to the module.
+
+Use case ends.
+
+Extensions:
+* 3a. Plannit detects that the specified module does not exist.
+    * 3a1. Plannit displays a text, informing that the specified module does not exist.
+* 3b. Plannit detects that the specified contact does not exist.
+    * 3b1. Plannit displays a text, informing that the specified contact does not exist.
+
+  Use case ends.
+
+#### Use case: UC13 - Delete person from module
+**Main Success Scenario (MSS)**
+1. User chooses to delete a person from a module (delete the association between person and module).
+2. Plannit requests for module code of the module and name of person.
+3. User enters the module's module code and person's name.
+4. Plannit searches for both the module and person and deletes the person from the module.
+
+Use case ends.
+
+Extensions:
+* 3a. Plannit detects that the specified module does not exist.
+    * 3a1. Plannit displays a text, informing that the specified module does not exist.
+* 3b. Plannit detects that the specified contact does not exist.
+    * 3b1. Plannit displays a text, informing that the specified contact does not exist.
+
+  Use case ends.
+
+#### Use case: UC14 - Navigate to Home Page
 **Main Success Scenario (MSS)**
 1.  User requests to navigate to Home Page.
 2.  Plannit displays the Home Page.
@@ -956,7 +1057,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC13 - Navigate to Module
+#### Use case: UC15 - Navigate to Module
 **Main Success Scenario (MSS)**
 1.  User requests to navigate to a specific module.
 2.  Plannit displays the module details.
@@ -971,7 +1072,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC14 - Navigate to Contact Page
+#### Use case: UC16 - Navigate to Contact Page
 **Main Success Scenario (MSS)**
 1.  User requests to navigate to the Contact Page.
 2.  Plannit displays the Contact Page.
@@ -984,7 +1085,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC15 - Exit program
+#### Use case: UC17 - Exit program
 **Main Success Scenario (MSS)**
 1.  User requests to exit program.
 2.  Plannit closes program.
@@ -1074,7 +1175,7 @@ Assumption: The sample data is loaded into Plannit.
         * Shows the GUI with a set of sample contacts.
         * The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -1130,7 +1231,7 @@ Assumption: The sample data is loaded into Plannit.
 
 ### Deleting a module
 
-1. Deleting a module while all modules are being shown
+1. Deleting a module with the module being displayed currently.
 
     1. Prerequisites: List all modules using the `list` command. At least one module in the list.
 
@@ -1169,7 +1270,174 @@ Assumption: The sample data is loaded into Plannit.
     1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected: Similar to (3).
 
+### Adding a contact
 
+1. Adding a person to Plannit
+
+    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+       Expected:
+        * A person with name Amy is added to Plannit.
+        * A success message is displayed to the user.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+       Expected:
+        * No person is added to Plannit because there is a missing field (phone number).
+        * Error details indicating invalid command format displayed to the user.
+
+    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+       Expected:
+        * No person is added to Plannit.
+        * An error message with relevant details is displayed to the user.
+
+### Adding a link
+
+1. Adding a link to a module in Plannit
+
+    1. Prerequisite: Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
+       Expected:
+        * A new link with url `google.com` is added to the module with module code `CS2103T`.
+        * The new link is represented with a yellow-outlined box labelled with `Google` within the said module on Plannit.
+
+    1. Test case: `add-link m/CS2100 la/Google l/google.com`<br>
+       Expected:
+        * The link with url `google.com` is not added to the module with module code `CS2100`.
+        * Error details shown in the status message.
+
+    1. Other incorrect add commands to try: `add-link`, `add-link m/CS2103T `, `add-link m/CS2103T la/Google`<br>
+       Expected: Similar to previous.
+
+### Deleting a link
+
+1. Deleting a link from a module in Plannit
+
+    1. Prerequisite:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `delete-link m/CS2103T la/Team Repo`<br>
+       Expected:
+        * The link with the alias `Team Repo` is deleted from the module with module code `CS2103T`.
+        * The link which was represented with a yellow-outlined box labelled with `Team Repo` within the said module on Plannit disappears.
+
+    1. Test case: `delete-link m/CS2103T la/hahahaha`<br>
+       Expected:
+        * No links are deleted from the module with module code `CS2103T`.
+        * Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete-link`, `delete-link m/CS2103T `, `delete-link m/CS2103T m/CS2106`<br>
+       Expected: Similar to previous.
+
+### Opening a link
+
+1. Opening a link from a module in Plannit
+
+    1. Prerequisites:  Use the `list` command to display all existing modules (from the sample data) in Plannit.
+
+    1. Test case: `open-link m/CS2103T la/Team Repo`<br>
+       Expected:
+        * The link with the alias `Team Repo` is opened from the module with module code `CS2103T` into your default browser.
+
+    1. Test case: `open-link m/CS2103T la/hahahaha`<br>
+       Expected:
+        * No links are opened from the module with module code `CS2103T`.
+        * Error details shown in the status message.
+
+    1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
+       Expected: Similar to previous.
+
+### Adding a contact to module
+
+1. Adding a person to a module
+
+    1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
+
+    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`, assuming both `MA2001` and `Alex Yeoh` are currently displayed on Plannit.
+       Expected:
+        * `Alex Yeoh` is added to `MA2001`.
+        * Result display shows successful addition of `Alex Yeoh` to `MA2001`.
+        * Subsequently, if `goto MA2001` is executed next, `Alex Yeoh` should be one of the persons listed.
+
+    3. Test case: `add-person-to-module m/MA2001 n/David Li`
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that `David Li` has already been added to `MA2001`.
+
+    4. Test case:
+       `add-person-to-module m/GE3238 n/David Li`, assuming `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit.
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that the input person is not in the currently displayed list.
+
+    5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
+       Expected:
+        * No person is added to module. 
+        * Result display shows that the command format is invalid.
+
+### Deleting a contact 
+
+1. Deleting a person from Plannit while the contact to be deleted is shown.
+
+    1. Prerequisites: Person to be deleted is currently displayed on screen.
+
+    1. Test case: `delete-person n/Alex Yeoh`<br>
+       Expected:
+        * Contact with name Alex Yeoh is deleted from the displayed list and Plannit.
+        * Details of the deleted contact displayed to the user.
+
+    1. Test case: `delete-person n/Bob`, assuming Bob is currently not displayed on screen<br>
+       Expected:
+        * No person is deleted.
+        * Error message detailing the fact that no Bob is currently displayed on screen.
+
+    1. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
+       Expected:
+        * No person is deleted.
+        * An error message with relevant details is displayed to the user.
+
+### Deleting a contact from module
+
+1. Deleting a person from module while both the specified module and person are displayed on screen.
+
+    1. Prerequisites: Both the person to be deleted from the module and the module itself are currently displayed on screen. Also, the person to be deleted from the module must have already been added to the module.
+
+    1. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
+       Expected:
+        * Contact with name David Li is deleted from the CS2103T module. 
+        * A successful message stating that a person got deleted from CS2103T is displayed to the user.
+
+    1. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
+       Expected:
+        * No person is deleted from CS2103T. 
+        * Error message detailing the fact that Bob is currently not displayed in list is displayed.
+
+    1. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
+       Expected:
+        * No person is deleted from any module. 
+        * An error message with relevant details is displayed to the user.
+
+    
+### Editing a contact
+
+1. Editing a person in Plannit while the contact to be edited is shown.
+
+    1. Prerequisites: Person to be edited is currently displayed on screen.
+
+    1. Test case: `edit-person 1 n/Armin`<br>
+       Expected:
+        * First contact on the list is edited to have the name Armin. 
+        * Details of the edited contact displayed to the user.
+
+    1. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
+       Expected:
+        * No person is edited. 
+        * Error message detailing the fact an invalid index is provided is displayed to the user.
+
+    1. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
+       Expected:
+        * No person is edited. 
+        * An error message with relevant details is displayed to the user.
 
 ### Saving data
 
