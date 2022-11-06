@@ -28,8 +28,6 @@ public class SuggestCommandParser implements Parser<SuggestCommand> {
 
         requireNonNull(args);
 
-        System.out.println(args);
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DAY_TIME_OF_WEEK, PREFIX_KEYWORD);
 
