@@ -190,6 +190,11 @@ public class AddCommandTest {
         public void updateAppointmentComparator(Comparator<Appointment> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredLists(Predicate<Person> predicate, Predicate<Appointment> appointmentPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
