@@ -14,6 +14,16 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+#helpContainer, #helpMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#commandSummaryDisplay {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+}
+
+.text-area .content {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

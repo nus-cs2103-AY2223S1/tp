@@ -13,6 +13,8 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
+participant ":FilteredList" as FilteredList #222222
+
 [-> LogicManager : execute("sortp n/")
 activate LogicManager
 
@@ -48,10 +50,10 @@ deactivate AddressBookParser
 LogicManager -> SortPersonCommand : execute()
 activate SortPersonCommand
 
-SortPersonCommand -> Model : sortPersonList(Comparator.comparing(Person::getName))
+SortPersonCommand -> Model : sortPersonList(comparator)
 activate Model
 
-Model --> FilteredList : setComparator(comparator)
+Model -> FilteredList : setComparator(comparator)
 activate FilteredList
 
 FilteredList --> Model

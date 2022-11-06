@@ -57,6 +57,9 @@ public class Name implements Comparable<Name> {
         return fullName.hashCode();
     }
 
+    // solution adapted from
+    // https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html
+    // #compareToIgnoreCase(java.lang.String)
     @Override
     public int compareTo(Name other) {
         return -other.fullName.compareToIgnoreCase(this.fullName);

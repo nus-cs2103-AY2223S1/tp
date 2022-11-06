@@ -16,8 +16,9 @@ import seedu.address.model.person.PersonId;
 public class InternshipBuilder {
 
     public static final Integer DEFAULT_INTERNSHIP_ID = 0;
-    public static final String DEFAULT_NAME = "ABCDE Pte Ltd";
+    public static final String DEFAULT_COMPANY_NAME = "ABCDE Pte Ltd";
     public static final String DEFAULT_ROLE = "Workman";
+    public static final String DEFAULT_NAME = DEFAULT_COMPANY_NAME + " " + DEFAULT_ROLE;
     public static final InternshipStatus.State DEFAULT_STATUS = InternshipStatus.State.ACCEPTED;
     public static final String DEFAULT_INTERVIEW_DATE = "2022-11-11 11:11";
 
@@ -26,25 +27,25 @@ public class InternshipBuilder {
     private InternshipRole role;
     private InternshipStatus status;
     private InterviewDate interviewDate;
-    private PersonId personId;
+    private PersonId contactPersonId;
 
     /**
-     * Creates a {@code InternshipBuilder} with the default details.
+     * Creates an {@code InternshipBuilder} with the default details.
      */
     public InternshipBuilder() {
         internshipId = new InternshipId(DEFAULT_INTERNSHIP_ID);
-        name = new CompanyName(DEFAULT_NAME);
+        name = new CompanyName(DEFAULT_COMPANY_NAME);
         role = new InternshipRole(DEFAULT_ROLE);
         status = new InternshipStatus(DEFAULT_STATUS);
         interviewDate = new InterviewDate(DEFAULT_INTERVIEW_DATE);
-        personId = null;
+        contactPersonId = null;
     }
 
     /**
      * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
-        personId = internshipToCopy.getContactPersonId();
+        contactPersonId = internshipToCopy.getContactPersonId();
         name = internshipToCopy.getCompanyName();
         role = internshipToCopy.getInternshipRole();
         status = internshipToCopy.getInternshipStatus();
@@ -57,20 +58,20 @@ public class InternshipBuilder {
      * This refers to the contact person linked to the internship.
      */
     public InternshipBuilder withPersonId(Integer id) {
-        this.personId = new PersonId(id);
+        this.contactPersonId = new PersonId(id);
         return this;
     }
 
     /**
-     * Sets the {@code Company Name} of the {@code Internship} that we are building.
+     * Sets the {@code CompanyName} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withName(String name) {
+    public InternshipBuilder withCompanyName(String name) {
         this.name = new CompanyName(name);
         return this;
     }
 
     /**
-     * Sets the {@code Role} of the {@code Internship} that we are building.
+     * Sets the {@code InternshipRole} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withRole(String role) {
         this.role = new InternshipRole(role);
@@ -87,7 +88,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Internship} that we are building.
+     * Sets the {@code InternshipStatus} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withStatus(String status) {
         try {
@@ -99,7 +100,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Interview Date} of the {@code Internship} that we are building.
+     * Sets the {@code InterviewDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String date) {
         if (date == null || date.isBlank()) {
@@ -111,7 +112,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(internshipId, name, role, status, personId, interviewDate);
+        return new Internship(internshipId, name, role, status, contactPersonId, interviewDate);
     }
 
 }

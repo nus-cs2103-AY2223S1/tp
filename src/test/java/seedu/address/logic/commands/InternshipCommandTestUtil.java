@@ -20,14 +20,15 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 import seedu.address.model.internship.InternshipStatus;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class InternshipCommandTestUtil {
 
-    public static final String VALID_NAME_ABC = "ABC Pte Ltd";
-    public static final String VALID_NAME_BOBBY = "Bobby Constructions Pte Ltd";
+    public static final String VALID_COMPANY_NAME_ABC = "ABC Pte Ltd";
+    public static final String VALID_COMPANY_NAME_BOBBY = "Bobby Constructions Pte Ltd";
     public static final String VALID_ROLE_ABC = "Software Engineer";
     public static final String VALID_ROLE_BOBBY = "Admin Assistant";
     public static final String VALID_STATUS_ABC = InternshipStatus.State.PENDING.toString();
@@ -37,8 +38,8 @@ public class InternshipCommandTestUtil {
     public static final String VALID_INTERVIEW_ABC = "2022-11-11 11:11";
     public static final String VALID_INTERVIEW_BOBBY = "2022-10-10 12:34";
 
-    public static final String NAME_DESC_ABC = " " + PREFIX_COMPANY_NAME + VALID_NAME_ABC;
-    public static final String NAME_DESC_BOBBY = " " + PREFIX_COMPANY_NAME + VALID_NAME_BOBBY;
+    public static final String COMPANY_NAME_DESC_ABC = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_ABC;
+    public static final String COMPANY_NAME_DESC_BOBBY = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_BOBBY;
     public static final String ROLE_DESC_ABC = " " + PREFIX_INTERNSHIP_ROLE + VALID_ROLE_ABC;
     public static final String ROLE_DESC_BOBBY = " " + PREFIX_INTERNSHIP_ROLE + VALID_ROLE_BOBBY;
     public static final String STATUS_DESC_ABC = " " + PREFIX_INTERNSHIP_STATUS + VALID_STATUS_ABC;
@@ -46,27 +47,26 @@ public class InternshipCommandTestUtil {
     public static final String INTERVIEW_DESC_ABC = " " + PREFIX_INTERVIEW_DATE + VALID_INTERVIEW_ABC;
     public static final String INTERVIEW_DESC_BOBBY = " " + PREFIX_INTERVIEW_DATE + VALID_INTERVIEW_BOBBY;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_COMPANY_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_INTERNSHIP_ROLE + "911&"; // '&' not allowed in phones
-    public static final String INVALID_STATUS_DESC = " " + PREFIX_INTERNSHIP_STATUS + "bob!yahoo"; // not a status
+    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME + "James&"; // '&' not allowed
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_INTERNSHIP_ROLE + "Front&End"; // '&' not allowed
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_INTERNSHIP_STATUS + "A!"; // not a status
     public static final String INVALID_INTERVIEW_DESC = " " + PREFIX_INTERVIEW_DATE + "2022-11-10"; // missing time
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    /*
-    public static final EditCommand.EditInternshipDescriptor DESC_ABC;
-    public static final EditCommand.EditInternshipDescriptor DESC_BOBBY;
+
+    public static final EditInternshipCommand.EditInternshipDescriptor DESC_ABC;
+    public static final EditInternshipCommand.EditInternshipDescriptor DESC_BOBBY;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ABC = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_ABC)
+                .withInternshipRole(VALID_ROLE_ABC).withInternshipStatus(VALID_STATUS_ABC)
+                .withInterviewDate(VALID_INTERVIEW_ABC).build();
+        DESC_BOBBY = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_BOBBY)
+                .withInternshipRole(VALID_ROLE_BOBBY).withInternshipStatus(VALID_STATUS_BOBBY)
+                .withInterviewDate(VALID_INTERVIEW_BOBBY).build();
     }
-     */
 
     /**
      * Executes the given {@code command}, confirms that <br>

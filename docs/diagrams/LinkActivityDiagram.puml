@@ -1,0 +1,29 @@
+@startuml
+start
+switch ()
+case ( [command is valid] )
+  :update person internshipId field
+  and internship personId field;
+  :refresh person list and
+  internship list;
+case ( [else] )
+  switch ()
+  case ( [person index is invalid] )
+    :display message invalid
+    person displayed index;
+  case ( [internship index is invalid] )
+    :display message invalid
+    internship displayed index;
+  case ( [else] )
+    switch ()
+      case ( [person is already linked] )
+        :display message
+        linked person;
+      case ( [else] )
+        :display message
+        linked internship;
+      endswitch
+  endswitch
+endswitch
+stop
+@enduml

@@ -37,7 +37,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                 && (internshipRoleKeywords.isEmpty() || internshipRoleKeywords.stream().anyMatch(
                     keyword -> internship.getInternshipRole().roleName.toLowerCase().contains(keyword.toLowerCase())))
                 && (internshipStatusKeywords.isEmpty() || internshipStatusKeywords.stream().anyMatch(
-                    keyword -> internship.getInternshipStatus().toString().toLowerCase().contains(
+                    keyword -> internship.getInternshipStatus().toString().toLowerCase().startsWith(
                             keyword.toLowerCase())))
                 && (interviewDateKeywords.isEmpty() || interviewDateKeywords.stream().anyMatch(
                     keyword -> internship.getInterviewDate() != null
@@ -56,6 +56,8 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
 
         InternshipContainsKeywordsPredicate otherPredicate = (InternshipContainsKeywordsPredicate) other;
 
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         return Objects.equals(companyNameKeywords, otherPredicate.companyNameKeywords)
                 && Objects.equals(internshipRoleKeywords, otherPredicate.internshipRoleKeywords)
                 && Objects.equals(internshipStatusKeywords, otherPredicate.internshipStatusKeywords)

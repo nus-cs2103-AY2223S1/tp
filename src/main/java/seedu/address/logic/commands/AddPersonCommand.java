@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -34,7 +35,7 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "add -p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the InterNUS. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the InterNUS.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -100,16 +101,25 @@ public class AddPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         // By default, use the internshipId field in the command
         InternshipId idToLink = internshipId;
+
         List<Internship> lastShownList = model.getFilteredInternshipList();
-        if (linkIndex != null && linkIndex.getZeroBased() < lastShownList.size()) {
-            Internship internship = lastShownList.get(linkIndex.getZeroBased());
-            if (internship.getContactPersonId() == null) {
-                idToLink = internship.getInternshipId();
+        Internship internshipToLink = null;
+        // If a linkIndex is supplied to the command,
+        // attempt to find an internship via the provided index in the filtered internship list
+        if (linkIndex != null) {
+            if (linkIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            }
+
+            internshipToLink = lastShownList.get(linkIndex.getZeroBased());
+
+            if (internshipToLink.getContactPersonId() == null) {
+                idToLink = internshipToLink.getInternshipId();
             }
         }
-
 
         Person toAdd = new Person(
                 new PersonId(model.getNextPersonId()),
@@ -125,8 +135,21 @@ public class AddPersonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        String linkMessage = "";
+        if (internshipToLink != null) {
+            if (internshipToLink.getContactPersonId() == null) {
+                linkMessage = String.format("\nInternship linked successfully: "
+                        + LinkCommand.MESSAGE_SUCCESS, name, internshipToLink.getDisplayName());
+            } else {
+                linkMessage = String.format("\nWarning: Failed to link internship: "
+                        + LinkCommand.MESSAGE_LINKED_INTERNSHIP,
+                        model.findPersonById(internshipToLink.getContactPersonId()).getName(),
+                        internshipToLink.getDisplayName());
+            }
+        }
+
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd) + linkMessage);
     }
 
     @Override
@@ -139,6 +162,8 @@ public class AddPersonCommand extends Command {
             return false;
         }
 
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         AddPersonCommand otherCommand = (AddPersonCommand) other;
         return name.equals(otherCommand.name)
                 && Objects.equals(phone, otherCommand.phone)

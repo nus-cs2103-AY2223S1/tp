@@ -28,15 +28,15 @@ import seedu.address.model.person.PersonId;
  */
 public class EditInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "editi";
+    public static final String COMMAND_WORD = "edit -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME] "
-            + "[" + PREFIX_INTERNSHIP_ROLE + "INTERNSHIP_ROLE] "
-            + "[" + PREFIX_INTERNSHIP_STATUS + "INTERNSHIP_STATUS] "
+            + "[" + PREFIX_COMPANY_NAME + "COMPANY] "
+            + "[" + PREFIX_INTERNSHIP_ROLE + "ROLE] "
+            + "[" + PREFIX_INTERNSHIP_STATUS + "STATUS] "
             + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INTERNSHIP_STATUS + "ACCEPTED ";
@@ -80,6 +80,9 @@ public class EditInternshipCommand extends Command {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        if (editedInternship.getContactPersonId() != null) {
+            model.refreshPersonList();
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
@@ -87,12 +90,14 @@ public class EditInternshipCommand extends Command {
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
      * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedInternship(Internship internshipToEdit,
-                                                     EditInternshipDescriptor editInternshipDescriptor) {
+    private static Internship createEditedInternship(
+            Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
         // internshipId should always be unchanged
         InternshipId internshipId = internshipToEdit.getInternshipId();
+        // contactPersonId should not be changed by EditInternshipCommand
+        PersonId contactPersonId = internshipToEdit.getContactPersonId();
 
         CompanyName updatedCompanyName = editInternshipDescriptor.getCompanyName()
                 .orElse(internshipToEdit.getCompanyName());
@@ -100,8 +105,6 @@ public class EditInternshipCommand extends Command {
                 .orElse(internshipToEdit.getInternshipRole());
         InternshipStatus updatedInternshipStatus = editInternshipDescriptor.getInternshipStatus()
                 .orElse(internshipToEdit.getInternshipStatus());
-        // TODO: Change to support update contact person functionality (`link` command).
-        PersonId updatedContactPersonId = internshipToEdit.getContactPersonId();
         InterviewDate updatedInterviewDate = editInternshipDescriptor.getInterviewDate()
                 .orElse(internshipToEdit.getInterviewDate());
 
@@ -110,7 +113,7 @@ public class EditInternshipCommand extends Command {
                 updatedCompanyName,
                 updatedInternshipRole,
                 updatedInternshipStatus,
-                updatedContactPersonId,
+                contactPersonId,
                 updatedInterviewDate);
     }
 

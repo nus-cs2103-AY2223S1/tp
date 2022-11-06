@@ -26,7 +26,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindPersonCommand}.
  */
 public class FindPersonCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -39,9 +39,11 @@ public class FindPersonCommandTest {
                         Collections.singletonList("first"),
                         Collections.singletonList("first"),
                         Collections.singletonList("first"),
+                        Collections.singletonList("first"),
                         Collections.singletonList("first"));
         PersonContainsKeywordsPredicate secondPredicate =
                 new PersonContainsKeywordsPredicate(
+                        Collections.singletonList("second"),
                         Collections.singletonList("second"),
                         Collections.singletonList("second"),
                         Collections.singletonList("second"),
@@ -93,6 +95,7 @@ public class FindPersonCommandTest {
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
         return new PersonContainsKeywordsPredicate(
                 Arrays.asList(userInput.split("\\s+")),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());

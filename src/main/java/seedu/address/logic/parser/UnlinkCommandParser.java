@@ -38,7 +38,8 @@ public class UnlinkCommandParser implements Parser<UnlinkCommand> {
 
         if (argMultimap.getValue(PREFIX_PERSON).isPresent()) {
             personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON).get());
-        } else {
+        }
+        if (argMultimap.getValue(PREFIX_INTERNSHIP).isPresent()) {
             internshipIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERNSHIP).get());
         }
 

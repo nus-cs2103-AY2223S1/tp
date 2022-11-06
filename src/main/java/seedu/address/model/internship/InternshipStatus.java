@@ -6,17 +6,21 @@ package seedu.address.model.internship;
  */
 public class InternshipStatus {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be PENDING, REJECTED, ACCEPTED or COMPLETED, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Status can only be "
+            + "BOOKMARKED, PENDING, ACCEPTED, COMPLETED or REJECTED "
+            + "(short-forms corresponding to first letter: B, P, A, C, R), and are case-insensitive. "
+            + "Status should not be blank.";
 
     /**
      * Represents the possible states of an InternshipStatus.
+     * A lower level indicates a higher priority in the Internship list when sorted by InternshipStatus.
      */
     public enum State {
-        REJECTED(0),
+        BOOKMARKED(0),
         PENDING(1),
         ACCEPTED(2),
-        COMPLETED(3);
+        COMPLETED(3),
+        REJECTED(4);
 
         private final int level;
 
@@ -27,6 +31,39 @@ public class InternshipStatus {
         public int getLevel() {
             return level;
         }
+
+        /**
+         * Constructs a State from trimmed user input.
+         * Handles shortcut inputs, given by the first character of the State.
+         *
+         * @param input that is trimmed and is uppercase.
+         * @return State enum of specified internship status.
+         */
+        public static State fromTrimmedInput(String input) {
+            if (input.length() == 1) {
+                return State.fromShortcut(input);
+            }
+            return State.valueOf(input);
+        }
+
+        private static State fromShortcut(String shortcut) {
+            assert shortcut.length() == 1;
+            switch (shortcut) {
+            case "B":
+                return State.BOOKMARKED;
+            case "P":
+                return State.PENDING;
+            case "A":
+                return State.ACCEPTED;
+            case "C":
+                return State.COMPLETED;
+            case "R":
+                return State.REJECTED;
+            default:
+                return null;
+            }
+        }
+
     }
 
     public final State currentState;
@@ -45,10 +82,25 @@ public class InternshipStatus {
      */
     public static boolean isValidStatus(String test) {
         switch (test) {
-        case "PENDING":
-        case "REJECTED":
+        case "B":
+            // Fallthrough
+        case "P":
+            // Fallthrough
+        case "A":
+            // Fallthrough
+        case "C":
+            // Fallthrough
+        case "R":
+            // Fallthrough
+        case "BOOKMARKED":
+            // Fallthrough
         case "ACCEPTED":
+            // Fallthrough
         case "COMPLETED":
+            // Fallthrough
+        case "PENDING":
+            // Fallthrough
+        case "REJECTED":
             return true;
         default:
             return false;

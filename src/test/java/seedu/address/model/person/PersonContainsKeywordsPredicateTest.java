@@ -22,8 +22,10 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
+                firstPredicateKeywordList,
                 firstPredicateKeywordList);
         PersonContainsKeywordsPredicate secondPredicate = new PersonContainsKeywordsPredicate(
+                secondPredicateKeywordList,
                 secondPredicateKeywordList,
                 secondPredicateKeywordList,
                 secondPredicateKeywordList,
@@ -34,6 +36,7 @@ public class PersonContainsKeywordsPredicateTest {
 
         // same values -> returns true
         PersonContainsKeywordsPredicate firstPredicateCopy = new PersonContainsKeywordsPredicate(
+                firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -57,12 +60,14 @@ public class PersonContainsKeywordsPredicateTest {
                 Collections.singletonList("Alice"),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new PersonContainsKeywordsPredicate(
                 Arrays.asList("Alice", "Bob"),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
@@ -73,12 +78,14 @@ public class PersonContainsKeywordsPredicateTest {
                 Arrays.asList("Bob", "Carol"),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new PersonContainsKeywordsPredicate(
                 Arrays.asList("aLIce", "bOB"),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
@@ -92,6 +99,7 @@ public class PersonContainsKeywordsPredicateTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
@@ -100,12 +108,14 @@ public class PersonContainsKeywordsPredicateTest {
                 Arrays.asList("Carol"),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new PersonContainsKeywordsPredicate(
                 Arrays.asList("12345", "alice@email.com", "Main", "Street"),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());

@@ -24,13 +24,13 @@ public class SortInternshipCommandParser implements Parser<SortInternshipCommand
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortInternshipCommand.MESSAGE_USAGE));
         }
-        if (trimmedArgs.startsWith(PREFIX_COMPANY_NAME.getPrefix())) {
+        if (trimmedArgs.equalsIgnoreCase(PREFIX_COMPANY_NAME.getPrefix())) {
             return new SortInternshipCommand(SortInternshipCommand.Criteria.COMPANY_NAME);
         }
-        if (trimmedArgs.startsWith(PREFIX_INTERVIEW_DATE.getPrefix())) {
+        if (trimmedArgs.equalsIgnoreCase(PREFIX_INTERVIEW_DATE.getPrefix())) {
             return new SortInternshipCommand(SortInternshipCommand.Criteria.INTERVIEW_DATE);
         }
-        if (trimmedArgs.startsWith(PREFIX_INTERNSHIP_STATUS.getPrefix())) {
+        if (trimmedArgs.equalsIgnoreCase(PREFIX_INTERNSHIP_STATUS.getPrefix())) {
             return new SortInternshipCommand(SortInternshipCommand.Criteria.INTERNSHIP_STATUS);
         }
 

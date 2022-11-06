@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "editp";
+    public static final String COMMAND_WORD = "edit -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
@@ -42,8 +42,8 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_COMPANY + "COMPANY]\n"
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -87,6 +87,9 @@ public class EditPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (editedPerson.getInternshipId() != null) {
+            model.refreshInternshipList();
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

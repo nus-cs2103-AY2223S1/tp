@@ -98,10 +98,14 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by interviewDate.
+     * Earlier dates are smaller (and appear higher in the sorted list).
      * Internships with no interview dates are greater (and appear lower in the sorted list).
      *
      * @return the Comparator.
      */
+    // solution adapted from
+    // https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
+    // #comparing-java.util.function.Function-java.util.Comparator-
     public static Comparator<Internship> compareByInterviewDate() {
         return Comparator.comparing(
                 i -> i.getInterviewDate().datetime, Comparator.nullsLast(Comparator.naturalOrder()));
@@ -109,6 +113,7 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by internshipStatus.
+     * The ordering is defined in {@code InternshipStatus.State}.
      *
      * @return the Comparator.
      */
@@ -132,7 +137,7 @@ public class Internship {
                 && otherInternship.getInternshipRole().equals(getInternshipRole())
                 && otherInternship.getInternshipStatus().equals(getInternshipStatus())
                 && Objects.equals(otherInternship.getInternshipId(), getInternshipId())
-                && otherInternship.getContactPersonId().equals(getContactPersonId())
+                && Objects.equals(otherInternship.getContactPersonId(), getContactPersonId())
                 && otherInternship.getInterviewDate().equals(getInterviewDate());
     }
 
@@ -150,7 +155,7 @@ public class Internship {
                 .append(getInternshipRole())
                 .append("; Status: ")
                 .append(getInternshipStatus())
-                .append("; InterviewDate: ")
+                .append("; Interview Date: ")
                 .append(getInterviewDate());
 
         return builder.toString();

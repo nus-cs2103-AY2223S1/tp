@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -22,13 +20,13 @@ public class LinkCommand extends Command {
 
     public static final String COMMAND_WORD = "link";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a Person and an Internship. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a Person and an Internship.\n"
             + "Parameters: "
             + PREFIX_PERSON + "PERSON_INDEX "
-            + PREFIX_INTERNSHIP + "INTERNSHIP_ID "
+            + PREFIX_INTERNSHIP + "INTERNSHIP_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PERSON + "0 "
-            + PREFIX_INTERNSHIP + "0 ";
+            + PREFIX_PERSON + "1 "
+            + PREFIX_INTERNSHIP + "1 ";
     public static final String MESSAGE_SUCCESS = "Person %1$s linked to Internship %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in InterNUS";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in InterNUS";
@@ -74,12 +72,12 @@ public class LinkCommand extends Command {
             throw new CommandException(String.format(
                     MESSAGE_LINKED_PERSON,
                     personToLink.getName(),
-                    model.findInternshipById(personToLink.getInternshipId()).getCompanyName()));
+                    model.findInternshipById(personToLink.getInternshipId()).getDisplayName()));
         } else if (internshipToLink.getContactPersonId() != null) {
             throw new CommandException(String.format(
                     MESSAGE_LINKED_INTERNSHIP,
                     model.findPersonById(internshipToLink.getContactPersonId()).getName(),
-                    internshipToLink.getCompanyName()));
+                    internshipToLink.getDisplayName()));
         }
 
         Person linkedPerson = new Person(
@@ -111,10 +109,10 @@ public class LinkCommand extends Command {
 
         model.setPerson(personToLink, linkedPerson);
         model.setInternship(internshipToLink, linkedInternship);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.refreshPersonList();
+        model.refreshInternshipList();
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getCompanyName()));
+                String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getDisplayName()));
     }
 
     @Override

@@ -1,33 +1,112 @@
 ---
 layout: page
-title: User Guide
+title: InterNUS User Guide
 ---
 
-InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
+# Table of Contents
 
-* Table of Contents
-{:toc}
+1. [Introduction](#1-introduction)<br>
+   1.1. [What is InterNUS?](#11-what-is-internus)<br>
+   1.2. [Person List](#12-person-list)<br>
+   1.3. [Internship List](#13-internship-list)<br>
+2. [How to use this User Guide?](#2-how-to-use-this-user-guide)<br>
+   2.1. [Icons and symbols](#21-icons-and-symbols)<br>
+   2.2. [Graphical User Interface (GUI) of InterNUS](#22-graphical-user-interface-gui-of-internus)<br>
+   2.3. [Command format](#23-command-format)<br>
+3. [Quick Start](#3-quick-start)<br>
+4. [Features](#4-features)<br>
+   4.1. [Add Command](#41-add-command)<br>
+   &emsp; 4.1.1. [Adding a person: `add -p`](#411-adding-a-person-add--p)<br>
+   &emsp; 4.1.2. [Adding an internship: `add -i`](#412-adding-an-internship-add--i)<br>
+   4.2. [List Command](#42-list-command)<br>
+   &emsp; 4.2.1. [Listing all persons : `list -p`](#421-listing-all-persons--list--p)<br>
+   &emsp; 4.2.2. [Listing all internships : `list -i`](#422-listing-all-internships--list--i)<br>
+   4.3. [Edit Command](#43-edit-command)<br>
+   &emsp; 4.3.1. [Editing a person : `edit -p`](#431-editing-a-person--edit--p)<br>
+   &emsp; 4.3.2. [Editing an internship : `edit -i`](#432-editing-an-internship--edit--i)<br>
+   4.4. [Link and Unlink Command](#44-link-and-unlink-command)<br>
+   &emsp; 4.4.1. [Linking a person and an internship : `link`](#441-linking-a-person-and-an-internship--link)<br>
+   &emsp; 4.4.2. [Unlinking a person and an internship : `unlink`](#442-unlinking-a-person-and-an-internship--unlink)<br>
+   4.5. [Find Command](#45-find-command)<br>
+   &emsp; 4.5.1. [Finding persons : `find -p`](#451-finding-persons--find--p)<br>
+   &emsp; 4.5.2. [Finding internships : `find -i`](#452-finding-internships--find--i)<br>
+   4.6. [Delete Command](#46-delete-command)<br>
+   &emsp; 4.6.1. [Deleting a person by index : `delete -p`](#461-deleting-a-person-by-index--delete--p)<br>
+   &emsp; 4.6.2. [Deleting an internship by index : `delete -i`](#462-deleting-an-internship-by-index--delete--i)<br>
+   4.7. [Sort Command](#47-sort-command)<br>
+   &emsp; 4.7.1. [Sorting persons in the list: `sort -p`](#471-sorting-persons-in-the-list-sort--p)<br>
+   &emsp; 4.7.2. [Sorting internships in the list: `sort -i`](#472-sorting-internships-in-the-list-sort--i)<br>
+   4.8. [General](#48-general)<br>
+   &emsp; 4.8.1. [Viewing help : `help`](#481-viewing-help--help)<br>
+   &emsp; 4.8.2. [Clearing all entries : `clear`](#482-clearing-all-entries--clear)<br>
+   &emsp; 4.8.3. [Exiting the program : `exit`](#483-exiting-the-program--exit)<br>
+   4.9. [User Interface](#49-user-interface)<br>
+   &emsp; 4.9.1. [Dark Mode](#491-dark-mode)<br>
+   &emsp; 4.9.2. [Light Mode](#492-light-mode)<br>
+   4.10. [Data files](#410-data-files)<br>
+   &emsp; 4.10.1. [Saving the data](#4101-saving-the-data)<br>
+   &emsp; 4.10.2. [Editing the data file](#4102-editing-the-data-file)<br>
+5. [FAQ](#5-faq)
+6. [Command summary](#6-command-summary) 
 
 --------------------------------------------------------------------------------------------------------------------
+# 1. Introduction
 
-## Quick start
+## 1.1. What is InterNUS?
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Welcome to the InterNUS user guide!
 
-1. Download the latest `internus.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
+InterNUS is a convenient and powerful desktop app for NUS CS students to **manage internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
 
-1. Copy the file to the folder you want to use as the _home folder_ for your app.
+Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+## 1.2. Person List
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
 
-1. Refer to the [Features](#features) below for details of each command.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
+</div>
+
+## 1.3. Internship List
+
+Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
+# 2. How to use this User Guide?
 
-## Features
+We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
+For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
+
+
+## 2.1. Icons and symbols
+
+| Symbol               | Meaning                                                                        |
+|----------------------|--------------------------------------------------------------------------------|
+| :information_source: | Important information about specific behaviour of key features to take note of |
+| :bulb:               | Tips that can make certain features of InterNUS quicker and easier to use      |
+| :exclamation:        | Cautionary information to avoid unintended behaviour during usage of InterNUS  | 
+
+## 2.2. Graphical User Interface (GUI) of InterNUS
+
+|    ![Ui](images/interNUS.png)     |
+|:---------------------------------:|
+| InterNUS GUI component annotation |
+
+
+
+The UI component description:
+
+| Components             | Purpose                                                  |
+|------------------------|----------------------------------------------------------|
+| Menu Bar               | Consists of File, Help and Color Theme                   |
+| Color Theme Button     | To switch between light mode and dark mode               | 
+| Command Input          | To enter commands to be executed                         |
+| System Message Display | Displays results of executed commands and error messages |
+| Person List            | Displays contact information of persons                  |
+| Internship List        | Displays information of internships                      |
+
+## 2.3. Command format
 
 <div markdown="block" class="alert alert-info">
 
@@ -53,202 +132,342 @@ InterNUS is a desktop app for **managing internship applications, optimized for 
 
 </div>
 
-### Viewing help : `help`
+--------------------------------------------------------------------------------------------------------------------
+# 3. Quick start
 
-Displays a list of commands and a link to the user guide.
+1. Ensure you have Java `11` or above installed in your computer.
 
-![](../src/main/resources/images/help_summary.png)
+2. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
 
-Format: `help`
+3. Copy the file to the folder which you want to use as the _home folder_ for your app.
 
+4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder where `InterNUS.jar` is located and enter `java -jar InterNUS.jar` to open the app.
 
-### Adding a person: `add -p`
+5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-Adds a person to InterNUS.
+|  ![Ui](images/darktheme.png)  |
+|:-----------------------------:|
+| InterNUS GUI with sample data |
+
+   
+
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+8. Refer to the [Features](#4-features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 4. Features
+
+## 4.1. Add Command
+
+### 4.1.1. Adding a person: `add -p`
+
+Saves a contact person into InterNUS, from the hiring manager you liaise with 
+during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
+* `PHONE_NUMBER` can only be numeric and consists of at least 3 numbers.
+* `LINK_INDEX` refers to the index number shown in the person list and is optional.
+    * Specifying this parameter will define the internship at the specified index in the internship list as the internship of the new person.
+    * An internship is assumed to have at most one contact person, and a person is assumed to be in charge of at most one internship position.
+    * If the internship at the specified index is already an internship for another person,
+      the linking between the person and the internship will fail with a warning, but the person will still be added.
+* `TAG` can only be alphanumeric and be one word.
+* `COMPANY` refers to the company the contact person is working at.
+* `EMAIL`,`PHONE`,`TAG`,`COMPANY` are optional as user might not have all the information of contact person.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0). Link index is optional.
-The link index refers to the index number shown in the internship list. Company is optional.
-The company refers to the company the contact person is working at. 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** 
+
+* Duplicate person are not allowed.
+  A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
+* Adding person maintains the current sorted order of the display list (as opposed to adding to the back of the list).
+  By default, the list is sorted by date of creation. Refer to [this note under section 4.7.1 for how the sorting works](#471-sorting-persons-in-the-list-sort--p).
+* A person is assumed to be in charge of at most one internship position.
+* A person can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`
-* `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
+* `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` adds a person with `NAME` **John Doe**, `EMAIL` **johnd@example.com**, `PHONE` **98765432** and `COMPANY` **Meta**.
+  If the internship at index **1** of the internship list is not linked to any other person, this internship will be linked as the internship for this person. To unlink this person and internship, see [section 4.4.2 for the Unlink command](#442-unlinking-a-person-and-an-internship--unlink).
+* `add -p n/Betsy Crowe t/HR e/betsycrowe@example.com` adds a person with `NAME` **Betsy Crowe**, `TAG` **HR**, `EMAIL` **betsycrowe@example.com**
+  Here, since the `LINK_INDEX` field is omitted, the person will be added with **No internship linked**. To link an internship to this person, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
-### Adding an Internship: `addi`
 
-Adds an Internship to InterNUS.
+### 4.1.2. Adding an internship: `add -i`
 
-Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
+Saves an internship into InterNUS. InterNUS will keep track of important details such as
+the internship's contact person, application status and interview date (if any).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
-The link index refers to the index number shown in the person list and is optional. 
+Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/INTERVIEW_DATE] [l/LINK_INDEX]`
+
+* `LINK_INDEX` refers to the index number shown in the person list and is optional. 
+    * Specifying this parameter will define the person at the specified index in the person list as the contact person of the new internship. 
+    * An internship is assumed to have at most one contact person, and a person is assumed to be in charge of at most one internship position. 
+    * If the person at the specified index is already a contact person for another internship, 
+      the linking between the person and the internship will fail with a warning, but the internship will still be added. 
+* `STATUS` can only be `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive). 
+* `DATE_OF_INTERVIEW` is optional as interviews might not be scheduled yet. 
+
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** 
+
+* Duplicate internships are not allowed. 
+  An internship is considered to be duplicate if there already exists an internship in the list with the exact same company name and role (case-sensitive).
+* Adding internships maintains the current sorted order of the display list (as opposed to adding to the back of the list). 
+  By default, the list is sorted by date of creation. Refer to [this note under section 4.7.2 for how the sorting works](#472-sorting-internships-in-the-list-sort--i).
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Instead of typing the full `STATUS` name, just enter the first letter of the intended `STATUS` (e.g. `s/b` is a shortcut for `s/BOOKMARKED`).
 </div>
 
 Examples:
-* `addi c/TikTok r/Data Engineer s/rejected l/1`
-* `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
+* `add -i c/TikTok r/Data Engineer s/rejected l/1` adds an internship with `COMPANY_NAME` **TikTok**, `ROLE` **Data Engineer**, and `STATUS` **REJECTED**. 
+  If the person at index **1** of the person list is not linked to any other internship, this person will be linked as the contact person for this internship. To unlink this person and internship, see [section 4.4.2 for the Unlink command](#442-unlinking-a-person-and-an-internship--unlink).
+* `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00` adds an internship with `COMPANY_NAME` **Grab**, `ROLE` **Full Stack Developer**, `STATUS` **PENDING** and `INTERVIEW_DATE` **2020-12-20 12:00**.
+  Here, since the `LINK_INDEX` field is omitted, the internship will be added with **No contact person**. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
-### Listing all persons : `listp`
+## 4.2. List Command
 
-Shows a list of all persons in InterNUS.
+### 4.2.1. Listing all persons : `list -p`
 
-Format: `listp`
+Removes all filters on the person list and lists all persons in InterNUS in the current sorted order.
 
-### Listing all internships : `listi`
+Format: `list -p`
 
-Shows a list of all internships in InterNUS.
+### 4.2.2. Listing all internships : `list -i`
 
-Format: `listi`
+Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
-### Editing a person : `editp`
+Format: `list -i`
+
+## 4.3. Edit Command
+
+### 4.3.1. Editing a person : `edit -p`
 
 Edits an existing person in InterNUS.
 
-Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/COMPANY] [t/TAG]…​`
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+- Does not allow duplicate name when editing name of person
 
 Examples:
-- `listp` followed by `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `listp` followed by `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+- `list -p` followed by `edit -p 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Editing an internship : `editi`
+### 4.3.2. Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
 
-Format: `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`
-- Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
+Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
+- Edits the internship at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed internship list. The `INDEX` must be a positive integer 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive). Similar to the `add -i` command, the shortcuts can be used here.
 
 Examples:
-- `listi` followed by `edit 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
-- `listi` followed by `edit 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
+- `list -i` followed by `edit -i 1 s/ACCEPTED` edits the status of the 1st internship to be `ACCEPTED`.
+- `list -i` followed by `edit -i 2 s/REJECTED` edits the status of the 2nd internship to `REJECTED`.
 
-### Linking a person and an internship : `link` [coming soon]
+## 4.4. Link and Unlink Command
+
+### 4.4.1. Linking a person and an internship : `link`
 
 Links an existing person and internship together in InterNUS.
 
-Format: `link pi/PERSON_INDEX ii/INTERNSHIP_INDEX`
-- person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` will be linked together such that 
-- person will be displayed as contact person of internship and internship will be displayed as internship of person
+Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
+- Person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` must be initially not linked to any person/internship.
+- Specified person will be displayed as contact person of specified internship and specified internship will be displayed as internship of specified person.
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer must be a positive integer 1, 2, 3, …
 
 Examples:
-- `link pi/2 ii/3` will link person at index **2** to internship at index **3**
+- `link p/1 i/1` links the person at index **1** to the internship at index **1**
 
+### 4.4.2. Unlinking a person and an internship : `unlink`
 
-### Locating persons by name : `find -p`
+Unlinks an existing person and internship together in InterNUS.
+
+Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
+- At least 1 of the optional fields must be provided
+- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked.
+- If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the specified person and internship must be linked to each other.
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
+
+Examples:
+- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**
+- `unlink p/1` unlinks person at index **1** and its linked internship
+- `unlink i/1` unlinks internship at index **1** and its linked person
+
+## 4.5. Find Command
+
+### 4.5.1. Finding persons : `find -p`
 
 Finds persons whose fields contain any of the given keywords.
 
-Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...]`
-- The search is case-insensitive. e.g **hans** will match **Hans**
-- The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
+Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS...] [t/ TAG_KEYWORDS...] [c/ COMPANY_KEYWORDS...]`
+- The search is case-insensitive. e.g **hans** will match **Hans**.
+- The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**.
 - Only the fields corresponding to the specified prefixes will be searched,
-  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
-- Partial words will be matched. e.g. **Han** will match **Hans**
+  and all the specified fields must contain at least one of the specified keywords to be added to the search result.
+- Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
+- Partial words will be matched. e.g. **Han** will match **Hans**.
 
 Examples:
-- `find -p n/John` returns **john**, **John Doe** and **Johnny**
+- `find -p n/john jon` finds persons with `NAME` that contains **john** or **jon**.
+- `find -p e/@u.nus.edu @gmail.com` finds persons with `EMAIL` that contains **@u.nus.edu** or **@gmail.com**.
+- `find -p t/supervisor HR` finds persons with `TAG` that contains **supervisor** or **HR**.
+- `find -p n/john jon e/@u.nus.edu @gmail.com t/supervisor HR` finds persons with all 3 of the above.
+  e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** can be found with this command.
 
-
-### Locating internships by name : `find -i`
+### 4.5.2. Finding internships : `find -i`
 
 Finds internships whose fields contain any of the given keywords.
 
-Format: `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]`
+Format: `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ ROLE_KEYWORDS...] [s/ STATUS_KEYWORDS...] [d/ INTERVIEW_DATE_KEYWORDS...]`
 - The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
-- Only the fields corresponding to the specified prefixes will be searched, 
-  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
-- Partial words will be matched e.g. **app** will match **Apple** and **applications**.
+- Only the fields corresponding to the specified prefixes will be searched,
+  and all the specified fields must contain at least one of the specified keywords to be added to the search result.
+- Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview date.
+- Partial words will be matched e.g. **app** will match **Apple** and **applications**. 
 
-Example of usage:
-The app contains the following company names in the internship list.
-- SBS Transit Ltd
-- SMRT Buses
-- SMRT Trains Ltd
-- Tower Transit Singapore
-- ABC Pte Ltd
+Examples:
+- `find -i c/pte ltd` finds internships with `COMPANY_NAME` that contains **pte** or **ltd**. 
+- `find -i r/engineer analyst` finds internships with `ROLE` that contains **engineer** or **analyst**. 
+- `find -i s/pending bookmarked` finds internships with `STATUS` that starts with **pending** or **bookmarked**. 
+- `find -i c/pte ltd r/engineer analyst s/pending bookmarked` finds internships with all 3 of the above. 
+  e.g. An internship with `COMPANY_NAME` **ABC LTD**, `ROLE` **Data Analyst**, and `STATUS` **BOOKMARKED** can be found with this command. 
 
-Then,
-- `find -i c/Transit` returns **SBS Transit Ltd** and **Tower Transit Singapore**
-- `find -i c/Buses Trains` returns **SMRT Buses** and **SMRT Trains Ltd**
-- `find -i c/ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** For `STATUS` searching in particular, the `STATUS` must also start with the keyword. 
+i.e. `find -i s/a` will only find internships with `STATUS` **ACCEPTED** even though both **ACCEPTED** and **BOOKMARKED** 
+contain the letter **a**. This is to match the behaviour of `STATUS` shortcuts as mentioned in [this tip under section 4.1.2](#412-adding-an-internship-add--i).
+</div>
 
+## 4.6. Delete Command
 
-### Deleting a person by index : `deletep`
+### 4.6.1. Deleting a person by index : `delete -p`
 
 Deletes the specified person from InterNUS.
 
-Format: `deletep INDEX`
+Format: `delete -p INDEX`
 
 * Deletes the person with the specific `INDEX` in the person list.
-* The index refers to the index number shown in the currently displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown in the currently displayed person list.
+* The `INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
-* `listp` followed by `deletep 2` deletes the 2nd person in InterNUS.
-* `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `find` command.
+* `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
+* `find -p Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
-### Deleting an internship by index : `deletei`
+### 4.6.2. Deleting an internship by index : `delete -i`
 
 Deletes the specified internship from InterNUS.
 
-Format: `deletei INDEX`
+Format: `delete -i INDEX`
 
 * Deletes the internship with the specific `INDEX` in the internship list.
-* The index refers to the index number shown in the currently displayed internship list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown in the currently displayed internship list.
+* The `INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
-* `listi` followed by `deletei 2` deletes the 2nd internship in InterNUS.
-* `findi ABC Pte Ltd` followed by `deletei 1` deletes the 1st internship in the results of the `find` command.
+* `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
+* `find -i c/Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
-### Sorting persons by name: `sortp n/`
+## 4.7. Sort Command
 
-Sorts the persons list by their names in alphabetical order, ignoring upper and lower cases.
+### 4.7.1. Sorting persons in the list: `sort -p`
 
-Format: `sortp n/`
+Sorts the person list given a sorting criterion.
 
-Note:
-* The list will remain sorted by names in alphabetical order, until InterNUS is closed or if it is changed to sort by associated company names instead.
+Format: `sort -p [n/] [c/]`
+- Exactly one of the optional fields must be provided.
+- `n/` sorts persons by their names in alphabetical order, ignoring upper and lower cases.
+- `c/` sorts persons by the attached company name (not the company tied to the internship linked) in alphabetical order, ignoring upper and lower cases.
 
-### Sorting persons by associated company name: `sortp c/`
+Examples:
+- `sort -p n/` sorts the person list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` sorts the person list by their attached company names in alphabetical order, ignoring upper and lower cases. 
 
-Sorts the persons list by their associated company names in alphabetical order, ignoring upper and lower cases.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+- The person list will remain sorted by the last given criterion until InterNUS is closed.
+- The sorted order persists during additions, deletions and editing of persons.
+- When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+</div>
 
-Format: `sortp c/`
+### 4.7.2. Sorting internships in the list: `sort -i`
 
-Note:
-* For persons that are not associated with a company yet, they will be listed at the bottom of the list.
-* The list will remain sorted by associated company names in alphabetical order, until InterNUS is closed or if it is changed to sort by person names instead.
+Sorts the internship list given a sorting criterion.
 
-### Clearing all entries : `clear`
+Format: `sort -i [c/] [d/] [s/]`
+- Exactly one of the optional fields must be provided.
+- `c/` sorts internships by company name (in alphabetical order).
+- `d/` sorts internships by interview date.
+- `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
+
+Examples:
+* `list -i` followed by `sort -i c/` sorts all internships in InterNUS by company name.
+* `find -i c/Meta` followed by `sort -i s/` sorts all internships at **Meta** by status.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+- The internship list will remain sorted by the last given criterion until InterNUS is closed.
+- The sorted order persists during additions, deletions and editing of internships.
+- When sorted by interview date, internships with no interview dates appear at the bottom of the list.
+</div>
+
+## 4.8. General
+
+### 4.8.1. Viewing help : `help`
+
+Displays a list of commands and a link to the user guide.
+
+Format: `help`
+
+### 4.8.2. Clearing all entries : `clear`
 
 Clears all person and internship entries from InterNUS.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### 4.8.3. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+## 4.9. User Interface
+
+Click on the Color Theme button in the Menu Bar to display a dropdown list to select between Light/Dark mode.
+
+### 4.9.1 Dark Mode
+
+|     ![Ui](images/darktheme.png)     |
+|:-----------------------------------:|
+| InterNUS dark mode with sample data |
+
+
+### 4.9.2 Light Mode
+
+|     ![Ui](images/lightheme.png)      |
+|:------------------------------------:|
+| InterNUS light mode with sample data |
+
+## 4.10. Data files
+
+### 4.10.1. Saving the data
 
 InterNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 4.10.2. Editing the data file
 
 InterNUS data is saved as a JSON file. `[JAR file location]`/data/addressbook.json.
 Advanced users are welcome to update data directly by editing that data file.
@@ -259,26 +478,38 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 5. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
+
+**Q**: How do I find a contact person's linked internship?<br>
+**A**: On the contact person's display, look for the linked internship's display name (shown as **Internship: COMPANY_NAME ROLE**), then use 
+`find -i c/COMPANY_NAME r/ROLE` to find the linked internship.
+
+**Q**: How do I find an internship's linked contact person?<br>
+**A**: On the internship's display, look for the linked contact person's display name (shown as **Contact Person: NAME**), then use 
+`find -p n/NAME` to find the linked contact person.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 6. Command summary
 
-| Action                | Format, Examples                                                                                                                                   |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta` |
-| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`               |
-| **Clear**             | `clear`                                                                                                                                            |
-| **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                              |
-| **Delete internship** | `deletei INDEX`<br> e.g., `deletei 1`                                                                                                              |
-| **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                   |
-| **Edit internship**   | `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`<br> e.g.,`editi 2 s/REJECTED`, `editi 3 d/2023-01-01 13:30`               |
-| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                           |
-| **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                          |
-| **List persons**      | `listp`                                                                                                                                            |
-| **List internships**  | `listi`                                                                                                                                            |
-| **Help**              | `help`                                                                                                                                             |
+| Action                | Format, Examples                                                                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [l/LINK_INDEX] [c/COMPANY] [t/TAG]… ` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`     |
+| **Add internship**    | `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/INTERVIEW_DATE] [l/LINK_INDEX]` <br> e.g., `add -i n/TikTok r/Data Engineer s/rejected l/1`                   |
+| **Clear**             | `clear`                                                                                                                                                 |
+| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                               |
+| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                               |
+| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                        |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                      |
+| **Find person**       | `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS...] [t/ TAG_KEYWORDS...] [c/ COMPANY_KEYWORDS...]` <br> e.g., `find -p n/John` |
+| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ ROLE_KEYWORDS...] [s/ STATUS_KEYWORDS...] [d/ INTERVIEW_DATE_KEYWORDS...]` <br> e.g., `find -i c/inc ltd`    |
+| **List persons**      | `list -p`                                                                                                                                               |
+| **List internships**  | `list -i`                                                                                                                                               |
+| **Link**              | `link p/PERSON_INDEX i/INTERNSHIP_INDEX`<br> e.g., `link p/1 i/1`                                                                                       |
+| **Unlink**            | `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`<br> e.g., `unlink p/1`                                                                                   |
+| **Sort persons**      | `sort -p [n/] [c/]` <br> e.g., `sort -p c/`                                                                                                             |
+| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                        |
+| **Help**              | `help`                                                                                                                                                  |
