@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* We did not reference any sources other than AB3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -129,7 +129,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ApplicationBook`, which `Application` references. This allows `ApplicationBook` to only require one `Tag` object per unique tag, instead of each `Application` needing their own `Tag` objects. In addition, `Interview` is optional in each `Application`, thus, it is wrapped around with an `Optional` class to avoid the usage of `null`.<br>
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> An alternative (and arguably more OOP) model is given below. It has a <code>Tag</code> list in the <code>ApplicationBook</code>, which <code>Application</code> references. This allows <code>ApplicationBook</code> to only require one <code>Tag</code> object per unique tag, instead of each <code>Application</code> needing their own <code>Tag</code> objects. In addition, <code>Interview</code> is optional in each <code>Application</code>; thus, it is wrapped around with an <code>Optional</code> class to avoid the usage of <code>null</code>.<br>
 
 <img src="images/ApplicationClassDiagram.png" width="600">
 
@@ -183,7 +183,7 @@ Step 3. The user executes `add c/Google …​` to add a new application. The `a
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitApplicationBook()`, so the application book state will not be saved into the `applicationBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If a command fails its execution, it will not call <code>Model#commitApplicationBook()</code>, so the application book state will not be saved into the <code>applicationBookStateList</code>.
 
 </div>
 
@@ -199,21 +199,21 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoApplicationBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the application book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `applicationBookStateList.size() - 1`, pointing to the latest application book state, then there are no undone ApplicationBook states to restore. The `redo` command uses `Model#canRedoApplicationBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If the <code>currentStatePointer</code> is at index <code>applicationBookStateList.size() - 1</code>, pointing to the latest application book state, then there are no undone ApplicationBook states to restore. The <code>redo</code> command uses <code>Model#canRedoApplicationBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the application book, such as `list`, will usually not call `Model#commitApplicationBook()`, `Model#undoApplicationBook()` or `Model#redoApplicationBook()`. Thus, the `applicationBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the application book, such as `list`, will not call `Model#commitApplicationBook()`, `Model#undoApplicationBook()` or `Model#redoApplicationBook()`. Thus, the `applicationBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitApplicationBook()`. Since the `currentStatePointer` is not pointing at the end of the `applicationBookStateList`, all application book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Google …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitApplicationBook()`. Since the `currentStatePointer` is not pointing at the end of the `applicationBookStateList`, all application book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -238,23 +238,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
+The purpose of this enhancement is to allow users to archive instead of deleting applications that are not applicable in the current time (e.g. applications that have been rejected/offered/no-response for a period of time).
 * Data archiving of `Application` is done by adding a boolean attribute to the Application class as a record of its archive status.
-* Two predicates in Model to adjust its FilterList shown to the user.
+* Two predicates in Model to adjust its `FilterList` shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
-* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
+* The list showing to the user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
 
 The features of the new and modified commands are summarized as follows:
 * `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
 * `RetriveCommand`: Set specified application archive status to `false` by utilising `ModelManager#retrieveApplication`.
-* `ListArchiveCommand`: Show user the archived applications in CinternS.
-* `ListCommand`: Show user the unarchived applications in CinternS.
+* `ListArchiveCommand`: Show the user the archived applications in CinternS.
+* `ListCommand`: Show the user the unarchived applications in CinternS.
 
 The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
 
 ![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
 
-After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archive application to the FilterList in Model and the archived application will be hidden from the updated list shown in UI.
+After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archived application to the `FilterList` in `Model` and the archived application will be hidden from the updated list shown in UI.
 
 #### Constraints of Data archiving:
 Archived applications cannot be archived again. Doing so will cause `CommandException` to be thrown. The same reasoning applies to retrieve command.
@@ -270,15 +270,15 @@ Aspect: How should data archiving be implemented?
     - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
     - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
 
-Aspect: Should user be allowed to edit archived application directly?
+Aspect: Should the user be allowed to edit archived application directly?
 
 - Alternative 1 (current choice): User are allowed to edit archived application
-    - Pros: A more convenient usage for user.
+    - Pros: A more convenient usage for the user.
     - Cons: Less "hidden" nature of archiving data.
 - Alternative 2: User are not allow to edit archived application
     - Pros: Usage of archive is more intuitive as archive applications are only used for future references.
-    - Cons: Inconvenient usage as user need to retrieve archived application before editing it.
-- Alternative 1 is chosen in this case by referencing Whatsapp archived chat where user can still send message (make modification) in the archived chat.
+    - Cons: Inconvenient usage as the user need to retrieve archived application before editing it.
+- Alternative 1 is chosen in this case by referencing Whatsapp archived chat where the user can still send message (make modification) in the archived chat.
 
 ### Interview Feature
 
@@ -345,29 +345,29 @@ The sort feature allows the user to sort the application list using company name
 
 The class diagram below shows the classes in the Logic component relevant for sorting:
 
-![Sort Class Diagram](images/SortClassDiagram.png)
+![SortClassDiagram](images/SortClassDiagram.png)
 
 There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
 
 The following sequence diagram shows the parsing of a sort command from the user featuring just two of the possible orders - by company and by date:
 
-![Sort Parser Sequence Diagram](images/SortParserSequenceDiagram.png)
+![SortParserSequenceDiagram](images/SortParserSequenceDiagram.png)
 
 When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
 
 The next sequence diagram shows the execution of the created SortCommand, again featuring just two of the possible orders:
 
-![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
-When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is to set an appropriate comparator on the `SortedList` to attain the desired sort order.
 
-A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is closed and reopened. This way the user does not need to re-enter the same sort command every session.
+A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is reopened. This way the user does not need to re-enter the same sort command every session.
 
 The current sort order is represented using a `SortSetting` enum, which can be one of the 4x2 possible sort orders. This `SortSetting` is stored in the `UserPrefs` object together with the other user preferences like screen size. The sort order is then stored inside the `preferences.json` file to be read the next time the app is opened.
 
 The following sequence diagram shows the process of initialising the sort order of a `ModelManager` as it is being instantiated:
 
-![Sort Initialisation Sequence Diagram](images/SortInitialisationSequenceDiagram.png)
+![SortInitialisationSequenceDiagram](images/SortInitialisationSequenceDiagram.png)
 
 The `MainApp` passes the application book data and the `userPrefs` retrieved from storage to the constructor for `ModelManager`. The `ModelManager` creates a copy of the `userPrefs` object. Then, the `sortSetting` is retrieved and used to decide how the ModelManager should sort the applications. The diagram above shows just two of the possible sort orders and the resulting method calls.
 
@@ -417,7 +417,7 @@ The sequence diagram below shows the crucial components involved in executing th
 
 Aspect: How should the `remind` feature be presented? 
 
-* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by user.
+* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by the user.
     * Pros: Behaviour lines up better with the rest of CinternS where changes to the display are driven by commands. Better code testability. 
     * Cons: Users are not reminded of upcoming interviews if they do not enter the `remind` command.
 
@@ -438,41 +438,46 @@ Aspect: How should the remind command filter out upcoming interviews?
 ### Statistic Feature
 
 #### Implementation
-The statistic feature is a simple feature that allows users to obtain a summarized statistics of the whole application list.
+The statistic feature is a simple feature that allows the user to obtain a summarized statistics of the whole application list.
 
-The summary statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
+The summary statistics are shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
 
 ![Statistic Sequence Diagram](images/StatisticSequenceDiagram.png)
 
 
 #### Constraints of Statistic Feature
-The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
+The statistics of the applications will only show when the user enter `stats` command. A possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
 
 #### Design Considerations
 
 Aspect: How should the statistic feature be presented?
 
-* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show user the statistics.
-    * Pros: Does not need extra space in the UI to show the statistic, and simpler and more straightforward implementation.
+* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show the user the statistics.
+    * Pros: Does not need extra space in the UI to show the statistics, and simpler and more straightforward implementation.
     * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
 
-* Alternative 2: Create a new section in UI to show user real-time statistics.
+* Alternative 2: Create a new section in UI to show the user real-time statistics.
     * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
-    * Cons: Space usage for UI might be inefficient as user will not always want to review the statistic of the applications.
+    * Cons: Space usage for UI might be inefficient as the user will not always want to review the statistics of the applications.
 
 - Alternative 1 is chosen as our team justified that the implementation is simpler, and is less likely to contain bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application lists are more important to be shown on the GUI when compared to the statistics.
 
 ### Status Feature
 
 #### Implementation
-The `Status` feature allows users to add a status to a new application and edit the status of their existing application as they progress through the application process.
+The `Status` feature allows the user to add a status to a new application and edit the status of their existing application as they progress through the application process.
+
+![StatusClassDiagram](images/StatusClassDiagram.png)
+
+#### Constraints of the Status Feature
+In order to provide better visualisation of `Status` with added colours and easy integration with the Statistic feature, only some fixed values of `Status` can be allowed. As such, users are not able to add any other statuses.
 
 #### Design Considerations
 
 Aspect: How should the `Status` feature be implemented? 
 
 * Alternative 1 (current choice): `Status` is implemented as an enum.
-    * Pros: Allows the `stats` command to easily provide a summary of current applications with application progress already added as status. Can be displayed easily with different colors based on the statuses as the status values are fixed.
+    * Pros: Allows the Statistic feature to easily provide a summary of current applications with application progress already added as status. Can be displayed easily with different colors based on the statuses as the status values are fixed.
     * Cons: More restrictive for the users as only a few statuses are allowed (i.e. no custom statuses).
 
 * Alternative 2: `Status` is implemented as a normal class.
@@ -532,13 +537,21 @@ Internship applications can stretch over a long period of time, making it hard t
 
 ### User stories
 
-| Priority | As a...                           | I want to...                                                                             | So that I can...                                                     |
-|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| High     | user                              | view a list of all my upcoming interviews                                                | I can recall what interviews I need to attend and when               |
-| High     | user                              | delete entries I've added in previously                                                  | I can change my mind about those entries                             |
-| High     | user with many application emails | add details such as location, date, time and contact person/information for an interview | I need not sieve through my emails to remind myself of these details |
-| Medium   | user applying for many positions  | get a list of all companies and positions applied                                        | I don't accidentally apply for the same position twice               |
-| Low      | user who can type fast            | be able to exit the program without using a mouse                                        | I can use the app more efficiently                                   |
+| Priority | As a/an...                                | I want to...                                                        | So that I can...                                                                         |
+|----------|-------------------------------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| High     | user with many applications               | get a list of all existing applications                             | avoid accidentally applying for the same company and position twice.                     |
+| High     | user                                      | delete entries I've added in previously                             | change my mind about those entries.                                                      |
+| High     | user                                      | view a list of all my interviews                                    | recall what interviews I have planned and their details.                                 |
+| High     | user with many application emails         | add details such as round, date, time and location for an interview | avoid sieving through my emails to remind myself of these details.                       |
+| Medium   | user with many applications               | find applications by the company name or the position               | quickly check the details of the applications I need.                                    |
+| Medium   | user starting a new round of applications | clear all existing applications                                     | avoid having to delete applications one by one to start fresh.                           |
+| Medium   | user                                      | add tags to my applications                                         | include miscellaneous remarks of note for each application.                              |
+| Medium   | user                                      | sort my applications by their attributes                            | find applications based on their attributes more easily.                                 |
+| Medium   | user                                      | save the sort order that I used most recently                       | avoid having to sort my applications in the same order I want every time I open the app. |
+| Medium   | user                                      | archive old applications                                            | keep those applications for future reference without crowding my application list.       |
+| Medium   | user                                      | view upcoming interviews happening within 1 week from now           | know which interviews I need to prepare for soon.                                        |
+| Medium   | careless user                             | undo/redo the previous command                                      | reverse the command that I accidentally executed/undid.                                  |
+| Low      | user who can type fast                    | be able to exit the program without using a mouse                   | use the app more efficiently.                                                            |
 
 ### Use cases
 
@@ -548,20 +561,24 @@ Internship applications can stretch over a long period of time, making it hard t
 
 **MSS**
 
-1.  User inputs their application details (i.e. company 
-name, position applied, application platform, application 
-date, document submitted, etc.)
+1.  User inputs their application details (i.e. company name, contact number and email of the company, position applied, application date, current application status, etc.)
 2.  CinternS adds the application into the database.
     
     Use case ends.
 
 **Extensions**
 
-* 1a. CinternS detects the user has entered invalid data format.
+* 1a. The command is invalid or not recognised.
 
-  * 1a1. CinternS prompts a warning message and requests the user to reenter.
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 1b. CinternS detects the user has entered invalid data format or missed at least one of the fields (e.g. company, position, etc.).
+
+  * 1b1. CinternS prompts a warning message and requests the user to reenter.
   
-  * 1a2. User inputs the application by using the correct format.
+  * 1b2. User inputs the application with all the required fields and in the correct format.
 
     Use case resumes at step 2.
 
@@ -571,14 +588,20 @@ date, document submitted, etc.)
 
 **MSS**
 
-1.  User requests the list of applications.
+1.  User requests the list of internship applications.
 2.  CinternS shows the list of internship applications.
-3.  User requests to delete a specific application in the list
-4.  Cinterns deletes the application.
+3.  User requests to delete a specific application in the list.
+4.  Cinterns deletes the application and any interview that is a part of this application.
 
     Use case ends.
 
 **Extensions**
+
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
 
 * 2a. The list is empty.
 
@@ -598,18 +621,94 @@ date, document submitted, etc.)
 
 <br>
 
+**Use case:  Archive an internship application**
+
+**MSS**
+
+1.  User requests the list of internship applications.
+2.  CinternS shows the list of internship applications.
+3.  User requests to archive a specific application in the list.
+4.  CinternS archives the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+<br>
+
+**Use case:  Retrieve an internship application**
+
+**MSS**
+
+1.  User requests the list of archived internship applications.
+2.  CinternS shows the list of archived internship applications.
+3.  User requests to retrieve a specific application in the list.
+4.  CinternS retrieves the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+<br>
+
 **Use case: List all existing internship applications**
 
 **MSS** 
 
 1. User enters the command to list all existing internship applications.
-2. CinternS responds with the list of internship applications and their current status.
+2. CinternS responds with the list of internship applications and their current details.
    Use case ends.
 
 **Extensions**
 * 1a. The command is invalid or not recognised.
 
-   * 1a1. CinternS shows an error message and prompts user to reenter command
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+**Use case: Find an application by company name or position applied**
+
+**MSS** 
+
+1. User enters the command with the keyword(s) to find an application by.
+2. CinternS responds with the list of internship applications matching the keyword(s) and their current details.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
     
      Use case resumes at step 1.
 
@@ -618,6 +717,63 @@ date, document submitted, etc.)
    * 2a1. CinternS shows an error message.
    
      Use case ends.
+
+**Use case: Clear all existing applications**
+
+**MSS** 
+
+1. User enters the command to clear all applications.
+2. CinternS deletes all applications and interviews and responds with empty application and interview windows.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+**Use case: Undo the previous command**
+
+**MSS** 
+
+1. User enters the command to undo the previous command.
+2. CinternS returns the state before the changes made by the previous command.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 2a. No previous commands have been used that have made changes to the list of applications or interviews.
+
+   * 2a1. CinternS shows an error message.
+    
+     Use case resumes at step 1.
+
+**Use case: Redo the previously undone command**
+
+**MSS** 
+
+1. User enters the command to redo the previously undone command.
+2. CinternS returns the state after the changes made by the previously undone command.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 2a. No previous commands have been undone.
+
+   * 2a1. CinternS shows an error message.
+    
+     Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
@@ -651,16 +807,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting an application
 
@@ -668,16 +824,44 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
+   2. Test case: `delete 1`<br>
+      Expected: First application is deleted from the list. Details of the deleted application are shown.
 
-   1. Test case: `delete 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 1`<br>
+      Expected: First application (originally second) is deleted from the list. Its interview is also deleted. Details of the deleted application are shown.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Test case: `delete 0`<br>
+      Expected: No application is deleted. Error details are shown.
+
+   5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### List all existing applications
+
+1. List all applications.
+   1. Test case: `list` <br>
+      Expected: All applications (if any) are shown. Success message is also shown.
+
+### Clear all existing applications
+
+1. Clear all applications.
+   1. Test case: `clear` <br>
+      Expected: All applications (if any) are deleted. Success message is also shown.
+
+### Find an application by company name or position
+
+1. Find an application matching the specified keyword(s).
+   1. Test case: `find Google` <br>
+      Expected: All applications matching keyword "Google" are shown. Success message is also shown.
+
+   2. Test case: `find google` <br>
+      Expected: Similar to previous (case-insensitive).
+
+   3. Test case: `find software` <br>
+      Expected: All applications matching keyword "software" are shown. Success message is also shown.
+
+   4. Test case: `find` <br>
+      Expected: Error details are shown.
 
 ### Sorting the applications list
 
@@ -699,7 +883,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `sort r/`<br>
        Expected: The applications list is sorted in reverse chronological order of application date. The interview list should not change.
-    
+
     1. Test case: `sort o/interview r/`<br>
        Expected: The applications list is sorted in reverse chronological order of interview date. Applications with no interviews are all at the bottom of the list. The interview list should not change.
 
@@ -707,31 +891,58 @@ testers are expected to do more *exploratory* testing.
        Expected: The application list order does not change. Error details are shown.
 
 1. Adding applications to sorted list
-    
-   1. Add an application into the list.<br>
+
+    1. Add an application into the list.<br>
        Expected: It appears in the application list in the correct position such that the list remains sorted in its current order.
 
 1. Modifying interviews in sorted list
-    
+
     1. Prerequisites: Sort the applications list by interview (either in forward or reverse order). Multiple different applications in list. Multiple applications with interviews and without interviews.
 
     1. Test case: Add an interview to an application without an interview.<br>
-        Expected: The application moves from near the bottom of the application list to the correct position such that the list remains sorted in order of interview date.
+       Expected: The application moves from near the bottom of the application list to the correct position such that the list remains sorted in order of interview date.
 
     1. Test case: Remove an interview from an application with an interview.<br>
-        Expected: The application moves to near the bottom of the application list together with the other applications with no interview.
+       Expected: The application moves to near the bottom of the application list together with the other applications with no interview.
 
     1. Test case: Modify the interview date of an application with an interview.<br>
-        Expected: The application moves to the correct position in the application list such that the list remains sorted in order of interview date.
+       Expected: The application moves to the correct position in the application list such that the list remains sorted in order of interview date.
 
 1. Saving sort setting
 
     1. Prerequisites: Multiple different applications in the list.
-    
-    1. Run a sort command, for example `sort o/position r/`. Close the app. 
+
+    1. Run a sort command, for example `sort o/position r/`. Close the app.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The list is still sorted in the order used before closing the app.
+
+### Undo the previous command
+1. Undo a command that has made changes to the application or interview list.
+   1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
+   
+   2. Test case: `undo` <br>
+      Expected: The previous state before the change is restored. Success message is shown.
+
+2. No such previous command to undo.
+   1. Prerequisites: No command used or any command that does not change the application or interview list (e.g. `find`, `sort`, `remind`, etc.)
+   
+   2. Test case: `undo` <br>
+      Expected: Error details are shown.
+
+### Redo the previous command
+
+1. Redo a command that has made changes to the application or interview list.
+   1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
+   
+   2. Test case: `redo` <br>
+      Expected: The state after the change is restored. Success message is shown.
+
+2. No such previous command to redo.
+   1. Prerequisites: `undo` is not used.
+   
+   2. Test case: `redo` <br>
+      Expected: Error details are shown.
 
 ### Saving data
 
@@ -739,4 +950,61 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Data archiving
+
+1. Archiving an application while all unarchived application shown
+    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+    2. Test case: `archive 1`<br>
+       Expected: First application is archived from the list. Details of the archived application is shown.
+
+    3. Test case: `archive 0`<br>
+       Expected: No application is archived. Error details are shown.
+
+    4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Archiving an application while all archived application shown
+   1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+   2. Test case: `archive 1`<br>
+      Expected: No application is archived. Error details are shown.
+
+   3. Other incorrect archive commands in this situation are similar to section 1 above.
+
+3. Retrieving an application while all unarchived application shown
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Expected: No application is retrieved. Error details are shown.
+
+   3. Test case: `retrieve 0`<br>
+      Expected: No application is retrieved. Error details are shown.
+
+   4. Other incorrect retrieve commands to try: `retrieve`, `retrieve x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+4. Retrieving an application while all archived application shown
+    1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+    2. Test case: `retrieve 1`<br>
+       Expected: First application is retrieved from the list. Details of the retrieved application are shown.
+
+    3. Other incorrect retrieve commands in this situation are similar to section 3 above.
+
+5. Data archiving with `FindCommand`
+   1. Prerequisites: Use `FindCommand` with keywords that match multiple applications in CinternS. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : First application is retrieved from the list. Details of the retrieved application are shown. The list remains as the filtered list by the keyword.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : No application is retrieved. Error details are shown.
+
+   3. Test case: `archive 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : No application is retrieved. Error details are shown.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : First application is archived from the list. Details of the archived application are shown. The list remains as the filtered list by the keyword.
