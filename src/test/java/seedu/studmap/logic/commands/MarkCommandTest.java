@@ -9,6 +9,7 @@ import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 import org.junit.jupiter.api.Test;
 
 import seedu.studmap.commons.core.Messages;
+import seedu.studmap.commons.core.index.AllIndexGenerator;
 import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.model.Model;
@@ -116,6 +117,25 @@ class MarkCommandTest {
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), studentToMark);
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+
+    }
+
+    @Test
+    public void execute_absentNoEditMulti_success() {
+
+        // students not edited if already marked
+
+        Attendance attendance = new Attendance("T62", Attendance.Status.ABSENT);
+        model.getFilteredStudentList().forEach(x -> model.setStudent(x,
+                new StudentBuilder(x).addAttendances(attendance).build()));
+
+        MarkCommand markCommand = new MarkCommand(new AllIndexGenerator(),
+                new MarkCommand.MarkCommandStudentEditor(attendance));
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_MULTI_UNEDITED_ATTENDANCE,
+                model.getFilteredStudentList().size(), attendance.getString()).trim();
+
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
 
     }
