@@ -49,13 +49,14 @@ To navigate to see a particular command, you can click on the link in blue.
   * [saving](#saving-the-data)
 * [FAQ](#faq)
 * [Summary of commands](#command-summary)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/tag/v1.3).
+2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases).
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
 5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. <br>
@@ -439,3 +440,33 @@ the second `Enter` key press will execute the command.
 | **Clear**   | `clear`                                                                                                                                                                         |                                                                                           |
 | **Exit**    | `exit`                                                                                                                                                                          |                                                                                           |
 | **Help**    | `help`                                                                                                                                                                          |                                                                                           |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+### Minecraft-related terminologies
+
+| Terminology        | Definition                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------|
+| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| **Minefriends**    | The name of our app                                                                              | 
+| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| **Server**         | A multiplayer Minecraft server                                                                   |
+| **Player**         | A person who plays Minecraft                                                                     |
+| **Mojang Studios** | The company that created and owns Minecraft                                                      |
+| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
+| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| **Game type**      | A synonym for game mode                                                                          | 
+
+For a complete glossary of Minecraft terms, please visit this page on the
+[Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
+
+### Other terminologies
+
+| Terminology   | Definition                                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
+| CLI           | An acronym for "command line interface"                                                                            |
+
