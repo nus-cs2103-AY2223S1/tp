@@ -14,17 +14,12 @@ Class UserPrefs
 
 Class UniqueClientList
 Class Client
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Product
 
-Class UniqueMeetingList
+Class NoConflictMeetingList
 Class Meeting
-Class Description
-Class MeetingDate
-Class MeetingTime
+
+Class UniqueProductList
+Class Product
 }
 
 Class HiddenOutside #FFFFFF
@@ -39,25 +34,19 @@ ModelManager -left-> "1" MyInsuRec
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ModelManager -->"~* filtered" Client
+ModelManager ---->"~* filtered" Client
+ModelManager ---->"~* filtered" Product
+ModelManager ---->"~* filtered" Meeting
 
-MyInsuRec *-> "1" UniqueClientList
+MyInsuRec *---> "1" UniqueClientList
 UniqueClientList -> "~* all" Client
-Client *--> Name
-Client *--> Phone
-Client *--> Email
-Client *--> Address
-Client *--> "*" Product
 
-MyInsuRec *--> "1" UniqueMeetingList
-UniqueMeetingList --> "~* all" Meeting
-Meeting *--> Description
-Meeting *--> MeetingDate
-Meeting *--> MeetingTime
-Meeting <-> Client
+MyInsuRec *---> "1" NoConflictMeetingList
+NoConflictMeetingList --> "~* all   " Meeting
+Meeting <-> "1" Client
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+MyInsuRec *---> "1" UniqueProductList
+UniqueProductList --> "~*all" Product
+Client -> Product
 
 @enduml

@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("listMeeting")
+[-> LogicManager : execute("listMeeting d/tomorrow")
 activate LogicManager
 
-LogicManager -> MyInsuRecParser : parseCommand("listMeeting")
+LogicManager -> MyInsuRecParser : parseCommand("listMeeting d/tomorrow")
 activate MyInsuRecParser
 
 create ListMeetingCommand
@@ -31,7 +31,7 @@ deactivate MyInsuRecParser
 LogicManager -> ListMeetingCommand : execute()
 activate ListMeetingCommand
 
-ListMeetingCommand -> Model : updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETING)
+ListMeetingCommand -> Model : updateFilteredMeetingList(predicate)
 activate Model
 
 Model --> ListMeetingCommand

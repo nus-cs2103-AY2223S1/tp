@@ -303,6 +303,12 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 
 </div>
 
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
+See [addProduct](#731-adding-a-product-addproduct).
+</div>
+
+
 ### 7.1 Client commands
 
 This subsection covers all client-related commands.
@@ -316,14 +322,15 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
+* `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
+* If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
 1. You have just found a potential client! You can use this command to add their particulars into _MyInsuRec_ to help remember their contact information and other details.
 
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
-See [addProduct](#731-adding-a-product-addproduct).
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
 </div>
 
 Examples:
@@ -343,10 +350,11 @@ A valid filter can also be applied to show a selected list of clients.
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`.
+* `PRODUCT` must exists already.
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
-  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month..
+  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month.
 
 Use case:
 1. You want to find out all your clients with upcoming birthdays so that you can prepare ahead and ensure that every client gets some birthday well wishes!
@@ -413,8 +421,11 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * Edit the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
+* If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
 
 Use case:
 1. A client changed his address! Update the client details instead of having to removing the old record and creating a new record.
@@ -426,6 +437,10 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
   * `editClient i/1 n/John Smith`
 * Add email 'johntan@insurec.com'
   * `editClient i/1 e/johntan@insurec.com`
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
+</div>
 
 ### 7.2 Meeting commands
 
@@ -440,10 +455,11 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 * `INDEX` refers to the number of the client you are meeting with,
 as shown by executing the [`listClient`](#712-list-clients-listclient) command.
-* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
-1 February 2022.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. For example,
-1234 represents the 12:34PM.
+* `DATE` should be given in the format DDMMYYYY. 
+  * For example, 01022022 represents 1 February 2022.
+*  `DATE` in the past are not acceptable.
+* `START_TIME` and `END_TIME` should be given in 24 Hours HHMM format. 
+  * For example, 1234 represents the 12:34PM.
 
 Use case:
 1. You have just scheduled a meeting with a client! You can use this command to add the details of the meeting into _MyInsuRec_ to help remember the meeting details.
@@ -464,13 +480,17 @@ Shows the list of meetings in MyInsuRec.
 
 A valid filter can also be applied to show a selected list of meetings.
 
-Format: `listMeeting [d/DATE]`
+Format: `listMeeting [d/PERIOD]`
 
-* A valid filter can be upcoming meetings happening in range `DATE`.
-* `DATE` is specified by keywords. The possible keywords are:
+* A valid filter can be upcoming meetings happening in range `PERIOD`.
+* `PERIOD` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of meetings happening tomorrow;
   * `week` for a list of meetings happening in the next week;
   * `month` for a list of meetings happening from the start of the respective month to the end of the respective month.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+The valid inputs for `d/PERIOD` differs from that of `d/DATE`! `d/PERIOD` can only accept keywords, while `d/DATE` can only accept specific dates. 
+</div>
 
 Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
@@ -487,7 +507,7 @@ Examples:
 
 #### 7.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as the meeting's date and time.
+View details associated with a meeting, such as the meeting's date and time, as well as the client's details associated with the meeting.
 
 Format: `viewMeeting i/INDEX`
 
@@ -534,6 +554,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
+* `DATE` in the past are not acceptable.
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 
@@ -627,7 +648,7 @@ Format: `exit`
 
 #### 7.4.3 Clear *MyInsuRec*: `clear`
 
-Clear all data in *MyInsuRec*.
+Clear all data regarding clients, meetings and products from *MyInsuRec*.
 
 Format: `clear`
 
@@ -668,7 +689,7 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 
 #### 7.6.1 Duplicate clients detection `[coming in v1.5]`
 
-We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs. We also plan to distinguish between clients of similar names through this feature in v1.5, as such the current version v1.4 will disallow clients of the same names to be added.
+We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs.
 
 [Return to the top](#)
 
@@ -707,7 +728,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Delete client**](#714-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
 | [**Edit client**](#715-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
 | [**Add meeting**](#721-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
-| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/PERIOD]`                                                                       | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
 | [**View meeting**](#723-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
 | [**Delete meeting**](#724-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
 | [**Edit meeting**](#725-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
@@ -739,7 +760,7 @@ To check that your system has the correct Java version (Java 11 and above) to ru
      * Type in 'Terminal' to search for it and click on it to launch.
    * Linux
      * Use **Ctrl** + **Alt** + **T** to open the Terminal.
-2. In your terminal, type in **java --version** and click enter.
+2. In your terminal, type in **java \-\-version** and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
 ![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
@@ -776,6 +797,12 @@ We thank the CS2103T and CS2101 teaching team and all our classmates for support
 
 Command Line Interface, user interface that accepts input as lines of text.
 
+### *E*
+
+#### `EMAIL`
+
+An email address identifies an email box to which messages are delivered. If you wish to know more about email addresses, you can visit this [link](https://en.wikipedia.org/wiki/Email_address) to view the format of valid emails!
+
 ### *G*
 
 ##### GUI
@@ -788,7 +815,7 @@ Graphical User Interface, user interface that accepts input in means other than 
 
 Number indicating the position of a client, meeting, or product in their respective lists.
 
-In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​`
+In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 In [`editClient`](#715-edit-client-editclient), [`delClient`](#714-delete-client-delclient), and [`viewClient`](#713-view-client-viewclient) commands, `INDEX` refers to the  number shown by executing [`listClient`](#712-list-clients-listclient) command.
 

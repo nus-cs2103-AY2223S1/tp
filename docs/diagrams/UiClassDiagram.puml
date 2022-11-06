@@ -11,8 +11,8 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class ClientListPanel
-Class ClientCard
+Class XYZPanel
+Class XYZ
 Class StatusBarFooter
 Class CommandBox
 }
@@ -32,29 +32,32 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" ClientListPanel
+MainWindow *-down-> "1" XYZPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-ClientListPanel -down-> "*" ClientCard
+XYZPanel -down-> "*" XYZ
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-ClientListPanel --|> UiPart
-ClientCard --|> UiPart
+XYZPanel --|> UiPart
+XYZ --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-ClientCard ..> Model
+XYZ ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-ClientListPanel -[hidden]left- HelpWindow
+XYZPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
+
+note right of XYZPanel: XYZPanel = ClientListPanel,\n MeetingDetailedViewPanel etc
+note right of XYZ: XYZ = ClientCard,\n MeetingDetailedView etc
 @enduml
