@@ -20,7 +20,7 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     private final String date;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given task details.
+     * Constructs a {@code JsonAdaptedDeadline} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedDeadline(@JsonProperty("title") String title, @JsonProperty("description") String description,
@@ -31,7 +31,7 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code Task} into this class for Jackson use.
+     * Converts a given {@code Deadline} into this class for Jackson use.
      */
     public JsonAdaptedDeadline(Task source) {
         Deadline deadline = (Deadline) source;
@@ -41,9 +41,9 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted deadline object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted task.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted deadline.
      */
     public Task toModelType() throws IllegalValueException {
         if (title == null) {
