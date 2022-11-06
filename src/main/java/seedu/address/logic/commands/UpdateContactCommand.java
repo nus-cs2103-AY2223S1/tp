@@ -37,7 +37,7 @@ public class UpdateContactCommand extends Command {
             + "n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D";
 
     public static final String MESSAGE_UPDATE_CONTACT_SUCCESS = "Added contact details to patient with UID: %s, "
-            + "Physician Name: %s, Phone: %s, Email: %s, Category: %s";
+            + "Contact Name: %s, Phone: %s, Email: %s, Category: %s";
 
     private final Uid uid;
 
