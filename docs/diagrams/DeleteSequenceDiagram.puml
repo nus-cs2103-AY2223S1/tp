@@ -23,10 +23,7 @@ create DeleteBuyerCommandParser
 AddressBookParser -> DeleteBuyerCommandParser
 activate DeleteBuyerCommandParser
 
-DeleteBuyerCommandParser --> AddressBookParser
-deactivate DeleteBuyerCommandParser
-
-AddressBookParser -> DeleteBuyerCommandParser : parse("1")
+DeleteBuyerCommandParser -> DeleteBuyerCommandParser : parse("1")
 activate DeleteBuyerCommandParser
 
 create DeleteBuyerCommand
@@ -35,6 +32,9 @@ activate DeleteBuyerCommand
 
 DeleteBuyerCommand --> DeleteBuyerCommandParser : d
 deactivate DeleteBuyerCommand
+
+DeleteBuyerCommandParser --> DeleteBuyerCommandParser : d
+deactivate DeleteBuyerCommandParser
 
 DeleteBuyerCommandParser --> AddressBookParser : d
 deactivate DeleteBuyerCommandParser

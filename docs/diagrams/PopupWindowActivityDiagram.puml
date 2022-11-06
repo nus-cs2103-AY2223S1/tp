@@ -16,7 +16,7 @@ while () is ([else])
         endif
         :User saves the edited inputs;
 
-endwhile ([ble to generate command from inputs])
+endwhile ([able to generate command from inputs])
 :Pop-up window executes the command;
 :Main window displays the result;
 :Pop-up window closes;

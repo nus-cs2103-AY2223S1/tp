@@ -4,29 +4,32 @@ title: Developer Guide
 ---
 
 ##Table of Contents
+- **[Acknowledgements](#acknowledgements)**
+- **[Setting up, getting started](#setting-up-getting-started)**
 - **[Architecture](#architecture)**
   * [UI Component](#ui-component)
   * [Logic Component](#logic-component)
   * [Model Component](#model-component)
   * [Storage Component](#storage-component)
 - **[Implementation](#implementation)**
-  * [[Proposed] Undo/Redo feature](#proposed-undoredo-feature)
-  * [[Proposed] Data-archiving](#proposed-data-archiving)
   * [Unique ID Mechanism](#unique-id-mechanism)
-  * [Display or Person List](#display-of-person-list)
-    * [1.Motivation](#1-motivation)
-    * [2.Implementation of New UI](#2-implementation-of-the-new-ui)
-    * [3.Alternatives Considered](#3-alternatives-considered)
-  * [Pop-up Window for add command](#pop-up-window-for-add-command)
-    * [1.Motivation](#1-motivation)
-    * [2.Implementation of Pop-up Window](#2-implementation-of-the-pop-up-window)
-    * [3.Alternatives Considered](#3-alternatives-considered)
-  * [The match function](#the-match-function)
-    * [1.Motivation](#1-motivation)
-    * [2.Implementation of Scoring System](#2-implementation-of-the-score-system)
-    * [3.Sample calculation](#3-sample-calculation)
-    * [4.Sorting](#4-sorting)
-    * [5.Comments and Reflection](#5-comments-and-reflection)
+    * [Motivation](#motivation-for-unique-id)
+    * [Implementation](#implementation-of-unique-id)
+  * [Display of person list](#display-of-person-list)
+    * [Motivation](#motivation-for-display-of-person-list)
+    * [Implementation](#implementation-of-display-of-person-list)
+    * [Alternatives Considered](#alternatives-considered-for-display-of-person-list)
+  * [Pop-up window for add command](#pop-up-window-for-add-command)
+    * [Motivation](#motivation-for-pop-up-window)
+    * [Implementation](#implementation-of-pop-up-window-for-add-command)
+    * [Alternatives Considered](#alternatives-considered-for-pop-up-window)
+  * [Match feature](#match-feature)
+    * [Motivation](#motivation-for-match-feature)
+    * [Implementation of scoring system](#implementation-of-the-score-system)
+    * [Sample calculation of the score](#sample-calculation-of-the-score)
+    * [Finding the best fit pet](#finding-the-best-fit-pet)
+    * [Areas for improvement](#areas-for-improvement-for-match-feature)
+  * [[Proposed] Undo/Redo feature](#proposed-undoredo-feature)
 - **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
 - **[Appendix: Requirements](#appendix-requirements)**
   * [Product Scope](#product-scope)
@@ -60,7 +63,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S1-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -76,8 +79,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -309,7 +312,266 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features and functionalities are implemented.
+
+### Unique ID Mechanism
+
+#### Motivation for unique ID
+The `Buyer` object has a reference to `Order` object(s) and an `Order` object also has reference to a `Buyer` object. 
+Similarly, the `Supplier` object has a reference to `Pet` object(s) and vice versa.
+This bidirectional association makes it difficult to implement some JSON-related classes and methods,
+since the JSON-adapted models will recursively write these references into the `.json` file for infinite number of times.
+
+#### Implementation of unique ID
+Our solution to this problem is to give each `Order` and `Pet` a unique ID that does not change throughout the life
+cycle of `Order` or `Pet` object.
+
+We considered using a unique `int` or `long` data type to represent the id, but either `int` or `long` is possible to
+have overflow (though very unlikely), resulting in duplicate IDs. Therefore, we thought of another approach, which is
+strings.
+
+We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least significant digit shifts from `'z'`
+to `'a'`, we do a carry to the more significant digit. Repeat this step until there is no more carry or the most
+significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit. As shown below.
+
+<img src="images/uniqueIdIllustration.png" width="300"/>
+
+For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and
+concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
+
+### Display of person list
+
+#### Motivation for display of person list
+
+Given below is a partial class diagram of the **old UI**.
+
+<img src="images/OldUiClassDiagram.png" width="500" height="400" />
+
+Initially, there is only one `PersonListPanel` that displays the person list using `PersonCard`.
+However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
+Therefore, it is necessary to have a **separate list panel** for each of these three types of `Person`.
+
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess,
+besides their contact information.
+A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is
+difficult for users to obtain information quickly.
+Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants
+to know about a single `Person`.
+
+#### Implementation of display of person list
+
+In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the following
+depending on the `Command` executed:
+
+* `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
+* `SupplierListPanel`: displays information about each `Supplier` using a `SupplierCard` in a `ListView`.
+* `DelivererListPanel`: displays information about each `Deliverer` using a `DelivererCard` in a `ListView`.
+* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` In a `ListView`.
+* `OrderListPanel`: displays information about each `Order` using an `OrderCard` in a `ListView`.
+* `PetListPanel`: displays information about each `Pet` using a `PetCard` in a `ListView`.
+
+*Note that each person card (`BuyerCard`, `DelivererCard`, `SupplierCard`) can have any number of the corresponding item
+cards (`OrderCard`, `PetCard`).*
+
+<img src="images/UiClassDiagram1.png" width="700"/>
+
+By having separate list panels, it will be easier to customise the display of different `Person` types as well
+as `Order` and `Pet` if required by future features and ui improvements.
+
+In each `BuyerCard` as seen in the image below, the buyer's `Name` will be shown together with an index and a label
+indicating that (s)he is a `Buyer`.
+* The left side of the `BuyerCard` displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
+* The right side of the `BuyerCard` is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of
+each `Order` that the `Buyer` has made. Each `Order` is also given an index in the list.
+
+<img src="images/BuyerCard.png" width="700"/>
+
+The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
+
+In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
+Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each
+`Pet` that the `Supplier` sells. Each `Pet` is also given an index in the list.
+
+By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact
+details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the
+height of each card within a reasonable range
+(e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched
+vertically, potentially to an extent that the whole window can only show information of one single buyer).
+
+#### Alternatives considered for display of person list
+
+* **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with
+  the person.
+    * Pros: Easy to implement and can view all the information immediately after a command is executed.
+    * Cons: Too cramped, which may lead to information overload.
+* **Alternative 2:** Has one display window for person and a separate display window for items, as shown below.
+    * Pros: More organised and visually pleasant.
+    * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the person or item.
+
+<img src="images/AlternativeUi.png"/>
+
+### Pop-up window for add command
+
+#### Motivation for pop-up window
+
+If the user wants to add a `Buyer` with multiple `Order`, or add a `Supplier` with multiple `Pet`,
+the user has to repetitively enter a lot of prefixes.
+The user also needs to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command.
+
+Therefore, we recognise the need for a pop-up window for adding a `Person` (`Buyer` or `Supplier` for the current version),
+which has text fields that **prompt** the user to enter the required information **without prefixes**.
+
+#### Implementation of pop-up window for add command
+
+Given below is the partial class diagram of `Ui` component related to `AddCommandPopupWindow`.
+
+<img src="images/PopupWindowClassDiagram.png" width="600" height="600"/>
+
+The `AddCommandPopupWindow` is made up of either `PopupPanelForBuyer` or `PopupPanelForSupplier`, depending on the type of `Person` that the user wants to add.
+`PopupPanelForBuyer` can have any number of `PopupPanelForOrder`, while `PopupPanelForSupplier` can have any number of `PopupPanelForPet`.
+All the pop-up panels inherit from an abstract class `PopupPanel`, which captures the commonalities between classes that represent parts of the content in pop-up window.
+
+Each subclass of `PopupPanel` can generate a `Command` based on the attributes specified in some classes of the `Model` component. Therefore, it has a dependency on the `Model` component.
+The `Command` is then passed to `AddCommandPopupWindow`, which keeps a reference to `Logic` for the execution of the given `Command`, and a reference to `ResultDisplay` for the display of `CommandResult` in the `MainWindow`.
+
+Given below is the sequence diagram showing how the command line `add supplier` creates the pop-up window step by step.
+
+<img src="images/PopupWindowSequenceDiagram1.png"/>
+
+**How the pop-window for adding a `Supplier` is created:**
+
+1. Based on the graph above, after the user enters the command line "add supplier", `MainWindow` calls `LogicManager#execute(String)`. 
+2. The user input is then parsed by `AddressBookParser` and an `AddCommandWithPopup` instance is created.
+3. `LogicManager` then executes the `AddCommandWithPopup` and returns the `CommandResult` back to the `MainWindow`
+4. The `MainWindow` recognises from the result that a pop-up window is required for adding a `Supplier`, and invokes the `handleAddByPopup` method in itself. 
+5. The `handleAddByPopup` method then creates a `AddCommandPopupWindow`, which has a `StackPane`. The `StackPane` is in turn filled by a `PopupPanelForSupplier`. 
+6. The filled `AddCommandPopupWindow` is displayed to the user.
+
+After the pop-up window is created, the user enters information about the `Supplier` in the provided text fields and saves the inputs. The sequence diagram below illustrates how the pop-up window deals with user inputs on saving step by step.
+
+<img src="images/PopupWindowSequenceDiagram2.png"/>
+
+**How the user's input for a `Supplier` in the pop-window is saved:**
+1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`). 
+2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing. 
+3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself. 
+4. The generation of a `Supplier` invokes the corresponding static methods in the `ParserUtil` class for each of the supplier's attribute, until all inputs are parsed.
+5. **(NOT SHOWN IN DIAGRAM)** When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call. 
+6. The generated `Supplier` (with / without `Pet`) is used to create an `AddSupplierCommand` instance, which is then returned to the `AddCommandPopupWindow`. 
+7. The `AddCommandPopupWindow` executes the `AddSupplierCommand` instance, and gets back the `CommandResult`.
+
+The following activity diagram summarises how the UI responds to an add command with the pop-up window.
+
+<img src="images/PopupWindowActivityDiagram.png" height="600"/>
+
+<div markdown="span" class="alert alert-info">
+
+To cater to people who can **type fast**, **keyboard shortcuts** are included in the pop-up window.<br><br>
+For example, pressing `ESC` closes the pop-up window without saving, and pressing `CTRL + S` saves the user input and closes the pop-up window.
+This is achieved using `EventHandler`, `EventFilter` and `KeyCodeCombination` of JavaFX.
+
+</div>
+
+#### Alternatives considered for pop-up window
+* **Alternative 1 (current choice):** Has a separate pop-up window when a `Command` in the form similar to `add supplier` is entered by the user, with multiple text fields that contain prompt text for the user to input.
+  * Pros: Recognition rather than recall, reducing the user's need to memorise the prefixes required.
+  * Cons: Hard to implement, less CLI in nature.
+* **Alternative 2 (also implemented):** Has a `Command` that can add a `Person` with multiple `Order`/`Pet` by prefixes in the `CommandBox` (single text field, no prompt text) of the `MainWndow`.
+  * Pros: Easy to implement, more CLI in nature.
+  * Cons: Tedious when entering the `Command`, a lot of memorisation work to remember the prefixes.
+
+### Match feature
+
+#### Motivation for Match feature
+
+Our target user, pet sales coordinators, needs to find out which pet for sale is the best fit for an order placed by
+a buyer. In an `Order`, the buyer can specify attributes such as the age of the pet (s)he wants, the acceptable price interval, and more. We
+have intentionally set up the same attributes for a `Pet` object.
+
+Since there are many attributes the user has to take note of when finding the best fit pet for an order, we have
+implemented the `Match` feature which makes comparisons between the attributes of the `Order` object and `Pet` objects to
+find the best fit pet.
+
+#### Implementation of the score system
+
+We use a score to determine how close a pet matches an order. As shown below, the total score `S` is the sum of `n`
+sub-scores.
+Every sub-score is the product of an indicator variable `s_i` and a weight `w_i`. Every indicator-weight pair
+corresponds to an attribute that both `Pet` and `Order` have.
+
+<img src="images/matchScoreCalculationFormula.png" width="200" height="100"/>
+
+The indicator variable depends on the attribute it corresponds to. There are two types of indicators:
+
+1. **Must-have indicators**: They are 1 if the attribute in `Pet` is exactly the same as that in `Order`, otherwise 0.
+2. **Deviation indicators**: They are 1 if the attribute in `Pet` is within the expected range of value for the same
+   attribute in `Order`. How close these indicators are to 1 indicates the deviation the attribute in `Pet` has from the
+   expected value of the attribute in `Order`, i.e The larger the deviation from 1, the larger the deviation is from the
+   `Order` expected value.
+
+We use **must-have indicators** and **high weights** for **must-have attributes**. For example, if the species of the pet is exactly
+what the buyer wants, then the must-have indicator is 1 and the weight given is high. This results in a high sub-score
+given to the attribute, "pet species".
+The **rationale** behind this is that a buyer certainly prioritises the species of the pet (s)he wants, even if other
+factors are slightly different from what is expected.
+
+We use **deviation indicators** and **low weights** for **lower-priority attributes**. For example, if the price of a pet
+just falls in the expected price range of an order, then the deviation indicator is 1. Otherwise, the value of the indicator
+depends on how far the pet's price is away from the range.
+
+#### Sample calculation of the score
+
+| Field         | Pet         | Order       | Indicator        | Weight | Sub-score      |
+|---------------|-------------|-------------|------------------|--------|----------------|
+| Age           | 4           | 5           | 1 - abs(4 - 5)   | 30     | 0 * 30 = 0     |
+| Color         | White       | Black       | 0                | 100    | 0 * 100 = 0    |
+| Color pattern | Dotted      | None        | 0                | 100    | 0 * 100 = 0    |
+| Species       | Persian cat | Persian cat | 1                | 500    | 1 * 500 = 500  |
+| Price (range) | 50          | 90, 100     | 1 - abs(90 - 50) | 5      | -39 * 5 = -195 |
+
+In the implementation of our Match feature, the attributes `Color`, `ColorPattern` and `Species` are **must-have
+attributes** and thus the indicators for these attributes are **must-have indicators**. The attributes `Age` and `Price`
+are **lower-priority attributes** and thus the indicators for these attributes are **deviation indicators**.
+
+Based on the table above, the total score for this pet is 0 + 0 + 0 + 500 - 195 = **305**.
+
+#### Finding the best fit pet
+
+With the scoring system, we calculate the score of all pets against an order and sort these pets in descending order of
+their calculated score. This is sorted list of pets is then displayed to the user in the MainWindow.
+The pets at the top of the displayed list are likely to be the best fit.
+
+Given below are the sequence diagrams when `match 1` is executed.
+
+<img src="images/MatchCommandSequenceDiagram1.png" width="600" />
+
+**How the `MatchCommand` is created for `match 1`:**
+
+1. When `Logic` is called upon to execute the `match 1` command, it uses the `AddressBookParser` class to parse the user input.
+2. This results in a `MatchCommandParser` object created to parse the parameter supplied by the user, "1", to create a `MatchCommand`.
+3. The `MatchCommand` created is then passed back to the `MatchCommandParser`.
+4. The `MatchCommandParser` then passes the created `MatchCommand` back to the `AddressBookParser`.
+5. The `AddressBookParser` then passes the created `MatchCommand` back to `LogicManager` for execution.
+
+<img src="images/MatchCommandSequenceDiagram2.png" width="1000" />
+
+**How the `MatchCommand` is executed for `match 1`:**
+1. **(NOT SHOWN IN DIAGRAM)** The `MatchCommand` gets the `Order` and `Pet` lists and from `Model` and stores the lists as local variables.
+2. **(NOT SHOWN IN DIAGRAM)** The `MatchCommand` then uses the `Order` list to retrieve the `Order` at the specified index, which is "1" in this context.
+3. A `PetGrader` object is then created to be used for evaluating the scores of each `Pet` in the `Pet` list against the `Order`.
+4. A `HashMap` object is then created to be used for storing the score for each `Pet`.
+5. Each `Pet` in the `Pet` list is then evaluated by the `PetGrader` object and their scores are stored in the `HashMap` object.
+6. A `Comparator` object is created to be used for comparing the scores of the `Pet` objects.
+7. **(NOT SHOWN IN DIAGRAM)** The `Comparator` object then compares the scores of the `Pet` objects stored in the `HashMap` object and sorts them.
+8. The `MatchCommand` calls on the method `sortPets` in the `Model` using the `Comparator` object created. This sorts the `Pet` list in `Model` according to descending order of the `Pet` calculated scores.
+9. The `MatchCommand` then calls on the method `switchToPetList` in `Model` to display the sorted `Pet` list to the user.
+10. A `CommandResult` object is then created in the `MatchCommand` and passed back to the `LogicManager`, to display the success message.
+
+#### Areas for improvement for Match feature
+
+At this stage, the weights are pre-set and fixed, so the score may not truly reflect how important each attribute is from
+a buyer's or a sale coordinator's perspective. In future implementations, we will allow users to configure these weights,
+if they don't want to use the default weights.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -333,14 +595,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
+Step 2. The user executes `delete-b 5` command to delete the 5th buyer in the address book. The `delete` command
+calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete-b 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
+Step 3. The user executes `add-b n/David …​` to add a new person. The `add-b` command also calls `Model#commitAddressBook()`
 , causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -375,15 +637,15 @@ to the right, pointing to the previously undone state, and restores the address 
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
+Step 5. The user then decides to execute the command `list buyer`. Commands that do not modify the address book, such
+as `list buyer`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
 Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
 pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+purged. Reason: It no longer makes sense to redo the `add-b n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -397,236 +659,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### Unique ID Mechanism
-
-#### Motivation
-Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same for `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some
-JSON-related classes and methods, since the JSON-adapted date models will infinitely recursively write the references
-into the `.json` file.
-
-#### Solution
-Our solution to this problem is to give each `Order` and `Pet` a unique ID that does not change throughout the life
-cycle of the object.
-
-We considered using a unique `int` or `long` data type to represent the id, but either `int` or `long` is possible to
-have overflow (though very unlikely), resulting in duplicate IDs. Therefore, we thought of another approach, which is
-strings.
-
-We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least significant digit shifts from `'z'`
-to `'a'`, we do a carry to the more significant digit. Repeat this step until there is no more carry or the most
-significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit. As shown below.
-
-![img.png](images/uniqueIdIllustration.png)
-
-For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and
-concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
-
-### Display of person list
-
-#### 1. Motivation
-
-Given below is a partial class diagram of the **old UI**.
-
-<img src="images/OldUiClassDiagram.png" width="500" height="400" />
-
-Initially, there is only one `PersonListPanel` that displays the person list using `PersonCard`.
-However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
-Therefore, it is necessary to have a **separate list panel** for each of these three type of `Person`.
-
-In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess,
-besides their contact information.
-A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not
-helpful in helping the user obtain information quickly.
-Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants
-to know about a single `Person`.
-
-#### 2. Implementation of the new UI
-
-In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings
-depending on the `Command` executed:
-
-* `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
-* `SupplierListPanel`: displays information about each `Supplier` using a `SupplierCard` in a `ListView`.
-* `DelivererListPanel`: displays information about each `Deliverer` using a `DelivererCard` in a `ListView`.
-* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` In a `ListView`.
-* `OrderListPanel`: displays information about each `Order` using an `OrderCard` in a `ListView`.
-* `PetListPanel`: displays information about each `Pet` using a `PetCard` in a `ListView`.
-
-*Note that each person card (`BuyerCard`, `DelivererCard`, `SupplierCard`) can have any number of the corresponding item
-cards (`OrderCard`, `PetCard`).*
-
-<img src="images/UiClassDiagram1.png" width="700"/>
-
-By having separate list panels, it will be easier to customise the display of different `Person` types as well
-as `Order` and `Pet` if required by future features and ui improvements.
-
-In each `BuyerCard` as seen in the graph below, the buyer's `Name` will be shown together with an index and a label
-indicating he or she is a `Buyer`.
-The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
-The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of
-each of the `Order` that the `Buyer` makes with an index in a list.
-
-<img src="images/BuyerCard.png" width="700"/>
-
-The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
-
-In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
-Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of
-the `Pet` that the `Supplier` sells with an index in a list.
-
-By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact
-details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the
-height of each card within a reasonable range
-(e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched
-vertically, potentially to an extent that the whole window can only show information of one single buyer).
-
-#### 3. Alternatives considered
-
-* **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with
-  the person.
-    * Pros: Easy to implement and can view all the information immediately after a command is executed.
-    * Cons: Too cramped, which may lead to information overload.
-* **Alternative 2:** Has one display window for person and a separate display window for items, as shown below.
-    * Pros: More organised and visually pleasant.
-    * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the person or item.
-
-<img src="images/AlternativeUi.png"/>
-
-### Pop-up window for add command
-
-#### 1. Motivation
-
-If the user wants to add a `Buyer` with multiple `Order`, or add a `Supplier` with multiple `Pet`, there will be repetitive entering of a lot of prefixes.
-The user needs to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command line.
-
-Therefore, we recognise the need for a pop-up window for adding a `Person` (`Buyer` or `Supplier` for the current version),
-which has text fields that **prompt** the user to enter the required information **without prefixes**.
-
-#### 2. Implementation of the pop-up window
-
-Given below is the partial class diagram of `Ui` component related to `AddCommandPopupWindow`.
-
-<img src="images/PopupWindowClassDiagram.png" width="600" height="600"/>
-
-The `AddCommandPopupWindow` is made up of either `PopupPanelForBuyer` or `PopupPanelForSupplier`, depending on the type of `Person` that the user wants to add.
-`PopupPanelForBuyer` can have any number of `PopupPanelForOrder`, while `PopupPanelForSupplier` can have any number of `PopupPanelForPet`.
-All the pop-up panels inherit from an abstract class `PopupPanel`, which captures the commonalities between classes that represent parts of the content in pop-up window.
-
-Each subclass of `PopupPanel` can generate a `Command` based on the attributes specified in some classes of the `Model` component. Therefore, it has a dependency on the `Model` component.
-The `Command` is then passed to `AddCommandPopupWindow`, which keeps a reference to `Logic` for the execution of the given `Command`, and a reference to `ResultDisplay` for the display of `CommandResult` in the `MainWindow`.
-
-Given below is the sequence diagram showing how the command line `add supplier` creates the pop-up window step by step.
-
-<img src="images/PopupWindowSequenceDiagram1.png"/>
-
-* Step 1. Based on the graph above, after the user enters the command line "add supplier", `MainWindow` calls `LogicManager#execute(String)`.
-
-* Step 2. The user input is then parsed by `AddressBookParser` and an `AddCommandWithPopup` instance is created.
-
-* Step 3. `LogicManager` then executes the `AddCommandWithPopup` and returns the `CommandResult` back to the `MainWIndow`
-
-* Step 4. The `MainWindow` recognises from the result that a pop-up window is required for adding a `Supplier`, and invokes the `handleAddByPopup` method in itself.
-
-* Step 5. The `handleAddByPopup` method then creates a `AddCommandPopupWindow`, which has a `StackPane`. The `StackPane` is in turn filled by a `PopupPanelForSupplier`.
-
-* Step 6. The filled `AddCommandPopupWindow` is displayed to the user.
-
-After the pop-up window is created, the user enters information of the `Supplier` in the provided text fields and saves the inputs. The sequence diagram below illustrates how the pop-up window deals with user inputs on saving step by step.
-
-<img src="images/PopupWindowSequenceDiagram2.png"/>
-
-* Step 1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`).
-* Step 2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing.
-* Step 3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself.
-* Step 4. The generation of supplier invokes the corresponding static methods in the `ParserUtil` class for each of the supplier's attribute, until all inputs are parsed.
-* Step 5 **(not shown on the graph)**. When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call.
-* Step 6. The generated `supplier` (without / without `order`) is used to create an `AddSupplierCommand` instance, which is then returned to the `AddCommandPopupWindow`.
-* Step 7. The `AddCommandPopupWindow` executes the `AddSupplierCommand` instance, and the gets back the `CommandResult`.
-
-The following activity diagram summarises how the UI responds to an add command with the pop-up window.
-
-<img src="images/PopupWindowActivityDiagram.png" height="600"/>
-
-To cater to people who can **type fast**, **keyboard shortcuts** are included in the pop-up window.
-For example, pressing `ESC` closes the pop-up window without saving, while pressing `CTRL + S` saves the user input and closes the pop-up window.
-This is achieved using `EventHandler`, `EventFilter` and `KeyCodeCombination` of JavaFX.
-
-#### 3. Alternatives considered
-* **Alternative 1 (current choice):** Has a separate pop-up window when a `Command` in the form similar to `add supplier` is entered by the user, with multiple text fields that contain prompt text for the user to input.
-  * Pros: Recognition rather than recall, reducing the users' memorisation work
-  * Cons: Hard to implement, less CLI in nature
-* **Alternative 2 (also implemented):** Has a `Command` that can add a `Person` with multiple `Order`/`Pet` by prefixes in the `CommandBox` (single text field, no prompt text) of the `MainWndow`.
-  * Pros: Easy to implement, more CLI in nature.
-  * Cons: Tedious when entering the `Command`, a lot of memorisation work to remember the prefixes.
-
-### The match function
-
-#### 1. Motivation
-
-At times, user needs to find out which pet for sale is the best fit for an order placed by a buyer. Then there comes the
-question, how to measure the similarity between an order request and a pet?
-In an order, the buyer can specify the age of pet he/she wants, the acceptable price interval, and so forth. We
-intentionally set up the same fields in the `Pet` class just to allow comparison between orders and pets.
-
-#### 2. Implementation of the score system
-
-We use a score to describe how close is a pet to an order. As shown below, the total score `S` is the sum of `n`
-sub-scores.
-Every sub-score is the product of an indicator variable `s_i` and a weight `w_i`. Every indicator-weight pair
-corresponds to a field that both `Pet` and `Order` have.
-
-<img src="images/matchScoreCalculationFormula.png" width="200" height="100"/>
-
-Every indicator variable depends on the field it corresponds to. We basically have two types of indicators:
-
-1. Cut-off indicators. They are 1 if the field in `Pet` is exactly the same as that in `Order`, otherwise 0.
-2. Deviation indicators. They are 1 if the field in `Pet` is within the expected range of value. How close they are to 1
-   indicates the deviation from the field in `Pet` to the expected value.
-
-We use cut-off indicators and high weight for decisive factors. For example, if the species of the pet is just what the
-buyer wants, then we give this pet a high score. The rationale behind is that a buyer certainly prioritises what kind of
-pets she/he wants, even other factors are slightly different from what is expected.
-
-On the other hand, we use deviation indicators and low weight for continuous factors. For example, if the price of a pet
-just falls in the expected price range of an order, then the indicator is 1. Otherwise, the indicator depends on how far
-the pet's price is away from the range.
-
-#### 3. Sample calculation
-
-| Field         | Pet         | Order       | Indicator        | Weight | Sub-score      |
-|---------------|-------------|-------------|------------------|--------|----------------|
-| Age           | 4           | 5           | 1 - abs(4 - 5)   | 5      | 0 * 5 = 0      |
-| Color         | Red         | Blue        | 0                | 50     | 0 * 50 = 0     |
-| Color pattern | Dotted      | None        | 0                | 40     | 0 * 40 = 0     |
-| Species       | Persian cat | Persian cat | 1                | 80     | 1 * 80 = 80    |
-| Price (range) | 50          | 90, 100     | 1 - abs(90 - 50) | 1      | -39 * 1 = - 39 |
-
-So the total score for this pet is 0 + 0 + 0 + 80 - 39 = 41.
-
-#### 4. Sorting
-
-Next, given an order, we calculate the score of all pets against this order and sort these pets in descending order. The
-pets at the top are likely to be the best fit.
-
-#### 5. Comments and reflection
-
-At this stage, the weights are pre-set and fixed, so the formula might not truly reflect how important each field is in
-a buyer's or a sale coordinator's perspective. Different buyers and sale coordinators might have different views as
-well. In the future, we might allow users to configure custom weights, if they don't want to use the default weights.
 
 --------------------------------------------------------------------------------------------------------------------
 
