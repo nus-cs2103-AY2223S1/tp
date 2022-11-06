@@ -54,6 +54,12 @@ Implemented all search related functionalities:
 
 ### Review/mentoring contributions:
 - Main reviewer for Reuben
+- PRs reviewed (with non-trivial review comments): [\#59](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/59), [\#67](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/67), [\#71](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/71), [\#182](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/182), [\#190](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/190), [\#212](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/212)
 
 ### Contributions beyond the project team:
 - Reported an above average number of bugs in the [Practical Exam Dry Run](https://github.com/marcusczh/ped/issues)
+
+### Tools:
+- Git / Github
+- Intelli-J
+- Sourcetree

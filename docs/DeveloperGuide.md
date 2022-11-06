@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java) and it's class diagram is shown below
 
 ![Structure of UI Component](./images/UiClassDiagram.png)
 
@@ -90,9 +90,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
-Here's a (partial) class diagram of the `Logic` component:
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/logic/Logic.java) and it's (partial) class diagram is shown below
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
@@ -118,7 +116,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java)
+
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java) and its class diagram is shown below
 
 <img src="images/ModelClassDiagram.png" width="750" />
 
@@ -141,12 +140,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` here refers to either Person, Policy or Event</div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/storage/Storage.java) and its class diagram is shown below
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -252,8 +251,11 @@ As any commands called which modifies the `AddressBook` will save these changes 
   * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
 
 
-##Policy Features
+## Policy Features
+
 ### Assigning clients a policy
+
+#### Implementation
 
 Users can assign existing policies to a client, whilst providing uptake details
 such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
@@ -344,14 +346,14 @@ View income activity diagram: <br><br>
 
 ### AddEvent Feature
 
-### Proposed Implementation
+#### Proposed Implementation
 The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
 * No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.)
 
-### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
+Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
 
 <B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
@@ -362,47 +364,49 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 <B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
 
-### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
+The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
 
 <p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
 
 #### Design considerations:
 
 ## General Features
-### `Find` feature
+### Find feature
 
 #### Implementation
 
-The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of clients being displayed based on the specified metrics.
+Note: `XYZ` here refers to either Client, Policy or Event
 
-Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+The `findXYZ` mechanism is facilitated by `FilteredList` from JavaFx, by using `FilteredList#setPredicate()` to update the list of XYZ being displayed based on the specified metrics.
 
-Step 1. The user executes a `find` command to find any clients matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
+Given below is an example usage scenario and how the `findXYZ` mechanism behaves at each step.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop at this step.
+Step 1. The user executes a `findXYZ` command to find any clients matching the given metrics. The `findXYZ` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindXYZCommandParser#parse()` with the obtained results
+
+Step 2. `FindXYZCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindXYZCommand` object with the corresponding predicates.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop by this step.
 </div>
 
-Step 2. `FindCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindCommand` object with the corresponding predicates.
+Step 3. `LogicManager` executes the `FindXYZCommand` using the combined predicates, which calls `Model#updateFilteredXYZList()` and updates the list of XYZ displayed
 
-Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of clients displayed
-
-The following sequence diagram shows how the find operation works:
+The following sequence diagram shows how the findXYZ operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindXYZCommandParser` and `FindXYZCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following activity diagram summarizes what happens when a user executes a find command:
+The following activity diagram summarizes what happens when a user executes a findXYZ command:
 
 ![FindSequenceDiagram](images/FindActivityDiagram.png)
 
 
 #### Design considerations:
 
-**Aspect: How `find` executes:**
+**Aspect: How `findXYZ` executes:**
 
-* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the LTNS by making use of the JavaFx filteredList library.
+* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the LTNS by making use of `FilteredList`
     * Pros: 
       * Easy extension for additional predicates, by adding predicate classes
       * Lesser user implementation
@@ -410,7 +414,7 @@ The following activity diagram summarizes what happens when a user executes a fi
       * If there are too many predicates, there could be an excessive number of classes to manage
       * Lesser control over lower level details of predicate testing
 
-* **Alternative 2:** Take in user conditions and test for each person in the LTNS
+* **Alternative 2:** Take in user defined conditions and test for each person in the LTNS
     * Pros: 
       * More control over lower level details.
       * More efficient algorithms can be used for searching which can improve the overall runtime
@@ -419,12 +423,9 @@ The following activity diagram summarizes what happens when a user executes a fi
       * Larger overhead in writing code
 
 Alternative 1 was preferred over alternative 2 due to the following reasons:
-  * We could make use of the existing JavaFx library and reduce the amount of additional code that is required.
+  * We could make use of `FilteredList` and reduce the amount of additional code that is required.
   * In addition, there is also a greater guarantee on the correctness of the code as compared to if we were to implement our own algorithms
   * Lesser testing overhead, which meant that we can focus more testing on the features implementation and reduce more potential bugs
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** A similar execution path can be observed for other find related operations like findPolicy and findEvent.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -596,12 +597,12 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     
    Use case ends
 
-**Use case 9: Find a contact**
+**Use case 9: Find a client/policy/event**
 
 **MSS**
 
 1. User requests to search by a certain metric.
-2. LTNS shows a list of clients with matching metrics.
+2. LTNS shows a list of clients/policies/events with matching metrics.
 
    Use case ends
 
@@ -738,9 +739,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-## Testing client functions
+### Testing client functions
 
-### Adding a client
+#### Adding a client
 1. Adding a Client
    1. Prerequisites: None
    2. Test case: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` <br>
@@ -750,7 +751,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for a duplicate client should be displayed.
    
 
-### Deleting a client 
+#### Deleting a client 
 1. Deleting a client
     1. Prerequisites: Client list is not empty 
     2. Test Case: `deleteClient 1` <br>
@@ -760,8 +761,8 @@ testers are expected to do more *exploratory* testing.
    
        Expected: An error message for invalid client index should be displayed
    
-### Editting a client 
-1. Edittng a client 
+#### Editing a client 
+1. Editing a client 
    1. Prerequisites: Client list is not empty
    2. Test Case: `editClient 1 n/Bob` <br>
       Expected: Edits the client with an index of 1 to a new name `Bob`.
@@ -770,20 +771,20 @@ testers are expected to do more *exploratory* testing.
 
       Expected: An error message for invalid client index should be displayed
 
-### Switching to the client view
+#### Switching to the client view
 1. Switching to the client view
     1. Prerequisites: None
     2. Test case: `clients` <br>
        Expected: Client view is shown, list of currently filtered clients is displayed.
 
-### Listing all clients
+#### Listing all clients
 1. Listing all clients
     1. Prerequisites: The current client list should be filtered.
     2. Test case: `allClients` <br>
        Expected: All clients stored in LTNS are displayed.
 
 
-### Pinning a client
+#### Pinning a client
 1. Pinning a new client
    1. Prerequisites: List of clients is not empty, currently viewing list of clients
    2. Test case: `pin 1` <br>
@@ -793,13 +794,21 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
 
 
-### Sorting a client 
+#### Sorting a client 
 
-### Finding a client
+#### Searching for a client
+1. Searching for a client
+   1. Prerequisites: List of clients is not empty
+   2. Test case: `findClient n/Alex t/friends`
+      Suppose that there is a client named `Alex` and tagged with the `friends` tag in LTNS
+      Expected: Message indicating the number of clients found is displayed and client details of `Alex` is shown
+   3. Test case: `findClient n/jeffrey`
+      Suppose that there is no client named `Jeffrey` in LTNS
+      Expected: Message indicating that no clients were found is displayed
 
-## Testing policy functions
+### Testing policy functions
 
-### Adding a policy
+#### Adding a policy
 1. Adding a new policy
    1. Prerequisites: None
    2. Test case: `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE` <br>
@@ -808,7 +817,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Policy "already added" message shown to user in status message.
    4. Other incorrect `addPolicy` commands to try: `addPolicy`, `addPolicy ti/p` (or any other field left blank)
 
-### Deleting a policy
+#### Deleting a policy
    1. Deleting a policy
       1. Prerequisites: Current displayed policy list has to be non-empty
       2. Test case: `deletePolicy 1`<br>
@@ -817,19 +826,29 @@ testers are expected to do more *exploratory* testing.
          Expected: No policy is deleted. Error details shown in the status message.
       4. Other incorrect `deletePolicy` commands to try: `deletePolicy`, `deletePolicy x` (where x is larger than the list size)
 
-### Switching to the policy view
+#### Switching to the policy view
    1. Switching to the policy view
       1. Prerequisites: None
       2. Test case: `policies` <br>
          Expected: Policy view is shown, list of currently filtered policies is displayed.
    
-### Listing all policies
+#### Listing all policies
    1. Listing all policies
       1. Prerequisites: The current policy list should be filtered. 
       2. Test case: `allPolicies` <br>
          Expected: All policies stored in LTNS are displayed.
-      
-### Assigning a policy
+
+#### Searching for a policy
+1. Searching for a policy
+    1. Prerequisites: List of policies is not empty
+    2. Test case: `findPolicy ti/Health Plan cov/HEALTH`
+       Suppose that there is a policy named `Health Plan` that covers `Health Insurance` in LTNS
+       Expected: Message indicating the number of policies found is displayed and policies details of `Health Plan` is shown
+    3. Test case: `findPolicy cov/LIFE`
+       Suppose that there are no policies which covers `Life Insurance` in LTNS
+       Expected: Message indicating that no policies were found is displayed
+
+#### Assigning a policy
 1. Assigning a policy
    1. Prerequisites: The current policy and client list should be non-empty.
    2. Test case: `assign 1 1 pr/2000 sd/2010-10-10 ed/2021-10-12` <br>
@@ -838,7 +857,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
    4. Other incorrect `assign` commands to try: `assign 1 0`, `assign`
 
-### Deleting an assigned policy
+#### Deleting an assigned policy
 1. Deleting the first assigned policy from the first client
    1. Prerequisites: The current, first person in the client list has policies assigned to them.
    2. Test case: `deleteAssigned 1 1` <br>
@@ -847,7 +866,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
    4. Other incorrect `deleteAssigned` commands to try: `deleteAssigned 1 0`, `deleteAssigned`
 
-### Viewing a client's assigned policies
+#### Viewing a client's assigned policies
 1. Viewing the policies of the first client in the list
    1. Prerequisites: There must be clients in the current displayed client list.
    2. Test case: `listAssigned 1` <br>
@@ -855,7 +874,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `listAssigned 0` <br>
       Expected: An error message for invalid client index should be displayed.
 
-### Viewing projected income
+#### Viewing projected income
 1. Viewing the projected income for the years 2000, 2001, 2002
     1. Prerequisites: There must be policies assigned to clients that happens to be in either 2000, 2001, 2002.
     2. Test case: `viewIncome 2000` <br>
@@ -863,9 +882,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `viewIncome 2200` <br>
        Expected: An error message for invalid year should be displayed.
 
-## Testing event functions
+### Testing event functions
 
-### Adding an Event
+#### Adding an Event
 1. Adding a Event
     1. Prerequisites: 
         1. The `Event` should specify the `Name` of a Client that already exists (i.e: A non-empty client List)
@@ -879,7 +898,7 @@ testers are expected to do more *exploratory* testing.
         Expected: An error message for an overlapping event should be displayed.
 
 
-### Deleting an event
+#### Deleting an event
 1. Deleting a event
     1. Prerequisites: Event list is not empty
     2. Test Case: `deleteEvent 1` <br>
@@ -889,23 +908,33 @@ testers are expected to do more *exploratory* testing.
         Expected: An error message for invalid event index should be displayed
 
 
-### Switching to the event view
+#### Switching to the event view
 1. Switching to the event view
     1. Prerequisites: None
     2. Test case: `events` <br>
        Expected: Events view is shown, list of currently filtered events is displayed.
 
-### Switching to the calendar view
+#### Switching to the calendar view
 1. Switching to the calendar view
     1. Prerequisites: None
     2. Test case: `calendar` <br>
        Expected: Calendar view is shown, events happening in the next 7 days are shown.
 
-### Listing all events
+#### Listing all events
 1. Listing all events
     1. Prerequisites: The current event list should be filtered.
     2. Test case: `allEvents` <br>
        Expected: All events stored in LTNS are displayed.
+
+#### Searching for an event
+1. Searching for an event
+    1. Prerequisites: List of events is not empty
+    2. Test case: `findEvent desc/coffee break date/2023-01-01`
+       Suppose that there is an event with the description `coffee break with alex` that occurs on `1st January 2023` in LTNS
+       Expected: Message indicating the number of events found is displayed and event details of `coffee break with alex` is shown
+    3. Test case: `findEvent date/2023-05-05`
+       Suppose that there are no events which occur on `5th May 2023` in LTNS
+       Expected: Message indicating that no events were found is displayed
 
 ## Effort
 
