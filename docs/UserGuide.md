@@ -430,12 +430,17 @@ Shows only the active tasks (i.e. tasks which are undone) by default.
 - Include the optional `-a` flag to the command to show all tasks, including those that are done.
 - If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
   only show the tasks under the selected module.
-- Tasks are automatically sorted according to the following criteria:
-  - Undone tasks are always displayed above done tasks.
-  - Within tasks that have the same done status, tasks with higher priority are always displayed above tasks with a lower priority. A priority level of `NONE` is treated as lower than a priority level of `LOW`.
-  - Within tasks that have the same done status *and* priority level, tasks with associated deadlines are always displayed above tasks without deadlines.
-  - Within tasks that have the same done status, priority level *and* have associated deadlines, tasks with *earlier* deadlines are always displayed above tasks with later deadlines.
-  - Within tasks that have the same done status, priority level *and* have the same deadline, tasks are sorted lexicographically according to their description.
+- Tasks are automatically sorted, in order, according to the following criteria:
+  1) Done status
+  2) Priority level
+  3) Deadline
+  4) Lexicographical order of description
+
+>The sorting criteria is applied in order. For instance, a task that is undone will *always* appear before a task that is done, regardless of priority level, deadline or lexograhpic order.
+> 
+>If two tasks are tied on the same criteria (e.g. both tasks have the same priority level), they will be tiebroken based on the next criteria.
+> 
+> For deadlines, tasks *without* associated deadlines are always displayed after tasks with associated deadlines.
 
 Format: `list task [-a]`
 
