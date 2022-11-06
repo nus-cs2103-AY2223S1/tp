@@ -1,0 +1,17 @@
+@startuml
+skinparam conditionStyle diamond
+
+start
+:User initiates an add item command with item data;
+note :Valid Input Format: \n"addo i/<ITEM_NAME> q/<QUANTITY>\nd/<DESCRIPTION>\nsp/<SELL_PRICE> cp/<COST_PRICE>"
+:System checks whether an item with the same item name already exists in the inventory;
+if () then ([Item name does\nnot exist in\ninventory])
+  :Add item to inventory list;
+
+else ([Item name already exists in inventory])
+  :Show user an error message;
+endif
+
+stop
+
+@enduml
