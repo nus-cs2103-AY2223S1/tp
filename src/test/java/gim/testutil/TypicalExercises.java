@@ -57,6 +57,9 @@ public class TypicalExercises {
     public static final Exercise ARM_CURLS_2 = new ExerciseBuilder()
             .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
             .withReps(VALID_REPS_ARM_CURLS).withDate(VALID_DATE_2).build();
+    public static final Exercise ARM_CURLS_WITHOUT_DATE = new ExerciseBuilder()
+            .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
+            .withReps(VALID_REPS_ARM_CURLS).build();
     public static final Exercise BENCH_PRESS = new ExerciseBuilder()
             .withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
             .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)

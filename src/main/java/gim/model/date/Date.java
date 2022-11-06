@@ -131,6 +131,7 @@ public class Date {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_PATTERN));
     }

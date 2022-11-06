@@ -15,14 +15,30 @@ class RegexListTest {
     }
 
     @Test
-    public void isValidDateByRegex_validInput_success() {
+    public void isValidDateByRegex_validInputOne_success() {
         String[] dateStrings = {
             "1/1/2020", "01/1/2020", "1/01/2020", "01/01/2020",
             "2020/1/1", "2020/1/01", "2020/01/1", "2020/01/01",
+        };
+        for (String dateString: dateStrings) {
+            assertTrue(regexList.isValidDateByRegex(dateString));
+        }
+    }
 
+    @Test
+    public void isValidDateByRegex_validInputTwo_success() {
+        String[] dateStrings = {
             "01-01-2020", "01-1-2020", "1-01-2020", "1-1-2020",
             "2020-01-01", "2020-1-01", "2020-01-1", "2020-1-1",
+        };
+        for (String dateString: dateStrings) {
+            assertTrue(regexList.isValidDateByRegex(dateString));
+        }
+    }
 
+    @Test
+    public void isValidDateByRegex_validInputThree_success() {
+        String[] dateStrings = {
             "01 01 2020", "01 1 2020", "1 01 2020", "1 1 2020",
             "2020 01 01", "2020 1 01", "2020 01 1", "2020 1 1",
         };

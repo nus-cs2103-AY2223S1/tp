@@ -3,12 +3,31 @@ package gim.model.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import gim.model.date.Date;
+import gim.testutil.ExerciseBuilder;
 
 class DateWithinRangePredicateTest {
+    @Test
+    public void getRangeSizeInDays() {
+        DateWithinRangePredicate predicate = new DateWithinRangePredicate(
+            new Date("10/10/2022"), new Date("12/10/2022")
+        );
+        assertEquals(2, predicate.getRangeSizeInDays());
+    }
+
+    @Test
+    public void test_success() {
+        DateWithinRangePredicate predicate = new DateWithinRangePredicate(
+                new Date("10/10/2022"), new Date("12/10/2022")
+        );
+        Exercise exercise = new ExerciseBuilder().withDate("11/10/2022").build();
+        assertTrue(predicate.test(exercise));
+    }
+
     @Test
     public void equals() {
         String startDateStringOne = "10/10/2022";
