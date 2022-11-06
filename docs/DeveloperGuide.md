@@ -636,39 +636,39 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
 They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly.
+<br>
+
+| Priorities | 🟥 High: Must have | 🟧 Medium: Good to have | 🟨 Low: Nice to have |
+|------------|--------------------|-------------------------|----------------------|
 
 
-| Priorities | 🟥 High: Must have | 🟧 Medium: Good to have | 🟨 Low: Nice to have | 
-|------------|------------------------------|-------------------------|----------------------|
-
-
-| Priority  | As a ...          | I want to ...                                       | So that I can ...                                           |
-|-----------|-------------------|-----------------------------------------------------|-------------------------------------------------------------|
-| 🟥 High   | basic user        | add new entries                                     | keep track of new residents                                 |
-| 🟥 High   | basic user        | delete existing entries                             | remove residents who have left RC4                          |
-| 🟥 High   | basic user        | edit existing entries                               | update any outdated or wrongly entered information          |
-| 🟥 High   | basic user        | view all existing entries                           | get an overview of all residents                            |
-| 🟥 High   | basic user        | search for existing entries                         | view their resident information                             |
-| 🟥 High   | intermediate user | filter through entries via certain keywords         | view these residents                                        |
-| 🟥 High   | basic user        | add new venues                                      | make these venues available for booking                     |
-| 🟥 High   | basic user        | delete existing venues                              | prevent any bookings to be made                             |
-| 🟥 High   | basic user        | add new bookings                                    | block certain time periods                                  |
-| 🟥 High   | basic user        | delete existing bookings                            | free up these time periods for others                       |
-| 🟥 High   | basic user        | view all bookings for a venue                       | see which time periods are free for booking                 |
-| 🟥 High   | basic user        | view all existing venues                            | view all existing venues                                    |
-| 🟥 High   | basic user        | switch between the resident tab and bookings tab    | better visualize my data                                    |
-| 🟧 Medium | intermediate user | hide certain columns                                | de-clutter my screen                                        |
-| 🟧 Medium | intermediate user | show previously hidden columns                      | get back to working on those data                           |
-| 🟧 Medium | intermediate user | delete multiple entries at a time                   | save time from individually removing them                   |
-| 🟧 Medium | basic user        | search for residents using a portion of their names | still find them without having to remember their full names |
-| 🟧 Medium | basic user        | add miscellaneous information to entries            | keep track of a little more information                     |
-| 🟧 Medium | advanced user     | create a new data file                              | maintain another list of residents                          |
-| 🟧 Medium | advanced user     | delete a file                                       | remove unused list of residents                             |
-| 🟧 Medium | advanced user     | switch between files                                | work on different files on the same system                  |
-| 🟧 Medium | advanced user     | import my data into the application                 | use RC4HDB to perform my tasks                              |
-| 🟧 Medium | new user          | see sample data                                     | how the application would like when in use                  |
-| 🟧 Medium | new user          | use the system without referring to the guide       | concentrate on my task                                      |
-| 🟨 Low    | user              | access commands I have previously entered           | save time on retyping them                                  |
+| Priority | As a ...          | I want to ...                                       | So that I can ...                                           |
+|----------|-------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| 🟥       | basic user        | add new entries                                     | keep track of new residents                                 |
+| 🟥       | basic user        | delete existing entries                             | remove residents who have left RC4                          |
+| 🟥       | basic user        | edit existing entries                               | update any outdated or wrongly entered information          |
+| 🟥       | basic user        | view all existing entries                           | get an overview of all residents                            |
+| 🟥       | basic user        | search for existing entries                         | view their resident information                             |
+| 🟥       | intermediate user | filter through entries via certain keywords         | view these residents                                        |
+| 🟥       | basic user        | add new venues                                      | make these venues available for booking                     |
+| 🟥       | basic user        | delete existing venues                              | prevent any bookings to be made                             |
+| 🟥       | basic user        | add new bookings                                    | block certain time periods                                  |
+| 🟥       | basic user        | delete existing bookings                            | free up these time periods for others                       |
+| 🟥       | basic user        | view all bookings for a venue                       | see which time periods are free for booking                 |
+| 🟥       | basic user        | view all existing venues                            | view all existing venues                                    |
+| 🟥       | basic user        | switch between the resident tab and bookings tab    | better visualize my data                                    |
+| 🟧       | intermediate user | hide certain columns                                | de-clutter my screen                                        |
+| 🟧       | intermediate user | show previously hidden columns                      | get back to working on those data                           |
+| 🟧       | intermediate user | delete multiple entries at a time                   | save time from individually removing them                   |
+| 🟧       | basic user        | search for residents using a portion of their names | still find them without having to remember their full names |
+| 🟧       | basic user        | add miscellaneous information to entries            | keep track of a little more information                     |
+| 🟧       | advanced user     | create a new data file                              | maintain another list of residents                          |
+| 🟧       | advanced user     | delete a file                                       | remove unused list of residents                             |
+| 🟧       | advanced user     | switch between files                                | work on different files on the same system                  |
+| 🟧       | advanced user     | import my data into the application                 | use RC4HDB to perform my tasks                              |
+| 🟧       | new user          | see sample data                                     | how the application would like when in use                  |
+| 🟧       | new user          | use the system without referring to the guide       | concentrate on my task                                      |
+| 🟨       | basic user        | access commands I have previously entered           | save time on retyping them                                  |
 
 *{More to be added}*
 
