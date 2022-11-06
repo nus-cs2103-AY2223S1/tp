@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HrProParser" as HrProParser LOGIC_COLOR
+participant ":FindStaffCommandParser" as FindStaffCommandParser LOGIC_COLOR
+participant "command:FindStaffCommand" as FindStaffCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> HrProParser : parseCommand()
+activate HrProParser
+
+create FindStaffCommandParser
+HrProParser -> FindStaffCommandParser
+activate FindStaffCommandParser
+
+FindStaffCommandParser --> HrProParser
+deactivate FindStaffCommandParser
+
+HrProParser -> FindStaffCommandParser : parse()
+activate FindStaffCommandParser
+
+FindStaffCommandParser --> HrProParser
+deactivate FindStaffCommandParser
+
+create FindStaffCommand
+FindStaffCommandParser -> FindStaffCommand
+activate FindStaffCommand
+FindStaffCommand --> FindStaffCommandParser
+deactivate FindStaffCommand
+
+FindStaffCommandParser --> HrProParser : command
+deactivate FindStaffCommandParser
+
+HrProParser --> LogicManager : command
+deactivate HrProParser
+
+LogicManager -> FindStaffCommand
+activate FindStaffCommand
+
+FindStaffCommand -> Model : updateFilteredStaffList()
+activate Model
+Model --> FindStaffCommand
+deactivate Model
+
+FindStaffCommand --> LogicManager
+deactivate FindStaffCommand
+
+[<--LogicManager : Done
+deactivate LogicManager
+
+@enduml

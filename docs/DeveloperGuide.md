@@ -442,9 +442,9 @@ Pros: Easier to implement then the current implementation
 
 Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
-## Adding staff feature
+### Add Staff to Project
+#### Implementation
 
-### Implementation
 The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
 to add a  `Staff` to a `Project`, both of which are provided via the `addStaff` command.
 
@@ -465,7 +465,7 @@ The arguments passed into the command are as follows:
 The usage scenario and how the add staff mechanism behaves is described as following.
 
 Step 1. The user launches the application, and uses the `addStaff` command as described in the UserGuide.
-A `AddStaffCommand` is created, and the arguments are passed into an `AddStaffCommandParser`.
+The `AddressBookParser` calls the `AddStaffCommandParser`, which parses user arguments to create an `AddStaffCommand`.
 The `AddStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates
 two objects, a `ProjectName` object, and a `Staff` object.
 
@@ -477,7 +477,7 @@ Step 3. The method also checks if the `Staff` already exists in the `Project`. I
 Step 4. The `Staff` is added to the `Project`. The `execute()` method updates the `filteredProjectList` before exiting.
 
 Sequence diagram for the execution of `AddStaffCommand`
-![AddStaffCommandExecution](images/AddStaffCommandExecution.png)
+![AddStaffCommandExecution](images/AddStaffCommandSequenceDiagram.png)
 
 ### Design Considerations:
 **Aspect: Finding project to add**
@@ -493,7 +493,115 @@ Finding project to add is not straightforward since only `ProjectName` is passed
     - Cons: Hard to implement. The `Project` `equals()` method checks for equality on all the parameters of a project, so
       simply creating a blank `Project` won't do.`
 
+### Edit Staff in Project
+#### Implementation
+The edit staff feature is facilitated by `EditStaffCommand`. It extends the `Command` class with functionality to 
+edit the `Staff` at `INDEX` provided to the `EditStaffCommand` of the `Project` with the provided `ProjectName`.
+The `Project` must be the `Project` that has the displayed `StaffList` in the staff panel.
 
+The following operations are implemented:
+- `execute(Model model)` - Executes an `EditStaffCommand`.
+
+An example of an `FindStaffCommand` is:
+`editstaff 1 pn/CS2103T sn/John Doe`
+
+The arguments passed into the command are as follows:
+- `INDEX` is the `Index` of the `Staff` to be edited. 
+- `pn` is the `Project` name of the project to add the staff to.
+- `sn` is the name of the `Staff` to add
+- `sp` is the phone number of the `Staff`
+- `st` is the title of the `Staff`
+- `sd` is the department of the `Staff`
+- `sl` is the leave status of the `Staff`, which is either `true` or `false`
+
+The usage scenario and how the edit staff mechanism behaves is described as following:
+
+Step 1. The user launches the application, and uses the `editStaff` command as described in the UserGuide.
+The `AddressBookParser` calls the `EditStaffCommandParser`, which parses the user inputs to create an `EditStaffCommand`.
+The `EditStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs into an `Index`, 
+`ProjectName` and an `EditStaffDescriptor`, which serves as a wrapper class for Staff attributes to be edited. 
+
+Step 2. The `execute()` method in `EditStaffCommand` first checks if the passed `ProjectName` is valid, and whether the
+`Index` is a valid `Index` of a `Staff` inside the `FilteredStaffList`. These are done by checking if the `Optional` returned 
+from `Model.getStaffFromProjectAtIndex()` and `Model.getProjectWithName()` are empty. If they are, a `CommandException` is thrown
+for each failed check.
+
+Step 3. A new `Staff` object is created based on the `EditStaffDescriptor`, and is checked with the `Model.projectHasDuplicateStaff()`
+to ensure that the new `Staff` object doesn't already exist inside the `FilteredStaffList`.
+
+Step 4. The `Staff` at `Index` inside the `Project` with the given `ProjectName` is edited with the `Model.isSuccessStaffEdit()` method.
+If the method returns `false`, it means that editing was not successful since an invalid staff was passed into the `Model`, so 
+a `CommandException` is thrown. 
+
+Sequence diagram for the `EditStaffCommand`
+![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
+
+#### Design Considerations:
+**Aspect: Checking if the `Project` is the currently displayed `Project`**
+- **Alternative 1**: `EditStaffCommand` checks if the `Project` to edit the staff is the current displayed `Project`(Current Implementation)
+    - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
+  This approach also forces users to call the `view` command on the `Project` that they want to edit the staff from, which helps to avoid
+  errors in editing, since HR Pro Max++ has yet to feature an `undo` command. 
+    - Cons: Users who are not aware of the fact that the `Project` that has the `Staff` to be edited, has to be `view`-ed, 
+  might be unsure of where the errors are coming from. The solution the team has come up with is to state explicitly in the User Guide, that
+  the `Project` to be edited in must be the currently displayed `Project`. 
+- **Alternative 2**: `EditStaffCommand` does not check if the `Project` is the currently displayed `Project`.
+    - Pros: Users might have an easier experience with using the command, since they are not required to call `view` before
+  `editstaff`. This streamlines the user experience and leads to higher productivity.
+    - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to 
+    ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from. 
+
+### Find Staff in Project
+#### Implementation 
+
+The find staff feature is facilitated by `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
+active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
+This functionality is provided by the `findstaff` command.
+
+The `FindStaffCommand` has a `Predicate`, which is `StaffNameContainsKeywordsPredicate`. This predicate checks whether 
+a staff name contains any of the keywords provided to the predicate. 
+
+The following operations are implemented:
+- `execute(Model model)` - Executes a `FindStaffCommand`.
+
+An example of an `FindStaffCommand` is:
+`findstaff Alex Lau`
+
+The arguments passed into the command are as follows:
+- `KEYWORD` is a `String` of any keyword the user wants to search within all staff names in the Staff List.
+
+The usage scenario and how the find staff mechanism behaves is described as following.
+
+Step 1. The user launches the application, and uses the `findStaff` command as described in the UserGuide.
+The `AddressBookParser` calls the `FindStaffCommandParser`, which parses user arguments to create a `FindStaffCommand`.
+The `FindStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates a
+`StaffNameContainsKeywordsPredicate`, which is a predicate that checks whether a given `StaffName` contains any one of the
+keywords. 
+
+Step 2. The `execute()` method of `FindStaffCommand` runs the `StaffNameContainsKeywordsPredicate` on the `FilteredStaffList`.
+
+Step 3. The `FindStaffCommand` updates the `FilteredStaffList` before exiting. 
+
+Sequence diagram for the `FindStaffCommand`
+![FindStaffCommandSequenceDiagram](images/FindStaffCommandSequenceDiagram.png)
+
+Activity diagram for the `FindStaffCommand`
+![FindStaffCommandActivityDiagram](images/FindStaffCommandActivityDiagram.png)
+
+#### Design Considerations:
+**Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
+
+- **Alternative 1**: Parse based on keywords (Current Implementation)
+  - Pros: Allows users to search by multiple keywords, so if a user wants to perform a search query that finds all staff whose names contains one of the keywords, 
+    this implementation allows them to do so.
+  - Cons: Non-standard behaviour when it comes to finding staff, since if the user queries a precise staff name, all staff whose names contains
+  even one of the keyword will be listed. For staff lists that may contain multiple staff with the same surname, this affects the effectiveness
+  of the command.
+- **Alternative 2**: Parse argument as a whole keyword
+  - Pros: Allows precise Staff name finding. For instance, if the whole argument is passed as a singular keyword, then doing
+  `findstaff Alex Lau` will either return no staff if there is no staff in the staff list with the name "Alex Lau", or only the staff "Alex Lau"
+  - Cons: Users who want to perform search queries on the staff list such as finding all Jareds and all Laus, will have to do two separate
+  `findstaff` calls when they could just call `findstaff Jared Lau` that supports searching multiple keywords. 
 --------------------------------------------------------------------------------------------------------------------
 
 # **Documentation, logging, testing, configuration, dev-ops**
