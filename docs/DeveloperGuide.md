@@ -424,6 +424,18 @@ Implementation:
 to listen for the event when a valid command word is typed 
 3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
 
+### Command History feature
+This feature allows the user to navigate to their previously entered commands.
+- Only valid commands will be saved in the command history
+- Command history will only save up to 20 previously typed valid commands
+- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
+
+The following sequence diagram summarizes how a valid command is saved in CommandHistoryStorage:
+![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+<br>
+The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
 * `Calendar Display` — Can display appointments of a month in a calendar format.
