@@ -159,7 +159,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.trim().replaceAll(" +", " ");
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -253,7 +253,7 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
-        String trimmedLocation = location.trim();
+        String trimmedLocation = location.trim().replaceAll(" +", " ");
         if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
@@ -330,7 +330,7 @@ public class ParserUtil {
      */
     public static PlanTag parsePlanTag(String planTag) throws ParseException {
         requireNonNull(planTag);
-        String trimmedPlanTag = planTag.trim();
+        String trimmedPlanTag = planTag.trim().replaceAll(" +", " ");
         if (!PlanTag.isValidPlanTagName(trimmedPlanTag)) {
             throw new ParseException(PlanTag.MESSAGE_CONSTRAINTS);
         }
@@ -344,10 +344,11 @@ public class ParserUtil {
         requireNonNull(planTags);
         final List<PlanTag> planTagList = new ArrayList<>();
         for (String planTag: planTags) {
-            planTagList.add(parsePlanTag(planTag));
+            planTagList.add(parsePlanTag(planTag.replaceAll(" +", " ")));
         }
         return planTagList;
     }
+
     /**
      * Parses {@code Collection<String> names} into a {@code List<Name>}.
      */
@@ -369,7 +370,7 @@ public class ParserUtil {
      */
     public static NormalTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().replaceAll(" +", " ");
         if (!NormalTag.isValidNormalTagName(trimmedTag)) {
             throw new ParseException(NormalTag.MESSAGE_CONSTRAINTS);
         }
@@ -396,7 +397,7 @@ public class ParserUtil {
         requireNonNull(normalTags);
         final List<NormalTag> normalTagList = new ArrayList<>();
         for (String normalTag: normalTags) {
-            normalTagList.add(parseTag(normalTag));
+            normalTagList.add(parseTag(normalTag.replaceAll(" +", " ")));
         }
         return normalTagList;
     }
