@@ -25,6 +25,8 @@ public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'delete task' command is used to delete a task from the current team's task list.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Deletes the task identified by the index number used in the task list.\n"
@@ -50,7 +52,7 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();

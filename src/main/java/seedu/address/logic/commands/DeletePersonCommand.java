@@ -25,6 +25,8 @@ public class DeletePersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'delete person' command is used to delete a person from TruthTable.\n";
 
     public static final String MESSAGE_USAGE =
             FULL_COMMAND + ": Deletes the person identified by the index number used in the displayed person list.\n"
@@ -48,7 +50,7 @@ public class DeletePersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();

@@ -24,6 +24,8 @@ public class TasksSummaryCommand extends Command {
     public static final String ALIAS_SU = "su";
     public static final String ALIAS_SUM = "sum";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'summary' command is used to view the summary of how tasks have been assigned in the current team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Displays a summary of how tasks have been assigned in the current team.\n"
@@ -44,7 +46,7 @@ public class TasksSummaryCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> members = model.getTeam().getTeamMembers();

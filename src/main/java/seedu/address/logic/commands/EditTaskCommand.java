@@ -39,6 +39,8 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'edit task' command is used to edit a task's details.\n";
 
     public static final String MESSAGE_USAGE =
             FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
@@ -106,7 +108,7 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {

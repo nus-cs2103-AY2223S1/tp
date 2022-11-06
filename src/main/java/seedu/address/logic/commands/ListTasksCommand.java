@@ -28,6 +28,8 @@ public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "tasks";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'list tasks' command is used to list all tasks of the current team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Lists all the tasks of the current team.\n"
@@ -63,7 +65,7 @@ public class ListTasksCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
 
         requireNonNull(model);

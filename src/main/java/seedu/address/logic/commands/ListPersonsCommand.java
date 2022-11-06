@@ -18,6 +18,8 @@ public class ListPersonsCommand extends Command {
     public static final String COMMAND_WORD = "persons";
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'list persons' command is used to list all the persons in TruthTable.\n";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
@@ -34,7 +36,7 @@ public class ListPersonsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

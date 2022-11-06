@@ -24,6 +24,8 @@ public class DeleteMemberCommand extends Command {
     public static final String COMMAND_WORD = "member";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'delete member' command is used to delete a member from the current team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Deletes the person identified by the index number used in the members list.\n"
@@ -49,7 +51,7 @@ public class DeleteMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> teamMembers = model.getTeam().getTeamMembers();

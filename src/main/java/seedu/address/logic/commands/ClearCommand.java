@@ -19,6 +19,8 @@ public class ClearCommand extends Command {
     public static final String ALIAS = "c";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
+    public static final String HELP_MESSAGE =
+            "The 'clear' command is used to clear all the data from the application.\n";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
@@ -31,7 +33,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.setTruthTable(TruthTable.createNewTruthTable());

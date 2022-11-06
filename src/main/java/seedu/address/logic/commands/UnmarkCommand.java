@@ -32,6 +32,8 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_UNMARKED = "This task has not been marked as done.";
+    public static final String HELP_MESSAGE =
+            "The 'unmark' command is used to mark a task as incomplete.\n";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
@@ -46,7 +48,7 @@ public class UnmarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();

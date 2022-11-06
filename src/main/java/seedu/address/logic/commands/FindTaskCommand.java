@@ -29,6 +29,8 @@ public class FindTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'find task' command is used to find a task in the current team's task list.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -56,7 +58,7 @@ public class FindTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredTaskList(predicate.getPredicate());

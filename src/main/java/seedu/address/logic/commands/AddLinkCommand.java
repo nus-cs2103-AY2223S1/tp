@@ -27,6 +27,8 @@ public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'add link' command is used to add links relevant to the current team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Adds a new link \n"
@@ -63,7 +65,7 @@ public class AddLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         Link toAdd = new Link(name, url);

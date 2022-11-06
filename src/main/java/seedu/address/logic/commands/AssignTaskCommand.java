@@ -29,6 +29,8 @@ public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'assign task' command is used to assign a task to a specific member(s) of the team.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Assigns a task to the specified member in the team.\n"
@@ -62,7 +64,7 @@ public class AssignTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();

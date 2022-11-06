@@ -22,6 +22,8 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String ALIAS = "f";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'find' command is used to find data in TruthTable.\n";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -33,7 +35,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));

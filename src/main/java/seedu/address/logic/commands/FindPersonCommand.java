@@ -22,6 +22,8 @@ public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'find person' command is used to find a person in TruthTable.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -46,7 +48,7 @@ public class FindPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);

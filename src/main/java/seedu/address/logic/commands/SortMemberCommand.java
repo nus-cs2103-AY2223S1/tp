@@ -24,7 +24,8 @@ public class SortMemberCommand extends Command {
     public static final String COMMAND_WORD = "members";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
+    public static final String HELP_MESSAGE =
+            "The 'sort members' command is used to sort the current team's members.\n";
 
     public static final String MESSAGE_SUCCESS = "Sorted members successfully";
 
@@ -44,7 +45,7 @@ public class SortMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         Comparator<Person> comparator;

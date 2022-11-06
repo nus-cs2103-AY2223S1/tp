@@ -21,6 +21,9 @@ public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
     public static final String ALIAS = "s";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'set' command is used to either set a deadline for a task or change the current " +
+                    "working team in TruthTable .\n";
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -31,7 +34,7 @@ public class SetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));

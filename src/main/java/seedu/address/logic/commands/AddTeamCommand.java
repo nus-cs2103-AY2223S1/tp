@@ -28,6 +28,8 @@ public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'add team' command is used to create a new team in TruthTable.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Adds a new team \n"
@@ -65,7 +67,7 @@ public class AddTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         Team team = new Team(teamName, description);

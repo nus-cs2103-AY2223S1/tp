@@ -34,6 +34,8 @@ public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'edit link' command is used to edit a link's details.\n";
 
     public static final String MESSAGE_USAGE =
             FULL_COMMAND + ": Edits a current link identified by the index number used in the displayed link list. \n"
@@ -80,7 +82,7 @@ public class EditLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();

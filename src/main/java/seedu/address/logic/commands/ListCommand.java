@@ -22,6 +22,8 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'list' command is used to list data in TruthTable.\n";
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -32,7 +34,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));

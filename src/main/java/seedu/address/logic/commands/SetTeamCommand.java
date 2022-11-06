@@ -26,6 +26,8 @@ public class SetTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'set team' command is used to change the current working team.\n";
 
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
@@ -55,7 +57,7 @@ public class SetTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();

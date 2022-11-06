@@ -35,6 +35,8 @@ public class EditTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The 'edit team' command is used to edit a team's details.\n";
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Edits the current team \n"
@@ -89,7 +91,7 @@ public class EditTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 

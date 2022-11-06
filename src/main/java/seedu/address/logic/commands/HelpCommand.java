@@ -18,6 +18,8 @@ public class HelpCommand extends Command {
     public static final String ALIAS = "h";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
+    public static final String HELP_MESSAGE =
+            "The 'help' command is used to view a list of all commands.\n";
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Shows program usage instructions.\n"
             + "Example: " + FULL_COMMAND;
 
@@ -33,7 +35,7 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         CommandLine parent = commandSpec.commandLine().getParent();
         return new CommandResult(parent.getUsageMessage() + "\nAccess our user guide here: " + USERGUIDE_URL);
