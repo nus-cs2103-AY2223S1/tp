@@ -3,7 +3,7 @@ start
 :User enters Add command;
 
 if () then ([Is invalid parameter])
-    : TrackAScholar displays \nerror message indicating \ninvalid user input;
+    :TrackAScholar displays \nerror message indicating \ninvalid user input;
 
 else ([Is valid parameters])
 
