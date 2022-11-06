@@ -2,6 +2,7 @@ package seedu.foodrem.views;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -67,12 +68,13 @@ public class StatsView {
         return statsView;
     }
 
-    private static Node[] buildTopThreeMostExpensiveItemsListFrom(Stats stats) {
+    private static List<Node> buildTopThreeMostExpensiveItemsListFrom(Stats stats) {
         List<Item> expensiveItems = stats.getTopThreeMostExpensiveItems();
-        Node[] nodes = expensiveItems.stream().map(ItemView::from)
-                .peek(node -> node.setStyle("-fx-padding: 20 0 0 0")).toArray(Node[]::new);
-        nodes[0].setStyle("-fx-padding: 0");
+        List<Node> nodes = expensiveItems.stream().map(ItemView::from)
+                .peek(node -> node.setStyle("-fx-padding: 20 0 0 0")).collect(Collectors.toList());
+        if (!nodes.isEmpty()) {
+            nodes.get(0).setStyle("-fx-padding: 0");
+        }
         return nodes;
     }
-
 }
