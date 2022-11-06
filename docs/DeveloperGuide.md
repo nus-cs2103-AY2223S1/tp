@@ -7,8 +7,6 @@ title: Developer guide
 * Table of Contents
 {:toc}
 
-<hr>
-
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -30,8 +28,6 @@ title: Developer guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
-<hr>
 
 <div style="page-break-after: always;"></div>
 
@@ -188,8 +184,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
-<hr>
 
 <div style="page-break-after: always;"></div>
 
@@ -604,8 +598,6 @@ Project team leaders with many projects, members and tasks to assign.
 | `*`      | expert user       | create shortcuts and pin most important projects on the top of the app         | access these projects faster                                                           |
 | `*`      | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
 | `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
-
-<hr>
 
 <div style="page-break-after: always;"></div>
 
@@ -1160,8 +1152,6 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
-
-<hr>
 
 <div style="page-break-after: always;"></div>
 
