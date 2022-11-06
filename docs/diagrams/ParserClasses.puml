@@ -15,10 +15,7 @@ Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
-Class FlagTokenizer
-Class ArgumentToken
 Class Prefix
-Class Flag
 }
 
 Class HiddenOutside #FFFFFF
