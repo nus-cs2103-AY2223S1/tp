@@ -26,13 +26,6 @@ create EditModuleCommand
 ModtrektParser -> EditModuleCommand
 activate EditModuleCommand
 
-create Module
-EditModuleCommand -> Module : Module()
-activate Module
-
-Module --> EditModuleCommand
-deactivate Module
-
 EditModuleCommand --> ModtrektParser : a
 deactivate EditModuleCommand
 
@@ -53,6 +46,13 @@ deactivate ModuleList
 
 Model --> EditModuleCommand
 deactivate Model
+
+create Module
+EditModuleCommand -> Module : Module()
+activate Module
+
+Module --> EditModuleCommand
+deactivate Module
 
 EditModuleCommand -> Model : addModule(CS2100)
 activate Model
