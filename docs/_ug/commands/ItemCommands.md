@@ -46,6 +46,44 @@ Tags: {}
 
 ---
 
+#### Search for an item: `find`
+
+**Format:** `find KEYWORD [KEYWORDS]...`
+
+> Finds all items in FoodRem whose names contain [[ substring:substrings]] of the KEYWORDS
+
+```info
+* The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
+* The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
+* The result will be items in which any of the words in `ITEM_NAME` contains a [[ substring ]] of the `KEYWORDS`. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
+```
+
+```tip
+* You can use the [List Command](#list-all-items-list) in the next section to display all items again!
+```
+
+**Example Input:**
+
+```text
+find potato carrot cucumbers
+```
+
+**Expected Output:**<br>Command Output Box:
+
+```text
+1 item listed!
+```
+
+Item List Box:
+
+```text
+1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+```
+
+---
+
+---
+
 #### List all items: `list`
 
 **Format**: `list`
@@ -75,44 +113,6 @@ Item List Box:
 2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
 3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
-
----
-
-#### Search for an item: `find`
-
-**Format:** `find KEYWORD [KEYWORDS]...`
-
-> Finds all items in FoodRem whose names contain [[ substring:substrings]] of the KEYWORDS
-
-```info
-* The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
-* The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be items in which any of the words in `ITEM_NAME` contains a [[ substring ]] of the `KEYWORDS`. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
-```
-
-```tip
-* You can use the [List Command](#list-all-items-list) to display all items again!
-```
-
-**Example Input:**
-
-```text
-find potato carrot cucumbers
-```
-
-**Expected Output:**<br>Command Output Box:
-
-```text
-1 item listed!
-```
-
-Item List Box:
-
-```text
-1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-```
-
----
 
 #### Sort all items by an attribute: `sort`
 
