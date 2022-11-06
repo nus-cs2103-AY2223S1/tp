@@ -80,9 +80,8 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 4. If you see any unfamiliar terms, check out the [Glossary](#glossary) for more information.
 
 # Table of Contents
-
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -99,33 +98,36 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
    for StudMap.
 
 4. Double click StudMap.jar to start the app. You should see a new window similar to the figure below appear in a few
-   seconds. Notice that StudMap contains some sample data. <br>  
+   seconds. Notice that StudMap contains some sample data.
+
    ![Ui](images/Ui.png)
 
-Take note of the following elements in the interface:
+   Take note of the following elements in the interface:
 
-* The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands).
-* The **Reply Box** is where StudMap responds to your instructions.
-* The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
+    * The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands)
+      .
+    * The **Reply Box** is where StudMap responds to your instructions.
+    * The **Student List** is a list of your students. StudMap updates this list as you give it commands to do so.
 
 5. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
-* a. `list`
-    * This updates the Student List with all the students you have.
-* b. `n/John Doe m/CS2103T id/E1234567`
-    * This adds a student named John Doe with student id E1234567 into StudMap, who is taking the module CS2103T. This
-      is one of the ways you can add a new student into StudMap.
-* c. `delete 3`
-    * This deletes the 3rd student currently shown in the Student List.
-* d. `clear`
-    * This deletes all the students, so you can start with a clean slate!
+    * `list`
+        * This updates the Student List with all the students you have.
+    * `n/John Doe m/CS2103T id/E1234567`
+        * This adds a student named John Doe with student id E1234567 into StudMap, who is taking the module CS2103T.
+          This
+          is one of the ways you can add a new student into StudMap.
+    * `delete 3`
+        * This deletes the 3rd student currently shown in the Student List.
+    * `clear`
+        * This deletes all the students, so you can start with a clean slate!
 
 6. You may be concerned: you’re probably already using some Excel sheet of sorts for keeping track of student data – and
    you certainly don’t want to transfer all this data manually to StudMap! We’ve got you covered.
 
-Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
-out this [Example Template](files/example_template.csv), or check out
-[Import Command](#import-students-from-csv-file-import) for more details.
+   Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
+   out this [Example Template](files/example_template.csv), or check out
+   [Import Command](#import-students-from-csv-file-import) for more details.
 
 7. That’s all for the tutorial! Check out the [Features](#features) section for more detailed information about each
    command.
