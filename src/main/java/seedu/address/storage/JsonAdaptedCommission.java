@@ -19,6 +19,7 @@ import seedu.address.model.commission.Description;
 import seedu.address.model.commission.Fee;
 import seedu.address.model.commission.Title;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.iteration.exceptions.DuplicateIterationException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,8 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedCommission {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Commission's %s field is missing!";
+
+    public static final String MESSAGE_DUPLICATE_ITERATIONS = "Iteration list contains duplicate iteration(s).";
 
     private final String title;
     private final String description;
@@ -143,7 +146,11 @@ public class JsonAdaptedCommission {
         modelDescription.ifPresent(commissionBuilder::setDescription);
 
         for (JsonAdaptedIteration iteration : iterations) {
-            commissionBuilder.addIteration(iteration.toModelType());
+            try {
+                commissionBuilder.addIteration(iteration.toModelType());
+            } catch (DuplicateIterationException e) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITERATIONS);
+            }
         }
 
         return commissionBuilder.build(customer);
