@@ -116,6 +116,16 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `ClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `ClientCommandParser`, `IssueCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+#### Entity Initialisation
+
+* In some instances, we note that an entity object (`Project`, `Issue` or `Client`) object cannot be created together with the `XYZCommand` object, since we may need access to the `model` object at the point of initialisation (for instance, to generate the next ID number when creating an entity).
+* Given this, we opt to _partially initialise_ entity objects using the clas `XYZWithoutModel`.
+* These are done mainly when creating the `AddXYZCommand` objects.
+
+The sequence diagram below illustrates the partial initialisation logic during the creation and execution of a `AddProjectCommand` object.
+
+<img src="images/ParserPartialInitialisationSequenceDiagram.png" width="450" />
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -124,7 +134,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the project book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the project book data i.e., all `Person` objects (which are contained in a `UniqueEntityList<Person>` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
