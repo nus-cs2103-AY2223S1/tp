@@ -339,13 +339,16 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 
 #### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
+The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
+It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
-The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As `Student`, `Tutor` and `TuitionClass` instances are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. 
+As `Student`, `Tutor` and `TuitionClass` instances are stored in `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, the `type` field in `ModelManager` would indicate which of the three would be operated on by the `Logic` component when a command is executed. 
+Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
-* `Model#getCurrentListType()` - Returns the `ListType` `type` that the `ModelManager` currently stores.
-* Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
+* `Model#getCurrentListType()` - Returns the `type` that the `ModelManager` currently stores.
+* `Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
 
 The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
 
@@ -353,23 +356,25 @@ The operations are exposed to `Logic` interface as `Logic#updateCurrentListType(
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user execute `list_c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user executes `list class` command to list out tuition classes by calling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the `type` field in `ModelManager` to update to `TUITIONCLASS_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
 Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
 
-Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, it will change the children of `entityListPanelPlaceholder` to `tuitionClassListPanel`, which holds the list of tuition classes.
+Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, `MainWindow#handleList()` will clear the children of `entityListPanelPlaceholder`, and add `tuitionClassListPanel` to it, which holds the list of `Class`.
 
 Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tuitionClassLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tutorLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `Class` list.
 
-Another example that makes use of the list type is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how list type mechanism behaves.
+Another example that makes use of the `ListType` is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how the list type mechanism behaves.
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user executes `delete 1` command to delete the 1th student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
+Step 2. The user executes `delete 1` command to delete the 1st student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
 
-Step 3. The `delete` command then deletes the student by calling `Model#deletePerson` with the student to be deleted being the parameter.
+Step 3. The `delete` command then gets the `studentToDelete` as the first `Student` in the `lastShownStudentList` which is obtained by calling `Model#getFilteredStudentList`. 
+This `studentToDelete` is deleted by calling `Model#deletePerson` with the `studentToDelete` being the parameter.
 
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  

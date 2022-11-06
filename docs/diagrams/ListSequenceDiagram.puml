@@ -1,0 +1,98 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "l:ListTutorCommand" as ListTutorCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("list tutor")
+activate MainWindow
+
+MainWindow-> LogicManager : execute("list tutor")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("list tutor")
+activate AddressBookParser
+
+create ListTutorCommand
+AddressBookParser -> ListTutorCommand
+activate ListTutorCommand
+
+ListTutorCommand --> AddressBookParser : l
+deactivate ListTutorCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListTutorCommand -[hidden]-> AddressBookParser
+
+AddressBookParser --> LogicManager : l
+deactivate AddressBookParser
+
+LogicManager -> ListTutorCommand : execute(l)
+activate ListTutorCommand
+
+ListTutorCommand -> Model:updateCurrentList(TUTOR_LIST)
+activate Model
+
+Model --> ListTutorCommand
+deactivate Model
+
+create CommandResult
+ListTutorCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> ListTutorCommand : result
+
+ListTutorCommand --> LogicManager : result
+deactivate ListTutorCommand
+destroy ListTutorCommand
+
+LogicManager --> MainWindow : result
+
+MainWindow -> CommandResult : isList()
+
+CommandResult --> MainWindow : true
+deactivate CommandResult
+destroy CommandResult
+
+MainWindow -> MainWindow : handleList()
+activate MainWindow
+
+MainWindow -> LogicManager : getCurrentListType()
+
+LogicManager -> Model : getCurrentListType()
+activate Model
+
+Model --> LogicManager : TUTOR_LIST
+deactivate Model
+
+LogicManager --> MainWindow : TUTOR_LIST
+deactivate MainWindow
+
+MainWindow -> MainWindow : setLabelStyle()
+activate MainWindow
+
+MainWindow -> LogicManager : getCurrentListType()
+
+LogicManager -> Model : getCurrentListType()
+activate Model
+
+Model --> LogicManager : TUTOR_LIST
+deactivate Model
+
+LogicManager --> MainWindow : TUTOR_LIST
+deactivate MainWindow
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
