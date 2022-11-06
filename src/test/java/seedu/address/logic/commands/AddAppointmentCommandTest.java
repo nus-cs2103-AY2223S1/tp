@@ -13,22 +13,16 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.ModelBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
@@ -42,21 +36,15 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validAppointmentUnfilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        actualModel.addPerson(new PersonBuilder().build());
+        Model actualModel = new ModelBuilder().build();
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        expectedModel.addPerson(new PersonBuilder().build());
+        Model expectedModel = new ModelBuilder().build();
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
-        expectedPerson.getAppointments().add(new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build());
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
+        expectedPerson.getAppointments().add(appointmentToAdd);
 
         // Create addAppointmentCommand
-        Appointment appointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
@@ -67,25 +55,17 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validAppointmentFilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        actualModel.addPerson(new PersonBuilder().build());
-        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
+        Model actualModel = new ModelBuilder().build();
         showPersonAtIndex(actualModel, INDEX_FIRST_PERSON);
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        Person expectedPerson = new PersonBuilder().build();
-        expectedPerson.getAppointments().add(new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build());
-        expectedModel.addPerson(expectedPerson);
-        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
+        Model expectedModel = new ModelBuilder().build();
+        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
+        expectedPerson.getAppointments().add(appointmentToAdd);
         expectedModel.updateFilteredPersonList(person -> person.isSamePerson(expectedPerson));
 
         // Create addAppointmentCommand
-        Appointment appointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
@@ -96,17 +76,15 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addDuplicateAppointmentWithSameDateTimeUnfilteredList_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model testModel = new ModelBuilder().build();
         testModel.addPerson(new PersonBuilder().build());
         Person testPerson = testModel.getFilteredPersonList().get(0);
-        testPerson.getAppointments().add(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build());
+        testPerson.getAppointments().add(new AppointmentBuilder().build());
 
         // Create addAppointmentCommand
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
+                .withLocation("differentValidLocation")
+                .build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
@@ -116,19 +94,15 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addDuplicateAppointmentWithSameDateTimeFilteredList_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        testModel.addPerson(new PersonBuilder().build());
-        testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
+        Model testModel = new ModelBuilder().build();
         showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
         Person testPerson = testModel.getFilteredPersonList().get(0);
-        testPerson.getAppointments().add(new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build());
+        testPerson.getAppointments().add(new AppointmentBuilder().build());
 
         // Create addAppointmentCommand
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
+                .withLocation("differentValidLocation")
+                .build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
@@ -137,12 +111,10 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Model testModel = new ModelBuilder().build();
+        Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
 
-        Appointment appointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
@@ -154,17 +126,13 @@ public class AddAppointmentCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        testModel.addPerson(new PersonBuilder(ALICE).build());
-        testModel.addPerson(new PersonBuilder(BOB).build());
+        Model testModel = new ModelBuilder().build();
         showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < testModel.getAddressBook().getPersonList().size());
 
-        Appointment appointmentToAdd = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_21_JAN_2023)
-                .withLocation(VALID_LOCATION_NUS).build();
+        Appointment appointmentToAdd = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
