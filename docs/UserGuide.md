@@ -525,13 +525,25 @@ the date of the appointment. It also has a handy description to briefly describe
 
 Never miss another meeting today!
 
+Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
 
-* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
-* Description: Adds an event into LTNS. Note the following restrictions
-    * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
-    * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
-    * `CLIENT_NAME` indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
-        * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    START_TIME must be chronologically before END_TIME. All times are in the format: `HH:MM`.
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    EVENT_DATE follows a standard date format for our app (i.e: YYYY-MM-DD).
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    CLIENT_NAME indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
+</div>
+
+If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+
+
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
