@@ -367,7 +367,16 @@ Example: `listdebtors m/10` displays the list of persons that owe more than $10.
 
 ### Sorting list of persons: `sort`
 
-Sorts and displays the list of persons using the given criterion and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order. Do note that you can only sort by exactly one criterion at a time.
+Sorts and displays the list of persons using the given criterion and order. The criteria that you can sort by are:
+* `n/` - Name of person
+* `m/` - Total amount owed
+* `date/` - Time since date of oldest debt
+
+Do note that you can only sort by exactly one criterion at a time.
+
+Use the following symbols after the prefix to indicate the order of sorting:
+* `+` - Ascending order
+* `-` - Descending order
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
