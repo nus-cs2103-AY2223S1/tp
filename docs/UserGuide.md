@@ -109,6 +109,17 @@ A `preference.json` file will be created when you first run the application, if 
 
 </div>
 
+<div markdown="block" class="alert alert-danger">
+
+:heavy_exclamation_mark: **Alert**  
+All your data will be saved as .json files in their respective location as specified above.  
+The default location of the files will be in a folder named `data` in your [home folder](#quick-start).  
+Do **NOT** modify these files directly as it may cause irreparable damage to your data, cause the application to not work as intended, or both.  
+If you need to modify the details of your entries, please do so within the myStudent application.  
+Some applicable commands that helps to modify your data are: [assign](#unassign-class-from-a-person-unassign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entity-edit). 
+    
+</div>
+
 ---
 
 ## Layout
