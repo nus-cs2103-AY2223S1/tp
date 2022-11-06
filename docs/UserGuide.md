@@ -52,8 +52,8 @@ The following icons are used in the _User Guide_ to denote special information t
 
 ## **4. Getting started**
 
-1. Ensure you have Java `11` or above installed in your computer.
-    * To check for the Java version in your computer, you can first open the command-line or terminal window. Then, run the command `java -version`. The output will display the version of the Java package installed on your system.
+1. Ensure you have Java `11` or above installed on your computer.
+    * To check for the Java version on your computer, you can first open the command-line or terminal window. Then, run the command `java -version`. The output will display the version of the Java package installed on your system.
     * If you do not have Java `11` or above in your computer, head to the [Technical Support](#61-technical-support) section for the installation guide.
 
 2. Download the latest `MassLinkers.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-4/tp/releases).
@@ -73,9 +73,9 @@ The following icons are used in the _User Guide_ to denote special information t
 ## **5. Features**
 There are 4 main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
 
-By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (i.e. seach by common interests, modules or personal information).
+By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (i.e. search by common interests, modules or personal information).
 
-The following notes outline several noteworthy format which the [Feature](#5-features) section uses in detailing the usage of different commands.
+The following notes outline several noteworthy format that the [Feature](#5-features) section uses in detailing the usage of different commands.
 
 <div markdown="block" class="alert alert-info">
 
@@ -100,10 +100,10 @@ The following notes outline several noteworthy format which the [Feature](#5-fea
 
 * Any words that come after a prefix will be taken as the parameter.<br>
   Example:
-  * `n/john smith t/john parallelisation` john parallelization would be considered as the parameter for telegram handle which is invalid.
+  * `n/john smith t/john parallelisation` john parallelization would be considered as the parameter for the telegram handle, which is invalid.
     <br>ie. a space does not demarcate the end of a parameter.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
   Example:
   * If you specify `n/John Doe n/Bob Tan`, only `n/Bob Tan` will be saved.
   * If you specify `p/12341234` `p/56785678`, only `p/56785678` will be saved.
@@ -138,7 +138,7 @@ Adds a batchmate to the list of batchmates in the _Students panel_.
 __Format:__ `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`
 
 * A summary of the requirements of each parameter can be found under [Parameter Requirements](#55-parameter-requirements).
-* Only unique batchmate can be added. It is considered a duplicate if an existing batchmate and the current batchmate to be added have identical Telegram handle, GitHub username, email address or phone number.
+* Only unique batchmate can be added. It is considered a duplicate if an existing batchmate and the current batchmate to be added have an identical Telegram handle, GitHub username, email address or phone number.
 * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#56-module-categorisation).
 
 __Examples:__
@@ -211,7 +211,7 @@ __Examples:__
 * When you want to search by `TELEGRAM`, `GITHUB` or `EMAIL`:
   * `find ion` returns the batchmates with Telegram handle, GitHub username or email address containing `ion`, e.g. batchmate with telegram handle `liona`, batchmate with GitHub username `thecation47`.
 * When you want to search by `PHONE`:
-  * `find 999` returns the batchmates with phone number `69998888`, `89991234` or `99912345`.
+  * `find 999` returns the batchmates with phone numbers `69998888`, `89991234` or `99912345`.
 
 #### 5.1.5. List all batchmates: `list`
 
@@ -220,7 +220,7 @@ Shows a list of all batchmates in the _Students panel_.
 __Format:__ `list`
 
 ### 5.2. Interest commands
-Interest commands handle the management of a batchmate's list of interests, such as addition of interests, deletion of interests and searching batchmates with specified interests.
+Interest commands manage a batchmate's list of interests, such as the addition of interests, deletion of interests and searching batchmates with specified interests.
 
 <div markdown="block" class="alert alert-info">
 
@@ -235,7 +235,7 @@ Adds interest(s) to a specified batchmate in the _Students panel_.
 __Format:__ `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
 * Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
-* Interests added are case-insensitive, they will be displayed in lower casing. 
+* Interests added are case-insensitive and will be displayed in a lower casing.
 
 __Examples:__
 * `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
@@ -267,11 +267,11 @@ __Examples:__
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### 5.3. Module commands
-Module commands handle the management of a batchmate's list of modules, such as addition of modules, deletion of modules and searching batchmates with specified modules.
+Module commands manage a batchmate's list of modules, such as the addition of modules, deletion of modules and searching batchmates with specified modules.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
 Commands used to manage a batchmate's personal information in [Batchmate commands](#51-batchmate-commands) and [Interest commands](#52-interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
-Whereas, commands that manage a module detail in [Module commands](#53-module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
+On the other hand, commands that manage a module detail in [Module commands](#53-module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
 
 This is to facilitate easy distinction between the nature of commands.
 
@@ -294,13 +294,13 @@ Adds module(s) to a specified batchmate in the _Modules panel_.
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
 * Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Regarding parameters_ at the start of [Features](#5-features) for more details.
-* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#56-module-categorisation).
+* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. Modules that Mass Linkers cannot identify will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#56-module-categorisation).
 
 __Examples:__
 * `mod add 1 ma1521` adds the module `MA1521` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
-Below is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
+Below is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes are annotated with a purple rectangular box below.
 ![UgModAdd](images/UgModAdd.png)
 
 #### 5.3.3. Delete module from a batchmate: `mod delete`
@@ -331,7 +331,7 @@ __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-Below is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
+Below is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes are annotated with purple rectangular boxes below.
 ![UgModMark](images/UgModMark.png)
 
 
@@ -391,7 +391,7 @@ General commands are commands which do not fall under any of the above categorie
 
 #### 5.4.1. View help: `help`
 
-Shows a brief summary of commands with their syntax and a link to the user guide. You can also click the `Open User Guide` button which will redirect you to the user guide in your browser.
+Shows a brief summary of commands with their syntax and a link to the user guide. You can also click the `Open User Guide` button, which will redirect you to the user guide in your browser.
 
 __Format:__ `help`
 
@@ -412,7 +412,7 @@ __Format:__ `exit`
 
 #### 5.4.4. Save the data
 
-Mass Linkers ensures your data is saved automatically each time after you execute a command which changes the data. Hence, you do not need to conduct a save manually.
+Mass Linkers ensures your data is saved automatically after executing a command that changes the data. Hence, you do not need to conduct a save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -426,7 +426,7 @@ Below is the summary of requirements to take note of for each parameter for the 
 | Telegram handle | 1. May only contain alphanumeric characters or underscores and have a minimum length of 5 characters.<br> 2. Consecutive and/or starting/ending with underscores are not allowed as per Telegram requirements.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `johndoe`, `john_doe123`                                             |
 | Phone number    | 1. Should contain only numerical values (i.e. `0-9`), and at most one "`+`" at the beginning for country code (optional). <br> 2. Should have a length of 7-16 characters (inclusive of country code). <br> 3. Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.                                                                                                                                                                                                                                                                                                                                                                          | `98383913`, `+12064512559`, `(+65) 98383913` (Warning will be shown) |
 | GitHub username | 1. May only contain alphanumeric characters or hyphens and have a length between 1 - 39 characters.<br> 2. Consecutive and/or starting with hyphens are not allowed as per GitHub requirements. <br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `john1`, `john-doe`                                                  |
-| Interest        | Only alphanumerical characters allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `swe`, `ai`, `algo`                                                  |
+| Interest        | Only alphanumerical characters are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `swe`, `ai`, `algo`                                                  |
 | Email           | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters within the quotation marks: "`+_.-`". The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>The domain name must:<br>- end with a domain label at least 2 characters long<br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br/> | `john12@gmail.com`, `joe-lim@u.nus.edu`, `joe@mail`                  |
 | Modules         | Module names should be numbers prefixed with alphabets and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `CS2100`, `CS2103T`, `ES2660`                                        |
 
@@ -449,7 +449,7 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. FAQ**
-Facing an issue? Below are several commonly asked questions, which address technical and privacy concerns.
+Facing an issue? Below are several commonly asked questions which address technical and privacy concerns.
 
 ### 6.1. Technical Support
 
@@ -457,10 +457,10 @@ Facing an issue? Below are several commonly asked questions, which address techn
 **A**: Visit [this website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) and follow the installation guide for your operating system.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
+**A**: Install Mass Linkers on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
 
-**Q**: Do I need internet connection to use Mass Linkers?<br>
-**A**: No, internet connection is not required.
+**Q**: Do I need an internet connection to use Mass Linkers?<br>
+**A**: No, an internet connection is not required.
 
 <span style="background-color: #FFFF00">Important for Mac users</span><br>
 **Q**: I am using Mac and I tried opening the `MassLinkers.jar` file by double-clicking it in Finder. It says *"MassLinkers.jar" cannot be opened because it is from an unidentified developer.*<br>
@@ -472,8 +472,8 @@ Facing an issue? Below are several commonly asked questions, which address techn
 **Q**: I have accidentally cleared all the data. Is there any way to undo the changes?<br>
 **A**: Currently, there is no ```undo``` feature and the ```clear``` command is irreversible. Hence, it is extremely important to only use it when you want an empty Student and Module table. However, we are looking into adding ```undo``` and ```redo``` commands for future developments.
 
-**Q**: I have added a batchmate and its row exceeds the currently displayed list of batchmates in the _Students panel_. I have to scroll below to view the newly added batchmate. Is this expected?<br>
-**A**: Yes, adding a new batchmate would not auto scroll the _Students panel_ to the bottom of the list.
+**Q**: I have added a batchmate whose row exceeds the currently displayed list of batchmates in the _Students panel_. I have to scroll below to view the newly added batchmate. Is this expected?<br>
+**A**: Yes, adding a new batchmate would not auto-scroll the _Students panel_ to the bottom of the list.
 
 ### 6.2. Privacy Issues
 **Q**: What if I do not want to share some of my personal data like my phone number and email address?<br>
