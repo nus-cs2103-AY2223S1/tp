@@ -455,15 +455,21 @@ object to display that the exam was successfully added.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                  | So that I can…​                                         |
-|----------|-------------|-----------------------------------------------|---------------------------------------------------------|
-| `* * *`  | NUS student | view the list of tasks I need to complete     | start implementing those tasks.                         |
-| `* * *`  | NUS student | create the tasks in the tasklist              | add the list of tasks that need to be completed         |
-| `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
-| `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
-| `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
-| `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
-| `* * *`  | NUS student | edit the modules in my modulelist             | remove them if added wrongly.                           |
+| Priority | As a …​     | I want to …​                                                      | So that I can…​                                         |
+|----------|-------------|-------------------------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | NUS student | view the list of tasks I need to complete                         | start implementing those tasks.                         |
+| `* * *`  | NUS student | create the tasks in the tasklist                                  | add the list of tasks that need to be completed         |
+| `* * *`  | NUS student | mark a task as complete                                           | have a better idea of what I have completed.            |
+| `* *`    | NUS student | tag the priority of the tasks in the tasklist                     | prioritise the task that I would like to complete first |
+| `* * *`  | NUS student | delete the tasks in my tasklist                                   | remove them if added wrongly.                           |
+| `* * *`  | NUS student | delete the modules in my modulelist                               | remove them if added wrongly.                           |
+| `* * *`  | NUS student | edit the modules in my modulelist                                 | remove them if added wrongly.                           |
+| `* *`    | NUS student | filter the task list by module, completion status and link status | easily look for a task.                                 |
+| `* * *`  | NUS student | delete the exams in my exam list                                  | remove exams that I no longer want to track.            |
+| `* * *`  | NUS student | unlink a task from its exam                                       | remove links that I linked wrongly.                     |
+| `* *`    | NUS student | look at all tasks specific to an exam                             | easily track tasks of my next exam.                     |
+| `* *`    | NUS student | clear all the tasks in my task list                               | quickly start with an empty task list.                  |
+| `* *`    | NUS student | clear all tasks, exams and modules in the respective lists        | quickly start with an empty task, module and exam list. |
 
 *{More to be added}*
 
@@ -475,18 +481,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a task into task list**
 
 **MSS**
-
-1. User requests to add a task
-2. MODPRO shows the task added
-
+1. User requests to add a task.
+2. MODPRO shows the task added.
+3. MODPRO updates the progress bar to include the added task. </br>
    Use case ends.
 
 **Extensions**
-
-* 1a. The given description is empty.
-
-    * 1a1. MODPRO shows an error message.
-
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows the add task command message usage. </br>
+      Use case ends.
+* 1b. The module code is invalid.
+    * 1b1. MODPRO shows an error message stating module code constraints. </br>
+      Use case ends.
+* 1c. The given description is empty.
+    * 1c1. MODPRO shows an error message stating task description constraints. </br>
+      Use case ends.
+* 1d. The module does not exist in the task list.
+    * 1d1.MODPRO show an error message stating that module does not exist. </br>
       Use case ends.
 
 **Use case: List tasks in task list**
@@ -539,6 +550,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 
+**Use case: Filter the task list**
+
+**MSS**
+1. User requests to filter the task list based on some conditions.
+2. MODPRO shows the list of tasks that fulfil the given conditions. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows the filter command message usage. </br>
+      Use case ends.
+* 1b. The module code is invalid.
+    * 1b1. MODPRO shows an error message stating module code constraints. </br>
+      Use case ends.
+* 1c. The module does not exist in the task list.
+    * 1c1.MODPRO show an error message stating that module does not exist. </br>
+      Use case ends.
+* 1d. The given input for completed or linked is invalid.
+    * 1d1.MODPRO show an error message stating that response has to be y or n. </br>
+      Use case ends.
+
+**Use case: Clear the task list**
+
+**MSS**
+1. User requests to clear the task list.
+2. MODPRO clears the task list. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. The task list is already empty
+    * 1a1. MODPRO shows an error message stating that task list is empty. </br>
+      Use case ends.
+
 **Use case: Delete a module from the module list**
 
 **MSS**
@@ -572,6 +616,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 * 1c. The given module code is invalid 
     * 1c1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Delete an exam from the exam list**
+
+**MSS**
+1. User requests to delete a specific exam in the exam list.
+2. MODPRO deletes the exam.
+3. MODPRO unlinks all tasks currently linked to the deleted exam. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows the delete exam command message usage. </br>
+      Use case ends.
+* 1b. The given index is invalid.
+    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+      Use case ends.
+* 1c. The given index is larger than the size of the exam list.
+    * 1c1. MODPRO shows an error message stating the range of indexes of the exam list. </br>
+      Use case ends.
+
+**Use case: Unlink task from exam**
+
+**MSS**
+1. User requests to unlink a task from its exam.
+2. MODPRO unlinks the task. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows the unlink exam command message usage. </br>
+      Use case ends.
+* 1b. The given index is invalid.
+    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+      Use case ends.
+* 1c. The given index is larger than the size of the task list.
+    * 1c1. MODPRO shows an error message stating the range of indexes of the task list. </br>
+      Use case ends.
+
+**Use case: Showing the tasks of an exam**
+
+**MSS**
+1. User requests to list all tasks of a specified exam.
+2. MODPRO shows list of all tasks of the specified exam. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. The command format is invalid.
+    * 1a1. MODPRO shows the show tasks of exam command message usage. </br>
+      Use case ends.
+* 1b. The given index is invalid.
+    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+      Use case ends.
+* 1c. The given index is larger than the size of the exam list.
+    * 1c1. MODPRO shows an error message stating the range of indexes of the exam list. </br>
+      Use case ends.
+
+**Use case: Clear all lists**
+
+**MSS**
+1. User requests to clear all lists.
+2. MODPRO clears task, exam and module lists. </br>
+   Use case ends.
+
+**Extensions**
+* 1a. All lists are already empty
+    * 1a1. MODPRO shows an error message stating that all lists are empty. </br>
       Use case ends.
 
 *{More to be added}*
