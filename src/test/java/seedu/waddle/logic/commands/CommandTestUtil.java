@@ -80,7 +80,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip&"; // '&' not allowed
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION + "3 days"; // only numbers allowed for duration
+    public static final String INVALID_DURATION_DESC = " " +
+            PREFIX_ITINERARY_DURATION + "3 days"; // only numbers allowed for duration
     public static final String INVALID_PEOPLE_DESC = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
     public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "$100"; // only numbers allowed for budget
 

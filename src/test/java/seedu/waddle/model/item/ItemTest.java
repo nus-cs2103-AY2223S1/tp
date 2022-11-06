@@ -1,9 +1,5 @@
 package seedu.waddle.model.item;
 
-import seedu.waddle.testutil.ItemBuilder;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
@@ -12,6 +8,10 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_SKINNY
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SKINNY;
 import static seedu.waddle.testutil.TypicalItems.SHOPPING;
 import static seedu.waddle.testutil.TypicalItems.SKINNY;
+
+import seedu.waddle.testutil.ItemBuilder;
+
+import org.junit.jupiter.api.Test;
 
 public class ItemTest {
 
