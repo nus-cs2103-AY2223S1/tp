@@ -207,7 +207,7 @@ Extensions:
 
 #### Use Case 10: Sorting List of Items by Criteria
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User chooses to view [[ item:items ]].
 1. FoodRem shows a list containing the items.
