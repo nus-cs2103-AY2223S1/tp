@@ -726,12 +726,12 @@ testers are expected to do more *exploratory* testing.
       2. It will create a new ./data/ folder with the trackAScholar.json file in the same folder 
       3. Insert the trackAScholarImport.json file here (Note that the name needs to be exactly as stated)
    1. Test case: `import k`<br>
-      Expected: trackAScholarImport has been imported and new applicants are displayed int the GUI. Applicants with the same name not be imported. A successful import message is displayed.
+      Expected: trackAScholarImport has been imported and new applicants are displayed in the GUI. Applicants with the same name will not be imported. A successful import message is displayed.
 
    1. Test case: `import r`<br>
-      Expected: trackAScholarImport has been imported and new applicants are displayed int the GUI. Applicants with the same name will be replaced by the applicant with updated fields from trackAScholarImport. A successful import message is displayed.
+      Expected: trackAScholarImport has been imported and new applicants are displayed in the GUI. Applicants with the same name will be replaced by the applicant with updated fields from trackAScholarImport. A successful import message is displayed.
 
-   1. Incorrect delete commands to try: `import`, `import x`, `...` (where x is not r or k)<br>
+   1. Incorrect import commands to try: `import`, `import x`, `...` (where x is not r or k)<br>
       Expected: A failed import message is displayed. Error details shown in the status message.
 
 [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)

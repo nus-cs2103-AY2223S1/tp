@@ -11,7 +11,7 @@ It is written in Java, and has about 14 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added an `ImportCommand` to quickly import data from another json file.
+* **New Feature**: Added an `ImportCommand` to quickly import data from another json file. [#112](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/112)
 
   * What it does: Allows a user to copy out the trackAScholar storage file (previously addressbook), change the name to trackAScholarImport file and merge it with another trackAScholar file.
   * Justification: This feature improves the product significantly because a user can add all new scholarship application together with one command without having to tediously add the them one by one.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.4` on GitHub
 
 * **Enhancements to existing features**: 
-* Added `ApplicationStatusTest` and `SortCommandTest` and other Import command tests to increase code coverage and ensure that programs work as expected.
+* Added `ApplicationStatusTest` and `SortCommandTest` and other Import command tests to increase code coverage and ensure that programs work as expected. [#66](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/66), [#70](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/70)
 
 * **Documentation**: 
   * User Guide: Added documentation for the features import and edit
