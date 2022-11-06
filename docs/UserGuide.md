@@ -318,6 +318,10 @@ inputs that ArtBuddy requires to execute some commands properly. For instance, t
 needs to know the name of the customer which you'll need to pass into ArtBuddy as a command parameter.
 <br><br>For ArtBuddy to understand these command parameters, you need to attach a ['prefix'](#glossary) in front of
 each of these parameters.
+<br><br>If a parameter is optional, for example address in customer, it will be indicated as <code>[a/ADDRESS]</code> with
+square brackets around it to indicate optionality.
+<br><br>If a parameter can take multiple values, for example tags in customer, it will be indicated as <code>[t/TAGS]...</code> with
+three dots after it to indicate multiple values.
 
 <div markdown="block" class="alert alert-info">
 
@@ -415,13 +419,13 @@ ArtBuddy offers the following commands to help you manage your customers:
 
 Customers stored in ArtBuddy have the following details:
 
-| Detail           | Explanation                                                                                                        |
-|------------------|--------------------------------------------------------------------------------------------------------------------|
-| Name             | The name of the customer                                                                                           |
-| Phone number     | The phone number of the customer                                                                                   |
-| Email            | The email of the customer                                                                                          |
-| Optional address | The address of the customer (which is optional, a customer may not have recorded address)                          |
-| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers |
+| Detail           | Explanation                                                                                                        | Constraints                                            |
+|------------------|--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| Name             | The name of the customer                                                                                           | Alphanumeric and space characters                      |
+| Phone number     | The phone number of the customer                                                                                   | At least 3 digits                                      |
+| Email            | The email of the customer                                                                                          | Email format with at sign and domain name              |
+| Optional address | The address of the customer                                                                                        |                                                        |
+| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers | Each tag at most 25 alphanumeric and space characters  |                                        
 
 ### Viewing a customer: `opencus`
 
@@ -431,7 +435,7 @@ Format: `opencus [INDEX]`
 
 Examples:
 * <code>opencus <em>2</em></code>
-  Shows details about the customer and updates the commissions tab.
+  Shows details about the second customer and updates the commissions tab with second customer's commissions.
 
 ![opencus](images/opencus.png)
 
@@ -440,10 +444,6 @@ Examples:
 Adds a customer to ArtBuddy.
 
 Format: `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A customer can have any number of tags (including 0)
-</div>
 
 Examples:
 * <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em> t/<em>vip</em></code>
@@ -490,13 +490,13 @@ ArtBuddy offers the following commands to help you manage your commissions:
 
 Commissions stored in ArtBuddy have the following details:
 
-| Detail               | Explanation                                                                                                            |
-|----------------------|------------------------------------------------------------------------------------------------------------------------|
-| Title                | The name of the commission                                                                                             |
-| Deadline             | The due date of the commission                                                                                         |
-| Status               | The completion status of the commission                                                                                |
-| Optional description | An optional description of the commission (for instance, the commission requirements)                                  |
-| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions |
+| Detail               | Explanation                                                                                                          |                                                                                                |
+|----------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Title                | The name of the commission                                                                                           | Alphanumeric and space characters                                                              |
+| Deadline             | The due date of the commission                                                                                       | <code>YYYY-MM-DD</code> format                                                                 |
+| Status               | The completion status of the commission                                                                              | `y`, `yes`, `t`, `true` for complete status <br> `n`, `no`, `f`, `false` for incomplete status |
+| Optional description | A description of the commission (for instance, the commission requirements)                                  |                                                                                                |
+| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions | Each tag at most 25 alphanumeric and space characters                                          |
 
 ### Viewing a commission: `opencom`
 
@@ -563,12 +563,12 @@ ArtBuddy offers the following commands to help you manage your iterations:
 
 Iterations stored in ArtBuddy have the following details:
 
-| Detail      | Explanation                                                                           |
-|-------------|---------------------------------------------------------------------------------------|
-| Description | Describes the progress that was made in the iteration                                 |
-| Date        | Records the date tied to the iteration (for instance, when the iteration was created) |
-| Image       | A picture that captures how the commission looks like in the current iteration        |
-| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)      |
+| Detail      | Explanation                                                                           |                                                                                         |
+|-------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| Description | Describes the progress that was made in the iteration                                 |                                                                                         |
+| Date        | Records the date tied to the iteration (for instance, when the iteration was created) | <code>YYYY-MM-DD</code> format                                                          |
+| Image       | A picture that captures how the commission looks like in the current iteration        | File path(Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info) |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)      |                                                                                         |                                                                                         |
 
 ### Adding an iteration to a commission: `additer`
 Adds an iteration to the currently selected commission. This can be done either by the
@@ -587,7 +587,7 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
 and root directories, you might find the explanation in the [Appendix](#what-are-file-paths-and-root-directories) helpful.
-* The command requires a commission to be selected.
+* The command requires a commission to be selected in the app internally.
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported.
 
 Example:
@@ -629,7 +629,7 @@ move your original copy of the file without affecting the uploaded image on ArtB
 Edits an iteration at `INDEX` in a commission.
 
 Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
-* The command requires a commission to be selected.
+* The command requires a commission to be selected in the app internally.
 * At least one field to edit must be provided.
 
 Example:
@@ -641,7 +641,7 @@ Example:
 Deletes an iteration at `INDEX` from a commission.
 
 Format: `deliter INDEX`
-* The command requires a commission to be selected.
+* The command requires a commission to be selected in the app internally.
 * You may want to note that your local copy of the image will not be deleted.
 
 Example:
@@ -864,15 +864,73 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 
 # FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ArtBuddy home folder.
+<details>
+<summary>**Q**: Why does my command not work?</summary>
+<br>
+**A**: First make sure that you have written one of the available commands.
+Note that it is case-sensitive, which means <code>help</code> works but <code>Help</code> does not.
+If you have written the correct command word, but it still does not work, then an error displayed will show you the correct usage
+or why your command is not working. Note that the prefixes are case-sensitive too. If you want to know more details about the command, please refer to that command in the <a href="#features">Features</a> section.
+</details>
 
-**Q**: Why isn't my file path being recognised by ArtBuddy?  
+<details>
+<summary>**Q**: How do I transfer my data to another Computer?</summary>
+<br>
+**A**: Install the app in the other computer and overwrite the default data folder it creates with the data folder that contains the data of your previous ArtBuddy home folder.
+</details>
+
+<details>
+<summary>**Q**: Why isn't my file path being recognised by ArtBuddy?</summary>
+<br>
 **A**: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
 So do check that the file path you specified starts with a '/'. Please also make sure that your specified file path does
 not fall under the limitations of file paths in ArtBuddy mentioned in the [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli).
 If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
+</details>
 
+<details>
+<summary>**Q**: What makes two customers different when adding a customer by <code>addcus</code>?</summary>
+<br>
+**A**: We only check it by their name case-sensitive. That means you can have two customers with names "Sarah" and "sarah".
+If this is still not enough to distinguish your customers with same name, you can even include numbers in the name field like "Sarah 1", "Sarah 2".
+At the moment, we only support alphanumeric english characters with space for our early versions.
+</details>
+
+<details>
+<summary>**Q**: What makes two commissions different when adding a commission by <code>addcom</code>?</summary>
+<br>
+**A**: We decided that to avoid confusion, for every customer the title of the commissions must be unique. Therefore, if the customer you
+want to add a commission to already has the same title commission it won't be allowed.
+</details>
+
+<details>
+<summary>**Q**: What makes two iterations different when adding an iteration by <code>additer</code>?</summary>
+<br>
+**A**: We decided that for each commission the description of the iterations must be unique. Therefore, if the commission you
+want to add an iteration to already has the same description iteration it won't be allowed.
+</details>
+
+<details>
+<summary>**Q**: Why am I allowed to insert more than 2 significant digits in commission fee?</summary>
+<br>
+**A**: Although our calculations are done in dollar amount, we don't expect you to make your deals in dollar.
+So you can write the fee value in dollars but with more significant digits for more accurate calculations.
+But in the GUI, for the ease of your eyes, we display it in 2 significant digits only.
+</details>
+
+<details>
+<summary>**Q**: Why am I allowed to insert dates that are in the past?</summary>
+<br>
+**A**: We expect that you've successfully had customers and commissions before using our application.
+We enabled adding past dates for archival purposes so that you can make the best out of our statistical features.
+</details>
+
+<details>
+<summary>**Q**: What are file paths and root directories?</summary>
+<br>
+**A**: We don't expect you to have a lot of technical knowledge about a computer file system.
+But we provide you a good explanation to answer your question in the [Appendix](#what-are-file-paths-and-root-directories).
+</details>
 <div align="right">
 
 [ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
@@ -882,28 +940,28 @@ If all else fails, you can try [uploading the image via GUI](#adding-by-graphica
 
 # Command summary
 
-| Action                   | Format, Examples                                                                                                                                                                                                                                                                                                                      |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                 | `help`                                                                                                                                                                                                                                                                                                                                |
-| **Open customer**        | `opencus INDEX`<br> e.g., <code>opencus <em>2</em></code>                                                                                                                                                                                                                                                                             |
-| **Add customer**         | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em></code>                                                                                               |
-| **Edit customer**        | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code>                                                                                                                                                                     |
-| **Delete customer**      | `delcus INDEX`<br> e.g., <code>delcus <em>14</em></code>                                                                                                                                                                                                                                                                              |
-| **Open Commission**      | `opencom INDEX`<br> e.g., <code>opencom <em>14</em></code>                                                                                                                                                                                                                                                                            |
-| **Add commission**       | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> t/<em>chibi</em></code>                                                                                                                                                              |
-| **Edit commission**      | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code> |
-| **Delete Commission**    | `delcom INDEX`<br> e.g., <code>delcom <em>14</em></code>                                                                                                                                                                                                                                                                              |
-| **Add Iteration**        | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., <code>additer n/<em>Draft 1</em> f/<em>Good</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Bread.jpeg</em></code>                                                                                                                                              |
-| **Edit Iteration**       | `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, <code>edititer <em>2</em> n/<em>Sketch</em></code>                                                                                                                                                                                                       |
-| **Delete Iteration**     | `deliter INDEX`<br> e.g., <code>deliter <em>1</em></code>                                                                                                                                                                                                                                                                             |
-| **List customers**       | `list`                                                                                                                                                                                                                                                                                                                                |
-| **Find customers**       | `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. <code>find -all t/<em>friend</em> t/<em>colleague</em></code>                                                                                                                                                                                                         |
-| **Sort customers**       | `sortcus PREFIX/SUFFIX`<br> e.g., <code>sortcus n/<em>+</em></code>                                                                                                                                                                                                                                                                   |
-| **List commissions**     | `listcom`                                                                                                                                                                                                                                                                                                                             |
-| **View all Commissions** | `allcom`                                                                                                                                                                                                                                                                                                                              |
-| **Find commissions**     | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                                                                              |
-| **Clear everything**     | `clear`                                                                                                                                                                                                                                                                                                                               |
-| **Exit**                 | `exit`                                                                                                                                                                                                                                                                                                                                |
+| Action                                                                                   | Format, Examples                                                                                                                                                                                                                                                                                                                      |
+|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <a href="#help">**Help** </a>                                                            | `help`                                                                                                                                                                                                                                                                                                                                |
+| <a href="#viewing-a-customer-opencus">**Open customer/Switch to Customer Tab**</a>       | `opencus [INDEX]`<br> e.g., <code>opencus <em>2</em></code>, <code>opencus</code>                                                                                                                                                                                                                                                     |
+| <a href="#adding-a-customer-addcus">**Add customer**</a>                                 | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...`  <br> e.g., <code>addcus n/<em>John Doe</em> p/<em>98765432</em> e/<em>johnd@example.com</em> a/<em>John street, block 123, #01-01</em> t/<em>animal cartoons</em></code>                                                                                               |
+| <a href="#editing-a-customer-editcus">**Edit customer**</a>                              | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., <code>editcus <em>1</em> p/<em>91234567</em> e/<em>johndoe@example.com</em></code>                                                                                                                                                                     |
+| <a href="#deleting-a-customer-delcus">**Delete customer**</a>                            | `delcus INDEX`<br> e.g., <code>delcus <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| <a href="#viewing-a-commission-opencom">**Open Commission/Switch to Commission Tab**</a> | `opencom [INDEX]`<br> e.g., <code>opencom <em>14</em></code>, <code>opencom</code>                                                                                                                                                                                                                                                    |
+| <a href="#adding-a-commission-addcom">**Add commission**</a>                             | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]...`<br> e.g., <code>addcom n/<em>Rimuru</em> f/<em>40</em> d/<em>2022-11-01</em> t/<em>traditional</em> t/<em>chibi</em></code>                                                                                                                                                              |
+| <a href="#editing-a-commission-editcom">**Edit commission**</a>                          | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., <code>editcom <em>1</em> n/<em>Tokyo Ghoul Kaneki</em> f/<em>50</em> d/<em>2022-10-10</em> s/<em>False</em> p/<em>Unfamiliar, I will need to do up a reference board first.</em> t/<em>digital</em> t/<em>neon</em></code> |
+| <a href="#deleting-a-commission-delcom">**Delete Commission**</a>                        | `delcom INDEX`<br> e.g., <code>delcom <em>14</em></code>                                                                                                                                                                                                                                                                              |
+| <a href="#adding-an-iteration-to-a-commission-additer">**Add Iteration**</a>             | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., <code>additer n/<em>Draft 1</em> f/<em>Good</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Bread.jpeg</em></code>                                                                                                                                              |
+| <a href="#editing-an-iteration-from-commission-edititer">**Edit Iteration**</a>          | `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, <code>edititer <em>2</em> n/<em>Sketch</em></code>                                                                                                                                                                                                       |
+| <a href="#deleting-an-iteration-from-commission-deliter">**Delete Iteration**</a>        | `deliter INDEX`<br> e.g., <code>deliter <em>1</em></code>                                                                                                                                                                                                                                                                             |
+| <a href="#list-all-the-customers-list">**List customers**</a>                            | `list`                                                                                                                                                                                                                                                                                                                                |
+| <a href="#find-a-customer-find">**Find customers**</a>                                   | `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. <code>find -all t/<em>friend</em> t/<em>colleague</em></code>                                                                                                                                                                                                         |
+| <a href="#sorting-the-customer-list-sortcus">**Sort customers**</a>                      | `sortcus PREFIX/SUFFIX`<br> e.g., <code>sortcus n/<em>+</em></code>                                                                                                                                                                                                                                                                   |
+| <a href="#list-the-commissions-listcom">**List commissions**</a>                         | `listcom`                                                                                                                                                                                                                                                                                                                             |
+| <a href="viewing-all-commissions-allcom">**View all Commissions**</a>                    | `allcom`                                                                                                                                                                                                                                                                                                                              |
+| <a href="find-a-commission-findcom">**Find commissions**</a>                             | `findcom [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...`                                                                                                                                                                                                                                                                              |
+| <a href="clearing-all-the-customers-clear">**Clear everything**</a>                      | `clear`                                                                                                                                                                                                                                                                                                                               |
+| <a href="exiting-the-program-exit">**Exit**</a>                                          | `exit`                                                                                                                                                                                                                                                                                                                                |
 
 <div align="right">
 
