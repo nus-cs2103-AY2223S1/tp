@@ -32,8 +32,16 @@ public class Person {
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList(extractor);
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    /*
-      Every field must be present and not null.
+
+    /**
+     * Constructor for a person.
+     *
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param listOfAppointments Appointments that the person has.
+     * @param tags Tags associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, List<Appointment> listOfAppointments,
                   Set<Tag> tags) {

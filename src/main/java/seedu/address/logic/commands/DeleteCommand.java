@@ -72,7 +72,6 @@ public class DeleteCommand extends Command {
 
     /**
      * Checks whether the given indices are valid (start <= end and within list size)
-     * @throws CommandException if the indices given are not valid for deletion in the patient list.
      *
      * @param start First index in given range to delete.
      * @param end Last index in given range to delete.

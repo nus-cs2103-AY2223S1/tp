@@ -48,7 +48,7 @@ public class ParserUtil {
      * @param parseCount The exact number of indexes to parse.
      * @return List of indexes of size {@code parseCount}
      * @throws ParseException if the specified indexes is invalid (not non-zero unsigned integer), or if the amount of
-     * indexes is not exactly {@code parseCount}
+     *     indexes is not exactly {@code parseCount}
      */
     public static List<Index> parseIndexes(String oneBasedIndexes, int parseCount) throws ParseException {
         String indexSeparator = "\\s+";
