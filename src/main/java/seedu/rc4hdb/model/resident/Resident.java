@@ -154,6 +154,8 @@ public class Resident implements BookingField {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
+            /* this adds a ", " between each tag, and removes the last set of ", " after the
+            last tag so that the tags display correctly. */
             for (Tag t : tags) {
                 builder.append(t + ", ");
             }
