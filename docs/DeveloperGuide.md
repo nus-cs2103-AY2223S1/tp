@@ -630,6 +630,7 @@ Priority legend
 6.  Should be able to be used by a person who has never used a CLI program before.
 7.  Not required to handle the messaging send between the friends.
 8.  Not required to handle the app on mobile platform.
+9.  Not required to handle the display of the User Interface properly if the window is smaller than 1280 x 720 pixels in resolution.
 
 --------------------------------------------------------------------------------------------------------------------
 
