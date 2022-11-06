@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_PRICE + " PRICE] "
             + PREFIX_CUISINE + " CUISINE "
             + PREFIX_LOCATION + " LOCATION "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + "[" + PREFIX_TAG + " TAGNAME]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Starbucks "
             + PREFIX_PRICE + " $$$ "
