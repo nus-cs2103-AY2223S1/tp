@@ -11,7 +11,8 @@ import java.time.format.DateTimeFormatter;
 public class MeetingTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting times should be in the format HHMM";
+            "Meeting times should be a valid 24-hour time in the format HHMM.";
+    public static final String VALIDATION_REGEX = "\\d{4}";
     private final LocalTime time;
 
     /**
@@ -22,6 +23,13 @@ public class MeetingTime {
     public MeetingTime(LocalTime meetingTime) {
         requireNonNull(meetingTime);
         time = meetingTime;
+    }
+
+    /**
+     * Returns true is a given string is a valid meeting time.
+     */
+    public static boolean isValidMeetingTime(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public boolean isBefore(MeetingTime meetingTime) {
@@ -40,6 +48,6 @@ public class MeetingTime {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MeetingTime
-                && time.equals(((MeetingTime) other).time));
+                && this.toString().equals(((MeetingTime) other).toString()));
     }
 }

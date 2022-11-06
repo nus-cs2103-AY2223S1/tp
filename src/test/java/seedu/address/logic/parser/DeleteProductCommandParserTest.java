@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
@@ -20,9 +19,12 @@ public class DeleteProductCommandParserTest {
 
     @Test
     public void parse_validArgs_throwsParseException() {
-        assertParseFailure(
-                parser,
-                " i/a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProductCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " i/a", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        // Negative integer
+        assertParseFailure(parser, " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        // Number with decimal
+        assertParseFailure(parser, " i/1.5", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

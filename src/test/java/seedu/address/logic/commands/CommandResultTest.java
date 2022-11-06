@@ -52,29 +52,22 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
 
-    // -------------------------- Dependent ------------------------------------ //
     @Test
     public void isShowHelp_showHelpTrue_true() {
         CommandResult cr = new CommandResult("", true, false);
         assertTrue(cr.isShowHelp());
+
+        CommandResult cr2 = new CommandResult("", false, false);
+        assertFalse(cr2.isShowHelp());
     }
 
     @Test
-    public void isShowHelp_showHelpFalse_false() {
-        CommandResult cr = new CommandResult("", false, false);
-        assertFalse(cr.isShowHelp());
-    }
-
-    @Test
-    public void isExit_exitTrue_true() {
+    public void isExit() {
         CommandResult cr = new CommandResult("", false, true);
         assertTrue(cr.isExit());
-    }
 
-    @Test
-    public void isExit_exitFalse_false() {
-        CommandResult cr = new CommandResult("", false, false);
-        assertFalse(cr.isExit());
+        CommandResult cr2 = new CommandResult("", false, false);
+        assertFalse(cr2.isExit());
     }
 
     @Test
@@ -85,6 +78,7 @@ public class CommandResultTest {
         CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_MEETING);
         assertEquals(cr2.getCommandSpecific(), CommandSpecific.DETAILED_MEETING);
 
+        // defaults to nonspecific
         CommandResult cr3 = new CommandResult("");
         assertEquals(cr3.getCommandSpecific(), CommandSpecific.NONSPECIFIC);
     }

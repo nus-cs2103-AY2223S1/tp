@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
@@ -47,6 +49,7 @@ public class AddMeetingCommand extends Command {
      */
     public AddMeetingCommand(Index clientIndex, MeetingDate date,
                              MeetingTime startTime, MeetingTime endTime, Description desc) {
+        requireAllNonNull(clientIndex, date, startTime, endTime, desc);
         meetingDate = date;
         meetingStartTime = startTime;
         meetingEndTime = endTime;
@@ -54,10 +57,22 @@ public class AddMeetingCommand extends Command {
         description = desc;
     }
 
+    /**
+     * Creates an AddMeetingCommand to add the specified meeting.
+     */
+    public AddMeetingCommand(Index index, Meeting meeting) {
+        requireNonNull(meeting);
+        meetingDate = meeting.getMeetingDate();
+        meetingStartTime = meeting.getMeetingStartTime();
+        meetingEndTime = meeting.getMeetingEndTime();
+        linkedClientIndex = index;
+        description = meeting.getDescription();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Client> clientList = model.getFilteredClientList();
-        if (linkedClientIndex.getZeroBased() > clientList.size()) {
+        if (linkedClientIndex.getZeroBased() >= clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
@@ -75,5 +90,16 @@ public class AddMeetingCommand extends Command {
         clientToUpdate.addMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd), CommandSpecific.MEETING);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddMeetingCommand // instanceof handles nulls
+                && linkedClientIndex.equals(((AddMeetingCommand) other).linkedClientIndex)
+                && meetingDate.equals(((AddMeetingCommand) other).meetingDate)
+                && meetingStartTime.equals(((AddMeetingCommand) other).meetingStartTime)
+                && meetingEndTime.equals(((AddMeetingCommand) other).meetingEndTime)
+                && description.equals(((AddMeetingCommand) other).description));
     }
 }

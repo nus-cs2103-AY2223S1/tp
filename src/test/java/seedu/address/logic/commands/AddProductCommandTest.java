@@ -28,6 +28,7 @@ import seedu.address.testutil.ProductBuilder;
 
 public class AddProductCommandTest {
 
+    // EP: null, product not already in model, product already in model.
     @Test
     public void constructor_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddProductCommand(null));
@@ -49,7 +50,7 @@ public class AddProductCommandTest {
     public void execute_duplicateProduct_throwsCommandException() {
         Product validProduct = new ProductBuilder().build();
         AddProductCommand addProductCommand = new AddProductCommand(validProduct);
-        ModelStub modelStub = new ModelStubWithClient(validProduct);
+        ModelStub modelStub = new ModelStubWithProduct(validProduct);
 
         assertThrows(CommandException.class,
                 AddProductCommand.MESSAGE_DUPLICATE_PRODUCT, () -> addProductCommand.execute(modelStub));
@@ -75,7 +76,7 @@ public class AddProductCommandTest {
         // null -> returns false
         assertFalse(addProduct1Command.equals(null));
 
-        // different Client -> returns false
+        // different Product -> returns false
         assertFalse(addProduct1Command.equals(addProduct2Command));
     }
 
@@ -236,10 +237,10 @@ public class AddProductCommandTest {
     /**
      * A Model stub that contains a single Product.
      */
-    private class ModelStubWithClient extends ModelStub {
+    private class ModelStubWithProduct extends ModelStub {
         private final Product product;
 
-        ModelStubWithClient(Product product) {
+        ModelStubWithProduct(Product product) {
             requireNonNull(product);
             this.product = product;
         }

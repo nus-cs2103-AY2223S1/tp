@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Meeting <<Rectangle>>{
+Class Meeting
+Class Description
+Class MeetingDate
+Class MeetingStartTime
+Class MeetingEndTime
+}
+Class Client
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> Meeting
+
+Meeting --> "1" Description
+Meeting --> "1" MeetingDate
+Meeting --> "1" MeetingStartTime
+Meeting --> "1" MeetingEndTime
+Meeting "*" <-> "1" Client
+
+@enduml

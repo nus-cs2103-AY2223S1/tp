@@ -4,14 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +45,18 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final LocalDate VALID_BIRTHDAY_AMY = LocalDate.of(1952, 1, 1);
-    public static final LocalDate VALID_BIRTHDAY_BOB = LocalDate.of(2000, 12, 31);
+    public static final String VALID_BIRTHDAY_AMY = "01011952";
+    public static final String VALID_BIRTHDAY_BOB = "31122000";
     public static final String VALID_PRODUCT_1 = "Product1";
     public static final String VALID_PRODUCT_2 = "Product2";
+    public static final String VALID_START_TIME_MEETING1 = "0720";
+    public static final String VALID_START_TIME_MEETING2 = "0720";
+    public static final String VALID_END_TIME_MEETING1 = "0820";
+    public static final String VALID_END_TIME_MEETING2 = "0820";
+    public static final String VALID_DATE_MEETING1 = LocalDate.now().plusDays(1)
+            .format(DateTimeFormatter.ofPattern("ddMMyyyy"));
+    public static final String VALID_DATE_MEETING2 = LocalDate.now().plusDays(5)
+            .format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
@@ -61,16 +74,23 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + "01011952";
-    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + "31122000";
+    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
+    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
     public static final String PRODUCT_DESC_PRODUCT1 = " " + PREFIX_PRODUCT + VALID_PRODUCT_1;
     public static final String PRODUCT_DESC_PRODUCT2 = " " + PREFIX_PRODUCT + VALID_PRODUCT_2;
+    public static final String MEETING_DESC_MEETING1 = " " + PREFIX_START_TIME + VALID_START_TIME_MEETING1
+            + " " + PREFIX_END_TIME + VALID_END_TIME_MEETING1
+            + " " + PREFIX_DATE + VALID_DATE_MEETING1
+            + " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING1;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_PRODUCT_DESC = " " + PREFIX_PRODUCT + "hubby*"; // '*' not allowed in Products
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "7653"; // time is not allowed
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "7653"; // time is not allowed
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "13132000"; // date is not allowed
     public static final String INVALID_BIRTHDAY_1_DESC = " " + PREFIX_BIRTHDAY + "30022020"; // 30 feb not exist
     public static final String INVALID_BIRTHDAY_2_DESC = " "
             + PREFIX_BIRTHDAY + "29022021"; // 29 feb not exist non leap year

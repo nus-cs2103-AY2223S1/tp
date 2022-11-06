@@ -10,11 +10,11 @@ title: User Guide
 
 ## 1. Introduction
 
-*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further! *MyInsuRec* can boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your relationships with clients.
+_MyInsuRec_ is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further! _MyInsuRec_ can **boost your productivity** with features to quickly look up client and meetings details. Beyond that, _MyInsuRec_ helps you **build relations and stay connected with your clients**, through features such as getting a list of your clients' upcoming birthdays.
 
-*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps!
+_MyInsuRec_ prioritizes user-friendliness and user experience. As such, interactions with _MyInsuRec_ happens through typing, without ever needing to touch your mouse!
 
-*MyInsuRec* is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
+_MyInsuRec_ is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,23 +28,23 @@ This guide smooths the learning curve and helps you learn how to use _MyInsuRec_
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important messages you might want to know!
 
-| Symbol               | Meaning                                                                 |
-|----------------------|-------------------------------------------------------------------------|
-| `command`            | Indicates some command or parameter that can be entered into MyInsuRec. |
-| :information_source: | Additional information.                                                 |
-| :exclamation:        | Crucial information needed for proper use of MyInsuRec.                 |
-| :bulb:               | Tips and tricks.                                                        |
+| Symbol               | Background color | Meaning                                                                                               |
+|----------------------|------------------|-------------------------------------------------------------------------------------------------------|
+| `command`            | -                | Indicates some command or parameter that can be entered into MyInsuRec.                               |
+| :information_source: | Blue             | Additional information. This symbol is followed by a label 'Note'.                                    |
+| :exclamation:        | Yellow           | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution'. |
+| :bulb:               | Green            | Tips and tricks. This symbol is followed by a label 'Tips and tricks'.                                |
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#5-installation-guide) here!
 </div>
 
 After you have installed _MyInsuRec_, you can
-1. Familiarize yourself with our [terminologies](#3-terminologies) that are used throughout this User Guide.
+1. Familiarize yourself with _MyInsuRec_ through the [overview](#3-overview), which introduces terminologies and ideas that are used throughout this User Guide.
 2. Get to know the [layout of the interface](#4-user-interface) you will be interacting with.
-3. Follow this [step-by-step tutorial](#6-quick-start) to learn the basic features of _MyInsuRec_.
+3. Follow this [step-by-step tutorial](#6-tutorial) to learn the basic features of _MyInsuRec_.
 4. Check out other advanced features under [features](#7-features) once you got the hang of the basic features.
-5. Refer to our [glossary](#11-glossary) when you come across a unfamiliar term used.
+5. Refer to our [glossary](#11-glossary) when you come across an unfamiliar term used.
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 For **experienced users**, you can look at the [Command Summary](#9-command-summary) for a summarized table of all the commands available.
@@ -58,7 +58,7 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Terminologies
+## 3. Overview
 
 The following subsections explains some terminology and main features of *MyInsuRec*:
 
@@ -81,7 +81,9 @@ Beyond individual clients, you can also:
 
 ### 3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them keep track of any upcoming meetings with clients. You can do meeting-specific tasks such as:
+*MyInsuRec* eases a financial advisor's mental load by helping them keep track of any upcoming meetings with clients.
+
+You can do meeting-specific tasks such as:
 
 * **add** a meeting to a client in *MyInsuRec*.
 * **view** a meeting in greater details.
@@ -112,9 +114,19 @@ Beyond individual products, you can also:
 
 ## 4. User Interface
 
+The following subsections introduces the layout of _MyInsuRec_'s user interface.
+
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+This section is placed earlier to give you a first look at our product. As such, some details of the interface will likely make more sense after you get more familiarized with _MyInsuRec_! You can refer back to this section once you have visited some of _MyInsuRec_'s features to gain a deeper understanding of the layout.
+</div>
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+After executing a command specific to a list, the UI will automatically switch to that view. For example, executing `addProduct` will cause the UI to switch to Product's view. Executing `viewClient` will cause the UI to switch to Detailed Client's view.
+</div>
+
 ### 4.1 Client List
 
-This is the view after executing the `listClient` command.
+This is the view after executing the `listClient` command. **By default, this view is shown right after launching _MyInsuRec_.**
 
 ![listClientWithDescription](images/ui-description/listClientWithDescription.png)
 
@@ -177,7 +189,7 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Quick Start
+## 6. Tutorial
 
 ### 6.1 Basic features
 
@@ -302,11 +314,17 @@ Add a new client to _MyInsuRec_.
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
+* `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
+* `BIRTHDAY` in the future are not acceptable.
+* If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
 1. You have just found a potential client! You can use this command to add their particulars into _MyInsuRec_ to help remember their contact information and other details.
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
+</div>
 
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
@@ -333,7 +351,7 @@ Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
-  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month..
+  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month.
 
 Use case:
 1. You want to find out all your clients with upcoming birthdays so that you can prepare ahead and ensure that every client gets some birthday well wishes!
@@ -368,6 +386,9 @@ Examples:
 * View client with an `INDEX` of 1
   * `viewClient i/1`
 
+Screenshot:
+![ViewClient](images/features/ViewClient.png)
+
 #### 7.1.4 Delete client: `delClient`
 
 Delete the specified client from _MyInsuRec_.
@@ -397,8 +418,10 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * Edit the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `BIRTHDAY` in the future are not acceptable.
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
+* If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
 * Editing the client's products replaces all existing products with the products specified.
 
 Use case:
@@ -411,6 +434,10 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
   * `editClient i/1 n/John Smith`
 * Add email 'johntan@insurec.com'
   * `editClient i/1 e/johntan@insurec.com`
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
+</div>
 
 ### 7.2 Meeting commands
 
@@ -425,10 +452,11 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 * `INDEX` refers to the number of the client you are meeting with,
 as shown by executing the [`listClient`](#712-list-clients-listclient) command.
-* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
-1 February 2022.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. For example,
-1234 represents the 12:34PM.
+* `DATE` should be given in the format DDMMYYYY. 
+  * For example, 01022022 represents 1 February 2022.
+*  `DATE` in the past are not acceptable.
+* `START_TIME` and `END_TIME` should be given in 24 Hours HHMM format. 
+  * For example, 1234 represents the 12:34PM.
 
 Use case:
 1. You have just scheduled a meeting with a client! You can use this command to add the details of the meeting into _MyInsuRec_ to help remember the meeting details.
@@ -449,17 +477,20 @@ Shows the list of meetings in MyInsuRec.
 
 A valid filter can also be applied to show a selected list of meetings.
 
-Format: `listMeeting [d/DATE]`
+Format: `listMeeting [d/PERIOD]`
 
-* A valid filter can be upcoming meetings happening in range `DATE`.
-* `DATE` is specified by keywords. The possible keywords are:
+* A valid filter can be upcoming meetings happening in range `PERIOD`.
+* `PERIOD` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of meetings happening tomorrow;
   * `week` for a list of meetings happening in the next week;
   * `month` for a list of meetings happening from the start of the respective month to the end of the respective month.
 
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+The valid inputs for `d/PERIOD` differs from that of `d/DATE`! `d/PERIOD` can only accept keywords, while `d/DATE` can only accept specific dates. 
+</div>
+
 Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
-2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as `editMeeting`, you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
@@ -473,7 +504,7 @@ Examples:
 
 #### 7.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as the meeting's date and time.
+View details associated with a meeting, such as the meeting's date and time, as well as the client's details associated with the meeting.
 
 Format: `viewMeeting i/INDEX`
 
@@ -482,11 +513,14 @@ Format: `viewMeeting i/INDEX`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Use Case:
-1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting and you will not have to remember every single small detail of the meeting!
+1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting, and you will not have to remember every single small detail of the meeting!
 
 Examples:
 * View meeting with an `INDEX` of 1
   * `viewMeeting i/1`
+
+Screenshot:
+![ViewMeeting](images/features/ViewMeeting.png)
 
 #### 7.2.4 Delete meeting: `delMeeting`
 
@@ -517,6 +551,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
+* `DATE` in the past are not acceptable.
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 
@@ -594,7 +629,9 @@ Examples:
 
 #### 7.4.1 View help: `help`
 
-Show a message explaining how to access the help page.
+Show a message explaining how to access the help page (this user guide!). 
+
+You can click on 'Copy URL', then paste the link into your browser to get to the help page.  
 
 ![help message](images/helpMessage.png)
 
@@ -608,7 +645,7 @@ Format: `exit`
 
 #### 7.4.3 Clear *MyInsuRec*: `clear`
 
-Clear all data in *MyInsuRec*.
+Clear all data regarding clients, meetings and products from *MyInsuRec*.
 
 Format: `clear`
 
@@ -618,7 +655,7 @@ Use Case:
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This is a one-shot way of removing all data stored in *MyInsuRec*.
-Only clear when you are sure you do not need the data anymore, or else make a [backup](#553-creating-and-using-data-file-backups).
+Only clear when you are sure you do not need the data anymore!
 </div>
 
 ### 7.5 Others
@@ -635,11 +672,21 @@ MyInsuRec data are saved as a JSON file **[JAR file location]/data/myinsurec.jso
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+Do not make any changes to the IDs (e.g., `"@UUID" : "3bbda97d-bae5-4f28-8ea0-0d0b39ee5a56"`) stored in the data file unless you are absolutely sure you know what you are doing!
+</div>
+
 #### 7.5.3 Change the color scheme
 
 MyInsuRec comes with light and dark color schemes. To change between the two, simply click on the View menu button and select the desired mode!
 
 ![Dark Mode](images/DarkModeUi.png)
+
+### 7.6 Proposed features
+
+#### 7.6.1 Duplicate clients detection `[coming in v1.5]`
+
+We plan to be able to detect duplicate clients entries in v1.5. For example, 'John Tan' and 'john tan' are likely to be the same person. As such, we plan to add a feature that warns the user when using such similar inputs.
 
 [Return to the top](#)
 
@@ -657,7 +704,7 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
-**A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#101-checking-your-systems-java-version). If not, follow the instructions to install Java.
+**A**: Check if your computer already has Java 11 or above installed from [10.1 Checking your system's Java version](#101-checking-your-systems-java-version). If not, follow the instructions to install Java.
 
 **Q**: Why can't I add a product to my client?<br>
 **A**: First check that the product has been created use the [`listProduct`](#732-list-products-listproduct) command.
@@ -678,7 +725,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Delete client**](#714-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
 | [**Edit client**](#715-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
 | [**Add meeting**](#721-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
-| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/PERIOD]`                                                                       | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
 | [**View meeting**](#723-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
 | [**Delete meeting**](#724-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
 | [**Edit meeting**](#725-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
@@ -710,7 +757,7 @@ To check that your system has the correct Java version (Java 11 and above) to ru
      * Type in 'Terminal' to search for it and click on it to launch.
    * Linux
      * Use **Ctrl** + **Alt** + **T** to open the Terminal.
-2. In your terminal, type in **java --version** and click enter.
+2. In your terminal, type in **java \-\-version** and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
 ![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
@@ -747,6 +794,12 @@ We thank the CS2103T and CS2101 teaching team and all our classmates for support
 
 Command Line Interface, user interface that accepts input as lines of text.
 
+### *E*
+
+#### `EMAIL`
+
+An email address identifies an email box to which messages are delivered. If you wish to know more about email addresses, you can visit this [link](https://en.wikipedia.org/wiki/Email_address) to view the format of valid emails!
+
 ### *G*
 
 ##### GUI
@@ -759,7 +812,7 @@ Graphical User Interface, user interface that accepts input in means other than 
 
 Number indicating the position of a client, meeting, or product in their respective lists.
 
-In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​`
+In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 In [`editClient`](#715-edit-client-editclient), [`delClient`](#714-delete-client-delclient), and [`viewClient`](#713-view-client-viewclient) commands, `INDEX` refers to the  number shown by executing [`listClient`](#712-list-clients-listclient) command.
 

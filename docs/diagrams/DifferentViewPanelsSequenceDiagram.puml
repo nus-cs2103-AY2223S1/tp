@@ -12,10 +12,6 @@ participant "l:ListMeetingCommand" as ListMeetingCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
 
 [->MainWindow : executeCommand("listMeeting")
 activate MainWindow
@@ -38,12 +34,6 @@ deactivate MyInsuRecParser
 
 LogicManager -> ListMeetingCommand : execute()
 activate ListMeetingCommand
-
-ListMeetingCommand -> Model : updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETING)
-activate Model
-
-Model --> ListMeetingCommand
-deactivate Model
 
 create CommandResult
 ListMeetingCommand -> CommandResult
