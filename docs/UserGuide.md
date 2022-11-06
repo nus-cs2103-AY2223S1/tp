@@ -16,7 +16,7 @@ see. If you type fast, StudMap can get your student management tasks done faster
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 # 2. Why StudMap?
 
@@ -215,7 +215,7 @@ A student can have any number of tags (including 0)
   student id `E1234567` and tagged as `StrongStudent`.
 
 **See Also:**
-[`Import`](#534-importing-students-from-csv-file-import)
+[`import`](#534-importing-students-from-csv-file-import)
 
 ### 5.3.2 Deleting a student: `delete`
 
@@ -241,7 +241,7 @@ You can use [Find](#536-locating-students-by-name-find) to help locate the stude
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 **See Also:**
-[`Clear`](#533-clearing-all-entries-clear)
+[`clear`](#533-clearing-all-entries-clear)
 
 ### 5.3.3 Clearing all entries: `clear`
 
@@ -258,7 +258,7 @@ See <a href="#553-backing-up-data">here</a> for more instructions.<br>
 </div>
 
 **See Also:**
-[`Delete`](#532-deleting-a-student-delete)
+[`delete`](#532-deleting-a-student-delete)
 
 ### 5.3.4 Importing students from CSV file: `import`
 
@@ -291,7 +291,7 @@ that has commas in the CSV.
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
 **See Also:**
-[`Add`](#531-adding-a-student-add)
+[`add`](#531-adding-a-student-add)
 
 ### 5.3.5 Listing all students: `list`
 
