@@ -34,13 +34,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Did final checks to ensure consistency of UG (pull request #140).
+        * Did final checks to ensure consistency of UG (pull request #140, #222).
         * Added How to use the User Guide in user guide (pull request #132).
 
     * Developer Guide:
-        * Did final checks to ensure consistency of DG (pull request #140).
+        * Did final checks to ensure consistency of DG (pull request #140, #223).
+        * Re-structured DG for better clarity (pull request #212).
         * Added implementation of find command in DG (pull request #114).
-        * Added UML Diagrams (pull request #114)
+        * Added UML Diagrams (pull request #114, #212).
 
 * **Contributions to team-based tasks**:
     * Facilitated and tidied up contents of postmortem v1.2
@@ -52,6 +53,5 @@ Given below are my contributions to the project.
   * Contributed to meetings by taking down minutes and facilitating discussions.
 
 * **Review/mentoring contributions**:
-  * Team members' PR reviews (with non-trivial review comments): pull request #191, #142, #138, #131, #119, #111
-    , #109, #73, #68, #65, #58
+  * Team members' PR reviews (with non-trivial review comments): pull request #220, #206, #191, #142, #138, #131, #119, #111, #109, #73, #68, #65, #58.
   * Reported bugs for other teams ([ped](https://github.com/kangzongxian/ped/issues)).
