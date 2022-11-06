@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.LABEL_EMAIL_KEYWORDS;
-import static seedu.address.logic.parser.CliSyntax.LABEL_NAME_KEYWORDS;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_EMAIL_KEYWORDS;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_NAME_KEYWORDS;
 
 import java.util.function.Predicate;
 
@@ -82,13 +82,13 @@ public class FindMemberCommand extends Command {
 
     private static class Exclusive {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1",
-                paramLabel = LABEL_NAME_KEYWORDS,
+                paramLabel = LABEL_MEMBER_NAME_KEYWORDS,
                 parameterConsumer = NameContainsKeywordsPredicateConverter.class,
                 description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
         private NameContainsKeywordsPredicate nameContainsKeywordsPredicate;
 
         @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, arity = "1",
-                paramLabel = LABEL_EMAIL_KEYWORDS,
+                paramLabel = LABEL_MEMBER_EMAIL_KEYWORDS,
                 parameterConsumer = EmailContainsKeywordsPredicateConverter.class,
                 description = FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION)
         private EmailContainsKeywordsPredicate emailContainsKeywordsPredicate;

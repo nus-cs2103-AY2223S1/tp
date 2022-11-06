@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,10 +38,11 @@ public class SetDeadlineCommand extends Command {
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
     @CommandLine.Parameters(arity = "1..2", parameterConsumer = LocalDateTimeConverter.class,
+            paramLabel = LABEL_TASK_DEADLINE,
             description = FLAG_TASK_DEADLINE_DESCRIPTION)
     private LocalDateTime deadline;
 

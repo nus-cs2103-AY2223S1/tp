@@ -14,6 +14,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTI
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_ASSIGNEES;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_NAME;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -171,15 +174,19 @@ public class EditTaskCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                paramLabel = LABEL_TASK_NAME,
+                description = FLAG_TASK_NAME_DESCRIPTION)
         private TaskName name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
+                paramLabel = LABEL_TASK_DEADLINE,
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
         private LocalDateTime deadline;
 
-        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, description =
-                FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},
+                paramLabel = LABEL_TASK_ASSIGNEES,
+                description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private List<Index> assignees = new ArrayList<>();
 
         @Override

@@ -16,6 +16,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_PHONE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_TAGS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -55,18 +59,22 @@ public class AddPersonCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contacts list";
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
+            paramLabel = LABEL_PERSON_NAME,
             description = FLAG_PERSON_NAME_DESCRIPTION)
     private Name name;
 
     @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, required = true,
+            paramLabel = LABEL_PERSON_PHONE,
             description = FLAG_PERSON_PHONE_DESCRIPTION)
     private Phone phone;
 
     @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true,
+            paramLabel = LABEL_PERSON_EMAIL,
             description = FLAG_PERSON_EMAIL_DESCRIPTION)
     private Email email;
 
     @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
+            paramLabel = LABEL_PERSON_TAGS,
             arity = "*")
     private Set<Tag> tags = new HashSet<>();
 

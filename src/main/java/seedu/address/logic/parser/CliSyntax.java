@@ -30,12 +30,25 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR_LONG = "--tag";
 
     /** Flag and parameter labels */
-    public static final String LABEL_TEAM_NAME = "<team_name>";
     public static final String LABEL_PERSON_INDEX = "<person_index>";
+    public static final String LABEL_PERSON_NAME = "<person_name>";
+    public static final String LABEL_PERSON_EMAIL = "<person_email>";
+    public static final String LABEL_PERSON_PHONE = "<person_phone>";
+    public static final String LABEL_PERSON_TAGS = "<person_tags>";
+    public static final String LABEL_PERSON_NAME_KEYWORDS = "<person_name_keywords>";
+    public static final String LABEL_TEAM_NAME = "<team_name>";
+    public static final String LABEL_TEAM_DESCRIPTION = "<team_description>";
+    public static final String LABEL_TASK_INDEX = "<task_index>";
+    public static final String LABEL_TASK_NAME = "<task_name>";
+    public static final String LABEL_TASK_ASSIGNEES = "<task_assignees>";
+    public static final String LABEL_TASK_DEADLINE = "<task_deadline>";
+    public static final String LABEL_TASK_NAME_KEYWORDS = "<task_name_keywords>";
     public static final String LABEL_MEMBER_INDEX = "<member_index>";
-    public static final String LABEL_KEYWORDS = "<keywords>";
-    public static final String LABEL_NAME_KEYWORDS = "<name_keywords>";
-    public static final String LABEL_EMAIL_KEYWORDS = "<email_keywords>";
+    public static final String LABEL_MEMBER_NAME_KEYWORDS = "<member_name_keywords>";
+    public static final String LABEL_MEMBER_EMAIL_KEYWORDS = "<member_email_keywords>";
+    public static final String LABEL_LINK_INDEX = "<link_index>";
+    public static final String LABEL_LINK_NAME = "<link_name>";
+    public static final String LABEL_LINK_URL = "<link_url>";
 
     /* Descriptions for flags */
     public static final String FLAG_HELP_DESCRIPTION = "Shows this message";

@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,10 +137,13 @@ public class EditTeamCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TEAM_NAME_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                paramLabel = LABEL_TEAM_NAME,
+                description = FLAG_TEAM_NAME_DESCRIPTION)
         private TeamName name;
 
         @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
+                paramLabel = LABEL_TEAM_DESCRIPTION,
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
         private Description description;
 

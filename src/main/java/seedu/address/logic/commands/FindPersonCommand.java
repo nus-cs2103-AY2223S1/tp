@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.LABEL_KEYWORDS;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_NAME_KEYWORDS;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -29,7 +29,7 @@ public class FindPersonCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + FULL_COMMAND + " alice bob charlie";
 
-    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_KEYWORDS,
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_PERSON_NAME_KEYWORDS,
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,
             description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
     private NameContainsKeywordsPredicate predicate;

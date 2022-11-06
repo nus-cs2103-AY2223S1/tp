@@ -452,7 +452,8 @@ A person can have any number of tags (including 0)
 
 Edits an existing person in TruthTable.
 
-**Format:** `edit person [-h] ([-n=<NAME>] [-p=<PHONE>] [-e=<EMAIL>] [-t[=<TAGS>...]]...) <PERSON_INDEX>`
+**Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...)
+<PERSON_INDEX>`
 
 | Flags           | Required   | Remarks                                 |
 |-----------------|:-----------|-----------------------------------------|
@@ -509,7 +510,7 @@ Deletes the specified person from TruthTable.
 
 Finds person whose names contain any of the given keywords.
 
-**Format:** `find person [-h] <KEYWORDS>`
+**Format:** `find person [-h] <PERSON_NAME_KEYWORDS>`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
@@ -604,7 +605,7 @@ Finds all members in the current team whose names or emails contain any of the g
 should not use both `-n` and `-e` in the `find member` command. 
 </div>
 
-**Format:** `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
+**Format:** `find member [-h] (-n=<MEMBER_NAME_KEYWORDS> | -e=<MEMBER_EMAIL_KEYWORDS>)`
 
 | Flags           | Required | Remarks                             |
 |-----------------|:---------|-------------------------------------|
@@ -703,7 +704,7 @@ Team name must consist only of alphanumeric characters (i.e., **spaces are NOT a
 
 #### Edit current team: `edit team`
 
-**Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
+**Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`
 
 | Flags                 | Required   | Remarks                                               |
 |-----------------------|:-----------|-------------------------------------------------------|
@@ -772,7 +773,7 @@ Summary of commands can be found [here](#summary-of-task-commands)
 
 Add a new task to your current team. Each task can have multiple assignees and a deadline.
 
-**Format:** `add task [-h] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]... <TASK_NAME>`
+**Format:** `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`
 
 | Flags              | Required | Remarks                                                      |
 |--------------------|:---------|--------------------------------------------------------------|
@@ -780,9 +781,10 @@ Add a new task to your current team. Each task can have multiple assignees and a
 | `-d`, `--deadline` |          | Deadline of task (e.g. 2023-02-25 23:59)                     |  
 | `-a`, `--assignee` |          | Index of members in [members section](#current-team-section) |
 
-* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
+  (`""`)
   around the parameter**.
-* `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
 
 **Command Aliases:**
 - `add ta`
@@ -865,7 +867,7 @@ Find all tasks in the current team whose names matches any of the given keywords
 
 To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
 
-**Format:** `find task [-h] <KEYWORDS>`
+**Format:** `find task [-h] <TASK_NAME_KEYWORDS>`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
@@ -928,14 +930,15 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 
 Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
 
-**Format:** `set deadline [-h] <TASK_INDEX> <DEADLINE>`
+**Format:** `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
 * `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
-* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+* `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
+  (`""`)
   around the parameter**.
 
 **Command Aliases:**
@@ -951,14 +954,14 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 
 Assign an existing task to a team member in the user’s team.
 
-**Format:** `assign task [-h] -a[=<ASSIGNEES>...] [-a[=<ASSIGNEES>...]]... <TASK_INDEX>`
+**Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
 
 | Flags              | Required           | Remarks                                                      |
 |--------------------|:-------------------|--------------------------------------------------------------|
 | `-h`, `--help`     |                    | Shows help message for this command                          |
 | `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section) |
 
-* `TASK_INDEX` and `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
 
 **Command Aliases:**
@@ -1087,7 +1090,7 @@ Summary of commands can be found [here](#summary-of-link-commands)
 
 Add a new link to the currently selected team.
 
-**Format:** `add link [-h] -l=<URL> -n=<NAME>`
+**Format:** `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`
 
 | Flags          | Required           | Remarks                               |
 |----------------|:-------------------|---------------------------------------|
@@ -1107,7 +1110,7 @@ Add a new link to the currently selected team.
 
 Edit an existing link in the currently selected team.
 
-**Format:** `edit link [-h] ([-n=<NAME>] [-l=<URL>]) <LINK_INDEX>`
+**Format:** `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`
 
 | Flags          | Required   | Remarks                               |
 |----------------|:-----------|---------------------------------------|

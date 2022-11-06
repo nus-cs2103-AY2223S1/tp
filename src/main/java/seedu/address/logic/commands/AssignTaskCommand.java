@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_ASSIGNEES;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +46,11 @@ public class AssignTaskCommand extends Command {
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true, arity = "*",
+            paramLabel = LABEL_TASK_ASSIGNEES,
             description = FLAG_TASK_ASSIGNEES_DESCRIPTION)
     private List<Index> assignees = new ArrayList<>();
 

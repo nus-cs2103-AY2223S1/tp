@@ -17,6 +17,11 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_INDEX;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_PHONE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_TAGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -63,7 +68,7 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the TruthTable.";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_PERSON_INDEX, description = FLAG_PERSON_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
@@ -154,19 +159,24 @@ public class EditPersonCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_PERSON_NAME_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                paramLabel = LABEL_PERSON_NAME,
+                description = FLAG_PERSON_NAME_DESCRIPTION)
         private Name name;
 
-        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description =
-                FLAG_PERSON_PHONE_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG},
+                paramLabel = LABEL_PERSON_PHONE,
+                description = FLAG_PERSON_PHONE_DESCRIPTION)
         private Phone phone;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description =
-                FLAG_PERSON_EMAIL_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG},
+                paramLabel = LABEL_PERSON_EMAIL,
+                description = FLAG_PERSON_EMAIL_DESCRIPTION)
         private Email email;
 
-        @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
-                arity = "*")
+        @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG},
+                paramLabel = LABEL_PERSON_TAGS,
+                description = FLAG_PERSON_TAGS_DESCRIPTION, arity = "*")
         private Set<Tag> tags;
 
         @Override

@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 
 import java.util.List;
 
@@ -45,11 +47,13 @@ public class AddTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TEAM_NAME,
+            description = FLAG_TEAM_NAME_DESCRIPTION)
     private TeamName teamName;
 
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue =
-            Description.NO_DESCRIPTION_STRING, description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
+            Description.NO_DESCRIPTION_STRING, paramLabel = LABEL_TEAM_DESCRIPTION,
+            description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
     private Description description;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
