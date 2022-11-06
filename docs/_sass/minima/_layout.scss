@@ -137,10 +137,12 @@
 .post-list {
   margin-left: 0;
   list-style: none;
-
+  ol { counter-reset: item }
+  li { display: block }
   > li {
     margin-bottom: $spacing-unit;
   }
+  li:before { content: counters(item, ".") " "; counter-increment: item }
 }
 
 .post-meta {
