@@ -181,14 +181,19 @@ This feature represents an appointment between a user and a client. An appointme
 Overview of implementation for Appointment:
 
 * `Appointment`- This is a class that stores information regarding an appointment of a specific client, such as the `DateTime` and `Location`.
-* `DateTime`- This is a class that stores the Date and Time of an `Appointment`. It has a format of `d-MMM-yyyy hh:mm a` as a `String`.
+* `DateTime`- This is a class that stores the Date and Time of an `Appointment`. It has a format of `dd-MM-yyyy HH:mm` as a `String`.
 * `Location`- This is a class that stores the location of an `Appointment`. It can take any `String` values, but it must not be blank.
 * `JsonAdaptedAppointment`- This is a class that acts as a bridge between the `Appointment` class and `Storage` layer. It specifies how an `Appointment` object is converted to a JSON and vice versa.
 * `AddAppointmentCommandParser`- This is a class that parses user input from a `String` to an `AddAppointmentCommand` object. Validation for the user's input is performed in this class.
 * `AddAppointmentCommand`- This is a class where the logic for the Add Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a duplicate `Appointment` and the maximum number of `Appointments` for the client has not been reached, followed by adding the `Appointment` to the `Model`.
 * `MaximumSortedList`- This is an abstraction that represents the list of `Appointments` for a specific client. It ensures that the `Appointments` are in sorted order according to chronological order, ensures that there is a maximum number, 3, of `Appointments` for each client and ensures that there are no duplicate `Appointments` for each client.
-
-The appointment feature currently supports 3 different commands.
+* `EditAppointmentCommandParser`- This is a class that parses user input from a `String` to an `EditAppointmentCommand` object. Validation for the user's input is performed in this class.
+* `EditAppointmentCommand`- This is a class where the logic for the Edit Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a `Appointment` with the same DateTime.
+It will then remove the old appointment and add the newly edited appointment. The `Model` will be updated accordingly.
+* `EditAppointmentDescriptor`- This is a class that takes in the user input's edited Location/Datetime fields to create the newly edited appointment.
+* `DeleteAppointmentCommandParser`- This is a class that parses user input from a `String` to an `DeleteAppointmentCommand` object. Validation for the user's input is performed in this class.
+* `DeleteAppointmentCommand`- This is a class where the logic for the Delete Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there exists an `Appointment` at the specified appointment index. The appointment will be removed from the `Model`.
+ 
 1. `add appointment`
 2. `edit appointment`
 3. `delete appointment`
