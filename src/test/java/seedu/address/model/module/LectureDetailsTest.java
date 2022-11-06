@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class LectureDetailsTest {
 
-
     @Test
     public void constructor_invalidLectureDetail_throwsIllegalArgumentException() {
         String invalidLectureDetail = "";
