@@ -1,7 +1,6 @@
 ---
 layout: page
 title: **Teacher's Pet** User Guide
-subtitle: Everything you need to know about **Teacher's Pet**
 ---
 **Teacher’s Pet** is an all-in-one desktop application for private 1-to-1 tutors to manage the details of students,
 payment and scheduling of classes. While optimised for use via a Command Line Interface (CLI),
