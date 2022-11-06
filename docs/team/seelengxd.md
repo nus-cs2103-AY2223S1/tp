@@ -17,15 +17,15 @@ Given below are my contributions to the project.
     * Integrated the `Commission` list into the UI.
   * Justification:
     * This was a prerequisite to all commission-related commands that we wanted to implement.
-  * Highlights: 
+  * Highlights:
     * This enhancement was one of the first code-related PRs and required working with three components (`Ui`, `Model`, `Storage`).
       It ended up being quite huge and challenging, requiring a good understanding of many components to implement it without breaking existing abstractions.
 
 * **New feature:** Added Commission Commands [~~C~~RUD]
-  * Added `editcom` [#109](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/109) 
+  * Added `editcom` [#109](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/109)
   * Added `delcom` [#68](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/68)
   * Added `opencom` [#91](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/91)
-  * What it does: Adds read, update and delete functionality for commissions. 
+  * What it does: Adds read, update and delete functionality for commissions.
   * Justification: Commissions are a core feature of our application and hence all its CRUD functionality are necessary for our product.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=seelengxd&breakdown=true)
@@ -38,13 +38,13 @@ Given below are my contributions to the project.
   * Added ability to select customer on click [#68](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/68)
   * Modified `Tag` to allow spaces [#78](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/78)
   * Changed product icon [#85](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/85)
-  * Renamed `edit` command to `editcus` [#109](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/109) 
+  * Renamed `edit` command to `editcus` [#109](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/109)
   * Modified sample data generator to include default commissions and iterations ([#139](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/139), [#142](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/142))
   * Added tests for `Commission`, `delcom`, `opencom`, `editcom` ([#96](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/96), [#99](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/99), [#101](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/101), [#105](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/105), [#109](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/109))
 
 * **Documentation**:
     * User Guide:
-      * Added edit commands to UG [#135](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/135), [#147](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/147) 
+      * Added edit commands to UG [#135](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/135), [#147](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/147)
     * Developer Guide:
       * Added implementation details of the `Commission` model [#119](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/119)
       * Added implementation details of the `delcom` feature [#134](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/134)

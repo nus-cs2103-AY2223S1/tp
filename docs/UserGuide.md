@@ -248,8 +248,8 @@ and root directories, you might find the explanation [below](#filepath_explanati
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported
 
 Example:
-* `additer n/First Draft d/2022-10-28 p//Users/John/Downloads/Draft 1.png f/Looks great` creates an iteration 
-with the description "First Draft", date 28 October 2022, image at file path `p//Users/John/Downloads/Draft 1.png`, 
+* `additer n/First Draft d/2022-10-28 p//Users/John/Downloads/Draft 1.png f/Looks great` creates an iteration
+with the description "First Draft", date 28 October 2022, image at file path `p//Users/John/Downloads/Draft 1.png`,
 and feedback "Looks great".
 
 <br>
@@ -411,7 +411,7 @@ Examples:
 * `find -any t/friend t/colleague` Finds customers who are either tagged `friend` or `colleague`.
 
 ## Miscellaneous
- 
+
 ### Clearing all the customers: `clear`
 Clears all your customers from ArtBuddy, including their commissions and iterations.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
