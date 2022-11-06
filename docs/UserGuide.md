@@ -133,7 +133,7 @@ If a command was not successfully executed, the text within the command input bo
 You can find the buyer list located at the left section of the window.<br><br>
 ![Buyer List](images/BuyerList.png)<br><br>
 The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database. The buyer list
-might not be showing **all* the buyers in the database all the time (see [FAQ](#faq)).
+might not be showing *all* the buyers in the database all the time (see [FAQ](#faq)).
 
 The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
@@ -141,7 +141,7 @@ The buyer list can be filtered and modified using commands given in the [feature
 You can find the property list located at the right section of the window.<br><br>
 ![Property List](images/PropertyList.png)<br><br>
 The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
-might not be showing **all* the properties in the database all the time (see [FAQ](#faq)).
+might not be showing *all* the properties in the database all the time (see [FAQ](#faq)).
 
 The property list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
@@ -162,11 +162,12 @@ Take a look at the [command summary](#command-summary) for a quick summary of th
 
 **:information_source: Notes about the command format:**<br>
 
-* The first word in the command string specifies which command you are invoking. For example, `help` specifies that you are invoking the `help` command, while `addbuyer -n John Doe` specifies that you are using the `addbuyer` command.
+* The first word in the command string specifies which command you are invoking. For example, `help` specifies that you 
+are invoking the `help` command, while `editbuyer 1 -n Jane Doe` specifies that you are using the `editbuyer` command.
 
 
-* To specify additional inputs to the command, type the input's flag followed by a space, and then its value.<br>
-  e.g `-n John Doe` will define the input `NAME` to store the value `John Doe`.
+* To specify inputs to the command, type the input's flag followed by a space, and then its value.<br>
+  e.g. `-n John Doe` will define the input `NAME` to store the value `John Doe`.
 
 
 * Inputs not contained in any brackets must be passed into the command.<br>
@@ -185,9 +186,10 @@ Take a look at the [command summary](#command-summary) for a quick summary of th
   e.g. if the command specifies `[-n NAME] [-ph PHONE]`, `[-ph PHONE] [-n NAME]` is also acceptable.
 
 
-* For commands immediately followed by an `INDEX`, `INDEX` refers to the index of the entry on the currently visible list that you want to execute the command on.
-  Note that if an entry is not currently displayed on the list, then the command cannot be executed on it,
-  e.g. `deletebuyer 7` if the list is only 5 entries long.
+* For commands immediately followed by an `INDEX`, `INDEX` refers to the index of the entry on the 
+  [Buyer List](#2-buyer-list) or [Property List](#3-property-list).
+  * Note that if an entry is not currently displayed on the list (see [FAQ](#faq)), then the command cannot be executed on it,
+    e.g. `deletebuyer 7` if the buyer list is only 5 entries long.
 
 
 * If commands are missing specific inputs required for it to execute, an error message will be displayed that contains 
