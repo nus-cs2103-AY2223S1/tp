@@ -204,6 +204,19 @@ The following is a use case for changing command names.
   * Pros: Easy to extend.
   * Cons: Harder to implement.
 
+
+### Rating and reviewing an activity
+
+#### Implementation
+
+The command is parsed and a `RateCommand` is created. Executing the `RateCommand` then creates a new `activityWithRating` Activity with 
+the rate and/or review fields and set the old activity to `activityWithRating`.
+
+The following sequence diagram shows what happens when the user uses a rate command.
+
+![RateActivityDiagram](images/RateActivitySequenceDiagram.png)
+
+
 ### Setting Themes
 
 #### Implementation
