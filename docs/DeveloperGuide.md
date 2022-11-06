@@ -96,8 +96,15 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FoodListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The UI consists of a `MainWindow` that is made up of the following parts:
+* `ProgressBarController`
+* `StatusBarFooter`
+* `ResultDisplay`
+* `CommandBox`
+* `HelpWindow`
+* `FoodListPanel`
+
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
@@ -156,7 +163,13 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the nutrigoals data i.e., all `Food` objects (which are contained in a `FoodList` object).
+* stores the NutriGoals data, which includes the following:
+  * a `FoodList` object that contains all `Food` objects
+  * a `List` of `Location` objects that represent the locations of NUS gyms
+  * a `User` object that contains the user's profile details (e.g. height, weight, ideal weight, gender, age, BMI)
+  * a `Calorie` object that represents the target calorie intake
+  * a `FoodCalorieList` object that contains information about the calorie contents of default food items
+  * a `TipList` object that contains `Tip` objects
 * stores the currently 'selected' `Food` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -171,7 +184,7 @@ The `Model` component,
 
 The `Storage` component,
 
-* can save both nutrigoals data and user preference data in json format, and read them back into corresponding objects.
+* can save both NutriGoals data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `NutriGoalsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)

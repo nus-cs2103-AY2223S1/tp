@@ -15,6 +15,7 @@ Class FoodListPanel
 Class FoodCard
 Class StatusBarFooter
 Class CommandBox
+Class ProgressBarController
 }
 
 package Model <<Rectangle>> {
@@ -34,6 +35,7 @@ MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" FoodListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" ProgressBarController
 MainWindow --> "0..1" HelpWindow
 
 FoodListPanel -down-> "*" FoodCard
@@ -46,6 +48,7 @@ FoodListPanel --|> UiPart
 FoodCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+ProgressBarController --|> UiPart
 
 FoodCard ..> Model
 UiManager -right-> Logic
@@ -55,6 +58,7 @@ FoodListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- ProgressBarController
 
 MainWindow -[hidden]-|> UiPart
 @enduml
