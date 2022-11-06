@@ -22,37 +22,32 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jarvis.testutil.LessonBuilder.DEFAULT_CONSULT_DESC;
 import static jarvis.testutil.LessonBuilder.DEFAULT_TIME_PERIOD;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.AddConsultCommand;
+import jarvis.logic.commands.AddLessonCommandTest;
 import jarvis.model.LessonDesc;
 import jarvis.model.TimePeriod;
 
 public class AddConsultCommandParserTest {
 
     private AddConsultCommandParser parser = new AddConsultCommandParser();
-
-    private Set<Index> getFirstStudentIndex() {
-        Set<Index> studentIndex = new HashSet<>();
-        studentIndex.add(Index.fromOneBased(Integer.parseInt("1")));
-        return studentIndex;
-    }
+    private Set<Index> firstStudentIndex = AddLessonCommandTest.getFirstStudentIndex();
 
     @Test
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + LESSON_DESC_CONSULT + LESSON_START_DATE
                 + LESSON_START_TIME + LESSON_END_DATE + LESSON_END_TIME + LESSON_STUDENT_INDEX,
-                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
+                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, firstStudentIndex));
 
         // multiple desc - last desc accepted
         assertParseSuccess(parser, LESSON_DESC_STUDIO + LESSON_DESC_CONSULT + LESSON_START_DATE
                 + LESSON_START_TIME + LESSON_END_DATE + LESSON_END_TIME + LESSON_STUDENT_INDEX,
-                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
+                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, firstStudentIndex));
     }
 
     @Test
@@ -60,12 +55,12 @@ public class AddConsultCommandParserTest {
         // without end date
         assertParseSuccess(parser, LESSON_DESC_CONSULT + LESSON_START_DATE
                 + LESSON_START_TIME + LESSON_END_TIME + LESSON_STUDENT_INDEX,
-                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
+                new AddConsultCommand(DEFAULT_CONSULT_DESC, DEFAULT_TIME_PERIOD, firstStudentIndex));
 
         // without lesson desc
         assertParseSuccess(parser, LESSON_START_DATE + LESSON_START_TIME + LESSON_END_DATE
                 + LESSON_END_TIME + LESSON_STUDENT_INDEX,
-                new AddConsultCommand(null, DEFAULT_TIME_PERIOD, getFirstStudentIndex()));
+                new AddConsultCommand(null, DEFAULT_TIME_PERIOD, firstStudentIndex));
     }
 
     @Test

@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Consult;
-import jarvis.model.TimePeriod;
 import jarvis.testutil.LessonBuilder;
 
 public class AddConsultCommandTest extends AddLessonCommandTest {
