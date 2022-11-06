@@ -93,7 +93,7 @@ public class ImportCommand extends Command {
         for (Person person : personList) {
             if (!model.hasPerson(person)) {
                 isUpdated = true;
-                model.addPerson(person);
+                model.addPersonWithoutCommitting(person);
             } else {
                 isSomeExisting = true;
             }
@@ -118,6 +118,7 @@ public class ImportCommand extends Command {
             if (isNewCreated) {
                 returnMessage.append(" " + MESSAGE_NEW_TAGTYPES);
             }
+            model.commitAddressBook();
             return new CommandResult(returnMessage.toString());
         }
         return new CommandResult(String.format(MESSAGE_NO_CHANGE, filePath));

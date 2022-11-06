@@ -47,6 +47,8 @@ public class CreateTagTypeCommand extends Command {
         } catch (DuplicatePrefixException | DuplicateTagTypeException d) {
             throw new CommandException(d.getMessage());
         }
+        model.setPrefixMap(UniqueTagTypeMap.getPrefixMap());
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
