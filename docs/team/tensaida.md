@@ -11,11 +11,12 @@ tutorial groups, and tasks.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the grades functionality and commands
+* **New Feature**: Added the grade functionality.
 
 * **Team-tasks**: 
     * Refactored variables, class names, etc. in the AB3 codebase to make semantic sense for TAA [#50](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/50)
     * Set up [Kanban board](https://postimg.cc/BPbCmLT0/cb052c47) on Github Projects to track issues better
+    * Set up Milestone v1.1 and assigned issues. Also set up Milestone v1.4
     * Incorporated [Mockito](https://site.mockito.org/) into project to create mock classes faster in unit tests [#69](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/69/)
 
 * **Code contributed**:
@@ -27,10 +28,11 @@ Given below are my contributions to the project.
         * Added documentation about the grade functionality [#117](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/117)
 
     * Developer Guide:
-        * Added documentation about the grade functionality 
+        * Added documentation about the grade functionality [???]
+        * Updated UML diagrams to reflect state of the current iteration of TAA [???]
 
 * **Reviewing/mentoring contributions**:
-    * [PR Review](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/92)
+    * PR Review: [#92](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/92), [#217](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/217)
 
 * **Contributions beyond the project team**:
     * [Reported bugs for PED](https://github.com/tensaida/ped/issues)
