@@ -444,9 +444,9 @@ Format: `get /n NAME`
 * `get /n alex david` displays `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
 
-#### by next-of-kin data: `/nok`
+#### next-of-kin data: `/nok`
 
-Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get \n` command.
 
 Format: `get /nok PATIENT_NAME`
 
