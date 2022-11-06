@@ -16,7 +16,7 @@ public class RiskTagTest {
 
     // This is to test to see if input can be case insensitive
     @Test
-    public void isValidRiskTagName_validInput_caseInsensitive_success() {
+    public void isValidRiskTagName_validInput_case_insensitive_success() {
         assertEquals(isRiskTag("hiGH"), true);
         assertEquals(isRiskTag("mEDiuM"), true);
         assertEquals(isRiskTag("low"), true);
@@ -30,13 +30,13 @@ public class RiskTagTest {
 
     @Test
     public void getRisk() {
-        RiskTag HighRiskTag = new RiskTag("HIGH");
-        assertEquals(3, HighRiskTag.getRisk());
+        RiskTag highRiskTag = new RiskTag("HIGH");
+        assertEquals(3, highRiskTag.getRisk());
 
-        RiskTag MediumRiskTag = new RiskTag("MEDIUM");
-        assertEquals(2, MediumRiskTag.getRisk());
+        RiskTag mediumRiskTag = new RiskTag("MEDIUM");
+        assertEquals(2, mediumRiskTag.getRisk());
 
-        RiskTag LowRiskTag = new RiskTag("LOW");
-        assertEquals(1, LowRiskTag.getRisk());
+        RiskTag lowRiskTag = new RiskTag("LOW");
+        assertEquals(1, lowRiskTag.getRisk());
     }
 }
