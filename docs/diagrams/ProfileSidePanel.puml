@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+autoactivate on
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ProfileSidePanel" as ProfileSidePanel UI_COLOR
+end box
+
+box LOGIC LOGIC_COLOR_T1
+participant ":Logic" as LogicManager LOGIC_COLOR
+end box
+
+box MODEL MODEL_COLOR_T1
+participant ":Model" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("module done CS1101S")
+activate MainWindow
+
+MainWindow -> ModelManager : update model
+activate ModelManager
+return done
+deactivate ModelManager
+
+MainWindow -> ProfileSidePanel : refresh(logic)
+activate ProfileSidePanel
+
+ref over ProfileSidePanel, LogicManager : Get Modules Marked as Done and Count Total Credits
+
+ref over ProfileSidePanel, LogicManager : Get Tasks Not Marked as Done and Count Total Tasks
+
+ProfileSidePanel -> ProfileSidePanel : creditsCount.setText(totalCredits)
+return
+
+ProfileSidePanel -> ProfileSidePanel : activeTasks.setText(totalTasks)
+return
+
+deactivate ProfileSidePanel
+return
+
+deactivate
+
+[<-- MainWindow
+deactivate MainWindow
+@enduml
