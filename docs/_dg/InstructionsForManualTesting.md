@@ -105,6 +105,12 @@ Prerequisite: Tag currently exists in FoodRem
 
 1. Test case: `deletetag n/Food`<br> Expected Output in Item List Box: Specified tag if shown, is deleted. <br> Expected Output in Command Output Box: Tag deleted details.
 
+#### Filter by a Tag
+
+Prerequisite: Suppose a tag with name of `fruits` currently exists in FoodRem and is tagged to a few items.
+
+1. Test case: `filtertag n/fruits`<br> Expected Output in Item List Box: Items with specified tags shown. <br> Expected Output in Command Output Box: Details of tag and number of items filtered.
+
 ### Statistics
 
 #### Display statistics
