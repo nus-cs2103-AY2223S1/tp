@@ -17,7 +17,7 @@ public class AddTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Adds a task to the task panel. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Adds a task to the task panel. \n"
             + "Parameters: "
             + "TITLE "
             + "Example: " + COMMAND_WORD_FULL + " "
