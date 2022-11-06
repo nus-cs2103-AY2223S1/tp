@@ -187,7 +187,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How list executes:**
 
@@ -413,7 +413,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ![PinActivityDiagram](images/PinActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How entities can be unpinned:**
 
@@ -424,6 +424,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 * **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
     * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
     * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
