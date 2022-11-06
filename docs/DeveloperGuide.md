@@ -675,8 +675,8 @@ testers are expected to do more *exploratory* testing.
 
 2. Viewing an employee:
 
-   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database.
-      Additionally, take note of the total count of employees (you can see this by entering `list` and checking the largest index shown).
+   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database. Then enter `list` to display all employees.
+      Additionally, take note of the total count of employees (you can see this by checking the largest index displayed on the left panel).
 
    2. **Test Case**: `view 1`<br>
       **Expected Outcome**: On the right side panel, the employee profile of the first listed person is displayed.
@@ -720,6 +720,14 @@ testers are expected to do more *exploratory* testing.
 
    1. **Test Case**: `add n/Jane Doe j/Telemarketer p/99887766 e/jane@coydir.com a/Elm Street, Loudoun`<br>
       **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
+
+4. Adding an employee with invalid fields:
+
+   1. **Test Case**: `add n/Joe Doe j/Carpenter d/Craftsmenship`<br>
+      **Expected Outcome**: An error message appears, saying that the department field is invalid.
+
+   2. Other invalid test cases: `add` with prefixes but empty arguments, or arguments that do not match specified constraints.
+      **Expected Outcome**: An error message appears, saying the constraints of the invalid argument provided.
 
 ### Editing an employee
 
