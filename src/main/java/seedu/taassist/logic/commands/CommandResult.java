@@ -1,8 +1,14 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.taassist.logic.commands.actions.StorageAction;
+import seedu.taassist.logic.commands.actions.UiAction;
+import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.storage.Storage;
 
 /**
  * Represents the result of a command execution.
@@ -10,56 +16,66 @@ import java.util.Objects;
 public class CommandResult {
 
     private final String feedbackToUser;
-
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
-
-    /** The application should focus. */
-    private final boolean focus;
-
-    /** The application should unfocus. */
-    private final boolean unfocus;
+    private final UiAction uiAction;
+    private final StorageAction storageAction;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean focus, boolean unfocus) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.focus = focus;
-        this.unfocus = unfocus;
+    public CommandResult(String feedbackToUser) {
+        requireNonNull(feedbackToUser);
+        this.feedbackToUser = feedbackToUser;
+        uiAction = null;
+        storageAction = null;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code UiAction}.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+    public CommandResult(String feedbackToUser, UiAction uiAction) {
+        requireNonNull(feedbackToUser);
+        requireNonNull(uiAction);
+        this.feedbackToUser = feedbackToUser;
+        this.uiAction = uiAction;
+        storageAction = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code StorageAction}.
+     */
+    public CommandResult(String feedbackToUser, StorageAction storageAction) {
+        requireNonNull(feedbackToUser);
+        requireNonNull(storageAction);
+        this.feedbackToUser = feedbackToUser;
+        uiAction = null;
+        this.storageAction = storageAction;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public UiAction getUiAction() {
+        return uiAction;
     }
 
-    public boolean isExit() {
-        return exit;
+    public boolean hasUiAction() {
+        return nonNull(uiAction);
     }
 
-    public boolean isFocus() {
-        return focus;
+    public boolean hasStorageAction() {
+        return nonNull(storageAction);
     }
 
-    public boolean isUnfocus() {
-        return unfocus;
+    /**
+     * Performs the {@code StorageAction} on the {@code storage} and returns the result of the action.
+     * The {@code StorageAction} must exist.
+     */
+    public CommandResult performStorageAction(Storage storage) throws CommandException {
+        requireNonNull(storage);
+        assert hasUiAction();
+
+        return storageAction.act(storage);
     }
 
     @Override
@@ -75,15 +91,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && focus == otherCommandResult.focus
-                && unfocus == otherCommandResult.unfocus;
+                && uiAction == otherCommandResult.uiAction
+                && Objects.equals(storageAction, otherCommandResult.storageAction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, focus, unfocus);
+        return Objects.hash(feedbackToUser, uiAction, storageAction);
     }
 
 }

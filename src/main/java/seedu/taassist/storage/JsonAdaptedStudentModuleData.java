@@ -9,13 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
-import seedu.taassist.model.session.SessionData;
+import seedu.taassist.model.student.SessionData;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * Json-friendly version of {@link StudentModuleData}.
  */
 class JsonAdaptedStudentModuleData {
+
+    public static final String MESSAGE_MISSING_NAME = "Module data's module field is missing!";
 
     @JsonProperty("module")
     private final String className;
@@ -51,6 +53,9 @@ class JsonAdaptedStudentModuleData {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public StudentModuleData toModelType() throws IllegalValueException {
+        if (className == null) {
+            throw new IllegalValueException(MESSAGE_MISSING_NAME);
+        }
         if (!ModuleClass.isValidModuleClassName(className)) {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }

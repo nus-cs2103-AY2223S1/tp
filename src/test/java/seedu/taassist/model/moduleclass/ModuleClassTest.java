@@ -7,7 +7,6 @@ import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ public class ModuleClassTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         String validModuleClassName = "CS1101S";
-        List<Session> validSessions = Arrays.asList(ASSIGNMENT_1);
+        List<Session> validSessions = List.of(ASSIGNMENT_1);
 
         // null name
         assertThrows(NullPointerException.class, () -> new ModuleClass(null));

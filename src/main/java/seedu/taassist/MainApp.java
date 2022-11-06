@@ -16,6 +16,7 @@ import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.commons.core.Version;
 import seedu.taassist.commons.exceptions.DataConversionException;
 import seedu.taassist.commons.util.ConfigUtil;
+import seedu.taassist.commons.util.FileUtil;
 import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.logic.Logic;
 import seedu.taassist.logic.LogicManager;
@@ -65,7 +66,10 @@ public class MainApp extends Application {
         initLogging(config);
 
         try {
-            storage.backupFile(userPrefs.getTaAssistFilePath());
+            Path taAssistFilePath = userPrefs.getTaAssistFilePath();
+            if (FileUtil.isFileExists(taAssistFilePath)) {
+                storage.backupFile(taAssistFilePath);
+            }
         } catch (IOException e) {
             logger.warning("Failed to backup data file");
         }

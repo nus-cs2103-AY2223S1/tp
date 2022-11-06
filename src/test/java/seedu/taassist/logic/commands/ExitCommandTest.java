@@ -5,6 +5,7 @@ import static seedu.taassist.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGE
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.logic.commands.actions.UiAction;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 
@@ -14,8 +15,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT,
-                false, true, false, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, UiAction.EXIT);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -1,7 +1,7 @@
 package seedu.taassist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.taassist.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.taassist.storage.JsonAdaptedStudent.MESSAGE_MISSING_FIELD_FORMAT;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
 
@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
-import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
+import seedu.taassist.model.student.StudentModuleData;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -50,7 +50,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
             VALID_CLASSES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MESSAGE_MISSING_FIELD_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
@@ -66,7 +66,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedStudent student =
             new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_CLASSES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MESSAGE_MISSING_FIELD_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
@@ -82,7 +82,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
             new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_CLASSES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MESSAGE_MISSING_FIELD_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
@@ -97,7 +97,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_CLASSES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MESSAGE_MISSING_FIELD_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 

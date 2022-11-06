@@ -47,9 +47,13 @@ If you encounter any issues in launching and using the app, feel free refer to t
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
 * If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not require them are ignored by the parser.
-  * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
-  * e.g. the command `addc` only takes in a class parameter. If the command specifies `addc n/John Doe c/CS1231S s/Lab1`, the parser interprets it as `addc c/CS1231S`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
+  * e.g. if you specify `help 123`, the parser interprets it as `help`.
+* Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly.
+  * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
+* All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
+
+</div>
 
 ## Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
@@ -58,7 +62,7 @@ be run in focus mode. On the other hand, commands that are available only in foc
 
 Let's first begin with the commands available in the default mode.
 
-## Commands available in default mode
+## Commands
 
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
@@ -77,15 +81,20 @@ Let's first begin with the commands available in the default mode.
 | `focus`    | `focus c/CLASS_NAME`                     |
 | `clear`    | `clear`                                  |
 
-*Click [here](# Commands Available in Focus Mode) for the commands available in the focus mode.*
+*Click [here](# Focus Mode Commands) for the commands only available in the focus mode.*
 
+{% include note.html content="
 
+Note that these commands are also available in focus mode.
+
+" %}
 
 ### View help : `help`
 
 {% include note.html content="
 
 Redirects you to this User Guide page. If the attempt was unsuccessful, the following help window appears.
+
 " %}
 
 ![help message](images/helpMessage.png)
@@ -198,11 +207,9 @@ Adds one or more classes to TA-Assist.
 Format: `addc c/CLASS_NAME...`
 * Add classes with specified names. 
 * The class names are **case-insensitive**.
-  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
-    new class `cs1101s`.
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a new class **cs1101s**.
 * If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
-  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name
-    **cs1101s**.
+  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name **cs1101s**.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -301,9 +308,9 @@ Clears all existing data in TA-Assist.
 " %}
 
 Format: `clear`
-## Commands Available in Focus Mode
+## Focus Mode Commands
 
-The following commands are only available in [**focus mode**](#modes).
+The following commands are **ONLY** available in [**focus mode**](#modes).
 
 | Command   | Format                                   |
 | --------- | ---------------------------------------- |
@@ -316,9 +323,7 @@ The following commands are only available in [**focus mode**](#modes).
 | `export`  | `export`                                 |
 | `unfocus` | `unfocus`                                |
 
-*Click [here](# Commands available in default mode) for commands available in default mode.*
-
-
+*Click [here](# Commands) for commands that are also available in default mode.*
 
 ### List all students in the class: `list`
 
@@ -390,7 +395,8 @@ Grades one or multiple students for the session.
 
 Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
 * Grades the students specified by the given indices on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
-* `GRADE_VALUE` must be a number (decimal points are allowed).
+* `GRADE_VALUE` must be a number between 0 and 1000 (decimal points are allowed).
+* `GRADE_VALUE` will be rounded to 2 decimal places.
 * The session name is **case-insensitive**.
 
 Example:
@@ -428,7 +434,7 @@ Views all session grades of a student within the focused class.
 " %}
 
 Format: `view INDEX`
-* Views the grades of the student at index `INDEX` for the currently focused class.
+* Shows the grades of the student at index `INDEX` for the currently focused class.
 * Only sessions that are graded for the student will have the grades displayed.
 
 Example:
@@ -484,3 +490,44 @@ Format: `unfocus`
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
+
+## Appendix
+
+### Parameters and Constraints
+
+For all parameters, the following constraints are applied:
+* As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes
+  of another parameter if that other parameter is being used in a command. 
+  * e.g. We can not add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
+
+The following is the list of all parameters used in TA-Assist along with its constraints:
+
+* `INDEX` 
+  * Indices must be a positive integer
+  * Indices must be within the indices shown in the displayed list
+* `KEYWORD` 
+  * Search keywords can not contain spaces
+* `n/NAME` 
+  * Student names must not be empty 
+  * Student names must only contain alphanumeric characters and spaces
+* `p/PHONE_NUMBER`
+  * Phone numbers must only contain numbers
+  * Phone numbers must be at least 3 digits long
+* `e/EMAIL`
+  * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`
+  * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`)
+  * `domain` is made up of domain labels, seperated by period
+    * Each `domain` must end with a domain label of at least 2 characters long
+    * Each domain label must start and end with alphanumeric characters
+    * Each domain label must consists of only alphanumeric characters, seperated only by hyphens, if any.
+* `a/ADDRESS`
+  * Addresses must not be empty
+* `c/CLASS_NAME`
+  * Class names must be alphanumeric
+  * Class names must not exceed 25 characters
+* `s/SESSION_NAME`
+  * Session names must not be empty
+  * Session names must only contain alphanumeric characters, underscores, and spaces
+* `d/DATE`
+  * Dates must be of the format `YYYY-MM-DD`, i.e. 25th May 2022 must be written as `2022-05-25`
+  * Dates must be a valid date, i.e. `2001-02-29` is not a valid date

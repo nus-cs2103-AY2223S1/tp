@@ -18,7 +18,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.core.GuiSettings;
-import seedu.taassist.model.student.NameContainsKeywordsPredicate;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.testutil.TaAssistBuilder;
 
 public class ModelManagerTest {

@@ -6,6 +6,7 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.logic.commands.actions.UiAction;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.TaAssist;
@@ -38,7 +39,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalTaAssist(), new UserPrefs());
         expectedModel.setTaAssist(new TaAssist());
 
-        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, false, true);
+        CommandResult expectedResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS, UiAction.UNFOCUS);
         assertCommandSuccess(new ClearCommand(), model, expectedResult, expectedModel);
         assertFalse(model.isInFocusMode());
     }

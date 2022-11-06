@@ -13,8 +13,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.model.session.SessionData;
-
 public class StudentViewTest {
 
     public static final Student ALICE_WITH_SESSIONDATA = ALICE

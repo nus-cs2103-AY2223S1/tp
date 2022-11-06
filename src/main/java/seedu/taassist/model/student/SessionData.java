@@ -1,9 +1,10 @@
-package seedu.taassist.model.session;
+package seedu.taassist.model.student;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
 
 /**
@@ -11,16 +12,31 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class SessionData implements Identity<SessionData>, Comparable<SessionData> {
 
+    public static final Double GRADE_MIN = 0.0;
+    public static final Double GRADE_MAX = 1000.0;
+    public static final String MESSAGE_CONSTRAINTS =
+        String.format("Grades should be a number between %.2f and %.2f", GRADE_MIN, GRADE_MAX);
+
     private final Session session;
-    private final double grade;
+    private final Double grade;
 
     /**
      * Constructs a {@code SessionData} with the given session and grade.
+     * The grade is rounded to 2 decimal places.
      */
-    public SessionData(Session session, double grade) {
-        requireAllNonNull(session);
-        this.session = session;
-        this.grade = grade;
+    public SessionData(Session session, Double grade) {
+        requireAllNonNull(session, grade);
+        /*
+         * The following line is to remove references to date from the session.
+         * In a SessionData, only the name of the session matters. Also in the
+         * JSON file, only the name is saved.
+         */
+        this.session = new Session(session.getSessionName());
+        this.grade = Math.round(grade * 100.0) / 100.0;
+    }
+
+    public static boolean isValidGrade(Double grade) {
+        return GRADE_MIN <= grade && grade <= GRADE_MAX;
     }
 
     public Session getSession() {
@@ -31,7 +47,7 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
         return session.getSessionName();
     }
 
-    public double getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
@@ -51,7 +67,7 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
         return other == this
                 || (other instanceof SessionData
                 && this.session.equals(((SessionData) other).session))
-                && this.grade == ((SessionData) other).grade;
+                && this.grade.equals(((SessionData) other).grade);
     }
 
     @Override
