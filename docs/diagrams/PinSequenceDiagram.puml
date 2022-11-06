@@ -43,7 +43,7 @@ deactivate AddressBookParser
 LogicManager -> PinClientCommand : execute()
 activate PinClientCommand
 
-PinClientCommand --> Model : togglePinned(3)
+PinClientCommand --> Model : togglePin(3)
 activate Model
 
 Model --> PinClientCommand
