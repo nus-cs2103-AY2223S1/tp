@@ -34,7 +34,7 @@ public class ListCommand extends Command {
             + "<optional> a/ [ADDRESS]\n"
             + "<optional> t/ [TAG]\n"
             + "Example: " + COMMAND_WORD + "  "
-            + "c/ nurse";
+            + "c/ n";
 
     private final Optional<Address> address;
     private final Optional<Category> category;
