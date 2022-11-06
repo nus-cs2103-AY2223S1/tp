@@ -7,6 +7,11 @@ h4, h5, h6 {
 	padding: 4px;
 }
 
+h4 > code, h5 > code, h6 > code  {
+  border: 1px solid #ff8d77;
+  background-color: #ff8d77;
+}
+
 h1 {
   font-weight: bold;
 }
