@@ -62,7 +62,6 @@ UiManager -right-> Logic
 MainWindow -left-> Logic
 
 TripListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
