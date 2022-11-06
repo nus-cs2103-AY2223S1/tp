@@ -59,15 +59,15 @@ public class AssignTaskCommandTest {
         Index outOfBoundTeammateIndexOne = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
         Index outOfBoundTeammateIndexTwo = Index.fromOneBased(model.getFilteredTeammateList().size() + 2);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(outOfBoundTeammateIndexTwo,
-                outOfBoundTeammateIndexOne)),
+                new HashSet<>(Arrays.asList(outOfBoundTeammateIndexOne,
+                outOfBoundTeammateIndexTwo)),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndexTwo.getOneBased()) + '\n'
+                        outOfBoundTeammateIndexOne.getOneBased()) + '\n'
                         + String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndexOne.getOneBased()) + '\n');
+                        outOfBoundTeammateIndexTwo.getOneBased()) + '\n');
     }
 
     @Test
