@@ -30,78 +30,84 @@ public class SampleDataUtil {
         ArrayList<StudentData> data = new ArrayList<>();
 
         studentData = new StudentData();
-        studentData.setName(new Name("Alex Yeoh"));
-        studentData.setPhone(new Phone("87438807"));
-        studentData.setEmail(new Email("alexyeoh@example.com"));
-        studentData.setModule(new Module("CS2103T"));
-        studentData.setId(new StudentID("E1234561"));
-        studentData.setGitUser(new GitName("user1"));
-        studentData.setTeleHandle(new TeleHandle("@user1"));
-        studentData.setTags(getTagSet("friends"));
-        studentData.setAttendances(getAttendedSet("T01", "T02"));
-        studentData.addAttendances(getNotAttendedSet("T03"));
-        studentData.setParticipations(getParticipatedSet("P01", "P02"));
-        studentData.addParticipations(getNotParticipatedSet("P03"));
-        data.add(studentData);
-
-        studentData = new StudentData();
-        studentData.setName(new Name("Bernice Yu"));
-        studentData.setPhone(new Phone("99272758"));
-        studentData.setEmail(new Email("berniceyu@example.com"));
-        studentData.setModule(new Module("CS2103T"));
-        studentData.setId(new StudentID("E1234562"));
-        studentData.setGitUser(new GitName("user2"));
-        studentData.setTeleHandle(new TeleHandle("@user2"));
-        studentData.setTags(getTagSet("colleagues", "friends"));
-        studentData.setAssignments(getMarkedAssignments("A01", "A02"));
-        studentData.addAssignments(getReceivedAssignments("A03", "A04"));
-        studentData.addAssignments(getNewAssignments("A05", "A06"));
-        studentData.addAssignments(getNewAssignments("A05", "A06"));
-        data.add(studentData);
-
-        studentData = new StudentData();
-        studentData.setName(new Name("Charlotte Oliveiro"));
-        studentData.setPhone(new Phone("93210283"));
-        studentData.setEmail(new Email("charlotte@example.com"));
-        studentData.setModule(new Module("CS2103T"));
-        studentData.setId(new StudentID("E1234563"));
-        studentData.setGitUser(new GitName("user3"));
-        studentData.setTeleHandle(new TeleHandle("@user3"));
-        studentData.setTags(getTagSet("neighbours"));
-        data.add(studentData);
-
-        studentData = new StudentData();
-        studentData.setName(new Name("David Li"));
-        studentData.setPhone(new Phone("91031282"));
-        studentData.setEmail(new Email("lidavid@example.com"));
+        studentData.setName(new Name("Silas Yeo"));
+        studentData.setPhone(new Phone("84112213"));
+        studentData.setEmail(new Email());
         studentData.setModule(new Module("CS2106"));
-        studentData.setId(new StudentID("E1234564"));
-        studentData.setGitUser(new GitName("user4"));
-        studentData.setTeleHandle(new TeleHandle("@user4"));
-        studentData.setTags(getTagSet("family"));
+        studentData.setId(new StudentID("E0773771"));
+        studentData.setGitUser(new GitName("silasysy"));
+        studentData.setTeleHandle(new TeleHandle("@silas"));
+        studentData.setTags(getTagSet("StrongStudent"));
+        studentData.setAttendances(getAttendedSet("T01", "T02", "T03", "T04"));
+        studentData.setAssignments(getMarkedAssignments("A01"));
+        studentData.addAssignments(getReceivedAssignments("A02"));
+        studentData.addAssignments(getNewAssignments("A03"));
+        studentData.setParticipations(getParticipatedSet("T03-Sharing", "T04-Sharing"));
+        studentData.addParticipations(getNotParticipatedSet("T05-Sharing"));
         data.add(studentData);
 
+
         studentData = new StudentData();
-        studentData.setName(new Name("Irfan Ibrahim"));
-        studentData.setPhone(new Phone("92492021"));
-        studentData.setEmail(new Email("irfan@example.com"));
+        studentData.setName(new Name("Sally"));
+        studentData.setPhone(new Phone("94732221"));
+        studentData.setEmail(new Email());
         studentData.setModule(new Module("CS2106"));
-        studentData.setId(new StudentID("E1234565"));
-        studentData.setGitUser(new GitName("user5"));
-        studentData.setTeleHandle(new TeleHandle("@user5"));
-        studentData.setTags(getTagSet("classmates"));
+        studentData.setId(new StudentID("E1288122"));
+        studentData.setGitUser(new GitName("sallysys"));
+        studentData.setTeleHandle(new TeleHandle("@sallys"));
+        studentData.setTags(getTagSet("NeedsHelp"));
+        studentData.setAttendances(getAttendedSet("T01", "T03", "T04"));
+        studentData.addAttendances(getNotAttendedSet("T02"));
+        studentData.setAssignments(getReceivedAssignments("A01", "A02"));
+        studentData.addAssignments(getNewAssignments("A03"));
+        studentData.setParticipations(getParticipatedSet("T03-Sharing", "T04-Sharing"));
+        studentData.addParticipations(getNotParticipatedSet("T05-Sharing"));
         data.add(studentData);
 
         studentData = new StudentData();
-        studentData.setName(new Name("Roy Balakrishnan"));
-        studentData.setPhone(new Phone("92624417"));
-        studentData.setEmail(new Email("royb@example.com"));
+        studentData.setName(new Name("Sheyuan"));
+        studentData.setPhone(new Phone("98771923"));
+        studentData.setEmail(new Email());
+        studentData.setModule(new Module("CS2106"));
+        studentData.setId(new StudentID("E2345229"));
+        studentData.setGitUser(new GitName("piyopp"));
+        studentData.setTeleHandle(new TeleHandle("@piyo"));
+
+        studentData = new StudentData();
+        studentData.setName(new Name("Po-Hsien"));
+        studentData.setPhone(new Phone("98882110"));
+        studentData.setEmail(new Email("po@popo.po"));
         studentData.setModule(new Module("CS2103T"));
-        studentData.setId(new StudentID("E1234566"));
-        studentData.setGitUser(new GitName("user6"));
-        studentData.setTeleHandle(new TeleHandle("@user6"));
-        studentData.setTags(getTagSet("colleagues"));
-        data.add(studentData);
+        studentData.setId(new StudentID("E0998281"));
+        studentData.setGitUser(new GitName("popopo"));
+        studentData.setTeleHandle(new TeleHandle("@popo"));
+
+        studentData = new StudentData();
+        studentData.setName(new Name("Po Taeto"));
+        studentData.setPhone(new Phone("96600302"));
+        studentData.setEmail(new Email());
+        studentData.setModule(new Module("CS2103T"));
+        studentData.setId(new StudentID("E0982113"));
+        studentData.setGitUser(new GitName("potatopo"));
+        studentData.setTeleHandle(new TeleHandle());
+
+        studentData = new StudentData();
+        studentData.setName(new Name("Salad Yo"));
+        studentData.setPhone(new Phone("89123612"));
+        studentData.setEmail(new Email("salad@yo.org"));
+        studentData.setModule(new Module("CS2106"));
+        studentData.setId(new StudentID("E0123111"));
+        studentData.setGitUser(new GitName("saladydy"));
+        studentData.setTeleHandle(new TeleHandle("@salad"));
+
+        studentData = new StudentData();
+        studentData.setName(new Name("Tom Aito"));
+        studentData.setPhone(new Phone("88456973"));
+        studentData.setEmail(new Email());
+        studentData.setModule(new Module("CS2106"));
+        studentData.setId(new StudentID("E1728221"));
+        studentData.setGitUser(new GitName("tomatoto"));
+        studentData.setTeleHandle(new TeleHandle());
 
         return data.stream()
                 .map(Student::new)
