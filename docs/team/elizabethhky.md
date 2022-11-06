@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Updated demo screenshots for each version release.
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features and json files to increase coverage by 6.10% (Pull requests [#140](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/140)).
+    * Wrote additional tests for existing features and json files to increase coverage by 6.10% (Pull request [#140](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/140)).
 
 * **Documentation**:
     * User Guide:
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#137](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/137)
-    * Contributed to forum discussions (examples: [#157](https://github.com/nus-cs2103-AY2223S1/forum/issues/157).
+    * Contributed to forum discussions (examples: [#157](https://github.com/nus-cs2103-AY2223S1/forum/issues/157)).
 
 * **Tools**:
     * Used PlantUML to add more UML diagrams in the developer guide.
