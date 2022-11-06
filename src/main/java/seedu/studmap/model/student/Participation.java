@@ -45,12 +45,12 @@ public class Participation extends MultiStateAttribute<String, Participation.Sta
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Participation // instanceof handles nulls
-                && identifier.equals(((Participation) other).identifier)); // identifier check
+                && identifier.equalsIgnoreCase(((Participation) other).identifier)); // identifier check
     }
 
     @Override
     public int hashCode() {
-        return identifier.hashCode();
+        return identifier.toUpperCase().hashCode();
     }
 
     /**

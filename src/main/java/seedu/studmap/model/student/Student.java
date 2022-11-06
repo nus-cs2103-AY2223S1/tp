@@ -397,17 +397,18 @@ public class Student {
             attendances.forEach(builder::append);
         }
 
+        Set<Participation> participations = getParticipations();
+        if (!participations.isEmpty()) {
+            builder.append("; Participation: ");
+            participations.forEach(builder::append);
+        }
+
         Set<Assignment> assignments = getAssignments();
         if (!assignments.isEmpty()) {
             builder.append("; Assignment: ");
             assignments.forEach(builder::append);
         }
 
-        Set<Participation> participations = getParticipations();
-        if (!participations.isEmpty()) {
-            builder.append("; Participation: ");
-            participations.forEach(builder::append);
-        }
         return builder.toString();
     }
 
