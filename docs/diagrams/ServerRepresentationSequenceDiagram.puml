@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person LOGIC_COLOR
+end box
+
+[-> AddCommandParser: parse(args)
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil: parseServers(Servers)
+activate ParserUtil
+
+loop for each Server in Servers
+    ParserUtil -> ParserUtil: parseServer(Server)
+    activate ParserUtil
+    ParserUtil -> ParserUtil: Server
+    deactivate ParserUtil
+end
+ParserUtil -> AddCommandParser: ServerSet
+deactivate ParserUtil
+
+AddCommandParser -> Person: Person
+activate Person
+Person -> AddCommandParser
+deactivate Person
+[<-- AddCommandParser: addCommand(Person)
+deactivate AddCommandParser
+
+@enduml
