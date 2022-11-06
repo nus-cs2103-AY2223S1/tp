@@ -213,7 +213,6 @@ The following is a use case for changing command names.
   * Cons: Harder to implement.
 
 
-
 ### Setting activity status 
 
 The user can set status for an activity by including `s/STATUS` when performing the add or edit command.
@@ -223,7 +222,6 @@ The user can set status for an activity by including `s/STATUS` when performing 
 
 The addition of the status field allows the user to categorise their activities into different status. This way it will be easier
 for the user to check their upcoming, ongoing or completed activities so that they can properly track their progress and plan their schedule.
-
 
 #### Implementation
 
@@ -242,6 +240,18 @@ a new `CommandResult` object.
 The following sequence diagram shows what happens when the user perform `add n/Star Wars d/movie s/upcoming`.
 
 ![AddActivityWithStatus](images/AddActivityWithStatus.png)
+
+
+### Rating and reviewing an activity
+
+#### Implementation
+
+The command is parsed and a `RateCommand` is created. Executing the `RateCommand` then creates a new `activityWithRating` Activity with 
+the rate and/or review fields and set the old activity to `activityWithRating`.
+
+The following sequence diagram shows what happens when the user uses a rate command.
+
+![RateActivityDiagram](images/RateActivitySequenceDiagram.png)
 
 
 ### Setting Themes
