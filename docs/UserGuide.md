@@ -351,14 +351,17 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `g/GENDER`
 * `M` or `F`
+* Not case-sensitive
 
 `h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
 * Must be either `A`, `D`, `L`, `N`, `U`
 * `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
+* Not case-sensitive
 
 `m/MATRIC_NUMBER`
 * Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
+* Not case-sensitive
 
 `t/TAG`
 * Represents any other key that could be used to identify a resident
