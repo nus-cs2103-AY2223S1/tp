@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+scale 1600*561
+
+box Ui UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":AutocompleteManager" as AutocompleteManager LOGIC_COLOR
+end box
+
+[-> CommandBox : setAutocompleteListener()
+activate CommandBox
+
+CommandBox --> CommandBox : autocompleteAction()
+activate CommandBox
+
+CommandBox --> AutocompleteManager : getAutocompleteEntries(search n/John p/12345678 a/N)
+activate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager : getSearchCommandArguments(search n/John p/12345678 a/N)
+activate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager
+deactivate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager : getLastPrefixArgument(n/John p/12345678 a/N, ...)
+activate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager
+deactivate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager : updateFilteredPersonList(n/John p/12345678)
+activate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager
+deactivate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager : generateAutocompleteEntries(n/John p/12345678, a/N)
+activate AutocompleteManager
+
+AutocompleteManager --> AutocompleteManager
+deactivate AutocompleteManager
+
+AutocompleteManager --> CommandBox : list of autocomplete entries
+deactivate AutocompleteManager
+
+CommandBox --> CommandBox : populatePopup(...)
+activate CommandBox
+
+CommandBox --> CommandBox
+deactivate CommandBox
+
+CommandBox --> CommandBox
+deactivate CommandBox
+
+[<--CommandBox
+deactivate CommandBox
+
+@enduml

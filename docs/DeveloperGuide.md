@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components:
 * [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
+* [**`Logic`**](#logic-component): The command executor and handles autocomplete.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Handles reading and writing data to the hard disk.
 
@@ -82,7 +82,7 @@ The `UI` component does the following:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* Depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* Depends on some classes in the `Model` component, as it displays `Person` and `Todo` objects residing in the `Model`.
 
 ### Logic component
 
@@ -114,6 +114,14 @@ How the parsing works:
 * When called upon to parse a user command, the `SoConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SoConnectParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, etc.) inherit from the `Parser` interface so that they can be treated similarly where possible, e.g., during testing.
 
+Here are the other classes in `Logic` (omiited from the class diagram above) that are used for autocompleting a user's search command:
+
+<img src="images/AutocompleteClasses.png"/>
+
+How the autocompleting works:
+* When called upon to autocomplete a user's search command, the `AutocompleteManager` classes uses the other classes shown above to autocomplete and create a list of autocomplete entries.
+* The list of autocomplete entries will be passed to `CommandBox` for display.
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/model/Model.java)
 
@@ -144,15 +152,6 @@ The `Storage` component does the following:
 * Saves both SoConnect data and user preference data in `json` format, and read them back into corresponding objects.
 * Inherits from `SoConnectStorage`, `TodoListStorage`, and `UserPrefStorage`, which means it can be treated as any one of them (if only one of the functionality is needed).
 * Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
-
-### Autocomplete component
-**API** : [`Autocomplete.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/autocomplete/Autocomplete.java)
-
-**TODO: Add AutocompleteClassDiagram**
-
-The `Autocomplete` component does the following:
-* Stores the unique names in SoConnect.
-* Depends on some classes in the `Model` component (because the `Autocomplete` component gets a list of unique names from the objects that belong to the `Model`).
 
 ### Common classes
 
@@ -263,8 +262,7 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The autocomplete mechanism is facilitated by `AutocompleteManager` and `CommandBox`. `AutocompleteManager` contains a
-`UniquePersonList` which is used to filter and generate a list of autocomplete entries.
+The autocomplete mechanism is facilitated by `AutocompleteManager` and `CommandBox`. T`AutocompleteManager` contains a `UniquePersonList` which is used to filter and generate a list of autocomplete entries. The `CommandBox` calls methods from `AutocompleteManager` to get a list of autocomplete entries.
 
 The main methods in `AutocompleteManager` are:
 - `getAutocompleteEntries(String userInput)` - Gets a list of autocomplete entries.
@@ -279,68 +277,42 @@ autocomplete entries by completing the sentence of the `lastPrefixArgument`.
 The main methods in `CommandBox` are:
 - `setAutocompleteListener()` - A listener that triggers `autocompleteAction` whenever user presses a key on the keyboard.
 - `autocompleteAction()` - Gets a list of autocomplete entries from `AutocompleteManager` and displays it.
-- `populatePopup(List<String> autocompleteEntries, String originalSearchInput)` - Fills up the autocomplete display box
-with the autocomplete entries.
+- `populatePopup(List<String> autocompleteEntries, String originalSearchInput)` - Fills up the autocomplete display box with the autocomplete entries.
 
-This feature is an enhancement on the [**search feature**](#search-feature) (i.e. it only works when user is doing a
-searching). It only autocompletes the last prefix and argument of the user input.
+This feature is an enhancement on the [**search feature**](#search-feature) (i.e. it only works when user is doing a searching). It only autocompletes the last prefix and argument of the user input.
 
 Given below is an example usage scenario and how the autocomplete mechanism behaves at each step.
 
-Step 1. The user enters `search n/John p/12345678 a/N` in the `CommandBox`. The
-`CommandBox#setAutocompleteListener()` calls `CommandBox#autocompleteAction()` a key is pressed when the user types the
-command.
+Step 1. The user enters `search n/John p/12345678 a/N` in the `CommandBox`. The `CommandBox#setAutocompleteListener()` calls `CommandBox#autocompleteAction()` as a key is pressed when the user types the command.
 
-:information_source:**Note:** At this step, the command is not executed yet as the user has not pressed the enter key.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** At this step, the command is not executed yet as the user has not pressed the enter key.
 
-Step 2. The `CommandBox#autocompleteAction()` calls `AutocompleteManager#getAutocompleteEntries(String userInput)` to
-get a list of autocomplete entries. The `AutocompleteManager` will process the command and provides a list of
-autocomplete entries.
+Step 2. The `CommandBox#autocompleteAction()` calls `AutocompleteManager#getAutocompleteEntries(String userInput)` to get a list of autocomplete entries.
 
-Step 3. The `AutocompleteManager#getSearchCommandArguments(String userInput)` will check if the command is a valid
-search command and return the valid search command arguments, otherwise an invalid argument and `AutocompleteManager`
-will return an empty list to `CommandBox`. Hence, for user input `search n/John a/N`, the valid search command
-arguments is ` n/John p/12345678 a/N`.
+Step 3. The `AutocompleteManager#getSearchCommandArguments(String userInput)` will check if the command is a valid search command and return the valid search command arguments, otherwise an invalid argument and `AutocompleteManager`will return an empty list to `CommandBox`. Hence, for user input `search n/John a/N`, the valid search command arguments is `n/John p/12345678 a/N`.
 
-Step 4. The search command arguments will be passed to `AutocompleteManager#getLastPrefixArgument(String argsString,
-Prefix... prefixes` to get the last prefix and argument. If there is no valid last prefix and argument found, it will
-then return an invalid argument and similarly, `AutocompleteManager` returns an empty list to `CommandBox`. Given
-` n/John p/12345678 a/NUS`, the last prefix and argument is `a/N` where `a/` is the prefix and `N` is the argument.
+Step 4. The search command arguments will be passed to `AutocompleteManager#getLastPrefixArgument(String argsString, Prefix... prefixes)` to get the last prefix and argument. If there is no valid last prefix and argument found, it will then return an invalid argument and similarly, `AutocompleteManager` returns an empty list to `CommandBox`. Given `n/John p/12345678 a/NUS`, the last prefix and argument is `a/N` where `a/` is the prefix and `N` is the argument.
 
-Step 5. The `AutocompleteManager#updateFilteredPersonList(String argsString)` takes in the arguments without the last
-prefix and argument - ` n/John p/12345678` and filters the `UniquePersonList` based on the condition and contact
-information available in ` n/John p/12345678`.
+Step 5. The `AutocompleteManager#updateFilteredPersonList(String argsString)` takes in the arguments without the last prefix and argument - `n/John p/12345678` and filters the `UniquePersonList` based on the condition and contact information available in ` n/John p/12345678`.
 
-:information_source:**Note:** For `OR` condition, no filter will be applied to `UniquePersonList` (i.e. this returns
-every person in the list). This is because the user wants to perform an `OR` condition search which means the `Person`
-in `UniquePersonList` only has to satisfy one of the information given. Since we are autocompleting only the last prefix
-and argument, the `Person` in `UniquePersonList` will only need to satisfy the last prefix and argument.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `OR` condition, no filter will be applied to `UniquePersonList` (i.e. this returns every person in the list). This is because when the user wants to perform an `OR` condition search, the `Person` in `UniquePersonList` only has to satisfy one of the arguments given. Since we are autocompleting only the last prefix and argument, the `Person` in `UniquePersonList` will only need to satisfy the last prefix and argument.
 
-Step 6. After the `UniquePersonList` is filtered, `AutocompleteManager#generateAutocompleteEntries(String
-argsWithoutLastPrefixArgument, String lastPrefixArgument)` will filter the filtered `UniquePersonList` with the last
-prefix and argument to generate a list of autocomplete entries.
+Step 6. After the `UniquePersonList` is filtered, `AutocompleteManager#generateAutocompleteEntries(String argsWithoutLastPrefixArgument, String lastPrefixArgument)` will filter the filtered `UniquePersonList` with the last prefix and argument to generate a list of autocomplete entries.
 
-For example, the filtered `UniquePersonList` has `Person1 - {n/John Loh, p/12345678, a/NUS}`, `Person2 - {n/John Teo,
-p/12345678, a/NTU}` and `Person3 - {n/John Wong, p/12345678, a/SMU}`. A filter and autocomplete will be done using the
-last prefix and argument - `a/N`, so this will filter out `Person3` as the person's information `a/SMU` does not
-match with `a/N`. After filtering, the prefix and argument will be autocompleted and the list of autocomplete entries
-will be return to `CommandBox`. The list of autocomplete entries will look like this:
+For example, the filtered `UniquePersonList` has `Person1 - {n/John Loh, p/12345678, a/NUS}`, `Person2 - {n/John Teo, p/12345678, a/NTU}` and `Person3 - {n/John Wong, p/12345678, a/SMU}`. A filter and autocomplete will be done using the last prefix and argument - `a/N`, so this will filter out `Person3` as the person's address `a/SMU` does not match with `a/N`. After filtering, the prefix and argument will be autocompleted and the list of autocomplete entries will be return to `CommandBox`.
 
-```
-search n/John p/12345678 a/NUS
-search n/John p/12345678 a/NTU
-```
-
-:information_source:**Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}`, used above means the
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}`, used above means the
 `UniquePersonList` has a `Person` with information `n/John Loh`, `p/12345678` and `a/NUS`.
 
-Step 7. The `CommandBox#autocompleteAction` will pass the list of autocomplete entries to
-`CommandBox#populatePopup(List<String> autocompleteEntries, String originalSearchInput)` to populate the autocomplete
-display box with the autocomplete entries and show the user the list of autocompleted entries.
+Step 7. The `CommandBox#autocompleteAction` will pass the list of autocomplete entries to `CommandBox#populatePopup(List<String> autocompleteEntries, String originalSearchInput)` to populate the autocomplete display box with the autocomplete entries and display to the user.
 
-The following activity diagram summarizes what happens when a user types a command in the `CommandBox`.
+The following activity diagram summarizes what happens when a user types a command in the `CommandBox`:
 
-{insert activity diagram here}
+![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
+
+The following sequence diagram shows how the autocomplete operation works:
+
+![AutocompleteSequenceDiagram](images/AutocompleteSequenceDiagram.png)
 
 #### Design consideration
 
@@ -356,9 +328,6 @@ autocomplete entries.
 the trie data structure.
     * Pros: More efficient way to searching a string.
     * Cons: More memory to store the strings. Have to refactor and modify the existing class and methods.
-
-
-_{more aspects and alternatives to be added}_
 
 ### Tag adding feature
 
@@ -672,24 +641,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. SoConnect shows aan error message.
 
       Use case resumes at step 2.
-
-**Use case: Autocomplete a word**
-
-**MSS**
-
-1.  User inputs word.
-2.  SoConnect gives a selection of possible words.
-3.  User chooses the right word.
-4.  SoConnect changes inputted word to the chosen word.
-
-    Use case ends.
-
-**Extension**
-*  1a. The word changes.
-
-    * 1a1. SoConnect updates the selection of possible words.
-
-      Use case resumes at step 3.
 
 **Use case: Sort by name**
 

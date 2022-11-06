@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+scale 596*473
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "<<interface>>\nList<String>"
+
+package "Autocomplete Classes"{
+Class "<<interface>>\nAutocomplete" as Autocomplete
+Class AutocompleteManager
+Class CliSyntax
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class PrefixArgument
+Class Prefix
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AutocompleteManager
+
+AutocompleteManager .left.|> Autocomplete
+AutocompleteManager ..> ArgumentMultimap
+AutocompleteManager ..> ArgumentTokenizer
+ArgumentTokenizer .left.> ArgumentMultimap
+AutocompleteManager ..> CliSyntax
+ArgumentTokenizer ..> Prefix
+CliSyntax ..> Prefix
+AutocompleteManager ..> PrefixArgument
+PrefixArgument ..> Prefix
+AutocompleteManager ..> "<<interface>>\nList<String>" : returns >
+
+note bottom of "<<interface>>\nList<String>": Contains a list of\n autocomplete entries
+
+@enduml
