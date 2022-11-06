@@ -890,7 +890,7 @@ Examples:
 
 ### Listing all patients: `list`
 
-Shows a list of all patients.
+You can view a list of all patients using the `list` command.
 
 Format: `list`
 
@@ -898,7 +898,7 @@ Format: `list`
 
 ### Viewing all details of a patient: `focus` `-p`
 
-Shows all details of a specified patient.
+You can view all details of a specified patient using the `focus` command.
 
 Format: `focus -p PATIENT_INDEX`
 
@@ -1036,25 +1036,32 @@ Examples:
 
 ### Undoing previous command: `undo`
 
-Undoes the last command which modifies the application data, which includes `add`, `edit`, `delete`, and `clear` commands.
+You can undo the last command which modifies the application data with the `undo` command.
 
 Format: `undo`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:** 
+Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
+
+</div>
 
 Examples:
 * `delete -p 2` followed by `undo` has the same effect as not doing the `delete` command.
 * `delete -p 2` followed by `list`, then followed by `undo` will undo the `delete` command.
 
-<div markdown="block" class="alert alert-success">
-
-:bulb: **Tip:** Only the last 100 commands which modifies the application data can be undone.
-
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
+Only the last 100 commands which modifies the application data can be undone.
+data file at the next run.
 </div>
 
 <br>
 
 ### Reversing undo command: `redo`
 
-Undoes the last `undo` command.
+You can undo the last `undo` command with the `redo` command.
 
 Format: `redo`
 
