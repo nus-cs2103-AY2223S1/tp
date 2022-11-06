@@ -456,8 +456,6 @@ Format: `exit`
 
 <hr>
 
-<div style="page-break-after: always;"></div>
-
 ## 5. Command summary
 
 ### 5.1 Contact Commands
