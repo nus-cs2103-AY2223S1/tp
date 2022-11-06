@@ -363,7 +363,7 @@ Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTIO
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can view the constraints for each parameter in the [Parameter constraints](#parameter-constraints) section.
+:bulb: **Tip:** You can view the constraints for each parameter in the [Parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
@@ -406,7 +406,7 @@ Format: `edit -p PATIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can view the constraints for each parameter in the [Parameter constraints](#parameter-constraints) section.
+:bulb: **Tip:** You can view the constraints for each parameter in the [Patient parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
@@ -448,36 +448,6 @@ Examples:
 
 <br>
 
-<div markdown="block" class="alert alert-success" id="edit-multi-valued-attributes">
-
-:bulb: **Tip:** You can understand the commands about muti-valued attributes as follows.
-
-#### Adding a value to an attribute: `add` `-p`
-
-You can add a value to a patient's attribute with the `add` command.
-
-Format: **`add`**`-p PATIENT_INDEX xyz/XYZ_VALUE`
-
-Example:
-* `list` followed by `add -p 1 t/high-risk` adds the `high-risk` tag (attribute `t`) to the 1st patient in the patient list.
-
-#### Editing a value of an attribute: `edit` `-p` `-xyz`
-
-Format: **`edit`**`-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
-
-Example:
-* `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag (attribute `t`) of the 2nd patient in the patient list to `high-risk`.
-
-
-#### Deleting a value from an attribute: `edit` `-p` `-xyz`
-
-Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
-
-Example:
-* `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
-
-</div>
-
 ### Adding a tag: `add` `-p`
 
 You can add a tag to a patient with the `add` command.
@@ -504,9 +474,34 @@ Examples:
 
 </div>
 
+<a name="edit-multi-valued-attributes"></a>
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:** You can understand the commands about multi-valued attributes as follows.
+
+#### Adding a value to an attribute: `add` `-p`
+
+You can add a value to a patient's attribute with the `add` command.
+
+Format: **`add`**`-p PATIENT_INDEX xyz/XYZ_VALUE`
+
+Example:
+* `list` followed by `add -p 1 t/high-risk` adds the `high-risk` tag (attribute `t`) to the 1st patient in the patient list.
+
+#### Editing a value of an attribute: `edit` `-p` `-xyz`
+
+Format: **`edit`**`-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
+
+Example:
+* `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag (attribute `t`) of the 2nd patient in the patient list to `high-risk`.
+
+
+#### Deleting a value from an attribute: `edit` `-p` `-xyz`
+
+Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
+
+Example:
+* `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
 
 </div>
 
@@ -565,7 +560,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If `TIME` is omitted, the task will be created with a default time of `0000` hours.
 * `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
 * If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
@@ -612,7 +607,7 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
 
