@@ -18,14 +18,17 @@ public class ItemContainsKeywordsPredicateTest {
         List<String> firstItemPredicateKeywordList = Collections.singletonList("item1");
         List<String> secondItemPredicateKeywordList = Arrays.asList("item1", "item2");
 
-        ItemContainsKeywordsPredicate firstItemPredicate = new ItemContainsKeywordsPredicate(firstItemPredicateKeywordList);
-        ItemContainsKeywordsPredicate secondItemPredicate = new ItemContainsKeywordsPredicate(secondItemPredicateKeywordList);
+        ItemContainsKeywordsPredicate firstItemPredicate =
+                new ItemContainsKeywordsPredicate(firstItemPredicateKeywordList);
+        ItemContainsKeywordsPredicate secondItemPredicate =
+                new ItemContainsKeywordsPredicate(secondItemPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstItemPredicate.equals(firstItemPredicate));
 
         // same values -> returns true
-        ItemContainsKeywordsPredicate firstItemPredicateCopy = new ItemContainsKeywordsPredicate(firstItemPredicateKeywordList);
+        ItemContainsKeywordsPredicate firstItemPredicateCopy =
+                new ItemContainsKeywordsPredicate(firstItemPredicateKeywordList);
         assertTrue(firstItemPredicate.equals(firstItemPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class ItemContainsKeywordsPredicateTest {
     @Test
     public void test_itemContainsKeywords_returnsTrue() {
         // One keyword
-        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(Collections.singletonList("Chicken"));
+        ItemContainsKeywordsPredicate predicate =
+                new ItemContainsKeywordsPredicate(Collections.singletonList("Chicken"));
         assertTrue(predicate.test(new PersonBuilder().withItem("Chicken Egg").build()));
 
         // Multiple keywords

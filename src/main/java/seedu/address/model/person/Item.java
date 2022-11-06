@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Item {
 
-    public static final String MESSAGE_CONSTRAINTS = "Item can take any values, but it should not be blank or numbers only";
+    public static final String MESSAGE_CONSTRAINTS = "Item can take any values, "
+            + "but it should not be blank or numbers only";
 
     /*
      * The first character of the item must not be a whitespace,

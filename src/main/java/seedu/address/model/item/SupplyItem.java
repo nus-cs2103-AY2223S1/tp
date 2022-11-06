@@ -22,7 +22,8 @@ public class SupplyItem {
     // but can consist of both numbers and alphabets.
     public static final String VALIDATION_REGEX = "(?![0-9]+$)[^\\s].*";
 
-    public static final String MESSAGE_CONSTRAINTS = "Item can take any values, but it should not be blank or numbers only";
+    public static final String MESSAGE_CONSTRAINTS = "Item can take any values, "
+           + "but it should not be blank or numbers only";
 
     // Identity fields
     private final String name;
