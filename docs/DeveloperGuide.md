@@ -158,21 +158,22 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `AddDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the specified `Person`.
 
-To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`. To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
+Consider a scenario where the user wishes to add a $10 food debt to multiple people. To speed up adding similar `Debt` objects to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` takes in a `Set` of multiple indices. For each `Person` that an `Index` corresponds to, a new `Debt` object will be added to the `DebtList` of the specified `Person`. Some commands such as marking debts as paid, or possible future extensions such as editing a debt, may require modifying a `Debt` object in the `DebtList` of a `Person`. To ensure that modifying this `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, during execution of `adddebt`, each `Debt` object is only added to one `DebtList`, and an `equal` instance of `Debt` is created and added for each other `DebtList`.
 
 To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` can take in optional `<date>` and `<time>` parameters. By making these parameters optional, a default behaviour can be implemented such that when neither parameter is specified, a `Debt` object with the current date and time is created. This will improve the efficiency at which users can input new `Debt` objects for the (expected) most common scenario where they add the `Debt` into PayMeLah on the actual day the debt occurred.
 
-An example of the new objects in the internal state when a valid `adddebt` command provided by the user, `adddebt 1 2 d/food m/10`, has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify the date and time parameters in their command.
+Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
 <img src="images/AddDebtObjectDiagram.png" width="450" />
 
-The activity diagram below details the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
+The activity diagrams below detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
+<img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
 
 ### Clear debts feature - `cleardebts`
@@ -630,3 +631,31 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Effort**
+
+* Summary of new features/enhancements compared to AB3:
+  * Functional code
+    * Introduction of `model.debt` package inclusive of 8 classes, to track debts in addition to persons. Great effort was expanded in integrating the package to existing AB3.
+    * Implementation of 11 new `commands` classes (and corresponding `parser` classes) related to managing debts and searching through the person list.
+    * Refactoring and enhancement of `find` command to be significantly more comprehensive and effective
+    * Updating of GUI
+  * Test code
+    * Addition of `testutil` classes related to `model.debt` package
+    * Significant effort to consistently maintain coverage around the initial 70% from AB3 by always adding new test code with each new feature in the same iteration.
+    * Heavy effort in maintaining and passing existing tests to prevent regressions when adding new fields to existing AB3 code and when enhancing code with new fields across iterations.
+  * Documentation
+    * Greatly expanded UG with more tutorials, examples and explanations for users
+    * Increased user-friendliness of UG significantly
+    * Maintenance (inclusive of revisions and updates) of existing DG documentation
+    * Inclusion of new features and corresponding insights in DG
+    
+* Challenges faced:
+  * Learning of regex to ensure continuity with AB3 parse format
+  * Learning of JavaFX to update GUI
+  * Learning of Jackson to maintain data file
+  * Learning of PlantUML to update DG
