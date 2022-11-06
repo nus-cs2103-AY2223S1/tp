@@ -42,21 +42,24 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * Add unit tests for `Date`, `FormatterList`, `RegexList`, `RangeCommand`, `RangeCommandParser`,
-  `AddCommandParser`, `DateWithinRangePredicate` to improve code coverage. (PR #217 etc.)
+  `AddCommandParser`, `DateWithinRangePredicate` to improve Codecov code coverage. (PR #217 etc.)
 
 * **Documentation**:
   * User Guide:
-    * Common date formats accepted for command inputs (PR #130)
-    * Explanation on `:range start/START_DATE end/END_DATE` command (PR #105, #128)
-    * Explanation on `:range last/NUMBER_OF_DAYS` command (PR #128)
+    * Common date formats accepted for command inputs. (PR #130)
+    * Explanation on `:range start/START_DATE end/END_DATE` command. (PR #105, #128)
+    * Explanation on `:range last/NUMBER_OF_DAYS` command. (PR #128)
 
   * Developer Guide:
-    * Class diagram showing the relationship between `Date`, `RegexList` and `FormatterList`
-    * Sequence diagram for `:range` command
-    * Explanation on the implementation of `:range start/START_DATE end/END_DATE` command
-    * Explanation on the implementation of `:range last/NUMBER_OF_DAYS` command
-    * Explanation on the implementation of the `Date` class
+    * Class diagram showing the relationship between `Date`, `RegexList` and `FormatterList`.
+    * Sequence diagram for `:range` command.
+    * Explanation on the implementation of `:range start/START_DATE end/END_DATE` command.
+    * Explanation on the implementation of `:range last/NUMBER_OF_DAYS` command.
+    * Explanation on the implementation of the `Date` class.
 
 * **Community**:
   * Add a guide for the team to refer to on how to use Gradle to run tests and checkstyle for
   CI checks locally before making a pull request. (PR #29)
+  * Discussed design choices with their benefits and trade-offs and implementation options with the team.
+  * Analyzed team member's Pull Requests (PRs) and provided feedback.
+  * Brainstormed on the potential bugs in the app and ways to rigorously test the features.
