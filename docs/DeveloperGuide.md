@@ -323,7 +323,7 @@ The following class diagram shows how messages are implemented:
 Step 1. The user creates a message template. A new `Message` object is created in `CreateMessageParser`. Then, `CreateMessageCommand#execute()` calls `ModelManager#createMessage()`, which calls `AddressBook#createMessage()`, which adds the message into `AddressBook#messages`
 
 ```
-message create Hello {name}, long time no see! Are you free tomorrow? I'd like to share something exciting with you!
+message create Hello {name}, long time no see! Are you free tomorrow?
 ```
 
 Step 2: The user generates a message template for Bob (id=4 in the list), an early-stage client. In `GenerateMessageCommand#execute()`, {name} is replaced with the target person's `fullName`.
