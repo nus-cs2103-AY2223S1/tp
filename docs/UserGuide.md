@@ -55,20 +55,17 @@ This section aims to define some terms that pop up throughout the user guide. Th
 good to take note of them before continuing.
 
 ### Command-specific terms
-1. **Command String**: The text you input into the [command input box](#1-command-input-and-output-boxes), which is
-translated to a Command by Cobb
-2. **Command**: An instruction that is executed by Cobb and translated from your Command String 
-3. **Syntax**: The manner in which is a Command String is to be typed. Can be thought of as the "format" of the command string.
-4. **Parameter**: An input to a command. Can be thought of as a piece of information a user provides that determines the
-   behaviour of a specific command.
-5. **Flag**: A marker that signifies the start of a parameter to a command. For Cobb, in the command `findbuyer -k Tim`, 
-   `-k` is the flag, and `Tim` is the parameter.
-6. **Fuzzy**: A flag that signifies loose filtering, that is, given a set of filter requirements, any user that matches at least one
+1. **Command**: An instruction that you can type into the [command input box](#1-command-input-and-output-boxes) to do
+something in Cobb. See [Features](#features) for a list of commands.
+2. **Syntax**: The format in which is a Command String is to be typed.
+3. **Flag**: Comes before an input to a command. For Cobb, in the command `findbuyer -k Tim`, `-k` is the flag, 
+and `Tim` is the input.
+4. **Fuzzy**: A flag that signifies loose filtering, that is, given a set of filter requirements, any user that matches at least one
    the given requirements will be returned.
-7. **Strict**: A flag that signifies tight filtering, that is, given a set of filter requirements, any user matching all of the
+5. **Strict**: A flag that signifies tight filtering, that is, given a set of filter requirements, any user matching all of the
    given requirements will be returned.
-8. **Ascending**: Related to order; from low to high or minimum to maximum.
-9. **Descending**: Related to order; from high to low or maximum to minimum. 
+6. **Ascending**: Related to order; from low to high or minimum to maximum.
+7. **Descending**: Related to order; from high to low or maximum to minimum. 
 
 ### Buyer-specific terms
 1. **Name**: The name of the buyer.
@@ -143,7 +140,7 @@ might not be showing **all* the buyers in the database all the time (see [FAQ](#
 The buyer list can be filtered and modified using commands given in the [features](#features) section of the guide.
 
 ### 3. Property List
-You can find the property list located at the right section of Cobb's GUI.
+You can find the property list located at the right section of the window.
 ![Property List](images/PropertyList.png)<br>
 The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
 might not be showing **all* the properties in the database all the time (see [FAQ](#faq)).
@@ -195,8 +192,8 @@ Take a look at the [command summary](#command-summary) for a quick summary of th
   e.g. `deletebuyer 7` if the list is only 5 entries long.
 
 
-* If commands are missing specific parameters required for it to execute, an error message will be displayed that contains 
-  information about the syntax of the command and its required parameters.
+* If commands are missing specific inputs required for it to execute, an error message will be displayed that contains 
+  information about the syntax of the command and its required inptus.
 </div>
 
 ### Add Commands
@@ -515,7 +512,7 @@ To view all buyers and properties again, use the [List Commands](#list-commands)
 Alternatively, copy and paste the data file with the *same name* from your old computer.
 
 **Q**: Help! I can't seem to get a command to work...<br>
-**A**: Refer to the [features](#features) section of our guide for command information and syntax. Make sure that you have supplied all necessary parameters for the command and specified parameter flags in a correct manner.
+**A**: Refer to the [features](#features) section of our guide for command information and syntax. Make sure that you have supplied all necessary inputs for the command and specified the flags in a correct manner.
 
 **Q**: How do I run the app if double-clicking the jar file does nothing? <br>
 **A**: Take a look at the [quick start](#quick-start) section of the guide for setup information. For the more technically inclined, try running this command in the jar file's home directory: `java -jar cobb.jar`<br>
