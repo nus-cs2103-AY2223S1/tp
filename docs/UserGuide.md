@@ -156,7 +156,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 | **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long                   |
 | **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.-        |
 | **`a/ADDRESS`**      | `a/[address]`                   |                                                                                                 |
-| **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                                 |
+| **`ds/DESCRIPTION`** | `ds/[description]`              |                                                                                                 |
 | **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should start with a $ sign, only contain numbers and should be at least 4 digits long |
 | **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 2000-2099<br/>HH:MM: 00:00 - 23:59                            |
 | **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                                     |
@@ -225,7 +225,7 @@ Find your clients whose name contain any of the given keywords.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched. e.g. `find n/Kent` won’t return clients living on Kent Ridge Road
-* Partial words will not be matched. e.g. `Jack` will not match `Jackson`.
+* Partial words will be matched. e.g. `Jack` will match `Jackson`.
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -399,7 +399,7 @@ You can use this command when:
 * You must update the meeting time of a client through the [`meeting` command](#updating-meetings--meeting), [`deletemeeting` command](#delete-meetings--deletemeeting) and [`sync` commands](#remove-past-meetings--sync).
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
-* Person profiles and do not refresh when person is updated, they are only updated when we re-click the person card
+* Person profiles do not refresh when person is updated, they are only updated when we re-click the person card
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
@@ -438,6 +438,13 @@ You can use this command when:
 * Updating description of your client can also be done through the 'update' command. See [Update command](#updating-your-clients-information--update)
 
 Format: `description INDEX ds/DESCRIPTION`
+
+<div markdown="block" class="alert alert-block alert-success">
+
+:bulb: **Note:**
+You can remove the profiles description by inputting an empty description. E.g. `description 5 ds/`
+
+</div>
 
 ![description](images/UserGuide/description.png)
 Example given: `description 5 ds/High Financial Literacy`
