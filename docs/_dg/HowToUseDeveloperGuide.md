@@ -8,7 +8,7 @@ You do not need to read the Developer Guide in a sequential order. However, we r
 The Developer Guide has six main components:
 
 1. [Design](#design)
-1. [Implementation](#implementation) 
+1. [Implementation](#implementation)
 1. [Documentation, Configuration and Other Guides](#documentation-configuration-and-other-guides)
 1. [Requirements](#requirements)
 1. [Instructions for manual testing](#instructions-for-manual-testing)
