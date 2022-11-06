@@ -165,7 +165,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return Objects.hash(persons, tasks, tags);
     }
 
-    //task methods
+    //// task methods
 
     @Override
     public ObservableList<Task> getTaskList() {
@@ -225,6 +225,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void sortById() {
         tasks.sortById();
     }
+
+    //// tag methods
 
     /**
      * Adds a tag to the address book.
