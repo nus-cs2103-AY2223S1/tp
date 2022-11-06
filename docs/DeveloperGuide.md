@@ -394,15 +394,15 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 ```java
 (first, second) -> {
-    HashMap<Integer, Object> a = first.getUniqueId();
-    HashMap<Integer, Object> b = second.getUniqueId();
-    Instant t = (Instant) a.get(0);
-    int result = t.compareTo((Instant) b.get(0));
-    if (result == 0) {
-        return ((int) a.get(1)) - ((int) b.get(1));
-    }
-        return result;
-    }
+            HashMap<Integer, Object> a = first.getUniqueId();
+            HashMap<Integer, Object> b = second.getUniqueId();
+            Instant t = (Instant) a.get(0);
+            int result = t.compareTo((Instant) b.get(0));
+            if (result == 0) {
+                return ((int) a.get(1)) - ((int) b.get(1));
+            }
+            return result;
+        }
 ```
 </td>
 <td>
