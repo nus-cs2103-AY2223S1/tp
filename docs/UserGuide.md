@@ -149,11 +149,11 @@ java -version
 | Command                 | A sentence which the user inputs to perform a function.                                                                                                                                                     |
 | Command word            | The first word of every command.                                                                                                                                                                            |
 | Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                   |
-| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.             |
+| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-c`, `-m`, `-r`.             |
 | Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
-| Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/`. |
+| Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `c/`, `m/`, `r/`. |
 | Single-valued attribute | A patient's detail that consist of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.  |
-| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `MEDICATION`, `CONDITION`, `REMARK`.                                                                      |
+| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `CONDITION`, `MEDICATION`, `REMARK`.                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -206,8 +206,6 @@ Things to add:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Patient parameter constraints
-
-_To be cleaned up_
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
@@ -300,8 +298,6 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 Example:`r/Allergic to peanuts`
 
-_Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
-
 ### Patient parameter summary
 
 | Parameter    | Type                    | Flag | Prefix |
@@ -317,9 +313,9 @@ _Clean up Task parameters, some should be put in the feature, while things like 
 | `REMARK`     | Multi-Valued Attribute  | `-r` | `r/`   |
 | `PATIENT`    | -                       | `-p` | -      |
 
-<div markdown="block" class="alert alert-success">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:**
+:information_source: **Notes:**
 * The value of an attribute is prefixed by its prefix.
 * The index of a patient's multi-valued attribute is specified with its flag.
 * The flag and the prefix of a multi-valued attribute are coded with the same letter.
@@ -1043,7 +1039,7 @@ Format: `undo`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:** 
-Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
+* Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
 
 </div>
 
