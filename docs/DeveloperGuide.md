@@ -318,7 +318,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teaching assistant | unmark a reminder as not done                   | reverse any task I accidentally marked as done                                           |
 | `* * *`  | teaching assistant | delete a reminder                               | delete any reminders that are not needed anymore                                         |
 | `* *`    | teaching assistant | clear all reminders                             | clear all reminder slots at once after a semester                                        |
-| `* * *`  | teaching assistant | sort all reminders by deadline or priority      | have an overview of all tasks that I have and plan my time wisely                        |
+| `* * *`  | teaching assistant | sort all reminders by deadline                  | have an overview of all my tasks and see which tasks are most urgent                     |
+| `* * *`  | teaching assistant | sort all reminders by priority                  | have an overview of all my tasks from what I deemed most important to least important    |
 | `* *`    | teaching assistant | clear all data                                  | restart my Modquik after a semester                                                      |
 | `* * *`  | user               | save and load my data                           | do not need to enter all my data each time I launch ModQuik                              |
 | `* * `   | fast-typing user   | type a command to switch between different tabs | do not need to use my mouse                                                              |
@@ -326,14 +327,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ModQuik` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModQuik`, the **Actor** is the `user`, and **entries** can be either of type `student`, `tutorial`, `consultation` or `reminder`, unless specified otherwise)
 
-**Use case: Add a reminder**
+**Use case: Add an entry**
 
 **MSS**
 
-1. User requests to add a reminder
-2. System adds the reminder
+1. User requests to add an entry
+2. System adds the entry
 3. System displays the success message
 
     Use case ends.
@@ -352,11 +353,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-**Use case: Delete a tutorial slot**
+**Use case: Edit an entry**
 
 **MSS**
 
-1. User requests the list of tutorial slot
+1. User requests to edit a specific entry in the list
+2. System edits the entry
+3. System displays the success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The input does not follow the format.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+* 1b. The input does not include all required parameters.
+
+    * 1b1. System shows an error message.
+
+      Use case ends.
+
+**Use case: Delete an entry**
+
+**MSS**
+
+1. User requests the list of entries
 2. System shows the list of tutorial slot
 3. User requests to delete a certain tutorial slot
 4. System deletes the specified tutorial slot 
@@ -375,6 +400,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Mark a reminder**
+
+**MSS**
+
+1. User requests to mark a reminder.
+2. System updates the completion status of the reminder as complete.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The reminder is already marked as done.
+
+    * 1a1. System shows an error message that the reminder is already completed.
+
+      Use case ends.
+
+* 1b. The reminder does not exist.
+
+    * 1b1. System shows an error message that the reminder does not exist.
+
+      Use case ends.
+
+**Use case: Unmark a reminder**
+
+**MSS**
+
+1. User requests to unmark a reminder.
+2. System updates the completion status of the reminder as incomplete.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The reminder is not yet done.
+
+    * 1a1. System shows an error message that the reminder is already incomplete. 
+      
+      Use case ends.
+
+* 1b. The reminder does not exist.
+
+    * 1b1. System shows an error message that the reminder does not exist.
+
+      Use case ends.
+
+**Use case: Sort reminder**
+
+**MSS**
+
+1. User requests to sort the reminder.
+2. User chooses the sorting criteria.
+3. System sort the reminders by the given criteria.
+   
+   Use case ends.
+
+**Extensions**
+
+* 2a. The sorting criteria is invalid.
+
+    * 2a1. System shows an error message.
+
+      Use case ends.
+
+**Use case: View help**
+
+**MSS**
+
+1. User requests to view help.
+2. System displays a pop-up window with a link to the User Guide.
+
+   Use case ends.
+
+**Use case: Exiting the application**
+
+**MSS**
+
+1. User requests to exit the application.
+2. System exist.
+
+   Use case ends.
+
+    
+
 
 *{More to be added}*
 
