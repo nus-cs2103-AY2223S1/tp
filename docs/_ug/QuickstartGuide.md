@@ -12,7 +12,7 @@ This section covers all you should know about FoodRem, as well as a [guided tuto
 
 ### Command Format
 
-You will encounter FoodRem commands throughout this User Guide. Before you delve into the different commands in [Commands](#commands), let’s learn what a command consists of.
+You will encounter FoodRem [[commands:command]] throughout this User Guide. Before you delve into the different commands in [Commands](#commands), let’s learn what a command consists of.
 
 Here is an example:
 
