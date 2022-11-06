@@ -168,24 +168,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The filter transaction mechanism is facilitated by `FilterTransCommand` which extends from `Command` and `FilterTransCmdParser` which extends from `Parser`. To invoke the filter command, `FilterTransCmdParser` will parse the arguments from the user input via `FilterTransCmdParser#parse()` and returns the filter command if the arguments are valid.
 
-`FilterTransCommand` implements the `FilterTransCommand#execute()` operation which executes the command and returns the result message in a `CommandResult` object.
+`FilterTransCommand` calls the `FilterTransCommand#execute()` operation which executes the command and returns the result message in a `CommandResult` object.
 
 The operation is exposed in the `Logic` interface as `Logic#execute()`.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
-Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
-
-![FilterTransState0](images/FilterTransState0.png)
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays all the clients.
 
 Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the
 `Client#getBuyTransactionList()` which returns an unmodifiable view of the buy transaction list.
 
 
 Step 3. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleFilterTransaction()`,
-to display only the filtered buy transactions from the `Client#getBuyTransactionList()`.
-
-![FilterTransState1](images/FilterTransState1.png)
+to display only the filtered buy transactions from the `Client#getBuyTransactionList()` while the client panel list will display all the clients.
 
 The following sequence diagram shows how the filter operation works:
 
@@ -197,7 +193,7 @@ The following sequence diagram shows how the filter operation works:
 
 The following activity diagram summarizes what happens when a user executes the filter command:
 
-<img src="images/FilterTransCmdActivityDiagram.png" width="250" />
+<img src="images/FilterTransCmdActivityDiagram2.png" width="250" />
 
 #### Design considerations:
 
@@ -205,10 +201,10 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Filter all the transactions made by all the clients.
     * Pros: Easy to implement and allow the user to see all the buy or sell transactions at one glance.
-    * Cons: May have performance issues due to searching through all transactions of each client. Hard to distinguish which transaction belong to which client.
+    * Cons: May have performance issues due to searching through all transactions of each client. Unable distinguish which transaction belong to which client.
 
 * **Alternative 2:** Individual filter transaction for each client.
-    * Pros: Performs faster as the command only filters through one client. Also able to know which client the transactions are from.
+    * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
 ### \[Proposed\] Buy feature for transactions

@@ -7,8 +7,10 @@ start
 
 if () then ([command is valid argument])
     :Executes filter command;
-    :Display all the transactions
-    based on filter;
+    :Transaction Panel will display
+    all the transactions based on filter.
+    Client Panel will display
+    all the clients;
 else ([else])
 endif
 stop
