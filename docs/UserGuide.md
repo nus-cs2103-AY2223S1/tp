@@ -124,9 +124,9 @@ Contact management has never been this simple.
 
 <div markdown="block" class="alert alert-info">
 
-* Contacts have no labels by default.
+* Contacts have no labels by default.<br>
 
-* Contact remarks are limited to alphanumeric characters and spaces.
+* Contact remarks are limited to alphanumeric characters and spaces.<br>
 
 </div>
 
@@ -251,9 +251,9 @@ Leave your task management to YellowBook, so you can do your best work.
 
 <div markdown="block" class="alert alert-info">
 
-* Tasks have no labels by default.
+* Tasks have no labels by default.<br>
 
-* Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.
+* Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.<br>
 
 </div>
 
@@ -486,11 +486,11 @@ With our label feature, managing your numerous projects on the go has just gotte
 
 <div markdown="span" class="alert alert-info">:information_source::
 
-* Labels must be alphanumeric and one word long.
+* Labels must be alphanumeric and one word long.<br>
 
-* Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.
+* Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.<br>
 
-:bulb: Multiple labels can be specified.
+:bulb: Multiple labels can be specified.<br>
 
 </div>
 
@@ -508,9 +508,9 @@ Only a maximum of one contact and one task can be labelled within the same comma
 
 <div markdown="span" class="alert alert-warning">:warning::
 
-- Contact/task does not exist.
-- Contact/task already has the required label.
-- More than one contact or more than one task is specified.
+- Contact/task does not exist.<br>
+- Contact/task already has the required label.<br>
+- More than one contact or more than one task is specified.<br>
 
 </div>
 
@@ -531,9 +531,9 @@ Only a maximum of one contact and one task can be edited within the same command
 
 <div markdown="span" class="alert alert-warning">:warning::
 
-- Contact/task does not exist.
-- Label does not exist on specified contact/task.
-- More than one contact or more than one task is specified.
+- Contact/task does not exist.<br>
+- Label does not exist on specified contact/task.<br>
+- More than one contact or more than one task is specified.<br>
 
 </div>
 
