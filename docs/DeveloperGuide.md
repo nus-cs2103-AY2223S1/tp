@@ -137,7 +137,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add an person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -559,117 +559,184 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an applicant**
+**Use case: UC01 - List all applicants**
 
 **MSS**
 
-1.  User requests to add an applicant with its specifiers
-2.  InternConnect adds an applicant
-3.  InternConnect shows the updated list of applicants
+1.  User requests to list all applicants
+2.  InternConnect shows all applicants
+
+    Use case ends.
+
+
+**Use case: UC02 - Add an applicant**
+
+**MSS**
+
+1.  User requests to add an applicant with its parameters
+2.  InternConnect adds the applicant
+3.  InternConnect shows newly added applicant, as well as the updated list of applicants
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given format is invalid.
-
-    * 3a1. InternConnect shows an error message.
-
-      Use case ends.
-
-
-**Use case: Modify an applicant**
-
-**MSS**
-
-1.  User requests to modify an applicant with its specifiers
-2.  InternConnect modifies the applicant
-3.  InternConnect shows the updated applicant
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. InternConnect detects that the specifiers given is invalid.
+* 1a. The given format is invalid.
 
     * 1a1. InternConnect shows an error message.
 
       Use case ends.
 
-* 1b. InternConnect detects that the INDEX given is invalid.
+* 1b. The specified applicant is a duplicate to another applicant in the list.
 
-    * 1b1. InternConnect shows an error message.
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1c. The specified applicant has an invalid data value.
+
+    * 1a1. InternConnect shows an error message.
 
       Use case ends.
 
 
-**Use case: Delete an applicant**
+**Use case: UC03 - Edit an applicant**
 
 **MSS**
 
-1.  User requests to list applicants
-2.  InternConnect shows a list of applicants
-3.  User requests to delete a specific applicant in the list
-4.  InternConnect deletes the applicant
-5.  InternConnect shows the updated list of applicants
+1.  User requests to list all applicants (UC01)
+2.  User requests to modify an applicant at a certain index with its parameters
+3.  InternConnect modifies the applicant
+4.  InternConnect shows the updated applicant
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is not a positive integer or out of bounds.
+* 2a. The given format is invalid.
 
-    * 3a1. InternConnect shows an error message.
+    * 2a1. InternConnect shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 2b. The given index is not a positive integer or is out of bounds.
+
+    * 2b1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 2c. The specified applicant is a duplicate to another applicant in the list.
+
+    * 2c1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 2d. The specified applicant has an invalid data value.
+
+    * 2d1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 2e. No valid parameters were given.
+
+    * 2e1. InternConnect shows an error message.
+
+      Use case ends.
 
 
-**Use case: View an applicant**
+**Use case: UC04 - Delete an applicant**
 
 **MSS**
 
-1.  User requests to view an applicant of a particular index number
-2.  InternConnect shows the detailed data of the applicant
+1.  User requests to list all applicants (UC01)
+2.  User requests to delete an applicant at a certain index in the list
+3.  InternConnect deletes the applicant
+4.  InternConnect shows the updated list of applicants
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index number is invalid.
+* 1a. The list is empty.
 
-    * 1a1. InternConnect shows an error message.
+  Use case ends.
+
+* 2a. The given format is invalid.
+
+    * 2a1. InternConnect shows an error message.
+
+      Use case ends.
+  
+* 2b. The given index is not a positive integer or is out of bounds.
+
+    * 2a1. InternConnect shows an error message.
 
       Use case ends.
 
 
-**Use case: Find an applicant**
+**Use case: UC05 - View an applicant**
 
 **MSS**
 
-1. User requests to find all applicants with matching keywords in its specified fields
-2. InternConnect lists all applicants who match the request
+1.  User requests to list all applicants (UC01)
+2.  User requests to view an applicant at a certain index in the list
+3.  InternConnect shows the detailed data of the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given format is invalid.
+
+    * 2a1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 2b. The given index is not a positive integer or is out of bounds.
+
+    * 2a1. InternConnect shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC06 - Find an applicant**
+
+**MSS**
+
+1.  User requests to list all applicants (UC01)
+2.  User requests to find all applicants with matching keywords in its specified fields
+3.  InternConnect lists all applicants who match the request
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-    * 1a1. No applicants will be found.
+
+  Use case ends.
+
+* 2a. The given format is invalid.
+
+    * 2a1. InternConnect shows an error message.
 
       Use case ends.
 
-* 1b. Input syntax is invalid, no valid specifiers are found, or any specifier value is invalid.
+* 2b. No valid parameters were given.
 
-    * 1b1. InternConnect shows an error message.
+    * 2b1. InternConnect shows an error message.
 
       Use case ends.
 
 
-**Use case: Import applicants from an external JSON file**
+**Use case: UC07 - Import applicants from an external JSON file**
 
 **MSS**
 
@@ -681,57 +748,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given file path is invalid or is not a JSON file.
+* 1a. The given format is invalid.
 
     * 1a1. InternConnect shows an error message.
 
       Use case ends.
 
-* 1b. The given file has invalid value, incorrect format, and/or duplicate applicants.
+* 1b. The given file name does not exist, is invalid or is not a file in JSON format.
 
-    * 1b1. InternConnect shows an error message and creates a template file.
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
+
+    * 1c1. InternConnect shows an error message and creates a template file.
 
       Use case ends.
 
 
-**Use case: Export displayed list to a JSON file**
+**Use case: UC08 - Export displayed list to a JSON file**
 
 **MSS**
 
-1.  User requests to export displayed list to a JSON file
-2.  InternConnect exports displayed list to a JSON file
+1.  User requests to list all applicants (UC01)
+2.  User requests to export displayed list to a JSON file
+3.  InternConnect exports displayed list to a JSON file
 
     Use case ends.
 
 
-**Use case: Checkout a JSON file**
+**Use case: UC09 - Checkout a JSON file**
 
 **MSS**
 
 1.  User requests to checkout a JSON file
-2.  InternConnect loads all applicants.
+2.  InternConnect loads all applicants from the file.
 3.  InternConnect displays the loaded applicants.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given file name does not exist.
+* 1a. The given format is invalid.
 
-    * 1a1. InternConnect creates a new JSON file with the given file name.
-    * 1a2. InternConnect displays a sample addressbook.
-
-      Use case ends.
-
-* 1b. The given file has invalid values, and/or incorrect format, and/or duplicate applicants.
-
-    * 1b1. InternConnect wipes the data from the file.
-    * 1b2. InternConnect displays an empty addressbook.
+    * 1a1. InternConnect shows an error message.
 
       Use case ends.
+  
+* 1b. The given file name does not exist, is invalid or is not a file in JSON format..
+
+    * 1b1. InternConnect creates a new JSON file with the given file name.
+    * 1b2. InternConnect fills the data with sample data.
+
+      Use case resumes from step 2.
+
+* 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
+
+    * 1c1. InternConnect wipes all data from the file.
+    * 1b2. InternConnect fills the data with an empty data.
+
+      Use case resumes from step 2.
 
 
-**Use case: Exit**
+**Use case: UC10 - Exit**
 
 **MSS**
 
@@ -741,7 +821,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: Help**
+**Use case: UC11 - Help**
 
 **MSS**
 
@@ -815,7 +895,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    2. Test case: `add add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
-      Expected: An applicant named John Doe is added. Details of the added applicant shown in the right panel. Success
+      Expected: An applicant named John Doe is added. Details of the added applicant shown in the view panel. Success
       message shown in the status message.
 
 2. Adding a duplicate applicant to InternConnect
@@ -826,7 +906,14 @@ point for testers to work on; testers are expected to do more exploratory testin
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
       Expected: No applicant is added. Error details shown in the status message.
 
-3. Other incorrect `add` commands to try: `add`, `add n/John`, `add 1`<br>
+3. Adding an applicant with not all parameter specified
+
+    1. Prerequisites: None
+
+    2. Test case: `add add n/John Doe`<br>
+       Expected: No applicant is added. Error details shown in the status message.
+
+4. Other incorrect `add` commands to try: `add`, `add 1`<br>
    Expected: No applicant is added. Error details shown in the status message.
 
 
@@ -837,44 +924,40 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: The displayed list contains at least one applicant
 
    2. Test case: `view 1`
-
-        Expected: Details of the first person in the list will be shown in the view panel. Success message shown in the status message.
+      Expected: Details of the first applicant in the list shown in the view panel. Success message shown in the status message.
 
 2. Viewing an empty displayed list
 
     1. Prerequisites: The displayed list is empty
 
     2. Test case: `view 1`
-
-        Expected: No applicant is viewed. Error details shown in the status message.
+       Expected: No applicant is viewed. Error details shown in the status message.
 
 3. Viewing a non-positive index
 
     1. Prerequisites: List all applicants using the list command. Multiple applicants in the list.
 
     2. Test case: `view 0`
-
-        Expected: No applicant is viewed. Error details shown in the status message.
+       Expected: No applicant is viewed. Error details shown in the status message.
 
 4. Other incorrect `view` commands to try: `view`, `view john`, `view x`(where `x` is larger than the list size)<br>
    Expected: No applicant is viewed. Error details shown in the status message.
 
+
 ### 7.4 Editing an applicant
 
-1. Editing one parameter of an applicant on InternConnect
+1. Editing at least one parameter of an applicant on InternConnect
 
    1. Prerequisites: One applicant in the application.
 
    2. Test case: `edit 1 u/NUS`<br>
-      Expected: The university of the applicant in the first index is changed to `NUS`
-
-2. Editing multiple parameters of an applicant on InternConnect
-
-    1. Prerequisites: One applicant in the application.
-
-    2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
-       Expected: The university, phone number, and gender of the applicant in the first index is changed to
-       `NUS`, `12345678`, and `male` respectively.
+      Expected: The university of the applicant in the first index is changed to `NUS`.  Details of the first applicant 
+      in the list shown in the view panel. Success message shown in the status message.
+   
+   3. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
+      Expected: The university, phone number, and gender of the applicant in the first index is changed to
+      `NUS`, `12345678`, and `male` respectively.  Details of the first applicant in the list shown in the view panel. 
+      Success message shown in the status message.
 
 
 ### 7.5 Deleting an applicant
@@ -884,7 +967,6 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
-
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
@@ -893,7 +975,6 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 0`<br>
-
       Expected: No applicant is deleted. Error details shown in the status message.
 
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
@@ -907,16 +988,19 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: There exists a valid list of applicants in InternConnect that is not empty
 
    2. Test case: `find n/Alex` <br>
-      Expected: All applicants with the name `Alex` are listed in the left panel. Number of applicants found will be shown in the status message.
+      Expected: All applicants with the name `Alex` are listed in the left panel. Number of applicants found shown in 
+      the status message.
+   
    3. Test case: `find g/Male m/Computer Science` <br>
-      Expected: All **male** applicants who have majors with **either** `Computer` or `Science` in their major are listed in the left panel. Number of applicants found will be shown in the status message.
+      Expected: All **male** applicants who have majors with **either** `Computer` or `Science` in their major are 
+      listed in the left panel. Number of applicants found shown in the status message. 
 
 2. No applicants to search for
 
    1. Prerequisites: There is an empty list of applicants in InternConnect
 
    2. Test case: `find specifer/SPECIFER_KEYWORD` <br>
-     Expected: No applicants will be listed in the left display panel. 0 applicants found will be shown in the status message.
+      Expected: No applicants will be listed in the left display panel. `0 persons listed!` shown in the status message.
 
 
 ### 7.7 Importing applicants from an external JSON file
@@ -955,28 +1039,24 @@ point for testers to work on; testers are expected to do more exploratory testin
 1. Exporting empty displayed list
 
    1. Test case: `find g/nonbinary` followed by `export`
-
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
-      **"persons"** and value is an empty array.
+      **"persons"** and value is an empty array. Success message shown in the status message.
 
    2. Test case: `find g/nonbinary` followed by `export 1`
-
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
-      **"persons"** and value is an empty array.
+      **"persons"** and value is an empty array. Success message shown in the status message.
 
 2. Exporting non-empty displayed list
 
    1. Prerequisite: currently displayed list is not empty
 
    2. Test case: `export`
-
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
-      **"persons"** and value is a non-empty array.
+      **"persons"** and value is a non-empty array. Success message shown in the status message.
 
    3. Test case: `export a`
-
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
-      **"persons"** and value is a non-empty array.
+      **"persons"** and value is a non-empty array. Success message shown in the status message.
 
 
 ### 7.9 Checkout a new or existing list
@@ -986,25 +1066,25 @@ point for testers to work on; testers are expected to do more exploratory testin
    1. Prerequisites: One JSON file with valid data and valid format in `data/` folder.
 
    2. Test case: `checkout FILE_NAME`
-
-      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application.
+      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application. Success 
+      message shown in the status message.
 
 2. Checkout to a non-existent file.
 
-    1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
+   1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
 
-    2. Test case: `checkout FILE_NAME`
-
-       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the application.
+   2. Test case: `checkout FILE_NAME`
+      Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the 
+      application. Success message shown in the status message.
 
 3. Checkout to an existing file with invalid data or invalid format.
 
-    1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
+   1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
 
-    2. Test case: `checkout FILE_NAME`
+   2. Test case: `checkout FILE_NAME`
+      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped. The application will not 
+      contain any applicants. Success message shown in the status message.
 
-       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped.
-       The application will not contain any applicants.
 
 ### 7.10 Saving data
 
