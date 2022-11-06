@@ -1279,7 +1279,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Marking tasks as done (and undone)
 
-1. **Marking a task that is shown as done:**
+1. **Marking a task as done:**
 
     1. Pre-requisites:
        - You have at least one undone task (see `add task`).
@@ -1308,10 +1308,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `list task -A`<br>
        Expected: A syntax error message is displayed, because the flag is case-sensitive.
 
-1. **Unmarking as task that is shown as done:**
+1. **Unmarking a task that is shown as done:**
 
     1. Pre-requisites:
-        - You have just completed the previous test case - there should only be at least 1 task and it should be done and visible.
+        - You have just completed the previous test case - there should be at least 1 task and it should be done and visible.
     1. Test case: `undone task 1` (replace `1` with the top-most undone task number) <br>
        Expected: The undone task (topmost among those undone in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
     1. Test case: `undone task 1` followed by another `undone task 1` <br>
