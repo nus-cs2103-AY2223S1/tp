@@ -120,9 +120,9 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 In this section, we will be explaining our commands. Before proceeding, we will need to explain how our commands are
 structured!
 
-All commands are structured in the same manner. As seen in the image below, a command begins with a command word. If the
-command requires more information, it can be provided through flags and parameters. All flags begin with a hyphen, and
-any information for that flag is provided directly after, as a parameter.
+As seen in the image below, a command begins with a command word. If the command requires more information, it can be 
+provided through flags and parameters. All flags begin with a hyphen, and any information for that flag is provided 
+directly after, as a parameter.
 
 ![Command Structure](images/user-guide/AnnotatedCommand.png)
 
@@ -150,12 +150,16 @@ Using the add command format above as an example, the following are a few good a
 
 And a few more notes about command structure,
 
-* Command parameters (e.g. `-a`, `-m`) can be made in any order
-  * e.g. `add -m GEA1000 -n Project` and `add -n Project -m GEA1000` will give the same result
+* Command flags (e.g. `-a`, `-m`) can be made in any order
 * If a parameter is expected only once in a command but was specified multiple times, the last occurrence of it will be taken
-  * e.g. if you enter `add -n Project -m GEA1000 -m CS2103T`, this will be interpreted as `add -n Project -m CS2103T`
 * Irrelevant flags and parameters provided to commands will simply be ignored
-  * e.g. Providing `-p abc` to the add command will have no effect on the feature as the add command does not need a `-p` flag
+
+For example, `add -m GEA1000 -m CS2100 -p -n Project` will be interpreted as `add -n Project -m CS2100`, since
+
+* Flag order does not matter
+* Last occurrence of the duplicate flag `-m` is taken
+* The `-p` flag is not expected by the add command and is thus ignored
+
 </div>
 
 <div markdown="block" class="alert alert-info">
