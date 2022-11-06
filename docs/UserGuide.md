@@ -177,7 +177,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 **:bulb:Tip:** 
-If you have two or more students with the same name, you can use the `editstudent` command to change the name(s) of the students so that you can differentiate them easily.
+If you have two or more students with the similar name, you can use the `editstudent` command to change the name(s) of the students so that you can differentiate them easily.
 
 </div>
 
