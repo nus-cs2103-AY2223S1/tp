@@ -26,6 +26,10 @@ title: Developer Guide
       * [Delete a client](#use-case-uc01---delete-a-client)
       * [Delete a transaction](#use-case-uc02---delete-a-transaction)
       * [Delete a remark](#use-case-uc03---delete-a-remark)
+      * [Find a client](#use-case-uc04---find-a-client)
+      * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
+      * [Requesting help](#use-case-uc06---requesting-help)
+      * [Clearing all data](#use-case-uc07---clearing-all-data)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -152,9 +156,9 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram3.png"/>
 
 
 The `Model` component,
@@ -164,10 +168,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `JeeqTracker`, which `Client` references. This allows `JeeqTracker` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **How Transaction and Remark are modelled:** 
+The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**`Transaction` Class <br>**
+Each `Client` Class has a `TransactionLog` which stores all transactions of the client in a List. The `Transaction` object contains the `Goods` transacted,
+`Price` of the goods, `Quantity` of goods and `Date` of the transaction. <br>
+<img src="images/TransactionModelClassDiagram2.png" width="350"/>
 
+
+**`Remark` Class <br>**
+Each `Client` Class has a `UniqueRemarkList` which stores `Remark` object that do not 
+have the same `Text` (case-insensitive). The `Remark` object contains the 
+`Text` which represents the remark's text. <br>
+<img src="images/RemarkModelClassDiagram.png" width="350"/>
 </div>
 
 
@@ -199,24 +213,20 @@ This section describes some noteworthy details on how certain features are imple
 
 The filter transaction mechanism is facilitated by `FilterTransCommand` which extends from `Command` and `FilterTransCmdParser` which extends from `Parser`. To invoke the filter command, `FilterTransCmdParser` will parse the arguments from the user input via `FilterTransCmdParser#parse()` and returns the filter command if the arguments are valid.
 
-`FilterTransCommand` implements the `FilterTransCommand#execute()` operation which executes the command and returns the result message in a `CommandResult` object.
+`FilterTransCommand` calls the `FilterTransCommand#execute()` operation which executes the command and returns the result message in a `CommandResult` object.
 
 The operation is exposed in the `Logic` interface as `Logic#execute()`.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
-Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
-
-![FilterTransState0](images/FilterTransState0.png)
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays all the clients.
 
 Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the
 `Client#getBuyTransactionList()` which returns an unmodifiable view of the buy transaction list.
 
 
 Step 3. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleFilterTransaction()`,
-to display only the filtered buy transactions from the `Client#getBuyTransactionList()`.
-
-![FilterTransState1](images/FilterTransState1.png)
+to display only the filtered buy transactions from the `Client#getBuyTransactionList()` while the client panel list will display all the clients.
 
 The following sequence diagram shows how the filter operation works:
 
@@ -228,7 +238,7 @@ The following sequence diagram shows how the filter operation works:
 
 The following activity diagram summarizes what happens when a user executes the filter command:
 
-<img src="images/FilterTransCmdActivityDiagram.png" width="250" />
+<img src="images/FilterTransCmdActivityDiagram2.png" width="250" />
 
 #### Design considerations:
 
@@ -236,10 +246,10 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Filter all the transactions made by all the clients.
     * Pros: Easy to implement and allow the user to see all the buy or sell transactions at one glance.
-    * Cons: May have performance issues due to searching through all transactions of each client. Hard to distinguish which transaction belong to which client.
+    * Cons: May have performance issues due to searching through all transactions of each client. Unable distinguish which transaction belong to which client.
 
 * **Alternative 2:** Individual filter transaction for each client.
-    * Pros: Performs faster as the command only filters through one client. Also able to know which client the transactions are from.
+    * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
 ### Buy feature for transactions
@@ -390,7 +400,7 @@ Take a look at use cases for [delete transaction](#use-case-uc02---delete-a-tran
 This product is for **home-based business owners / reseller** who need help in keeping track of clients' contacts,
 transaction records, and remarks about the client.
 
-It is particularly meant for people with these characteristics:
+JeeqTracker is designed specifically for people with these characteristics:
 
 * needs to get things done extremely fast
 * prefer desktop applications over other types
@@ -446,7 +456,7 @@ Users are able to perform several tasks within the application that is broken do
 
 **MSS**
 
-1.  User requests to list clients
+1.  User requests to list all clients
 2.  JeeqTracker shows a list of clients
 3.  User requests to delete a specific client in the list
 4.  JeeqTracker deletes the client
@@ -502,7 +512,7 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case resumes at step 2.
 
-**Use case: Find a Client**
+#### **Use case: UC04 - Find a Client**
 
 **MSS**
 
@@ -517,29 +527,26 @@ Users are able to perform several tasks within the application that is broken do
 
   Use case ends.
 
-* **Use case: Add a remark**
+#### **Use case: UC05 - Add a Remark to a Client** <br>
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
-1. User requests to create a Mcdonalds client
-2. JeeqTracker creates and adds a client called McDonalds into JeeqTracker
-3. User requests to add Justin as a Remark to Mcdonalds
-4. JeeqTracker adds Justin and his details into the Mcdonalds as the Remark
+1. User requests to list all clients
+2. JeeqTracker shows a list of clients
+3. User requests to add Punctual Buyer as a Remark to client Alice
+4. JeeqTracker adds Punctual Buyer as the Remark to Alice's contact card
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Client Mcdonalds already exists.
-    * 1a1. JeeqTracker shows an error message.
-
-        Use case resumes at 1.
-* 3a. User fails to provide all necessary details to create a Remark.
+* 3a. User fails to provide a valid command format to create a Remark.
     * 3a1. JeeqTracker shows an error message.
 
         Use case resumes at 2.
 
-**Use case: Requesting help**
+#### **Use case: UC06 - Requesting help**
 
 **MSS**
 
@@ -550,22 +557,14 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-**Use case: Clearing all data**
+#### **Use case: UC07 - Clearing all data**
 
 **MSS**
 
 1. User requests to clear all data in JeeqTracker
-2. JeeqTracker returns a confirmation to clear all data
-3. User confirms
-4. JeeqTracker clears all data in JeeqTracker
+2. JeeqTracker clears all data in JeeqTracker (All `clients`, `transactions`, `remarks` are deleted)
 
-**Extensions**
-
-* 3a. User inputs the wrong word for confirmation.
-    * 3a1. JeeqTracker shows an error message.
-
-      Use case resumes at 2.
-
+    Use case ends.
 
 *{More to be added}*
 
@@ -621,21 +620,45 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a client
 
-1. Deleting a client while all clients are being shown
+1. Deleting a client while all clients are being shown.
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1 m/client`<br>
+      Expected: First client is deleted from the list. Details of the deleted client (excluding **remarks**) shown in the `Application's Reply` panel.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 0 m/client`<br>
+      Expected: No client is deleted. Error details shown in the `Application's Reply` panel.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the client list size), `delete 1`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a transaction
 
+1. Deleting a transaction while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
+    2. Test case: `delete 1 m/transaction`<br/>Expected: First transaction is deleted from the list. Details of the deleted transaction shown in the `Application's Reply` panel.
+    3. Test case: `delete 0 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
+
+
+2. Deleting a transaction while more than one client is shown in the client list.
+   1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+   2. Test case: `delete 1 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
+   
+### Deleting a remark
+- Note: This test is exactly the same as [Deleting a transaction](#deleting-a-transaction), except replace all `transaction` keyword with `remark`.
+
+### Filtering transactions from all clients
+
+1. Filtering transactions.
+
+   1. Test case: `filter buy`<br/>Expected: All buy transactions will be displayed in the transaction list panel while all clients will be listed in the client list panel.
+   If there are no buy transactions, the transaction list panel will be empty.
+   2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data file
