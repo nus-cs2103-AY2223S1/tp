@@ -1,5 +1,7 @@
-#Elbert Benedict's Project Portfolio Page
-##<span style="color:orange"> Project: PleaseHireUs </span>
+---
+layout: page
+title: Elbert Benedict's Project Portfolio Page
+---
 
 ### Project: PleaseHireUs
 
@@ -13,13 +15,11 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Elben85&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**:
-    * To be added soon
-
 * **Enhancements to existing features**:
     * Enable find command to filter by several categories (company name, position, tags, date, and application process)
     * Fixed bugs from Practical Examination Dry Run: (Pull requests: [\#213](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/213), [\#223](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/223))
-
+    * Wrote test cases for find command and statistics
+  
 * **Documentation**:
     * User Guide:
         * Added documentations for the features `find`
