@@ -15,8 +15,8 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "a:Appointment" as Appointment MODEL_COLOR
 participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant "a:Appointment" as Appointment MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
