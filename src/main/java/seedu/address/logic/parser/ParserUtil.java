@@ -31,7 +31,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE_KEYWORD =
-            "The date keyword should be one of tomorrow, week, or month";
+            "The date keyword should be either tomorrow, week, or month";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
