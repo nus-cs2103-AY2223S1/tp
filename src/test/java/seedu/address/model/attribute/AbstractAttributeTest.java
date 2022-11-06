@@ -20,18 +20,15 @@ import static seedu.address.model.AccessDisplayFlags.PERSON;
 import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
 import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
 import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
+import static seedu.address.testutil.TypicalAttributes.AGE;
+import static seedu.address.testutil.TypicalAttributes.POSITION;
 
 class AbstractAttributeTest {
 
-    private final Attribute<String> stringAttribute = new AbstractAttribute<String>("Stringtest", "test") { };
-    private final Attribute<Integer> integerAttribute =
-            new AbstractAttribute<>("Integer", 1, DEFAULT, DEFAULT_STYLE) { };
-
-
     @Test
     void constructor_validInputs_success() {
-        Attribute<Integer> integerAttribute = new AbstractAttribute<Integer>("Integer", 5) { };
-        assertNotNull(integerAttribute);
+        Attribute<Integer> AGE = new AbstractAttribute<Integer>("Age", 5) { };
+        assertNotNull(AGE);
     }
 
     @Test
@@ -42,77 +39,96 @@ class AbstractAttributeTest {
 
     @Test
     void isNameMatch_sameCase_returnsTrue() {
-        assertTrue(stringAttribute.isNameMatch("Stringtest"));
+        assertTrue(POSITION.isNameMatch("Position"));
     }
 
     @Test
     void isNameMatch_differentCase_returnsTrue() {
-        assertTrue(stringAttribute.isNameMatch("sTRiNgTEsT"));
+        assertTrue(POSITION.isNameMatch("poSItION"));
     }
 
     @Test
     void isNameMatch_differentString_returnsFalse() {
-        assertFalse(stringAttribute.isNameMatch("StringTestt"));
+        assertFalse(POSITION.isNameMatch("Positions"));
     }
 
     @Test
     void isAllFlagMatch_containsFlag_returnsTrue() {
-        assertTrue(integerAttribute.isAllFlagMatch(DEFAULT));
+        assertTrue(AGE.isAllFlagMatch(DEFAULT));
     }
 
     @Test
     void isAllFlagMatch_doesNotContainFlag_returnsFalse() {
-        assertFalse(integerAttribute.isAllFlagMatch(HIDE_TYPE));
+        assertFalse(AGE.isAllFlagMatch(HIDE_TYPE));
     }
 
     @Test
     void isAnyFlagMatch_containsFlag_returnsTrue() {
-        assertTrue(integerAttribute.isAnyFlagMatch(DEFAULT));
+        assertTrue(AGE.isAnyFlagMatch(DEFAULT));
     }
 
     @Test
     void isAnyFlagMatch_doesNotContainFlag_returnsFalse() {
-        assertFalse(integerAttribute.isAnyFlagMatch(HIDE_TYPE));
+        assertFalse(AGE.isAnyFlagMatch(HIDE_TYPE));
     }
 
     @Test
     void isAnyStyleMatch_containsFlag_returnsTrue() {
-        assertTrue(integerAttribute.isAnyStyleMatch(LEFT_JUSTIFY));
+        assertTrue(AGE.isAnyStyleMatch(LEFT_JUSTIFY));
     }
 
     @Test
     void isAnyStyleMatch_doesNotContainFlag_returnsFalse() {
-        assertFalse(integerAttribute.isAnyStyleMatch(RIGHT_JUSTIFY));
+        assertFalse(AGE.isAnyStyleMatch(RIGHT_JUSTIFY));
     }
 
     @Test
     void isAllStyleMatch_containsFlag_returnsTrue() {
-        assertTrue(integerAttribute.isAllStyleMatch(DEFAULT_STYLE));
+        assertTrue(AGE.isAllStyleMatch(DEFAULT_STYLE));
     }
 
     @Test
     void isAllStyleMatch_doesNotContainFlag_returnsFalse() {
-        assertFalse(integerAttribute.isAllStyleMatch(RIGHT_JUSTIFY));
+        assertFalse(AGE.isAllStyleMatch(RIGHT_JUSTIFY));
     }
 
     @Test
-    void getAttributeContent() {
+    void getAttributeContent_success() {
+        assertEquals(AGE.getAttributeContent(), 1);
     }
 
     @Test
-    void getAttributeType() {
+    void getAttributeType_success() {
+        assertEquals(AGE.getAttributeType(), "Integer");
     }
 
     @Test
-    void isVisibleInMenu() {
+    void isVisibleInMenu_hasMenuOkFlag_returnsTrue() {
+        AbstractAttribute<String> attr =
+                new AbstractAttribute<>("Telegram", "bunz", MENU_OK, DEFAULT_STYLE) { };
+        assertTrue(attr.isVisibleInMenu());
     }
 
     @Test
-    void isDisplayable() {
+    void isVisibleInMenu_doesNotHaveMenuOkFlag_returnsFalse() {
+        assertFalse(POSITION.isVisibleInMenu());
+    }
+
+    @Test
+    void isDisplayable_hasDisplayOkFlag_returnsTrue() {
+        AbstractAttribute<String> attr =
+                new AbstractAttribute<>("Telegram", "bunz", DISPLAY_OK, DEFAULT_STYLE) { };
+        assertTrue(attr.isDisplayable());
+    }
+
+    @Test
+    void isDisplayable_doesNotHaveDisplayOkFlag_returnsFalse() {
+        assertFalse(POSITION.isDisplayable());
     }
 
     @Test
     void isSameType() {
+        
     }
 
     @Test
@@ -121,14 +137,14 @@ class AbstractAttributeTest {
 
     @Test
     void toString_noHideType_success() {
-        assertEquals(stringAttribute.toString(), "Stringtest: test");
+        assertEquals(POSITION.toString(), "Stringtest: test");
     }
 
     @Test
     void toString_hideType_success() {
-        Attribute<String> stringAttribute =
+        Attribute<String> POSITION =
                 new AbstractAttribute<String>("String", "value", HIDE_TYPE, DEFAULT_STYLE) { };
-        assertEquals(stringAttribute.toString(), "value");
+        assertEquals(POSITION.toString(), "value");
     }
 
     @Test
