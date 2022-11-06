@@ -218,7 +218,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
+    //=========== Event Statistics ============================================================================
     @Override
     public ObservableList<PieChart.Data> getPieChartData() {
         return data;
