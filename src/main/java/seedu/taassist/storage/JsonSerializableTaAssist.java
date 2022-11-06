@@ -60,6 +60,12 @@ class JsonSerializableTaAssist {
      */
     public TaAssist toModelType() throws IllegalValueException {
         TaAssist taAssist = new TaAssist();
+        addModuleClasses(taAssist);
+        addStudents(taAssist);
+        return taAssist;
+    }
+
+    private void addModuleClasses(TaAssist taAssist) throws IllegalValueException {
         for (JsonAdaptedModuleClass jsonAdaptedModuleClass : moduleClasses) {
             ModuleClass moduleClass = jsonAdaptedModuleClass.toModelType();
             if (taAssist.hasModuleClass(moduleClass)) {
@@ -67,29 +73,37 @@ class JsonSerializableTaAssist {
             }
             taAssist.addModuleClass(moduleClass);
         }
+    }
+
+    private void addStudents(TaAssist taAssist) throws IllegalValueException {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (taAssist.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-
-            // Check if the module data are valid
-            for (StudentModuleData moduleData : student.getModuleDataList()) {
-                ModuleClass moduleClass = moduleData.getModuleClass();
-                if (!taAssist.hasModuleClass(moduleClass)) {
-                    throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
-                }
-                ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass).orElseThrow(AssertionError::new);
-                for (SessionData sessionData : moduleData.getSessionDataList()) {
-                    if (!realModuleClass.hasSession(sessionData.getSession())) {
-                        throw new IllegalValueException(MESSAGE_SESSION_NOT_FOUND);
-                    }
-                }
-            }
-
+            verifyModuleData(taAssist, student);
             taAssist.addStudent(student);
         }
-        return taAssist;
     }
 
+    private static void verifyModuleData(TaAssist taAssist, Student student) throws IllegalValueException {
+        for (StudentModuleData moduleData : student.getModuleDataList()) {
+            ModuleClass moduleClass = moduleData.getModuleClass();
+            if (!taAssist.hasModuleClass(moduleClass)) {
+                throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
+            }
+            ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass).orElseThrow(AssertionError::new);
+            verifySessionData(moduleData, realModuleClass);
+        }
+    }
+
+    private static void verifySessionData(StudentModuleData moduleData, ModuleClass realModuleClass)
+            throws IllegalValueException {
+        boolean hasInvalidSession = moduleData.getSessionDataList().stream()
+                .map(SessionData::getSession)
+                .anyMatch(session -> !realModuleClass.hasSession(session));
+        if (hasInvalidSession) {
+            throw new IllegalValueException(MESSAGE_SESSION_NOT_FOUND);
+        }
+    }
 }
