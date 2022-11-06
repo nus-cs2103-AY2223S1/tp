@@ -1,6 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-To let you become more familiar with FoodRem, let's practice executing some [[command:commands]].
+To let you become more familiar with FoodRem, let's practice executing some [[ command:commands ]].
 
 To start off, let's try out the `new` command! This command lets you add an [[item:Item]]to FoodRem.
 
