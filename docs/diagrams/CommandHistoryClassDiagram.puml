@@ -1,8 +1,7 @@
 @startuml
 !include style.puml
-
-skinparam ClassFontColor #FFFFFF
-skinparam ClassBorderColor #FFFFFF
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 package Ui {
     class CommandBox as "CommandBox" UI_COLOR_T3
@@ -17,7 +16,7 @@ package Ui {
 CommandBox -down-> "1" Parser
 Parser --> "1" Forward
 Parser --> "1" Backward
-Forward --|> Parent
-Backward --|> Parent
+Forward ..|> Parent
+Backward ..|> Parent
 
 @end

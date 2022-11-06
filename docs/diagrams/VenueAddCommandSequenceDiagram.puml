@@ -1,5 +1,7 @@
 @startuml
 !include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -45,6 +47,8 @@ Rc4hdbParser --> LogicManager : vac
 deactivate Rc4hdbParser
 
 LogicManager -> LogicManager : execute(vac)
+activate LogicManager
+
 
 LogicManager -> VenueAddCommand : execute(model)
 activate VenueAddCommand
@@ -70,6 +74,7 @@ CommandResult --> VenueAddCommand : res
 deactivate CommandResult
 
 VenueAddCommand --> LogicManager : res
+deactivate LogicManager
 deactivate VenueAddCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 VenueAddCommand -[hidden]-> LogicManager
