@@ -13,7 +13,6 @@ public class Tag {
             + "Tag has a character limit of 30.";
     public static final int CHAR_LIMIT = 30;
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
     public final String tagName;
 
     /**
@@ -33,7 +32,6 @@ public class Tag {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() <= CHAR_LIMIT;
     }
-
 
     @Override
     public boolean equals(Object other) {

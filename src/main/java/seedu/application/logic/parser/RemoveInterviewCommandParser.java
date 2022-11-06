@@ -12,7 +12,6 @@ import seedu.application.logic.parser.exceptions.ParsePrefixException;
  * Parses input arguments and creates a new RemoveInterviewCommand object
  */
 public class RemoveInterviewCommandParser implements Parser<RemoveInterviewCommand> {
-    private static final int NUMBER_OF_PREFIX_REQUIRED = 0;
 
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveInterviewCommand
@@ -20,7 +19,7 @@ public class RemoveInterviewCommandParser implements Parser<RemoveInterviewComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveInterviewCommand parse(String args) throws ParseException {
-        if (ArgumentTokenizer.prefixFound(args).size() > NUMBER_OF_PREFIX_REQUIRED) {
+        if (!ArgumentTokenizer.findPrefix(args).isEmpty()) {
             throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                     + RemoveInterviewCommand.MESSAGE_USAGE);
         }

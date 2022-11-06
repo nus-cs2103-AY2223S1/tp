@@ -8,7 +8,7 @@ import seedu.application.logic.parser.exceptions.ParseException;
  */
 public interface Parser<T extends Command> {
 
-    String MESSAGE_UNKNOWN_PREFIX_FOUND = "Unknown prefix detected in the command, please "
+    String MESSAGE_UNKNOWN_PREFIX_FOUND = "Unexpected prefix detected in the command, please "
             + "check the message usage for the correct prefix\n";
 
     /**

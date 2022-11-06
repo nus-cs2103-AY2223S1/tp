@@ -13,8 +13,6 @@ import seedu.application.logic.parser.exceptions.ParsePrefixException;
  */
 public class RetrieveCommandParser implements Parser<RetrieveCommand> {
 
-    private static final int NUMBER_OF_PREFIX_REQUIRED = 0;
-
     /**
      * Parses the given {@code String} of arguments in the context of the RetrieveCommand
      * and returns a RetrieveCommand object for execution.
@@ -22,7 +20,7 @@ public class RetrieveCommandParser implements Parser<RetrieveCommand> {
      */
     public RetrieveCommand parse(String args) throws ParseException {
 
-        if (ArgumentTokenizer.prefixFound(args).size() > NUMBER_OF_PREFIX_REQUIRED) {
+        if (!ArgumentTokenizer.findPrefix(args).isEmpty()) {
             throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                     + RetrieveCommand.MESSAGE_USAGE);
         }

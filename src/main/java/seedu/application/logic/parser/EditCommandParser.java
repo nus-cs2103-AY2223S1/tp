@@ -39,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_POSITION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
         Index index;
 
-        for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
+        for (Prefix prefix : ArgumentTokenizer.findPrefix(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
                 throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + EditCommand.MESSAGE_USAGE);

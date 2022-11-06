@@ -38,11 +38,11 @@ public class ArgumentTokenizer {
     //Reused from https://stackoverflow.com/questions/4662215/how-to-extract-a-substring-using-regex
     // with minor modifications
     /**
-     * Returns a List of prefixes found from the arguments.
+     * Returns a Set of prefixes found from the arguments.
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @return           List of Prefixes found.
+     * @return           Set of Prefixes found.
      */
-    public static Set<Prefix> prefixFound(String argsString) {
+    public static Set<Prefix> findPrefix(String argsString) {
         Pattern pattern = Pattern.compile(REGEX_PREFIX);
         Matcher matcher = pattern.matcher(argsString);
         Set<Prefix> prefixInArgs = new HashSet<>();

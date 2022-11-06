@@ -34,7 +34,7 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
                 PREFIX_INTERVIEW_TIME, PREFIX_LOCATION);
         Index index;
 
-        for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
+        for (Prefix prefix : ArgumentTokenizer.findPrefix(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
                 throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + AddInterviewCommand.MESSAGE_USAGE);

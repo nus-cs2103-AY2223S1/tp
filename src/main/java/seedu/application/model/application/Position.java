@@ -3,7 +3,6 @@ package seedu.application.model.application;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
-
 /**
  * Represents a Company's internship position in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}

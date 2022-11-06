@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL,
                 PREFIX_POSITION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
-        for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
+        for (Prefix prefix : ArgumentTokenizer.findPrefix(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
                 throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + AddCommand.MESSAGE_USAGE);

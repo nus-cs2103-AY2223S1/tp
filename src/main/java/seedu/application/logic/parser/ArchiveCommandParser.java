@@ -13,8 +13,6 @@ import seedu.application.logic.parser.exceptions.ParsePrefixException;
  */
 public class ArchiveCommandParser implements Parser<ArchiveCommand> {
 
-    private static final int NUMBER_OF_PREFIX_REQUIRED = 0;
-
     /**
      * Parses the given {@code String} of arguments in the context of the ArchiveCommand
      * and returns a ArchiveCommand object for execution.
@@ -22,7 +20,7 @@ public class ArchiveCommandParser implements Parser<ArchiveCommand> {
      */
     public ArchiveCommand parse(String args) throws ParseException {
 
-        if (ArgumentTokenizer.prefixFound(args).size() > NUMBER_OF_PREFIX_REQUIRED) {
+        if (!ArgumentTokenizer.findPrefix(args).isEmpty()) {
             throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                     + ArchiveCommand.MESSAGE_USAGE);
         }
