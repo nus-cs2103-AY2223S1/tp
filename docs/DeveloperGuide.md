@@ -1261,7 +1261,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing a task while all tasks are being shown
 
-    1. Prerequisites: All tasks (done and undone) are shown, and user is not currently cd-ed into a module.
+    1. Prerequisites: All tasks (at least one, done and undone) are shown, and user is not currently cd-ed into a module.
 
     2. Test case: `remove task 1`<br>
        Expected: First task (as displayed on the UI) is deleted from the list. 
