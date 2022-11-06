@@ -35,13 +35,13 @@ public class TeamBuilder {
         for (Person p : teamToCopy.getMembers()) {
             newMembers.add(new PersonBuilder(p).build());
         }
-        members = teamToCopy.getMembers();
+        members = newMembers;
 
         UniqueTaskList newTasks = new UniqueTaskList();
         for (Task t : teamToCopy.getTasks()) {
             newTasks.add(new TaskBuilder(t).build());
         }
-        tasks = teamToCopy.getTasks();
+        tasks = newTasks;
     }
 
     /**
