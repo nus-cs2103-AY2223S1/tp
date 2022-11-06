@@ -88,11 +88,12 @@ Component | Purpose
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command parameters:** <br>
+**:information_source: Notes about common command parameters:** <br>
 
 * `NAME`
   * Can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
-* `TAG` names
+* `TAG`
+  * Patients and appointments can have up to 3 different tags.
   * **Must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
     e.g. `t/sick` will cause an error message.
 * `PHONE_NUMBER`
@@ -140,16 +141,6 @@ Adds a patient into idENTify.
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
-
-**:bulb: Tip:** <br>
-
-* A patient can have up to 3 different tags.
-
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
-
-   e.g. `t/sick` will cause an error message.
-
-</div>
 
 Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
@@ -281,15 +272,18 @@ Example:
 
 ### Organisation
 
+By default,
+* Patients will be sorted by their names first; if there are people with the same name, they will be sorted by their
+  phone numbers.
+* Appointments will be sorted by their dates first; if there are multiple appointments
+  with the same date, they will be sorted by their attached patients' information.
+
+However, with the commands in this section, you will be able to modify how entries in idENTify are presented.
+
 #### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given. Previously hidden patients and appointments will be unhidden as well.
-
-If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their
-phone numbers.
-
-If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments
-with the same datetime, they will be sorted by their attached patients' information.
+Shows a list of all patients or appointments, depending on the parameter given. 
+Entries previously hidden by the `hide` command will be unhidden as well.
 
 Format:
 * `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
@@ -487,12 +481,12 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 | **[n/NAME]**<br/>**[p/PHONE]**<br/>**[e/EMAIL]**<br/>**[a/ADDRESS]** | -                                                                                      |
 | **[t/PATIENT_TAG]...**                                               | Finds patients with all the inputted tag(s).<br/>**Full match for each tag required.** |
 
-| Appointment Related Parameters | Additional Notes                                                                                                                                                 |
-|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[r/REASON]**                 | -                                                                                                                                                                |
-| **[ds/DATE_START]**            | Finds appointments occurring **at or after** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_END], if present.**    |
-| **[de/DATE_END]**              | Finds appointments occurring **at or before** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_START], if present.** |
-| **[ta/APPOINTMENT_TAG]**       | Finds appointments with all the inputted appointment tag(s).<br/> **Full match for each tag required.**                                                          |
+| Appointment Related Parameters | Additional Notes                                                                                                                 |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **[r/REASON]**                 | -                                                                                                                                |
+| **[ds/DATE_START]**            | Finds appointments occurring **at or after** the inputted date. <br/> **Date must be at or after [de/DATE_END], if present.**    |
+| **[de/DATE_END]**              | Finds appointments occurring **at or before** the inputted date. <br/> **Date must be at or after [de/DATE_START], if present.** |
+| **[ta/APPOINTMENT_TAG]...**    | Finds appointments with all the inputted appointment tag(s).<br/> **Full match for each tag required.**                          |
 
 Visual example of finding results by an appointment's reason, using `find r/Checkup`:
 
