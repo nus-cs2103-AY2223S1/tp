@@ -23,9 +23,6 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=24donovan24&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**:
-    * to be added soon
-
 * **Enhancements to existing features**:
     * Updated the GUI colour scheme ([PR #111](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/111))
     * Added welcome message when application is launched ([PR #113](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/113))
@@ -39,6 +36,7 @@ Given below are my contributions to the project.
 
     * Developer Guide:
         * Added implementation details for `:sort` command ([PR #101](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/101))
+        * Added user stories, use cases and instructions for manual testing as per discussed by team ([PR #211](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/211))
 
 * **Community**:
     * Reviewed Team Members' PRs.
@@ -46,26 +44,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
     * PlantUML: Creating UML diagrams.
-
-* **PRs**
-  * Fix parameter constraint for Range command ([PR #201](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/201))
-  * Update UserGuide to fix UG bugs ([PR #184](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/184))
-  * Fix minor bug in Range ([PR #146](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/146))
-  * Update UG formatting ([PR #143](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/143))
-  * Edit Filter Command to display different message when list is empty ([PR #135](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/135))
-  * Update UserGuide ([PR #133](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/133))
-  * Update UserGuide for Sort command ([PR #125](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/125))
-  * Fix bugs in interaction between find, range and sort commands ([PR #123](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/123))
-  * Add welcome message when application is launched ([PR #113](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/113))
-  * Change the colour of application displayed ([PR #111](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/111))
-  * Update DeveloperGuide formatting ([PR #106](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/106))
-  * Update DeveloperGuide formatting ([PR #103](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/103))
-  * Update DeveloperGuide to include SortCommand ([PR #101](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/101))
-  * Implement new Sort Command ([PR #100](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/100))
-  * Improve display message shown ([PR #74](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/74))
-  * Update command word ([PR #73](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/73))
-  * Modify Regex for Sets ([PR #72](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/72))
-  * Modify REGEX, constructors and tests to fit new Sets constraints ([PR #62](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/62))
-  * Rename all occurrences of Email to Sets ([PR #53](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/53))
-  * Update UseCases and NFRs of DeveloperGuide ([PR #42](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/42))
-  * Add header and table of contents for UserGuide.md ([PR #38](https://githubcom/AY2223S1-CS2103T-T15-4/tp/pull/38))
