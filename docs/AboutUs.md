@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-<div markdown="block" class="no-num">
-
 ## Project team
 
 ### Shashank Acharya
@@ -48,5 +46,3 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/KSHan29)][[portfolio](team/kshan29.md)]
 
 * Role: Testing
-
-</div>
