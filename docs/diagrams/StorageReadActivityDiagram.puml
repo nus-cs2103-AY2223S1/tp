@@ -1,0 +1,8 @@
+@startuml
+
+(*) --> "User opens HackAssist"
+"User opens HackAssist" --> "HackAssist reads AddressBook.json"
+"HackAssist reads AddressBook.json" --> "HackAssist converts each task details to Task object and adds it to TaskList"
+"HackAssist converts each task details to Task object and adds it to TaskList" --> (*)
+
+@enduml

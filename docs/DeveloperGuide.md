@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/). Several ideas, implementations and diagrams are re-used or extended based on those in AddressBook Level-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,6 +238,71 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Adding a Task into the TaskList.
+
+#### Proposed Implementation
+
+The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as
+its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned.
+The command is executed using the `AddTaskCommand`class which extends the `Command` class and the 
+respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input. 
+
+Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 
+pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if
+the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already 
+exist** error message will be returned to the user.
+
+Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into
+the tasklist. 
+
+step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls 
+`AddressBook#setTasks` to update the tasklist in the model to the latest version.
+
+The following sequence diagram shows how the AddTask operation works:
+![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a AddTask command:
+![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
+
+
+### \[Proposed\] Deleting a Task into the TaskList.
+
+#### Proposed Implementation
+
+The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. 
+The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the
+index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
+
+Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user wants to delete the second task on the task list. The user executes `deleteTask 2` to delete the second task
+from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task
+to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
+is displayed to the user. 
+
+Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the 
+email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks 
+the person is assigned to.
+
+Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the 
+`Model#deleteTask` to delete the task from the tasklist.
+
+step 5. After making a deletion from the tasklist, the `DeleteTaskCommand` calls the `Model#update`, which calls
+`AddressBook#setTasks` to update the tasklist in the model to the latest version
+
+The following sequence diagram shows how the DeleteTask operation works:
+![AddTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a DeleteTask command:
+![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+
+
 ### \[Proposed\] Task and Person display each other
 
 #### Proposed Implementation
@@ -262,23 +327,69 @@ Step 4. John is edited to James via the Edit command. This will be reflected in 
 
 Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
 
-### \[Proposed\] Persistent Storage for Task
+### Email Address in Task as Reference (Foreign Key) to Member
 
-#### Proposed Implementation
+#### Motivation
 
-We save tasks in Json format which contains the details of the task such as the task's name, description, etc.
-We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can
-then be converted to a list of tasks. Hence, our Json data file contains a list of task details.
+To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in hte `Task` object that uniquely identifies the person.
+
+#### Implementation 
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
+a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
+to this is to keep a person object in a task object but this will prevent the change in the person object that is
+supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+### Persistent Storage for Task
+
+#### Motivation
+
+For creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
+
+#### Implementation
+
+When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)).
+Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`. 
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageReadActivityDiagram](images/StorageReadActivityDiagram.png)
 
 When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
 This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for
 such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal
 values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
 
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
-a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
-to this is to keep a person object in a task object but this will prevent the change in the person object that is
-supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. 
+Each `JsonAdaptedTask` object contains the details of the task.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageSaveActivityDiagram](images/StorageSaveActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: When to save data?**
+
+* **Alternative 1 (current choice):** Saves the data after execution of each command.
+    * Pros: User does not have to remember to save (saved automatically).
+    * Cons: More computationally expensive as more save operations are performed.
+
+* **Alternative 2:** Creates a save command and save it when save command is executed.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter save command and lose all of their changes.
+
+* **Alternative 3:** Save when user enters exit command.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter exit command when closing the program and lose all of their changes.
+
+Our current choice of implementation is preferred considering the main use of HackAssist. 
+HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save.
+Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
+
+### Persistent Storage for Member
+
+The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
 
 ### \[Proposed\] Filtering of tasks by Task Category, Task Deadline or Both
 
