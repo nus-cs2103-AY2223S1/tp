@@ -10,7 +10,7 @@ end box
 
 box Logic LOGIC_COLOR_T1
 participant ":logicManager"  as logicManager LOGIC_COLOR
-participant ":addressBookParser"  as addressBookParser LOGIC_COLOR
+participant ":hrProParser"  as addressBookParser LOGIC_COLOR
 participant ":FindTaskCommandParser"  as findTaskCommandParser LOGIC_COLOR
 participant ":FindTaskCommand"  as findCommand LOGIC_COLOR
 participant ":CommandResult" as commandResult LOGIC_COLOR
