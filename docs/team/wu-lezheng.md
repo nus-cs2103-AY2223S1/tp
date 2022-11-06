@@ -81,7 +81,8 @@ Given below are my contributions to the project.
     (Pull requests: [#119](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/119),
                     [#142](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/142),
                     [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159),
-                    [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
+                    [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205),
+                    [#372](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/372))
 
 
 * **Community**:

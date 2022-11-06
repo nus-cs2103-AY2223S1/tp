@@ -546,8 +546,6 @@ With this information, you may contact the suppliers who own these pets for furt
 
 :information_source: **How does the match command work?** <br>
 
-This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
-
 We have designed an algorithm to give each pet in the storage a score. Pets with descriptions that are closer to the requirements specified in the order will be given a higher score.
 Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md). <br>
 
@@ -605,9 +603,9 @@ Examples:
 
 :exclamation: **Caution**: Please ensure that you have the corresponding display list before you execute the delete command.
 For example, if you want to delete a buyer by `delete-b 1`, do ensure at index 1 is a buyer.
-This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet.
+This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet. <br>
 
-* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find).
+* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find). <br>
 * To ensure at the index is an item, use [List command](#listing-contacts-or-items--list) or [Filter command](#filtering-items-by-attributes--filter).
 
 </div>
