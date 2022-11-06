@@ -38,7 +38,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "untag - Removes tag(s) from an eatery\n"
             + "Usage: untag INDEX -t TAGNAME... [-h]\n\n"
             + "add - Add an eatery to the database\n"
-            + "Usage: add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG]... [-h]\n\n"
+            + "Usage: add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME]... [-h]\n\n"
             + "delete - Delete an eatery from the database\n"
             + "Usage: delete INDEX [-h]\n\n"
             + "fav - Favorites an eatery\n"
