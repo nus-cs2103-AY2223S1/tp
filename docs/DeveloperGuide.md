@@ -30,6 +30,8 @@ title: Developer Guide
       * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
       * [Requesting help](#use-case-uc06---requesting-help)
       * [Clearing all data](#use-case-uc07---clearing-all-data)
+      * [Buying from a client](#use-case-uc08---buying-from-a-client)
+      * [Selling to a client](#use-case-uc09---selling-to-a-client)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -563,6 +565,38 @@ Users are able to perform several tasks within the application that is broken do
 2. JeeqTracker clears all data in JeeqTracker (All `clients`, `transactions`, `remarks` are deleted)
 
     Use case ends.
+
+#### **Use case: UC08 - Buying from a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to add a buy transaction to a specific client in the list
+4.  JeeqTracker adds the buy transaction to the client
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to create a Buy Transaction.
+
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+#### **Use case: UC09 - Selling to a client**
+
+* Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
 
 *{More to be added}*
 

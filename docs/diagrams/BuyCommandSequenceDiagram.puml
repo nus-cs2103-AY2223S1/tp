@@ -29,6 +29,22 @@
  BuyCommandParser -> BuyCommand
  activate BuyCommand
 
+ BuyCommand --> BuyCommandParser : d
+ deactivate BuyCommand
+
+ BuyCommandParser --> JeeqTrackerParser : d
+ deactivate BuyCommandParser
+ 'Hidden arrow to position the destroy marker below the end of the activation bar.
+ BuyCommandParser -[hidden]-> JeeqTrackerParser
+ destroy BuyCommandParser
+
+
+ JeeqTrackerParser --> LogicManager : d
+ deactivate JeeqTrackerParser
+
+ LogicManager -> BuyCommand : execute()
+ activate BuyCommand
+
  BuyCommand -> Model :getFilteredClientList()
  activate Model
 
@@ -46,22 +62,6 @@
 
  Model --> BuyCommand
  deactivate Model
-
- BuyCommand --> BuyCommandParser : d
- deactivate BuyCommand
-
- BuyCommandParser --> JeeqTrackerParser : d
- deactivate BuyCommandParser
- 'Hidden arrow to position the destroy marker below the end of the activation bar.
- BuyCommandParser -[hidden]-> JeeqTrackerParser
- destroy BuyCommandParser
-
-
- JeeqTrackerParser --> LogicManager : d
- deactivate JeeqTrackerParser
-
- LogicManager -> BuyCommand : execute()
- activate BuyCommand
 
  create CommandResult
  BuyCommand -> CommandResult
