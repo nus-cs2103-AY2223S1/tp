@@ -18,7 +18,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
-* [UI](#ui-component): Handles the [[ graphical-user-interface:User Interface ]] of the App.
+* [UI](#ui-component): Handles the User Interface of the App.
 * [Logic](#logic-component): Handles the execution of commands.
 * [Model](#model-component): Holds the data of the App in memory.
 * [Storage](#storage-component): Reads data from, and writes data to, the hard disk.
