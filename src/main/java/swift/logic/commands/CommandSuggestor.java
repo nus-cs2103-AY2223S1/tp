@@ -161,7 +161,7 @@ public class CommandSuggestor {
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
-        String[] userInputArray = userInput.split(" ");
+        String[] userInputArray = userInput.trim().split(" ");
         Prefix currPrefix = null;
         boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
         boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
