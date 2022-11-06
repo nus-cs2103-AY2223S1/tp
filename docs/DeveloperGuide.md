@@ -7,9 +7,9 @@ title: Developer guide
 * Table of Contents
 {:toc}
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ## **Acknowledgements**
 
@@ -25,9 +25,9 @@ title: Developer guide
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ## **Design**
 
@@ -123,6 +123,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -195,6 +197,8 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+--- 
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -224,6 +228,8 @@ the `AddressBook` model looks like this (some Persons removed for simplicity):
 
 <img src="images/AddDeleteGroupState0.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 2.**
 User executes `addgroup g/CS2103T`. This causes a new group with `GroupName` "CS2103T" and no members to be
 added to the `AddressBook` model, reflected below:
@@ -240,6 +246,8 @@ Then, the user assigns `Alice` a task named Task1 under the group CS2103T as dem
 The `AddressBook` model now looks like this:
 
 <img src="images/AddDeleteGroupState2.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 4.**
 User executes `deletegroup g/CS2103T`. This deletes the group with `GroupName` "CS2103T" and additionally:
@@ -315,6 +323,8 @@ Suppose the user assigns `Alice` a task under the group. The `AddressBook` model
 
 <img src="images/AddDeleteMemberState2.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 4.**
 User executes `deletemember g/CS2103T n/Alice`. This removes `Alice` from `CS2103T` and removes any tasks
 associated with the group. The associated command `DeleteGroupMemberCommand` first
@@ -383,6 +393,8 @@ to display just the group with that name.
 `ObservableList<Group>` from `Model#getFilteredGroupList()`. If the input `GroupName` does not correspond
 to a group in this list, a `CommandException` will be thrown notifying the user accordingly.
 
+<div style="page-break-after: always;"></div>
+
 **Step 3.**
 User executes `listgroups`. The associated command `ListGroupsCommand` calls
 `Model#updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS)`to display all groups in the app.
@@ -416,6 +428,8 @@ the group `CS2103T`. The `AddressBook` model is reflected below:
 
 <img src="images/AddDeleteMemberState1.png" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 **Step 2.**
 User executes `assigntask Alice g/CS2103T task/Task w/High`. This:
 - Constructs an Assignment with `Task` "Task" and `Workload` "High".
@@ -435,9 +449,13 @@ such as `Task` being non-empty, `Deadline` being a valid date, etc.
 exist in the app, that the person is a member of the group, and the person doesn't already have a similar task under
 the group.
 
+<div style="page-break-after: always;"></div>
+
 The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 3.**
 User executes `deletetask Alice g/CS2103T task/Task`. This constructs an `editedPerson`
@@ -496,6 +514,8 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 the group `CS2103T`. The `AddressBook` model is reflected below:
 
 <img src="images/BulkAssignDeleteTaskState0.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 **Step 2.**
 User executes `assigntaskall g/CS2103T task/Task1 w/High`. This:
@@ -562,6 +582,8 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -569,6 +591,8 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
