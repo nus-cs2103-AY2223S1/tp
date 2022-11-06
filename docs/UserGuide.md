@@ -7,10 +7,10 @@ Welcome to InTrack!
 
 InTrack is a desktop application for Computer Science students to manage their different internship applications.
 
-InTrack allows users to
+InTrack allows users to:
 
-* seamlessly search for and update their various applications, as well as
-* keep track of the relevant timings and deadlines
+* seamlessly search for and update their various internship applications, as well as
+* keep track of the relevant timings and deadlines, 
 
 all through a simple and easy-to-use platform!
 
@@ -48,9 +48,10 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI
    similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -70,6 +71,23 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 --------------------------------------------------------------------------------------------------------------------
 
+# GUI Summary
+
+The following is an annotated breakdown of InTrack's GUI:
+
+![GUI Summary](images/GUISummary.png)
+
+1. Command window: User inputs commands here.
+2. Display window: Relevant messages are displayed here. These can include success messages, error messages, and 
+the resulting statistics from when the `stats` command is entered.
+3. Internship panel: The list of internship applications in InTrack is displayed here. By default, this panel displays 
+the complete list of internships, but this may change when some list management commands such as `filter` or `sort` 
+are entered.
+4. Individual internship window: By default, this is left blank. When the `select` command is used, the various fields 
+of the selected internship will be shown here.
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Features
 
 <div markdown="block" class="alert alert-info">
@@ -77,20 +95,20 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
+  E.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
 
 * Items in square brackets are optional.<br>
-  e.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.
+  E.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
+  E.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
 
 * If a parameter is expected only once in the command, but is specified multiple times, only the last occurrence of
   the parameter will be taken.<br>
-  e.g. if the command specifies `c/Microsoft c/Apple`, it will be interpreted as `c/Apple`.
+  E.g. if the command specifies `c/Microsoft c/Apple`, it will be interpreted as `c/Apple`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `list`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  E.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -98,21 +116,25 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 ### Viewing help: `help`
 
-If you're a little stuck, entering this command opens a Help window with a link to this User Guide, as well as a summary
+If you're a little stuck, entering this command opens a help window with a link to this user guide, as well as a summary
 of all the commands InTrack provides.
-
-![help message](images/helpMessage.png)
 
 Format: `help`
 
+![help message](images/helpMessage.png)
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Viewing statistics of internship applications: `stats`
 
-Displays statistics of the current list of internship applications based on the number of offered, in-progress and
-rejected applications.
+This command displays the statistical breakdown of your current list of internship applications. The statistics are 
+calculated based on the number of offered, in-progress and rejected applications.
 
 Format: `stats`
 
 ![StatsFeature](images/StatsFeature.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Exiting the program: `exit`
 
@@ -120,16 +142,22 @@ If you're done and would like to close InTrack, you can do so by entering the `e
 
 Format: `exit`
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Saving the data
 
 InTrack data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Internship Application Management
 
 ### Adding an internship application: `add`
 
-Adds a new internship application to InTrack.
+This command adds a new internship application to InTrack with the parameters you have entered. When you add a new 
+internship application, you must specify the company and position name, the relevant email, website and salary, 
+and you also have the option to add relevant tags to the entry.
 
 Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 
@@ -137,10 +165,10 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 |------------|----------------------------------------------|-------------------------------------------------------------------------------|
 | `COMPANY`  | Company that is offering the internship      | Must contain only alphanumeric characters and spaces, and should not be blank |
 | `POSITION` | Position of the internship                   | Must not be blank                                                             |
-| `EMAIL`    | Email of the hiring team                     | Must be of the format local-part@domain                                       |
+| `EMAIL`    | Email of the hiring team                     | Must be of the format `local-part@domain`                                     |
 | `WEBSITE`  | Website containing details of the internship | Must be a valid URL                                                           |
 | `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
-| `TAG`      | Tag(s) of the internship application         | Must be one word and contain only alphanumeric characters                     |
+| `TAG`      | Tag(s) of the internship application         | Must be one word per tag and contain only alphanumeric characters             |
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** An internship can have any number of tags (including 0), and you can add multiple tags at once.
@@ -162,7 +190,7 @@ a new one with `c/MICROSOFT p/Software Engineer` will be treated as a duplicate 
 
 **:information_source: Note regarding status:**<br>
 
-By default, an added internship will have the status of in progress. To update this, you can make use of the
+By default, an added internship will have the status of in-progress. To update this, you can make use of the
 [`status` command](#updating-status-of-an-internship-application--status).
 
 </div>
@@ -175,7 +203,9 @@ Examples of usage:
 
 Expected outcome:
 
-* Internship application information is added to InTrack and appears at the bottom of the displayed list.
+* Internship application with the given information is added to InTrack and appears at the bottom of the displayed list.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Deleting an internship application: `delete`
 
@@ -202,6 +232,8 @@ Before deleting the internship application for `Software Engineer` at `Microsoft
 After deleting the internship application for `Software Engineer` at `Microsoft` previously at `INDEX` 1:
 
 ![DeleteFeature](images/DeleteFeature.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Updating status of an internship application : `status`
 
@@ -231,6 +263,8 @@ After updating the status of the internship application at `INDEX` 1 to `Offered
 
 ![StatusFeature](images/StatusFeature.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Adding a tag to an internship application : `addtag`
 
 Adds one or more `Tag`s to the internship application at the specified `INDEX` in InTrack.
@@ -240,7 +274,7 @@ Format: `addtag INDEX TAG [MORE_TAGS]...`
 | Parameter | Representation                                    | Constraints                                                                                    |
 |-----------|---------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `INDEX`   | The index of the target internship application    | Must be a positive unsigned integer and must not exceed the size of the current displayed list |
-| `TAG`     | The tag to be added to the internship application | Must be one word and contain only alphanumeric characters                                      |
+| `TAG`     | The tag to be added to the internship application | Must be one word per tag and contain only alphanumeric characters                              |
 
 <div markdown="block" class="alert alert-info">
 
@@ -262,6 +296,8 @@ Expected outcome:
 
 * The `Urgent` tag will appear on the first internship application in InTrack.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a tag from an internship application : `deltag`
 
 Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` in InTrack.
@@ -271,7 +307,7 @@ Format: `deltag INDEX TAG [MORE_TAGS]...`
 | Parameter | Representation                                        | Constraints                                                                                    |
 |-----------|-------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `INDEX`   | The index of the target internship application        | Must be a positive unsigned integer and must not exceed the size of the current displayed list |
-| `TAG`     | The tag to be deleted from the internship application | Must be one word and contain only alphanumeric characters                                      |
+| `TAG`     | The tag to be deleted from the internship application | Must be one word per tag and contain only alphanumeric characters                              |
 
 Example of usage:
 
@@ -280,6 +316,8 @@ Example of usage:
 Expected outcome:
 
 * The `Urgent` tag, if it exists, will be removed from the first internship application in InTrack.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Selecting an internship application : `select`
 
@@ -317,6 +355,8 @@ After selecting the internship application at `INDEX` 1:
 
 ![SelectFeature](images/SelectFeature.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Editing an internship application : `edit`
 
 Edits the details of the currently selected internship application.
@@ -330,16 +370,16 @@ Before an internship application can be edited, it must first be selected via th
 
 </div>
 
-Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE [s/NEW_SALARY] [t/NEW_TAG]...`
+Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAG]...`
 
 | Parameter      | Representation                               | Constraints                                                                   |
 |----------------|----------------------------------------------|-------------------------------------------------------------------------------|
 | `NEW_COMPANY`  | Company that is offering the internship      | Must contain only alphanumeric characters and spaces, and should not be blank |
 | `NEW_POSITION` | Position of the internship                   | Must not be blank                                                             |
-| `NEW_EMAIL`    | Email of the hiring team                     | Must be of the format local-part@domain                                       |
+| `NEW_EMAIL`    | Email of the hiring team                     | Must be of the format `local-part@domain`                                     |
 | `NEW_WEBSITE`  | Website containing details of the internship | Must be a valid URL                                                           |
 | `NEW_SALARY`   | Salary of the position                       | Must contain only numbers                                                     |
-| `NEW_TAG`      | Tag(s) of the internship application         | Must be one word and contain only alphanumeric characters                     |
+| `NEW_TAG`      | Tag(s) of the internship application         | Must be one word per tag and contain only alphanumeric characters             |
 
 <div markdown="block" class="alert alert-info">
 
@@ -347,7 +387,7 @@ Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE [s/N
 
 At least one of the optional fields must be provided.
 
-The status and remark of an internship application can only be edited via the
+The status and remark field of an internship application can only be edited via the
 [`status` command](#updating-status-of-an-internship-application--status)
 and [`remark` command](#adding-a-remark-to-an-internship-application--remark) respectively.
 
@@ -355,13 +395,13 @@ and [`remark` command](#adding-a-remark-to-an-internship-application--remark) re
 
 Examples of usage:
 
-* `edit c/GOOGLE p/Data Analyst e/google@gmail.com w/https://google.com t/URGENT s/1000`
+* `edit c/Google p/Data Analyst e/google@gmail.com w/https://google.com t/URGENT s/1000`
 
 Expected outcome:
 
 * Edits the fields of the selected entry to match that in the input, in that the name of the company changes to
   Google, the position changes to Data Analyst, the email changes to google@gmail.com, the website changes to
-  https://google.com, the tags are changed to just URGENT and the salary changes to $1000.
+  https://google.com, the tags are changed to just `URGENT` and the salary changes to $1000.
 
 
 Examples of usage:
@@ -371,6 +411,8 @@ Examples of usage:
 Expected outcome:
 
 * Edits the position field of the selected entry to become SWE. All other details of the entry remain unchanged.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Adding a task to a selected internship application : `addtask`
 
@@ -408,6 +450,8 @@ After adding a new task for `Technical Interview` at `12-01-2023 15:00` to the s
 
 ![AddTaskFeatureAfter](images/AddTaskFeatureAfter.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a task from a selected internship application : `deltask`
 
 Deletes the task at the specified `TASK_INDEX` in the task list of the currently selected internship application.
@@ -443,6 +487,8 @@ After deleting the task previously at `TASK_INDEX` 1 in the selected internship 
 
 ![DeleteTaskFeatureAfter](images/DeleteTaskFeatureAfter.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Adding a remark to an internship application : `remark`
 
 Adds a `remark` to the selected internship application.
@@ -468,7 +514,7 @@ Example of usage:
 
 Expected outcome:
 
-* The input remark `Revise graphs` will be added to the selected internship application in the remark section.
+* The input remark `Revise graphs` will be added to the remark section of the selected internship application.
 
 Example of usage:
 
@@ -476,11 +522,13 @@ Example of usage:
 
 Expected outcome:
 
-* The remark section in the selected internship application panel will be cleared.
+* The remark section of the selected internship application panel will be cleared.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Sending an email to a company : `mail`
 
-Launches the default mail app with the and prepares to send an email with the recipient set to the email address
+Launches the default mail app and prepares to send an email with the recipient set to the email address
 registered to the selected internship.
 
 <div markdown="block" class="alert alert-info">
@@ -497,6 +545,8 @@ Format: `mail`
 * `mail` does not check if the email address is valid/correct and is the responsibility of the user.
 * `mail` invokes the native desktop application of the default mail app.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## List Management
 
 ### Listing all internship applications : `list`
@@ -505,6 +555,8 @@ Shows a list of all internship applications in InTrack. Commonly used to return 
 `filter` or one of the `find` commands.
 
 Format: `list`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Clearing all internship applications : `clear`
 
@@ -516,6 +568,8 @@ command.
 </div>
 
 Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Finding internship applications by company name : `findc`
 
@@ -543,6 +597,8 @@ After using `findc` with the keywords `Microsoft Alphabet`:
 
 ![FindcFeature](images/FindcFeature.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Finding internship applications by position : `findp`
 
 Finds internship applications with position names containing any of the given keywords.
@@ -560,6 +616,8 @@ Example of usage:
 
 Expected outcome:
 * All internships containing `Frontend` in the position field (case-insensitive) will be filtered and displayed.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Finding internship applications by tags : `findt`
 
@@ -579,12 +637,14 @@ Example of usage:
 Expected outcome:
 * All internships with the `urgent` tag (case-insensitive) will be filtered and displayed.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Filtering internship applications by status : `filter`
 
 Filters all internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
 `o` for "Offered".
 
-Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`
+Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r` or their capitalised counterparts
 
 Example of usage:
 * `filter o`
@@ -600,6 +660,8 @@ After filtering by "Offered" status:
 
 ![FilterFeatureAfter](images/FilterFeatureAfter.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Sorting internship applications: `sort`
 
 Sorts the current list of internship applications on the left panel via their `SORT_TYPE` which is either `time` or `salary`,
@@ -610,21 +672,21 @@ Format: `sort SORT_TYPE SORT_ORDER`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note about `SORT`:**<br>
-For sorting by the time of their tasks, internships are also sorted with the current date and time taken
+For sorting by the time of their tasks, internships are sorted with the current date and time taken
 into consideration.
 
-Internships are sorted by their earliest **upcoming tasks**, thus dates of tasks that are before the current date is **not taken into account**
-when sorting is conducted.
+Internships are sorted by their earliest **upcoming tasks as per the current date and time**, thus tasks whose dates 
+are before the current date are **not taken into account** when sorting is conducted.
 
 This means that internships without any upcoming tasks (i.e. internships without any tasks or with all tasks that are past the current date), will not
 be sorted in any particular order and will be kept at the bottom of the list of internships instead no matter what SORT_ORDER is given.
 
 </div>
 
-| Parameter    | Representation                                   | Constraints                                                                                      |
-|--------------|--------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `SORT_TYPE`  | The attribute that the internships are sorted by | Is not case sensitive and can only take `time` and `salary` as input fields, and cannot be blank |
-| `SORT_ORDER` | The order that the internships are sorted in     | Is not case sensitive and can only take `a` and `d` as input fields, and cannot be blank         |
+| Parameter    | Representation                                   | Constraints                                                                                    |
+|--------------|--------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `SORT_TYPE`  | The attribute that the internships are sorted by | Is case-insensitive and can only take `time` and `salary` as input fields, and cannot be blank |
+| `SORT_ORDER` | The order that the internships are sorted in     | Is case-insensitive and can only take `a` and `d` as input fields, and cannot be blank         |
 
 Example of usage:
 
@@ -632,8 +694,8 @@ Example of usage:
 
 Expected outcome:
 
-* The list of internships are sorted in an ascending manner,
-with the internship with the task with the earliest date and time that is after the current date and time at the top.
+* The list of internships are sorted in an ascending manner, with the internship with the task with the earliest date 
+and time that is after the current date and time at the top.
 
 Example of usage:
 
@@ -641,8 +703,7 @@ Example of usage:
 
 Expected outcome:
 
-* The list of internships are sorted in an ascending manner,
-with the internship with the lowest salary at the top.
+* The list of internships are sorted in an ascending manner, with the internship with the lowest salary at the top.
 
 Before sorting by upcoming task time in ascending order:
 
@@ -651,6 +712,8 @@ Before sorting by upcoming task time in ascending order:
 After sorting by upcoming task time in ascending order:
 
 ![SortFeature](images/SortFeature.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -675,7 +738,7 @@ After sorting by upcoming task time in ascending order:
 
 | Action                                      | Format, Examples                                                                                                                                                                                                                                    |
 |---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add internship application**              | `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                                                 |
+| **Add internship application**              | `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add c/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                                                 |
 | **Delete internship application**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                                                                                |
 | **Update status of internship application** | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                                                                                        |
 | **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                                                       |
