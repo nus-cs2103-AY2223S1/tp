@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **New feature**: Find command for tasks
   * What it does:  allows users to find tasks based on task fields (description, deadline, and completion status)
   * Justification: users may wish to find task based on certain task fields
-  * Highlights: The find command required the implementation of a new predicate class to filter tasks based on task fields. Tell-Don't-Ask principle was applied by ensuring that checks for whether task fields contain keywords are done in their respective classes (e.g. Description, Deadline, and CompletionStatus) rather than the predicate class class.
+  * Highlights: The find command required the implementation of a new predicate class to filter tasks based on task fields. Tell-Don't-Ask principle was applied by ensuring that checks for whether task fields contain keywords are done in their respective classes (e.g. Description, Deadline, and CompletionStatus) rather than the predicate class.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=junwei-tan&breakdown=true)
 

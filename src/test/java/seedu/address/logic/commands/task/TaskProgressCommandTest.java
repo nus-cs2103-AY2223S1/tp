@@ -11,14 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalTags;
 
 public class TaskProgressCommandTest {
-
-    // Tag firstTag = new Tag(VALID_TAG_2103);
-
-    // Todo: Fix the tag lists
     private static Set<Tag> firstTagList = new HashSet<>();
-    private static Set<Tag> secondTagList = new HashSet<>();
+    private static Set<Tag> secondTagList = Set.copyOf(TypicalTags.getTypicalTags());
 
     private static final TaskContainsKeywordsPredicate firstPredicate =
             new TaskContainsKeywordsPredicate(firstTagList);
@@ -48,7 +45,7 @@ public class TaskProgressCommandTest {
         // null -> returns false
         assertFalse(firstProgressCommand.equals(null));
 
-        // different person -> returns false
-        // assertFalse(firstProgressCommand.equals(secondProgressCommand));
+        // different tag list -> returns false
+        assertFalse(firstProgressCommand.equals(secondProgressCommand));
     }
 }

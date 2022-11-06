@@ -73,6 +73,4 @@ public class VersionedAddressBook extends AddressBook {
     public ReadOnlyAddressBook getCurrentState() {
         return addressBookStateList.get(currentStatePointer);
     }
-
-
 }
