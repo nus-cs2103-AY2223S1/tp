@@ -66,9 +66,11 @@ After trying all of these tools, you may start wondering: why am I wasting time 
 spent doing more productive tasks for myself or my students? You’re tired, and you just want to catch up on your sleep
 schedule!
 
-Be assured that you are not alone in this endeavor. According to an analysis done by University College London on the
-Teaching and Learning International Survey, a significant portion of teachers consider too much admin work as a source
-of their workload stress, which can in turn affect their mental well-being. You wouldn’t want this to happen to you!
+Be assured that you are not alone in this endeavor. According to
+an [analysis](https://johnjerrim.files.wordpress.com/2020/11/working_paper_workload_wellbeing_november_2020.pdf) done by
+University College London on the Teaching and Learning International Survey, a significant portion of teachers consider
+too much admin work as a source of their workload stress, which can in turn affect their mental well-being. You wouldn’t
+want this to happen to you!
 
 ## 2.4 Our Solution
 
