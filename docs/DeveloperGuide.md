@@ -266,7 +266,7 @@ Every instance of AddTaskCommand is created with a Task instance. If the Task in
 
 Every instance of DeleteTaskCommand is created with an Index instance.
 
-Additionally, it implements the following operations:
+Additionally, TaskList implements the following operations:
 
 * `TaskList#addTask()` — Adds a task to the task list.
 * `TaskList#remove()` — Removes the specified task from the task list.
@@ -515,6 +515,74 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command is correct.
 
+### Reminder feature
+
+#### Implementation
+
+The reminder mechanism is facilitated by `TaskUntilDeadlinePredicate`. It implements `Predicate<Task>`, which means it is a functional interface that tests a task object against a condition.
+
+Additionally, it implements the following operations:
+
+* `TaskUntilDeadlinePredicate#test()` — Returns true if the task object contains all the keywords given by the user.
+
+Given below is an example usage scenario and how the reminder mechanism behaves at each step.
+
+Step 1. The user launches the application, which already has some tasks with different deadlines listed.
+
+Step 2. The user executes `remindT 12-09-2022` command to list tasks with deadlines up to and including the specified date. The `addT` command calls `Model#updateFilteredTaskList(Predicate<Task> predicate)`, which filters the task list by the given predicate.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The remindT command will fail its execution if its format is incorrect, and the task list will not be updated. An error message will be displayed informing the user.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How remind task executes:**
+
+* **Alternative 1 (current choice):** Implement a TaskUntilDeadlinePredicate class to handle creation of predicates for the ReminderCommand class.
+    * Pros: Reduces dependency on other classes.
+    * Pros: Abides by the Single Responsibility Principle.
+    * Cons: The code becomes longer as a new class must be implemented.
+
+* **Alternative 2:** Modify the PersonContainsKeywordsPredicate class to handle deadlines as well.
+    * Pros: Does not require implementation of a new class.
+    * Cons: The FilterTaskCommand and ReminderCommand classes become dependent on the modified PersonContainsKeywordsPredicate class. This increases coupling.
+
+### Task progress feature
+
+#### Implementation
+
+The task progress mechanism is facilitated by `ModelManager`. It implements `Model`.
+
+Additionally, it implements the following operations:
+
+* `updateFilteredTaskList(Predicate<Task> predicate)` — Updates the filter of the filtered task list to filter by the given predicate.
+* `ModelManager#getPercentageCompletion(Predicate<Task> predicate)` — Updates the filter of the filtered task list and returns the percentage of completed tasks.
+
+Given below is an example usage scenario and how the reminder mechanism behaves at each step.
+
+Step 1. The user launches the application, which already has some tasks labelled with `cs2103t`.
+
+Step 2. The user executes `progressT cs2103t` command to list all tasks with the label `cs2103t` and tells the user what percentage of tasks labelled `cs2103t` are marked as complete.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The progressT command will fail its execution if its format is incorrect, and the task list will not be updated. An error message will be displayed informing the user.
+
+</div>
+
+Step 3. The user executes `listT` command to list all tasks.
+
+#### Design considerations:
+
+**Aspect: How task progress executes:**
+
+* **Alternative 1 (current choice):** Use `updateFilteredTaskList(Predicate<Task> predicate)` to filter the task list.
+    * Pros: The total number of tasks that need to be considered is the size of the filtered task list.
+    * Pros: Only the tasks that need to be considered are in the filtered task list.
+    * Cons: This increases coupling.
+
+* **Alternative 2:** Check each task of the task list to see if it needs to be counted.
+    * Pros: Reduces coupling.
+    * Cons: This is inefficient and performance is likely to worsen as the task list grows in size.
 
 --------------------------------------------------------------------------------------------------------------------
 

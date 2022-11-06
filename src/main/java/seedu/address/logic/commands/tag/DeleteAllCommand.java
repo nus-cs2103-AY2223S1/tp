@@ -77,7 +77,7 @@ public class DeleteAllCommand extends Command {
         }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         editTaskDescriptor.setTags(tagsToDelete);
-        return CommandUtil.createEditedTask(task, editTaskDescriptor);
+        return CommandUtil.createEditedTaskWithDeleteTags(task, editTaskDescriptor);
     }
 
     private Person removeTags(Model model, Person person) {
@@ -88,7 +88,7 @@ public class DeleteAllCommand extends Command {
         }
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         editPersonDescriptor.setTags(tagsToDelete);
-        return CommandUtil.createEditedPerson(person, editPersonDescriptor);
+        return CommandUtil.createEditedPersonWithDeleteTags(person, editPersonDescriptor);
     }
 
     private String deleteAndUpdateTasks(Model model) {
