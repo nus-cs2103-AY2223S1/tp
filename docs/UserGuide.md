@@ -82,7 +82,7 @@ This section contains the formats of all commands in FindMyIntern.
 ## Command Line Guide
 
    <p align="center">
-       <img src="images/CommandLine.png" width="600" />
+       <img src="images/CommandLine.png" width="700" />
    </p>
 That’s it! That’s all you need to know about command line to use FindMyIntern. You are now ready to start.
 
