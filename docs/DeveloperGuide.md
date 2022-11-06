@@ -348,10 +348,10 @@ using the given the student indices and the module class to assign them to.
 from the list of students captured by the `Model`. For each student, the next steps are repeated. 
 
 **Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object.
-The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new instance of 
-`StudentModuleData` is created with the given `ModuleClass` without any session information. Then a new `Student` object
-is created from the old one by copying over all the data fields and adding the new `StudentModuleData` object to the
-collection of `StudentModuleData` objects. The new `Student` object is returned.
+The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object
+is created from the old one by copying over all the data fields. Then a new instance of `StudentModuleData` is created 
+with the given `ModuleClass` without any session information and added to the list of `StudentModuleData` of the new `Student`
+object. The new `Student` object is returned.
 
 **Step 4**: The `Model#setStudent` method is used to replace the old `Student` object with the updated one in the model. 
 

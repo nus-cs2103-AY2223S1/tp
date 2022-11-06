@@ -2,12 +2,12 @@
 !include style.puml
 mainframe **sd** construct new student with updated grade
 
-box Logic LOGIC_COLOR_T1
-participant "oldStudent:Student" as OldStudent LOGIC_COLOR
-participant "newStudent:Student" as Student LOGIC_COLOR
-participant "oldData:StudentModuleData" as SMD LOGIC_COLOR
-participant "newData:StudentModuleData" as NSMD LOGIC_COLOR
-participant "s:SessionData" as SD LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant "oldStudent:Student" as OldStudent MODEL_COLOR
+participant "newStudent:Student" as Student MODEL_COLOR
+participant "oldData:StudentModuleData" as SMD MODEL_COLOR
+participant "newData:StudentModuleData" as NSMD MODEL_COLOR
+participant "s:SessionData" as SD MODEL_COLOR
 end box
 
 [-> OldStudent:
@@ -32,7 +32,7 @@ activate SD
 SD --> SMD
 deactivate SD
 
-SMD -> SMD: add s to session data list of newData
+SMD -> SMD: add s to newData's\nlist of SessionData
 activate SMD
 SMD --> SMD
 deactivate SMD
