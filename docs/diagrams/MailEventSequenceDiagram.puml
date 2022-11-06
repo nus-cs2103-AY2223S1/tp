@@ -11,6 +11,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniqueEventList" as UniqueEventList MODEL_COLOR
 end box
 
 [-> LogicManager : execute(cmd)
@@ -39,22 +40,32 @@ deactivate AddressBookParser
 LogicManager -> MailEventCommand : execute()
 activate MailEventCommand
 
-MailEventCommand -> ModelManager : setPerson(P1, P2)
+MailEventCommand -> ModelManager : getFilteredEventList()
 activate ModelManager
 
-ModelManager -> AddressBook : setPerson(P1, P2)
+ModelManager -> AddressBook : getEventList()
 activate AddressBook
 
-AddressBook --> ModelManager :
+AddressBook --> ModelManager : EventList
 deactivate AddressBook
 
-ModelManager --> MailEventCommand :
+
+ModelManager --> MailEventCommand : EventList
 deactivate ModelManager
+
+MailEventCommand --> UniqueEventList : get(eventIndex)
+activate UniqueEventList
+
+UniqueEventList --> MailEventCommand : event
+deactivate UniqueEventList
+
+MailEventCommand -> MailEventCommand : getMailingList()
+
+[<-- MailEventCommand : mailingList.csv
 
 MailEventCommand --> LogicManager : result
 deactivate MailEventCommand
 MailEventCommand -[hidden]-> LogicManager : result
-destroy MailEventCommand
 
 [<--LogicManager
 deactivate LogicManager
