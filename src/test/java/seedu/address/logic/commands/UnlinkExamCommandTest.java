@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_LINKED_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -98,6 +99,14 @@ public class UnlinkExamCommandTest {
                 Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, model.getFilteredTaskList().size() + 1);
 
         assertCommandFailure(unlinkExamCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_noTaskInList_throwsCommandException() {
+        model.updateFilteredTaskList(t -> false);
+        UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(FIRST_INDEX);
+
+        assertCommandFailure(unlinkExamCommand, model, UnlinkExamCommand.MESSAGE_NO_TASK_IN_LIST);
     }
 
     @Test

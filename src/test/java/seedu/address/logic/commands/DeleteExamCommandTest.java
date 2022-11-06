@@ -51,6 +51,14 @@ public class DeleteExamCommandTest {
     }
 
     @Test
+    public void execute_noExamInList_throwsCommandException() {
+        model.updateFilteredExamList(e -> false);
+        DeleteExamCommand deleteExamCommand = new DeleteExamCommand(FIRST_INDEX);
+
+        assertCommandFailure(deleteExamCommand, model, DeleteExamCommand.MESSAGE_NO_EXAM_IN_LIST);
+    }
+
+    @Test
     public void equals() {
         DeleteExamCommand deleteFirstExamCommand = new DeleteExamCommand(FIRST_INDEX);
         DeleteExamCommand deleteSecondExamCommand = new DeleteExamCommand(SECOND_INDEX);

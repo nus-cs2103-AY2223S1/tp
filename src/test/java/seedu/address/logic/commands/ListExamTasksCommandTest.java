@@ -66,6 +66,14 @@ public class ListExamTasksCommandTest {
     }
 
     @Test
+    public void execute_noExamInList_throwsCommandException() {
+        model.updateFilteredExamList(e -> false);
+        ListExamTasksCommand listExamTasksCommand = new ListExamTasksCommand(FIRST_INDEX);
+
+        assertCommandFailure(listExamTasksCommand, model, ListExamTasksCommand.MESSAGE_NO_EXAM_IN_LIST);
+    }
+
+    @Test
     public void equals() {
         ListExamTasksCommand listFirstExamTasksCommand = new ListExamTasksCommand(FIRST_INDEX);
         ListExamTasksCommand listSecondExamTasksCommand = new ListExamTasksCommand(SECOND_INDEX);
