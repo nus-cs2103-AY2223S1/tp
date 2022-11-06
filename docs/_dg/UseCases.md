@@ -4,7 +4,7 @@
 
 Preconditions: [[ item:Item ]] to add does not yet exist in inventory.
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User adds a new Item to the inventory.
 1. FoodRem informs user that item has been successfully created.
