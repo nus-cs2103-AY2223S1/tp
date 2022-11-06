@@ -146,7 +146,7 @@ Extensions:
 
 Preconditions: [[ tag:Tag ]] has been created in FoodRem.
 
-[[ MSS ]]:
+[[ main-success-scenario-mss:MSS ]]:
 
 1. User chooses to view all tags.
 1. FoodRem shows all tags.
