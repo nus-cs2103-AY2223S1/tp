@@ -77,7 +77,7 @@ public class AssignTaskRandomlyCommand extends Command {
         Person assignee = unassignedMembers.get(random.nextInt(unassignedMembers.size()));
 
         Task originalTask = tasks.get(index.getZeroBased());
-        Task newTask = originalTask.assignTo(assignee);
+        Task newTask = originalTask.addAssignee(assignee);
 
         model.getTeam().setTask(originalTask, newTask);
 

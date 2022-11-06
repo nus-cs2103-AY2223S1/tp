@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TaskName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Task names should not be blank and cannot begin with a whitespace";
+            "Task names should not be blank and cannot contain quotation marks (' and \")";
 
     /*
-     * The first character of the task name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The first character of the task name must not be a whitespace, otherwise " " (a blank string) becomes a
+     * valid input. The input cannot contain any quotation marks as well.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "((?!['\"])([^\\s]))((?!['\"])([^'\"]))*";
 
     public final String taskName;
 

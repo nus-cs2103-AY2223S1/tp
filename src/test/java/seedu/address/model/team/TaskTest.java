@@ -39,7 +39,7 @@ public class TaskTest {
 
     @Test
     public void checkAssignee_assigneeAssigned_returnsTrue() {
-        Task assignedTask = taskUnderTest.assignTo(CARL);
+        Task assignedTask = taskUnderTest.addAssignee(CARL);
         assertTrue(assignedTask.checkAssignee(CARL));
     }
 

@@ -28,10 +28,16 @@ public class TypicalTeams {
 
     public static final Team FIRST = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION);
+    public static final Team DEFAULT = new Team(new TeamName("default"),
+            Description.DEFAULT_DESCRIPTION);
+    public static final Team DEFAULT_EDITED = new Team(new TeamName("default"),
+            new Description("For Testing"));
     public static final Team FIRST_DUPLICATE = new Team(new TeamName("first"),
             Description.NO_DESCRIPTION.DEFAULT_DESCRIPTION);
     public static final Team FIRST_TEAM_DETAILS = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, TYPICAL_LINKS);
-    public static final Team SECOND = new Team(new TeamName("third"),
+    public static final Team SECOND = new Team(new TeamName("second"),
+            Description.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
+    public static final Team FIRST_EDITED = new Team(new TeamName("first"),
             Description.DEFAULT_DESCRIPTION);
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
@@ -12,13 +11,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_TWO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.AddMemberCommand;
@@ -62,10 +64,12 @@ import seedu.address.logic.commands.TasksSummaryCommand;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.team.Team;
 import seedu.address.testutil.LinkBuilder;
 import seedu.address.testutil.LinkUtil;
@@ -108,14 +112,16 @@ public class TruthTableParserTest {
         assertEquals(person.getName(), ParserHelper.getName(command));
         assertEquals(person.getPhone(), ParserHelper.getPhone(command));
         assertEquals(person.getEmail(), ParserHelper.getEmail(command));
-        assertEquals(person.getAddress(), ParserHelper.getAddress(command));
     }
     @Test
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertEquals(task.getName(), ParserHelper.getTaskName(command));
-        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
+        ArrayList<Index> expectedAssignees = new ArrayList<>();
+        expectedAssignees.add(INDEX_ONE);
+        expectedAssignees.add(INDEX_TWO);
+        assertEquals(expectedAssignees, ParserHelper.getAssignees(command));
         assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
 
@@ -142,7 +148,11 @@ public class TruthTableParserTest {
                 + INDEX_SECOND_PERSON.getOneBased();
         AssignTaskCommand command = (AssignTaskCommand) parser.parseCommand(commandString);
         assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
-        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
+
+        ArrayList<Index> expectedAssignees = new ArrayList<>();
+        expectedAssignees.add(INDEX_ONE);
+        expectedAssignees.add(INDEX_TWO);
+        assertEquals(expectedAssignees, ParserHelper.getAssignees(command));
     }
     @Test
     public void parseCommand_assignRandom() throws Exception {
@@ -225,7 +235,6 @@ public class TruthTableParserTest {
         assertEquals(person.getName(), ParserHelper.getName(command));
         assertEquals(person.getPhone(), ParserHelper.getPhone(command));
         assertEquals(person.getEmail(), ParserHelper.getEmail(command));
-        assertEquals(person.getAddress(), ParserHelper.getAddress(command));
     }
 
     @Test
@@ -236,7 +245,10 @@ public class TruthTableParserTest {
                 + TaskUtil.getTaskDetailsWithNameFlag(task);
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(commandString);
         assertEquals(task.getName(), ParserHelper.getTaskName(command));
-        assertTrue(Arrays.equals(new String[] {"1", "2"}, ParserHelper.getAssignees(command)));
+        ArrayList<Index> expectedAssignees = new ArrayList<>();
+        expectedAssignees.add(INDEX_ONE);
+        expectedAssignees.add(INDEX_TWO);
+        assertEquals(expectedAssignees, ParserHelper.getAssignees(command));
         assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
     @Test
@@ -269,13 +281,15 @@ public class TruthTableParserTest {
                 + FLAG_NAME_STR + " "
                 + keywords.stream().collect(Collectors.joining(" "));
         FindMemberCommand nameFindCommand = (FindMemberCommand) parser.parseCommand(nameCommandString);
-        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getNameKeyWords(nameFindCommand)));
+        assertEquals(new NameContainsKeywordsPredicate(keywords),
+                ParserHelper.getNameContainsKeywordsPredicate(nameFindCommand));
 
         String emailCommandString = FindMemberCommand.FULL_COMMAND + " "
                 + FLAG_EMAIL_STR + " "
                 + keywords.stream().collect(Collectors.joining(" "));
         FindMemberCommand emailFindCommand = (FindMemberCommand) parser.parseCommand(emailCommandString);
-        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getEmailKeyWords(nameFindCommand)));
+        assertEquals(new EmailContainsKeywordsPredicate(keywords),
+                ParserHelper.getEmailContainsKeywordsPredicate(emailFindCommand));
     }
 
     @Test
@@ -291,10 +305,12 @@ public class TruthTableParserTest {
     public void parseCommand_findTask() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         String commandString = FindTaskCommand.FULL_COMMAND + " "
-                + FLAG_NAME_STR + " "
                 + keywords.stream().collect(Collectors.joining(" "));
         FindTaskCommand nameFindCommand = (FindTaskCommand) parser.parseCommand(commandString);
-        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getNameKeyWords(nameFindCommand)));
+
+        assertEquals(new TaskNameContainsKeywordsPredicate(keywords),
+                ParserHelper.getTaskNameContainsKeywordsPredicate(nameFindCommand));
+
     }
 
     @Test
@@ -350,7 +366,7 @@ public class TruthTableParserTest {
         Task task = new TaskBuilder().build();
         String commandString = SetDeadlineCommand.FULL_COMMAND + " "
                 + INDEX_ONE.getOneBased() + " "
-                + task.getDeadlineStorage();
+                + task.getDeadlineInputAsString();
         SetDeadlineCommand command = (SetDeadlineCommand) parser.parseCommand(commandString);
         assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
         assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));

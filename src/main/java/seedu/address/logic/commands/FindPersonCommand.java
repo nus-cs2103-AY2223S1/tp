@@ -28,7 +28,7 @@ public class FindPersonCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + FULL_COMMAND + " alice bob charlie";
 
-    @CommandLine.Parameters(arity = "1", paramLabel = "keywords",
+    @CommandLine.Parameters(arity = "1", paramLabel = "nameKeywords",
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,
             description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
     private NameContainsKeywordsPredicate predicate;

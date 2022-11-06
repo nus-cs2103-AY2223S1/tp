@@ -4,24 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_SEARCH_KEYWORDS_DESCRIPTION;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.TaskNameContainsKeywordsPredicateConverter;
 import seedu.address.model.Model;
-import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in the current team whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 @CommandLine.Command(name = FindTaskCommand.COMMAND_WORD,
         aliases = {FindTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
@@ -37,11 +31,13 @@ public class FindTaskCommand extends Command {
             + "Example: " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " teams feature ";
 
-    public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s)%2$s. \n"
+    public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s): %2$s.\n"
             + "Type `list tasks` to show all tasks again.";
 
-    @CommandLine.ArgGroup(multiplicity = "1")
-    private Exclusive predicate;
+    @CommandLine.Parameters(arity = "1", paramLabel = "nameKeywords",
+            parameterConsumer = TaskNameContainsKeywordsPredicateConverter.class,
+            description = FLAG_TASK_SEARCH_KEYWORDS_DESCRIPTION)
+    private TaskNameContainsKeywordsPredicate predicate;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -59,9 +55,9 @@ public class FindTaskCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        model.updateFilteredTaskList(predicate.getPredicate());
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size(), predicate.keywordsToString()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size(), predicate.getKeywordsAsString()));
     }
 
     @Override
@@ -71,29 +67,4 @@ public class FindTaskCommand extends Command {
                 && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 
-    private static class Exclusive {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1..*",
-                description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
-        private String[] nameKeywords;
-
-        Predicate<Task> getPredicate() {
-            return new TaskNameContainsKeywordsPredicate(List.of(nameKeywords));
-        }
-
-        String keywordsToString() {
-            return Stream.of(nameKeywords).reduce("", (a, b) -> a + " " + b);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Exclusive) {
-                Exclusive target = (Exclusive) other;
-                return Arrays.equals(nameKeywords, target.nameKeywords);
-            } else {
-                return false;
-            }
-        }
-    }
 }

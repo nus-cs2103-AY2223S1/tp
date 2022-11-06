@@ -13,16 +13,19 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTIO
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskName;
+import seedu.address.model.team.Team;
 
 /**
  * Adds a task to the current team.
@@ -55,9 +58,9 @@ public class AddTaskCommand extends Command {
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_NAME_DESCRIPTION)
     private TaskName taskName;
 
-    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "",
-            description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
-    private String[] assignees;
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},
+        description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
+    private List<Index> assignees = new ArrayList<>();
 
     @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
             parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
@@ -82,32 +85,30 @@ public class AddTaskCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<String> assigneesList;
-        if (assignees.length == 1 && Arrays.asList(assignees).contains("")) {
-            assigneesList = List.of();
-        } else {
-            assigneesList = Arrays.asList(assignees);
-        }
+
+        Team team = model.getTeam();
         Task task = new Task(taskName, List.of(), false, deadline);
-        if (model.getTeam().hasTask(task)) {
+        if (team.hasTask(task)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        List<Person> memberList = model.getTeam().getTeamMembers();
-        for (String s : assigneesList) {
-            if (Integer.parseInt(s) < 1
-                    || Integer.parseInt(s) > memberList.size()) {
+
+        List<Person> memberList = team.getTeamMembers();
+        for (Index index : assignees) {
+            if (index.getZeroBased() >= memberList.size()) {
                 throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
             }
         }
-        List<Person> assigneePersonList = new java.util.ArrayList<>(List.of());
-        for (String index : assigneesList) {
-            int assigneeIndex = Integer.parseInt(index);
-            assigneePersonList.add(memberList.get(assigneeIndex - 1));
+
+        // convert list of assignee index to list of persons
+        List<Person> assigneePersonsList = assignees.stream()
+                .map(index -> memberList.get(index.getZeroBased()))
+                .collect(Collectors.toList());
+
+        for (Person assignee : assigneePersonsList) {
+            task.addAssignee(assignee);
         }
-        for (Person assignee : assigneePersonList) {
-            task.assignTo(assignee);
-        }
-        model.getTeam().addTask(task);
+        team.addTask(task);
+
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
     }
 
@@ -116,7 +117,7 @@ public class AddTaskCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && taskName.equals(((AddTaskCommand) other).taskName)) // state check
-                && Arrays.equals(assignees, ((AddTaskCommand) other).assignees)
-                && deadline == null ? false : deadline.equals(((AddTaskCommand) other).deadline);
+                && assignees.equals(((AddTaskCommand) other).assignees)
+                && deadline != null && deadline.equals(((AddTaskCommand) other).deadline);
     }
 }
