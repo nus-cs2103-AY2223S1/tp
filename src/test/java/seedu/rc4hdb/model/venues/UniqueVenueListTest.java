@@ -84,7 +84,7 @@ public class UniqueVenueListTest {
         uniqueVenueList.add(new VenueBuilder(DISCUSSION_ROOM).build());
         uniqueVenueList.addBooking(DISCUSSION_ROOM_NAME, MR_BOB_TUESDAY_6_TO_7PM);
         assertTrue(uniqueVenueList.getVenueWithName(DISCUSSION_ROOM_NAME)
-                .getBookings().contains(MR_BOB_TUESDAY_6_TO_7PM));
+                .getReadOnlyBookings().contains(MR_BOB_TUESDAY_6_TO_7PM));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class UniqueVenueListTest {
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         uniqueVenueList.removeBooking(getExampleBookingDescriptor());
         assertFalse(uniqueVenueList.getVenueWithName(MEETING_ROOM_VENUE_NAME)
-                .getBookings().contains(MR_ALICE_MONDAY_5_TO_6PM));
+                .getReadOnlyBookings().contains(MR_ALICE_MONDAY_5_TO_6PM));
     }
 
     @Test
