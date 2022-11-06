@@ -2,26 +2,44 @@
 layout: page
 title: Developer Guide
 ---
+{:logo: height="200px" width="200px" style="display:block; margin-left:auto; margin-right:auto;"}
+![StudMapLogo](images/studmap/studmap_hd.png){: logo}
+
+# Overview
+
+StudMap is a lightweight desktop app for managing your students and organizing your teaching assistant (TA)
+responsibilities. It’s optimized for use via a Command Line Interface (CLI), meaning that you give instructions to
+StudMap through a text box, and StudMap just does it for you — it’s like magic. Yet, it has all the benefits of a
+traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
+see. If you type fast, StudMap can get your student management tasks done faster than anything else.
+
+This Developer Guide aims to acquaint you with the architecture of StudMap, in case you are interested in contributing
+to the project. You can also use this as a reference, if you are interested in developing something similar.
+
+---
 
 * Table of Contents
-{:toc}
+  {:toc}
+
+---
+
+# Acknowledgements
+
+* [JavaFX](https://openjfx.io/) for providing the API for rendering GUI.
+* [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
+* [JUnit](https://junit.org/junit5/) for providing a unit testing framework.
+* StudMap's Developer Guide is adapted
+  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
+# Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+# Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -31,7 +49,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### Architecture
+## Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -80,7 +98,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+## UI component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java)
@@ -104,9 +122,10 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
-### Logic component
+## Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -141,9 +160,10 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+## Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="600" />
 
@@ -152,7 +172,8 @@ The `Model` component,
 
 * stores the student map data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g. results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to
+  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound
+  to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -165,9 +186,10 @@ The `Model` component,
 
 </div>
 
-### Storage component
+## Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -180,19 +202,19 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+## Common classes
 
 Classes used by multiple components are in the `seedu.studmap.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Implementation**
+# Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## **Filter feature**
+## Filter feature
 
-#### Current Implementation
+### Current Implementation
 
 The 'filter' feature is implemented by the 'FilterCommand' class which extends its parent 'Command' class. The structure
 of the 'filter' feature can be summarized via the sequence diagram shown below.
@@ -207,7 +229,7 @@ The 'FilterCommand' supports one operation:
   operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
   by the user
 
-#### General flow for FilterCommand
+### General flow for FilterCommand
 
 The flow for 'FilterCommand#execute' is as such:
 
@@ -220,39 +242,52 @@ tags
 
 Step 4: The result list of students will then be shown back to the user via the dashboard
 
-## **EditStudent features**
-This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the features supported are:
+## EditStudent features
+
+This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the
+features supported are:
+
 1. `edit` :  `EditCommand`
-<br>Edit basic attributes of a student (E.g. Name, Phone, etc)
+   <br>Edit basic attributes of a student (E.g. Name, Phone, etc)
 2. `tag`:`TagCommand` and `untag` : `UntagCommand`
-<br>Add and removing tags for a student
+   <br>Add and removing tags for a student
 3. `mark` : `MarkCommand` and `unmark` : `UnmarkCommand` :
-<br> Add, modify and remove attendance status of a student
+   <br> Add, modify and remove attendance status of a student
 4. `grade` : `GradeCommand` and `ungrade` : `UngradeCommand`
-<br> Add, modify and remove assignment grading status of a student.
+   <br> Add, modify and remove assignment grading status of a student.
 5. `participate` : `ParticipateCommand` and `unparticipate` : `UnparticipateCommand`
    <br> Add, modify and remove participation records of a student.
 
-Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand` abstract class.
+Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand`
+abstract class.
 
-The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute()`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent()`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
+The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute()`.
+The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call
+the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent()`). A
+brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example.
+Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example
+of `MarkCommand` will also be used to explain the implementation details.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
 
 `IndexListGenerator` is an abstract class representing the list of indexes to modify.
 The instance of `IndexListGenerator` can be either
+
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
-`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation of its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations
+of `EditStudentCommand` such as the `MarkCommand` also contains an implementation of its corresponding `StudentEditor` (
+E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
 
-The corresponding `EditCommandParser` instantiates both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
+The corresponding `EditCommandParser` instantiates both its `IndexListGenerator` and the `StudentEditor` based on inputs
+and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure
+using `MarkCommandParser` is illustrated in the class diagram
 below.
 
 ![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
 
-
-#### General flow for update using EditStudentCommand
+### General flow for update using EditStudentCommand
 
 Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute()`.
 
@@ -263,14 +298,20 @@ Step 2. Here we have `editedStudent` replacing the old student in the `Model` of
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
 
-#### Other notes or implementation
-`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any status.
+### Other notes or implementation
 
-`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance` class and include 2 status (absent/present).
+`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any
+status.
 
-`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance`
+class and include 2 status (absent/present).
 
-`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are represented by the `Participation` class and include 2 status (yes/no) for participated and not participated respectively.
+`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
+the `Assigment` class and include 3 status (new/received, marked).
+
+`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
+represented by the `Participation` class and include 2 status (yes/no) for participated and not participated
+respectively.
 
 ### Design considerations:
 
@@ -284,12 +325,13 @@ Below is a more detailed sequence diagram for the execution of the command using
     * Pros: More intuitive and easy to understand
     * Cons: Makes code harder to maintain, more code duplication.
 
+## Sort feature
 
-## **Sort feature**
+### Implementation
 
-#### Implementation
-
-The sort feature is implemented by `SortCommand` which extends the abstract `Command` class. Since sorting is done according to the specified attribute, the abstract `Attribute` class is used to handle the input attribute and provide the corresponding `Comparator` to sort the student list.
+The sort feature is implemented by `SortCommand` which extends the abstract `Command` class. Since sorting is done
+according to the specified attribute, the abstract `Attribute` class is used to handle the input attribute and provide
+the corresponding `Comparator` to sort the student list.
 `SortCommand` supports the following operation:
 
 * `SortCommand#execute()` — Sorts the current working list by the specified comparator and order in the `SortCommand`.
@@ -304,39 +346,52 @@ The following sequence diagram shows how the sort operation works:
 
 </div>
 
-#### General flow for FilterCommand
+### General flow for FilterCommand
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 Step 1. The user executes `sort asc a/name` to sort the students in the student map by their names in ascending order.
 
-Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#parseOrder()` to create a `SortCommand`.
+Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is
+supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For
+valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()`
+and `ParserUtil#parseOrder()` to create a `SortCommand`.
 
-Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the ascending `Order` required.
+Step 3. `SortCommand` calls `Model#sortFilteredStudentList()` with the `Comparator` for sorting names and the
+ascending `Order` required.
 
 Step 4. The ModelManager containing the `studMap` passes on the `Comparator` and `Order` to `StudMap#sort()`.
 
-Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with the `Comparator` and the boolean value of `false` for `isDescending` according to the ascending `Order` specified.
+Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `UniqueStudentList#sort()` is called with
+the `Comparator` and the boolean value of `false` for `isDescending` according to the ascending `Order` specified.
 
-Step 6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` if `isDescending` is true.
+Step 6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then
+be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` if `isDescending`
+is true.
 
 Step 7. The sorted list is displayed to the user.
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How sort executes:**
 
-* **Alternative 1 (current choice):** Valid attributes to sort are specified in the enum class `AttributeType` and the corresponding `Comparator` is contained within the abstract `Attribute` class.
-    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `AttributeType` enum class and the `Comparator` within the `Attribute` class.
-    * Cons: May not be appropriate to specify the `Comparator` for different attributes within the `Attribute` class instead of their own respective class.
+* **Alternative 1 (current choice):** Valid attributes to sort are specified in the enum class `AttributeType` and the
+  corresponding `Comparator` is contained within the abstract `Attribute` class.
+    * Pros: Easy to implement. Any new attributes to be enabled for sorting could be specified in the `AttributeType`
+      enum class and the `Comparator` within the `Attribute` class.
+    * Cons: May not be appropriate to specify the `Comparator` for different attributes within the `Attribute` class
+      instead of their own respective class.
 
-* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
-    * Pros: Aligns more to OOP where the corresponding `Comparator` is contained within each attribute. Make use of polymorphism to call the correct `getAttributeComparator()` for different attributes.
-    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator` used in sorting.
+* **Alternative 2:** `Attribute` as a superclass inherited by each respective attribute. Each attribute specifies its
+  own `Comparator` to be used for sorting and can be retrieved using `getAttributeComparator()`
+    * Pros: Aligns more to OOP where the corresponding `Comparator` is contained within each attribute. Make use of
+      polymorphism to call the correct `getAttributeComparator()` for different attributes.
+    * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator`
+      used in sorting.
 
-### \[Proposed\] Undo/redo feature
+## \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedStudMap`. It extends `StudMap` with an undo/redo
 history, stored internally as an `studMapStateList` and `currentStatePointer`. Additionally, it implements the
@@ -415,7 +470,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -429,14 +484,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -446,9 +499,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# Appendix: Requirements
 
-### Product scope
+## Product scope
 
 **Target user profile**:
 
@@ -462,7 +515,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: help tutors better keep track of their students’ progress in their assigned module.
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -477,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | tutor                                       | filter the students by attribute                     | locate a student easily                                                |
 | `* *`    | tutor                                       | create new labels to tag my students with            | better differentiate the students                                      |
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `StudMap` and the **Actor** is the `Tutor`, unless specified otherwise)
 
@@ -523,7 +576,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The software should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical
@@ -543,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. The documentation should not exceed 15MB per file.
 13. The software and documentation should be accessible for users who have a basic command of the English language.
 
-### Glossary
+## Glossary
 
 * **Tutor**: Teaching assistant for the specific module
 * **Student**: A person that is partaking in a module.
@@ -559,7 +612,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -568,7 +621,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
@@ -586,25 +639,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a student
+## Deleting a student
 
 1. Deleting a student while all students are being shown
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
-### Saving data
+## Saving data
 
 1. Dealing with missing/corrupted data files
 
