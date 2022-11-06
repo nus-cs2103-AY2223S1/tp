@@ -160,7 +160,7 @@ public class BobaBotParserTest {
     }
 
     @Test
-    public void parseCommand_calculate_2() throws Exception {
+    public void parseCommand_calculate_list() throws Exception {
         List<String> keywords = Arrays.asList("1", "+", "1");
         CalculateCommand command = (CalculateCommand) parser.parseCommand(
                 CalculateCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));

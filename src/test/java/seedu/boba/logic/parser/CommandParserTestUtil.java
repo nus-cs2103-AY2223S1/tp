@@ -28,7 +28,8 @@ public class CommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code commandParser} is unsuccessful and the error message
      * equals to {@code expectedMessage}.
      */
-    public static void assertParseFailure(CommandParser<? extends Command> commandParser, String userInput, String expectedMessage) {
+    public static void assertParseFailure(CommandParser<? extends Command> commandParser,
+                                          String userInput, String expectedMessage) {
         try {
             commandParser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");

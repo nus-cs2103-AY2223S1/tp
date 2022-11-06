@@ -1,8 +1,9 @@
 package seedu.boba.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.boba.logic.commands.CalculatorGuiCommand.SHOWING_CALC_MESSAGE;
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class CalculatorGuiCommandTest {
     private BobaBotModel expectedBobaBotModel = new BobaBotModelManager();
 
     @Test
-    public void execute_calc_gui_success() {
+    public void execute_calcGui_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_CALC_MESSAGE, false, false, false, false, true);
         assertCommandSuccess(new CalculatorGuiCommand(), bobaBotModel, expectedCommandResult, expectedBobaBotModel);
     }

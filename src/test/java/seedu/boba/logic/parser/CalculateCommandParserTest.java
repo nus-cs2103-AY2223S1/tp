@@ -1,19 +1,21 @@
 package seedu.boba.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.logic.commands.CalculateCommand;
-
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_ARITHMETIC_EXPRESSION;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.logic.commands.CalculateCommand;
 public class CalculateCommandParserTest {
 
     private CalculateCommandParser parser = new CalculateCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalculateCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CalculateCommand.MESSAGE_USAGE));
     }
 
     @Test
