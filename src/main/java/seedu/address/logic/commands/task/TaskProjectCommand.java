@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
 /**
  * Lists all project names available in task panel.
  */
-public class ListTaskProjectsCommand extends TaskCommand {
+public class TaskProjectCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "project";
 
@@ -35,5 +35,10 @@ public class ListTaskProjectsCommand extends TaskCommand {
         projectList.forEach(p -> builder.append("\n").append(counter[0]++).append(". ").append(p.projectName));
 
         return new CommandResult(MESSAGE_SUCCESS + builder);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof TaskProjectCommand;
     }
 }
