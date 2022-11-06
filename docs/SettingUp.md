@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Setting up and getting started
+show-toc: true
 ---
 
 * Table of Contents

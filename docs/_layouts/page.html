@@ -11,7 +11,7 @@ layout: default
     {{ content }}
   </div>
 
-  {%- if page.title == "User Guide" or page.title == "Developer Guide" -%}
+  {%- if page.show-toc -%}
   <a class="toc-button hidden-print" style="text-decoration: none" href="#toc-title">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff">
       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
@@ -21,7 +21,7 @@ layout: default
   {%- endif -%}
 
 </article>
-{%- if page.title == "User Guide" or page.title == "Developer Guide" -%}
+{%- if page.show-toc -%}
 <script>
   const button = document.querySelector(".toc-button")
   button.style.opacity = "0";
@@ -33,6 +33,20 @@ layout: default
       break;
     }
     height += content.children[i].offsetHeight
+  }
+  const addNumbering = (init, level) => {
+    const numbering = init.toString().split(" ").join(".") + ". "
+    level.children[0].innerHTML = numbering + level.children[0].innerHTML
+    if (level.children.length > 1) {
+      let nextLevels = level.children[1].querySelectorAll(":scope > li")
+      for (let i = 0; i < nextLevels.length; ++i) {
+        addNumbering(init + " " + (i + 1), nextLevels[i])
+      }
+    }
+  }
+  const firstLevels = document.querySelectorAll("#markdown-toc > li");
+  for (let i = 0; i < firstLevels.length; ++i) {
+    addNumbering((i + 1), firstLevels[i])
   }
   window.onscroll = function () {
     if (document.body.scrollTop > height || document.documentElement.scrollTop > height) {

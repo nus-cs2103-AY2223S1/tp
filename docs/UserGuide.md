@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Guide
+show-toc: True
 ---
 
 ![NUScheduler](images/logoText.png)
