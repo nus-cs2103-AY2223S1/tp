@@ -383,14 +383,14 @@ The above is the sequence diagram for the case where the user inputs `sort alpha
 Since the list displayed is linked to each `Student`, `Tutor` and `TuitionClass` internal list through an observer, we can just sort it and the displayed list will be updated accordingly. The list to be sorted will be the one that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
 Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, where default uses a custom-defined comparator, and sorting in reverse is done using `java.util.Collections`.
 
-<table markdown="block">
+<table>
 <tr>
 <td>Sort by</td> <td>Method</td> <td>Remarks</td>
 </tr>
 
 <tr>
 <td>Default</td>
-<td >
+<td markdown="block">
 
 ```java
 (first, second) -> {
@@ -405,7 +405,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
         }
 ```
 </td>
-<td>
+<td markdown="block">
 
 `uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. `Instant.now()` is not precise enough, thus their sequence number is used instead to sort. 
 </td>
@@ -413,7 +413,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 <tr>
 <td>Alphabetical</td>
-<td>
+<td markdown="block">
 
 `Comparator.compare(Tutor::getName)`
 </td>
@@ -422,7 +422,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 <tr>
 <td>Reverse</td>
-<td>
+<td markdown="block">
 
 `Collections.reverse(internalList)`
 </td>
