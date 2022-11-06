@@ -338,8 +338,8 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 
 ### Deleting entries
 
-You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. You already logged the entry so
-now you need to delete it.
+You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. Or you were going to sell your
+old textbooks only to find the buyer cancelled his order. You already logged the entry, so now you need to delete it.
 
 Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
 Deletes an entry from the specified list.
