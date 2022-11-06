@@ -27,27 +27,30 @@ to use and what it does for all the features available in myStudent. If you don'
 
 :information_source: Notes about the command format in this user guide:
 
-* Prefixes are user inputs that consist of a character followed by a slash  
+* **Prefixes** are characters (case-sensitive) followed by a slash and are usually prepended to a field.  
   e.g. `n/` or `p/`
 
-* Fields are 
+
+* **Fields** are information to be supplied to the command by the user for the application to execute.  
+  e.g. `name` or `phone`
 
 
-* `< >` - represent fields that are supplied by the user.  
-  e.g. `add n/<name>, where <name>` is just the name of the field and users can input `add n/John Doe`. <br>
+* `< >` - indicate that enclosing field is *mandatory*.   
+  e.g. `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.
 
 
-* `[ ]` - represent fields that are optional.  
-        e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
+* `[ ]` - indicate that the enclosing elements (prefixes and/or fields) are *optional*.  
+        e.g `n/<name> [#/<tag>]`, where valid inputs could be `add n/John Doe` or `n/John Doe #/male`.
 
 
 * Users can input fields of prefixes in any order.
-  e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
-  However, `nok n/John Doe p/91234567 2` where the `<index>` is at the end of the input, is not a valid command.
+
+  e.g. `nok <index> n/<name> p/<phone>`, where valid inputs could be `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
+  However, `nok n/John Doe p/91234567 2`, where the `<index>` is at the end of the input, is not valid.
 
 
 
-* Extra input from the user for commands that do not take in fields will be ignored.  
+* Extra input from the user for commands that do not take in any fields will be ignored.  
   e.g. the `clear` command does not have any other fields, thus typing `clear asdfghjkl` into the command box will have the same result as if you had entered `clear` instead.
 
 
@@ -82,6 +85,7 @@ Below is a quick guide on how to get started.
 <div markdown="block" class="alert alert-info">
 
 :pencil2: **Configuring the app**  
+
 You can change the default configurations of the app in the `preference.json` file which is located in the home folder.  
 A `preference.json` file will be created when you first run the application, if it doesn't exist initially.  You can then edit the file to customize mystudent to your needs.  
 
@@ -142,9 +146,10 @@ In the student and tutor lists, clicking on the individual student or tutor card
 <p align="left">
 
 <img src="images/listDisplayPanel.png"/>
-*Note that the card for the person being displayed will be highlighted as well.
 
 </p>
+
+*Note that the card for the person being displayed will be highlighted as well.
 
 ### 4. List Tabs
 
@@ -237,8 +242,10 @@ Adds a person to the myStudent database.
 
 Formats:
 
+To add a **student**,<br>
 `add student n/<name> p/<phone> e/<email> a/<address> s/<school> l/<level> [#/<tag>]…`
 
+To add a **tutor**,<br>
 `add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]…`
 
 
@@ -248,31 +255,32 @@ Formats:
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+* Generally,<br><br>
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<br><br>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
     1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
     2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
        The domain name must:
-       - end with a domain label at least 2 characters long
-       - have each domain label start and end with alphanumeric characters
+       - end with a domain label at least 2 characters long;
+       - have each domain label start and end with alphanumeric characters;
        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * `<address>` field can take any values but should not be left blank.
+    <br><br>
+  * `<address>` field can take any values but should not be left blank.<br><br>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
   <br><br>
-  * For students,
-    * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-    * `<level>` field should be one of the valid academic levels.
-      The valid academic levels are:
-        1. Primary 1 to 6
-        2. Secondary 1 to 4
+* For students,<br><br>
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
+  * `<level>` field should be one of the valid academic levels.
+    The valid academic levels are:
+      1. Primary 1 to 6
+      2. Secondary 1 to 4
     
-      (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  <br><br>
-  * For tutors,
-    * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-    * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+<br><br>
+* For tutors,<br><br>
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.<br><br>
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   
 Examples:
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
@@ -306,8 +314,8 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
+* Generally,<br><br>
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.<br><br>
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
     The valid subjects are:
     1. English
@@ -318,14 +326,14 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
     6. Elementary Mathematics
     7. Additional Mathematics
 
-    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
+    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)<br><br>
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
       2. Secondary 1 to 4
 
-    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)<br><br>
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)<br><br>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
     1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
     2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
@@ -335,7 +343,7 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
         - 12pm - 3pm
         - 1:00pm 2:00pm
         - 2200 to 2400
-        - 23:00 - 00:00
+        - 23:00 - 00:00<br><br>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 
@@ -395,13 +403,13 @@ Edits an entity in the myStudent database.
 
 Formats:
 
-To edit a student, <br>
+To edit a **student**, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]…`
 
-To edit a tutor, <br>
+To edit a **tutor**, <br>
 `edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]…`
 
-To edit a class, <br>
+To edit a **class**, <br>
 `edit <index> [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]…`
 
 * The index refers to the index number shown in the displayed list.
@@ -419,27 +427,27 @@ To edit a class, <br>
 * If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* The constraints of each optional field must be followed. They are:
-  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+* The constraints of each optional field must be followed. They are:<br><br>
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<br><br>
   * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
       1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
       2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
          The domain name must:
           - end with a domain label at least 2 characters long
           - have each domain label start and end with alphanumeric characters
-          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  * `<address>` field can take any values but should not be left blank.
-  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
-  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.<br><br>
+  * `<address>` field can take any values but should not be left blank.<br><br>
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.<br><br>
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
   * `<level>` field should be one of the valid academic levels.
     The valid academic levels are:
       1. Primary 1 to 6
       2. Secondary 1 to 4
 
-    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
-  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)<br><br>
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.<br><br>
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
   * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
     The valid subjects are:
       1. English
@@ -450,8 +458,8 @@ To edit a class, <br>
       6. Elementary Mathematics
       7. Additional Mathematics
 
-    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
-  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)<br><br>
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)<br><br>
   * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
       1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
       2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
@@ -461,7 +469,7 @@ To edit a class, <br>
           - 12pm - 3pm
           - 1:00pm 2:00pm
           - 2200 to 2400
-          - 23:00 - 00:00
+          - 23:00 - 00:00<br><br>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -585,23 +593,23 @@ Formats:
 * If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
 
 
-* The constraints of each field must be followed. They are:
-    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
-    * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+* The constraints of each field must be followed. They are:<br><br>
+    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.<br><br>
+    * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.<br><br>
     * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
         1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
         2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
            The domain name must:
             - end with a domain label at least 2 characters long
             - have each domain label start and end with alphanumeric characters
-            - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-    * `<address>` field can take any values but should not be left blank.
+            - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.<br><br>
+    * `<address>` field can take any values but should not be left blank.<br><br>
     * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
         1. Father
         2. Mother
         3. Brother
         4. Sister
-        5. Guardian
+        5. Guardian<br><br>
     * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -770,13 +778,13 @@ Finds entities from the current list based on multiple fields such that the fiel
 
 Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
 
-**Find students**<br>
+**To find a student,**<br>
 Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
 
-**Find tutors**<br>
+**To find a tutor,**<br>
 Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
 
-**Find classes**<br>
+**To find a class,**<br>
 Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 
 * All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
