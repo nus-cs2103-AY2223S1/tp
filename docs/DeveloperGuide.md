@@ -1021,25 +1021,34 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a client
+### Adding a client
 
-1. Deleting a client while all clients are being shown
+1. Adding a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all projects using the `project -l` command. At least one project in the list.
 
-   2. Test case: `client -d 1`<br>
-      Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+    2. Test case: `client -a n/Harry m/12345678 e/harry@gmail.com p/1`<br>
+       Expected: First client with the name Harry is added to the list. The name of the project whose project id is 1
+       is shown under the added client. The email harry@gmail.com and mobile 12345678 are also shown under the
+       client. Name of the added client shown in the status message.
+   
+    3. Test case: `client -a n/Barry m/12345678 e/harry@gmail.com p/0`<br>
+       Expected: No client is added. Error details shown in the status message.
 
-   3. Test case: `client -d 0`<br>
-      Expected: No client is deleted. Error details shown in the status message.
+    4. Test case: `client -a p/1 m/invalidArgument`<br>
+       Expected: No client is added. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list 
-      size)<br>
-      Expected: Similar to previous.
+    5. Test case: `client -a p/1 m/12345678 e/harry@gmail.com`<br>
+       Expected: No client is added. Error details shown in the status message.
+
+    6. Other incorrect add commands to try: `client -a`, `client -a n/Harry p/x`, `...` (where x is larger than the 
+       project list size)<br>
+       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
-### Adding a client
+
+### Deleting a client
 
 1. Deleting a client while all clients are being shown
 
@@ -1059,35 +1068,56 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a client
 
-1. Deleting a client while all clients are being shown
+1. Editing a client while all clients are being shown
 
     1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
 
-    2. Test case: `client -d 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+    2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
+       Expected: Client with client id 1 is edited to have new name Charles, new mobile 92345678 and new email 
+       charles@gmail.com. New name of the edited client shown in the status message.
 
-    3. Test case: `client -d 0`<br>
-       Expected: No client is deleted. Error details shown in the status message.
+    3. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
+       Expected: No client is edited. Error details shown in the status message.
 
-    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
-       size)<br>
+    4. Test case: `client -e c/1`<br>
+       Expected: No client is edited. Error details shown in the status message.
+   
+    5. Test case: `client -e c/1 e/invalidArgument`<br>
+       Expected: No client is edited. Error details shown in the status message.
+
+    6. Other incorrect edit commands to try: `client -e`, `client -e n/Harry c/x`, `...` (where x is larger than the 
+       client list size)<br>
        Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
 ### Finding a client
 
-1. Deleting a client while all clients are being shown
+1. Find client(s) while all clients are being shown
 
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list, at least one of 
+       which has the name Harry.
 
-    2. Test case: `client -d 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+    2. Test case: `client -f n/Harry Ginny`<br>
+       Expected: All clients whose name has the word Harry or Ginny are listed. Number of listed clients 
+       shown in 
+       the status message.
 
-    3. Test case: `client -d 0`<br>
-       Expected: No client is deleted. Error details shown in the status message.
+    3. Test case: `client -f n/Harry Ginny e/harry@gmail.com m/12345 65432`<br>
+       Expected: All clients, if any, whose name has the word Harry or Ginny and whose email is harry@gmail.com 
+       and whose mobile is 12345 or 65432 are listed. Number of listed clients shown in the status message.
 
-    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+    4. Test case: `client -f n/Harry c/1 n/Ginny`<br>
+       Expected: All clients, if any, whose name has the word Harry or Ginny and whose client id is 1 are listed. 
+       Number of listed clients shown in the status message.
+   
+    5. Test case: `client -f n/&&invalidname`<br>
+       Expected: No client is listed. Error details shown in the status message.
+
+    6. Test case: `client -f abc`<br>
+       Expected: No client is listed. Error details shown in the status message. 
+   
+    7. Other incorrect find commands to try: `client -f`, `client -f c/x`, `...` (where x is larger than the list
        size)<br>
        Expected: Similar to previous.
 
@@ -1095,17 +1125,30 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a project
 
-1. Deleting a client while all clients are being shown
+1. Find project(s) while all projects are being shown
 
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list, at least one of
+       which has the name DevEnable.
 
-    2. Test case: `client -d 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+    2. Test case: `project -f n/DevEnable AB3`<br>
+       Expected: All projects whose name has the word DevEnable or AB3 are listed. Number of listed projects shown 
+       in the status message.
 
-    3. Test case: `client -d 0`<br>
-       Expected: No client is deleted. Error details shown in the status message.
+    3. Test case: `project -f n/DevEnable AB3 r/dev/tp l/Harry`<br>
+       Expected: All projects, if any, whose name has the word DevEnable or AB3 and repository is dev/tp and whose 
+       client has the name Harry are listed. Number of listed projects shown in the status message.
 
-    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+    4. Test case: `client -f n/DevEnable c/2 p/1 n/AB3`<br>
+       Expected: All projects, if any, whose name has the word DevEnable or AB3 and project id is 1 and whose client 
+       has the id 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `project -f r/invalid-repo`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    6. Test case: `project -f abc`<br>
+       Expected: No project is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `project -f`, `project -f p/x`, `...` (where x is larger than the list 
        size)<br>
        Expected: Similar to previous.
 
@@ -1113,22 +1156,34 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding an issue
 
-1. Deleting a client while all clients are being shown
+1. Find issue(s) while all issues are being shown
 
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list, at least one of
+       which has the title Testing.
 
-    2. Test case: `client -d 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
+    2. Test case: `issue -f t/Testing Documentation`<br>
+       Expected: All issues whose title has the word Testing or Documentation are listed. Number of listed issues 
+       shown in the status message.
 
-    3. Test case: `client -d 0`<br>
-       Expected: No client is deleted. Error details shown in the status message.
+    3. Test case: `issue -f t/Testing s/Incomplete u/NONE n/DevEnable`<br>
+       Expected: All issues, if any, whose title has the word Testing and status is incomplete and urgency is NONE 
+       and whose project has the name DevEnable are listed. Number of listed projects shown in the status message.
 
-    4. Other incorrect delete commands to try: `client -d`, `client -d x`, `...` (where x is larger than the list
+    4. Test case: `issue -f n/Testing i/1 p/2 t/Documentation`<br>
+       Expected: All issues, if any, whose title has the word Testing or Documentation and issue id is 1 and whose 
+       project has the id 2 are listed. Number of listed projects shown in the status message.
+
+    5. Test case: `issue -f s/thisIsAnInvalidStatus`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    6. Test case: `issue -f abc`<br>
+       Expected: No issue is listed. Error details shown in the status message.
+
+    7. Other incorrect find commands to try: `issue -f`, `issue -f i/x`, `...` (where x is larger than the list
        size)<br>
        Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
-
 
 ### Listing an entity
 
