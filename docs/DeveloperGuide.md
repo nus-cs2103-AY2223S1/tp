@@ -538,33 +538,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 1. User requests to add a client.
 2. System adds the client.
+3. System informs user that client has been added. 
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs incomplete or invalid client data.
+* 1a. User inputs incomplete or invalid data.
     * 1a1. System shows an error message.
 
       Use case ends.
 
-#### 5.3.2 Use case: UC2 - View a client
-
-**MSS**
-
-1. User selects client to view.
-2. System displays the client information.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent client.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 5.3.3 Use case: UC3 - List all clients
+#### 5.3.2 Use case: UC2 - List all clients
 
 **MSS**
 
@@ -585,12 +570,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+#### 5.3.3 Use case: UC3 - View a client
+
+**MSS**
+
+1. User requests for a [list of all clients](#532-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User selects client to view by specifying the index of the client.
+4. System displays the client information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
 #### 5.3.4 Use case: UC4 - Delete a client
 
 **MSS**
 
-1. User requests to delete a client.
-2. Client is removed from the system.
+1. User requests for a [list of all clients](#532-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to delete a client by specifying the index of the client.
+4. System removes the client.
+5. System informs user that the specified client has been removed.
 
    Use case ends.
 
@@ -605,8 +611,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to edit a client.
-2. System replaces current client information with the new information.
+1. User requests for a [list of all clients](#532-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to edit a client by specifying the index of the client.
+4. System replaces current client information with the new information.
+5. System informs user that the specified client has been updated.
 
    Use case ends.
 
@@ -621,8 +630,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to add a meeting.
-2. System adds the meeting.
+1. User requests for a [list of all clients](#532-use-case-uc2---list-all-clients).
+2. System shows a list of clients. 
+3. User requests to add a meeting to a specific client by specifying the index of the client. 
+4. System adds the meeting. 
+5. System informs user that meeting has been added.
 
    Use case ends.
 
@@ -633,23 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.7 Use case: UC7 - View a meeting
-
-**MSS**
-
-1. User requests to view a meeting in detail.
-2. System shows the meeting details.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent meeting or inputs an invalid index.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 5.3.8 Use case: UC8- List all meetings
+#### 5.3.7 Use case: UC7- List all meetings
 
 **MSS**
 
@@ -662,6 +658,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 * 1a. User requests for a list of all meetings in a given period.
     * 1a1. System shows the list of all meetings in the period.
+
+      Use case ends.
+
+#### 5.3.8 Use case: UC8 - View a meeting
+
+**MSS**
+
+1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
+2. System shows a list of all meetings.
+3. User requests to view a meeting in detail by specifying the index of the meeting.
+4. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
 
       Use case ends.
 
@@ -679,7 +693,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 3a. User deletes a meeting that was not shown in the list.
+* 3a. User deletes a non-existent meeting.
     * 3a1. System shows an error message.
 
       Use case ends.
@@ -688,8 +702,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to edit a meeting.
-2. System replaces current meeting information with the new information.
+1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
+2. System shows a list of all meetings. 
+3. User requests to edit a meeting by specifying the index of the meeting. 
+4. System replaces current meeting information with the new information.
+5. System informs user that the specific meeting has been updated.
 
    Use case ends.
 
@@ -706,6 +723,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 1. User requests to add a product.
 2. System adds the product.
+3. System informs user that the product has been added.
 
    Use case ends.
 
