@@ -71,7 +71,7 @@ You should now have a better understanding of how commands are formatted and use
 Here is a checklist you can use before running a command:
 
 * [ ] I know the restrictions of the command
-* [ ] I know what [[parameter:parameters]] are supplied to the command
+* [ ] I know what [[ parameter:parameters ]] are supplied to the command
 * [ ] I know the [[flag:flags]] for each parameter to be supplied
 * [ ] I know the restrictions of each [[placeholder:placeholder]]
 * [ ] I know the effects of not specifying each optional flag.
