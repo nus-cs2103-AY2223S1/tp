@@ -65,4 +65,9 @@ public class FindContactCommand extends Command {
                 || (other instanceof FindContactCommand // instanceof handles nulls
                 && predicate.equals(((FindContactCommand) other).predicate)); // state check
     }
+
+    @Override
+    public String toString() {
+        return "FindContactCommand with predicate: " + predicate.toString();
+    }
 }

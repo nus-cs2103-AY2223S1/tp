@@ -48,7 +48,8 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
 
             Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
-            List<String> moduleNames = moduleList.stream().map(module -> module.toString()).collect(Collectors.toList());
+            List<String> moduleNames = moduleList.stream().map(module -> module.toString())
+                    .collect(Collectors.toList());
             List<String> keywordsSpaceSeparated = new ArrayList<>();
             for (String string : moduleNames) {
                 for (String keyword : string.split("\\s+")) {

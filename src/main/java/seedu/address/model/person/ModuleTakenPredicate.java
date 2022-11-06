@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -27,9 +28,24 @@ public class ModuleTakenPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same instance
-                || (other instanceof ModuleTakenPredicate// instanceof handles nulls
-                && keywords.equals(((ModuleTakenPredicate) other).keywords)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof ModuleTakenPredicate) {
+            Set<String> thisKeywordSet = new HashSet<>(keywords);
+            Set<String> otherKeywordSet = new HashSet<>(((ModuleTakenPredicate) other).keywords);
+            return thisKeywordSet.equals(otherKeywordSet);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        String moduleKeywords = "";
+        for (String keyword : keywords) {
+            moduleKeywords += keyword + " ";
+        }
+        return moduleKeywords.trim();
     }
 
 }
