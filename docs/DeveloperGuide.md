@@ -412,7 +412,57 @@ The structure for executing an `addprop` command follows the flow as mentioned i
 No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
 The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
 
+
+### Editing of buyers and properties
+
+#### Motivation
+The user may want to edit the details of a buyer or property after adding it to the application. For example, the user may want to change the budget range of a buyer after adding it to Cobb. 
+Or, the user may want to change the price of a property after adding it to Cobb.
+
+#### Implementation
+The `EditBuyerCommand` and `EditPropertyCommand` classes extends the `Command` class. They are used to edit the details of a buyer or property, respectively.
+Both commands allow the user to change any of the fields of a buyer or property. The commands expect at least one flag to be edited, otherwise an error message will be displayed.
+When the edit command is inputted, the `EditBuyerCommandParser` and `EditPropertyCommandParser` classes are used to parse the user input and create the respective `EditBuyerCommand` and `EditPropertyCommand` objects.
+When these created command objects are executed by the `LogicManager`, the `EditBuyerCommand#execute(Model model)` or `EditPropertyCommand#execute(Model model)` methods are called. These methods will edit the buyer or property in the model, and return a `CommandResult` object.
+
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+To be more concise, we will be referring to both buyers and properties as entities in this section from here onwards.
+</div>
+
+During this execution process, the existing entity is first retrieved from the model. The fields of the entities are then edited according to what flags were passed in by the user during the edit commands. 
+A new buyer or property is then created with the edited fields, and any fields that have not been edited will be copied over from the original entity. The new entity is then added to the model, and the original entity is removed from the model.
+The new buyer or property is then added into the model, replacing the old one. The new entity will then be displayed to the user, and a success message is displayed.
+
+The following sequence diagram shows how the `EditBuyerCommand` is executed.
+![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: How the edit commands should relate to each other:**
+
+* **Alternative 1 (current choice):** `EditBuyerCommand` and `EditPropertyCommand` are separate, and both inherit from the `Command` class.
+    * Pros:
+        * Both the `Buyer` and `Property` classes have different fields that are exclusive to each other.
+        * This reduces complexity of the system, and unexpected behaviours.
+        * The inheritance of the `Command` class allows us to keep to the Command design pattern, to easily add more types of edit commands in the future, without having to change the existing code. 
+    * Cons:
+        * More boilerplate code for each of the classes, which increases the size of the codebase.
+* **Alternative 2:** A single `EditCommand` class is used to edit both buyer and property.
+    * Cons:
+        * Unnecessary complexity is introduced into the system.
+
+**Aspect: How the edited entities should interact with the model:**
+* We also decided for the edit commands to create a new entity, instead of editing the existing one. This allows us to not include any setters in the `Buyer` and `Property` classes, which make the objects immutable, so there is less likelihood of unexpected changes to the object. 
+By creating a new entity every time the user edits, we can easily add the new buyer or property into the model, and remove the old one. This also allows us to easily undo the edit command in the future, by simply adding the old entity back into the model.
+
 ### Owner specification within a property
+
+#### Motivation
+In real estate, a property being listed by a property agent is usually owned by a property owner. 
+However, the agent may not be the owner of the property. Hence, we decided to allow the user to specify the owner of a property, 
+with essential details such as their name and phone number, and have them represented as part of the `Property` class.
+
+#### Implementation
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
 The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
@@ -429,8 +479,7 @@ This is the class diagram showing the full `Property` class diagram, with the `O
 The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
 
-#### Design considerations:
-
+#### Design considerations
 **Aspect: How the owner class associates with the property class:**
 
 * **Alternative 1 (current choice):** Owner class is coupled together with the property class.
@@ -620,27 +669,23 @@ automation of matching between suitable properties and buyers
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers
-| `* * *`  | property agent                             | add new properties
-| `* *`    | property agent                             | edit information without needing internet access
-| `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
-| `* *`    | property agent                             | edit contacts' details                            | easily update any changes
-| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
-| `* *`    | property agent                             | search and filter for certain characteristics     | easily find matches
-| `*`      | property agent                             | link a buyer to a property
-| `*`      | non tech-savvy user                        | be able to make use of the command-line interface without too much difficulty
-| `*`      | property agent                             | track a list of buyers who are interested in a certain property | follow up on these leads
-| `*`      | property agent                             | filter out properties that do not meet the conditions of a prospective buyer
-| `*`      | property agent                             | save tasks related to each contact                | monitor the things that I have to do
-| `*`      | property agent                             | input notes for each contact                      | easily retrieve it for future correspondence with the client
-| `*`      | property agent                             | view all existing information at a glance in a clean, visually-appealing manner
-| `*`      | property agent with many clients           | avoid duplicate contacts                          | have a neat list of active clients
-| `*`      | property agent                             | view the commission rate for each closed case and aggregated commissions for the year | track my progress
-| `*`      | property agent                             | prioritise some clients who are desperate to find a place | contact them first and close the deal more easily |
-| `*`      | property agent with a busy schedule        | know when my next free time is                    | schedule client meetings with no overlap
-| `*`      | property agent                             | keep track of the cases that I have closed        | track my progress
+| Priority | As a …​                                        | I want to …​                                                                          | So that I can…​                                              |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | property agent                                 | add new buyers                                                                        |                                                              |
+| `* * *`  | property agent                                 | add new properties                                                                    |                                                              |
+| `* *`    | property agent                                 | edit contact and property information offline                                         | keep the information updated                                 |
+| `* *`    | property agent                                 | delete existing contact and propety entries                                           | remove redundant information, to keep dataset neat           |
+| `* *`    | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)   | easily update any changes                                    |
+| `* *`    | property agent                                 | find and filter for certain characteristics                                           | easily find matches                                          |
+| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         |                                                              |
+| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          |                                                              |
+| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do                         |
+| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client |
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       | easily make sense of information presented                   |
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients                           |
+| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress                                            |
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily            |
+| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap                     |
 
 ### Use cases
 
@@ -771,6 +816,30 @@ Use case ends.
 * 2a. Buyer already exists.<br>
   2b. User edits the existing buyer with new requirements, if necessary.<br>
   Use case continues at 3.
+
+### Use case: Edit a property
+
+**MSS:**
+
+1. User chooses to edit an existing property.
+2. User enters the details of the property to be edited.
+3. Property is successfully edited with the new details.
+
+Use case ends.
+
+**Extensions**
+* 1a. The property does not exist.
+  * 1a1. Cobb shows an error message.
+  * Use case ends.
+* 2a. The new details cause the property to be a duplicate of another property.
+  * 2a1. Cobb shows an error message.
+  * Use case ends.
+* 2b. The new details are the same as previous details.
+  * 2b1. Property remains the same.
+  * Use case ends.
+* 2c. The new details are invalid.
+  * 2c1. Cobb shows an error message.
+  * Use case ends.
 
 *{More to be added}*
 
