@@ -645,13 +645,13 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
 
-    1. Test case: `delete tutorial 1`<br>
+    2. Test case: `delete tutorial 1`<br>
        Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
 
-    1. Test case: `delete tutorial 0`<br>
+    3. Test case: `delete tutorial 0`<br>
        Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
 
-    1. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Deleting a student
@@ -691,7 +691,7 @@ Do the test cases sequentially to ensure correct expectation.
     5. Test case: `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/HIGH`<br>
        Expected:  A new reminder is added to the top of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
-    6. Other incorrect add tutorial commands to try: `add reminders`, `add remind`, `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
+    6. Other incorrect add tutorial commands to try: `add reminders`, `add remind`, `add reminder n/Create D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
        Expected: Error message is shown in the result display box.
 
 
@@ -699,27 +699,27 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Editing a reminder while all reminders are being shown.
 
-    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command (you may skip this if the main display is already tutorial). There exists at least 1 tutorial in the list.
+    1. Prerequisites: There exists at least 1 reminder in the reminder list.
 
-    2. Test case: `edit tutorial 1 v/LT27`<br>
-       Expected: Venue of first tutorial is edited. Details of the edited tutorial shown in the status message.
+    2. Test case: `edit reminder 1 n/Mark papers`<br>
+       Expected: Name of first reminder is edited. Details of the edited reminder shown in the result display box.
 
     3. Test case: `edit tutorial 0`<br>
-       Expected: No tutorial is edited. Error message shown in result display box.
+       Expected: No reminder is edited. Error message shown in result display box.
 
 #### Deleting a reminder
 
 1. Deleting a reminder while all reminders are being shown.
 
-    1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
+    1. Prerequisites: There exists at least 1 reminder in the reminder list.
 
-    1. Test case: `delete tutorial 1`<br>
-       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
+    2. Test case: `delete reminder 1`<br>
+       Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the result display box. Reminder list is updated.
 
-    1. Test case: `delete tutorial 0`<br>
-       Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
+    3. Test case: `delete reminder 0`<br>
+       Expected: No reminder is deleted. Error details shown in the result display box. Reminder list remains the same.
 
-    1. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 #### Sorting reminders
