@@ -246,7 +246,11 @@ similar to how [`edit`](#edit-command), [`appt`](#pastappointment) and [`consult
 The `AddCommandParser` will then create the corresponding `Person` object and then feed it to a `AddCommand` object it
 creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Person` to the model.
 
+The following sequence diagram shows how the `add` command works:
+
 ![AddCommandSequenceDiagram](images/dg-images/AddCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the argument parsing for the `add` command works:
 
 ![AddCommandParseArgsSequenceDiagram](images/dg-images/AddCommandParseArgsSequenceDiagram.png)
 
@@ -261,10 +265,14 @@ input. This then creates an instance of the `EditCommandParser` to parse the `IN
 similar to how [`add`](#add-command), [`appt`](#pastappointment) and [`consult`](#consult-command)  are executed.
 
 The `EditCommandParser` will then create the corresponding `EditPersonDescriptor` object and then feed it to a
-`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which adds creates a
+`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which creates a
 `Person` from the `EditPersonDescriptor` provided and updates the model with this new `Person`.
 
+The following sequence diagram shows how the `edit` command works:
+
 ![Edit Command Sequence Diagram](images/dg-images/EditCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the argument parsing for the `edit` command works:
 
 ![Edit Command Parse Args Sequence Diagram](images/dg-images/EditCommandParseArgsSequenceDiagram.png)
 
@@ -343,6 +351,8 @@ The `DeletePastAppointmentCommandParser` then creates the `DeletePastAppointment
 Finally, it checks that the patient has at least 1 [`PastAppointment`](#pastappointment) and removes the most recent one.
 If there are no [`PastAppointment`](#pastappointment)s, it will throw a `CommandException`.
 
+The following sequence diagram shows how the `delappt` command works:
+
 ![DelApptSequenceDiagram](images/dg-images/DelApptSequenceDiagram.png)
 
 #### Consult Command
@@ -365,6 +375,8 @@ The `ConsultCommandParser` then creates the `ConsultCommand` and returns it. The
 past appointment to the patient. Then it checks if the patient has an upcoming appointment for the current date, if so,
 the `ConsultCommand` creates an [`EditCommand`](#edit-command) and executes it to reset the patient's upcoming
 appointment field.
+
+The following sequence diagram shows how the `consult` command works:
 
 ![ConsultCommandSequenceDiagram](images/dg-images/ConsultCommandSequenceDiagram.png)
 
@@ -393,8 +405,6 @@ medications.
 The following sequence diagram shows how the count feature works:
 
 [![CountSequenceDiagram](images/CountSequenceDiagram.png)](images/CountCommandSequenceDiagram.png)
-
-
 
 ### Get Features (By prefixes)
 
@@ -517,8 +527,8 @@ The date inputted is parsed using `LocalDate`
 The Patient Details Panel provides a detailed view into the information of a specific patient. All the patient's personal 
 particulars and appointment details are reflected in this panel. The patient being viewed defaults to the first patient
 in the app, if present. Whenever the [`add`](#add-command) or [`edit`](#edit-command) is called on a patient, the patient 
-displayed switches to that patient in question. To manually change the person being viewed, the [`view`](#view-command) 
-can be used.
+displayed switches to that patient in question. The [`view`](#view-command) can be used to manually select the person 
+being viewed.
 
 #### Clickability
 
@@ -535,6 +545,8 @@ passed is different for each field, in this case it is _`PREFIX_EMAIL`_)
 If so, it will call the `MainWindow#handlePersonViewClick(prefix)` which will combine the command word, prefix and index 
 of the person currently being viewed into a string, which is `edit 1 e/`. Then it will use 
 `CommandBox#setCommandTextField(str)` to update the text inside the `CommandBox`.
+
+The following sequence diagram shows how the clickability works:
 
 ![Patient Details Panel Sequence Diagram](images/dg-images/PersonDetailsPanelSequenceDiagram.png)
 _Note that the Persons Details Panel is known as PersonViewPanel in the code_
@@ -553,6 +565,8 @@ The `ViewCommandParser` then creates the `ViewCommand` and returns it. The `Logi
 `ViewCommand`, which updates the `ModelManager#currentlyViewedPerson` in the `ModelManager` to the one specified in the
 `INDEX` if it is valid. A `CommandException` is thrown if the `INDEX` is out of bounds.
 
+The following sequence diagram shows how the `view` command works:
+
 ![View Command Sequence Diagram](images/dg-images/ViewCommandSequenceDiagram.png)
 
 ### Keyboard Shortcuts
@@ -570,6 +584,8 @@ When a key is pressed, `MainWindow` will recursively go through its child elemen
 was pressed, `CommandHistory#nextCommand()` is called to set the command to the next command, if any. If the `Ctrl` + 
 `Shift` + `C` keys were pressed together, it will clear all the text in the `commandTextField` with the 
 `CommandBox#setCommandTextField(str)` command. 
+
+The following sequence diagram shows how the keyboard shortcuts work:
 
 ![Keyboard Shortcuts Sequence Diagram](images/dg-images/KeyboardShortcutsSequenceDiagram.png)
 
@@ -657,7 +673,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list persons
 2. CheckUp shows a list of persons
-3. User requests patient to edit
+3. User requests to edit patient
 4. CheckUp edits patient in system
 5. CheckUp displays the patient added
 
@@ -674,7 +690,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-* 3b. No information is entered to edit
+* 3b. No information is updated for the edit.
     * 3a1. CheckUp shows an error message.
 
       Use case resumes at step 3.
