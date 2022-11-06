@@ -1726,7 +1726,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
    2. Test case: `find-person Alex`<br>
       Expected:
-      * Person list is updated with persons whose names starting with `Alex`(case-insensitive). 
+      * Person list is updated with persons whose names start with `Alex`(case-insensitive). 
       * Number of persons listed shown in the status message.
 
    3. Test case: `find-person Dummy`<br>
@@ -1748,7 +1748,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
     2. Test case: `find-person Bernice`<br>
         Assumption: Person `Bernice` is not in the current person list<br>
         Expected:
-         * Person list is updated with persons whose names starts with `Bernice` (case-insensitive).
+         * Person list is updated with persons whose names start with `Bernice` (case-insensitive).
          * Number of persons listed shown in the status message.
 
 3. Finding persons while not at home page 
