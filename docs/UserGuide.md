@@ -175,7 +175,8 @@ This will help you understand the guide better!
 * Parameters can be in **any order**.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence**
+  of
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -216,7 +217,7 @@ Did your student withdraw from the module midway through the semester? You can r
 remains clutter-free!
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-* You can use [Find](#locating-students-by-name-find) to help locate the student you wish to delete first. <br>
+You can use [Find](#locating-students-by-name-find) to help locate the student you wish to delete first. <br>
 </div>
 
 Format: `delete INDEX`
