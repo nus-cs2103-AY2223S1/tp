@@ -440,3 +440,32 @@ the second `Enter` key press will execute the command.
 | **Clear**   | `clear`                                                                                                                                                                         |                                                                                           |
 | **Exit**    | `exit`                                                                                                                                                                          |                                                                                           |
 | **Help**    | `help`                                                                                                                                                                          |                                                                                           |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+### Minecraft-related terminologies
+
+| Terminology        | Definition                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------|
+| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| **Minefriends**    | The name of our app                                                                              | 
+| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| **Server**         | A multiplayer Minecraft server                                                                   |
+| **Player**         | A person who plays Minecraft                                                                     |
+| **Mojang Studios** | The company that created and owns Minecraft                                                      |
+| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
+| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| **Game type**      | A synonym for game mode                                                                          | 
+
+For a complete glossary of Minecraft terms, please visit this page on the
+[Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
+
+### Other terminologies
+
+| Terminology   | Definition                                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
+| CLI           | An acronym for "command line interface"                                                                            |
