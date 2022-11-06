@@ -24,6 +24,7 @@ title: Developer Guide
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
     * [Command history](#command-history)
+    * [Venue and booking](#venue-and-booking)
 * [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
@@ -752,28 +753,19 @@ To support basic venue creation and deletion, booking and un-booking, and the sw
 * `BookCommand`
 * `UnbookCommand`
 
+Since all of the above commands have something to do with `Venue`, we created an abstract `VenueCommand` class with common logic between the above commands.
+
 These commands will serve as a basic toolkit for our users to manage venue bookings.
 
 <br>
 
 ##### Venue command flow
 
+The following sequence diagram showcases the general flow of control for a `VenueCommand`. In the diagram, we used `VenueAddCommand` as an example.
 
-
-[Comment]: <> (To add sequence diagram to describe an example venue command flow)
+![VenueAddCommandSequenceDiagram](images/VenueAddCommandSequenceDiagram.png)
 
 <br>
-
----
-
-### \[Proposed\] Undo/redo feature (To be removed)
-=======
-<!--
-### \[Proposed\] Export feature
->>>>>>> baafcf51577a98cb45f524b7831b8ca51b960f17
-
-#### Proposed Implementation
--->
 
 ---
 
