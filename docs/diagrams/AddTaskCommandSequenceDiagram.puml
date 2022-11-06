@@ -4,10 +4,10 @@
 box Logic LOGIC_COLOR_T1
 participant ":Logic" as Logic LOGIC_COLOR
 participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
-participant ":AddTaskCommand" as AddTaskCommand LOGIC_COLOR
-participant "toAdd:Task" as Task LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant "<<class>>\nNaturalDateParser" as NaturalDateParser LOGIC_COLOR
+participant "toAdd:Task" as Task LOGIC_COLOR
+participant ":AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
