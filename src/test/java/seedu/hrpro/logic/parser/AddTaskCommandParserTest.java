@@ -47,7 +47,7 @@ public class AddTaskCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_compulsoryPrefixMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
         // Missing deadline prefix
@@ -59,6 +59,20 @@ public class AddTaskCommandParserTest {
         // all prefixes missing
         assertParseFailure(parser, VALID_TASKDESCRIPTION_ALPHA + VALID_TASKDEADLINE_ALPHA,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
+
+        // Missing task deadline
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA, expectedMessage);
+
+        // Missing task description
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO, expectedMessage);
+
+        // all fields missing
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, expectedMessage);
     }
 
     @Test

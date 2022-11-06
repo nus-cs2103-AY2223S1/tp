@@ -102,7 +102,6 @@ public class AddStaffCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         Staff expectedStaffWithNoTags = new StaffBuilder(STAFF_JAY).withTags().build();
-        Project projectStud = new ProjectBuilder(BOB).build();
 
         //no tags ok
         assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
