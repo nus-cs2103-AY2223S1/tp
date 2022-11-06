@@ -11,7 +11,7 @@ FABook is your **dependable assistant** who **reminds you of meetings** and **co
 
 Given below are my contributions to the project.
 
-* **New Feature**: PDF Access
+* **New Feature**: PDF Access: PRs [#72](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/72) [#92](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/92)
     * What it does: Users are able to assign PDFs absolute path in computer to client profiles.
     * Justification: Users are able to access their clients current plans and other information in an instant.
     * Highlights: By inputting the command, the PDF will open on the User's browser
@@ -22,14 +22,19 @@ Given below are my contributions to the project.
 * **Project management**:
     * Set up GitHub Issues and Milestones for tasks to be completed before certain deadlines.
     * Contributed in reviewing Pull Requests made by other members of the team.
+    * Created team's project demo.
 
 * **Enhancements to existing features**:
-    * Contact Finding by Address
+    * Contact Finding by Address: PR [#39](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/39)
       * Finds and lists out all people in FABook that address contains any of the keywords input by user.
       * Improved polymorphism of `Command` class by adding an abstract child `FindCommand` for find commands.
+    * Clear: PR [#184](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/184)
+      * Fixed message produced when using the clear function.
 
 * **Documentation**:
-  * User Guide:
+  * User Guide: PRs [#99](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/99) 
+  [#190](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/190) 
+  [#213](https://github.com/AY2223S1-CS2103T-T10-2/tp/pull/213)
     * Added information for setting client PDF files and opening client PDF files.
     * Fixed typos and mistakes that occurred.
     * Updated format for commands.

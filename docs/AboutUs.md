@@ -63,6 +63,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities:
   * Ensuring that deadlines are met
+  * Creating team's project demo
 
 ### Reagan Tan
 
