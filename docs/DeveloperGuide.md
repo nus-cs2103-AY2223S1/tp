@@ -1021,38 +1021,12 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Adding a client
 
-1. Adding a client while all clients are being shown
+### Deleting an entity
 
-    1. Prerequisites: List all projects using the `project -l` command. At least one project in the list.
+1. Deleting an entity while all entities are being shown
 
-    2. Test case: `client -a n/Harry m/12345678 e/harry@gmail.com p/1`<br>
-       Expected: First client with the name Harry is added to the list. The name of the project whose project id is 1
-       is shown under the added client. The email harry@gmail.com and mobile 12345678 are also shown under the
-       client. Name of the added client shown in the status message.
-   
-    3. Test case: `client -a n/Barry m/12345678 e/harry@gmail.com p/0`<br>
-       Expected: No client is added. Error details shown in the status message.
-
-    4. Test case: `client -a p/1 m/invalidArgument`<br>
-       Expected: No client is added. Error details shown in the status message.
-
-    5. Test case: `client -a p/1 m/12345678 e/harry@gmail.com`<br>
-       Expected: No client is added. Error details shown in the status message.
-
-    6. Other incorrect add commands to try: `client -a`, `client -a n/Harry p/x`, `...` (where x is larger than the 
-       project list size)<br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
-
-### Deleting a client
-
-1. Deleting a client while all clients are being shown
-
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
 
     2. Test case: `client -d 1`<br>
        Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
@@ -1066,11 +1040,11 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Editing a client
+### Editing an entity
 
-1. Editing a client while all clients are being shown
+1. Editing an entity while all entities are being shown
 
-    1. Prerequisites: List all clients using the `client -l` command. Multiple clients in the list.
+    1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
 
     2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
        Expected: Client with client id 1 is edited to have new name Charles, new mobile 92345678 and new email 
@@ -1091,7 +1065,7 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Finding a client
+### Finding an entity
 
 1. Find client(s) while all clients are being shown
 
@@ -1121,11 +1095,7 @@ testers are expected to do more *exploratory* testing.
        size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
-
-### Finding a project
-
-1. Find project(s) while all projects are being shown
+2. Find project(s) while all projects are being shown
 
     1. Prerequisites: List all projects using the `project -l` command. Multiple projects in the list, at least one of
        which has the name DevEnable.
@@ -1152,11 +1122,7 @@ testers are expected to do more *exploratory* testing.
        size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
-
-### Finding an issue
-
-1. Find issue(s) while all issues are being shown
+3. Find issue(s) while all issues are being shown
 
     1. Prerequisites: List all issues using the `issue -l` command. Multiple issues in the list, at least one of
        which has the title Testing.
