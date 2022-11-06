@@ -1,0 +1,117 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LinkExamCommandParser" as LinkExamCommandParser LOGIC_COLOR
+participant "le:LinkExamCommand" as LinkExamCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "task:Task" as Task MODEL_COLOR
+participant "linkedTask:Task" as LinkedTask MODEL_COLOR
+participant "exam:Exam" as Exam MODEL_COLOR
+participant "Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("e link e/1 t/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("e link e/1 t/1")
+activate AddressBookParser
+
+create LinkExamCommandParser
+AddressBookParser -> LinkExamCommandParser
+activate LinkExamCommandParser
+
+LinkExamCommandParser --> AddressBookParser
+deactivate LinkExamCommandParser
+
+AddressBookParser -> LinkExamCommandParser: parse("e/1 t/1")
+activate LinkExamCommandParser
+
+create LinkExamCommand
+LinkExamCommandParser -> LinkExamCommand:
+activate LinkExamCommand
+
+LinkExamCommand --> LinkExamCommandParser : le
+deactivate LinkExamCommand
+
+LinkExamCommandParser --> AddressBookParser : le
+deactivate LinkExamCommandParser
+LinkExamCommandParser [hidden]--> AddressBookParser
+destroy LinkExamCommandParser
+
+AddressBookParser --> LogicManager : le
+deactivate AddressBookParser
+
+LogicManager -> LinkExamCommand : execute(model)
+activate LinkExamCommand
+
+LinkExamCommand -> Model: getFilteredTaskList()
+activate Model
+
+Model --> LinkExamCommand
+deactivate Model
+
+LinkExamCommand -> Model: getFilteredExamList()
+activate Model
+
+Model --> LinkExamCommand
+deactivate Model
+
+LinkExamCommand -> Task: isLinked()
+activate Task
+
+Task --> LinkExamCommand
+deactivate Task
+
+LinkExamCommand -> Task: getModule()
+activate Task
+
+Task --> LinkExamCommand
+deactivate Task
+
+LinkExamCommand -> Exam: getModule()
+activate Exam
+
+Exam --> LinkExamCommand
+deactivate Exam
+
+LinkExamCommand -> Module: isSameModule(task.module, exam.module)
+activate Module
+
+Module --> LinkExamCommand
+deactivate Module
+
+LinkExamCommand -> LinkedTask: linkTask(exam)
+activate LinkedTask
+
+LinkedTask --> LinkExamCommand
+deactivate LinkedTask
+
+LinkExamCommand -> Model: replaceTask(task, linkedTask, true)
+activate Model
+
+Model --> LinkExamCommand
+deactivate Model
+
+create CommandResult
+LinkExamCommand -> CommandResult: CommandResult(EXAM_LINKED_SUCCESS)
+activate CommandResult
+
+CommandResult --> LinkExamCommand
+deactivate CommandResult
+
+LinkExamCommand --> LogicManager
+deactivate LinkExamCommand
+LinkExamCommand [hidden]--> LogicManager
+destroy LinkExamCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

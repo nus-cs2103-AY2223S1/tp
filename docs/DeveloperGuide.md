@@ -167,11 +167,25 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Sort Task Command
 
-#### How the feature works
+#### Command Format
+
+`t sort c/CRITERIA` where `CRITERIA` refers to the criteria selected by the user.
+
+`CRITERIA` can be one of the following criteria:
+* `priority`
+* `deadline`
+* `module`
+* `description`
+
+#### What is the feature about
 
 The `sort` command allows users to sort the task list by priority status,
-deadline, module code and task description with ease. The sort command operates
-directly on the `ObservableList` stored under `DistinctTaskList` in `AddressBook` so the
+deadline, module code and task description with ease. 
+
+#### How does the feature work
+
+The sort task feature is currently implemented through the `SortTaskCommand` which extends the abstract class `Command`.
+The `SortTaskCommand`operates directly on the `ObservableList` stored under `DistinctTaskList` in `AddressBook` so the
 `ObservableList` in `DistinctTaskList` will be permanently sorted to the criteria.
 * When sorting by priority, all tasks with `HIGH` priority status will be positioned at the top of the 
 displayed task list, followed by `MEDIUM`, `LOW` and 
@@ -181,34 +195,53 @@ at the top of the displayed task list with the task with the earliest deadline
 being displayed at the top. All the remaining tasks with no deadline tags will
 be displayed below all tasks with deadline tags.
 
-`sort` command adheres to the following format: `sort c/CRITERIA`
+#### Why is the feature implemented in this manner
 
-`CRITERIA` can be one of the following criteria:
-* `priority`
-* `deadline`
-* `module`
-* `description`
+Our team has made the decision to not remove tasks with no priority status from the displayed task list when
+sorting by priority status as we believed that users should be given the freedom to view all tasks that
+they have added after sorting.
 
-#### Sequence of the SortTaskCommand
+Our team has also made a similar decision to not remove tasks with no deadlines from the displayed task list when
+sorting by deadline.
+
+
+#### UML Diagrams
+
 
 Shown below is a sequence diagram of what occurs when the `execute` method of
 `LogicManager` is invoked.
 
-<img src="images/SortTaskCommandSequenceDiagram.png" />
+| ![SequenceDiagram](images/SortTaskCommandSequenceDiagram.png) |
+|:-------------------------------------------------------------:|
+|             Sequence Diagram of Sort Task Command             |
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `SortTaskCommandParser` and `SortTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
-1. `LogicManager` object takes in `"t sort c/priority"` which the user keys into the command line. 
+1. `LogicManager` object takes in `t sort c/priority` which the user keys into the command line. 
 2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during the initialisation 
-of `LogicManager` object and passes the `"t sort c/priority"` as the arguments of `parseCommand`
+of `LogicManager` object and passes `t sort c/priority` as the arguments of `parseCommand`
 3. `SortTaskCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`
-4. `SortTaskCommandParser` object calls its `parse` method with `"c/priority"` being passed in as argument.
+4. `SortTaskCommandParser` object calls its `parse` method with `c/priority` being passed in as argument.
 5. `SortTaskCommand` object called st is created from `SortTaskCommandParser`
-6. `excute` method of `SortTaskCommand` object st is invoked and model is passed in as
+6. `execute` method of `SortTaskCommand` object st is invoked and model is passed in as
 an argument.
-7. `sortTaskList` method of `Model` is called with `"priority"` being passed as an
-argument of the method
-8. `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
-the sorted successfully message as argument to the `LogicManager` object. 
+7. `sortTaskList` method of model is called with `criteria` being passed as an
+argument of the method.
+8. The `getFilteredTaskList` method of model is called and it returns the `FilteredList<Task>` stored in model.
+9. There is a check performed to see if the size of the `FilteredList<Task>` returned in the previous step is greater than 0.
+If it is not greater than 0, an error message will be displayed.
+8. The `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
+the sorted successfully message as its argument to the `LogicManager` object. 
+
+The following activity diagram summarises what happens when SortTaskCommand is executed
+
+| ![ActivityDiagram](images/SortTaskCommandActivityDiagram.png) |
+|:-------------------------------------------------------------:|
+|              Activity Diagram of SortTaskCommand              |
 
 ### Filter feature
 
@@ -292,85 +325,79 @@ The following activity diagram summarizes what happens when a user executes a ne
   
 ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Link Exam feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Command Format
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`e link e/EXAM_INDEX t/TASK_INDEX` where `EXAM_INDEX` refers to the index number of the displayed exam list
+and `TASK_INDEX` refers to the index number of the displayed task list.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### What is the feature about
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The link exam feature allows users to link an exam in the exam list to a task in the task list. 
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### How does the feature work
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The link exam feature is currently implemented through the `LinkExamCommand` class which extends the abstract class `Command`
+. The `LinkExamCommand` takes in two `Index` objects, one being the exam index and the other being
+the task index.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+When the user invokes the`execute` method of `LinkExamCommand`, 
+the `Task` and `Exam` stored at the specified index of the `FilteredList<Task>` and the
+`FilteredList<Exam>` respectively are retrieved. 
 
-![UndoRedoState1](images/UndoRedoState1.png)
+There will be checks to see if the `Task` is already linked to the exam and if 
+the module code of the `Exam` is same as that of `Task`. Once these checks are passed,
+the `Task` will be linked to the `Exam`
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+#### UML Diagrams
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Shown below is a sequence diagram of what occurs when the `execute` method of
+`LogicManager` is invoked.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+| ![SequenceDiagram](images/LinkExamCommandSequenceDiagram.png)  |
+|:--------------------------------------------------------------:|
+|              Sequence diagram of LinkExamCommand               |
 
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `LinkExamCommandParser` and `LinkExamCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+1. `LogicManager` object takes in `e link e/1 t/1` which the user keys into the command line.
+2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during the initialisation
+   of `LogicManager` object and passes `e link e/1 t/1` as the arguments of `parseCommand`.
+3. `LinkExamCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`.
+4. `LinkExamCommandParser` object calls its `parse` method with `e/1 t/1` being passed in as argument.
+5. `LinkExamCommand` object called le is created from `LinkExamCommandParser`.
+6. `execute` method of `LinkExamCommand` object le is invoked and model is passed in as
+   an argument.
+7. `LinkExamCommand` calls the `getFilteredTaskList` method of `Model` and the `FilteredList<Task>` stored in model is
+returned.
+8.  `LinkExamCommand` calls the `getFilteredExamList` method of `Model` and the `FilteredList<Exam>` stored in model is
+    returned.
+9. `Task` object called task is returned when `get` method of `List<Task>` is executed.
+10. task calls its own method `isLinked` and returns whether the task is linked. If the task is linked,
+an error message will be displayed.
+11. `Exam` object called exam is returned when `get` method of `List<Exam>` is executed.
+12. task calls its own method `getModule` and the `Module` stored in task will be returned.
+13. exam calls its own method `getModule` and the `Module` stored in Exam will be returned.
+14. The static method `isSameModule` of `Module` class is executed, and it checks whether task and exam
+have the same module code. If they do not have the same module code, an error message will be displayed.
+15. The `linkTask` method of `model` will be executed, and it will create a new `Task` object called linkedTask
+16. The `replaceTask` method of `model` will be executed and replaces task in `DistinctTaskList` in model with 
+linkedTask
+17. The `execute` method of `LinkExamCommand` returns a `CommandResult` object with
+   the exam linked successfully message as its argument to the `LogicManager` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The following activity diagram summarises what happens when LinkExamCommand is executed
 
-</div>
+| ![ActivityDiagram](images/LinkExamCommandActivityDiagram.png)  |
+|:--------------------------------------------------------------:|
+|              Activity diagram of LinkExamCommand               |
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -446,7 +473,7 @@ object to display that the exam was successfully added.
 
 **Target user profile**:
 
-* has a need to manage a significant number of module tasks
+* has a need to manage a significant number of modules, tasks and exams
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -459,15 +486,24 @@ object to display that the exam was successfully added.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                  | So that I can…​                                         |
-|----------|-------------|-----------------------------------------------|---------------------------------------------------------|
-| `* * *`  | NUS student | view the list of tasks I need to complete     | start implementing those tasks.                         |
-| `* * *`  | NUS student | create the tasks in the tasklist              | add the list of tasks that need to be completed         |
-| `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
-| `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
-| `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
-| `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
-| `* * *`  | NUS student | edit the modules in my modulelist             | remove them if added wrongly.                           |
+| Priority | As a …​     | I want to …​                                                 | So that I can…​                                                   |
+|----------|-------------|--------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | NUS student | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands            |
+| `* * *`  | NUS student | view the list of tasks I need to complete                    | start implementing those tasks.                                   |
+| `* * *`  | NUS student | create the tasks in the tasklist                             | add the list of tasks that need to be completed                   |
+| `* * *`  | NUS student | mark a task as complete                                      | have a better idea of what I have completed.                      |
+| `* * * ` | NUS student | add modules to my module list                                | add the modules that I am currently taking to the module list     |
+| `* * *`  | NUS student | delete the tasks in my tasklist                              | remove them if added wrongly.                                     |
+| `* * *`  | NUS student | delete the modules in my modulelist                          | remove them if added wrongly.                                     |
+| `* * *`  | NUS student | edit the modules in my modulelist                            | remove them if added wrongly.                                     |
+| `* * *`  | NUS student | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                            |
+| `* * `   | NUS student | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first           |
+| `* * `   | NUS student | tag the deadline of a task in the task list                  | track the date that the task should be completed                  |
+| `* * `   | NUS student | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first    |
+| `* * `   | NUS student | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task        |
+| `* * `   | NUS student | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly |
+| `* * `   | NUS student | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                 |
+| `* * `   | NUS student | sort the tasks in the task list                              | organise the tasks in the task list                               |
 
 *{More to be added}*
 
@@ -517,18 +553,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: Tag the priority to complete task**
+**Use Case: Add tags to a task**
 
 **MSS**
-1. NUS student requests to tag the priority of task in task list
+1. NUS student requests to add a tag to a task in task list
 2. MODPRO adds the tag to the task in the task list
 
    Use case ends.
 
 **Extensions**
-* 1a. The given priority status for the task is invalid
+* 1a. The provided command is in an invalid command format
+  * 1a1. MODPRO shows an error message </br>
+  Use case ends.
+* 1b. The given index for the task is invalid
+  * 1b1. MODPRO shows an error message </br>
+    Use case ends.
+* 1c. The priority status provided is invalid
+  * 1c1. MODPRO shows an error message </br>
+  Use case ends
+* 1d. The deadline provided is invalid
+  * 1d1. MODPRO shows an error message </br>
+  Use case ends
+* 1e. The task already has a priority status
+  * 1e1. MODPRO shows an error message </br>
+  Use case ends
+* 1f. The task already has a deadline
+  * 1f1. MODPRO shows an error message </br>
+  Use case ends
+
+**Use Case: Edit the tags of a task**
+
+**MSS**
+1. NUS student requests to edit the tags of a task in task list
+2. MODPRO edits the tag of the task in the task list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
     * 1a1. MODPRO shows an error message </br>
       Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The priority status provided is invalid
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends
+* 1d. The deadline provided is invalid
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends
+* 1e. The task does not have a priority status
+    * 1e1. MODPRO shows an error message </br>
+      Use case ends
+* 1f. The task does not have a deadline
+    * 1f1. MODPRO shows an error message </br>
+      Use case ends
+* 1g. The priority status is the same as the priority status of the task
+    * 1g1. MODPRO shows an error message </br>
+      Use case ends
+* 1h. The deadline is the same as the deadline of the task
+    * 1h1. MODPRO shows an error message </br>
+      Use case ends
+
+**Use Case: Delete tags of a task**
+
+**MSS**
+1. NUS student requests to delete the tags of a task in task list
+2. MODPRO deletes the tag of the task in the task list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The keywords provided is invalid
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends
+* 1d. The task does not have a priority status
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends
+* 1e. The task does not have a deadline
+    * 1e1. MODPRO shows an error message </br>
+      Use case ends
+
+
 
 **Use case: Delete a task from the task list**
 
@@ -542,6 +654,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given index is invalid.
     * 1a1. MODPRO shows an error message. </br>
       Use case ends.
+
+**Use Case: Add a module to the module list**
+
+**MSS**
+1. NUS student requests to add a module to the module list
+2. MODPRO adds the module to the module list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given module code is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The given module name is invalid
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends
+* 1d. The given module credit is invalid
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends
+* 1e. The given module code already exists in the module list
+  * 1e1. MODPRO shows an error message </br>
+    Use case ends
+* 1f. The given module name already exists in the module list
+    * 1f1. MODPRO shows an error message </br>
+      Use case ends
+* 1g. The given module credit already exists in the module list
+    * 1g1. MODPRO shows an error message </br>
+      Use case ends
 
 **Use case: Delete a module from the module list**
 
@@ -578,12 +721,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 
-*{More to be added}*
+**Use Case: Sort the task list**
+
+**MSS**
+1. NUS student requests to sort the task list
+2. MODPRO sorts the task in the task list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given criteria is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+
+**Use Case: Link the exam to a task**
+
+**MSS**
+1. NUS student requests to link the exam in the exam list to a task in the task list
+2. MODPRO links the task to the exam
+
+   Use case ends.
+
+**Extensions**
+* 1a. The provided command is in an invalid command format
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+* 1b. The given index for the task is invalid
+    * 1b1. MODPRO shows an error message </br>
+      Use case ends.
+* 1c. The given index for the exam is invalid
+    * 1c1. MODPRO shows an error message </br>
+      Use case ends.
+* 1d. The task is already linked
+    * 1d1. MODPRO shows an error message </br>
+      Use case ends.
+* 1e. The task and exam selected have a different module code
+    * 1e1. MODPRO shows an error message </br>
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed. 
+
+[//]: # (@@author dlimyy-reused)
+[//]: # (Resued with modification from existing AB3)
+2. Should be able to hold up to 1000 tasks without experiencing noticeable sluggishness in performance during typical usage
+
+[//]: # (@@author)
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -591,6 +779,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **GUI**: Graphical User Interface
+* **UML** Unified Modeling Language
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -635,6 +825,135 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Adding a module
+1. Adding a module into the module list
+   1. Test case: `m add c/cs2100 m/Computer Organisation mc/4`<br>
+      Expected: Module with the name `Computer Organisation`, module credit `4` and 
+module code `cs2100` is added to the module list.
+   2. Test case: `m add c/cs2100`<br>
+      Expected: An error message will be displayed. There are missing compulsory fields for
+   module name and module credit.
+   3. Other incorrect add module commands to try: `m add`, `m add c/1111 m/module mc/4`<br>
+   Expected: An error message will be displayed.
+
+### Adding a tag to a task
+1. Adding a tag to a task in the task list that is not tagged
+   1. Prerequisites: The task selected must not be tagged with any tags. 
+   2. Test case: `t tagadd 1 p/HIGH`<br>
+      Expected: The task located at the first index in the displayed task list is tagged with the priority status `HIGH`.
+   3. Test case: `t tagadd 1 dl/25-11-2022`<br>
+      Expected: The task located at the first index in the displayed task list is tagged with the deadline of `25-11-2022`.
+   4. Test case: `t tagadd 1 p/random`<br>
+      Expected: An error message will be displayed. An invalid priority status is chosen.
+   5. Other incorrect add tag commands to try: `t tagadd`, `t tagadd 2 dl/39-13-2000`<br>
+    Expected: An error message will be displayed.
+2. Adding a tag to a task in the task list that is tagged with only a priority status
+   1. Prerequisites: The task selected must be tagged with a priority status.
+   2. Test case: `t tagadd 1 p/HIGH`<br>
+      Expected: An error message will be displayed. The task located at the first index in the displayed task list is already tagged with a priority status.
+   3. Test case: `t tagadd 1 dl/25-11-2022'<br>
+      Expected: The task located at the first index in the displayed task list is tagged with the deadline of `25-11-2022`.
+   4. Other incorrect add tag commands to try: `t tagadd`, `t tagadd 2 dl/39-13-2000`<br>
+      Expected: An error message will be displayed.
+3. Adding a tag to a task in the task list that it tagged with only a deadline
+   1. Prerequisites: The task selected must be tagged with a deadline. 
+   2. Test case: `t tagadd 1 dl/25-11-2022`H`<br>
+       Expected: An error message will be displayed. The task located at the first index in the displayed task list is already tagged with a deadline.
+   3. Test case: `t tagadd 1 p/HIGH`<br>
+      Expected: The task located at the first index in the displayed task list is tagged with the priority status `HIGH`.
+   4. Other incorrect add tag commands to try: `t tagadd`, `t tagadd 2 dl/39-13-2000`<br>
+      Expected: An error message will be displayed.
+
+### Editing a tag of a task
+1. Editing the tag of a task in the task list that is not tagged at all
+    1. Prerequisite is that the task selected is not tagged with either the priority status or deadline
+    2. Test case: `t tagedit 1 p/HIGH`<br>
+        Expected: Error message is displayed. The task located at the first index in the displayed task list is not tagged with a priority status.
+    3. Test case: `t tagedit 1 dl/25-11-2022`<br>
+       Expected: Error message is displayed. The task located at the first index in the displayed task list is not tagged with a deadline.
+    4. Test case: `t tagedit 1 p/random`<br>
+       Expected: An error message will be displayed. An invalid priority status is chosen.
+    5. Other incorrect edit tag commands to try: `t tagedit`, `t tagedit 2 dl/39-13-2000`<br>
+       Expected: An error message will be displayed.
+2. Editing the tag of a task in the task list that is tagged with a priority status
+    1. Prerequisites: The task selected is tagged with only the priority status `HIGH`
+    2. Test case: `t tagedit 1 p/HIGH`<br>
+       Expected: An error message will be displayed. The task selected is tagged with the same priority status.
+    3. Test case: `t tagedit 1 p/LOW`<br>
+       Expected: The task located at the first index of the displayed task list is tagged with the priority status `LOW`
+    4. Other incorrect edit tag commands to try: `t tagedit`, `t tagedit 2 dl/39-13-2000`<br>
+       Expected: An error message will be displayed.
+3. Editing the tag of a task in the task list that it tagged with a deadline
+    1. Prerequisites: The task selected is tagged with only the deadline `25-11-2022`
+    2. Test case: `t tagedit 1 dl/25-11-2022`H`<br>
+        Expected: An error message will be displayed. The task selected is tagged with the same deadline.
+    3. Test case: `t tagedit 1 dl/26-11-2022`<br>
+       Expected: The task located at the first index in the displayed task list is tagged with the new deadline `26-11-2022`
+    4. Other incorrect edit tag commands to try: `t tagedit`, `t tagedit 2 dl/39-13-2000`<br>
+       Expected: An error message will be displayed.
+
+### Deleting a tag of a task
+1. Deleting the tag of a task in the task list that is not tagged at all
+    1. Prerequisite is that the task selected is not tagged with either the priority status or deadline
+    2. Test case: `t tagdel 1 t/priority`<br>
+       Expected: Error message is displayed. The task located at the first index in the displayed task list is not tagged with a priority status.
+    3. Test case: `t tagdel 1 t/deadline`<br>
+       Expected: Error message is displayed. The task located at the first index in the displayed task list is not tagged with a deadline.
+    4. Test case: `t tagdel 1 t/random`<br>
+       Expected: An error message will be displayed. An invalid keyword is chosen.
+    5. Other incorrect delete tag commands to try: `t tagdel`, `t tagdel -1 t/priority`<br>
+       Expected: An error message will be displayed.
+2. Deleting the tag of a task in the task list that is tagged with a priority status
+    1. Prerequisites: The task selected is tagged with only a priority status
+    2. Test case: `t tagdel t/priority`<br>
+       Expected: The task located at the first index in the displayed task list will have its priority status removed.
+    3. Test case: `t tagdel t/deadline`<br>
+       Expected: An error message is displayed. The task does not have a deadline.
+    4. Other incorrect delete tag commands to try: `t tagdel`, `t tagdel -1 t/priority`<br>
+       Expected: An error message will be displayed.
+3. Editing the tag of a task in the task list that it tagged with a deadline
+    1. Prerequisites: The task selected is tagged with only a deadline
+    2. Test case: `t tagdel t/priority`H`<br>
+       Expected: An error message will be displayed. The task selected does not have a priority status
+    3. Test case: `t tagdel t/deadline`<br>
+       Expected: The task located at the first index in the displayed task list has its deadline removed.
+   4. Other incorrect delete tag commands to try: `t tagdel`, `t tagdel -1 t/priority`<br>
+      Expected: An error message will be displayed.
+
+### Sorting the task list
+1. Sorting the unfiltered task list
+    1. Test case: `t sort c/priority`<br>
+       Expected: Sorts all tasks in the unfiltered task list by priority status.
+   2. Other incorrect sort task commands to try: `t sort`, `t sort c/low`<br>
+       Expected: An error message will be displayed.
+2. Sorting the filtered task list
+    1. Prerequisite: Perform a `t filter` operation on the task list  
+    2. Test case: `t sort c/priority`<br>
+        Expected: Sorts all tasks in the filtered task list by priority status.
+    3. Other incorrect sort task commands to try: `t sort`, `t sort c/low`<br>
+       Expected: An error message will be displayed.
+
+### Linking the exam to a task
+1. Linking the exam to an unlinked task
+   1. Prerequisite: The task selected is unlinked and the task and exam have the same module code
+   2. Test case: `e link e/1 t/1`<br>
+      Expected: Links the first task in the displayed task list with the first exam in the displayed exam list.
+   3. Other incorrect link exam commands to try: `e link`, `e link e/-1 t/9999999999999999999`<br>
+      Expected: An error message will be displayed.
+2. Linking the exam to a linked task
+    1. Prerequisite: The task selected is linked and the task and exam selected have the same module code
+   2. Test case: `e link e/1 t/1`<br>
+      Expected: An error message is displayed. The first task in the displayed task list is already linked.
+   3. Other incorrect link exam commands to try: `e link`, `e link e/-1 t/9999999999999999999`<br>
+      Expected: An error message will be displayed.
+
+### Viewing the help window
+1. Viewing the help window
+   1. Test case: `help`<br>
+   Expected: The help window will display on the screen
+   2. Incorrect help command to try: `help123`
+   Expected: An error message will be displayed
 
 ### Saving data
 
