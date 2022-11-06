@@ -500,18 +500,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a profile to the event.
-2. NUScheduler adds the profile to the event and displays the updated event attendees.
+1. User requests to add multiple profiles to an event.
+2. NUScheduler adds the profiles to the event and displays the updated event attendees.
 
 **Extensions**
 
-* 1a. The given event to add profile to is invalid.
+* 1a. The given event index to add profiles to is invalid.
 
     * 1a1. NUScheduler shows an error message.
 
       Use case ends.
 
-* 1b. The given profile to add is invalid.
+* 1b. One or more of the given profile indexes is invalid.
 
     * 1b1. NUScheduler shows an error message.
 
