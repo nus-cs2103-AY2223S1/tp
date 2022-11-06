@@ -10,7 +10,7 @@ title: Gim
 
 Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Gim builds on the commands of Vim so if you can type fast and are an avid Vim user, Gim can optimize your exercise routines to a much greater capacity than traditional GUI apps.
 
-* If you are interested in using Gim, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in using Gim, head over to the [_Getting Started_ section of the **User Guide**](UserGuide.html#3-getting-started).
 * If you are interested about developing Gim, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
