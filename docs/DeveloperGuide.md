@@ -7,6 +7,8 @@ title: Developer guide
 * Table of Contents
 {:toc}
 
+---
+
 <div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
@@ -22,6 +24,8 @@ title: Developer guide
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+---
 
 <div style="page-break-after: always;"></div>
 
@@ -73,6 +77,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+---
+
 <div style="page-break-after: always;"></div>
 
 ### UI component
@@ -91,6 +97,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it can display `Person`, `Group`, `Assignment` objects residing in the `Model`.
+
+---
 
 <div style="page-break-after: always;"></div>
 
@@ -122,6 +130,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+---
 
 <div style="page-break-after: always;"></div>
 
@@ -170,6 +180,8 @@ The `Assignment` component,
 * is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
 * has an optional `Deadline` attribute which is a `LocalDateTime` object.
 
+---
+
 <div style="page-break-after: always;"></div>
 
 ### Storage component
@@ -186,6 +198,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+---
 
 <div style="page-break-after: always;"></div>
 
