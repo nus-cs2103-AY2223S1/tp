@@ -84,5 +84,3 @@ exit
 ```
 
 **Expected Output:**<br>FoodRem application will close.
-
----

@@ -36,3 +36,5 @@ The cost of an item is the price of the item multiplied by the quantity of the i
 ```info
 The above picture only shows a partial view of the Command Output Box. On FoodRem, you can simply scroll down to see the full output! This is unfortunately the one instance where you need to use a mouse to interact with FoodRem.
 ```
+
+---

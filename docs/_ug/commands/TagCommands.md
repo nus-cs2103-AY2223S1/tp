@@ -184,3 +184,5 @@ Initially, there already exists a tag called "Veggies".
   input="deletetag n/Veggies"
   commandOutputBox="images/tagCommands/commandOutputBox/deletetag.png"
 %}
+
+---
