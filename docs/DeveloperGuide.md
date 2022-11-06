@@ -2,6 +2,12 @@
 layout: page
 title: Developer Guide
 ---
+
+Welcome to our **UniNurse** Developer Guide. UniNurse is a desktop app targeted at private nurses to help them manage their patients
+in a more organized manner.
+
+If you are a developer, this guide provides you with comprehensive documentation about the design and implementation details of UniNurse to help you get started, should you choose to build on its existing features.
+
 * Table of Contents
 {:toc}
 

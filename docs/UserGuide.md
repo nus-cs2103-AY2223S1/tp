@@ -118,7 +118,9 @@ java -version
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** The app comes with some sample patients by default. Type `clear` in the command box to remove them.
+:bulb: **Tip:**
+
+The app comes with some sample patients by default. Type `clear` in the command box to remove them.
 
 </div>
 
@@ -138,6 +140,8 @@ java -version
 6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
    [Command Summary](#command-summary) at the end of this guide.
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -155,11 +159,11 @@ java -version
 | Single-valued attribute | A patient's detail that consist of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.  |
 | Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `CONDITION`, `MEDICATION`, `REMARK`.                                                                      |
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command format
-
-_To be cleaned up_
 
 <div markdown="block" class="alert alert-info">
 
@@ -200,8 +204,7 @@ _To be cleaned up_
 
 </div>
 
-Things to add:
-- explain pipe characters
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,6 +319,7 @@ Example:`r/Allergic to peanuts`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * The value of an attribute is prefixed by its prefix.
 * The index of a patient's multi-valued attribute is specified with its flag.
 * The flag and the prefix of a multi-valued attribute are coded with the same letter.
@@ -323,13 +327,17 @@ Example:`r/Allergic to peanuts`
 
 </div>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can navigate through your command history by using the `↑` and `↓` arrow keys.
+:bulb: **Tip:**
+
+You can navigate through your command history by using the `↑` and `↓` arrow keys.
 * Two or more consecutive identical commands are saved once.
 * Only successful commands are saved in the command history.
 * The command history saves up to 100 previous commands.
@@ -349,6 +357,8 @@ Format: **`help`**
 {: refdef}
 <div align="center"><i> Help window displayed after running the </i><code>help</code><i> command </i></div>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Adding a patient: `add`
@@ -359,7 +369,9 @@ Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTIO
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can view the constraints for each parameter in the [Parameter constraints](#patient-parameter-constraints) section.
+:bulb: **Tip:**
+
+You can view the constraints for each parameter in the [Parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
@@ -373,7 +385,9 @@ Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTIO
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add any number of tags, tasks, medical conditions, medications and remarks to a patient.
+:bulb: **Tip:**
+
+You can add any number of tags, tasks, medical conditions, medications and remarks to a patient.
 
 </div>
 
@@ -392,6 +406,8 @@ Examples:
   * Address: `Jane street blk 420 #01-69`
   * Medical conditions: `Dementia`, `High blood pressure`
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Editing a patient’s contact details: `edit` `-p`
@@ -402,13 +418,16 @@ Format: `edit -p PATIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can view the constraints for each parameter in the [Patient parameter constraints](#patient-parameter-constraints) section.
+:bulb: **Tip:**
+
+You can view the constraints for each parameter in the [Patient parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You cannot edit tags, tasks, medical conditions, medications and remarks with this command.
 * If there are duplicate patients after editing a patient, it will not be edited.
 
@@ -416,13 +435,17 @@ Format: `edit -p PATIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to the [Table of contents](#table-of-contents) to find the section with the parameter you want to edit.
+:bulb: **Tip:**
+
+You can refer to the [Table of contents](#table-of-contents) to find the section with the parameter you want to edit.
 
 </div>
 
 Example:
 
 * `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -438,9 +461,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can use the `undo` command to undo an accidental `delete` command.
+:bulb: **Tip:**
+
+You can use the `undo` command to undo an accidental `delete` command.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -453,6 +480,7 @@ Format: **`add`** `-p PATIENT_INDEX t/TAG`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only add one tag at a time.
 * You cannot add duplicate tags.
 * Tags are case-sensitive e.g. `high-risk` is distinct from `High-risk`.
@@ -466,14 +494,18 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple tags at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:**
+
+You can add multiple tags at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
 <a name="edit-multi-valued-attributes"></a>
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can understand the commands about multi-valued attributes as follows.
+:bulb: **Tip:**
+
+You can understand the commands about multi-valued attributes as follows.
 
 #### Adding a value to an attribute: `add` `-p`
 
@@ -501,6 +533,8 @@ Example:
 
 </div>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Editing a tag: `edit` `-p` `-t`
@@ -512,6 +546,7 @@ Format: **`edit`** `-p PATIENT_INDEX -t TAG_INDEX t/TAG`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only edit one tag at a time.
 * If there are duplicate tags after editing a tag, it will not be edited.
 
@@ -523,9 +558,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -541,9 +580,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -556,6 +599,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If `TIME` is omitted, the task will be created with a default time of `0000` hours.
 * `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
@@ -571,6 +615,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 <div markdown="block" class="alert alert-warning">
 
 :exclamation: **Caution:**
+
 If you enter a `TIME` of `2400`, then the date and time will be set to `0000` hours of the next day.
 
 </div>
@@ -582,15 +627,21 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:**
+
+You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -603,6 +654,7 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
@@ -619,16 +671,21 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
-* You must always provide a `DATE` if you want to change the `TIME`. <br>
-  e.g. to change from `25-10-22 0800` to `25-10-22 0900`, the edit would be `d/| 25-10-22 0900`.
+
+You must always provide a `DATE` if you want to change the `TIME`. <br>
+e.g. to change from `25-10-22 0800` to `25-10-22 0900`, the edit would be `d/| 25-10-22 0900`.
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -644,9 +701,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -659,6 +720,7 @@ Format: **`add`** `-p PATIENT_INDEX c/CONDITION`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only add one medical condition at a time.
 * You cannot add duplicate medical conditions.
 * Medical conditions are case-sensitive e.g. `diabetes` is distinct from `Diabetes`.
@@ -671,15 +733,21 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:**
+
+You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -692,6 +760,7 @@ Format: **`edit`** `-p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only edit one medical condition at a time.
 * If there are duplicate medical conditions after editing a medical condition, it will not be edited.
 
@@ -703,9 +772,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -721,9 +794,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -736,6 +813,7 @@ Format: **`add`** `-p PATIENT_INDEX m/MEDICATION_TYPE | DOSAGE`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only add one medication at a time.
 * You cannot add duplicate medications.
 * Medications are considered duplicates only when both `MEDICATION_TYPE` and `DOSAGE` are the same e.g. `Paracetamol | 1 tab every 6 hours` is different from `Paracetamol | 2 tabs every 6 hours`.
@@ -749,15 +827,21 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple medications at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:**
+
+You can add multiple medications at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -770,6 +854,7 @@ Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
+
 * You can only edit one medication at a time.
 * If no new `MEDICATION_TYPE` or `DOSAGE` are provided, then original values will be used.
 * At least one of `MEDICATION_TYPE` or `DOSAGE` must be present, or else the medication will not be edited.
@@ -783,9 +868,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -801,9 +890,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -828,15 +921,21 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:**
+
+You can add multiple remarks at once when you first [add a patient](#adding-a-patient-add).
 
 </div>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -860,9 +959,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -878,9 +981,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+:bulb: **Tip:**
+
+You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -889,6 +996,8 @@ Examples:
 You can view a list of all patients using the `list` command.
 
 Format: `list`
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -904,6 +1013,8 @@ Examples:
 
 _Add screenshot here_
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Finding patients: `find`
@@ -911,6 +1022,10 @@ _Add screenshot here_
 You can find specific patients using the `find` command.
 
 Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**
 
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific attribute with prefix `xyz`.
 * There should be at least one parameter for the command.
@@ -920,6 +1035,8 @@ Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 * Patients matching at least one keyword in every attribute will be returned (i.e. AND search for different attributes, OR search for same attribute). In more details,
     * At least one of the patient's attributes (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD` (unless it is empty).
     * For every different attribute with prefix `xyz`, it must match at least one `XYZ_KEYWORD` (unless it is empty).
+
+</div>
 
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` displays all patients who fulfill all conditions below:
@@ -934,6 +1051,8 @@ Examples:
 {: refdef}
 <div align="center"><i> Patient list displayed after running the </i><code>find alice meier</code><i> command </i></div>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Viewing all tasks for a particular day: `view`
@@ -944,8 +1063,10 @@ Format: **`view`** `DATE`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Notes:**
-* The DATE **must be of the specified format** dd-MM-yy
+:information_source: **Note:**
+
+The DATE **must be of the specified format** dd-MM-yy
+
 </div>
 
 Examples:
@@ -956,6 +1077,8 @@ Examples:
 ![result for `view 25-11-22`](images/viewSpecificDayResult.png)
 {: refdef}
 <div align="center"><i> Patient and task list displayed after running the </i><code>view 25-11-22</code><i> command </i></div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -982,9 +1105,13 @@ If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-particular-day-view) with the special flag `--today`.
+:bulb: **Tip:**
+
+This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-particular-day-view) with the special flag `--today`.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1002,6 +1129,8 @@ Examples:
 ![result for `view -p 2`](images/viewBerniceTaskResult.png)
 {: refdef}
 <div align="center"><i> Patient and task list displayed after running the </i><code>view -p 2</code><i> command </i></div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1024,9 +1153,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tasks-of-a-patient-view--p) with the special flag `--all`.
+:bulb: **Tip:**
+
+This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tasks-of-a-patient-view--p) with the special flag `--all`.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1038,8 +1171,9 @@ Format: `undo`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Notes:** 
-* Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
+:information_source: **Note:** 
+
+Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
 
 </div>
 
@@ -1052,6 +1186,8 @@ Examples:
 Only the last 100 commands which modifies the application data can be undone.
 data file at the next run.
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1079,9 +1215,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Tip:** You can use the `undo` command to undo an accidental `clear` command.
+:bulb: **Tip:**
+
+You can use the `undo` command to undo an accidental `clear` command.
 
 </div>
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1091,12 +1231,16 @@ You can exit UniNurse with the `exit` command.
 
 Format: **`exit`**
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+
 <br>
 
 ### Saving the data
 
-UniNurse data are saved in the hard disk automatically after any command that changes the data.
+UniNurse automatically saves its data in the hard disk after any command that changes the data.
 You do not need to save manually.
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 <br>
 
@@ -1111,6 +1255,7 @@ If your changes to the data file makes its format invalid, UniNurse will discard
 data file at the next run.
 </div>
 
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1119,6 +1264,8 @@ data file at the next run.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous UniNurse home folder.
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1156,3 +1303,5 @@ the data of your previous UniNurse home folder.
 | **Reverse undo command**                | `redo`                                                                                                      |
 | **Clear all entries**                   | `clear`                                                                                                     |
 | **Exit**                                | `exit`                                                                                                      |
+
+[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
