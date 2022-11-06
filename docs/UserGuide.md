@@ -134,6 +134,8 @@ We will surround **optional parameters** with square brackets (`[]`).
 
 That's it! You should now be able to understand the command syntax for the rest of this document.
 
+<div style="page-break-after: always;"></div>
+
 ### Command Quirks
 
 You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name `CS2103T "iP" Week 6`?
@@ -509,6 +511,8 @@ the data of your previous ModuleList home folder.
 | **Mark a module as done**   | `done module <mod code>` <br/> `done mod <mod code>`                                                                                                         | `done module CS1101S` <br/> `done mod CS1101S`                     |
 | **Mark a module as undone** | `undone module <mod code>` <br/> `undone mod <mod code>`                                                                                                     | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
 | **List modules**            | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]`                                                                          | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
+
+<div style="page-break-after: always;"></div>
 
 ### Tasks
 
