@@ -63,18 +63,17 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord").toLowerCase();
         final String descriptor = matcher.group("descriptor").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
-        final String descriptorAndArguments = descriptor + arguments;
         logger.info(descriptor);
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(descriptorAndArguments);
+            return new AddCommandParser().parse(arguments);
 
         case EditPatientCommand.COMMAND_WORD:
             return parseEditPatientCommand(descriptor, arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(descriptorAndArguments);
+            return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -86,7 +85,7 @@ public class AddressBookParser {
             return parseUngroupCommand(descriptor, arguments);
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(descriptorAndArguments);
+            return new FindCommandParser().parse(arguments);
 
         case HidePatientsCommand.COMMAND_WORD:
             return parseHidePatientsCommand(descriptor, arguments);
@@ -95,16 +94,16 @@ public class AddressBookParser {
             return parseUnhidePatientsCommand(descriptor, arguments);
 
         case BookCommand.COMMAND_WORD:
-            return new BookCommandParser().parse(descriptorAndArguments);
+            return new BookCommandParser().parse(arguments);
 
         case CancelCommand.COMMAND_WORD:
-            return new CancelCommandParser().parse(descriptorAndArguments);
+            return new CancelCommandParser().parse(arguments);
 
         case MarkCommand.COMMAND_WORD:
-            return new MarkCommandParser().parse(descriptorAndArguments);
+            return new MarkCommandParser().parse(arguments);
 
         case UnmarkCommand.COMMAND_WORD:
-            return new UnmarkCommandParser().parse(descriptorAndArguments);
+            return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return parseListCommand(descriptor, arguments);
