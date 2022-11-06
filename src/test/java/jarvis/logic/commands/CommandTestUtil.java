@@ -1,7 +1,9 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,8 +39,15 @@ public class CommandTestUtil {
     public static final String MATRIC_NUM_DESC_AMY = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_AMY;
     public static final String MATRIC_NUM_DESC_BOB = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_BOB;
 
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+
+    public static final String VALID_TASK_DESC_MISSION1 = "Mark mission 1";
+    public static final String VALID_TASK_DEADLINE_MISSION1 = "2022-10-23";
+
+    public static final String TASK_DESC_MISSION1 = " " + PREFIX_TASK_DESC + VALID_TASK_DESC_MISSION1;
+    public static final String TASK_DEADLINE_MISSION1 = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_MISSION1;
+
+    public static final String INVALID_TASK_DEADLINE = " " + PREFIX_DEADLINE + "2022-55-55";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
