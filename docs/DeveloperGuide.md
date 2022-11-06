@@ -126,19 +126,19 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/ui/Ui.java)
 
 ![Structure of the UI Component](images/UpdatedUIClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryPane`
+The UI consists of a `MainWindow` that is made up of parts e.g. `CommandBox`, `ResultDisplay`, `EntryPane`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -149,7 +149,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -163,7 +163,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a entry).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1 t/e")` API
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1 t/e` Command](images/DeleteSequenceDiagram.png)
@@ -186,10 +186,9 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -204,7 +203,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/pennywise/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -229,14 +228,22 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Summarise Entries
 
-The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes
+The `summary` feature provides 3 simple statistic, including the total expenditure, total income and total balance,
+helping students to have a quick overview of their expenditure and income. If the command is optionally provided with a
+year and month field, the summary statistics will be contained to only the entries occurring in the specified year and month.
 
-`SummaryCommandParser` class is responsible for parsing the parameter received from the user
+#### How the `summary` command works
 
-`SummaryCommand` class is responsible for generating the summary statistic for the specified duration
+The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes.
 
-Below is a sequence diagram and explanation of how the SummaryCommand is executed.
+`SummaryCommandParser` class is responsible for parsing the parameter received from the user.
+
+`SummaryCommand` class is responsible for generating the summary statistic for the specified duration.
+
+Below is a sequence diagram and explanation of how the `summary` command is executed.
 ![Interactions Inside the Logic Component for the `summary mo/2022-08` Command](images/SummarySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SummaryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Step 1.The user enters `summary mo/2022-08` command in the main window
 
@@ -267,7 +274,7 @@ Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `Lo
   * Pros: Easier to implement. The statistics by month is also logical as
   users will generally budget based on a monthly basis
   * Cons: Users will not be able to customise the scope of the summary
-  statistic further (e.g summarising entries for the past week)
+  statistic further (e.g. summarising entries for the past week)
 
 * **Alternative 2:** Provide the option to specify a start and end date to generate summary statistic
   * Pros: Allows more customisation to the scope of the summary statistics
@@ -275,14 +282,20 @@ Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `Lo
 
 ### Add Entry
 
+The `add` command allows students to add their expenses or income entries into PennyWise.
+
+### How the `add` command works
+
 The `add` command is implemented by the `AddCommandParser` and `AddCommand` classes.
 
 `AddCommandParser` class is responsible for parsing the parameter received from the user.
 
 `AddCommand` class is responsible for adding a new entry to the specified list.
 
-Below is a sequence diagram and explanation of how the AddCommand is executed.
+Below is a sequence diagram and explanation of how the `add` command is executed.
 ![Interactions Inside the Logic Component for the `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` Command](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
 
@@ -315,6 +328,10 @@ Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it
 
 ### Edit Entry
 
+The `edit` command allows students to make changes to the description, date, amount or category of existing expenditure and income entries. 
+
+#### How the `edit` command works
+
 The `edit` command is implemented by the `EditCommandParser` and `EditCommand` classes.
 
 `EditCommandParser` class is responsible for parsing the parameter received from the user.
@@ -323,6 +340,10 @@ The `edit` command is implemented by the `EditCommandParser` and `EditCommand` c
 
 Below is a sequence diagram and explanation of how the EditCommand is executed.
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditSequenceDiagram.png)
+
+![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditEntrySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Step 1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
 

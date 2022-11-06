@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+
+mainframe **sd** edit entry to model\t
+
+box Logic LOGIC_COLOR_T1
+participant "editCommand\n:EditCommand" as EditCommand LOGIC_COLOR
+participant "<<class>>\nEditCommand" as EditCommandClass LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+EditCommand -> Model :getFilteredExpenditureList()
+
+EditCommand -> EditCommand: getEntryToEdit()
+activate EditCommand
+return entryToEdit
+
+EditCommand -> EditCommandClass :createdEditedEntry()
+activate EditCommandClass
+return editedEntry
+deactivate EditCommandClass
+
+EditCommand -> Model : setExpenditure()
+Model --> EditCommand
+
+EditCommand -> Model : updateFilteredExpenditureList()
+Model --> EditCommand
+@enduml
