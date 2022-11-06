@@ -22,7 +22,7 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="524.0" prefWidth="459.0">
+      <VBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="550.0" prefWidth="460.0">
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </opaqueInsets>
