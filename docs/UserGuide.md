@@ -303,6 +303,12 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 
 </div>
 
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
+See [addProduct](#731-adding-a-product-addproduct).
+</div>
+
+
 ### 7.1 Client commands
 
 This subsection covers all client-related commands.
@@ -317,6 +323,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 * `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
 * If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
@@ -324,11 +331,6 @@ Use case:
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
-</div>
-
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
-See [addProduct](#731-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -348,6 +350,7 @@ A valid filter can also be applied to show a selected list of clients.
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`.
+* `PRODUCT` must exists already.
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
@@ -419,6 +422,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `BIRTHDAY` in the future are not acceptable.
+* `PRODUCT` must exists already.
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
 * If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
