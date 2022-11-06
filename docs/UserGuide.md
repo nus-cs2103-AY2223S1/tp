@@ -13,7 +13,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already set PennyWise up? Jump right straight to the [features](#features) section to see what features are available!
+Already done with the set-up? Jump right straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
