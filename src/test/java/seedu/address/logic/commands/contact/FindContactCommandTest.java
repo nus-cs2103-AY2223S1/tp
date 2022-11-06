@@ -34,14 +34,19 @@ public class FindContactCommandTest {
 
     private final String nameKeyword1 = "Alice";
     private final String nameKeyword2 = "Benson";
-    private final String phoneKeyword1 = "999";
-    private final String phoneKeyword2 = "62353535";
-    private final String emailKeyword1 = "john@gmail.com";
-    private final String emailKeyword2 = "colonel-sanders-123@kfc.co.uk";
-    private final String addressKeyword1 = "17A Lower Kent Ridge Road, #01-01, S(119081)";
-    private final String addressKeyword2 = "17A Lower Kent Ridge Road, c/o reception@sally, #01-01, S(119081)";
-    private final String remarkKeywords1 = "prefers online meetings";
-    private final String remarkKeywords2 = "prefers f2f meetings";
+    private final String nameKeyword3 = "Zen";
+    private final String phoneKeyword1 = "94351253";
+    private final String phoneKeyword2 = "98765432";
+    private final String phoneKeyword3 = "97771234";
+    private final String emailKeyword1 = "alice@example.com";
+    private final String emailKeyword2 = "johnd@example.com";
+    private final String emailKeyword3 = "zen@nomatch.com";
+    private final String addressKeyword1 = "#08-111";
+    private final String addressKeyword2 = "#02-25";
+    private final String addressKeyword3 = "#99-99";
+    private final String remarkKeywords1 = "monday";
+    private final String remarkKeywords2 = "tuesday";
+    private final String remarkKeywords3 = "wednesday";
 
     private final List<Name> nameKeywords = Arrays.asList(new Name(nameKeyword1), new Name(nameKeyword2));
     private final List<Phone> phoneKeywords = Arrays.asList(new Phone(phoneKeyword1), new Phone(phoneKeyword2));
@@ -50,6 +55,12 @@ public class FindContactCommandTest {
             new Address(addressKeyword2));
     private final List<Remark> remarkKeywords = Arrays.asList(new Remark(remarkKeywords1),
             new Remark(remarkKeywords2));
+
+    private final List<Name> nameKeywordsNoMatch = List.of(new Name(nameKeyword3));
+    private final List<Phone> phoneKeywordsNoMatch = List.of(new Phone(phoneKeyword3));
+    private final List<Email> emailKeywordsNoMatch = List.of(new Email(emailKeyword3));
+    private final List<Address> addressKeywordsNoMatch = List.of(new Address(addressKeyword3));
+    private final List<Remark> remarkKeywordsNoMatch = List.of(new Remark(remarkKeywords3));
 
     private final List<Name> emptyNameKeywords = new ArrayList<>();
     private final List<Phone> emptyPhoneKeywords = new ArrayList<>();
@@ -63,7 +74,7 @@ public class FindContactCommandTest {
                 new PersonContainsKeywordsPredicate(nameKeywords, phoneKeywords,
                         emailKeywords, addressKeywords, remarkKeywords);
         PersonContainsKeywordsPredicate secondPredicate =
-                new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords,
+                new PersonContainsKeywordsPredicate(emptyNameKeywords, emptyPhoneKeywords,
                         emptyEmailKeywords, emptyAddressKeywords, emptyRemarkKeywords);
 
         FindContactCommand findFirstCommand = new FindContactCommand(firstPredicate);
@@ -82,22 +93,103 @@ public class FindContactCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different predicates -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
     public void execute_zeroMatchingKeywords_noPersonFound() {
-        // TODO
+        // no matching name keywords, all other fields have matching keywords
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate(nameKeywordsNoMatch, phoneKeywords,
+                        emailKeywords, addressKeywords, remarkKeywords);
+        FindContactCommand command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
+
+        // no matching phone keywords, all other fields have matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        predicate = new PersonContainsKeywordsPredicate(nameKeywords,
+                phoneKeywordsNoMatch, emailKeywords, addressKeywords, remarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
+
+        // no matching email keywords, all other fields have matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        predicate = new PersonContainsKeywordsPredicate(nameKeywords,
+                phoneKeywords, emailKeywordsNoMatch, addressKeywords, remarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
+
+        // no matching address keywords, all other fields have matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        predicate = new PersonContainsKeywordsPredicate(nameKeywords,
+                phoneKeywords, emailKeywords, addressKeywordsNoMatch, remarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
+
+        // no matching remark keywords, all other fields have matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        predicate = new PersonContainsKeywordsPredicate(nameKeywords,
+                phoneKeywords, emailKeywords, addressKeywords, remarkKeywordsNoMatch);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
+        // multiple name keyword matches
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonContainsKeywordsPredicate predicate =
                 new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords,
                         emptyEmailKeywords, emptyAddressKeywords, emptyRemarkKeywords);
         FindContactCommand command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+
+        // multiple phone keyword matches
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        predicate = new PersonContainsKeywordsPredicate(emptyNameKeywords, phoneKeywords,
+                emptyEmailKeywords, emptyAddressKeywords, emptyRemarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+
+        // multiple email keyword matches
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        predicate = new PersonContainsKeywordsPredicate(emptyNameKeywords, emptyPhoneKeywords,
+                emailKeywords, emptyAddressKeywords, emptyRemarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+
+        // multiple address keyword matches, all other fields have no matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        predicate = new PersonContainsKeywordsPredicate(emptyNameKeywords, emptyPhoneKeywords,
+                emptyEmailKeywords, addressKeywords, emptyRemarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+
+        // multiple remark keyword matches, all other fields have no matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        predicate = new PersonContainsKeywordsPredicate(emptyNameKeywords, emptyPhoneKeywords,
+                emptyEmailKeywords, emptyAddressKeywords, remarkKeywords);
+        command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
