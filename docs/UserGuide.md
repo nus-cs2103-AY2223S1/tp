@@ -26,7 +26,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
         - [List all loans](#show-all-books-that-are-loaned--list-loans)
         - [List overdue](#show-all-books-that-are-overdue--list-overdue)
         - [Clear](#clearing-all-entries--clear-all)
-        - [Exit](#exit-bookface-exit)
+        - [Exit](#exit-bookface--exit)
     - [FAQ](#faq)
     - [Command Summary](#command-summary)
 
@@ -81,10 +81,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* If prefixes such as `n/` or `a/` appear at the start of a word, they will be interpreted as parameters. There is no functionality to prevent this.<br>
+* If parameter prefixes such as `n/` or `a/` appear at the start of a word, they will be interpreted as parameters even if they were intended to be a part of the person's name. v1.5 will include the ability to escape prefixes.<br>
   e.g `a/John Doe t/The Wide a/iger` will be interpreted as "iger" for the author's name and "The Wide" for the book's title, instead of "John Doe" for the author's name and "The Wide a/iger" for the book title.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list users`, `exit` and `clear all`) will be ignored.<br>
@@ -94,6 +91,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
 delete the user that is currently displayed.
 
+* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `\p` in `p/999999           n/John` will be interpreted as `999999` and not `999999          `.
 </div>
 
 ### Adding a book : `add book`
@@ -102,9 +100,7 @@ Adds a book to the library.
 
 Format: `add book t/TITLE a/AUTHOR`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
-</div>
+* If the specified title and author match an existing book (ignoring the title's case), the book will be flagged as a duplicate of an existing book.
 
 Examples:
 * `add book t/The Life of John a/Emily Dunce`
@@ -113,7 +109,7 @@ Examples:
 
 Adds a user to the library.
 
-Format: `add user n/NAME p/PHONE_NUMBER e/EMAIL`
+Format: `add user n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Examples:
 * `add user n/Jenny Brown p/12345678 e/foo@gmail.com`
@@ -304,22 +300,22 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                          |
-|-----------------|-----------------------------------------------------------------------------------------------------------|
-| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add book t/James and The Giant Peach  a/Roald Dahl`                |
-| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com` |
-| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                         |
-| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                         |
-| **Loan book**   | `loan USER_INDEX BOOK_INDEX [DUE_DATE]` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28`                     |
-| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                   |
-| **Find book**   | `find book KEYWORD [KEYWORD]...` <br> E.g: `find book Peach`                                              |
-| **Find user**   | `find user KEYWORD [KEYWORD]...` <br> E.g: `find user John Sim`                                           |
-| **Edit book**   | `edit book BOOK_INDEX [t/TITLE] [a/AUTHOR]` <br> E.g: `edit book t/The Broken House`                       |
-| **Edit user**   | `edit user USER_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...` <br> E.g: `edit user 1 p/91234567 e/johndoe@example.com`|
-| **List books**  | `list books`                                                                                              |
-| **List users**  | `list users`                                                                                              |
-| **List all**    | `list all`                                                                                                |
-| **List loans**  | `list loans`                                                                                              |
-| **List overdue**| `list overdue`                                                                                            |
-| **Clear**       | `clear all`                                                                                               |
-| **Exit**        | `exit`                                                                                                    |
+| Action          | Format, Examples                                                                                                              |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add book t/James and The Giant Peach  a/Roald Dahl`                                    |
+| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> E.g: `add user n/John Doe p/91234567 t/friend e/johndoe@outlook.com` |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                                             |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                                             |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX [DUE_DATE]` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28`                                         |
+| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                                       |
+| **Find book**   | `find book KEYWORD [KEYWORD]...` <br> E.g: `find book Peach`                                                                  |
+| **Find user**   | `find user KEYWORD [KEYWORD]...` <br> E.g: `find user John Sim`                                                               |
+| **Edit book**   | `edit book BOOK_INDEX [t/TITLE] [a/AUTHOR]` <br> E.g: `edit book t/The Broken House`                                          |
+| **Edit user**   | `edit user USER_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...` <br> E.g: `edit user 1 p/91234567 e/johndoe@example.com`       |
+| **List books**  | `list books`                                                                                                                  |
+| **List users**  | `list users`                                                                                                                  |
+| **List all**    | `list all`                                                                                                                    |
+| **List loans**  | `list loans`                                                                                                                  |
+| **List overdue**| `list overdue`                                                                                                                |
+| **Clear**       | `clear all`                                                                                                                   |
+| **Exit**        | `exit`                                                                                                                        |

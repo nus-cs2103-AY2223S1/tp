@@ -122,7 +122,7 @@ public class Book {
         }
 
         Book otherBook = (Book) other;
-        return otherBook.getTitle().equals(getTitle())
+        return otherBook.getTitle().equalsIgnoreCase(getTitle())
                 && otherBook.getAuthor().equals(getAuthor());
     }
 
