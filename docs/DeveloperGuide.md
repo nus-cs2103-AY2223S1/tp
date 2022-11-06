@@ -1064,7 +1064,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
        Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
    
-    1. Test case: `remove PENDING` followed by pressing `yes` on the alert box. <br>
+    1. Test case: `remove PENDING`. <br>
        Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
        `REJECTED` can be removed. Error details shown in the status message
    
