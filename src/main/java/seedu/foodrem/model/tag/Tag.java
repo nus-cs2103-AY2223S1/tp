@@ -21,16 +21,22 @@ public class Tag {
     }
 
     public String getName() {
+        assert tagName != null;
         return this.tagName.toString();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
             || (other instanceof Tag
             && tagName.equals(((Tag) other).tagName));
     }
-
+    /**
+     * @inheritDoc
+     */
     @Override
     public int hashCode() {
         return tagName.hashCode();
