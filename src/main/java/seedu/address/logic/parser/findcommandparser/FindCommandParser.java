@@ -34,26 +34,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        int totalPrefixesPresent = 0;
-        if (trimmedArgs.contains(PREFIX_ADDRESS.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_EMAIL.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_INDEX.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_LOCATION.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_NAME.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_PHONE.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (totalPrefixesPresent > 1) {
+
+        if (moreThanOnePrefix(trimmedArgs)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, "More than 1 prefix present"));
         }
@@ -63,6 +45,27 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         return new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
                 PersonCategory.getFromString("Buyer"));
+    }
+
+    public boolean moreThanOnePrefix(String input) {
+        int totalPrefixesPresent = countOccurrences(PREFIX_ADDRESS.getPrefix(), input)
+                + countOccurrences(PREFIX_EMAIL.getPrefix(), input)
+                + countOccurrences(PREFIX_INDEX.getPrefix(), input)
+                + countOccurrences(PREFIX_LOCATION.getPrefix(), input)
+                + countOccurrences(PREFIX_NAME.getPrefix(), input)
+                + countOccurrences(PREFIX_PHONE.getPrefix(), input);
+        return totalPrefixesPresent > 1;
+    }
+
+    public int countOccurrences(String prefix, String input) {
+        int limit = input.length() - prefix.length();
+        int count = 0;
+        for (int i = 0; i < limit; i++) {
+            if (input.substring(i, i + prefix.length()).equals(prefix)) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
 }

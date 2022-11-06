@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.findcommands.FindDelivererCommand;
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Deliverer;
@@ -20,7 +19,7 @@ import seedu.address.model.person.Deliverer;
 /**
  * Parses input arguments and creates a new FindCommand object.
  */
-public class FindDelivererCommandParser implements Parser<FindCommand> {
+public class FindDelivererCommandParser extends FindCommandParser {
     public static final String PARSE_WORD = "find-d";
 
     /**
@@ -35,27 +34,7 @@ public class FindDelivererCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        int totalPrefixesPresent = 0;
-        if (trimmedArgs.contains(PREFIX_ADDRESS.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_EMAIL.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_INDEX.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_LOCATION.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_NAME.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-        if (trimmedArgs.contains(PREFIX_PHONE.getPrefix())) {
-            totalPrefixesPresent += 1;
-        }
-
-        if (totalPrefixesPresent > 1) {
+        if (moreThanOnePrefix(trimmedArgs)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, "More than 1 prefix present"));
         }
