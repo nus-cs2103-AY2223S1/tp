@@ -15,9 +15,12 @@ import seedu.taassist.model.student.Student;
 public class ParserStudentIndexUtil {
 
     /**
-     * Retrieve the students at the relative one-based indices from the list.
+     * Retrieves the students at the relative one-based indices from the list.
      *
-     * @throws ParseException if any of the indices are out of range.
+     * @param indices One-based indices.
+     * @param students Full list of students.
+     * @return List containing only students specified by their index position in {@code students}.
+     * @throws ParseException If any of the indices are out of range.
      */
     public static List<Student> parseStudentsFromIndices(List<Index> indices,
                                                          List<Student> students) throws ParseException {
@@ -37,6 +40,11 @@ public class ParserStudentIndexUtil {
 
     /**
      * Retrieves the student at the relative one-based index from the list.
+     *
+     * @param index One-based index.
+     * @param students Full list of students.
+     * @return Student at index position {@code index} of {@code students}.
+     * @throws ParseException If {@code index} is out of range.
      */
     public static Student parseStudentFromIndex(Index index, List<Student> students) throws ParseException {
         final int listSize = students.size();

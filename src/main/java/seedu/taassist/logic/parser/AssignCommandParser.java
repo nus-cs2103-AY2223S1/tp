@@ -11,7 +11,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Parses input arguments and creates a new AssignCommand object
+ * Parses input arguments and creates a new AssignCommand object.
  */
 public class AssignCommandParser implements Parser<AssignCommand> {
     /**
