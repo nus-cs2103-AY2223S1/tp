@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs Birthday;
+if () then ([Invalid Date])
+    :System throws error;
+    stop
+else ([else])
+    if () then ([Date Not Passed])
+        :System throws error;
+        stop
+    else ([else])
+        if () then ([Date > 100 years ago])
+            :System throws error;
+
+        else ([else])
+            :System continues
+            with command execution;
+endif
+
+stop
+
+@enduml

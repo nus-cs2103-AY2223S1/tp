@@ -178,6 +178,16 @@ Purpose: Adds a client with the given information to the internal model and stor
 
 Here, we are interested in the use of adding a client and associating it with a product.
 
+#### Constraint regrading Birthday
+
+Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
+
+![BirthdayActivityDiagram](images/BirthdayActivityDiagram.png)
+
+We decided to set these 2 constraints on birthday:
+1) Birthday should not be in the future
+2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
+
 ##### Implementation
 
 Below is an activity diagram that illustrates how a user might use the addClient feature and associate the added client with a product.
@@ -237,9 +247,18 @@ Below is the activity diagram that summarises the execution of `delClient`.
 
 #### 3.2.1 Add Meeting feature
 
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Syntax: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
 Purpose: Adds a meeting with the given information to the internal model and storage
+
+#### Constraint regrading Meeting Date
+
+Below is the activity diagram that illustrates the process of validating meeting date.
+
+![MeetingDateActivityDiagram](images/MeetingDateActivityDiagram.png)
+
+We decided to set this constraint on meeting date:
+1) Meeting Date is not in the past.
 
 ##### Implementation
 
