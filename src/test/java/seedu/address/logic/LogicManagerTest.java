@@ -47,10 +47,10 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("taskBook.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("taskList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonArchivedTaskBookStorage archivedTaskBookStorage =
-                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -82,7 +82,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonArchivedTaskBookStorage archivedTaskBookStorage =
-                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
