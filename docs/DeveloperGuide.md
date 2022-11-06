@@ -608,7 +608,7 @@ testers are expected to do more *exploratory* testing.
    2. **Test Case**: `list`<br>
       **Expected Outcome**: On the left side panel, all employees are shown in the list (at least 1). There might not be any changes from before (if they have already been listed).
 
-   3. Other valid listing commands: `list a`, `list 1`, `list n/John`.
+   3. Other valid listing commands: `list a`, `list 1`, `list n/John`<br>
       **Expected Outcome**: Same as previous.
 
    4. **Test Case**: `find d/NoSuchDepartment`, followed by `list`<br>
@@ -625,7 +625,7 @@ testers are expected to do more *exploratory* testing.
    3. **Test Case**: `view 0`<br>
       **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
 
-   4. **Test Case**: `view x`, where `x` is a number larger than the total count of employees.
+   4. **Test Case**: `view x`, where `x` is a number larger than the total count of employees<br>
       **Expected Outcome**: An error message appears, saying that the index provided is invalid.
 
 3. Clearing the database:
@@ -676,7 +676,7 @@ testers are expected to do more *exploratory* testing.
       **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
 
    1. Other incorrect edit commands to try: `edit`, `edit x n/Valid Name` (where x is larger than the list size), `edit abcdef`<br>
-      Expected Outcome: Similar to previous.
+      **Expected Outcome**: Similar to previous.
 
 2. Editing an employee while not viewing their profile:
 
@@ -699,7 +699,7 @@ testers are expected to do more *exploratory* testing.
 
 4. Editing an employee while finding:
 
-   1. **Prerequisites**: Ensure there is at least 1 employee in the database with a name that contains "e". If you have been following the previous test cases, the employee "EditTest2" will suffice.
+   1. **Prerequisites**: Ensure there is at least 1 employee in the database with a name that contains "e". If you have been following the previous test cases, the employee "EditTest3" will suffice.
       Then, enter `find n/e`, and enter `view 1`.
 
    2. **Test Case**: `edit 1 n/EditTest4`
@@ -722,7 +722,9 @@ testers are expected to do more *exploratory* testing.
       **Expected Outcome**: No changes occur. An error message appears, saying that the format of the command entered is incorrect.
 
    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
-      Expected Outcome: Similar to previous.
+      **Expected Outcome**: Similar to previous.
+
+### Batch-adding employees (Not sure how to test)
 
 ### Finding employees
 
@@ -833,12 +835,17 @@ Therefore, we recommend that when performing a test case for an employee (with I
    2. **Follow-up Test Case**: `rate id/x r/4`<br>
       **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
 
+2. Rating an employee multiple times
+
+   To work-around the intra-day rating limit, you can arbitrarily add new ratings by [_editing the data file with a text editor_](#saving-data).
+   Here are some ways in which you can edit the ratings for an employee (with ID `x`), for testing:
+
+   1. **Test Case**: Multiple ratings, 
+
 ### Viewing department overview
 
 For the following tests, ensure that there is at least 1 employee (who will be in 1 department).
 Any department (that has at least 1 person) can be used, but for ease and simplicity, we will be using "Sales" in our examples, as it is has the fewest letters.
-
-We also recommend having more employees in the department of your testing choice so that you can more easily observe the outcome.
 
 1. Viewing the department overview
    
@@ -855,3 +862,11 @@ We also recommend having more employees in the department of your testing choice
 
    4. Other follow-up test cases include adding/deleting data relevant to employees in the department, such as leaves, performance, or their presence in the database.
       In each scenario, the right side panel should update itself to display the new information immediately, if there is any.
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
