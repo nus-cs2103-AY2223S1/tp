@@ -43,7 +43,7 @@ deactivate AddressBookParser
 LogicManager -> SetClientDefaultViewCommand : execute()
 activate SetClientDefaultViewCommand
 
-SetClientDefaultViewCommand --> Model : setDefaultView(CLIENTS)
+SetClientDefaultViewCommand --> Model : setDefaultView(CLIENT)
 activate Model
 
 Model --> SetClientDefaultViewCommand
