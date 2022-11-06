@@ -11,7 +11,7 @@ Wanting to help fellow teacher assistants, we are working together to develop a 
 ## Site map
 - [About Us](docs/AboutUs.md)
 - [Developer Guide](docs/DeveloperGuide.md)
-- [User Guide](UserGuide.md)
+- [User Guide](docs/UserGuide.md)
 
 ## Acknowledgements
 
