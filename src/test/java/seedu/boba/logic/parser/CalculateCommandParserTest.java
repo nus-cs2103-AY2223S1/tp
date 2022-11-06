@@ -2,11 +2,6 @@ package seedu.boba.logic.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.boba.logic.commands.CalculateCommand;
-import seedu.boba.logic.commands.FindCommand;
-import seedu.boba.model.customer.MultiSearchPredicate;
-import seedu.boba.model.customer.Phone;
-
-import java.util.Arrays;
 
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_ARITHMETIC_EXPRESSION;
