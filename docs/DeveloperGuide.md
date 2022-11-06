@@ -20,7 +20,7 @@ title: Developer Guide
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying data](#displaying-data)
-    * [Show/Hide fields](#show-onlyhide-only-feature-for-resident-fields)
+    * [Showing/hiding table columns](#manipulating-table-columns-using-showonly-and-hideonly)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
     * [Command history](#command-history)
@@ -193,18 +193,19 @@ the abstraction of commands.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-![UML diagram for Model component](./images/LatestModelClassDiagram.png)
+![UML diagram for Model component](./images/ModelClassDiagram.png)
 
 The `Model` component,
 
 * stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
-  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively)
+  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively).
 * stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
-  separate `ObservableList` objects
-    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an `ObservableList`.
+  separate `ObservableList` objects.
+    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an unmodifiable `ObservableList`.
+    * The `visibleFields` and `hiddenFields` are also exposed to the outside as unmodifiable `ObservableList` instances.
     * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
 * stores a `UserPref` object that represents the user's preferences.
-* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
@@ -239,7 +240,7 @@ Here is a list of the details discussed:
 * [Filter command](#filter-command)
 * [Multiple data files](#multiple-data-files)
 * [Command history](#command-history)
-* [Venue and booking]()
+* [Venue and booking](#venue-and-booking)
 
 ---
 
@@ -338,7 +339,7 @@ of any sizeable overhead.
 
 ---
 
-### Show only/hide only commands
+### Manipulating table columns using `showonly` and `hideonly`
 
 #### Changes to Model component:
 
@@ -347,59 +348,73 @@ update its columns based on user commands that affected the model. There needed 
 `ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
 From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
-![MainWindowRelationships](images/MainWindowRelationships.png)
+![Reference relationships between MainWindow and the other components](images/MainWindowRelationships.png)
 
-One possible implementation was to store a reference to the `ResidentTableView` in `ModelManager`, to update the 
+One possible implementation was to store a reference to `ResidentTableView` in `ModelManager`, to update the 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution for this was to use getters to obtain the unmodifiable `ObservableList<String>` instances of the 
-fields to show and hide from `ModelManager`, before passing them into the constructor of `ResidentTableView`. 
-Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists, updating the column visibilities 
-whenever the base `ObservableList<String>` objects in `ModelManager` changed.
+Our solution for this was to pass the field lists from `ModelManager` to `LogicManager` and then to `MainWindow`, 
+as *unmodifiable* `ObservableList<String>` instances. These unmodifiable instances were then passed as arguments 
+into the constructor of `ResidentTableView`, where we attached listeners to each of the lists. These listeners 
+would update the column visibilities whenever the base `ObservableList<String>` instances in `ModelManager` changed.
 
-This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
-and `ModelManager`.
+This allowed us to apply the Observer pattern in our code, as the `ModelManager` class being observed is not coupled 
+to the `ResidentTableView` class that is observing it (i.e. observing the field lists in `ModelManager`).
 
 One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
 instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
-around and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
-(unmodifiable) list is held, it would end up being garbage collected. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
+and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
+(unmodifiable) list is held, it would end up being garbage collected, and the automatic UI updates would not work 
+correctly. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
 
 <br>
+
+#### Restrictions on manipulating columns:
+
+We decided to provide users with the flexibility of displaying or hiding any combination of the columns in the table 
+view, with two exceptions: 
+
+1. The user can only specify columns to show or hide that are in the current table view. 
+   
+    * This is to make the showing and hiding of columns more intuitive, as compared to our [previous implementation](#optional-reading-predecessors-to-showonly-and-hideonly). 
+
+2. The user must have at least one column on his screen.
+
+    * This is to avoid confusion with the table view shown when the list of residents is empty.
+
+The activity diagram shown below for the column manipulation feature models the intended behaviour of RC4HDB based on 
+user input, assuming the user enters the valid command format.
+
+![Activity diagram for intended behaviour of RC4HDB for column manipulation feature](images/ManipulatingColumnsActivityDiagram.png)
 
 #### Use of abstract classes for `showonly` and `hideonly`
 
 The `hideonly` command alone is sufficient for users to hide their unwanted columns from the table view. However, 
-we added support for both commands in order to improve the quality-of-life of RC4HDB users. Users can save time by 
-using the complement command depending on the relative number of fields they want to show or hide. 
+we added support for both commands in order to improve the quality-of-life for RC4HDB users. Users can save time by 
+using the complement command (`showonly` vs `hideonly`) depending on the relative number of fields they want to show or hide. 
 
-After making this change, however, there were instances of undesirable code duplication in both the commands and the 
-command parsers for the `showonly` and `hideonly` features.
+After making this change, however, there were instances of undesirable code duplication in the commands and command
+parsers for the `showonly` and `hideonly` features. For example, some input validation and utility methods were 
+common among these classes.
 
-Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
-the `showonly` and `hideonly` commands (as well as `list` and `reset), and `ColumnManipulatorCommandParser` for the 
-`showonly` and`hideonly` command parsers.
+Our solution was to abstract some of these commonalities into an abstract class, namely, 
+`ColumnManipulatorCommand` for the `showonly` and `hideonly` commands (as well as `list` and `reset`), 
+and `ColumnManipulatorCommandParser` for the `showonly` and`hideonly` command parsers. The UML diagram for the 
+inheritance relationship is shown below. 
 
-![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+![Use of abstract classes for column manipulation feature](images/AbstractClassesForShowHideFeature.png)
 
-Some of these commonalities include input validation for the column identifiers, as well as utility methods for 
-generating the complement list from a given list. 
-
-Adding these abstract classes also increased the extendability of our application, as one of the future developments
-for our application would be to implement column manipulation features for the venue booking tables.
+Adding these abstract classes also increased the extensibility of our application, as one of the future developments
+for RC4HDB would be to implement the column manipulation features for the venue booking tables.
 
 <br>
 
 #### Choice of `ObservableList<String>` over `ObservableList<Field>`
 
-While the lists of fields to show and hide could be represented in either an `ObservableList<String>`
-or an `ObservableList<Field>`, we decided to use an `ObservableList<String>` to minimise the additional need for 
-getters if `Field` was used instead. 
-
-The only information required by the lists of fields to show and hide in `ModelManager` was the column identifier, 
-and hence the use of an `ObservableList<Field>` was redundant as none of the additional `Field` attributes 
-had to be referenced.
+The only information required by the `ResidentTableView` (to manipulate the columns) is the field identifier. Hence, the use of an 
+`ObservableList<Field>` is redundant as none of the additional `Field` attributes need to be referenced. Using an 
+`ObservableList<Field>` would also require the use of getters to extract the field identifier, which was unnecessary.
 
 <br>
 
@@ -408,8 +423,8 @@ had to be referenced.
 For our previous iteration of RC4HDB, the `showonly` and `hideonly` features were handled by the `list /i` and 
 `list /e` features, which have since been removed. 
 
-For these overloaded `list` commands, the user could show or hide columns by specifying which columns should be 
-included or excluded when listing. 
+For these overloaded `list` commands, the user could show or hide columns by specifying columns to include or exclude
+when listing. 
 
 However, there were two main issues with `list /i` and `list /e`:
 
@@ -421,7 +436,10 @@ excluded from the table had to be re-specified if additional columns were to be 
    
 While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
 to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
-commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
+commands. The feature to restore the full set of resident fields was implemented in the `reset` command, which does 
+not affect the list of residents.
+
+To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
 
 <br>
@@ -496,7 +514,7 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 ### Multiple data files
 
-#### Background
+#### Motivation
 
 In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
 
@@ -536,15 +554,17 @@ With our earlier issue of a lack of `Storage` reference in `Command` resolved, a
 
 #### Create and delete file commands
 
-Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, resulting in new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
 
 <br>
 
 #### Switch file command
 
-Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implemented `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences and use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+---
 
 ### Command history
 
@@ -572,8 +592,164 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
+<<<<<<< HEAD
+<br>
+
+---
+
+### Venue and booking
+
+#### Motivation
+
+As our [target user](#target-user-profile) would benefit greatly from being able to manage venues and bookings in RC4, we have decided to add a venue booking system in **RC4HDB**.
+
+<br>
+
+#### Planning the Ui
+
+Using the top-down approach, we started by deciding on how we could display booking data in a format that our **target user** would benefit most. 
+
+After consideration, we came up with two different formats for booking representation:
+* Booking list display for each venue
+* Weekly timetable (similar to NUSMods)
+
+<br>
+
+##### Booking list
+
+Pros:
+* Well suited for adhoc bookings
+* Easier to implement commands to check if a venue has been booked during a certain date and time period
+
+Cons:
+* Does not represent empty time slots well
+* Not temporally intuitive
+
+<br>
+
+##### Weekly timetable
+
+Pros:
+* Easier for users to distinguish between time periods where venue is booked and venue is not booked
+* Well suited for recurrent bookings
+* Format is familiar to **target user**
+* Temporally intuitive
+
+Cons:
+* Difficult to implement adhoc bookings
+* Only able to display the week's bookings for a single venue at a time
+
+After considering both choices, we decided that a weekly timetable format would better serve our **target user**. However, due to limitations in time, we decided to implement only recurrent bookings and leave adhoc bookings to be implemented in a future iteration.
+
+<br>
+
+#### Ui implementation
+
+Considering the fact that our Ui has no space for a timetable to be added in, we decided to make use of `Tab` and `TabView` from the JavaFX library. This allows us to keep our [`ResidentTableView`](#resident-information), while adding our timetable. However, we realised that users will need a way to view what venues are currently being tracked in **RC4HDB**. Thus, we decided to complement our timetable with a `ListView` which contains the list of venues being tracked.
+
+With this, we went on implementing the following Ui parts:
+* `VenueTabView`
+* `BookingTableView`
+* `VenueListView`
+* `VenueListCard`
+
+<br>
+
+##### Venue tab view
+
+This is just the Ui container component which contains the `BookingTableView` and `VenueListView`. We included this to reduce the clutter from having everything in the `MainWindow` class.
+
+<br>
+
+##### Booking table view
+
+In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units.
+
+<br>
+
+##### Venue list view
+
+To complement our `BookingTableView`, we added a `VenueListView` to display the venues that are currently being tracked by **RC4HDB**. The `VenueListView` is implemented with a `ListView` as a base, and each venue in the list is wrapped by a `VenueListCard` class which serves to beautify the list.
+
+<br>
+
+##### Interaction between each Ui part
+
+The following diagram describes the interactions between each newly introduced Ui component.
+
+![VenueBookingUiClassDiagram](images/VenueBookingUiClassDiagram.png)
+
+<br>
+
+#### Planning the data format
+
+After deciding on how we would like to display our venue and booking data, we had to design our `Venue` and `Booking` data classes to fit our chosen `Ui` design.
+
+<br>
+
+##### Booking data
+
+Considering that we are only going to implement `RecurrentBooking`, we minimally require:
+* an association to the venue or venue identifier that is being booked by the booking
+* an association to the resident that is making the booking
+* a time period for the booking
+* a day of the week for the booking
+
+<br>
+
+##### Venue data
+
+In order to be able to keep track of venues, we implemented a `Venue` class, which has a unique identifier, in the form of `VenueName`. `VenueName` was implemented with the `Name` field in `Resident` in mind, as both are `VenueName` and `Name` served similar purposes before `Name` was no longer the unique identifier for `Resident`. Since each booking was tagged to a venue, we decided to add a list of bookings in `Venue`, to keep track of the bookings made for each venue.
+
+<br>
+
+##### Daily schedule
+
+However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a week, for a specified venue.
+
+<br>
+
+#### Data format implementation
+
+Considering the requirements for venue and booking data, we have come up with the following design to suit our venue and booking data needs.
+
+![VenueBookingClassDiagram](images/VenueBookingClassDiagram.png)
+
+<br>
+
+#### Model updates
+
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored in `Venue`, we only need to keep track of the venues in model, and we will have access to booking data. For our purposes, the `UniqueResidentList` implementation actually suits our venue data tracking needs, being the need for uniqueness of venues. Thus, we decided to reuse the `UniqueResidentList`, `ResidentBook` code for our `UniqueVenueList`, `VenueBook` classes. 
+
+The diagram [here](#model-component) showcases the addition of the following classes in order to support the venue data tracking in `Model`:
+* `UniqueVenueList`
+* `VenueBook`
+
+<br>
+
+#### Storage updates
+
+[Comment]: <> (to be added in)
+
+<br>
+
+#### Logic updates
+
+To support basic venue creation and deletion, we added the 
+
+Due to our application being [CLI](#command-line-interface-cli-oriented) oriented, we have to 
+
+<br>
+
+#####
+
+---
+
+### \[Proposed\] Undo/redo feature (To be removed)
+=======
 <!--
 ### \[Proposed\] Export feature
+>>>>>>> baafcf51577a98cb45f524b7831b8ca51b960f17
 
 #### Proposed Implementation
 -->
@@ -610,13 +786,13 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Project requirements**
 
 ### Product scope
 
-**Target user profile**:
+#### Target user profile:
 
 * works in the housing management team for [**RC4**](#glossary) with several other co-workers
 * has a need to manage a significant number of residents in [**RC4**](#glossary)
@@ -627,7 +803,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * prefers typing to mouse interactions
 * is reasonably comfortable using [**CLI**](#glossary) apps
 
-**Value proposition**:
+#### Value proposition:
 
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
