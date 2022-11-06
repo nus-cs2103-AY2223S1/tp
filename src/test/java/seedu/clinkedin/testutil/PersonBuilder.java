@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.clinkedin.commons.exceptions.DataConversionException;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
@@ -141,8 +142,8 @@ public class PersonBuilder {
     /**
      * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withLinks(URL... links) {
-        this.links = SampleDataUtil.getLinkSet(links);
+    public PersonBuilder withLinks(String... links) throws DataConversionException {
+        this.links = SampleDataUtil.getLinkSet(SampleDataUtil.generateUrls(links));
         return this;
     }
 
