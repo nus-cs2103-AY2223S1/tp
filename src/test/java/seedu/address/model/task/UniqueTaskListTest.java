@@ -13,8 +13,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicateTaskException;
-import seedu.address.model.person.exceptions.TaskNotFoundException;
+import seedu.address.model.teammate.exceptions.DuplicateTaskException;
+import seedu.address.model.teammate.exceptions.TaskNotFoundException;
 import seedu.address.testutil.TaskBuilder;
 
 public class UniqueTaskListTest {
@@ -67,7 +67,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPerson_targetTaskNotInList_throwsTaskNotFoundException() {
+    public void setTeammate_targetTaskNotInList_throwsTaskNotFoundException() {
         assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.setTask(TASK_ONE, TASK_TWO));
     }
 
@@ -90,7 +90,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPerson_editedTaskHasNonUniqueDescription_throwsDuplicateTaskException() {
+    public void setTeammate_editedTaskHasNonUniqueDescription_throwsDuplicateTaskException() {
         uniqueTaskList.add(TASK_ONE);
         uniqueTaskList.add(TASK_TWO);
         assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(TASK_ONE, TASK_TWO));

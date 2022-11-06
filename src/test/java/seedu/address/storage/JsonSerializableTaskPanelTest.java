@@ -30,7 +30,7 @@ public class JsonSerializableTaskPanelTest {
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidTeammateFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskPanel dataFromFile = JsonUtil.readJsonFile(INVALID_TASK_FILE,
             JsonSerializableTaskPanel.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);

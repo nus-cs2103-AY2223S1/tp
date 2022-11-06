@@ -3,9 +3,9 @@ package seedu.address.logic.parser.task;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,7 +24,9 @@ public class AssignTaskCommandParserTest {
                 new HashSet<>(), new HashSet<>(), new HashSet<>()));
 
         assertParseSuccess(parser, "1 +@1 +@2", new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)),
+                new HashSet<>(),
+                new HashSet<>(),
                 new HashSet<>()));
 
         assertParseSuccess(parser, "1 +@Alex +@Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
@@ -32,15 +34,17 @@ public class AssignTaskCommandParserTest {
                 new HashSet<>()));
 
         assertParseSuccess(parser, "1 -@1 -@2", new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)),
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE, INDEX_SECOND_TEAMMATE)),
                 new HashSet<>()));
 
         assertParseSuccess(parser, "1 -@Alex -@Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList("Bernice", "Alex"))));
 
         assertParseSuccess(parser, "1 +@1 +@Bernice -@2 -@John", new AssignTaskCommand(INDEX_FIRST_TASK,
-                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON)), new HashSet<>(Arrays.asList("Bernice")),
-                new HashSet<>(Arrays.asList(INDEX_SECOND_PERSON)),
+                new HashSet<>(Arrays.asList(INDEX_FIRST_TEAMMATE)), new HashSet<>(Arrays.asList("Bernice")),
+                new HashSet<>(Arrays.asList(INDEX_SECOND_TEAMMATE)),
                 new HashSet<>(Arrays.asList("John"))));
     }
 
@@ -62,11 +66,11 @@ public class AssignTaskCommandParserTest {
         assertParseFailure(parser, "1 c/0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AssignTaskCommand.MESSAGE_USAGE));
 
-        // invalid person add index
+        // invalid teammate add index
         assertParseFailure(parser, "1 +@0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AssignTaskCommand.MESSAGE_USAGE));
 
-        // invalid person delete index
+        // invalid teammate delete index
         assertParseFailure(parser, "1 -@0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AssignTaskCommand.MESSAGE_USAGE));
     }

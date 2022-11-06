@@ -31,7 +31,7 @@ public class UnmarkTaskCommand extends TaskCommand {
     private final Index targetIndex;
 
     /**
-     * @param targetIndex of the person's task to be updated
+     * @param targetIndex of the teammate's task to be updated
      */
     public UnmarkTaskCommand(Index targetIndex) {
         requireAllNonNull(targetIndex);

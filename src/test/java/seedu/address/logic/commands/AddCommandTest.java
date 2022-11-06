@@ -21,41 +21,42 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.teammate.Teammate;
+import seedu.address.testutil.TeammateBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullTeammate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_teammateAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTeammateAdded modelStub = new ModelStubAcceptingTeammateAdded();
+        Teammate validTeammate = new TeammateBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validTeammate).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTeammate), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTeammate), modelStub.teammatesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateTeammate_throwsCommandException() {
+        Teammate validTeammate = new TeammateBuilder().build();
+        AddCommand addCommand = new AddCommand(validTeammate);
+        ModelStub modelStub = new ModelStubWithTeammate(validTeammate);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_TEAMMATE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Teammate alice = new TeammateBuilder().withName("Alice").build();
+        Teammate bob = new TeammateBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -72,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different teammate -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -111,7 +112,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addTeammate(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,22 +127,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasTeammate(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteTeammate(Teammate target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setTeammate(Teammate target, Teammate editedTeammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Teammate> getFilteredTeammateList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredTeammateList(Predicate<Teammate> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,39 +197,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single teammate.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTeammate extends ModelStub {
+        private final Teammate teammate;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTeammate(Teammate teammate) {
+            requireNonNull(teammate);
+            this.teammate = teammate;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTeammate(Teammate teammate) {
+            requireNonNull(teammate);
+            return this.teammate.isSameTeammate(teammate);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the teammate being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTeammateAdded extends ModelStub {
+        final ArrayList<Teammate> teammatesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTeammate(Teammate teammate) {
+            requireNonNull(teammate);
+            return teammatesAdded.stream().anyMatch(teammate::isSameTeammate);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTeammate(Teammate teammate) {
+            requireNonNull(teammate);
+            teammatesAdded.add(teammate);
         }
 
         @Override

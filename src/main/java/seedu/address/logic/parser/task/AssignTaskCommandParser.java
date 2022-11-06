@@ -29,10 +29,10 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ADD_CONTACT, PREFIX_DELETE_CONTACT);
 
         Index taskIndex;
-        Set<Index> personsAddIndexes;
-        Set<String> personsAddNames;
-        Set<Index> personsDeleteIndexes;
-        Set<String> personsDeleteNames;
+        Set<Index> teammatesAddIndexes;
+        Set<String> teammatesAddNames;
+        Set<Index> teammatesDeleteIndexes;
+        Set<String> teammatesDeleteNames;
 
 
         if (argMultimap.getPreamble().isEmpty()) {
@@ -45,18 +45,18 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
             taskIndex = TaskParserUtil.parseIndex(indexString);
 
             List<String> contactsAddString = argMultimap.getAllValues(PREFIX_ADD_CONTACT);
-            personsAddIndexes = TaskParserUtil.parseIndexesMixed(contactsAddString);
-            personsAddNames = TaskParserUtil.parseTextsMixed(contactsAddString);
+            teammatesAddIndexes = TaskParserUtil.parseIndexesMixed(contactsAddString);
+            teammatesAddNames = TaskParserUtil.parseTextsMixed(contactsAddString);
 
             List<String> contactsDeleteString = argMultimap.getAllValues(PREFIX_DELETE_CONTACT);
-            personsDeleteIndexes = TaskParserUtil.parseIndexesMixed(contactsDeleteString);
-            personsDeleteNames = TaskParserUtil.parseTextsMixed(contactsDeleteString);
+            teammatesDeleteIndexes = TaskParserUtil.parseIndexesMixed(contactsDeleteString);
+            teammatesDeleteNames = TaskParserUtil.parseTextsMixed(contactsDeleteString);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        return new AssignTaskCommand(taskIndex, personsAddIndexes, personsAddNames,
-                personsDeleteIndexes, personsDeleteNames);
+        return new AssignTaskCommand(taskIndex, teammatesAddIndexes, teammatesAddNames,
+                teammatesDeleteIndexes, teammatesDeleteNames);
     }
 }

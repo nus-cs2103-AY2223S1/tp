@@ -15,19 +15,19 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
+import seedu.address.model.teammate.Teammate;
 
 /**
- * Assigns person(s) to a task.
+ * Assigns teammate(s) to a task.
  */
 public class AssignTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "assign";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Assigns/unassigns person(s) to a task.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Assigns/unassigns teammate(s) to a task.\n"
             + "Parameters: "
             + "TASK_INDEX (must be a positive integer) "
             + "[" + PREFIX_ADD_CONTACT + "CONTACT_INDEX OR CONTACT_NAME]... "
@@ -39,19 +39,19 @@ public class AssignTaskCommand extends TaskCommand {
             + PREFIX_DELETE_CONTACT + "3 "
             + PREFIX_DELETE_CONTACT + "David Li";
 
-    public static final String MESSAGE_SUCCESS = "Assigned persons updated for task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Assigned teammates updated for task: %1$s";
 
     public static final String MESSAGE_REPEATED_CONTACT = "Add: %1$s has already been added.";
 
     public static final String MESSAGE_CONTACT_DOES_NOT_EXIT = "Delete: %1$s has not been previously assigned.";
 
-    public static final String MESSAGE_PARTIAL_SUCCESS = "All other persons updated accordingly";
+    public static final String MESSAGE_PARTIAL_SUCCESS = "All other teammates updated accordingly";
 
     private final Index taskIndex;
-    private final Set<Index> personAddIndexes = new HashSet<>();
-    private final Set<String> personAddNames = new HashSet<>();
-    private final Set<Index> personDeleteIndexes = new HashSet<>();
-    private final Set<String> personDeleteNames = new HashSet<>();
+    private final Set<Index> teammateAddIndexes = new HashSet<>();
+    private final Set<String> teammateAddNames = new HashSet<>();
+    private final Set<Index> teammateDeleteIndexes = new HashSet<>();
+    private final Set<String> teammateDeleteNames = new HashSet<>();
 
     private final Set<String> invalidNames = new HashSet<>();
     private final Set<Index> invalidIndexes = new HashSet<>();
@@ -60,23 +60,23 @@ public class AssignTaskCommand extends TaskCommand {
     private final Set<Contact> notAddedContacts = new HashSet<>();
 
     /**
-     * Creates an AssignTaskCommand to assign persons to the given task.
+     * Creates an AssignTaskCommand to assign teammates to the given task.
      *
      * @param taskIndex of the task to be updated
-     * @param personAddIndexes Indexes of all persons to be assigned to task
-     * @param personAddNames Names of all persons to be assigned to task
-     * @param personDeleteIndexes Indexes of all persons to be removed from task
-     * @param personDeleteNames Names of all persons to be removed from task
+     * @param teammateAddIndexes Indexes of all teammates to be assigned to task
+     * @param teammateAddNames Names of all teammates to be assigned to task
+     * @param teammateDeleteIndexes Indexes of all teammates to be removed from task
+     * @param teammateDeleteNames Names of all teammates to be removed from task
      */
-    public AssignTaskCommand(Index taskIndex, Set<Index> personAddIndexes, Set<String> personAddNames,
-                             Set<Index> personDeleteIndexes, Set<String> personDeleteNames) {
-        requireAllNonNull(taskIndex, personAddIndexes, personAddNames, personDeleteIndexes, personDeleteNames);
+    public AssignTaskCommand(Index taskIndex, Set<Index> teammateAddIndexes, Set<String> teammateAddNames,
+                             Set<Index> teammateDeleteIndexes, Set<String> teammateDeleteNames) {
+        requireAllNonNull(taskIndex, teammateAddIndexes, teammateAddNames, teammateDeleteIndexes, teammateDeleteNames);
 
         this.taskIndex = taskIndex;
-        this.personAddIndexes.addAll(personAddIndexes);
-        this.personAddNames.addAll(personAddNames);
-        this.personDeleteIndexes.addAll(personDeleteIndexes);
-        this.personDeleteNames.addAll(personDeleteNames);
+        this.teammateAddIndexes.addAll(teammateAddIndexes);
+        this.teammateAddNames.addAll(teammateAddNames);
+        this.teammateDeleteIndexes.addAll(teammateDeleteIndexes);
+        this.teammateDeleteNames.addAll(teammateDeleteNames);
     }
 
     @Override
@@ -87,10 +87,11 @@ public class AssignTaskCommand extends TaskCommand {
         }
         Task taskToModify = lastShownTaskList.get(taskIndex.getZeroBased());
 
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Teammate> lastShownTeammatesList = model.getFilteredTeammateList();
 
-        Set<Contact> contactsToAdd = getAllContacts(personAddIndexes, personAddNames, lastShownPersonsList);
-        Set<Contact> contactsToDelete = getAllContacts(personDeleteIndexes, personDeleteNames, lastShownPersonsList);
+        Set<Contact> contactsToAdd = getAllContacts(teammateAddIndexes, teammateAddNames, lastShownTeammatesList);
+        Set<Contact> contactsToDelete =
+                getAllContacts(teammateDeleteIndexes, teammateDeleteNames, lastShownTeammatesList);
 
         Set<Contact> contactSetToModify = new HashSet<>(taskToModify.getAssignedContacts());
         for (Contact contactToAdd : contactsToAdd) {
@@ -124,37 +125,38 @@ public class AssignTaskCommand extends TaskCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
     }
 
-    private Set<Contact> personIndexesToContacts(Set<Index> personIndexes, List<Person> personList) {
+    private Set<Contact> teammateIndexesToContacts(Set<Index> teammateIndexes, List<Teammate> teammateList) {
         Set<Contact> assignedContacts = new HashSet<>();
-        for (Index personIndex : personIndexes) {
-            if (personIndex.getZeroBased() >= personList.size()) {
-                invalidIndexes.add(personIndex);
+        for (Index teammateIndex : teammateIndexes) {
+            if (teammateIndex.getZeroBased() >= teammateList.size()) {
+                invalidIndexes.add(teammateIndex);
                 continue;
             }
             Contact contactToAssign =
-                new Contact(personList.get(personIndex.getZeroBased()).getName().fullName);
+                new Contact(teammateList.get(teammateIndex.getZeroBased()).getName().fullName);
             assignedContacts.add(contactToAssign);
         }
         return assignedContacts;
     }
 
-    private Set<Contact> personNamesToContacts(Set<String> personNames, List<Person> personList) {
+    private Set<Contact> teammateNamesToContacts(Set<String> teammateNames, List<Teammate> teammateList) {
         Set<Contact> assignedContacts = new HashSet<>();
-        for (String personName : personNames) {
-            String matchingPersonsName = Contact.corrNameInPersonsList(personList, personName);
-            if (matchingPersonsName.isEmpty()) {
-                invalidNames.add(personName);
+        for (String teammateName : teammateNames) {
+            String matchingTeammatesName = Contact.corrNameInTeammatesList(teammateList, teammateName);
+            if (matchingTeammatesName.isEmpty()) {
+                invalidNames.add(teammateName);
                 continue;
             }
-            Contact contactToAssign = new Contact(matchingPersonsName);
+            Contact contactToAssign = new Contact(matchingTeammatesName);
             assignedContacts.add(contactToAssign);
         }
         return assignedContacts;
     }
 
-    private Set<Contact> getAllContacts(Set<Index> personIndexes, Set<String> personNames, List<Person> personList) {
-        Set<Contact> contactsFromIndex = personIndexesToContacts(personIndexes, personList);
-        Set<Contact> contactsFromName = personNamesToContacts(personNames, personList);
+    private Set<Contact> getAllContacts(
+            Set<Index> teammateIndexes, Set<String> teammateNames, List<Teammate> teammateList) {
+        Set<Contact> contactsFromIndex = teammateIndexesToContacts(teammateIndexes, teammateList);
+        Set<Contact> contactsFromName = teammateNamesToContacts(teammateNames, teammateList);
         contactsFromIndex.addAll(contactsFromName);
         return contactsFromIndex;
     }
@@ -162,13 +164,13 @@ public class AssignTaskCommand extends TaskCommand {
     private String buildErrorMessage() {
         StringBuilder errorMessage = new StringBuilder();
         for (Index invalidIndex : invalidIndexes) {
-            String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
+            String currMessage = String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
                     invalidIndex.getOneBased());
             errorMessage.append(currMessage);
             errorMessage.append("\n");
         }
         for (String invalidName : invalidNames) {
-            String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_NAME, invalidName);
+            String currMessage = String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME, invalidName);
             errorMessage.append(currMessage);
             errorMessage.append("\n");
         }
@@ -199,10 +201,10 @@ public class AssignTaskCommand extends TaskCommand {
 
         // state check
         AssignTaskCommand e = (AssignTaskCommand) other;
-        return taskIndex.equals(e.taskIndex) && setIndexEquals(personAddIndexes, e.personAddIndexes)
-                && setIndexEquals(personDeleteIndexes, e.personDeleteIndexes)
-                && personAddNames.equals(e.personAddNames)
-                && personDeleteNames.equals(e.personDeleteNames);
+        return taskIndex.equals(e.taskIndex) && setIndexEquals(teammateAddIndexes, e.teammateAddIndexes)
+                && setIndexEquals(teammateDeleteIndexes, e.teammateDeleteIndexes)
+                && teammateAddNames.equals(e.teammateAddNames)
+                && teammateDeleteNames.equals(e.teammateDeleteNames);
     }
 
     private boolean setIndexEquals(Set<Index> firstSet, Set<Index> secondSet) {

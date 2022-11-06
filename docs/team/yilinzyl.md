@@ -17,8 +17,8 @@ project managers, which assumptively equipped with _Command Line Interface_ (CLI
   - What it does: Allows the user to assign contacts to tasks by full name or index of contact, for delegation of work. Also modified EditCommand and DeleteCommand to edit the name of/delete the contact tagged under tasks.
 - **New feature**: Added the ability to tag projects under tasks.
   - What it does: Allows the user to group tasks under projects.
-- **New feature**: Added the ability to filter persons by tags.
-  - What it does: Allows the user to find all persons with the same tag.
+- **New feature**: Added the ability to filter teammates by tags.
+  - What it does: Allows the user to find all teammates with the same tag.
 
 #### Documentation
 - UG: Added`task assign`

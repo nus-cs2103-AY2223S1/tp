@@ -15,12 +15,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.teammate.Teammate;
 
 /**
  * Adds a task to the task panel.
@@ -81,13 +81,13 @@ public class AddTaskCommand extends TaskCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Teammate> lastShownTeammateList = model.getFilteredTeammateList();
 
         for (Index index : contactIndexes) {
-            if (index.getZeroBased() >= lastShownPersonList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            if (index.getZeroBased() >= lastShownTeammateList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
             }
-            Contact toAssign = new Contact(lastShownPersonList.get(index.getZeroBased()).getName().toString());
+            Contact toAssign = new Contact(lastShownTeammateList.get(index.getZeroBased()).getName().toString());
             assignedContacts.add(toAssign);
         }
 

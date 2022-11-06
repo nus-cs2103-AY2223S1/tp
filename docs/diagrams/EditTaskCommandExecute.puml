@@ -11,7 +11,7 @@ end box
 
 
 [-> e : execute()
-e -> e :  createEditedTask\n(taskToEdit, copy, personList)
+e -> e :  createEditedTask\n(taskToEdit, copy, teammateList)
 e -> t **
 activate t
 return

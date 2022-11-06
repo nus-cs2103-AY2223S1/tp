@@ -15,8 +15,8 @@ Package Model <<Rectangle>> {
     Class UserPrefs
     Class TaskPanel
 
-    Class UniquePersonList
-    Class Person
+    Class UniqueTeammateList
+    Class Teammate
     Class Address
     Class Email
     Class Name
@@ -47,14 +47,14 @@ AddressBook .up.|> ReadOnlyAddressBook
 TaskPanel .up.|> ReadOnlyTaskPanel
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+AddressBook *--> "1" UniqueTeammateList
+UniqueTeammateList --> "~* all" Teammate
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Teammate *--> Name
+Teammate *--> Phone
+Teammate *--> Email
+Teammate *--> Address
+Teammate *--> "*" Tag
 
 TaskPanel *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
@@ -63,10 +63,10 @@ Task *--> Deadline
 Task *--> Project
 Task *--> "*" Contact
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Teammate
 ModelManager -->"~* filtered" Task
 
-Task -[hidden]left-> Person
+Task -[hidden]left-> Teammate
 Phone -[hidden]left-> Phone
 Address -[hidden]left-> Phone
 Email -[hidden]right-> Tag

@@ -51,12 +51,12 @@ public class JsonTaskPanelStorageTest {
     }
 
     @Test
-    public void readTaskPanel_invalidPersonTaskPanel_throwDataConversionException() {
+    public void readTaskPanel_invalidTeammateTaskPanel_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTaskPanel("invalidTaskTaskPanel.json"));
     }
 
     @Test
-    public void readTaskPanel_invalidAndValidPersonTaskPanel_throwDataConversionException() {
+    public void readTaskPanel_invalidAndValidTeammateTaskPanel_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTaskPanel("invalidAndValidTaskTaskPanel.json"));
     }
 

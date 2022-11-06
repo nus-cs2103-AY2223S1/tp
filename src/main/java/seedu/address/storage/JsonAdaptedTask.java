@@ -62,9 +62,9 @@ class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted teammate object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted teammate.
      */
     public Task toModelType() throws IllegalValueException {
         final List<Contact> assignedContacts = new ArrayList<>();

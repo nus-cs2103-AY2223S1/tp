@@ -31,7 +31,7 @@ public class ContainsProjectsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different teammate -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
