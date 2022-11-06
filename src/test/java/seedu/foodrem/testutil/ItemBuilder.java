@@ -17,13 +17,13 @@ import seedu.foodrem.model.tag.Tag;
  * A utility class to help with building Item objects.
  */
 public class ItemBuilder {
-    public static final String DEFAULT_NAME = "NONE";
-    public static final String DEFAULT_QUANTITY = "0";
-    public static final String DEFAULT_ITEM_UNIT = "";
-    public static final String DEFAULT_BOUGHT_DATE = "";
-    public static final String DEFAULT_EXPIRY_DATE = "";
-    public static final String DEFAULT_PRICE = "";
-    public static final String DEFAULT_REMARKS = "";
+    private static final String DEFAULT_NAME = "NONE";
+    private static final String DEFAULT_QUANTITY = "0";
+    private static final String DEFAULT_ITEM_UNIT = "";
+    private static final String DEFAULT_BOUGHT_DATE = "";
+    private static final String DEFAULT_EXPIRY_DATE = "";
+    private static final String DEFAULT_PRICE = "";
+    private static final String DEFAULT_REMARKS = "";
 
     // Identity fields
     private ItemName name;
@@ -130,6 +130,9 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * Returns the item to be build.
+     */
     public Item build() {
         return new Item(name, quantity, unit, boughtDate, expiryDate, price, remarks, tags);
     }
