@@ -39,8 +39,8 @@ public class JsonTaAssistStorage implements TaAssistStorage {
     /**
      * Similar to {@link #readTaAssist()}.
      *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
+     * @param filePath Location of the data. Cannot be null.
+     * @throws DataConversionException If the file is not in the correct format.
      */
     public Optional<ReadOnlyTaAssist> readTaAssist(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
@@ -67,7 +67,8 @@ public class JsonTaAssistStorage implements TaAssistStorage {
     /**
      * Similar to {@link #saveTaAssist(ReadOnlyTaAssist)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath Location of the data. Cannot be null.
+     * @throws IOException If there was any problem creating the file or writing to the file.
      */
     public void saveTaAssist(ReadOnlyTaAssist taAssist, Path filePath) throws IOException {
         requireNonNull(taAssist);

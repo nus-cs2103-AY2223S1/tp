@@ -10,7 +10,7 @@ import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends TaAssistStorage, UserPrefsStorage {
 

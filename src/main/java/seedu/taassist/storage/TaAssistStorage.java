@@ -20,9 +20,10 @@ public interface TaAssistStorage {
 
     /**
      * Returns TaAssist data as a {@link ReadOnlyTaAssist}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTaAssist> readTaAssist() throws DataConversionException, IOException;
 
@@ -33,8 +34,9 @@ public interface TaAssistStorage {
 
     /**
      * Saves the given {@link ReadOnlyTaAssist} to the storage.
-     * @param taAssist cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     *
+     * @param taAssist Cannot be null.
+     * @throws IOException If there was any problem writing to the file.
      */
     void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException;
 
