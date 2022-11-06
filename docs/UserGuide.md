@@ -78,14 +78,15 @@ you know how to make the most out of StudMap.
 
 Thank you for choosing StudMap! This user guide will help you navigate our beloved software.
 
-1. You can head off to [Section 4: Quick Start](#quick-start) section for a quick tutorial.
-2. If you’re already using StudMap, check out [Section 5: Features](#features) section to get in-depth information about each
+1. You can head off to [Section 4: Quick Start](#4-quick-start) section for a quick tutorial.
+2. If you’re already using StudMap, check out [Section 5: Features](#5-features) section to get in-depth information about each
    command
    you can give StudMap.
-3. For advanced users, check out [Section 7: Command Summary](#command-summary) for an easy all-in-one record for all the
+3. For advanced users, check out [Section 7: Command Summary](#7-command-summary) for an easy all-in-one record for all the
    commands.
-4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#glossary) for more information.
+4. If you see any unfamiliar terms, check out the [Section 8: Glossary](#8-glossary) for more information.
 5. If you still have any other questions regarding StudMap and its usage, check out [Section 6: FAQ](#6-frequently-asked-questions)
+   for answers to some frequently asked questions.
 
 
 ---
@@ -132,9 +133,9 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 
    Download this [Student Information Template](files/import_template.csv). If you want a sample of how to use it, check
    out this [Example Template](files/example_template.csv), or check out
-   [Import Command](#import-students-from-csv-file-import) for more details.
+   [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
-7. That’s all for the tutorial! Check out the [Features](#features) section for more detailed information about each
+7. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
    command.
    We hope you enjoy using StudMap!
 
@@ -145,8 +146,8 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 ## 5.1 Introduction
 
 Welcome to the Features section of StudMap. We have three categories of
-features: [Student List Management](#student-list-management), and
-[Student Updating](#student-updating), and [Miscellaneous](#miscellaneous). They have been color-coded for your
+features: [Student List Management](#53-student-list-management), and
+[Student Updating](#54-student-updating), and [Miscellaneous](#55-miscellaneous). They have been color-coded for your
 convenience and viewing pleasure.
 
 Read on to learn in detail about the plethora of features that StudMap has in store for you! Worried about the learning
@@ -209,7 +210,7 @@ Examples:
 * `add n/Silos Yao t/StrongStudent g/silosyao id/E1234567 m/MA5203` adds student named `Silos Yao` taking `MA5203` with
   student id `E1234567` and tagged as `StrongStudent`.
 
-### 5.3.2 Deleting a student : `delete`
+### 5.3.2 Deleting a student: `delete`
 
 Deletes the specified student from the StudMap.
 
@@ -217,7 +218,7 @@ Did your student withdraw from the module midway through the semester? You can r
 remains clutter-free!
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-You can use [Find](#locating-students-by-name-find) to help locate the student you wish to delete first. <br>
+You can use [Find](#536-locating-students-by-name-find) to help locate the student you wish to delete first. <br>
 </div>
 
 Format: `delete INDEX`
@@ -231,13 +232,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the StudMap.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### 5.3.3 Clearing all entries : `clear`
+### 5.3.3 Clearing all entries: `clear`
 
 Clears all entries from the StudMap.
 
 Format: `clear`
 
-### 5.3.4 Import students from CSV file: `import`
+### 5.3.4 Importing students from CSV file: `import`
 
 Imports student data from a CSV file stored on your computer.
 
@@ -264,7 +265,7 @@ Example Usage: Importing a fresh batch of students as a new StudMap user
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
-### 5.3.5 Listing all students : `list`
+### 5.3.5 Listing all students: `list`
 
 Shows a list of all students in the StudMap.
 
@@ -367,14 +368,14 @@ Example:
 
 ## 5.4 Student Updating
 
-### 5.4.1 Editing a student : `edit`
+### 5.4.1 Editing a student: `edit`
 
 Edits an existing student in the StudMap.
 
 Need to update outdated student details? You can easily edit that field without deleting and re-adding the student.
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-* You can use [Find](#locating-students-by-name-find) to help locate the student you wish to edit first. <br>
+* You can use [Find](#536-locating-students-by-name-find) to help locate the student you wish to edit first. <br>
 </div>
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
@@ -393,7 +394,7 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### 5.4.2 Mark attendance of student: `mark`
+### 5.4.2 Marking attendance of student: `mark`
 
 Mark students as present or absent for a specified class.
 
@@ -414,7 +415,7 @@ Examples:
 * `mark 1 present c/T01` marks the first student as present for class `T01`
 * `mark all absent c/T04` marks all students in the list as absent for class `T04`
 
-### 5.4.3 Unmark attendance of a student: `unmark`
+### 5.4.3 Unmarking attendance of student: `unmark`
 
 Removes the attendance record of a specific class from students.
 
@@ -433,7 +434,7 @@ Examples:
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the first student
 * `unmark all c/T04` removes the attendance record for class `T04` from all students in the list
 
-### 5.4.4 Grade assignment for student: `grade`
+### 5.4.4 Grading assignment for student: `grade`
 
 You can change the grading status for the assignments using this command. If the record of the assignment does not yet
 exist for the specified student, a new entry for the assignment will be automatically created for the student. This can
@@ -464,7 +465,7 @@ Examples:
 * `grade all marked a/A02` changes the assignment grading status for assignment `A02` of every student in the list
   to `marked`.
 
-### 5.4.5 Remove assignment from student: `ungrade`
+### 5.4.5 Removing assignment from student: `ungrade`
 
 You can remove the specified assignment from the student's record.
 
@@ -480,7 +481,7 @@ Examples:
 * `ungrade 1 a/A01` removes assignment `A01` from the first student.
 * `ungrade all a/A01` removes assignment `A01` from all students in the currently displayed list
 
-### 5.4.6 Recording participation of a student: `participate`
+### 5.4.6 Recording participation of student: `participate`
 
 You can record participation of student(s)
 
@@ -498,7 +499,7 @@ Examples:
 * `participate 1 no p/P02` records first student as having **not participated** for participation component `P01`.
 * `participate all yes p/P03` records all student as having **participated** for participation component `P03`.
 
-### 5.4.7 Removing participation of a student: `unparticipate`
+### 5.4.7 Removing participation of student: `unparticipate`
 
 You can remove participation of student(s)
 
@@ -514,7 +515,7 @@ Examples:
 * `unparticipate 1 p/P01` removes participation component `P01` from first student in currently displayed list.
 * `unparticipate all p/P03 ` removes participation component `P03` from all students in currently displayed list.
 
-### 5.4.8 Add tag to student: `tag`
+### 5.4.8 Adding tag to student: `tag`
 
 You can tag the student(s) with one or more text labels. This can help you to better identify and keep track of them.
 
@@ -528,7 +529,7 @@ be recognised as different labels.
 
 **:information_source: Note 3:** The tagging command is cumulative, that is, new tags are simply added to the student(s)
 and
-do not replace their previous tags. To remove tags from the student(s), see [untag](#remove-tag-from-student-untag)
+do not replace their previous tags. To remove tags from the student(s), see [untag](#549-removing-tag-from-student-untag)
 below. <br>
 
 </div>
@@ -549,7 +550,7 @@ Examples:
 * `tag all t/goodstudent t/potentialTA` add both `goodStudent` and `potentialTA` tag to the all student in the current
   list.
 
-### 5.4.9 Remove tag from student: `untag`
+### 5.4.9 Removing tag from student: `untag`
 
 Remove the specified tag(s) from the student(s).
 
@@ -560,7 +561,7 @@ Format: `untag INDEX/ALL t/TAG [t/OTHER]`
   The index **must be a positive integer** 1, 2, 3, …​
 - `ALL`: You can remove the tag for all students in the currently displayed list.
 - `TAG`: You can specify the `TAG` to remove.There should be at least one label to be removed when you use this command.
-  For the restrictions on the format of a `TAG`, see Note 1 for [Add tag to student](#add-tag-to-student-tag).
+  For the restrictions on the format of a `TAG`, see Note 1 for [Add tag to student](#548-adding-tag-to-student-tag).
 - `OTHER`: You can also include multiple tags to be removed from your student(s).
 
 Examples:
@@ -570,7 +571,7 @@ Examples:
 
 ## 5.5 Miscellaneous
 
-### 5.5.1 Exiting the program : `exit`
+### 5.5.1 Exiting the program: `exit`
 
 Exits the program.
 
@@ -590,7 +591,7 @@ directly by editing that data file.
 If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run.
 </div>
 
-### 5.5.4 Viewing help : `help`
+### 5.5.4 Viewing help: `help`
 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
@@ -613,26 +614,27 @@ the data of your previous StudMap home folder.
 
 # 7. Command Summary
 
-| Action                                                                         | Format, Examples                                                                                                                                                                                         |
-|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[Add](#adding-a-student-add)**                                               | `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T id/E1234567 g/user1 h/@user1 t/friends t/owesMoney` |
-| **[Clear](#clearing-all-entries--clear)**                                      | `clear`                                                                                                                                                                                                  |
-| **[Delete](#deleting-a-student--delete)**                                      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
-| **[Edit](#editing-a-student--edit)**                                           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                    |
-| **[Find](#locating-students-by-name-find)**                                    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                               |
-| **[List](#listing-all-students--list)**                                        | `list`                                                                                                                                                                                                   |
-| **[Help](#viewing-help--help)**                                                | `help`                                                                                                                                                                                                   |
-| **[Sort](#sorting-the-students-sort)**                                         | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`                                                                                                                                                    |
-| **[Filter](#filtering-the-students-filter)**                                   | `filter`                                                                                                                                                                                                 |
-| **[Mark](#mark-attendance-of-student-mark)**                                   | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`                                                                                                                                    |
-| **[Unmark](#unmark-attendance-of-a-student-unmark)**                           | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`                                                                                                                                                     |
-| **[Add tag](#tag-student-with-label-tag)**                                     | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`                                                                                                                                         |
-| **[Remove tag](#remove-tag-from-student-untag)**                               | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`                                                                                                                                     |
-| **[Grade assignment](#grade-assignment-for-student-grade)**                    | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`                                                                                                                                     |
-| **[Remove assignment](#remove-assignment-from-student-ungrade)**               | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`                                                                                                                                            |
-| **[Record participation](#recording-participation-of-a-student-participate)**  | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`                                                                                                                          |
-| **[Remove participation](#removing-participation-of-a-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`                                                                                                                                 |
-| **[Import CSV](#import-students-from-csv-file-import)**                        | `import`                                                                                                                                                                                                 |
+| Action                                                                           | Format, Examples                                                                                                                                                                                         |
+|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add](#531-adding-a-student-add)**                                             | `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T id/E1234567 g/user1 h/@user1 t/friends t/owesMoney` |
+| **[Delete](#532-deleting-a-student-delete)**                                     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
+| **[Clear](#533-clearing-all-entries-clear)**                                     | `clear`                                                                                                                                                                                                  |
+| **[Import CSV](#534-importing-students-from-csv-file-import)**                   | `import`                                                                                                                                                                                                 |
+| **[List](#535-listing-all-students-list)**                                       | `list`                                                                                                                                                                                                   |
+| **[Find](#536-locating-students-by-name-find)**                                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                               |
+| **[Sort](#537-sorting-the-students-sort)**                                       | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`                                                                                                                                                    |
+| **[Filter](#538-filtering-the-students-filter)**                                 | `filter`                                                                                                                                                                                                 |
+| **[Edit](#541-editing-a-student-edit)**                                          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [id/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                    |
+| **[Mark attendance](#542-marking-attendance-of-student-mark)**                   | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`                                                                                                                                    |
+| **[Unmark attendance](#543-unmarking-attendance-of-student-unmark)**             | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`                                                                                                                                                     |
+| **[Grade assignment](#544-grading-assignment-for-student-grade)**                | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 1 new a/A01`                                                                                                                                     |
+| **[Remove assignment](#545-removing-assignment-from-student-ungrade)**           | `ungrade INDEX/ALL a/ASSIGNMENT` <br> e.g., `ungrade 1 a/A01`                                                                                                                                            |
+| **[Record participation](#546-recording-participation-of-student-participate)**  | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`                                                                                                                          |
+| **[Remove participation](#547-removing-participation-of-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 p/C01`                                                                                                                                 |
+| **[Add tag](#548-adding-tag-to-student-tag)**                                    | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`                                                                                                                                         |
+| **[Remove tag](#549-removing-tag-from-student-untag)**                           | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`                                                                                                                                     |
+| **[Exit](#551-exiting-the-program-exit)**                                        | `exit`                                                                                                                                                                                                   |
+| **[Help](#554-viewing-help-help)**                                               | `help`                                                                                                                                                                                                   |
 
 ---
 
@@ -640,7 +642,7 @@ the data of your previous StudMap home folder.
 
 ### Commands
 
-Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#features) section
+Commands are instructions for StudMap, and the main way to interact with it! Check out the [Features](#5-features) section
 to see what commands are available.
 
 ### Module
