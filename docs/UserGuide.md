@@ -452,8 +452,7 @@ A person can have any number of tags (including 0)
 
 Edits an existing person in TruthTable.
 
-**Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...)
-<PERSON_INDEX>`
+**Format:** `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX>`
 
 | Flags           | Required   | Remarks                                 |
 |-----------------|:-----------|-----------------------------------------|
