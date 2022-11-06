@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
@@ -48,11 +49,7 @@ public class AddMeetingCommand extends Command {
      */
     public AddMeetingCommand(Index clientIndex, MeetingDate date,
                              MeetingTime startTime, MeetingTime endTime, Description desc) {
-        requireNonNull(clientIndex);
-        requireNonNull(date);
-        requireNonNull(startTime);
-        requireNonNull(endTime);
-        requireNonNull(desc);
+        requireAllNonNull(clientIndex, date, startTime, endTime, desc);
         meetingDate = date;
         meetingStartTime = startTime;
         meetingEndTime = endTime;
@@ -75,7 +72,7 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Client> clientList = model.getFilteredClientList();
-        if (linkedClientIndex.getZeroBased() > clientList.size()) {
+        if (linkedClientIndex.getZeroBased() >= clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 

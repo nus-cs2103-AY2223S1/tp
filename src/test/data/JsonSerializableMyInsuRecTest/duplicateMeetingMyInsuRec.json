@@ -1,0 +1,25 @@
+{
+  "clients" : [ {
+    "@UUID" : "c4fa6f3d-a49f-495d-a5eb-d282b344a36d",
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "birthday" : "",
+    "meetings" : [ {
+      "@UUID" : "51ee7b92-0324-468a-98e6-09f12ac3ccc4",
+      "description" : "Alex's Policy Renewal",
+      "meetingStartTime" : "1830",
+      "meetingEndTime" : "1930",
+      "meetingDate" : "11112022"
+      }, {
+      "@UUID" : "f3bef164-0535-4f8b-82e7-82b32b813e13",
+      "description" : "Alex's Graduation",
+      "meetingStartTime" : "1800",
+      "meetingEndTime" : "1900",
+      "meetingDate" : "11112022"
+     } ],
+    "products": [ "Product1" ]
+  } ],
+  "products" : [ "Product1"]
+}

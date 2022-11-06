@@ -56,6 +56,15 @@ class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
     public Meeting toModelType(Client client) throws IllegalValueException {
+        Description modelDescription = validateAndGetDescription();
+        MeetingDate modelMeetingDate = validateAndGetMeetingDate();
+        MeetingTime modelMeetingStartTime = validateAndGetStartTime();
+        MeetingTime modelMeetingEndTime = validateAndGetEndTIme();
+
+        return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingStartTime, modelMeetingEndTime);
+    }
+
+    private Description validateAndGetDescription() throws IllegalValueException {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
@@ -63,8 +72,10 @@ class JsonAdaptedMeeting {
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        Description modelDescription = new Description(description);
+        return new Description(description);
+    }
 
+    private MeetingDate validateAndGetMeetingDate() throws IllegalValueException {
         if (meetingDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MeetingDate.class.getSimpleName()));
@@ -72,25 +83,27 @@ class JsonAdaptedMeeting {
         if (!MeetingDate.isValidMeetingDate(meetingDate)) {
             throw new IllegalValueException(MeetingDate.MESSAGE_CONSTRAINTS);
         }
-        MeetingDate modelMeetingDate = new MeetingDate(ParserUtil.parseDate(meetingDate, "meeting"));
+        return new MeetingDate(ParserUtil.parseDate(meetingDate, "meeting"));
+    }
 
+    private MeetingTime validateAndGetStartTime() throws IllegalValueException {
         if (meetingStartTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Meeting Start Time"));
         }
         if (!MeetingTime.isValidMeetingTime(meetingStartTime)) {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
-        MeetingTime modelMeetingStartTime = ParserUtil.parseTime(meetingStartTime);
+        return ParserUtil.parseTime(meetingStartTime);
+    }
 
+    private MeetingTime validateAndGetEndTIme() throws IllegalValueException {
         if (meetingEndTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Meeting End Time"));
         }
         if (!MeetingTime.isValidMeetingTime(meetingEndTime)) {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
-        MeetingTime modelMeetingEndTime = ParserUtil.parseTime(meetingEndTime);
-
-        return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingStartTime, modelMeetingEndTime);
+        return ParserUtil.parseTime(meetingEndTime);
     }
 
 }

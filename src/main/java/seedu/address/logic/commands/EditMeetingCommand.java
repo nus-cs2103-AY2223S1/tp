@@ -108,9 +108,8 @@ public class EditMeetingCommand extends Command {
         if (updatedEndTime.isBefore(updatedStartTime)) {
             throw new CommandException(MESSAGE_END_TIME_BEFORE_START_TIME);
         }
-        Meeting meeting = new Meeting(meetingToEdit.getClient(), updatedDescription, updatedDate,
+        return new Meeting(meetingToEdit.getClient(), updatedDescription, updatedDate,
                 updatedStartTime, updatedEndTime);
-        return meeting;
     }
 
     @Override
