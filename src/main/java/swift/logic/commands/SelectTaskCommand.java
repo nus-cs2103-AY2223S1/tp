@@ -8,7 +8,6 @@ import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
@@ -59,9 +58,7 @@ public class SelectTaskCommand extends Command {
         List<PersonTaskBridge> bridgeList = model.getFilteredBridgeList();
 
         Predicate<Person> isAssociatedContact = contact -> bridgeList.stream()
-                .filter((bridge) -> bridge.getPersonId().equals(contact.getId()))
-                .collect(Collectors.toList())
-                .size() != 0;
+                .anyMatch((bridge) -> bridge.getPersonId().equals(contact.getId()));
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         model.updateFilteredPersonList(isAssociatedContact);

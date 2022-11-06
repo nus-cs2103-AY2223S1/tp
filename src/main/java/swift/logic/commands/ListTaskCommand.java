@@ -1,6 +1,7 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class ListTaskCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
                 CommandType.TASKS);
@@ -34,7 +36,6 @@ public class ListTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ListTaskCommand); // instanceof handles nulls
+        return (other instanceof ListTaskCommand); // instanceof handles nulls
     }
 }

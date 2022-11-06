@@ -7,7 +7,6 @@ import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
@@ -57,9 +56,7 @@ public class SelectContactCommand extends Command {
 
         // Predicate to check whether task exists within a bridgeList
         Predicate<Task> isTaskExist = (task) -> bridgeList.stream()
-              .filter((bridge) -> bridge.getTaskId().equals(task.getId()))
-              .collect(Collectors.toList())
-              .size() != 0;
+                .anyMatch((bridge) -> bridge.getTaskId().equals(task.getId()));
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateFilteredTaskList(isTaskExist);

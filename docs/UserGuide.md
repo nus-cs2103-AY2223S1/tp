@@ -291,12 +291,12 @@ To understand how a full command is interpreted, let's look at the following exa
 
 Notice how `t/TAG` is wrapped in `[ ]`. Items in square brackets are **optional**.
 
-- For example, `n/CONTACT_NAME [t/TAG]` can be used as `n/John t/friend` or as `n/John`.
+- For example, `n/CONTACT_NAME [t/TAG]` can be used as `n/Mark t/friend` or as `n/Mark`.
 
 Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be used **multiple times**, including
 zero times.
 
-- For example, `n/CONTACT_NAME [t/TAG]…​` can be used as `n/John` (i.e. 0 times), `n/John t/friend`, `n/John t/friend t/family`, and etc.
+- For example, `n/CONTACT_NAME [t/TAG]…​` can be used as `n/Mark` (i.e. 0 times), `n/Mark t/friend`, `n/Mark t/friend t/family`, and etc.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
@@ -311,7 +311,7 @@ zero times.
 
 ---
 
-## Commands
+## **Commands**
 
 This section covers how to use each command in detail. You may wish to refer to the [Parameter](#parameter) section to view the constraints for each parameter.
 
@@ -334,7 +334,7 @@ A contact can have any number of tags (including 0)
 
 #### Listing all contacts: `list_contact`
 
-> Shows a list of all contacts.
+> Shows a list of all contacts in the main panel and a list of all tasks in the sidebar.
 
 **Format:** `list_contact`
 
@@ -379,8 +379,8 @@ A contact can have any number of tags (including 0)
 
 **Examples:**
 
-- `edit_contact 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-- `edit_contact 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+- `edit_contact 1 p/91234567 e/mark@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `mark@example.com` respectively.
+- `edit_contact 2 n/Anne t/` edits the name of the 2nd contact to be `Anne` and clears all existing tags.
 
 #### Deleting a contact: `delete_contact`
 
@@ -391,11 +391,11 @@ A contact can have any number of tags (including 0)
 **Examples:**
 
 - `list_contact` followed by `delete_contact 2` deletes the 2nd contact in the entire contact list.
-- `find_contact Betsy` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact Betsy` command.
+- `find_contact Anne` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact Anne` command.
 
 #### Selecting a contact: `select_contact`
 
-> Selects the specified contact and displays the contact's assigned tasks.
+> Displays the selected contact in the main panel and displays the tasks assigned to the contact in the sidebar.
 
 **Format:** `select_contact CONTACT_INDEX`
 
@@ -419,7 +419,7 @@ A contact can have any number of tags (including 0)
 
 #### Listing all tasks: `list_task`
 
-> Shows a list of all tasks.
+> Shows a list of all tasks in the main panel and a list of all contacts in the sidebar.
 
 **Format:** `list_task`
 
@@ -438,7 +438,7 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- The search is case-insensitive. e.g. `book` will match `Book`
+- The search is **case-insensitive**. e.g. `book` will match `Book`
 - The order of the keywords does not matter. e.g. `read book` will match `book read`
 - Only the name of the task is searched.
 - Only full words will be matched e.g. `Book` will not match `Books`
