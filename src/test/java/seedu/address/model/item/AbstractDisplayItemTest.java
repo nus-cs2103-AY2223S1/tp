@@ -70,11 +70,15 @@ class AbstractDisplayItemTest {
 
     @Test
     void getAttribute_attributeFound_success() {
-
+        Person dummy = buildDefaultPerson("dummy", "friends");
+        dummy
+        assertTrue(dummy.getAttribute("friends").isPresent());
     }
 
     @Test
-    void editAttribute() {
+    void editAttribute_existingAttribute_success() {
+        Person dummy = buildDefaultPerson("dummy", "friends");
+
     }
 
     @Test
