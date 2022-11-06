@@ -313,7 +313,7 @@ Format: `filter -p TAG [MORE_TAGS]`
 
 :bulb: **Tips:**
     
-* Arguments provided must be an exact string match for the tag i.e., 'high-end' instead of 'high'.
+* Arguments provided must be an exact string match for the tag i.e., `high-end` instead of `high`.
   * Recall that tags associated with each property are singular words.
 * Arguments are case-insensitive.
 
