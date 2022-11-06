@@ -1,0 +1,17 @@
+@startuml
+scale 1.2
+start
+:User executes Edit command;
+:EditCommandParser parses argument;
+if () then ([wrong format])
+    :Display error message;
+else ([else])
+    if () then ([edited internship results in duplicates])
+        : Display error message;
+    else ([else])
+        :Internship is updated with the new fields;
+        :Internship list is updated;
+    endif
+endif
+stop
+@enduml

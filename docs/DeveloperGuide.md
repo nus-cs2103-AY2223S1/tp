@@ -248,6 +248,25 @@ The following activity diagram summarizes what happens when a user executes a fi
 * The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.
 * This implementation would allow easy extension should there be more `ApplicationStatus` added, since parsing of user input is done by `ApplicationStatus`.
 
+
+### Edit `Internship` feature
+
+#### Implementation
+
+* An `EditCommandParser` object is created, which parses the user input by splitting the input by the prefix of each field in `Internship`, then returns the relevant `EditCommand`.
+* `EditCommand` takes in an `index` and at least one of `Internship`'s fields.
+
+When `execute` of `EditCommand` is run, a new `Internship` object with the updated fields is created.
+* The new `Internship` is passed into the model to be updated.
+
+The following activity diagram summarizes what happens when a user executes an edit command.
+
+<img src="images/EditCommandActivityDiagram.png" width="650" />
+
+#### Design Considerations
+- The fields passed in are optional, but at least one must be provided. 
+
+
 ### Mark `Internship` feature
 
 #### Implementation
