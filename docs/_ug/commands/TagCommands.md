@@ -129,6 +129,33 @@ If you encounter an error message saying "This tag name already exists in FoodRe
 
 ---
 
+#### Filter by a tag: `filtertag`
+
+**Format**: `filtertag n/TAG_NAME`
+
+> Filters and shows items that contain a specific tag
+
+**Example:**
+
+{% capture notes %}
+**Assumption:**
+
+Initially, FoodRem only contains the following items:
+
+1. Banana (tagged as "Fruits")
+1. Carrot (tagged as "Vegetables")
+1. Papaya (tagged as "Fruits")
+1. Tomato (tagged as "Vegetables")
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="filtertag n/Fruits"
+  itemListBox="images/tagCommands/itemListBox/filtertag.png"
+%}
+
+---
+
 #### Delete a tag: `deletetag`
 
 **Format**: `deletetag n/TAG_NAME`
@@ -155,31 +182,4 @@ Initially, there already exists a tag called "Veggies".
   notes=notes
   input="deletetag n/Veggies"
   commandOutputBox="images/tagCommands/commandOutputBox/deletetag.png"
-%}
-
----
-
-#### Filter by a tag: `filtertag`
-
-**Format**: `filtertag n/TAG_NAME`
-
-> Filters and shows items that contain a specific tag
-
-**Example:**
-
-{% capture notes %}
-**Assumption:**
-
-Initially, FoodRem only contains the following items:
-
-1. Banana (tagged as "Fruits")
-1. Carrot (tagged as "Vegetables")
-1. Papaya (tagged as "Fruits")
-1. Tomato (tagged as "Vegetables")
-{% endcapture %}
-{%
-  include command-format.md
-  notes=notes
-  input="filtertag n/Fruits"
-  itemListBox="images/tagCommands/itemListBox/filtertag.png"
 %}
