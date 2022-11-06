@@ -113,7 +113,7 @@ However, it is recommended to read through the [Features](#features) section to 
 Loads previous command into the _Command Box_.
 While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
-Click to return to: [GUI Features](#gui-features) | [Back to Top](#user-guide)
+Click to return to: [GUI Features](#gui-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -199,7 +199,7 @@ Format: `help`
 Shortcut key: <kbd>F1</kbd> 
 </div>
 
-Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 ### Task Management
 
@@ -213,7 +213,7 @@ We have the following commands in this section:
 * [Tagging a task](#tagging-a-task-tag)
 * [Clearing all entries](#clearing-all-entries--clear)
 
-Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 #### Adding a task: `add`
 
@@ -348,7 +348,7 @@ We have the following commands in this section
 * [Listing all tasks with deadline on or after a date](#listing-all-tasks-with-deadline-on-or-after-a-date--ls--d)
 * [Listing all task names with the matching keywords](#listing-all-task-names-with-the-matching-keywords-ls--n)
 
-Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 #### Listing all tasks : `ls -a`
 
@@ -443,7 +443,7 @@ We have the following commands in this section:
 * [Archiving tasks](#archiving-tasks--archive)
 * [View archived tasks](#view-archived-tasks--showarchive)
 
-Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 #### Archiving tasks : `archive`
 
@@ -478,7 +478,7 @@ Terminates and exits the program.
 
 Format: `exit`
 
-Click to return to: [Command Features](#command-features) | [Back to Top](#user-guide)
+Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -497,7 +497,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 
 </div>
 
-Click to return to: [Back to Top](#user-guide)
+Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -518,7 +518,7 @@ Click to return to: [Back to Top](#user-guide)
 **Q**: I need help! How can I contact the team?<br>
 **A**: You may contact us via GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen). If possible, do provide screenshots demonstrating the problem you are facing. We will assist you as soon as possible! 
 
-Click to return to: [Back to Top](#user-guide)
+Click to return to: [Back to Top](#)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -548,7 +548,7 @@ Format meanings:
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                   | `unmark 2`                                   |
 | Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
 
-Click to return to: [Back to Top](#user-guide)
+Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -561,4 +561,4 @@ Click to return to: [Back to Top](#user-guide)
 |         |                                                                              |
 |         |                                                                              |
 
-Click to return to: [Back to Top](#user-guide)
+Click to return to: [Back to Top](#)
