@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
-import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.model.util.SampleDataUtil;
 
@@ -23,7 +22,6 @@ public class ClientBuilder {
     private Name name;
     private Address address;
     private Set<Tag> tags;
-    private Set<Property> interestedProperties;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -32,7 +30,6 @@ public class ClientBuilder {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        interestedProperties = new HashSet<>();
     }
 
     /**
@@ -42,7 +39,6 @@ public class ClientBuilder {
         name = clientToCopy.getName();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
-        interestedProperties = new HashSet<>(clientToCopy.getInterestedProperties());
     }
 
     /**
@@ -70,7 +66,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, address, tags, interestedProperties);
+        return new Client(name, address, tags);
     }
 
 }

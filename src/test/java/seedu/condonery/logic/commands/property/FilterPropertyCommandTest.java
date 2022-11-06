@@ -26,7 +26,6 @@ public class FilterPropertyCommandTest {
 
         FilterPropertyCommand filterPropertyCommand = new FilterPropertyCommand(richPredicate);
         FilterPropertyCommand anotherFilterPropertyCommand = new FilterPropertyCommand(lookingPredicate);
-
         // same object -> returns true
         assertTrue(filterPropertyCommand.equals(filterPropertyCommand));
 

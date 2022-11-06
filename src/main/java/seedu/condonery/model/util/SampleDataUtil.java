@@ -1,7 +1,6 @@
 package seedu.condonery.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,12 +28,10 @@ public class SampleDataUtil {
                     getClientSet(
                         new Client(new Name("Bobby"),
                                 new Address("BobbyAddress"),
-                                getTagSet("Friend"),
-                                new HashSet<>()),
+                                getTagSet("Friend")),
                         new Client(new Name("Samuel"),
                                 new Address("SamuelAddress"),
-                                getTagSet("Friend"),
-                                new HashSet<>())),
+                                getTagSet("Friend"))),
                     PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     new Price("1000000"),
@@ -42,45 +39,39 @@ public class SampleDataUtil {
                     getClientSet(
                             new Client(new Name("Casey"),
                                     new Address("CaseyAddress"),
-                                    getTagSet("Rich"),
-                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
+                                    getTagSet("Rich"))),
+                    PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
             new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     new Price("1000000"),
                     getTagSet("High-End", "Reserved"),
                     getClientSet(
                             new Client(new Name("Jac"),
                                     new Address("JacAddress"),
-                                    getTagSet("Urgent"),
-                                    new HashSet<>()),
+                                    getTagSet("Urgent")),
                             new Client(new Name("Jack"),
                                     new Address("JackAddress"),
-                                    getTagSet("Test"),
-                                    new HashSet<>()),
+                                    getTagSet("Test")),
                             new Client(new Name("Hamster"),
                                     new Address("Hamster"),
-                                    getTagSet("Friend", "Rich"),
-                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
+                                    getTagSet("Friend", "Rich"))),
+                PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE)
         };
     }
 
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
-                    getTagSet("High-End", "Available"), new HashSet<>()),
+                    getTagSet("High-End", "Available")),
             new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
-                    getTagSet("High-End", "Sold"), new HashSet<>()),
+                    getTagSet("High-End", "Sold")),
             new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved"), new HashSet<>()),
-            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"), new HashSet<>()),
-            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("Friend"), new HashSet<>()),
-            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"), new HashSet<>()),
-            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"), new HashSet<>()),
-            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("Rich"),
-                    getPropertySet(
-                            new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                                    new Price("1000000"), getTagSet("High-End", "Available"),
-                                    new HashSet<>(), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE))),
-            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>())
+                    getTagSet("High-End", "Reserved")),
+            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
+            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("Friend")),
+            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich")),
+            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")),
+            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("Rich")),
+            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"))
         };
     }
 

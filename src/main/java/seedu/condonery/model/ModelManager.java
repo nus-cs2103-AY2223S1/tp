@@ -148,6 +148,16 @@ public class ModelManager implements Model {
         return propertyDirectory.hasProperty(property);
     }
 
+    /**
+     * Returns a Property with the exact name.
+     * @param name exact name of the property
+     * @return Property
+     */
+    @Override
+    public Property getPropertyByExactName(String name) {
+        return propertyDirectory.getPropertyByExactName(name);
+    }
+
     @Override
     public void deleteProperty(Property target) {
         propertyDirectory.removeProperty(target);
@@ -204,6 +214,16 @@ public class ModelManager implements Model {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return clientDirectory.hasClient(client);
+    }
+
+    /**
+     * Returns a Client with the exact name.
+     * @param name exact name of the client
+     * @return Client
+     */
+    @Override
+    public Client getClientByExactName(String name) {
+        return clientDirectory.getClientByExactName(name);
     }
 
     @Override

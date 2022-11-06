@@ -61,6 +61,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
             && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
             && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
             && !argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()
+            && !argMultimap.getValue(PREFIX_INTERESTEDCLIENTS).isPresent()
             && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
         }

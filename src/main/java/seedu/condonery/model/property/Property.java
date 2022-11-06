@@ -82,11 +82,10 @@ public class Property {
     }
 
     /**
-     * Returns an immutable interested client set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns interested client set
      */
     public Set<Client> getInterestedClients() {
-        return Collections.unmodifiableSet(interestedClients);
+        return interestedClients;
     }
 
     /**
@@ -153,6 +152,15 @@ public class Property {
 
         return otherProperty != null
                 && otherProperty.getName().equals(getName());
+    }
+
+    /**
+     * Checks if the Client is interested in this particular Property.
+     * @param client Client to find
+     * @return true if Client is interested in Property, false otherwise
+     */
+    public boolean hasInterestedClient(Client client) {
+        return interestedClients.contains(client);
     }
 
     /**

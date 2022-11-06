@@ -44,7 +44,7 @@ public class AddPropertyCommandTest {
         CommandResult commandResult = new AddPropertyCommand(validProperty).execute(modelStub);
 
         assertEquals(
-            String.format(AddPropertyCommand.MESSAGE_SUCCESS + ". No rejected client names.", validProperty),
+            String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty),
             commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
     }
@@ -143,6 +143,11 @@ public class AddPropertyCommandTest {
         }
 
         @Override
+        public Property getPropertyByExactName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteProperty(Property target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,6 +179,11 @@ public class AddPropertyCommandTest {
 
         @Override
         public void addClient(Client property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Client getClientByExactName(String name) {
             throw new AssertionError("This method should not be called.");
         }
 

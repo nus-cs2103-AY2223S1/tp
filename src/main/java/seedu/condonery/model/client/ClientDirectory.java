@@ -71,6 +71,18 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     }
 
     /**
+     * Returns Client with the exact name.
+     */
+    public Client getClientByExactName(String name) {
+        for (Client client : this.clients) {
+            if (client.getName().toString().equals(name)) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
