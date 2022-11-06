@@ -26,7 +26,7 @@ public class SortPropertiesCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_NAME + " NAME<ASC/DESC>] "
             + "[" + PREFIX_PRICE + " PRICE<ASC/DESC>] "
-            + "[" + PREFIX_TIME + " ENTRY TIME<ASC/DESC>]\n"
+            + "[" + PREFIX_TIME + " TIME OF CREATION<ASC/DESC>]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " " + ASC;
 
     public static final String MESSAGE_SUCCESS = "Sorted properties by: %s";

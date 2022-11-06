@@ -195,7 +195,7 @@ The `-n` flag indicates the buyer's name.<br>
 The `-ph` flag indicates the buyer’s phone number.<br>
 The `-e` flag indicates the buyer’s email.<br>
 The `-a` flag indicates the buyer’s home address.<br>
-The `-r` flag indicates the price range of properties that the buyer can accept, denoted using `-`.<br>
+The `-r` flag indicates the price range of properties that the buyer can accept, using `-` to specify the range.<br>
 The `-c` flag indicates the characteristics that the buyer is looking for in a property, separated by `;`.<br>
 The `-pr` flag indicates the priority of the buyer.
 
@@ -318,12 +318,12 @@ Examples:<br>
 ### List Commands
 #### List buyers in database: `listbuyers`
 
-Lists all buyers in the database in the visible list, that is, removes all filters.<br>
+Updates the displayed list to include all buyers in the database, that is, removes all filters.<br>
 Syntax: `listbuyers`
 
 #### List properties in database: `listprops`
 
-Lists all properties in the database in the visible list, that is, removes all filters.<br>
+Updates the displayed list to include all properties in the database, that is, removes all filters.<br>
 Syntax: `listprops`
 
 ### Find Commands
