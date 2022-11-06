@@ -14,12 +14,12 @@ Given below are my contributions to the project.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in these classes.
 
-* **Functionality**: Extended `person` to different categories in the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
+* **Functionality**: Extended `person` to different categories. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
   * What it does: Extended the `Person` class into `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
   * Justification: These models lay the foundation so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in these classes.
 
-* **New Feature**: Added a popup window for adding buyer and supplier. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
+* **New Feature**: Added a popup window for adding command. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
   * What it is about: Added a popup window with prompt text for adding buyers with orders and suppliers with pets, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
   * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer or supplier, which is very demanding in terms of memorisation.
   * Highlights: The popup window is designed to improve the user experience (UX). It also shows how UI, model and logic can be linked.
@@ -40,7 +40,6 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Updated the style of GUI and its layout. (Pull request: [#142](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/142))
   * Categorised all Java classes into their respective packages. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
-  * Adapted the `CommandResult` class to the added/modified commands.
   * Wrote additional tests to increase test coverage.
   * Fixed several bugs. (Pull requests: [#325](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/325), [#362](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/362))
 
