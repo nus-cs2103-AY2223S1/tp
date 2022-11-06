@@ -113,20 +113,20 @@ _Figure 1: HobbyList's default UI_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. HobbyList User Interface
+## **4. HobbyList User Interface**
 
 Refer to Figure 2 below to get yourself familiar with the user interface! 
 
 ![HobbyList UI](images/annotated_ui.jpg)
 _Figure 2: Annotated GUI of HobbyList_
 
-| Section            | Description                                                                                                                                    |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Toolbar            | Provides functionality for you to exit the application, rename commands, access the help page and change the appearance of the user interface. |
-| Command Input Box  | This is where you can type and perform the different commands available.                                                                       |
-| Command Result Box | This box displays information related to the commands you execute.                                                                             |
-| List of Activites  | This section displays the activity list and can display a subset of activities depending on the command you perform.                           |
-| Activity Details   | This box displays an activity's information after you perform the `select` command.                                                            |
+| Section                 | Description                                                                                                                                    |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Toolbar                 | Provides functionality for you to exit the application, rename commands, access the help page and change the appearance of the user interface. |
+| Command Input Box       | This is where you can type and perform the different commands available.                                                                       |
+| Command Result Box      | This box displays information related to the commands you execute.                                                                             |
+| List of Activites       | This section displays the activity list and can display a subset of activities depending on the command you perform.                           |
+| Selected Activity Panel | This box displays an activity's information after you perform the `select` command.                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ Examples:
   *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
 ![AddActivityExample](images/add_command_example.png)
-_Figure 3: New activity added after running `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`
+_Figure 3: New activity added after running `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`_
 
 <a name="what-is-an-activity"></a>
 <div markdown="block" class="alert alert-info">
@@ -195,13 +195,13 @@ _Figure 3: New activity added after running `add n/Badminton d/play badminton t/
 :information_source: **What is an activity?**<br>
 
 Every entry in HobbyList is an activity. Each activity contains the fields below.
-* *Name*: What the activity is called. Not optional.
-* *Description*: What the activity is about. Not optional.
-* *Tags*: What type of activity it is. Helps you to organise your activities. For example, you can have different activities tagged "book", "movie" or "recipe". Each activity can have multiple tags. Optional.
-* *Date*: When the activity was/will be done. Currently, each activity can only have one date, which you can set it to be the starting date, the ending date, or anything you like. Optional.
-* *Status*: Whether the activity is upcoming, ongoing or completed. Optional.
-* *Rating*: How good the activity is to you, on a scale of 1 to 5. Optional.
-* *Review*: Your feelings about the activity after completing it. Optional.
+* **Name**: What the activity is called. _Compulsory_.
+* **Description**: What the activity is about. _Compulsory_.
+* **Tags**: What type of activity it is. Helps you to organise your activities. For example, you can have different activities tagged "book", "movie" or "recipe". Each activity can have multiple tags. _Optional_.
+* **Date**: When the activity was/will be done. Currently, each activity can only have one date, which you can set it to be the starting date, the ending date, or anything you like. _Optional_.
+* **Status**: Whether the activity is upcoming, ongoing or completed. _Optional_.
+* **Rating**: How good the activity is to you, on a scale of 1 to 5. _Optional_.
+* **Review**: Your feelings about the activity after completing it. _Optional_.
 
 </div>
 
