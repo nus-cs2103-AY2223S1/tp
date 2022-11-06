@@ -4,10 +4,12 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.core.GuiSettings;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.tag.TagType;
 
@@ -139,4 +141,6 @@ public interface Model {
     void deleteTagTypeForAllPerson(TagType toDelete);
 
     void editTagTypeForAllPerson(TagType toEdit, TagType editTo);
+
+    void setPrefixMap(Map<Prefix, TagType> prefixMap);
 }

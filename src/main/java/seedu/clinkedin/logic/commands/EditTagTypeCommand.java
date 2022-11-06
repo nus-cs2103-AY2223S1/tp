@@ -54,6 +54,8 @@ public class EditTagTypeCommand extends Command {
                 | DuplicateTagTypeException | DuplicatePrefixException | TagTypePrefixPairNotFoundException e) {
             throw new CommandException(e.getMessage());
         }
+        model.setPrefixMap(UniqueTagTypeMap.getPrefixMap());
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_TAG_TYPE_SUCCESS, editToTagType));
     }
 

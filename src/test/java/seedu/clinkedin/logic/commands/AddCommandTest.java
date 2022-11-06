@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ReadOnlyAddressBook;
@@ -215,6 +217,11 @@ public class AddCommandTest {
 
         @Override
         public HashMap<String, Integer> getRatingCount() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
             throw new AssertionError("This method should not be called.");
         }
     }

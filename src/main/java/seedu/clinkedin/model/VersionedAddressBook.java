@@ -3,13 +3,19 @@ package seedu.clinkedin.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.exceptions.CannotRedoAddressBookException;
 import seedu.clinkedin.commons.exceptions.CannotUndoAddressBookException;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniquePersonList;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.tag.TagType;
 
 /**
  * Subclass of AddressBook that stores the state of the AddressBook at a particular point in time.
@@ -19,6 +25,7 @@ import seedu.clinkedin.model.person.UniquePersonList;
 public class VersionedAddressBook extends AddressBook {
 
     private final UniquePersonList persons;
+    private Map<Prefix, TagType> prefixMap;
 
     private final List<ReadOnlyAddressBook> addressBookStateList;
 
@@ -36,6 +43,7 @@ public class VersionedAddressBook extends AddressBook {
      */
     {
         persons = new UniquePersonList();
+        prefixMap = UniqueTagTypeMap.getPrefixMapCopy();
     }
 
     /**
@@ -79,7 +87,8 @@ public class VersionedAddressBook extends AddressBook {
     public void commit() {
         requireNonNull(addressBookStateList);
         removeStatesAfterCurrentPointer();
-        addressBookStateList.add(new AddressBook(this));
+        AddressBook toAdd = new AddressBook(this);
+        addressBookStateList.add(toAdd);
         currentStatePointer = addressBookStateList.size() - 1;
     }
 
@@ -142,8 +151,12 @@ public class VersionedAddressBook extends AddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        this.prefixMap = new HashMap<>();
+        for (Prefix p : newData.getPrefixMap().keySet()) {
+            prefixMap.put(p.copy(), newData.getPrefixMap().get(p).copy());
+        }
         setPersons(newData.getPersonList());
+        UniqueTagTypeMap.setPrefixMap(prefixMap);
     }
 
     //// person-level operations
@@ -218,5 +231,16 @@ public class VersionedAddressBook extends AddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    @Override
+    public Map<Prefix, TagType> getPrefixMap() {
+        return Collections.unmodifiableMap(prefixMap);
+    }
+    @Override
+    public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
+        this.prefixMap.clear();
+        this.prefixMap.putAll(prefixMap);
+        UniqueTagTypeMap.setPrefixMap(prefixMap);
     }
 }

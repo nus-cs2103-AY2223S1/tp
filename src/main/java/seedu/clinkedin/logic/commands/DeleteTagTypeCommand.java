@@ -41,6 +41,8 @@ public class DeleteTagTypeCommand extends Command {
         }
 
         model.deleteTagTypeForAllPerson(toDelete);
+        model.setPrefixMap(UniqueTagTypeMap.getPrefixMap());
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_TYPE_SUCCESS, toDelete));
     }
 

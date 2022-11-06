@@ -302,4 +302,5 @@ public class Person {
         }
         return new Note(this.note.value + "\n" + note.value);
     }
+
 }

@@ -2,6 +2,7 @@ package seedu.clinkedin.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import seedu.clinkedin.model.tag.TagType;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final Map<Prefix, TagType> prefixMap;
+    private Map<Prefix, TagType> prefixMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -33,7 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        prefixMap = UniqueTagTypeMap.getPrefixMap();
+        prefixMap = UniqueTagTypeMap.getPrefixMapCopy();
     }
 
     public AddressBook() {
@@ -62,7 +63,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
     }
 
@@ -121,10 +121,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public Map<Prefix, TagType> getPrefixMap() {
-        return prefixMap;
+        return Collections.unmodifiableMap(prefixMap);
     }
 
     public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
+        this.prefixMap.clear();
+        this.prefixMap.putAll(prefixMap);
         UniqueTagTypeMap.setPrefixMap(prefixMap);
     }
 

@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -18,6 +19,7 @@ import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.commons.core.LogsCenter;
 import seedu.clinkedin.commons.exceptions.CannotRedoAddressBookException;
 import seedu.clinkedin.commons.exceptions.CannotUndoAddressBookException;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.TagType;
@@ -239,8 +241,18 @@ public class ModelManager implements Model {
     @Override
     public void deleteTagTypeForAllPerson(TagType toDelete) {
         List<Person> personList = addressBook.getPersonList();
-        personList.stream().forEach(x -> x.deleteTagType(toDelete));
-        addressBook.setPersons(personList);
+        List<Person> updatedPersonList = new ArrayList<>();
+        for (Person p: personList) {
+            UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+            tagTypeMap.setTagTypeMap(p.getTags());
+            if (p.getTags().keySet().contains(toDelete)) {
+                tagTypeMap.removeTagType(toDelete);
+            }
+            updatedPersonList.add(new Person(p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), tagTypeMap,
+                    p.getStatus(), p.getNote(), p.getRating(), p.getLinks()));
+        }
+        addressBook.setPersons(updatedPersonList);
+
     }
 
     /**
@@ -251,12 +263,12 @@ public class ModelManager implements Model {
         List<Person> updatedPersonList = new ArrayList<>();
         for (Person p: personList) {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+            tagTypeMap.setTagTypeMap(p.getTags());
             if (p.getTags().keySet().contains(toEdit)) {
-                tagTypeMap.setTagTypeMap(p.getTags());
                 tagTypeMap.setTagType(toEdit, editTo);
-                p.setTagTypeMap(tagTypeMap);
             }
-            updatedPersonList.add(p);
+            updatedPersonList.add(new Person(p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), tagTypeMap,
+                    p.getStatus(), p.getNote(), p.getRating(), p.getLinks()));
         }
         addressBook.setPersons(updatedPersonList);
     }
@@ -278,6 +290,11 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public void setPrefixMap(Map<Prefix, TagType> prefixMap) {
+        this.addressBook.setPrefixMap(prefixMap);
     }
 
 }
