@@ -95,7 +95,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
+    
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -449,10 +449,10 @@ are updated sequentially rather than concurrently, such that there are
 separate loan commands in both `BookList` and `UniquePersonList` that are called
 by `BookFace` that updates the `BookList` and `UniquePersonList` respectively.
 
-It may be possible to make it such that only one loan command is ever called,
-but it may be easier to keep it separate to reduce access of `BookList`
-to `UniquePersonList` and vice versa, resulting in less coupling and ease of introducing changes
-in the future.
+We wanted to avoid the design such that both `Book` and `Person` were associated with each other 
+directly (ie. can access details of each other) to reduce coupling. Currently, `Person` contains a `Set` of loaned books
+while `Book` contains a `loanee` and a `returnDate` and the loan command updates all the attributes of `Person`
+and `Book` separately.
 
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
 automatically, and we resorted to getting the index of each list to set their
