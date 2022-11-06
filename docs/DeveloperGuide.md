@@ -349,7 +349,7 @@ UML Diagram:
 
 **Step 1**: User launches tha application.
 
-**Step 2**: User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+**Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
 A helper function in `ParserUtil` helps to trim the filename and check if it is valid. 
 
