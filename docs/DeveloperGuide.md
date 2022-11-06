@@ -192,6 +192,8 @@ The `Assignment` component,
 
 --- 
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -1060,8 +1062,6 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 ### UC13: Remove a task from a member
 
