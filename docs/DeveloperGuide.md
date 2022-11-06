@@ -1244,6 +1244,7 @@ starting point for testers to work on; testers are expected to do more *explorat
       Expected: No tag is deleted. Error details are shown in the status message.
    
    4. Other incorrect deleting tag commands to try: `delete -p 1 -t` (missing fields), `delete -p 1 -t x`, `...` (where x is larger than the number of patient's tags) <br>
+      Expected: Similar to previous.
 
 
 
