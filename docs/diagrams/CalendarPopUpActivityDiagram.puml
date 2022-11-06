@@ -2,7 +2,6 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User selects the calendar tab;
 :User selects appointments;
 :Displays the calendar pop-up with the relevant details;
 stop
