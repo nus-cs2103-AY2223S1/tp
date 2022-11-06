@@ -1,8 +1,8 @@
-
 ---
 layout: page
 title: User Guide
 ---
+
 # Introduction
 
 Welcome to the REal-Time User Guide!
@@ -40,16 +40,13 @@ _[More to be added]_
 1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`,
 click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
 on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
-
 2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
-
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
+3. Go to your Downloads folder 
+4. Double-click the `REal-Time.jar` to start the app. The window similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Refer to the [Layout](#layout) to understand the GUI better.
+5. Refer to the [Layout](#layout) section to understand the layout better.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
 pressing Enter will open the help window.<br>
@@ -57,7 +54,7 @@ pressing Enter will open the help window.<br>
 
    * **`addO`**`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
 
-   * **`deleteC`**`3` : Deletes the 3rd contact shown in the current list of clients.
+   * **`delC`**`3` : Deletes the 3rd contact shown in the current list of clients.
 
    * **`clear`** : Deletes all clients, meetings, listings and offers.
 
@@ -68,10 +65,59 @@ pressing Enter will open the help window.<br>
 
 # Layout
 
-[More to be added]
-[Screenshot to be added]
+![Layout](images/layout.png)
+`Command Box` - You can enter commands here.<br>
+`Feedback Box` - Real-Time feedbacks to your commands will appear here.<br>
+`Clients` - All clients in Real-Time will appear here.<br>
+`Offers` - All offers in Real-Time will appear here.<br>
+`Listings` - All listings in Real-Time will appear here.<br>
+`Meetings` - All meetings in Real-Time will appear here.
 
-___
+--------------------------------------------------------------------------------------------------------------------
+
+# Command format
+
+Real-Time functions are based on commands that you enter, let's learn how to write a command!
+
+This is an example:
+```text
+addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…
+```
+
+This command adds a client into Real-Time.<br>
+1. `addC` is the **Command Word**
+2. `n/` `p/` `e/` `a/` are prefixes. Prefixes help Real-Time distinguish between different inputs.
+3. `NAME` `PHONE_NUMBER` `EMAIL` `ADDRESS` are the data that you can input. For example, `NAME` in `n/NAME` can be replaced with `n/John Doe`.
+
+Let's say you want to add a client named `John Doe`, his phone number is `12345678`, his email is `john@gmail.com` and his address is `123 John St`.<br>
+
+You can enter the following command:<br>
+```text
+addC n/John Doe p/12345678 e/john@gmail.com a/123 John St
+```
+###Note:
+1. You may notice square brackets [] around some parameters. This indicates that the field is **optional**. For the
+example above, the `t/TAG` parameter can be left empty if you do not wish to tag the client.
+
+2. You may also notice `…` after the `t/TAG` field. This indicates that you may enter this field as many times as you
+want to (0 or more times). For example, if you want to tag `John Doe` as `Friend` and `Neighbor` you can add 
+`t/Friend t/Neighbor` to the command above.
+
+3. The order of every field does not matter. If the command specifies 
+`n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+4. If a field is expected only once in the command, but you specified it multiple times, only the last occurrence 
+will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will be taken.
+
+
+Let's try another example for another type of command:
+```text
+delL INDEX
+```
+
+This command edits a listing in Real-Time at the specified `INDEX`.
+###Note:
+1. `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,159 +125,118 @@ ___
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-___
-
-## General
-
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format - `help`
-
-
-![help message](images/helpMessage.png)
-
-### Clearing all entries : `clear`
-
-Clears all entries in REal-Time.
-
-Format - `clear`
-
-___
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format - `exit`
-
-___
-
-### Saving the data
-
-REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-___
-
-### Editing the data file
-
-REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
-Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid,
-REal-Time will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-___
-
 ## Managing Clients
 
 ### Adding a client: `addC`
 
-Adds a client to REal-Time.
+> Adds a client to REal-Time.
 
-Format - `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
+**Example input:**<br>
+```text
+addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
+```
 
-Examples:
-* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+**Expected output:**<br>
+A new client is added to RealTime.<br>
 
+Feedback Box:
+```text
+New client added: John Doe; Phone: 98765432; Email: johnd@example.com; Address: John street, block 123, #01-01
+```
 ___
 
 ### Deleting a client : `delC`
 
-Deletes the specified client in REal-Time.
+> Deletes the client at the specified index in REal-Time.
 
-Format - `delC INDEX`
+**Format** - `delC INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+**Expected output:**<br>
+The client at the expected index is deleted from Real-Time.<br>
 
-Examples:
-* `listC` followed by `delC 2` deletes the 2nd client in the address book.
-* `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
+Feedback Box:
+```text
+Deleted Client: [details of the deleted client]
+```
+###Note
+1. `listC` followed by `delC 2` deletes the 2nd client in the Real-Time.
+2. `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
 
 ___
 
 ### Editing a client : `editC`
 
-Edits an existing client in REal-Time
+> Edits an existing client in REal-Time
 
-Format - `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:** `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-Note:
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
-The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
+**Example input:**<br>
+```text
+editC 1 p/91234567 e/johndoe@example.com
+editC 2 n/Betsy Crower t/
+```
+**Expected Output:**<br>
+The client at the specified index is edited according to the fields provided.<br>
 
-Examples:
-* `editC 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-* `editC 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-
+FeedBack Box:
+```text
+Edited Client: [newly updated details of client]
+```
+###NOTE
+1. Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+   The index **must be a positive integer** 1, 2, 3, …​
+2. At least one of the optional fields must be provided.
+3. Existing values will be updated to the input values.
+4. When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+5. You can remove all the client’s tags by typing `t/` without
+   specifying any tags after it.
 ___
 ### Finding clients by name: `findC`
 
 Finds clients whose names contain any of the given keywords.
 
-Format - `findC KEYWORD [MORE_KEYWORDS]`
+**Format:** `findC KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
+**Example Input:**<br>
+```text
+findC John
+```
+**Expected Output:**<br>
+The list of clients in the Client Box is updated to a list of all matches from the findC command.
+
+FeedBack Box:
+```text
+[number of matches] clients listed!
+```
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
+###NOTE
+1. The search is case-insensitive. e.g `hans` will match `Hans`
+2. The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+3. Only the name is searched.
+4. Only full words will be matched e.g. `Han` will not match `Hans`
+5. Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `findC John` returns `john` and `John Doe`
-* `findC alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ___
 
 ### Listing Clients: `listC`
 
-Shows the full list of clients.
+> Shows the full list of clients.
 
-Format - `listC`
+**Format:** `listC`
 
+**Expected Output:**<br>
+The full list of clients appears in the Client Box.<br>
+
+Feedback Box:
+```text
+Listed all clients
+```
 [Screenshots to be added]
 ___
 
@@ -443,13 +448,67 @@ Examples:
 
 ___
 
-### Finding a meeting: `[Coming soon]`
+## General
+
+
+### Viewing help : `help`
+
+> Show a help window for Real-Time
+
+**Example Input:**<br>
+```text
+help
+```
+
+**Expected output:**<br>
+
+A window displaying help similar to below will appear.
+
+![help message](images/helpMessage.png)
+
+### Clearing all entries : `clear`
+
+> Clears all entries in REal-Time.
+
+**Example Input:**<br>
+```text
+clear
+```
+**Expected output:**<br>
+Feedback Box:
+```text
+Real-Time has cleared all data!
+```
+___
+
+### Exiting the program : `exit`
+
+> Exits the program.
+
+**Example Input:**<br>
+```text
+exit
+```
+**Expected output:**<br>
+
+The Real-Time window closes.
+___
+
+### Saving the data
+
+REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ___
 
-### Listing meetings: `[Coming soon]`
+### Editing the data file
 
-___
+REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid,
+REal-Time will discard all data and start with an empty data file at the next run.
+</div>
 
 
 # Glossary
