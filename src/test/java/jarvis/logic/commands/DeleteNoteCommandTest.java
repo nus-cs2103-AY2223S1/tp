@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.Messages;
@@ -34,29 +33,18 @@ public class DeleteNoteCommandTest {
     private static final int noteInt = noteIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
-    private LessonNotes expectedNotes;
-
-    @BeforeEach
-    public void setUp() throws Exception {
-        Student studentToAdd = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
-        model.getFilteredLessonList().get(lessonInt).addOverallNote(VALID_NOTE);
-        model.getFilteredLessonList().get(lessonInt).addStudentNote(VALID_NOTE, studentToAdd);
-
-        expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
-        expectedNotes.addNote(VALID_NOTE);
-        expectedNotes.addNote(studentToAdd, VALID_NOTE);
-    }
+    private LessonNotes expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
 
     @Test
     public void execute_overallNotesWithValidIndex_success() throws Exception {
+        addOverallNote();
         expectedNotes.deleteNote(noteInt);
 
-        CommandResult commandResult = new DeleteNoteCommand(noteIndex, lessonIndex, null).execute(model);
-
         Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
+        CommandResult commandResult = new DeleteNoteCommand(noteIndex, lessonIndex, null).execute(model);
         assertEquals(String.format(DeleteNoteCommand.MESSAGE_DELETE_OVERALL_NOTE_SUCCESS, lessonToDelete, VALID_NOTE),
                 commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, lessonToDelete.getLessonNotes());
+        assertEquals(expectedNotes.getGeneralNotes(), lessonToDelete.getLessonNotes().getGeneralNotes());
     }
 
     @Test
@@ -76,6 +64,7 @@ public class DeleteNoteCommandTest {
 
     @Test
     public void execute_studentNotesWithValidIndex_success() throws Exception {
+        addStudentNote();
         Student studentToDelete = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
         expectedNotes.deleteNote(studentToDelete, noteInt);
 
@@ -84,7 +73,8 @@ public class DeleteNoteCommandTest {
         Lesson lessonToDelete = model.getFilteredLessonList().get(lessonInt);
         assertEquals(String.format(DeleteNoteCommand.MESSAGE_DELETE_STUDENT_NOTE_SUCCESS, studentToDelete,
                 lessonToDelete, VALID_NOTE), commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, lessonToDelete.getLessonNotes());
+        assertEquals(expectedNotes.getStudentNotes(studentToDelete),
+                lessonToDelete.getLessonNotes().getStudentNotes(studentToDelete));
     }
 
     @Test
@@ -156,5 +146,16 @@ public class DeleteNoteCommandTest {
         // different note type -> returns false
         assertFalse(overallDeleteNoteCommand.equals(studentDeleteNoteCommand));
         assertFalse(studentDeleteNoteCommand.equals(overallDeleteNoteCommand));
+    }
+
+    public void addOverallNote() {
+        model.getFilteredLessonList().get(lessonInt).getLessonNotes().addNote(VALID_NOTE);
+        expectedNotes.addNote(VALID_NOTE);
+    }
+
+    public void addStudentNote() throws Exception {
+        Student studentToAdd = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
+        model.getFilteredLessonList().get(lessonInt).getLessonNotes().addNote(studentToAdd, VALID_NOTE);
+        expectedNotes.addNote(studentToAdd, VALID_NOTE);
     }
 }

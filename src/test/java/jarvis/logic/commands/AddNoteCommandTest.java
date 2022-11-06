@@ -7,6 +7,7 @@ import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.testutil.TypicalLessons.getTypicalLessonBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,8 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
+import jarvis.model.exceptions.InvalidNoteException;
 import jarvis.testutil.TypicalIndexes;
-
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -34,10 +35,10 @@ public class AddNoteCommandTest {
     private static final int studentInt = studentIndex.getZeroBased();
 
     private Model model = new ModelManager(getTypicalLessonBook(), new UserPrefs());
+    private LessonNotes expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
 
     @Test
     public void execute_overallNotesWithValidIndex_success() throws Exception {
-        LessonNotes expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
         expectedNotes.addNote(VALID_NOTE);
 
         CommandResult commandResult = new AddNoteCommand(lessonIndex, null, VALID_NOTE).execute(model);
@@ -45,7 +46,9 @@ public class AddNoteCommandTest {
         Lesson lessonToAdd = model.getFilteredLessonList().get(lessonInt);
         assertEquals(String.format(AddNoteCommand.MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, VALID_NOTE),
                 commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, model.getFilteredLessonList().get(lessonInt).getLessonNotes());
+        assertEquals(expectedNotes.getGeneralNotes(), lessonToAdd.getLessonNotes().getGeneralNotes());
+
+        lessonToAdd.deleteOverallNote(Index.fromZeroBased(0)); // remove the note
     }
 
     @Test
@@ -61,18 +64,15 @@ public class AddNoteCommandTest {
 
     @Test
     public void execute_overallNotesWithInvalidNote_throwsCommandException() {
-        assertCommandFailure(
-                new AddNoteCommand(lessonIndex, null, EMPTY_NOTE), model,
-                "Note cannot be empty");
+        assertThrows(InvalidNoteException.class, () ->
+                new AddNoteCommand(lessonIndex, null, EMPTY_NOTE).execute(model));
 
-        assertCommandFailure(
-                new AddNoteCommand(lessonIndex, null, BLANK_NOTE), model,
-                "Note cannot be empty");
+        assertThrows(InvalidNoteException.class, () ->
+                new AddNoteCommand(lessonIndex, null, BLANK_NOTE).execute(model));
     }
 
     @Test
     public void execute_studentNotesWithValidIndex_success() throws Exception {
-        LessonNotes expectedNotes = new LessonNotes(model.getFilteredLessonList().get(lessonInt).getStudentList());
         Student studentToAdd = model.getFilteredLessonList().get(lessonInt).getStudent(studentIndex);
         expectedNotes.addNote(studentToAdd, VALID_NOTE);
 
@@ -81,7 +81,10 @@ public class AddNoteCommandTest {
         Lesson lessonToAdd = model.getFilteredLessonList().get(lessonInt);
         assertEquals(String.format(AddNoteCommand.MESSAGE_ADD_STUDENT_NOTE_SUCCESS, studentToAdd, lessonToAdd,
                 VALID_NOTE), commandResult.getFeedbackToUser());
-        assertEquals(expectedNotes, model.getFilteredLessonList().get(lessonInt).getLessonNotes());
+        assertEquals(expectedNotes.getStudentNotes(studentToAdd),
+                lessonToAdd.getLessonNotes().getStudentNotes(studentToAdd));
+
+        lessonToAdd.deleteStudentNote(studentToAdd, Index.fromZeroBased(0)); // remove the note
     }
 
     @Test
@@ -99,11 +102,11 @@ public class AddNoteCommandTest {
 
     @Test
     public void execute_studentNotesWithInvalidNote_throwsCommandException() {
-        assertCommandFailure(
-                new AddNoteCommand(lessonIndex, studentIndex, EMPTY_NOTE), model, "Note cannot be empty");
+        assertThrows(InvalidNoteException.class, () ->
+                new AddNoteCommand(lessonIndex, studentIndex, EMPTY_NOTE).execute(model));
 
-        assertCommandFailure(
-                new AddNoteCommand(lessonIndex, studentIndex, BLANK_NOTE), model, "Note cannot be empty");
+        assertThrows(InvalidNoteException.class, () ->
+                new AddNoteCommand(lessonIndex, studentIndex, BLANK_NOTE).execute(model));
     }
 
     @Test
@@ -137,8 +140,8 @@ public class AddNoteCommandTest {
         assertFalse(studentAddNoteCommand.equals(null));
 
         // same values -> returns true
-        AddNoteCommand overallAddNoteCommandCopy = new AddNoteCommand(lessonIndex, null, "test note");
-        AddNoteCommand studentAddNoteCommandCopy = new AddNoteCommand(lessonIndex, studentIndex, "test note");
+        AddNoteCommand overallAddNoteCommandCopy = new AddNoteCommand(lessonIndex, null, VALID_NOTE);
+        AddNoteCommand studentAddNoteCommandCopy = new AddNoteCommand(lessonIndex, studentIndex, VALID_NOTE);
         assertTrue(overallAddNoteCommand.equals(overallAddNoteCommandCopy));
         assertTrue(studentAddNoteCommand.equals(studentAddNoteCommandCopy));
 
@@ -157,4 +160,5 @@ public class AddNoteCommandTest {
         assertFalse(overallAddNoteCommand.equals(studentAddNoteCommand));
         assertFalse(studentAddNoteCommand.equals(overallAddNoteCommand));
     }
+
 }
