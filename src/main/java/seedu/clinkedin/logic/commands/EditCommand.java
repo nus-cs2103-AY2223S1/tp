@@ -106,7 +106,6 @@ public class EditCommand extends Command {
         try {
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
@@ -137,9 +136,9 @@ public class EditCommand extends Command {
         original.setTagTypeMap(personToEditTags);
         UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
         UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
-
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
+
         UniqueTagTypeMap updatedTags = original;
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());

@@ -21,6 +21,7 @@ public class AddRateCommandParser implements Parser<AddRateCommand> {
      */
     public AddRateCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_RATING);
         Index index;
@@ -31,7 +32,9 @@ public class AddRateCommandParser implements Parser<AddRateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddRateCommand.MESSAGE_USAGE), ive);
         }
+
         rating = new Rating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
+
 
         return new AddRateCommand(index, rating);
     }

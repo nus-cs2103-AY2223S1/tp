@@ -31,7 +31,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private UniqueTagTypeMap tagTypeMap;
+    private final UniqueTagTypeMap tagTypeMap;
     private final Status status;
     private final Note note;
     private final Rating rating;
@@ -103,14 +103,6 @@ public class Person {
      */
     public ObservableMap<TagType, UniqueTagList> getTags() {
         return tagTypeMap.asUnmodifiableObservableMap();
-    }
-
-    /**
-     * Returns an immutable unique tag type map
-     * @return an immutable unique tag type map
-     */
-    public UniqueTagTypeMap getTagTypeMap() {
-        return tagTypeMap;
     }
 
     public Status getStatus() {

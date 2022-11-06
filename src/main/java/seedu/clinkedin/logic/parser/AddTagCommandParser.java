@@ -21,7 +21,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
         if (CliSyntax.getPrefixTags().size() == 0) {
-            throw new ParseException("No tag type found in the addressbook. "
+            throw new ParseException("No tag type found in the address book. "
                     + "Use 'createTagType' to create new tag types!");
         }
 
