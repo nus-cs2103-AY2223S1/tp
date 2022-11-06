@@ -20,6 +20,7 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
     private static final int MAX_DESCRIPTION_LENGTH = 256;
     public static final String MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED = "Reminder description can only contain "
             + MAX_DESCRIPTION_LENGTH + " characters.";
+    public static final String MESSAGE_DESCRIPTION_CANNOT_BE_EMPTY = "Reminder description cannot be empty!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateTagCommand
@@ -47,6 +48,8 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         if (description.length() > MAX_DESCRIPTION_LENGTH) {
             throw new ParseException(MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED);
+        } else if (description.length() == 0) {
+            throw new ParseException(MESSAGE_DESCRIPTION_CANNOT_BE_EMPTY);
         }
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         return index.map(i -> new ReminderCreateCommand(i, description, dateTime))

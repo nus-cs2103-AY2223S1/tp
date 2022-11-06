@@ -952,17 +952,17 @@ Use case ends.
 
 * 2a. The given index is invalid.
   
-  - 2a1. Rapportbook shows an error message.
+  * 2a1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2b. At least one of the specified tag(s) do not exist.
   
-  - 2b1. Rapportbook shows an error message.
+  * 2b1. Rapportbook shows an error message.
   * Use case resumes at step 2.
 
 * 2c. Contact already has at least one of the tag(s) specified.
   
-  - 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
+  * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
   * Use case resumes at step 2.
 
 #### Use case: Generate message templates
@@ -993,9 +993,94 @@ Use case ends.
   
   - Use case ends
 
+#### Use case: Reminder creation
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
+
+2. User requests to add a reminder to a specific contact in the list.
+
+3. Rapportbook shows success message.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+* 2a. The given index is invalid.
+
+  * 2a1. Rapportbook shows an error message.
+  * Use case resumes at step 2.
+
+* 2b. The reminder already exist for the contact, i.e. same description, date and time.
+
+  * 2b1. Rapportbook shows an error message.
+  * Use case resumes at step 2.
+
+* 2c. The description or date and time is invalid.
+
+  * 2c1. Rapportbook shows an error message.
+  * Use case resumes at step 2.
+
+#### Use case: Reminder deletion
+
+**MSS**
+
+1. User [goes to home page](#use-case-return-to-home-page) to view the list of reminders.
+
+2. User requests to delete a reminder in the reminders list.
+
+3. Rapportbook shows success message.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+* 1b. User [shows a specific contact](#use-case-show-contact).
+ 
+  * 1b1. Rapportbook shows the list of reminders for the chosen contact.
+  * 1b2. The list is not empty.
+  * Use case resumes at step 2.
+* 1c. User [shows a specific contact](#use-case-show-contact).
+
+  * 1c1. Rapportbook shows the list of reminders for the chosen particular contact.
+  * 1c2. The list is empty.
+  * Use case ends.
+* 2a. The given index is invalid.
+
+  * 2a1. Rapportbook shows an error message.
+  * Use case resumes at step 2.
+
+#### Use case: Clear reminders
+
+**MSS**
+
+1. User [goes to home page](#use-case-return-to-home-page) to view the list of reminders.
+
+2. User requests to clear the reminders list.
+
+3. Rapportbook shows success message.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User [shows a specific contact](#use-case-show-contact).
+
+  * 1a1. Rapportbook shows the list of reminders for the chosen contact.
+  * Use case resumes at step 2.
+
+#### Use case: Return to home page
+
+1. User requests to return to the home page.
+
+2. Rapportbook displays the home page to the user.
+   Use case ends.
+
 #### Use case: View motivational quote
 
-1. User accesses the home page of Rapportbook.
+1. User accesses the [home page](#use-case-return-to-home-page) of Rapportbook.
 
 2. Rapportbook shows a motivational quote on the home page.
    Use case ends.
