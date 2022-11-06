@@ -33,6 +33,28 @@ public class SortCommandTest {
     private ExerciseList exerciseList = new ExerciseList();
 
     @Test
+    public void execute_sortInExerciseList_showsSameList() {
+        List<Exercise> sampleUnsortedList = getUnsortedSameExercisesDifferentDates();
+        exerciseList.setExercises(sampleUnsortedList);
+        exerciseList.sortDisplayedList();
+        assertEquals(exerciseList.asDisplayedList(), getSortedSameExercisesDifferentDates());
+    }
+
+    @Test
+    public void execute_duplicatedDisplayedList_showsSameList() {
+        exerciseList.setExercises(getTypicalExercises());
+        assertEquals(exerciseList.asDisplayedList(), exerciseList.asDuplicatedDisplayedList());
+    }
+
+    @Test
+    public void execute_resetDisplayedList_showsSameList() {
+        exerciseList.setExercises(getTypicalExercises());
+        Collections.reverse(exerciseList.asDisplayedList());
+        exerciseList.resetDisplayedList();
+        assertEquals(exerciseList.asDisplayedList(), getTypicalExercises());
+    }
+
+    @Test
     public void execute_sortedList_showsSameList() {
         model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
         expectedModel = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
@@ -77,28 +99,6 @@ public class SortCommandTest {
         CommandResult result = new SortCommand().execute(model);
         assertEquals(new CommandResult(SortCommand.MESSAGE_SUCCESS), result);
         assertEquals(model.getFilteredExerciseList(), expectedModel.getFilteredExerciseList());
-    }
-
-    @Test
-    public void execute_sortInExerciseList_showsSameList() {
-        List<Exercise> sampleUnsortedList = getUnsortedSameExercisesDifferentDates();
-        exerciseList.setExercises(sampleUnsortedList);
-        exerciseList.sortDisplayedList();
-        assertEquals(exerciseList.asDisplayedList(), getSortedSameExercisesDifferentDates());
-    }
-
-    @Test
-    public void execute_duplicatedDisplayedList_showsSameList() {
-        exerciseList.setExercises(getTypicalExercises());
-        assertEquals(exerciseList.asDisplayedList(), exerciseList.asDuplicatedDisplayedList());
-    }
-
-    @Test
-    public void execute_resetDisplayedList_showsSameList() {
-        exerciseList.setExercises(getTypicalExercises());
-        Collections.reverse(exerciseList.asDisplayedList());
-        exerciseList.resetDisplayedList();
-        assertEquals(exerciseList.asDisplayedList(), getTypicalExercises());
     }
 
     /**
