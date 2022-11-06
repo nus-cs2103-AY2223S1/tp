@@ -1,13 +1,13 @@
 package seedu.waddle.testutil;
 
+import java.time.LocalTime;
+
 import seedu.waddle.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Description;
-
-import java.time.LocalTime;
 
 /**
  * A utility class to help with building EditItemDescriptor objects.
