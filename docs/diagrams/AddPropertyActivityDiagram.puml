@@ -1,0 +1,30 @@
+
+@startuml
+start
+:User executes add property command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([User provided all required parameters])
+:Buyer's name, phone, email and address are parsed;
+:New entryTime is created for the buyer;
+if () then ([priceRange provided])
+:Buyer's priceRange is parsed;
+else([else])
+endif
+if () then ([characteristics provided])
+:Buyer's characteristics is parsed;
+else([else])
+endif
+if () then ([priority provided])
+:Buyer's priority is parsed;
+else([else])
+endif
+#palegreen:New Buyer is returned;
+stop
+else([User failed to provide required parameters correctly])
+#pink:Cobb displays an error;
+end
+@enduml
+
