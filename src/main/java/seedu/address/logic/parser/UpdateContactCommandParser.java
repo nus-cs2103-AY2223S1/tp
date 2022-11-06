@@ -19,7 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
 
 /**
- * Parses user input for the set physician command.
+ * Parses user input for the update contact command.
  */
 public class UpdateContactCommandParser implements Parser<UpdateContactCommand> {
 
