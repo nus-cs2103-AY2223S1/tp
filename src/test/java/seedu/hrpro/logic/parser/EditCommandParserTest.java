@@ -37,6 +37,9 @@ import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.tag.Tag;
 import seedu.hrpro.testutil.EditProjectDescriptorBuilder;
 
+/**
+ * Contains test cases for EditCommandParser.
+ */
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;

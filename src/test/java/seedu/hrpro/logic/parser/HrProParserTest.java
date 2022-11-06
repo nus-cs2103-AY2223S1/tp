@@ -60,6 +60,9 @@ import seedu.hrpro.testutil.StaffUtil;
 import seedu.hrpro.testutil.TaskBuilder;
 import seedu.hrpro.testutil.TaskUtil;
 
+/**
+ * Contains test cases for HrProParser.
+ */
 public class HrProParserTest {
 
     private final HrProParser parser = new HrProParser();

@@ -33,7 +33,7 @@ import seedu.hrpro.testutil.TaskBuilder;
 
 public class AddTaskCommandTest {
     @Test
-    public void constructor_nullProject_throwsNullPointerException() {
+    public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
@@ -79,7 +79,7 @@ public class AddTaskCommandTest {
         // null -> returns false
         assertFalse(addTaskAlpha.equals(null));
 
-        // different project -> returns false
+        // different task -> returns false
         assertFalse(addTaskAlpha.equals(addTaskBravo));
     }
 
@@ -278,7 +278,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * A Model stub that contains a single project.
+     * A Model stub that contains a single task.
      */
     private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
         private final Task task;
@@ -296,7 +296,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * A Model stub that always accept the project being added.
+     * A Model stub that always accept the task being added.
      */
     private class ModelStubAcceptingTaskAdded extends AddTaskCommandTest.ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();

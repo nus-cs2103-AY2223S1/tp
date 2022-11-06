@@ -123,6 +123,86 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsNameIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for name: null
+     * Invalid equivalence partitions for word: null
+     * The two test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsNameIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsNameIgnoreCase("typical word", null));
+    }
+
+    @Test
+    public void containsNameIgnoreCase_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsNameIgnoreCase(null, "abc"));
+    }
+
+    /*
+     * Valid equivalence partitions for name:
+     *   - any name
+     *   - name containing symbols/numbers
+     *   - name with leading/trailing spaces
+     *   - empty name
+     *
+     * Valid equivalence partitions for word:
+     *   - one word
+     *   - multiple word
+     *   - word with extra spaces
+     *   - empty word
+     * Possible scenarios returning true:
+     *   - matches first word in name
+     *   - last word in name
+     *   - middle word in name
+     *   - matches multiple words in name
+     *   - matches partial word in name
+     *
+     * Possible scenarios returning false:
+     *   - name matches part of the query word
+     *   - word does not match any part of name
+     *
+     * The test methods below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void containsNameIgnoreCase_validInputs_correctResult() {
+
+        // Matches word in the name, different upper/lower case letters
+        assertTrue(StringUtil.containsNameIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
+        assertTrue(StringUtil.containsNameIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
+        assertTrue(StringUtil.containsNameIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Name has extra spaces
+        assertTrue(StringUtil.containsNameIgnoreCase("Aaa", "aaa")); // Only one name in word (boundary case)
+
+        // Matches multiple names in word
+        assertTrue(StringUtil.containsNameIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+
+        // Partial match with name
+        assertTrue(StringUtil.containsNameIgnoreCase("AAA bBb", "A b")); // Match across words in name
+        assertTrue(StringUtil.containsNameIgnoreCase("AAA bBb", "AA")); //Match within word in name
+    }
+
+    @Test
+    public void containsNameIgnoreCase_validInputs_incorrectResult() {
+        // Empty name
+        assertFalse(StringUtil.containsNameIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsNameIgnoreCase("    ", "123"));
+
+        // Empty word
+        assertFalse(StringUtil.containsNameIgnoreCase("abc", "")); // Boundary case
+        assertFalse(StringUtil.containsNameIgnoreCase("123", "  "));
+
+        // Have invalid forms of partial matches
+        assertFalse(StringUtil.containsNameIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+        assertFalse(StringUtil.containsNameIgnoreCase("ccc", "aaa ccc bbb")); // Name has partial match with word
+        assertFalse(StringUtil.containsNameIgnoreCase("ABC", "BCD")); // Name and word has overlaps
+        
+        // Completely no match
+        assertFalse(StringUtil.containsNameIgnoreCase("ABC 432", "XYZ 123")); // Name and word has overlaps
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*

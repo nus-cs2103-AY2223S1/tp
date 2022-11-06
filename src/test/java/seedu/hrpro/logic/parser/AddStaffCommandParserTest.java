@@ -47,6 +47,9 @@ import seedu.hrpro.model.staff.StaffTitle;
 import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for AddStaffCommandParser.
+ */
 public class AddStaffCommandParserTest {
 
     private AddStaffCommandParser parser = new AddStaffCommandParser();

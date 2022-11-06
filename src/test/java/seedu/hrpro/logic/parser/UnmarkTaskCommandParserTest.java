@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.UnmarkTaskCommand;
 
+/**
+ * Contains test cases for UnmarkTaskCommandParser.
+ */
 public class UnmarkTaskCommandParserTest {
     private UnmarkTaskCommandParser parser = new UnmarkTaskCommandParser();
 

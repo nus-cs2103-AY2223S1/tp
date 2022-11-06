@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.logic.commands.FindCommand;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
 
+/**
+ * Contains test cases for FindCommandParser.
+ */
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();

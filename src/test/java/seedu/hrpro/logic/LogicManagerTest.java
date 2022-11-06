@@ -31,6 +31,9 @@ import seedu.hrpro.storage.JsonUserPrefsStorage;
 import seedu.hrpro.storage.StorageManager;
 import seedu.hrpro.testutil.ProjectBuilder;
 
+/**
+ * Contains test cases for LogicManager.
+ */
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 

@@ -9,6 +9,9 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_ALPHA
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_BRAVO;
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_BRAVO;
+import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_BUDGET_BOB;
+import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_ALPHA;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -23,6 +26,9 @@ import seedu.hrpro.model.task.Task;
 import seedu.hrpro.model.task.TaskDescription;
 import seedu.hrpro.testutil.TaskBuilder;
 
+/**
+ * Contains test cases for AddTaskCommandParser.
+ */
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
 
@@ -35,52 +41,46 @@ public class AddTaskCommandParserTest {
                 + TASKDESCRIPTION_DESC_ALPHA, new AddTaskCommand(expectedTask));
 
         // Multiple deadline - last one taken
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
+        assertParseSuccess(parser, TASKDEADLINE_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
                 + TASKDESCRIPTION_DESC_ALPHA, new AddTaskCommand(expectedTask));
 
         // Multiple description - last one taken
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
+        assertParseSuccess(parser, TASKDESCRIPTION_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
                 + TASKDESCRIPTION_DESC_ALPHA, new AddTaskCommand(expectedTask));
     }
 
     @Test
-    public void parse_missingCompulsoryFields_failure() {
+    public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
-        // Missing task deadline
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA, expectedMessage);
+        // Missing deadline prefix
+        assertParseFailure(parser, TASKDESCRIPTION_DESC_ALPHA + VALID_TASKDEADLINE_ALPHA, expectedMessage);
 
-        // Missing task description
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO, expectedMessage);
+        // Missing description prefix
+        assertParseFailure(parser, VALID_TASKDESCRIPTION_ALPHA + TASKDEADLINE_DESC_ALPHA, expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(parser, VALID_TASKDESCRIPTION_ALPHA + VALID_TASKDEADLINE_ALPHA,
+                expectedMessage);
     }
 
     @Test
     public void parse_invalidFields_failure() {
         // Invalid task deadline
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA
+        assertParseFailure(parser, TASKDESCRIPTION_DESC_ALPHA
                 + INVALID_TASKDEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // Invalid task description
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO
+        assertParseFailure(parser, TASKDEADLINE_DESC_BRAVO
                 + INVALID_TASKDESCRIPTION_DESC, TaskDescription.MESSAGE_CONSTRAINTS);
+
+        // two invalid values, only the first invalid value reported
+        assertParseFailure(parser, INVALID_TASKDESCRIPTION_DESC
+                + INVALID_TASKDEADLINE_DESC, TaskDescription.MESSAGE_CONSTRAINTS);
 
         // Invalid preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TASKDEADLINE_DESC_BRAVO
                         + VALID_TASKDESCRIPTION_ALPHA,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_missingCompulsoryPrefix_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
-
-        // Missing task deadline prefix
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA
-                + VALID_TASKDEADLINE_ALPHA, expectedMessage);
-
-        // Missing task description prefix
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO
-                + VALID_TASKDESCRIPTION_ALPHA, expectedMessage);
-
     }
 }

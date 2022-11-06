@@ -37,33 +37,29 @@ import seedu.hrpro.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_TASKDESCRIPTION_ALPHA = "Todo 2103 homework";
-    public static final String VALID_TASKDESCRIPTION_BRAVO = "Submit 2100 assignment";
-    public static final String VALID_TASKDEADLINE_ALPHA = "2022-01-01";
-    public static final String VALID_TASKDEADLINE_BRAVO = "2023-02-21";
-    public static final String VALID_TASKMARK_ALPHA = "false";
-    public static final String VALID_TASKMARK_BRAVO = "true";
+    // Projects
+    public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_BUDGET_AMY = "11111111";
+    public static final String VALID_BUDGET_BOB = "22222222";
+    public static final String VALID_DEADLINE_AMY = "2022-01-01";
+    public static final String VALID_DEADLINE_BOB = "2022-12-28";
 
-    public static final String TASKDESCRIPTION_DESC_ALPHA =
-            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_ALPHA;
-    public static final String TASKDESCRIPTION_DESC_BRAVO =
-            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_BRAVO;
-    public static final String TASKDEADLINE_DESC_ALPHA =
-            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_ALPHA;
-    public static final String TASKDEADLINE_DESC_BRAVO =
-            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_BRAVO;
-    public static final String TASKMARK_DESC_ALPHA =
-            " " + PREFIX_TASK_MARK + VALID_TASKMARK_ALPHA;
-    public static final String TASKMARK_DESC_BRAVO =
-            " " + PREFIX_TASK_MARK + VALID_TASKMARK_BRAVO;
+    public static final String NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_NAME_BOB;
+    public static final String BUDGET_DESC_AMY = " " + PREFIX_BUDGET + VALID_BUDGET_AMY;
+    public static final String BUDGET_DESC_BOB = " " + PREFIX_BUDGET + VALID_BUDGET_BOB;
+    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
+    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
 
-    public static final String INVALID_TASKDESCRIPTION_DESC =
-            " " + PREFIX_TASK_DESCRIPTION + "Doing?????";
-    public static final String INVALID_TASKDEADLINE_DESC =
-            " " + PREFIX_TASK_DEADLINE + "yesterday";
-    public static final String INVALID_TASKMARK_DESC =
-            " " + PREFIX_TASK_MARK + "not sure";
+    public static final String INVALID_NAME_DESC = " " + PREFIX_PROJECT_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "911a"; // 'a' not allowed in budget
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "aaaa"; // wrong date format
 
+    public static final EditCommand.EditProjectDescriptor DESC_AMY;
+    public static final EditCommand.EditProjectDescriptor DESC_BOB;
+
+    // Staff
     public static final String VALID_STAFFNAME_ANDY = "Andy Lee";
     public static final String VALID_STAFFNAME_JAY = "Jayden Yap";
     public static final String VALID_STAFFCONTACT_ANDY = "93228146";
@@ -86,45 +82,58 @@ public class CommandTestUtil {
     public static final String STAFFLEAVE_DESC_ANDY = " " + PREFIX_STAFF_LEAVE + VALID_STAFFLEAVE_ANDY;
     public static final String STAFFLEAVE_DESC_JAY = " " + PREFIX_STAFF_LEAVE + VALID_STAFFLEAVE_JAY;
 
-    public static final String INVALID_STAFFNAME_DESC = " " + PREFIX_STAFF_NAME + "S@muel";
-    public static final String INVALID_STAFFCONTACT_DESC = " " + PREFIX_STAFF_CONTACT + "9090 A32!";
-    public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT + "GREAT department!!";
-    public static final String INVALID_STAFFTITLE_DESC = " " + PREFIX_STAFF_TITLE + "THE Best :3";
-    public static final String INVALID_STAFFLEAVE_DESC = " " + PREFIX_STAFF_LEAVE + "T";
+    public static final String INVALID_STAFFNAME_DESC = " " + PREFIX_STAFF_NAME + "S@muel"; // '@' not allowed
+    public static final String INVALID_STAFFCONTACT_DESC = " " + PREFIX_STAFF_CONTACT + "9090 A32!"; // Wrong format
+    public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT + "GREAT department!!"; // '!' not allowed
+    public static final String INVALID_STAFFTITLE_DESC = " " + PREFIX_STAFF_TITLE + "THE Best :3"; // ':' not allowed
+    public static final String INVALID_STAFFLEAVE_DESC = " " + PREFIX_STAFF_LEAVE + "T"; // Only true or false allowed
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_BUDGET_AMY = "11111111";
-    public static final String VALID_BUDGET_BOB = "22222222";
-    public static final String VALID_DEADLINE_AMY = "2022-01-01";
-    public static final String VALID_DEADLINE_BOB = "2022-12-28";
+    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_ANDY;
+    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_JAY;
+
+    // Tasks
+    public static final String VALID_TASKDESCRIPTION_ALPHA = "Todo 2103 homework";
+    public static final String VALID_TASKDESCRIPTION_BRAVO = "Submit 2100 assignment";
+    public static final String VALID_TASKDEADLINE_ALPHA = "2022-01-01";
+    public static final String VALID_TASKDEADLINE_BRAVO = "2023-02-21";
+    public static final String VALID_TASKMARK_ALPHA = "false";
+    public static final String VALID_TASKMARK_BRAVO = "true";
+
+    public static final String TASKDESCRIPTION_DESC_ALPHA =
+            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_ALPHA;
+    public static final String TASKDESCRIPTION_DESC_BRAVO =
+            " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_BRAVO;
+    public static final String TASKDEADLINE_DESC_ALPHA =
+            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_ALPHA;
+    public static final String TASKDEADLINE_DESC_BRAVO =
+            " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_BRAVO;
+    public static final String TASKMARK_DESC_ALPHA =
+            " " + PREFIX_TASK_MARK + VALID_TASKMARK_ALPHA;
+    public static final String TASKMARK_DESC_BRAVO =
+            " " + PREFIX_TASK_MARK + VALID_TASKMARK_BRAVO;
+
+    public static final String INVALID_TASKDESCRIPTION_DESC =
+            " " + PREFIX_TASK_DESCRIPTION + "Doing?????"; // '?' not allowed
+    public static final String INVALID_TASKDEADLINE_DESC =
+            " " + PREFIX_TASK_DEADLINE + "yesterday"; // Invalid deadline format
+    public static final String INVALID_TASKMARK_DESC =
+            " " + PREFIX_TASK_MARK + "not sure"; // Only true or false allowed
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_ALPHA;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_BRAVO;
+
+    // Commons
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_NAME_BOB;
-    public static final String BUDGET_DESC_AMY = " " + PREFIX_BUDGET + VALID_BUDGET_AMY;
-    public static final String BUDGET_DESC_BOB = " " + PREFIX_BUDGET + VALID_BUDGET_BOB;
-    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
-    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_PROJECT_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "911a"; // 'a' not allowed in budget
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "aaaa"; // wrong date format
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditProjectDescriptor DESC_AMY;
-    public static final EditCommand.EditProjectDescriptor DESC_BOB;
-    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_ANDY;
-
-    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_JAY;
-    public static final EditTaskCommand.EditTaskDescriptor DESC_ALPHA;
-    public static final EditTaskCommand.EditTaskDescriptor DESC_BRAVO;
     static {
         DESC_AMY = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withBudget(VALID_BUDGET_AMY).withDeadline(VALID_DEADLINE_AMY)

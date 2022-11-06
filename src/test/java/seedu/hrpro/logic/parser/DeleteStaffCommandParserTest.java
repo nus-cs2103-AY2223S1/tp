@@ -16,6 +16,9 @@ import seedu.hrpro.commons.core.index.Index;
 import seedu.hrpro.logic.commands.DeleteStaffCommand;
 import seedu.hrpro.model.project.ProjectName;
 
+/**
+ * Contains test cases for DeleteStaffCommandParser.
+ */
 public class DeleteStaffCommandParserTest {
 
     private DeleteStaffCommandParser parser = new DeleteStaffCommandParser();

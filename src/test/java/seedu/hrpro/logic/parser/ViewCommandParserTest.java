@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.ViewCommand;
 
+/**
+ * Contains test cases for ViewCommandParser.
+ */
 public class ViewCommandParserTest {
     private ViewCommandParser parser = new ViewCommandParser();
 

@@ -27,6 +27,9 @@ import seedu.hrpro.model.deadline.Deadline;
 import seedu.hrpro.model.task.TaskDescription;
 import seedu.hrpro.testutil.EditTaskDescriptorBuilder;
 
+/**
+ * Contains test cases for EditTaskCommandParser.
+ */
 public class EditTaskCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =

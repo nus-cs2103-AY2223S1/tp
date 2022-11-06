@@ -19,6 +19,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.STAFFNAME_DESC_JAY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.STAFFTITLE_DESC_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.STAFF_DESC_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.hrpro.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_ANDY;
@@ -49,6 +50,9 @@ import seedu.hrpro.model.tag.Tag;
 import seedu.hrpro.testutil.EditStaffDescriptorBuilder;
 import seedu.hrpro.testutil.StaffUtil;
 
+/**
+ * Contains test cases for EditStaffCommandParser.
+ */
 public class EditStaffCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -61,10 +65,13 @@ public class EditStaffCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, "pn/Chicken", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, NAME_DESC_AMY + STAFFNAME_DESC_ANDY, MESSAGE_INVALID_FORMAT);
 
+        // no project name specified
+        assertParseFailure(parser, "1" + STAFFNAME_DESC_ANDY, MESSAGE_INVALID_FORMAT);
+        
         // no field specified
-        assertParseFailure(parser, "1 pn/Chicken", EditStaffCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY, EditStaffCommand.MESSAGE_NOT_EDITED);
 
         // no index and field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -111,19 +118,29 @@ public class EditStaffCommandParserTest {
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + VALID_STAFFNAME_ANDY + INVALID_STAFFNAME_DESC,
                 StaffName.MESSAGE_CONSTRAINTS);
 
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Staff} being edited,
+        // parsing it together with a valid tag results in error
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + TAG_DESC_FRIEND
+                + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + NAME_DESC_AMY + TAG_EMPTY
+                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+
         // multiple invalid values, but only the first is captured
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFNAME_DESC
             + INVALID_STAFFTITLE_DESC + INVALID_STAFFCONTACT_DESC + INVALID_STAFFDEPARTMENT_DESC
             + INVALID_STAFFLEAVE_DESC + INVALID_TAG_DESC, StaffName.MESSAGE_CONSTRAINTS);
-
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         ProjectName validAmy = new ProjectName(VALID_NAME_AMY);
         Index targetIndex = INDEX_FIRST_PROJECT;
+
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + " "
                 + StaffUtil.getEditStaffDescriptorDetails(STAFF_DESC_ANDY);
+
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(STAFF_DESC_ANDY).build();
         EditStaffCommand command = new EditStaffCommand(validAmy, targetIndex, descriptor);
         assertParseSuccess(parser, userInput, command);
@@ -134,7 +151,9 @@ public class EditStaffCommandParserTest {
     public void parse_someOptionalFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PROJECT;
         ProjectName validProjectName = new ProjectName(VALID_NAME_AMY);
+
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + STAFFNAME_DESC_JAY + STAFFDEPARTMENT_DESC_JAY;
+
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_JAY)
                 .withDepartment(VALID_STAFFDEPARTMENT_JAY).build();
         EditStaffCommand command = new EditStaffCommand(validProjectName, targetIndex, descriptor);
@@ -209,7 +228,9 @@ public class EditStaffCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PROJECT;
         ProjectName validProjectName = new ProjectName(VALID_NAME_AMY);
+
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + INVALID_STAFFNAME_DESC + STAFFNAME_DESC_ANDY;
+
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_ANDY).build();
         EditStaffCommand command = new EditStaffCommand(validProjectName, targetIndex, descriptor);
         assertParseSuccess(parser, userInput, command);

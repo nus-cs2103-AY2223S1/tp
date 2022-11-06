@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.logic.commands.FindTaskCommand;
 import seedu.hrpro.model.task.TaskDescriptionContainsKeywordsPredicate;
 
+/**
+ * Contains test cases for FindTaskCommandParser.
+ */
 public class FindTaskCommandParserTest {
 
     private FindTaskCommandParser parser = new FindTaskCommandParser();
