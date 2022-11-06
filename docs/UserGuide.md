@@ -200,7 +200,7 @@ It requires at least one of the optional fields:
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `edit h/2 math tutorial` updates the 2nd index of `Alex Yeoh`'s homework list to `math tutorial`.
+  `edit h/2 math tutorial` updates the second index of `Alex Yeoh`'s homework list to `math tutorial`.
 
 #### Marking specific field in student: `mark`
 
