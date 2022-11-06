@@ -6,7 +6,24 @@ title: Developer Guide
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up and getting started](#setting-up-getting-started)
 3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI](#ui-component)
+   3. [Logic](#logic-component)
+   4. [Model](#model-component)
+   5. [Storage](#storage-component)
 4. [Implementation](#implementation)
+   1. [Assigning Teammates to a Task](#assign-teammates-to-a-task-feature)
+   2. [Clearing Tasks](#clearing-tasks-feature)
+   3. [Deleting a Task](#deleting-a-task-feature)
+   4. [Editing a Task](#editing-a-task-feature)
+   5. [Listing Tasks](#listing-tasks-feature)
+   6. [Marking a Task](#marking-a-task-feature)
+   7. [Unmarking a Task](#unmarking-a-task-feature)
+   8. [Task Class Design Considerations](#task-class-design-considerations)
+   9. [Proposed Undo/Redo Feature](#proposed-undoredo-feature)
+5. [Other Guides](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +78,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+* implements its functionality using a concrete `{Component Name} Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -121,7 +138,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `LogicManager` class first checks if the command is a task related command or an address book command. If the command is task related (i.e. format of `task ...`), it calls the `TaskPanelParser` to parse the user command. Otherwise, the `AddressBookParser` will parse the user command.
 
-Task commands:
+TaskPanel commands:
 * The `TaskPanelParser` class creates an `XYZTaskCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create `XYZTaskCommand` object (e.g., `AddTaskCommand`) which the `TaskPanelParser` returns back as a `TaskCommand` object which is a `Command` object.
 * All `XYZTaskCommandParser` classes (e.g., `AddTaskCommandParser`, `DeleteTaskCommanParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g., during testing.
 
@@ -170,108 +187,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
-
-### Mark Feature
-
-#### Current Implementation
-
-The `mark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and marking it.
-
-#### Example Usage of `task mark`
-
-1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
-2. User types in the command `task mark 1`, where `1` is the specified index given in one-based form.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `Task` to be marked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-5. The `Task` is marked as completed.
-6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as complete.
-
-### Unmark Feature
-
-#### Current Implementation
-
-The `unmark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and unmarking it.
-
-#### Example Usage of `task unmark`
-
-1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
-2. User types in the command `task unmark 1`, where `1` is the specified index given in one-based form.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `Task` to be unmarked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-5. The `Task` is marked as incompleted.
-6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
-
-### Task Delete Feature
-
-#### Current Implementation
-
-The `task delete` feature is implemented by removing the `task` indicated by user using a one-based `Index` from the current current filtered `TaskPanel`.
-
-#### Example Usage of `task delete`
-
-1. User launches Arrow and the `TaskPanel` is filled with all the existing `Task` entries that has been added by user.
-2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `Task` to be deleted is then fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-5. The `Task` is deleted from the `Model`.
-6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
-
-### Clear Feature
-
-#### Current Implementation
-
-The `clear` feature is implemented by acting on the current filtered`TaskPanel`, clearing all existing tasks in the task panel.
-
-#### Example Usage of `task clear`
-
-1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
-2. User types in the command `task clear`.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `TaskPanel` is resetted to be an empty one.
-5. The `GUI` is updated to show the new `TaskPanel` with zero task.
-
-### Task edit feature
-
-#### Current Implementation
-
-The task editing feature is primarily implemented within `EditTaskCommand` and the `EditTaskCommandParser` objects utilizing the help of `EditTaskDescriptor`.
-The `EditTaskDescriptor` object contains the new value(s) of the data that needs to be edited.
-
-#### Example usage of `task edit`
-
-1. The user adds a `Task` to the `TaskPanel`.
-2. The user types in the command `task edit 1 ti/TITLE`.
-The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
-
-![Sequence diagram](images/EditTaskCommandParse.png)
-
-3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
-The edited copy of the task then replaces the current task in the task list.
-
-![Sequence diagram](images/EditTaskCommandExecute.png)
-
-4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
+This section describes some noteworthy details on how certain task management features are implemented.
 
 
-#### `EditTaskDescriptor` implementation
-
-`EditTaskDescriptor` is implemented as a public nested class within `EditTaskCommand`. The class contains the edited values which are provided by the user that can be manipulated.
-`EditTaskDescriptor` has `get` and `set` methods:
-
-- `setTitle()` / `getTitle()`
-- `setProject()` / `getProject()`
-- `setDeadline()` / `getDeadline()`
-- `setAssignedContactIndexes(assignedContactIndexes)` / `getAssignedContactIndexes()`
-- `setUnassignedContactsIndexes(unassignedContactIndexes)` / `getUnassignedContactsIndexes()`
-
-where the `get` methods return `Optional<T>` objects containing the value to be edited, if any.
-
-`EditTaskDescriptor` also has:
-1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
-2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
-
-### Assign Teammate(s) to Task Feature
+### Assign Teammate(s) to a Task Feature
 
 #### Current Implementation
 
@@ -289,24 +208,86 @@ The `task assign` feature assigns/unassigns contacts to the task specified by th
 6. The `LogicManager` executes the command
 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
+9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based
    form, or through matching his full name.
 10. The `Teammate`s are assigned/unassigned to the `Task`.
 11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
-The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by 
-pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@ denotes that the 
+The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by
+pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@ denotes that the
 contact is to be unassigned from the task's assigned contact list.
 
-#### Design considerations:
-![TaskClassDiagram](images/TaskClassDiagram.png)
 
-The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Teammate` in the `AddressBook`, 
-and contains the name of the `Teammate`. We chose this implementation over composing `Task` and `Teammate` directly so 
-that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated 
-copies of `Teammate` objects created when we restart the app and populate the `Task`s with their assigned contacts.
+### Clearing Tasks Feature
 
-### List Tasks feature
+#### Current Implementation
+
+The `task clear` feature is implemented by acting on the currently filtered `TaskPanel`, clearing all existing tasks in the task panel.
+
+#### Example Usage of `task clear`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task clear`.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `TaskPanel` is set to be an empty one.
+5. The `GUI` is updated to show the new `TaskPanel` with no tasks.
+
+
+### Deleting a Task Feature
+
+#### Current Implementation
+
+The `task delete` feature is implemented by removing the `task` indicated by user using a one-based `Index` from the currently filtered `TaskPanel`.
+
+#### Example Usage of `task delete`
+
+1. User launches Arrow and the `TaskPanel` is filled with all the existing `Task` entries that has been added by user.
+2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be deleted is then fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is deleted from the `Model`.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
+
+
+### Editing a Task Feature
+
+#### Current Implementation
+
+The task editing feature is primarily implemented within `EditTaskCommand` and the `EditTaskCommandParser` objects utilizing the help of `EditTaskDescriptor`.
+The `EditTaskDescriptor` object contains the new value(s) of the data that needs to be edited.
+
+#### Example usage of `task edit`
+
+1. The user adds a `Task` to the `TaskPanel`.
+2. The user types in the command `task edit 1 ti/TITLE`.
+   The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
+
+![Sequence diagram](images/EditTaskCommandParse.png)
+
+3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
+   The edited copy of the task then replaces the current task in the task list.
+
+![Sequence diagram](images/EditTaskCommandExecute.png)
+
+4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
+
+#### `EditTaskDescriptor` implementation
+
+`EditTaskDescriptor` is implemented as a public nested class within `EditTaskCommand`. The class contains the edited values which are provided by the user that can be manipulated.
+`EditTaskDescriptor` has `get` and `set` methods:
+
+- `setTitle()` / `getTitle()`
+- `setProject()` / `getProject()`
+- `setDeadline()` / `getDeadline()`
+
+where the `get` methods return `Optional<T>` objects containing the value to be edited, if any.
+
+`EditTaskDescriptor` also has:
+1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
+2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
+
+
+### Listing Tasks feature
 
 #### Implementation
 
@@ -322,10 +303,10 @@ As observed above, the execution flow for this command is quite straightforward.
 
 1. The user enters a list tasks command
 2. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
-2. The `TaskPanelParser` detects the `ListTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `ListTaskCommandParser`
-3. The relevant parameters are used to create an instance of a `ListTaskCommandd`, which is then returned to the `TaskPanelParser`
-4. The `LogicManager` executes the command
-5. The command generates the appropriate predicate based on its parameters, and filters the `Model`'s task list.
+3. The `TaskPanelParser` detects the `ListTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `ListTaskCommandParser`
+4. The relevant parameters are used to create an instance of a `ListTaskCommandd`, which is then returned to the `TaskPanelParser`
+5. The `LogicManager` executes the command
+6. The command generates the appropriate predicate based on its parameters, and filters the `Model`'s task list.
 
 Most of the work is done in the parsing step by the `ListTaskCommandParser`, and the execution step to generate the right predicate.
 
@@ -336,6 +317,46 @@ The `ListTaskCommandParser` relies on the `ArgumentMultimap` abstraction, which 
 The `ListTaskCommandParser` also relies on the `PrettyTime NLP` open-source library to parse dates described in plain English. This is relevant for the `before` and `after` prefixes.
 
 Lastly, upon execution, the `ListTaskCommand` builds a single predicate to be used to filter the `Model`'s task list. As mentioned above, multiple filters are combined with the logical `AND`. For example, `task list fix before tomorrow -c` shows all tasks that are completed, contain the keyowrd 'fix', **and** has a due date that is before tomorrow.
+
+
+### Marking a Task Feature
+
+#### Current Implementation
+
+The `mark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and marking it.
+
+#### Example Usage of `task mark`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task mark 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be marked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is marked as completed.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as complete.
+
+### Unmarking a Task Feature
+
+#### Current Implementation
+
+The `unmark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and unmarking it.
+
+#### Example Usage of `task unmark`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task unmark 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be unmarked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is marked as incomplete.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
+
+
+### Task Class Design Considerations:
+![TaskClassDiagram](images/TaskClassDiagram.png)
+
+The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Teammate` in the `AddressBook`, 
+and contains the name of the `Teammate`. We chose this implementation over composing `Task` and `Teammate` directly so 
+that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated 
+copies of `Teammate` objects created when we restart the app and populate the `Task`s with their assigned contacts.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -415,12 +436,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the teammate being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -833,7 +848,7 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a teammate
+### Deleting a Teammate
 
 1. Deleting a teammate while all teammates are being shown
 
