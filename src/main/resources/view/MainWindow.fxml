@@ -58,6 +58,7 @@
               </padding>
               <StackPane fx:id="buyerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
+            <StackPane fx:id="buyerStatusBarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
           <VBox HBox.hgrow="ALWAYS">
             <Label style="-fx-text-fill: white;" text="Property List" textFill="WHITE">
@@ -71,10 +72,9 @@
               </padding>
               <StackPane fx:id="propertyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
+            <StackPane fx:id="propertyStatusBarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
         </HBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

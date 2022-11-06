@@ -10,8 +10,7 @@ import java.util.Arrays;
  * Individual characteristics are separated by semicolons.
  */
 public class Characteristics {
-    public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
-            + "characteristics entry cannot be left blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Characteristics can take any values.";
 
     public static final Characteristics RESET_CHARACTERISTICS = new Characteristics("RESET");
 
