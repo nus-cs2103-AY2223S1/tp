@@ -26,6 +26,30 @@ However, you may also choose to head over to the relevant sections as described 
 - [Features](#features) - To learn the different features and commands used in CodeConnect
 - [Command Summary](#Command summary) - To have a complete overview of all the features and their respective command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Boxes like this indicate gotchas that you might wish to watch out for.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:question: **Extra information**
+
+Boxes like this indicate extra information you might be curious about.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Additional tips**
+
+Boxes like this indicate more tips to help you make the most out of CodeConnect.
+
+</div>
+
+<div class="page-new"></div>
+
 ## Quick start
 
 CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java 11 or above installed on your computer.
@@ -41,6 +65,7 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     ![UiOnStartup](images/UiOnStartup.png)
+    <div class="page-new"></div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -59,13 +84,11 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div class="page-new"></div>
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:question: Notes about the command format:**<br>
 
 * Words in `{curly_braces}` are the parameters to be supplied by the user.<br>
   e.g. In `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
@@ -98,8 +121,6 @@ Several commands below require an `index` to be specified, as they operate on a 
 
 </div>
 
-<div class="page-new"></div>
-
 ### Getting help
 
 #### Viewing help : `help`
@@ -118,6 +139,8 @@ Format:
 Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59`
+
+<div class="page-new"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -159,6 +182,8 @@ CodeConnect will happily accept deadlines that are in the past, in case you want
 
 </div>
 
+<div class="page-new"></div>
+
 #### Editing a task: `edit`
 
 Edits the specified task.
@@ -188,8 +213,6 @@ Format:
 Example:
 `del 5`
 
-<div class="page-new"></div>
-
 #### Deleting all completed tasks: `clean`
 
 Deletes all completed tasks.
@@ -203,6 +226,8 @@ This command has similar spelling to the [clear command](#clearing-all-contacts-
 
 </div>
 
+<div class="page-new"></div>
+
 #### Marking a task: `mark`
 
 Marks the specified task as complete.
@@ -215,8 +240,6 @@ Example:
 
 ![marktask](images/markTask.png)
 
-<div class="page-new"></div>
-
 #### Unmarking a task: `unmark`
 
 Marks the specified task as incomplete.
@@ -226,6 +249,8 @@ Format:
 
 Example:
 `unmark 3`
+
+<div class="page-new"></div>
 
 #### Searching for tasks: `find`
 
