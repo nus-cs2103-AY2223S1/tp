@@ -32,10 +32,10 @@ public abstract class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns true is and only if the date falls within the period {@code keyword}.
+     * Returns true is and only if the date falls within the period {@code keyword}
+     * with respect to a givenDate {@code givenDate}.
      */
-    public boolean isInPeriod(DateKeyword keyword) {
-        LocalDate today = LocalDate.now();
+    public boolean isInPeriod(DateKeyword keyword, LocalDate givenDate) {
         LocalDate startDate;
         LocalDate endDate;
 
@@ -43,16 +43,16 @@ public abstract class Date implements Comparable<Date> {
         case ALL_TIME:
             return true;
         case TOMORROW:
-            startDate = today.plusDays(1);
-            endDate = today.plusDays(1);
+            startDate = givenDate.plusDays(1);
+            endDate = givenDate.plusDays(1);
             break;
         case THIS_MONTH:
-            startDate = today.withDayOfMonth(1);
-            endDate = today.withDayOfMonth(today.getMonth().length(today.isLeapYear()));
+            startDate = givenDate.withDayOfMonth(1);
+            endDate = givenDate.withDayOfMonth(givenDate.getMonth().length(givenDate.isLeapYear()));
             break;
         case THIS_WEEK:
-            startDate = today;
-            endDate = today.plusDays(7);
+            startDate = givenDate;
+            endDate = givenDate.plusDays(7);
             break;
         default:
             startDate = null;
@@ -62,6 +62,15 @@ public abstract class Date implements Comparable<Date> {
         requireNonNull(endDate);
 
         return isAfterDate(startDate) && isBeforeDate(endDate);
+    }
+
+    /**
+     * Returns true is and only if the date falls within the period {@code period}
+     * with respect to the present.
+     */
+    public boolean isInPeriod(DateKeyword period) {
+        LocalDate today = LocalDate.now();
+        return isInPeriod(period, today);
     }
 
     @Override

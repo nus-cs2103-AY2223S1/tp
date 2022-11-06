@@ -13,9 +13,9 @@ public class Birthday extends Date {
 
     public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])(0[0-9]||1[0-2])([0-9][0-9])?[0-9][0-9]$";
     public static final String MESSAGE_FORMAT_CONSTRAINTS =
-            "Birthday should be in the format DDMMYYYY and should be a valid day of the year";
+            "Birthday should be in the format DDMMYYYY and should be a valid day of the year.";
     public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Birthday should be at most 100 years before and no more than the date of creation";
+            "Birthday should be at most 100 years before and no more than the date of creation.";
     private static final int YEARS_BEFORE = 100;
 
     /**
@@ -57,10 +57,19 @@ public class Birthday extends Date {
     }
 
     /**
+     * Returns a new Birthday with respect to the given date {@code givenDate}.
+     */
+    public static Birthday upcomingBirthday(Birthday birthday, LocalDate givenDate) {
+        LocalDate birthdayDate = birthday.date;
+        int yearDifference = givenDate.getYear() - birthdayDate.getYear();
+        return new Birthday(birthdayDate.plusYears(yearDifference));
+    }
+
+    /**
      * Returns a new Birthday with the current year.
      */
-    public Birthday upcomingBirthday() {
-        int yearDifference = LocalDate.now().getYear() - date.getYear();
-        return new Birthday(date.plusYears(yearDifference));
+    public static Birthday upcomingBirthday(Birthday birthday) {
+        LocalDate today = LocalDate.now();
+        return upcomingBirthday(birthday, today);
     }
 }

@@ -124,7 +124,7 @@ public class Client {
         if (birthday.isEmpty()) {
             return false;
         }
-        Birthday upcomingBirthday = birthday.get().upcomingBirthday();
+        Birthday upcomingBirthday = Birthday.upcomingBirthday(birthday.get());
 
         return upcomingBirthday.isInPeriod(dateKeyword);
     }
