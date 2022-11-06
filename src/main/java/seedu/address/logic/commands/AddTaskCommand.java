@@ -57,7 +57,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_NAME, description = FLAG_TASK_NAME_DESCRIPTION)
     private TaskName taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},

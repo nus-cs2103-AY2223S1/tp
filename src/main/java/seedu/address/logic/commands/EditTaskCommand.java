@@ -16,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_ASSIGNEES;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_NAME;
 
 import java.time.LocalDateTime;
@@ -64,7 +65,7 @@ public class EditTaskCommand extends Command {
 
     private final EditTaskDescriptor editTaskDescriptor;
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
