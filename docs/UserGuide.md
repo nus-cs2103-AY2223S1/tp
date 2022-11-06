@@ -259,10 +259,6 @@ Examples:
 
 Displays all contacts stored in application.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-After executing find command, only contacts that match your input will be displayed. list command would make the application display all of your stored contacts again.
-</div>
-
 Format: `list`
 
 Example Command: `list`
