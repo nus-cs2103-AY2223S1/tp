@@ -28,22 +28,27 @@ for easy reference. So, let's [get started](#installation)!
 - [How to Use OmniHealth](#how-to-use-omnihealth)
   - [Layout](#layout)
   - [Navigation](#navigation)
-    - [Patient/Record List](#patient-list)
-    - [Filtered/Unfiltered List](#filteredunfiltered-list)
+    - [Patient/Record List Views](#patientrecord-list-views)
+    - [Filtered/Unfiltered List Views](#filteredunfiltered-list-views)
   - [Command Format](#command-format)
   - [Key Definitions](#key-definitions)
     - [Patient](#patient)
+    - [Appointment](#appointment)
     - [Record](#record)
 - [Features](#features)
+  - [General Commands](#general-commands)
+    - [Viewing help](#viewing-help-help): `help`
+    - [Displaying the full list](#displaying-the-full-list-showall): `showall`
+    - [Exiting the program](#exiting-the-program-exit): `exit`
   - [Patient Commands](#patient-commands)
     - [Listing all patients](#listing-all-patients-list): `list`
     - [Adding a patient](#adding-a-patient-add): `add`
     - [Deleting a patient](#deleting-a-patient-delete): `delete`
     - [Editing a patient](#editing-a-patient-edit): `edit`
     - [Finding patients by name](#finding-patients-by-name-find): `find`
-    - [Clearing all patient entries](#clearing-all-patient-entries--clear): `clear`
+    - [Clearing all patient entries](#clearing-all-patient-entries-clear): `clear`
   - [Appointment Commands](#appointment-commands)
-    - [Adding an appointment](#adding-an-appointment--appt): `appt`
+    - [Adding an appointment](#adding-an-appointment-appt): `appt`
     - [Clearing an appointment](#clearing-an-appointment-apptcl): `apptcl`
   - [Record Commands](#record-commands)
     - [Listing all records of a patient](#listing-all-records-of-a-patient-rlist): `rlist`
@@ -52,10 +57,6 @@ for easy reference. So, let's [get started](#installation)!
     - [Editing a record](#editing-a-record-redit): `redit`
     - [Finding records by keyword](#finding-records-by-keyword-rfind): `rfind`
     - [Clearing all patient records](#clearing-all-patient-records--rclear): `rclear`
-  - [General Commands](#general-commands)
-    - [Viewing help](#viewing-help-help): `help`
-    - [Displaying the full list](#displaying-the-full-list-showall): `showall`
-    - [Exiting the program](#exiting-the-program-exit): `exit`
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 <div style="page-break-after: always;"></div>
@@ -89,9 +90,9 @@ Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
 
 ### Navigation
 Managing your patient database is made easy with OmniHealth and navigating it is easier!
-This section covers the 2 viewing modes: **Patient list view** and **record list view** as well as how to **exit a search**.
+This section covers the 2 viewing modes: **Patient List View** and **Record List View** as well as how to **exit a search**.
 
-#### Patient/Record List
+#### Patient/Record List Views
 Navigating in between patients and their records is done easily with 2 commands:
 [`rlist`](#listing-all-records-of-a-patient-rlist) and [`list`](#listing-all-patients-list)
 
@@ -101,28 +102,22 @@ Navigating in between patients and their records is done easily with 2 commands:
 
 Navigating into each patient's records is done through the [`rlist`](#listing-all-records-of-a-patient-rlist) command.
 
-Example: `rlist 1` will enter the **record list view** of `Alex Yeoh`
+Example: `rlist 1` will enter the **Record List View** of `Alex Yeoh`
 
 **Record List View:**
 
 ![ui-record-list](images/UiRecords.png){: .shadow}
 
-To return to the patient list view, simply type [`list`](#listing-all-patients-list).
+To return to the Patient List View, simply type [`list`](#listing-all-patients-list).
 
 
-#### Filtered/Unfiltered List
+#### Filtered/Unfiltered List Views
 OmniHealth's sorting and filtering system allows you to search for specific patients and records in each respective list views.
-Navigating in between the filtered and unfiltered view is done easily with 1 command: [`showall`](#displaying-the-full-list-showall)
+After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`](#finding-records-by-keyword-rfind), the list will be considered **filtered**.
+To display all the patients/records (**Unfiltered List View**), you can use the command [`showall`](#displaying-the-full-list-showall).
 <div markdown="block" class="alert alert-info">
 
-**:information_source: [`showall`](#displaying-the-full-list-showall) command is applicable to both patient list view and record list view**<br>
-
-</div>
-<div markdown="block" class="alert alert-info">
-
-**:information_source: More information:**<br>
-* To find patients by name: [`find`](#finding-patients-by-name-find)
-* To find records by keyword: [`keyword`](#finding-records-by-keyword-rfind)
+**:information_source: [`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View**<br>
 
 </div>
 
@@ -152,28 +147,31 @@ Here are some general guidelines for you to better understand the command format
 ### Key Definitions
 #### Patient
 
-| Input Fields | Flag | Description                                                                       |
-|--------------|------|-----------------------------------------------------------------------------------|
-| Name         | n/   | Name of the patient, which accepts alphanumeric characters, and must not be blank |
-| Birthdate    | b/   | Birthdate of the patient, given in dd-MM-yyy                                      |
-| Phone Number | p/   | Phone number of the patient, restricted to 5-15 integers                          |
-| Email        | e/   | Email of the patient, which needs to be in the format local-part@domain           |
-| Address      | a/   | Address of the patient, taking any value but cannot be blank                      |
+| Input Fields  | Flag | Description                                                                       |
+|---------------|------|-----------------------------------------------------------------------------------|
+| PATIENT_INDEX | NIL  | Index of the patient                                                              |
+| NAME          | n/   | Name of the patient, which accepts alphanumeric characters, and must not be blank |
+| BIRTHDATE     | b/   | Birthdate of the patient, given in dd-MM-yyy                                      |
+| PHONE_NUMBER  | p/   | Phone number of the patient, restricted to 5-15 integers                          |
+| EMAIL         | e/   | Email of the patient, which needs to be in the format local-part@domain           |
+| ADDRESS       | a/   | Address of the patient, taking any value but cannot be blank                      |
+| TAG           | t/   | Relevant tagging for the patient, which cannot have blanks                        |
 
 #### Appointment
 
-| Input Fields | Flag  | Description                                                                                                               |
-|--------------|-------|---------------------------------------------------------------------------------------------------------------------------|
-| Index        | NIL   | Index of the patient                                                                                                      |
-| Date & Time  | d/    | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                     |
+| Input Fields          | Flag | Description                                                                                                               |
+|-----------------------|------|---------------------------------------------------------------------------------------------------------------------------|
+| PATIENT_INDEX         | NIL  | Index of the patient                                                                                                      |
+| APPOINTMENT_DATE_TIME | d/   | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                  
 
 #### Record
 
-| Input Fields   | Flag | Description                                                                                                 |
-|----------------|------|-------------------------------------------------------------------------------------------------------------|
-| Date & Time    | d/   | Date and time of the record, given in the format dd-MM-yyyy HHmm <br/> Note: Dates cannot be in the future! |
-| Record Details | r/   | Details of the record, taking any value but cannot be blank                                                 |
-| Medication     | m/   | Medication prescribed, if any                                                                               |                                                                          
+| Input Fields     | Flag | Description                                                                                                 |
+|------------------|------|-------------------------------------------------------------------------------------------------------------|
+| RECORD_INDEX     | NIL  | Index of the record                                                                                         |
+| RECORD_DATE_TIME | d/   | Date and time of the record, given in the format dd-MM-yyyy HHmm <br/> Note: Dates cannot be in the future! |
+| RECORD_DETAILS   | r/   | Details of the record, taking any value but cannot be blank                                                 |
+| MEDICATION       | m/   | Medication prescribed, if any                                                                               |                                                                          
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -187,8 +185,17 @@ What you should expect to find:
 * Example usages of the feature
 * Important points to note about the feature
 
-### Patient Commands
-> Commands relating to the patient list, such as adding and deleting patients
+### General Commands
+> Some general commands for the application
+
+#### Viewing help: `help`
+
+> Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+Format: `help`
+
+[<*Back to ToC*>](#table-of-contents)
 
 #### Listing all patients: `list`
 
@@ -197,194 +204,6 @@ Returns to the patient list from the record list screen.
 * The record list screen must be shown for this command to be valid.
 
 Format: `list`
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Adding a patient: `add`
-
-> Adds a patient to the patient record database.
-
-Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-* Patient's name entered in is case-insensitive.
-* Name should only contain alphanumeric characters (eg. s/o is not a valid input).
-* Birthdate **cannot be after the current date**.
-* Duplicate patients are not allowed.
-    * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Birthdate must be given in DD-MM-YYYY format!
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Deleting a patient: `delete`
-
-> Deletes the specified patient from the patient database.
-
-Format: `delete INDEX`
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient records list.
-* The index must be a positive integer 1, 2, 3, …​
-* The index must be within the [system limit](#faq).
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Editing a patient: `edit`
-
-> Edits an existing patient in the address book.
-
-Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
-* At least one of the optional fields must be provided
-    * if the same field is specified more than once, only the latest instance of the field is used.
-    * eg. edit 1 n/Johnny n/Becky -> Person's name is edited to Becky.
-* Existing values will be overridden by the input values.
-  * eg. when editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can remove all the patient’s tags by typing `t/` without
-  specifying any tags after it.
-</div>
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Finding patients by name: `find`
-
-> Finds patients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Clearing all patient entries: `clear`
-
-> Clears all patients from Omnihealth.
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-
-Format: `clear`
-
-[<*Back to ToC*>](#table-of-contents)
-
-### Appointment Commands
-> Commands for adding and clearing appointments
-
-#### Adding an appointment: `appt`
-
-> Adds an appointment for a specified patient. This command is only valid in the patient list view.
-
-Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
-
-* The command can only be called when the patient addressbook is displayed (after using `list`).
-* Adds a new appointment for the patient under the specified `INDEX`, with the given date.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the [system limit](#faq).
-* The appointment date **cannot be before the current date**.
-* If a pre-existing appointment is present, it will be overridden by the new appointment.
-* Appointments that have passed will not be removed automatically, and require either a new appointment to override 
-or the `apptcl` command in the next section below to be used. Further development of the appointment feature will be released in 
-future iterations!
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Appointment date & time must be given in DD-MM-YYYY HHmm format!
-</div>
-
-Examples:
-* `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
-* `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Clearing an appointment: `apptcl`
-
-> Clears the appointment for a specified patient. This command is only valid in the patient list view.
-
-Format: `apptcl INDEX`
-
-* The command can only be called when the patient list is displayed (after using `list`).
-* Clears any appointment under the patient with the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the [system limit](#faq).
-* The command will return the patient list to its original state, before any filters were applied to the list.
-
-Examples:
-* `apptcl 1` clears the appointment (if any) of the patient with index 1.
-
-[<*Back to ToC*>](#table-of-contents)
-
-### Record Commands
-> Commands relating to the record list of a patient, such as adding or deleting a record
-
-#### Adding a record: `radd`
-
-> Adds a new record to a given patient.
-
-Format: `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]…` 
-
-* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* Adds a new record to the patient with given `RECORD_DATE_TIME`, `RECORD_DETAILS` and `MEDICATION` information.
-  * `RECORD_DETAILS` field cannot be empty.
-* The record date & time **cannot be in the future**.
-  
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Date & time must be given in DD-MM-YYYY HHmm format!
-</div>
-
-Examples:
-* `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
-* `radd d/28-02-2020 2030 r/Patient experienced vomiting`
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Deleting a record: `rdelete`
-
-> Deletes the specified record from the currently viewed patient’s records.
-
-Format: `rdelete RECORD_INDEX`
-
-* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
-* The record index must be a positive integer 1, 2, 3, …​
-* The record index must be within the [system limit](#faq).
-
-Examples:
-* `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -403,78 +222,6 @@ Format: `rlist PATIENT_INDEX`
 Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
 * `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Editing a record: `redit`
-
-> Edits an existing record in the record list.
-
-Format: `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
-
-* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
-* At least one of the optional fields must be provided.
-  * if the same field is specified more than once, only the latest instance of the field is used.
-  * eg. redit 1 r/Cold r/Flu -> Record's data is edited to Flu.
-* Existing values will be updated to the input values.
-* When editing medication, the existing medication in the record will be removed i.e adding of tags is not cumulative.
-* You can remove all the specific record’s medications by typing `t/` without
-  specifying any tags after it.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Record date must be given in DD-MM-YYYY HHmm format!
-</div>
-
-Examples:
-*  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
-*  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Finding records by keyword: `rfind`
-
-> Finds all records that match the search constraint provided
-
-Format: `rfind [d/DATE] [r/DATA] [m/MEDICATION]`
-
-* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* The search is case-insensitive. e.g `h1n1` will match `H1N1`
-* The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
-* Only full words will be matched e.g. `Covid` will not match `Covid-19`.
-* The order that the fields are specified does not matter. eg. `r/SARS m/Panadol` is equivalent to `m/Panadol r/SARS`
-* PREFIXES specify the field of a record that the keywords will be matched to.
-  * If the specified field of a record contains at least one matching keyword, the record is returned.
-  * e.g. `m/Paracetamol Benzonatate` will return records with medications of `Benzonatate Benzonatate`, `Paracetamol Paracetamol`.
-* Specifying more PREFIXES increases the constraint of the search.
-  * If all fields of a record that is specified by the PREFIX contains at least one matching keyword each, the record is returned.
-  * e.g. `r/Covid-19 m/cold` will only return records that contains both `Covid-19` in record data and `cold` in record medication.
-
-Examples:
-* `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
-* `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
-
-[<*Back to ToC*>](#table-of-contents)
-
-#### Clearing all patient records : `rclear`
-
-> Clears all records of a specific patient from Omnihealth.
-
-* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-
-Format: `rclear`
-
-[<*Back to ToC*>](#table-of-contents)
-
-### General Commands
-> Some general commands for the application
-
-#### Viewing help: `help`
-
-> Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-Format: `help`
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -497,7 +244,253 @@ Format: `exit`
 
 [<*Back to ToC*>](#table-of-contents)
 
+### Patient Commands
+> Commands relating to the patient list, such as adding and deleting patients
+> Patient commands can only be called when the Patient List View is displayed (after using `list`)
+
+#### Adding a patient: `add`
+
+> Adds a patient to the patient record database.
+
+Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+* Patient's name entered in is case-insensitive.
+* Name should only contain alphanumeric characters (eg. s/o is not a valid input).
+* Birthdate **cannot be after the current date**.
+* Duplicate patients are not allowed.
+    * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Birthdate must be given in DD-MM-YYYY format!
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use tags to make special notes about your patient!
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+For a refresher on some input constraints, you can refer to the section for [key definitions](#key-definitions)!
+</div>
+
+Examples:
+* `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Deleting a patient: `delete`
+
+> Deletes the specified patient from the patient database.
+
+Format: `delete PATIENT_INDEX`
+
+* Deletes the patient at the specified `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient records list.
+* The index must be a positive integer 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Editing a patient: `edit`
+
+> Edits an existing patient in the address book.
+
+Format: `edit PATIENT_INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
+* At least one of the optional fields must be provided
+* Existing values will be overridden by the input values.
+  * eg. when editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the patient’s tags by typing `t/` without
+  specifying any tags after it.
+</div>
+
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Finding patients by name: `find`
+
+> Finds patients whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Clearing all patient entries: `clear`
+
+> Clears all patients from Omnihealth.
+
+Format: `clear`
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Appointment Commands
+
+> Commands for adding and clearing appointments
+> Appointment commands can only be called when the Patient List View is displayed (after using `list`)
+
+#### Adding an appointment: `appt`
+
+> Adds an appointment for a specified patient. This command is only valid in the Patient List View.
+
+Format: `appt PATIENT_INDEX d/APPOINTMENT_DATE_TIME`
+
+* Adds a new appointment for the patient under the specified `PATIENT_INDEX`, with the given date.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
+* The appointment date **cannot be before the current date**.
+* If a pre-existing appointment is present, it will be overridden by the new appointment.
+* Appointments that have passed will not be removed automatically, and require either a new appointment to override 
+or the `apptcl` command in the next section below to be used. Further development of the appointment feature will be released in 
+future iterations!
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The appointment's date and time must be given in DD-MM-YYYY HHmm format!
+</div>
+
+Examples:
+* `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
+* `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Clearing an appointment: `apptcl`
+
+> Clears the appointment for a specified patient. This command is only valid in the Patient List View.
+
+Format: `apptcl PATIENT_INDEX`
+
+* Clears any appointment under the patient with the specified `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
+* The command will return the patient list to its original state, before any filters were applied to the list.
+
+Examples:
+* `apptcl 1` clears the appointment (if any) of the patient with index 1.
+
+[<*Back to ToC*>](#table-of-contents)
+
+### Record Commands
+
+> Commands relating to the record list of a patient, such as adding or deleting a record
+> Record commands can only be called when the Record List View is displayed (after using `rlist PATIENT_INDEX`)
+
+#### Adding a record: `radd`
+
+> Adds a new record to a given patient.
+
+Format: `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]…`
+
+* Adds a new record to the patient with given `RECORD_DATE_TIME`, `RECORD_DETAILS` and `MEDICATION` information.
+  * `RECORD_DETAILS` field cannot be empty.
+* The record date & time **cannot be in the future**.
+  
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Date & time must be given in DD-MM-YYYY HHmm format!
+</div>
+
+Examples:
+* `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
+* `radd d/28-02-2020 2030 r/Patient experienced vomiting`
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Deleting a record: `rdelete`
+
+> Deletes the specified record from the currently viewed patient’s records.
+
+Format: `rdelete RECORD_INDEX`
+
+* Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
+* The record index must be a positive integer 1, 2, 3, …​
+* The record index must be within the [system limit](#faq).
+
+Examples:
+* `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Editing a record: `redit`
+
+> Edits an existing record in the record list.
+
+Format: `redit RECORD_INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
+
+* Edits the record at the specified `RECORD_INDEX`. The index refers to the index number shown in the displayed record list.
+ The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing medication, the existing medication in the record will be removed i.e adding of tags is not cumulative.
+* You can remove all the specific record’s medications by typing `t/` without
+  specifying any tags after it.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Date & time must be given in DD-MM-YYYY HHmm format!
+</div>
+
+Examples:
+*  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
+*  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Finding records by keyword: `rfind`
+
+> Finds all records that match the search constraint provided
+
+Format: `rfind [d/RECORD_DATE_TIME] [r/DATA] [m/MEDICATION]`
+
+* The search is case-insensitive. e.g `h1n1` will match `H1N1`
+* The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
+* Only full words will be matched e.g. `Covid` will not match `Covid-19`.
+* The order that the fields are specified does not matter. eg. `r/SARS m/Panadol` is equivalent to `m/Panadol r/SARS`
+* FLAGS specify the field of a record that the keywords will be matched to.
+  * If the specified field of a record contains at least one matching keyword, the record is returned.
+  * e.g. `m/Paracetamol Benzonatate` will return records with medications of `Benzonatate Benzonatate`, `Paracetamol Paracetamol`.
+* Specifying more FLAGS increases the constraint of the search.
+  * If all fields of a record that is specified by the FLAG contains at least one matching keyword each, the record is returned.
+  * e.g. `r/Covid-19 m/cold` will only return records that contains both `Covid-19` in record data and `cold` in record medication.
+
+Examples:
+* `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
+* `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
+
+[<*Back to ToC*>](#table-of-contents)
+
+#### Clearing all patient records : `rclear`
+
+> Clears all records of a specific patient from Omnihealth.
+
+Format: `rclear`
+
+[<*Back to ToC*>](#table-of-contents)
+
 ### Saving & Loading
+
 > Useful information relating to saving and loading of patient data
 
 #### Saving the data
@@ -546,20 +539,20 @@ The data file can be found in the JSON file under `[JAR file location]/data/pati
 | Action                   | Format, Examples                                                                                                                                                                        |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                 | `help`                                                                                                                                                                                  |
+| **List Patients**        | `list`                                                                                                                                                                                  |
+| **List Records**         | `rlist PATIENT_INDEX`                                                                                                                                                                   |
 | **Show Unfiltered List** | `showall`                                                                                                                                                                               |
 | **Exit Program**         | `exit`                                                                                                                                                                                  |
 | **Add Patient**          | `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho b/12-12-2000 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
-| **Delete Patient**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                     |
-| **List Patients**        | `list`                                                                                                                                                                                  |
-| **Edit Patient**         | `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                               |
+| **Delete Patient**       | `delete PATIENT_INDEX`<br> e.g., `delete 3`                                                                                                                                             |
+| **Edit Patient**         | `edit PATIENT_INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                       |
 | **Find Patients**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                              |
 | **Clear Patients**       | `clear`                                                                                                                                                                                 |
-| **Add Appointment**      | `appt INDEX d/APPOINTMENT_DATE_TIME` <br> e.g., `appt 1 d/01-01-2023 1230`                                                                                                              |
-| **Clear Appointment**    | `apptcl INDEX`                                                                                                                                                                          |
+| **Add Appointment**      | `appt PATIENT_INDEX d/APPOINTMENT_DATE_TIME` <br> e.g., `appt 1 d/01-01-2023 1230`                                                                                                      |
+| **Clear Appointment**    | `apptcl PATIENT_INDEX`                                                                                                                                                                  |
 | **Add Record**           | `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                 |
-| **Delete Record**        | `rdelete INDEX`                                                                                                                                                                         |
-| **List Records**         | `rlist INDEX`                                                                                                                                                                           |
-| **Edit Record**          | `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                       |
+| **Delete Record**        | `rdelete RECORD_INDEX`                                                                                                                                                                  |
+| **Edit Record**          | `redit RECORD_INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                |
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
 

@@ -3,6 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
+<p align="center" width="100%">
+    <img width="250" src="images/OmniHealth_logo.png" alt="">
+</p>
+
 ## Table of Contents
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
@@ -39,6 +43,7 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a person](#deleting-a-person)
   - [Saving data](#saving-data)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -102,7 +107,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### UI component
 
@@ -121,7 +126,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Record` object residing in the `Model`.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Logic component
 
@@ -152,7 +157,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -176,7 +181,7 @@ The `Model` component,
 
 </div>
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Storage component
 
@@ -189,7 +194,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Common classes
 
@@ -199,8 +204,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
-
+This section describes the details on how certain noteworthy features are implemented.
 ## Implemented features
 
 #### About Patient Records
@@ -251,7 +255,7 @@ displayed
   * Pros: Easy to implement, simpler command execution pathway.
   * Cons: Potentially violates OOP.
   
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### List records feature
 
@@ -276,7 +280,7 @@ Example usage scenario:
 - Precondition: The user should be viewing the patient list by using the `list` command.
 - Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Delete record feature
 
@@ -301,7 +305,7 @@ Given below is an example usage scenario for the command.
 * Execution: 
   * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Edit record feature
 
@@ -330,7 +334,7 @@ Given below is an example usage scenario for the command.
     * User executes `redit 1 r/Fever d/12-12-2012 1200 m/` to set the 1st record in the displayed record list to a new
   record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Find records feature
 
@@ -364,8 +368,8 @@ Given below is an example usage and how the find record mechanism works at each 
 
 ![FindRecordActivityDiagram](images/FindRecordActivityDiagram.png)
 
-Outline of the 
-[*<Back to ToC>*](#table-of-contents)
+Outline of the
+[<*Back to ToC*>](#table-of-contents)
 
 ### Clear all records feature
 
@@ -382,13 +386,10 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
 
-[*<Back to ToC>*](#table-of-contents)
-
-### Appointment features:
-> Features relating to the patient's appointments
+[<*Back to ToC*>](#table-of-contents)
 
 #### About Appointment Features
-...
+>...
 
 ### Add appointment feature
 
@@ -427,7 +428,19 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** An appointment will be assigned to the patient specified with the index input.
 
-[*<Back to ToC>*](#table-of-contents)
+#### Design considerations:
+
+**Aspect: Model-Person Interaction:**
+
+* **Alternative 1 (current choice):** Utilise `model#setPerson` to add the edited person into the model, doing the direct editing in `AddAppointmentCommand#execute()`.
+  * Pros: Maintain immutability within Person and Model classes.
+  * Cons: Potentially violates the Single Responsibility Principle.
+
+* **Alternative 2:** Create methods in model specifically to edit the appointment fields of the patients.
+  * Pros: More OOP, follows the Single Responsibility Principle by not having `AddAppointmentCommand#execute()` perform the editing directly.
+  * Cons: Longer command execution, requiring more parts to work together.
+
+[<*Back to ToC*>](#table-of-contents)
 
 ### Clear appointment feature
 
@@ -449,9 +462,10 @@ Given below is an example usage scenario for the command.
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
 Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
+
 ![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 >### Proposed features:
 
@@ -468,7 +482,7 @@ Given below is an example usage scenario for the command.
 
 **Step 2:** A additional window appears, showing the current upcoming appointments.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Send reminders about upcoming appointments
 
@@ -483,7 +497,7 @@ Given below is an example usage scenario for the command.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -502,7 +516,7 @@ Given below is an example usage scenario for the command.
 * allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### User stories
 
@@ -529,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
 | `* * *`  | user                   | exit the program                             |                                                                                           |
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Use cases
 
@@ -865,7 +879,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Non-Functional Requirements
 
@@ -880,18 +894,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. Should be more efficient than using paper records. 
    * eg. Finding a patients information using Omnihealth is faster than manaully searching for it.
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Patient**
 * **Patient Record**
 * **Paper Records**
 * **Patient List**
 * **Record List**
-* 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -921,7 +935,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Deleting a person
 
@@ -940,7 +954,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
 
 ### Saving data
 
@@ -950,4 +964,4 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-[*<Back to ToC>*](#table-of-contents)
+[<*Back to ToC*>](#table-of-contents)
