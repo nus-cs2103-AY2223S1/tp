@@ -271,11 +271,11 @@ However, users could forget to input spaces when inputting indexes of multiple t
 marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
-### \[Proposed\] Edit task feature
+### Edit task feature
 
 #### About
 
-CodeConnect will allow the user to edit an existing task in the task list.
+CodeConnect allows the user to edit an existing task in the task list.
 
 Example of command use:
 - `edit 1 m/CS1101S`
