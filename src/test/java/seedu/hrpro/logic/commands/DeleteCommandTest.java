@@ -17,6 +17,7 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.project.Project;
+import seedu.hrpro.model.staff.UniqueStaffList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -35,8 +36,12 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
+        expectedModel.setFilteredStaffList(new UniqueStaffList());
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+
+        // Reset model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     @Test
@@ -59,8 +64,12 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getHrPro(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
+        expectedModel.setFilteredStaffList(new UniqueStaffList());
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+
+        // Reset model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     @Test

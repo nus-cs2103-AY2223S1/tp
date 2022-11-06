@@ -5,7 +5,56 @@
     "budget" : "94351253",
     "deadline" : "2022-01-01",
     "tagged" : [ "friends" ],
-    "staffList": []
+    "staffList": [ {
+      "staffName" : "Alice Pauline",
+      "staffContact" : "94351253",
+      "staffTitle" : "Project Manager",
+      "staffDepartment" : "Human resources",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Benson Meier",
+      "staffContact" : "98765432",
+      "staffTitle" : "Senior Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "staffName" : "Coconut",
+      "staffContact" : "95352563",
+      "staffTitle" : "Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Daniel Meier",
+      "staffContact" : "87652533",
+      "staffTitle" : "UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Elle Meyer",
+      "staffContact" : "64822246",
+      "staffTitle" : "Senior UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Fiona Kunz",
+      "staffContact" : "94824271",
+      "staffTitle" : "Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "George Best",
+      "staffContact" : "94824426",
+      "staffTitle" : "Senior Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    } ]
   }, {
     "projectName" : "Benson Meier",
     "budget" : "98765432",
@@ -43,7 +92,56 @@
     "staffList": [],
     "tagged" : [ ]
   } ],
-  "staff" : [],
+  "staff" : [ {
+      "staffName" : "Alice Pauline",
+      "staffContact" : "94351253",
+      "staffTitle" : "Project Manager",
+      "staffDepartment" : "Human resources",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Benson Meier",
+      "staffContact" : "98765432",
+      "staffTitle" : "Senior Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "staffName" : "Coconut",
+      "staffContact" : "95352563",
+      "staffTitle" : "Software Engineer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Daniel Meier",
+      "staffContact" : "87652533",
+      "staffTitle" : "UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "true",
+      "tagged" : [ "friends" ]
+    }, {
+      "staffName" : "Elle Meyer",
+      "staffContact" : "64822246",
+      "staffTitle" : "Senior UX Designer",
+      "staffDepartment" : "IT Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "Fiona Kunz",
+      "staffContact" : "94824271",
+      "staffTitle" : "Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "true",
+      "tagged" : [ ]
+    }, {
+      "staffName" : "George Best",
+      "staffContact" : "94824426",
+      "staffTitle" : "Senior Marketing Manager",
+      "staffDepartment" : "Marketing Department",
+      "staffLeave" : "false",
+      "tagged" : [ ]
+    } ],
   "tasks" : [{
     "taskDescription" : "Assignment 2101",
     "taskDeadline": "2022-07-11",
