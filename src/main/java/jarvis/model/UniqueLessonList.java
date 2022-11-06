@@ -137,6 +137,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Lesson> asUnmodifiableObservableList() {
+        FXCollections.sort(internalList);
         return internalUnmodifiableList;
     }
 

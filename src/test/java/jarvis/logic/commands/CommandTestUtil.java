@@ -12,6 +12,8 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.Lesson;
+import jarvis.model.LessonBook;
 import jarvis.model.Model;
 import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.model.Student;
@@ -89,14 +91,18 @@ public class CommandTestUtil {
         // only do so by copying its components.
         StudentBook expectedStudentBook = new StudentBook(actualModel.getStudentBook());
         TaskBook expectedTaskBook = new TaskBook(actualModel.getTaskBook());
+        LessonBook expectedLessonBook = new LessonBook(actualModel.getLessonBook());
         List<Student> expectedFilteredStudentList = new ArrayList<>(actualModel.getFilteredStudentList());
         List<Task> expectedFilteredTaskList = new ArrayList<>(actualModel.getFilteredTaskList());
+        List<Lesson> expectedFilteredLessonList = new ArrayList<>(actualModel.getFilteredLessonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedStudentBook, actualModel.getStudentBook());
         assertEquals(expectedTaskBook, actualModel.getTaskBook());
+        assertEquals(expectedLessonBook, actualModel.getLessonBook());
         assertEquals(expectedFilteredStudentList, actualModel.getFilteredStudentList());
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
+        assertEquals(expectedFilteredLessonList, actualModel.getFilteredLessonList());
     }
     /**
      * Updates {@code model}'s filtered student list to show only the student at the given {@code targetIndex} in the
