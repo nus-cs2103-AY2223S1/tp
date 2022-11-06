@@ -1,10 +1,11 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's phone number in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
@@ -21,8 +22,9 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        if (phone != null) {
+            checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        }
         value = phone;
     }
 
@@ -35,14 +37,17 @@ public class Phone {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "No phone number";
+        }
         return value;
     }
 
+    // solution adapted from
+    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+        return Objects.equals(value, ((Phone) other).value);
     }
 
     @Override

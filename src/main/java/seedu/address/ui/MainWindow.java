@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import static javafx.application.Application.setUserAgentStylesheet;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -12,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,8 +26,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
+    public static final String LIGHT_THEME = "LightTheme.css";
+    public static final String DARK_THEME = "DarkTheme.css";
+    public static final String EXTENSIONS = "Extensions.css";
     private static final String FXML = "MainWindow.fxml";
+
+    private static String currentTheme = "LightTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private InternshipListPanel internshipListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane internshipListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -61,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        loadGuiSettings(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -78,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -109,9 +122,23 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+    void fillInnerPartsPerson() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getAddressBook());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillInnerPartsInternship() {
+        internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList(), logic.getAddressBook());
+        internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -126,13 +153,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets the default size based on {@code guiSettings}.
      */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
+    private void loadGuiSettings(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+
+        setWindowThemes(guiSettings.getColorTheme());
     }
 
     /**
@@ -142,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            updateTheme(helpWindow.getRoot().getScene());
         } else {
             helpWindow.focus();
         }
@@ -157,14 +187,53 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), currentTheme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleLightThemeSwitch() {
+        setWindowThemes(LIGHT_THEME);
+    }
+
+    @FXML
+    private void handleDarkThemeSwitch() {
+        setWindowThemes(DARK_THEME);
+    }
+
+    private void setWindowThemes(String theme) {
+        setTheme(theme);
+        updateTheme(getRoot().getScene());
+
+        if (helpWindow != null && helpWindow.isShowing()) {
+            updateTheme(helpWindow.getRoot().getScene());
+        }
+    }
+
+    private void setTheme(String theme) {
+        if (theme == null || theme.isBlank()) {
+            return;
+        }
+
+        currentTheme = theme;
+    }
+
+    private void updateTheme(Scene scene) {
+        scene.getStylesheets().clear();
+        setUserAgentStylesheet(null);
+
+        scene.getStylesheets().add(AppUtil.getStylesheetUrl(currentTheme));
+        scene.getStylesheets().add(AppUtil.getStylesheetUrl(EXTENSIONS));
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public InternshipListPanel getInternshipListPanel() {
+        return internshipListPanel;
     }
 
     /**

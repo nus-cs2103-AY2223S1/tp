@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -33,7 +33,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,12 +80,40 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different PersonId -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPersonId(1).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void testGetEmail() {
+        // null email
+        Person alice = new PersonBuilder(ALICE).withEmail(null).build();
+        Email email = alice.getEmail();
+        Email expected = new Email(null);
+        assertEquals(expected, email);
+    }
+
+    @Test
+    public void testGetCompany() {
+        // null company
+        Person alice = new PersonBuilder(ALICE).withCompany(null).build();
+        Company company = alice.getCompany();
+        Company expected = new Company(null);
+        assertEquals(expected, company);
+    }
+
+    @Test
+    public void testGetPhone() {
+        // null phone
+        Person alice = new PersonBuilder(ALICE).withPhone(null).build();
+        Phone phone = alice.getPhone();
+        Phone expected = new Phone(null);
+        assertEquals(expected, phone);
+    }
+
 }

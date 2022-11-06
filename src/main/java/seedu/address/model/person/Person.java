@@ -7,33 +7,50 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in InterNUS.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
+    private final PersonId personId;
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final InternshipId internshipId;
+    private final Company company;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Everything must be present and not purely null.
+     * However, optional fields can be an object wrapping null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(
+            PersonId personId,
+            Name name,
+            Email email,
+            Phone phone,
+            InternshipId internshipId,
+            Set<Tag> tags,
+            Company company) {
+        requireAllNonNull(name, tags);
+        this.personId = personId;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.company = company;
+    }
+
+    public PersonId getPersonId() {
+        return personId;
     }
 
     public Name getName() {
@@ -41,15 +58,28 @@ public class Person {
     }
 
     public Phone getPhone() {
+        if (phone == null) {
+            return new Phone(null);
+        }
         return phone;
     }
 
     public Email getEmail() {
+        if (email == null) {
+            return new Email(null);
+        }
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public InternshipId getInternshipId() {
+        return internshipId;
+    }
+
+    public Company getCompany() {
+        if (company == null) {
+            return new Company(null);
+        }
+        return company;
     }
 
     /**
@@ -88,35 +118,34 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
+        return otherPerson.getPersonId().equals(getPersonId())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && Objects.equals(otherPerson.getPersonId(), getPersonId())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, tags, company);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
+                .append(("; Email: ")).append(getEmail())
+                .append(("; Phone: ")).append(getPhone());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append(("; Company: ")).append(getCompany());
         return builder.toString();
     }
 

@@ -9,7 +9,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
+
+Libraries used:
+
+* [JavaFX](https://openjfx.io/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +41,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,7 +57,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -p 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,13 +74,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +91,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,13 +99,13 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePersonCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -p 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -110,11 +115,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -153,6 +158,93 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit Internship
+
+#### Implementation
+
+Given below is an example usage scenario.
+
+1. InterNUS shows a list of internships. The user edits the first internship in the list using the command `edit -i 1 s/R`.
+2. The command is accepted by the `Logic` component, which passes it to the `AddressBookParser`.
+3. The `AddressBookParser` creates the corresponding parser, `EditInternshipCommandParser` to parse the arguments `1 s/R`.
+4. The parser stores the details to edit in an `EditInternshipDescriptor`. The parser also creates an `EditInternshipCommand` with the index `1` and the descriptor as arguments.
+5. The `EditInternshipCommand` is returned to the `LogicManager`, which then calls its `execute()` method.
+6. To retrieve the list of internships, `Model#getFilteredInternshipList()` is called. The target internship (the one at index `1`) is retrieved from the `FilteredList`. An updated `Internship` is also created via a self invocation: `createEditedInternship()`.
+7. `Model#setInternship()` is called to replace the target internship with the updated internship.
+8. `Model#updateFilteredInternshipList()` is called to update the internship list to display all internships.
+9. Finally, `EditInternshipCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![SortPersonSequence](images/EditInternshipSequence.png)
+
+The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
+![SortPersonActivity](images/EditInternshipActivity.png)
+
+### Sort Person list
+
+#### Implementation
+
+1. When the user sorts the person list, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, which is `SortPersonCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
+4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
+5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
+6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
+7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criterion.
+8. The person list will then set the comparator based on the criterion that was passed earlier, and the list is sorted based on that comparator.
+9. Afterwards, `SortPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![SortPersonSequence](images/SortPersonSequence.png)
+
+The activity diagram is given below.
+![SortPersonActivity](images/SortPersonActivity.png)
+
+#### Design considerations
+
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
+
+### Find Person
+
+#### Implementation
+
+1. When the user attempts to find a person or internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, `FindPersonCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
+4. The command parser will then create a `FindPersonCommand` by constructing and storing a `Predicate` that checks, 
+   for each field of the `Person`, whether it contains any of the specified keywords.
+   The determining of which keyword is for which field is done via parsing of prefixes in the command,
+   and these prefixes are consistent with the ones used in other commands such as the `Add` command.
+5. The method returns a `Command` to the `LogicManager` which is stored as a variable called `command`.
+6. This `command` is executed by calling its `execute()` method.
+7. This will invoke the `updateFilteredPersonList` method of the `model` with the `predicate` that was constructed earlier.
+8. The `predicate` will then be passed to the `filteredPersonList` of the `model` and used to filter the list via `setPredicate`.
+9. Afterwards, `FindPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![FindPersonSequence](images/FindPersonSequence.png)
+
+### Link Person and Internship
+
+#### Implementation
+
+1. When the user attempts to link a person amd an internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, `LinkCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
+4. The command parser will then create a `LinkCommand` with the specified person index and internship index.
+5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
+6. This `command` is executed by calling its `execute()` method.
+7. This will invoke the `getFilteredPersonList` and `getFilteredInternshipList` methods of the `model`
+8. Based on this `command` specified person index and internship index, the respective person and internship will be fetched from the internal person list and internship list in InterNUS. New `Person` and `Internship` objects will be created with the fields `internshipId` and `contactPersonId` updated respectively.
+9. `setPerson` and `setInternship` methods of the `model` will be invoked to update the person and internship in InterNUS.
+11. Afterwards, `LinkCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![LinkSequence](images/LinkSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
+![LinkActivity](images/LinkActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -172,11 +264,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add -p n/David …​` to add a new person. The `add -p` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -207,7 +299,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the address book, such as `list -p`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -229,7 +321,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete -p`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -257,42 +349,61 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Can type fast
+* Have some experience with Command Line Interfaces
+* Are actively seeking internship opportunities
+* Having trouble keeping track of multiple internship applications and their progress (over multiple rounds)
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+* Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
+* Keep track of colleagues' information post-internship
+* Keep track of internship applications of multiple companies
+* Keep track of contact information of hiring managers, and link them to internship openings
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​          | I want to …​                                                                           | So that ​                                                                                              |
+|----------|------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| * * *    | First time user  | See a summary of commands                                                              | I can know the functionalities of the app quickly                                                      |
+| * * *    | First time user  | Delete internship status                                                               | I know that I have finished my interview process with the company                                      |
+| * *      | First time user  | View the user guide                                                                    | I can know all the functions                                                                           |
+| * *      | First time user  | See the app populated with sample contacts when launching the app for the first time   | I can easily see how the app will look like when it is in use                                          |
+| * *      | First time user  | See a help message when I use a command word incorrectly                               | I can easily learn how to use individual commands without the need to keep referring to the user guide |
+| * * *    | Second time user | Pre-load my data from the previous session                                             | I do not need to re-add everyone again                                                                 |
+| * * *    | Second time user | Purge all current data                                                                 | I can get rid of sample contacts I used for exploring the app                                          |
+| * *      | Second time user | See a summary of the internship information I have keyed in so far on starting the app | I can know where I left off from the last time I used the app                                          |
+| * * *    | Lazy user        | Find contacts by name                                                                  | I do not need to manually filter them                                                                  |
+| * * *    | Lazy user        | Find internships by company and role                                                   | I do not need to manually filter them                                                                  |
+| * * *    | User             | Edit contacts and internships individually                                             | I do not need to delete and re-add to fix a typo error                                                 |
+| * * *    | User             | Delete contacts and internships individually                                           | I can remove contacts and internships that I no longer need                                            |
+| * * *    | User             | Add the company name to each contact                                                   | I know which company the contact is representing                                                       |
+| * * *    | User             | Add internship status to each internship                                               | I know whether I have been accepted, rejected or still awaiting reply                                  |
+| * * *    | User             | Sort internships by internship status                                                  | I can know which company interview I can prepare for                                                   |
+| * * *    | Forgetful user   | Sort internships by upcoming interview dates                                           | I can see a clear timeline and prevent clashing dates                                                  |
+| * *      | User             | Add roles to each internship                                                           | I know which role I am applying for (front-end, back-end etc)                                          |
+| * *      | User             | Add a company to each internship                                                       | I know which company I am apply for (Google, Shopee etc)                                               |
+| * * *    | User             | Link a contact to an internship as its contact person                                  | I know who to contact for potential updates if I need to                                               |
+| * * *    | User             | Unlink a contact and an internship                                                     | I can remove the contact person for an internship once I no longer need it                             |
+| * *      | Expert user      | Mass import contacts directly                                                          | I can use the app on another device                                                                    |
+| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                   | I can make the app more visually appealing                                                             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  InterNUS shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  InterNUS deletes the person.
 
     Use case ends.
 
@@ -304,17 +415,141 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InterNUS shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 3b. The person found at the index is a contact person for an internship
+    * 3b1. InterNUS looks up the affected internship.
+
+    * 3b2. InterNUS removes the contact person from the internship.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC2 - Delete an internship**
+
+**MSS**
+
+1.  User requests to list internships.
+2.  InterNUS shows a list of internships.
+3.  User requests to delete a specific internship in the list.
+4.  InterNUS deletes the internship.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. InterNUS shows an error message.
+
+      Use case ends.
+
+* 3b. The internship found at the index is associated with a person.
+
+    * 3b1. InterNUS looks up the affected person.
+
+    * 3b2. InterNUS removes the internship from the person.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC3 - Add a contact person to an internship**
+
+**MSS**
+
+1. User adds an internship to InterNUS
+2. InterNUS creates a new internship entry in the displayed internship list
+3. User adds a person to InterNUS
+4. InterNUS creates a new person contact the displayed contact list
+5. User requests to set a specific person as the contact person for a specific internship
+6. InterNUS sets the person as the contact person for the internship
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the contact person for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The desired person to set as the contact person is already in the list
+
+    * 3a1. No new person is created.
+
+      Use case resumes at step 5.
+
+
+**Use case: UC4 - Add an interview date for an internship**
+
+**MSS**
+
+1. User adds an internship to the internship list.
+2. InterNUS creates a new internship entry.
+3. User requests to set the interview date of a specific internship.
+4. InterNUS sets the interview date for the internship.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the interview date for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The interview date given is invalid.
+
+    * 3a1. InterNUS notifies the user why the given date is invalid.
+    
+      Use case ends.
+
+**Use case: UC5 - Sort person list**
+
+**MSS**
+1. User requests to sort person list and supplies a criterion prefix.
+2. InterNUS sorts person list based on the specified criterion prefix.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User submits a blank or invalid criterion prefix.
+
+     * 1a1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
+    
+       Use case ends.
+
+* 1b. User submits more than 1 criterion prefixes.
+
+     * 1b1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
+
+       Use case ends.
 
 *{More to be added}*
 
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons and 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user will not be able to communicate with the people in the contact. 
+5. A user will not be able to share contacts with others.
+6. Should work only for single user.
+7. The data should be stored in a human editable text file
+8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
+9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+10. Each contact person can only link to one internship and each internship is only linked to one contact person
+
 
 *{More to be added}*
 
@@ -351,22 +586,72 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Editing a person
+
+1. Editing a person in a filtered list of persons.
+
+    1. Prerequisites: Find the person of interest using the `find -p [PREFIX/KEYWORD]` command. Assume  a list of at least 1 person is shown.
+
+    1. Test case: `edit -p 1 e/johndoe@gmail.com`<br>
+       Expected: First person in the list has his/her email updated. Details of the edited person shown in the status message.
+
+    1. Test case: `edit -p 0 p/98981234`<br>
+       Expected: No person is edited. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit -p 1`, `edit -p x t/colleague`(where x is larger than the list size).<br>
+       Expected: Similar to previous.
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list -p` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete -p 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete -p 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete -p`, `delete -p x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Sorting person list
+
+1. Sorts person list while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+      Expected: Person list is sorted by the persons' names.
+
+   1. Test case: `sort -p c/`<br>
+      Expected: Person list is sorted by the company's names that each person is working at. Persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+      Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
+      Expected: Similar to previous.
+
+2. Sorts person list while not all persons are being shown
+
+   1. Prerequisites: Filter the persons list with `find -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+   Expected: Person list is sorted by the remaining persons' names.
+
+   1. Test case: `sort -p c/`<br>
+   Expected: Person list is sorted by the company's names that each remaining person is working at. Remaining persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+   Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
+   Expected: Similar to previous.
 
 ### Saving data
 
