@@ -6,9 +6,6 @@ import static coydir.logic.commands.CommandTestUtil.VALID_DEPARTMENT_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_AMY;
-import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_BOB;
-import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_PRITTAM;
 import static coydir.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -33,14 +30,17 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPosition("Software Engineer").withDepartment("Information Technology")
-            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15).build();
+            .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(15)
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPosition("Product Manager").withDepartment("Product Management")
-            .withPhone("98765432").withRating("3").withTags("owesMoney", "friends").withTotalLeave(20).build();
+            .withPhone("98765432").withRating("3").withTags("owesMoney", "friends").withTotalLeave(20)
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withPosition("Fire Support Officer").withDepartment("Operations")
-            .withAddress("wall street").withRating("3").withTotalLeave(10).build();
+            .withAddress("wall street").withRating("3").withTotalLeave(10)
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withPosition("Junior Research Analyst")
             .withDepartment("Research and Development").withAddress("10th street").withTags("friends")
@@ -63,20 +63,18 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withPosition("Intern").withDepartment("Marketing")
             .withAddress("chicago ave").withRating("3").build();
-    public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
-            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withEmptyPhone()
-            .withEmptyEmail().withPosition("Intern").withDepartment("Board of Directors")
-            .withEmptyAddress().build();
-
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withEmployeeId(VALID_EMPLOYEE_ID_AMY)
+    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withPosition(VALID_POSITION_AMY)
             .withDepartment(VALID_DEPARTMENT_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withEmployeeId(VALID_EMPLOYEE_ID_BOB)
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withPosition(VALID_POSITION_BOB)
             .withDepartment(VALID_DEPARTMENT_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
+            .withEmptyPhone().withEmptyEmail().withPosition("Intern").withDepartment("Board of Directors")
+            .withEmptyAddress().build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -279,21 +279,32 @@ Step 5. storage#saveDatabase is then called on the current `database`, updates t
 
 ### Find feature
 
-This section explains the implementation of the `find` feature. The command takes in a number of parameters, which serve as the "filters" for the finding/searching function. At present, we have implemented finding by name, department, position, and any combination of these three. Thus it is possible to use these altogether to search for a person with high specificity.
+This section explains the implementation of the `find` feature.
+The command takes in a number of parameters, which serve as the "filters" for the finding/searching function.
+
+At present, we have implemented finding by name, department, position, and any combination of these three mandatory fields for an employee.
+Thus it is possible to use these altogether to search for a person with high specificity.
+
+#### Implementation
+
+The `find` command updates the model's filtered persons list based on the search filters.
+
+- On the UI, the side panel will, by default, display the employee profile of the first person in the filtered list.
+- If there is none, then it will show the home panel.
 
 Below is a sequence diagram and explanation of how `find` is executed. In this simple example, we will look at the command `find n/Alex`.
 
-<img src="images/FindCommandUML.png" width="550" />
+<img src="images/diagrams/FindCommandUML.png" />
 
 Step 1. The user enters the command `find n/Alex`.
 
-Step 2. User input is parsed by `FindCommandParser` which creates the `FindCommand` object, then the method `LogicManager#execute` is called to create the `FindCommand` object.
+Step 2. User input is parsed by `FindCommandParser` which creates a `PersonMatchesKeywordsPredicate`, which is a predicate used to create the `FindCommand` object, then the method `LogicManager#execute` is called to create the `FindCommand` object.
 
-Step 3. The `execute` method of `FindCommand` is then called on the object, which returns a `CommandResult` object.
+Step 3. The `execute` method of `FindCommand` is then called on the object.
 
-Step 4. This then iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
+Step 4. This then calls the `model#updateFilteredPersonList` method, which iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
 
-Step 5. The list of `Person` objects is then returned, and is passed to the `UiManager` to be displayed on the user interface.
+Step 5. This returns a `CommandResult` object, which is returned to the `LogicManager`, and eventually, the `MainWindow`, prompting the `MainWindow` to call `model#getFilteredPersonList` and display the first-indexed person, if there is any.
 
 ### View feature
 

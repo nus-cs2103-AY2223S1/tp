@@ -234,7 +234,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handlePersonInfoUpdate(int index) {
         ObservableList<Person> personList = logic.getFilteredPersonList();
-        if (index >= personList.size()) {
+        if (index >= personList.size() || index < 0) {
             setSidePanel(homePanel);
         } else {
             personInfo.update(logic.getFilteredPersonList().get(index));

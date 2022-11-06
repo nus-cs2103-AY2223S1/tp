@@ -14,6 +14,7 @@ import coydir.commons.core.GuiSettings;
 import coydir.model.Database;
 import coydir.model.ReadOnlyDatabase;
 import coydir.model.UserPrefs;
+import coydir.testutil.TestUtil;
 
 public class StorageManagerTest {
 
@@ -55,7 +56,10 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonDatabaseStorageTest} class.
          */
         Database original = getTypicalDatabase();
+        int numOfPersons = original.getPersonList().size();
+        TestUtil.setMaxEmployeeId(numOfPersons + 1);
         storageManager.saveDatabase(original);
+        TestUtil.restartEmployeeId(1);
         ReadOnlyDatabase retrieved = storageManager.readDatabase().get();
         assertEquals(original, new Database(retrieved));
     }

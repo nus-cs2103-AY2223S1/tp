@@ -12,7 +12,7 @@ import coydir.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's rating in the database.
- * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
     public static final String MESSAGE_CONSTRAINTS =
@@ -28,7 +28,7 @@ public class Rating {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param rating A valid rating.
      */
     public Rating(String rating) {
         requireNonNull(rating);
