@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SOCKS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_SOCKS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SOCKS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_SOCKS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PURPOSE_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SOCKS;
 
 import org.junit.jupiter.api.Test;
 

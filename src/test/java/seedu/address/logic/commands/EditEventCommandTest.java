@@ -2,12 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PURPOSE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,7 +70,8 @@ public class EditEventCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST, new EditEventCommand.EditEventDescriptor());
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST,
+                new EditEventCommand.EditEventDescriptor());
         Event editedEvent = model.getFilteredEventList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);

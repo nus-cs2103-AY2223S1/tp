@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,7 +28,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.EventBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -94,6 +93,16 @@ public class CommandTestUtil {
     public static final String START_TIME_DESC_CHOCOLATE = " " + PREFIX_START_TIME + VALID_START_TIME_CHOCOLATE;
     public static final String PURPOSE_DESC_CHOCOLATE = " " + PREFIX_PURPOSE + VALID_PURPOSE_CHOCOLATE;
 
+    public static final String EVENT_TITLE_DESC_SOCKS = " " + PREFIX_EVENT_TITLE + VALID_EVENT_TITLE_SOCKS;
+    public static final String DATE_DESC_SOCKS = " " + PREFIX_START_DATE + VALID_DATE_SOCKS;
+    public static final String START_TIME_DESC_SOCKS = " " + PREFIX_START_TIME + VALID_START_TIME_SOCKS;
+    public static final String PURPOSE_DESC_SOCKS = " " + PREFIX_PURPOSE + VALID_PURPOSE_SOCKS;
+
+    // '$' not allowed in eventTitle
+    public static final String INVALID_EVENT_TITLE_DESC = " " + PREFIX_EVENT_TITLE + "$$Car Sale";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_START_DATE + "0/1/1/1"; // invalid value for date
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "13212:30"; // invalid time > 24:00
+    public static final String INVALID_PURPOSE_DESC = " " + PREFIX_PURPOSE; // empty string not allowed for purpose
     public static final EditEventCommand.EditEventDescriptor DESC_CHOCOLATE;
     public static final EditEventCommand.EditEventDescriptor DESC_SOCKS;
 

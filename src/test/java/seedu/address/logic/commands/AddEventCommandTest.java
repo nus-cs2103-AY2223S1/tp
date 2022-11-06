@@ -26,7 +26,6 @@ import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonSortField;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class AddEventCommandTest {
 

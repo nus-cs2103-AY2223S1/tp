@@ -32,6 +32,7 @@ public class PurposeTest {
         assertTrue(Purpose.isValidPurpose("100 dollars off all Cars"));
         assertTrue(Purpose.isValidPurpose("-")); // one character
         assertTrue(Purpose.isValidPurpose("$100 off all...Cars!")); // any characters including non-alphanumeric
-        assertTrue(Purpose.isValidPurpose("$0.10000000 off all toothpastes that are sold in the next 60 mins")); // long purpose
+        assertTrue(Purpose.isValidPurpose(
+                "$0.10000000 off all toothpastes that are sold in the next 60 mins")); // long purpose
     }
 }

@@ -2,10 +2,10 @@ package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CHOCOLATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PURPOSE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CHOCOLATE;
 import static seedu.address.testutil.TypicalEvents.SHOE_SALE;
 import static seedu.address.testutil.TypicalEvents.SLIPPER_SALE;
 
