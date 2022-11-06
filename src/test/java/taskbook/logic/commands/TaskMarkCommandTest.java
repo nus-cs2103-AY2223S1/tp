@@ -1,7 +1,7 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static taskbook.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -9,7 +9,6 @@ import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.model.Model;
@@ -26,20 +25,20 @@ public class TaskMarkCommandTest {
         TaskMarkCommand taskMarkSecondCommand = new TaskMarkCommand(INDEX_SECOND_TASK);
 
         // same object -> returns true
-        assertTrue(taskMarkFirstCommand.equals(taskMarkFirstCommand));
+        assertEquals(taskMarkFirstCommand, taskMarkFirstCommand);
 
         // same values -> returns true
         TaskMarkCommand taskMarkFirstCommandCopy = new TaskMarkCommand(INDEX_FIRST_TASK);
-        assertTrue(taskMarkFirstCommand.equals(taskMarkFirstCommandCopy));
+        assertEquals(taskMarkFirstCommand, taskMarkFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(taskMarkFirstCommand.equals(1));
+        assertNotEquals(1, taskMarkFirstCommand);
 
         // null -> returns false
-        assertFalse(taskMarkFirstCommand.equals(null));
+        assertNotEquals(null, taskMarkFirstCommand);
 
         // different task -> returns false
-        assertFalse(taskMarkFirstCommand.equals(taskMarkSecondCommand));
+        assertNotEquals(taskMarkFirstCommand, taskMarkSecondCommand);
     }
 
     @Test
@@ -51,6 +50,7 @@ public class TaskMarkCommandTest {
                 .withAssignment(task.getAssignment())
                 .withDescription(task.getDescription().description)
                 .withIsDone(true)
+                .withTags(task.getTags())
                 .build();
         TaskMarkCommand markCommand = new TaskMarkCommand(INDEX_SECOND_TASK);
 

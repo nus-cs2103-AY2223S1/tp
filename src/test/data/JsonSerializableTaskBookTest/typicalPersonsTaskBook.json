@@ -56,14 +56,16 @@
       "assignment" : "TO",
       "description" : "eat fruit",
       "isDone" : true,
-      "deadlineDate": "2022-11-09"
+      "deadlineDate": "2022-11-09",
+      "tagged": ["weightLoss"]
     },
     {
       "type": "Todo",
       "name" : "Benson Meier",
       "assignment" : "FROM",
       "description" : "sleep early",
-      "isDone" : false
+      "isDone" : false,
+      "tagged": ["habits"]
     },
     {
       "type": "Event",
@@ -71,7 +73,8 @@
       "assignment" : "TO",
       "description" : "party at kevin's house",
       "isDone" : true,
-      "eventDate": "2022-10-11"
+      "eventDate": "2022-10-11",
+      "tagged": ["party"]
     }
   ]
 }
