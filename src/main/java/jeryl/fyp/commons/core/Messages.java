@@ -10,5 +10,4 @@ public class Messages {
     public static final String MESSAGE_STUDENT_NOT_FOUND = "There is no Student with the input StudentId!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
     public static final String MESSAGE_INVALID_DEADLINE_RANK = "The Rank provided should be a valid integer";
-
 }

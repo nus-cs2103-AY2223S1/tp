@@ -70,7 +70,6 @@ public class FypManager implements ReadOnlyFypManager {
         requireNonNull(student);
         return students.contains(student);
     }
-
     /**
      * Adds a student to the FYP manager.
      * The student must not already exist in the FYP manager.
@@ -178,12 +177,9 @@ public class FypManager implements ReadOnlyFypManager {
     public ObservableList<Student> getCompletedStudentList() {
         return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
     }
-
     public DeadlineList getDeadlineList(Student student) {
         return student.getDeadlineList();
     }
-
-
     @Override
     public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
         return getUncompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()

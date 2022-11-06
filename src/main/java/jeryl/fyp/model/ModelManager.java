@@ -229,7 +229,6 @@ public class ModelManager implements Model {
     public ObservableList<Student> getSortedCompletedStudentList() {
         return sortedCompletedStudents;
     }
-
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
@@ -237,12 +236,10 @@ public class ModelManager implements Model {
         completedStudents.setPredicate(predicate);
         uncompletedStudents.setPredicate(predicate);
     }
-
     @Override
     public DeadlineList listDeadlineUnderStudent(Student student) {
         return fypManager.getDeadlineList(student);
     }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
