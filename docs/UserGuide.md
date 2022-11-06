@@ -19,8 +19,8 @@ As a teaching assistant, you can use GREWZ as an all-in-one platform to carry ou
 * Updating student details
 * Managing personal homework
 
-GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glossary) while utilising a clean 
-[Command Line Interface (CLI)](#glossary) - this means that the faster you can type, the faster you can get your work done.
+GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#6-glossary) while utilising a clean 
+[Command Line Interface (CLI)](#6-glossary) - this means that the faster you can type, the faster you can get your work done.
 
 Hopefully our application has grown on you! 
 
@@ -28,13 +28,13 @@ Hopefully our application has grown on you!
 The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the 
 steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
 
-If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
+If you need help setting up GREWZ, jump over to [Quick start](#2-quick-start) to continue.
 
-For understanding more about GREWZ features and commands, head over to [Features](#features).
+For understanding more about GREWZ features and commands, head over to [Features](#3-features).
 
-To have a look at frequently asked question, refer to [FAQs](#faq)
+To have a look at frequently asked question, refer to [FAQs](#4-faq)
 
-If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
+If you want the quick overview of GREWZ commands, jump over to [Command Summary](#5-command-summary)
 
 Take note of the following symbols and formatting used in this document:
 
@@ -50,11 +50,11 @@ Take note of the following symbols and formatting used in this document:
 
 ### 2.1 Installation
 
-1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#faq).
+1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#4-faq).
 
 2. Download the latest `GREWZ.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
+3. Copy the file to the folder you want to use as the [_home folder_](#6-glossary) for your GREWZ.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui with annotations](images/Ui_annotated.png "GREWZ UI")
@@ -74,18 +74,18 @@ Some example commands you can try:
 
    * **`exit`** : Exits the app.
 
-Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#1-introduction)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#6-glossary) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -105,8 +105,10 @@ Refer to the [Features](#features) below for details of each command.
 
 </div>
 
-### 3.1 Student Contact Commands
-[Back to Top ↑](#introduction)
+### 3.1 Student Features
+[Back to Top ↑](#1-introduction)
+
+The student features will assist you in managing student details with ease. 
 
 #### 3.1.1 Adding a student: `add`
 
@@ -161,7 +163,7 @@ Examples:
 * ```class 1 c/CS2030S Lab 32``` Edits the class group of the 1st student in the list to be CS2030S Lab 32.
 * ```class 1 c/ ``` Clears the class group of the 1st student in the list.
 
-#### 3.1.4 Uploading/ Changing student profile picture: `upload-pic`
+#### 3.1.4 Uploading/Changing student profile picture: `upload-pic`
 
 GREWZ allows you to upload image of your students into your application. The following steps will help you upload photos of your students into the student list.
 
@@ -185,11 +187,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can clear the value in a field by typing its [prefix](#glossary) without specifying any value after it.
+* You can clear the value in a field by typing its [prefix](#6-glossary) without specifying any value after it.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
-* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic).
+* This command does not offer editing a student's profile picture. To do this, refer to [upload](#314-uploadingchanging-student-profile-picture-upload-pic).
 
 Examples:
 * `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
@@ -228,7 +230,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 3.1.8 Attendance commands
+#### 3.1.8 Attendance management
 
 We developed a feature to add an attendance list of a maximum of 12 lessons to help you record attendance for your students. 
 You can mark/unmark attendance of your students. 
@@ -278,7 +280,7 @@ Expected outcome:
 
 After using ```attendance mark``` command
 
-##### Deleting attendance of a student: `attendance delete`
+##### Deleting attendance list of a student: `attendance delete`
 
 Deletes the entire attendance list of a student in the student list.
 
@@ -292,8 +294,10 @@ Expected outcome:<br>
 ![AttendanceDelete](images/AttendanceDelete.png)<br>
 After using ```attendance delete``` command
 
-### 3.2 Task Commands
-[Back to Top ↑](#introduction)
+### 3.2 Task Features
+[Back to Top ↑](#1-introduction)
+
+The task feature helps you to keep track of your ToDos, Deadlines and Assignment submission.
 
 #### 3.2.1 Adding a Task : `task`
 
@@ -368,7 +372,7 @@ Expected outcome: <br>
 ![AddingAssignment](images/AddingAssignment.png) <br>
 After adding an Assignment task
 
-#### 3.2.2 Editing a Tasks : `edit-task`
+#### 3.2.2 Editing a Task : `edit-task`
 
 Edits an existing tasks in the task list.
 
@@ -406,8 +410,8 @@ Examples:
 * `remove-task 2` removes the 2nd task in the task list.
 * `remove-task 1` removes the 1st task in the task list.
 
-### 3.3 General Commands
-[Back to Top ↑](#introduction)
+### 3.3 General Features
+[Back to Top ↑](#1-introduction)
 
 #### 3.3.1 Clearing all entries : `clear`
 
@@ -450,7 +454,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. FAQ
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#1-introduction)
 
 **Q:** I don't know if I have Java `11` installed in my computer. What do I do?
 <br />
@@ -463,73 +467,76 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 
 **Q:** Do I have to retype the command every single time even if they are similar?
 <br />
-**A:** You can use our [input history feature](#navigating-user-input-history--) and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
+**A:** You can use our [input history feature](#331-navigating-user-input-history--) and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
 
-**Q:** What is the difference between the different types of tasks?
+**Q:** What is the difference between the different types of [tasks](#32-task-commands)?
 <br />
 **A:** All the three tasks essentially have a task title and description. What differentiates them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task has neither of these fields.
 
-**Q:** How to add a student if I do not have their student ID?
+**Q:** How do I to add a student if I do not have their student ID?
 <br />
-**A:** Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish the students in the student list.
+**A:** Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish
+the students in the student list. However, you could initially add a dummy student ID and tag the student profile as "incomplete".
 
-**Q:** How to add a deadline to an existing toDo task?
+**Q:** How do I to add a deadline to an existing ToDo task?
 <br />
-**A:** Remove the existing toDo task, then add the same task with your given deadline.
+**A:** Remove the existing ToDo task, then add the same task with your given deadline.
 
-**Q:** How to edit an existing task?
+**Q:** How do I to edit an existing task?
 <br />
-**A:** Remove the existing task, then add the same task with the change that you want to make.
+**A:** Use our [edit task](#322-editing-a-task--edit-task) feature to edit the respective fields.
 
 **Q:** How do I transfer my data into another computer?
 <br />
 **A:** Download the app in the other computer and overwrite the empty data files it creates with the files that contain data of your previous GREWZ data folder.
 
-**Q:** How to use attendance commands?
+**Q:** How do I use the [attendance commands](#318-attendance-management)?
 <br />
 **A:** Initially, each student has no attendance list. You should add an attendance list and mark different lessons that the student attends or unmark them if they are not present. At the end of the semester, you can delete the attendance list when not needed.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#ed)
 
 ### 5.1 Student Management Commands
 
-| Action                | Format                                                                                   | Examples                                                                          |
-|-----------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Add Student**       | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
-| **List Students**     | `list`                                                                                   |                                                                                   |
-| **Add Class**         | `class`                                                                                  | `class 1 c/CS2030S Lab 32`                                                        |
-| **Upload Picture**    | `upload-pic INDEX`                                                                       | `upload-pic 1`                                                                    |
-| **Edit Student**      | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                       |
-| **Find Student**      | `find KEYWORD [MORE_KEYWORDS]...`                                                        | `find James Jake`                                                                 |
-| **Delete Student**    | `delete INDEX`                                                                           | `delete 3`                                                                        |
-| **Add Attendance**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                         | `attendance add 1 c/CS2030 s/10`                                                  |
-| **Delete Attendance** | `attendance delete INDEX`                                                                | `attendance delete 1`                                                             |
-| **Mark Attendance**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                      | `attendance mark 1 l/1 m/1`                                                       |
+| Action                                                                            | Format                                                                                   | Examples                                                                          |
+|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **[Add Student](#311-adding-a-student-add)**                                      | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
+| **[List Students](#312-listing-all-students--list)**                              | `list`                                                                                   |                                                                                   |
+| **[Add Class](#313-adding-a-class-field-to-a-student-class)**                     | `class`                                                                                  | `class 1 c/CS2030S Lab 32`                                                        |
+| **[Upload Picture](#314-uploadingchanging-student-profile-picture-upload-pic)**   | `upload-pic INDEX`                                                                       | `upload-pic 1`                                                                    |
+| **[Edit Student](#315-editing-student-information--edit)**                        | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **[Find Student](#316-locating-students-find)**                                   | `find KEYWORD [MORE_KEYWORDS]...`                                                        | `find James Jake`                                                                 |
+| **[Delete Student](#317-deleting-a-student--delete)**                             | `delete INDEX`                                                                           | `delete 3`                                                                        |
+| **[Add Attendance](#adding-an-attendance-list-to-a-student-attendance-add)**      | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                         | `attendance add 1 c/CS2030 s/10`                                                  |
+| **[Delete Attendance](#deleting-attendance-list-of-a-student-attendance-delete)** | `attendance delete INDEX`                                                                | `attendance delete 1`                                                             |
+| **[Mark Attendance](#marking-attendance-of-student-attendance-mark)**             | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                      | `attendance mark 1 l/1 m/1`                                                       |
 
 ### 5.2 Task Management Commands
 
-| Action                  | Format                                                                                                                  | Examples                                                                   |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| **Add Todo Task**       | `task t/TITLE d/DESC`                                                                                                   | `task t/Work on essay d/GE module`                                         |
-| **Add Deadline Task**   | `task t/TITLE d/DESC by/YYYY-MM-DD`                                                                                     | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` | 
-| **Add Assignment Task** | `task t/TITLE d/DESC addStu/STUDENT_1,STUDENT_2...`                                                                     | `task t/Assignment 3 d/Topic Environment Model addStu/Adam, Ben`           |
-| **Edit Task**           | `edit-task INDEX [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                | 
-| **Remove Task**         | `remove-task INDEX`                                                                                                     | `remove-task 1`                                                            |
+| Action                                               | Format                                                                                                                  | Examples                                                                   |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| **[Add Todo Task](#adding-a-todo)**                  | `task t/TITLE d/DESC`                                                                                                   | `task t/Work on essay d/GE module`                                         |
+| **[Add Deadline Task](#adding-a-deadline)**          | `task t/TITLE d/DESC by/YYYY-MM-DD`                                                                                     | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` | 
+| **[Add Assignment Task](#adding-an-assignment)**     | `task t/TITLE d/DESC addStu/STUDENT_1,STUDENT_2...`                                                                     | `task t/Assignment 3 d/Topic Environment Model addStu/Adam, Ben`           |
+| **[Edit Task](#322-editing-a-task--edit-task)**      | `edit-task INDEX [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                | 
+| **[Remove Task](#323-removing-a-task--remove-task)** | `remove-task INDEX`                                                                                                     | `remove-task 1`                                                            |
 
 ### 5.3 General Commands
 
-| Action          | Format                                                                                                            |
-|-----------------|-------------------------------------------------------------------------------------------------------------------|
-| **Clear**       | `clear`                                                                                                           |
-| **Help**        | `help`                                                                                                            |
+| Action                       | Format   |
+|------------------------------|----------|
+| **Clear**                    | `clear`  |
+| **Navigating Input History** | `↑`, `↓` |
+| **Help**                     | `help`   |
+| **Exit**                     | `exit`   |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#1-introduction)
 
 | Word                                       | Definition                                                                                                                                     |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -550,4 +557,4 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
 | **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
 
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#1-introduction)
