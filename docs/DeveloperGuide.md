@@ -574,6 +574,8 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 
 <img src="images/DeleteTaskAllCommandExecuteSequenceDiagram.png" width="400" />
 
+<div style="page-break-after: always;"></div>
+
 **Design Considerations:**
 
 **Aspect: How to handle `Person`s with duplicate task when assigning/no task when deleting:**
@@ -609,8 +611,6 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 * [DevOps guide](DevOps.md)
 
 --- 
-
-<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 ### Product scope
@@ -712,8 +712,6 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case resumes at step 2.
 
-<div style="page-break-after: always;"></div>
-
 ### UC2: Edit a person’s details
 
 **MSS**
@@ -776,8 +774,6 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 ### UC4: List every person
 
