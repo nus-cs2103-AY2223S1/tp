@@ -1268,7 +1268,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Changing the currently selected module
 
-1. Changing the currently selected module using the `cd` command
+1. **Changing the currently selected module using the `cd` command**
 
     1. Prerequisites: A module with module code `CS2109S` exists.
    
@@ -1278,19 +1278,19 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `cd ..`<br>
        Expected: The `selected` tag is removed from the module with code `CS2109S` in the UI, and the UI now displays tasks belonging to all modules.
 
-1. Using the `cd ..` command while no current module is set
+1. **Using the `cd ..` command while no current module is set**
 
     1. Prerequisites: No current module is set, i.e. The user is not currently `cd`'d into any module.
 
     1. Test case: `cd ..`<br>
        Expected: No change to modules/tasks, an error message "Already showing all modules" is displayed to the user.
 
-1. Using the `cd` command with an invalid module code
+1. **Using the `cd` command with an invalid module code**
 
     1. Test case: `cd morethannine`, or any other module code that does not conform to specifications (between 6 and 9 alphanumeric characters)<br>
        Expected: The command is unsuccessful, no changes to modules/tasks, and an error message including the module code constraints is displayed to the user.
 
-1. Using the `cd` command with a valid module code that does not exist
+1. **Using the `cd` command with a valid module code that does not exist**
 
     1. Prerequisites: There does not exist a module with code `CS1010`.
 
