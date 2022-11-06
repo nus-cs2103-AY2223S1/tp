@@ -32,6 +32,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 4. [Command Summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Quick start
 
@@ -57,7 +58,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#3-features) below for details of each command.
+6. Refer to [Features](#3-features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,6 +97,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
 * For example, in `john_doe@workday-nus.edu.sg`, `john_doe` is the `LOCAL_PART` and `workday-nus.edu.sg` is the `DOMAIN`
 which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Data Fields
 
@@ -125,6 +127,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 | **Tag** | `t`       | 30           | Can only contain alphabet characters and spaces |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -348,6 +351,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 </div>
 
 -----------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. Command summary
 
