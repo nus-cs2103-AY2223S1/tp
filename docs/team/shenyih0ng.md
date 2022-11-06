@@ -32,14 +32,21 @@ Given below are my contributions to the project.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shenyih0ng&breakdown=true)
 
 - **Project management**:
-  - Managed releases `v1.2` - `v1.3` (2 releases) on GitHub
+  - Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+  - Maintained milestone issues
+  - Plan out tasks for each milestone sprints (`v1.2` -> `v1.4`)
 
 - **Enhancements to existing features**:
-  - TODO
+  - Integrate the command history with existing `CommandBox`
+  - Contributed to the design of `CliMods` UI components
 
 - **Documentation**:
+  - User Guide:
+    - Added simple visual demonstration for commands
+    - Contributed to the `find` command documentation
   - Developer Guide:
     - Added implementation details of the command history feature.
+    - Updated UML diagram for the Logic component
 
 - **Community**:
   - PRs reviewed (with non-trivial review comments): [\#59](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/59), [\#82](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/82), [\#85](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/85)
