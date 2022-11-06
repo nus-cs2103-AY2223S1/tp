@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.hrpro.logic.commands.FindStaffCommand;
 import seedu.hrpro.logic.parser.exceptions.ParseException;
+import seedu.hrpro.model.staff.StaffName;
 import seedu.hrpro.model.staff.StaffNameContainsKeywordsPredicate;
 
 /**
@@ -24,6 +25,12 @@ public class FindStaffCommandParser implements Parser<FindStaffCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        for (String name : nameKeywords) {
+            if (!StaffName.isValidStaffName(name)) {
+                throw new ParseException(StaffName.MESSAGE_CONSTRAINTS);
+            }
+        }
 
         return new FindStaffCommand(new StaffNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
