@@ -4,11 +4,37 @@ title: User Guide
 ---
 
 YellowBook is a **desktop application for university students** who are involved in many projects to organize their project contacts and tasks.
-YellowBook is optimised for use via a Command Line Interface (CLI).
+As a user of YellowBook, you will be able to: 
+* add contacts
+* update contact details
+* add tasks
+* update task details 
+* track your task completion progress
+* get task reminders
+* sort tasks by deadlines 
+* and more!
+
+As YellowBook is optimised for use via a Command Line Interface (CLI), in which all functionality is achieved through typing commands,
+you will benefit greatly from the use of this application if you are a fast typer.
+
+Read on to find out more about YellowBook's features!
 
 ## Table of Contents
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+Welcome to YellowBook's user guide.
+
+If you are a first-time user, this user guide will walk you through [setting up](#quick-start) YellowBook. The [sample usage section](#sample-usage) will also provide a brief
+tutorial for you to get familiar with the commands and command formats.
+
+This user guide also provides comprehensive explanations so that you know how to use all the [features](#features) in YellowBook.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,12 +46,14 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your YellowBook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI, as shown in the image below, should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Try out some commands from the [Sample Usage](#sample-usage) section.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,9 +69,13 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 4. YellowBook also allows you to add tasks, to add homework task with deadline of 25 December 2022. Type `addT d/complete homework D/25-12-2022` in the command box and press Enter to execute it. You should see a message indicating that the task has been added successfully and the task will appear in your task list.
 
-5. Now that you know the basic commands, try using following the guide for the label command to tag the newly added `Elmo` contact as `friend`. 
+5. Now that you know the basic commands, try following the guide for the label command to tag the newly added `Elmo` contact as `friend`.
+
+6. When you feel ready to use YellowBook for your own contacts and tasks, type `clear` to remove all the sample data from YellowBook.
 
 YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +111,7 @@ These commands allow you to maintain a list of business contacts that you meet f
 Whether it be for a school project or an internship, store all their details in one place for easy look-up.
 Contact management has never been this simple.
 
-### Add a contact: `addC`
+### Adding a contact: `addC`
 
 Adds a contact to the address book.
 
@@ -405,9 +437,9 @@ Example:
 
 * `remindT 12-09-2022` will list all tasks with deadlines up to and including 12-09-2022.
 
-### Show the percentage of tasks with the specified tags that are completed: `progressT`
+### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
-Show the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
+Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
 
 Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
@@ -549,10 +581,6 @@ The following scenarios should not happen for your command to run successfully:
 
 Shows a window with a link to this user guide and latest release of YellowBook.
 
-### Exiting YellowBook : `exit`
-
-Closes the YellowBook program.
-
 ### Undoing a command : `undo`
 
 Undoes the last command.
@@ -573,8 +601,19 @@ Format: `redo`
 
 * Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
+### Clearing YellowBook data : `clear`
+
+Clears all data from YellowBook.
+
+Format: `clear`
+
+### Exiting YellowBook : `exit`
+
+Closes the YellowBook program.
+
 [[Back to Table of Contents](#table-of-contents)]
 
+--------------------------------------------------------------------------------------------------------------------
 ## Automatic tab switching
 
 Depending on the command you enter, you will see the open tab in the GUI switch automatically.
@@ -583,6 +622,9 @@ For example, when using a task-related command, the tab switches to "Task" and t
 The result of the entered command is displayed.
 For example, after adding a new contact, the list shown on the GUI is the updated list with your new contact included.
 
+[[Back to Table of Contents](#table-of-contents)]
+
+--------------------------------------------------------------------------------------------------------------------
 ## YellowBook data
 ### Saving the data
 
@@ -607,42 +649,48 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous YellowBook home folder.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## Command summary
 
-| Command        | Mnemonic                                        | Format, Examples                                                                                                                                       |
-|----------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **help**       | -                                               | `help`                                                                                                                                                 |
-| **exit**       | -                                               | `exit`                                                                                                                                                 |
-| **undo**       | -                                               | `undo`                                                                                                                                                 |
-| **redo**       | -                                               | `redo`                                                                                                                                                 |
-| **listC**      | **list** **C**ontact                            | `listC`                                                                                                                                                |
-| **addC**       | **add** **C**ontact                             | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **deleteC**    | **delete** **C**ontact                          | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
-| **editC**      | **edit** **C**ontact                            | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
-| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [<br/>`findC n/Ferb`                                                                  |
-| **filterC**    | **filter** **C**ontact                          | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterC cs2103t`                                                                                         |                                                                                                 |
-| **copyC**      | **copy** **C**ontact                            | `copyC KEYWORD` <br> e.g. `copyC CS2103T`                                                                                                              |
-| **listT**      | **list** **T**asks                              | `listT`                                                                                                                                                |
-| **listAT**     | **list** **A**rchived **T**asks                 | `listAT`                                                                                                                                               |
-| **addT**       | **add** **T**ask                                | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
-| **deleteT**    | **delete** **T**asks                            | `deleteT INDEX` <br/> e.g., `deleteT 12`                                                                                                               |
-| **editT**      | **edit** **T**asks                              | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                   |
-| **markT**      | **mark** **T**ask as completed                  | `markT INDEX` <br> e.g., `markT 1`                                                                                                                     |
-| **unmarkT**    | **unmark** **T**ask as not completed            | `unmarkT INDEX` <br> e.g., `unmarkT 1`                                                                                                                 |
-| **archiveT**   | **archive** **T**ask                            | `archiveT INDEX` <br> e.g., `archiveT 1`                                                                                                               |
-| **unarchiveT** | **unarchive** **T**ask                          | `unarchiveT INDEX` <br> e.g., `unarchiveT 1`                                                                                                           |
-| **findT**      | **find** **T**asks                              | `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]` <br> e.g., `findT d/homework`                                                                          |
-| **filterT**    | **filter** **T**asks                            | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
-| **remindT**    | **remind** **T**asks due on/before certain date | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
-| **progressT**  | **progress** of **T**ask with label             | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
-| **sortD**      | **sort** by **D**eadline                        | `sortD`                                                                                                                                                |
-| **sortI**      | **sort** by **I**d                              | `sortI`                                                                                                                                                |
-| **listL**      | **list** **L**abels                             | `listL`                                                                                                                                                |
-| **addL**       | **add** **L**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                          |
-| **deleteL**    | **delete** **L**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`                                                                                      |
-| **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |
+| Command        | Mnemonic                                        | Format, Examples                                                                                                                                           |
+|----------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **help**       | -                                               | `help`                                                                                                                                                     |
+| **undo**       | -                                               | `undo`                                                                                                                                                     |
+| **redo**       | -                                               | `redo`                                                                                                                                                     |
+| **clear**      | -                                               | `clear`                                                                                                                                                    |
+| **exit**       | -                                               | `exit`                                                                                                                                                     |
+| **listC**      | **list** **C**ontact                            | `listC`                                                                                                                                                    |
+| **addC**       | **add** **C**ontact                             | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`     |
+| **deleteC**    | **delete** **C**ontact                          | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                     |
+| **editC**      | **edit** **C**ontact                            | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                                   |
+| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [<br/>`findC n/Ferb`                                                                                       |
+| **filterC**    | **filter** **C**ontact                          | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterC cs2103t`                                                                                             |                                                                                                 |
+| **copyC**      | **copy** **C**ontact                            | `copyC KEYWORD` <br> e.g. `copyC CS2103T`                                                                                                                  |
+| **listT**      | **list** **T**asks                              | `listT`                                                                                                                                                    |
+| **listAT**     | **list** **A**rchived **T**asks                 | `listAT`                                                                                                                                                   |
+| **addT**       | **add** **T**ask                                | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                            |
+| **deleteT**    | **delete** **T**asks                            | `deleteT INDEX` <br/> e.g., `deleteT 12`                                                                                                                   |
+| **editT**      | **edit** **T**asks                              | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                       |
+| **markT**      | **mark** **T**ask as completed                  | `markT INDEX` <br> e.g., `markT 1`                                                                                                                         |
+| **unmarkT**    | **unmark** **T**ask as not completed            | `unmarkT INDEX` <br> e.g., `unmarkT 1`                                                                                                                     |
+| **archiveT**   | **archive** **T**ask                            | `archiveT INDEX` <br> e.g., `archiveT 1`                                                                                                                   |
+| **unarchiveT** | **unarchive** **T**ask                          | `unarchiveT INDEX` <br> e.g., `unarchiveT 1`                                                                                                               |
+| **findT**      | **find** **T**asks                              | `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]` <br> e.g., `findT d/homework`                                                                              |
+| **filterT**    | **filter** **T**asks                            | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                             |
+| **remindT**    | **remind** **T**asks due on/before certain date | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                        |
+| **progressT**  | **progress** of **T**ask with label             | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                        |
+| **sortD**      | **sort** by **D**eadline                        | `sortD`                                                                                                                                                    |
+| **sortI**      | **sort** by **I**d                              | `sortI`                                                                                                                                                    |
+| **listL**      | **list** **L**abels                             | `listL`                                                                                                                                                    |
+| **addL**       | **add** **L**abel to contact or task            | `addL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR  `addL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `addL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]`         |
+| **deleteL**    | **delete** **L**abel from contact or task       | `deleteL c/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL t/INDEX l/LABEL_NAME [l/MORE_LABELS]` OR `deleteL c/INDEX t/INDEX l/LABEL_NAME [l/MORE_LABELS]` |
+| **deleteA**    | **delete** **A**ll contact(s)/task(s) with tag  | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                       |
+
+[[Back to Table of Contents](#table-of-contents)]

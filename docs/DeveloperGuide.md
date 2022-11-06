@@ -9,8 +9,14 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+Libraries used:
+* [JavaFX](https://openjfx.io/)
+* [Jackson](https://github.com/FasterXML/jackson)
+* [JUnit5](https://github.com/junit-team/junit5)
 * [Mockito](https://github.com/mockito/mockito) framework used for testing
-* [se-edu addressbook-level3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md) reference for developers guide
+
+Reference for developer guide:
+* [se-edu addressbook-level3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md)
 
 --------------------------------------------------------------------------------------------------------------------
 

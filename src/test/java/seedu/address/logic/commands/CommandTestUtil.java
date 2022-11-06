@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -22,6 +24,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
@@ -47,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "allergic to peanuts";
     public static final String VALID_TAG_2103 = "CS2103T";
     public static final String VALID_TAG_2101 = "CS2101";
+    public static final String VALID_CONTACT_INDEX = "1";
+    public static final String VALID_TASK_INDEX = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,12 +66,15 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_2103 = " " + PREFIX_TAG + VALID_TAG_2103;
     public static final String TAG_DESC_2101 = " " + PREFIX_TAG + VALID_TAG_2101;
+    public static final String CONTACT_INDEX = " " + PREFIX_CONTACT + VALID_CONTACT_INDEX;
+    public static final String TASK_INDEX = " " + PREFIX_TASK + VALID_TASK_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC_2 = " " + PREFIX_TAG + "best friend"; // tag should be one word
     public static final String INVALID_REMARK_DESC = " " + PREFIX_REMARK + "fun!"; // '!' not allowed in remarks
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -191,5 +200,19 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered tag list to show only the tag at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTagAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTagList().size());
+
+        Tag tag = model.getFilteredTagList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = tag.getName().split("\\s+");
+        model.updateFilteredTagList(new TagNameContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTagList().size());
     }
 }

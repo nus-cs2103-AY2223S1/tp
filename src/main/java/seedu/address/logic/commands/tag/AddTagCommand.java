@@ -45,7 +45,6 @@ public class AddTagCommand extends Command {
     public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
     public static final String MESSAGE_DUPLICATE_TAG_ON_PERSON_OR_TASK = "This person/task already has the "
         + "tag you are trying to add";
-    public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     private final Index contactIndex;
     private final Index taskIndex;
@@ -85,10 +84,6 @@ public class AddTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!addTagToContact && !addTagToTask) {
-            throw new CommandException(MESSAGE_MISSING_INDEX);
-        }
 
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
