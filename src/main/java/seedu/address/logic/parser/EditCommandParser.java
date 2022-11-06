@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.util.StringUtil.isInteger;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -45,18 +43,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         Index index;
         String oneBasedIndexStr = argMultimap.getPreamble();
 
-        // Throw invalid index error only if index is an integer and is lower than or equals to 0
-        if (isInteger(oneBasedIndexStr) && Integer.parseInt(oneBasedIndexStr) <= 0) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        // Throw invalid format error only if index is not an integer
         try {
-            index = ParserUtil.parseIndex(oneBasedIndexStr);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            index = ParserUtil.parsePersonIndex(oneBasedIndexStr);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
+        EditPersonDescriptor editPersonDescriptor = createEditPersonDescriptor(argMultimap);
+
+        return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses the given {@code argMultimap} and returns an
+     * EditPersonDescriptor object for execution.
+     * @throws ParseException if the arguments does not conform the expected format
+     */
+    private EditPersonDescriptor createEditPersonDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -90,11 +93,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        //editPersonDescriptor.setAppointments(EMPTY_APPOINTMENTS);
-
-        return new EditCommand(index, editPersonDescriptor);
+        return editPersonDescriptor;
     }
-
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a

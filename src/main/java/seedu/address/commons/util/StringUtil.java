@@ -74,7 +74,6 @@ public class StringUtil {
      */
     public static boolean isInteger(String s) {
         requireNonNull(s);
-
         try {
             int value = Integer.parseInt(s);
             return !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
@@ -82,4 +81,5 @@ public class StringUtil {
             return false;
         }
     }
+
 }

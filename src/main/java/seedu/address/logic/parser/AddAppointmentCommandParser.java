@@ -1,20 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.util.StringUtil.isInteger;
 import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
-
-import java.time.format.DateTimeParseException;
+import static seedu.address.logic.parser.ParserUtil.parseAppointment;
+import static seedu.address.logic.parser.ParserUtil.parsePersonIndex;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.DateTime;
-import seedu.address.model.appointment.Location;
 
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object
@@ -38,33 +34,18 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         Index personIndex;
         String oneBasedPersonIndexStr = argMultimap.getPreamble();
-        if (isInteger(oneBasedPersonIndexStr) && Integer.parseInt(oneBasedPersonIndexStr) <= 0) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
 
         try {
-            personIndex = ParserUtil.parseIndex(oneBasedPersonIndexStr);
-        } catch (ParseException pe) {
+            personIndex = parsePersonIndex(oneBasedPersonIndexStr);
+        } catch (NumberFormatException nfe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE), pe);
+                    AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        Appointment appointment;
-        DateTime appointmentDateTime;
-        Location appointmentLocation;
+        Appointment appointment = parseAppointment(argMultimap);
 
-        try {
-            appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get());
-            appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
-            appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
-        } catch (DateTimeParseException e) {
-            if (e.getCause() == null) {
-                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
-            }
-            String str = e.getCause().getMessage();
-            throw new ParseException(str);
-        }
 
         return new AddAppointmentCommand(personIndex, appointment);
     }
+
 }
