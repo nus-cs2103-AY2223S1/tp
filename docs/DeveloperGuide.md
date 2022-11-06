@@ -714,27 +714,38 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
-They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
-1. High `* * *` - must have
-2. Moderate `* *` - nice to have
-3. Low `*` - unlikely to have
+They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly.
 
-| Priority | As a ...      | I want to ...                                                                      | So that ...                                                                         | Story Type |
-|----------|---------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------|
-| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                                                     | Story      |
-| `***`    | user          | view the full list of residents                                                    |                                                                                     | Story      |
-| `***`    | advanced user | show, hide and reset columns without affecting the list of residents displayed     | I can de-clutter my screen without affecting the current list of residents          | Story      |
-| `***`    | user          | import my old data into the application                                            |                                                                                     | Story      |
-| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                                                     | Story      |
-| `**`     | advanced user | give residents roles                                                               | I can further categorize them                                                       | Epic       |
-| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names                                         | Story      |
-| `**`     | user          | export residents' data in a familiar format                                        |                                                                                     | Story      |
-| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use                                    | Story      |
-| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                                                     | Story      |
-| `**`     | user          | use the system without referring to the user guide                                 |                                                                                     | Story      |
-| `**`     | user          | switch between different data files                                                |                                                                                     | Story      |
-| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations                                         | Epic       |
-| `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
+| Priorities  |🔴 High: Must have  | 🟠 Medium: Good to have | 🟡 Low: Nice to have | 
+|-------------|--------------------|-------------------------|-----------------------|
+
+| Priority  | As a ...          | I want to ...                                       | So that I can ...                                           |
+|-----------|-------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| 🔴 High   | basic user        | add new entries                                     | keep track of new residents                                 |
+| 🔴 High   | basic user        | delete existing entries                             | remove residents who have left RC4                          |
+| 🔴 High   | basic user        | edit existing entries                               | update any outdated or wrongly entered information          |
+| 🔴 High   | basic user        | view all existing entries                           | get an overview of all residents                            |
+| 🔴 High   | basic user        | search for existing entries                         | view their resident information                             |       |
+| 🔴 High   | intermediate user | filter through entries via certain keywords         | view these residents                                        |
+| 🔴 High   | basic user        | add new venues                                      | make these venues available for booking                     |
+| 🔴 High   | basic user        | delete existing venues                              | prevent any bookings to be made                             |
+| 🔴 High   | basic user        | add new bookings                                    | block certain time periods                                  |
+| 🔴 High   | basic user        | delete existing bookings                            | free up these time periods for others                       | 
+| 🔴 High   | basic user        | view all bookings for a venue                       | see which time periods are free for booking                 | 
+| 🔴 High   | basic user        | view all existing venues                            | view all existing venues                                    | 
+| 🔴 High   | basic user        | switch between the resident tab and bookings tab    | better visualize my data                                    | 
+| 🟠 Medium | intermediate user | hide certain columns                                | de-clutter my screen                                        |
+| 🟠 Medium | intermediate user | show previously hidden columns                      | get back to working on those data                           | 
+| 🟠 Medium | intermediate user | delete multiple entries at a time                   | save time from individually removing them                   |
+| 🟠 Medium | basic user        | search for residents using a portion of their names | still find them without having to remember their full names |
+| 🟠 Medium | basic user        | add miscellaneous information to entries            | keep track of a little more information                     |
+| 🟠 Medium | advanced user     | create a new data file                              | maintain another list of residents                          |
+| 🟠 Medium | advanced user     | delete a file                                       | remove unused list of residents                             |
+| 🟠 Medium | advanced user     | switch between files                                | work on different files on the same system                  |
+| 🟠 Medium | advanced user     | import my data into the application                 | use RC4HDB to perform my tasks                              |
+| 🟠 Medium | new user          | see sample data                                     | how the application would like when in use                  |
+| 🟠 Medium | new user          | use the system without referring to the guide       | concentrate on my task                                      | 
+| 🟡 Low    | user              | access commands I have previously entered           | save time on retyping them                                  |
 
 *{More to be added}*
 
