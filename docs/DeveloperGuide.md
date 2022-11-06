@@ -248,9 +248,13 @@ _{more aspects and alternatives to be added}_
 
 ### Many-to-many relationship between `Person` and `Task`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
+UUID stands for Universally Unique Identifier.
+</div>
+
 The implementation of the contact-task relation is facilitated by `PersonTaskBridge` and `PersonTaskBridgeList`.
 
-`PersonTaskBridge` is a class containing a `Person`'s ID and a `Task`'s ID, representing a relation between a `Person` and a `Task`.
+`PersonTaskBridge` is a class containing a `Person` UUID and a `Task` UUID, representing a relation between a `Person` and a `Task`.
 
 `PersonTaskBridgeList` is a class containing a list of `PersonTaskBridge` objects, representing all the relations between `Person` and `Task` objects in the `AddressBook`. Additionally, it implements the following operations:
 
@@ -261,7 +265,22 @@ The implementation of the contact-task relation is facilitated by `PersonTaskBri
 
 These operations will be exposed in the `Model` interface.
 
+The following class diagram summarizes the relationship between `PersonTaskBridge` and other classes:
+
 <img src="images/PersonTaskBridgeDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`:**
+
+- **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
+
+    - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
+    - Cons: Requires changes in `Person` and `Task` schema and storage.
+
+- **Alternative 2:** Stores `Person` and `Task` index in `PersonTaskBridge`.
+    - Pros: No change is needed for `Person` and `Task` schema.
+    - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
 ### Find contacts/tasks
 
