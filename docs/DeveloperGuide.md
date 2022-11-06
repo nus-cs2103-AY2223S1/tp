@@ -2,33 +2,34 @@
 layout: page
 title: Developer Guide
 ---
-# Developer Guide
-* Table of Contents {:toc}
-- [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
-  - [Architecture](#architecture)
-  - [UI component](#ui-component)
-  - [Logic component](#logic-component)
-  - [Model component](#model-component)
-  - [Storage component](#storage-component)
-  - [Common classes](#common-classes)
-- [Implementation](#implementation)
-  - [Command Parsing](#command-parsing)
-  - [Add](#add-feature)
-  - [Delete](#delete-feature)
-  - [List](#list-feature)
-  - [Find](#find-feature)
-  - [Loan](#loan-feature)
-  - [Return](#return-feature)
-- [Documentation, logging, testing, configuration](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: Requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [User stories](#user-stories)
-  - [Use cases](#use-cases)
-  - [Non-function Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
+* Table of Contents
+  {:toc}
+  - [Acknowledgements](#acknowledgements)
+  - [Setting up, getting started](#setting-up-getting-started)
+  - [Design](#design)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
+  - [Implementation](#implementation)
+    - [Command Parsing](#command-parsing)
+    - [Add](#add-feature)
+    - [Delete](#delete-feature)
+    - [List](#list-feature)
+    - [Find](#find-feature)
+    - [Loan](#loan-feature)
+    - [Return](#return-feature)
+  - [Documentation, logging, testing, configuration](#documentation-logging-testing-configuration-dev-ops)
+  - [Appendix: Requirements](#appendix-requirements)
+    - [Product scope](#product-scope)
+    - [User stories](#user-stories)
+    - [Use cases](#use-cases)
+    - [Non-function Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+  - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -93,9 +94,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.
-com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/Main.java) and [`MainApp`](https://github.
-com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -132,7 +131,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `BookListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
@@ -142,7 +141,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Book` objects residing in the `Model`.
 
 ### Logic component
 
@@ -213,9 +212,9 @@ The [**Logic**](#logic-component) section briefly explains how the user's input 
 
 Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance.
 
-The `add`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
+The `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
 
-Contrast `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
+Compare the commands `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
 
 These commands (and subcommands) are represented as enums to associate each possible command from the user with a parser.
 
@@ -289,7 +288,7 @@ Currently, there are 5 possible `Command` classes that can be returned from `Lis
 they are created in respect to the subcommand that is parsed:
 * `ListBooksCommand` for `Book` upon the command `list books`
 * `ListUsersCommand` for `Person` upon the command `list users`
-* `ListALLCommand` for both `Book` and `Person` upon the command `list all`
+* `ListAllCommand` for both `Book` and `Person` upon the command `list all`
 * `ListLoansCommand` for both `Book` and `Person` upon the command `list loans`
 * `ListOverdueCommand` for both `Book` and `Person` upon the command `list overdue`
 
@@ -328,7 +327,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books.
 It implements the following operations:
-* `#updateFilteredPersonList(predicate)` — Display users with names matching predicate.
+* `updateFilteredPersonList(predicate)` — Display users with names matching predicate.
 * `updatedFilteredBookList(predicate)` — Display books with title/authors matching predicate.
 
 
@@ -446,7 +445,7 @@ We have chosen to use an external `PrettyTimeParser` library here to allow for h
 
 #### Implementation
 
-Similarly to the loan mechanism, the return mechanism is facilitated by `ReturnCommandParser` and `ReturnCommand`. It implements the following operation:
+Similar to the loan mechanism, the return mechanism is facilitated by `ReturnCommandParser` and `ReturnCommand`. It implements the following operation:
 * `BookFace#returnLoanedBook()` — returns a loaned book.
 
 This operation is exposed in the `Model` interface as `Model#returnLoanedBook()`.
@@ -483,91 +482,6 @@ The following activity diagram summarizes what happens when a user executes a re
 
 #### Design considerations:
 Similar to Design considerations for the loan command.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedBookFace`. It extends `BookFace` with an undo/redo history, stored internally as an `bookFaceStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedBookFace#commit()` — Saves the current BookFace state in its history.
-* `VersionedBookFace#undo()` — Restores the previous BookFace state from its history.
-* `VersionedBookFace#redo()` — Restores a previously undone BookFace state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitBookFace()`, `Model#undoBookFace()` and `Model#redoBookFace()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedBookFace` will be initialized with the initial BookFace state, and the `currentStatePointer` pointing to that single BookFace state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in BookFace. The `delete` command calls `Model#commitBookFace()`, causing the modified state of BookFace after the `delete 5` command executes to be saved in the `bookFaceStateList`, and the `currentStatePointer` is shifted to the newly inserted BookFace state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitBookFace()`, causing another modified BookFace state to be saved into the `bookFaceStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitBookFace()`, so BookFace state will not be saved into the `bookFaceStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoBookFace()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous BookFace state, and restores BookFace to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial BookFace state, then there are no previous BookFace states to restore. The `undo` command uses `Model#canUndoBookFace()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoBookFace()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores BookFace to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bookFaceStateList.size() - 1`, pointing to the latest BookFace state, then there are no undone BookFace states to restore. The `redo` command uses `Model#canRedoBookFace()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify BookFace, such as `list`, will usually not call `Model#commitBookFace()`, `Model#undoBookFace()` or `Model#redoBookFace()`. Thus, the `bookFaceStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitBookFace()`. Since the `currentStatePointer` is not pointing at the end of the `bookFaceStateList`, all BookFace states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire BookFace.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -613,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                               | view the overdue books         |                                                        |
 | `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        |
 
-*{More to be added}*
+*{More to be added as we progress into future versions}*
 
 ### Use cases
 
@@ -753,7 +667,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Open command prompt/terminal within the folder and enter <br>`java -jar BookFace.jar`<br>
+   Expected: Shows the GUI with a set of sample user records. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -788,3 +703,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+* **Difficulty level**<br>
+  Creating the `Book` entity alone was somewhat viable for us to do. However, it became quite difficult when multiple variables come into play with `Book`. For instance, integrating `Loan` into `Book` and `Person` meant that we had to ensure any data that is to be created or modified are performed correctly and synchronized with one another (E.g. A `Person`'s loaned book status should reflect all `Book` records that were loaned specifically to that `Person`). Parsing the various commands was the most difficult part of the project since the main commands like `Add` and `Edit` now involved more than 1 entity (unlike in AddressBook), and thus made the product more prone to errors and unexpected bugs from a multitude of possible inputs.
+* **Challenges faced**<br>
+  * Changing of features due to multiple implementations;<br>
+    Some features are related to one another (E.g. `Book` and `Loan`), and that made implementations difficult to synchronise, especially when multiple people are modifying them to suit their specific tasks. For instance, if `Book` were to have a quantity variable, `Loan` needs to be modified such that it can keep track of the `Book` quantity and the record is synchronised correctly with `Person`. However, if `Loan` and `Book` are in the middle of an enhancement, it becomes extremely tough to ensure our implementations work with these enhancements.
