@@ -16,7 +16,7 @@ For advanced users, you can go straight to the [Command Summary](#command-summar
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. 
+1. Ensure you have Java `11` or above installed in your Computer.
    * To check if you have Java installed, please open up a terminal (search for `Command Prompt` on Windows and `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
    * If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate Java for your operating system.
 
@@ -65,7 +65,7 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
-This section provides information on how you can use HackAssist commands for people management and tasks management. 
+This section provides information on how you can use HackAssist commands for people management and tasks management.
 You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
 
 Before you learn any commands, please read the following notes about HackAssist command format.
@@ -244,7 +244,7 @@ Examples:
 
 #### Editing a Task: `editTask`
 
-Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team. 
+Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
