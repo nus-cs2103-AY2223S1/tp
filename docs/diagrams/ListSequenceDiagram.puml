@@ -37,7 +37,7 @@ ListTutorCommand -[hidden]-> AddressBookParser
 AddressBookParser --> LogicManager : l
 deactivate AddressBookParser
 
-LogicManager -> ListTutorCommand : execute(l)
+LogicManager -> ListTutorCommand : execute()
 activate ListTutorCommand
 
 ListTutorCommand -> Model:updateCurrentList(TUTOR_LIST)
@@ -57,7 +57,6 @@ deactivate ListTutorCommand
 destroy ListTutorCommand
 
 LogicManager --> MainWindow : result
-
 MainWindow -> CommandResult : isList()
 
 CommandResult --> MainWindow : true
@@ -82,7 +81,6 @@ MainWindow -> MainWindow : setLabelStyle()
 activate MainWindow
 
 MainWindow -> LogicManager : getCurrentListType()
-
 LogicManager -> Model : getCurrentListType()
 activate Model
 

@@ -367,14 +367,8 @@ Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logi
 Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
 This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `Class` list.
 
-Another example that makes use of the `ListType` is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how the list type mechanism behaves.
-
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
-
-Step 2. The user executes `delete 1` command to delete the 1st student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
-
-Step 3. The `delete` command then gets the `studentToDelete` as the first `Student` in the `lastShownStudentList` which is obtained by calling `Model#getFilteredStudentList`. 
-This `studentToDelete` is deleted by calling `Model#deletePerson` with the `studentToDelete` being the parameter.
+The following sequence diagram shows how the `find` operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
