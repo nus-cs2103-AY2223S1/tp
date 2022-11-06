@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "{abstract}\nSortCommand" as SortCommand
+Class SortBuyerCommand
+Class SortDelivererCommand
+Class SortSupplierCommand
+Class SortOrderCommand
+Class SortPetCommand
+
+package "Parser classes"{
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class SortCommandParser
+Class SortCommandParserUtil
+Class CommandUtil
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
+
+AddressBookParser .down.> SortCommandParser: creates >
+
+SortCommandParser ..> SortCommand : creates >
+AddressBookParser ..> SortCommand : returns >
+SortCommandParser .up.|> Parser
+SortCommandParser ..> SortCommandParserUtil
+SortCommandParser ..> CommandUtil
+SortBuyerCommand -up-|> SortCommand
+SortSupplierCommand -up-|> SortCommand
+SortDelivererCommand -up-|> SortCommand
+SortOrderCommand -up-|> SortCommand
+SortPetCommand -up-|> SortCommand
+@enduml

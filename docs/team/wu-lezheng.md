@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * Justification: These models lay the foundation of our project, so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
-* **Functionality**: Extended `person` to different categories in the `modeol` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
+* **Functionality**: Extended `person` to different categories in the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
   * What it does: Extended the `Person` class into three categories -- `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
   * Justification: These models lay the foundation of our project, so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.

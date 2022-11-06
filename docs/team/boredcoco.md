@@ -55,5 +55,3 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other teams in the class (examples: [/#4](https://github.com/boredcoco/ped/issues/1#issue-1426879221).)
       * Most of the bugs were found through writing JUnit tests.
       * Some manual testing was done to ensure that UI worked fine.
-    
-

@@ -5,8 +5,8 @@ title: Hong Ker Yen Elizabeth's Project Portfolio Page
 
 ### Project: PetCode
 
-PetCode is a software app that aims to facilitate better working experience and boost business management efficiency 
-for pet sale coordinators. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written 
+PetCode is a software app that aims to facilitate better working experience and boost business management efficiency
+for pet sale coordinators. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written
 in Java, and has about 30 kLoC.
 
 Given below are my contributions to the project.
@@ -28,11 +28,11 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=elizabethhky&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Kept track and notified teammates of important deadlines. 
+    * Kept track and notified teammates of important deadlines.
     * Updated demo screenshots for each version release.
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features and json files to increase coverage by 6.10% (Pull requests [#140](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/140)).
+    * Wrote additional tests for existing features and json files to increase coverage by 6.10% (Pull request [#140](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/140)).
 
 * **Documentation**:
     * User Guide:
@@ -42,10 +42,13 @@ Given below are my contributions to the project.
         * Did cosmetic tweaks and proofread the entire user guide to check for typos and consistent tone: [#191](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/191/files), [#285](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/285/files)
     * Developer Guide:
         * Updated the `Model` Component: [#215](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/215/files)
+        * Added more UML diagrams for `MatchCommand`, `Logic` component: [#368](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/368)
+        * Proofread the entire Developer Guide to check for typos and consistent tone: [#368](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/368)
+        * Added the `Appendix: Effort` section: [#368](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/368)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#137](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/137)
-    * Contributed to forum discussions (examples: [#157](https://github.com/nus-cs2103-AY2223S1/forum/issues/157).
+    * Contributed to forum discussions (examples: [#157](https://github.com/nus-cs2103-AY2223S1/forum/issues/157)).
 
 * **Tools**:
     * Used PlantUML to add more UML diagrams in the developer guide.
