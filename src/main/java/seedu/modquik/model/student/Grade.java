@@ -3,7 +3,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modquik.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's grade in the modquik book.
+ * Represents a Student's grade in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
  */
 public class Grade {
