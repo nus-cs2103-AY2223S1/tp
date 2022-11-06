@@ -26,7 +26,7 @@ public class DeadlineTaskCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Sets a deadline for a task.\n"
             + "Parameters: "
             + "TASK_INDEX (must be a positive integer) "
-            + "[" + PREFIX_DEADLINE + " DATE]...\n\n"
+            + PREFIX_DEADLINE + " DATE...\n\n"
             + "Example: " + COMMAND_WORD_FULL + " "
             + "1 "
             + PREFIX_DEADLINE + " tomorrow\n\n"
