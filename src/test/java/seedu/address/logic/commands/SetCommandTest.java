@@ -36,7 +36,7 @@ public class SetCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person toSet = model.getFilteredPersonList().get(0);
+        Person toSet = model.getSortedFilteredPersonList().get(0);
         model.setSelectedPerson(toSet);
         Person editedPerson = new PersonBuilder()
                 .withName(VALID_NAME_AMY)
@@ -63,7 +63,7 @@ public class SetCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Person toSet = model.getFilteredPersonList().get(0);
+        Person toSet = model.getSortedFilteredPersonList().get(0);
         model.setSelectedPerson(toSet);
 
         PersonBuilder personInList = new PersonBuilder(toSet);
@@ -87,7 +87,7 @@ public class SetCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         SetCommand setCommand = new SetCommand(new SetPersonDescriptor());
-        Person toSet = model.getFilteredPersonList().get(0);
+        Person toSet = model.getSortedFilteredPersonList().get(0);
         model.setSelectedPerson(toSet);
 
         String expectedMessage = SetCommand.MESSAGE_UPDATE_SUCCESS;
@@ -99,7 +99,7 @@ public class SetCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        Person personInFilteredList = model.getFilteredPersonList().get(0);
+        Person personInFilteredList = model.getSortedFilteredPersonList().get(0);
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         model.setSelectedPerson(personInFilteredList);
         SetCommand setCommand = new SetCommand(new SetPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -107,15 +107,15 @@ public class SetCommandTest {
         String expectedMessage = SetCommand.MESSAGE_UPDATE_SUCCESS;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getSortedFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(setCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(0);
-        Person secondPerson = model.getFilteredPersonList().get(1);
+        Person firstPerson = model.getSortedFilteredPersonList().get(0);
+        Person secondPerson = model.getSortedFilteredPersonList().get(1);
         model.setSelectedPerson(secondPerson);
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder(firstPerson).build();
         SetCommand setCommand = new SetCommand(descriptor);
