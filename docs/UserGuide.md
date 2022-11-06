@@ -49,7 +49,7 @@ This guide contains all you need to get started on working with GithubContact.
 
    * **`help`** : Displays the help page.
 
-   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`name/John Doe github/johndoe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`clear`** : Deletes all contacts.
 
@@ -96,17 +96,17 @@ This guide contains all you need to get started on working with GithubContact.
 
 <div style="page-break-after: always;"></div>
 
-| Action               | Format, Examples                                                                                                                                                                                         |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action               | Format, Examples                                             |
+| -------------------- | ------------------------------------------------------------ |
 | **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
-| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                                               |
-| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                                                  |
-| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`                          |
-| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                                                |
-| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`                                                                                                                                                          |
-| **reset**            | `reset`                                                                                                                                                                                                  |
-| **back**             | `back` or `<ESC>` key                                                                                                                                                                                    |
-| **help**             | `help` or `<F1>` key <br> `help`, `help add`                                                                                                                                                             |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                   |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter` |
+| **set**              | `set [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex github/Tex-Tang address/Clementi` |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                    |
+| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`              |
+| **reset**            | `reset`                                                      |
+| **back**             | `back` or `<ESC>` key                                        |
+| **help**             | `help` or `<F1>` key <br> `help`, `help add`                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -120,7 +120,7 @@ Adds a person to the list.
 
 Format: `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
-- At least one of `NAME` or `GITHUB` must be provided.
+- At least one of `NAME` or `GITHUB` must be provided (can be both).
 - The input formats for each attribute can be found [here](#parameter-input-formats)
 
 Example:
@@ -382,6 +382,9 @@ After executing `help delete`:
 
 **Q**: How do I add more than 1 email address/ phone number?
 **A**: Unfortunately, this iteration of GithubContact only supports one email address/ phone number.
+
+**Q**: Can I get someone's contact information from GitHub?
+**A**: You may be able to get the contact's email from GitHub if they have chosen to make it public. We do not currently support any other forms of contacts to be pulled form GitHub.
 
 **Q**: How do I save my data?
 **A**: GithubContact automatically saves your data locally and retrieves it the next time you open it.
