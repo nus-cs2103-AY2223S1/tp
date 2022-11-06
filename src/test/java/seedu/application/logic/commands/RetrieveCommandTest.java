@@ -30,6 +30,7 @@ public class RetrieveCommandTest {
                 applicationToRetrieve);
 
         ModelManager expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
+        showApplicationByArchiveStatus(expectedModel, true);
         expectedModel.retrieveApplication(applicationToRetrieve);
 
         assertCommandSuccess(retrieveCommand, model, expectedMessage, expectedModel);
