@@ -133,7 +133,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 Examples:
 
-* `find CS2040S` returns both the module `cs2040s` as well as contacts with `cs2030s` under their `module` field.
+* `find CS2040S` returns both the module `cs2040s` as well as contacts with `cs2040s` under their `module` field.
   <img src="images/find.png"/>
 * `find Friday` returns `CS2100` and `CS2103T`, assuming both modules have lectures or tutorials on Friday.
   <img src="images/find2.png"/>
@@ -347,6 +347,8 @@ Examples:
 | Telegram Handle | A person's telegram                       | tg/        | ✓        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
 | Tags            | A person's tag                            | t/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
+[Back to top](#welcome-to-socompilers-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Module Fields
@@ -359,6 +361,8 @@ Examples:
 | Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                        |          
 | Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https:// |           
 | Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        |                                                        |     
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -398,6 +402,8 @@ Examples:
 **A**: When adding a Module, all fields except `MODULE_CODE` are optional. When adding a contact, all fields except
 `NAME` are optional. These fields can be updated later with the
 [editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
