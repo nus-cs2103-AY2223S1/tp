@@ -1,0 +1,110 @@
+@startuml
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes
+subgraph cluster_1147692044 {
+   
+   subgraph cluster_1805992785 { 
+   	label=model
+	labeljust=l
+	fillcolor="#58848"
+	style=filled
+   
+   Task1521810798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="CENTER" >Task</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ></TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isSameTask(otherTask: Task): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TaskMark1521810798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="CENTER" >TaskMark</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ taskMark: String</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isValidTaskMark(test: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Deadline1521810798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="CENTER" > Deadline</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ deadline: String</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(other: Deadline): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isValidTaskDeadline(test: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TaskDescription1521810798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="CENTER" >TaskDescription</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ taskDescription: String</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isValidTaskDescription(test: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UniqueTaskList1521810798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="CENTER" >UniqueTaskList</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ></TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(toAdd: Task)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ asUnmodifiableObservableList(): ObservableList&lt;Task&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ contains(toCheck: Task): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ iterator(): Iterator&lt;Task&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(toRemove: Task)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sortComplete()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sortTasks()</TD></TR>
+<TR><TD ALIGN="LEFT" >  - tasksAreUnique(tasks: List&lt;Task&gt;): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Task1521810798 -> Deadline1521810798[label="
+ 1"];
+Task1521810798 -> TaskDescription1521810798[label="
+1"];
+Task1521810798 -> TaskMark1521810798[label="
+1"];
+UniqueTaskList1521810798 -> Task1521810798[label="
+  0..*    "];
+UniqueTaskList1521810798 -> Task1521810798[label="
+  0..*"];
+    
+}
+@enduml

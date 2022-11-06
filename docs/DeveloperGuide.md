@@ -296,8 +296,9 @@ regarding the description and deadline of a task.
 * `Task`: The task to be done.
 * `TaskDeadline`: The deadline of the task.
 * `TaskDescription`: The description of the task.
+* `TaskMark`: The status of the task.
 
-![img.png](images/TaskListUML.png)
+![img.png](images/TaskStructure.png)
 
 #### Design considerations:
 
@@ -307,6 +308,23 @@ are well-defined.
 there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
+
+### Find Task
+
+#### Implementation
+Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask` 
+command to match part of the `TaskDescription`.
+
+The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
+![img.png](images/FindTaskDiagram.png)
+
+#### Design considerations:
+* We chose to find task by their `TaskDescription` as it is more specific and more significant information to for example,
+the `Deadline`.
+* Users can find their specific task if their keyword matches part of the `TaskDescription`.
+  * Pros: Users can find their tasks more easily, especially if they do not know the exact `TaskDescription` of the `Task`
+  they want to find.
+  * Cons: More tasks will be displayed to the users as there will be more `TaskDescription` that partially matches the keyword.
 
 ### Mark and unmark task
 
