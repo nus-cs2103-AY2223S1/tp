@@ -135,17 +135,27 @@ If you encounter an error message saying "This tag name already exists in FoodRe
 
 > Deletes a tag that exists in FoodRem
 
-**Example Input:**
-
-```text
-deletetag n/Veggies
+```warning
+There is no additional confirmation for deleting a tag that is in use. Deleting a tag that is already in use will also untag the items under that tag.
 ```
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Tag deleted: Veggies
+```tip
+You might find the [Filtertag Command](#filter-by-a-tag-filtertag) useful to check that a tag is not in use before deleting it. 
 ```
+
+**Example:**
+
+{% capture notes %}
+**Assumption:**
+
+Initially, there already exists a tag called "Veggies".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="deletetag n/Veggies"
+  commandOutputBox="images/tagCommands/commandOutputBox/deletetag.png"
+%}
 
 ---
 
