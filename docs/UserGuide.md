@@ -194,14 +194,18 @@ This will help you understand the guide better!
 
 ### 5.3.1 Adding a student: `add`
 
-#### Adds a student to StudMap.
+<div markdown="span" class="command-info">
+:wrench: <b>Function:</b>
+Adds a student to StudMap.
+</div>
 
 New student attending your class? Add them into StudMap to start managing their records! This is one of the ways you can
 add a student into StudMap.
 
 **Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+<div markdown="span" class="alert alert-primary">
+:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
 </div>
 
