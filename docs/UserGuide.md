@@ -168,15 +168,15 @@ The **right half** of each student card contains module information related to y
 
    ![Ui](images/ui/ui-ta-info.png)
 
-| Element                  | Purpose                                                                                                                                                                                                                                                                                            |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                           |
-| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                   |
-| Classes                  | Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>                                                               |
-| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                        |
-| Participation Components | Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                   |
-| Assignment Status        | Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul> |
+| Element                  | Purpose                                                                                                                                                                                                                                                                                                               |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                              |
+| Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                      |
+| Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                               |
+| Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                           |
+| Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
+| Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
 
 ## 4.3 Understanding Commands
 
@@ -294,22 +294,23 @@ Throughout this section, you will see numerous parameters being used by differen
 the parameters and any remarks that might be of relevance.
 
 
-| Parameter    | Remarks                                                                                                           |
-|--------------|-------------------------------------------------------------------------------------------------------------------|
-| INDEX        | Used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list |
-| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                            |
-| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                 |
-| a/ASSIGNMENT | Assignment to be recorded for your student                                                                        |
-| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                              |
-| c/CLASS      | Class to be recorded for your student                                                                             |
-| e/EMAIL      | Email for your student. Must be of the format local-part@domain                                                   |
-| g/GITNAME    | GitHub Username for your student                                                                                  |
-| h/TELEHANDLE | Telegram Handle for your student                                                                                  |
-| id/ID        | Student ID for your student                                                                                       |
-| m/MODULE     | Module for your student                                                                                           |
-| n/NAME       | Name for your student                                                                                             |
-| p/COMPONENT  | Participation component to be recorded for your student                                                           |
-| t/TAG        | Tag for your student                                                                                              |
+| Parameter    | Remarks                                                                                                               |
+|--------------|-----------------------------------------------------------------------------------------------------------------------|
+| INDEX        | Used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list     |
+| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                |
+| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                     |
+| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no) |
+| a/ASSIGNMENT | Assignment to be recorded for your student                                                                            |
+| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                  |
+| c/CLASS      | Class to be recorded for your student                                                                                 |
+| e/EMAIL      | Email for your student. Must be of the format local-part@domain                                                       |
+| g/GITNAME    | GitHub Username for your student                                                                                      |
+| h/TELEHANDLE | Telegram Handle for your student                                                                                      |
+| id/ID        | Student ID for your student                                                                                           |
+| m/MODULE     | Module for your student                                                                                               |
+| n/NAME       | Name for your student                                                                                                 |
+| p/COMPONENT  | Participation component to be recorded for your student                                                               |
+| t/TAG        | Tag for your student                                                                                                  |
 
 
 ## 5.3 Student List Management
