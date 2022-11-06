@@ -190,7 +190,9 @@ Optional arguments:
 * `t/TAG`
 * `ic/INTERESTED_CLIENT`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**
 
 * A property can have any number of tags (including 0) 
 * A property can have any number of interested clients (including 0)
@@ -236,7 +238,7 @@ Optional arguments (at least one field):
 * `t/TAG`
 * `ic/INTERESTED_CLIENT`
 
-<div markdown="block" class="alert alert-primary"> 
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
 
