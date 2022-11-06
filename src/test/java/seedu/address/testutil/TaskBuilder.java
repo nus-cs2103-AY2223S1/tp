@@ -108,7 +108,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code Email} of the {@code Task} that we are building.
      */
-    public TaskBuilder withTaskPersonEmailAddressPerson(Email email) {
+    public TaskBuilder withTaskPersonEmailAddress(Email email) {
         this.taskPersonEmailAddress = email;
         return this;
     }

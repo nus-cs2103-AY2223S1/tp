@@ -77,8 +77,23 @@ public class AddTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddTaskCommand // instanceof handles nulls
-                && toAdd.equals(((AddTaskCommand) other).toAdd));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddTaskCommand)) {
+            return false;
+        }
+
+        AddTaskCommand otherCommand = (AddTaskCommand) other;
+
+        if ((personEmailAddress == null && otherCommand.personEmailAddress != null)
+                || (personEmailAddress != null && otherCommand.personEmailAddress == null)) {
+            return false;
+        }
+
+        return toAdd.equals(((AddTaskCommand) other).toAdd)
+                && (personEmailAddress == null
+                || personEmailAddress.equals(((AddTaskCommand) other).personEmailAddress));
     }
 }

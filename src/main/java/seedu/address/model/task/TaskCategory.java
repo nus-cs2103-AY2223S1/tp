@@ -7,7 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class TaskCategory {
     public static final String MESSAGE_CONSTRAINTS =
-            "Category name must be one of the following: " + TaskCategoryType.getValidTaskCategories();
+            "\"%s\" is not a valid category! Category name must be one of the following: "
+                    + TaskCategoryType.getValidTaskCategories();
     private final TaskCategoryType taskCategoryType;
 
     /**
