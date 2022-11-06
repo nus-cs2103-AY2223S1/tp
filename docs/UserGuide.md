@@ -85,7 +85,8 @@ If you are already familiar with the features of HobbyList and just want a quick
 
 4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. You can see that the app contains some sample data for you to play around with.<br>
    ![Ui](images/default_gui.png)
-_<center>Figure 1: HobbyList's default UI</center>_
+_Figure 1: HobbyList's default UI_
+{: style="text-align: center;"}
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -118,7 +119,8 @@ _<center>Figure 1: HobbyList's default UI</center>_
 Refer to Figure 2 below to get yourself familiar with the user interface! 
 
 ![HobbyList UI](images/annotated_ui.jpg)
-_<center>Figure 2: Annotated GUI of HobbyList</center>_
+_Figure 2: Annotated GUI of HobbyList_
+{: style="text-align: center;"}
 
 | Section                 | Description                                                                                                                                    |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -308,10 +310,12 @@ Examples:
 *Rates the second activity to be 4 out of 5 stars and gives it a review of `Interesting movie`.*
 
 ![BeforeRateActivity](images/rate_command_before.png)
-_<center>Figure 4: List of activities before running the `rate` command</center>_
+_Figure 4: List of activities before running the `rate` command_
+{: style="text-align: center;"}
 
 ![AfterRateActivity](images/rate_command_after.png)
-_<center>Figure 5: List of activities after running `rate 2 r/4 re/Interesting movie`</center>_
+_Figure 5: List of activities after running `rate 2 r/4 re/Interesting movie`_
+{: style="text-align: center;"}
 
   
 ### 5.6 Selecting an activity: `select`
@@ -335,7 +339,8 @@ Example:
   *Displays the first activity in the selected activity panel.*
 
 ![selectActivity](images/select_command_example.png)
-_<center>Figure 6: Details of the selected activity is now displayed after running `select 1`</center>_
+_Figure 6: Details of the selected activity is now displayed after running `select 1`_
+{: style="text-align: center;"}
 
 ### 5.7 Finding activities: `find`
 
@@ -375,7 +380,8 @@ Examples:
   *Finds all activities with a name or description containing `romance` or `tragedy` or both, or with a rating of 5, or with a date of 23 October 2019.*
 
 ![FindActivityExample](images/find_command_example.png)
-_<center>Figure 7: Filtered list of activities after running `find romance tragedy rate/5 date/2019-10-23`</center>_
+_Figure 7: Filtered list of activities after running `find romance tragedy rate/5 date/2019-10-23`_
+{: style="text-align: center;"}
 
 ### 5.8 Finding activities with tags : `findTag`
 
@@ -448,10 +454,12 @@ Example:
   *Shows a list of all activities with a rating greater than or equal to 4.*
 
 ![BeforeRateAbove](images/rateabove_before.png)
-_<center>Figure 8: List of three activities with rating value of 5, 4 and 2 respectively</center>_
+_Figure 8: List of three activities with rating value of 5, 4 and 2 respectively_
+{: style="text-align: center;"}
 
 ![AfterRateAbove](images/rateabove_after.png)
-_<center>Figure 9: Filtered list of activities after running `r/above 4`</center>_
+_Figure 9: Filtered list of activities after running `r/above 4`_
+{: style="text-align: center;"}
 
 ### 5.11 Getting help : `help`
 
