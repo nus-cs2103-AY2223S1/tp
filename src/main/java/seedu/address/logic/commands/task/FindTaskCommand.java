@@ -24,15 +24,9 @@ public class FindTaskCommand extends Command {
             + ": Finds all tasks whose field(s) contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-<<<<<<< HEAD
-            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION ]"
-            + "[" + PREFIX_TASK_DEADLINE + "DEADLINE ]"
-            + "[" + PREFIX_TASK_COMPLETION_STATUS + "COMPLETION STATUS (complete / incomplete) ]\n"
-=======
             + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TASK_COMPLETION_STATUS + "COMPLETION STATUS (complete / incomplete)]\n"
->>>>>>> master
             + "Example: "
             + COMMAND_WORD + " "
             + PREFIX_TASK_DESCRIPTION + "party "
