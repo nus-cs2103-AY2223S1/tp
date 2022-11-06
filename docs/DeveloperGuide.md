@@ -586,6 +586,21 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Finding a tutor
+
+1. Finding a tutor based on a specified attribute
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `find n/alex`<br>
+        Expected: List of tutors with name containing the string `alex` is shown. Status message shows how many tutors were found.
+
+    3. Test case: `find n/`<br>
+        Expected: Error status messages telling user what kind of input is valid for `n/` prefix.
+
+    4. Other incorrect commmands to try: `find n/   `
+        Expected: Similar to previous.
+
 ### Deleting a tutor
 
 1. Deleting a tutor while all tutors are being shown
