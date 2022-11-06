@@ -114,6 +114,7 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 * Extraneous parameters for commands that do not take in parameters (such as `listC`, `listT`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+</div>
   
 ## Section 1: Contacts
 
