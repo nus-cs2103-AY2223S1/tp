@@ -199,9 +199,16 @@ argument of the method
 8. `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
 the sorted successfully message as argument to the `LogicManager` object. 
 
-### Filter feature
+### Filter Tasks Command
 
-#### Implementation
+#### Command Format:
+
+`t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*` where `MODULE` refers to the module code of the module to be filtered out, `COMPLETED` refers to the completion status of the tasks to be filtered out, and `LINKED` refers to the link status of the tasks to be filtered out.
+
+#### What is the feature:
+
+
+#### How the feature works
 
 The proposed filter mechanism is facilitated by `FilterPredicate`. It implements `Predicate` with module, completion status and link status conditions, stored as `module`, `isCompleted` and `isLinked`. Additionally, it implements the following operations:
 
@@ -209,6 +216,14 @@ The proposed filter mechanism is facilitated by `FilterPredicate`. It implements
 * `FilterPredicate#toString()` — Returns a string representing all the conditions used during the filter operation.
 
 These operations are exposed in the `Model` interface as `Model#updateFilteredTaskList`.
+
+The following sequence diagram shows how the filter operation works:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTasksCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
@@ -223,14 +238,6 @@ Step 2. The user executes `t filter m/CS2103T c/y l/n` command to filter the tas
 Step 3. The user executes `t filter m/CS2103T c/n` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
 
 Step 4. The user executes `t mark 1`. The first task is no longer in `taskFilteredList` since its `isCompleted` is now false and no longer fulfils the conditions.
-
-The following sequence diagram shows how the filter operation works:
-
-![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
 
 The following activity diagram summarizes what happens when a user executes the filter command:
 

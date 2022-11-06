@@ -4,41 +4,65 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant ":FilterTasksCommandParser" as FilterTasksCommandParser LOGIC_COLOR
+participant "f:FilterTasksCommand" as FilterTasksCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
+
 [-> LogicManager : execute(filter)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(filter)
+LogicManager -> AddressBookParser : parseCommand("filter c/n")
 activate AddressBookParser
 
-create FilterCommand
-AddressBookParser -> FilterCommand
-activate FilterCommand
+create FilterTasksCommandParser
+AddressBookParser -> FilterTasksCommandParser
+activate FilterTasksCommandParser
 
-FilterCommand --> AddressBookParser
-deactivate FilterCommand
+FilterTasksCommandParser --> AddressBookParser
+deactivate FilterTasksCommandParser
+
+AddressBookParser -> FilterTasksCommandParser: parse("filter c/n")
+activate FilterTasksCommandParser
+
+create FilterTasksCommand
+FilterTasksCommandParser -> FilterTasksCommand
+activate FilterTasksCommand
+
+FilterTasksCommand --> FilterTasksCommandParser : f
+deactivate FilterTasksCommand
+
+FilterTasksCommandParser --> AddressBookParser : f
+deactivate FilterTasksCommandParser
+
+FilterTasksCommandParser [hidden]--> AddressBookParser
+destroy FilterTasksCommandParser
 
 AddressBookParser --> LogicManager : f
 deactivate AddressBookParser
 
-LogicManager -> FilterCommand : execute()
-activate FilterCommand
+LogicManager -> FilterTasksCommand : execute()
+activate FilterTasksCommand
 
-FilterCommand -> Model : updateFilteredTaskList(Predicate)
+FilterTasksCommand -> Model : updateFilteredTaskList(Predicate)
 activate Model
 
-Model --> FilterCommand
+Model --> FilterTasksCommand
 deactivate Model
 
-FilterCommand --> LogicManager : result
-deactivate FilterCommand
-FilterCommand -[hidden]-> LogicManager : result
-destroy FilterCommand
+create CommandResult
+FilterTasksCommand -> CommandResult: CommandResult(MESSAGE_SUCCESS)
+activate CommandResult
+
+CommandResult --> FilterTasksCommand
+deactivate CommandResult
+
+FilterTasksCommand --> LogicManager : result
+deactivate FilterTasksCommand
 
 [<--LogicManager
 deactivate LogicManager
