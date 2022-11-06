@@ -635,7 +635,7 @@ View all the members currently in the team, in the form of a list.
 
 **Command Aliases:**
 - `list m`
-- `l member`
+- `l members`
 - `l m`
 
 #### Sort members: `sort members`
@@ -656,7 +656,7 @@ Sorts all members in the current team by name and displays them in the member li
 
 **Command Aliases:**
 - `sort m`
-- `so member`
+- `so members`
 - `so m`
 
 **Examples:**
@@ -1242,32 +1242,32 @@ the data of your previous TruthTable home folder.
 | Action                                   | Command         | Aliases                         |
 |------------------------------------------|:----------------|---------------------------------|
 | Creating a new person                    | `add person`    | `a p`, `add p`, `a person`      |
-| Listing all persons                      | `list persons`  | `l p`, `list p`, `l person`     |
 | Editing a person                         | `edit person`   | `e p`, `edit p`, `e person`     |
-| Locating persons by name                 | `find person`   | `f p`, `find p`, `f person`     |
 | Deleting a person                        | `delete person` | `d p`, `delete p`, `d person`   |
+| Locating persons by name                 | `find person`   | `f p`, `find p`, `f person`     |
+| Listing all persons                      | `list persons`  | `l p`, `list p`, `l persons`    |
 | Adding a new member to the team          | `add member`    | `a m`, `add m`, `a member`      |
 | Delete a member from team                | `delete member` | `d m`, `delete m`, `d member`   |
 | Find members                             | `find member`   | `f m`, `find m`, `f member`     |
 | Listing all members of the team          | `list members`  | `l m`, `list m`, `l members`    |
 | Sort members                             | `sort members`  | `so m`, `sort m`, `so members`  |
 | Creating a new team                      | `add team`      | `a te`, `add te`, `a team`      |
-| Set a new team                           | `set team`      | `s te`, `set te`, `s team`      |
 | Edit current team                        | `edit team`     | `e te`, `edit te`, `e team`     |
 | Delete an existing team                  | `delete team`   | `d te`, `delete te`, `d team`   |
+| Set a new team                           | `set team`      | `s te`, `set te`, `s team`      |
 | Add task to team                         | `add task`      | `a ta`, `add ta`, `a task`      |
 | Edit task in team                        | `edit task`     | `e ta`, `edit ta`, `e task`     |
-| Assign task to team member               | `assign task`   | `as ta`, `assign ta`, `as task` |
-| Assign task to random team member        | `assign random` | `as r`, `assign r`, `a random`  |
-| Set Deadline for task                    | `set deadline`  | `s d`, `set d`, `s deadline`    |
 | Delete task from team                    | `delete task`   | `d ta`, `delete ta`, `d task`   |
+| Find tasks                               | `find task`     | `f ta`, `find ta`, `f task`     |
 | Mark tasks as done                       | `mark`          | `m`                             |
 | Unmark tasks as done                     | `unmark`        | `u`                             |
-| Find tasks                               | `find task`     | `f ta`, `find ta`, `f task`     |
-| List tasks in team                       | `list tasks`    | `l ta`, `list ta`, `l tasks`    |
-| View summary of task assignments in team | `summary`       | `su`, `sum`                     |
-| Sort tasks                               | `sort tasks`    | `so ta`, `sort ta`, `so tasks`  |
+| Set Deadline for task                    | `set deadline`  | `s d`, `set d`, `s deadline`    |
+| Assign task to team member               | `assign task`   | `as ta`, `assign ta`, `as task` |
+| Assign task to random team member        | `assign random` | `as r`, `assign r`, `as random` |
 | Filter tasks by team member              | `tasksof`       | `to`                            |
+| List tasks in team                       | `list tasks`    | `l ta`, `list ta`, `l tasks`    |
+| Sort tasks                               | `sort tasks`    | `so ta`, `sort ta`, `so tasks`  |
+| View summary of task assignments in team | `summary`       | `su`, `sum`                     |
 | Add a new link                           | `add link`      | `a l`, `add l`, `a link`        |
 | Edit an existing link                    | `edit link`     | `e l`, `edit l`, `e link`       |
 | Delete an existing link                  | `delete link`   | `d l`, `delete l`, `d link`     |
