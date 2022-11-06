@@ -1,4 +1,4 @@
-package jarvis.model.task;
+package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,8 +8,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-
-import jarvis.model.TaskDeadline;
 
 public class TaskDeadlineTest {
 

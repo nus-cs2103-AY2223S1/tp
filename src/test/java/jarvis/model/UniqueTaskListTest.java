@@ -1,4 +1,4 @@
-package jarvis.model.task;
+package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalTasks.MISSION1;
@@ -13,8 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.Task;
-import jarvis.model.UniqueTaskList;
 import jarvis.model.exceptions.DuplicateTaskException;
 import jarvis.model.exceptions.TaskNotFoundException;
 import jarvis.testutil.TaskBuilder;

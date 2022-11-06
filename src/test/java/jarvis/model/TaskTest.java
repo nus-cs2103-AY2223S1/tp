@@ -1,4 +1,4 @@
-package jarvis.model.task;
+package jarvis.model;
 
 import static jarvis.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE;
 import static jarvis.logic.commands.CommandTestUtil.VALID_TASK_DESC_MISSION1;
@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.Task;
 import jarvis.testutil.TaskBuilder;
 
 public class TaskTest {
