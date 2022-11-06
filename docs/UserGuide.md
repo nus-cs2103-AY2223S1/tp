@@ -349,7 +349,7 @@ Example:
 the data of your previous FypManager home folder.
 
 **Q**: What happens if I modify the data file?<br>
-**A**: Although extremely discouraged, the application will start with a fresh new sample data.
+**A**: Although extremely discouraged, the application will start with an empty data.
 
 --------------------------------------------------------------------------------------------------------------------
 

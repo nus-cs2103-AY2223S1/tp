@@ -27,7 +27,7 @@
                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                   </opaqueInsets>
                   <children>
-                    <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="NEVER">
+                    <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                       <columnConstraints>
                            <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
                            <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
@@ -87,13 +87,13 @@
                     </GridPane>
                      <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                         <columnConstraints>
-                           <ColumnConstraints hgrow="ALWAYS" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                           <ColumnConstraints hgrow="ALWAYS" />
                         </columnConstraints>
                         <rowConstraints>
                            <RowConstraints maxHeight="-Infinity" percentHeight="95.0" vgrow="ALWAYS" />
                         </rowConstraints>
                         <children>
-                           <VBox maxHeight="-Infinity" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                           <VBox GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                               <padding>
                                  <Insets bottom="5" left="15" right="5" top="5" />
                               </padding>
