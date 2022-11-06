@@ -505,7 +505,7 @@ Deletes the specified person from TruthTable.
 * `list persons` followed by `delete person 2` deletes the 2nd person in TruthTable.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
-#### Locating persons by name: `find person`
+#### Finding a person: `find person`
 
 Finds person whose names contain any of the given keywords.
 
@@ -595,7 +595,7 @@ Delete a team member from the user’s team.
 
 - `delete member 2` will delete the second member of the current team.
 
-#### Find members: `find member`
+#### Finding a member: `find member`
 
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
@@ -860,7 +860,7 @@ Delete an existing task from the team at the given task index.
 
 - `delete task 1` will delete the first task of the current team.
 
-#### Find tasks: `find task`
+#### Finding a task: `find task`
 
 Find all tasks in the current team whose names matches any of the given keywords.
 
@@ -1019,7 +1019,7 @@ Find all tasks that have been assigned to a particular member in the currently s
 View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on 
 whether they are complete or incomplete tasks.
 
-This command can also be used to view all tasks again after using the [`find task` command](#find-tasks-find-task) 
+This command can also be used to view all tasks again after using the [`find task` command](#finding-a-task-find-task) 
 as the `find task` command filters the current team’s tasks based on some keyword(s).
 
 **Format:** `list tasks [-h] [-c] [-i]`
@@ -1253,11 +1253,11 @@ the data of your previous TruthTable home folder.
 | Creating a new person                    | `add person`    | `a p`, `add p`, `a person`      |
 | Editing a person                         | `edit person`   | `e p`, `edit p`, `e person`     |
 | Deleting a person                        | `delete person` | `d p`, `delete p`, `d person`   |
-| Locating persons by name                 | `find person`   | `f p`, `find p`, `f person`     |
+| Finding a person                         | `find person`   | `f p`, `find p`, `f person`     |
 | Listing all persons                      | `list persons`  | `l p`, `list p`, `l persons`    |
 | Adding a new member to the team          | `add member`    | `a m`, `add m`, `a member`      |
 | Delete a member from team                | `delete member` | `d m`, `delete m`, `d member`   |
-| Find members                             | `find member`   | `f m`, `find m`, `f member`     |
+| Finding a member                         | `find member`   | `f m`, `find m`, `f member`     |
 | Listing all members of the team          | `list members`  | `l m`, `list m`, `l members`    |
 | Sort members                             | `sort members`  | `so m`, `sort m`, `so members`  |
 | Creating a new team                      | `add team`      | `a te`, `add te`, `a team`      |
@@ -1267,7 +1267,7 @@ the data of your previous TruthTable home folder.
 | Add task to team                         | `add task`      | `a ta`, `add ta`, `a task`      |
 | Edit task in team                        | `edit task`     | `e ta`, `edit ta`, `e task`     |
 | Delete task from team                    | `delete task`   | `d ta`, `delete ta`, `d task`   |
-| Find tasks                               | `find task`     | `f ta`, `find ta`, `f task`     |
+| Finding a task                           | `find task`     | `f ta`, `find ta`, `f task`     |
 | Mark tasks as done                       | `mark`          | `m`                             |
 | Unmark tasks as done                     | `unmark`        | `u`                             |
 | Set Deadline for task                    | `set deadline`  | `s d`, `set d`, `s deadline`    |
@@ -1315,56 +1315,80 @@ the data of your previous TruthTable home folder.
 
 ### Summary of Person Commands 
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                | Format, Examples                                                                                                                                                                       |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Creating a new person | `add person [-h] -e=<EMAIL> -n=<NAME> -p=<PHONE> [-t[=<TAGS>...]]...`<br/> e.g. `add person -n "John Doe" -p 98765432 -e johnd@example.com -t frontend`                                |
+| Editing a person      | `edit person [-h] ([-n=<PERSON_NAME>] [-p=<PERSON_PHONE>] [-e=<PERSON_EMAIL>] [-t[=<PERSON_TAGS>...]]...) <PERSON_INDEX>`<br/> e.g. `edit person 1 -p 91234567 -e johndoe@example.com` |
+| Deleting a person     | `delete person [-h] <PERSON_INDEX>`<br/> e.g. `delete person 2`                                                                                                                        |
+| Finding a person      | `find person [-h] <PERSON_NAME_KEYWORDS>`<br/> e.g. `find person John`                                                                                                                 |
+| Listing all persons   | `list persons [-h]`<br/> e.g. `list persons`                                                                                                                                           |
+
+[View detailed command descriptions](#commands-to-manage-persons)
 
 [Back to Table of Contents](#table-of-contents)
 
-
 ### Summary of Member Commands
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                          | Format, Examples                                                                                                                                                          |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Adding a new member to the team | `add member [-h] <PERSON_INDEX>`<br/> e.g. `add member 1`                                                                                                                 |
+ | Delete a member from team       | `delete member [-h] <MEMBER_INDEX>`<br/> e.g. `delete member 2`                                                                                                           |
+ | Finding a member                | <code>find member [-h] (-n=<MEMBER_NAME_KEYWORDS> &#124; -e=<MEMBER_EMAIL_KEYWORDS>)</code><br/> e.g.<br/> - `find member -n Alex`<br/> - `find member -e alex@gmail.com` |
+ | Listing all members of the team | `list members [-h]`<br/> e.g. `list members`                                                                                                                              |
+ | Sort members                    | `sort members [-h] <ORDER>`<br/> e.g. `sort members asc`                                                                                                                  |
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Summary of Team Commands
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                  | Format, Examples                                                                                                       |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------|
+| Creating a new team     | `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`<br/> e.g. `add team CS2102 -d "Database Systems"`                    |
+| Edit current team       | `edit team [-h] ([-n=<TEAM_NAME>] [-d=<TEAM_DESCRIPTION>])`<br/> e.g. `edit team -n CS2103T -d "Software Engineering"` |
+| Delete an existing team | `delete team [-h] <TEAM_NAME>`<br/> e.g. `delete team CS2103T`                                                         |
+| Set a new team          | `set team [-h] <TEAM_NAME>`<br/> e.g. `set team CS2103T`                                                               |
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Summary of Task Commands
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                                   | Format, Examples                                                                                                                                 |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add task to team                         | `add task [-h] [-d=<TASK_DEADLINE>] [-a[=<TASK_ASSIGNEES>...]]... <TASK_NAME>`<br/> e.g. `add task "Merge PR" -a 1 -d 2022-12-02 23:59`          |
+| Edit task in team                        | `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`<br/> e.g. `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` |
+| Delete task from team                    | `delete task [-h] <TASK_INDEX>`<br/> e.g. `delete task 1`                                                                                        |
+| Finding a task                           | `find task [-h] <TASK_NAME_KEYWORDS>`<br/> e.g. `find task -n User Guide`                                                                        |
+| Mark tasks as done                       | `mark [-h] <TASK_INDEX>`<br/> e.g. `mark 1`                                                                                                      |
+| Unmark tasks as done                     | `unmark [-h] <TASK_INDEX>`<br/> e.g. `unmark 1`                                                                                                  |
+| Set Deadline for task                    | `set deadline [-h] <TASK_INDEX> <TASK_DEADLINE>`<br/> e.g. `set deadline 1 2023-12-25 23:59`                                                     |
+| Assign task to team member               | `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`<br/> e.g. `assign task 1 -a 1`                            |
+| Assign task to random team member        | `assign random [-h] <TASK_INDEX>`<br/> e.g. `assign random 1`                                                                                    |
+| Filter tasks by team member              | `tasksof [-h] <MEMBER_INDEX>`<br/> e.g. `tasksof 1`                                                                                              |
+| List tasks in team                       | `list tasks [-h] [-c] [-i]`<br/> e.g. `list tasks -i`                                                                                            |
+| Sort tasks                               | `sort tasks [-h] <ORDER>`<br/> e.g. `sort tasks asc`                                                                                             |
+| View summary of task assignments in team | `summary [-h]`<br/> e.g. `summary`                                                                                                               |
+
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Summary of Link Commands
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                  | Format, Examples                                                                                                             |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Add a new link          | `add link [-h] -l=<LINK_URL> -n=<LINK_NAME>`<br/> e.g. `add link -n google -l https://google.com`                            |
+ | Edit an existing link   | `edit link [-h] ([-n=<LINK_NAME>] [-l=<LINK_URL>]) <LINK_INDEX>`<br/> e.g. `edit link 1 -n facebook -l https://facebook.com` |
+ | Delete an existing link | `delete link [-h] <LINK_INDEX>`<br/> e.g. `delete link 1`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Summary of General Commands
 
-| Action | Format, Examples |
-|--------|------------------|
-| TBC    | TBC              |
-| TBC    | TBC              |
+| Action                                 | Format, Examples               |
+|----------------------------------------|--------------------------------|
+| Clearing all entries                   | `clear [-h]`<br/> e.g. `clear` | 
+| Switching between light and dark theme | `theme [-h]`<br/> e.g. `theme` | 
+| Exiting the program                    | `exit [-h]`<br/> e.g. `exit`   | 
+| Viewing help                           | `help [-h]`<br/> e.g. `help`   | 
 
 [Back to Table of Contents](#table-of-contents)
 
