@@ -266,34 +266,37 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Easier to implement.
     * Cons: Users have to type unnecessary details in command.
 
-### Mark Task feature
+### Mark Task Command
 
 ####Command Format
 
-`t mark INDEX` where `INDEX` is the index (as shown in the displayed task list) of the task to be marked.
+`t mark INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be marked.
 
-####What is the feature
+####What is the feature about
 
 The `t mark` command allows users to indicate a specific task is completed.
 The task specified will be ticked.
 
 ####How does the feature work
 
-The proposed mark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
-
-* `MarkCommand#execute()` — Executes the mark command 
-
-This operation is exposed in the `Command` abstract class as `Command#execute()`.
+The mark task feature is currently implemented through the `MarkTaskCommand` which extends the abstract class `Command`.
+A copy of the task to be marked will be created, with its `TaskStatus` set to `COMPLETE`. This marked task will then replace the
+original task in the `DistinctTaskList`.
 
 ####UML diagrams
-Given below is an example of the execution of a mark command.
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
 
 |  ![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)  |
 |:----------------------------------------------------------------:|
 | ![MarkTaskReferenceDiagram](images/MarkTaskReferenceDiagram.png) |
-|               Sequence diagrams of MarkTaskCommand               |
+|               Sequence diagram of MarkTaskCommand                |
 
-This is the sequence of steps taken:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
 
 1. The user types the `t mark 1` command.
 2. The `execute()` method of the `LogicManager` is called.
@@ -304,16 +307,11 @@ This is the sequence of steps taken:
 7. The `MarkCommand` command calls `Task#mark()` to create a marked copy of the `taskToMark`.
 8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
 9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
-</div>
 
 <div markdown="span" class="alert alert-info">:The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
 </div>
   
-The following activity diagram summarizes what happens when a user executes a new mark command:
+The following activity diagram summarizes what happens when MarkCommand is executed
   
 | ![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png) |
 |:--------------------------------------------------------------:|
@@ -325,27 +323,33 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*` where `INDEX` is the index of the task to edit, and `MODULE` and `DESCRIPTION` are the module and description to replace the current values of the specified task.
 
-####What is the feature
+####What is the feature about
 
 The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
 
 ####How does the feature work
 
-The proposed edit mechanism is facilitated by `EditTaskCommand`. It extends `Command` with a target index, stored internally as an `Index` and a descriptor containing the new values, stored internally as an `EditTaskDescriptor`. Additionally, it implements the following operation:
-
-* `EditTaskCommand#execute()` — Executes the edit task command
-
-This operation is exposed in the `Command` abstract class as `Command#execute()`.
+The edit task feature is currently implemented through the `EditTaskCommand` which extends the abstract class `Command`.
+A copy of the task to be edited will be created, with its existing `MODULE` and `DESCRIPTION` replaced with the new
+values provided. This edited task will then replace the
+original task in the `DistinctTaskList`.
 
 ####UML diagrams
-Given below is an example of the execution of an edit task command.
+Shown below is a sequence diagram of what occurs when the `execute` method of
+`LogicManager` is invoked.
 
 |  ![EditTaskSequenceDiagram](images/EditTaskSequenceDiagram.png)  |
 |:----------------------------------------------------------------:|
 | ![EditTaskReferenceDiagram](images/EditTaskReferenceDiagram.png) |
-|               Sequence diagrams of EditTaskCommand               |
+|               Sequence diagram of EditTaskCommand                |
 
-This is the sequence of steps taken:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
 
 1. The user types the `t edit 1 d/task 1` command.
 2. The `execute()` method of the `LogicManager` is called.
@@ -357,17 +361,12 @@ This is the sequence of steps taken:
 8. The `Task#edit()` method checks that the module of the `taskToEdit` is not changed, so it creates a copy of the `taskToMark`, still linked to an exam.
 9. This `editedTask` has all fields similar to the original task, except its `TaskDescription` is changed to `Task 1`.
 10. Then, the `EditTaskCommand` calls `Model#replaceTask()` which replaces the `taskToEdit` in the filtered task list in `Model` with the `editedTask`.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
-</div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
-</div>
+The following activity diagram summarizes what happens when a user executes EditTaskCommand is executed
 
-The following activity diagram summarizes what happens when a user executes a new edit task command:
-
-| ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png) |
-|:--------------------------------------------------------------:|
-|                Activity diagram of EditTaskCommand                |
+|  ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)  |
+|:----------------------------------------------------------------:|
+|        Activity diagram of EditTaskCommand                       |
 
 
 ### \[Proposed\] Data archiving
