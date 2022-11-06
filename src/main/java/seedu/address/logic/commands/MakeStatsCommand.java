@@ -63,6 +63,14 @@ public class MakeStatsCommand extends Command {
         false, true, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MakeStatsCommand // instanceof handles nulls
+                && index.equals(((MakeStatsCommand) other).index) // state check
+                && isGenderStatistic == ((MakeStatsCommand) other).isGenderStatistic);
+    }
+
     /**
      * Returns a {@code StatisticDataList} with the data populated with the gender statistics.
      */

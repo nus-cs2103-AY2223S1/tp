@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -42,6 +43,10 @@ public class CommandTestUtil {
 
     public static final String VALID_GENDER_BOB = "Male";
 
+    public static final String VALID_GENDER_TYPE = "g";
+
+    public static final String VALID_AGE_TYPE = "a";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -64,6 +69,11 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "unknown";
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE + "c";
+
+    public static final String STATS_DESC_GENDER = " " + PREFIX_TYPE + VALID_GENDER_TYPE;
+
+    public static final String STATS_DESC_AGE = " " + PREFIX_TYPE + VALID_AGE_TYPE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

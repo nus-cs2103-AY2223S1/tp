@@ -4,6 +4,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
+/**
+ * A utility class that gives an {@code AddressBook} with both typical persons and typical events.
+ */
 public class TypicalAddressBook {
 
     /**
