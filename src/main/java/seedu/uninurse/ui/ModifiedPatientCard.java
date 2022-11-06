@@ -110,14 +110,12 @@ public class ModifiedPatientCard extends UiPart<Region> {
 
         Patient editedPatient = this.patient;
         if (personListTracker.isEdit() && isUndo) {
-            this.header.setStyle("");
             this.header.setText("Modified Patient:");
             this.patient = (Patient) personListTracker.getDeletedPersons().get().get(0);
             editedPatient = (Patient) personListTracker.getAddedPersons().get().get(0);
         }
 
         if (personListTracker.isEdit() && isRedo) {
-            this.header.setStyle("");
             this.header.setText("Modified Patient:");
             this.patient = (Patient) personListTracker.getAddedPersons().get().get(0);
             editedPatient = (Patient) personListTracker.getDeletedPersons().get().get(0);
@@ -214,33 +212,12 @@ public class ModifiedPatientCard extends UiPart<Region> {
         } else {
             TaskList taskList = patient.getTasks();
 
-            // only supports singular add/delete/edit operation checking
-            List<ListModificationPair> modifiedTasks = taskList.getDiff(editedPatient.getTasks());
-            boolean hasModifiedTasks = !(modifiedTasks.isEmpty());
+            // currently does not support showing modifications in task list due to complexity of recurring tasks.
+            // List<ListModificationPair> modifiedTasks = taskList.getDiff(editedPatient.getTasks());
+            // boolean hasModifiedTasks = !(modifiedTasks.isEmpty());
 
             for (int i = 0; i < taskList.size(); i++) {
-                HBox taskBox = getTaskBox(i + 1, taskList.get(i));
-
-                if (hasModifiedTasks && modifiedTasks.get(0).getIndex() == i) {
-                    if (modifiedTasks.get(0).isDelete()) {
-                        taskBox.setId("green_bordered_box");
-                    } else if (modifiedTasks.get(0).isEdit()) {
-                        taskBox.setId("green_bordered_box");
-                        HBox previousEditedTaskBox = getTaskBox(i + 1, editedPatient.getTasks().get(i));
-                        previousEditedTaskBox.setId("red_bordered_box");
-
-                        this.taskContainer.getChildren().add(previousEditedTaskBox);
-                    }
-                }
-                this.taskContainer.getChildren().add(taskBox);
-            }
-
-            if (hasModifiedTasks && modifiedTasks.get(0).isAdd()) {
-                HBox previousEditedTaskBox = getTaskBox(
-                        taskList.size() + 1, editedPatient.getTasks().get(modifiedTasks.get(0).getIndex()));
-                previousEditedTaskBox.setId("red_bordered_box");
-
-                this.taskContainer.getChildren().add(previousEditedTaskBox);
+                this.taskContainer.getChildren().add(getTaskBox(i + 1, taskList.get(i)));
             }
         }
 

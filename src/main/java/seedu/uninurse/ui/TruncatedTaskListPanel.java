@@ -51,6 +51,7 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                // Can provide a better way to check in the future.
                 if (person instanceof Patient) {
                     setGraphic(new TruncatedTaskListCard((Patient) person).getRoot());
                 }

@@ -11,14 +11,15 @@ import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
- * A {@code Schedule} that has a list of {@code PatientTaskPair} for a given day.
+ * A Schedule that has a list of PatientTaskListPair for a given day.
  */
 public class Schedule {
     private final List<PatientTaskListPair> patientTaskListPairList;
     private final DateTime dateTime;
 
     /**
-     * Constructs a {@code Schedule} that has a list of {@code PatientTaskPair} on the given {@code dayOfInterest}.
+     * Constructs a Schedule that has a list of PatientTaskListPair on the given day of interest.
+     *
      * @param patients the list of patients.
      * @param dayOfInterest the day of the schedule.
      */
@@ -72,7 +73,7 @@ public class Schedule {
     }
 
     /**
-     * Constructs a {@code PatientTaskPair} the stores information about a {@code Patient} and a {@code Task}.
+     * Constructs a PatientTaskPair the stores information about a Patient and a Task.
      */
     private class PatientTaskPair {
         private final Patient patient;
@@ -85,8 +86,8 @@ public class Schedule {
     }
 
     /**
-     * Constructs a {@code PatientTaskListPair} the stores information about a {@code Patient}
-     * and a list of {@code Task}.
+     * Constructs a PatientTaskListPair the stores information about a Patient
+     * and a list of Tasks.
      */
     public class PatientTaskListPair {
         private final Patient patient;

@@ -6,7 +6,6 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.PersonListTracker;
@@ -26,11 +25,9 @@ public class RedoCard extends UiPart<Region> {
     @FXML
     private Label newlabel;
     @FXML
-    private StackPane oldPersonPlaceholder;
+    private StackPane oldPersonContainer;
     @FXML
-    private StackPane newPersonPlaceholder;
-    @FXML
-    private Separator horizontalSeparator;
+    private StackPane newPersonContainer;
 
     /**
      * Creates a RedoCard with personListTracker.
@@ -44,22 +41,21 @@ public class RedoCard extends UiPart<Region> {
         newlabel.setText("Updated Patients:");
 
         if (originalPersons.isPresent()) {
-            oldPersonPlaceholder.getChildren().add(new UpdatedPersonListPanel(
+            oldPersonContainer.getChildren().add(new UpdatedPersonListPanel(
                     FXCollections.observableList(originalPersons.get())).getRoot());
         } else {
-            oldPersonPlaceholder.getChildren().add(new Label("DELETED"));
-            oldPersonPlaceholder.setId("red_bordered_box");
+            oldPersonContainer.getChildren().add(new Label("DELETED"));
+            oldPersonContainer.setId("red_bordered_box");
         }
 
         if (updatedPersons.isPresent()) {
-            newPersonPlaceholder.getChildren().add(new UpdatedPersonListPanel(
+            newPersonContainer.getChildren().add(new UpdatedPersonListPanel(
                     FXCollections.observableList(updatedPersons.get())).getRoot());
         } else {
-            newPersonPlaceholder.getChildren().add(new Label("DELETED"));
-            newPersonPlaceholder.setId("red_bordered_box");
+            newPersonContainer.getChildren().add(new Label("DELETED"));
+            newPersonContainer.setId("red_bordered_box");
         }
     }
-
 
     @Override
     public boolean equals(Object other) {

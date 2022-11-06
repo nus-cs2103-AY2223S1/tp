@@ -12,7 +12,6 @@ import static seedu.uninurse.ui.UiUtil.getTaskBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.uninurse.model.condition.Condition;
@@ -25,20 +24,11 @@ import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
 /**
- * An UI component that displays information of a {@code Patient} without index.
+ * An UI component that displays information of a Patient without index.
  * UpdatedPersonCard to be used for output panel when adding, editing, or deleting a patient.
  */
 public class UpdatedPatientCard extends UiPart<Region> {
-
     private static final String FXML = "UpdatedPatientCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
 
     public final Patient patient;
 
@@ -82,7 +72,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
     private VBox remarkHeaderPane;
 
     /**
-     * Creates a {@code UpdatedPatientCard} with the given {@code Patient} and {@code headerString}.
+     * Creates a UpdatedPatientCard with the given Patient and headerString.
      */
     public UpdatedPatientCard(Patient patient, String headerString) {
         super(FXML);
@@ -130,9 +120,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
             TaskList taskList = patient.getTasks();
             for (int i = 0; i < taskList.size(); i++) {
                 Task task = taskList.get(i);
-                HBox taskBox = getTaskBox(i + 1, task);
-                taskBox.prefWidthProperty().bind(taskContainer.widthProperty());
-                this.taskContainer.getChildren().add(taskBox);
+                this.taskContainer.getChildren().add(getTaskBox(i + 1, task));
             }
         }
 
