@@ -339,7 +339,7 @@ Format: `remind`
 
 * Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.). 
 * All the statistics counts include the archived applications.
-* The interview count shows from the stats command does not related to the `interview` status tag. It shows the actual interviews associates with the applications in CinternS.
+* The interview count shown from the `stats` command does not relate to the `interview` status tag. It shows the number of actual interviews associated with the applications in CinternS.
 * The `pending`, `offered` and `rejected` counts are related to the status tag of the applications.
 
 Format: `stats`
