@@ -916,22 +916,22 @@ You can find specific patients using the `find` command.
 
 Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
-* `xyz/XYZ_KEYWORD` refers to a keyword for a specific parameter.
+* `xyz/XYZ_KEYWORD` refers to a keyword for a specific attribute with prefix `xyz`.
 * There should be at least one parameter for the command.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
-* Patients matching at least one keyword in every parameter will be returned (i.e. AND search for different parameters, OR search for same parameter). In more details,
-    * At least one of the patient's details (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD`.
-    * For every different parameter `xyz`, it must match at least one `XYZ_KEYWORD`.
+* Patients matching at least one keyword in every attribute will be returned (i.e. AND search for different attributes, OR search for same attribute). In more details,
+    * At least one of the patient's attributes (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD` (unless it is empty).
+    * For every different attribute with prefix `xyz`, it must match at least one `XYZ_KEYWORD` (unless it is empty).
 
 Examples:
-* `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` returns patients who fulfill all conditions below:
+* `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` displays all patients who fulfill all conditions below:
     * The patient's name must contain either `John` or `Betsy` or `Charlie`.
     * The patient's email address must contain either `@example.com` or `@u.nus.edu`.
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
-* `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
-* `find alice meier` returns `Alice Tan` & `Benson Meier`.
+* `find jo` displays patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
+* `find n/alice n/meier` displays patients `Alice Tan` and `Benson Meier`.
 
 {:refdef: style="text-align: center;"}
 ![result for 'find alice meier'](images/findAliceMeierResult.png)
