@@ -6,6 +6,11 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage{
 
+package "UserPrefs Storage" #F4F6F6{
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class JsonUserPrefsStorage
+}
+
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
@@ -15,25 +20,22 @@ Class JsonJeeqTrackerStorage
 Class JsonSerializableJeeqTracker
 Class JsonAdaptedClient
 Class JsonAdaptedTag
-Class JsonAdaptedCompany
-Class JsonAdaptedTransaction
 }
 
 }
-
-Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
+StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" JeeqTrackerStorage
 
+Storage -left-|> UserPrefsStorage
 Storage -right-|> JeeqTrackerStorage
 
+JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonJeeqTrackerStorage .up.|> JeeqTrackerStorage
 JsonJeeqTrackerStorage ..> JsonSerializableJeeqTracker
 JsonSerializableJeeqTracker --> "*" JsonAdaptedClient
 JsonAdaptedClient --> "*" JsonAdaptedTag
-JsonAdaptedClient --> "*" JsonAdaptedCompany
-JsonAdaptedClient --> "*" JsonAdaptedTransaction
 
 @enduml
