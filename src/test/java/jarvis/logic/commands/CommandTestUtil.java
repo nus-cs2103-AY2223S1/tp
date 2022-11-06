@@ -6,6 +6,7 @@ import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +44,12 @@ public class CommandTestUtil {
 
     public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
+
+    public static final String VALID_DESC_MISSION2 = "Mark mission 2";
+    public static final String VALID_DESC_QUEST2 = "Check quest 2";
+
+    public static final LocalDate VALID_DEADLINE_MISSION2 = LocalDate.of(2022, 11, 10);
+    public static final LocalDate VALID_DEADLINE_QUEST2 = LocalDate.of(2022, 10, 31);
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)

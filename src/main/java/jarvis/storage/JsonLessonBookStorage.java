@@ -54,9 +54,9 @@ public class JsonLessonBookStorage implements LessonBookStorage {
 
         try {
             return Optional.of(jsonLessonBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+        } catch (IllegalArgumentException iae) {
+            logger.info("Illegal values found in " + filePath + ": " + iae.getMessage());
+            throw new DataConversionException(iae);
         } catch (IOException e) {
             logger.info("Error reading data from storage in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);

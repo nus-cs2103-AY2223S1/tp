@@ -38,7 +38,7 @@ public class TypicalStudents {
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller")
             .withMatricNum("A9384877B").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withMatricNum(VALID_MATRIC_NUM_AMY).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)

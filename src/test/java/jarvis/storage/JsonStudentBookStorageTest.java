@@ -62,7 +62,7 @@ public class JsonStudentBookStorageTest {
 
     @Test
     public void readAndSaveStudentBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempStudentBook.json");
         StudentBook original = getTypicalStudentBook();
         JsonStudentBookStorage jsonStudentBookStorage = new JsonStudentBookStorage(filePath);
 
