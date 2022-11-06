@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,5 +32,15 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+
+    // solution adapted from
+    // https://stackoverflow.com/questions/5689795/testing-tostring-junit
+    @Test
+    public void testToString() {
+        // null phone
+        Phone phone = new Phone(null);
+        String expected = "No phone number";
+        assertEquals(expected, phone.toString());
     }
 }
