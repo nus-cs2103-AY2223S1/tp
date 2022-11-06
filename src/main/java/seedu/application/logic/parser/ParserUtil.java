@@ -10,7 +10,6 @@ import seedu.application.commons.core.index.Index;
 import seedu.application.commons.util.StringUtil;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
@@ -30,10 +29,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INDEX_OVERFLOW = "The index provided is too big to process.";
-
-    public static final String MESSAGE_UNKNOWN_PREFIX_FOUND = "Unknown prefix detected in the command, please "
-            + "check the message usage by retyping command without argument for the appropriate prefix\n"
-            + "Examples: If add command is used currently, type (add) only to show it's message usage";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -62,9 +57,6 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         String trimmedCompany = company.trim();
-        if (Company.hasUnknownPrefix(company)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Company.isValidCompany(trimmedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
@@ -80,9 +72,6 @@ public class ParserUtil {
     public static Contact parseContact(String contact) throws ParseException {
         requireNonNull(contact);
         String trimmedContact = contact.trim();
-        if (Contact.hasUnknownPrefix(contact)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Contact.isValidContact(trimmedContact)) {
             throw new ParseException(Contact.MESSAGE_CONSTRAINTS);
         }
@@ -98,9 +87,6 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (Email.hasUnknownPrefix(email)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -116,9 +102,6 @@ public class ParserUtil {
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
         String trimmedPosition = position.trim();
-        if (Position.hasUnknownPrefix(position)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Position.isValidPosition(trimmedPosition)) {
             throw new ParseException(Position.MESSAGE_CONSTRAINTS);
         }
@@ -134,9 +117,6 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (Date.hasUnknownPrefix(date)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
@@ -152,9 +132,6 @@ public class ParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (Status.hasUnknownPrefix(status)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
@@ -170,9 +147,6 @@ public class ParserUtil {
     public static Round parseRound(String round) throws ParseException {
         requireNonNull(round);
         String trimmedRound = round.trim();
-        if (Round.hasUnknownPrefix(round)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Round.isValidRound(trimmedRound)) {
             throw new ParseException(Round.MESSAGE_CONSTRAINTS);
         }
@@ -188,9 +162,6 @@ public class ParserUtil {
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
         requireNonNull(interviewDate);
         String trimmedInterviewDate = interviewDate.trim();
-        if (InterviewDate.hasUnknownPrefix(interviewDate)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!InterviewDate.isValidDate(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
         }
@@ -206,9 +177,6 @@ public class ParserUtil {
     public static InterviewTime parseInterviewTime(String interviewTime) throws ParseException {
         requireNonNull(interviewTime);
         String trimmedInterviewTime = interviewTime.trim();
-        if (InterviewTime.hasUnknownPrefix(interviewTime)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!InterviewTime.isValidTime(trimmedInterviewTime)) {
             throw new ParseException(InterviewTime.MESSAGE_CONSTRAINTS);
         }
@@ -239,9 +207,6 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (Tag.hasUnknownPrefix(tag)) {
-            throw new ParseUnknownPrefixFoundException(MESSAGE_UNKNOWN_PREFIX_FOUND);
-        }
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }

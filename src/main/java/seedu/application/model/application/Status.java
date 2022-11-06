@@ -43,17 +43,6 @@ public enum Status {
     }
 
     /**
-     * Returns true if a given string contains another prefix or prefix, argument pair.
-     */
-    public static boolean hasUnknownPrefix(String test) {
-        String[] filteredTest = test.split(" ");
-        if (filteredTest.length >= 2) {
-            return filteredTest[1].matches(CommonRegex.VALIDATION_REGEX_FOR_UNKNOWN_PREFIX_INPUT_WITHOUT_SPACE);
-        }
-        return false; //error not cause by extra prefix
-    }
-
-    /**
      * Returns a Status if a given string is a valid status.
      */
     public static Status getStatus(String value) {

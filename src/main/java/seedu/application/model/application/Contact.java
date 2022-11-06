@@ -35,13 +35,6 @@ public class Contact {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string contains another prefix or prefix, argument pair.
-     */
-    public static boolean hasUnknownPrefix(String test) {
-        return test.matches(VALIDATION_REGEX + CommonRegex.VALIDATION_REGEX_FOR_EXTRA_PREFIX);
-    }
-
     @Override
     public String toString() {
         return value;
