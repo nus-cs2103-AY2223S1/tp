@@ -14,7 +14,8 @@ deliverables by **empowering NUS students** with the ability to manage **tasks**
 
 Plannit will be the **go-to platform** for them to access all modules links and information
 without needing to tediously navigate through multiple websites. Students 
-can also use it to track their tasks for each module with this application.
+can also use it to track their tasks for each module with this application 
+so that they do not have to worry about unintentionally forgetting their tasks.
 
 In addition, Plannit allows tracking of student contacts by module.
 Students do not have to worry about forgetting which friend takes which module.
