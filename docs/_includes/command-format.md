@@ -11,6 +11,8 @@
 {{ include.input }}
 ```
 
+---
+
 {{ include.notes }}
 
 </div>
