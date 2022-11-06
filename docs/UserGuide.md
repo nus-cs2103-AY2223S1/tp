@@ -86,7 +86,7 @@ Note how the app contains some sample data. If the app does not start and an `er
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all team members.
+    * **`list`** : Lists all teammates.
 
     * **`exit`** : Exits the app.
 7. Refer to the **Features** section below for details of each command.
@@ -484,9 +484,10 @@ For ease of understanding, many of these common use cases have been detailed bel
 - `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd teammates from the address book.
 
 #### 5. Filtering by Deadline
-`Format: task list before/DATE after/DATE`
+Format: `task list before/DATE after/DATE`
 - The `before/` and `after/` parameters allow you to specify a date range to filter the tasks by, according to their deadline.
-- You can choose to use only one of the parameters, as shown in the examples below
+- - Tasks with unspecified deadlines will be displayed regardless of the filters.
+- You can choose to use only one of the parameters, as shown in the examples below.
 
 ##### Examples
 - `task list before/ next Monday after/ tomorrow` returns all tasks whose deadline is after tomorrow but before next Monday.
