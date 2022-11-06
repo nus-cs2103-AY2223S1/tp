@@ -290,7 +290,7 @@ The tips feature shows curated tips for internship applications for specific app
 
 The tips feature is implemented in the model compenent inside the `StageUtil` class. The list of supported stages is stored inside as a `List<Stage>`. The tips are stores in a `HashMap` that maps each `Stage` object to their respective `List<String>` of tips. The `getStageSpecificStips()` method will retrieve the list of tips for a supported stage as a `List<String>`. 
 
-The tips are then stored and shown inside a `TipsCard` object extends from `UiPart<Region>` and consists of one `Hbox` housing 2 `Hbox`s with each inner `Hbox` containing a `Label`. The first label shows the index while the second label shows the Tip itself.
+The tips are then stored and shown inside a `TipsCard` object that extends from `UiPart<Region>` and consists of one `Hbox` housing 2 `Hbox`s with each inner `Hbox` containing a `Label`. The first `Label` shows the index while the second `Label` shows the Tip itself.
 
 The tips are show to the user in one of two ways depending on the UI layout.
 
