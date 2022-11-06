@@ -344,7 +344,7 @@ Be very careful! The default behaviour is slightly different across the differen
 
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
-<div markdown="block" class="alert alert-info"> **:star: Advanced Tip:**
+<div markdown="block" class="alert alert-secondary"> **:star: Advanced Tip:**
 Description is case-sensitive! In case you need to store 2 separate debts with the same description, money, date and time for a single person, you can consider storing the first with capital letters and the second without.<br>
 For example, you can have a `Lunch` debt and a `lunch` debt. However, you are recommended to store the debts with more specific descriptions to make it easier to figure out what they really are in the future! You can still find both `lunch drink` and `lunch meal` debts by making use of the [`finddebt` command](#locating-persons-by-debt-description-finddebt).
 </div>
