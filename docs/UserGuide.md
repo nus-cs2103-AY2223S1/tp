@@ -376,9 +376,14 @@ Format: `sort -p [n/] [c/]`
 - When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 - The list will remain sorted the same way until InterNUS is closed or until the sort condition for the persons list is changed.
 
-Example:
-- `sort -p n/` would sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
-- `sort -p c/` would sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name would be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+Examples:
+- `sort -p n/` will sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` will sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name will be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** Both the person list and internship list will remain sorted by the last given criterion 
+until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+</div>
 
 ### 4.7.2. Sorting internships in the list: `sort -i`
 
