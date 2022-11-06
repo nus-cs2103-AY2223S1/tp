@@ -160,7 +160,7 @@
 }
 
 .result-display .label {
-    -fx-text-fill: white !important;
+    -fx-text-fill: black !important;
 }
 
 .status-bar .label {
