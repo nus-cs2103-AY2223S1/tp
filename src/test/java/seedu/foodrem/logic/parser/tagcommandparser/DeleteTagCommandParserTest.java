@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.testutil.TypicalTags;
 
+/**
+ * A class to test the DeleteTagCommandParser.
+ */
 public class DeleteTagCommandParserTest {
     private final DeleteTagCommandParser parser = new DeleteTagCommandParser();
 

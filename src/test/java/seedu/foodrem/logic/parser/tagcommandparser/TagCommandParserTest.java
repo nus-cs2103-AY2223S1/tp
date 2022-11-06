@@ -17,6 +17,9 @@ import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
+/**
+ * A class to test the TagCommandParser.
+ */
 public class TagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.getUsage());

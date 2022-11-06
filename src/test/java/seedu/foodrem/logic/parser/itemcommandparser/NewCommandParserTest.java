@@ -13,6 +13,9 @@ import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.testutil.TypicalItems;
 
+/**
+ * A class to test the NewCommandParser.
+ */
 public class NewCommandParserTest {
     private final NewCommandParser parser = new NewCommandParser();
 

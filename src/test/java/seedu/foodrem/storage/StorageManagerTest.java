@@ -15,6 +15,9 @@ import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.UserPrefs;
 
+/**
+ * A class to test StorageManager.
+ */
 public class StorageManagerTest {
     @TempDir
     public Path testFolder;

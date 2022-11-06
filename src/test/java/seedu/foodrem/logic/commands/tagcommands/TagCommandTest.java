@@ -27,6 +27,9 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
+/**
+ * A class to test the TagCommand.
+ */
 public class TagCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "Item tagged successfully. Updated item:";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";

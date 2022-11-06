@@ -16,10 +16,16 @@ import seedu.foodrem.model.item.ItemUnit;
 public class EditItemDescriptorBuilder {
     private final EditItemDescriptor descriptor;
 
+    /**
+     * Constructs an EditItemDescriptorBuilder.
+     */
     public EditItemDescriptorBuilder() {
         descriptor = new EditItemDescriptor();
     }
 
+    /**
+     * Constructs an EditItemDescriptorBuilder.
+     */
     public EditItemDescriptorBuilder(EditItemDescriptor descriptor) {
         this.descriptor = new EditItemDescriptor(descriptor);
     }
@@ -94,6 +100,9 @@ public class EditItemDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Returns an EditItemDescriptor.
+     */
     public EditItemDescriptor build() {
         return descriptor;
     }

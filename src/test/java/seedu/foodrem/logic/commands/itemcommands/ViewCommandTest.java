@@ -17,6 +17,9 @@ import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
 
+/**
+ * A class to test the ViewCommand.
+ */
 class ViewCommandTest {
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 

@@ -18,6 +18,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.viewmodels.FilterByTag;
 
+/**
+ * A class to test the FilterTagCommand.
+ */
 public class FilterTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in FoodRem";
     private static final String EXPECTED_SUCCESS_LIST_AFTER_FILTERING = "%1$d items filtered";

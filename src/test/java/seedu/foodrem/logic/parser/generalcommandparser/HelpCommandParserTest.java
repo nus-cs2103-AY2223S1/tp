@@ -29,6 +29,9 @@ import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
+/**
+ * A class to test the HelpCommandParser.
+ */
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
             + "dec, del, edit, filtertag, find, inc, list, new, rmk, sort, view, " // Item commands

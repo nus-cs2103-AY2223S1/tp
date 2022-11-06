@@ -12,18 +12,19 @@ import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
+/**
+ * A class to test the ParserUtil.
+ */
 public class ParserUtilTest {
     private static final String VALID_ITEM_NAME = "Potatoes";
     private static final String VALID_ITEM_QUANTITY = "10";
     private static final String VALID_ITEM_UNIT = "kg";
     private static final String VALID_ITEM_BOUGHT_DATE = "11-11-2022";
-    private static final String VALID_ITEM_EXPIRY_DATE = "11-11-2022";
 
     private static final String INVALID_ITEM_NAME = "Potatoes|/";
     private static final String INVALID_ITEM_QUANTITY = "10|/";
     private static final String INVALID_ITEM_UNIT = "kg|/";
     private static final String INVALID_ITEM_BOUGHT_DATE = "11-11-2022|/";
-    private static final String INVALID_ITEM_EXPIRY_DATE = "11-11-2022|/";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -161,52 +162,4 @@ public class ParserUtilTest {
         ItemExpiryDate expectedExpiryDate = ItemExpiryDate.of(VALID_ITEM_BOUGHT_DATE);
         assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(expireDateWithWhitespace));
     }
-
-    // TODO: Implement test for tags one functionality is added
-    //@Test
-    //public void parseTag_null_throwsNullPointerException() {
-    //    assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    //}
-    //
-    //@Test
-    //public void parseTag_invalidValue_throwsIllegalArgumentException() {
-    //    assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    //}
-    //
-    //@Test
-    //public void parseTag_validValueWithoutWhitespace_returnsTag() {
-    //    Tag expectedTag = new Tag(VALID_TAG_1);
-    //    assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-    //}
-    //
-    //@Test
-    //public void parseTag_validValueWithWhitespace_returnsTrimmedTag() {
-    //    String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-    //    Tag expectedTag = new Tag(VALID_TAG_1);
-    //    assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    //}
-
-    //@Test
-    //public void parseTags_null_throwsNullPointerException() {
-    //    assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    //}
-    //
-    //@Test
-    //public void parseTags_collectionWithInvalidTags_throwsIllegalArgumentException() {
-    //    assertThrows(IllegalArgumentException.class,
-    //    () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    //}
-    //
-    //@Test
-    //public void parseTags_emptyCollection_returnsEmptySet() {
-    //    assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    //}
-    //
-    //@Test
-    //public void parseTags_collectionWithValidTags_returnsTagSet() {
-    //    Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-    //    Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-    //
-    //    assertEquals(expectedTagSet, actualTagSet);
-    //}
 }

@@ -32,6 +32,7 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  */
 public class EditCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "Item successfully edited with the following values:";
+    private static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem.";
 
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
@@ -111,7 +112,7 @@ public class EditCommandTest {
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_ITEM);
     }
 
     @Test
@@ -122,7 +123,7 @@ public class EditCommandTest {
         Item itemInList = model.getFoodRem().getItemList().get(INDEX_SECOND_ITEM.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditItemDescriptorBuilder(itemInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_ITEM);
     }
 
     @Test

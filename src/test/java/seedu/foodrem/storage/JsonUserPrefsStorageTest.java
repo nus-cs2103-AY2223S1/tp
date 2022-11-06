@@ -16,6 +16,9 @@ import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.exceptions.DataConversionException;
 import seedu.foodrem.model.UserPrefs;
 
+/**
+ * A class to test JsonUserPrefsStorage.
+ */
 public class JsonUserPrefsStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
 

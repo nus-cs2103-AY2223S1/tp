@@ -10,6 +10,9 @@ import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 
+/**
+ * A class to test the EditItemDescriptor.
+ */
 public class EditItemDescriptorTest {
     @Test
     public void equals() {

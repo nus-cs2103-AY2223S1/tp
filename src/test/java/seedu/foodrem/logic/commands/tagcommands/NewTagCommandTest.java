@@ -19,6 +19,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.viewmodels.TagsWithMessage;
 
+/**
+ * A class to test the NewTagCommand.
+ */
 public class NewTagCommandTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag already exists in FoodRem";
     private static final String EXPECTED_SUCCESS_MESSAGE = "New tag added:";

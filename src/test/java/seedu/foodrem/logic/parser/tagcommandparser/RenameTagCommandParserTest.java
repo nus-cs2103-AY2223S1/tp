@@ -13,6 +13,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 
+/**
+ * A class to test the RenameTagCommandParser.
+ */
 public class RenameTagCommandParserTest {
     private final RenameTagCommandParser parser = new RenameTagCommandParser();
 

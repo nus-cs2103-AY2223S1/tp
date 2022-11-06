@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.testutil.MessageToUser;
 
+/**
+ * A class to test the ItemUnitValidator.
+ */
 public class ItemUnitValidatorTest {
     @Test
     public void test_nameIsValidLength() {
