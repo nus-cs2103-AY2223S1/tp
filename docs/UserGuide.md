@@ -1078,46 +1078,69 @@ Summary of commands can be found [here](#summary-of-link-commands)
 
 #### Add a new link : `add link`
 
-Add a new link to the user's currently selected team.
+Add a new link to the currently selected team.
 
-**Format:** `add link [-h] -n NAME -l URL`
+**Format:** `add link [-h] -l=<URL> -n=<NAME>`
 
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
+| Flags          | Required           | Remarks                               |
+|----------------|:-------------------|---------------------------------------|
+| `-h`, `--help` |                    | Shows help message for this command   |
+| `-l`, `--link` | :heavy_check_mark: | URL of link (e.g. https://google.com) |
+| `-n`, `--name` | :heavy_check_mark: | Name of link (e.g. "Meeting #1")      |
 
-**Examples:** 
+**Command Aliases:**
+- `add l`
+- `a link`
+- `a l`
 
-- `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com"
+**Examples:**
+- `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com".
 
 #### Edit an existing link : `edit link`
 
-Edit an existing link in the user's currently selected team.
+Edit an existing link in the currently selected team.
 
-**Format:** `edit link LINK_INDEX [-n NAME] [-l URL]`
+**Format:** `edit link [-h] ([-n=<NAME>] [-l=<URL>]) <LINK_INDEX>`
 
-| Flags          | Required | Remarks                             |
-|----------------|:---------|-------------------------------------|
-| `-h`, `--help` |          | Shows help message for this command |
+| Flags          | Required   | Remarks                               |
+|----------------|:-----------|---------------------------------------|
+| `-h`, `--help` |            | Shows help message for this command   |
+| `-l`, `--link` | :asterisk: | URL of link (e.g. https://google.com) |
+| `-n`, `--name` | :asterisk: | Name of link (e.g. "Meeting #1")      |
 
-**Examples:** 
+:asterisk: - at least one of the flags must be specified
 
+* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `edit l`
+- `e link`
+- `e l`
+
+**Examples:**
 - `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the 
-  URL of "https://facebook.com"
+  URL of "https://facebook.com".
+- `edit link 1 -n google` will update the 1st link to have the name "google".
 
 #### Delete an existing link : `delete link`
 
-Delete the specified link from the user's currently selected team.
+Delete the specified link from the currently selected team.
 
-**Format:** `delete link [-h] LINK_INDEX`
+**Format:** `delete link [-h] <LINK_INDEX>`
 
 | Flags          | Required | Remarks                             |
 |----------------|:---------|-------------------------------------|
 | `-h`, `--help` |          | Shows help message for this command |
 
-**Examples:** 
+* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
 
-- `delete link 1`
+**Command Aliases:**
+- `delete l`
+- `d link`
+- `d l`
+
+**Examples:**
+- `delete link 1` will delete the 1st link
 
 ### General Commands
 
