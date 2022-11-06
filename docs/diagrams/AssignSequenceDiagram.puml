@@ -26,10 +26,10 @@ create AssignCommandParser
 AddressBookParser -> AssignCommandParser
 activate AssignCommandParser
 
-AssignCommandParser -> AddressBookParser
+AssignCommandParser --> AddressBookParser
 deactivate AssignCommandParser
 
-AddressBookParser -> AssignCommandParser
+AddressBookParser -> AssignCommandParser : parse("1 n/P2 maths")
 activate AssignCommandParser
 
 create AssignCommand
@@ -109,7 +109,7 @@ deactivate TutorToAssign
 end
 
 create CommandResult
-AssignCommand --> CommandResult
+AssignCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> AssignCommand
