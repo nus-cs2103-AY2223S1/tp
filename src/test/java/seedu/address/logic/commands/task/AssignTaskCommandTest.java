@@ -25,9 +25,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskPanel;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.model.TaskPanel;
 import seedu.address.testutil.TaskBuilder;
 
 public class AssignTaskCommandTest {

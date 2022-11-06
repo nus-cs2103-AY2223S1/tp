@@ -50,24 +50,24 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
     }
 
-        @Test
-        public void execute_validIndexFilteredListNoTaskChange_success() {
-            showTeammateAtIndex(model, INDEX_SECOND_TEAMMATE);
+    @Test
+    public void execute_validIndexFilteredListNoTaskChange_success() {
+        showTeammateAtIndex(model, INDEX_SECOND_TEAMMATE);
 
-            Teammate teammateToDelete = model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
-            DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TEAMMATE);
+        Teammate teammateToDelete = model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TEAMMATE);
 
-            String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS, teammateToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS, teammateToDelete);
 
-            Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
-            expectedModel.deleteTeammate(teammateToDelete);
-            showNoTeammate(expectedModel);
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
+        expectedModel.deleteTeammate(teammateToDelete);
+        showNoTeammate(expectedModel);
 
-            assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-        }
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
-    public void execute_TaskAssignedContactCascadeDeleted_success() {
+    public void execute_taskAssignedContactCascadeDeleted_success() {
         Teammate teammateToDelete = model.getFilteredTeammateList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
         Task editedTask = new TaskBuilder(model.getFilteredTaskList().get(0)).withContacts().build();
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TEAMMATE);

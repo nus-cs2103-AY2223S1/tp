@@ -120,8 +120,8 @@ public class AssignTaskCommand extends TaskCommand {
         model.setTask(taskToModify, editedTask);
 
         if (!alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
-            return new CommandResult(buildInfoMessage() +
-                    String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
+            return new CommandResult(buildInfoMessage()
+                    + String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
