@@ -265,9 +265,9 @@ The following sequence diagram shows how the add tag operation works:
 
 ### Add/delete task feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
+The add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
 
 Every instance of AddTaskCommand is created with a Task instance. If the Task instance is null, an exception is thrown.
 
