@@ -140,7 +140,11 @@ public class CommandSuggestor {
         if (autocompleteUptoIndex == 0) {
             autocompleteUptoIndex = suggestedCommand.length();
         }
-        userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
+
+        String autocompletedCommand = suggestedCommand.substring(0, autocompleteUptoIndex);
+        if(!autocompletedCommand.contains("<")) {
+            userInput = userInput + autocompletedCommand;
+        }
         return userInput;
     }
 
