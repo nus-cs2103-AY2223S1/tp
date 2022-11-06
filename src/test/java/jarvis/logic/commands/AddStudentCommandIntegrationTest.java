@@ -14,7 +14,7 @@ import jarvis.model.UserPrefs;
 import jarvis.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudentCommand}.
  */
 public class AddStudentCommandIntegrationTest {
 

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -20,8 +21,11 @@ public class LessonAttendance {
      * @param students Students who are involved in the lesson.
      */
     public LessonAttendance(Collection<Student> students) {
-        attendance = new TreeMap<>();
+        if (students.size() == 0) {
+            throw new NoStudentsInLessonException();
+        }
 
+        attendance = new TreeMap<>();
         for (Student stu : students) {
             attendance.put(stu, false);
         }

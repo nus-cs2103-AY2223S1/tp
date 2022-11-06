@@ -1,4 +1,4 @@
-package jarvis.model.student;
+package jarvis.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.testutil.StudentBuilder;
 
 public class StudentNameContainsKeywordsPredicateTest {
