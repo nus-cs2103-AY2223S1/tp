@@ -68,7 +68,7 @@ email address, home address, remarks and tags.
 
 * Name must be different from existing patient and name is case-insensitive.
 
-* Remark and tags are optional. 
+* Remark and tags are optional.
 
 * A patient can be added with multiple tags.
 
@@ -637,7 +637,7 @@ Deletes an appointment by the index number of the appointment in the list.
 
 * `deleteappointment 3` deletes Charlotte Oliveiro's appointment and its bill.
 
-Before: 
+Before:
 
 <img src="images/ug/deletecommand/da1.png">
 
