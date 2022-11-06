@@ -26,6 +26,9 @@ public class ItemPriceValidator implements Validator {
                 "The item price should not be negative.");
     }
 
+    /**
+     * Validates a given numeric String. This is to be used during construction.
+     */
     static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
                                       String messageNotANumber, String messageTooPrecise, String messageTooLarge,
                                       String messageIsNegative) {

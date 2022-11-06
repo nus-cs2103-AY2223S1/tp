@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.testutil.MessageToUser;
 
+/**
+ * A class to test the ItemNameValidator.
+ */
 public class ItemNameValidatorTest {
     // TODO: Test for uniqueness of Item Name
 

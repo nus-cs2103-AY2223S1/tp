@@ -26,6 +26,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
+/**
+ * A class to test the NewCommand.
+ */
 public class NewCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "New item added as follows:";
     private static final String EXPECTED_FAILURE_DUPLICATE_ITEM = "This item already exists in FoodRem";
@@ -105,16 +108,6 @@ public class NewCommandTest {
 
         @Override
         public void updateSortedItemList(Comparator<Item> comparator) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isItemStorageFull() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isTagStorageFull() {
             throw new AssertionError("This method should not be called.");
         }
 

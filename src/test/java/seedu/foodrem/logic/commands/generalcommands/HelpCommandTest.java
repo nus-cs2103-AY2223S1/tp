@@ -13,14 +13,20 @@ import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
+/**
+ * A class to test the HelpCommand.
+ */
 class HelpCommandTest {
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
     void getCommandHelpMessage() {
         String helpMessage = "help: Displays help for FoodRem.\n\n"
+                + "Format:\n"
+                + "help [COMMAND_WORD]\n\n"
                 + "Example:\n"
-                + "help\n\n"
+                + "help\n"
+                + "help new\n\n"
                 + "To receive help for a specific command, enter \"help COMMAND_WORD\" "
                 + "in the command box, where COMMAND_WORD is any one of the following:\n"
                 + "exit, help, reset, dec, del, edit, filtertag, find, inc, list, new, rmk, sort, view, "

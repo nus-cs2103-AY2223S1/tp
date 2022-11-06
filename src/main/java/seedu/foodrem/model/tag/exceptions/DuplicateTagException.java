@@ -5,6 +5,9 @@ package seedu.foodrem.model.tag.exceptions;
  * name).
  */
 public class DuplicateTagException extends RuntimeException {
+    /**
+     * Creates a new DuplicateTagException
+     */
     public DuplicateTagException() {
         super("Operation would result in duplicate tags");
     }

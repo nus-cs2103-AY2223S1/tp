@@ -7,6 +7,9 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * A class to test the Index.
+ */
 public class IndexTest {
     @Test
     public void createOneBasedIndex() {

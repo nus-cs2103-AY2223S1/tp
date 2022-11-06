@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Testing guide
+title: Testing Guide
 ---
 
 {% include toc.md header=true ordered=true %}

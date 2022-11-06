@@ -1,3 +1,4 @@
+/* @@author */
 package seedu.foodrem.commons.core;
 
 import java.util.regex.Matcher;

@@ -14,25 +14,25 @@ These statistics include:
 The cost of an item is the price of the item multiplied by the quantity of the item in your inventory.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-stats
-```
+{% capture notes %}
+**Assumptions:**
 
-**Example Output:**<br>Command Output Box:
+* Initially, FoodRem has a few items, one of which is:
+  * Tomato
+* Initially, FoodRem has a few tags, three of which are:
+  * Fruits
+  * Meat
+  * Vegetables
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="stats"
+  commandOutputBox="images/statisticsCommands/commandOutputBox/stats.png"
+%}
 
-```text
-Statistics
-Total cost of wasted items:
-$120
-
-Top 3 common tags:
-Drinks Fridge Fruits
-
-Your top 3 items with highest value are as follows:
-
-1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
+```info
+The above picture only shows a partial view of the Command Output Box. On FoodRem, you can simply scroll down to see the full output! This is unfortunately the one instance where you need to use a mouse to interact with FoodRem.
 ```

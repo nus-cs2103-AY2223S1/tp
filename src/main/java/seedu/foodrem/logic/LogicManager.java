@@ -37,6 +37,9 @@ public class LogicManager implements Logic {
         foodRemParser = new FoodRemParser();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public CommandResult<?> execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -54,26 +57,41 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReadOnlyFoodRem getFoodRem() {
         return model.getFoodRem();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObservableList<Item> getCurrentList() {
         return model.getCurrentList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getFoodRemFilePath() {
         return model.getFoodRemFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
