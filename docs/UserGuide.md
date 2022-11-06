@@ -275,6 +275,10 @@ Example Command: `list`
 
 Sort the contact list in either ascending `A-Z` or descending `Z-A` order by name or module code.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+You can only sort by name or module code. You cannot sort by both field simultaneously.
+</div>
+
 #### 3.3.3.1 Sort by name
 
 Sort the contact list by name in either ascending `A-Z` or descending `Z-A` order.
