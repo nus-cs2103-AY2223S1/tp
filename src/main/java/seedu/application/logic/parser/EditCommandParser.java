@@ -20,7 +20,7 @@ import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -41,7 +41,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
-                throw new ParseUnknownPrefixFoundException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + EditCommand.MESSAGE_USAGE);
             }
         }

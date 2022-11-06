@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.application.logic.commands.AddCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
@@ -30,8 +30,6 @@ import seedu.application.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private static final int NUMBER_OF_PREFIX_REQUIRED = 7;
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -43,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
-                throw new ParseUnknownPrefixFoundException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + AddCommand.MESSAGE_USAGE);
             }
         }

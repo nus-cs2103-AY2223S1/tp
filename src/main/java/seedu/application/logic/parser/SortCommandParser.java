@@ -13,7 +13,7 @@ import seedu.application.logic.commands.SortByInterviewCommand;
 import seedu.application.logic.commands.SortByPositionCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -32,7 +32,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
-                throw new ParseUnknownPrefixFoundException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + SortCommand.MESSAGE_USAGE);
             }
         }

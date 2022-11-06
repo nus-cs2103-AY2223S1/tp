@@ -6,7 +6,7 @@ import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 
 /**
  * Parses input arguments and creates a new RetrieveCommand object.
@@ -23,7 +23,7 @@ public class RetrieveCommandParser implements Parser<RetrieveCommand> {
     public RetrieveCommand parse(String args) throws ParseException {
 
         if (ArgumentTokenizer.prefixFound(args).size() > NUMBER_OF_PREFIX_REQUIRED) {
-            throw new ParseUnknownPrefixFoundException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+            throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                     + RetrieveCommand.MESSAGE_USAGE);
         }
         try {

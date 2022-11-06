@@ -12,7 +12,7 @@ import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.AddInterviewCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
-import seedu.application.logic.parser.exceptions.ParseUnknownPrefixFoundException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;
@@ -36,7 +36,7 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
 
         for (Prefix prefix : ArgumentTokenizer.prefixFound(args)) {
             if (!argMultimap.hasPrefix(prefix)) {
-                throw new ParseUnknownPrefixFoundException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
                         + AddInterviewCommand.MESSAGE_USAGE);
             }
         }
