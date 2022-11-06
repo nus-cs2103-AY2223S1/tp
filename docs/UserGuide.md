@@ -710,7 +710,8 @@ Coydir data are saved in the hard disk automatically after any command that chan
 
 Coydir data are saved as a JSON file `[JAR file location]/data/database.json`.
 It is possible to manipulate data by editing the data file directly, but even for advanced users, we **strongly discourage** making any changes to the data file.
-If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
+
+If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.

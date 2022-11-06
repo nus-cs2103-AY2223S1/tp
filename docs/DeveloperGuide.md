@@ -599,6 +599,49 @@ testers are expected to do more *exploratory* testing.
    3. In the main app window, type `exit` and enter.<br>
       **Expected Outcome**: The window closes, the same way it closed previously by clicking on the close button.
 
+### Basic Commands:
+
+1. Listing all employees:
+
+   1. **Prerequisites**: Ensure that there is at least 1 person in the database.
+
+   2. **Test Case**: `list`<br>
+      **Expected Outcome**: On the left side panel, all employees are shown in the list (at least 1). There might not be any changes from before (if they have already been listed).
+
+   3. Other valid listing commands: `list a`, `list 1`, `list n/John`.
+      **Expected Outcome**: Same as previous.
+
+   4. **Test Case**: `find d/NoSuchDepartment`, followed by `list`<br>
+      **Expected Outcome**: The first command should empty the list shown on the left panel. The second command displays all employees again (at least 1).
+
+2. Viewing an employee:
+
+   1. **Prerequisites**: For all of these test cases, ensure that there is at least 1 employee present in the database.
+      Additionally, take note of the total count of employees (you can see this by entering `list` and checking the largest index shown).
+
+   2. **Test Case**: `view 1`<br>
+      **Expected Outcome**: On the right side panel, the employee profile of the first listed person is displayed.
+
+   3. **Test Case**: `view 0`<br>
+      **Expected Outcome**: An error message appears, saying that the format of the command entered is incorrect.
+
+   4. **Test Case**: `view x`, where `x` is a number larger than the total count of employees.
+      **Expected Outcome**: An error message appears, saying that the index provided is invalid.
+
+3. Clearing the database:
+
+   1. **Prerequisites**: Ensure that there is at least 1 person in the database.
+      Additionally, take note of the highest employee ID available.
+
+   2. **Test Case**: `clear`<br>
+      **Expected Outcome**: On the left panel, there are no more employees displayed. The right panel should show the home panel, regardless of its previous state.
+
+   3. **Follow-up Test Case**: `list`<br>
+      **Expected Outcome**: No employees are listed. Feedback says that all employees are listed.
+
+   4. **Follow-up Test Case**: `add n/ClearTest j/Position d/Operations`<br>
+      **Expected Outcome**: A new employee is displayed on the left panel, with the employee ID value of 1.
+
 ### Adding an employee
 
 1. Adding an employee with all fields specified:
@@ -669,7 +712,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting an employee in general:
 
-   1. **Prerequisites**: List all employees using the `list` command. Multiple persons are shown in the list on the left panel.
+   1. **Prerequisites**: Ensure that there is at least 1 employee in the database.
 
    2. **Test Case**: `delete 1`<br>
       **Expected Outcome**: First employee is deleted from the list. Details of the deleted employee shown in the status message.
@@ -681,12 +724,91 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete abcdef` <br>
       Expected Outcome: Similar to previous.
 
-###
+### Batch-adding employees (Not sure how to test)
 
-### Saving data
+### Finding employees
 
-1. Dealing with missing/corrupted data files
+1. Finding an employee with just one filter:
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1.
 
-1. _{ more test cases …​ }_
+### Adding employee leaves
+
+For all of the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Adding leave period for an employee
+
+   1. **Test Case**: `add-leave id/x sd/01-01-2022 ed/01-01-2022`<br>
+      **Expected Outcome**: Total leaves remain the same. Leaves left decreases by 1.
+      A new row is added to the table of leave periods, with the correct start and end date, with duration (1 day).
+
+   2. **Test Case**: `add-leave id/x sd/Today ed/Today`, where `Today` refers to the present date, in DD-MM-YYYY format<br>
+      **Expected Outcome**: Same as previous. Additionally, the property "On leave" now reads "True".
+
+   3. **Test Case**: `add-leave id/x sd/31-12-2020 ed/01-01-2021`<br>
+      **Expected Outcome**: Total leaves remain the same. Leaves left decreases by 2.
+      A new row is added to the table of leave periods, with the correct start and end date, with duration (2 days).
+
+2. Adding invalid leave period for an employee
+
+   1. **Prerequisites**: Follow test 1(i) to add a leave period for 1 Jan 2022 for employee ID `x`.
+
+   2. **Test Case**: `add-leave id/x sd/01-01-2022 ed/02-01-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that overlapping leaves are not allowed.
+
+   3. **Test Case**: `add-leave id/x sd/31-04-2022 ed/01-05-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that there were invalid date inputs.
+
+   4. **Test Case**: `add-leave id/x sd/01-05-2022 ed/15-05-2022`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the employee does not have enough leaves left.
+      This is assuming that the total leaves is 14, the default value.
+      Else, you can adjust the end date in the example provided to achieve a duration longer than the available leaves.
+
+### Deleting employee leaves
+
+For all of the following tests, ensure that there is at least 1 employee, with the default total leaves of 14 days.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+In addition, prior to running each test case, ensure that the employee has at least one leave period.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Deleting leave period for an employee
+
+   1. **Test Case**: `delete-leave id/x i/1`<br>
+      **Expected Outcome**: Total leaves remain the same.
+      Leaves left increases by the duration of the corresponding leave period.
+      The corresponding row in the leaves table is deleted.
+
+   2. **Test Case**: `delete-leave id/x i/y+1`, where `y` is the number of leave periods the employee has<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the index provided is invalid.
+
+   3. **Test Case**: `delete-leave id/x i/0`<br>
+      **Expected Outcome**: No changes occured. An error message appears, providing the constraints for numbers.
+
+### Rating employee performance
+
+For all of the following tests, ensure that there is at least 1 employee, who has never been rated prior.
+If there are more than one, any of these employees can be used, and can be used for different test cases as well.
+In each of the test cases, we will refer to this employee's ID as `x`, for generality.
+
+**Note**: Changes are mostly visible only when viewing the employee profile.
+Therefore, we recommend that when performing a test case for an employee (with ID `x`), you first view the profile to easily observe the outcome.
+
+1. Rating an employee's performance
+
+   1. **Test Case**: `rate id/x r/5`<br>
+      **Expected Outcome**: The "Performance" property of the employee is updated to "5".
+      On the "Performance History" graph, a point with value "5" is now present, with today's date labelled.
+
+   2. **Follow-up Test Case**: `rate id/x r/4`<br>
+      **Expected Outcome**: No changes occured. An error message appears, saying that the employee has already been rated for the day.
+
+### Viewing department overview
