@@ -131,7 +131,7 @@ FoodRem contains the following items, each with their own attributes:
 
 ```warning
 * You should only provide one sorting criteria.
-* The sort can only be done in an ascending order.
+* The sort can only be done in ascending order.
 ```
 
 **Example:**
