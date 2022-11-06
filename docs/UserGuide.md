@@ -72,8 +72,8 @@ Titles, locations and descriptions that are too long will be truncated. To view 
 
 |`Component`|`Formatting Details`|
 |:-:|:--|
-|**Input**| Words in UPPER_CASE are the inputs to be supplied by the user. <br> e.g. in `add n/TITLE`, TITLE is an input which can be used as `add n/Switzerland Trip`|
-|**Optional Inputs**| Items in square brackets are optional. <br> e.g `NAME [t/TAG]` can be used as `John Doe t/Friend` or as `John Doe`. |
+|**Input**| Words in UPPER_CASE are the inputs to be supplied by the user. <br> e.g. in `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`, `TITLE`, `DESCRIPTION`, `LOCATION`, and `DATE` are inputs which can be used as `add n/Switzerland Trip d/With family and friends l/Switzerland D/29-09-2022 `|
+|**Optional Inputs**| Items in square brackets are optional. <br> e.g `sort [by/FACTOR] [r/]` can be used as `sort by/time r/` or as `sort`. |
 |**Prefixes**| The relevant prefixes must be used to separate parameters supplied by the user. <br> e.g. in `add-e n/TITLE d/DESCRIPTION`, `n/`  and `d/` are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.|
 |**Unnecessary inputs** | Unnecessary inputs for commands that do not require inputs (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.|
 |**Ordering of inputs**| Inputs can be in any order. <br> e.g. if the command specifies `n/TITLE d/DESCRIPTION`, `d/DESCRIPTION n/TITLE` is also acceptable.|
