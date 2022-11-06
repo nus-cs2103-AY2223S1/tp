@@ -9,7 +9,7 @@ Here, you can find everything you need to know about **SoConnect**, the ultimate
 
 If you are an **[SoC](#soc) student**, there is a high chance you are probably stressing over lack of social interactions and mounting assignments right now. Well, look no further! SoConnect is built to help you stay better connected to school life by doing the tedious management task, so you can focus on **creating real friends and finishing schoolwork quickly**. 
 
-Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advance user, this guide will solve all your problems, just like our app!
+Interested to use SoConnect? Then you are in the right place! In this user guide, we will cover **step-by-step instructions** from installing the app to customising it according to your preference. Whether you are a beginner or an advanced user, this guide will solve all your problems, just like our app!
 
 --------------------------------------------------------------------------------------------------------------------
 
