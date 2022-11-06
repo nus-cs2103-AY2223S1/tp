@@ -25,7 +25,7 @@ public class ThemeSettings implements Serializable {
      * Constructs a {@code ThemeSettings} with the default theme.
      */
     public ThemeSettings() {
-        theme = Theme.DARK;
+        theme = Theme.STAR;
     }
 
     /**
