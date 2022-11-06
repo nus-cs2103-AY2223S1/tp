@@ -22,21 +22,28 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddToFavCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EmailAllCommand;
+import seedu.address.logic.commands.ExcludeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.IncludeCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OpenCommand;
+import seedu.address.logic.commands.PreferCommand;
+import seedu.address.logic.commands.SocialCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywords;
+import seedu.address.model.person.PersonContainsSocial;
 import seedu.address.storage.HistoryList;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -188,11 +195,64 @@ public class AddressBookParserTest {
     public void parseCommand_include() throws Exception {
         String social = "TELEGRAM";
         String link = "Alex";
-        assertTrue((IncludeCommand) parser.parseCommand(
+        assertTrue(parser.parseCommand(
                 IncludeCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + PREFIX_SOCIAL.getPrefix() + social + " #/" + link) instanceof IncludeCommand);
         assertFalse(HistoryList.isEmpty());
     }
+
+    @Test
+    public void parseCommand_exclude() throws Exception {
+        String social = "TELEGRAM";
+        String link = "Alex";
+        assertTrue(parser.parseCommand(
+                ExcludeCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + PREFIX_SOCIAL.getPrefix() + social + " #/" + link) instanceof ExcludeCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+    @Test
+    public void parseCommand_prefer() throws Exception {
+        String social = "TELEGRAM";
+        assertTrue(parser.parseCommand(
+                PreferCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + PREFIX_SOCIAL.getPrefix() + social) instanceof PreferCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+    @Test
+    public void parseCommand_open() throws Exception {
+        String social = "TELEGRAM";
+        assertTrue(parser.parseCommand(
+                OpenCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + PREFIX_SOCIAL.getPrefix() + social) instanceof OpenCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+    @Test
+    public void parseCommand_social() throws Exception {
+        String social = "TELEGRAM";
+        PersonContainsSocial personContainsSocial = new PersonContainsSocial(social);
+        assertTrue(parser.parseCommand(
+                SocialCommand.COMMAND_WORD + " " + social) instanceof SocialCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+    @Test
+    public void parseCommand_addToFav() throws Exception {
+        assertTrue(parser.parseCommand(
+                AddToFavCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()) instanceof AddToFavCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+    @Test
+    public void parseCommand_emailAll() throws Exception {
+        assertTrue(parser.parseCommand(
+                EmailAllCommand.COMMAND_WORD + " " + "test") instanceof EmailAllCommand);
+        assertFalse(HistoryList.isEmpty());
+    }
+
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
