@@ -69,7 +69,7 @@ public class MeetingDate {
      * @return LocalDateTime object.
      */
     public LocalDateTime convert() {
-        String temp = value;
+        String temp = value.orElse(PLACEHOLDER_VALUE);
         if (!temp.contains(":") && !temp.isEmpty()) {
             temp = temp + " 00:00";
         } else if (temp.isEmpty()) {
@@ -79,7 +79,7 @@ public class MeetingDate {
         LocalDateTime dateTime = LocalDateTime.parse(temp, formatter);
         return dateTime;
     }
-    
+
     /**
      * Returns the value of the meeting date.
      */
