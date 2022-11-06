@@ -169,10 +169,10 @@ during the application process to the senior engineer you work with during the i
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
 * `PHONE_NUMBER` can only be numeric and consists of at least 3 numbers.
 * `LINK_INDEX` refers to the index number shown in the person list and is optional.
-    * Specifying this parameter will define the person at the specified index in the person list as the contact person of the new internship.
+    * Specifying this parameter will define the internship at the specified index in the internship list as the internship of the new person.
     * An internship is assumed to have at most one contact person, and a person is assumed to be in charge of at most one internship position.
-    * If the person at the specified index is already a contact person for another internship,
-      the linking between the person and the internship will fail with a warning, but the internship will still be added.
+    * If the internship at the specified index is already an internship for another person,
+      the linking between the person and the internship will fail with a warning, but the person will still be added.
 * `TAG` can only be alphanumeric and be one word.
 * `COMPANY` refers to the company the contact person is working at.
 * `EMAIL`,`PHONE`,`TAG`,`COMPANY` are optional as user might not have all the information of contact person.
