@@ -31,10 +31,16 @@ public class MasteryCheckTest {
         assertFalse(MasteryCheck.isValidMasteryCheck("2022--09--01")); // double '-' symbol
         assertFalse(MasteryCheck.isValidMasteryCheck("2022-09-0-1")); // extra '-' symbol
 
+        assertFalse(MasteryCheck.isValidMasteryCheck("1899-12-31")); // only years 1900 - 2999 are valid
+        assertFalse(MasteryCheck.isValidMasteryCheck("3000-01-01")); // only years 1900 - 2999 are valid
+
 
         // valid dates
         assertTrue(MasteryCheck.isValidMasteryCheck("2019-06-07"));
         assertTrue(MasteryCheck.isValidMasteryCheck("2020-02-28"));
+
+        assertTrue(MasteryCheck.isValidMasteryCheck("1900-01-01")); // only years 1900 - 2999 are valid
+        assertTrue(MasteryCheck.isValidMasteryCheck("2999-12-31")); // only years 1900 - 2999 are valid
     }
 
     @Test

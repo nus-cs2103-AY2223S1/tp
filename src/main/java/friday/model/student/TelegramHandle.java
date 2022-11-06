@@ -4,7 +4,7 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Student's phone number in the address book.
+ * Represents a Student's Telegram handle in Friday.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegramHandle(String)}
  */
 public class TelegramHandle implements Comparable<TelegramHandle> {
@@ -22,7 +22,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
     /**
      * Constructs a {@code TelegramHandle}.
      *
-     * @param handle A valid phone number.
+     * @param handle A valid Telegram handle.
      */
     public TelegramHandle(String handle) {
         requireNonNull(handle);
@@ -70,7 +70,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TelegramHandle // instanceof handles nulls
-                && value.equals(((TelegramHandle) other).value)); // state check
+                && value.toLowerCase().equals(((TelegramHandle) other).value.toLowerCase())); // state check
     }
 
     @Override

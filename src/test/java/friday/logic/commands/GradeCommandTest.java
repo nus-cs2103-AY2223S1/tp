@@ -74,7 +74,7 @@ public class GradeCommandTest {
     public void execute_invalidStudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of friday list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFriday().getStudentList().size());
 
         EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().build();
@@ -85,8 +85,9 @@ public class GradeCommandTest {
 
     @Test
     public void equals() {
-        EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().withGrade("RA1", GRADE_STUB)
-                .build();
+        EditGradeDescriptor emptyDescriptor = new EditGradeDescriptor();
+        EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder(emptyDescriptor)
+                .withGrade("RA1", GRADE_STUB).build();
         final GradeCommand standardCommand = new GradeCommand(INDEX_FIRST_STUDENT, descriptor);
 
         // same values -> returns true

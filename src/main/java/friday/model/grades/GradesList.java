@@ -14,7 +14,7 @@ public class GradesList {
     public static final String[] EXAMS = {"RA1", "RA2", "Midterm", "Practical", "Finals"};
     public static final int EXAMS_COUNT = 5;
 
-    public final Map<String, Grade> gradesMap;
+    private final Map<String, Grade> gradesMap;
 
     /**
      * Constructs an {@code GradesList} with all grades set to 0 by default.

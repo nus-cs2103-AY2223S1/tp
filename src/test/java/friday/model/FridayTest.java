@@ -24,7 +24,7 @@ import friday.testutil.TypicalStudents;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class MasteryCheckBookTest {
+public class FridayTest {
 
     private final Friday friday = new Friday();
 

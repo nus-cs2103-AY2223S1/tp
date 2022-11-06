@@ -155,103 +155,10 @@ Classes used by multiple components are in the `fridaybook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-[comment]: <> (### \[Proposed\] Undo/redo feature)
-
-[comment]: <> (#### Proposed Implementation)
-
-[comment]: <> (The proposed undo/redo mechanism is facilitated by `VersionedFriday`. It extends `Friday` with an undo/redo history, stored internally as an `FridayStateList` and `currentStatePointer`. Additionally, it implements the following operations:)
-
-[comment]: <> (* `VersionedFriday#commit&#40;&#41;` — Saves the current FRIDAY state in its history.)
-
-[comment]: <> (* `VersionedFriday#undo&#40;&#41;` — Restores the previous FRIDAY state from its history.)
-
-[comment]: <> (* `VersionedFriday#redo&#40;&#41;` — Restores a previously undone FRIDAY state from its history.)
-
-[comment]: <> (These operations are exposed in the `Model` interface as `Model#commitFriday&#40;&#41;`, `Model#undoFriday&#40;&#41;` and `Model#redoFriday&#40;&#41;` respectively.)
-
-[comment]: <> (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
-
-[comment]: <> (Step 1. The user launches the application for the first time. The `VersionedFriday` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.)
-
-[comment]: <> (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
-
-[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `fridayStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
-
-[comment]: <> (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
-
-[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFriday&#40;&#41;`, causing another modified FRIDAY state to be saved into the `fridayStateList`.)
-
-[comment]: <> (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
-
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFriday&#40;&#41;`, so the FRIDAY state will not be saved into the `fridayStateList`.)
-
-[comment]: <> (</div>)
-
-[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFriday&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
-
-[comment]: <> (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
-
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Friday state, then there are no previous Friday states to restore. The `undo` command uses `Model#canUndoFriday&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
-
-[comment]: <> (than attempting to perform the undo.)
-
-[comment]: <> (</div>)
-
-[comment]: <> (The following sequence diagram shows how the undo operation works:)
-
-[comment]: <> (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
-
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
-
-[comment]: <> (</div>)
-
-[comment]: <> (The `redo` command does the opposite — it calls `Model#redoFriday&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
-
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fridayStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
-
-[comment]: <> (</div>)
-
-[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `fridayStateList` remains unchanged.)
-
-[comment]: <> (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
-
-[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `fridayStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
-
-[comment]: <> (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
-
-[comment]: <> (The following activity diagram summarizes what happens when a user executes a new command:)
-
-[comment]: <> (<img src="images/CommitActivityDiagram.png" width="250" />)
-
-[comment]: <> (#### Design considerations:)
-
-[comment]: <> (**Aspect: How undo & redo executes:**)
-
-[comment]: <> (* **Alternative 1 &#40;current choice&#41;:** Saves the entire FRIDAY.)
-
-[comment]: <> (  * Pros: Easy to implement.)
-
-[comment]: <> (  * Cons: May have performance issues in terms of memory usage.)
-
-[comment]: <> (* **Alternative 2:** Individual command knows how to undo/redo by)
-
-[comment]: <> (  itself.)
-
-[comment]: <> (  * Pros: Will use less memory &#40;e.g. for `delete`, just save the student being deleted&#41;.)
-
-[comment]: <> (  * Cons: We must ensure that the implementation of each individual command are correct.)
-
-[comment]: <> (_{more aspects and alternatives to be added}_)
-
-[comment]: <> (### \[Proposed\] Data archiving)
-
-[comment]: <> (_{Explain here how the data archiving feature will be implemented}_)
-
-
 ### Sort feature
-
 #### Rationale
-This is a feature that enables the sorting of students using various criteria. With many students to keep track of, we
+Students in FRIDAY have details such as name, Telegram handle, consultation and Mastery Check dates, and grades. 
+This feature enables the sorting of students using the aforementioned details as criteria. With many students to keep track of, we
 decided to add this feature to allow users to quickly organize their students in different ways.
 
 #### Implementation
@@ -275,50 +182,36 @@ class does not implement the interface as its attributes are `String`s.
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 1. FRIDAY initialises an `ObservableList<Student>` named `students` and
-a `SortedList<Student>` named `sortedStudents` upon launch.
+   a `SortedList<Student>` named `sortedStudents` upon launch.
 
 2. The user executes `sort n/a` command to sort the students by name in ascending order.
 
 3. The user input is passed to
-`LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
+   `LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
 
 4. The `SortCommandParser` checks that the criteria and order are valid, and creates a `SortCommand` with a `Comparator`
-that orders the student names alphabetically.
+   that orders the student names alphabetically.
 
 5. The `LogicManager` calls the `SortCommand#execute` method, which in turn calls  `Model#updateSortedStudentList`
-to update `sortedStudents` with the given `Comparator`.
+   to update `sortedStudents` with the given `Comparator`.
 
-6. The list `students` is set to `sortedStudents`, and the `StudentListPanel#setList` method is called to refresh the
-`ListView` in the UI with the new `students` list.
+6. The list `students` is set to `sortedStudents`, after which  `CommandResult` is returned by the `SortCommand` to signal success.
+
+7. The `StudentListPanel#setList` method is called to refresh the
+   `ListView` in the UI with the new `students` list, and the success message from `CommandResult` is displayed.
 
 The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: How many criteria should the sort command accept**
+**Aspect: How many criteria should the `sort` command accept**
 
-* **Alternative 1 (current choice):** Accept only one criterion
-    * Pros: Clear to the user, and easy to implement.
-    * Cons: Unable to further sort students with a secondary criteria when the first criteria of some students match.
-
-* **Alternative 2:** Accept multiple criteria and sort in the order they are given
-    * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
-    * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
-
-**Aspect: How to sort missing details**
-
-* **Alternative 1 (current choice)** Students with missing details are sorted last in ascending order, and first in descending order
-    * Pros: When sorting in ascending order, students with missing details are shown at the bottom to reduce clutter.
-            Users can sort a detail in descending order to see which students have the detail missing.
-    * Cons: Top of the list may be cluttered with students with missing details when sorted in descending order.
-
-* **Alternative 2** Students with missing details are sorted last in descending order.
-  * Pros: Students with relevant details are immediately available at the top of the list.
-
-Reason for choosing alternative 1: provide a way for users to quickly see which students have missing details.
-
+|              | **Pros**   | **Cons** |
+| -------------|------------|----------|
+| **Option 1 (current choice)** <br> Accept only one criterion | Easier to implement and also clearer for the user | Unable to further sort students with a secondary criteria should the first criteria of some students match |
+| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given |
 
 ### Alias feature
 
@@ -346,7 +239,7 @@ _{To add sequence diagram}_
 
 _{To add activity diagram}_
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How alias command is implemented:**
 
@@ -375,7 +268,7 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 The following Sequence Diagram shows the aforementioned steps.
 <img src="images/GradeSequenceDiagram.png" width="574" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Should we allow users to determine the examinations:**
 * **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
@@ -478,17 +371,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
 | `*`      | intermediate user | customize the look and feel of the software                         | make the software feel like my own                               |
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Delete a student**
+**Use Case 1: Add a student**
 
-**System: FRIDAY**
+**MSS**
 
-**Actor: User**
+1. User requests to add a student with details
+2. FRIDAY adds the student
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given details are not supported in FRIDAY. 
+
+    * 1a1. FRIDAY shows an error message listing the supported details.
+
+      Use case resumes at step 1.
+
+* 1b. The given details are supported but have the wrong format.
+
+    * 1b1. FRIDAY shows an error message providing the correct format.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use Case 2: Delete a student**
 
 **MSS**
 
@@ -511,11 +423,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List a student's details**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 3: List a student's details**
 
 **MSS**
 
@@ -538,45 +448,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<br>
 
-**Use case: Add details to a student**
-
-**System: FRIDAY**
-
-**Actor: User**
-
-**MSS**
-
-1. User requests to list students
-2. FRIDAY shows a list of students
-3. User requests to add details for a specific student in the list
-4. FRIDAY adds details for the student
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given details have the wrong formats or tags
-
-    * 3b1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Edit details of a student**
-
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 4: Edit details of a student**
 
 **MSS**
 
@@ -605,11 +479,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit remarks for a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 5: Edit remarks for a student**
 
 **MSS**
 
@@ -638,11 +510,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete details of a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 6: Delete details of a student**
 
 **MSS**
 
@@ -671,11 +541,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit grades for a student**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 7: Edit grades for a student**
 
 **MSS**
 
@@ -704,44 +572,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Sort students**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 8: Sort students**
 
 **MSS**
 
-1. User requests to sort students with a specific criteria and order
-2. FRIDAY displays the students in sorted order
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to sort all students with a specific criteria and order
+4. FRIDAY displays the students in sorted order
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given criteria is invalid.
+* 2a. The list is empty.
 
-    * 1a1. FRIDAY shows an error message.
+  Use case ends.
 
-      Use case resumes at step 1.
+* 3a. The given criteria or order is invalid.
 
-* 1b. The given order is invalid.
+    * 3a1. FRIDAY shows an error message listing the accepted criteria and orders.
 
-    * 1b1. FRIDAY shows an error message.
+      Use case resumes at step 3.
 
-      Use case resumes at step 1.
+* 3b. More than one criterion is given.
 
-* 1c. More than one criterion is given.
+    * 3b1. FRIDAY shows an error message.
 
-    * 1c1. FRIDAY shows an error message.
+      Use case resumes at step 3.
 
-      Use case resumes at step 1.
+<br>
 
-**Use case: Mark a student's Mastery Check as passed.**
-
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 9: Mark a student's Mastery Check as passed.**
 
 **MSS**
 
@@ -770,11 +634,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Unmark a student's Mastery Check.**
+<br>
 
-**System: FRIDAY**
-
-**Actor: User**
+**Use Case 10: Unmark a student's Mastery Check.**
 
 **MSS**
 
@@ -809,8 +671,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -850,7 +710,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a student
 1. Adding a student with different details
-   1. Prerequisites: A student named "Alex Yeoh" and a student with Telegram handle "tommy123" have already been added.
+   1. Prerequisites: A student named `Alex Yeoh` and a student with Telegram handle `tommy123` have already been added.
    2. Test case: `add n/Jacelyn c/2022-07-08` <br>
       Expected: A student named Jacelyn with consultation date 8 July 2022 is added.
    3. Test case: `add n/alex yeoh` <br>
@@ -864,15 +724,11 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
-
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
    1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -881,12 +737,12 @@ testers are expected to do more *exploratory* testing.
 1. Sorting students with different criteria and order
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
     2. Test case: `sort t/a` <br>
-       Expected: Students sorted by Telegram handle in alphabetical order. Students with missing Telegram handles are sorted last.
+       Expected: Students sorted by Telegram handle in ascending alphabetical order. Students with missing Telegram handles are sorted last.
     3. Test case: `sort m/d` <br>
        Expected: Students sorted by Mastery Check dates, from latest to earliest. Students with missing Mastery Check dates are sorted first.
     4. Test case: `sort g/a` <br>
        Expected: Students not sorted. Error details shown in the status message.
-    5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort n/b` <br>
+    5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort c/b` <br>
        Expected: Similar to previous.
 
 

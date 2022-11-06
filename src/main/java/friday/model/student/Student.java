@@ -80,6 +80,7 @@ public class Student {
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
+        // short circuit if same object
         if (otherStudent == this) {
             return true;
         }
@@ -88,14 +89,17 @@ public class Student {
             return false;
         }
 
+        // same name -> same student
         if (otherStudent.getName().equals(getName())) {
             return true;
         }
 
+        // do not consider them the same student just because the Telegram fields are empty
         if (otherStudent.getTelegramHandle().isEmpty() || getTelegramHandle().isEmpty()) {
             return false;
         }
 
+        // check if their Telegram handles are the same
         return otherStudent.getTelegramHandle().equals(getTelegramHandle());
     }
 
