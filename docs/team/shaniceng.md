@@ -27,6 +27,12 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
           feature provides the ability to organise these clients neatly in one application. Furthermore, it would be 
           easier to show clients their own planned portfolio during each meeting to further convince them into buying a 
           certain plan.
+    * Existing feature: Add Command
+      * Enhanced `add` command to include the ability to add clients' portfolio by indicating their risk level, current
+        plans purchased and additional notes.
+    * Existing feature: Edit Command
+      * Enhanced `edit` command to be able to edit client's portfolio as well
+      * Automatically updates the portfolio panel after each edited client.
 
 * **Contributions to the UG**:
     * Add `view` command feature
