@@ -82,13 +82,13 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 
 **Meaning of the icons used:**
 
-:information_source:: Useful information.
+:information_source:: Useful information
 
-:bulb:: Tip.
+:bulb:: Tip
 
-:warning:: Warning on incorrect usage.
+:warning:: Warning on incorrect usage
 
-:exclamation:: Caution.
+:exclamation:: Caution
 
 ## Features
 
@@ -124,7 +124,7 @@ Contact management has never been this simple.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source::<br>
+:information_source:<br>
 
 * Contacts have no labels by default.<br>
 
@@ -253,7 +253,7 @@ Leave your task management to YellowBook, so you can do your best work.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source::<br>
+:information_source:<br>
 
 * Tasks have no labels by default.<br>
 
@@ -490,9 +490,9 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source::<br>
+:information_source:<br>
 
 * Labels must be alphanumeric and one word long.<br>
 
@@ -514,9 +514,9 @@ This list is unique, meaning each label with a distinct name is only shown once,
 
 Only a maximum of one contact and one task can be labelled within the same command.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
-:warning::<br>
+:warning:<br>
 
 * Contact/task does not exist.<br>
  
@@ -541,9 +541,9 @@ Otherwise, it is only removed from the specified contact/task label list.
 
 Only a maximum of one contact and one task can be edited within the same command.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
-:warning::<br>
+:warning:<br>
 
 * Contact/task does not exist.<br>
  
