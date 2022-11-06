@@ -1286,7 +1286,7 @@ More information on usage: [remark command](UserGuide.html#adding-a-remark-to-an
 
 1. Adding a remark to a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. 
 
     2. Test case: `remark r/Read up beforehand`<br>
         Expected: The remark `Read up beforehand` is added to the remark field of the selected internship.
