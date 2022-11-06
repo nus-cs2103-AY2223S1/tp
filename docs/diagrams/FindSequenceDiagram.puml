@@ -45,10 +45,10 @@ deactivate FindCommandParser
 AddressBookParser --> LogicManager : f
 deactivate AddressBookParser
 
-LogicManager --> FindCommand : execute(model)
+LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
-FindCommand --> Model : getCurrentListType()
+FindCommand -> Model : getCurrentListType()
 activate Model
 
 Model --> FindCommand
@@ -63,7 +63,7 @@ activate StudentContainsKeywordsPredicate
 StudentContainsKeywordsPredicate --> FindCommand : s
 deactivate StudentContainsKeywordsPredicate
 
-FindCommand --> Model : updateFilteredStudentList(s)
+FindCommand -> Model : updateFilteredStudentList(s)
 activate Model
 
 Model --> FindCommand
@@ -78,7 +78,7 @@ activate TutorContainsKeywordsPredicate
 TutorContainsKeywordsPredicate --> FindCommand : t
 deactivate TutorContainsKeywordsPredicate
 
-FindCommand --> Model : updateFilteredTutorList(s)
+FindCommand -> Model : updateFilteredTutorList(s)
 activate Model
 
 Model --> FindCommand
@@ -93,7 +93,7 @@ activate TuitionClassContainsKeywordsPredicate
 TuitionClassContainsKeywordsPredicate --> FindCommand : c
 deactivate TuitionClassContainsKeywordsPredicate
 
-FindCommand --> Model : updateFilteredTuitionClassList(s)
+FindCommand -> Model : updateFilteredTuitionClassList(s)
 activate Model
 
 Model --> FindCommand
@@ -102,7 +102,7 @@ deactivate Model
 end
 
 create CommandResult
-FindCommand --> CommandResult
+FindCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> FindCommand
