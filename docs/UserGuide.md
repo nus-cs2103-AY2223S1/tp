@@ -382,7 +382,7 @@ Use the following symbols after the criteria prefix to indicate the order of sor
 When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
 </div>
 
-Format: `sort <criteria prefix><order>`
+Format: `sort <criterion prefix><order>`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
@@ -563,7 +563,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
 | **List**          | `list`                                                                                                                                                                                                                                                  |
 | **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
-| **Sort**          | `sort <criteria><order>`<br> e.g., `sort n/+`                                                                                                                                                                                                           |
+| **Sort**          | `sort <criterion prefix><order>`<br> e.g., `sort n/+`                                                                                                                                                                                                   |
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                  |
