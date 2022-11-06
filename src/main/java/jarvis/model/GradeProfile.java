@@ -1,6 +1,6 @@
 package jarvis.model;
 
-import jarvis.logic.commands.AddStudioCommand;
+import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 import java.util.EnumMap;
 
@@ -21,6 +21,9 @@ public class GradeProfile {
     }
 
     public void grade(Assessment a, double mark) {
+        if (mark < 0 || mark > a.getTotalMarks()) {
+            throw new InvalidMarkException();
+        }
         gradeMap.get(a).setGrade(mark);
     }
 
@@ -39,6 +42,10 @@ public class GradeProfile {
 
     public EnumMap<Assessment, GradeComponent> getGradeMap() {
         return gradeMap.clone();
+    }
+
+    public double getMarks(Assessment assessment) {
+        return gradeMap.get(assessment).getMarks();
     }
 
     // Getters (for JavaFX Use)
