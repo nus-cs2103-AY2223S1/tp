@@ -442,7 +442,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 * **Alternative 2:** Store the order of entries as a field in their respective objects.
     - Have a static field to count the number of `Student`, `Tutor` and `TuitionClass` instances.
-    - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
+    - When a new entry is added, it'll contain a `uniqueId` field, which contains the time and the order the entry was added in.
     - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
 
 --------------------------------------------------------------------------------------------------------------------
