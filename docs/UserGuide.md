@@ -7,6 +7,9 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="page-new"></div>
+
 ## Introduction
 
 CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
@@ -56,6 +59,8 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div class="page-new"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -93,6 +98,7 @@ Several commands below require an `index` to be specified, as they operate on a 
 
 </div>
 
+<div class="page-new"></div>
 
 ### Getting help
 
@@ -182,6 +188,8 @@ Format:
 Example:
 `del 5`
 
+<div class="page-new"></div>
+
 #### Deleting all completed tasks: `clean`
 
 Deletes all completed tasks.
@@ -206,6 +214,8 @@ Example:
 `mark 2` will mark the task with index 2 as done, as shown by a tick beside the task description.
 
 ![marktask](images/markTask.png)
+
+<div class="page-new"></div>
 
 #### Unmarking a task: `unmark`
 
@@ -234,6 +244,8 @@ Examples:
 `find m/CS2103T` returns this:
 
 ![findTasks](images/findTaskModule.png)
+
+<div class="page-new"></div>
 
 #### Listing all tasks : `list`
 
@@ -276,6 +288,8 @@ Every tag must begin with a tag prefix `t/`. If you would like to add multiple t
 Modules, however, may be entered as **space separated**. For example, `m/MOD1 MOD2 MOD3` will correctly assign 3 modules to the contact.
 
 </div>
+
+<div class="page-new"></div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -334,6 +348,8 @@ Examples:
 * `findc m/1231` returns `Alex Yeoh`, `David Li`
 * `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
 
+<div class="page-new"></div>
+
 #### Quick-search for contacts: `saveme`
 
 Finds contacts that can help with the task at the first index of the task list.
@@ -364,6 +380,8 @@ Deleted contacts are **unrecoverable**!
 </div>
 
 Click [here](#) to return to the top of the page.
+
+<div class="page-new"></div>
 
 ### Finishing up
 
@@ -396,6 +414,8 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 **A**: For a smoother user experience, CodeConnect automatically switches to the list that is associated with the previous command type (task or contact command). You can also switch list views manually by clicking the tabs above the lists.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div class="page-new"></div>
 
 ## Command summary
 
