@@ -3,7 +3,9 @@ layout: page
 title: Developer Guide
 ---
 # Table of Contents
-{:toc}
+
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name} Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -130,11 +132,11 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the data in HR Pro Max++ consisting of all `Project` and `Task` objects which are contained in their respective unique list (e.g. `UniqueProjectList` object).
-* The `UniqueStaffList` contains only staff members belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
+* stores the data in HR Pro Max++ consisting of all `Project` and `Task` objects which are contained in their respective unique lists (e.g. `UniqueProjectList` object).
+* stores the `UniqueStaffList` that contains only staff members belonging to the `Project` object that is being viewed (e.g. after a `ViewCommand`).
 * stores the filtered `Project`, `Task` and `Staff` objects (e.g., results of a `FindCommand`) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>`, where `T` is either a `Project`, a `Task` or a `Staff` object, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, which should make sense on their own without depending on other components)
 
 
 **API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/project/Project.java)
@@ -145,7 +147,9 @@ The `Project` class,
 
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
-* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro` which is used to display the staff list shown to outsiders.
+
+Additional information: 
+* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders.
 * The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
 
 **API** : [`Staff.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/staff/Staff.java)
@@ -171,7 +175,7 @@ The `Task` class,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both hr pro data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -189,37 +193,37 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedHrPro`. It extends `HrPro` with an undo/redo history, stored internally as an `hrProStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedHrPro#commit()` — Saves the current hr pro state in its history.
+* `VersionedHrPro#undo()` — Restores the previous hr pro state from its history.
+* `VersionedHrPro#redo()` — Restores a previously undone hr pro state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitHrPro()`, `Model#undoHrPro()` and `Model#redoHrPro()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedHrPro` will be initialized with the initial hr pro state, and the `currentStatePointer` pointing to that single hr pro state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delproj 5` command to delete the 5th project in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delproj 5` command to delete the 5th project in the hr pro. The `delproj` command calls `Model#commitHrPro()`, causing the modified state of the hr pro after the `delproj 5` command executes to be saved in the `hrProStateList`, and the `currentStatePointer` is shifted to the newly inserted hr pro state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addproj n/David …​` to add a new project. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addproj n/David …​` to add a new project. The `add` command also calls `Model#commitHrPro()`, causing another modified hr pro state to be saved into the `hrProStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHrPro()`, so the hr pro state will not be saved into the `hrProStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHrPro()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous hr pro state, and restores the hr pro to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial HrPro state, then there are no previous HrPro states to restore. The `undo` command uses `Model#canUndoHrPro()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -232,17 +236,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoHrPro()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the hr pro to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `hrProStateList.size() - 1`, pointing to the latest hr pro state, then there are no undone HrPro states to restore. The `redo` command uses `Model#canRedoHrPro()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the hr pro, such as `list`, will usually not call `Model#commitHrPro()`, `Model#undoHrPro()` or `Model#redoHrPro()`. Thus, the `hrProStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitHrPro()`. Since the `currentStatePointer` is not pointing at the end of the `hrProStateList`, all hr pro states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -254,7 +258,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire hr pro.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -320,19 +324,19 @@ The following sequence diagram shows how the `findTask` command will run through
 
 ### Design considerations:
 
-* We chose to find task by their `TaskDescription` as it is more specific and more significant information to for example,
-  the `Deadline`.
-* Users can find their specific task if their keyword matches part of the `TaskDescription`.
+* We chose to find tasks by their `TaskDescription` as users are more likely to search for tasks by name.
+* We allowed for partial matching of the keyword to the `TaskDescription` as users may not remember the full name or a full word of the task.
+* Users can find their specific task if their keywords match part of the `TaskDescription`.
     * Pros: Users can find their tasks more easily, especially if they do not know the exact `TaskDescription` of the `Task`
       they want to find.
-    * Cons: More tasks will be displayed to the users as there will be more `TaskDescription` that partially matches the keyword.
+    * Cons: More tasks will be displayed to the users as there may be more `TaskDescription` that partially matches the keyword.
 
 
 ## Mark and unmark task
 
 ### Implementation
-For tasks, they can either be marked as being completed or not. The implementation would
-be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or
+Tasks can be marked as either completed or not completed. The implementation would
+be to add a new field `TaskMark` into each `Task` object, with `TaskMark` only accepting a `true` or
 `false` value.
 
 The `true` value would mean that the task is marked as completed and the `false` value
@@ -349,12 +353,8 @@ The following sequence diagram shows how the mark command will run throughout HR
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
 ### Design Considerations:
-
-* Users when done with a Task might just delete it and thus the need to mark
-Task as complete or not is redundant.
-  * Pros: Less memory since there is a need for task to have additional field and 2 extra commands
-  * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
-  Having a way to mark task as completed or not will help them manage their task.
+* We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`, 
+so as to make it easier for the user to identify the completion status of the `Task` at a glance.
 
 ## Sort task 
 
@@ -388,7 +388,7 @@ will remove Staff that are part of the project. This can be done using a delete 
 specifically for staff called `delstaff`. This `Staff` is then deleted.
 
 `delstaff Index pn/PROJECT_NAME ` : Get the Staff name of the Staff on the displayed Staff list identified
-by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exist.
+by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exists.
 
 To align with the current implementation of deleting from only the displayed Project and Staff list, we
 will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on
@@ -419,8 +419,8 @@ Staff list:
 5) Sherwin
 ```
 If the command input is `delstaff 2 pn/CS2102 Project`
-Index 2 in this case would refer to Jayden and then we would find the Staff Jayden
-within CS2102 project's Staff list and delete Staff Jayden if it exist.
+Index 2 in this case would refer to Jayden, and then we would find the Staff Jayden
+within CS2102 project's Staff list and delete Staff Jayden if they exist.
 
 Exception is thrown for the following cases:
 * If the Staff list or Project list is empty (Nothing is displayed).
@@ -434,19 +434,17 @@ The activity diagram below shows the logic flow of the `delstaff` command.
 
 ### Design Considerations:
 
-The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
+An alternative implementation of the `delstaff` command could be to implement it in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
 * The `STAFF_NAME` would then refer to the Staff specified by the STAFF_NAME to delete from the Project's Staff list.
-
-Pros: Easier to implement then the current implementation
-
-Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
+  * Pros: Easier to implement then the current implementation 
+  * Cons: Does not require Staff to be displayed to be deleted, user would be able to randomly delete Staff, and may lose track of where they are deleting Staff from.
 
 ### Add Staff to Project
 #### Implementation
 
-The adding staff features is facilitated by `AddStaffCommand`. It extends the `Command` class with functionality
-to add a  `Staff` to a `Project`, both of which are provided via the `addStaff` command.
+The feature to add Staff is facilitated by the `AddStaffCommand`. It extends the `Command` class with functionality
+to add a `Staff` to a `Project`, both of which are provided via the `addStaff` command.
 
 The following operations are implemented:
 - `execute(Model model)` - Executes an `AddStaffCommand`.
@@ -465,7 +463,7 @@ The arguments passed into the command are as follows:
 The usage scenario and how the add staff mechanism behaves is described as following.
 
 Step 1. The user launches the application, and uses the `addStaff` command as described in the UserGuide.
-The `AddressBookParser` calls the `AddStaffCommandParser`, which parses user arguments to create an `AddStaffCommand`.
+The `HrProParser` calls the `AddStaffCommandParser`, which parses user arguments to create an `AddStaffCommand`.
 The `AddStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates
 two objects, a `ProjectName` object, and a `Staff` object.
 
@@ -495,9 +493,9 @@ Finding project to add is not straightforward since only `ProjectName` is passed
 
 ### Edit Staff in Project
 #### Implementation
-The edit staff feature is facilitated by `EditStaffCommand`. It extends the `Command` class with functionality to 
-edit the `Staff` at `INDEX` provided to the `EditStaffCommand` of the `Project` with the provided `ProjectName`.
-The `Project` must be the `Project` that has the displayed `StaffList` in the staff panel.
+The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to 
+edit the `Staff` at a certain place in the Staff list belonging to a given `Project`, using the `INDEX` and `ProjectName` provided to the `EditStaffCommand`.
+The `Project` must be the `Project` which has its `StaffList` currently displayed in the staff panel.
 
 The following operations are implemented:
 - `execute(Model model)` - Executes an `EditStaffCommand`.
@@ -517,7 +515,7 @@ The arguments passed into the command are as follows:
 The usage scenario and how the edit staff mechanism behaves is described as following:
 
 Step 1. The user launches the application, and uses the `editStaff` command as described in the UserGuide.
-The `AddressBookParser` calls the `EditStaffCommandParser`, which parses the user inputs to create an `EditStaffCommand`.
+The `HrProParser` calls the `EditStaffCommandParser`, which parses the user inputs to create an `EditStaffCommand`.
 The `EditStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs into an `Index`, 
 `ProjectName` and an `EditStaffDescriptor`, which serves as a wrapper class for Staff attributes to be edited. 
 
@@ -545,7 +543,7 @@ Sequence diagram for the `EditStaffCommand`
     - Cons: Users who are not aware of the fact that the `Project` that has the `Staff` to be edited, has to be `view`-ed, 
   might be unsure of where the errors are coming from. The solution the team has come up with is to state explicitly in the User Guide, that
   the `Project` to be edited in must be the currently displayed `Project`. 
-- **Alternative 2**: `EditStaffCommand` does not check if the `Project` is the currently displayed `Project`.
+- **Alternative 2**: `EditStaffCommand` does not check if the `Project` is the currently displayed `Project` list.
     - Pros: Users might have an easier experience with using the command, since they are not required to call `view` before
   `editstaff`. This streamlines the user experience and leads to higher productivity.
     - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to 
@@ -554,7 +552,7 @@ Sequence diagram for the `EditStaffCommand`
 ### Find Staff in Project
 #### Implementation 
 
-The find staff feature is facilitated by `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
+The find staff feature is facilitated by the `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
 active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
 This functionality is provided by the `findstaff` command.
 
@@ -573,7 +571,7 @@ The arguments passed into the command are as follows:
 The usage scenario and how the find staff mechanism behaves is described as following.
 
 Step 1. The user launches the application, and uses the `findStaff` command as described in the UserGuide.
-The `AddressBookParser` calls the `FindStaffCommandParser`, which parses user arguments to create a `FindStaffCommand`.
+The `HrProParser` calls the `FindStaffCommandParser`, which parses user arguments to create a `FindStaffCommand`.
 The `FindStaffCommandParser`, which is a class that extends the `Parser` interface, parses user inputs and creates a
 `StaffNameContainsKeywordsPredicate`, which is a predicate that checks whether a given `StaffName` contains any one of the
 keywords. 
@@ -592,16 +590,16 @@ Activity diagram for the `FindStaffCommand`
 **Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
 
 - **Alternative 1**: Parse based on keywords (Current Implementation)
-  - Pros: Allows users to search by multiple keywords, so if a user wants to perform a search query that finds all staff whose names contains one of the keywords, 
+  - Pros: Allows users to search by multiple keywords, so if a user wants to perform a search query that finds all staff whose names contain one of the keywords, 
     this implementation allows them to do so.
-  - Cons: Non-standard behaviour when it comes to finding staff, since if the user queries a precise staff name, all staff whose names contains
+  - Cons: Non-standard behaviour when it comes to finding staff, since if the user queries a precise staff name, all staff whose names contain
   even one of the keyword will be listed. For staff lists that may contain multiple staff with the same surname, this affects the effectiveness
   of the command.
 - **Alternative 2**: Parse argument as a whole keyword
   - Pros: Allows precise Staff name finding. For instance, if the whole argument is passed as a singular keyword, then doing
   `findstaff Alex Lau` will either return no staff if there is no staff in the staff list with the name "Alex Lau", or only the staff "Alex Lau"
   - Cons: Users who want to perform search queries on the staff list such as finding all Jareds and all Laus, will have to do two separate
-  `findstaff` calls when they could just call `findstaff Jared Lau` that supports searching multiple keywords. 
+  `findstaff` calls when they could just call `findstaff Jared Lau` in an implementation that supports searching multiple keywords. 
 --------------------------------------------------------------------------------------------------------------------
 
 # **Documentation, logging, testing, configuration, dev-ops**
