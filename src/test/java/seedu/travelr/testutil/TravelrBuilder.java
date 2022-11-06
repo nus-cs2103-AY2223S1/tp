@@ -6,24 +6,24 @@ import seedu.travelr.model.trip.Trip;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withTrip("John", "Doe").build();}
+ * {@code AddressBook ab = new AddressBookBuilder().withTrip("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class TravelrBuilder {
 
     private Travelr addressBook;
 
-    public AddressBookBuilder() {
+    public TravelrBuilder() {
         addressBook = new Travelr();
     }
 
-    public AddressBookBuilder(Travelr addressBook) {
+    public TravelrBuilder(Travelr addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
      * Adds a new {@code Trip} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withTrip(Trip trip) {
+    public TravelrBuilder withTrip(Trip trip) {
         addressBook.addTrip(trip);
         return this;
     }

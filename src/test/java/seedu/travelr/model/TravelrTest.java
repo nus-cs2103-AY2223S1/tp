@@ -9,14 +9,10 @@ import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.SUN;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalTravelr;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 
@@ -82,32 +78,6 @@ public class TravelrTest {
     @Test
     public void getTripList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> travelr.getTripList().remove(0));
-    }
-
-    /**
-     * A stub ReadOnlyAddressBook whose trips list can violate interface constraints.
-     */
-    private static class AddressBookStub implements ReadOnlyTravelr {
-        private final ObservableList<Trip> trips = FXCollections.observableArrayList();
-
-        AddressBookStub(Collection<Trip> trips) {
-            this.trips.setAll(trips);
-        }
-
-        @Override
-        public ObservableList<Trip> getTripList() {
-            return trips;
-        }
-
-        @Override
-        public ObservableList<Event> getEventList() {
-            return null;
-        }
-
-        @Override
-        public ObservableList<Event> getAllEventList() {
-            return null;
-        }
     }
 
 }
