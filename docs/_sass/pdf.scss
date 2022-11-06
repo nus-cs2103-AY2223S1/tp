@@ -110,4 +110,27 @@
       }
     }
   }
+
+  article.post {
+    .command-container {
+      page-break-before: avoid;
+      display: block;
+      columns: 2;
+      // FIXME: Uneven column height
+    }
+
+    .command-container,
+    .input-container,
+    .output-image {
+      page-break-inside: avoid;
+    }
+
+    .input-container {
+      pre,
+      code {
+        // PrinceXML does not support break-spaces
+        white-space: pre-line;
+      }
+    }
+  }
 }
