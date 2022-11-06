@@ -1260,7 +1260,7 @@ More information on usage: [deltask command](UserGuide.html#deleting-a-task-from
 
 1. Deleting a task from a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship 
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. The selected internship 
     contains at least one task.
 
     3. Test case: `deltask 1`<br>
