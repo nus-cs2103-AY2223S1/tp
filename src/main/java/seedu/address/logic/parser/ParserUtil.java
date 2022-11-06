@@ -66,8 +66,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code String oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
@@ -80,7 +80,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces
+     * Parses {@code String oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces
      * will be trimmed.
      *
      * @param oneBasedIndexes One-based Indexes.
@@ -240,7 +240,7 @@ public class ParserUtil {
      * Parses a {@code String classTimeRange} into a {@code TimeRange}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code classDateTime} is invalid.
+     * @throws ParseException if the given {@code classTimeRange} is invalid.
      */
     public static TimeRange parseTimeRange(String classTimeRange) throws ParseException {
         requireNonNull(classTimeRange);
@@ -261,7 +261,9 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code String date} as part of {@code parseClass}.
+     * Parses a {@code String date} into a {@code LocalDate}.
+     *
+     * @throws ParseException if the given {@code classTimeRange} is invalid.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -274,11 +276,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} and returns LocalDate object.
+     * Parses a {@code String dateToFind} into a {@code LocalDate}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static LocalDate parseDateToFind(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
+    public static LocalDate parseDateToFind(String dateToFind) throws ParseException {
+        requireNonNull(dateToFind);
+        String trimmedDate = dateToFind.trim();
         if (trimmedDate.isBlank()) {
             throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
         }
@@ -293,7 +297,9 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code String time} as part of {@code parseClass}.
+     * Parses a {@code String time} into a {@code LocalTime}.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
      */
     public static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
@@ -308,7 +314,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String money} into an {@code Money}.
+     * Parses a {@code String money} into a {@code Money}.
      *
      * @throws ParseException if the given {@code money} is invalid.
      */
@@ -372,6 +378,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String arg} into a {@code Order}.
+     *
+     * @throws ParseException if the given {@code arg} is invalid.
      */
     public static Order parseSortOrder(String arg) throws ParseException {
         switch (arg.toUpperCase()) {
@@ -386,6 +394,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code String arg} into a {@code Type}.
+     *
+     * @throws ParseException if the given {@code arg} is invalid.
      */
     public static Type parseSortType(String arg) throws ParseException {
         switch (arg.toUpperCase()) {

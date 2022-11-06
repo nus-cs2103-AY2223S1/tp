@@ -1,0 +1,25 @@
+{
+  "students": [
+    {
+      "name": "Dory",
+      "phone": "87438807",
+      "nokPhone": "67192213",
+      "email": "Dory@example.com",
+      "address": "Coral Reef",
+      "classDateTime": "2022-05-05 1200-1400",
+      "moneyOwed": 0,
+      "moneyPaid": 0,
+      "additionalNotes": ""
+    }, {
+      "name": "Nemo",
+      "phone": "97438807",
+      "nokPhone": "97192213",
+      "email": "Nemo@example.com",
+      "address": "Pineapple Hut",
+      "classDateTime": "2022-05-05 1400-1500",
+      "moneyOwed": 0,
+      "moneyPaid": 0,
+      "additionalNotes": ""
+    }
+  ]
+}

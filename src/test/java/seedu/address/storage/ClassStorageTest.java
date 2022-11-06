@@ -9,10 +9,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
@@ -25,6 +29,40 @@ public class ClassStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTeachersPetTest");
     private static final Path STUDENTS_FILE = TEST_DATA_FOLDER.resolve("studentsTeachersPet.json");
+    private static final Path CLASS_CONFLICT_FILE = TEST_DATA_FOLDER.resolve("classConflictTeachersPet.json");
+    private static final Path ANOTHER_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("anotherStudentsTeachersPet.json");
+
+    @Test
+    public void execute_initialiseClassFailure() throws DataConversionException, IllegalValueException {
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(CLASS_CONFLICT_FILE,
+                JsonSerializableTeachersPet.class).get();
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
+        // initialise class failure due to class conflict
+        assertThrows(DataConversionException.class, () -> new ClassStorage(modelManager));
+    }
+
+    @Test
+    public void execute_initialiseClassSuccess() throws DataConversionException, IllegalValueException {
+        Student studentDory = new StudentBuilder().withName("Dory").withPhone("87438807").withNokPhone("67192213")
+                .withEmail("Dory@example.com").withAddress("Coral Reef").withClass("2022-05-05 1200-1400")
+                .build();
+        Student studentNemo = new StudentBuilder().withName("Nemo").withPhone("97438807").withNokPhone("97192213")
+                .withEmail("Nemo@example.com").withAddress("Pineapple Hut").withClass("2022-05-05 1400-1500")
+                .build();
+        HashMap<LocalDate, List<Student>> expectedHashMap = new HashMap<>();
+        List<Student> list = new ArrayList<>();
+        list.add(studentDory);
+        list.add(studentNemo);
+        expectedHashMap.put(LocalDate.of(2022, 5, 5), list);
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(ANOTHER_STUDENTS_FILE,
+                JsonSerializableTeachersPet.class).get();
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
+        // initialise class success as there is no class conflict
+        assertEquals(classStorage.getClasses(), expectedHashMap);
+    }
 
     @Test
     public void execute_hasConflictSuccess() {

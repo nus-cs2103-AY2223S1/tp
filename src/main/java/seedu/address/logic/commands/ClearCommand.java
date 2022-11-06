@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.TeachersPet;
@@ -17,7 +18,7 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws DataConversionException {
         requireNonNull(model);
         ReadOnlyTeachersPet teachersPet = new TeachersPet();
         model.setTeachersPet(teachersPet);
