@@ -13,11 +13,18 @@ Class ModelManager
 Class UserPrefs
 
 Class FoodList
+Class FoodCalorieList
+Class TipList
+Class User
+Class Calorie
+Class List
 Class Food
 Class DateTime
 Class Name
 Class Calorie
 Class Tag
+Class Tip
+Class Location
 
 }
 
@@ -34,15 +41,29 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 NutriGoals *--> "1" FoodList
-FoodList -right-> "~* all" Food
-Food *--> Name
-Food *--> Calorie
-Food *--> DateTime
-Food *--> "*" Tag
+NutriGoals *--> "1" FoodCalorieList
+NutriGoals *--> "1" TipList
+NutriGoals *--> "1" User
+NutriGoals --> "1" Calorie
+NutriGoals *--> "1" List
+FoodList -[hidden]left-> Food
+Food *--> "1" Name
+Food --> "1" Calorie
+Food *--> "1" DateTime
+Food *--> "1" Tag
+TipList --> Tip
+List --> Location
 
 Name -[hidden]right-> Calorie
 Calorie -[hidden]right-> DateTime
 DateTime -[hidden]right-> Tag
+Food -[hidden]left-> Food
+Food -[hidden]left-> Food
+Food -[hidden]left-> Food
+Food -[hidden]left-> Food
+Food -[hidden]left-> Food
+Food -[hidden]left-> Food
+FoodList -left-> "~* all" Food
 
 ModelManager -->"~* filtered" Food
 @enduml

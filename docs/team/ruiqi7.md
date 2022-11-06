@@ -59,6 +59,7 @@ Given below are my contributions to the project.
     * Updated documentation for the `Quick start` and `FAQ` sections.
     * Added the `About the user guide` and `Screen layout` sections.
   * Developer Guide:
+    * Updated the descriptions and class diagrams for the `UI Component` and `Model Component` sections.
     * Added implementation details of `list`, `review` and `find` features with sequence, activity and object diagrams.
     * Added user stories and use cases.
 
