@@ -188,7 +188,7 @@ Pin activity diagram: <br><br>
 View pin activity diagram: <br><br>
 <img src="images/ViewPinActivityDiagram.png" width="300" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How pin and viewPin executes:**
 
@@ -330,7 +330,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 View income activity diagram: <br><br>
 <img src="images/ViewIncomeActivityDiagram.png" width="300" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How viewIncome executes:**
 
@@ -368,7 +368,7 @@ The following activity diagram summarizes how an `AddEventCommand` is parsed at 
 
 <p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Encapsulation of client vs event:**
 
@@ -411,7 +411,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 ![FindSequenceDiagram](images/FindActivityDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How `findXYZ` executes:**
 
