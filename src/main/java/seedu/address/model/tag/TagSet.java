@@ -79,6 +79,6 @@ public class TagSet implements Iterable<Tag> {
 
     @Override
     public String toString() {
-        return Tag.toString(internalSet);
+        return internalSet.isEmpty() ? "<No tags found!>" : Tag.toString(internalSet);
     }
 }
