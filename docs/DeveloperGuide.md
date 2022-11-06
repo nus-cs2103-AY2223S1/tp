@@ -232,6 +232,9 @@ The sequence diagram is given below.
 The sequence diagram is given below.
 ![LinkSequence](images/LinkSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
+![LinkActivity](images/LinkActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
