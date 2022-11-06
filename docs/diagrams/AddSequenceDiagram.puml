@@ -44,7 +44,7 @@ create Applicant
 AddCommandParser -> Applicant : Applicant()
 activate Applicant
 
-Applicant --> AddCommandParser
+Applicant --> AddCommandParser : applicant
 deactivate Applicant
 
 create AddCommand
