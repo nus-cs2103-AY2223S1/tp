@@ -58,7 +58,7 @@ The rest of the App consists of four components.
 
 #### 2.1.2 How the architecture components interact with each other
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delClient i/1` ([deletes the client](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) found at index 1).
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command [`delClient i/1`](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) (deletes the client found at index 1).
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -83,7 +83,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -104,9 +104,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient i/1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
 
-![Interactions Inside the Logic Component for the `delClient i/1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -212,6 +212,27 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
+#### 3.1.4 Delete Client feature
+
+Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
+
+Purpose: Delete client from model and storage.
+
+##### Implementation
+
+Usage Scenario of `delClient`:
+
+1) User inputs `listClient` to view the current list of clients in `Model` with their respective indexes.
+
+2) User inputs `delClient i/1` to delete the first client in the shown in `listClient`. This will evoke the `Command#execute` in `LogicManager`.
+
+The sequence diagram below illustrates the interactions between the `Logic` and `Model` after the execution of `delClient i/1`. 
+![DeleteClientSequenceDiagram](images/DeleteClientSequenceDiagram.png)
+
+Below is the activity diagram that summarises the execution of `delClient`.
+
+![DeleteClientActivityDiagram](images/DeleteClientActivityDiagram.png)
+
 ### 3.2 `Meeting`-related features
 
 #### 3.2.1 Add Meeting feature
@@ -263,15 +284,10 @@ Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 Usage Scenario of `delMeeting`:
 
 1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+
 2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
 
-Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
-
-![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
-
-Below is an activity diagram that summarises the execution of `delMeeting`.
-
-![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+_The sequence diagram and activity diagram of `delMeeting` is similar to the diagrams shown in [`delClient`](#314-delete-client-feature) feature by replacing all occurrence of `client` with `meeting`._
 
 ##### Design Considerations
 
@@ -283,9 +299,7 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 - **Alternative Solution 2:** Allows multiple deletion
     - Pros: Convenient to delete multiple meetings when needed.
     - Cons: Complex to implement
-- Considering that the approach taken to develop MyInsuRec is a breath first approach,
-  where we should only build to the point where every iteration is a working product,
-  **Solution 1** is thus chosen as it is easier to implement.
+- Considering that the approach taken to develop MyInsuRec is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
 #### 3.2.3 View Meeting feature
 
@@ -846,7 +860,7 @@ testers are expected to do more *exploratory* testing.
    9. Test case: `addClient n/Tom p/`
       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
 
-   10. Test case: `addClient n/Tom p/1234567`
+   10. Test case: `addClient n/Tom p/12345`
       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
 
 ### 6.3 Viewing a client

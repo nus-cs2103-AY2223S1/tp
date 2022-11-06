@@ -42,42 +42,42 @@ public class AddClientCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in MyInsuRec";
 
 
-    private final Client toAdd;
+    private final Client clientToAdd;
 
     /**
      * Creates an AddClientCommand to add the specified {@code Client}
      */
     public AddClientCommand(Client client) {
         requireNonNull(client);
-        toAdd = client;
+        clientToAdd = client;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!toAdd.isBirthdayValid()) {
+        if (!clientToAdd.isBirthdayValid()) {
             throw new CommandException(Birthday.MESSAGE_DATE_CONSTRAINTS);
         }
 
-        if (model.hasClient(toAdd)) {
+        if (model.hasClient(clientToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        if (toAdd.getProducts()
+        if (clientToAdd.getProducts()
                 .stream()
                 .map(model::hasProduct)
                 .anyMatch(entry -> !entry)) {
             throw new CommandException(MESSAGE_NON_EXISTING_PRODUCT);
         }
 
-        model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandSpecific.CLIENT);
+        model.addClient(clientToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToAdd), CommandSpecific.CLIENT);
     }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddClientCommand // instanceof handles nulls
-                && toAdd.equals(((AddClientCommand) other).toAdd));
+                && clientToAdd.equals(((AddClientCommand) other).clientToAdd));
     }
 }
