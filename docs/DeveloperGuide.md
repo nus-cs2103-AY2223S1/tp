@@ -280,9 +280,9 @@ Taking into consideration the extra coupling involved, Alternative 1 was chosen 
 
 A key functionality of DevEnable is the ability to delete projects, issues, and clients into the system. The command 
 word for deleting will be `project`, `issue`, or `client`, depending on which entity is being deleted.
-This is followed by the flag `-d`, representing a Delete command. Next, it is followed by a compulsory argument to 
+This is followed by the flag `-d`, representing a Delete Command. Next, it is followed by a compulsory argument to 
 initialise the entity.
-When a user enters a valid Delete command in the interface, `AddressBookParser#parseCommand` will be called which 
+When a user enters a valid Delete Command in the interface, `AddressBookParser#parseCommand` will be called which 
 processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
 `IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within 
 this method, the flag `-d` will be detected, calling `ProjectCommandParser#parseDeleteProjectCommand`,
@@ -317,19 +317,18 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
 
 #### Design considerations:
 
-**Aspect: Delete command access to the model: **
+**Aspect: Delete Command's access to the model:**
 
 **Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
 * Pros: No coupling between Parser class and Model class.
 * Cons: Mappings could not be performed within the parser.
-*
-**Alternative 2: ** Refactor `ProjectCommandParser:parseDeleteProjectCommand`, 
-`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to 
-the Model.
+
+**Alternative 2:** Refactor `ProjectCommandParser:parseDeleteProjectCommand`,`IssueCommandParser:parseDeleteIssueCommand` and `ClientCommandParser:parseDeleteClientCommand` to have access to the Model.
 * Pros: Mappings could be performed within the parser which fitted its responsibility.
 * Cons: May result in extra coupling between Parser class and Model class.
 
-Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for delete command access to the model.
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for Delete 
+Command's access to the model.
 
 ### Edit Command Feature
 
@@ -460,27 +459,89 @@ Example Use: `client -f n/BenTen c/1 m/12345678 e/Ben10@gmail.com`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `client -f n/Harry`
+
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `FindCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
-**Aspect: Searching for keywords entity fields:**
+**Aspect: Find Command's access to the model:**
 
-**Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
-Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
-* Pros: Logic is handled within the parser and no creation of a new entity object.
-* Cons: Many new objects being created
+**Alternative 1: (current choice)** Only `ProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
 
-**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
-* Pros: No new objects being created.
-* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
+**Alternative 2:** Refactor `ProjectCommandParser:parseFindProjectCommand`,`IssueCommandParser:parseFindIssueCommand` 
+and `ClientCommandParser:parseFindlientCommand` to have access to the Model.
+* Pros: Mappings could be performed within the parser which fitted its responsibility.
+* Cons: May result in extra coupling between Parser class and Model class.
 
-**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
-Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
-* Pros: Logic is handled within the parser
-* Cons: Creation of a new entity object requiring modification of the entity list
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for Find 
+Command's access to the model.
 
-As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+**Aspect: How Find Command matches a keyword against the target in a given field:**
+
+**Alternative 1: (current choice)** At least one word in the target must match exactly with the keyword.
+* Pros: The search result is more precise and concise which makes it easier for the user to navigate and the 
+  keyword can be validated for each prefix which makes it easier for the user to use a variety of prefixes and keywords.
+* Cons: Partial searches are not supported as the user needs to search by whole words.
+
+**Alternative 2:** At least a part of the target must match with the keyword.
+* Pros: The user can make partial searches and search for parts of a word.
+* Cons: The filtered list might be more cluttered and input validation might not be supported.
+
+Taking into account the ease of use and the benefits of input validation, Alternative 1 was chosen as the current 
+design to match keywords against targets.
+
+**Aspect: How Find Command handles multiple keywords for a prefix:**
+
+**Alternative 1: (current choice)** At least one word in the target must match exactly with at least one keyword.
+* Pros: The user can search for many keywords at once such that the user can filter the list based on multiple criteria.
+* Cons: The user can not search by sentences or phrases.
+
+**Alternative 2:** At least one word in the target must match exactly with all keywords.
+* Pros: The user can search for exact sentences or phrases.
+* Cons: The user can not search based on many keywords and may not remember long phrases.
+
+Taking into account the convenience and intuitiveness of searching for multiple keywords and the limitation 
+of the benefit of searching by phrases being relevant only to name and title arguments due to input validation, 
+Alternative 1 was chosen as the current design to handle multiple keywords for a prefix.
+
+**Aspect: How Find Command handles multiple arguments with the same prefix:**
+
+**Alternative 1: (current choice)** At least one word in the target is in the union of the set of keywords 
+from multiple arguments with the same prefix.
+* Pros: It is easier for the user to remember and more convenient to expand search criteria without having to alter 
+  prefix arguments already typed.
+* Cons: This might be redundant with the search made when multiple keywords are present for an argument.
+
+**Alternative 2:** At least one word in the target matches with at least word from the last argument with the prefix.
+the same prefix.
+* Pros: It prevents redundancy with the search made when multiple keywords are present for an argument.
+* Cons: It does not allow the user to easily expand his search criteria and might be harder to remember.
+
+Taking into account the benefits of improving flexibility of use by allowing the user to expand the search criteria 
+as he types without having to edit a part of the command already typed, Alternative 1 was chosen as the current 
+design to handle multiple arguments with the same prefix.
+
+**Aspect: How Find Command handles multiple arguments with different prefixes:**
+
+**Alternative 1: (current choice)** Find all items that fulfil the search criteria for all prefixes in the input.
+* Pros: The user can search based on criteria across different fields to obtain a more specific list of items.
+* Cons: A mistake in specifying the keyword for one prefix can result in the desired item not appearing on the list.
+
+**Alternative 2:** Find all items that fulfil the search criteria for at least one prefixes in the input.
+* Pros: A mistake in specifying the search criteria for one prefix may not result in the desired item being filtered 
+  out.
+* Cons: May be hard for the user to find specific items on the list that fulfill different criteria.
+
+Taking into account the benefits of improving specificity of use by allowing the user to search based on multiple 
+criteria all of which must be fulfilled, Alternative 1 was chosen as the current design to handle multiple arguments 
+with different prefixes.
 
 --------------------------------------------------------------------------------------------------------------------
 
