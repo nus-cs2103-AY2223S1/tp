@@ -5,13 +5,13 @@
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <div class="input-container" markdown="1">
-{{ include.prefix }}
-
 **Command Input Box:**
 
 ```text
 {{ include.input }}
 ```
+
+{{ include.notes }}
 
 </div>
 {% endif %}
