@@ -4,19 +4,19 @@ package tracko.logic.parser;
  * A flag that marks the argument as true in an arguments string.
  * E.g. '-p' in 'marko 1 -p'.
  */
-public class Flag extends ArgumentToken {
+public class Flag implements ArgumentToken {
     private final String flag;
 
     public Flag(String flag) {
         this.flag = flag;
     }
 
-    public String getFlag() {
+    public String getToken() {
         return flag;
     }
 
     public String toString() {
-        return getFlag();
+        return getToken();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Flag extends ArgumentToken {
         }
 
         Flag otherPrefix = (Flag) obj;
-        return otherPrefix.getFlag().equals(getFlag());
+        return otherPrefix.getToken().equals(getToken());
     }
 }
 
