@@ -143,6 +143,7 @@ __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
+* You may not change Telegram handle, GitHub username, email address or phone number to one that has already been owned by someone in the Mass Linkers.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can remove all batchmates’ interests by typing `i/` without specifying any interests after it.
@@ -349,10 +350,11 @@ __Format:__ `mod find MODULE [MORE_MODULES]...`
 
 * The search is case-insensitive. e.g `cs2100` will match `CS2100`.
 * Only __full words__ will be matched. e.g. `cs21` will _not_ return batchmates with the mods `CS2100` and `CS2101`.
+* Searching for illegitimate module codes will return 0 student.
 
 __Examples:__
 * `mod find cs2100` returns batchmates with the module `CS2100`.
-* `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103T`.
+* `mod find cs2101 cs2103t cs1231s` returns batchmates with all three modules - `CS2101`, `CS2103T` and `CS1231S`.
 
 #### 8. Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -365,9 +367,9 @@ __Format:__ `mod find taken MODULE [MORE_MODULES]...` or `mod find taking MODULE
 
 __Examples:__
 * `mod find taken cs2100` returns batchmates who have taken `CS2100`.
-* `mod find taken cs2101 cs2103t` returns batchmates who have taken both `CS2101` and `CS2103T`.
+* `mod find taken cs2101 cs2103t cs1231s` returns batchmates who have taken all three modules - `CS2101`, `CS2103T` and `CS1231S`.
 * `mod find taking cs2100` returns batchmates who are taking `CS2100`.
-* `mod find taking cs2101 cs2103t` returns batchmates who are taking both `CS2101` and `CS2103T`.
+* `mod find taking cs2101 cs2103t cs1231s` returns batchmates who are taking all three modules - `CS2101`, `CS2103T` and `CS1231S`.
 
 
 ### D. General commands
