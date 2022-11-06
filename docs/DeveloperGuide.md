@@ -84,7 +84,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout
-of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -262,13 +262,13 @@ _{more aspects and alternatives to be added}_
 
 #### Offers
 
-REal-Time manages **_Offers_** made by Clients that are interested when bidding for Listings. To model an 
+REal-Time manages **_Offers_** made by Clients that are interested when bidding for Listings. To model an
 
 #### Implementation
 
 To add an `Offer` object, the `AddOfferCommand` must be executed. This stores the `Offer` object into the
 `UniqueOfferList`. Following the command execution pathway, the implementation of adding offers uses the exposed
-`Model#addOffer(Offer)` method in the `Model` API. 
+`Model#addOffer(Offer)` method in the `Model` API.
 
 The `AddOfferCommand` is parsed by the `AddOfferCommandParser`.
 `AddOfferCommandParser#parse()` parses the user input to return a `AddOfferCommand` object that will be executed.
@@ -381,7 +381,7 @@ the `EditOfferDescriptor`.
 Step 3. The `EditOfferCommand#execute()` method is called which creates the edited `Offer` using the `createEditedOffer`
 method which takes in the `Offer` to be edited and the `EditOfferDescriptor` that was created from the previous step.
 The edited `Offer` is then checked if it is a duplicate or already exists in the `UniqueOfferList` through the
-`Offer#isSameOffer()` and `Model#hasOffer()` methods. 
+`Offer#isSameOffer()` and `Model#hasOffer()` methods.
 
 An `Offer` is the same if it contains the exact same `Name`, `Price` and `ListingId`.
 
@@ -518,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. User enters invalid input
   * 1a1. REal-Time shows an error message.
-     
+ 
     Use case resumes at Step 1.
 
 **Use case: UC05 - Delete an offer**
@@ -635,18 +635,18 @@ Timestamp in the status bar is updated.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
 
 ### Adding an Offer
 
 1. Adding an offer while all offers are being shown
    1. Prerequisites: The Offer being added must not exist in the current list.
    2. Test case: `addO n/John Doe l/BEDOK_SOUTH o/700000`
-      
+ 
       Expected: An Offer with name John Doe, listing ID BEDOK_SOUTH and offer price of 700000 will be added to the list.
-   
+
    3. Test case: `addO n/Jackson Ang l/CALIFORNIA o/-10000`
-      
+
       Expected: No Offer will be added. Error message will appear in the response box.
    4. Other incorrect commands to try: `addO n/Bruce Wayne l/YISHUN o/123p123`
 
@@ -655,7 +655,7 @@ Timestamp in the status bar is updated.
 1. Deleting an offer while all offers are being shown
    1. Prerequisites: At least one Offer has to exist in the list.
    2. Test case: `delO 1`
-    
+
       Expected: First Offer is deleted from the list. Details of the deleted offer shown in the status message.
    3. Test case: `delO 0`
 

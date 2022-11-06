@@ -26,7 +26,7 @@ The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the int
 
 Now that you have read the introduction and learnt about what our product does, get started in using REal-Time by
 following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
-* If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to 
+* If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to
 start.
 * The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand REal-Time
 better.
@@ -292,8 +292,8 @@ ___
 
 ### Adding an offer: `addO`
 
-Adds an offer in REal-Time, with the given **_Name_** of the Client, **_Listing ID_** of the Listing and the 
-**_Offer_** made by the client. 
+Adds an offer in REal-Time, with the given **_Name_** of the Client, **_Listing ID_** of the Listing and the
+**_Offer_** made by the client.
 
 
 Format - `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
