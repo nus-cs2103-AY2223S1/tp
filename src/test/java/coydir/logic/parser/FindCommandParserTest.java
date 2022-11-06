@@ -22,10 +22,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // empty preamble
         assertParseFailure(parser, "n/Prittam",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        // empty arguments
         assertParseFailure(parser, " n/ j/ d/", ParserUtil.MESSAGE_INVALID_ARGUMENT);
+        // invalid argument
         assertParseFailure(parser, " n/$$$ j/Intern d/Board", Name.MESSAGE_CONSTRAINTS);
+        // wrong keyword & prefix
         assertParseFailure(parser, " e/prittam@email.com",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
@@ -40,7 +44,7 @@ public class FindCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n n/Prittam \n j/Intern \t d/Board  \t", expectedFindCommand);
 
-        // not all args necessary
+        // not all args necessary, all combinations
         expectedFindCommand = new FindCommand(new PersonMatchesKeywordsPredicate("Prittam", "", ""));
         assertParseSuccess(parser, " n/Prittam", expectedFindCommand);
         expectedFindCommand = new FindCommand(new PersonMatchesKeywordsPredicate("", "Intern", ""));
