@@ -16,7 +16,7 @@ public class RiskTagTest {
 
     // This is to test to see if input can be case insensitive
     @Test
-    public void isValidRiskTagName_validInput_case_insensitive_success() {
+    public void isValidRiskTagName_validInput_ignoreCase_success() {
         assertEquals(isRiskTag("hiGH"), true);
         assertEquals(isRiskTag("mEDiuM"), true);
         assertEquals(isRiskTag("low"), true);

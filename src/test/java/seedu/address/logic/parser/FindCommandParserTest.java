@@ -122,19 +122,19 @@ public class FindCommandParserTest {
         List<FindPredicate> predicates = new ArrayList<>();
         predicates.add(new PlanTagContainsKeywordsPredicate(Arrays.asList("Savings Plan",
                 "Hospitalisation Plan")));
-        List<FindPredicate> predicates_case_insensitive = new ArrayList<>();
-        predicates_case_insensitive.add(new PlanTagContainsKeywordsPredicate(Arrays.asList("Savings plan",
+        List<FindPredicate> predicates_ignoreCase = new ArrayList<>();
+        predicates_ignoreCase.add(new PlanTagContainsKeywordsPredicate(Arrays.asList("Savings plan",
                 "Hospitalisation PLan")));
         FindCommand expectedFindCommand =
                 new FindCommand(predicates);
         FindCommand expectedFindCommand2 =
-                new FindCommand(predicates_case_insensitive);
+                new FindCommand(predicates_ignoreCase);
         assertParseSuccess(parser , " " + PREFIX_PLANTAG.getPrefix()
                 + "Savings Plan Hospitalisation Plan", expectedFindCommand);
         assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
                 + "Savings plan Hospitalisation PLan", expectedFindCommand2);
-          assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
-          + "Savings Plan \n \t Hospitalisation Plan" , expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
+                + "Savings Plan \n \t Hospitalisation Plan" , expectedFindCommand);
     }
 
     @Test
