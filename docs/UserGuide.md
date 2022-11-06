@@ -53,15 +53,17 @@ Here are some symbols used throughout this user guide:
 1. [Quick start](#quick-start)
 2. [Glossary](#glossary)
 3. [Command format](#command-format)
-4. [Parameter constraints](#parameter-constraints)
+4. [Patient parameter constraints](#patient-parameter-constraints)
+   1. [Single-valued attributes](#single-valued-attributes)
+   2. [Multi-valued attributes](#multi-valued-attributes)
+   3. [Patient parameter summary](#patient-parameter-summary)
 5. [Features](#features)
-   1. [Viewing help: `help`](#viewing-help-help)
+   1. [Viewing help: `help`](#getting-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
-      2. [Editing a patient's contact details: `edit` `-p`](#editing-a-patients-single-valued-attributes-edit--p)
+      2. [Editing a patient's contact details: `edit` `-p`](#editing-a-patients-contact-details-edit--p)
       3. [Deleting a patient: `delete` `-p`](#deleting-a-patient-delete--p)
-   3. [Editing a patient's multi-valued attributes](#editing-a-patients-multi-valued-attributes)
-   4. [Modifying tags](#adding-a-tag-add--p)
+   3. [Modifying tags](#adding-a-tag-add--p)
       1. [Adding a tag: `add` `-p`](#adding-a-tag-add--p)
       2. [Editing a tag: `edit` `-p` `-t`](#editing-a-tag-edit--p--t)
       3. [Deleting a tag: `delete` `-p` `-t`](#deleting-a-tag-delete--p--t)
@@ -83,18 +85,18 @@ Here are some symbols used throughout this user guide:
       3. [Deleting a remark: `delete` `-p` `-r`](#deleting-a-remark-delete--p--r)
    8. [Viewing patients](#listing-all-patients-list)
       1. [Listing all patients: `list`](#listing-all-patients-list)
-      2. [Finding patients: `find`](#finding-patients-find)
-      3. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
-   9. [Viewing tasks](#listing-all-tasks-of-a-patient-view--p)
-      1. [Listing all tasks of a patient: `view` `-p`](#listing-all-tasks-of-a-patient-view--p)
-      2. [Listing tasks of all patients: `view` `-p` `-all`](#listing-all-tasks-of-all-patients-view--p---all)
-      3. [Listing all tasks for a particular day: `view`](#listing-all-tasks-for-a-particular-day-view)
-      4. [Listing all patients for today: `view` `--today`](#listing-all-patients-for-today-view---today)
-   10. [Undoing last command: `undo`](#undo-last-command-undo)
-   11. [Reversing undo command: `redo`](#reverse-undo-command-redo)
+      2. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
+      3. [Finding patients: `find`](#finding-patients-find)
+   9. [Viewing tasks](#viewing-all-tasks-for-a-particular-day-view)
+      1. [Viewing all tasks for a particular day: `view`](#viewing-all-tasks-for-a-particular-day-view) 
+      2. [Viewing all tasks for today: `view` `--today`](#viewing-all-tasks-for-today-view---today)
+      3. [Viewing all tasks of a patient: `view` `-p`](#viewing-all-tasks-of-a-patient-view--p)
+      4. [Viewing all tasks of all patients](#viewing-all-tasks-of-all-patients-view--p---all)
+   10. [Undoing last command: `undo`](#undoing-previous-command-undo)
+   11. [Reversing undo command: `redo`](#reversing-undo-command-redo)
    12. [Clearing all entries: `clear`](#clearing-all-entries-clear)
    13. [Exiting UniNurse](#exiting-uninurse-exit)
-   14. [Saving patients](#saving-the-data)
+   14. [Saving the data](#saving-the-data)
    15. [Editing the data file](#editing-the-data-file)
 6. [FAQ](#faq)
 7. [Command summary](#command-summary)
@@ -203,13 +205,13 @@ Things to add:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Patient Parameter Constraints
+## Patient parameter constraints
 
 _To be cleaned up_
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
-### Single-Valued Attributes
+### Single-valued attributes
 
 A patient's single-valued attributes are also referred to as the patient's contact details, which consist of the following.
 
@@ -250,7 +252,7 @@ Example: `johndoe@gmail.com`
 
 Example:`a/John street, block 123, #01-01`
 
-### Multi-Valued Attributes
+### Multi-valued attributes
 
 #### `t/TAG`
 
@@ -300,7 +302,7 @@ Example:`r/Allergic to peanuts`
 
 _Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
 
-### Patient Parameter Summary
+### Patient parameter summary
 
 | Parameter    | Type                    | Flag | Prefix |
 |--------------|-------------------------|------|--------|
@@ -899,6 +901,20 @@ Format: `list`
 
 <br>
 
+### Viewing all details of a patient: `focus` `-p`
+
+Shows all details of a specified patient.
+
+Format: `focus -p PATIENT_INDEX`
+
+Examples:
+* `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book.
+* `find Betsy` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
+
+_Add screenshot here_
+
+<br>
+
 ### Finding patients: `find`
 
 You can find specific patients using the `find` command.
@@ -929,97 +945,7 @@ Examples:
 
 <br>
 
-### Viewing all details of a patient: `focus` `-p`
-
-Shows all details of a specified patient.
-
-Format: `focus -p PATIENT_INDEX`
-
-Examples:
-* `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book. 
-* `find Betsy` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
-
-_Add screenshot here_
-
-<br>
-
-### Listing all tasks for today: `view` `--today`
-
-You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
-
-Format: **`view`** `--today`
-
-Examples:
-
-Let's say you added the following patients and their tasks:
-* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
-* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
-
-If today's date is 2022-11-04, `view --today` will display those 2 tasks.
-
-{:refdef: style="text-align: center;"}
-![result for `view --today`](images/viewTodayResult.png)
-{: refdef}
-<div align="center"><i> Patient and task list displayed after running the </i><code>view --today</code><i> command </i></div>
-
-<br>
-
-### Listing all tasks: `view` `-p` `--all`
-
-You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
-
-Format: **`view`** `-p --all`
-
-Examples:
-
-* `view -p --all` will show a list of all tasks belonging to patients with tasks.
-
-{:refdef: style="text-align: center;"}
-![result for `view -p --all`](images/viewAllTaskResult.png)
-{: refdef}
-<div align="center"><i> Patient and task list displayed after running the </i><code>view -p --all</code><i> command </i></div>
-
-<br>
-
-### Viewing all tasks of a patient: `view` `-p`
-
-You can view the list of tasks for a particular patient using the `view` command.
-
-Format: **`view`** `-p PATIENT_INDEX`
-
-Examples:
-
-* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
-
-{:refdef: style="text-align: center;"}
-![result for `view -p 2`](images/viewBerniceTaskResult.png)
-{: refdef}
-<div align="center"><i> Patient and task list displayed after running the </i><code>view -p 2</code><i> command </i></div>
-
-<br>
-
-### Listing all tasks of all patients: `view` `-p` `--all`
-
-Shows a list of all tasks to be completed.
-
-Format: `view -p --all`
-
-Examples:
-
-Suppose the following patients were added.
-
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p --all` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-_Add screenshot here_
-
-<br>
-
-### Listing all tasks for a particular day: `view`
+### Viewing all tasks for a particular day: `view`
 
 You can view the list of tasks for a particular day using the `view` command.
 
@@ -1042,17 +968,80 @@ Examples:
 
 <br>
 
-### Listing all patients for today: `view` `--today`
+### Viewing all tasks for today: `view` `--today`
 
-Shows a list of all patients with tasks due today.
+You can view the list of tasks that are due today using the `view` command with the special flag `--today`.
 
-Format: `view --today`
+Format: **`view`** `--today`
+
+Examples:
+
+Let's say you added the following patients and their tasks:
+* **Physiotherapy appointment** for **Alex Yeoh** at 12:00pm on 2022-11-04
+* **Administer insulin dose** for **Charlotte Oliveiro** at 11:45am on 2022-11-04
+
+If today's date is 2022-11-04, `view --today` will display those 2 tasks.
+
+{:refdef: style="text-align: center;"}
+![result for `view --today`](images/viewTodayResult.png)
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view --today</code><i> command </i></div>
 
 <br>
 
-### Undo last command: `undo`
+<div markdown="block" class="alert alert-success">
 
-Undoes the last command which modifies the patient or task list, which includes `add`, `edit`, `delete`, and `clear` commands.
+:bulb: **Tip:** This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-particular-day-view) with the special flag `--today`.
+
+</div>
+
+<br>
+
+### Viewing all tasks of a patient: `view` `-p`
+
+You can view the list of tasks for a particular patient using the `view` command.
+
+Format: **`view`** `-p PATIENT_INDEX`
+
+Examples:
+
+* `list` followed by `view -p 2` will show the list of tasks for the 2nd patient in the patient list.
+
+{:refdef: style="text-align: center;"}
+![result for `view -p 2`](images/viewBerniceTaskResult.png)
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view -p 2</code><i> command </i></div>
+
+<br>
+
+### Viewing all tasks of all patients: `view` `-p` `--all`
+
+You can view the list of tasks for all patients using the `view` command with the special flag `--all`.
+
+Format: **`view`** `-p --all`
+
+Examples:
+
+* `view -p --all` will show a list of all tasks belonging to patients with tasks.
+
+{:refdef: style="text-align: center;"}
+![result for `view -p --all`](images/viewAllTaskResult.png)
+{: refdef}
+<div align="center"><i> Patient and task list displayed after running the </i><code>view -p --all</code><i> command </i></div>
+
+<br>
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tasks-of-a-patient-view--p) with the special flag `--all`.
+
+</div>
+
+<br>
+
+### Undoing previous command: `undo`
+
+Undoes the last command which modifies the application data, which includes `add`, `edit`, `delete`, and `clear` commands.
 
 Format: `undo`
 
@@ -1060,16 +1049,23 @@ Examples:
 * `delete -p 2` followed by `undo` has the same effect as not doing the `delete` command.
 * `delete -p 2` followed by `list`, then followed by `undo` will undo the `delete` command.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** Only the last 100 commands which modifies the application data can be undone.
+
+</div>
+
 <br>
 
-### Reverse undo command: `redo`
+### Reversing undo command: `redo`
 
 Undoes the last `undo` command.
 
 Format: `redo`
 
 Example:
-* `undo` followed by `redo` has the same effect as not doing the `undo` command.
+* `undo` followed by `redo` has the same effect as not using the `undo` command.
+* Two consecutive `undo` commands followed by `redo` has the same effect as using the `undo` command once.
 
 <br>
 
