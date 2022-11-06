@@ -11,7 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all nurses and patients enrolled in the healthcareXpress database to the user,
+ * filtered by given specifications.
  */
 public class ListCommand extends Command {
 

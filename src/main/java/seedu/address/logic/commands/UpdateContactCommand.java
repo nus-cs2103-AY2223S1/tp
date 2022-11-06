@@ -20,8 +20,7 @@ import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
 /**
- * Represents the command to add contact details of attending physician or next
- * of kin to a patient.
+ * Updates contact details of attending physician or next of kin to a patient.
  */
 public class UpdateContactCommand extends Command {
     public static final String COMMAND_WORD = "updatecontact";
