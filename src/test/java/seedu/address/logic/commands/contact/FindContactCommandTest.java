@@ -193,5 +193,14 @@ public class FindContactCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+
+        // all fields have matching keywords
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        predicate = new PersonContainsKeywordsPredicate(nameKeywords, phoneKeywords,
+                emailKeywords, addressKeywords, remarkKeywords);
+        command = new FindContactCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
     }
 }
