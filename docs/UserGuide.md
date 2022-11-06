@@ -37,9 +37,9 @@ You may also encounter the following text formatting:
 | <kbd>key</kbd> | A keyboard input                                 |
 |  `Highlights`  | A command or application output                  |
 
-If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
+If you are a new user, check out the [Quick start](#quick-start) to get started with NUScheduler.
 
-If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
+If you are a returning user, the [Command summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
 
 --------------------------------------------------------------------------------------------------------------------
 
