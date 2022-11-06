@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DO_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EXAMTWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_EXAMTWO;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalExams.CS2040_FINAL;
 import static seedu.address.testutil.TypicalExams.EXAMONE;
 import static seedu.address.testutil.TypicalExams.EXAMTWO;
 import static seedu.address.testutil.TypicalExams.FINAL_EXAM;
@@ -360,7 +361,7 @@ public class DistinctExamListTest {
         distinctExamList.setExams(getTypicalExams());
         distinctExamList.deleteExamsWithModule(CS2030);
         DistinctExamList expectedList = new DistinctExamList();
-        expectedList.setExams(new ArrayList(Arrays.asList(MIDTERM_EXAM, EXAMONE, EXAMTWO)));
+        expectedList.setExams(new ArrayList<>(Arrays.asList(MIDTERM_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL)));
         assertEquals(expectedList, distinctExamList);
     }
 
