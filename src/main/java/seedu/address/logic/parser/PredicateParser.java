@@ -213,18 +213,15 @@ public class PredicateParser {
         case ADDITIONAL_REQUEST_PREFIX:
             return new AdditionalRequestPredicate<>(Arrays.asList(input));
         case ORDER_STATUS_PREFIX:
-            if (!OrderStatus.isValidOrderStatus(input)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        FilterOrderCommand.MESSAGE_USAGE));
-            }
-            if (input.equals(OrderStatus.DELIVERING.toString())) {
+            input = input.toUpperCase();
+            if (input.equals(OrderStatus.DELIVERING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
-            } else if (input.equals(OrderStatus.NEGOTIATING.toString())) {
+            } else if (input.equals(OrderStatus.NEGOTIATING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
-            } else if (input.equals(OrderStatus.PENDING.toString())) {
+            } else if (input.equals(OrderStatus.PENDING.toString().toUpperCase())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(FilterOrderCommand.MESSAGE_INVALID_OS);
         case PRICE_RANGE_PREFIX:
             String[] prices = input.split("-");
             Price lowerBound = new Price(Double.parseDouble(prices[0]));

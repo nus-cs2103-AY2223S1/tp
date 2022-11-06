@@ -24,6 +24,11 @@ public class FilterOrderCommand extends FilterCommand {
             + "For Price range, use the prefix 'o_pr' followed by '/' and use '-' to indicate the range. \n"
             + "Example: " + COMMAND_WORD + " o_ar/flufy o_st/Pending o_pr/5.5-20.2";
 
+    public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
+
+    public static final String MESSAGE_INVALID_OS = "Order status has to be either " +
+            "'Pending', 'Negotiating', or 'Delivering'";
+
     private final Predicate<Order> additionalRequestPredicate;
     private final Predicate<Order> orderStatusPredicate;
     private final Predicate<Order> priceRangePredicate;
@@ -42,13 +47,8 @@ public class FilterOrderCommand extends FilterCommand {
      * Creates a Predicate to filter the specified {@code Pet}.
      */
     public Predicate<Order> generatePredicate() {
-        return new Predicate<Order>() {
-            @Override
-            public boolean test(Order order) {
-                return additionalRequestPredicate.test(order) && orderStatusPredicate.test(order)
-                        && priceRangePredicate.test(order);
-            }
-        };
+        return order -> additionalRequestPredicate.test(order) && orderStatusPredicate.test(order)
+                && priceRangePredicate.test(order);
     }
 
     @Override

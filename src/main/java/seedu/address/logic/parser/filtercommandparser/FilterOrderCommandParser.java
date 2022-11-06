@@ -35,8 +35,10 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
      * and returns a FilterPetCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public FilterOrderCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+    public FilterOrderCommand parse(String trimmedArgs) throws ParseException {
+
+        boolean isTokenized = false;
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
@@ -53,16 +55,23 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
         if (argMultimap.getValue(PREFIX_ORDER_ADDITIONAL_REQUESTS).isPresent()) {
             additionalRequestPredicate = PredicateParser.parseOrder(argMultimap
                     .getValue(PREFIX_ORDER_ADDITIONAL_REQUESTS).get(), PREFIX_ORDER_ADDITIONAL_REQUESTS.getPrefix());
+            isTokenized = true;
         }
 
         if (argMultimap.getValue(PREFIX_ORDER_STATUS).isPresent()) {
             orderStatusPredicate = PredicateParser.parseOrder(argMultimap.getValue(PREFIX_ORDER_STATUS).get(),
                     PREFIX_ORDER_STATUS.getPrefix());
+            isTokenized = true;
         }
 
         if (argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).isPresent()) {
             priceRangePredicate = PredicateParser.parseOrder(argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).get(),
                     PREFIX_ORDER_PRICE_RANGE.getPrefix());
+            isTokenized = true;
+        }
+
+        if (!isTokenized) {
+            throw new ParseException(FilterOrderCommand.MESSAGE_NOT_FILTERED);
         }
 
         return new FilterOrderCommand(additionalRequestPredicate, orderStatusPredicate, priceRangePredicate);
