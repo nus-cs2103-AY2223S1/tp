@@ -157,8 +157,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding tutors
 
-<img src="images/AddSequenceDiagram.png">
-
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
 The following methods in `Tuthub` manage the addition of tutors:
@@ -177,13 +175,19 @@ Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 
 
 Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
 
-Design considerations:
-* Alternative 1 (current choice): Add the tutor to a list that is maintained by the `Model` class
-  * Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
-  * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
-* Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
-  * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
-  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![AddSequenceDiagram](./images/AddSequenceDiagram.png)
+
+<ins>Design considerations</ins>:
+
+**Aspect: Implementation of `add`**
+- **Alternative 1:** Add the tutor to a list that is maintained by the `Model` class **(chosen)**
+  - Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
+  - Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
+- **Alternative 2:** Add the tutor directly to the `Storage` class as a JSON object
+  - Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
+  - Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
 
 ### Find Feature
 
@@ -227,9 +231,12 @@ containing the string alex captured in the `ModelManager` object, which makes us
 
 Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
 
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+![FindSequenceDiagram](./images/FindSequenceDiagram.png)
+
 <ins>Design Considerations</ins>
 
-**Aspect: How `find` should be implemented:**
+**Aspect: Implementation of `find`**
 - **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X) **(chosen)**.
     - Pros: Better OOP practice as the resultant find commands are all subclasses of `FindByPrefixCommand`
     - Cons: Took more time to think of and implement.
