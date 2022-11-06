@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Event's purpose in the address book.
+ * Represents an Event's purpose in the event list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidPurpose(String)}
  */
 public class Purpose implements Comparable<Purpose> {
@@ -35,12 +35,13 @@ public class Purpose implements Comparable<Purpose> {
      * Returns true if a given string is a valid purpose.
      */
     public static boolean isValidPurpose(String purposeToTest) {
+        requireNonNull(purposeToTest);
         return purposeToTest.matches(VALIDATION_REGEX);
     }
 
     @Override
-    public int compareTo(Purpose p) {
-        return this.purpose.compareToIgnoreCase(p.purpose);
+    public int compareTo(Purpose other) {
+        return this.purpose.compareToIgnoreCase(other.purpose);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class UidList implements Iterable<Uid> {
      */
     public boolean contains(Uid toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameUid);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
     /**
      * Returns the size of the uid list.

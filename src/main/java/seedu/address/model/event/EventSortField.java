@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * Represents a field to sort Events by.
- * Guarantees: immutable; is valid as declared in {@link #isValidSortField(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidEventSortField(String)}
  */
 public class EventSortField {
 
@@ -71,7 +71,7 @@ public class EventSortField {
      */
     public static EventSortField createSortField(String sortFieldLetter) {
         requireNonNull(sortFieldLetter);
-        checkArgument(isValidSortField(sortFieldLetter), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEventSortField(sortFieldLetter), MESSAGE_CONSTRAINTS);
         return mapLetterToSortField(sortFieldLetter);
     }
 
@@ -89,12 +89,12 @@ public class EventSortField {
     /**
      * Returns true if the given {@code String} is a valid sort field.
      *
-     * @param test {@code String} to test.
+     * @param sortFieldToTest {@code String} to test.
      * @return boolean result of test.
      */
-    public static boolean isValidSortField(String test) {
-        requireNonNull(test);
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidEventSortField(String sortFieldToTest) {
+        requireNonNull(sortFieldToTest);
+        return sortFieldToTest.matches(VALIDATION_REGEX);
     }
 
 

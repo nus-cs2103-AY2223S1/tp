@@ -1,5 +1,7 @@
 package seedu.address.model.event;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.model.date.Date;
 import seedu.address.model.person.Person;
 
@@ -11,8 +13,6 @@ public class Event {
     private final Date startDate;
     private final StartTime startTime;
     private final Purpose purpose;
-
-    //add a list of Customers here
     private final UidList uids;
 
     /**
@@ -23,16 +23,28 @@ public class Event {
      * @param purpose summary of what the marketing is about
      */
     public Event(EventTitle eventTitle, Date startDate, StartTime startTime, Purpose purpose) {
+        requireAllNonNull(eventTitle, startDate, startTime, purpose);
         this.eventTitle = eventTitle;
         this.startDate = startDate;
         this.startTime = startTime;
         this.purpose = purpose;
         this.uids = new UidList();
     }
-
     /**
      * Overloaded constructor to create new Event object
-     * @param eventToCopy event to copy
+     * Every field must be present and not null.
+     */
+    public Event(EventTitle eventTitle, Date startDate, StartTime startTime, Purpose purpose, UidList uids) {
+        requireAllNonNull(eventTitle, startDate, startTime, purpose, uids);
+        this.eventTitle = eventTitle;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.purpose = purpose;
+        this.uids = uids;
+    }
+    /**
+     * Overloaded constructor to create new Event object from old Event object with updated uid list.
+     * @param eventToCopy event to copy to the new Event object
      * @param uids new uid list
      */
     public Event(Event eventToCopy, UidList uids) {
@@ -42,17 +54,6 @@ public class Event {
         this.purpose = eventToCopy.purpose;
         this.uids = uids;
     }
-    /**
-     * Overloaded constructor to create new Event object
-     */
-    public Event(EventTitle eventTitle, Date startDate, StartTime startTime, Purpose purpose, UidList uids) {
-        this.eventTitle = eventTitle;
-        this.startDate = startDate;
-        this.startTime = startTime;
-        this.purpose = purpose;
-        this.uids = uids;
-    }
-
     public EventTitle getEventTitle() {
         return this.eventTitle;
     }
@@ -71,7 +72,12 @@ public class Event {
     public UidList getUids() {
         return this.uids;
     }
-
+    /**
+     * Returns true if the person is tagged to the event.
+     */
+    public boolean containsPerson(Person person) {
+        return uids.contains(person.getUid());
+    }
     /**
      * Returns true if both events have the same eventTitle.
      * Serves as a weaker notion of equality between two events.
@@ -84,14 +90,6 @@ public class Event {
         return otherEvent != null
                 && otherEvent.getEventTitle().equals(getEventTitle());
     }
-
-    /**
-     * Returns true if the person is tagged to the event.
-     */
-    public boolean containsPerson(Person person) {
-        return uids.contains(person.getUid());
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -107,7 +105,11 @@ public class Event {
                 && otherEvent.getStartDate().equals(this.getStartDate())
                 && otherEvent.getStartTime().equals(this.getStartTime())
                 && otherEvent.getPurpose().equals(this.getPurpose())
-                && otherEvent.getUids().equals(this.getUids()); //add customers in equals method
+                && otherEvent.getUids().equals(this.getUids());
+    }
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(eventTitle, startDate, startTime, purpose, uids);
     }
 
     @Override
@@ -120,7 +122,9 @@ public class Event {
                 .append("; Start Time: ")
                 .append(this.getStartTime())
                 .append("; Purpose: ")
-                .append(this.getPurpose());
+                .append(this.getPurpose())
+                .append("; Attendees: ")
+                .append(this.uids.getPersonNames());
 
         return builder.toString();
     }

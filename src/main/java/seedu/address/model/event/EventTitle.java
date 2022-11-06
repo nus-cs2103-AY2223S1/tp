@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Event's title in the address book.
+ * Represents an Event's title in the event list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidEventTitle(String)}
  */
 public class EventTitle implements Comparable<EventTitle> {
@@ -35,12 +35,13 @@ public class EventTitle implements Comparable<EventTitle> {
      * Returns true if a given string is a valid event title.
      */
     public static boolean isValidEventTitle(String eventTitleToTest) {
+        requireNonNull(eventTitleToTest);
         return eventTitleToTest.matches(VALIDATION_REGEX);
     }
 
     @Override
-    public int compareTo(EventTitle e) {
-        return this.eventTitle.compareToIgnoreCase(e.eventTitle);
+    public int compareTo(EventTitle other) {
+        return this.eventTitle.compareToIgnoreCase(other.eventTitle);
     }
 
     @Override
