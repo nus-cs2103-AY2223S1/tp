@@ -804,6 +804,7 @@ be able to view the applicant from the list.
 8. Storage stored should be easy to be shared and uploaded between different users.
 
 [Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Glossary
