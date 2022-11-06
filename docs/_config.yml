@@ -8,6 +8,9 @@ header_pages:
 
 markdown: kramdown
 
+kramdown:
+  toc_levels: 1..2
+
 repository: "AY2223S1-CS2103T-W13-1/tp"
 github_icon: "images/github-icon.png"
 
