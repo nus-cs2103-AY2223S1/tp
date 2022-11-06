@@ -68,6 +68,7 @@ public class TypePropertyCommandTest {
         // different person -> returns false
         assertNotEquals(hdbStatus, condoStatus);
     }
+
     private PropertyTypeContainsKeywordsPredicate preparePredicate(String userInput) {
         return new PropertyTypeContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }

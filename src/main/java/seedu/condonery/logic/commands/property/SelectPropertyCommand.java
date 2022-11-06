@@ -34,6 +34,7 @@ public class SelectPropertyCommand extends Command {
      * Creates a SelectCommand to select the specified {@code Property}
      */
     public SelectPropertyCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
