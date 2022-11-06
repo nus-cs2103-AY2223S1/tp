@@ -26,6 +26,12 @@ No time to waste, let's start _Working_! :muscle:
 
 ## 2. Getting started
 
+This section helps get you started to use WorkBook.
+
+It consists of a simple to follow step-by-step installation guide and explains the key elements of the GUI.
+
+### 2.1 Installation
+
 1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your computer.
 
 2. Download the latest `WorkBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/).
@@ -34,14 +40,28 @@ No time to waste, let's start _Working_! :muscle:
 
 4. Using your command terminal:
    1. Navigate to the folder where you placed your WorkBook at.
-   2. Fire it up by running: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
+   2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
 
-|       Wide Layout         |       Narrow Layout       | 
-|:-------------------------:|:-------------------------:|
-|![wide layout](images/Ui.png) |![narrow layout](images/UiNarrow.png) |
+|          Wide Layout           |             Narrow Layout             | 
+|:------------------------------:|:-------------------------------------:|
+| ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
 
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
+
+### 2.1 Understanding WorkBook's GUI
+
+Below shows the main elements of WorkBook's GUI, in wide and narrow layouts.
+
+For the narrow layout, everything else is the same excpet for the labelled light bulb icon, which represents 'tips'.
+
+|              Wide Layout               |
+|:--------------------------------------:|
+| ![wide layout](images/AnnotatedUi.png) |
+
+|                     Narrow Layout                      |  
+|:------------------------------------------------------:|
+| ![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -74,9 +94,9 @@ No time to waste, let's start _Working_! :muscle:
 
 ## 4. Things to note
 
-<div markdown="block" class="alert alert-info">
+This section describes important information for you to take note of before and while using WorkBook. In order to make WorkBook work best for you, do familiarise yourself with the items in this section.
 
-**:information_source: Notes about the command format:**<br>
+### 4.1 Notes about the command format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Meta`.
@@ -96,13 +116,13 @@ No time to waste, let's start _Working_! :muscle:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-#### Parameter-specific behaviour
+### 4.2 Parameter-specific behaviour
 
 * Whenever `[d/DATETIME]` is specified as a parameter, you should input it in the format `dd-MMM-yyy hh:mm` where `y` is year, `M` is month, `d` is day, `h` is hour in the 24-hour format and `m` is minutes. <br>
-  e.g. October 2 2022 5:00pm should be input as `02-Oct-2022 17:00`.
+  e.g. October 2 2022 5:00pm should be inputted as `02-Oct-2022 17:00`.
   * Month is not case-sensitive
 
-#### Behaviour of sorted internship applications
+### 4.3 Behaviour of sorted internship applications
 
 * The list of applications are sorted downwards from the closest upcoming application to furthest.
 * Those with no `DATETIME` attached to it will be placed below those with upcoming dates.
@@ -118,25 +138,23 @@ No time to waste, let's start _Working_! :muscle:
 
 * Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
-|       Wide Layout         |
-|:-------------------------:|
-|![wide layout](images/AnnotatedUi.png) |
+|              Wide Layout               |
+|:--------------------------------------:|
+| ![wide layout](images/AnnotatedUi.png) |
 
-|       Narrow Layout       |  
-|:-------------------------:|
-|![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
-
-
-|     Resizing Example      |
-|:-------------------------:|
-|![ResponsiveUI](images/ResponsiveUi.gif) |
+|                     Narrow Layout                      |  
+|:------------------------------------------------------:|
+| ![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
-</div>
+|             Resizing Example             |
+|:----------------------------------------:|
+| ![ResponsiveUI](images/ResponsiveUi.gif) |
+
 
 ## 5. What you can do
 
-| Your action | Command format <br> e.g. `Example command`                                                                                                                                                                |
+| Your action | Command format <br> e.g. Example command (If applicable)                                                                                                                                                  |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**     | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
 | **Edit**    | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
@@ -158,10 +176,23 @@ No time to waste, let's start _Working_! :muscle:
 
 ### 5.1. Adding your internship application
 
-Congrats! You have already done the hard work - applying for that internship you've always wanted. 
-Now, simply add the details into WorkBook and we can begin tracking your application!
+Have you taken the first step to apply for that internship you've always wanted?
+Or do you want to start keeping track of the different internship applications you have? <br> 
 
-Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
+This command satisfies the above, allowing you to add your internship applications to the list and track all of them.
+WorkBook also removes the hassle of sorting your internship applications manually by automating it for you!
+
+Simply follow the command format below to add the relevant details into WorkBook!
+
+Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]…​ [t/TAG]…​`
+
+Example: `add c/Meta r/Web Developer s/Application Sent d/20-Oct-2022 10:00 l/Java e/metaHires@meta.com` <br><br>
+What you will see:
+
+|                                                  |
+|:------------------------------------------------:|
+| ![AddCommandResult](images/AddCommandResult.png) ||
+
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** The date and time you provide could represent multiple things:<br>
@@ -174,33 +205,44 @@ Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE
 * adding DateTime like `d/24-Sep-2022 24:00` will be read as `d/25-Sep-2022 00:00`
 </div>
 
-
-
-Examples:
-* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
+Other examples:
+* `add c/Shopback r/Blockchain Developer s/Technical Interview`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
 ### 5.2. Editing your internship application
 
-Good job! You've passed the Resume Screening and have been invited to complete an Online Assessment for your internship application.
-Now's a good time to use this command to update the application so that WorkBook can continue to give you relevant tips and reminders!
+WorkBook allows you to seamlessly update fields of respective internship applications with this command.
+
+A good time to use this command is to update the stage of your application so that WorkBook can give you relevant tips and reminders!
 
 Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internships list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the internship will be removed i.e adding of tags is not cumulative.
-* You can remove all the internship’s tags by typing `t/` without
-    specifying any tags after it.
+* Edits the internship at the specified `INDEX`, which **must be**:
+  * A positive number (1, 2, 3, …​).
+  * Within the number range of your list of internship applications.
+* At least one of the optional fields **must** be provided.
 
-<div markdown="block" class="alert alert-success">
-**:bulb: Tip:** You can edit any number of attributes with the edit command.
+Example: `edit 2 s/Tecnical Interview d/28-Dec-2022 08:00`
+
+What you'll see before and after executing the command: <br>
+
+| State      | What you'll see                             |
+|------------|---------------------------------------------|
+| **Before** | ![Before edit](images/EditCommandInput.png) |
+| **After**  | ![After edit](images/EditCommandResult.png) |
+
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution**: Adding of tags is not cumulative: When editing tags, the existing tags of the internship will be **removed**.
 </div>
 
-Examples:
-* `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
-* `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** As adding of tags is not cumulative, you can remove all the internship’s tags by typing `t/` without
+    specifying any tags after it.
+</div>
+
+Other examples:
+* `edit 2 l/golang t/`: Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
 ### 5.3. Listing all existing internship applications
 
@@ -211,27 +253,27 @@ Lists all of your internship applications in WorkBook in a [sorted order](#3-thi
 </div>
 
 Format: `list`
+
 ### 5.4. Viewing tips for your applications:
 
 For some application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
 
 Below are the application stages that we have included tips for.
 
-| Application Stage |
-|--------|
-| `Application Sent` |
-| `Online Assessment` |
-| `Technical Interview` |
+| Application Stage      |
+|------------------------|
+| `Application Sent`     |
+| `Online Assessment`    |
+| `Technical Interview`  |
 | `Behavioral Interview` |
-| `Phone Interview` |
-| `Rejected` |
+| `Phone Interview`      |
+| `Rejected`             |
 
 If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application. A window will appear showing all the tips for that application.
 
-Light Bulb Button            |  Tips Window
-:-------------------------:|:-------------------------:
-![light bulb button](images/ClickLightBulb.png) |   ![tips window](images/TipsWindow.png)
-
+|                Light Bulb Button                |              Tips Window              |
+|:-----------------------------------------------:|:-------------------------------------:|
+| ![light bulb button](images/ClickLightBulb.png) | ![tips window](images/TipsWindow.png) |
 
 To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simply click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
@@ -459,10 +501,6 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
-
-### 5.12. Viewing daily tips
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
