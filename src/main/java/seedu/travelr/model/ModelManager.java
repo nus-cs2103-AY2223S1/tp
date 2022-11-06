@@ -123,8 +123,7 @@ public class ModelManager implements Model {
     public boolean tripHasEvent(Trip trip, Event event) {
         requireNonNull(event);
         requireNonNull(trip);
-        Trip curr = filteredTrips.get(filteredTrips.indexOf(trip));
-        return curr.containsEvent(event);
+        return trip.containsEvent(event);
     }
 
     @Override
@@ -297,11 +296,6 @@ public class ModelManager implements Model {
     @Override
     public void sortEvents(Comparator<Event> comp) {
         travelr.sortEvents(comp);
-    }
-
-    @Override
-    public boolean hasEventInBucketList(Event event) {
-        return bucketList.contains(event);
     }
 
 }

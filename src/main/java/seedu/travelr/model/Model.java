@@ -70,9 +70,7 @@ public interface Model {
      */
     boolean hasTrip(Trip trip);
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the Travelr.
-     */
+
     boolean tripHasEvent(Trip trip, Event event);
 
     /**
@@ -174,7 +172,5 @@ public interface Model {
     void refreshSummaryVariables();
 
     void sortEvents(Comparator<Event> comparator);
-
-    boolean hasEventInBucketList(Event event);
 
 }
