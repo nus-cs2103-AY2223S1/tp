@@ -11,7 +11,7 @@ title: FoodRem
 
 **FoodRem is a desktop application for F&B businesses to manage their inventory.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using FoodRem, head over to the [Quickstart Guide](UserGuide.html#quickstart-guide).
+* If you are interested in using FoodRem, head over to the [Installation Guide](UserGuide.html#installation).
 * If you are interested about developing FoodRem, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 ###### Acknowledgements
