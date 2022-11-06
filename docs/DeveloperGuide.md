@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* We did not reference any sources other than AB3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -129,7 +129,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ApplicationBook`, which `Application` references. This allows `ApplicationBook` to only require one `Tag` object per unique tag, instead of each `Application` needing their own `Tag` objects. In addition, `Interview` is optional in each `Application`, thus, it is wrapped around with an `Optional` class to avoid the usage of `null`.<br>
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> An alternative (and arguably more OOP) model is given below. It has a <code>Tag</code> list in the <code>ApplicationBook</code>, which <code>Application</code> references. This allows <code>ApplicationBook</code> to only require one <code>Tag</code> object per unique tag, instead of each <code>Application</code> needing their own <code>Tag</code> objects. In addition, <code>Interview</code> is optional in each <code>Application</code>; thus, it is wrapped around with an <code>Optional</code> class to avoid the usage of <code>null</code>.<br>
 
 <img src="images/ApplicationClassDiagram.png" width="600">
 
@@ -183,7 +183,7 @@ Step 3. The user executes `add c/Google …​` to add a new application. The `a
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitApplicationBook()`, so the application book state will not be saved into the `applicationBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If a command fails its execution, it will not call <code>Model#commitApplicationBook()</code>, so the application book state will not be saved into the <code>applicationBookStateList</code>.
 
 </div>
 
@@ -199,21 +199,21 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoApplicationBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the application book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `applicationBookStateList.size() - 1`, pointing to the latest application book state, then there are no undone ApplicationBook states to restore. The `redo` command uses `Model#canRedoApplicationBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: <b>Note:</b> If the <code>currentStatePointer</code> is at index <code>applicationBookStateList.size() - 1</code>, pointing to the latest application book state, then there are no undone ApplicationBook states to restore. The <code>redo</code> command uses <code>Model#canRedoApplicationBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the application book, such as `list`, will usually not call `Model#commitApplicationBook()`, `Model#undoApplicationBook()` or `Model#redoApplicationBook()`. Thus, the `applicationBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the application book, such as `list`, will not call `Model#commitApplicationBook()`, `Model#undoApplicationBook()` or `Model#redoApplicationBook()`. Thus, the `applicationBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitApplicationBook()`. Since the `currentStatePointer` is not pointing at the end of the `applicationBookStateList`, all application book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Google …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitApplicationBook()`. Since the `currentStatePointer` is not pointing at the end of the `applicationBookStateList`, all application book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/Google …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -238,22 +238,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
+The purpose of this enhancement is to allow users to archive instead of deleting applications that are not applicable in the current time (e.g. applications that have been rejected/offered/no-response for a period of time).
 * Data archiving of `Application` is done by adding a boolean attribute to the Application class as a record of its archive status.
-* Two predicates in Model to adjust its FilterList shown to the user.
+* Two predicates in Model to adjust its `FilterList` shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
-* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
+* The list showing to the user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
 
 The features of the new and modified commands are summarized as follows:
 * `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
 * `RetriveCommand`: Set specified application archive status to `false` by utilising `ModelManager#retrieveApplication`.
-* `ListArchiveCommand`: Show user the archived applications in CinternS.
-* `ListCommand`: Show user the unarchived applications in CinternS.
+* `ListArchiveCommand`: Show the user the archived applications in CinternS.
+* `ListCommand`: Show the user the unarchived applications in CinternS.
 
 The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
 ![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
 
-After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archive application to the FilterList in Model and the archived application will be hidden from the updated list shown in UI.
+After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archived application to the `FilterList` in `Model` and the archived application will be hidden from the updated list shown in UI.
 
 #### Constraints of Data archiving:
 Archived applications cannot be archived again. Doing so will cause `CommandException` to be thrown. The same reasoning applies to retrieve command.
@@ -269,15 +269,15 @@ Aspect: How should data archiving be implemented?
     - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
     - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
 
-Aspect: Should user be allowed to edit archived application directly?
+Aspect: Should the user be allowed to edit archived application directly?
 
 - Alternative 1 (current choice): User are allowed to edit archived application
-    - Pros: A more convenient usage for user.
+    - Pros: A more convenient usage for the user.
     - Cons: Less "hidden" nature of archiving data.
 - Alternative 2: User are not allow to edit archived application
     - Pros: Usage of archive is more intuitive as archive applications are only used for future references.
-    - Cons: Inconvenient usage as user need to retrieve archived application before editing it.
-- Alternative 1 is chosen in this case by referencing Whatsapp archived chat where user can still send message (make modification) in the archived chat.
+    - Cons: Inconvenient usage as the user need to retrieve archived application before editing it.
+- Alternative 1 is chosen in this case by referencing Whatsapp archived chat where the user can still send message (make modification) in the archived chat.
 
 ### Interview Feature
 
@@ -344,29 +344,29 @@ The sort feature allows the user to sort the application list using company name
 
 The class diagram below shows the classes in the Logic component relevant for sorting:
 
-![Sort Class Diagram](images/SortClassDiagram.png)
+![SortClassDiagram](images/SortClassDiagram.png)
 
 There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
 
 The following sequence diagram shows the parsing of a sort command from the user featuring just two of the possible orders - by company and by date:
 
-![Sort Parser Sequence Diagram](images/SortParserSequenceDiagram.png)
+![SortParserSequenceDiagram](images/SortParserSequenceDiagram.png)
 
 When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
 
 The next sequence diagram shows the execution of the created SortCommand, again featuring just two of the possible orders:
 
-![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
-When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is to set an appropriate comparator on the `SortedList` to attain the desired sort order.
 
-A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is closed and reopened. This way the user does not need to re-enter the same sort command every session.
+A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is reopened. This way the user does not need to re-enter the same sort command every session.
 
 The current sort order is represented using a `SortSetting` enum, which can be one of the 4x2 possible sort orders. This `SortSetting` is stored in the `UserPrefs` object together with the other user preferences like screen size. The sort order is then stored inside the `preferences.json` file to be read the next time the app is opened.
 
 The following sequence diagram shows the process of initialising the sort order of a `ModelManager` as it is being instantiated:
 
-![Sort Initialisation Sequence Diagram](images/SortInitialisationSequenceDiagram.png)
+![SortInitialisationSequenceDiagram](images/SortInitialisationSequenceDiagram.png)
 
 The `MainApp` passes the application book data and the `userPrefs` retrieved from storage to the constructor for `ModelManager`. The `ModelManager` creates a copy of the `userPrefs` object. Then, the `sortSetting` is retrieved and used to decide how the ModelManager should sort the applications. The diagram above shows just two of the possible sort orders and the resulting method calls.
 
@@ -415,7 +415,7 @@ The sequence diagram below shows the crucial components involved in executing th
 
 Aspect: How should the `remind` feature be presented? 
 
-* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by user.
+* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by the user.
     * Pros: Behaviour lines up better with the rest of CinternS where changes to the display are driven by commands. Better code testability. 
     * Cons: Users are not reminded of upcoming interviews if they do not enter the `remind` command.
 
@@ -436,34 +436,34 @@ Aspect: How should the remind command filter out upcoming interviews?
 ### Statistic Feature
 
 #### Implementation
-The statistic feature is a simple feature that allows users to obtain a summarized statistics of the whole application list.
+The statistic feature is a simple feature that allows the user to obtain a summarized statistics of the whole application list.
 
-The summary statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
+The summary statistics are shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the workflow of the statistic feature. It gets the list of applications from the model and tabulates the respective information. The tabulation result is then output through `CommandResult`.
 
 ![Statistic Sequence Diagram](images/StatisticSequenceDiagram.png)
 
 
 #### Constraints of Statistic Feature
-The statistic of the applications will only show when user enter `stats` command. A possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
+The statistics of the applications will only show when the user enter `stats` command. A possible future improvement is to reorganise the UI section to display real-time statistics in one section and the list view of applications and interviews are in another section.
 
 #### Design Considerations
 
 Aspect: How should the statistic feature be presented?
 
-* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show user the statistics.
-    * Pros: Does not need extra space in the UI to show the statistic, and simpler and more straightforward implementation.
+* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show the user the statistics.
+    * Pros: Does not need extra space in the UI to show the statistics, and simpler and more straightforward implementation.
     * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
 
-* Alternative 2: Create a new section in UI to show user real-time statistics.
+* Alternative 2: Create a new section in UI to show the user real-time statistics.
     * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
-    * Cons: Space usage for UI might be inefficient as user will not always want to review the statistic of the applications.
+    * Cons: Space usage for UI might be inefficient as the user will not always want to review the statistics of the applications.
 
 - Alternative 1 is chosen as our team justified that the implementation is simpler, and is less likely to contain bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application lists are more important to be shown on the GUI when compared to the statistics.
 
 ### Status Feature
 
 #### Implementation
-The `Status` feature allows users to add a status to a new application and edit the status of their existing application as they progress through the application process.
+The `Status` feature allows the user to add a status to a new application and edit the status of their existing application as they progress through the application process.
 
 ![StatusClassDiagram](images/StatusClassDiagram.png)
 
@@ -612,7 +612,7 @@ date, document submitted, etc.)
 **Extensions**
 * 1a. The command is invalid or not recognised.
 
-   * 1a1. CinternS shows an error message and prompts user to reenter command
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
     
      Use case resumes at step 1.
 
