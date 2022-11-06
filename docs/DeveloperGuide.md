@@ -528,8 +528,8 @@ The date inputted is parsed using `LocalDate`
 The Patient Details Panel provides a detailed view into the information of a specific patient. All the patient's personal 
 particulars and appointment details are reflected in this panel. The patient being viewed defaults to the first patient
 in the app, if present. Whenever the [`add`](#add-command) or [`edit`](#edit-command) is called on a patient, the patient 
-displayed switches to that patient in question. The [`view`](#view-command) can be used to manually select the person 
-being viewed.
+displayed switches to that patient in question. The [`view`](#view-command) command can be used to manually select the 
+person to display in the Patient Details Panel.
 
 #### Clickability
 
