@@ -46,7 +46,7 @@ loop for each oldStudent to assign
     Student --> AssignCommand: newStudent
     deactivate Student
 
-    AssignCommand -> Model: setStudent(student, newStudent)
+    AssignCommand -> Model: setStudent(oldStudent, newStudent)
     activate Model
 
     Model --> AssignCommand

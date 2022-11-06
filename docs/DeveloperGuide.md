@@ -345,7 +345,7 @@ Given below are the different steps taken when the user assigns students to a mo
 using the given the student indices and the module class to assign them to.
 
 **Step 2**: The `AssignCommand` object is executed. The student indices are used to retrieve the `Student` objects 
-from the list of students captured by the `Model`. For each student, the next steps are repeated. 
+from the list of students captured by the `Model`. For each student, steps 3 and 4 are repeated. 
 
 **Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object.
 The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object
@@ -497,7 +497,7 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 <img class="center" src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The diagram above simplifies the `listview` interaction as it is abstracted away by javafx and its details are mostly irrelevant to our implementation.
+:information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFx and its details are mostly irrelevant to our implementation.
 </div>
 
 #### Design considerations
