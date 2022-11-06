@@ -175,7 +175,7 @@ Format: `project -f [n/PROJECT_NAME] [p/PROJECT_ID] [r/REPOSITORY] [l/CLIENT_LAB
 * Finds all the projects with the specified `PROJECT_NAME`, `PROJECT_ID`, `REPOSITORY`, `CLIENT_LABEL` and 
   `CLIENT_ID`. The `CLIENT_LABEL` is the name of the project's client, appearing as a label on the project card.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
-  after each search criteria.
+  after each search criteria if the search criteria is project or client name.
 * At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
@@ -314,7 +314,7 @@ Format: `client -f [n/CLIENT_NAME] [c/CLIENT_ID] [e/CLIENT_EMAIL] [m/CLIENT_MOBI
 
 * Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_ID`, `CLIENT_EMAIL`, and `CLIENT_MOBILE`.
 * Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
-  after each search criteria.
+  after each search criteria if the search criteria is client name.
 * At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
@@ -326,7 +326,7 @@ Examples:
   the word Amy and with `CLIENT_EMAIL` amy@gmail.com or amycarter@gmail.com.
 * `client -f n/Amy e/amy@gmail.com m/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
   Amy and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_MOBILE` 12345678.
-* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
+* `client -f n/Amy Bob e/amy@gmail.com e/bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word Amy or Bob and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_MOBILE` 12345678.
 
@@ -451,7 +451,7 @@ Format: `issue -f [t/TITLE] [s/STATUS] [u/URGENCY] [n/PROJECT_NAME] [p/PROJECT_I
 
 * Finds all the issues with the specified `TITLE`, `STATUS`, `URGENCY`, `PROJECT_NAME`, `PROJECT_ID` and `ISSUE_ID`.
 * Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
-  after each search criteria.
+  after each search criteria if the search criteria is title or project name.
 * At least one of the optional fields must be provided.
 * The keywords provided must be valid arguments for their respective search criteria.
 
@@ -463,7 +463,7 @@ Examples:
 * `issue -f p/3 p/5` Finds and lists the issue tied to project with `PROJECT_ID` 3 or 5.
 * `issue -f n/DevEnable AB3 u/LOW` Finds and lists all the issues with `URGENCY` as LOW and tied to the project with 
   `PROJECT_NAME` containing DevEnable or AB3.
-* `issue -f t/enhancement p/DevEnable AB3 u/HIGH LOW` Finds and lists all the issues with `TITLE` enhancement and 
+* `issue -f t/enhancement p/DevEnable AB3 u/HIGH u/LOW` Finds and lists all the issues with `TITLE` enhancement and 
   `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with the `STATUS` Incomplete.
 
