@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PlanTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Plan tag name should only contain alphanumeric characters "
-            + "and spaces, ending with Plan (case insensitive)";
+            + "and spaces, ending with \" Plan\" (case insensitive)";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     /**
