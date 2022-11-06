@@ -5,7 +5,7 @@ show-toc: true
 ---
 ## About FoodRem
 
-{% include_relative _ug/About.md %}
+{% include_relative _ug/AboutUG.md %}
 
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
