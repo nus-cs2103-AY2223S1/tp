@@ -1,6 +1,5 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -27,7 +26,6 @@ public class LectureDetails {
      * @param lectureDetails Valid lecture details
      */
     public LectureDetails(String lectureDetails) {
-        requireNonNull(lectureDetails);
         checkArgument(areValidLectureDetails(lectureDetails));
         value = lectureDetails;
     }
@@ -36,6 +34,9 @@ public class LectureDetails {
      * Returns true if a given string is a valid lecture detail.
      */
     public static boolean areValidLectureDetails(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
