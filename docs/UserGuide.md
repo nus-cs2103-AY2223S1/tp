@@ -125,7 +125,7 @@ of the terms commonly used in PetCode.
 3. Copy the file to the folder you want to use as the _home folder_ for your PetCode app.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app
-   contains some sample data and the pet images are unchangeable in the current version of PetCode. <br>
+   contains some sample data and the pet images are unchangeable in the current version of PetCode. Clicking the hyperlinks under the pet image will just open your browser and does nothing more. <br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press ENTER to execute it. e.g. typing **`help`** and pressing ENTER will
@@ -546,8 +546,6 @@ With this information, you may contact the suppliers who own these pets for furt
 
 :information_source: **How does the match command work?** <br>
 
-This command sorts all pets currently being displayed on your screen, i.e filtered out pets will not be sorted.
-
 We have designed an algorithm to give each pet in the storage a score. Pets with descriptions that are closer to the requirements specified in the order will be given a higher score.
 Pets with higher scores (i.e. more fitting to the order) are displayed on top. If you want to know how we design the algorithm, check out our [Developer Guide](DeveloperGuide.md). <br>
 
@@ -605,9 +603,9 @@ Examples:
 
 :exclamation: **Caution**: Please ensure that you have the corresponding display list before you execute the delete command.
 For example, if you want to delete a buyer by `delete-b 1`, do ensure at index 1 is a buyer.
-This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet.
+This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet. <br>
 
-* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find).
+* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find). <br>
 * To ensure at the index is an item, use [List command](#listing-contacts-or-items--list) or [Filter command](#filtering-items-by-attributes--filter).
 
 </div>
@@ -899,7 +897,7 @@ In future versions of PetCode, some information will be auto-updated. For exampl
 `Vaccination status` will be set to `true` once the system detects the vaccination proof file, and `pet certificates` will be set to the titles of the pet certificate documents uploaded.
 You will also be able to transfer orders from buyers to suppliers and then to deliverers. The `order status` will be auto-updated from `Pending` to `Negotiating` to `Delivering` in the process.
 
-This is the reason why you are unable to modify some information, and why some information, although you can enter and store in PetCode, is not displayed in the UI, in the current version.
+This is the reason why you are unable to modify some information or interact with certain UI elements, and why some information, although you can enter and store in PetCode, is not displayed in the UI, in the current version.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
