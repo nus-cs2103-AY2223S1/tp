@@ -72,8 +72,8 @@ public class ConsultCommand extends Command {
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {
-        return person.getUpcomingAppointment().isPresent() &&
-                !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
+        return person.getUpcomingAppointment().isPresent()
+                && !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
     }
 
     @Override
