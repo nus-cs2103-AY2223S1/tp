@@ -1,8 +1,3 @@
----
-layout: page
-title: En Hao's Project Portfolio Page
----
-
 ### Project: Yellow Pages
 
 Yellow Pages is a desktop address book application used for students in universities. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
