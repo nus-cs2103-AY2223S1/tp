@@ -20,7 +20,7 @@ you understand StudMap, so that you can make the best use of our features. Read 
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 # 2. Why StudMap?
 
@@ -76,8 +76,8 @@ want this to happen to you!
 
 StudMap is our solution for you. It is a lightweight desktop app that addresses your needs as a TA. With a set of
 essential yet easy-to-use features, we aim to fill the void between Excel spreadsheets and traditional note-taking apps,
-to provide you the necessary tool to perform record keeping effectively. This user guide is a reference for you, so that
-you know how to make the most out of StudMap.
+to provide you with the necessary tool to perform record keeping effectively. This user guide is a reference for you, so
+that you know how to make the most out of StudMap.
 
 ---
 
