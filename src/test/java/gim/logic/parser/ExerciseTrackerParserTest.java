@@ -5,16 +5,23 @@ import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.VALID_LEVEL_EASY;
 import static gim.logic.parser.CliSyntax.PREFIX_CONFIRM;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.testutil.Assert.assertThrows;
+import static gim.testutil.TypicalExercises.SQUAT_LIGHT;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_LIST_FIRST_SECOND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import gim.logic.commands.PrCommand;
+import gim.logic.commands.SortCommand;
+import gim.model.exercise.Name;
 import org.junit.jupiter.api.Test;
 
 import gim.logic.commands.AddCommand;
@@ -89,6 +96,15 @@ public class ExerciseTrackerParserTest {
         GenerateCommand command = (GenerateCommand) parser.parseCommand(GenerateCommand.COMMAND_WORD + " "
                 + "1, 2 " + PREFIX_LEVEL + VALID_LEVEL_EASY);
         assertEquals(new GenerateCommand(INDEX_LIST_FIRST_SECOND, VALID_LEVEL_EASY), command);
+    }
+
+    @Test
+    public void parseCommand_pr() throws Exception {
+        Set<Name> nameSet = new HashSet<>();
+        nameSet.add(SQUAT_LIGHT.getName());
+        PrCommand command = (PrCommand) parser.parseCommand(PrCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + SQUAT_LIGHT.getName());
+        assertEquals(new PrCommand(nameSet), command);
     }
 
     @Test
