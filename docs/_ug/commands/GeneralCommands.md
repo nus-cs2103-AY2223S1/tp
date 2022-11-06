@@ -53,17 +53,19 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 > Clears all items and tags in FoodRem
 
-**Example Input:**
+**Example:**
 
-```text
-reset
-```
+{% capture notes %}
+**Assumptions:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-FoodRem has been reset!
-```
+_None_
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="reset"
+  commandOutputBox="images/generalCommands/commandOutputBox/reset.png"
+%}
 
 ---
 
