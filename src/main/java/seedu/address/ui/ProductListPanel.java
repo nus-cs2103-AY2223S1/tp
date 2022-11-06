@@ -8,14 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.product.Product;
 
 /**
  * Panel containing the list of products.
  */
-public class ProductListPanel extends UiPart<Region> {
+public class ProductListPanel extends ListPanel {
     private static final String FXML = "ProductListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ProductListPanel.class);
 
@@ -32,20 +31,9 @@ public class ProductListPanel extends UiPart<Region> {
         super(FXML);
         productListView.setItems(productList);
         productListView.setCellFactory(listView -> new ProductListViewCell());
-        numProducts.setText(numProductsString(productList));
+        numProducts.setText(numRecordsString(productList));
         productList.addListener((ListChangeListener<? super Product>)
-                c -> numProducts.setText(numProductsString(productList)));
-    }
-
-    /**
-     * Returns a string denoting the number of records for {@code Product} currently shown in the {@code productList}.
-     */
-    private String numProductsString(ObservableList<Product> productList) {
-        if (productList.size() == 1) {
-            return "1 record";
-        } else {
-            return productList.size() + " records";
-        }
+                c -> numProducts.setText(numRecordsString(productList)));
     }
 
     /**

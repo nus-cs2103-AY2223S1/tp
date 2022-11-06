@@ -96,6 +96,7 @@ public class ClientRebuilder {
      * Removes a {@code Product} to the {@code Set<Product>} of the {@code Client} that we are building.
      */
     public ClientRebuilder removeProduct(Product product) {
+        assert this.products.contains(product);
         this.products.remove(product);
         return this;
     }
@@ -121,6 +122,7 @@ public class ClientRebuilder {
      * Removes a {@code Meeting} to the {@code List<Meeting>} of the {@code Client} that we are building.
      */
     public ClientRebuilder removeMeeting(Meeting meeting) {
+        assert this.meetings.contains(meeting);
         this.meetings.remove(meeting);
         return this;
     }

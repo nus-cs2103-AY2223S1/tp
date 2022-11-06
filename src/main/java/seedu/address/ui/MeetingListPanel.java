@@ -8,14 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
 
 /**
  * Panel containing the list of meetings.
  */
-public class MeetingListPanel extends UiPart<Region> {
+public class MeetingListPanel extends ListPanel {
     private static final String FXML = "MeetingListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(MeetingListPanel.class);
 
@@ -32,20 +31,9 @@ public class MeetingListPanel extends UiPart<Region> {
         super(FXML);
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
-        numMeetings.setText(numMeetingsString(meetingList));
+        numMeetings.setText(numRecordsString(meetingList));
         meetingList.addListener((ListChangeListener<? super Meeting>)
-                c -> numMeetings.setText(numMeetingsString(meetingList)));
-    }
-
-    /**
-     * Returns a string denoting the number of records for {@code Meeting} currently shown in the {@code meetingList}.
-     */
-    private String numMeetingsString(ObservableList<Meeting> meetingList) {
-        if (meetingList.size() == 1) {
-            return "1 record";
-        } else {
-            return meetingList.size() + " records";
-        }
+                c -> numMeetings.setText(numRecordsString(meetingList)));
     }
 
     /**
