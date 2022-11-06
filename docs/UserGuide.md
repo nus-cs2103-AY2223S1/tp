@@ -13,7 +13,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already set PennyWise up? Jump right straight to the [features](#features) section to see what features are available!
+Already done with the set-up? Jump right straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
@@ -62,8 +62,8 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
 
 ## Purpose of Guide
 
-This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also provides
-experienced or returning users a mini refresher course on how to make the most out of PennyWise.
+This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as 
+a refresher for any experienced or returning users, allowing you to make the most out of PennyWise.
 
 ## How to use this User Guide
 
@@ -514,7 +514,7 @@ Danger zone! This command is irreversible- it is not possible to retrieve entrie
 
 ### Exiting the program
 
-You're done logging your expenses for the day. Let's exit the application.
+You're done logging your expenses and income for the day. Let's exit the application.
 
 Format: `exit` <br/>
 Exits the program.
