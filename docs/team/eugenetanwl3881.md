@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Refactoring done to project packages (PR [\#149](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/149))
-  * Team tasks: Creation of issues, completing some weekly team tasks, updating AboutUs (PR [\#241](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/241), [PR#22](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/22))
+  * Team tasks: Creation of issues, completing some weekly team tasks, updating AboutUs (PR [\#241](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/241), [[PR#22]])
 
 * **Testing**:
   * Wrote some tests for tag features (PRs [\#235](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/235))
@@ -43,19 +43,19 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * Added documentation for the commands `list`, `find`, `exit` ([PR#77](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/77))
-    * Add FAQ into UG ([PR#178](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/178))
-    * Add Command Summary Table ([PR#152](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/152))
-    * Updating sections and fixing bugs for UG ([PR#261](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/261), [PR#292](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/292), [PR#306](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/306), [PR#420](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/420) )
+    * Added documentation for the commands `list`, `find`, `exit` ([[PR#77]])
+    * Add FAQ into UG ([[PR#178]])
+    * Add Command Summary Table ([[PR#152]])
+    * Updating sections and fixing bugs for UG ([[PR#261]], [[PR#292]], [[PR#306]], [[PR#420]] )
     
   * Developer Guide:
-    * Added User Stories and Use Cases in DG ([PR#79](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/79), [PR#142](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/142))
-    * Added NFRs in DG ([PR#57](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/57))
-    * Added implementation details of the `newtag` and `tag` feature. ([PR#230](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/230), [PR#464](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/464))
-    * DG User Stories Table  ([PR#419](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/419))
-    * Added Instructions for Manual testing ([PR#505](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/505))
-    * Added Effort Section ([PR#503](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/503))
-    * Updating and fixing bugs in DG ([PR#36](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/36),[PR#278](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/278), [PR#281](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/281), [PR#287](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/287), [PR#319](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/319), [PR#334](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/334), [PR#419](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/419))
+    * Added User Stories and Use Cases in DG ([[PR#79]], [[PR#142]])
+    * Added NFRs in DG ([[PR#57]])
+    * Added implementation details of the `newtag` and `tag` feature. ([[PR#230]], [[PR#464]])
+    * DG User Stories Table  ([[PR#419]])
+    * Added Instructions for Manual testing ([[PR#505]])
+    * Added Effort Section ([[PR#503]])
+    * Updating and fixing bugs in DG ([[PR#36]],[[PR#278]], [[PR#281]], [[PR#287]], [[PR#319]], [[PR#334]], [[PR#419]])
 
 * **Community**:
   
