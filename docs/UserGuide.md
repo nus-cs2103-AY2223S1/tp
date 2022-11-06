@@ -214,17 +214,15 @@ to help you modify resident data within **RC4HDB**.
 Note:
 * **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
 * Two residents are considered duplicates of each other if any of the following are same:
-  * matriculation number
-  * phone number
-  * email
-  * room
+  * Matriculation number
+  * Phone number
+  * Email
+  * Room
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about resident commands it would be good to have a quick read about the **resident fields**, which will
-be used in the commands. The resident<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-resident-fields">here</a>
+be used in the commands. The resident <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-resident-fields">here</a>.
 </div>
-
-The resident [fields](#glossary-of-terms) can be found [here](#format-for-resident-fields).
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -243,8 +241,6 @@ A resident can have any number of tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with
   relevant personal and student information.
-
-
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/12345678 m/A3456789B g/F h/A` adds a resident named
   Betsy Crowe, with relevant personal and student information.
 
@@ -301,11 +297,11 @@ Examples:
 
 ### Deleting multiple residents : `remove`
 
-Deletes the specified resident from the RC4HDB database.
+Deletes residents whose fields match the input keywords.
 
-Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
-* A specifier is required in order for the command to work. If not it is an invalid command format
+* A specifier is required in order for the command to work. If not it is an invalid command format.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
@@ -316,7 +312,6 @@ Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 Examples:
 * `remove /all h/D g/M` deletes residents who are in Draco house, **and** are Male.
 * `remove /any h/D h/A` deletes residents belonging to either `Draco` **or** `Aquila` house.
-* `remove g/M` deletes residents who are male.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -350,25 +345,25 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a positive integer *i.e. `5-8` is valid and `-3-8` is invalid*
+* Both floor and unit number must be a positive integer but less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `31-1` is invalid*
 
 `g/GENDER`
 * `M` or `F`
-* Not case-sensitive *i.e. `m` and `f` is also valid*
+* Not case-sensitive *i.e. `m` and `f` are also valid*
 
 `h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
 * Must be either `A`, `D`, `L`, `N`, `U`
-* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
+* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**, `U` for **Ursa**
 * Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*
 
 `m/MATRIC_NUMBER`
-* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
+* Must be an `A`, followed by a **7**-digit non-negative integer and an alphabet. *i.e. `A0123456A`*
 * Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
 
 `t/TAG`
-* Can be used to add any other miscellaneous information, that the resident can be identified by
-* Can only contain alphanumeric characters
+* Can be used to add any other miscellaneous information that the resident can be identified by
+* Can only contain alphanumeric characters, whitespaces are not allowed
 * Optional. A resident can have any number of tags, including 0
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
@@ -389,15 +384,15 @@ these commands will allow you to focus only on the information you need!
 Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
 calling `list` will restore and display the full list of residents.
 
-Format:
-* `list` to display *all* residents from the database with *all* columns shown in the table.
-  Calling `list` on our sample data will produce the following result:
-  
+Format: `list`
 
-  ![list command](images/ug-photos/list_command.png)
+Calling `list` on our sample data will produce the following result:
+  
+![list command](images/ug-photos/list_command.png)
 
 Note:
 * Any input entered after the `list` command will be ignored.
+* Resets the columns in the table to the default view with *all* columns visible.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -546,9 +541,8 @@ Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
 * Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
+* Tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
@@ -570,6 +564,10 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Before proceeding to learn more about file commands it would be good to have a quick read about the **file command format** and **CSV files**, which will be used in the commands. They can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">here</a> and
+<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">here</a> respectively.
+</div>
 
 ---
 
@@ -592,6 +590,73 @@ To find out which **sub** data folder is currently open, look at the **footer**,
 RC4HDB saves your data after every command. There is no need to save manually.
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Creating a new data folder : `file create`
+
+Creates a new [**sub**](#finding-your-data) folder with the specified `FOLDER_NAME`, if such a folder does not exist. After creating a new folder, RC4HDB will then create **fresh** data file to store **venue** and **resident** data.
+
+Format: `file create FOLDER_NAME`
+* Does not create a new folder if the folder already exists.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+
+Examples:
+* `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Deleting an existing data folder : `file delete`
+
+Deletes a [**sub**](#finding-your-data) data folders.
+
+Format: `file delete FOLDER_NAME`
+* Does not delete the folder if it is currently open. You must switch to a different folder before deleting the previously open folder.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+
+
+Examples:
+* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Switching to a different data folder : `file switch`
+
+Switches between different [**sub**](#finding-your-data) data folders.
+
+Format: `file switch FOLDER_NAME`
+* Does not create a new folder if the specified folder does not exist.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+
+Examples:
+* `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Importing resident data from CSV file : `file import`
+
+Imports data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
+
+Format: `file import FILE_NAME`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The **FILE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a> and
+<a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">here</a> respectively.
+</div>
+
+Examples:
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -619,72 +684,7 @@ RC4HDB saves your data after every command. There is no need to save manually.
 
 ---
 
-### Creating a new data folder : `file create`
-
-Creates a new [**sub**](#finding-your-data) folder with the specified `FOLDER_NAME`, if such a folder does not exist. After creating a new folder, RC4HDB will then create **fresh** data file to store **venue** and **resident** data.
-
-Format: `file create FOLDER_NAME`
-* Does not create a new folder if the folder already exists.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Deleting an existing data folder : `file delete`
-
-RC4HDB provides users with the ability to delete their [**sub**](#finding-your-data) data folders when they no longer require them.
-
-Format: `file delete FOLDER_NAME`
-* Does not delete the folder if it is currently open. You may switch to a different folder before deleting the previously open folder.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Switching to a different data folder : `file switch`
-
-**RC4HDB** provides users with the ability to switch between different [**sub**](#finding-your-data) data folders.
-
-Format: `file switch FOLDER_NAME`
-* Does not create a new folder if the specified folder does not exist.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Importing resident data from CSV file : `file import`
-
-**RC4HDB** provides users with the ability to import data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
-
-Format: `file import FILE_NAME`
-
-:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
-
-Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
 ### CSV file format
-
-:information_source: All fields must adhere to this [format](#format-for-resident-fields).<br>
 
 Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
@@ -721,14 +721,10 @@ from another venue, the table will automatically switch to that venue's booking.
 Alternatively, you can use the `venue view VENUE_NAME` command to switch manually.
 </div>
 
----
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about venue commands, it would be good to have a quick read about the **venue fields**, which will
-be used in the commands.
+be used in the commands. The venue format <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms">fields</a> can be found <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">here</a>.
 </div>
-
-The venue fields can be found [here](#format-for-venue-fields).
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -739,6 +735,8 @@ The venue fields can be found [here](#format-for-venue-fields).
 Adds a venue to the database.
 
 Format: `venue add VENUE_NAME`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
 
 Examples:
 * `venue add Meeting Room 3`
@@ -754,6 +752,8 @@ Deletes a venue from the database.
 
 Format: `venue delete VENUE_NAME`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+
 Examples:
 * `venue delete Meeting Room`
 * `venue delete Hall`
@@ -768,6 +768,8 @@ Displays all bookings for the specified venue.
 
 Format: `venue view VENUE_NAME`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
+
 Examples:
 * `venue view Meeting Room`
 * `venue view Hall`
@@ -781,10 +783,11 @@ Examples:
 Adds a booking to the specified venue, at the given time period and day.
 
 Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
-
 * Adds a booking under the resident specified at `INDEX`, at the specified `VENUE_NAME`, `TIME_PERIOD` and `DAY`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
 
 Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE`
@@ -799,6 +802,8 @@ Examples:
 Deletes a booking from the specified venue, at the given time period and day.
 
 Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#format-for-venue-fields">format</a>. </div>
 
 Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE`
@@ -902,7 +907,7 @@ The file will be safe to remove from the `[JAR file location]/data` folder.
 
 Format: `file export FILE_NAME`
 
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The csv file will be exported in this format <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">format</a>. </div>
 
 Examples:
 * `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
