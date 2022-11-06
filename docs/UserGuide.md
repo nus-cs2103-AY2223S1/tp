@@ -68,6 +68,11 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 
 **RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
 
+As a potential **RC4HDB** user, you are expected to be:
+* A **RC4 housing management staff**
+* Experienced with administrative work
+* Comfortable using a keyboard
+
 Broadly, **RC4HDB** provides users with the ability to:
 * View and manage resident data
 * View and manage venues and any bookings
@@ -75,8 +80,8 @@ Broadly, **RC4HDB** provides users with the ability to:
 * Easily switch over to RC4HDB by importing old data from CSV files
 
 <div markdown="span" class="alert alert-info">
-If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
-workflow as a RC4 housing management staff member.
+RC4HDB is very simple, and beginner-friendly, and can be easily picked-up in a matter of days. Additionally, if you are a fast at typing, you will find yourselves comfortable while using
+RC4HDB. It can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff member.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -577,7 +582,7 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
-<div markdown="span" class="alert alert-info">:information source: All file commands operate in the [data directory]().
+<div markdown="span" class="alert alert-info">:information_source: All file commands operate in the [data directory]().
 </div>
 
 ---
@@ -710,7 +715,7 @@ Examples:
 
 Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
-* All fields are mandatory, apart from `TAGS`, where users to input a `NIL`, which is **not** case-sensitive.
+* All fields are mandatory, apart from `TAGS`, where users have to input a `NIL`, which is **not** case-sensitive.
 
 | NAME         | PHONE_NUMBER | EMAIL                   | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS                |
 |--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|
@@ -899,8 +904,8 @@ will not be saved!. </div>
 ## **Exiting the Program**
 
 You do not have to worry about exiting
-**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information,
-the [file management section](#saving-the-data).
+**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit
+the [file management section](#saving-your-data).
 
 ### Exiting the program : `exit`
 
@@ -937,6 +942,24 @@ Examples:
 
 ## **FAQ**
 
+**Q: I type very slowly, is RC4HDB any good for me?**
+
+**A**: You do not have to be fast at typing for RC4HDB to improve your workflow!
+
+**Q: I have accidentally deleted an entry, is there any way for me to undo it?**
+
+**A**: Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that
+in the near future!
+
+**Q: The text on the screen is too small, is there any way for me to resize it?**
+
+**A**: RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
+refer to this [link](https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b) for Windows, and this [link](https://www.wikihow.com/Change-the-Screen-Resolution-on-a-Mac) for Mac.
+
+**Q: Do I need an internet connection to be able to use RC4HDB?**
+
+**A**: You do not need an internet connection to use RC4HDB as everything is done on your device.
+
 **Q: Can I search using fields other than the name?**
 
 **A**: You can use the `filter` command to search for people using the other fields.
@@ -960,11 +983,15 @@ be present* in the current table. The error message mentioned above means that t
 *not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
 screen when typing these commands. 
 
-**Q:** How can I resize the columns in table?
+**Q: How can I resize the columns in table?**
 
 **A:** Column resizing can be done the same way as they do in Excel. However, we only allow the resizing of the `Name` and `Email` columns.
 They other have a fixed size to allow for your ease of viewing. Alternatively, you could also use the `showonly` and `hideonly` commands if you
 do not wish to see them.
+
+**Q: I can not find the information that I need in the User Guide, who can I contact?**
+
+**A:** You can drop us an email at *nseah21@gmail.com* .
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
