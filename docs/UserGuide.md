@@ -13,6 +13,10 @@ StudMap through a text box, and StudMap just does it for you — it’s like mag
 traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
 see. If you type fast, StudMap can get your student management tasks done faster than anything else.
 
+StudMap comes with powerful sort, filter, and mass operations features, as well as built-in attendance and participation
+tracking. If you are a TA for a computing [module](#module), StudMap is built just for you. This user guide aims to help
+you understand StudMap, so that you can make the best use of our features. Read on to find out more!
+
 ---
 
 * Table of Contents
