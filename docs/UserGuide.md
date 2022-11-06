@@ -9,24 +9,25 @@ Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-w1
 
 ## **About Swift+**
 
-Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily 
+Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily
 interactions with contacts. As a project lead, you can easily **record down your clients and teammates** by creating contacts
-using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed. 
+using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed.
 Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
 
-Perfect for SWE professionals, Swift+ is built around a **command line interface**, complete with an **autocomplete** feature. 
+Perfect for SWE professionals, Swift+ is built around a **command line interface**, complete with an **autocomplete** feature.
 If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
 
-This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and 
+This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and
 use its text-based commands. Get started now by heading over to [How to use this User Guide](#how-to-use-this-user-guide)!
 
 ---
 
 ## **Table of Contents**
+
 {:.no_toc}
 
 1. Table of Contents
-{:toc}
+   {:toc}
 
 ---
 
@@ -38,7 +39,7 @@ Throughout this website, you may find colored boxes that contain useful informat
 the type of information contained.
 
 | Icon                                                      | Meaning                                                      |
-|-----------------------------------------------------------|--------------------------------------------------------------|
+| --------------------------------------------------------- | ------------------------------------------------------------ |
 | ![Tip](images/user-guide/tip.png){:height="32px"}         | Tips to help you make the most out of Swift+.                |
 | ![Note](images/user-guide/note.png){:height="32px"}       | Information you should take note of while using Swift+.      |
 | ![Caution](images/user-guide/caution.png){:height="32px"} | Warnings that may corrupt your app and data if not followed. |
@@ -48,11 +49,12 @@ the type of information contained.
 If you have not installed Swift+, head over to the [Installation](#installation) section.
 
 After installing Swift+, you can refer to our [Getting Started](#getting-started) section on the basics of using Swift+. This includes the app's,
+
 - [Layout](#layout)
 - [Command format](#command-format)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-If you are using Swift+ for the first time, we **highly recommend** that you read through the [Getting Started](#getting-started) 
+If you are using Swift+ for the first time, we **highly recommend** that you read through the [Getting Started](#getting-started)
 section before the other sections.
 </div>
 
@@ -78,7 +80,7 @@ This section covers how to install and start using Swift+.
 
 3. Copy the file to an empty folder. This will be your home folder for Swift+.
 
-4. Double-click on the jar file to launch Swift+. 
+4. Double-click on the jar file to launch Swift+.
 
 Congratulations! You have successfully set up Swift+.
 
@@ -88,7 +90,7 @@ The app comes with sample contacts and tasks by default. To delete the sample da
 
 ### Layout
 
-After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle 
+After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle
 between the [Contact View](#contact-view) and the [Task View](#task-view).
 Let's take a look at the different components in Swift+ below.
 
@@ -102,7 +104,7 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 This table showcases the components shared by both Contact View and Task View.
 
 | Component Name        | Image                                                                    |
-|-----------------------|--------------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------------ |
 | **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                              |
 | **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)            |
 | **Search Results**    | ![Search Results](images/user-guide/search-results.png){:height="120px"} |
@@ -112,7 +114,7 @@ This table showcases the components shared by both Contact View and Task View.
 The contact view is primarily for viewing contacts. The main panel on the left displays a list of contacts and all of their details. The right sidebar contains a list of tasks with some essential details.
 
 | Component Name   | Image                                                                |
-|------------------|----------------------------------------------------------------------|
+| ---------------- | -------------------------------------------------------------------- |
 | **Contact List** | ![Contact List](images/user-guide/contact-list.png){:height="200px"} |
 | **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png){:height="150px"} |
 
@@ -121,24 +123,24 @@ The contact view is primarily for viewing contacts. The main panel on the left d
 The task view is primarily for viewing tasks. The main panel on the left displays a list of tasks and all of their details. The right sidebar contains a list of contacts with some essential details.
 
 | Component Name      | Image                                                                      |
-|---------------------|----------------------------------------------------------------------------|
+| ------------------- | -------------------------------------------------------------------------- |
 | **Task List**       | ![Task List](images/user-guide/task-list.png){:height="200px"}             |
 | **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png){:height="150px"} |
 
-### How to use Swift+ commands 
+### How to use Swift+ commands
 
-Swift+ is built around text-based commands. Before we dive deeper into the details in the [Commands](#commands) section, 
-let's learn the basic components and format of a command. 
+Swift+ is built around text-based commands. Before we dive deeper into the details in the [Commands](#commands) section,
+let's learn the basic components and format of a command.
 
 #### Flag
 
-A flag is a delimiter that allows Swift+ to distinguish different input fields. For each flag, you would put in the 
+A flag is a delimiter that allows Swift+ to distinguish different input fields. For each flag, you would put in the
 corresponding parameter immediately after.
 
 Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
 
 | Flag  | Corresponding Parameter |
-|-------|-------------------------|
+| ----- | ----------------------- |
 | `a/`  | `ADDRESS`               |
 | `c/`  | `CONTACT_INDEX`         |
 | `d/`  | `DESCRIPTION`           |
@@ -150,7 +152,7 @@ Refer to the [Command Format](#command-format) section on how to use flags and p
 
 #### Parameter
 
-A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag. 
+A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag.
 
 Each parameter has unique constraints, which restricts what you can type in for the parameter. Refer to the table below for details.
 
@@ -282,16 +284,18 @@ To understand how a full command is interpreted, let's look at the following exa
 **Example:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 |                    | Component Name | Meaning                                                 |
-|--------------------|----------------|---------------------------------------------------------|
+| ------------------ | -------------- | ------------------------------------------------------- |
 | **`add_contact`**  | Command Word   | Tells Swift+ what command you wish to execute.          |
 | **`n/`**           | Flag           | Distinguishes input fields.                             |
 | **`CONTACT_NAME`** | Parameter      | Represents placeholder for data that you wish to input. |
 
-Notice how `t/TAG` is wrapped in `[ ]`. Items in square brackets are **optional**. 
+Notice how `t/TAG` is wrapped in `[ ]`. Items in square brackets are **optional**.
+
 - For example, `n/CONTACT_NAME [t/TAG]` can be used as `n/John t/friend` or as `n/John`.
 
-Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be used **multiple times**, including 
-zero times. 
+Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be used **multiple times**, including
+zero times.
+
 - For example, `n/CONTACT_NAME [t/TAG]…​` can be used as `n/John` (i.e. 0 times), `n/John t/friend`, `n/John t/friend t/family`, and etc.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
@@ -355,7 +359,7 @@ A contact can have any number of tags (including 0)
 
 - `find_contact John` returns `john` and `John Doe`.
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
-    ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 #### Editing a contact: `edit_contact`
 
@@ -415,13 +419,13 @@ A contact can have any number of tags (including 0)
 
 #### Listing all tasks: `list_task`
 
-> Shows a list of all tasks. 
+> Shows a list of all tasks.
 
 **Format:** `list_task`
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Tasks are **sorted chronologically by deadline**. 
+- Tasks are **sorted chronologically by deadline**.
 - Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
 
 </div>
@@ -456,7 +460,7 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Edits the task at the specified `TASK_INDEX`. 
+- Edits the task at the specified `TASK_INDEX`.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
@@ -531,7 +535,7 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. 
+- Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`.
 - Existing assignments are not affected.
 
 </div>
@@ -549,7 +553,7 @@ A contact can have any number of tags (including 0)
 
 <div markdown="block" class="alert alert-info">:information_source: **Note**<br>
 
-- Removes the contact at the specified `CONTACT_INDEX` from the task at the specified `TASK_INDEX`. 
+- Removes the contact at the specified `CONTACT_INDEX` from the task at the specified `TASK_INDEX`.
 
 </div>
 
@@ -595,7 +599,7 @@ Alternatively, you can click on the **Help button** in the top toolbar.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 Alternatively, you can click on the **Exit button** in the top toolbar.
 </div>
- 
+
 ### Command suggestion and autocomplete
 
 To help you familiarize with the commands, Swift+ prompts you with command suggestions as you type and can autocomplete your commands until the next user-required input.
@@ -636,7 +640,7 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 ## **Command Summary**
 
 | Action             | Format                                                                                         |
-|--------------------|------------------------------------------------------------------------------------------------|
+| ------------------ | ---------------------------------------------------------------------------------------------- |
 | **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                        |
 | **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`                       |
 | **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                          |

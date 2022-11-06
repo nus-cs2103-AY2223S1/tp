@@ -280,7 +280,7 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 - **Alternative 2:** Stores `Person` and `Task` index in `PersonTaskBridge`.
     - Pros: No change is needed for `Person` and `Task` schema.
-    - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index. 
+    - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
 ### Find contacts/tasks
 
