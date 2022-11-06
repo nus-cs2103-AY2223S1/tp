@@ -121,37 +121,37 @@ public class DayTest {
     @Test
     public void getTextRepresentation_correctOutput() {
         modifyDayStub();
-        String expectedString = "Day 1" + System.lineSeparator() +
-                "    1. start at midnight" + System.lineSeparator() +
-                "        ★★★★★" + System.lineSeparator() +
-                "        Cost $100.00" + System.lineSeparator() +
-                "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 00:00 - 01:00" + System.lineSeparator() +
-                "    " + System.lineSeparator() +
-                "    2. start joined with previous item" + System.lineSeparator() +
-                "        ★★★★★" + System.lineSeparator() +
-                "        Cost $100.00" + System.lineSeparator() +
-                "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 01:00 - 02:00" + System.lineSeparator() +
-                "    " + System.lineSeparator() +
-                "    3. end joined with next item" + System.lineSeparator() +
-                "        ★★★★★" + System.lineSeparator() +
-                "        Cost $100.00" + System.lineSeparator() +
-                "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 11:00 - 12:00" + System.lineSeparator() +
-                "    " + System.lineSeparator() +
-                "    4. Airport" + System.lineSeparator() +
-                "        ★★★★★" + System.lineSeparator() +
-                "        Cost $100.00" + System.lineSeparator() +
-                "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 12:00 - 13:00" + System.lineSeparator() +
-                "    " + System.lineSeparator() +
-                "    5. end at midnight" + System.lineSeparator() +
-                "        ★★★★★" + System.lineSeparator() +
-                "        Cost $100.00" + System.lineSeparator() +
-                "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 23:00 - 00:00 (next day)" + System.lineSeparator() +
-                "    " + System.lineSeparator();
+        String expectedString = "Day 1" + System.lineSeparator()
+                + "    1. start at midnight" + System.lineSeparator()
+                + "        ★★★★★" + System.lineSeparator()
+                + "        Cost $100.00" + System.lineSeparator()
+                + "        Duration 60 mins" + System.lineSeparator()
+                + "        Time: 00:00 - 01:00" + System.lineSeparator()
+                + "    " + System.lineSeparator()
+                + "    2. start joined with previous item" + System.lineSeparator()
+                + "        ★★★★★" + System.lineSeparator()
+                + "        Cost $100.00" + System.lineSeparator()
+                + "        Duration 60 mins" + System.lineSeparator()
+                + "        Time: 01:00 - 02:00" + System.lineSeparator()
+                + "    " + System.lineSeparator()
+                + "    3. end joined with next item" + System.lineSeparator()
+                + "        ★★★★★" + System.lineSeparator()
+                + "        Cost $100.00" + System.lineSeparator()
+                + "        Duration 60 mins" + System.lineSeparator()
+                + "        Time: 11:00 - 12:00" + System.lineSeparator()
+                + "    " + System.lineSeparator()
+                + "    4. Airport" + System.lineSeparator()
+                + "        ★★★★★" + System.lineSeparator()
+                + "        Cost $100.00" + System.lineSeparator()
+                + "        Duration 60 mins" + System.lineSeparator()
+                + "        Time: 12:00 - 13:00" + System.lineSeparator()
+                + "    " + System.lineSeparator()
+                + "    5. end at midnight" + System.lineSeparator()
+                + "        ★★★★★" + System.lineSeparator()
+                + "        Cost $100.00" + System.lineSeparator()
+                + "        Duration 60 mins" + System.lineSeparator()
+                + "        Time: 23:00 - 00:00 (next day)" + System.lineSeparator()
+                + "    " + System.lineSeparator();
         String actualString = dayStub.getTextRepresentation();
         assertEquals(expectedString, actualString);
     }
