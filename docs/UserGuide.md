@@ -323,7 +323,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 * `BIRTHDAY` in the future are not acceptable.
-* `PRODUCT` must exists already. Reuse `pd\` prefix to add each product to the client.
+* `PRODUCT` must exists already. You can add multiple products to the client. Reuse `pd\` prefix to add each product to the client.
 * If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
@@ -340,6 +340,8 @@ Examples:
   * `addClient n/John Tan p/12345678 b/12122000`
 * Same as above, but with even more details
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
+* Same as above, but with multiple products
+  * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1 pd/Product2 pd/Product3`
 
 #### 7.1.2 List clients: `listClient`
 
@@ -426,7 +428,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
 * If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
-* Editing the client's products replaces all existing products with the products specified. Reuse `pd\` prefix to add each product to the edited client.
+* Editing the client's products replaces all existing products with the products specified. You can add multiple products to the client. Reuse `pd\` prefix to add each product to the edited client.
 
 Use case:
 1. A client changed his address! Update the client details instead of having to removing the old record and creating a new record.
@@ -438,6 +440,8 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
   * `editClient i/1 n/John Smith`
 * Add email 'johntan@insurec.com'
   * `editClient i/1 e/johntan@insurec.com`
+* Add multiple products
+  * `editClient i/1 pd/Product1 pd/Product2`
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 We are using `NAME` as a unique identifier because we have considered cases where parents will be using their contact details for their children. If you are stuck in a situation where both clients have the same name, you can add a few words to make them unique, for example John Tan NUS and John Tan SMU.
