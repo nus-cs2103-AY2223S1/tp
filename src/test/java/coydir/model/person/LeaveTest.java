@@ -1,10 +1,12 @@
 package coydir.model.person;
 
+import static coydir.model.person.Leave.FORMAT;
 import static coydir.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ public class LeaveTest {
     private Leave leave5 = new Leave("01-01-2022", "01-01-2023");
     private Leave leave6 = new Leave("01-01-2022", "31-12-2022");
     private Leave leave7 = new Leave("05-01-2022", "08-01-2022");
+    private Leave leave8 = new Leave(LocalDate.now().format(FORMAT), LocalDate.now().format(FORMAT));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -28,6 +31,18 @@ public class LeaveTest {
         String invalidStartDate = "";
         String invalidEndDate = "";
         assertThrows(DateTimeParseException.class, () -> new Leave(invalidStartDate, invalidEndDate));
+    }
+
+    @Test
+    public void test_isOnLeaveSuccess() {
+        assertTrue(leave8.isOnLeave());
+    }
+
+    @Test
+    public void test_isOnLeaveFail() {
+        assertFalse(leave1.isOnLeave());
+        assertFalse(leave2.isOnLeave());
+        assertFalse(leave3.isOnLeave());
     }
 
     @Test
@@ -104,5 +119,15 @@ public class LeaveTest {
         assertFalse(leave1.isOverlapping(leave3));
         assertFalse(leave3.isOverlapping(leave2));
         assertFalse(leave2.isOverlapping(leave3));
+    }
+
+    @Test
+    public void test_toString() {
+        assertEquals("2022-01-02 - 2022-01-05", leave1.toString());
+        assertEquals("2022-01-04 - 2022-01-08", leave2.toString());
+        assertEquals("2022-03-01 - 2022-03-31", leave3.toString());
+        assertEquals("2022-03-01 - 2022-04-01", leave4.toString());
+        assertEquals("2022-01-01 - 2022-12-31", leave6.toString());
+
     }
 }
