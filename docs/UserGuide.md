@@ -867,9 +867,11 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ArtBuddy home folder.
 
-**Q**: Why isn't my file path being recognised by ArtBuddy?
+**Q**: Why isn't my file path being recognised by ArtBuddy?  
 **A**: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
-So do check that the file path you specified starts with a '/'. If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
+So do check that the file path you specified starts with a '/'. Please also make sure that your specified file path does
+not fall under the limitations of file paths in ArtBuddy mentioned in the [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli).
+If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
 
 <div align="right">
 
