@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* The implementation of the status field was adapted from this [project's implementation of a similar feature.](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+* The implementation of the status field is adapted from this [project's implementation of a similar feature.](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+* The code for the removal of bullet points from the User Guide's table of content is reused from AY2021S1-CS2103T-W16-3's [PR #179](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff) and [PR #190.](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/190/commits/b91ca546a6a41a977a8dbf4d40c969ab07a49ad7)
 * HobbyList's User Guide is adapted from [AB-3's User Guide.](https://se-education.org/addressbook-level3/UserGuide.html)
 * HobbyList's Developer Guide is adapted from [AB-3's Developer Guide.](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
