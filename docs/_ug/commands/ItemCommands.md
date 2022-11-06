@@ -30,7 +30,7 @@ Example of an [Item](#item):
 {% capture notes %}
 **Assumption:**
 
-Initially, FoodRem does not contain an item with the name "Potato".
+FoodRem does not already contain an item with the name "Potato".
 {% endcapture %}
 {%
   include command-format.md
@@ -309,8 +309,6 @@ The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the i
 **Format**: `del INDEX`
 
 > Deletes the item at the specified index
-
-**Example Input:**
 
 **Example:**
 
