@@ -270,7 +270,7 @@ Examples:
 Copies all emails in the displayed student list onto the clipboard.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may want to use this command to email a student or groups of students who are performing poorly.
+You may want to use this command to email a student or a selected group of students (e.g. those with grade C).
 </div>
 
 Format: `extract emails`

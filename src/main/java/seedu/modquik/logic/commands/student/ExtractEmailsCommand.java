@@ -24,9 +24,11 @@ public class ExtractEmailsCommand extends Command {
             "Copied link to clipboard! Open it by pasting link in the address bar of a browser.";
 
     private static String generateUrl(Collection<Student> students) {
+        String webMailLink = "https://outlook.office.com/mail/deeplink/compose?to=";
+
         return students.stream()
                 .map(student -> student.getEmail().value)
-                .collect(Collectors.joining(",", "mailto:", ""));
+                .collect(Collectors.joining(",", webMailLink, ""));
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {

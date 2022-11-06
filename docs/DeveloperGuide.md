@@ -172,14 +172,16 @@ The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, 
 
 This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
 1. Use the `find` command to show a selected group of students of interest.
-2. Use the `extract emails` command to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link, which is copied to the clipboard
-3. Open mailto: link using a mail app, typically on the browser.
+2. Use the `extract emails` command to generate a [deep link](https://en.wikipedia.org/wiki/Deep_linking), which is copied to the clipboard
+3. When the deep link is opened in the browser, the user is redirected to NUS WebMail with a draft email and selected recipients.
 
 #### Current Implementation
 The following sequence diagram shows how the extract emails command works.
 
-
 ![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
+
+Note: An alternative is to use a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
+does not attach itself as a mailto: handler.
 
 ### \[Proposed\] Undo/redo feature
 
