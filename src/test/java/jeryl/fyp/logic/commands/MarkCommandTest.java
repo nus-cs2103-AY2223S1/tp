@@ -12,8 +12,6 @@ import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
-import jeryl.fyp.testutil.StudentBuilder;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.model.Model;
@@ -22,6 +20,8 @@ import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
+import jeryl.fyp.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -32,7 +32,7 @@ public class MarkCommandTest {
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
-    public void execute_validStudentIdToIP_success() {
+    public void execute_validStudentIdToIp_success() {
         ProjectStatus projectStatus = new ProjectStatus("IP");
         Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentToEdit)
@@ -49,7 +49,7 @@ public class MarkCommandTest {
     }
 
     @Test
-    public void execute_validStudentIdToYTS_success() {
+    public void execute_validStudentIdToYts_success() {
         ProjectStatus projectStatus = new ProjectStatus("YTS");
         Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentToEdit)
@@ -66,7 +66,7 @@ public class MarkCommandTest {
     }
 
     @Test
-    public void execute_validStudentIdToDONE_success() {
+    public void execute_validStudentIdToDone_success() {
         ProjectStatus projectStatus = new ProjectStatus("DONE");
         Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentToEdit)

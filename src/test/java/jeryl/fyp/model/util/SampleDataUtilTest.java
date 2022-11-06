@@ -1,8 +1,8 @@
 package jeryl.fyp.model.util;
 
-import org.junit.jupiter.api.Test;
-
 import static jeryl.fyp.model.util.SampleDataUtil.getSampleFypManager;
+
+import org.junit.jupiter.api.Test;
 
 public class SampleDataUtilTest {
 
