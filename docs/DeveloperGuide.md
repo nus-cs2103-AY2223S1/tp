@@ -1308,7 +1308,7 @@ More information on usage: [mail command](UserGuide.html#sending-an-email-to-a-c
 
 1. Sending an email to the email of the selected internship
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel.
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel.
 
     2. Test case: `mail`<br>
        Expected: The default mail app is launched with the email of the selected internship in the 
