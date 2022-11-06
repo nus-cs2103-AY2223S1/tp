@@ -44,7 +44,7 @@ deactivate Rc4hdbParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteResident(1)
 activate Model
 Model --> DeleteCommand
 deactivate Model

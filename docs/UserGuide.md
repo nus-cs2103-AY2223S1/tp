@@ -951,6 +951,11 @@ be present* in the current table. The error message mentioned above means that t
 *not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
 screen when typing these commands. 
 
+**Q:** How can I resize the columns in table?
+
+**A:** Column resizing can be done the same way as they do in Excel. However, we only allow the resizing of the `Name` and `Email` columns.
+They other have a fixed size to allow for your ease of viewing. Alternatively, you could also use the `showonly` and `hideonly` commands if you
+do not wish to see them.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 

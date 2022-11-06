@@ -10,7 +10,6 @@ title: Developer Guide
 ## **Table of Contents**
 
 * [**Introduction**](#introduction)
-* [**Acknowledgements**](#acknowledgements)
 * [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
@@ -20,10 +19,12 @@ title: Developer Guide
     * [Common classes](#common-classes)
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
-    * [Displaying results](#changes-in-displaying-results)
+    * [Displaying data](#displaying-data)
     * [Showing/hiding table columns](#manipulating-table-columns-using-showonly-and-hideonly)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
+    * [Command history](#command-history)
+* [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
@@ -36,6 +37,7 @@ title: Developer Guide
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
     * [Venue management](#venue-management)
+    * [Quality-of-life](#quality-of-life)
 
 ---
 
@@ -72,53 +74,29 @@ A good place to start off with would be to take a look at the [design](#design) 
 
 ---
 
-## **Acknowledgements**
-
-[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
-
-RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
-a starting point for Software Engineering (SE) students enrolled in CS2103T.
-
-### Credits for code adapted from external sources
-
-1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
-   * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
-   * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
-3. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
-
----
-
 ## **Design**
 
 RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind,
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
 This gives rise to the following main guiding principles for RC4HDB:
 
-**Maintainability**
+#### Maintainability
 
-This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/).
-`AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities
-implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we are to
-add additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component) , [**`Model`**](#model-component), [**`Storage`**](#storage-component).
+This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/). `AB3` was developed in a manner that facilitates easy modification of components. This design allows the functionalities implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, we have added additional classes to the major components which include [**`UI`**](#ui-component), [**`Logic`**](#logic-component), [**`Model`**](#model-component), [**`Storage`**](#storage-component).
 
-**Command Line Interface (CLI) Oriented**
+#### Command Line Interface (CLI) Oriented
 
-[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks
-using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
+[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
 
-<div markdown="span" class="alert alert-primary">
+#### Color coding of components
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
-the following colours.
+To make it easier for readers to identify the components each class belong to in our UML diagrams, we have color coded each of our main components, `Model`, `Logic`, `Storage`, and `UI` with the following colors .
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -139,12 +117,11 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -180,7 +157,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
@@ -190,16 +167,19 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-<img src="images/ParserClasses.png" width="600"/>
+
+![Parser class diagram](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `Rc4hdbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Rc4hdbParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
+* Note that not all `CommandParser` classes depend on `CliSyntax`, `ArgumentTokenizer`, `ArgumentMultimap` and `ParserUtil`. e.g. `FileCommandParser` and `VenueCommandParser`.
 
 ![Class structure of Command](images/CommandDiagram.png)
 
@@ -215,7 +195,6 @@ the abstraction of commands.
 
 ![UML diagram for Model component](./images/ModelClassDiagram.png)
 
-
 The `Model` component,
 
 * stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
@@ -230,14 +209,11 @@ The `Model` component,
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
-
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save resident book data, venue book data and user preference data in json format, and read them back into corresponding objects.
@@ -257,10 +233,21 @@ Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
+Here is a list of the details discussed:
+* [Resident class](#the-resident-class)
+* [Displaying data](#displaying-data)
+* [Show only/Hide only commands](#show-onlyhide-only-commands)
+* [Filter command](#filter-command)
+* [Multiple data files](#multiple-data-files)
+* [Command history](#command-history)
+* [Venue and booking]()
+
+---
+
 ### The Resident Class
+
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
-existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
-information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
 `Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
 we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
 housing management staff.
@@ -268,26 +255,20 @@ housing management staff.
 <br>
 
 #### Refactoring of Classes
-Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
-stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
-required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
-`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
-shows the updated Sequence diagram for the executing of our `delete` command.
-<img src="images/DeleteSequenceDiagram2.png" />
 
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the initial stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.
+
+---
 
 ### Displaying Data
 
-There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`.
-As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
-responsible for displaying the respective information.
+There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`. As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are responsible for displaying the respective information.
 
 #### Resident Information
 
-The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
-as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-##### Design considerations
+#### Design considerations
 
 Aspect: Display format
 
@@ -355,6 +336,8 @@ Weighing the pros and cons, we decided to opt for the Table as it was sufficient
 of any sizeable overhead.
 
 <br>
+
+---
 
 ### Manipulating table columns using `showonly` and `hideonly`
 
@@ -461,7 +444,9 @@ that the user did not have to re-specify columns that were already hidden.
 
 <br>
 
-### Filter feature to filter residents according to fields
+---
+
+### Filter command
 
 The previous AddressBook implementation only had a find command to search for specific residents according to the field.
 Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
@@ -525,6 +510,8 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 <br>
 
+---
+
 ### Multiple data files
 
 #### Background
@@ -579,23 +566,31 @@ Due to file switching requiring an update to not only `Storage`, but also `Model
 
 ### Command history
 
-`CommandHistory` allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
-As our implementation of `CommandHistory` only tracks past successfully executed commands, the `CommandHistory` does not have any
-dependencies to `Model` and `Storage`, but it does to `Logic`.
+The command history functionality allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
+The functionality consists of four classes, `CommandHistoryParser`, `CommandHistory`, `ForwardHistory` and `BackwardHistory`.
+
+The `CommandHistoryParser` determines the `KEY` that was pressed by the user, and propagates the action to be taken, down to either
+the `ForwardHistory` or `BackwardHistory` classes. 
+
+These two classes extend from `CommandHistory`, which internally holds two stacks. The stacks maintain the order of retrieval of commands by
+popping from one stack and pushing to the other. These actions are performed by the `ForwardHistory` and `BackwardHistory` classes as mentioned above.
 
 The class diagram of `CommandHistory` is as follows.
 
-![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram-0.png)
+![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram.png)
+
+While not mentioned in the diagram, the determination of a successful command is handled by the `Parsers` within the `Logic` component,
+and therefore has an implicit dependency on them. Furthermore, as the list of successful commands are tracked in the `Ui` component,
+and there is no need for the history to persist between instances, there is no dependency on the `Storage` component. There is also no
+dependency on `Model`, as the functionalities are independent of it.
 
 To illustrate how `CommandHistory` works, an activity diagram when using the `UP_ARROW_KEY` is provided below.
 
-![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram-0.png)
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
-Internally, the `CommandHistory` is implemented using two stacks, which pops and pushes the most recently browsed command
-between the two, thereby maintaining its ordering.
+The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
-
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature (To be removed)
 
 #### Proposed Implementation
 
@@ -678,6 +673,22 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+---
+
+## **Acknowledgements**
+
+[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides a starting point for Software Engineering (SE) students enrolled in CS2103T.
+
+### Credits for code adapted from external sources
+
+1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
+   * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
+   * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
+2. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
+3. `NoSelectionModel` was adapted from [this thread](https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse) on StackOverflow.
 
 ---
 
@@ -1200,6 +1211,11 @@ testers are expected to do more *exploratory* testing.
   * [Viewing a venue](#viewing-a-venue)
   * [Adding a booking](#adding-a-booking)
   * [Deleting a booking](#deleting-a-booking)
+* [**Quality-of-life**](#quality-of-life)
+  * [Command history](#browsing-recently-used-commands)
+  * [Opening help window](#getting-help)
+  * [Accessing command input box](#accessing-the-command-input-box)
+  * [Switching tabs](#switching-tabs))
 
 ---
 
@@ -1553,7 +1569,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Quality-of-life
 
-We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section before proceeding, as the following largely tests the functionality from that section.
+We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section before proceeding, as the following largely tests the functionality from that section.
 
 #### Browsing recently-used commands
 
@@ -1605,7 +1621,7 @@ We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section 
    2. Test case: Pressing `F3`<br>
       Expected: Command input box is in focus and ready for user command.
 
-#### Switching from tabs
+#### Switching tabs
 
 1. Switching between `Resident` and `Bookings` tab
 
