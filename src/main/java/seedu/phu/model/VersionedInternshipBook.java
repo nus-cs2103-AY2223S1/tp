@@ -8,9 +8,11 @@ import seedu.phu.model.internship.Internship;
 
 /**
  * {@code InternshipBook} that keeps track of its own history.
- * Reused from https://github.com/se-edu/addressbook-level4 with minor modifications
+ * Reused from
+ * https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/model/VersionedAddressBook.java
+ * with minor modifications.
  *
- * @@author se-edu
+ * @@author sugiyem-reused
  */
 public class VersionedInternshipBook extends InternshipBook {
 
