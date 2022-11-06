@@ -77,8 +77,14 @@ All my code contribution can be viewed here:
 - Added all hyperlinks across the whole user guide to improve navigability.
 
 #### Contributions to the DG
-
-
+- Updated the `Ui` component to reflect our changes and created a new UML Class Diagram for it.
+- Wrote the documentation for the `add`, `edit`, `delappt`, `consult` and `view` commands, 
+  as well as for the Patient Details Panel Clickability and Keyboard Shortcuts. Included for each command:
+  - Description of the purpose of the feature.
+  - Text description of how the feature work.
+  - UML Sequence Diagram to illustrate the flow of the feature.
+- Added user stories, use cases and manual testing for all the above-mentioned features.
+ 
 
 #### Contributions to team-based tasks
 
@@ -88,5 +94,5 @@ All my code contribution can be viewed here:
 
 #### Review/mentoring contributions
 
-- Reviewed multiple PRs for team members across the different SDLC versions.
+- Reviewed PRs for team members through the SDLC versions.
 - Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
