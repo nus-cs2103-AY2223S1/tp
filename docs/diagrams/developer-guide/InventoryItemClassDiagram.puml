@@ -10,6 +10,7 @@ Class ItemName
 Class Quantity
 Class "<<interface>>\nItem" as Item
 Class InventoryItem implements Item
+Class RecordedItem
 Class Quantity
 Class Description
 Class SellPrice
@@ -22,5 +23,7 @@ InventoryItem *---> "1" Description: described by >
 InventoryItem *--right> "1" SellPrice: sells for >
 InventoryItem *---> "1" CostPrice: costs >
 InventoryItem *---> "*" Tag : consists of >
+
+RecordedItem ..left|> Item
 
 @enduml
