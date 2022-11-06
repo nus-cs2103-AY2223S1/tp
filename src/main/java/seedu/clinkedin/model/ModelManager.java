@@ -237,6 +237,7 @@ public class ModelManager implements Model {
         List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
         sortedList.sort(comparator);
         addressBook.setPersons(sortedList);
+        commitAddressBook();
     }
 
     @Override
