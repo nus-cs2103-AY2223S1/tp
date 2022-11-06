@@ -1,11 +1,11 @@
 @startuml
 start
-:User executes sfind/ rfind command;
+:User executes sfind/rfind command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 if () then ([Command is Valid])
-    :FoodWhere finds the [Stalls/ Reviews] that matches the keywords;
+    :FoodWhere finds the [Stall/Review]s that matches the keywords;
 else ([else])
 endif
 stop
