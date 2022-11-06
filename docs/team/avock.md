@@ -1,5 +1,6 @@
 ---
-layout: page title: Kok Chun Khai's Project Portfolio Page
+layout: page 
+title: Kok Chun Khai's Project Portfolio Page
 ---
 
 ### Project: SoCompiler
