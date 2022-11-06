@@ -285,27 +285,22 @@ The command will produce a detailed view of this item.
 
 ```info
 * If no remark is provided, the current remark will be cleared.
-* If two or more `REMARKS` are provided, the last `REMARKS` will be taken.
+* If two or more `REMARKS` values are provided, only the last `REMARKS` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-rmk 1 r/For Party
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Remark Added:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: For Party
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="rmk 1 r/For party!"
+  commandOutputBox="images/itemCommands/commandOutputBox/rmk.png"
+%}
 
 ---
 
