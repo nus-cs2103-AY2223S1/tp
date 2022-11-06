@@ -426,36 +426,6 @@ Displays a list of archived tasks.
 
 Format: `showarchive`
 
-### Editing a task : `edit`
-
-Edits an existing task in the task list, at least one field needs to be edited. 
-
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
-
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
-* (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
-* (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:**<br>
-The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
-will be removed if no date or tag is given. 
-</div>
-
-Examples:
-* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
-
-![Example image of Edit Command](images/user-guide/EditCommandDemo.png)
-  
-### Clearing all entries : `clear`
-
-Clears all entries of tasks in the task list. 
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Terminates and exits the program.  
