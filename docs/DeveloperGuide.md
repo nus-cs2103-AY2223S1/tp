@@ -730,3 +730,46 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+Given that the effort for creating AddressBook3(AB3) is rated as a 10, our team believes that the effort required to 
+build TrackAScholar is estimated around 12.
+
+Over the span of 1 month, my group has spent tremendous amount of time and energy in refactoring and transforming
+AB3's model, such that it fulfils the criterion and standards needed by TrackAScholar.
+
+Moreover, this is supported by the fact that our code contributions are approximated around 9k lines of code(LoC), emphasizing 
+our commitment to improving the features and testability of TrackAScholar and improving the overall experience for our users.
+
+
+### Outstanding features
+* Add
+* Edit
+* Remove
+* Clear
+* Find
+* Filter
+* Sort
+* Import
+* Pin / Unpin
+
+
+### Notable design principles used
+* Utilised Test Driven Development
+  * Every time our team puts in either a new feature or a new field to TrackAScholar, 
+  we strive to write JUnit test cases alongside the new functional code added,
+  thus minimising the chances of obtaining bugs at a later stage, where it might be too
+  late or difficult to fix such bugs.
+  * Moreover, we also took turns testing each other's features at various milestones, 
+  thus allowing us to identify and amend bugs much earlier.
+  * After PED, my team start rectifying and filtering the respective bugs immediately,
+  thus mitigating the number of bugs in TrackAScholar.
+
+* Maintaining high code quality and standards
+  * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
+  and thus reducing the amount of code written. This is evident from `Command` and `Ui` interfaces etc.
+  * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
+  maintaining readability of our code. This is evident from the lack of long methods and nesting within TrackAScholar 
+  code base.
+  
