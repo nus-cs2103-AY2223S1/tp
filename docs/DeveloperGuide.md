@@ -296,7 +296,7 @@ regarding the description and deadline of a task.
 * `Task`: The task to be done.
 * `TaskDeadline`: The deadline of the task.
 * `TaskDescription`: The description of the task.
-* `TaskMark`: The status of the task.
+* `TaskMark`: The completion status of the task.
 
 ![img.png](images/TaskStructure.png)
 
@@ -319,6 +319,7 @@ The following sequence diagram shows how the `findTask` command will run through
 ![img.png](images/FindTaskDiagram.png)
 
 #### Design considerations:
+
 * We chose to find task by their `TaskDescription` as it is more specific and more significant information to for example,
 the `Deadline`.
 * Users can find their specific task if their keyword matches part of the `TaskDescription`.
