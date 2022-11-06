@@ -32,8 +32,10 @@ Given below are my contributions to the project.
     * Added documentation for the adding assignment feature  [\#193](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/193)
     * Rectify minor documentation issues identified by other users: [\#205](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/205)
     * Change language to suit GREWZ compared to original AB3 [\#40](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/40)
+    * Elaborate on example commands for clearer instructions [\#226](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/226)
   * Developer Guide:
-    * Added implementation of Upload Picture Command [\#122](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/122)
+    * Added implementation and use cases for Upload Picture Command [\#122](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/122)
+    * Update class diagrams to include new types of tasks
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/60), [\#81](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/81)
