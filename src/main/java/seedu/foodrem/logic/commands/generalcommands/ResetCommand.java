@@ -12,6 +12,10 @@ import seedu.foodrem.model.Model;
  * Resets FoodRem.
  */
 public class ResetCommand extends Command {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
@@ -19,6 +23,11 @@ public class ResetCommand extends Command {
         return CommandResult.from("FoodRem has been reset!");
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return RESET_COMMAND.getUsage();
     }

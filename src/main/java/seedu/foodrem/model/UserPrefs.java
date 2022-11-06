@@ -10,6 +10,7 @@ import seedu.foodrem.commons.core.GuiSettings;
 
 /**
  * Represents User's preferences.
+ * @author
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();

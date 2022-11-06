@@ -57,12 +57,18 @@ public class TypicalItems {
     private TypicalItems() {
     } // prevents instantiation
 
+    /**
+     * Returns a list of typical items.
+     */
     public static List<Item> getTypicalItems() {
         // WARNING: Ensure all items have a vegetable tag.
         // Failure to do so will break test cases.
         return new ArrayList<>(Arrays.asList(POTATOES, CUCUMBERS));
     }
 
+    /**
+     * Returns a list of typical items without tags.
+     */
     public static List<Item> getTypicalItemsWithoutTags() {
         return new ArrayList<>(Arrays.asList(POTATOES_WITHOUT_TAG, CUCUMBERS_WITHOUT_TAG));
     }
