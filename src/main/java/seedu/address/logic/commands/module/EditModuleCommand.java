@@ -111,10 +111,9 @@ public class EditModuleCommand extends Command {
         if (!editedModule.getCode().equals(this.moduleCode)) {
             changeStudentDetails(this.moduleCode, editedModule.getCode(), model);
         }
-
-        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule),
-                false, false, true,
-                false, false, false, false, false, false);
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule), false, false,
+                true, false, false, false, false,
+        false, false, false, false);
     }
 
     /**
@@ -132,7 +131,6 @@ public class EditModuleCommand extends Command {
         ModuleDescription updatedDescription = editModuleDescriptor
                 .getDescription().orElse(moduleToEdit.getDescription());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
-
         return new Module(updatedName, updatedCode, updatedDescription, updatedTags, originalSchedules);
     }
 

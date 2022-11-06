@@ -142,61 +142,170 @@ continue!
 | `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
 | `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `Module Coordinator`                                             |
 
-#### 4.2.2. Viewing list of modules: `mlist`
+#### 4.2.2. Adding a module: `madd`
 
-Shows a list of all modules in ProfNUS.
-You can click on each module to view more details about the module.
-
-![mlist](images/userguide/mlist.png)
-
-**Format:** `mlist`
-
-#### 4.2.3. Viewing more details of a module in the list of modules: `vtarget`
-
-You can also choose to use a CLI-command to get more information about a module in ProfNUS
-at your specified `INDEX`.
-More information such as name of the module and module description,
-as well as any tags given to the module will be displayed.
-
-**Format:** `vtarget INDEX`
-
-**Examples:** `vtarget 3`
-
-#### 4.2.4. Viewing module details: `mview`
-
-Shows a list of students and tutors in the module.
-
-![mlist](images/userguide/mview.png)
-
-**Format:** `mview c/MODULE_CODE`
-
-* Views the list of students and tutors at the specified `MODULE_CODE`.
-
-**Examples:**
-*  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
-
-#### 4.2.5. Adding a module: `madd`
-
-Adds a module to ProfNUS.
+You can use this command to add your desired module into ProfNUS.
 
 **Format:** `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A module can have any number of tags or modules(including 0)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
+- A module can have any number of tags(including 0).
+
 </div>
 
-**Examples:**
-* `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
-* `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
+**Example:**
 
-#### 4.2.6. Deleting a module: `mdel`
+Now, let's try using the `madd` command to add a module to ProfNUS!
 
-Deletes a module stored in ProfNUS.
+**Step 1**: Type the command `madd n/Communcation skills c/CS2101 d/Teach IT communication skills t/ModuleCoordinator`
+into the command box.
+
+![madd_step1](images/userguide/madd_step1.png)
+
+**Step 2**: Press enter, and the module will be added to ProfNUS!
+
+![madd_step2](images/userguide/madd_step2.png)
+
+#### 4.2.3. Editing a module: `medit`
+
+You can use this command to edit details of a module in ProfNUS!
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
+- Please make sure the module with `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
+
+</div>
+
+**Format:** `medit MODULE_CODE n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
+
+**Example:**
+
+Now, let's try to edit a module in ProfNUS!
+
+**Step 1**: Type the command `medit cs2103 c/cs2103t` in the command box.
+
+![medit_step1](images/userguide/medit_step1.png)
+
+**Step 2**: Press enter, and the module `CS2103` will be updated to the new module code `CS2103T`.
+
+![medit_step2](images/userguide/medit_step2.png)
+
+#### 4.2.4. Deleting a module: `mdel`
+
+You can use this command to delete a module stored already in ProfNUS.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the module with `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
+
+</div>
 
 **Format:** `mdel c/MODULE_CODE`
 
-**Examples:**
-* `mdel c/CS2103T`
+**Example:**
+
+Now, let's use `mdel` to delete a module in ProfNUS!
+
+**Step 1**: Type the command `mdel c/CS1101S` in the command box.
+
+![mdel_step1](images/userguide/mdel_step1.png)
+
+**Step 2**: Press enter, and the module will be deleted from ProfNUS!
+
+![mdel_step2](images/userguide/mdel_step2.png)
+
+#### 4.2.5. Viewing module details: `mview`
+
+You can use this command to view a list of students and tutors in the module.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the module with `MODULE_CODE` exists in ProfNUS before you run this command! Otherwise, ProfNUS will consider the command to be invalid.
+
+</div>
+
+**Format:** `mview c/MODULE_CODE`
+
+**Example:**
+
+Now, let's use the `mview` command to view all the students and tutors in a module.
+
+**Step 1**: Type the command `mview c/cs1101s` in the command box.
+
+![mview_step1](images/userguide/mview_step1.png)
+
+**Step 2**: Press enter, and you will be able to see the list of students and teaching assistants for that module now!
+![mview](images/userguide/mview.png)
+
+#### 4.2.6. Viewing more details of a module in the list of modules: `vtarget`
+
+You can use this command to get more information about a module in ProfNUS.
+
+You will be able to see more information, such as the name of the module and the module description,
+as well as any tags given to the module upon using this command!
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters
+- View more specific information about a module at your specified index.
+- The index refers to the index number shown in the displayed module list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
+  Otherwise, **no** information about a module will be display by ProfNUS.
+
+</div>
+
+**Format:** `vtarget INDEX`
+
+**Example:**
+
+Now, let's use the `vtarget` command to see how you can view more information about a module.
+
+**Step 1**: Type the command `vtarget 1` in the command box.
+![vtarget_step1](images/userguide/vtarget_step1.png)
+
+**Step 2**: Press enter, and you will be able to see more information about a module now!
+![vtarget_step2](images/userguide/vtarget_step2.png)
+
+#### 4.2.7. Viewing list of modules: `mlist`
+
+You can use this command to view the list of all modules that you have added into ProfNUS!
+
+**Format:** `mlist`
+
+**Example:**
+
+Now, let's use `mlist` to see all the modules stored in ProfNUS!
+
+**Step 1**: Type `mlist` in the command box.
+
+![mlist_step1](images/userguide/mlist_step1.png)
+
+**Step 2**: Press enter, and all the modules stored in ProfNUS is displayed!
+
+![mlist](images/userguide/mlist_step2.png)
+
 
 
 ### 4.3. Student Manager
@@ -700,13 +809,14 @@ _Details coming soon ..._
 
 ### 6.2 Module Manager Command Summary
 
-| Action                                                                                                       | Format                                                             | Example                                                                              |
-|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| [List all modules](#422-viewing-list-of-modules-mlist)                                                       | `mlist`                                                            | `mlist`                                                                              |
-| [View more information about a module](#423-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                    | `vtarget 3`                                                                          |
-| [View more information about a module](#424-viewing-module-details-mview)                                    | `mview c/MODULE_CODE`                                              | `mview c/CS1101S`                                                                    |
-| [Add a module](#425-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
-| [Delete a module](#426-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                               | `mdel c/CS1101S`                                                                     |
+| Action                                                                                                       | Format                                                                         | Example                                                                              |
+|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| [Add a module](#422-adding-a-module-madd)                                                                    | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`              | `madd n/Computer Organisation c/CS2100 d/Teaches you more on computer hardware t/Y2` |
+| [Editing a module](#423-editing-a-module-medit)                                                              | `medit MODULE_CODE n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​` | `medit cs2100 n/Database systems c/cs2102 d/SQL t/important`                         |
+| [Delete a module](#424-deleting-a-module-mdel)                                                               | `mdel c/MODULE_CODE`                                                           | `mdel c/CS1101S`                                                                     |
+| [View students and teaching assistants of a module](#425-viewing-module-details-mview)                       | `mview c/MODULE_CODE`                                                          | `mview c/CS1101S`                                                                    |
+| [View more information about a module](#426-viewing-more-details-of-a-module-in-the-list-of-modules-vtarget) | `vtarget INDEX`                                                                | `vtarget 3`                                                                          |
+| [List all modules](#427-viewing-list-of-modules-mlist)                                                       | `mlist`                                                                        | `mlist`                                                                              |                                                                                                             | `madd n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`              |                                                                                      |
 
 ### 6.3 Student Manager Command Summary
 
