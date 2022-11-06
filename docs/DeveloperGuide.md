@@ -243,8 +243,12 @@ It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableO
 
 <div style="page-break-after: always;"></div>
 
+**Execution**
+
 When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
 an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
+
+**Example Usage**
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
@@ -293,6 +297,8 @@ The following sequence diagram shows how the sort command is executed.
 
 <div style="page-break-after: always;"></div>
 
+**Execution**
+
 When the command `:range start/START_DATE end/END_DATE` or `:range last/NUMBER_OF_DAYS` is entered, the `Ui` sends 
 the command to `Logic`. `LogicManager` parses and identifies the `:range` command that was entered, and creates an instance of it.
 
@@ -305,6 +311,8 @@ end date (inclusive), arranged from the most recent first. If two exercise entri
 they will be sorted in alphabetical order.
 
 `Model` will have the list sorted and the sorted list will be displayed by `Ui`.
+
+**Example Usage**
 
 Given below is an example usage scenario and how the date range view mechanism behaves at each step.
 
@@ -355,6 +363,8 @@ The user can also choose to view personal records for ALL exercises with the 'al
 
 <div style="page-break-after: always;"></div>
 
+**Example Usage**
+
 Given below is an example usage scenario for how the mechanism for listing Exercise personal record(s) behaves at each step.
 
 Step 1. The user launches the application and already has 4 Exercise instances, with two unique Exercises (Squat and Deadlift), in the exercise tracker.
@@ -398,6 +408,8 @@ It implements the following operations:
 Cases such as where the index from the user input is out of bounds, are handled by the methods.
 
 <div style="page-break-after: always;"></div>
+
+**Example Usage**
 
 Given below is an example usage scenario for how the mechanism for generating a workout routine behaves at each step.
 
