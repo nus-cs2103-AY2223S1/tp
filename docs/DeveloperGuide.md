@@ -1204,7 +1204,7 @@ More information on usage: [edit command](UserGuide.html#editing-an-internship-a
 
 1. Editing a selected internship.
 
-    1. Prerequisites: An internship application is selected and displayed on the right panel. The selected internship
+    1. Prerequisites: An internship application is selected using the `select` command and displayed on the right panel. The selected internship
     has `POSITION` as `Software Engineer` and has only `Urgent` tag.
 
     2. Test case: `edit p/Data Analyst`<br>
