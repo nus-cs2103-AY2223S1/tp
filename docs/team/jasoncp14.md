@@ -11,8 +11,7 @@ created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**:
-  * Added a feature to import applicants from an external JSON file. (PR[#137](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/137))
+* **New Feature**: Added a feature to import applicants from an external JSON file. (PR[#137](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/137))
   * What it does: allows the user to append their current list with applicants from an external JSON file without the
     need to input them into the command line one by one.
   * Justification: This feature improves the product significantly because a user may need mass add applicants in a
@@ -32,18 +31,16 @@ Given below are my contributions to the project.
   * Frequently committed and pushed updates to Github
   * Organize issues and user stories inside the Project board
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: 
   * Refined the add single applicant feature (PR[#113](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/113))
-  * What it does: Now, instead of showing the details of added applicant inside the message bar, they are shown in the
-    right panel instead,
-  * Justification: This will give a clearer view for users to see the applicant that they just entered, instead of
-    having it all in 1 sentence.
-  * Highlights: The hardest part of this was incorporating the new `updateViewedPersonList` into the `addCommand`
-
-* **Enhancements to existing features**:
+    * What it does: Now, instead of showing the details of added applicant inside the message bar, they are shown in the
+      right panel instead,
+    * Justification: This will give a clearer view for users to see the applicant that they just entered, instead of
+      having it all in 1 sentence.
+    * Highlights: The hardest part of this was incorporating the new `updateViewedPersonList` into the `addCommand`
   * Changed the definition of `isSamePerson` to be of same `email` and `jobID` (PR[#156](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/156))
 
-* **Enhancements to existing features**:
+* **New Fields Added**: 
   * Added `university` field (PR[#99](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/99))
 
 * **Documentation**:

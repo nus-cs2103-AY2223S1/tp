@@ -646,6 +646,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**Use case: Find an applicant**
+
+**MSS**
+
+1. User requests to find all applicants with matching keywords in its specified fields
+2. InternConnect lists all applicants who match the request
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. No applicants will be found.
+
+      Use case ends.
+
+* 1b. Input syntax is invalid, no valid specifiers are found, or any specifier value is invalid.
+
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
+
+
 **Use case: Import applicants from an external JSON file**
 
 **MSS**
@@ -666,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
-    * 1b1. InternConnect shows an error message.
+    * 1b1. InternConnect shows an error message and creates a template file.
 
       Use case ends.
 
@@ -726,28 +749,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. InternConnect shows a pop-up window with the link to the User Guide
 
     Use case ends.
-
-**Use case: Find an applicant**
-
-**MSS**
-
-1. User requests to find all applicants with matching keywords in its specified fields
-2. InternConnect lists all applicants who match the request
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. No applicants will be found.
-
-    Use case ends.
-
-* 1b. Input syntax is invalid, no valid specifiers are found, or any specifier value is invalid.
-
-    * 1b1. InternConnect shows an error message.
-
-      Use case ends.
 
 
 ### 6.4 Non-Functional Requirements
