@@ -275,6 +275,9 @@ Finds suppliers based on name or item
 
 `find i/ITEMVALUE` (supplier item)
 
+**Note:** Multiple keywords can be used for find feature.
+
+
 ### 4.6.2 Examples
 
 * Find suppliers with name John Cena
@@ -285,6 +288,9 @@ Finds suppliers based on name or item
 
 > `find i/Egg`
 
+* Find suppliers who supply Chickens and Eggs
+
+> `find i/Chicken Egg`
 
 ## 4.7 Increment / Decrement current stock in your inventory
 
@@ -420,7 +426,7 @@ re-run Salesy.
 | **add**  (supplier)          | `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`   | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
 | **delete** (supplier)        | `delete <supplier index>`                                | `delete 1`                                                                         |
 | **edit**  (supplier)         | `edit <supplier index> <attribute name>/ <new value>`    | `edit 3 pr/#1.70`                                                                  |
-| **find**  (supplier)         | `find n/NAMEVALUE` <br>  `find i/ITEMVALUE`              | `find n/John Cena` <br> `find i/Egg`                                               |
+| **find**  (supplier)         | `find n/NAMEVALUE` <br>  `find i/ITEMVALUE`              | `find n/John Cena` <br> `find i/Egg` <br> `find i/Chicken Egg`                     |
 | **list** (task)              | `listTasks`                                              | `listTasks`                                                                        |
 | **add** (task)               | `addTask d/DETAILS dl/DEADLINE [t/TAG]`                  | `addTask d/Restock Eggs dl/2022-12-12 t/Urgent`                                    |
 | **delete** (task)            | `deleteTask <task index>`                                | `deleteTask 1`                                                                     |
