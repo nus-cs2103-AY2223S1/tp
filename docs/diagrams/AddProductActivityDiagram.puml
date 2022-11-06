@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs command;
+if () then ([else])
+  :Adds the product
+  into the product list;
+else ([Product exists])
+  :Throws error;
+endif
+
+stop
+
+@enduml

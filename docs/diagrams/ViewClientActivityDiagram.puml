@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs command;
+if () then ([Valid Index])
+  :Get the client's details
+  at the specified index;
+else ([else])
+  :Throws error;
+endif
+
+stop
+
+@enduml
