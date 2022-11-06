@@ -491,7 +491,10 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 ### Use cases
 
+
 (For all use cases below, the **System** is `LongTimeNoSee (LTNS)` and the **Actor** is the `user`, unless specified otherwise)
+
+**General Use Cases**
 
 **Use case 1: Help**
 
@@ -502,6 +505,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 3. LTNS displays a help message
 
    Use case ends
+
+
+**Client related Use Cases**
 
 **Use Case 2: Add client**
 
@@ -529,10 +535,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 **MSS**
 
 1. User loads the application
-2. User clicks on a specific client from the list view
-3. User can update information specific to his client (i.e: Birthday / Events/ Notes etc.)
-4. User switches to his default view
-5. LTNS shows a list of clients stored in the database
+2. User requests to view a list of all currently filtered clients 
+3. LTNS displays a list of currently filtered clients
 
    Use case ends.
 
@@ -623,9 +627,74 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
+**Policy related Use Cases**
+
+**Use Case 10: Add Policy** 
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add a policy
+3. User tags on the details he would like to specify
+4. LTNS switches to the default policy view automatically
+5. LTNS adds the latest policy to the list policy view
+
+    Use Case ends
+
+**Extensions**
+
+* 3a. User attempts to add a Policy which already exists 
+  * 3a1. LTNS displays en error message.
+  
+    Use Case resumes at Step 2
 
 
-**Use Case (X): Add Event**
+**Use Case 11: Assign Policy**
+
+**MSS**
+1. Use loads the application
+2. User inputs the command to assign a existing policy to an existing client
+3. User tags on the details he would like to specify 
+4. LTNS switches to the default client view automatically 
+5. LTNS assigns the specified policy to the specified client
+    
+    Use Case ends
+
+**Extensions**
+* 3a. User inputs an invalid index when specifying the policy 
+    * 3a.1 LTNS displays an error message.
+      
+        Use Case resumes at Step 2
+
+
+
+* 3b. User inputs an invalid index when specifying the client
+    * 3b.1 LTNS displays an error message.
+
+      Use Case resumes at Step 2
+
+
+**Use Case 12: List Policies**
+
+**MSS**
+
+1. User requests to list all policies
+2. LTNS displays a list of all policies
+
+   Use case ends
+
+**Use case 13: View Policies**
+
+**MSS**
+
+1. User requests to view a list of all currently filtered policies
+2. LTNS displays a list of currently filtered policies
+
+   Use case ends.
+
+**Event related Use Cases**
+
+**Use Case 13: Add Event**
 
 **MSS**
 
@@ -644,6 +713,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
   * 4a1. LTNS displays an error message 
 
     Use Case resumes at Step 3.
+  
+
 
 * 4b. The event specifies a client that doesn't exist in LTNS 
     * 4b1. LTNS displays an error message
@@ -651,15 +722,16 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     Use Case resumes at Step 3.
 
 
-**Use case (X): Delete an event**
+**Use case 14: Delete an event**
 
 **MSS**
 
-1. User requests to <u>list events(UC (X))</u>
+1. User requests to <u>list events(UC 15)</u>
 2. User requests to delete a specific event in the list
 3. LTNS deletes the event
 
    Use case ends
+
 
 **Extensions**
 
@@ -667,13 +739,14 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use Case ends.
 
+
 * 3a. The given index is invalid.
 
     * 3a1. LTNS shows an error message.
 
       Use Case resumes at step 2.
 
-**Use case (X): List clients**
+**Use case 15: List Events**
 
 **MSS**
 
@@ -682,11 +755,17 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    Use Case ends
 
-**Use case (X): View clients**
+**Use case 16: View Events**
 
 **MSS**
 
-**Use case (X): View Calendar**
+1. User requests to view currently filtered events 
+2. LTNS displays a list of all currently filtered events.
+
+    Use Case ends
+
+
+**Use case 17: View Calendar**
 
 **MSS**
 
