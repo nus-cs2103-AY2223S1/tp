@@ -1,6 +1,14 @@
 package jeryl.fyp.logic.commands;
 
-import static jeryl.fyp.logic.parser.CliSyntax.*;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_DATETIME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_RANK;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,6 +46,7 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_NAME_IP = "IP submission";
     public static final String VALID_DEADLINE_DATETIME_TP = "15-11-2023 23:59";
     public static final String VALID_DEADLINE_DATETIME_IP = "11-11-2023 16:00";
+    public static final Integer VALID_DEADLINE_RANK = 1;
 
     public static final String STUDENT_NAME_DESC_AMY = " " + PREFIX_STUDENT_NAME + VALID_STUDENT_NAME_AMY;
     public static final String STUDENT_NAME_DESC_BOB = " " + PREFIX_STUDENT_NAME + VALID_STUDENT_NAME_BOB;
@@ -56,6 +65,7 @@ public class CommandTestUtil {
     public static final String DEADLINE_NAME_DESC_IP = " " + PREFIX_DEADLINE_NAME + VALID_DEADLINE_NAME_IP;
     public static final String DEADLINE_DATETIME_DESC_TP = " " + PREFIX_DEADLINE_DATETIME + VALID_DEADLINE_DATETIME_TP;
     public static final String DEADLINE_DATETIME_DESC_IP = " " + PREFIX_DEADLINE_DATETIME + VALID_DEADLINE_DATETIME_IP;
+    public static final String DEADLINE_RANK_DESC = " " + PREFIX_DEADLINE_RANK + VALID_DEADLINE_RANK;
     public static final String INVALID_STUDENT_NAME_DESC = " "
             + PREFIX_STUDENT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENT_ID + "a"; // 'a' invalidates student ID
@@ -66,6 +76,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DEADLINE_NAME_DESC = " " + PREFIX_DEADLINE_NAME + "* Invalid Task*";
     public static final String INVALID_DEADLINE_DATETIME_DESC = " " + PREFIX_DEADLINE_DATETIME + "15-11-202323:59";
+    public static final String INVALID_DEADLINE_RANK_DESC = " " + PREFIX_DEADLINE_RANK + "1.1";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

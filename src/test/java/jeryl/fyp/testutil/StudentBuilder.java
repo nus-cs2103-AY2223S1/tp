@@ -6,7 +6,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -91,7 +98,7 @@ public class StudentBuilder {
      * @return StudentBuilder with deadlines.
      */
     public StudentBuilder withDeadlines(List<Deadline> deadlines) {
-        deadlines.stream().forEach(ddl -> this.deadlineList.add(ddl));
+        deadlines.forEach(ddl -> this.deadlineList.add(ddl));
         return this;
     }
 
@@ -130,7 +137,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(studentName, id, email, projectName, projectStatus, tags);
+        return new Student(studentName, id, email, projectName, projectStatus, deadlineList, tags);
     }
 
 }
