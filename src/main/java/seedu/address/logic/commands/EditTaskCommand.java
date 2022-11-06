@@ -106,7 +106,7 @@ public class EditTaskCommand extends Command {
 
     /**
      * Checks that the values entered in edited with {@code editTaskDescriptor} are not the same as the one
-     * in the person to Edit
+     * in the task to Edit
      */
     private static boolean checkNewValues(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         boolean uniqueName = editTaskDescriptor.getName().isEmpty()
@@ -177,8 +177,8 @@ public class EditTaskCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         // Identity fields
@@ -197,7 +197,6 @@ public class EditTaskCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
             setName(toCopy.name);
