@@ -10,7 +10,7 @@ else ([else])
     if () then ([Some input fields \nare not changed])
         :Throw CommandException;
     else ([else])
-        :Task is \nupdated;
+        :Update task;
     endif
 
 endif
