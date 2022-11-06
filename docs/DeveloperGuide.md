@@ -469,8 +469,8 @@ a find tasks command through the command word and the feature type, which then c
 
 Step 4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
 tests if the task description matches the keyword.
-Then it will create  `FindTasksCommand` object that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
-and return to `LogicManager` object.
+Then it will create and return  `FindTasksCommand` object,that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
+ to `LogicManager` object.
 
 Step 5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
 `FindTasksCommand#execute()` will call `Model#updateFilteredTaskList` to update the filtered task list
@@ -671,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS** 
 1. NUS student requests to find tasks whose description matches the keyword inputted partially or fully.  
-2. MODPRO show the list of tasks whose description matches the keyword partially or fully, and display a message to state how many tasks(that match the keyword) are listed. 
+2. MODPRO show the list of tasks whose description matches the keyword partially or fully, and display a message to state the number of tasks(which match the keyword) that are listed. 
 
    Use case ends. 
 
@@ -687,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. NUS student requests to find modules whose module code matches the keyword inputted partially or fully.
-2. MODPRO show the list of modules whose module code matches the keyword partially or fully, display a message to state how many modules(that match the keyword) are listed.
+2. MODPRO show the list of modules whose module code matches the keyword partially or fully, display a message to state the number of modules(that match the keyword) that are listed.
 
    Use case ends.
 
