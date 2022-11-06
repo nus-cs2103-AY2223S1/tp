@@ -16,8 +16,8 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
- * Wraps all data at the TA-Assist level
- * Duplicates are not allowed (by .isSameStudent comparison)
+ * Wraps all data at the TA-Assist level.
+ * Duplicates are not allowed (by .isSameStudent comparison).
  */
 public class TaAssist implements ReadOnlyTaAssist {
 
@@ -39,7 +39,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     public TaAssist() {}
 
     /**
-     * Creates an TaAssist using the Students in the {@code toBeCopied}
+     * Creates an TaAssist using the Students in the {@code toBeCopied}.
      */
     public TaAssist(ReadOnlyTaAssist toBeCopied) {
         this();
@@ -77,7 +77,10 @@ public class TaAssist implements ReadOnlyTaAssist {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in TA-Assist.
+     * Checks if a student with the same identity as {@code student} exists in TA-Assist.
+     *
+     * @param student Student to check for its existence
+     * @return True if a student with the same identity as {@code student} exists in TA-Assist.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -85,8 +88,9 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Adds a student to TA-Assist.
-     * The student must not already exist in TA-Assist.
+     * Adds the given student. {@code student} must not already exist in TA-Assist.
+     *
+     * @param student Student to add.
      */
     public void addStudent(Student student) {
         requireNonNull(student);
@@ -94,10 +98,12 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in TA-Assist.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the address
-     * book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in TA-Assist.
+     *
+     * @param target Student to replace.
+     * @param editedStudent Student to replace {@code target} with.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
@@ -105,8 +111,9 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Removes {@code student} from this {@code TaAssist}.
-     * {@code student} must exist in TA-Assist.
+     * Removes the given student. The student must exist in TA-Assist.
+     *
+     * @param student Student to remove.
      */
     public void removeStudent(Student student) {
         requireNonNull(student);
@@ -116,7 +123,10 @@ public class TaAssist implements ReadOnlyTaAssist {
     //// class-level operations
 
     /**
-     * Returns true if a class with the same identity as {@code moduleClass} exists in TA-Assist.
+     * Checks if a module class with the same identity as {@code moduleClass} exists in TA-Assist.
+     *
+     * @param moduleClass ModuleClass object to check for its existence.
+     * @return True if a module class with the same identity as {@code moduleClass} exists in TA-Assist.
      */
     public boolean hasModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -124,8 +134,9 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Adds a class to TA-Assist.
-     * The class must not already exist in TA-Assist.
+     * Adds the given module class. {@code moduleClass} must not already exist in TA-Assist.
+     *
+     * @param moduleClass Module class to add.
      */
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -137,7 +148,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     /**
      * Replaces the module class {@code target} in the list with {@code editedModuleClass}.
      * {@code target} must exist in the list.
-     * The identity of {@code editedModuleClass} must not be the same as another existing module class in the app.
+     * The identity of {@code editedModuleClass} must not be the same as another existing module class in the TaAssist.
      */
     public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
         requireAllNonNull(target, editedModuleClass);
@@ -146,6 +157,9 @@ public class TaAssist implements ReadOnlyTaAssist {
 
     /**
      * Finds and returns a module class with equivalent identity to {@code target}.
+     *
+     * @param target Module class to find.
+     * @return Module class with equivalent identity to {@code target}.
      */
     public Optional<ModuleClass> findModuleClass(ModuleClass target) {
         requireNonNull(target);
@@ -155,6 +169,8 @@ public class TaAssist implements ReadOnlyTaAssist {
     /**
      * Removes {@code moduleClass} from this {@code TaAssist} and unassigns all students in the class.
      * The {@code moduleClass} must exist in TA-Assist.
+     *
+     * @param moduleClass Module class to remove.
      */
     public void removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -175,7 +191,11 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Adds the {@code sessions} to the {@code moduleClass}.
+     * Adds the specified {@code sessions} to the specified {@code moduleClass}.
+     *
+     * @param moduleClass Module class to add {@code sessions} to.
+     * @param sessions Sessions to add.
+     * @return New ModuleClass object with all existing sessions plus {@code sessions}.
      */
     public ModuleClass addSessions(ModuleClass moduleClass, Set<Session> sessions) {
         requireAllNonNull(moduleClass, sessions);
@@ -188,8 +208,11 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Removes the {@code sessions} from the {@code moduleClass} as well as all students in the {@code moduleClass} and
-     * returns the new module class with the sessions removed.
+     * Removes the specified {@code sessions} from the specified {@code moduleClass}.
+     *
+     * @param moduleClass Module class to remove {@code sessions} from.
+     * @param sessions Sessions to remove.
+     * @return New ModuleClass object with all existing sessions except {@code sessions}.
      */
     public ModuleClass removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         requireAllNonNull(moduleClass, sessions);

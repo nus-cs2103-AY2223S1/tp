@@ -46,7 +46,10 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Returns true if the list contains an equivalent element as the given argument.
+     * Checks if the list contains an equivalent element as {@code toCheck}.
+     *
+     * @param toCheck Element to check for existence.
+     * @return True if the list contains an element equivalent to {@code toCheck}.
      */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
@@ -54,8 +57,10 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Adds an element to the list.
-     * The element must not already exist in the list.
+     * Adds an element to the list. The element must not already exist in the list.
+     *
+     * @param toAdd Element to add.
+     * @throws DuplicateElementException If {@code toAdd} already exists.
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
@@ -66,8 +71,10 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Adds all elements in the collection to the list.
-     * The elements must not already exist in the list.
+     * Adds all elements in {@code toAddList} to the list. The elements must not already exist in the list.
+     *
+     * @param toAddList Elements to add.
+     * @throws DuplicateElementException If any element in {@code toAddList} already exists.
      */
     public void addAll(Collection<T> toAddList) {
         requireAllNonNull(toAddList);
@@ -83,6 +90,11 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
      * Replaces the element {@code target} in the list with {@code editedElement}.
      * {@code target} must exist in the list.
      * The identity of {@code editedElement} must not be the same as another existing element in the list.
+     *
+     * @param target Old target to replace.
+     * @param editedElement New target that replaces {@code target}.
+     * @throws DuplicateElementException If {@code editedElement} already exists or
+     * if {@code target} and {@code editedElement} are the same.
      */
     public void setElement(T target, T editedElement) {
         requireAllNonNull(target, editedElement);
@@ -99,8 +111,8 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     /**
      * Returns the index of an element in the list that has the same identity {@code target}.
      *
-     * @param target target element to find.
-     * @return index of the found element in the list.
+     * @param target Target element to find.
+     * @return Index of the found element in the list.
      * @throws ElementNotFoundException If no such element can be found.
      */
     private int indexOf(T target) {
@@ -114,8 +126,9 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Removes the equivalent element from the list.
-     * The element must exist in the list.
+     * Removes the equivalent element from the list. The element must exist in the list.
+     *
+     * @param toRemove Element to remove.
      */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
@@ -125,6 +138,8 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
 
     /**
      * Replaces the contents of this list with {@code replacement}.
+     *
+     * @param replacement New elements to replace all existing elements.
      */
     public void setElements(UniqueList<T> replacement) {
         requireNonNull(replacement);
@@ -132,8 +147,10 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Replaces the contents of this list with {@code elements}.
-     * {@code elements} must not contain duplicate elements.
+     * Replaces the contents of this list with {@code elements}. {@code elements} must not contain duplicate elements.
+     *
+     * @param elements New elements to replace all existing elements.
+     * @throws DuplicateElementException If {@code elements} contains duplicates.
      */
     public void setElements(List<T> elements) {
         requireAllNonNull(elements);
@@ -146,6 +163,9 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
 
     /**
      * Finds and returns an element that has the same identity as {@code toFind}.
+     *
+     * @param toFind Element to find.
+     * @return Element equivalent to {@code toFind}.
      */
     public Optional<T> findElement(T toFind) {
         requireNonNull(toFind);

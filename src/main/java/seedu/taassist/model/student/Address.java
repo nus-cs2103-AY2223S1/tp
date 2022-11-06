@@ -31,7 +31,10 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid address.
+     * Checks if a given string represents a valid address.
+     *
+     * @param test String representation of an address.
+     * @return True if {@code test} is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.isEmpty() || test.matches(VALIDATION_REGEX);
@@ -57,5 +60,4 @@ public class Address {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

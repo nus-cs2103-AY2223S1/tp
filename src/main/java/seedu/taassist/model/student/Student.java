@@ -74,7 +74,10 @@ public class Student implements Identity<Student>, Comparable<Student> {
     }
 
     /**
-     * Returns true if the Student is assigned to the provided {@code moduleClass}.
+     * Checks if the student is assigned to the provided {@code moduleClass}.
+     *
+     * @param moduleClass Module class to check if the Student is assigned to it.
+     * @return True if the student is assigned to {@code moduleClass}.
      */
     private boolean isInModuleClass(ModuleClass moduleClass) {
         return moduleDataList.contains(new StudentModuleData(moduleClass));
@@ -82,14 +85,21 @@ public class Student implements Identity<Student>, Comparable<Student> {
 
     /**
      * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
+     *
+     * @param targetClass Module class of the {@code StudentModuleData} to find.
+     * @return {@code StudentModuleData} of the student for the given {@code targetClass}.
      */
     public Optional<StudentModuleData> findStudentModuleData(ModuleClass targetClass) {
         return moduleDataList.findElement(new StudentModuleData(targetClass));
     }
 
     /**
-     * Returns the {@code SessionData} of a student for the given {@code ModuleClass} and {@code Session}.
+     * Returns the {@code SessionData} of the student for the given {@code ModuleClass} and {@code Session}.
      * Returns null if ModuleClass or Session doesn't exist in Student.
+     *
+     * @param targetClass Module class associated with {@code targetSession}.
+     * @param targetSession Session of the {@code SessionData} to find.
+     * @return {@code SessionData} of the student for the given {@code targetSession} and {@code targetClass}.
      */
     public Optional<SessionData> findSessionData(ModuleClass targetClass, Session targetSession) {
         return findStudentModuleData(targetClass).flatMap(x -> x.findSessionData(targetSession));
@@ -98,6 +108,10 @@ public class Student implements Identity<Student>, Comparable<Student> {
     /**
      * Returns a new student by adding the given {@code moduleClass} to the student's module data.
      * If the student is already enrolled in the module class, the same student is returned.
+     *
+     * @param moduleClass ModuleClass object to add to the student's {@code StudentModuleData}.
+     * @return New student with {@code StudentModuleData} containing all existing module classes
+     * plus {@code moduleClass}.
      */
     public Student addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -112,6 +126,10 @@ public class Student implements Identity<Student>, Comparable<Student> {
     /**
      * Returns a new student by removing the {@code StudentModuleData}
      * of this student for the given {@code ModuleClass}.
+     *
+     * @param moduleClass ModuleClass object to remove from the student's {@code StudentModuleData}.
+     * @return New student with {@code StudentModuleData} containing all existing module classes
+     * except {@code moduleClass}.
      */
     public Student removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -124,6 +142,10 @@ public class Student implements Identity<Student>, Comparable<Student> {
     /**
      * Returns a new student by removing this student's data for the given
      * {@code session} in {@code moduleClass}.
+     *
+     * @param moduleClass Module class associated with the {@code session}.
+     * @param session Session to add.
+     * @return New student with the modified {@code StudentModuleData}.
      */
     public Student removeSession(ModuleClass moduleClass, Session session) {
         requireAllNonNull(moduleClass, session);
@@ -137,6 +159,11 @@ public class Student implements Identity<Student>, Comparable<Student> {
      * Returns a new student by updating this student's grade for the
      * given {@code session} in {@code moduleClass}.
      * Assumption: The student is assigned to the module class, and the session exists in the module class.
+     *
+     * @param moduleClass Module class associated with {@code session}.
+     * @param session Session to update the grade for.
+     * @param grade New grade value.
+     * @return New student with the modified {@code StudentModuleData}.
      */
     public Student updateGrade(ModuleClass moduleClass, Session session, Double grade) {
         requireAllNonNull(moduleClass, session, grade);

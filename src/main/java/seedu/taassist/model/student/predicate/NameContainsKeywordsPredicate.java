@@ -7,11 +7,16 @@ import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.model.student.Student;
 
 /**
- * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
+ * Tests if a {@code Student}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
+    /**
+     * Returns a predicate that checks if a student's name contains any of the keywords in {@code keywords}.
+     *
+     * @param keywords Keywords to find in a student's name.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
@@ -28,5 +33,4 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

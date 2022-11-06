@@ -27,7 +27,7 @@ public class Session implements Identity<Session>, Comparable<Session> {
     private final Date date;
 
     /**
-     * Constructs a {@code Session} with its date set to epoch time.
+     * Constructs a {@code Session} with its date set to current date.
      *
      * @param sessionName A valid session name.
      */
@@ -42,7 +42,7 @@ public class Session implements Identity<Session>, Comparable<Session> {
      * Constructs a {@code Session} with the provided {@code sessionName} and {@code date}.
      *
      * @param sessionName A valid session name.
-     * @param date {@code Date}.
+     * @param date {@code Date} for the session.
      */
     public Session(String sessionName, Date date) {
         requireAllNonNull(sessionName, date);
@@ -52,7 +52,10 @@ public class Session implements Identity<Session>, Comparable<Session> {
     }
 
     /**
-     * Returns true if a given string is a valid session name.
+     * Checks if a given string is a valid session name.
+     *
+     * @param test Session name to test against.
+     * @return True if {@code test} is a valid session name.
      */
     public static boolean isValidSessionName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -78,8 +81,8 @@ public class Session implements Identity<Session>, Comparable<Session> {
      * Returns true if both sessions have the same name.
      * This defines a weaker notion of equality between two sessions.
      *
-     * @param otherSession the session to be compared to.
-     * @return true if both sessions have the same name.
+     * @param otherSession Session to be compared against.
+     * @return True if both sessions have the same name.
      */
     @Override
     public boolean isSame(Session otherSession) {

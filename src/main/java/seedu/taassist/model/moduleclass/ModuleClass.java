@@ -54,7 +54,10 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     }
 
     /**
-     * Returns true if a given string is a valid class name.
+     * Checks if a given string is a valid class name.
+     *
+     * @param className Name of a module class to check for validity.
+     * @return True if {@code className} is a valid class name.
      */
     public static boolean isValidModuleClassName(String className) {
         requireNonNull(className);
@@ -81,6 +84,9 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     /**
      * Returns a new {@code ModuleClass} by adding the provided {@code Session} to this {@code ModuleClass}.
      * If the session already exists, this {@code ModuleClass} is returned.
+     *
+     * @param session Session object to add.
+     * @return New ModuleClass object containing all the existing sessions plus {@code session}.
      */
     public ModuleClass addSession(Session session) {
         requireNonNull(session);
@@ -94,6 +100,9 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     /**
      * Returns a new {@code ModuleClass} by removing the {@code session}.
+     *
+     * @param toRemove Session object to remove.
+     * @return New ModuleClass object containing all the existing sessions except {@code session}.
      */
     public ModuleClass removeSession(Session toRemove) {
         requireNonNull(toRemove);
@@ -106,8 +115,8 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns true if both modules have the same name and session list.
      * This defines a stronger notion of equality between two module classes.
      *
-     * @param other the object to be compared to.
-     * @return true if objects are equal.
+     * @param other Object to be compared to.
+     * @return True if both objects are equal.
      */
     @Override
     public boolean equals(Object other) {
@@ -121,8 +130,8 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two module classes.
      *
-     * @param otherModule the module class to be compared to.
-     * @return true if both modules have the same name.
+     * @param otherModule ModuleClass object to be compared against.
+     * @return True if both ModuleClass objects have the same name.
      */
     @Override
     public boolean isSame(ModuleClass otherModule) {
@@ -131,7 +140,10 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     }
 
     /**
-     * Returns true if the module class contains the session {@code toCheck}.
+     * Checks if the module class contains the session {@code toCheck}.
+     *
+     * @param toCheck Session object to check for existence.
+     * @return True if the module class contains the session {@code toCheck}.
      */
     public boolean hasSession(Session toCheck) {
         requireNonNull(toCheck);
@@ -143,9 +155,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         return Objects.hash(className, sessions);
     }
 
-    /**
-     * Formats state as text for viewing.
-     */
+    @Override
     public String toString() {
         return getClassName();
     }
@@ -155,5 +165,4 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireNonNull(other);
         return className.compareTo(other.className);
     }
-
 }
