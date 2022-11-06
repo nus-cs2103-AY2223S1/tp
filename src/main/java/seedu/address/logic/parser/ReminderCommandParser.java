@@ -49,6 +49,11 @@ public class ReminderCommandParser {
                     ReminderCommand.MESSAGE_EMPTY_REMINDER));
         }
 
+        if (date.isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderCommand.MESSAGE_EMPTY_DATE));
+        }
+
         try {
             LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
                     .withResolverStyle(ResolverStyle.STRICT));
