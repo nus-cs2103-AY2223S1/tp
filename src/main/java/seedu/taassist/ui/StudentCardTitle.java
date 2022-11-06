@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 /**
- * An UI component to replace the title of a {@code StudentCard}.
+ * A UI component to replace the title of a {@code StudentCard}.
  */
 public class StudentCardTitle extends UiPart<Region> {
 

@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.taassist.model.session.Session;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * A UI component that displays information of a {@code Session}.
  */
 public class SessionCard extends UiPart<Region> {
 

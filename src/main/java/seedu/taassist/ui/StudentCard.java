@@ -16,7 +16,7 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentView;
 
 /**
- * An UI component that displays information of a {@code StudentView}.
+ * A UI component that displays information of a {@code StudentView}.
  */
 public class StudentCard extends UiPart<Region> {
 
