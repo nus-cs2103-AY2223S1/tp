@@ -87,7 +87,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 1. **Topbar**. You can find access the help screen here.
 2. **Command box**. You can type in your commands here.
 3. **Command result display** You can see the results of your command execution here.
-4. **List of friends** You can see all your Minecraft listed here.
+4. **List of friends** You can see all your Minecraft friends listed here.
 5. **Data file name** You can see where the data is being loaded from.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 Format: `help`
 
-In the `Help` window, upon choosing a specific command, a description,
+In the `Help` window, upon choosing a specific command, a description
 and an example will be shown for that specific command along with the
 specific parameters for that command.
 
