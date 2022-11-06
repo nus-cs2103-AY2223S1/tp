@@ -26,7 +26,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
         - [List all loans](#show-all-books-that-are-loaned--list-loans)
         - [List overdue](#show-all-books-that-are-overdue--list-overdue)
         - [Clear](#clearing-all-entries--clear-all)
-        - [Exit](#exit-bookface-exit)
+        - [Exit](#exit-bookface--exit)
     - [FAQ](#faq)
     - [Command Summary](#command-summary)
 
@@ -38,14 +38,14 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `BookFace.jar` from here.
+2. Download the latest `BookFace.jar` from here.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
+3. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
-1. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list users`** :
@@ -58,7 +58,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -140,17 +140,41 @@ Examples:
 
 Loans a book to some user, which has a due date.
 
-Format: `loan USER_INDEX BOOK_INDEX [DUE DATE]`
+Format: `loan USER_INDEX BOOK_INDEX [DUE_DATE]`
 
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The respective specified `INDEXES` **must be present in their lists**.
-* The books that are loaned out will appear at the top of the book list **upon restarting the application**.
+* The books that are loaned out will appear at the top of the book list after relaunching the app.
 * If due date is not specified, a default due date of 14 days from today is set when the book is loaned out.
-* Due date formats such as `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday` or `tomorrow` would work. Only the
-  first date entered would be set as the due date and subsequent dates entered would be ignored.
+* Due date formats such as `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday`, `tomorrow` or `two mondays ago` would work.
+* Compound/complex statements or other date formats not stated below may not work properly.  (Fix coming in v1.5)
+Eg. `one month and two weeks later` or `2022-10-31 next sunday` will not work properly.
 * Some invalid due date inputs in February may be assumed to be correct. Refer to example below.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+{DAY} refers to Sunday, Monday...Saturday or day(s)/week(s)/month(s)/year(s)
+
+Date formats that will work:
+dd/MM/yyyy, yyyy-MM-dd, next {DAY}, following {DAY}, last {DAY}, past {DAY}, yesterday, today, tomorrow, (any positive integer) {DAY} later,
+(any positive integer) {DAY} ago.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Next strictly refers to next week while following refers to the upcoming weekday/weekend.
+Eg. On Monday, "next wednesday" refers to nine days later while "following wednesday" refers to two days later.
+
+* Last strictly refers to last week while past refers to the last occurrence of weekday/weekend.
+Eg. On Wednesday, "last monday" refers to nine days ago while "past monday" refers to two days ago.
+
+* Later and ago when used for Sunday, Monday...Saturday refers to the number of Sunday, Monday...Saturday that has passed/yet to pass.
+Eg. On Monday, "two sundays ago" refers to 8 days ago while "two tuesdays ago" refers to 13 days ago.
+
+</div>
 
 Examples:
 * `loan 3 2` loans the second book in the book list to the third user in the user list. The due date is set to

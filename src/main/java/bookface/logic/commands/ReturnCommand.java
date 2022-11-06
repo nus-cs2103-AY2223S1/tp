@@ -53,5 +53,12 @@ public class ReturnCommand extends Command {
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_RETURN_SUCCESS, bookToReturn.getTitle()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReturnCommand // instanceof handles nulls
+                && targetBookIndex.equals(((ReturnCommand) other).targetBookIndex));
+    }
 }
 
