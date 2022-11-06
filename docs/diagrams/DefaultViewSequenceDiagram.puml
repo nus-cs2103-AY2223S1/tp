@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ClientCommandParser" as ClientCommandParser LOGIC_COLOR
+participant ":SetClientDefaultViewCommand" as SetClientDefaultViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+--> LogicManager : execute("client -v")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("client -v")
+activate AddressBookParser
+
+create ClientCommandParser
+AddressBookParser -> ClientCommandParser
+activate ClientCommandParser
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+AddressBookParser -> ClientCommandParser : parse("-v")
+activate ClientCommandParser
+
+create SetClientDefaultViewCommand
+ClientCommandParser -> SetClientDefaultViewCommand
+activate SetClientDefaultViewCommand
+
+SetClientDefaultViewCommand --> ClientCommandParser
+deactivate SetClientDefaultViewCommand
+
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> SetClientDefaultViewCommand : execute()
+activate SetClientDefaultViewCommand
+
+SetClientDefaultViewCommand --> Model : setDefaultView(CLIENTS)
+activate Model
+
+Model --> SetClientDefaultViewCommand
+deactivate Model
+
+create CommandResult
+SetClientDefaultViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetClientDefaultViewCommand
+deactivate CommandResult
+
+SetClientDefaultViewCommand --> LogicManager : result
+deactivate SetClientDefaultViewCommand
+
+SetClientDefaultViewCommand -[hidden]-> LogicManager : result
+destroy SetClientDefaultViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

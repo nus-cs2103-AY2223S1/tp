@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ClientCommandParser" as ClientCommandParser LOGIC_COLOR
+participant ":PinClientCommand" as PinClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+--> LogicManager : execute("client -p 3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("client -p 3")
+activate AddressBookParser
+
+create ClientCommandParser
+AddressBookParser -> ClientCommandParser
+activate ClientCommandParser
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+AddressBookParser -> ClientCommandParser : parse("-p 3")
+activate ClientCommandParser
+
+create PinClientCommand
+ClientCommandParser -> PinClientCommand
+activate PinClientCommand
+
+PinClientCommand --> ClientCommandParser
+deactivate PinClientCommand
+
+ClientCommandParser --> AddressBookParser
+deactivate ClientCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> PinClientCommand : execute()
+activate PinClientCommand
+
+PinClientCommand --> Model : togglePinned(3)
+activate Model
+
+Model --> PinClientCommand
+deactivate Model
+
+PinClientCommand --> Model : sortClientsByCurrentCategory()
+activate Model
+
+Model --> PinClientCommand
+deactivate Model
+
+PinClientCommand --> Model : sortClientsByPin()
+activate Model
+
+Model --> PinClientCommand
+deactivate Model
+
+create CommandResult
+PinClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PinClientCommand
+deactivate CommandResult
+
+PinClientCommand --> LogicManager : result
+deactivate PinClientCommand
+
+PinClientCommand -[hidden]-> LogicManager : result
+destroy PinClientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
