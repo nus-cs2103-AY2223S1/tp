@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 #### Enhancements Implemented
 * **New Features**
   * Implemented `add-leave` feature
-    * Created a `AddLeaveCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/AddLeaveCommand.java)) 
+    * Created a `AddLeaveCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/AddLeaveCommand.java))
     and `AddLeaveCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/AddLeaveCommandParser.java)).
     * Use Case: User can add leave periods for employees.
     * Justification: With this command, users of Coydir will be able to keep track of employee leave periods and their availability at all times.

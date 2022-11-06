@@ -713,7 +713,7 @@ It is possible to manipulate data by editing the data file directly, but even fo
 If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run. 
+If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
 </div>
 
 ---
@@ -749,3 +749,4 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
 | **Clear**           | `clear`                                                                                                                                                                              |
+
