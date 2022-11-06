@@ -12,9 +12,12 @@ import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 import org.junit.jupiter.api.Test;
 
 import seedu.studmap.commons.core.Messages;
+import seedu.studmap.commons.core.index.AllIndexGenerator;
 import seedu.studmap.commons.core.index.Index;
+import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.UserPrefs;
 import seedu.studmap.model.student.Student;
 
@@ -29,9 +32,9 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteCommand = new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SINGLE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -40,9 +43,20 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validIndexUnfilteredListWithDeleteAll_success() {
+        DeleteCommand deleteCommand = new DeleteCommand(new AllIndexGenerator());
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MULTI_STUDENT_SUCCESS,
+                model.getFilteredStudentList().size());
+
+        ModelManager expectedModel = new ModelManager(new StudMap(), new UserPrefs());
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(new SingleIndexGenerator(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -52,9 +66,25 @@ public class DeleteCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteCommand = new DeleteCommand(new AllIndexGenerator());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SINGLE_STUDENT_SUCCESS, studentToDelete);
+
+        Model expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
+        showNostudent(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexFilteredListWithDeleteAll_success() {
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT));
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SINGLE_STUDENT_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -71,21 +101,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of student map list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudMap().getStudentList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(new SingleIndexGenerator(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_STUDENT);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(new SingleIndexGenerator(INDEX_SECOND_STUDENT));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

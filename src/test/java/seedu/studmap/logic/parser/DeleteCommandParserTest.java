@@ -7,6 +7,8 @@ import static seedu.studmap.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.studmap.commons.core.index.AllIndexGenerator;
+import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.logic.commands.DeleteCommand;
 
 /**
@@ -22,7 +24,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_STUDENT));
+        assertParseSuccess(parser, "1", new DeleteCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT)));
+        assertParseSuccess(parser, "all", new DeleteCommand(new AllIndexGenerator()));
     }
 
     @Test
