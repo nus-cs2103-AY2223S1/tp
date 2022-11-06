@@ -58,4 +58,5 @@ for the code that I contributed.
     * [**#17**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/17)
     * [**#15**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/15)
 * **Contributions beyond the project team**: 
-  * NIL
+  * Asked [a question in forum](https://github.com/nus-cs2103-AY2223S1/forum/issues/422) regarding where to reference 
+license(s) used which may be useful to others.
