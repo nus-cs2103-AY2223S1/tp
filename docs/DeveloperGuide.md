@@ -11,6 +11,13 @@ It covers the architecture of **Teacher’s Pet** and provides detailed descript
 You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
 
 ## Table of contents
+
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI](#ui-component)
+  * [Logic](#logic-component)
+  * [Model](#model-component)
+  * [Storage](#storage-component)
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
   * [Next Available Class Feature](#next-available-class-feature)
