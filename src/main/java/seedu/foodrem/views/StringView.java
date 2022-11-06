@@ -19,6 +19,8 @@ public final class StringView {
         final TextArea textArea = new TextArea(message);
         textArea.setEditable(false);
         textArea.setWrapText(true);
+        // TODO: Find a proper way to set the height depending on the current window size.
+        textArea.setMinHeight(450);
         return textArea;
     }
 }
