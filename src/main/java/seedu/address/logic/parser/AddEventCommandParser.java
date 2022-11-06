@@ -22,10 +22,9 @@ import seedu.address.model.event.StartTime;
 public class AddEventCommandParser implements Parser<AddEventCommand> {
 
     /**
-     * Parses the given String args for an AddEventCommand (i.e title of event;
+     * Parses the given {@code String} of arguments in the context of the AddEventCommand (i.e title of event;
      * date; time and purpose) and returns new AddEventCommand object for execution.
      * @param args String containing all user inputs excluding the command word
-     * @return AddEventCommand object
      * @throws ParseException if user input is not in expected format
      */
     public AddEventCommand parse(String args) throws ParseException {
@@ -42,9 +41,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get(), Boolean.TRUE);
         StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
         Purpose purpose = ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get());
-
         Event event = new Event(eventTitle, startDate, startTime, purpose);
-
         return new AddEventCommand(event);
     }
 

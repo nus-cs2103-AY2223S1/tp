@@ -146,7 +146,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String gender} into an {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
-     * @param gender string containing gender.
+     *
      * @throws ParseException if the given {@code gender} is invalid.
      */
     public static Gender parseGender(String gender) throws ParseException {
@@ -160,6 +160,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code eventTitle} into a {@code EventTitle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code eventTitle} is invalid.
      */
     public static EventTitle parseEventTitle(String eventTitle) throws ParseException {
         requireNonNull(eventTitle);
@@ -171,22 +174,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Date} into a {@code Date}. {@code isFutureDateAllowed} is true
-     * if a date after the current date is allowed, false otherwise.
+     * Parses a {@code String Date} into a {@code Date}.
+     * {@code isFutureDateAllowed} is trueif a date after the current date is allowed, false otherwise.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date, boolean isFutureDateAllowed) throws ParseException {
         requireNonNull(date);
+        requireNonNull(isFutureDateAllowed);
         String trimmedDate = date.trim();
 
         //Check if date format is valid.
-
         if (!Date.isValidDateFormat(date)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
 
         //Check if date is after current date and if it is allowed.
-
         if (Date.isAfterCurrentDate(date) & !isFutureDateAllowed) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS_DOB);
         }
@@ -196,6 +200,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String startTime} into a {@code StartTime}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime} is invalid.
      */
     public static StartTime parseStartTime(String startTime) throws ParseException {
         requireNonNull(startTime);
@@ -210,6 +216,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code purpose} into a {@code Purpose}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code purpose} is invalid.
      */
     public static Purpose parsePurpose(String purpose) throws ParseException {
         requireNonNull(purpose);
@@ -221,7 +230,10 @@ public class ParserUtil {
     }
 
     /**
-     * Returns the uid list passed to it.
+     * Parses {@code indexes} into a {@code List<Index>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code indexes} is invalid.
      */
     public static List<Index> parseIndexes(String indexes) throws ParseException {
         requireNonNull(indexes);

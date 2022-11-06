@@ -20,7 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class EditPersonCommandParser implements Parser<EditPersonCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * Parses the given {@code String} of arguments in the context of the EditPersonCommand
      * and returns an EditPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

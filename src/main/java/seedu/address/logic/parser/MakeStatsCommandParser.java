@@ -9,7 +9,7 @@ import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MakeStatsCommand.
+ * Parses input arguments and creates a new MakeStatsCommand object.
  */
 public class MakeStatsCommandParser {
 
@@ -27,29 +27,21 @@ public class MakeStatsCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_TYPE);
 
         Index index;
-
-        //Check if prefix and index are present
-        if (!argMultimap.getValue(PREFIX_TYPE).isPresent()
-            || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
-        }
-
-        //get index
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE), pe);
         }
-
-        //check which type of statistics is requested
-        boolean isGenderStatistic;
-        if (TYPE_GENDER.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
-            isGenderStatistic = true;
-        } else if (TYPE_AGE.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
-            isGenderStatistic = false;
-        } else {
+        //Check if prefix and index are present
+        if (!argMultimap.getValue(PREFIX_TYPE).isPresent()
+            || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
         }
-        return new MakeStatsCommand(index, isGenderStatistic);
+        //check which type of statistics is requested
+        String statsType = argMultimap.getValue(PREFIX_TYPE).get().trim();
+        if ((!TYPE_GENDER.equals(statsType)) && (!TYPE_AGE.equals(statsType))) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
+        }
+        return new MakeStatsCommand(index, TYPE_GENDER.equals(statsType));
     }
 }
