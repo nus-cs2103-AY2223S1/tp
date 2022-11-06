@@ -207,10 +207,10 @@ All commands follow this format except: [`delete`](#deleting-entries),
     command | entry identifier | input | [optional inputs]
 </pre>
 
-For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us decompose the command format
+For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us deconstruct the command format
 step-by-step!
 
-|      Format      |                Example                 |
+|      Format      |                Example                 |3
 |:----------------:|:--------------------------------------:|
 |     Command      |                 `add`                  |
 | Entry Identifier |                 `t/e`                  |
@@ -247,7 +247,11 @@ step-by-step!
 
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
-  
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+- Adding identifiers that are not used in the command will result in an error.
+</div>
+
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
@@ -305,9 +309,16 @@ OR we could even [edit](#editing-entries) the original entry directly to reflect
     </code>
 </pre>
 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Descriptions are case-insensitive as well! PennyWise will interpret `Teh Beng` as the same as `teh beng`.
+</div>
+
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
+
+
 
 ## Features
 
