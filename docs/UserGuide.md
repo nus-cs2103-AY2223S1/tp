@@ -226,7 +226,7 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
 | Field        | TAG | Description                     | Requirement    | Default Value |
 | ------------ | --- | ------------------------------- | -------------- | ------------- |
@@ -710,7 +710,8 @@ Coydir data are saved in the hard disk automatically after any command that chan
 
 Coydir data are saved as a JSON file `[JAR file location]/data/database.json`.
 It is possible to manipulate data by editing the data file directly, but even for advanced users, we **strongly discourage** making any changes to the data file.
-If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
+
+If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
@@ -749,4 +750,3 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
 | **Clear**           | `clear`                                                                                                                                                                              |
-

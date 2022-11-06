@@ -46,9 +46,6 @@ deactivate FindCommand
 
 FindCommandParser --> DatabaseParser : f
 deactivate FindCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> DatabaseParser
-destroy FindCommandParser
 
 DatabaseParser --> LogicManager : f
 deactivate DatabaseParser
