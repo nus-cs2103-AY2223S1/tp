@@ -74,6 +74,10 @@ public class Item {
 
     /**
      * Creates and returns an {@code Item} with {@code tags}.
+     *
+     * @param item the item to be created.
+     * @param tags the tags to be added to the item.
+     * @return an item with the tags provided.
      */
     public static Item createItemWithTags(Item item, Set<Tag> tags) {
         requireNonNull(item);
@@ -90,30 +94,51 @@ public class Item {
         );
     }
 
+    /**
+     * Returns the item name.
+     */
     public ItemName getName() {
         return name;
     }
 
+    /**
+     * Returns the item quantity.
+     */
     public ItemQuantity getQuantity() {
         return quantity;
     }
 
+    /**
+     * Returns the item unit.
+     */
     public ItemUnit getUnit() {
         return unit;
     }
 
+    /**
+     * Returns the item bought date.
+     */
     public ItemBoughtDate getBoughtDate() {
         return boughtDate;
     }
 
+    /**
+     * Returns the item expiry date.
+     */
     public ItemExpiryDate getExpiryDate() {
         return expiryDate;
     }
 
+    /**
+     * Returns the item price.
+     */
     public ItemPrice getPrice() {
         return price;
     }
 
+    /**
+     * Returns the item remarks.
+     */
     public ItemRemark getRemarks() {
         return remarks;
     }
@@ -137,6 +162,8 @@ public class Item {
     }
 
     /**
+     * Returns the item value.
+     *
      * @return The total value of purchasing the specified units of the item.
      */
     public double getItemValue() {
@@ -144,8 +171,13 @@ public class Item {
         return price.getItemPrice() * quantity.getItemQuantity();
     }
 
-    // Instantiate new set to preserve immutability of item.
+    /**
+     * Returns the tags of the item.
+     *
+     * @return a new set containing the tags of this item.
+     */
     public Set<Tag> getTagSet() {
+        // Instantiate new set to preserve immutability of item.
         return new HashSet<>(tagSet);
     }
 

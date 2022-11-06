@@ -17,7 +17,7 @@ public class ItemPrice {
     private final double itemPrice;
 
     /**
-     * {@inheritDoc}
+     * Constructs an ItemPrice.
      */
     public ItemPrice(String itemPriceString) {
         requireNonNull(itemPriceString);
@@ -29,6 +29,9 @@ public class ItemPrice {
         itemPrice = Double.parseDouble(itemPriceString);
     }
 
+    /**
+     * Returns the itemPrice.
+     */
     public double getItemPrice() {
         return itemPrice;
     }
