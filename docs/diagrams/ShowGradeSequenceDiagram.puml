@@ -1,52 +1,89 @@
 @startuml
 !include style.puml
 
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "s:ShowGradeCommand" as ShowGradeCommand LOGIC_COLOR
+participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
+participant ": SwitchCommandParser" as SwitchCommandParser LOGIC_COLOR
+participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":ModQuik" as ModQuik MODEL_COLOR
 end box
-[-> LogicManager : execute(show grade)
+
+[-> MainWindow : executeCommand("switch f/grade")
+activate MainWindow
+
+MainWindow -> LogicManager: execute("switch f/grade")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(show grade))
-activate AddressBookParser
+LogicManager -> ModQuikParser : parseCommand("switch f/grade")
+activate ModQuikParser
 
-create ShowGradeCommand
-AddressBookParser -> ShowGradeCommand
-activate ShowGradeCommand
+create SwitchCommandParser
+ModQuikParser -> SwitchCommandParser
+activate SwitchCommandParser
 
-ShowGradeCommand --> AddressBookParser
-deactivate ShowGradeCommand
+SwitchCommandParser --> ModQuikParser
+deactivate SwitchCommandParser
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+ModQuikParser -> SwitchCommandParser : parse(" f/grade")
+activate SwitchCommandParser
 
-LogicManager -> ShowGradeCommand : execute()
-activate ShowGradeCommand
+create SwitchCommand
+SwitchCommandParser -> SwitchCommand
+activate SwitchCommand
 
-ShowGradeCommand -> ModelManager : getStudentGradeChartData()
+SwitchCommand --> SwitchCommandParser : s
+deactivate SwitchCommand
+
+SwitchCommandParser --> ModQuikParser : s
+deactivate SwitchCommandParser
+SwitchCommandParser -[hidden]-> ModQuikParser
+destroy SwitchCommandParser
+
+ModQuikParser --> LogicManager : s
+deactivate ModQuikParser
+
+LogicManager -> SwitchCommand : execute()
+activate SwitchCommand
+
+create CommandResult
+SwitchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SwitchCommand
+deactivate CommandResult
+
+SwitchCommand --> LogicManager : result
+deactivate SwitchCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleShowChart()
+activate MainWindow
+
+MainWindow -> ModelManager : getStudentGradeChartData()
 activate ModelManager
 
-ModelManager -> AddressBook : getGradeData()
-activate AddressBook
+ModelManager -> ModQuik : getGradeData()
+activate ModQuik
 
-AddressBook --> ModelManager :
-deactivate AddressBook
+ModQuik --> ModelManager
+deactivate ModQuik
 
-ModelManager --> ShowGradeCommand
+ModelManager --> MainWindow
 deactivate ModelManager
+deactivate MainWindow
 
-ShowGradeCommand --> LogicManager : result
-deactivate ShowGradeCommand
-ShowGradeCommand -[hidden]-> LogicManager : result
-destroy ShowGradeCommand
-
-[<--LogicManager
-deactivate LogicManager
+[<--MainWindow
+deactivate MainWindow
 @enduml
