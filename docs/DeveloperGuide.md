@@ -17,7 +17,7 @@ title: Developer Guide
     * [Buy / Sell transaction feature](#buy-feature-for-transactions)
     * [Edit transaction feature](#editing-feature-for-transactions)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
-    * [Sort feature]()
+    * [Sort feature](#sort-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -30,6 +30,7 @@ title: Developer Guide
       * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
       * [Requesting help](#use-case-uc06---requesting-help)
       * [Clearing all data](#use-case-uc07---clearing-all-data)
+      * [Sorting a client](#use-case-uc08---sort-client-by-latest-transaction-br)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -37,6 +38,7 @@ title: Developer Guide
   * [Delete a client](#deleting-a-client)
   * [Delete a transaction]()
   * [Delete a remark]()
+  * [Sort a client](#sorting-transactions-from-a-client)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
