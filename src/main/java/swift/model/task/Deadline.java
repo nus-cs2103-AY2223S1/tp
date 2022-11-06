@@ -1,5 +1,6 @@
 package swift.model.task;
 
+import static java.util.Objects.requireNonNull;
 import static swift.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class Deadline implements Comparable<Deadline> {
      * @param deadline A valid deadline.
      */
     public Deadline(String deadline) {
+        requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.deadline = LocalDateTime.parse(deadline, DATE_TIME_FORMATTER);
     }

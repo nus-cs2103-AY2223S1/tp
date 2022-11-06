@@ -1,5 +1,7 @@
 package swift.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static swift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -23,4 +25,19 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
+    @Test
+    public void equals_sameObject_true() {
+        Tag tag = new Tag("Developer");
+        assertEquals(tag, tag);
+    }
+
+    @Test
+    public void equals_sameTagName_true() {
+        assertEquals(new Tag("Developer"), new Tag("Developer"));
+    }
+
+    @Test
+    public void equals_differentTagName_false() {
+        assertNotEquals(new Tag("Developer"), new Tag("Friend"));
+    }
 }

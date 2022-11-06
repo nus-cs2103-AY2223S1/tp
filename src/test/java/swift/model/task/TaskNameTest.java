@@ -1,6 +1,8 @@
 package swift.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
 
@@ -36,5 +38,21 @@ public class TaskNameTest {
         assertTrue(TaskName.isValidName("buy milk for the 2nd time")); // alphanumeric characters
         assertTrue(TaskName.isValidName("Buy Milk")); // with capital letters
         assertTrue(TaskName.isValidName("Buy Milk for the 2nd time")); // long names
+    }
+
+    @Test
+    public void equals_sameObject_true() {
+        TaskName name = new TaskName("Buy milk");
+        assertEquals(name, name);
+    }
+
+    @Test
+    public void equals_sameTaskName_true() {
+        assertEquals(new TaskName("Buy milk"), new TaskName("Buy milk"));
+    }
+
+    @Test
+    public void equals_differentTaskName_false() {
+        assertNotEquals(new TaskName("Buy milk"), new TaskName("CS2103T"));
     }
 }
