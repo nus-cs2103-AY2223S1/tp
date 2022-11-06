@@ -35,6 +35,9 @@ import jarvis.testutil.TypicalIndexes;
  */
 public class CommandTestUtil {
     // students
+    public static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
+    public static final String INVALID_STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + "a";
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_MATRIC_NUM_AMY = "A0344534D";
@@ -47,8 +50,6 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
 
-    public static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
-
     // tasks
     public static final String VALID_TASK_DESC_MISSION1 = "Mark mission 1";
     public static final String VALID_TASK_DEADLINE_MISSION1 = "2022-10-23";
@@ -60,6 +61,7 @@ public class CommandTestUtil {
 
     // lessons
     public static final String LESSON_INDEX = " " + PREFIX_LESSON_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
+    public static final String INVALID_LESSON_INDEX = " " + PREFIX_LESSON_INDEX + "a";
     public static final String NOTE_INDEX = " " + PREFIX_NOTE_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
 
     public static final String VALID_NOTE = "This is a valid note";
