@@ -208,6 +208,7 @@ public class ParserUtil {
     public static <T> Attribute<?> parseAttribute(String modelTypeName, T modelValue, int modelDisplayFormat,
                                                   int modelStyleFormat) throws ParseException {
         modelTypeName = properCase(modelTypeName);
+        //@@author autumn-sonata
         Attribute<?> modelAttribute;
         switch (modelTypeName) {
         case Address.TYPE:
@@ -242,6 +243,7 @@ public class ParserUtil {
                     modelDisplayFormat, modelStyleFormat) {};
         }
         return modelAttribute;
+        //@@author
     }
 
     /**
