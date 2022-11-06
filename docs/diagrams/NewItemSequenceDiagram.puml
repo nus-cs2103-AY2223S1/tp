@@ -7,12 +7,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
 participant ":NewCommandParser" as NewCommandParser LOGIC_COLOR
 participant ":ItemName" as ItemName LOGIC_COLOR
-participant ":ItemQuantity" as ItemQuantity LOGIC_COLOR
-participant ":ItemUnit" as ItemUnit LOGIC_COLOR
-participant ":ItemBoughtDate" as ItemBoughtDate LOGIC_COLOR
-participant ":ItemExpiryDate" as ItemExpiryDate LOGIC_COLOR
-participant ":ItemPrice" as ItemPrice LOGIC_COLOR
-participant ":ItemRemarks" as ItemRemarks LOGIC_COLOR
 participant "item:Item" as Item LOGIC_COLOR
 participant ":NewCommand" as NewCommand LOGIC_COLOR
 participant ":ItemWithMessage" as ItemWithMessage LOGIC_COLOR
@@ -46,42 +40,6 @@ NewCommandParser -> ItemName
 activate ItemName
 ItemName --> NewCommandParser
 deactivate ItemName
-
-create ItemQuantity
-NewCommandParser -> ItemQuantity
-activate ItemQuantity
-ItemQuantity --> NewCommandParser
-deactivate ItemQuantity
-
-create ItemUnit
-NewCommandParser -> ItemUnit
-activate ItemUnit
-ItemUnit --> NewCommandParser
-deactivate ItemUnit
-
-create ItemBoughtDate
-NewCommandParser -> ItemBoughtDate
-activate ItemBoughtDate
-ItemBoughtDate --> NewCommandParser
-deactivate ItemBoughtDate
-
-create ItemExpiryDate
-NewCommandParser -> ItemExpiryDate
-activate ItemExpiryDate
-ItemExpiryDate --> NewCommandParser
-deactivate ItemExpiryDate
-
-create ItemPrice
-NewCommandParser -> ItemPrice
-activate ItemPrice
-ItemPrice --> NewCommandParser
-deactivate ItemPrice
-
-create ItemRemarks
-NewCommandParser -> ItemRemarks
-activate ItemRemarks
-ItemRemarks --> NewCommandParser
-deactivate ItemRemarks
 
 create Item
 NewCommandParser -> Item
