@@ -721,8 +721,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to change the details of an applicant (such as email or contact number etc.).
-2. TrackAScholar updates the personal details of the specified applicant to the list. <br>
+1. User requests to edit the details of an applicant.
+2. TrackAScholar edits the details of the specified applicant to the list. <br>
    Use case ends.
 
 **Extensions**
@@ -924,6 +924,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. TrackAScholar merges the applicants according to the type of merging specified by the user input. <br>
       Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC12 - Pins an applicant**
+
+**MSS**
+
+1. User requests to pin an applicant.
+2. TrackAScholar pins the specified applicant on the pinned applicant list.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Applicant is already pinned.
+
+    * 1c1. TrackAScholar displays an error message informing the user that the applicant is already pinned. <br>
+      Use case resumes at step 1.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC13 - Unpins an applicant**
+
+**MSS**
+
+1. User requests to unpin an applicant.
+2. TrackAScholar unpins the specified applicant from the pinned applicant list.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Applicant is already unpinned.
+
+    * 1c1. TrackAScholar displays an error message informing the user that the applicant is already unpinned. <br>
+      Use case resumes at step 1.
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: UC14 - Exiting TrackAScholar**
+
+**MSS**
+
+1. User requests to exit the TrackAScholar application.
+2. TrackAScholar exits and closes. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input format has extra parameters.
+    * 1b1. TrackAScholar ignores the extra parameters. <br>
+      Use case resumes at step 2.
+
+* 1c. User closes the application window. <br>
+    Use case resumes at step 2.
 
 --------------------------------------------------------------------------------------------------------------------
 
