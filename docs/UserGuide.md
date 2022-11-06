@@ -75,12 +75,15 @@ You can head over to [Quick Start](#quick-start) to install and run Coydir.
 You can head over to [Features](#features) to learn how to use the features 
 offered in Coydir.
 
-####Do not understand some terminology used?
-[**Please input Glossary tag**]
+Here are some symbols to look out for while using this guide:
 
-You can head over to [Glossary](#) for better understanding of the terms
+| Symbol               | Meaning                                      | 
+|----------------------|----------------------------------------------|
+| `code`               | Text relevant to commands or name of a file. |
+| :information source: | Information that is useful to take note of.  |
+| :bulb:               | Tips for Coydir Users.                       |
+| :exclamation:        | Be wary and proceed with caution.            |
 
-    
 
 ### The User Interface
 
