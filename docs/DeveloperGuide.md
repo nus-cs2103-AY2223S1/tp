@@ -177,11 +177,11 @@ The following sequence diagram summarizes how pin works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Pin activity diagram:
-<img src="images/PinActivityDiagram.png" width="250" />
+Pin activity diagram: <br><br>
+<img src="images/PinActivityDiagram.png" width="300" />
 
-#### View Pin Activity diagram:
-<img src="images/ViewPinActivityDiagram.png" width="250" />
+View pin activity diagram: <br><br>
+<img src="images/ViewPinActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -271,7 +271,7 @@ The use of `command_details` serves to substitute the command `"assign 1 1 pr/20
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/AssignPolicyActivityDiagram.png" width="700" />
+<img src="images/AssignPolicyActivityDiagram.png" width="800" />
 
 
 Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
@@ -311,16 +311,23 @@ This feature builds on the new policy class created. Where each client has a set
 
 The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
 
-* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+* `viewIncome YEAR` — Invokes the calculation of user's three year income with `YEAR` as the first year via the function .
 
-Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+The following sequence diagram summarizes how viewIncome works:
+
+![ViewIncomeSequenceDiagram](images/ViewIncomeSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+View income activity diagram: <br><br>
+<img src="images/ViewIncomeActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
 **Aspect: How viewIncome executes:**
 
 * **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
-    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilize the income for other features.
     * Cons: Might pose a problem for retrival of values from class.
 
 * **Alternative 2:** Saves the entire address book of clients pinned.
@@ -328,6 +335,7 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
     * Cons: May result in performance issues in terms of memory usage.
 
 ## Event Features
+
 ### AddEvent Feature
 
 ### Proposed Implementation
@@ -352,30 +360,7 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 <p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
 
-
-
-## Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-
-**Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
-* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past.
-    * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage
-    * Cons: More storage used by app
-
-* **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
-    * Pros: Less storage used up by app
-    * Cons: Difficult to implement without bugs.
+#### Design considerations:
 
 ## General Features
 ### `Find` feature
@@ -466,7 +451,7 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
 |----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
@@ -601,12 +586,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
    Use case ends
 
-**Extensions**
-
-* 2a. LTNS displays a highlighted box on pinned clients when using the list command.
-
-  Use case ends.
-
 **Use case 9: Find a contact**
 
 **MSS**
@@ -631,7 +610,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  _mainstream OS_ includes Windows, MacOS, Linux systems with 64-bit machines
 3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Size of windows should be scalable to full screen for maximum screen utilisation
+5.  Size of windows should be scalable to full screen for maximum screen utilization
 6. Performance requirements: Should be able to serve its features right now
 8. Extremely intuitive and minimalistic design to avoid confusion. 
 9. The product is not required to handle the direct contacting of users.
@@ -678,6 +657,15 @@ testers are expected to do more *exploratory* testing.
 
 ## Testing client functions
 
+Pinning a client
+1. Pinning a new client
+   1. Prerequisites: List of clients is not empty, currently viewing list of clients
+   2. Test case: `pin 1` <br>
+      Expected: Pinned client message shown to user in status message. 
+   3. Test case: `pin 3` <br>
+      Suppose that there is no client in index 3 <br>
+      Expected: An error message for invalid client index should be displayed.
+
 ## Testing policy functions
 
 ### Adding a policy
@@ -707,7 +695,7 @@ testers are expected to do more *exploratory* testing.
 ### Listing all policies
    1. Listing all policies
       1. Prerequisites: The current policy list should be filtered. 
-      2. Test cases: `allPolicies` <br>
+      2. Test case: `allPolicies` <br>
          Expected: All policies stored in LTNS are displayed.
       
 ### Assigning a policy
@@ -735,6 +723,14 @@ testers are expected to do more *exploratory* testing.
       Expected: The first client's assigned policies are displayed in the status message.
    3. Test case: `listAssigned 0` <br>
       Expected: An error message for invalid client index should be displayed.
+
+### Viewing projected income
+1. Viewing the projected income for the years 2000, 2001, 2002
+    1. Prerequisites: There must be policies assigned to clients that happens to be in either 2000, 2001, 2002.
+    2. Test case: `viewIncome 2000` <br>
+       Expected: A graph should show up with x-axis "year" containing 2000, 2001, 2002 and y-axis "income"
+    3. Test case: `viewIncome 2200` <br>
+       Expected: An error message for invalid year should be displayed.
 
 ## Testing event functions
 
@@ -767,7 +763,7 @@ considering the significantly increased amount of code to cover.
 Fringe enhancements (though fringe, were not trivial), include implementing the integration of graphical displays through
 JavaFX's relevant libraries.
 
-As a cherry on top, we also went the extra mile of a complete UI refresh to give the product a new look and feel we felt would honour
+As a cherry on top, we also went the extra mile of a complete UI refresh to give the product a new look and feel, we felt would honour
 the professional nature of the product's usage.
 
 Of course, these are the overall end-goals that we were able to meet and achieve. However, this section does not reflect the

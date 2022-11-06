@@ -3,7 +3,7 @@ layout: page
 title: Hong Sheng's Project Portfolio Page 😁
 ---
 
-### Project: LongTimeNoSee(LTNS)
+### Project: LongTimeNoSee (LTNS)
 
 Long Time No See (LTNS) is a desktop task tracking app made for financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
@@ -43,7 +43,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=hongshenggg&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Coordinate zoom meetings and assign tasks.
+    * Delegate tasks and ensure team coordination as the team lead
+    * Coordinate and facilitate zoom meetings
+    * Create google documents for roles delegation
     * Manages the PR made by Damien
 
 * **Enhancements to existing features**:
@@ -67,12 +69,13 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): Mainly Damien's PR (following the Circle review principle)
-    * Contributed to forum discussions:  TODO
-    * Reported bugs and suggestions for other teams in the class: TODO
+    * Reported bugs and suggestions for other teams in the class: Team 3 and 4
 
 * **Tools**:
     * Figma (for mockup creation)
     * Javafx (for altering Ui changes)
     * Canva (for icon and logo design)
     * CSS for altering GUI looks
+
+P.S.: The creation of Long Time No See (LTNS) was definitely not an easy task and frankly, it would not have been possible without my team members, Colin, Marcus, Damien and Reuben. It has truly been a pleasure and a fulfilling journey working with passionate members like them! (If you're reading this, I really hope to work with ya'll again in future! ❤️)
 

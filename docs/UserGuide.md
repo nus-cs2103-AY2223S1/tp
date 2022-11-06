@@ -93,7 +93,7 @@ As such, the features available to you are split into **4** main features:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -113,10 +113,6 @@ As such, the features available to you are split into **4** main features:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`. 
 
 * Click [here](#command-format-table) for a list of all possible parameters and their constraints
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Parameters refer to the information you type into the app to be stored. For example, `n/John` where John is the parameter
-</div>
 
 </div>
 
@@ -324,9 +320,10 @@ Below is an example of what you will expect to see when you call `sort email`:
 ![SortEmailExample](./images/SortEmailExample.png)
 
 ### Pin a Client: `pin`
-* Format: `pin INDEX`
-* Description: Allows pin and unpin of important clients to be viewed separately with command `viewPin`
-* Example Usage: `pin 1` pins the first client on list
+Allows pin and unpin of important clients to be viewed separately with command `viewPin`
+* Format: `pin INDEX` <br>
+Example Usage: 
+* `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
 An existing client in your Client Book can be assigned to an Event or Policy.<br>
@@ -495,14 +492,15 @@ Example Usage:
 
 ### Tracking your Income  : `viewIncome`
 
-Format: `viewIncome <year>`
+Of course, as a financial advisor you would want to know your income! Automatically calculate your 3 year expected income (with selected year as starting year)
 
-* Automatically calculates your 3 year expected income (with selected year as starting year)
+Format: `viewIncome YEAR`
 
-Rules:
-* Year must be between 1900 and 2200
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Year chosen must be between 1900 and 2100
+</div>
 
-Examples:
+Example Usage:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
@@ -594,13 +592,12 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
 
-### Command format table
+## Command format table
 
 | Parameter Name                                               | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |--------------------------------------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name                                                         | n/     | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 100 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Name                                                         | n/     | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 60 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Phone                                                        | p/     | - Only numbers are allowed<br/>e.g `3.3` is not valid<br/> - At least 3 numbers have to be specified<br/> - Only a maximum of 25 digits is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Email                                                        | e/     | <!--- Emails should be of the format `local-part@domain`<br/> - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br/> - The local-part cannot start or end with any special characters<br/> - The domain name is made up of domain labels separated by periods<br/> - The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any --> - Only valid emails are allowed<br/> e.g `Alice` is not valid while `Alice@email.com` is valid |
 | Address                                                      | a/     | - Any length of textual input except for an empty space is valid                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -619,6 +616,9 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | Event Date                                                   | date/  | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Start time                                                   | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | End time<br/><br/> Note: End time has to be after Start time | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+
+## Command summary
 
 ### General Commands
 
@@ -640,7 +640,7 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | **View All Clients**      | `allClients`                                                                                                                                                                                                              |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
 
-Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
+Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
 ### Commands For Policy
 
@@ -656,7 +656,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
 | **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
-Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
+Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter metric placed previously.
 
 ### Commands For Events
 
@@ -670,11 +670,7 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 | **View Filtered Events** | `events`                                                                                                                                                                   |
 | **View Calendar**        | `calendar`                                                                                                                                                                 |                                                                                                                                                                                                     
 
-Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter matrices placed previously.
-
-#### Additional Notes:
-* For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
-<br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
+Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
 
 ### Miscellaneous Commands
 
@@ -684,28 +680,32 @@ Note: `allEvents` shows all existing events inside LTNS, while `events` show all
 | **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`       |
 | **View Pinned** | `viewPin`                                           |
 
+#### Additional Notes:
+* For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
+  <br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
+
 ## Glossary 
 
-### Parameter
-
+#### Parameter
+Parameters refer to the information you type into the app to be stored. For example, `n/John` where John is the parameter.
 
 #### Policy
-An insurance or investment package entailing the details of the insurance and/or investment
+An insurance or investment package entailing the details of the insurance and/or investment.
 
 #### Coverage 
-Specific to an insurance policy, coverage describes the amount of risk or liability which is covered by the insurance policy
+Specific to an insurance policy, coverage describes the amount of risk or liability which is covered by the insurance policy.
 
 #### Graphic User Interface (GUI)
-A User Interface that allows users to interact with the application through visual components
+A User Interface that allows users to interact with the application through visual components.
 
 #### Command-Line Interface (CLI)
-A Text-Based User Interface which allows you to use the application in the form of typing out "commands"
+A Text-Based User Interface which allows you to use the application in the form of typing out "commands".
 
 #### JSON File 
 A file which is used to store data in text form. 
 
 #### Metric 
-A standard of measurement. In the case of LTNS, a metric in sorting or searching tells the application how to compare the clients
+A standard of measurement. In the case of LTNS, a metric in sorting or searching tells the application how to compare the clients.
 
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
