@@ -800,9 +800,9 @@ a bug.
 1. Deleting a customer while all customers are being shown
     1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
     1. Test case: `delcus 1`<br>
-       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message. Timestamp in the status bar is updated.
+       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message.
     1. Test case: `delcus 0`<br>
-       1. Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+       1. Expected: No customer is deleted. Error details shown in the status message.
     1. Other incorrect delete commands to try: `delcus`, `delcus x`, `...` (where x is larger than the list size)<br>
        1. Expected: Similar to previous.
 
