@@ -2,6 +2,7 @@ package jarvis.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 /**
  * Represents a component of a GradeProfile in JARVIS.
@@ -58,6 +59,9 @@ public class GradeComponent {
     }
 
     public void setGrade(double marks) {
+        if (marks < 0 || marks > assessment.getTotalMarks()) {
+            throw new InvalidMarkException();
+        }
         isGraded = true;
         this.marks = marks;
     }

@@ -40,12 +40,11 @@ class GradeProfileTest {
     }
 
     @Test
-    void equals() {
+    void testEquals() {
         GradeProfile gradeFirstProfile = new GradeProfile();
         GradeProfile gradeSecondProfile = new GradeProfile();
         gradeFirstProfile.grade(Assessment.RA1, 15);
         gradeSecondProfile.grade(Assessment.MIDTERM, 40);
-
 
         // same object -> returns true
         assertTrue(gradeFirstProfile.equals(gradeFirstProfile));

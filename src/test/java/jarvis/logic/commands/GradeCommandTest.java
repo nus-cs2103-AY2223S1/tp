@@ -45,7 +45,7 @@ class GradeCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void testEquals() {
         GradeCommand gradeFirstCommand = new GradeCommand(INDEX_FIRST_PERSON, new GradeProfile());
         GradeCommand gradeSecondCommand = new GradeCommand(INDEX_SECOND_PERSON, new GradeProfile());
 
