@@ -1578,11 +1578,3 @@ Assumption: The sample data is loaded into Plannit.
         * No person is edited. 
         * An error message with relevant details is displayed to the user.
 <!-- @@author -->
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
