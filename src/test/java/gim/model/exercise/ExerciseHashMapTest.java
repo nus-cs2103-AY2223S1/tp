@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
-import gim.ui.SavedExerciseListWindow;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
