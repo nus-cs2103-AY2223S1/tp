@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":ActivityListPanel" as ActivityListPanel UI_COLOR
+participant ":SelectedActivityPanel" as SelectedActivityPanel UI_COLOR
+end box
+
+[-> ActivityListPanel : onChanged(changes)
+activate ActivityListPanel
+ActivityListPanel -> ActivityListPanel : updateSelectedIfChange(selected)
+ActivityListPanel -> SelectedActivityPanel : setSelectedActivity(selected)
+activate SelectedActivityPanel
+return
+return
+@enduml
