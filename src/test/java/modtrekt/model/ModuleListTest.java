@@ -43,12 +43,12 @@ public class ModuleListTest {
     }
 
     @Test
-    public void hasModule_personNotInModuleList_returnsFalse() {
+    public void hasModule_moduleNotInModuleList_returnsFalse() {
         assertFalse(moduleList.hasModule(ST2334));
     }
 
     @Test
-    public void hasModule_personInModuleList_returnsTrue() {
+    public void hasModule_moduleInModuleList_returnsTrue() {
         moduleList.addModule(ST2334);
         assertTrue(moduleList.hasModule(ST2334));
     }
@@ -59,18 +59,18 @@ public class ModuleListTest {
     }
 
     /**
-     * A stub ReadOnlyModuleList whose persons list can violate interface constraints.
+     * A stub ReadOnlyModuleList whose module list can violate interface constraints.
      */
     private static class ModuleListStub implements ReadOnlyModuleList {
-        private final ObservableList<Module> persons = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
-        ModuleListStub(Collection<Module> persons) {
-            this.persons.setAll(persons);
+        ModuleListStub(Collection<Module> modules) {
+            this.modules.setAll(modules);
         }
 
         @Override
         public ObservableList<Module> getModuleList() {
-            return persons;
+            return modules;
         }
     }
 

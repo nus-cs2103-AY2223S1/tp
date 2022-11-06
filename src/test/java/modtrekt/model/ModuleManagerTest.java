@@ -33,16 +33,16 @@ public class ModuleManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setTaskBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setModuleListFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTaskBookFilePath(Paths.get("modules/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("modules/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setTaskBookFilePath(Paths.get("new/address/book/file/path"));
-        userPrefs.setModuleListFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTaskBookFilePath(Paths.get("new/modules/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("new/modules/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -65,7 +65,7 @@ public class ModuleManagerTest {
 
     @Test
     public void setTaskBookFilePath_validPath_setsTaskBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("modules/book/file/path");
         modelManager.setTaskBookFilePath(path);
         assertEquals(path, modelManager.getTaskBookFilePath());
     }
@@ -76,7 +76,7 @@ public class ModuleManagerTest {
 
     @Test
     public void setModuleListFilePath_validPath_setsModuleListFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("modules/book/file/path");
         modelManager.setModuleListFilePath(path);
         assertEquals(path, modelManager.getModuleListFilePath());
     }

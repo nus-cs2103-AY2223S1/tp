@@ -20,7 +20,7 @@ public class ModCode implements Comparable<ModCode> {
     /**
      * Constructs an {@code ModCode}.
      *
-     * @param code A valid email address.
+     * @param code A valid module code.
      */
     public ModCode(String code) {
         requireNonNull(code);
@@ -29,7 +29,7 @@ public class ModCode implements Comparable<ModCode> {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid code.
      */
     public static boolean isValidCode(String test) {
         return test.matches(VALIDATION_REGEX);

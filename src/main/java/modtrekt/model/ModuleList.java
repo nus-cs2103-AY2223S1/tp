@@ -10,7 +10,7 @@ import modtrekt.model.module.Module;
 import modtrekt.model.module.UniqueModuleList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the module-list level
  * Duplicates are not allowed (by .isSameModule comparison)
  */
 public class ModuleList implements ReadOnlyModuleList {

@@ -30,7 +30,7 @@ public class ModuleBuilder {
     }
 
     /**
-     * Initializes the ModuleBuilder with the data of {@code personToCopy}.
+     * Initializes the ModuleBuilder with the data of {@code moduleToCopy}.
      */
     public ModuleBuilder(Module moduleToCopy) {
         name = moduleToCopy.getName();

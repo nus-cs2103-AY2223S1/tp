@@ -13,7 +13,7 @@ public class ModTaskCount {
             "Task count should only contain numeric characters and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the task count must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\d+";

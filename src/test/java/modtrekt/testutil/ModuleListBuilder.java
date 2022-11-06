@@ -4,7 +4,7 @@ import modtrekt.model.ModuleList;
 import modtrekt.model.module.Module;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building ModuleList objects.
  * Example usage: <br>
  *     {@code ModuleList ab = new ModuleListBuilder().withModule("John", "Doe").build();}
  */
@@ -16,8 +16,8 @@ public class ModuleListBuilder {
         moduleList = new ModuleList();
     }
 
-    public ModuleListBuilder(ModuleList addressBook) {
-        this.moduleList = addressBook;
+    public ModuleListBuilder(ModuleList moduleBook) {
+        this.moduleList = moduleBook;
     }
 
     /**
