@@ -1477,7 +1477,8 @@ More information on usage: [sort command](UserGuide.html#sorting-internship-appl
    Expected: All internships are deleted. InTrack will start as expected with sample data provided.
    
    2. Test case: Exit InTrack, then delete the `config.json` file. Reopen InTrack.
-   Expected: InTrack starts as expected.
+   Expected: InTrack starts as expected, with either the sample data provided or any previously saved data, if present.
+   The size of the window should be the same as the previously saved user preference.
    
    3. Test case: Exit InTrack, then delete `preferences.json`. Reopen InTrack.
    Expected: The previous user preferences such as the size of the window will be deleted. InTrack starts
