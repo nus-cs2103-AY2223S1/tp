@@ -9,9 +9,6 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_ALPHA
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_BRAVO;
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_BRAVO;
-import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_BUDGET_BOB;
-import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_ALPHA;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseFailure;

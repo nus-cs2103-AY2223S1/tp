@@ -84,7 +84,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_STAFFNAME_DESC = " " + PREFIX_STAFF_NAME + "S@muel"; // '@' not allowed
     public static final String INVALID_STAFFCONTACT_DESC = " " + PREFIX_STAFF_CONTACT + "9090 A32!"; // Wrong format
-    public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT + "GREAT department!!"; // '!' not allowed
+    public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT
+            + "GREAT department!!"; // '!' not allowed
     public static final String INVALID_STAFFTITLE_DESC = " " + PREFIX_STAFF_TITLE + "THE Best :3"; // ':' not allowed
     public static final String INVALID_STAFFLEAVE_DESC = " " + PREFIX_STAFF_LEAVE + "T"; // Only true or false allowed
 

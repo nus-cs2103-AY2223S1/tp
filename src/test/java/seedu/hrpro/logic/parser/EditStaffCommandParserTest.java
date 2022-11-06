@@ -69,7 +69,7 @@ public class EditStaffCommandParserTest {
 
         // no project name specified
         assertParseFailure(parser, "1" + STAFFNAME_DESC_ANDY, MESSAGE_INVALID_FORMAT);
-        
+
         // no field specified
         assertParseFailure(parser, "1" + NAME_DESC_AMY, EditStaffCommand.MESSAGE_NOT_EDITED);
 

@@ -198,7 +198,7 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsNameIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
         assertFalse(StringUtil.containsNameIgnoreCase("ccc", "aaa ccc bbb")); // Name has partial match with word
         assertFalse(StringUtil.containsNameIgnoreCase("ABC", "BCD")); // Name and word has overlaps
-        
+
         // Completely no match
         assertFalse(StringUtil.containsNameIgnoreCase("ABC 432", "XYZ 123")); // Name and word has overlaps
     }
