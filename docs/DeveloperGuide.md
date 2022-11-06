@@ -109,7 +109,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `deleteC 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser`, `DeleteContactCommand` and `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -637,43 +637,47 @@ Step 3. The user executes `listT` command to list all tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------ |
-| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly |
-| `* * *`  | student who is part of many group projects | keep track of the contact information of my groupmates | communicate with my team |
-| `* * *`  | student who is part of many group projects | track the progress of each group towards its goals | know if everyone is putting in their share of work |
-| `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
-| `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
-| `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
-| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
-| `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
-| `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
-| `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
-| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
-| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
-| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
-| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
-| `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
-| `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
-| `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
-| `* *`    | team member                                | send reminders to other team members | remind them to do their work |
-| `* *`    | team member                                | give status updates on individual tasks | inform the group on my progress |
-| `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
-| `* * `   | SWE student                                | save the github usernames of my contacts | view their repo |
-| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
-| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
-| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
-| `* *`    | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
-| `* *`    | forgetful person                           | save people’s profiles with photos | remember their names |
-| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
-| `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
-| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
-| `*`      | student who struggles with remembering identities | add nicknames to my contacts | better identify them |
-| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically |
-| `*`      | artistic student                           | have the software I use to look aesthetic | enjoy using them |
-| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person|
-| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements |
-| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks |
+| Priority | As a …​                                                      | I can …​                                                                              | So that I can…​                                  |
+|----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------|
+| `* * *`  | technically competent student who prefers typing to clicking | have a CLI                                                                            | perform operations quickly                       |
+| `* * *`  | student who is part of many group projects                   | keep track of the contact information of my groupmates                                | communicate with my team                         |
+| `* * *`  | student who is part of many group projects                   | track the progress of each group towards its goals                                    | know how far along each project's progress is    |
+| `* * *`  | student who often has to email others                        | store people’s emails                                                                 | remember their emails                            |
+| `* * *`  | student who prefers calling                                  | see the person’s phone number                                                         | call them                                        |
+| `* * *`  | student who prefers visiting someone in person               | see the person’s address                                                              | visit them                                       |
+| `* * *`  | student                                                      | edit the information on people’s profiles                                             | update the information when necessary            |
+| `* * *`  | student who prefers a compact social circle                  | delete contacts                                                                       | stop keeping old contacts                        |
+| `* * *`  | user                                                         | remove a project and the people and tasks associated with it once the project is done | avoid cluttering my workspace                    |
+| `* * *`  | team member                                                  | group contacts                                                                        | know which people are involved in which projects |
+| `* * *`  | forgetful student                                            | mark tasks as complete                                                                | know if I have completed the task already        |
+| `* * *`  | forgetful student                                            | note the deadline of my tasks                                                         | complete my tasks on time                        |
+| `* * *`  | forgetful person                                             | keep notes on the people I’ve met                                                     | remember important things about them             |
+| `* *`    | team leader                                                  | see my team’s progress towards completing their assigned tasks                        | know if my team is on track                      |
+| `* *`    | team leader                                                  | assign tasks to my team members                                                       | divide the work efficiently                      |
+| `* *`    | team leader                                                  | archive a project and the people associated with it once the project is done          | avoid cluttering my workspace                    |
+| `* *`    | team member                                                  | send reminders to other team members                                                  | remind them to do their work                     |
+| `* *`    | team member                                                  | give status updates on individual tasks                                               | inform the group on my progress                  |
+| `* *`    | team member                                                  | use an idea board                                                                     | generate inspiration with my teammates           |
+| `* * `   | SWE student                                                  | save the github usernames of my contacts                                              | view their repo                                  |
+| `* *`    | anxious student                                              | see the percentage completion of the tasks                                            | feel at ease                                     |
+| `* *`    | anxious student                                              | see if I am on track with my deadlines                                                | be assured that my tasks are not behind schedule |
+| `* *`    | organised student                                            | sort my tasks by deadline                                                             | see which tasks I have to do first               |
+| `* *`    | organised student                                            | archive tasks                                                                         | declutter the gui                                |
+| `* *`    | clumsy student                                               | undo and redo my actions                                                              | reverse accidental commands                      | 
+| `* *`    | forgetful student                                            | be reminded of upcoming deadlines                                                     | ensure that I won't miss them                    |
+| `* *`    | forgetful student                                            | add my tasks                                                                          | know which tasks need to be completed            |
+| `* *`    | student                                                      | edit task information                                                                 | update the task details if they change           |
+| `* *`    | student                                                      | delete tasks                                                                          | declutter the task list                          |
+| `* *`    | forgetful person                                             | save people’s profiles with photos                                                    | remember their names                             |
+| `* *`    | artistic student                                             | change the colour palette of my UI to my preference                                   | enjoy looking at the UI                          |
+| `* *`    | student with color blindness                                 | have my software be composed of minimal colors                                        | distinguish all elements                         |
+| `* *`    | student who does work late at night                          | use dark mode                                                                         | choose not to strain my eyes                     |
+| `*`      | student who struggles with remembering identities            | add nicknames to my contacts                                                          | better identify them                             |
+| `*`      | student who prefers pen and paper                            | print out my tasks                                                                    | annotate on it physically                        |
+| `*`      | artistic student                                             | have the software I use to look aesthetic                                             | enjoy using them                                 |
+| `*`      | student who is bad with names                                | see the person’s first name emphasized                                                | know how to address the person                   |
+| `*`      | student with poor eyesight                                   | ensure that my software have big fonts and large buttons                              | distinguish all elements                         |
+| `*`      | animal loving person                                         | have some cute animals in the background                                              | feel entertained while managing my tasks         |
 
 ### Use cases
 

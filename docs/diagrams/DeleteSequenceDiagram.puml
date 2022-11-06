@@ -60,9 +60,13 @@ activate CommandResult
 
 CommandResult --> DeleteContactCommand
 deactivate CommandResult
+CommandResult -[hidden]-> DeleteContactCommand
+destroy CommandResult
 
 DeleteContactCommand --> LogicManager : result
 deactivate DeleteContactCommand
+DeleteContactCommand -[hidden]-> LogicManager
+destroy DeleteContactCommand
 
 [<--LogicManager
 deactivate LogicManager
