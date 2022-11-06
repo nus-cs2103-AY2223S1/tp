@@ -44,6 +44,6 @@ public class DayNumber {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.waddle.model.itinerary.DayNumber // instanceof handles nulls
-                && dayNumber == ((seedu.waddle.model.itinerary.DayNumber) other).dayNumber); // state check
+                && dayNumber.equals(((seedu.waddle.model.itinerary.DayNumber) other).dayNumber)); // state check
     }
 }

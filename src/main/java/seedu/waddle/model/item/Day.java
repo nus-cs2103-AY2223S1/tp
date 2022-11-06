@@ -149,10 +149,11 @@ public class Day {
      */
     public String getVacantSlots() {
         if (this.itemList.getSize() == 0) {
-            return "Day " + (this.dayNumber + 1) + ":\n    Free!\n";
+            return "Day " + (this.dayNumber + 1) + ":" + System.lineSeparator()
+                    + "    Free!" + System.lineSeparator();
         }
         StringBuilder vacantSlots = new StringBuilder("Day ");
-        vacantSlots.append((this.dayNumber + 1)).append(":").append(System.getProperty("line.separator"));
+        vacantSlots.append((this.dayNumber + 1)).append(":").append(System.lineSeparator());
 
         ArrayList<Period> vacantPeriods = new ArrayList<>();
         Period toBeSplit = new Period(LocalTime.MIN, LocalTime.MAX);
@@ -172,7 +173,7 @@ public class Day {
         }
         for (Period period : vacantPeriods) {
             vacantSlots.append("    ").append(period.getStartString()).append(" - ")
-                    .append(period.getEndString()).append(System.getProperty("line.separator"));
+                    .append(period.getEndString()).append(System.lineSeparator());
         }
 
         return vacantSlots.toString();
