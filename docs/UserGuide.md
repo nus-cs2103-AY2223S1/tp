@@ -21,15 +21,10 @@ The features of TABS are as such:
 3. Task management features - covering how to manage **Tasks** amongst **Members**.
 4. Miscellaneous features - other features for convenience.
 
-<div markdown="span" class="alert alert-primary">
-:information_source: <b>Note</b>:
-
 * The terms _member_ and _person_ are different. A _person_ is someone who is registered in TABS. A _member_ is a _person_ who is part of a specific _group_.
   * i.e Alex is a person, but he is not a member of Group 1. He is however a member of Group 2.
 * In order to add **Members**, the persons have to be present in TABS under **Contacts**.
 * On deletion of **Members** in **Groups**, the corresponding **Contacts** of the person will still remain.
-
-</div>
 
 
 # Structure of this Document
@@ -103,6 +98,7 @@ Text that appears in an information box indicates additional information that is
 <div markdown="span" class="alert alert-primary">
   :information_source: <b>Note</b>: Sample information.
 </div>
+<br>
 
 **Tip**
 
@@ -199,8 +195,10 @@ Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">
 <br>:information_source: <b>Extra note</b>:
 
-A person's email can be in the form of `local-part@domain`, where the `domain`
-specified must be at least 2 characters long.<br>
+A person's email must be in the form of `local-part@domain`, where the `domain`
+specified must be at least 2 characters long.
+
+<br>
 
 </div>
 
