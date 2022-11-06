@@ -63,6 +63,8 @@ Given below are my contributions to the project.
   * Support autoglossary syntax [[PR#424]]
   * Add bidirectional header linking [[PR#426]]
   * Optimise styles for PDF layout [[PR#428]]
+  * Add PPP checking workflow [[PR#439]]
+  * Always check against PR creator for PPP [[PR#457]]
 
 <!-- TODO: Categorise everything -->
 <!-- * **New Feature**: Added the ability to undo/redo previous commands.

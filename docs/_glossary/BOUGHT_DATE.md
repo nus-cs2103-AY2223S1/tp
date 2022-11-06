@@ -5,4 +5,4 @@ show-in: [ug]
 <!-- Make sure this is kept the same as the table cell entry. -->
 The BOUGHT_DATE is the date indicating when an item was bought.
 
-_To view more information (constraints, examples, etc.), refer to the [Placeholders](#placeholders) table._
+To view more information (constraints, examples, etc.), refer to the [Placeholders](#placeholders) table.

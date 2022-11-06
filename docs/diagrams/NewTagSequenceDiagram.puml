@@ -20,7 +20,7 @@ end box
 [-> LogicManager : execute("newtag n/tagname")
 activate LogicManager
 
-LogicManager -> FoodRemParser : parseCommand("newtag n/tagname")
+LogicManager -> FoodRemParser : parseCommand("n/tagname")
 activate FoodRemParser
 
 create NewTagCommandParser
@@ -32,7 +32,7 @@ NewTagCommandParser --> FoodRemParser
 deactivate NewTagCommandParser
 
 
-FoodRemParser -> NewTagCommandParser : parse("newtag n/tagname")
+FoodRemParser -> NewTagCommandParser : parse("n/tagname")
 activate NewTagCommandParser
 
 create Tag

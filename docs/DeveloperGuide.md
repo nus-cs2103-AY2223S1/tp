@@ -34,6 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## Documentation, Configuration, and Other Guides
 
 Here are some links to other documentation you might find useful:
+
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)

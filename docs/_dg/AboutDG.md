@@ -1,4 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+<!-- markdownlint-disable-next-line proper-names -->
+{{ site.data.foodrem.about.summary_dg }}
 FoodRem is an **Inventory Management System** that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. Users can leverage FoodRem's **Inventory Management System** during their daily operations. FoodRem's **tagging system** helps users organize their inventory according to their business needs. FoodRem also derives insights from inventory usage through its **statistics**.
 
 This Developer Guide provides in-depth documentation on how FoodRem is designed and implemented. It covers the architecture of FoodRem, detailed specifications on smaller pieces of the design, and an outline of all parts of the software and how they will work. 
