@@ -208,7 +208,7 @@ conventions as naming a `Person`, and the command itself `AddGroupCommand` check
 not already exist in the app.
 
 **Step 3.**
-Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task named Task1 under the group CS2103T.
+Suppose now the user adds `Alice` and `Bob` as members of group CS2103T as shown in [this implementation](#developed-adddelete-member-feature), and assigns `Alice` a task named Task1 under the group CS2103T.
 The `AddressBook` model now looks like this:
 
 <img src="images/AddDeleteGroupState2.png" width="300" />
