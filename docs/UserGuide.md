@@ -55,7 +55,7 @@ our app.
 
     | Screenshot of Plannit                                                                     | Description of labels                                                                                            |
     |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
+    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Module list</li><li>Person list</li></ol>{:/} |
 
 
 5. Type the command in the command box and press Enter to execute it. e.g.
@@ -187,7 +187,7 @@ Here's a screenshot of Plannit before and after executing the command:
     </tr>
     <tr>
         <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
-        <td style="vertical-align: top"><p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that <code>CS2104</code> has been added to the modules list.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that <code>CS2104</code> has been added to the module list.</p></td>
     </tr>
 </table>
 {:/}
@@ -227,7 +227,7 @@ Here's a screenshot of Plannit before and after executing the command:
     </tr>
     <tr>
         <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
-        <td style="vertical-align: top"><p align="center"><img src="images/delete-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the modules list.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/delete-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the module list.</p></td>
     </tr>
 </table>
 {:/}
@@ -289,7 +289,7 @@ Here's a screenshot of Plannit before and after executing the command:
     </tr>
     <tr>
         <td style="vertical-align: top"><p align="center"><img src="images/edit-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
-        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the modules list has its module code changed to <code>CS2104</code> and its module title changed to <code>Programming Language Concepts</code>. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the module list has its module code changed to <code>CS2104</code> and its module title changed to <code>Programming Language Concepts</code>. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
     </tr>
 </table>
 {:/}
@@ -923,4 +923,3 @@ the file that contains the data of your previous Plannit home folder.
 | Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **local-part@domain** | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| **parameter**         | The words in `UPPER_CASE` in the command format. You are supposed to provide the parameters, and replace `UPPER_CASE` with your input of the parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
