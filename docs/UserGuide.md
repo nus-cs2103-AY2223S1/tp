@@ -128,6 +128,8 @@ Displays your list of reminders.
 
 ### 5.1 Student Features
 
+![Student](images/AnnotatedStudent.png)
+
 <a name="add-student"></a>
 #### 5.1.1 Adding a student: `add student`
 
@@ -138,15 +140,26 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
-* `GRADE` can take in ``A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
+* `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
+* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+
+<table>
+  <tr>
+    <td>Before executing add student command</td>
+    <td>After executing example command to add John Doe</td>
+  </tr>
+  <tr>
+    <td><img src="images/Student.png" width=350></td>
+    <td><img src="images/AddStudent.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="list"></a>
 #### 5.1.2 Listing all students: `list`
@@ -160,7 +173,6 @@ To switch between tabs, you can click on `Tab` button to switch between the diff
 Alternatively, you can use the [`switch`] command if you would like to only use the keyboard.
 </div>
 
-
 Format: `list`
 
 <a name="edit-student"></a>
@@ -169,6 +181,15 @@ Format: `list`
 Edits an existing student in a specified module.
 
 Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to:
+<ul>
+  <li>Update your student's grade after an assessment</li>
+  <li>Update your student's attendance and participation score after a lesson</li>
+  <li>Update your student's particulars</li>
+</ul>
+</div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -182,8 +203,21 @@ Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/T
 
 Examples:
 * `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-* `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-* [`find`] `m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the [`find`] command.
+* `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
+
+<table>
+  <tr>
+    <td>Before executing edit student command</td>
+    <td>After executing example command to edit 2nd student</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddStudent.png" width=350></td>
+    <td><img src="images/EditStudent.png" width=350></td>
+  </tr>
+ </table>
+
+* [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
+
 
 <a name="find"></a>
 #### 5.1.4 Locating students by their attributes: `find`
@@ -206,12 +240,18 @@ It will first display all students matching `John`, then display all students in
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>
+* `find m/CS2103T` returns list of students in CS2103T
+
+![Find Student](images/FindStudent.png)
 
 <a name="delete-student"></a>
 #### 5.1.5 Deleting a student: `delete student`
 
 Deletes the specified student from the list of students.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command if any students drop out of the module or change tutorial groups.
+</div>
 
 Format: `delete student INDEX`
 
@@ -229,9 +269,21 @@ Examples:
 
 Copies all emails in the displayed student list onto the clipboard.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to email a student or groups of students who are performing poorly.
+</div>
+
 Format: `extract emails`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:information_source: **How to use:**
+<ol>
+<li> Execute the ```extract emails``` command in the ModQuik command box. The following message will be displayed in the Results Display Box:
+<img src="images/ExtractEmails1.png">
+All the emails will be copied onto your clipboard.
+<li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.
+
+
+</ol>
 Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g. Outlook !
 </div>
 
@@ -240,6 +292,8 @@ Examples:
 
 
 ### 5.2 Tutorial Features
+
+![Tutorial](images/AnnotatedTutorial.png)
 
 <a name="add-tutorial"></a>
 #### 5.2.1 Adding a tutorial: `add tutorial`
@@ -253,10 +307,25 @@ Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
+<table>
+  <tr>
+    <td>Before executing add tutorial command</td>
+    <td>After executing example command to add T23</td>
+  </tr>
+  <tr>
+    <td><img src="images/Tutorial.png" width=350></td>
+    <td><img src="images/AddTutorial.png" width=350></td>
+  </tr>
+ </table>
+
 <a name="edit-tutorial"></a>
 #### 5.2.2 Editing a tutorial: `edit tutorial`
 
-Edits an existing student in ModQuik.
+Edits an existing tutorial in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to update your tutorials when there are changes in venue e.g., from zoom to offline or vice versa.
+</div>
 
 Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 
@@ -266,8 +335,18 @@ Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 * When editing the timeslot or the day, both fields must be given.
 
 Examples:
-* `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
+* `edit tutorial 2 v/Zoom T/14:00-16:00 D/5` Edits the venue of the 2nd tutorial to be `Zoom`, sets tutorial time to be `14:00 to 16:00` and sets tutorial day to be `Fri`.
+
+<table>
+  <tr>
+    <td>Before executing edit tutorial command</td>
+    <td>After executing example command to edit 2nd tutorial</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddTutorial.png" width=350></td>
+    <td><img src="images/EditTutorial.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="delete-tutorial"></a>
 #### 5.2.3 Deleting a tutorial: `delete tutorial`
@@ -285,10 +364,16 @@ Examples:
 
 ### 5.3 Consultation Features
 
+![Consultation](images/AnnotatedConsultation.png)
+
 <a name="add-consultation"></a>
 #### 5.3.1 Adding a consultation: `add consultation`
 
 Adds a consultation to ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+```Name``` can be anything e.g., Past Year Papers, and does not have to be the student's name.
+</div>
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
@@ -297,12 +382,32 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 * In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
+* `add consultation n/Jake Kim m/CS2103T D/2023-11-24 T/18:00-20:00 v/COM1-0205 d/Review past year paper`
+
+<table>
+  <tr>
+    <td>Before executing add consultation command</td>
+    <td>After executing example command to add consultation with Jake Kim</td>
+  </tr>
+  <tr>
+    <td><img src="images/Consultation.png" width=350></td>
+    <td><img src="images/AddConsultation.png" width=350></td>
+  </tr>
+ </table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+On a closer look, consultation 1 and 4 are both from the same module and wish to go through the same thing!<br>
+You can combine the consultations and meet both students together to make it easier for you.
+</div>
 
 <a name="edit-consultation"></a>
 #### 5.3.2 Editing a consultation: `edit consultation`
 
 Edits an existing consultation in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to edit the date and time of your consultation, or add in questions your student want to ask you in the description closer to the date of consultation.
+</div>
 
 Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/DESCRIPTION]`
 
@@ -313,8 +418,19 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 * In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit consultation 2 T/14:00-16:00 D/2023-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Oct 10`.
+* `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
+* `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
+
+<table>
+  <tr>
+    <td>Before executing edit consultation command</td>
+    <td>After executing example command to edit 1st consultation</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddConsultation.png" width=350></td>
+    <td><img src="images/EditConsultation.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="delete-consultation"></a>
 #### 5.3.3 Deleting a consultation: `delete consultation`
@@ -335,7 +451,11 @@ Examples:
 <a name="add-reminder"></a>
 #### 5.4.1 Adding a reminder: `add reminder`
 
-Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" by a specified deadline.
+Adds a reminder to ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can add reminders such as "Mark Assignment 1" by a specified deadline.
+</div>
 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
