@@ -173,6 +173,9 @@ Given below is an example usage scenario.
 The sequence diagram is given below.
 ![SortPersonSequence](images/EditInternshipSequence.png)
 
+The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
+![SortPersonActivity](images/EditInternshipActivity.png)
+
 ### Sort Person list
 
 #### Implementation
@@ -348,7 +351,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
 * Keep track of colleagues' information post-internship
-* Keep track of internship application windows of multiple companies
+* Keep track of internship applications of multiple companies
+* Keep track of contact information of hiring managers, and link them to internship openings
 
 
 ### User stories
