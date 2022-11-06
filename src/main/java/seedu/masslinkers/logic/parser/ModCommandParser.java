@@ -40,7 +40,6 @@ public class ModCommandParser implements Parser<ModCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final String MOD_TAKEN_COMMAND_WORD = "taken";
     private static final String MOD_TAKING_COMMAND_WORD = "taking";
-    private static final String MOD_PREFIX_REGEX = "(?i)m/.*";
 
     /**
      * Parses the given {@code userInput} of arguments in the context of the ModCommand
@@ -90,38 +89,12 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @throws ParseException If there is a parse error.
      */
     private ModAddCommand parseAddCommand(String args) throws ParseException {
-        Index index;
-        String indexFromCommand;
-        Set<String> modsFromCommand;
-        Optional<ObservableList<Mod>> mods;
         String trimmedArgs = args.trim();
 
         // checks for common user mistakes
-        try {
-            checkForUserMistakes(trimmedArgs);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
+        checkForUserMistakes(trimmedArgs);
 
-        // attempts to parse the command
-        try {
-            indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
-            modsFromCommand = getModsFromCommand(trimmedArgs);
-            mods = parseMods(modsFromCommand);
-            if (mods.isEmpty()) {
-                throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
-
-        // attempts to parse the index
-        try {
-            index = ParserUtil.parseIndex(indexFromCommand);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        return new ModAddCommand(index, mods.get());
+        return new ModAddCommand(getIndex(trimmedArgs), getMods(trimmedArgs));
     }
 
     //@@author ElijahS67
@@ -133,38 +106,12 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @throws ParseException If there is a parse error.
      */
     private ModDeleteCommand parseDeleteCommand(String args) throws ParseException {
-        Index index;
-        String indexFromCommand;
-        Set<String> modsFromCommand;
-        Optional<ObservableList<Mod>> mods;
         String trimmedArgs = args.trim();
 
         // checks for common user mistakes
-        try {
-            checkForUserMistakes(trimmedArgs);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
+        checkForUserMistakes(trimmedArgs);
 
-        // attempts to parse the command
-        try {
-            indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
-            modsFromCommand = getModsFromCommand(trimmedArgs);
-            mods = parseMods(modsFromCommand);
-            if (mods.isEmpty()) {
-                throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
-
-        // attempts to parse the index
-        try {
-            index = ParserUtil.parseIndex(indexFromCommand);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, pe);
-        }
-        return new ModDeleteCommand(index, mods.get());
+        return new ModDeleteCommand(getIndex(trimmedArgs), getMods(trimmedArgs));
     }
 
     //@@author carriezhengjr
@@ -176,43 +123,18 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @throws ParseException If there is a parse error.
      */
     private ModCommand parseMarkCommand(String args) throws ParseException {
-        Index index;
-        String indexFromCommand;
-        Set<String> modsFromCommand;
-        Optional<ObservableList<Mod>> mods;
         String trimmedArgs = args.trim();
 
         // checks for common user mistakes
-        try {
-            checkForUserMistakes(trimmedArgs);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
+        checkForUserMistakes(trimmedArgs);
+
+        // checks if it is a mod mark all command
+        String indexOrAll = getModMarkIndexOrAll(trimmedArgs);
+        if (indexOrAll.equals("all")) {
+            return new ModMarkAllCommand();
         }
 
-        // attempts to parse the command
-        try {
-            String indexOrAll = getModMarkIndexOrAll(trimmedArgs);
-            if (indexOrAll.equals("all")) {
-                return new ModMarkAllCommand();
-            }
-            modsFromCommand = getModsFromCommand(trimmedArgs);
-            indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
-            mods = parseMods(modsFromCommand);
-            if (mods.isEmpty()) {
-                throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
-
-        // attempts to parse the index
-        try {
-            index = ParserUtil.parseIndex(indexFromCommand);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, pe);
-        }
-
-        return new ModMarkCommand(index, mods.get());
+        return new ModMarkCommand(getIndex(trimmedArgs), getMods(trimmedArgs));
     }
 
     //@@author carriezhengjr
@@ -224,39 +146,12 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @throws ParseException If there is a parse error.
      */
     private ModUnmarkCommand parseUnmarkCommand(String args) throws ParseException {
-        Index index;
-        String indexFromCommand;
-        Set<String> modsFromCommand;
-        Optional<ObservableList<Mod>> mods;
         String trimmedArgs = args.trim();
 
         // checks for common user mistakes
-        try {
-            checkForUserMistakes(trimmedArgs);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
+        checkForUserMistakes(trimmedArgs);
 
-        // attempts to parse the command
-        try {
-            indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
-            modsFromCommand = getModsFromCommand(trimmedArgs);
-            mods = parseMods(modsFromCommand);
-            if (mods.isEmpty()) {
-                throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
-        }
-
-        // attempts to parse the index
-        try {
-            index = ParserUtil.parseIndex(indexFromCommand);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, pe);
-        }
-
-        return new ModUnmarkCommand(index, mods.get());
+        return new ModUnmarkCommand(getIndex(trimmedArgs), getMods(trimmedArgs));
     }
 
     //@@author chm252
@@ -352,6 +247,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new HashSet<>(extractedMods);
     }
 
+    //@@author jonasgwt
     /**
      * Checks for common user mistakes.
      * 1. Adding words between command word and index.
@@ -364,13 +260,48 @@ public class ModCommandParser implements Parser<ModCommand> {
         List<String> validIndexes = Arrays.stream(splittedArgs)
                 .filter(x -> INDEX_FORMAT.matcher(x.trim()).matches() || x.equals("all"))
                 .collect(Collectors.toList());
-        Set<String> argsWithModPrefix = Arrays.stream(splittedArgs)
-                .filter(x -> x.matches(MOD_PREFIX_REGEX))
-                .collect(Collectors.toSet());
 
         // valid index is not after the command word
         if (!validIndexes.isEmpty() && !validIndexes.get(0).equals(splittedArgs[0])) {
             throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splittedArgs[0]));
         }
+    }
+
+    /**
+     * Gets the index of the student from user input.
+     *
+     * @param trimmedArgs The user input.
+     * @return The index from the command.
+     * @throws ParseException If there is an invalid user input.
+     */
+    private Index getIndex(String trimmedArgs) throws ParseException {
+        Index index;
+
+        String indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
+
+        // attempts to parse the index
+        try {
+            index = ParserUtil.parseIndex(indexFromCommand);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+
+        return index;
+    }
+
+    /**
+     * Get an ObservableList of mods from user input.
+     *
+     * @param trimmedArgs The user input.
+     * @return An ObservableList of Mods
+     * @throws ParseException If there is no mods in user input or input invalid.
+     */
+    private ObservableList<Mod> getMods(String trimmedArgs) throws ParseException {
+        Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
+        Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
+        if (mods.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+        return mods.get();
     }
 }

@@ -200,6 +200,7 @@ public class ParserUtil {
         return modSet;
     }
 
+    //@@author jonasgwt
     /**
      * Parses {@code String modName} into a {@code ModCategory}
      *
@@ -236,6 +237,7 @@ public class ParserUtil {
         }
     }
 
+    //@@author jonasgwt
     /**
      * Checks for extraneous characters that are prefixes.
      * @param args The string to check.
