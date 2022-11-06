@@ -18,8 +18,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=optionalemon&breakdown=true)
 
 * **Project management**:
-  * Authored issues to help keep track of current issues and progress.
-  * Reviewed pull requests to ensure quality and consistency across the database.
+  * Authored [10 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3Aoptionalemon+) to help keep track of current issues and progress.
+  * Reviewed [20 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+reviewed-by%3Aoptionalemon) to ensure quality and consistency across the database.
 
 * **Enhancements to existing features**: 
   * Modified `addc` to allow multiple classes to be added at once.
@@ -27,8 +27,3 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * Added implementation details of the `UI` feature and updated the `UI` UML diagram.
-
-* **Community**: To be added soon
-
-* **Tools**: To be added soon
-
