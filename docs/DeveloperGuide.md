@@ -184,7 +184,7 @@ When `execute` of `AddCommand` is run, the `Internship` is passed into the model
 
 The following activity diagram summarizes what happens when a user executes an add command:
 
-<img src="images/AddCommandActivityDiagram.png" width="450" />
+<img src="images/AddCommandActivityDiagram.png" width="650" />
 
 #### Design Considerations
 
@@ -261,7 +261,7 @@ When `execute` of `MarkCommand` is run, a new `Internship` object with the updat
 
 The following activity diagram summarizes what happens when a user executes a mark command.
 
-<img src="images/MarkCommandActivityDiagram.png" width="450" />
+<img src="images/MarkCommandActivityDiagram.png" width="650" />
 
 
 #### Design Considerations
