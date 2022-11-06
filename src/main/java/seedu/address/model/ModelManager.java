@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
@@ -22,6 +23,9 @@ import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteReminderCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
 
@@ -183,9 +187,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteReminder(Pair<Person, Reminder> target) {
-        unsortedReminders.remove(target);
-        target.getKey().deleteReminder(target.getValue());
+    public Reminder deleteReminder(Index targetIndex) throws CommandException {
+        SortedList<Pair<Person, Reminder>> reminderPairs = getSortedReminderPairs();
+        if (targetIndex.getZeroBased() >= reminderPairs.size()) {
+            throw new CommandException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteReminderCommand.MESSAGE_USAGE));
+        }
+        Pair<Person, Reminder> reminderPairToDelete = reminderPairs.get(targetIndex.getZeroBased());
+
+        unsortedReminders.remove(reminderPairToDelete);
+        reminderPairToDelete.getKey().deleteReminder(reminderPairToDelete.getValue());
+        return reminderPairToDelete.getValue();
     }
 
     @Override

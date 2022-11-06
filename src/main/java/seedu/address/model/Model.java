@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
 
@@ -97,10 +99,11 @@ public interface Model {
     void addReminder(Person person, Reminder reminder);
 
     /**
-     * Deletes the given person reminder pair.
+     * Deletes the given person reminder pair, given the index of the reminder.
      * The reminder must exist in the address book.
+     * @return
      */
-    void deleteReminder(Pair<Person, Reminder> target);
+    Reminder deleteReminder(Index targetIndex) throws CommandException;
 
     /**
      * Deletes the given person's reminders.

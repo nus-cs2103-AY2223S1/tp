@@ -5,10 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import javafx.collections.transformation.SortedList;
 import javafx.util.Pair;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
@@ -40,17 +38,9 @@ public class DeleteReminderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         assert (targetIndex != null) : "targetIndex should not be null";
-        SortedList<Pair<Person, Reminder>> reminderPairs = model.getSortedReminderPairs();
 
-        if (targetIndex.getZeroBased() >= reminderPairs.size()) {
-            throw new CommandException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteReminderCommand.MESSAGE_USAGE));
-        }
-
-        Pair<Person, Reminder> reminderPairToDelete = reminderPairs.get(targetIndex.getZeroBased());
-        model.deleteReminder(reminderPairToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderPairToDelete.getValue()));
+        Reminder deletedReminder = model.deleteReminder(targetIndex);
+        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, deletedReminder));
     }
 }
 
