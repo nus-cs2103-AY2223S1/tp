@@ -3,9 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
+
+import java.util.List;
 
 /**
  * Lists all customers in the address book to the user.
@@ -22,6 +27,13 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.selectTab(GuiTab.CUSTOMER);
+        if (!model.hasSelectedCustomer()) {
+            List<Customer> lastShownList = model.getSortedFilteredCustomerList();
+            if(lastShownList.size() > 0) {
+                Customer customerToOpen = lastShownList.get(0);
+                model.selectCustomer(customerToOpen);
+            }
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
