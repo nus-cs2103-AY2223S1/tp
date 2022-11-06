@@ -5,24 +5,23 @@ import static seedu.hrpro.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff contact in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidStaffContact(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffContact(String)}.
  */
 public class StaffContact {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff contact should only contain exactly 8 digits and begin with 6, 8 or 9. Also it should not be blank.";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Staff contact should have exactly 8 digits starting with 6, 8 or 9.
      */
     public static final String VALIDATION_REGEX = "[689]{1}\\d{7}";
 
     public final String staffContact;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code StaffContact}.
      *
-     * @param contact A valid name.
+     * @param contact A valid contact.
      */
     public StaffContact(String contact) {
         requireNonNull(contact);

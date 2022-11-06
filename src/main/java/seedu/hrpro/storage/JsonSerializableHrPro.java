@@ -34,7 +34,7 @@ class JsonSerializableHrPro {
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableHrPro} with the given projects and tasks.
+     * Constructs a {@code JsonSerializableHrPro} with the given projects, tasks and staff.
      */
     @JsonCreator
     public JsonSerializableHrPro(@JsonProperty("projects") List<JsonAdaptedProject> projects,

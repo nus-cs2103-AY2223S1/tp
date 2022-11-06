@@ -3,6 +3,7 @@ package seedu.hrpro.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -81,15 +82,10 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
-     * Sorts the projects according to deadline.
+     * Sorts the projects according to deadline in ascending order.
      */
     public void sortProjects() {
-        internalList.sort((a, b) -> a.compareTo(b));
-    }
-
-    public void setProjects(UniqueProjectList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -103,6 +99,11 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.setAll(projects);
+    }
+
+    public void setProjects(UniqueProjectList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

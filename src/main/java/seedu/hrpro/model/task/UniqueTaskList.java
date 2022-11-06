@@ -3,7 +3,7 @@ package seedu.hrpro.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.hrpro.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Sorts the tasks according to deadline.
      */
     public void sortTasks() {
-        internalList.sort((a, b) -> a.compareTo(b));
+        Collections.sort(internalList);
     }
 
     /**
@@ -110,21 +110,10 @@ public class UniqueTaskList implements Iterable<Task> {
      * and completed tasks are at the end.
      */
     public void sortComplete() {
-        ArrayList<Task> completedTask = new ArrayList<>();
-        ArrayList<Task> uncompletedTask = new ArrayList<>();
-        int len = internalList.size();
-        TaskMark checkAgainst = new TaskMark("true");
-        for (int x = 0; x < len; x++) {
-            Task tempTask = internalList.get(x);
-            TaskMark tempTaskMark = tempTask.getTaskMark();
-            if (tempTaskMark.equals(checkAgainst)) {
-                completedTask.add(tempTask);
-            } else {
-                uncompletedTask.add(tempTask);
-            }
-        }
-        uncompletedTask.addAll(completedTask);
-        setTasks(uncompletedTask);
+        internalList.sort((a, b) ->
+                b.getTaskMark().toString().equals("true") ? -1
+                : a.getTaskMark().toString().equals("true") ? 1
+                : 0);
     }
 
     /**

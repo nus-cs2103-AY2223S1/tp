@@ -5,14 +5,14 @@ import static seedu.hrpro.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff title in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidStaffTitle(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffTitle(String)}.
  */
 public class StaffTitle {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff title should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the staff title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -20,9 +20,9 @@ public class StaffTitle {
     public final String staffTitle;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code StaffTitle}.
      *
-     * @param title A valid name.
+     * @param title A valid staff title.
      */
     public StaffTitle(String title) {
         requireNonNull(title);

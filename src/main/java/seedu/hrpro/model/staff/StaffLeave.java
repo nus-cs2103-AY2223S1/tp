@@ -5,29 +5,27 @@ import static seedu.hrpro.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff leave in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidStaffLeave(String)} (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffLeave(String)}.
  */
 public class StaffLeave {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff Leave should only be true or false (case-sensitive) and not blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Staff leave should either be true or false.
      */
-    // TODO: 7/10/2022 check if this is the proper regex
     public static final String VALIDATION_REGEX = "(true|false)";
 
     public final String staffLeave;
 
     /**
-     * Constructs a {@code StaffName}.
+     * Constructs a {@code StaffLeave}.
      *
      * @param leave A valid StaffName.
      */
     public StaffLeave(String leave) {
         requireNonNull(leave);
-        checkArgument(isValidStaffLeave(leave.toLowerCase()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffLeave(leave), MESSAGE_CONSTRAINTS);
         staffLeave = leave;
     }
 

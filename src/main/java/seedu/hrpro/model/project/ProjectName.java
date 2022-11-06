@@ -19,7 +19,7 @@ public class ProjectName {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code ProjectName}.
      *
      * @param projectName A valid name.
      */

@@ -11,6 +11,9 @@ public class Budget {
             "Budget should only contain numbers. Its should not have leading zeroes or be blank."
                     + " It also only allows for whole numbers";
 
+    /*
+     * Budget should not have leading zeroes and must contain at least 1 number.
+     */
     public static final String VALIDATION_REGEX = "[1-9]{1}\\d+|\\d{1}";
 
     public final String value;
