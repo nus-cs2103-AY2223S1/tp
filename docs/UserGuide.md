@@ -95,6 +95,12 @@ The image below shows what each window of the application represents.
 
 ### General Command Syntax
 
+**TLDR:** If you're familar with Unix-style commands, e.g. Git, the ModtRekt commands have a similar syntax.
+A command has up to 2 words, and each parameter prefixed with a dash (`-`) and may have a single value after a space.
+Values with spaces must be enclosed in quotes (`"`).
+
+---
+
 Every command starts with a **command phrase**, which may be single or multiple words.
 
 > For example, `help` is a single-word command phrase.
