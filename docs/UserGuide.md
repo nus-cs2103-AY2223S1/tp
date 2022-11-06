@@ -27,11 +27,11 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       4. [Searching for a Client](#searching-for-clients--findclient)
       5. [Deleting a Client](#deleting-a-client--deleteclient)
       6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client--pin)
+      7. [Pin a Client](#pin-a-client-pin)
    3. [Policy Features](#policy-features)<br>
       1. [Adding a Policy](#adding-a-policy--addpolicy)
       2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
-      3. [Listing all Policies](#viewing-all-policies-in-the-address-book--allpolicies)
+      3. [Listing all Policies](#viewing-all-policies-allpolicies)
       4. [Deleting a Policy](#deleting-a-policy--deletepolicy)
       5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
       6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
@@ -39,7 +39,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
       9. [Tracking your Income](#tracking-your-income---viewincome)
    4. [Event Features](#event-features)
-      1. [Adding an Event](#adding-an-event--addevent)
+      1. [Adding an Event](#adding-an-event-addevent)
       2. [Listing all Events](#viewing-all-events--allevents)
       3. [Searching for an Event](#searching-for-an-event--findevent)
       4. [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
@@ -308,7 +308,6 @@ Format: `sort KEYWORD`
 * Keyword must be from client details
 
 
-
 Sorting **KEYWORDS** are shown in the table below: 
 
 | KEYWORD          | Function                                                                                                             |
@@ -323,12 +322,12 @@ Sorting **KEYWORDS** are shown in the table below:
 
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
-If your client's name contains non-alphanumeric characters, sorting by name might not function properly!
+If your client's name contains numbers, sorting by name might behave incorrectly!
 </div>
 
-Examples:
+Example Usage: 
 * `sort name` will display your Client list view in alphabetical order based on their name
-* `sort phone` will display your Client list view book in numerical order based on their phone numbers
+* `sort phone` will display your Client list view in numerical order based on their phone numbers
 
 
 Below is an example of what you will expect to see when you call `sort email`:
@@ -342,8 +341,8 @@ Example Usage:
 * `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
-An existing client in your Client Book can be assigned to an Event or Policy.<br>
-To find out how to do so, you can refer to the [Adding an Event](#adding-an-event--addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign) guide to find out how you can assign a Client to a Policy.
+An existing client in your Client list can be assigned to an Event or Policy.<br>
+To find out how to do so, you can refer to the [Adding an Event](#adding-an-event-addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
 Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
@@ -465,7 +464,7 @@ Example Usage:
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
-If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
+If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client--addclient) or [Adding a Policy](#adding-a-policy--addpolicy) guides.
 
 Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
@@ -553,7 +552,7 @@ Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_
     CLIENT_NAME indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
 </div>
 
-If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+If you have not added this Client to your Client list, you can refer to the [Adding a Client](#adding-a-client--addclient) guide to add your Client first.
 
 
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
@@ -619,7 +618,7 @@ Q: How do I transfer my data to another Computer? <br/>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
 Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br/>
-A : When specifying the Client that you're meeting for this event, this Client must exist in your client book first.
+A : When specifying the Client that you're meeting for this event, this Client must exist in your client list first.
 
 Q: Why am I seeing `This Event overlaps with another event....` when trying to add an event? <br/>
 A: When adding an event, it's date and time cannot overlap with another event! But fret not, we've listed all overlapping events for your convenience, 
@@ -629,7 +628,7 @@ Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my clie
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br/>
-A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event--addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
+A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event-addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
 Q: What if a company whose policy I want to add is not available in the given list of company codes? <br/>
 A: Let us know which company you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
@@ -690,6 +689,7 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **View All Clients**      | `allClients`                                                                                                                                                                                                              |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
+| **Sort Clients**          | `sort (KEYWORD)`<br> eg. `sort name`                                                                                                                                                                                         |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
