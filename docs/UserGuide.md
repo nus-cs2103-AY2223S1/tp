@@ -255,9 +255,9 @@ find-module CS
 In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                           |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>Notice that only modules with module code starting with `CS` are listed!</p><p/>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>The module list is now updated with modules whose module code starts with `CS`!</p><p/>{:/} |
 
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
@@ -704,9 +704,9 @@ find-person Alex
 In either of the above examples, we find every person whose name starts with Alex in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                   |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><p>Notice that only persons whose name starts with Alex are listed!</p><p/>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                            |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><p>The person list is now updated with persons whose name starts with `Alex`</p><p/>{:/} |
 
 #### 2.4.7. List person
 When you are on the home page, you may obtain the list of every person in Plannit.
@@ -737,9 +737,9 @@ goto CS2103T
 In the above example, we are navigating to the module with module code `CS2103T`. Here's
 a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                         | After executing the command                                                                                                                                            |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="left"><p>Notice that the screen is updated with the module's information!</p><p/>{:/} |
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                                    |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/goto-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/goto-after.png"/></p> <p align="left"><p>The screen is now updated with the module's information!</p><p/>{:/} |
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
 You may return to home page by executing the [`home`](#252-navigate-to-home) command.
@@ -765,9 +765,9 @@ Format:  `home`
 
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                         | After executing the command                                                                                                                            |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><p>Notice that you are now back on the home screen!</p><p/>{:/} |
+| Before executing the command                                                                                                                         | After executing the command                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/home-after.png"/></p> <p align="left"><p>You are now back on the home screen!</p><p/>{:/} |
 
 <div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
 You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
