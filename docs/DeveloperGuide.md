@@ -318,7 +318,7 @@ The sequence diagram below shows how the process works:
 
 ### `CloneCommand` feature
 
-This feature allows the user to clone all details of an existing surveyee with updated attribute. It is accomplished mainly using the `CloneCommandParser` and `CloneCommand` classes.
+This feature allows the user to clone all details of an existing surveyee with updated attributes. It is accomplished mainly by using the `CloneCommandParser` and `CloneCommand` classes.
 
 In the `CloneCommandParser` class, we parse the arguments using `ArgumentMultimap` class and check which attributes are present in the arguments. We will then create a `ClonePersonDescriptor` object to store these attributes.
 
@@ -357,7 +357,7 @@ Note that if the new person we cloned is already in the address book, it will tr
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority             | As a …​ | I want to …​                                                                             | So that I can…​                                                        |
-| -------------------- | ------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| -------------------- | ------- |------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`              | user    | use 'add' in the command line                                                            | add a new surveyee quickly                                             |
 | `* * *`              | user    | use 'edit' in the command line                                                           | edit a surveyee quickly                                                |
 | `* * *`              | user    | use 'delete' in the command line                                                         | delete a surveyee quickly                                              |
@@ -369,6 +369,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`                | user    | use 'view <attribute>' to view only surveyees of specific attribute                      | save time when looking for surveyees with a specific attribute         |
 | `* *`                | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute               | save time when deleting surveyees with a specific attribute            |
 | `*`                  | user    | change between a 'light' and 'dark' theme                                                | have a GUI that is comfortable to use in the day and at night          |
+| `*`                  | user    | use CTRL + N                                                                             | add a new surveyee qucickly                                            |
+| `*`                  | user    | use CTRL + R                                                                             | clear all the texts in command box qucikly                             |
+| `*`                  | user    | use CTRL + E                                                                             | edit an existing surveyee qucickly                                     |
+| `*`                  | user    | use CTRL + D                                                                             | delete an existing surveyee qucickly                                   |
+| `*`                  | user    | use CTRL + M                                                                             | mark an existing surveyee qucickly                                     |
+| `*`                  | user    | use CTRL + U                                                                             | unmark an existing surveyee qucickly                                   |
+| `*`                  | user    | use CTRL + Z                                                                             | undo a command qucikly                                                 |
+| `*`                  | user    | use CTRL + L                                                                             | clone a new surveyee qucickly                                          |
+| `*`                  | user    | use CTRL + I                                                                             | view an existing surveyee qucickly                                     |
 | _{More to be added}_ |         |                                                                                          |                                                                        |
 
 ### Use cases
@@ -471,6 +480,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. Survin shows/hides more detailed information of surveyees
    
+   Use case ends.
+
+**Use case: Clone an existing surveyee**
+
+**MSS**
+
+1. User wants to add a new person that is the son of an existing surveyee, both of them sharing alot similar information and took part in the same survey.
+
+2. User finds the index of the dad in the list of surveyees.
+
+3. User uses clone command to clone the dad with updated details of the son.
+
+4. A new surveyee which is the son has been added.
+
    Use case ends.
 
 _{More to be added}_
@@ -591,6 +614,16 @@ testers are expected to do more *exploratory* testing.
 2. Hiding more detailed information
    
    1. Omitted as it is similar to 'Showing more detailed information'.
+
+### Clone an existing surveyee
+
+1. Clone an existing surveyee while all surveyees are shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case: `clone 1 n/James Lee p/91234567 e/jameslee@example.com b/1990-10-22`<br>
+       Expected 1: A new person with James Lee, phone number 91234567, email jameslee@example.com and birthdate 1990-10-22 and other details same as the first person will be added to the end of the list.<br>
+       Expected 2: Error shown if this person is already exist in the survin.
 
 ### Saving data
 

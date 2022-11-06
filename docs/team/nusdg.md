@@ -30,3 +30,4 @@ Given below are my contributions to the project.
     * Added documentation for the features `shortcut keys` [\#147](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/147)
   * Developer Guide:
     - Added implementation details for feature `clone` [\#129](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/129)
+    - Added use case and instruction for manual testing for clone command. [\#220](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/220)
