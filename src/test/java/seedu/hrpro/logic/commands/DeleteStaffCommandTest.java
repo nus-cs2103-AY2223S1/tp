@@ -37,17 +37,17 @@ public class DeleteStaffCommandTest {
     public void execute_validInput_success() {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         ProjectName projectName = project.getProjectName();
-        Staff staff = new StaffBuilder().build();
+        Staff staff = model.getFilteredStaffList().get(INDEX_FIRST_STAFF.getZeroBased());
         StaffName staffName = staff.getStaffName();
+
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
                 staffName, projectName);
-        project.getStaffList().add(staff);
-        Index index = Index.fromOneBased(1);
-        model.setFilteredStaffList(project.getStaffList());
 
+        Index index = Index.fromOneBased(1);
 
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
 
+        // Simulating expected behaviour
         Model expectedModel = new ModelManager(getTypicalHrPro(), model.getUserPrefs());
         Project tempProject = new ProjectBuilder(project).build();
         tempProject.getStaffList().remove(staff);
@@ -56,6 +56,9 @@ public class DeleteStaffCommandTest {
         expectedModel.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
 
         assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
+
+        // Reset model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     //Test to check that command throw exception when trying to delete a staff not in project
@@ -97,16 +100,32 @@ public class DeleteStaffCommandTest {
 
     @Test
     public void execute_noDisplayedStaff_throwCommandException() {
-        cleanUpModel();
         Project project = model.getHrPro().getProjectList().get(0);
         ProjectName projectName = project.getProjectName();
-        int len = model.getFilteredStaffList().size();
-        Index index = Index.fromZeroBased(len + 1);
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
 
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectName);
         String expectedMessage = String.format(MESSAGE_NO_STAFF_DISPLAYED, "delstaff command");
 
+        clearFilteredStaff();
         assertCommandFailure(deleteStaffCommand, model, expectedMessage);
+
+        // Reset model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_noDisplayedProject_throwCommandException() {
+        Project targetProject = model.getFilteredProjectList().get(0);
+        ProjectName projectName = targetProject.getProjectName();
+
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectName);
+        String expectedMessage = String.format(MESSAGE_INVALID_PROJECT, projectName);
+
+        clearFilteredProjects();
+        assertCommandFailure(deleteStaffCommand, model, expectedMessage);
+
+        // Reset model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     @Test
@@ -137,5 +156,15 @@ public class DeleteStaffCommandTest {
     private void cleanUpModel() {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         project.getStaffList().setStaffs(new ArrayList<>());
+    }
+
+    private void clearFilteredProjects() {
+        //Clears the displayed project list
+        model.updateFilteredProjectList((a) -> false);
+    }
+
+    private void clearFilteredStaff() {
+        //Clears the displayed project list
+        model.updateFilteredStaffList((a) -> false);
     }
 }

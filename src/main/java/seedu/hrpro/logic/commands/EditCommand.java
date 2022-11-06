@@ -21,7 +21,6 @@ import seedu.hrpro.model.deadline.Deadline;
 import seedu.hrpro.model.project.Budget;
 import seedu.hrpro.model.project.Project;
 import seedu.hrpro.model.project.ProjectName;
-import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.model.staff.UniqueStaffList;
 import seedu.hrpro.model.tag.Tag;
 
@@ -99,9 +98,7 @@ public class EditCommand extends Command {
 
         Project newProject = new Project(updatedProjectName, updatedBudget, updatedDeadline, updatedTags);
 
-        for (Staff staff : previousStaffList) {
-            newProject.getStaffList().add(staff);
-        }
+        newProject.getStaffList().setStaffs(previousStaffList);
 
         return newProject;
     }
