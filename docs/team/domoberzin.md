@@ -62,14 +62,6 @@ Given below are my contributions to the project.
   to model a Task or Module object instead.
   * Credits: Original AB3 DG as a point of reference.
 
-* **Major Enhancement**: Overhauled the Developer Guide (DG) to better represent the inner workings of our application.
-  * What it does: Allows the user to get a lower-level understanding of our application.
-  * Justification: The original DG was crafted to describe the inner-workings of the AB3 codebase. Additionally, our application
-    was vastly different from AB3, so extensive modifications to the UML Docs, Use Cases and Architecture of the DG.
-  * Highlights: Since we did not require the modelling of a Person object, all mentions of Person had to be refactored
-    to model a Task or Module object instead.
-  * Credits: Original AB3 DG as a point of reference.
-
 * **Major Enhancement**: Added pictures to illustrate the execution of every command in our application to the User Guide.
   * What it does: Gives the user a visual representation of the effects their commands have.
   * Justification: Users may get a better understanding of the commands, and how they work, through the visual representations

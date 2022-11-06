@@ -35,5 +35,5 @@ ModtRekt is optimized for use via a CLI while still having the benefits of a GUI
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=midnightfeverrr&breakdown=true&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * **Other contributions**: Project presentation.
   * Part of the team that did the product pitch.
-  * Did several part of User Guide as shown in [here](UserGuide.md)
-  * Did several part of Developer Guide as shown in [here](DeveloperGuide.md)
+  * Did several part of User Guide as shown in [here](https://ay2223s1-cs2103t-w10-4.github.io/tp/UserGuide.html)
+  * Did several part of Developer Guide as shown in [here](https://ay2223s1-cs2103t-w10-4.github.io/tp/DeveloperGuide.html)
