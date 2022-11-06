@@ -24,6 +24,7 @@ public class Person {
     private final Uid uid;
 
     /**
+     * Constructor to create new Person object.
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob, Uid uid) {
@@ -63,6 +64,9 @@ public class Person {
         return uid;
     }
 
+    /**
+     * Returns the age group range of a Person.
+     */
     public String getAgeGroup() {
         int minAgeInGroup = dob.toAge();
         minAgeInGroup = (int) (Math.floor(minAgeInGroup / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
@@ -103,13 +107,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getDob().equals(getDob())
-                && otherPerson.getGender().equals(getGender());
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getDob().equals(getDob());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, gender);
+        return Objects.hash(name, phone, email, address, gender, dob);
     }
 
     @Override

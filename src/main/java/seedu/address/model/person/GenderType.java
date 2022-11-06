@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Enum class of a Person's gender in the address book.
- * The 3 types of gender enum are: MALE, FEMALE, NA
+ * Represents the types of a Person's gender.
  */
 public enum GenderType {
 

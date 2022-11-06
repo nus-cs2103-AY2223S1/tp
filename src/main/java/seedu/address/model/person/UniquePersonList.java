@@ -30,6 +30,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
+     * @param toCheck person to be checked.
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +38,9 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Adds a person to the list.
+     * Adds a person to the internal list.
      * The person must not already exist in the list.
+     * @param toAdd Person to be added to the internal list.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
@@ -52,6 +54,8 @@ public class UniquePersonList implements Iterable<Person> {
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * @param target person to be replaced.
+     * @param editedPerson person to replace with.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -69,8 +73,9 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Removes the equivalent person from the internal list.
      * The person must exist in the list.
+     * @param toRemove Person to be removed.
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
@@ -79,22 +84,40 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+    /**
+     * Replace the contents of this list with {@code replacementPersons}.
+     * @param replacementPersons UniquePersonList to replace the current internal list.
+     */
+    public void setPersons(UniquePersonList replacementPersons) {
+        requireNonNull(replacementPersons);
+        internalList.setAll(replacementPersons.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code replacementPersons}.
+     * {@code replacementPersons} List to replace the current internal list, it must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setPersons(List<Person> replacementPersons) {
+        requireAllNonNull(replacementPersons);
+        if (!personsAreUnique(replacementPersons)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(replacementPersons);
+    }
+    /**
+     * Returns true if {@code persons} contains only unique persons.
+     */
+    private boolean personsAreUnique(List<Person> persons) {
+        Integer personListSize = persons.size();
+        for (int i = 0; i < personListSize - 1; i++) {
+            for (int j = i + 1; j < personListSize; j++) {
+                if (persons.get(i).isSamePerson(persons.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -129,19 +152,5 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

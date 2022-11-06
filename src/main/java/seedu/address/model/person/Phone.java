@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's phone number in the contact list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
@@ -29,8 +29,9 @@ public class Phone {
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidPhone(String phoneToTest) {
+        requireNonNull(phoneToTest);
+        return phoneToTest.matches(VALIDATION_REGEX);
     }
 
     @Override

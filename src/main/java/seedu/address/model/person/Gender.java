@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents a Person's gender in the address book.
+ * Represents a Person's gender in the contact list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender implements Comparable<Gender> {
@@ -17,14 +17,14 @@ public class Gender implements Comparable<Gender> {
         + " formats: m / M / male / Male for male, f / F / female / Female for female.";
 
     private static final Set<String> VALID_GENDERS = new HashSet<>(Arrays.asList("m", "M",
-            "f", "F", "male", "Male", "female", "Female")); //NA is removed from the valid gender list
+            "f", "F", "male", "Male", "female", "Female"));
     public final GenderType value;
 
 
     /**
      * Constructs an {@code Gender}.
      *
-     * @param gender  A valid gender, accepted formats include F, M, f, m, Female, Male, female, male.
+     * @param gender  A valid gender.
      */
     public Gender(String gender) {
         requireNonNull(gender);
@@ -34,18 +34,19 @@ public class Gender implements Comparable<Gender> {
 
     /**
      * Returns if a given string is a valid gender.
+     * Accepted gender formats include F, M, f, m, Female, Male, female, male.
      */
-    public static boolean isValidGender(String test) {
-        requireNonNull(test);
-        return VALID_GENDERS.contains(test);
+    public static boolean isValidGender(String genderToTest) {
+        requireNonNull(genderToTest);
+        return VALID_GENDERS.contains(genderToTest);
     }
     /**
      * Compares this object with the given object for order.
-     * Genders are ordered in the following manner: FEMALE, MALE
+     * Genders are ordered in the following manner: FEMALE, MALE.
      */
     @Override
-    public int compareTo(Gender g) {
-        return this.value.compareTo(g.value);
+    public int compareTo(Gender other) {
+        return this.value.compareTo(other.value);
     }
 
     @Override

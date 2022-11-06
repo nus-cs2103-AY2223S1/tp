@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in the contact list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -47,8 +47,9 @@ public class Email {
     /**
      * Returns if a given string is a valid email.
      */
-    public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidEmail(String emailToTest) {
+        requireNonNull(emailToTest);
+        return emailToTest.matches(VALIDATION_REGEX);
     }
 
     @Override
