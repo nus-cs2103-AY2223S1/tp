@@ -16,7 +16,7 @@ title: User Guide
 ## Introduction
 myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for managing students of a tuition center**, optimized for use via a Command Line Interface 
 (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're able to type fast, myStudent can get your
-work done faster than a traditional GUI apps.
+work done faster than traditional GUI apps.
 
 ---
 ## About
@@ -901,7 +901,8 @@ Please close any .csv files that are currently open before clicking on the "*Exp
 **A:** You can tell us about the problem you're having and give more details [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). We'll be glad to help!
 
 **Q:** Can I request for new features or themes?  
-**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new). (Do note that implementation of any suggestion will be at our own discretion) 
+**A:** Of course you can! We're open to new suggestions. You can leave your suggestions [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/issues/new).  
+(Do note that implementation of any suggestion will be at our own discretion) 
 
 ---
 
