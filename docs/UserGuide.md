@@ -246,12 +246,11 @@ Only the following are accepted for `TYPE`:
 * `stu` for Student
 * `prof` for Professor
 * `ta` for Teaching Assistant
-* All are case-insensitive
-* More than one type can be provided
+* All are case-insensitive and more than one `TYPE` can be provided
 
 Examples:
 * `find typ/stu ta` -> Returns contacts who are students OR teaching assistants.
-* * `find typ/stu prof` -> Returns contacts who are students OR professors.
+* `find typ/stu prof` -> Returns contacts who are students OR professors.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -261,7 +260,7 @@ Examples:
 Displays all contacts stored in application.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-After executing find command, only the contacts that matches your input will be displayed. This list command would make the application display all of your stored contacts again.
+After executing find command, only contacts that match your input will be displayed. list command would make the application display all of your stored contacts again.
 </div>
 
 Format: `list`
@@ -320,7 +319,7 @@ Before executing the above command:
 
 <div style="page-break-after: always;"></div>
 
-After executing the above command:
+After executing the above command: <br>
 ![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 The level of a module is defined by the value of the 4-digits within the module code whereby
@@ -338,7 +337,6 @@ Suppose two module codes have the same level (4-digit code), the two module code
 alphabetically.
 </div>
 
-You can also sort module codes in a descending manner whereby higher level module codes will appear higher. 
 Format: `sort Z-A m/`, sorts in descending order
 
 Example Command: `sort Z-A m/`
@@ -376,9 +374,6 @@ The contact list will be displayed as a pie chart. The pie chart is located to t
 ![piechart](images/UiPiechart.png)
 
 This pie chart shows how many of each type of contact you have, and updates itself whenever the list changes. You can use this to have a quick overview of your social network.
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.6 Fast Template Command
 
