@@ -491,10 +491,6 @@ are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
 
-### Listing all labels: `listL`
-
-Shows a list of all existing labels in the address book.
-
 ### Adding a label to a contact/task: `addL`
 
 Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels.
@@ -523,12 +519,16 @@ Example:
 
 * `addL c/3 t/12 l/CS2103T` will add the label "CS2103T" to the 3rd contact on the contact list and 12th task on the task list.
 
-### Removing a label from a contact/task: `deleteL`
+### Listing all labels: `listL`
 
-Removes a label from an existing contact/task in YellowBook.
+Shows a list of all existing labels in the address book.
 
-If contact/task is last remaining contact/task with said label, label is removed from the label list.
-Otherwise, it is only removed from the specified contact/task label list.
+### Deleting a label from a contact/task: `deleteL`
+
+Deletes a label from an existing contact/task in YellowBook.
+
+If contact/task is last remaining contact/task with said label, label is deleted from the label list.
+Otherwise, it is only deleted from the specified contact/task label list.
 
 Multiple labels can be deleted in the same command.
 However, only a maximum of one contact and one task can be edited within the same command.
@@ -539,7 +539,6 @@ you will encounter an error as YellowBook will not find a match.
 </div>
 
 Labels must be alphanumeric and one word long.
-
 
 The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
@@ -552,7 +551,7 @@ Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
-* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact and 14th task on the task list.
+* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact on the contact list and 14th task on the task list.
 
 ### Deleting all contacts and tasks by label: `deleteA`
 
