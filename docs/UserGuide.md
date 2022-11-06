@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Salesy User Guide v1.3
+title: Salesy User Guide v1.4
 ---
 
 Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers. 
