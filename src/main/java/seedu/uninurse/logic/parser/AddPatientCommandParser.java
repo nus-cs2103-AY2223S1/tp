@@ -43,7 +43,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_CONDITION, PREFIX_MEDICATION, PREFIX_TASK_DESCRIPTION, PREFIX_TAG);
+                        PREFIX_CONDITION, PREFIX_MEDICATION, PREFIX_TASK_DESCRIPTION, PREFIX_TAG, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
