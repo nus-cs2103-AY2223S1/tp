@@ -42,7 +42,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return parsePredicates(argMultimap);
+        Predicate<Applicant> predicate = parsePredicates(argMultimap);
+        return new FindCommand(predicate);
     }
 
     /**
@@ -51,7 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      *
      * @throws ParseException if the user input does not conform to the expected format.
      */
-    public FindCommand parsePredicates(ArgumentMultimap argMultimap) throws ParseException {
+    public Predicate<Applicant> parsePredicates(ArgumentMultimap argMultimap) throws ParseException {
 
         requireNonNull(argMultimap);
         List<Predicate<Applicant>> applicantPredicateList = new ArrayList<>();
@@ -75,8 +76,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         assert !applicantPredicateList.isEmpty();
 
-        Predicate<Applicant> predicate = combinePredicateList(applicantPredicateList);
-        return new FindCommand(predicate);
+        return combinePredicateList(applicantPredicateList);
     }
 
 

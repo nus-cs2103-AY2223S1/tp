@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
 participant ":PinCommandParser" as PinCommandParser LOGIC_COLOR
-participant "p:PinCommand" as PinCommand LOGIC_COLOR
+participant ":PinCommand" as PinCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute("pin 1")
 activate LogicManager
 
-LogicManager -> TrackAScholarParser : parseCommand("pin 1")
+LogicManager -> TrackAScholarParser : parseCommand(args)
 activate TrackAScholarParser
 
 create PinCommandParser
@@ -34,16 +34,16 @@ create PinCommand
 PinCommandParser -> PinCommand : PinCommand()
 activate PinCommand
 
-PinCommand --> PinCommandParser : p
+PinCommand --> PinCommandParser
 deactivate PinCommand
 
-PinCommandParser --> TrackAScholarParser : p
+PinCommandParser --> TrackAScholarParser
 deactivate PinCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 PinCommandParser -[hidden]-> TrackAScholarParser
 destroy PinCommandParser
 
-TrackAScholarParser --> LogicManager : p
+TrackAScholarParser --> LogicManager
 deactivate TrackAScholarParser
 
 LogicManager -> PinCommand : execute()
@@ -51,7 +51,7 @@ activate PinCommand
 
 PinCommand -> Model : getFilteredApplicantList()
 activate Model
-Model --> Model : get()
+
 Model --> PinCommand : oldApplicant
 deactivate Model
 

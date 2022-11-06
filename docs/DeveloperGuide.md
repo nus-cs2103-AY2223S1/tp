@@ -2,16 +2,55 @@
 layout: page
 title: Developer Guide
 ---
-## Table of Contents
+
+## **Table of Contents**
+
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+#### What is TrackAScholar?
+
+TrackAScholar (TAS) is a one of a kind desktop app. It is the **only** application that any university administrative staff needs.
+TAS helps university administrative staff manage scholarship applications.
+It can store all the applicant's details such as contact info and scholarship applied etc. in one place.
+
+TAS has many features that university administrative staff can use to help speed up the application process immensely.
+TAS presents the administrative staff with various options such as the ability to pin important applicants,
+edit their details easily and find or filter for applicants with ease.
+
+TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+
+#### Who is this Developer Guide for?
+
+This developer guide is designed for individuals who want to understand TrackAScholar's architecture and design concerns.
+
+Italics are used to indicate specific technical terms. If you'd want to know what they mean, you may look them up in our [Glossary](#glossary).
+
+For additional details on our target audience and how our app solves their problems, check out the [Requirements](#appendix-requirements).
+
+For new users who are discovering the features of our app, please refer to our [User Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/UserGuide.html).
+
+#### Current version
+
+This developer guide is optimized for TrackAScholar's most recent version, v1.4.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Legend**
 
+Here are certain indicators explained so that the user may better comprehend the documentation.
+
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,11 +59,15 @@ title: Developer Guide
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson).
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,6 +77,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,6 +123,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### UI component
@@ -96,6 +143,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Applicant` object residing in the `Model`.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +166,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This limitation applies to the remaining sequence diagrams in our guide.
+
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -128,12 +180,14 @@ How the parsing works:
 * When called upon to parse a user command, the `TrackAScholarParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TrackAScholarParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 
 The `Model` component,
@@ -143,11 +197,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackAScholarBook`, which `Applicant` references. This allows `TrackAScholar` to only require one `Tag` object per unique tag, instead of each `Applicant` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Major` list in the `TrackAScholar`, which `Applicant` references. This allows `TrackAScholar` to only require one `Major` object per unique Major, instead of each `Applicant` needing their own `Major` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
 </div>
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -166,17 +222,24 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.trackascholar.commons` package.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Add applicant feature
 
 #### Implementation
 
-The add operation is facilitated by `AddCommand`. It extends `Command` and implements the `Command#execute` operation.
+The add operation is facilitated by `AddCommandParser`. `AddCommandParser` will map the creation of an
+`Applicant` based on the user input to be added to the applicant list in the `Model`.
+
+`AddCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the add operation is handled by TrackAScholar:
 
@@ -208,6 +271,7 @@ The following activity diagram summarizes what happens when a user executes an a
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
 [Return to top](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -243,51 +307,68 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
 
-[Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-### Sort applicants by name, scholarship or status feature.
-
-#### Implementation
-
-The sort operation is facilitated by `SortCommand`. It extends `Command` and implements the `Command#execute` operation.
-
-Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
-
-1. The user enters `sort name`, for example, to sort all applicants by name in ascending lexicographic order.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `sort` and
-   the argument `name`.
-
-2. `TrackAScholarParser` identifies the `sort` command and `SortCommandParser` will be instantiated which calls `SortCommandParser#parse()`
-   which checks if the arguments have the valid parameter name and flag by calling `List#contains()` and `SortCommandParser#checkInputSizeAndReverseFlag()` respectively.
-
-3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
-   with the new `Comparator<Applicant>` as an argument.
-
-4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
-   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
-   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
-
-5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
-
-The following sequence diagram shows how the sort operation works:
-
-![Interactions Inside the Logic Component for the `sort` Command example](images/SortSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a sort command:
-
-![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Remove applicants by application status feature
+### Edit applicant feature
 
 #### Implementation
 
-The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
+The edit operation is facilitated by `EditCommandParser`. `EditComamndParser` will map the creation of an
+`EditApplicantDescriptor` based on the input prefixes. `EditApplicantDescriptor` stores the details to edit the 
+applicant with, where user specified parameters to edit will replace the corresponding details of the current applicant.
+
+`EditCommand` extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
+
+1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
+   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
+
+2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`) and creates an `Index` by calling
+   `ParserUtil#parseIndex()`.
+
+3. `EditCommandParser#parse()` will then call `EditCommandParser#isPrefixPresent()` to check which prefixes are present
+   in the user input, to identify which parameter need to be changed.
+
+4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before
+   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` and `Index` as an argument.
+
+5. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
+   `Model#hasApplicant()` is then called to check if the new `Applicant` is a duplicate of any other applicant already stored in TrackAScholar. 
+   When the check has concluded and no duplicate was found, `Model#setApplicant()` is called to update the existing applicant with the new applicant.
+
+6. `EditCommand#execute()` then invokes `Model#updateFilteredApplcantList()` to display the updated applicant in the applicant list.
+
+7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the edited applicant.
+
+The following sequence diagram shows how the edit operation works:
+
+![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a edit command:
+
+![Edit command activity diagram](images/EditCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Remove applicants feature
+
+#### Implementation
+
+The remove operation is facilitated by `RemoveCommandParser`. `RemoveCommandParser` parses the user input into an
+`ApplicationStatus` to compare with and remove, hence assisting the deletion of applicants from the applicant list
+in the `Model`.
+
+`RemoveCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
 
@@ -322,84 +403,140 @@ The following activity diagram summarizes what happens when a user executes a re
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### Find feature
+
+### Find applicant feature
 
 #### Implementation
 
-We will use find name as an example.
+The find operation is facilitated by `FindCommandParser`. `FindCommandParser` will map the creation of a
+`Predicate<Applicant>` based on the input prefixes. The following implementations support the creation of
+`Predicate<Applicant>`:
 
-The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
+* `NameContainsKeywordsPredicate`: Returns true if an applicant's `Name` partially matches with the inputs provided.
+* `ScholarshipContainsKeywordsPredicate`: Returns true if an applicant's `Scholarship` partially matches with the inputs provided.
+* `MajorContainsKeywordsPredicate`: Returns true if any of the applicant's `Major` partially matches with the inputs provided.
 
-Given below is an example usage scenario and how the find command operates in TrackAScholar:
+These predicates are combined using the `FindCommandParser#combinePredicateList()` method which chains the predicates using the
+`Predicate#and()` method. `Predicate<Applicant>` then assist the filtering of the applicant list in the `Model` for returning
+the search result.
 
-1. The user enters `find n/john` into the terminal.
+`FindCommand` extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the find operation is handled by TrackAScholar:
+
+1. The user enters `find n/Sam s/Merit`, for example, to find an applicant.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `find` and
-   the arguments `n/ john`.
+   the argument `n/Sam s/Merit`.
 
 2. `TrackAScholarParser` identifies the `find` command and `FindCommandParser` will be instantiated which calls `FindCommandParser#parse()`
-    It checks for a valid prefix which can be of type name, scholarship or major.It throws out an error if a valid prefix is not found.
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
 
-3. Since a valid prefix for name is present `FindCommandParser#parse()` will then call `parsePredicates` with the argument `john`.
+3. `FindCommandParser#parse()` will then call `FindCommandParser#parsePredicates()` which invokes `FindCommandParser#isPrefixPresent()`
+   to check which prefixes are present in the user input, hence identify which predicates are to be created.
 
-4. In `parsePredicates` an empty is first created `applicantPredicateList` before, it checks for the type of prefix accompanying the argument which be of type  name, scholarship or major.
+4. In this example, a `NameContainsKeywordsPredicate` and `ScholarshipContainsKeywordsPredicate` are created which are chained
+   into a `Predicate<Applicant>`. `FindCommandParser#parse()` then initializes and returns a `FindCommand` with the new
+   `Predicate<Applicant>` as an argument.
 
-5. After identifying the prefix is of type name it will call `getKeywordsList` to get the keyword for searching and in this case it will be `john`.
+5. `LogicManager#execute()` now calls `FindCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the
+   applicants who do not match the predicate. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants found.
 
-6. After identifying the keyword `john` the method, `NameContainsKeywordsPredicate` will be invoked with the argument `john`.
+6. `FindCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found.
 
-7. `NameContainsKeywordsPredicate` will check if any names in the main list has `john` present in their names.If `john` is present, that name in the main
-    list will be added to `applicantPredicateList`.All valid names are added to `applicantPredicateList`
-
-8. `FilterCommand#execute()` finishes with returning a FindCommand containing all the individuals with names matching the keyword `john`. 
-
-The following sequence diagram shows how the pin operation works:
+The following sequence diagram shows how the find operation works:
 
 ![Interactions Inside the Logic Component for the `find` Command example](images/FindSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a pin command:
+The following activity diagram summarizes what happens when a user executes a find command:
 
-![Find command activity diagram](images/FindActivityDiagram.png)
+![Find command activity diagram](images/FindCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### Edit applicant feature
+
+### Filter applicants feature
 
 #### Implementation
 
-The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
+The filter operation is facilitated by `FilterCommandParser`. `FilterCommandParser` parses the user input into an
+`ApplicationStatusPredicate` which assist the filtering of applicant list in the `Model`.
 
-Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
+`FilterCommand` extends `Command` and implements the `Command#execute` operation.
 
-1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
-   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
+Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
 
-2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
-   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
+1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship application status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `filter` and
+   the argument `pending`.
 
-3. `EditCommandParser#parse()` will then call `Optional#isPresent()` to check if a prefix is present
-   in the user input, to identify which inputs need to be changed.
+2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
+   which checks that the argument is a valid application status by calling `ApplicationStatus#isValidApplicationStatus()`.
 
-4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before 
-   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
+3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
+   with the new `ApplicationStatusPredicate` as an argument.
 
-5. `EditCommandParser#parse()` throws a `ParseException` if index is not a positive integer and a `CommandException` if index 
-   is larger than the list size.
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the
+   applicants with the non-matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
-6. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
-    `Model#setApplicant` is used to update the current applicant with the new applicant. 
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
 
-7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful edit and the applicant's details in TrackAScholar.
+The following sequence diagram shows how the filter operation works:
 
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
 
-The following sequence diagram shows how the edit operation works:
+The following activity diagram summarizes what happens when a user executes a filter command:
 
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
 
-![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
+[Return to top](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
 
-The following activity diagram summarizes what happens when a user executes a edit command:
+### Sort applicants feature.
 
-![Edit command activity diagram](images/EditCommandActivityDiagram.png)
+#### Implementation
+
+The sort operation is facilitated by `SortCommandParser`. `SortCommandParser` will map the creation of a
+`Comparator<Applicant>` based on the user input which assist in the sorting of the applicant list in the `Model`.
+
+`SortCommand` extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
+
+1. The user enters `sort name`, for example, to sort all applicants by name in ascending lexicographic order.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `sort` and
+   the argument `name`.
+
+2. `TrackAScholarParser` identifies the `sort` command and `SortCommandParser` will be instantiated which calls `SortCommandParser#parse()`
+   which checks if the arguments have the valid parameter name and flag by calling `List#contains()` and `SortCommandParser#checkInputSizeAndReverseFlag()` respectively.
+
+3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
+   with the new `Comparator<Applicant>` as an argument.
+
+4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#sortApplicants()` to sort the list of
+   applicants with the `Comparator<Applicant` provided. When the operation has concluded, `Model#updateFilteredApplcantList()`
+   is then called to display the sorted list.
+
+5. `SortCommand#execute()` finishes with returning a `CommandResult` containing information of the successful sorting.
+
+The following sequence diagram shows how the sort operation works:
+
+![Interactions Inside the Logic Component for the `sort` Command example](images/SortSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![Filter command activity diagram](images/SortCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Import feature
+
+#### Implementation
 
 [Return to top](#table-of-contents)
 
@@ -407,20 +544,26 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 ### Pin applicant feature
 
-
 #### Implementation
 
-The pin operation is facilitated by `PinCommand`. It extends `Command` and implements the `Command#execute` operation.
+The pin operation is facilitated by `PinCommandParser`. `PinCommandParser` parses the user input into an `Index` to
+assist in identifying the applicant to pin from the applicant list in the `Model`.
+
+`PinCommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the pin operation is handled by TrackAScholar:
-1. The user enters `pin 1`, for example, to pin an existing applicant at index 1 in the list.
-   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `pin` and
-   the argument `1`.
+
+1. The user enters `pin 1`, for example, to pin an existing applicant at index 1 in the list. This invokes `LogicManager#execute()`,
+   which calls `TrackAScholarParser#parseCommand()` to separate the command word `pin` and the argument `1`.
+
 2. `TrackAScholarParser` identifies the `pin` command and `PinCommandParser` will be instantiated which calls `PinCommandParser#parse()`.
+
 3. `PinCommandParser#parse()` now parses the argument and creates a new `Index` before initializing a `PinCommand`
     with the new `Index` as an argument.
+
 4. `LogicManager#execute()` now calls `PinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
    `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+
 5. `PinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful pinning of an applicant.
 
 The following sequence diagram shows how the pin operation works:
@@ -434,21 +577,30 @@ The following activity diagram summarizes what happens when a user executes a pi
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### UnPin applicant feature
 
 #### Implementation
 
-The unpin operation is facilitated by `UnPinCommand`. It extends `Command` and implements the `Command#execute` operation.
+The unpin operation is facilitated by `UnPinCommandParser`. `UnPinCommandParser` parses the user input into an `Name` to
+assist in identifying the applicant to unpin from the applicant list in the `Model`.
+
+`UnPincommand` extends `Command` and implements the `Command#execute` operation.
 
 Given below is an example usage scenario and how the unpin operation is handled by TrackAScholar:
+
 1. The user enters `unpin Alex Yeoh`, for example, to unpin a pinned applicant with full name matching `Alex Yeoh`.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `unpin` and
    the argument `Alex Yeoh`.
+
 2. `TrackAScholarParser` identifies the `unpin` command and `UnPinCommandParser` will be instantiated which calls `UnPinCommandParser#parse()`.
+
 3. `UnPinCommandParser#parse()` now parses the argument and creates a new `Name` before initializing a `UnPinCommand`
    with the new `Name` as an argument.
+
 4. `LogicManager#execute()` now calls `UnPinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
    `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+
 5. `UnPinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful unpinning of an applicant.
 
 The following sequence diagram shows how the unpin operation works:
@@ -463,30 +615,14 @@ The following activity diagram summarizes what happens when a user executes a un
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Proposed features**
-
-Coming soon in future iterations.
-
-For future iterations we plan to implement 2 new features.
-
-1. Sending of application results directly to email of the applicants.
-This will help applicant be notified of their result more quickly.
-It will also cut down the workload for admin staff.
-In this current iteration we still have to message the client manually.
-
-2. Exporting of Json file into Excel.
-The university admin staff might want to process or analyse the result in a more sophisticated manner.
-Excel is needed to aid in more sophisticated analysis as it has more functions.
-
-[Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -495,10 +631,12 @@ Excel is needed to aid in more sophisticated analysis as it has more functions.
 ### Product scope
 
 **Target Users**: <br>
-* NUS administrative staff in the Office of Admissions
+NUS administrative staff in the Office of Admissions.
 
 **Value Proposition**: <br>
 Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -506,22 +644,33 @@ Streamline the scholarship application process by organizing the scholarship app
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                    |
-|---------|-------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------|
-| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                               |
-| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                        |
-| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                             |
-| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                           |
-| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                                |
-| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of applications that is no longer needed                               |
-| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                        |
-| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                     |
-| `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
-| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                    |
+| Priority | As a …​                                              | I want to …​                                                                | So that I can…​                                                                             |
+|---------|------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *` | administrator (new user)                             | see usage instructions easily                                               | discover functionalities provided by the application                                        |
+| `* * *` | administrator (new user)                             | operate with clear and concise commands                                     | learn easily and grow proficiency with time                                                 |
+| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored database easily                                                               |
+| `* * *` | administrator                                        | save fresh data easily                                                      | avoid losing all my data                                                                    |
+| `* * *` | administrator                                        | add a new applicant to my database                                          | keep track of organize all the scholarship applications                                     |
+| `* * *` | administrator                                        | delete an applicant from my database                                        | remove data of scholarship applications that is no longer needed                            |
+| `* * *` | administrator                                        | edit the details of an applicant in my database                             | keep track of their most updated details                                                    |
+| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in the list of applications                  |
+| `* * *` | administrator managing many scholarship applications | find applicants by their name                                               | retrieve details of an applicant without having to go through the entire list               |
+| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarships                    |
+| `* * *` | administrator managing many scholarship applications | find applicants by their majors taken                                       | retrieve details of all applicants who has taken the specified majors                       |
+| `* *`   | administrator managing many scholarship applications | pinpoint applicants by their name, scholarship applied for and majors taken | identify and retrieve details of an exact applicant easily                                  |
+| `* *`   | administrator managing many scholarship applications | filter for applicants by status of their application                        | focus on the applicants whose application status is now of relevance to me                  |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by their name                                           | have an overview of all applicants with their names in alphabetical order                   |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by the scholarship they applied for                     | have an overview of all applicants with their scholarship applied for in alphabetical order |
+| `* *`   | administrator managing many scholarship applications | sort the applicants by status of their application                          | have an overview of all applicants grouped by their application status                      |
+| `* *`   | experienced administrator                            | remove all completed scholarship applications together                      | avoid clutter of data                                                                       |
+| `* *`   | experienced administrator                            | pin important applications that require further attention                   | refer to them easily when i need to                                                         |
+| `* *`   | experienced administrator                            | unpin applications that has been completed                                  | focus on the other important scholarship applications                                       |
+| `*`     | experienced administrator                            | run the application on different operating systems                          | access the same database/storage on different operating systems                             |
+| `*`     | experienced administrator                            | import scholarship application data easily                                  | combine scholarship application data from external sources with my own easily               |
 
+[Return to top](#table-of-contents)
 
-
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
 ### Use cases
 
@@ -697,10 +846,9 @@ be able to view the applicant from the list.
 
 ### Glossary
 
+* **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
+* **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **MSS**: Main Success Scenario
-* **GUI**: Graphical user interface allows users to interact with a software through visual components instead of the command line
 
 [Return to top](#table-of-contents)
 
@@ -956,6 +1104,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Upon restarting, the first applicant will be shown on the right list panel.
 
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -1000,4 +1149,4 @@ our commitment to improving the features and testability of TrackAScholar and im
   code base.
 
 [Return to top](#table-of-contents)
-  
+

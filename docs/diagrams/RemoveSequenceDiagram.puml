@@ -16,7 +16,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "ApplicationStatus" as ApplicationStatus MODEL_COLOR
 end box
 
-[-> LogicManager : execute(remove accepted)
+[-> LogicManager : execute("remove accepted")
 activate LogicManager
 
 LogicManager -> TrackAScholarParser : parseCommand(args)
@@ -32,7 +32,7 @@ deactivate RemoveCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 RemoveCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 
-TrackAScholarParser -> RemoveCommandParser : parse(accepted)
+TrackAScholarParser -> RemoveCommandParser : parse("accepted")
 activate RemoveCommandParser
 
 create ApplicationStatus
