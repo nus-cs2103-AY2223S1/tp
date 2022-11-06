@@ -44,6 +44,7 @@ create commandResult
 AddProfilesToEventCommand -> commandResult++
 return
 return
+destroy AddProfilesToEventCommand
 return
 
 @enduml

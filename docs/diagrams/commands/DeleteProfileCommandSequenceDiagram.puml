@@ -44,5 +44,6 @@ create commandResult
 deleteProfileCommand -> commandResult ++
 return
 return
+destroy deleteProfileCommand
 return
 @enduml

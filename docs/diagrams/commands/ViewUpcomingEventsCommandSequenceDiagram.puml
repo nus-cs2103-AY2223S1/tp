@@ -49,5 +49,6 @@ create commandResult
 ViewUpcomingEventsCommand -> commandResult ++
 return
 return
+destroy ViewUpcomingEventsCommand
 return
 @enduml
