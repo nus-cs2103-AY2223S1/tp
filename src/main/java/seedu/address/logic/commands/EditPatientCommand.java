@@ -25,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 import seedu.address.model.tag.Tag;
 
@@ -104,7 +105,8 @@ public class EditPatientCommand extends Command {
         model.CURRENT_NAMES.remove(personToEdit.getName());
         model.CURRENT_NAMES.add(editedPerson.getName());
         model.updateFilteredLists(Model.CURRENT_PREDICATE,
-                HiddenPredicateSingleton.getInstance().getCurrApptPredicate());
+                HiddenPredicateSingleton.getInstance().getCurrApptPredicate()
+                        .or(new AppointmentOfFilteredPersonsPredicate(currentList)));
         model.CURRENT_NAMES.clear();
     }
 
