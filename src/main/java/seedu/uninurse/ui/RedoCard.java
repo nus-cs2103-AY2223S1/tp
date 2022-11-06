@@ -16,21 +16,7 @@ import seedu.uninurse.model.person.Person;
  * An UI component that displays information of a redone command.
  */
 public class RedoCard extends UiPart<Region> {
-
     private static final String FXML = "RedoCard.fxml";
-    private static final String RED_STYLE = "-fx-background-color: #ffc0bf;"
-            + "-fx-border-radius: 2;"
-            // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-            + "-fx-background-radius: 5;"
-            + "-fx-padding: 2;";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on UninurseBook level 4</a>
-     */
 
     public final Optional<List<Person>> originalPersons;
     public final Optional<List<Person>> updatedPersons;
@@ -47,12 +33,13 @@ public class RedoCard extends UiPart<Region> {
     private Separator horizontalSeparator;
 
     /**
-     * Creates a RedoCard with {@code personListTracker}.
+     * Creates a RedoCard with personListTracker.
      */
     public RedoCard(PersonListTracker personListTracker) {
         super(FXML);
-        updatedPersons = personListTracker.getAddedPersons();
-        originalPersons = personListTracker.getDeletedPersons();
+        this.updatedPersons = personListTracker.getAddedPersons();
+        this.originalPersons = personListTracker.getDeletedPersons();
+
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");
 
@@ -61,7 +48,7 @@ public class RedoCard extends UiPart<Region> {
                     FXCollections.observableList(originalPersons.get())).getRoot());
         } else {
             oldPersonPlaceholder.getChildren().add(new Label("DELETED"));
-            oldPersonPlaceholder.setStyle(RED_STYLE);
+            oldPersonPlaceholder.setId("red_bordered_box");
         }
 
         if (updatedPersons.isPresent()) {
@@ -69,7 +56,7 @@ public class RedoCard extends UiPart<Region> {
                     FXCollections.observableList(updatedPersons.get())).getRoot());
         } else {
             newPersonPlaceholder.getChildren().add(new Label("DELETED"));
-            newPersonPlaceholder.setStyle(RED_STYLE);
+            newPersonPlaceholder.setId("red_bordered_box");
         }
     }
 
@@ -82,13 +69,13 @@ public class RedoCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UndoCard)) {
+        if (!(other instanceof RedoCard)) {
             return false;
         }
 
         // state check
-        RedoCard card = (RedoCard) other;
-        return originalPersons.equals(card.originalPersons)
-                && updatedPersons.equals(card.updatedPersons);
+        RedoCard o = (RedoCard) other;
+        return originalPersons.equals(o.originalPersons)
+                && updatedPersons.equals(o.updatedPersons);
     }
 }

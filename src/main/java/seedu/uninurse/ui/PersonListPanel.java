@@ -1,5 +1,7 @@
 package seedu.uninurse.ui;
 
+import static seedu.uninurse.ui.UiUtil.LIST_VIEW_OFFSET;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -22,8 +24,8 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.personListView.setItems(personList);
+        this.personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
@@ -34,6 +36,7 @@ public class PersonListPanel extends UiPart<Region> {
         PersonListViewCell() {
             super();
             setStyle("-fx-padding: 5 5 5 0");
+            prefWidthProperty().bind(personListView.widthProperty().subtract(LIST_VIEW_OFFSET));
         }
 
         @Override

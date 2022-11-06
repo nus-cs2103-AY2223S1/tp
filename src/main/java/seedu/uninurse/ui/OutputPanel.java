@@ -10,7 +10,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Person;
 
 /**
- *
+ * Panel containing the output view requested by a command.
  */
 public class OutputPanel extends UiPart<Region> {
     private static final String FXML = "OutputPanel.fxml";
@@ -23,7 +23,6 @@ public class OutputPanel extends UiPart<Region> {
      */
     public OutputPanel() {
         super(FXML);
-
     }
 
     public void clear() {

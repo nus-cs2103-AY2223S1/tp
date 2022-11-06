@@ -33,12 +33,10 @@ public class TruncatedPatientListCard extends UiPart<Region> {
      * Creates a TruncatedPatientListCard with the given Patient and index to display.
      */
     public TruncatedPatientListCard(Patient patient, int displayedIndex) {
-        super(FXML);
-        this.cardPane.setStyle("-fx-border-style: solid inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-
+        super(FXML);        
         this.patient = patient;
+
+        this.cardPane.setId("person_list_card");
         this.id.setText(displayedIndex + ". ");
         this.name.setText(patient.getName().getValue());
         patient.getTags().getInternalList()
@@ -46,22 +44,16 @@ public class TruncatedPatientListCard extends UiPart<Region> {
 
         if (patient.getTasks().size() > 0) {
             VBox taskNumberBox = new VBox();
-            taskNumberBox.setStyle("-fx-background-color: #2154ad;"
-                    + "-fx-padding: 3;" + "-fx-border-radius: 2;"
-                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                    + "-fx-background-radius: 5;");
+            taskNumberBox.setId("task_number_border");
             taskNumberBox.setAlignment(Pos.CENTER);
 
             Label taskNumberLabel = new Label();
+            taskNumberLabel.setId("task_number_label");
             if (patient.getTasks().size() == 1) {
                 taskNumberLabel.setText("1 Task left");
             } else {
                 taskNumberLabel.setText(patient.getTasks().size() + " Tasks left");
             }
-
-            taskNumberLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
-                    + "-fx-font-size: 13px;"
-                    + "-fx-text-fill: white;");
             taskNumberBox.getChildren().add(taskNumberLabel);
             this.taskNumberPane.getChildren().add(taskNumberBox);
         }

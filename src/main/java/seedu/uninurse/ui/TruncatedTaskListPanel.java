@@ -1,5 +1,7 @@
 package seedu.uninurse.ui;
 
+import static seedu.uninurse.ui.UiUtil.LIST_VIEW_OFFSET;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -28,22 +30,23 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
         this.truncatedTaskListView.setItems(persons);
         this.truncatedTaskListView.setCellFactory(listview -> new TruncatedTaskListViewCell());
 
-        this.header.setText("All Patient's Tasks:");
+        this.header.setText("All Patients' Tasks:");
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code TruncatedTaskListCard}.
+     * Custom ListCell that displays the graphics of a Patient using a TruncatedTaskListCard.
      */
     class TruncatedTaskListViewCell extends ListCell<Person> {
         TruncatedTaskListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
-            prefWidthProperty().bind(truncatedTaskListView.widthProperty().subtract(20.0));
+            prefWidthProperty().bind(truncatedTaskListView.widthProperty().subtract(LIST_VIEW_OFFSET));
         }
 
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
+
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);

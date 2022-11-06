@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -15,27 +14,20 @@
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER_LEFT" spacing="5.0">
+            <VBox alignment="CENTER_LEFT">
                <children>
                   <Label fx:id="id" />
                </children></VBox>
-            <VBox fx:id="namePane" GridPane.columnIndex="1">
+            <VBox minWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER_LEFT">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <children>
-                        <Label fx:id="name" styleClass="label_big" text="\$first" wrapText="true" />
-                     </children>
-                  </HBox>
-                  <FlowPane fx:id="tags" prefWrapLength="100.0" />
+                  <Label fx:id="name" styleClass="label_big" text="\$first" wrapText="true" />
+                  <FlowPane fx:id="tags" />
                </children>
             </VBox>
             <VBox fx:id="taskNumberPane" alignment="CENTER" GridPane.columnIndex="2" />

@@ -268,21 +268,6 @@
     -fx-background-radius: 5;
 }
 
-/* truncated card */
-.task_number_label_border {
-    -fx-background-color: #2154ad;
-    -fx-padding: 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 5;
-}
-
-.task_number_label_border_round {
-    -fx-background-color: #2154ad;
-    -fx-padding: 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 10;
-}
-
 /* unique elements */
 #cardPane {
     -fx-background-color: transparent;
@@ -314,4 +299,151 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
     -fx-max-width: 160;
+}
+
+/* list card elements */
+
+#person_list_card {
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-insets: 1;
+    -fx-border-radius: 2;
+    -fx-border-color: black;
+}
+
+#task_number_border {
+    -fx-background-color: #2154ad;
+    -fx-padding: 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#task_number_border_round {
+    -fx-background-color: #2154ad;
+    -fx-padding: 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 10;
+}
+
+#task_number_label {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+}
+
+#schedule_list_card {
+    -fx-padding: 1;
+    -fx-border-style: dashed inside;
+    -fx-border-width: 1;
+    -fx-border-insets: 1;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
+
+#schedule_list_task_box {
+    -fx-background-color: #c5e2fc;
+    -fx-padding: 3;
+    -fx-background-radius: 5;
+}
+
+#schedule_list_task_box_overdue {
+    -fx-background-color: #ffe6a1;
+    -fx-padding: 3;
+    -fx-background-radius: 5;
+}
+
+#task_list_card {
+    -fx-background-color: #c5e2fc;
+    -fx-padding: 3;
+    -fx-background-radius: 5;
+    -fx-border-style: dashed inside;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
+
+#task_list_card_overdue {
+    -fx-background-color: #ffe6a1;
+    -fx-padding: 3;
+    -fx-background-radius: 5;
+    -fx-border-style: dashed inside;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
+
+#truncated_task_list_card {
+    -fx-padding: 1;
+    -fx-border-style: dashed inside;
+    -fx-border-width: 1;
+    -fx-border-insets: 1;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
+
+/* patient card elements */
+
+#patient_card {
+    -fx-padding: 2;
+    -fx-border-style: solid inside;
+    -fx-border-width: 2;
+    -fx-border-insets: 2;
+    -fx-border-radius: 2;
+    -fx-border-color: black;
+}
+
+#attribute_box_label {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: black;
+}
+
+#index_box {
+    -fx-background-color: #bfcddb;
+    -fx-padding: 0 2 0 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#medication_type_box {
+    -fx-background-color: #c2a8ff;
+    -fx-padding: 0 2 0 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#task_date_time_box {
+    -fx-background-color: #95b3e8;
+    -fx-padding: 0 2 0 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#task_date_time_box_overdue {
+    -fx-background-color: #ebc000;
+    -fx-padding: 0 2 0 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#remark_box {
+    -fx-background-color: #b6ecfa;
+    -fx-padding: 5;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+/* bordered boxes */
+#red_bordered_box {
+    -fx-background-color: #ffc0bf;
+    -fx-padding: 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
+#green_bordered_box {
+    -fx-background-color: #c9ffdf;
+    -fx-padding: 2;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
 }

@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a Person.
  */
 public class PersonListCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
@@ -46,17 +46,16 @@ public class PersonListCard extends UiPart<Region> {
      */
     public PersonListCard(Person person, int displayedIndex) {
         super(FXML);
-        cardPane.setSpacing(1);
-        cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: solid inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
-        email.setText(person.getEmail().getValue());
+
+        this.cardPane.setSpacing(1);
+        this.cardPane.setId("person_list_card");
+
+        this.id.setText(displayedIndex + ". ");
+        this.name.setText(person.getName().getValue());
+        this.phone.setText(person.getPhone().getValue());
+        this.address.setText(person.getAddress().getValue());
+        this.email.setText(person.getEmail().getValue());
         person.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
