@@ -513,22 +513,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC5 - Sort person list**
 
 **MSS**
-1. User requests to sort person list and supplies a criterion flag.
-2. InterNUS sorts person list based on the specified criterion flag.
+1. User requests to sort person list and supplies a criterion prefix.
+2. InterNUS sorts person list based on the specified criterion prefix.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User submits a blank or invalid criterion flag.
+* 1a. User submits a blank or invalid criterion prefix.
 
-     * 1a1. InterNUS notifies the user that the criterion flag is invalid.
+     * 1a1. InterNUS notifies the user that the criterion prefix is invalid.
     
        Use case resumes at step 1.
 
-* 1b. User submits more than 1 criterion flag.
+* 1b. User submits more than 1 criterion prefixes.
 
-     * 1b1. InterNUS notifies the user that only 1 criterion flag can be specified.
+     * 1b1. InterNUS notifies the user that only 1 criterion prefix can be specified.
 
        Use case resumes at step 1.
 
@@ -630,10 +630,10 @@ testers are expected to do more *exploratory* testing.
       Expected: Person list is sorted by the company's names that each person is working at. Persons without an attached company name are listed at the bottom of the list.
 
    1. Test case: `sort -p n/ c/`<br>
-      Expected: Error is thrown to show that only 1 criterion flag can be used.
+      Expected: Error is thrown to show that only 1 criterion prefix can be used.
 
    1. Test case: `sort -p`<br>
-      Expected: Error is thrown to show that there should be a recognisable criterion flag.
+      Expected: Error is thrown to show that there should be a recognisable criterion prefix.
 
    1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
       Expected: Similar to previous.
@@ -649,10 +649,10 @@ testers are expected to do more *exploratory* testing.
    Expected: Person list is sorted by the company's names that each remaining person is working at. Remaining persons without an attached company name are listed at the bottom of the list.
 
    1. Test case: `sort -p n/ c/`<br>
-   Expected: Error is thrown to show that only 1 criterion flag can be used.
+   Expected: Error is thrown to show that only 1 criterion prefix can be used.
 
    1. Test case: `sort -p`<br>
-   Expected: Error is thrown to show that there should be a recognisable criterion flag.
+   Expected: Error is thrown to show that there should be a recognisable criterion prefix.
 
    1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
    Expected: Similar to previous.
