@@ -52,6 +52,23 @@ public class Person {
         this.planModules.addAll(planModules);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Person person) {
+        requireAllNonNull(person);
+        this.name = person.name;
+        this.phone = person.phone;
+        this.email = person.email;
+        this.address = person.address;
+        this.github = person.github;
+        this.tags.addAll(person.tags);
+        this.currModules.addAll(person.currModules);
+        this.prevModules.addAll(person.prevModules);
+        this.planModules.addAll(person.planModules);
+        this.lessons.addAll(person.lessons);
+    }
+
     public Name getName() {
         return name;
     }

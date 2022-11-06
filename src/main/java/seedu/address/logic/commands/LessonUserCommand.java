@@ -6,6 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.ExistingUser;
 
 /**
  * Commands that add lessons to the User
@@ -37,6 +38,7 @@ public class LessonUserCommand extends LessonCommand {
 
         assert !model.getUser().equals(EMPTY_USER) : "user to edit should not be empty";
 
+        model.setUser(new ExistingUser(model.getUser()));
         model.addLessonToUser(lesson);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString()));
