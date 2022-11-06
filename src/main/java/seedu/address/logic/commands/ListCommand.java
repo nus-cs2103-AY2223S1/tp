@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ListCommand extends Command {
 
-    public static final String MESSAGE_ARGUMENTS = "ADDRESS: %s, CATEGORY: %s, GENDER: %s, TAG: %s";
+    public static final String MESSAGE_ARGUMENTS = "ADDRESS: %s, CATEGORY: %s, GENDER: %s, TAG: %s\n";
 
     public static final String COMMAND_WORD = "list";
 
