@@ -12,7 +12,7 @@ UniqueEventList -right-> Event
 
 
 Event *--> Description
-Event *--> PersonName
+Event *--> Name
 Event *--> Duration
 Event *--> Date
 @enduml

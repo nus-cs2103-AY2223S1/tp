@@ -19,7 +19,9 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class RiskAppetite
+Class Birthday
+Class Income
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +43,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> RiskAppetite
+Person *--> Birthday
+Person *--> Income
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

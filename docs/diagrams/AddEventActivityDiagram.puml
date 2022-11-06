@@ -6,11 +6,11 @@ start
 'diamond we place it as the true branch instead.
 
 if () then
-    :Throw InvalidCommandException;
+    :Throw CommandException(Invalid Syntax);
 else ([ValidSyntax])
 if () then
-    : Throw InvalidPersonException;
-else ([Person Name exists in AB])
+    : Throw PersonNotFoundException;
+else ([Person Name exists in LTNS])
     if () then
     : Throw OverlapEventException;
     else ([Event doesn't overlap])

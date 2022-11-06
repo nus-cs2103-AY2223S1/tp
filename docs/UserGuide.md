@@ -66,9 +66,9 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`allClients`** : Lists all clients in the Address Book.
+   * **`allClients`** : Lists all clients in the LTNS.
 
-   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` : Adds a client named `John Doe` to the Address Book.
+   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` : Adds a client named `John Doe` to the LTNS.
 
    * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
@@ -125,6 +125,8 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+Example Usage: `help`
+Example Result: Help message Pop up appears
 
 ### Clearing all entries : `clear`
 
@@ -136,15 +138,18 @@ This action is irreversible!
 
 
 Format: `clear`
+Example Usage: `clear`
+Example Result: Clears all Application data.
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+Example Usage: `exit`
+Example Result: Exits the app
 
 ### Saving the data
-
 
 LTNS application data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -160,7 +165,7 @@ Below is an example of what your JSON File should look like:
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LTNS will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -169,7 +174,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Adding a client : `addClient`
 
-Adds a client to the address book.
+Adds a client to the LTNS.
 
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
@@ -207,19 +212,22 @@ This information will be displayed in the app
 | Ninth          | More than S$280,000, less than or equal to $320,000 |
 | Tenth          | More than $320,0000                                 |
 
-Examples:
-* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L`
-* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
+Example Usage:
+* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
+* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
+
 
 ### Listing all clients : `allClients`
 
-Shows a list of all clients in the address book.
+Shows a list of all clients in the LTNS, without any filters.
 
 Format: `allClients`
 
+Example Usage: `allClients`
+
 ### Editing a client : `editClient`
 
-Edits an existing client in the address book.
+Edits an existing client in the LTNS.
 
 Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
 
@@ -230,7 +238,7 @@ Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it. 
 
-Examples:
+Example Usage:
 *  `editClient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
@@ -257,7 +265,7 @@ The following table illustrates the details of each metric and their search rang
 | Coverage      | cov/   | - More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type <br/> - Clients who are covered by policies which covers all the specified coverage types will be listed                                     |
 | Company       | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
 
-Examples:
+Example Usage:
 
 * `findClient n/John` returns `john` and `John Doe`
 * `findClient n/alex david` returns `Alex Yeoh`, `David Li`
@@ -270,7 +278,7 @@ Below is an example of what you will expect to see when you call `findClient n/a
 
 ### Deleting a client : `deleteClient`
 
-Deletes the specified client from the address book.
+Deletes the specified client from the LTNS.
 
 Format: `deleteClient CLIENT_INDEX`
 
@@ -278,13 +286,13 @@ Format: `deleteClient CLIENT_INDEX`
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `allClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
+Example Usage:
+* `allClients` followed by `deleteClient 2` deletes the 2nd client in the LTNS.
 * `findClient n/Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
 
 ### Sorting all Clients : `sort`
 
-This allows you to sort your clients in the address book based on a specified metric.
+This allows you to sort your clients in the LTNS based on a specified metric.
 
 Format: `sort KEYWORD`
 
@@ -311,8 +319,8 @@ If your client's name contains non-alphanumeric characters, sorting by name migh
 </div>
 
 Examples:
-* `sort name` will display your address book in alphabetical order based on their name
-* `sort phone` will display your addresss book in numerical order based on their phone numbers
+* `sort name` will display your Client list view in alphabetical order based on their name
+* `sort phone` will display your Client list view book in numerical order based on their phone numbers
 
 
 Below is an example of what you will expect to see when you call `sort email`:
@@ -334,7 +342,7 @@ Store policies from a large assortment of companies, with different coverages an
 
 ### Adding a policy : `addPolicy`
 
-Adds a policy to the address book.
+Adds a policy to the LTNS.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
@@ -378,7 +386,7 @@ These are the valid companies and their corresponding codes.
 Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
 </div>  
 
-Examples:
+Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
@@ -402,12 +410,12 @@ Example Result: Shows the currently listed policies on the screen.
 
 
 
-### Viewing all policies in the address book : `allPolicies`
-Switches the display to show **all** the policies stored in the address book.
+### Viewing all policies: `allPolicies`
+Switches the display to show **all** the policies stored.
 
 Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
-Example Result: Shows all policies stored in the address book, on the screen.
+Example Result: Shows all policies stored in the LTNS, on the screen.
 
 ### Deleting a policy : `deletePolicy`
 Deletes the policy at the specified `INDEX`.
@@ -416,8 +424,8 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `deletePolicy POLICY_INDEX`
 
-Examples:
-* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
+Example Usage:
+* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the LTNS.
 * `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
@@ -435,7 +443,7 @@ The following table illustrates the details of each metric and their search rang
 | Coverage | cov/   | - More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type <br/> - Policies which cover all the specified coverage types will be listed |
 | Company  | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
 
-Examples:
+Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
 * `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
@@ -482,7 +490,7 @@ Example Usage:
 ### Deleting assigned policies from a client : `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
-in the address book using this command.
+in the LTNS using this command.
 
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
@@ -510,16 +518,37 @@ Example Usage:
 
 ## Event Features
 
-### Adding an Event : `addEvent`
-* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
-* Description: Adds an event into the address book. Note the following restrictions
-    * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
-    * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
-    * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
-        * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+### Adding an Event: `addEvent`
+
+An `Event` represents an appointment with an existing Client. It has the duration (represented by the start and end time) and
+the date of the appointment. It also has a handy description to briefly describe the contents of the meeting.
+
+Never miss another meeting today!
+
+Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    START_TIME must be chronologically before END_TIME. All times are in the format: `HH:MM`.
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    EVENT_DATE follows a standard date format for our app (i.e: YYYY-MM-DD).
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    CLIENT_NAME indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
+</div>
+
+If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+
+
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
+
+### Deleting an Event: `deleteEvent`
 
 Format: `deleteEvent EVENT_INDEX`
 
@@ -536,6 +565,8 @@ This allows you to view all Events that have been previously added.
 * Note that events are automatically sorted in chronological order.
 
 Format: `allEvents`
+Example Usage: `allEvents`
+Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
 
@@ -572,7 +603,11 @@ Q: How do I transfer my data to another Computer? <br/>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
 Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br/>
-A : When adding an Event involving a client, this client must exist in your client book first.
+A : When specifying the Client that you're meeting for this event, this Client must exist in your client book first.
+
+Q: Why am I seeing `This Event overlaps with another event....` when trying to add an event? <br/>
+A: When adding an event, it's date and time cannot overlap with another event! But fret not, we've listed all overlapping events for your convenience, 
+so you can view other events were causing the clash :) 
 
 Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my client list? <br/>
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
