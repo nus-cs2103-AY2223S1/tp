@@ -6,6 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -18,6 +19,8 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -67,6 +70,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-4/tp/blob/master/src/main/java/gim/ui/Ui.java)
@@ -84,6 +89,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Exercise` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-4/tp/blob/master/src/main/java/gim/logic/Logic.java)
@@ -94,9 +101,11 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ExerciseTrackerParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an exercise).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an exercise).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -105,6 +114,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -112,6 +123,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `ExerciseTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ExerciseTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-4/tp/blob/master/src/main/java/gim/model/Model.java)
@@ -125,6 +138,8 @@ The `Model` component,
 * stores the currently 'selected' `Exercise` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Exercise>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -143,13 +158,15 @@ Classes used by multiple components are in the `gim.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### **Exercise**
 
-#### **Implementation**
+#### Implementation
 <img src="images/ModelClassDiagram.png" width="450" />
 
 An `Exercise` is stored in `ExerciseList` and `ExerciseHashmap` of Model
@@ -161,7 +178,9 @@ An `Exercise` contains the following attributes:
 4. a `Sets`, which represents the number of cycles of reps that was completed
 5. a `Date`, which represent the date an exercise was performed
 
-#### **Date Implementation**
+<div style="page-break-after: always;"></div>
+
+#### Date Implementation
 <img src="images/DateClassDiagram.png" width="250" />
 
 The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
@@ -184,18 +203,22 @@ Therefore, coupling within the code base will not increase much.
 2. Testing will not be affected by the fact that singleton objects carry data from one test to another because there is no mutation
 of data inside the singleton objects `RegexList` and `FormatterList`. All tests will have the same singleton objects used.
 
-#### **Design Considerations**
+<div style="page-break-after: always;"></div>
+
+#### Design Considerations
 
 **Aspect: Fields of Exercise are Final:**
 * **Current choice**: The aforementioned fields in `Exercise` are final, effectively making our Exercise class immutable.
   * Rationale: Code written with immutable objects is easier to reason with and easier to understand, facilitating a smoother process when it comes to debugging and testing any code related to `Exercise`.
 
+<div style="page-break-after: always;"></div>
+
 ### **Exercise Hashmap**
 
-#### **Implementation**
+#### Implementation
 The Exercise Hashmap stores data in the form of a hashmap, where the key of the hashmap is the `Name` of an `Exercise` and its associated value is an `Exercise` ArrayList, containing a list of exercises (with the same name).
 
-#### **Design Considerations**
+#### Design Considerations
 
 **Aspect: Choosing the Data Structure**
 * **Current choice**: We decided to use a hashmap data structure.
@@ -203,7 +226,7 @@ The Exercise Hashmap stores data in the form of a hashmap, where the key of the 
 
 ### **Sorting Exercise List**
 
-#### **Implementation**
+#### Implementation
 
 The sorting of exercise list is facilitated by `ModelManager` which implements `Model`. `ModelManager` contains a `filteredExercises`
 list which is the list of exercises in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. `filteredExercises`
@@ -214,6 +237,8 @@ gets the list of exercises to be displayed from method `getExerciseList()` in `E
 `ExerciseList` contains a `displayedList` of type `ObservableList<Exercise>` and is the list that will be displayed by the `Ui`.
 It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableObservableList`. `ExerciseList` has method
 `sortDisplayedList()` which sorts the `displayedList` by order of date using the `sort()` method in `java.util.Collections` with a `Comparator<Exercise>`.
+
+<div style="page-break-after: always;"></div>
 
 #### Sorting Execution
 
@@ -235,6 +260,8 @@ The following sequence diagram shows how the sort command is executed.
 
 <img src="images/SortSequenceDiagram.png" width="1000" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 
 **Aspect: Displayed List structure**
@@ -250,7 +277,7 @@ The following sequence diagram shows how the sort command is executed.
 
 ### **Viewing exercises within a date range**
 
-#### **Implementation**
+#### Implementation
 
 * `ExerciseTrackerParser` calls `RangeCommandParser#parse`.
 * `RangeCommandParser#parseArguments` will return an enum type `Variation` according to the arguments in the
@@ -264,6 +291,8 @@ The following sequence diagram shows how the sort command is executed.
 * `RangeCommand` is returned.
 * Then, the `execute()` method of the resulting `RangeCommand` object will be called, returning a
 `CommandResult` object with the appropriate message.
+
+<div style="page-break-after: always;"></div>
 
 #### Execution
 
@@ -294,6 +323,8 @@ The following sequence diagram shows how the date range process is executed.
 
 <img src="images/RangeSequenceDiagram.png" width="1000" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 
 **Aspect: Simplicity of command design**
@@ -310,7 +341,7 @@ Adding new variations is also easily done by adding another value inside the enu
 
 ### **Listing of Personal Records**
 
-#### **Implementation**
+#### Implementation
 
 The mechanism for listing Exercise personal record(s) is facilitated by `PrCommand`, which extends from `Command`.
 
@@ -324,6 +355,8 @@ The user can choose to view personal record(s) for specific exercises with the '
 
 The user can also choose to view personal records for ALL exercises with the 'all/ prefix':
 * `:pr all/`
+
+<div style="page-break-after: always;"></div>
 
 Given below is an example usage scenario for how the mechanism for listing Exercise personal record(s) behaves at each step.
 
@@ -346,7 +379,9 @@ The following sequence diagram shows how the `PrCommand` works.
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
 
-### Generating a suggested workout routine
+<div style="page-break-after: always;"></div>
+
+### **Generating a suggested workout routine**
 
 #### Implementation
 
@@ -363,6 +398,8 @@ It implements the following operations:
 
 Cases such as where the index from the user input is out of bounds, are handled by the methods.
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario for how the mechanism for generating a workout routine behaves at each step.
 
 Step 1. The user launches the application, and already has 2 exercises, squat and deadlift, at index 1 and 2, in the exercise tracker.
@@ -374,6 +411,8 @@ A `Name` object `exerciseName` is returned to `g:GenerateCommand` by calling a m
 For the sake of brevity, this interaction is omitted from the diagram.
 
 ![GenerateWorkoutSequenceDiagram](images/GenerateWorkoutSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The diagram below illustrates the interaction between `g:GenerateCommand` and `GeneratorFactory` class.
 The static method `GeneratorFactory#getGenerator()` creates a `Generator` of the correct difficulty level, such as `EasyGenerator`.
@@ -391,87 +430,9 @@ The number of `Generator` objects created is equal to the number of unique exerc
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. A possible extension in the future would be to allow each exercise to be linked to its own difficulty level, for example, `:gen deadlift/easy squat/hard`. This design would make such an implementation possible.
 
-### \[Proposed\] Undo/redo feature
+<div style="page-break-after: always;"></div>
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedExerciseTracker`. It extends `ExerciseTracker` with an undo/redo history, stored internally as an `exerciseTrackerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedExerciseTracker#commit()` — Saves the current exercise tracker state in its history.
-* `VersionedExerciseTracker#undo()` — Restores the previous exercise tracker state from its history.
-* `VersionedExerciseTracker#redo()` — Restores a previously undone exercise tracker state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitExerciseTracker()`, `Model#undoExerciseTracker()` and `Model#redoExerciseTracker()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedExerciseTracker` will be initialized with the initial exercise tracker state, and the `currentStatePointer` pointing to that single exercise tracker state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th exercise in the exercise tracker. The `delete` command calls `Model#commitExerciseTracker()`, causing the modified state of the exercise tracker after the `delete 5` command executes to be saved in the `exerciseTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted exercise tracker state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new exercise. The `add` command also calls `Model#commitExerciseTracker()`, causing another modified exercise tracker state to be saved into the `exerciseTrackerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExerciseTracker()`, so the exercise tracker state will not be saved into the `exerciseTrackerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the exercise was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExerciseTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous exercise tracker state, and restores the exercise tracker to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExerciseTracker state, then there are no previous ExerciseTracker states to restore. The `undo` command uses `Model#canUndoExerciseTracker()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoExerciseTracker()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the exercise tracker to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `exerciseTrackerStateList.size() - 1`, pointing to the latest exercise tracker state, then there are no undone ExerciseTracker states to restore. The `redo` command uses `Model#canRedoExerciseTracker()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the exercise tracker, such as `list`, will usually not call `Model#commitExerciseTracker()`, `Model#undoExerciseTracker()` or `Model#redoExerciseTracker()`. Thus, the `exerciseTrackerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitExerciseTracker()`. Since the `currentStatePointer` is not pointing at the end of the `exerciseTrackerStateList`, all exercise tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire exercise tracker.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the exercise being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Listing of unique stored Exercises in a graphical UI
+### **Listing of unique stored Exercises in a graphical UI**
 
 #### Implementation
 
@@ -480,12 +441,16 @@ The display window is located in the bottom right of the application. The displa
 It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
-##### General class diagram
+**General class diagram**
+
 The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The `ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the addUI function. As the UI elements are usually initialized later than the data on loading of the application, the `SavedExerciseListWindow`UI object is only added as an observer after its constructor is called. This guards against any null-pointer exceptions which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
 
-##### Subscribing to updates
+<div style="page-break-after: always;"></div>
+
+**Subscribing to updates**
+
 Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
@@ -494,7 +459,8 @@ Once the `SavedExerciseListWindow` object has been added to the arraylist of `Ob
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The current implementation subscribes to notification for any form of addition or deletion, regardless if the exercise is unique or already exists in the list.
 </div>
 
-##### Updating
+**Updating**
+
 Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers method. All Observers in the list will run the update method that is individually specified in their class. As such , all Observers of ExerciseHashMap are required to override the update method as shown below.
 
 ```
@@ -506,7 +472,9 @@ Whenever there is a state changing operation, the `ExerciseHashMap` object will 
     }
 ```
 
-Below is a sample sequence diagram for the current implementation of how NotifyObservers work. There is only SavedExerciseListWindow observing the ExerciseHashMap. 
+<div style="page-break-after: always;"></div>
+
+Below is a sample sequence diagram for the current implementation of how notifyObservers work.
 
 ![NotifyObservers](images/NotifyObservers.png)
 
@@ -517,10 +485,10 @@ The logic behind the calculations and formatting of the display message is handl
 
 Through this pattern, each observer gets to define exactly what the required display/result should be.
 
-### Design considerations
+#### Design considerations
 
-##### Polymorphism
-The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the notifyObservers function in `ExerciseHashMap`.
+**Aspect: Polymorphism**
+* The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the notifyObservers function in `ExerciseHashMap`.
 
 ```
     public void notifyObservers() {
@@ -529,15 +497,13 @@ The immediately apparent benefit of this design would be the Polymorphism that i
         }
     }
 ```
-Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, instead, the responsibility of deciding what to do is passed on to the Observers themselves.
+* Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update, instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
-This allows for flexibility in having different types of objects having different forms of updating. This keeps the code in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an intermediary to help the UI communicate with `ExerciseHashMap`.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+* This allows for flexibility in having different types of objects having different forms of updating. This keeps the code in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an intermediary to help the UI communicate with `ExerciseHashMap`.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -549,9 +515,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
-### Product scope
+### **Product scope**
 
 **Target user profile**:
 
@@ -564,7 +532,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Has vim-like shortcuts to make things more efficient for vim lovers
 
 
-### User stories
+### **User stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -593,11 +561,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | share my workout plan with my friends                                | progress together with them                                                |
 | `*`      | user          | access a workout plan done by my friends                             | learn from them                                                            |
 
+<div style="page-break-after: always;"></div>
 
-
-<br>*{More to be added}*
-
-### Use cases
+### **Use cases**
 
 (For all use cases below, the **System** is `Gim` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -630,6 +596,8 @@ Actor: User <br>
 * 1a. User enters the command wrongly.
     * 1a1. Gim shows an error message.
 <br>Use case resumes at step 1.
+
+<div style="page-break-after: always;"></div>
 
 #### Use case 3: Delete an exercise
 
@@ -670,6 +638,8 @@ Actor: User <br>
 * 1a. User enters the command wrongly.
     * 1a1. Gim shows an error message.
       <br>Use case resumes at step 1.
+
+<div style="page-break-after: always;"></div>
 
 #### Use case 5: List exercises
 
@@ -716,6 +686,8 @@ Actor: User <br>
     * 1b1. Gim displays the invalid date error message.
       <br>Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 #### Use case 8: Filter exercises by name(s)
 
 System: Gim <br>
@@ -757,6 +729,8 @@ Actor: User <br>
 * 1b. User enters the name of exercise(s) wrongly.
     * 1b1. Gim displays exercise(s) not registered in system message.
       <br>Use case resumes at step 1.
+
+<div style="page-break-after: always;"></div>
 
 #### Use case 10: Generate workout suggestion for exercise(s)
 
@@ -801,8 +775,9 @@ Actor: User <br>
 2. Gim exits.
 <br>Use case ends.
 
+<div style="page-break-after: always;"></div>
 
-### Non-Functional Requirements
+### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 exercises without a noticeable sluggishness in performance for typical usage.
@@ -812,7 +787,7 @@ Actor: User <br>
 
 *{More to be added}*
 
-### Glossary
+### **Glossary**
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
@@ -823,6 +798,8 @@ Actor: User <br>
 * **Rate of Perceived Exertion (RPE)**: A measure of a physical activity intensity level.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -866,6 +843,8 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect `:add` commands to try: `:add`, `:add x/invalid`, `...` (where x is any invalid prefix).<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting an exercise
 
 1. Deleting an exercise while all exercises are being shown
@@ -880,6 +859,20 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `:del`, `:del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Clearing all exercises in the system
+
+1. Clearing all exercises in the system
+
+    1. Prerequisite: There is at least one exercise in the Exercise List.
+
+    2. Test case: `:clear`<br>
+       Expected: The Result Display Window will indicate that the command is invalid.
+
+    3. Test case: `:clear confirnm/`<br>
+       Expected: All exercises in the system is cleared. The Result Display Window will indicate that the exercise tracker has been cleared.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering exercises
 
@@ -906,6 +899,8 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `:sort`.<br>
        Expected: The exercises displayed in the Exercise List will be sorted by date after executing the command.
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing exercises within a time period
 
@@ -938,6 +933,8 @@ testers are expected to do more *exploratory* testing.
        Test case: `:gen 2 level/easy`.<br>
        Expected: The Result Display Window will indicate that the index is invalid.
 
+<div style="page-break-after: always;"></div>
+
 2. Generating workout suggestion using exercise name(s).
 
     1. Prerequisite: There is at least one exercise in the Exercise List.
@@ -955,6 +952,7 @@ testers are expected to do more *exploratory* testing.
 
     5. Other incorrect `:gen` commands to try: `:gen` (no keywords provided).<br>
        Expected: The Result Display Window will indicate that the command is invalid.
+    
 
 ### Listing Personal Records (PR)
 
