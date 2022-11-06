@@ -26,6 +26,7 @@ public class MakeStatsCommand extends Command {
 
     public static final String SHOWING_STATS_MESSAGE = "Opened statistics window.";
     public static final String NO_STATS_MESSAGE = "No person is tagged to event, no statistics to generate.";
+    public static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "Event index given is out of event list range.";
 
     public final Index index;
     public final boolean isGenderStatistic;
@@ -43,6 +44,9 @@ public class MakeStatsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Event> eventList = model.getFilteredEventList();
+        if (eventList.size() <= index.getZeroBased() || index.getZeroBased() < 0) {
+            throw new CommandException(INDEX_OUT_OF_BOUNDS_MESSAGE);
+        }
         Event targetEvent = eventList.get(index.getZeroBased());
         ObservableList<Person> personList = targetEvent.getUids().getPersons(model);
         StatisticDataList generatedStats;

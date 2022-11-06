@@ -14,7 +14,7 @@ public class TypicalEvents {
 
     public static final Event SHOE_SALE = new EventBuilder().withEventTitle("Shoe sale")
             .withDate("02/04/2022").withStartTime("09:30")
-            .withPurpose("$10 off all shoes").build();
+            .withPurpose("$10 off all shoes").withUid(TypicalPersons.ALICE.getUid()).build();
 
     public static final Event SLIPPER_SALE = new EventBuilder().withEventTitle("Slipper Sale")
             .withDate("03/04/2022").withStartTime("10:30")
