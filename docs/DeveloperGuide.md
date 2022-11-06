@@ -1328,4 +1328,4 @@ testers are expected to do more *exploratory* testing.
 | Person             | Patient, Appointment and Bill                    |
 | Persons themselves | Links patients with their appointments and bills |
 
-  
+ HealthContact allows more entities and allows the users to link among these entities.
