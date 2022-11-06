@@ -498,31 +498,31 @@ public class PredicateParserTest {
     @Test
     public void parseOrder_invalidOrderStatus_throwsParseException() {
         String input = "bhnkbjn";
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
+        String expectedMessage = FilterOrderCommand.MESSAGE_INVALID_OS;
         assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
                 PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingDelivering_throwsParseException() {
-        String input = "delivering";
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
+        String input = "de";
+        String expectedMessage = FilterOrderCommand.MESSAGE_INVALID_OS;
         assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
                 PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingNegotiating_throwsParseException() {
-        String input = "negotiating";
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
+        String input = "nego";
+        String expectedMessage = FilterOrderCommand.MESSAGE_INVALID_OS;
         assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
                 PREFIX_ORDER_STATUS.getPrefix()));
     }
 
     @Test
     public void parseOrder_wrongCasingPending_throwsParseException() {
-        String input = "pending";
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE);
+        String input = "pen";
+        String expectedMessage = FilterOrderCommand.MESSAGE_INVALID_OS;
         assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parseOrder(input,
                 PREFIX_ORDER_STATUS.getPrefix()));
     }

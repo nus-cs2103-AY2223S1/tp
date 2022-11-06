@@ -500,7 +500,9 @@ The followings are two ways to use this command:
 |       ENTER       | Goes to the next input text field                                                      |
 |     CTRL + A      | Adds an order/pet to the buyer/supplier                                                |
 |     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the popup window                |
-|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the popup window | <br> <br>
+|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the popup window |
+|     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
+|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window | <br> <br>
 
 Note that some shortcuts are only **effective when a text field is in focus**.
 When no text fields are highlighted (i.e. not in focus), **press TAB once (still no focus, press TAB again and again until the highlight appears)** to focus the cursor to a text field.
@@ -943,6 +945,7 @@ exactly the same name and the same email, even all attributes being identical. T
 than one role in our app.
 Two pets are considered as the same if they have all the same attributes. Two orders are different even they have all
 the same attributes.
+For example, `"John"` is the same as `"John"`, not the same as `"john"`, `"  john   "`, or `"jOhn"`.
 
 [Go back to [Table of Contents](#table-of-contents)]
 

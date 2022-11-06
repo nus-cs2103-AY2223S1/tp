@@ -1,10 +1,17 @@
 package seedu.address.logic.parser.filtercommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.PredicateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,13 +42,18 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
      * and returns a FilterPetCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public FilterPetCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+    public FilterPetCommand parse(String trimmedArgs) throws ParseException {
+
+        boolean isTokenized = false;
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_PET_COLOR, PREFIX_PET_NAME,
+                        PREFIX_PET_PRICE, PREFIX_PET_SPECIES, PREFIX_PET_VACCINATION_STATUS);
 
         Predicate<Pet> colorPredicate = defaultPredicate;
         Predicate<Pet> namePredicate = defaultPredicate;
@@ -49,31 +61,41 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
         Predicate<Pet> speciesPredicate = defaultPredicate;
         Predicate<Pet> vaccinationPredicate = defaultPredicate;
 
-        for (String arg: nameKeywords) {
-            arg = arg.trim();
-            String[] query = arg.split("/");
-            switch (query[0]) {
-            case COLOR_PREFIX:
-                System.out.println(query[0]);
-                colorPredicate = PredicateParser.parsePet(arg);
-                break;
-            case PET_NAME_PREFIX:
-                namePredicate = PredicateParser.parsePet(arg);
-                break;
-            case PRICE_PREFIX:
-                pricePredicate = PredicateParser.parsePet(arg);
-                break;
-            case SPECIES_PREFIX:
-                speciesPredicate = PredicateParser.parsePet(arg);
-                break;
-            case VACCINATION_PREFIX:
-                vaccinationPredicate = PredicateParser.parsePet(arg);
-                break;
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
-            }
+        if (argMultimap.getValue(PREFIX_PET_COLOR).isPresent()) {
+            colorPredicate = PredicateParser.parsePet(argMultimap.getValue(PREFIX_PET_COLOR).get(),
+                    PREFIX_PET_COLOR.getPrefix());
+            isTokenized = true;
         }
+
+        if (argMultimap.getValue(PREFIX_PET_NAME).isPresent()) {
+            colorPredicate = PredicateParser.parsePet(argMultimap.getValue(PREFIX_PET_NAME).get(),
+                    PREFIX_PET_NAME.getPrefix());
+            isTokenized = true;
+        }
+
+        if (argMultimap.getValue(PREFIX_PET_PRICE).isPresent()) {
+            colorPredicate = PredicateParser.parsePet(argMultimap.getValue(PREFIX_PET_PRICE).get(),
+                    PREFIX_PET_PRICE.getPrefix());
+            isTokenized = true;
+        }
+
+        if (argMultimap.getValue(PREFIX_PET_SPECIES).isPresent()) {
+            colorPredicate = PredicateParser.parsePet(argMultimap.getValue(PREFIX_PET_SPECIES).get(),
+                    PREFIX_PET_SPECIES.getPrefix());
+            isTokenized = true;
+        }
+
+        if (argMultimap.getValue(PREFIX_PET_VACCINATION_STATUS).isPresent()) {
+            colorPredicate = PredicateParser.parsePet(argMultimap.getValue(PREFIX_PET_VACCINATION_STATUS).get(),
+                    PREFIX_PET_VACCINATION_STATUS.getPrefix());
+            isTokenized = true;
+        }
+
+        if (!isTokenized) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+        }
+
         return new FilterPetCommand(colorPredicate, namePredicate, pricePredicate, speciesPredicate,
                 vaccinationPredicate);
     }
