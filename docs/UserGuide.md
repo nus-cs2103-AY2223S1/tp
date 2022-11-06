@@ -85,8 +85,7 @@ If you are already familiar with the features of HobbyList and just want a quick
 
 4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. You can see that the app contains some sample data for you to play around with.<br>
    ![Ui](images/default_gui.png)
-_Figure 1: HobbyList's default UI_
-{: style="text-align: center;"}
+_<center>Figure 1: HobbyList's default UI</center>_
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
