@@ -240,12 +240,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     -   Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Changing themes
 
 #### Implementation
@@ -669,12 +663,6 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `clone 1 n/James Lee p/91234567 e/jameslee@example.com b/1990-10-22`<br>
        Expected 1: A new person with name James Lee, phone number 91234567, email jameslee@example.com and birthdate 1990-10-22 and other details same as the first person will be added to the end of the list.<br>
        Expected 2: Error shown if this person is already exist in the Survin.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 ## **Appendix: Effort**
 

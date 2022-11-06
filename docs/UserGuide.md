@@ -351,10 +351,6 @@ Survin data are saved as a JSON file `[JAR file location]/data/survin.json`. Adv
 If your changes to the data file makes its format invalid, Survin will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ---
 
 ## FAQ
