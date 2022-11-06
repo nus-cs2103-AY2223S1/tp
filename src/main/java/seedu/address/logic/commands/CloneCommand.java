@@ -94,7 +94,7 @@ public class CloneCommand extends Command {
         Person personToClone = lastShownList.get(index.getZeroBased());
         Person clonedPerson = createClonedPerson(personToClone, clonePersonDescriptor);
 
-        if (personToClone.isSamePerson(clonedPerson) && model.hasPerson(clonedPerson)) {
+        if (model.hasPerson(clonedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLONED_PERSON);
         }
 
