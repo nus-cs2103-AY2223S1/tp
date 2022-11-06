@@ -70,13 +70,7 @@ public class AddressBookParser {
             return new AddCommandParser().parse(arguments);
 
         case EditPatientCommand.COMMAND_WORD:
-            if (descriptor.equals(EditPatientCommand.DESCRIPTOR_WORD)) {
-                return new EditPatientCommandParser().parse(arguments);
-            } else if (descriptor.equals(EditAppointmentCommand.DESCRIPTOR_WORD)) {
-                return new EditAppointmentCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
-            }
+            return parseEditPatientCommand(descriptor, arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -85,43 +79,20 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case GroupPatientCommand.COMMAND_WORD:
-            if (descriptor.equals(GroupPatientCommand.DESCRIPTOR_WORD)) {
-                return new GroupPatientCommand();
-            } else if (descriptor.equals(GroupAppointmentCommand.DESCRIPTOR_WORD)) {
-                return new GroupAppointmentCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
-            }
+            return parseGroupPatientCommand(descriptor, arguments);
 
         case UngroupCommand.COMMAND_WORD:
-            if (!descriptor.isEmpty()) {
-                return new UngroupCommand(descriptor);
-            } else if (!arguments.isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
-            } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
-            }
+            return parseUngroupCommand(descriptor, arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case HidePatientsCommand.COMMAND_WORD:
-            if (descriptor.equals(HidePatientsCommand.DESCRIPTOR_WORD)) {
-                return new HidePatientsCommandParser().parse(arguments);
-            } else if (descriptor.equals(HideAppointmentsCommand.DESCRIPTOR_WORD)) {
-                return new HideAppointmentsCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
-            }
+            return parseHidePatientsCommand(descriptor, arguments);
 
         case UnhidePatientsCommand.COMMAND_WORD:
-            if (descriptor.equals(UnhidePatientsCommand.DESCRIPTOR_WORD)) {
-                return new UnhidePatientsCommandParser().parse(arguments);
-            } else if (descriptor.equals(UnhideAppointmentsCommand.DESCRIPTOR_WORD)) {
-                return new UnhideAppointmentsCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
-            }
+            return parseUnhidePatientsCommand(descriptor, arguments);
+
         case BookCommand.COMMAND_WORD:
             return new BookCommandParser().parse(arguments);
 
@@ -135,13 +106,7 @@ public class AddressBookParser {
             return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            if (!descriptor.isEmpty()) {
-                return new ListCommand(descriptor);
-            } else if (!arguments.isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-            } else {
-                throw new ParseException(INCOMPLETE_LIST_COMMAND);
-            }
+            return parseListCommand(descriptor, arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -154,4 +119,63 @@ public class AddressBookParser {
         }
     }
 
+    private Command parseEditPatientCommand(String descriptor, String arguments) throws ParseException {
+        if (descriptor.equals(EditPatientCommand.DESCRIPTOR_WORD)) {
+            return new EditPatientCommandParser().parse(arguments);
+        } else if (descriptor.equals(EditAppointmentCommand.DESCRIPTOR_WORD)) {
+            return new EditAppointmentCommandParser().parse(arguments);
+        } else {
+            throw new ParseException(INCOMPLETE_COMMAND);
+        }
+    }
+
+    private Command parseGroupPatientCommand(String descriptor, String arguments) throws ParseException {
+        if (descriptor.equals(GroupPatientCommand.DESCRIPTOR_WORD)) {
+            return new GroupPatientCommand();
+        } else if (descriptor.equals(GroupAppointmentCommand.DESCRIPTOR_WORD)) {
+            return new GroupAppointmentCommandParser().parse(arguments);
+        } else {
+            throw new ParseException(INCOMPLETE_COMMAND);
+        }
+    }
+
+    private UngroupCommand parseUngroupCommand(String descriptor, String arguments) throws ParseException {
+        if (!descriptor.isEmpty()) {
+            return new UngroupCommand(descriptor);
+        } else if (!arguments.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
+        } else {
+            throw new ParseException(INCOMPLETE_COMMAND);
+        }
+    }
+
+    private Command parseHidePatientsCommand(String descriptor, String arguments) throws ParseException {
+        if (descriptor.equals(HidePatientsCommand.DESCRIPTOR_WORD)) {
+            return new HidePatientsCommandParser().parse(arguments);
+        } else if (descriptor.equals(HideAppointmentsCommand.DESCRIPTOR_WORD)) {
+            return new HideAppointmentsCommandParser().parse(arguments);
+        } else {
+            throw new ParseException(INCOMPLETE_COMMAND);
+        }
+    }
+
+    private Command parseUnhidePatientsCommand(String descriptor, String arguments) throws ParseException {
+        if (descriptor.equals(UnhidePatientsCommand.DESCRIPTOR_WORD)) {
+            return new UnhidePatientsCommandParser().parse(arguments);
+        } else if (descriptor.equals(UnhideAppointmentsCommand.DESCRIPTOR_WORD)) {
+            return new UnhideAppointmentsCommandParser().parse(arguments);
+        } else {
+            throw new ParseException(INCOMPLETE_COMMAND);
+        }
+    }
+
+    private ListCommand parseListCommand(String descriptor, String arguments) throws ParseException {
+        if (!descriptor.isEmpty()) {
+            return new ListCommand(descriptor);
+        } else if (!arguments.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        } else {
+            throw new ParseException(INCOMPLETE_LIST_COMMAND);
+        }
+    }
 }

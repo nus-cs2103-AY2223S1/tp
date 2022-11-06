@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,10 +21,8 @@ public abstract class SelectAppointmentCommandParser<T extends SelectAppointment
      */
     protected Index getAppointmentIndex(String args) throws ParseException {
         requireNonNull(args);
-        List<Index> indexList;
-        int expectedIndexCount = 1;
 
-        indexList = ParserUtil.parseIndexes(args, expectedIndexCount);
-        return indexList.get(0);
+        Index index = ParserUtil.parseIndex(args);
+        return index;
     }
 }

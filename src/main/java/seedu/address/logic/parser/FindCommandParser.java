@@ -59,12 +59,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 name, phone, email, address, reason, startDateTime, endDateTime);
         checkIfInputsValid(name, phone, personTagList, startDateTime, endDateTime);
 
-        LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
-                ? LocalDateTime.MIN
-                : LocalDateTime.parse(startDateTime, Appointment.DATE_FORMATTER);
-        LocalDateTime parsedEndDateTime = endDateTime.isEmpty()
-                ? LocalDateTime.MAX
-                : LocalDateTime.parse(endDateTime, Appointment.DATE_FORMATTER);
+        LocalDateTime parsedStartDateTime = parseDateTime(startDateTime, LocalDateTime.MIN);
+        LocalDateTime parsedEndDateTime = parseDateTime(endDateTime, LocalDateTime.MAX);
 
         checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
 
@@ -73,11 +69,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         CombinedAppointmentPredicate combinedAppointmentPredicate =
                 new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList);
 
-        boolean isAnyAppointmentFieldSpecified =
-                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty()
-                        || !appointmentTagList.isEmpty();
+        boolean isUsingAppointmentPredicate = isAnyAppointmentFieldSpecified(reason, startDateTime, endDateTime, appointmentTagList);
 
-        return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
+        return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isUsingAppointmentPredicate);
     }
 
     private void checkIfAtLeastOneInputPresent(List<String> personTagList, List<String> appointmentTagList,
@@ -119,10 +113,23 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+    private LocalDateTime parseDateTime(String startDateTime, LocalDateTime defaultValue) {
+        return startDateTime.isEmpty()
+                ? defaultValue
+                : LocalDateTime.parse(startDateTime, Appointment.DATE_FORMATTER);
+    }
+
     private void checkIfStartDateIsBeforeEndDate(LocalDateTime parsedStartDateTime,
                                                  LocalDateTime parsedEndDateTime) throws ParseException {
         if (parsedStartDateTime.isAfter(parsedEndDateTime)) {
             throw new ParseException(Messages.START_DATE_AFTER_END_DATE);
         }
+    }
+
+    private boolean isAnyAppointmentFieldSpecified(String reason, String startDateTime, String endDateTime,
+                                                   List<String> appointmentTagList) {
+        boolean isAllAppointmentFieldsEmpty = !reason.isEmpty() || !startDateTime.isEmpty()
+                || !endDateTime.isEmpty() || !appointmentTagList.isEmpty();
+        return isAllAppointmentFieldsEmpty;
     }
 }
