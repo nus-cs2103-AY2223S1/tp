@@ -1,14 +1,17 @@
 ---
-layout: page title: Marcus Lee's Project Portfolio Page
+layout: page 
+title: Marcus Lee's Project Portfolio Page
 ---
-OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
-As a private clinician, you can manage and monitor your patient database all in one location.
-Utilise OmniHealth's **sorting and filtering system** to help you easily manage and find your patients' details and records of past visits.
-Also, OmniHealth's **appointment tracker** allows you to tag upcoming appointments for each patient.
+### Project: OmniHealth
+
+OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
+upcoming appointments. As a private clinician, you can manage and monitor your patient database all in one location.
+OmniHealth allows you to manage and search for your patient's details and records with ease with its management system,
+and also allows you to keep track of upcoming appointments for them.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the `Record` and `RecordList`
+* **New Feature**: Added the ability for users to create patient `Records` and manage them in a `RecordList`
   fields [\#37](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/37)
     * What it does: Allows for OmniHealth to store a patient's records in a list.
     * Justification: Since the target users are doctors, a place to centrally manage their patient records is a key
@@ -30,24 +33,24 @@ Given below are my contributions to the project.
     * Highlights: This feature entailed adding code to most of the areas of OmniHealth, including its model, UI and test
       cases, as well as requiring changes to existing commands.
 
-* **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
 <div style="page-break-after: always;"></div>
+
 * **Project management**:
     * Created team's organisation and repository.
-    * Set up project's Continuous Integration.
-    * Set up project's website.
+    * Set up project's Continuous Integration and website.
     * Created `v1.1`, `v1.2`, `v1.3` and `v1.4` milestones.
-    * Changed product icon and name.
     * Reviewed and approved PRs for merging.
 
 * **Enhancements to existing features**:
     * Added additional duplicate detection for addresses. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
-    * Updated GUI to show number of `Records`. [\#37](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/37)
-    * Updated GUI to show the patient's currently scheduled
-      appointment. [\#67](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/67)
-    * Wrote test cases for `Record` classes. [\#58](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/58)
-    * Wrote test cases for `Appointment` classes. [\#91](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/91)
+    * Updated GUI to show number of patient `Records` & the patient's currently scheduled appointment. (Pull
+      Requests [\#37](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/37)
+      , [\#67](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/67))
+    * Wrote test cases for `Record` and `Appointment` classes. (Pull
+      Requests [\#58](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/58)
+      , [\#91](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/91)
 
 * **Documentation**:
     * User Guide:
