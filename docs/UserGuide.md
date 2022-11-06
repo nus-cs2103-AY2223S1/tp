@@ -26,6 +26,12 @@ No time to waste, let's start _Working_! :muscle:
 
 ## 2. Getting started
 
+This section helps get you started to use WorkBook.
+
+It consists of a simple to follow step-by-step installation guide and explains the key elements of the GUI.
+
+### 2.1 Installation
+
 1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your computer.
 
 2. Download the latest `WorkBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/).
@@ -34,7 +40,7 @@ No time to waste, let's start _Working_! :muscle:
 
 4. Using your command terminal:
    1. Navigate to the folder where you placed your WorkBook at.
-   2. Fire it up by running: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
+   2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of two the layouts, should appear within seconds.<br>
 
 |       Wide Layout         |       Narrow Layout       | 
 |:-------------------------:|:-------------------------:|
@@ -42,6 +48,20 @@ No time to waste, let's start _Working_! :muscle:
 
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute it.
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
+
+### 2.1 Understanding WorkBook's GUI
+
+Below shows the main elements of WorkBook's GUI, in wide and narrow layouts.
+
+For the narrow layout, everything else is the same excpet for the labelled light bulb icon, which represents 'tips'.
+
+|       Wide Layout         |
+|:-------------------------:|
+|![wide layout](images/AnnotatedUi.png) |
+
+|       Narrow Layout       |  
+|:-------------------------:|
+|![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -99,7 +119,7 @@ No time to waste, let's start _Working_! :muscle:
 #### Parameter-specific behaviour
 
 * Whenever `[d/DATETIME]` is specified as a parameter, you should input it in the format `dd-MMM-yyy hh:mm` where `y` is year, `M` is month, `d` is day, `h` is hour in the 24-hour format and `m` is minutes. <br>
-  e.g. October 2 2022 5:00pm should be input as `02-Oct-2022 17:00`.
+  e.g. October 2 2022 5:00pm should be inputted as `02-Oct-2022 17:00`.
   * Month is not case-sensitive
 
 #### Behaviour of sorted internship applications
@@ -159,13 +179,22 @@ No time to waste, let's start _Working_! :muscle:
 ### 5.1. Adding your internship application
 
 Have you taken the first step to apply for that internship you've always wanted?
-Or do you want to start keeping track of the different internship applications you have? <br> <br>
-Well, simply follow the command format below and add the relevant details into WorkBook and you can begin tracking your all applications!
+Or do you want to start keeping track of the different internship applications you have? <br> 
+
+This command satisfies the above, allowing you to add your internship applications to the list and track all of them.
+WorkBook also removes the hassle of sorting your internship applications manually by automating it for you!
+
+Simply follow the command format below to add the relevant details into WorkBook!
 
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]…​ [t/TAG]…​`
 
 Example: `add c/Meta r/Web Developer s/Application Sent d/20-Oct-2022 10:00 l/Java e/metaHires@meta.com` <br><br>
-What you will see: ![AddCommandResult](images/AddCommandResult.png)
+What you will see:
+
+|                                                  |
+|:------------------------------------------------:|
+| ![AddCommandResult](images/AddCommandResult.png) ||
+
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** The date and time you provide could represent multiple things:<br>
@@ -176,7 +205,6 @@ What you will see: ![AddCommandResult](images/AddCommandResult.png)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**
 * adding DateTime like `d/24-Sep-2022 24:00` will be read as `d/25-Sep-2022 00:00`
-* Note the sorted order!
 </div>
 
 Other examples:
@@ -185,25 +213,36 @@ Other examples:
 
 ### 5.2. Editing your internship application
 
-Good job! You've passed the Resume Screening and have been invited to complete an Online Assessment for your internship application.
-Now's a good time to use this command to update the application so that WorkBook can continue to give you relevant tips and reminders!
+WorkBook allows you to seamlessly update fields of respective internship applications with this command.
+
+A good time to use this command is to update the stage of your application so that WorkBook can give you relevant tips and reminders!
 
 Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internships list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the internship will be removed i.e adding of tags is not cumulative.
-* You can remove all the internship’s tags by typing `t/` without
-    specifying any tags after it.
+* Edits the internship at the specified `INDEX`, which **must be**:
+  * A positive number (1, 2, 3, …​).
+  * Within the number range of your list of internship applications.
+* At least one of the optional fields **must** be provided.
 
-<div markdown="block" class="alert alert-success">
-**:bulb: Tip:** You can edit any number of attributes with the edit command.
+Example: `edit 2 s/Tecnical Interview d/28-Dec-2022 08:00`
+
+What you'll see before and after executing the command: <br>
+
+|                   Before                    |                    After                    |
+|:-------------------------------------------:|:-------------------------------------------:|
+| ![Before edit](images/EditCommandInput.png) | ![After edit](images/EditCommandResult.png) |
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution**: Adding of tags is not cumulative: When editing tags, the existing tags of the internship will be **removed**.
 </div>
 
-Examples:
-* `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
-* `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** As adding of tags is not cumulative, you can remove all the internship’s tags by typing `t/` without
+    specifying any tags after it.
+</div>
+
+Other examples:
+* `edit 2 l/golang t/`: Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
 ### 5.3. Listing all existing internship applications
 
@@ -214,6 +253,7 @@ Lists all of your internship applications in WorkBook in a [sorted order](#3-thi
 </div>
 
 Format: `list`
+
 ### 5.4. Viewing tips for your applications:
 
 For some application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
