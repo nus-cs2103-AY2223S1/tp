@@ -1,6 +1,8 @@
 package seedu.address.logic.parser.findcommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.function.Predicate;
 
@@ -27,6 +29,31 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        int totalPrefixesPresent = 0;
+        if (trimmedArgs.contains(PREFIX_ADDRESS.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+        if (trimmedArgs.contains(PREFIX_EMAIL.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+        if (trimmedArgs.contains(PREFIX_INDEX.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+        if (trimmedArgs.contains(PREFIX_LOCATION.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+        if (trimmedArgs.contains(PREFIX_NAME.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+        if (trimmedArgs.contains(PREFIX_PHONE.getPrefix())) {
+            totalPrefixesPresent += 1;
+        }
+
+        if (totalPrefixesPresent > 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, "More than 1 prefix present"));
         }
 
         Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(trimmedArgs);
