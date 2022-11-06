@@ -153,6 +153,14 @@ Shows a list of specified nurses or patients, or all nurses and patients if no s
 
 Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
 
+ADDRESS: Non-exact address matching (e.g. Searching for `an` returns `Ang Mo Kio`, `Woodlands`)
+
+CATEGORY: Only accepts `N` for NURSES or `P` for PATIENTS.
+
+GENDER: Only accepts `M` for MALE or `F` for FEMALE.
+
+TAG: Exact, case sensitive tag matching (e.g. Searching for `dia` does not return `DIABETIC`)
+
 Examples:
 
 - `list c/P t/DIABETIC g/M` - Lists all the male diabetic patients enrolled in the database.
