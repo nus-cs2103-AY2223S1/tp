@@ -482,6 +482,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 + "-fx-text-fill: black;");
 
         remarkBox.getChildren().add(remarkLabel);
+        remarkBox.setMinHeight(VBox.USE_PREF_SIZE);
         return remarkBox;
     }
 
@@ -499,6 +500,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 + "-fx-text-fill: black;");
 
         remarkBox.getChildren().add(remarkLabel);
+        remarkBox.setMinHeight(VBox.USE_PREF_SIZE);
         return remarkBox;
     }
 
