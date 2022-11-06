@@ -293,7 +293,6 @@ Allows the user to mark a student as present for a class.
 
 The application will increase the student's owed amount by the rates per class.
 A cross will be displayed beside the student's name indicating that the student has attended the class.
-The student's next class will be set a week later at the same time, provided if there is a free time slot.
 
 Format: `mark INDEX-s`
 
@@ -305,15 +304,11 @@ Format: `mark INDEX-s`
 </div>
 
 Example:
-- `mark 2` marks the 2nd student in the Schedule panel.
+- `mark 1` marks the 1st student in the Schedule panel.
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
-</div>
-
-<div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
-the mark command. This increases the amount owed but frees up that time slot for another student.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -328,7 +323,7 @@ The application will reduce the student's owed amount by the amount paid.
 
 Format: `pay INDEX-s AMOUNT_PAID`
 
-- Marks the student as present at the specified `INDEX-s`.
+- Indicates that the student at a specified `INDEX-s` has paid.
 - The `INDEX-s` refers to the index number shown in the Schedule panel (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 - The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
@@ -399,7 +394,7 @@ Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
+`find n/alex` returns `Alex Yeoh`.
 
 ![UiFindName](images/UG-screenshots/UiFindName.png)
 
