@@ -191,7 +191,7 @@ An `Exercise` contains the following attributes:
 
 <div style="page-break-after: always;"></div>
 
-#### Date Implementation
+**Date Implementation**
 <img src="images/DateClassDiagram.png" width="250" />
 
 The default format for date follows `dd/MM/uuuu`. `uuuu` is chosen over `yyyy` because this avoids unexpected exceptions
@@ -589,7 +589,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Gim` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case 1: Help
+**Use case 1: Help**
 
 System: Gim <br>
 Use case: UC01 - Request for help <br>
@@ -601,7 +601,7 @@ Actor: User <br>
 2. Gim displays help message.
 <br>Use case ends.
 
-#### Use case 2: Add an exercise
+**Use case 2: Add an exercise**
 
 System: Gim <br>
 Use case: UC02 - Add an exercise <br>
@@ -621,7 +621,7 @@ Actor: User <br>
 
 <div style="page-break-after: always;"></div>
 
-#### Use case 3: Delete an exercise
+**Use case 3: Delete an exercise**
 
 System: Gim <br>
 Use case: UC03 - Delete an exercise <br>
@@ -643,7 +643,7 @@ Actor: User <br>
     * 1b1. Gim displays that the exercise does not exist.
 <br>Use case ends.
 
-#### Use case 4: Clear all exercise entries in the system
+**Use case 4: Clear all exercise entries in the system**
 
 System: Gim <br>
 Use case: UC04 - Clear all exercise entries in the system <br>
@@ -663,7 +663,7 @@ Actor: User <br>
 
 <div style="page-break-after: always;"></div>
 
-#### Use case 5: List exercises
+**Use case 5: List exercises**
 
 System: Gim <br>
 Use case: UC05 - List exercises <br>
@@ -675,7 +675,7 @@ Actor: User <br>
 2. Gim lists the stored exercises.
 <br>Use case ends.
 
-#### Use case 6: Sort exercises
+**Use case 6: Sort exercises**
 
 System: Gim <br>
 Use case: UC06 - Sort exercises <br>
@@ -687,7 +687,7 @@ Actor: User <br>
 2. Gim sorts the displayed list of exercises by date.
    <br>Use case ends.
 
-#### Use case 7: View exercises within a time period
+**Use case 7: View exercises within a time period**
 
 System: Gim <br>
 Use case: UC07- View exercises within a time period <br>
@@ -710,7 +710,7 @@ Actor: User <br>
 
 <div style="page-break-after: always;"></div>
 
-#### Use case 8: Filter exercises by keyword(s)
+**Use case 8: Filter exercises by keyword(s)**
 
 System: Gim <br>
 Use case: UC08 - Filter exercises by keyword(s) <br>
@@ -731,7 +731,7 @@ Actor: User <br>
     * 2a1. Gim displays a reminder message.
       <br>Use case ends.
 
-#### Use case 9: View Personal Record (PR) for exercise(s)
+**Use case 9: View Personal Record (PR) for exercise(s)**
 
 System: Gim <br>
 Use case: UC09 - View Personal Record (PR) for exercise(s) <br>
@@ -754,7 +754,7 @@ Actor: User <br>
 
 <div style="page-break-after: always;"></div>
 
-#### Use case 10: Generate workout suggestion for exercise(s)
+**Use case 10: Generate workout suggestion for exercise(s)**
 
 System: Gim <br>
 Use case: UC10 - Generate workout suggestion for exercise(s) <br>
@@ -785,7 +785,7 @@ Actor: User <br>
       <br>Use case resumes at step 1.
 
   
-#### Use case 11: Exit Gim
+**Use case 11: Exit Gim**
 
 System: Gim <br>
 Use case: UC11 - Exit Gim <br>
@@ -838,7 +838,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+**Launch and shutdown**
 
 1. Initial launch
 
@@ -855,7 +855,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Adding an exercise
+**Adding an exercise**
 
 1. Adding an exercise to the system.
 
@@ -875,7 +875,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Deleting an exercise
+**Deleting an exercise**
 
 1. Deleting an exercise while all exercises are being shown
 
@@ -890,7 +890,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `:del`, `:del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Clearing all exercises in the system
+**Clearing all exercises in the system**
 
 1. Clearing all exercises in the system
 
@@ -904,7 +904,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Filtering exercises by keyword(s)
+**Filtering exercises by keyword(s)**
 
 1. Filtering displayed list of exercises using keyword(s).
 
@@ -921,7 +921,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect `:filter` commands to try: `:filter` (no keywords provided).<br>
        Expected: The Result Display Window will indicate that the command is invalid.
 
-### Sorting exercises
+**Sorting exercises**
 
 1. Sorting displayed list of exercises by order of date.
 
@@ -932,7 +932,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Viewing exercises within a time period
+**Viewing exercises within a time period**
 
 1. Viewing exercises within a time period.
 
@@ -952,7 +952,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-### Generating workout suggestion for exercise(s)
+**Generating workout suggestion for exercise(s)**
 
 1. Generating workout suggestion using index(es).
 
@@ -985,7 +985,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>    
 
-### Listing Personal Records (PR)
+**Listing Personal Records (PR)**
 
 1. Listing Personal Record(s) of exercise(s).
 
@@ -1006,7 +1006,7 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect `:pr` commands to try: `:pr` (no keywords provided).<br>
        Expected: The Result Display Window will indicate that the command is invalid.
 
-### Saving data
+**Saving data**
 
 1. Dealing with missing/corrupted data files
 
