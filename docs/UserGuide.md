@@ -865,71 +865,71 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 # FAQ
 
 <details>
-<summary>**Q**: Why does my command not work?</summary>
+<summary><strong>Q</strong>: Why does my command not work?</summary>
 <br>
-**A**: First make sure that you have written one of the available commands.
+<strong>A</strong>: First make sure that you have written one of the available commands.
 Note that it is case-sensitive, which means <code>help</code> works but <code>Help</code> does not.
 If you have written the correct command word, but it still does not work, then an error displayed will show you the correct usage
 or why your command is not working. Note that the prefixes are case-sensitive too. If you want to know more details about the command, please refer to that command in the <a href="#features">Features</a> section.
 </details>
 
 <details>
-<summary>**Q**: How do I transfer my data to another Computer?</summary>
+<summary><strong>Q</strong>: How do I transfer my data to another Computer?</summary>
 <br>
-**A**: Install the app in the other computer and overwrite the default data folder it creates with the data folder that contains the data of your previous ArtBuddy home folder.
+<strong>A</strong>: Install the app in the other computer and overwrite the default data folder it creates with the data folder that contains the data of your previous ArtBuddy home folder.
 </details>
 
 <details>
-<summary>**Q**: Why isn't my file path being recognised by ArtBuddy?</summary>
+<summary><strong>Q</strong>: Why isn't my file path being recognised by ArtBuddy?</summary>
 <br>
-**A**: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
+<strong>A</strong>: If you're sure that the file exists, one common mistake new users may make is omitting the root directory from your file path.
 So do check that the file path you specified starts with a '/'. Please also make sure that your specified file path does
-not fall under the limitations of file paths in ArtBuddy mentioned in the [Appendix: Limitations with file paths in CLI](#limitations-with-file-paths-in-cli).
-If all else fails, you can try [uploading the image via GUI](#adding-by-graphical-interface) instead!
+not fall under the limitations of file paths in ArtBuddy mentioned in the <a href="#limitations-with-file-paths-in-cli">Appendix: Limitations with file paths in CLI</a>.
+If all else fails, you can try <a href="#adding-by-graphical-interface">uploading the image via GUI</a> instead!
 </details>
 
 <details>
-<summary>**Q**: What makes two customers different when adding a customer by <code>addcus</code>?</summary>
+<summary><strong>Q</strong>: What makes two customers different when adding a customer by <code>addcus</code>?</summary>
 <br>
-**A**: We only check it by their name case-sensitive. That means you can have two customers with names "Sarah" and "sarah".
+<strong>A</strong>: We only check it by their name case-sensitive. That means you can have two customers with names "Sarah" and "sarah".
 If this is still not enough to distinguish your customers with same name, you can even include numbers in the name field like "Sarah 1", "Sarah 2".
 At the moment, we only support alphanumeric english characters with space for our early versions.
 </details>
 
 <details>
-<summary>**Q**: What makes two commissions different when adding a commission by <code>addcom</code>?</summary>
+<summary><strong>Q</strong>: What makes two commissions different when adding a commission by <code>addcom</code>?</summary>
 <br>
-**A**: We decided that to avoid confusion, for every customer the title of the commissions must be unique. Therefore, if the customer you
+<strong>A</strong>: We decided that to avoid confusion, for every customer the title of the commissions must be unique. Therefore, if the customer you
 want to add a commission to already has the same title commission it won't be allowed.
 </details>
 
 <details>
-<summary>**Q**: What makes two iterations different when adding an iteration by <code>additer</code>?</summary>
+<summary><strong>Q</strong>: What makes two iterations different when adding an iteration by <code>additer</code>?</summary>
 <br>
-**A**: We decided that for each commission the description of the iterations must be unique. Therefore, if the commission you
+<strong>A</strong>: We decided that for each commission the description of the iterations must be unique. Therefore, if the commission you
 want to add an iteration to already has the same description iteration it won't be allowed.
 </details>
 
 <details>
-<summary>**Q**: Why am I allowed to insert more than 2 significant digits in commission fee?</summary>
+<summary><strong>Q</strong>: Why am I allowed to insert more than 2 significant digits in commission fee?</summary>
 <br>
-**A**: Although our calculations are done in dollar amount, we don't expect you to make your deals in dollar.
+<strong>A</strong>: Although our calculations are done in dollar amount, we don't expect you to make your deals in dollar.
 So you can write the fee value in dollars but with more significant digits for more accurate calculations.
 But in the GUI, for the ease of your eyes, we display it in 2 significant digits only.
 </details>
 
 <details>
-<summary>**Q**: Why am I allowed to insert dates that are in the past?</summary>
+<summary><strong>Q</strong>: Why am I allowed to insert dates that are in the past?</summary>
 <br>
-**A**: We expect that you've successfully had customers and commissions before using our application.
+<strong>A</strong>: We expect that you've successfully had customers and commissions before using our application.
 We enabled adding past dates for archival purposes so that you can make the best out of our statistical features.
 </details>
 
 <details>
-<summary>**Q**: What are file paths and root directories?</summary>
+<summary><strong>Q</strong>: What are file paths and root directories?</summary>
 <br>
-**A**: We don't expect you to have a lot of technical knowledge about a computer file system.
-But we provide you a good explanation to answer your question in the [Appendix](#what-are-file-paths-and-root-directories).
+<strong>A</strong>: We don't expect you to have a lot of technical knowledge about a computer file system.
+But we provide you a good explanation to answer your question in the <a href="#what-are-file-paths-and-root-directories">Appendix]</a>.
 </details>
 <div align="right">
 
