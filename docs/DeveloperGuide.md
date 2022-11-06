@@ -9,8 +9,6 @@ title: Developer guide
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level 3 project created by the [`SE-EDU initiative`](https://se-education.org/).
@@ -19,15 +17,11 @@ title: Developer guide
 
 * The formula used to determine the colour gradient for the [`workload`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Workload.java) used in [`PersonCard`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/PersonCard.java) is adapted from [`here`](https://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter)
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -79,6 +73,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -95,6 +91,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it can display `Person`, `Group`, `Assignment` objects residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -124,6 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -170,6 +170,8 @@ The `Assignment` component,
 * is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
 * has an optional `Deadline` attribute which is a `LocalDateTime` object.
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -187,7 +189,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -1155,7 +1156,6 @@ Use case ends.
 
 <div style="page-break-after: always;"></div>
 
----
 ## Non-functional requirements
 
 1. Should work on any **mainstream** OS (Windows, Linux, Unix, OS-X) as long as it has `Java 11` or above installed.
