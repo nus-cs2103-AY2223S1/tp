@@ -75,6 +75,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
+At any time, the `MainWindow` displays 1 of the following 4 lists: default list, expanded student list, expanded task list or expanded lesson list. Each of these lists are made up of different parts. For example, the `ExpandedStudentCard` builds the expanded student list while the `StudentCard` builds the default list.
+
+In the class diagram above, the parts used to build the expanded lists i.e. `ExpandedStudentList`, `ExpandedTaskList` and `ExpandedLessonList` have been abstracted out into the `ExpandedLists` package due to space constraints. Instead, it displays the parts used to build the default list only.
+
+<br>
+<img src="images/ExpandedListClassDiagram.png" width="550">
+
+In the class diagram above, the parts used to build the expanded lists that were abstracted out previously are shown.
+
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,

@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+scale 1.5
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
@@ -14,17 +15,14 @@ Class ResultDisplay
 Class StudentListPanel
 Class TaskListPanel
 Class LessonListPanel
-Class ExpandedStudentListPanel
-Class ExpandedTaskListPanel
-Class ExpandedLessonListPanel
 Class StudentCard
 Class TaskCard
 Class LessonCard
-Class ExpandedStudentCard
-Class ExpandedTaskCard
-Class ExpandedLessonCard
 Class StatusBarFooter
 Class CommandBox
+package ExpandedLists <<Rectangle>> {
+    Class HiddenUi #FFFFFF
+}
 }
 
 package Model <<Rectangle>> {
@@ -45,18 +43,13 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StudentListPanel
 MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" LessonListPanel
-MainWindow *-down-> "1" ExpandedStudentListPanel
-MainWindow *-down-> "1" ExpandedTaskListPanel
-MainWindow *-down-> "1" ExpandedLessonListPanel
+MainWindow *-down-> ExpandedLists
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 StudentListPanel -down-> "*" StudentCard
 TaskListPanel -down-> "*" TaskCard
 LessonListPanel -down-> "*" LessonCard
-ExpandedStudentListPanel -down-> "*" ExpandedStudentCard
-ExpandedTaskListPanel -down-> "*" ExpandedTaskCard
-ExpandedLessonListPanel -down-> "*" ExpandedLessonCard
 
 MainWindow -left-|> UiPart
 
@@ -65,24 +58,15 @@ CommandBox --|> UiPart
 StudentListPanel --|> UiPart
 TaskListPanel --|> UiPart
 LessonListPanel --|> UiPart
-ExpandedStudentListPanel --|> UiPart
-ExpandedTaskListPanel --|> UiPart
-ExpandedLessonListPanel --|> UiPart
 StudentCard --|> UiPart
 TaskCard --|> UiPart
 LessonCard --|> UiPart
-ExpandedStudentCard --|> UiPart
-ExpandedTaskCard --|> UiPart
-ExpandedLessonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 StudentCard ..> Model
-TaskCard ..> Model
+TaskCard ...> Model
 LessonCard ..> Model
-ExpandedStudentCard ...> Model
-ExpandedTaskCard ..> Model
-ExpandedLessonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
