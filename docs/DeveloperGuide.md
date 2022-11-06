@@ -3,6 +3,8 @@ layout: page
 title: PennyWise Developer Guide
 ---
 
+![PennyWise Logo](images/PennyWiseLogo.png)
+
 PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
 by providing a **graphical analysis of their financial activities**.
 It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
@@ -199,7 +201,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -256,8 +258,8 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `PennyWiseParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a entry).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add an entry).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1 t/e")` API
 call.
@@ -843,20 +845,20 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 ### Non-Functional Requirements
 
 1. **Technical requirements**: The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. **Performance requirements**: The system should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
+2. **Performance requirements**: The system should be able to hold up to 1000 expenses entries and 1000 income entries without a noticeable sluggishness in performance for typical usage.
 3. **Performance requirements**: The system should respond within two seconds.
 4. **Quality requirements**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-5. **Quality requirements**: The system should be easily usable by a novice who has never managed budgeting.
+5. **Quality requirements**: The system should be easily usable by a novice who has never managed budgeting without having to constantly refer to the user guide.
 6. **Data Requirements**: Data should be persisted within the user's file system only.
-7. **Documentation**: The User Guide and Developer Guide should be directed towards self-help for users.
-8. The user interface should be intuitive enough for users who are not IT-savvy.
+7. **Documentation**: The User Guide should be directed towards self-help for users, so that they are able to understand how to use the application and recover from mistakes.
+8. The user interface should be self-explanatory as much as possible for users who are not IT-savvy without having to constantly refer to the user guide.
 9. The source code should be open source.
 10. The product is offered as a free online service.
 
 ### Glossary
 
-In the Glossary, we provide our definitions for some commonly-used terms that you can find throughout the aplication.
+In the Glossary, we provide our definitions for some commonly-used terms that you can find throughout the application.
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Entry**: An entry refers to either an expenditure or income

@@ -3,6 +3,8 @@ layout: page
 title: PennyWise User Guide
 ---
 
+![PennyWise Logo](images/PennyWiseLogo.png)
+
 Well, hello there! Welcome to your personal budgeting assistant, PennyWise.
 After this guide, you will understand how to use PennyWise, and spend every penny wisely. 🤑
 
