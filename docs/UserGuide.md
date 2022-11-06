@@ -7,41 +7,7 @@ Condonery is a desktop app made for property agents primarily used for managing 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-- [`Quick start`](#quick-start)
-- [`Property and client attributes`](#property-and-client-attributes)
-  - [Shared attributes](#shared-attributes)
-  - [Property attributes](#property-attributes)
-  - [Client attributes](#client-attributes)
-- [`Features systax`](#features-syntax)
-- [`Features in Condonery`](#features-in-condonery)
-  - [Undoing commands : `undo`](#undoing-commands--undo)
-  - [Viewing help : `help`](#viewing-help--help)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
-- [`Property Directory Features`](#property-directory-features)
-    - [Adding a property: add -p](#adding-a-property-add--p)
-    - [Listing all properties : list -p](#listing-all-properties--list--p)
-    - [Editing a property : edit -p](#editing-a-property--edit--p)
-    - [Locating properties by name: `find -p`](#locating-properties-by-name-find--p)
-    - [Deleting a property : `delete -p`](#deleting-a-property--delete--p)
-    - [Filtering properties by tags: `filter -p`](#filtering-properties-filter--p)
-    - [Filtering properties within price range: range -p](#filtering-properties-within-price-range-range--p)
-    - [Filtering properties by status: status -p](#filter-properties-by-status-status--p)
-    - [Filtering properties by type: type -p](#filtering-properties-by-type-type--p)
-    - [Selecting a property: select -p INDEX](#selecing-a-property-select--p-index)
-    - [Clearing all entries : clear](#clearing-all-entries--clear)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-- [`Client Directory Features`](#client-directory-features)
-    - [Adding a client profile: add -c](#adding-a-client-profile-add--c)
-    - [Listing all client profiles: list -c](#listing-all-client-profiles-list--c)
-    - [Editing a client profile: edit -c](#editing-a-client-profile-edit--c)
-    - [Locating client profiles by name: find -c](#locating-client-profiles--by-name-find--c)
-    - [Deleting a client profile: delete -c](#deleting-a-client-profile-delete--c-index)
-    - [Filtering client profiles by tags: filter -c](#filtering-client-profiles-filter--c)
-    - [Selecting a client profile: select -c](#selecting-a-client-profile-select--pc-index)
-- [`FAQ`](#faq)
-- [`Command summary`](#command-summary)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -56,122 +22,29 @@ If you can type fast, Condonery can get your contact management tasks done faste
 1. Double-click the file to start the app. The interface will look like this.
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Some example commands you can try:
 
-    * **`list -p`** : Lists all properties.
+  * **`list -p`** : Lists all properties.
 
-    * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
+  * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
 
-    * **`list -p delete`**`3` : Deletes the 3rd property shown in the current list.
+  * **`list -p`** followed by **`delete 3`** : Deletes the 3rd property shown in the current list.
 
-    * **`exit`** : Exits the app.
+  * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features-syntax) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Property and client attributes
-
-In Condonery, properties and clients can hold many different attributes. These attributes are denoted by parameters (e.g. `n/` for name) when using commands like `add -p`, `add -c`, `edit -p` or `edit -c`.
-This section gives a breakdown of each attribute and its parameter counterpart.
-
-### Shared attributes
-#### Name
-* Refers to the name of a property or client.
-* Each property or client can only have one name.
-
-* Parameter: `n/`
-* Example: `n/PINNACLE@DUXTON`
-
-#### Address
-* Refers to the address of a property or client.
-* Each property or client can only have one address.
-
-* Parameter: `a/`
-* Example: `a/Cantonment Rd, #1G, 085301`
-
-#### Tag
-* Refers to the given tags of a property or client. Can be used to label a property or client with important details.
-* The only requirement for tags is that they have to be alphanumerical.
-* Each property or client can have multiple tags.
-
-* Parameter: `t/`
-* Example: `t/High-end`, `t/Friend`
-
-#### Image
-* Refers to the given image for a property or client.
-* Each property or client can only have one image.
-* The user will be prompted to select an image in a separate window after successful usage of this parameter in the context of whichever command the parameter was used for.
-
-* Parameter: `-i`
-
-### Property attributes
-#### Price
-* Refers to the general price to purchase a unit for a property.
-* Each property can only have one price.
-* Max value is 2,147,483,647
-
-* Parameter: `p/`
-* Example: `p/1,000,000`
-
-#### Property type
-* Refers to the type of a property.
-* Each property can only have one property type.
-* Valid property types:
-  * HDB
-  * CONDO
-  * LANDED
-* Arguments for this parameter are case-insensitive.
-
-* Parameter: `h/`
-* Example: `h/HDB`, `h/Condo`
-
-#### Property status
-* Refers to the status of a property.
-* Each property can only have one property status.
-* Valid property statuses:
-  * AVAILABLE
-  * SOLD
-  * PENDING
-* Arguments for this parameter are case-insensitive.
-
-* Parameter: `s/`
-* Example: `s/AVAILABLE`, `s/PENDING`
-
-#### Interested clients
-* Refers to the clients that are interested in a property.
-* Each property can have multiple clients interested in it.
-* This parameter takes in **case-insensitive** arguments and attempts to link it to the name of a client.
-* Can take in multiple space-delimited arguments.
-* An argument will not be accepted if it links to no clients, or if it links to more than one client.
-  * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested clients to the property.
-
-* Parameter: `ic/`
-* Example: `ic/Samuel`, `ic/bob jedrek JANICE`
-
-### Client attributes
-#### Interested properties
-* Refers to properties that a client is interested in.
-* Each client can be interested in multiple properties.
-* This parameter takes in **case-insensitive** arguments and attempts to link it to the name of a property.
-* Can take in multiple space-delimited arguments.
-* An argument will not be accepted if it links to no clients, or if it links to more than one client.
-  * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested properties to the client..
-
-* Parameter: `ip/`
-* Example: `ip/duxton`, `ip/rosewood duxton FAIRFIELD`
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features syntax
+## Command Overview
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Demarcaters `-p` and `-c` after each command word represent interactions with the property and client directory respectively.<br>
-  * e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
+* Flags -p and -c after each command word represent interactions with the property and client directory respectively.
+  e.g. `add -p` adds a property in the property directory while `add -c` adds a client in the client directory.
 * Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
   e.g. in `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
 * Items in square brackets are optional.<br>
@@ -179,12 +52,67 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order.<br>
-  * e.g. if the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  * e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
-* Extraneous parameters or arguments for commands that do not any (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
-  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</div>
+  e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
+* Extraneous arguments for commands that do not have any parameters (such as `help`, `exit`, `list -p`, `list -c`, `clear -p`  and `clear -c`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+<div>
+
+
+### Prefix list
+
+| Prefix | Associated Parameter | Definition                                                                                                                                     | Examples                          | Remarks                                                                                                                                                                    |
+| ---- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n/` | NAME                 | <li> Refers to the name of a property or client.<br>                                                                                           | Property: `n/PINNACLE@DUXTON`<br>Client: `n/Walter` | <li> Each property or client can only have one name.                                                                                                                       |
+| `a/` | ADDRESS              | <li> Refers to the address of a property or client.                                                                                            | `a/Cantonment Rd, #1G, 085301`    | <li> Each property or client can only have one address.                                                                                                                    |
+| `t/` | TAG                  | <li> Refers to a tag of a property or client.<br><li> Can be used for labelling important details.                                             | `t/High-end`, `t/Friend`          | <li> Tags must be alphanumerical<br><li> Each property or client can have multiple tags.                                                                                   |
+| `-i` | IMAGE                | <li> Refers to the image for a property or client.<br><li> User will be prompted to select an image in a separate window upon invoking prefix. | NIL                               | <li> Each property or client can only have one image.<br>                                                                                                                  |
+| `p/` | PRICE                | <li> Refers to property price.<br>                                                                                                             | `p/1,000,000`                     | <li> Each property can only have one price.<br><li> Accepts positive integers only.<br><li> Max input price is 2,147,483,647.                                              |
+| `h/` | PROPERTY\_TYPE       | <li> Refers to type of housing<br>                                                                                                             | `h/HDB`, `h/Condo`, `h/landed`    | <li> Each property can only have one property type.<br><li> Valid property types: HDB, CONDO, LANDED<br><li> Arguments for this parameter are case-insensitive.            |
+| `s/` | PROPERTY\_STATUS     | <li> Refers to availability of property<br>                                                                                                    | `s/AVAILABLE`, `s/PENDING`        | <li> Each property can only have one property status.<br><li> Valid property statuses: AVAILABLE, SOLD, PENDING<br><li> Arguments for this parameter are case-insensitive. |
+| `ic/` | INTERESTED\_CLIENT   | <li> Refers to list of clients who are considering to purchase a particular property.                                                          | `ic/Samuel`, `ic/bob jedrek JANICE` | <li> Each property can have multiple clients interested in it.<br><li> Can take in multiple space-delimited arguments.                                                     |
+| `ip/` | INTERESTED\_PROPERTY | <li> Refers to list of properties that a client is interested in.                                                                              | `ip/duxton`, `ip/rosewood duxton FAIRFIELD` | <li> Each client can be interested in multiple properties.<br><li> Can take in multiple space-delimited arguments.                                                         |
+
+### Property directory
+
+| Command   | Definition                                                                                                           | Parameters                                                                                                                                                                                                                                                                                                                       | Format                                                                                                                              | Examples                                                                                                                                                                                                                             |
+| --------- | -------------------------------------------------------------------------------------------------------------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `add -p`  | Adds a property to the property directory.                                                                           | Prefix required for all arguments<br><br>Mandatory arguments:<br><li> `n/NAME`<br><li> `a/ADDRESS`<br><li> `p/PRICE`<br><li> `h/PROPERTY\_TYPE`<br><br>Optional arguments:<br><li> `-i` \[IMAGE\]<br><li> `s/PROPERTY\_STATUS`<br><li> `t/TAG`<br><li> `ic/INTERESTED\_CLIENT`                                                   | `add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY\_TYPE \[-i\] \[s/PROPERTY\_STATUS\] \[ic/INTERESTED\_CLIENT\] \[t/TAG\]…​`              | `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/luxury`<br>`add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/neighbourhood t/elderly ic/James Tan s/AVAILABLE` |
+| `list -p` | Lists all properties currently stored in the property directory.                                                     | No argument needed                                                                                                                                                                                                                                                                                                               | `list -p`                                                                                                                           | NIL                                                                                                                                                                                                                                  |
+| `edit -p` | Edits an existing property in the property directory.                                                                | Prefix required for all arguments except index<br><br>Mandatory arguments:<br><li> `INDEX`<br><br>Optional arguments (at least one field):<br><li> `n/NAME`<br><li> `a/ADDRESS`<br><li> `p/PRICE`<br><li> `h/PROPERTY\_TYPE`<br><li> `-i` \[IMAGE\]<br><li> `s/PROPERTY\_STATUS`<br><li> `t/TAG`<br><li> `ic/INTERESTED\_CLIENT` | `edit INDEX \[n/NAME\] \[a/ADDRESS\] \[p/PRICE\] \[h/PROPERTY\_TYPE\] \[s/PROPERTY\_STATUS\] \[ic/INTERESTED\_CLIENT\] \[t/TAG\]…​` | `edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301`<br>`edit -p 1 t/high-end t/luxury`                                                                                                                                        |
+| `find -p` | Finds properties whose names contain any of the given keywords.                                                      | No prefix needed<br><br>`NAME`                                                                                                                                                                                                                                                                                                   | `find -p NAME \[MORE\_NAMES\]`                                                                                                      | `find -p PINNACLE@DUXTON BISHAN`                                                                                                                                                                                              |
+| `delete -p` | Deletes the property at the specified INDEX from the property directory.                                             | No prefix needed<br><br>`INDEX`                                                                                                                                                                                                                                                                                                  | `delete -p INDEX`                                                                                                                   | `delete -p 3`                                                                                                                                                                                                                          |
+| `filter -p` | Returns a list of properties whose tags contain any of the given keywords.                                           | No prefix needed<br><br>`TAG`                                                                                                                                                                                                                                                                                                    | `filter -p TAG \[MORE\_TAGS\]`                                                                                                       | `filter -p high-end luxury`                                                                                                                                                                                                            |
+| `range -p` | Returns a list of properties within a specified price range.                                                         | Prefix required for all arguments except index<br><br>Mandatory arguments:<br><li> `INDEX`<br><li> `l/LOWER\_BOUND`<br><li> `u/UPPER\_BOUND`                                                                                                                                                                                     | `range -p l/LOWER\_BOUND u/UPPER\_BOUND`                                                                                            | `range -p l/1,000,000 u/3,000,`000`<br>`range -p l/1000000 u/3000000`                                                                                                                                                                     |
+| `clear -p` | Clears all properties from the property directory.                                                                   | No argument needed                                                                                                                                                                                                                                                                                                               | `clear -p`                                                                                                                          | NIL                                                                                                                                                                                                                                  |
+| `select -p` | Returns the property at the specified index while displaying the list of interested clients in the client directory. | No prefix needed<br><br>`INDEX`                                                                                                                                                                                                                                                                                                  | `select -p INDEX`                                                                                                                   | `select -p 2`                                                                                                                                                                                                                          |
+| `status -p` | Returns all the properties with the specified status.                                                                | No prefix needed<br><br>`PROPERTY\_STATUS`                                                                                                                                                                                                                                                                                       | `status -p`                                                                                                                         | `status -p AVAILABLE<br>status -p SOLD`                                                                                                                                                                                                |
+| `type -p` | Returns all the properties with the specified type.                                                                  | No prefix needed<br><br>`PROPERTY\_TYPE`                                                                                                                                                                                                                                                                                         | `type -p`                                                                                                                           | `type -p HDB<br>type -p condo`                                                                                                                                                                                                         |
+
+### Client directory
+
+| Command   | Definition                                                                                                              | Parameters                                                                                                                                                                                                                               | Format                                                                      | Examples                                                                                 |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| add -c    | Adds a client profile to the client directory.                                                                          | Prefix required for all arguments<br><br>Mandatory arguments:<br><li> `n/NAME`<br><li> `a/ADDRESS`<br><br>Optional arguments:<br><li> `t/TAG`<br><li> `-i`\[IMAGE\]<br><li> `ip/INTERESTED\_PROPERTY`                                     | `add n/NAME a/ADDRESS \[t/TAG\]…​ \[ip/INTERESTED\_PROPERTY\]`                | `add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON`       |
+| clear -c  | Clears all clients from the client directory.                                                                           | No argument needed                                                                                                                                                                                                                       | `clear -c`                                                                    | NIL                                                                                      |
+| delete -c | Deletes the client profile at the specified INDEX from the client directory.                                            | No prefix needed<br><br>`INDEX`                                                                                                                                                                                                          | `delete -c INDEX`                                                             | `delete -c 3`                                                                              |
+| edit -c   | Edits an existing client profile in the client directory.                                                               | Prefix required for all arguments except index<br><br>Mandatory arguments:<br><li> INDEX<br><br>Optional arguments (at least one field):<br><li> `n/NAME`<br><li> `a/ADDRESS`<br><li> `-i` \[IMAGE\]<br><li> `t/TAG`<br><li> `ip/INTERESTED\_PROPERTY` | `edit INDEX \[n/NAME\] \[a/ADDRESS\] \[ip/INTERESTED\_PROPERTY\] \[t/TAG\]…​` | `edit -c 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301<br>edit -c 1 t/friend t/colleague` |
+| filter -c | Returns a list of client profiles whose tags contain any of the given keywords.                                         | No prefix needed<br><br>`TAG`                                                                                                                                                                                                            | `filter -c TAG \[MORE\_TAGS\]`                                                | `filter -c friend colleague`                                                               |
+| find -c   | Finds clients whose names contain any of the given keywords.                                                            | No prefix needed<br><br>`NAME`                                                                                                                                                                                                           | `find -c NAME \[MORE\_NAMES\]`                                                | `find -c James Jake`                                                                       |
+| list -c   | Lists all client profiles currently stored in the client directory.                                                     | No argument needed                                                                                                                                                                                                                       | `list -c`                                                                     | NIL                                                                                      |
+| select -c | Returns the client at the specified index while displaying the list of interested properties in the property directory. | No prefix needed<br><br>`INDEX`                                                                                                                                                                                                          | `select -c INDEX`                                                             |` select -c 1`                                                                              |
+
+### General commands
+
+| Command      | Definition                                                                                                                                                                                            |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `exit`         | Exits the program.                                                                                                                                                                                    |
+| `help`         | Shows the help guide                                                                                                                                                                                  |
+| `undo`         | Reverses the effect of the previous command. Only commands that affect the state of Property/Client Directory can be undone.<br><br>For example, help cannot be undone, whereas add -p can be undone. |
+| <arrow up>   | Show previous command in command line                                                                                                                                                                 |
+| <arrow down> | Show following command in command line                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 
