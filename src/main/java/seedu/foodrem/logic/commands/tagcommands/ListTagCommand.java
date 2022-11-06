@@ -22,6 +22,11 @@ public class ListTagCommand extends Command {
         return CommandResult.from(new TagsWithMessage(MESSAGE_SUCCESS, model.getFilteredTagList().toArray(Tag[]::new)));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return LIST_TAG_COMMAND.getUsage();
     }
