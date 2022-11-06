@@ -92,8 +92,8 @@ public class AddTaskCommand extends Command {
             return false;
         }
 
-        return toAdd.equals(((AddTaskCommand) other).toAdd)
+        return toAdd.equals(otherCommand.toAdd)
                 && (personEmailAddress == null
-                || personEmailAddress.equals(((AddTaskCommand) other).personEmailAddress));
+                || personEmailAddress.equals(otherCommand.personEmailAddress));
     }
 }
