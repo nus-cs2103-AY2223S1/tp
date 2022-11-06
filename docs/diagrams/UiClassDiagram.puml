@@ -7,7 +7,6 @@ skinparam classBackgroundColor UI_COLOR
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
-Class AlertWindow
 Class UiManager
 Class MainWindow
 Class HelpWindow
@@ -39,7 +38,6 @@ MainWindow *-down-> "1" ApplicantListPanel
 MainWindow *-down-> "1" PinList
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" AlertWindow
 
 ApplicantListPanel -down-> "*" ApplicantCard
 PinList -down-> "*" PinCard
@@ -57,7 +55,6 @@ HelpWindow --|> UiPart
 
 ApplicantCard ..> Model
 PinCard ..> Model
-AlertWindow ..> Logic
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
