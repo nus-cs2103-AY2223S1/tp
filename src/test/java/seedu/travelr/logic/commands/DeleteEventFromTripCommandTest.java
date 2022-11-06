@@ -1,8 +1,10 @@
 package seedu.travelr.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.getEmptyTravelr;
 
@@ -27,7 +29,7 @@ class DeleteEventFromTripCommandTest {
     }
 
     @Test
-    public void execute_display_successful() throws Exception {
+    public void execute_deleteEventFromTrip_successful() throws Exception {
         Event validEvent = new EventBuilder().build();
         new AddEventCommand(validEvent).execute(model);
         Trip validTrip = new TripBuilder().build();
@@ -43,16 +45,43 @@ class DeleteEventFromTripCommandTest {
     }
 
     @Test
+    public void execute_inexistantTrip_throwsCommandException() throws Exception {
+        Event validEvent = new EventBuilder().build();
+        new AddEventCommand(validEvent).execute(model);
+        Trip validTrip = new TripBuilder().build();
+
+        Command command = new DeleteEventFromTripCommand(validEvent.getTitle(), validTrip.getTitle());
+
+        assertCommandFailure(command, model, "Please enter a valid Trip");
+    }
+
+    @Test
+    public void execute_eventNotInTrip_throwsCommandException() throws Exception {
+        Event validEvent = new EventBuilder().build();
+        new AddEventCommand(validEvent).execute(model);
+        Trip validTrip = new TripBuilder().build();
+        new AddCommand(validTrip).execute(model);
+
+        Command command = new DeleteEventFromTripCommand(validEvent.getTitle(), validTrip.getTitle());
+
+        assertCommandFailure(command, model, "Event does not exist in trip");
+    }
+
+    @Test
     void testEquals() {
         DeleteEventFromTripCommand deleteEventFromTripCommand =
                 new DeleteEventFromTripCommand(new Title("abc"), new Title("cba"));
         DeleteEventFromTripCommand deleteEventFromTripCommandCopy =
                 new DeleteEventFromTripCommand(new Title("abc"), new Title("cba"));
+        AddCommand addCommand = new AddCommand(new TripBuilder().build());
 
         // same object -> returns true
         assertTrue(deleteEventFromTripCommand.equals(deleteEventFromTripCommand));
 
         // same values -> returns true
         assertTrue(deleteEventFromTripCommand.equals(deleteEventFromTripCommandCopy));
+
+        // Different class -> returns false
+        assertFalse(deleteEventFromTripCommand.equals(addCommand));
     }
 }
