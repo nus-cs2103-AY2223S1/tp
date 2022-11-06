@@ -1,5 +1,6 @@
 package seedu.foodrem.views;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javafx.geometry.Pos;
@@ -20,7 +21,7 @@ import seedu.foodrem.viewmodels.Stats;
  */
 public class StatsView {
     private static final double SPACING_UNIT = 8;
-
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.00");
     /**
      * Creates a new detailed view of the given item.
      *
@@ -36,7 +37,8 @@ public class StatsView {
 
         // Section for amount wasted due to expired food
         final Label amountWastedLabel = new Label("Total cost incurred due to food wastage:");
-        final Label amountWastedValue = new Label("$" + stats.getAmountWasted());
+        String amountWasted = DECIMAL_FORMAT.format(stats.getAmountWasted());
+        final Label amountWastedValue = new Label("$" + amountWasted);
         amountWastedValue.getStyleClass().add("bold");
         amountWastedLabel.setWrapText(true);
 
