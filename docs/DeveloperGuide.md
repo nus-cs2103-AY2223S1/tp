@@ -1338,7 +1338,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit task 0 -ds "Submit PPP"`<br>
        Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
 
-    4. Test case: `edit task 1 -ds 2022-11-07 -c CS2103T`<br>
+    4. Test case: `edit task 1 -d 07-11-2022 -c CS2103T`<br>
        Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
 
     5. Other incorrect remove commands to try: `edit t "Submit PPP" -CS2103T`, `add -t Submit PPP`<br>
