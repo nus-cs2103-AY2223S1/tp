@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Final state
+title Final state after parsing the <plain><font:monospaced><back:lightgray>adddebt</back></font></plain> example
 
 class AddDebtCommand as "__:AddDebtCommand__"
 class IndexOne as "__1:Index__"
