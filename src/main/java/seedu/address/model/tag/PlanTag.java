@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PlanTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Plan tag name should only contain alphanumeric characters "
-            + "and spaces, ending with Plan";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*[Plan]";
+            + "and spaces, ending with Plan (case insensitive)";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     /**
      * Constructs a {@code Tag}.
@@ -27,7 +27,7 @@ public class PlanTag extends Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidPlanTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.trim().toUpperCase().endsWith(" PLAN");
     }
     @Override
     public boolean equals(Object other) {

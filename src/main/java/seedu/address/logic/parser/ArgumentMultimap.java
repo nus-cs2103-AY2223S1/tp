@@ -63,7 +63,7 @@ public class ArgumentMultimap {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
-        String value = getValue(prefix).get();
+        String value = getValue(prefix).get().toLowerCase();
         return Arrays.stream(value.split(regex)).collect(Collectors.toList());
     }
 
