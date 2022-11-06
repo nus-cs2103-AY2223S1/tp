@@ -90,7 +90,10 @@ Note how the app contains some sample data.
 <br><br>
 5. Refer to the [Features](#3-features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
+
+<div style="page-break-after: always;"></div>
+
 ## 2. Reading the Document
 This section will introduce you to the different symbols and syntax used throughout the guide, as well
 as provide an overview of the features and GUI interface of TABS.
@@ -182,7 +185,10 @@ Overview of the sections in the contacts pane:
 | w/     | WORKLOAD |
 | d/     | DEADLINE |
 
--------------------------------------------------------------------------------------------------------------------
+<hr>
+
+<div style="page-break-after: always;"></div>
+
 ## 3. Features
 
 ### 3.1 Contact Features
@@ -430,7 +436,9 @@ Exits the program.
 
 Format: `exit`
 
---------------------------------------------------------------------------------------------------------------------
+<hr>
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Glossary
 
