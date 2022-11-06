@@ -434,8 +434,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task he wants to edit.
-2. With the task id, user requests to edit the task.
+1. User finds the ID associated with the task he wants to edit.
+2. With the task ID, user requests to edit the task.
 3. NotionUS edits the task and displays it.
 
    Use case ends.
@@ -443,7 +443,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID.
-    * 2a1. NotionUS shows an error, requesting the user check the task id.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
@@ -457,8 +457,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task he wants to delete.
-2. With the task id, user requests to delete the task.
+1. User finds the ID associated with the task he wants to delete.
+2. With the task ID, user requests to delete the task.
 3. NotionUS deletes the task and updates the view.
 
    Use case ends.
@@ -466,7 +466,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID.
-    * 2a1. NotionUS shows an error, requesting the user check the task id.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
@@ -474,8 +474,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task he wants to tag.
-2. With the task id, user requests to tag the task with a specified task.
+1. User finds the ID associated with the task he wants to tag.
+2. With the task ID, user requests to tag the task with a specified task.
 3. NotionUS adds the specified tag to the task and displays it.
 
    Use case ends.
@@ -483,7 +483,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID.
-    * 2a1. NotionUS shows an error, requesting the user check the task id.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
@@ -491,8 +491,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task he wants to mark as done.
-2. With the task id, user requests to mark the task as done.
+1. User finds the ID associated with the task he wants to mark as done.
+2. With the task ID, user requests to mark the task as done.
 3. NotionUS marks the specified task as done.
 
    Use case ends.
@@ -500,7 +500,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID.
-    * 2a1. NotionUS shows an error, requesting the user check the task id.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
@@ -508,8 +508,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task he wants to mark as not done.
-2. With the task id, user requests to mark the task as not done.
+1. User finds the ID associated with the task he wants to mark as not done.
+2. With the task ID, user requests to mark the task as not done.
 3. NotionUS marks the specified task as not done.
 
    Use case ends.
@@ -517,7 +517,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID
-    * 2a1. NotionUS shows an error, requesting the user check the task id
+    * 2a1. NotionUS shows an error, requesting the user check the task ID
 
       Use case starts from 1.
 
@@ -557,8 +557,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id of the task he wants to archive.
-2. With the task id, user requests to archive the task.
+1. User finds the ID of the task he wants to archive.
+2. With the task ID, user requests to archive the task.
 3. NotionUS archives the task, removing it from the displayed task list and adds it to the archive.
 
    Use case ends.
@@ -566,7 +566,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 **Extensions:**
 
 * 2a. User provides an invalid ID.
-    * 2a1. NotionUS shows an error, requesting the user check the task id.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
