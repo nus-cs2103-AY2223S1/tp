@@ -56,7 +56,7 @@ As a first time user, we understand that you might be confused on how to even st
 
 Once SoConnect is installed, you can navigate to the [Quickstart](#6-quickstart) section, where we will cover the basics of using SoConnect.
 
-If you are a returning user, you can head over to the [Command Summary](#command-summary) section for a quick overview of all SoConnect's commands. Alternatively, you can also read the detailed explanation of each command in the [Commands](#commands) section.
+If you are a returning user, you can head over to the [Command Summary](#command-summary) section for a quick overview of all commands in SoConnect. Alternatively, you can also read the detailed explanation of each command in the [Commands](#commands) section.
 
 Feeling stuck? The [FAQ](#faq) section might help find the answer you are looking for.
 
