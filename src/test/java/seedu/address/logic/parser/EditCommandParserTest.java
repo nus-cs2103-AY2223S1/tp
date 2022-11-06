@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
