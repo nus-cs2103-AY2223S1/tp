@@ -30,6 +30,22 @@ title: Developer Guide
     - [Non-function Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
   - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Adding a book](#adding-a-book)
+    - [Adding a user](#adding-a-user)
+    - [Deleting a book](#deleting-a-book)
+    - [Deleting a user](#deleting-a-user)
+    - [Loaning a book](#loaning-a-book)
+    - [Returning a book](#returning-a-book)
+    - [Finding a book](#finding-a-book)
+    - [Finding a user](#finding-a-user)
+    - [Editing a book](#editing-a-book)
+    - [Editing a user](#editing-a-user)
+    - [Listing all books](#listing-all-books)
+    - [Listing all users](#listing-all-users)
+    - [Listing all books and user](#listing-all-books-and-user)
+    - [Listing all loans](#listing-all-loans)
+    - [Listing all overdue loans](#listing-all-overdue-loans)
+  - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -732,7 +748,7 @@ testers are expected to do more *exploratory* testing.
    1. Prequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in the book list. 
 
    2. Test case: `delete book 1`<br>
-      Expected: First book is deleted from the book list. Details of the deleted book is shown in the status message.
+      Expected: First book is deleted from the book list. Details of the deleted book are shown in the status message.
 
    3. Test case: `delete book 0`<br>
       Expected: No book is deleted. Error details shown in the status message.
@@ -744,7 +760,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: At least one or more user and book in BookFace, and book is loaned out using the `loan 1 1` command.
 
    2. Test case: `delete book 1`<br> 
-      Expected: No book is deleted. Error message preventing the deletion of loan books is shown in the status message.
+      Expected: No book is deleted. Error message shown in the status message.
 
 ### Deleting a user
 
@@ -756,44 +772,120 @@ testers are expected to do more *exploratory* testing.
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    3. Test case: `delete user 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
 
    4. Other incorrect delete user commands to try: `delete user`, `delete user x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Loaning a book
 
+1. Loaning a book that is already loaned
+
+   1. Prerequisites: A book at index 1 that is loaned to a user using the `loan 1 1` command, and other books in BookFace that are not loaned out.
+
+   2. Test case: `loan 2 1`<br>
+      Expected: Book at the first index remains loaned to the first loaner that has not returned the book. Error details shown in the status message.
+
+   3. Test case: `loan 2 2`<br>
+      Expected: Book at index 2 loaned out to user at index 2. Details of the loan are shown in the status message. 
 
 ### Returning a book
 
+1. Return a book that is not loaned
+
+   1. Prerequisites: A book at index 2 that is not on loan, and a book at index 1 that is loaned out using the `loan 1 1` command.
+
+   2. Test case: `return 2`<br>
+      Expected: Book is not returned as it is not on loan. Error details shown in the status message.
+
+   3. Test case: `return 1`<br>
+      Expected: Book is no longer on loan. Return details shown in the status message.
 
 ### Finding a book
 
+1. Finding a book while all books are being shown
+
+   1. Prerequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in BookFace.
+
+   2. Test case: `find book Moby`<br>
+      Expected: All books with authors and titles containing "Moby" (case insensitive) is shown. Details of the number of matching books found shown in the status message.
+
+   3. Test case: `find book`<br>
+      Expected: No change in books displayed. Error details shown in the status message.
 
 ### Finding a user
 
+1. Finding a user while all users are being shown
+
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in BookFace.
+
+   2. Test case: `find user James`<br>
+      Expected: All users with names containing "James" (case insensitive) is shown. Details of the number of matching users found shown in the status message.
+
+   3. Test case: `find user`<br>
+      Expected: No change in users displayed. Error details shown in the status message.
 
 ### Editing a book
+1. Editing a book while all books are being shown
 
+   1. Prerequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in BookFace.
+   
+   2. Test case: `edit book 1 a/Thomas Jefferson`<br>
+      Expected: Book at index 1 has its author set to "Thomas Jefferson". Edited book details shown in the status message.
+   
+   3. Test case: `edit book 1`<br>
+      Expected: No change in details for book at index 1. Error details shown in the status message.
 
 ### Editing a user
-
+1. Editing a user while all users are being shown
+   
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in BookFace.
+   
+   2. Test case: `edit user 1 n/Leonard Chong`<br>
+      Expected: User at index 1 has their name set to "Leonard Chong". Edited user details shown in the status message.
+   
+   3. Test case: `edit user 1`<br>
+      Expected: No change in details for user at index 1. Error details shown in the status message. 
 
 ### Listing all books
+1. Listing all books from a narrowed down list of books
 
+   1. Prerequisites: A narrowed down list of books is shown after using the `find book KEYWORD`, `list loans` or `list overdue` commands.
 
+   2. Test case: `list books`<br>
+      Expected: All books are shown. Message shown in the status message.
+    
 ### Listing all users
+1. Listing all users from a narrowed down list of users
 
-
+   1. Prerequisites: A narrowed down list of users is shown after using the `find user KEYWORD`, `list loans` or `list overdue` commands.
+   
+   2. Test case: `list users`<br>
+      Expected: All users are shown. Success message shown in the status message.
 
 ### Listing all books and user
-
+1. Listing all books and users from a narrowed down list of users and books
+   
+   1. Prerequisites: Books and users shown are a narrowed down list of books and users after using the `find book KEYWORD`, `find user KEYWORD`, `list loans` or `list overdue` commands.
+   
+   2. Test case: `list all`<br>
+      Expected: All users and books shown. Success message shown in the status message.
 
 ### Listing all loans
+1. Listing all loans when all users and books are being shown
 
+   1. Prerequisites: List all users and books using the `list all` command.
+   
+   2. Test case: `list loans`<br>
+      Expected: All books that are loaned out and users who have ongoing loans are shown.
 
 ### Listing all overdue loans
+1. Listing all overdue loans when all loans are being shown
 
+   1. Prequisites: List all loans using the `list loans` command.
+   
+   2. Test case: `list overdue`<br>
+      Expected: All books that are overdue and users who owe overdue books are shown.
 
 ### Saving data
 
