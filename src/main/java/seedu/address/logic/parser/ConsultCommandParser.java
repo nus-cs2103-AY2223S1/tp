@@ -15,10 +15,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ConsultCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.PastAppointment;
-import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.tag.Medication;
 
 /**
@@ -46,10 +44,9 @@ public class ConsultCommandParser implements Parser<ConsultCommand> {
         PastAppointment appt = new PastAppointment(LocalDate.now(), medicationSet,
                 argMultimap.getValue(PREFIX_DIAGNOSIS).get());
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setUpcomingAppointment(new UpcomingAppointment(""));
 
-        return new ConsultCommand(index, appt, editPersonDescriptor);
+
+        return new ConsultCommand(index, appt);
     }
 
     /**
