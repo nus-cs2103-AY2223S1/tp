@@ -12,6 +12,8 @@ StudMap through a text box, and StudMap just does it for you — it’s like mag
 traditional application with a graphical interface: you can still see, at a glance, a neat overview of what you need to
 see. If you type fast, StudMap can get your student management tasks done faster than anything else.
 
+---
+
 # Why StudMap?
 
 Let’s face it — nobody loves keeping track of administrative details. It’s not the most interesting part of any job. If
@@ -67,6 +69,8 @@ essential yet easy-to-use features, we aim to fill the void between Excel spread
 to provide you the necessary tool to perform record keeping effectively. This user guide is a reference for you, so that
 you know how to make the most out of StudMap.
 
+---
+
 # How to use this User Guide
 
 Thank you for choosing StudMap! This user guide will help you navigate our beloved software.
@@ -80,10 +84,11 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 4. If you see any unfamiliar terms, check out the [Glossary](#glossary) for more information.
 
 # Table of Contents
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Quick Start
 
@@ -114,9 +119,9 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
     * `list`
         * This updates the Student List with all the students you have.
     * `n/John Doe m/CS2103T id/E1234567`
-        * This adds a student named John Doe with student id E1234567 into StudMap, who is taking the module CS2103T.
-          This
-          is one of the ways you can add a new student into StudMap.
+        * This adds a student named John Doe with student ID `E1234567` into StudMap, who is taking the module `CS2103T`
+          .
+          This is one of the ways you can add a new student into StudMap.
     * `delete 3`
         * This deletes the 3rd student currently shown in the Student List.
     * `clear`
@@ -133,7 +138,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
    command.
    We hope you enjoy using StudMap!
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Features
 
@@ -595,7 +600,7 @@ Shows a message linking to the online User Guide.
 
 Format: `help`
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # FAQ
 
@@ -603,7 +608,7 @@ Format: `help`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous StudMap home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Command Summary
 
