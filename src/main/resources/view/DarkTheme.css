@@ -284,16 +284,16 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(black, 20%);
+    -fx-background-color: white;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(black, 20%);
+    -fx-background-color: black;
     -fx-background-insets: 3;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
+    -fx-background-color: black;
     -fx-padding: 0 0 0 0;
 }
 
