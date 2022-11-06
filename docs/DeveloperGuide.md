@@ -263,6 +263,8 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
 
 -----
 
+<div style="page-break-after: always;"></div>
+
 ### **\[Developed\] Add/Delete member feature**
 
 #### **Implementation**
@@ -337,8 +339,10 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
   - Cons:
     - Deleting group/performing groupwide assignment or deletion of task is even more difficult as
       will have to perform linear scan of the entire `Person` list to surface affected members.
-
+    
 -----
+
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Display/List Group feature**
 
@@ -374,6 +378,8 @@ For simplicity, only the `DisplayGroupCommand`'s execution is shown below. Both 
 <img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Assign/Delete Task feature**
 
@@ -453,6 +459,8 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Deleting tasks from a `Person` requires modification of the `Person` object. This is compounded when multiple `Person`s are updated in one command i.e. bulk commands.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
