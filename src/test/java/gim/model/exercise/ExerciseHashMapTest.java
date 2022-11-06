@@ -6,8 +6,13 @@ import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ABDUCTION;
 import static gim.testutil.TypicalExercises.BICEP_CURLS;
 import static gim.testutil.TypicalExercises.CALF_RAISES;
+import static gim.testutil.TypicalExercises.DEADLIFT_HEAVY;
+import static gim.testutil.TypicalExercises.DEADLIFT_LIGHT;
+import static gim.testutil.TypicalExercises.SQUAT_HEAVY;
+import static gim.testutil.TypicalExercises.SQUAT_LIGHT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -115,6 +120,26 @@ public class ExerciseHashMapTest {
     public void numOfValues_nonEmptyHashMap() {
         exerciseHashMap.add(BICEP_CURLS);
         assertEquals(1, exerciseHashMap.numOfValues());
+    }
+
+    @Test
+    public void test_getExercisePR() {
+        exerciseHashMap.add(SQUAT_LIGHT);
+        exerciseHashMap.add(SQUAT_HEAVY);
+        assertEquals(exerciseHashMap.getExercisePR(SQUAT_LIGHT.getName()), SQUAT_HEAVY);
+        assertNull(exerciseHashMap.getExercisePR(DEADLIFT_LIGHT.getName()));
+    }
+
+    @Test
+    public void test_getAllExercisePRs() {
+        exerciseHashMap.add(SQUAT_LIGHT);
+        exerciseHashMap.add(SQUAT_HEAVY);
+        exerciseHashMap.add(DEADLIFT_LIGHT);
+        exerciseHashMap.add(DEADLIFT_HEAVY);
+        ArrayList<Exercise> arr = new ArrayList<>();
+        arr.add(SQUAT_HEAVY);
+        arr.add(DEADLIFT_HEAVY);
+        assertEquals(exerciseHashMap.getAllExercisePRs(), arr);
     }
 
 }
