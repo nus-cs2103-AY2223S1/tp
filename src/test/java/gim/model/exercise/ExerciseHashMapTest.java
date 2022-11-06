@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
+import gim.ui.SavedExerciseListWindow;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
@@ -21,6 +23,7 @@ import gim.testutil.ExerciseBuilder;
 public class ExerciseHashMapTest {
 
     private final ExerciseHashMap exerciseHashMap = new ExerciseHashMap();
+    private final ExerciseHashMap exerciseHashMapWithObserverList = new ExerciseHashMap(new ArrayList<>());
 
     @Test
     public void contains_nullExercise_throwsNullPointerException() {
@@ -41,9 +44,14 @@ public class ExerciseHashMapTest {
     @Test
     public void contains_exerciseWithSameIdentityFieldsInHashMap_returnsTrue() {
         exerciseHashMap.add(ABDUCTION);
-        Exercise editedAlice = new ExerciseBuilder(ABDUCTION).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
+        Exercise editedAbduction = new ExerciseBuilder(ABDUCTION).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
-        assertTrue(exerciseHashMap.contains(editedAlice));
+        assertTrue(exerciseHashMap.contains(editedAbduction));
+    }
+
+    @Test
+    public void initialize_withNullArrayList_throwsAssertionError() {
+        Assertions.assertThrows(AssertionError.class, () -> new ExerciseHashMap(null));
     }
 
     @Test
