@@ -6,69 +6,40 @@ title: Gareth Ong's Project Portfolio Page
 
 SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
+### Summary of Contributions
+
 Given below are my contributions to the project.
 
-to be added soon...
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=GarethOng&breakdown=true)
 
-[//]: # ()
-[//]: # (* **New Feature**: Added the ability to undo/redo previous commands.)
 
-[//]: # (  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
+* **New Feature**: Added the ability to sort contacts according to specified fields with a Command
 
-[//]: # (  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
+  * What it does: Allow the user to sort the contacts either by their name or module code in ascending or descending order using `sort A-Z n/`(sort by name) or `sort A-Z m/` (sort by module code).
 
-[//]: # (  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
+  * Justification: This feature allows user to organise the contact information for faster retrieval.
 
-[//]: # (  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
+* **New Feature** Added the ability to export contacts within the address book as a comma-separated values (CSV) file in.
 
-[//]: # ()
-[//]: # (* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.)
+  * What it does: Allows the user to convert the entire address book into a CSV file.
+  
+  * Justification: This feature allows user to share contact information quickly and also serves as a way to back up their data.
+  
+  * Credits: Tutorial on using Jackson to convert JSON into CSV and vice versa from [here](https://www.baeldung.com/java-converting-json-to-csv)
 
-[//]: # ()
-[//]: # (* **Code contributed**: [RepoSense link]&#40;&#41;)
+* **New Feature** Added the ability to a comma-separated values (CSV) file containing contact information into the application.
 
-[//]: # ()
-[//]: # (* **Project management**:)
+  * What it does: Allows the user to convert a CSV file containing contact information into the address book.
 
-[//]: # (  * Managed releases `v1.3` - `v1.5rc` &#40;3 releases&#41; on GitHub)
+  * Justification: This feature intention is to be used with the export function whereby user can import the CSV file created by another user, furthermore, it allows the user to quickly add in multiple contacts.
 
-[//]: # ()
-[//]: # (* **Enhancements to existing features**:)
+  * Credits: Tutorial on using Jackson to convert JSON into CSV and vice versa from [here](https://www.baeldung.com/java-converting-json-to-csv)
 
-[//]: # (  * Updated the GUI color scheme &#40;Pull requests [\#33]&#40;&#41;, [\#34]&#40;&#41;&#41;)
+* **Documentation**:
 
-[//]: # (  * Wrote additional tests for existing features to increase coverage from 88% to 92% &#40;Pull requests [\#36]&#40;&#41;, [\#38]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Documentation**:)
-
-[//]: # (  * User Guide:)
-
-[//]: # (    * Added documentation for the features `delete` and `find` [\#72]&#40;&#41;)
-
-[//]: # (    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]&#40;&#41;)
-
-[//]: # (  * Developer Guide:)
-
-[//]: # (    * Added implementation details of the `delete` feature.)
-
-[//]: # ()
-[//]: # (* **Community**:)
-
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
-
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
-
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
-
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Tools**:)
-
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
-
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
-
-[//]: # ()
-[//]: # (* _{you can add/remove categories in the list above}_)
+    * User Guide:
+  
+      * Added documentation for the features `sort`, `export` and `import`
+      
+    * Developer Guide:
+      * Added implementation details for `sort`, `export` and `import` with sequence and activity diagrams
