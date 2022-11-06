@@ -22,8 +22,9 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "REMARK "
-            + "Example: " + COMMAND_WORD + " 2 ";
+            + "REMARK \n"
+            + "Example: " + COMMAND_WORD + " 2 "
+            + "Fast Buyer";
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s; Email: %3$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
