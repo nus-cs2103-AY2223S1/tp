@@ -33,7 +33,7 @@ public class DeleteAttributeCommandTest {
     @Test
     public void execute_deleteNonContactAttribute_success() {
         // Construct Person Before applying Delete Attribute Command.
-        Person toDeleteAttribute = model.getFilteredPersonList().get(0);
+        Person toDeleteAttribute = model.getSortedFilteredPersonList().get(0);
         PersonBuilder personToDeleteAttribute = new PersonBuilder(toDeleteAttribute);
         Person personBeforeDeletion = personToDeleteAttribute
                 .withName(VALID_NAME_AMY)
@@ -44,7 +44,7 @@ public class DeleteAttributeCommandTest {
 
         // Construct Person after applying delete attribute command.
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Person afterDeleteAttribute = expectedModel.getFilteredPersonList().get(0);
+        Person afterDeleteAttribute = expectedModel.getSortedFilteredPersonList().get(0);
         PersonBuilder personAfterDeleteAttribute = new PersonBuilder(afterDeleteAttribute);
         Person personAfterDeletion = personAfterDeleteAttribute
                 .withName(VALID_NAME_AMY)
@@ -63,7 +63,7 @@ public class DeleteAttributeCommandTest {
     @Test
     public void execute_deleteContactAttribute_success() {
         // Construct Person Before applying Delete Attribute Command.
-        Person toDeleteAttribute = model.getFilteredPersonList().get(0);
+        Person toDeleteAttribute = model.getSortedFilteredPersonList().get(0);
         PersonBuilder personToDeleteAttribute = new PersonBuilder(toDeleteAttribute);
         Person personBeforeDeletion = personToDeleteAttribute
                 .withName(VALID_NAME_AMY)
@@ -75,7 +75,7 @@ public class DeleteAttributeCommandTest {
 
         // Construct Person after applying delete attribute command.
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Person afterDeleteAttribute = expectedModel.getFilteredPersonList().get(0);
+        Person afterDeleteAttribute = expectedModel.getSortedFilteredPersonList().get(0);
         PersonBuilder personAfterDeleteAttribute = new PersonBuilder(afterDeleteAttribute);
         Person personAfterDeletion = personAfterDeleteAttribute
                 .withName(VALID_NAME_AMY)
@@ -95,7 +95,7 @@ public class DeleteAttributeCommandTest {
     @Test
     public void execute_deleteNonExistentAttribute_failure() {
         // Construct Person Before applying Delete Attribute Command.
-        Person toDeleteAttribute = model.getFilteredPersonList().get(0);
+        Person toDeleteAttribute = model.getSortedFilteredPersonList().get(0);
         PersonBuilder personToDeleteAttribute = new PersonBuilder(toDeleteAttribute);
         Person personBeforeDeletion = personToDeleteAttribute
                 .withName(VALID_NAME_AMY)
@@ -113,7 +113,7 @@ public class DeleteAttributeCommandTest {
     @Test
     public void execute_deleteName_failure() {
         // Construct Person Before applying Delete Attribute Command.
-        Person toDeleteAttribute = model.getFilteredPersonList().get(0);
+        Person toDeleteAttribute = model.getSortedFilteredPersonList().get(0);
         PersonBuilder personToDeleteAttribute = new PersonBuilder(toDeleteAttribute);
         Person personBeforeDeletion = personToDeleteAttribute
                 .withName(VALID_NAME_AMY)
