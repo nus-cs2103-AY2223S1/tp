@@ -314,8 +314,6 @@ Adds a client to the FinBook so that you will not forget your client's personal 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [ml/MEETING_LOCATION]
 [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
-* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
-
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
