@@ -49,12 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String argToTokenize = "0 " + trimmedArgs; // dummy preamble for tokenizer
+        String argToTokenize = "1 " + args; // dummy preamble for tokenizer
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(argToTokenize, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS,
@@ -66,6 +61,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_JOB_ID,
                         PREFIX_JOB_TITLE,
                         PREFIX_TAG);
+
+        try {
+            ParserUtil.parseIndex(argMultimap.getPreamble()); // catches invalid values entered before prefix
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE), pe);
+        }
+
         ListOfContainsKeywordsPredicates predicateList = ListOfContainsKeywordsPredicates
                 .newListOfContainsKeywordsPredicates();
 
