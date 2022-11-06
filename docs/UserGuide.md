@@ -6,7 +6,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
+Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, travel locations, and trip itineraries, all within the same app!
 
 In this guide, you will be introduced to the various features of Travelr, which will help you to use Travelr to build up your bucket list, plan future trips, and look back on your past trip experiences in an effective manner.
 
