@@ -206,7 +206,9 @@ the sorted successfully message as argument to the `LogicManager` object.
 `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*` where `MODULE` refers to the module code of the module to be filtered out, `COMPLETED` refers to the completion status of the tasks to be filtered out, and `LINKED` refers to the link status of the tasks to be filtered out.
 
 #### What is the feature:
-
+The `filter` command allows users to filter the task list by module, completion status, and/or link status.
+* `COMPLETED` will be `y` for filtering out tasks with `status` of `COMPLETE` and `n` for filtering out tasks with `TaskStatus` of `INCOMPLETE`.
+* `COMPLETED` will be `y` for filtering out tasks with `linkedExam` which is not `null` and `n` for filtering out tasks with `linkedExam` of `null`.
 
 #### How the feature works
 
@@ -219,11 +221,19 @@ These operations are exposed in the `Model` interface as `Model#updateFilteredTa
 
 The following sequence diagram shows how the filter operation works:
 
-![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+| ![FilterSequenceDiagram](images/FilterSequenceDiagram.png) |
+|:----------------------------------------------------------:|
+|           Sequence diagram of FilterTasksCommand           |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTasksCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+1. `LogicManager` object takes in `"filter c/n"` which the user keys into the command line.
+2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during initialisation of `LogicManager` object and passes the `"filter c/n"` as the arguments of `parseCommand`.
+3. `FilterTasksCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`.
+4. `FilterTasksCommand` object is created from `FilterTasksCommandParser`.
+5. `execute` method of `FilterTasksCommand` object is invoked and model is passed in as an argument.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
@@ -240,6 +250,10 @@ Step 3. The user executes `t filter m/CS2103T c/n` command to filter the task li
 Step 4. The user executes `t mark 1`. The first task is no longer in `taskFilteredList` since its `isCompleted` is now false and no longer fulfils the conditions.
 
 The following activity diagram summarizes what happens when a user executes the filter command:
+
+| <img src="images/FilterActivityDiagram.png" width="700" /> |
+|:----------------------------------------------------------:|
+|           Activity diagram of FilterTasksCommand           |
 
 <img src="images/FilterActivityDiagram.png" width="700" />
 
@@ -420,7 +434,44 @@ which stores all the exams.`AddExamCommand#execute()` method returns a `CommandR
 object to display that the exam was successfully added.
 
 
+### Unlink Exam Command
 
+#### Command format
+`e unlink INDEX` where `INDEX` refers to the index number shown on the displayed task list of the task to be unlinked.
+
+#### How the feature works
+The `e unlink` command allows users to unlink a task from its exam.
+
+#### Sequence of the UnlinkExamCommand
+
+Shown below is a sequence diagram of what occurs when the `execute` method of `LogicManager` is invoked.
+
+| ![UnlinkExamSequenceDiagram](images/UnlinkExamSequenceDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Sequence diagram of UnlinkExamCommand                |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnlinkExamCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+1. `LogicManager` object takes in `"e unlink 1"` which the user keys into the command line.
+2. `LogicManager` object calls the `parseCommand` method of the `AddressBookParser` object created during the initialisation of `LogicManager` object and passes `"unlink exam 1"` as the arguments of `parseCommand`.
+3. `UnlinkExamCommandParser` object is created during the execution of `parseCommand` of `AddressBookParser`.
+4. `UnlinkExamCommandParser` object calls its `parse` method with `"1"` being passed in as argument.
+5. `UnlinkExamCommand` object is created from `UnlinkExamCCommandParser`.
+6. `execute` method of `UnlinkExamCommand` is invoked and model is passed in as an argument.
+7. `getFilteredTaskList` method of `Model` is called to get the filtered task list.
+8. `get` method of `List<Task>` is called to get the task at the first index.
+9. `unlinkTask` method of `Task` is called to set the `linkedExam` of the task at the first index to `null`.
+10. `replaceTask` method of `Model` is called to replace the original task at the first index with the new unlinked task.
+11. `execute` method of `UnlinkExamCommand` returns a `CommandResult` object with the `EXAM_UNLINKED_SUCCESS` message as argument to the `LogicManager` object.
+
+The following activity diagram summarizes what happens when a user executes the unlink exam command:
+
+| <img src="images/UnlinkExamActivityDiagram.png" width="1000" /> |
+|:---------------------------------------------------------------:|
+|              Activity diagram of UnlinkExamCommand              |
 
 
 
@@ -488,16 +539,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows the add task command message usage. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 * 1b. The module code is invalid.
-    * 1b1. MODPRO shows an error message stating module code constraints. </br>
+    * 1b1. MODPRO shows an error message. </br>
       Use case ends.
 * 1c. The given description is empty.
-    * 1c1. MODPRO shows an error message stating task description constraints. </br>
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
-* 1d. The module does not exist in the task list.
-    * 1d1.MODPRO show an error message stating that module does not exist. </br>
+* 1d. The module does not exist in the module list.
+    * 1d1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: List tasks in task list**
@@ -559,16 +610,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows the filter command message usage. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 * 1b. The module code is invalid.
-    * 1b1. MODPRO shows an error message stating module code constraints. </br>
+    * 1b1. MODPRO shows an error message. </br>
       Use case ends.
 * 1c. The module does not exist in the task list.
-    * 1c1.MODPRO show an error message stating that module does not exist. </br>
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
-* 1d. The given input for completed or linked is invalid.
-    * 1d1.MODPRO show an error message stating that response has to be y or n. </br>
+* 1d. The completion status provided is invalid.
+    * 1d1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1e. The link status provided is invalid.
+    * 1e1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1f. There are no filter conditions stated.
+    * 1f1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: Clear the task list**
@@ -580,7 +637,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The task list is already empty
-    * 1a1. MODPRO shows an error message stating that task list is empty. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: Delete a module from the module list**
@@ -628,13 +685,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows the delete exam command message usage. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
-* 1b. The given index is invalid.
-    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. </br>
       Use case ends.
-* 1c. The given index is larger than the size of the exam list.
-    * 1c1. MODPRO shows an error message stating the range of indexes of the exam list. </br>
+* 1c. The given index is larger than the number of exams in the exam list.
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: Unlink task from exam**
@@ -646,16 +703,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows the unlink exam command message usage. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
-* 1b. The given index is invalid.
-    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. </br>
       Use case ends.
-* 1c. The given index is larger than the size of the task list.
-    * 1c1. MODPRO shows an error message stating the range of indexes of the task list. </br>
+* 1c. The given index is larger than the number of tasks in the task list.
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 * 1d. The task is not linked to any exam.
-    * 1d1. MODPRO shows an error message stating that task is already unlinked. </br>
+    * 1d1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: Showing the tasks of an exam**
@@ -667,13 +724,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows the show tasks of exam command message usage. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
-* 1b. The given index is invalid.
-    * 1b1. MODPRO shows an error message stating the index range accepted. </br>
+* 1b. The given index is non-positive or larger than 2147483647.
+    * 1b1. MODPRO shows an error message. </br>
       Use case ends.
-* 1c. The given index is larger than the size of the exam list.
-    * 1c1. MODPRO shows an error message stating the range of indexes of the exam list. </br>
+* 1c. The given index is larger than the number of exams in the exam list.
+    * 1c1. MODPRO shows an error message. </br>
       Use case ends.
 
 **Use case: Clear all lists**
@@ -685,7 +742,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. All lists are already empty
-    * 1a1. MODPRO shows an error message stating that all lists are empty. </br>
+    * 1a1. MODPRO shows an error message. </br>
       Use case ends.
 
 *{More to be added}*
