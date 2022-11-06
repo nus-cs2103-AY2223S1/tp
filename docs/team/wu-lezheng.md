@@ -10,22 +10,22 @@ PetCode is a software app that aims to facilitate better working experience and 
 Given below are my contributions to the project.
 
 * **Functionality**: Added the `order` package to the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
-  * What it does: Added an `Order` class and its different components such as `PriceRange` and `AdditionalRequests` to simulate pet trade in the real-world.
-  * Justification: These models lay the foundation of our project, so that existing and added operations/commands could be performed using these models.
+  * What it does: Added an `Order` class and its different components to simulate pet trade in the real-world.
+  * Justification: These models lay the foundation so that existing and added operations/commands could be performed using these models.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
 * **Functionality**: Extended `person` to different categories in the `model` component. (Pull request: [#82](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/82))
   * What it does: Extended the `Person` class into three categories -- `Buyer`, `Supplier`, and `Deliverer`, with their respective attributes.
-  * Justification: These models lay the foundation of our project, so that existing and added operations/commands could be performed on them.
+  * Justification: These models lay the foundation so that existing and added operations/commands could be performed on them.
   * Highlights: Some of the SOLID principles of OOP are applied in the creation of these classes.
 
 * **Functionality**: Added a popup window for adding buyer and supplier. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
   * What it is about: Added a popup window with prompt text for adding `Buyer` with any number of `Order`and `Supplier` with any number of `Pet`, without the need to input any prefixes. Added an add command generation mechanism during saving in the popup window.
   * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer with orders or add a supplier with pets, which is very demanding in terms of memorisation. The popup window reduces the memory work and makes it easier to execute the add command.
-  * Highlights: The popup window is designed with the aim to improve the user experience (UX), with keyboard shortcuts to cater to users who can type fast and prompt text to remind the users what to input. When required information is not entered or in the wrong format, the users will also be notified.
+  * Highlights: The popup window is designed with the aim to improve the user experience (UX), with keyboard shortcuts and prompt text. It also shows how UI, model and logic can be linked.
 
 * **New Feature**: Extended the `EditCommand` to three categories: edit buyer command, edit supplier command, edit deliverer command. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
-  * What it does: Built up on the `EditCommand` initially modified by @wweqg and extended it to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
+  * What it does: Extended the `EditCommand` to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
   * Justification: `Buyer`, `Deliverer` and `Supplierr` can have different attributes. Making a separate `EditCommand` for each of them allows customised editing and also leaves space for future implementations if more distinct attributes are added them.
   * Highlights: This makes use of polymorphism as there is a need to abstract out the common logic in all three types of `EditCommand`.
 
@@ -36,7 +36,6 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.3` on GitHub ([Link to v1.3 release](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases/tag/v1.3.1))
   * Recorded and managed the majority of the meeting discussions in the meeting minutes in the Google Drive folder.
-  * Allocated tasks to team members in the meeting minutes in the Google Drive folder.
   * Created and assigned issues to team members on GitHub.
   * Created labels and categorised issues on GitHub.
 
