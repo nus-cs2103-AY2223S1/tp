@@ -418,9 +418,9 @@ Unarchives a task in the task list, adding it to the main task list.
 
 Format: `unarchiveT INDEX`
 
-### List tasks with deadlines up to and including the specified date: `remindT`
+### Listing tasks with deadlines up to and including the specified date: `remindT`
 
-List tasks in YellowBook with deadlines up to and including the specified date.
+Lists tasks in YellowBook with deadlines up to and including the specified date.
 
 Format: `remindT DEADLINE`
 
