@@ -251,7 +251,6 @@ Format: `cd <module code>`
 Allows you to view information relating to the specified module.
 - Scopes your actions to the specified module.
 - Module code must match an existing module.
-- The module must not be marked as `done`.
 
 Format: `cd <module code>`
 
