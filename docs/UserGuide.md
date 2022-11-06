@@ -698,7 +698,7 @@ Format: `file import FILE_NAME`
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1055,7 +1055,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Create File** | `file create FOLDER_NAME` <br> e.g. `file create rc4_data_2022` |
 | **Delete File** | `file delete FOLDER_NAME` <br> e.g. `file delete rc4_data_2022` |
 | **Switch File** | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
-| **Import File** | `import FOLDER_NAME` <br> e.g. `import students`                |
+| **Import File** | `file import FILE_NAME` <br> e.g. `file import students`        |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
