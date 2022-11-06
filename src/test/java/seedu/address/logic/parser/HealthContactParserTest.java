@@ -27,6 +27,11 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
+import seedu.address.logic.commands.SetPaidCommand;
+import seedu.address.logic.commands.SetUnpaidCommand;
+import seedu.address.logic.commands.SortAppointmentCommand;
+import seedu.address.logic.commands.SortBillCommand;
+import seedu.address.logic.commands.SortPatientCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -79,6 +84,36 @@ public class HealthContactParserTest {
         DeleteBillCommand command = (DeleteBillCommand) parser.parseCommand(
                 DeleteBillCommand.COMMAND_WORD + " " + INDEX_FIRST_BILL.getOneBased());
         assertEquals(new DeleteBillCommand(INDEX_FIRST_BILL), command);
+    }
+    @Test
+    public void parseCommand_setPaid() throws Exception {
+        SetPaidCommand command = (SetPaidCommand) parser.parseCommand(
+                SetPaidCommand.COMMAND_WORD + " " + INDEX_FIRST_BILL.getOneBased());
+        assertEquals(new SetPaidCommand(INDEX_FIRST_BILL), command);
+    }
+    @Test
+    public void parseCommand_setUnpaid() throws Exception {
+        SetUnpaidCommand command = (SetUnpaidCommand) parser.parseCommand(
+                SetUnpaidCommand.COMMAND_WORD + " " + INDEX_FIRST_BILL.getOneBased());
+        assertEquals(new SetUnpaidCommand(INDEX_FIRST_BILL), command);
+    }
+    @Test
+    public void parseCommand_sortPatient() throws Exception {
+        SortPatientCommand command = (SortPatientCommand) parser.parseCommand(
+                SortPatientCommand.COMMAND_WORD + " " + "c/address o/asc");
+        assertEquals(new SortPatientCommand("address", true), command);
+    }
+    @Test
+    public void parseCommand_sortAppointment() throws Exception {
+        SortAppointmentCommand command = (SortAppointmentCommand) parser.parseCommand(
+                SortAppointmentCommand.COMMAND_WORD + " c/test o/desc");
+        assertEquals(new SortAppointmentCommand("test", false), command);
+    }
+    @Test
+    public void parseCommand_sortBill() throws Exception {
+        SortBillCommand command = (SortBillCommand) parser.parseCommand(
+                SortBillCommand.COMMAND_WORD + " c/amount o/desc");
+        assertEquals(new SortBillCommand("amount", false), command);
     }
     @Test
     public void parseCommand_editPatient() throws Exception {
