@@ -1247,25 +1247,80 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shut down application
 
+    1. Prerequisites: Application must currently be running.
+    
+    2. Test case: Close the application using any means other than the command `exit`.
+       Expected: The application exits.
+
+    2. Test case: Close the application using the command `exit`.
+       Expected: The application exits.
+       
 ### Removing a task
 
 1. Removing a task while all tasks are being shown
+    1. Prerequisites: All tasks (at least one, done and undone) are shown, and user is not currently `cd`'ed into a module.
 
-    1. Prerequisites: All tasks (done and undone) are shown, and user is not currently `cd`'d into a module.
+    2. Test case: `remove task 1`<br>
+       Expected: First task (as displayed on the UI) is deleted from the list. 
+       Details of the deleted task shown in the status message.
 
-    1. Test case: `remove -t 1`<br>
-       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
-
-    1. Test case: `remove -t 0`<br>
+    3. Test case: `remove task 0`<br>
+       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+       
+    4. Test case: `remove task -1`<br>
        Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the displayed 
+       list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a task
 
+1. Adding a task while not cd-ed into a module
+
+    1. Prerequisites: User is not currently cd-ed into a module, and only has 1 module added. For the test cases below, 
+       this module is assumed to take the code `CS2103T`, but this can be changed to any other module code, as long as it is 
+       present within the module list.
+
+    2. Test case: `add task "Submit PPP" -d 2022-11-07 -c CS2103T`<br>
+       Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task 
+       count of module `CS2103T` and active tasks are incremented by one. 
+
+    3. Test case: `add task "Submit PPP"`<br>
+       Expected: No task is added. Error details shown in the status message. Status bar remains the same.
+
+    4. Test case: `add task -d 2022-11-07 -c CS2103T`<br>
+       Expected: No task is added. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect remove commands to try: `add t "Submit PPP" -CS2103T`, `add -t Submit PPP`<br>
+       Expected: Similar to previous.
+
+1. Adding a task while cd-ed into a module
+
+    1. Prerequisites: User is currently cd-ed into a module. For the test cases below, this module is assumed to 
+       take the code `CS2103T`, but this can be changed to any other module code, as long as it is
+       present within the module list.
+
+    2. Test case: `add task "Submit PPP" -d 2022-11-07`<br>
+       Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task
+       count of module `CS2103T` and active tasks are incremented by one.
+
+    3. Test case: `add task "Submit PPP"`<br>
+       Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task
+       count of module `CS2103T` and active tasks are incremented by one.
+       
+    4. Test case: `add task -d 2022-11-07`<br>
+       Expected: No task is added. Error details shown in the status message. Status bar remains the same.
+
+    5. Other incorrect remove commands to try: `add t "Submit PPP"`, `add -t Submit PPP`<br>
+       Expected: Similar to previous.
+
+    6. Test case: `add task Assignment -c CS2103T`<br>
+       Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task
+       count of module `CS2103T` and active tasks are incremented by one.
+       
 ### Changing the currently selected module
 
 1. **Changing the currently selected module using the `cd` command**
@@ -1295,7 +1350,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There does not exist a module with code `CS1010`.
 
     1. Test case: `cd CS1010`<br>
-       Expected: The command is unsuccesful, no changes to modules/tasks, and an error message indicating that the module does not exist is displayed to the user.
+       Expected: The command is unsuccessful, no changes to modules/tasks, and an error message indicating that the module does not exist is displayed to the user.
 
 ### Marking tasks as done (and undone)
 
@@ -1343,6 +1398,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+    1. Test case: Delete all data files (i.e. `modulelist.json`, `taskbook.json`).<br>
+       Expected: The application will start with an empty module and task list. The application will create a new data file 
+       when the user exits the application.
