@@ -17,10 +17,10 @@ import seedu.address.model.reminder.DateTime;
  * Parses input arguments and creates a new ReminderCreateCommand object
  */
 public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand> {
+    public static final String MESSAGE_DESCRIPTION_CANNOT_BE_EMPTY = "Reminder description cannot be empty!";
     private static final int MAX_DESCRIPTION_LENGTH = 256;
     public static final String MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED = "Reminder description can only contain "
             + MAX_DESCRIPTION_LENGTH + " characters.";
-    public static final String MESSAGE_DESCRIPTION_CANNOT_BE_EMPTY = "Reminder description cannot be empty!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateTagCommand
