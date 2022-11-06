@@ -3,7 +3,7 @@ package jarvis.logic.parser;
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,8 +49,8 @@ public class StudentBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteStudentCommand(INDEX_FIRST_PERSON), command);
+                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteStudentCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class StudentBookParserTest {
         Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditStudentCommand command = (EditStudentCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditStudentCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test

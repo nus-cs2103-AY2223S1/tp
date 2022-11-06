@@ -3,8 +3,8 @@ package jarvis.logic.commands;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST;
+import static jarvis.testutil.TypicalIndexes.INDEX_SECOND;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,8 +28,8 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST.getZeroBased());
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
@@ -49,10 +49,10 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST);
 
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST.getZeroBased());
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
@@ -65,9 +65,9 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentBook().getStudentList().size());
 
@@ -78,14 +78,14 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void equals() {
-        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(INDEX_FIRST);
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
