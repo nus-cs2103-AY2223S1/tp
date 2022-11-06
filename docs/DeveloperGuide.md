@@ -1321,51 +1321,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `add task Assignment -c CS2103T`<br>
        Expected: Task is added to the task list. Details of the added task shown in the status message, displayed task
        count of module `CS2103T` and active tasks are incremented by one.
-
-### Editing a task
-
-1. Editing a task while not cd-ed into a module
-
-    1. Prerequisites: User is not currently cd-ed into a module, and only has 2 modules and 1 task added. 
-       For the test cases below, the modules are assumed to take the code `CS2103T` and `CS2100`, 
-       but this can be changed to any other module code, as long as it is present within the module list. The task is 
-       assumed to be assigned to module `CS2100`.
-
-    2. Test case: `edit task 1 -d 2022-12-12 -c CS2103T`<br>
-       Expected: First task on the task list is edited to the updated details. Details of the updated task is shown 
-       in the status message.
-
-    3. Test case: `edit task 0 -ds "Submit PPP"`<br>
-       Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
-
-    4. Test case: `edit task 1 -d 07-11-2022 -c CS2103T`<br>
-       Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
-
-    5. Other incorrect remove commands to try: `edit t "Submit PPP" -CS2103T`, `add -t Submit PPP`<br>
-       Expected: Similar to previous.
-
-2. Editing a task while cd-ed into a module
-
-    1. Prerequisites: User is currently cd-ed into a module, and only has 2 modules and 1 task added.
-       For the test cases below, the modules are assumed to take the code `CS2103T` and `CS2100`,
-       but this can be changed to any other module code, as long as it is present within the module list. The task is
-       assumed to be assigned to module `CS2100`. It is also assumed that the user is currently cd-ed into `CS2100`.
-
-    2. Test case: `edit task 1 -d 2022-12-12 -c CS2103T`<br>
-       Expected: First task on the task list is edited to the updated details. Since the module of the task is changed,
-       and we are currently cd-ed into a module, this task will disappear from the current list. CD-ing out of the module
-       will show the task with the updated details.
-       Details of the updated task is shown in the status message.
-
-    3. Test case: `edit task 0 -ds "Assignment 1"`<br>
-       Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
-
-    4. Test case: `edit task 1 -d 08-11-2022`<br>
-       Expected: No task is edited. Error details shown in the status message. Status bar remains the same.
-
-    5. Other incorrect remove commands to try: `edit t "Assignment 1" -CS2103T`, `add -t Assignment 1`<br>
-       Expected: Similar to previous.
-
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
