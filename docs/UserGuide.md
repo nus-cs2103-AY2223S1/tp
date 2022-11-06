@@ -53,14 +53,16 @@ If you encounter any issues in launching and using the app, feel free refer to t
   * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
 * All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
 
-### Modes
+</div>
+
+## Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
-</div>
 
+## Commands
 
 | Command    | Format                                                             |
 |------------|--------------------------------------------------------------------|
@@ -78,6 +80,14 @@ Let's first begin with the commands available in the default mode.
 | `exit`     | `exit`                                                             |
 | `focus`    | `focus c/CLASS_NAME`                                               |
 | `clear`    | `clear`                                                            |
+
+*Click [here](# Focus Mode Commands) for the commands only available in the focus mode.*
+
+{% include note.html content="
+
+Note that these commands are also available in focus mode.
+
+" %}
 
 ### View help : `help`
 
@@ -235,6 +245,7 @@ Assigns students to a class.
 Format: `assign INDEX... c/CLASS_NAME`
 * Assigns students specified by the given indices to an existing `CLASS_NAME` class.
 * The class name is **case-insensitive**.
+* If a specified student is already assigned to the class, the assignment for that student will be skipped.
 
 Example:
 * `list` followed by `assign 1 3 5 6 c/CS1231S` assigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list to the **CS1231S** class.
@@ -250,6 +261,7 @@ Unassigns students from a class.
 Format: `unassign INDEX... c/CLASS_NAME`
 * Unassigns students specified by the given indices from an existing `CLASS_NAME` class.
 * The class name is **case-insensitive**.
+* If a specified student is not assigned to the class, the unassignment for that student will be skipped.
 
 Example:
 * `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list from the **CS1231S** class.
@@ -302,23 +314,22 @@ Clears all existing data in TA-Assist.
 " %}
 
 Format: `clear`
-* Clears all existing data in TA-Assist.
+## Focus Mode Commands
 
-## Features Available in Focus Mode
+The following commands are **ONLY** available in [**focus mode**](#modes).
 
-The following commands are only available in [**focus mode**](#modes).
-
-| Command   | Format                                        |
-|-----------|-----------------------------------------------|
-| `list`    | `list`                                        |
-| `adds`    | `adds s/SESSION_NAME... [d/DATE]`             |
-| `deletes` | `deletes s/SESSION_NAME...`                   |
+| Command   | Format                                   |
+| --------- | ---------------------------------------- |
+| `list`    | `list`                                   |
+| `adds`    | `adds s/SESSION_NAME... [d/DATE]`        |
+| `deletes` | `deletes s/SESSION_NAME...`              |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
-| `scores`  | `scores s/SESSION_NAME`                       |
-| `view`    | `view INDEX`                                  |
-| `export`  | `export`                                      |
-| `unfocus` | `unfocus`                                     |
+| `scores`  | `scores s/SESSION_NAME`                  |
+| `view`    | `view INDEX`                             |
+| `export`  | `export`                                 |
+| `unfocus` | `unfocus`                                |
 
+*Click [here](# Commands) for commands that are also available in default mode.*
 
 ### List all students in the class: `list`
 
@@ -428,7 +439,8 @@ Views all session grades of a student within the focused class.
 " %}
 
 Format: `view INDEX`
-* Views the grade of the student at index `INDEX` for the currently focused class.
+* Shows the grades of the student at index `INDEX` for the currently focused class.
+* Only sessions that are graded for the student will have the grades displayed.
 
 Example:
 * `grade 2 s/Lab 1 g/93` then `view 2` returns `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
@@ -493,7 +505,7 @@ Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will
 
 **A**: Open your preferred terminal and navigate to the directory the JAR file is located in. Then type in `java -jar TaAssist.jar` to run the application.
 
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
 
