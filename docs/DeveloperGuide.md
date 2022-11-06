@@ -924,7 +924,6 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing files
-
    1. Prerequisites: Delete `TrackAScholar.json` file in `data` folder and launch TrackAScholar again. <br>
    Expected: TrackAScholar restarts with a default list of applicants and the missing data files are recovered.
        
