@@ -256,6 +256,36 @@ This is shown in the diagram below:
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced. 
 
 
+#### Edit Appointment Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
+
+Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
+
+Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+
+Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+
+![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
+
+*Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+
+#### Design Considerations
+**Aspect: How many `Appointments` can be added for each command**
+* **Alternative 1 (current choice):** Add only one `Appointment` in each command.
+    * Pros: Simpler input validation and length of user input is shorter, as the presence of multiple `DateTime` and `Location` fields has the potential to be very lengthy
+    * Cons: User has to execute the `aa` command multiple times to add all their desired `Appointments`
+* **Alternative 2**: Multiple `Appointments` can be added in each command
+    * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
+    * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

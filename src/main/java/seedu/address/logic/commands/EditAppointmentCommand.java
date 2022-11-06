@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
-import static seedu.address.logic.parser.EditAppointmentDescriptor.createEditedAppointment;
 
 import java.util.List;
 
@@ -68,7 +67,7 @@ public class EditAppointmentCommand extends Command {
         MaximumSortedList<Appointment> appointmentSet = getAppointmentSet(model);
         Appointment appointmentToEdit = getAppointmentToEdit(appointmentSet);
 
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+        Appointment editedAppointment = editAppointmentDescriptor.createEditedAppointment(appointmentToEdit);
         if (editAppointmentDescriptor.getDateTime().isPresent()
                 && model.hasPersonWithSameAppointmentDateTime(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
