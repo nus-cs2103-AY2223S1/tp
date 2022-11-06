@@ -3,14 +3,24 @@ layout: page
 title: **Teacher's Pet** User Guide
 ---
 **Teacher’s Pet** is an all-in-one desktop application for private 1-to-1 tutors to manage the details of students,
-payment and scheduling of classes. While optimised for use via a Command Line Interface (CLI),
-Teacher’s Pet still retains the benefits of a Graphical User Interface (GUI).
-Whether you can type fast or prefer to use a mouse, Teacher’s Pet caters to your needs. It minimizes the time needed for
-tedious administrative work, leaving more space for you to do what is important.
+payment and scheduling of classes. **Teacher's Pet** combines the tasks you would typically need to do when you use 
+Microsoft Excel, calendar, your phone contacts and your notes application into one application, reducing the need for
+context switching. With short commands and an intuitive design, **Teacher's Pet** reduces time needed 
+for tedious administrative work, allowing you to focus on your students.
 
+In order to help speed up your workflow, we have created commands for tasks you would usually need to do as a tutor.
 
-**Teacher’s Pet** allows you to manage your schedule and keep track of your students.
-The app stores basic information about your students, such as `Name`, `Contact Number`, `Class Date` and more.
+| Task                                                                                 | Command                |
+|--------------------------------------------------------------------------------------|------------------------|
+| Add a new student                                                                    | `add` command          |
+| Edit a student's details (phone number, address for example)                         | `edit` command         |
+| Mark a student's attendance and remind yourself to collect payment from the student. | `mark` command         |
+| Collect a student's payment                                                          | `pay` command          |
+| Know the students you have                                                           | `list` command         |
+| Search for student's information                                                     | `find`/`sort`  command |
+| Schedule a student's next class                                                      | `avail` command        |
+| Remove a student as he is no longer a student                                        | `delete` command       |
+
 
 Before you get started, you may want to know [how to navigate this User Guide](#reading-the-user-guide).
 
@@ -20,7 +30,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 ## Table of contents
 * [Quick Start](#quick-start)
-* [UI Overview](#ui-overview)
+* [Overview of User Interface](#ui-overview)
 * [Reading the User Guide](#reading-the-user-guide)
     * [Command format](#notes-about-the-command-format)
     * [Callouts](#callouts)
