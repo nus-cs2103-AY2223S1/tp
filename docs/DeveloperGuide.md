@@ -180,6 +180,8 @@ As you can see from the diagrm, the `MainWindow` is filled with both the person 
 Similar to the person list, the task list will contain all the tasks currently stored in the application
 By having separate list panels, it will be easier to display the tasks and people seperately
 
+<img src="images/UiClassDiagramNew.png" width="500" height="400" />
+
 Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task. 
 The user can navigate between the dispays using a tab at the top of the UI display.
 
@@ -187,20 +189,12 @@ The user can navigate between the dispays using a tab at the top of the UI displ
 
 We went through several iterations and design alternatives when considering the design of our User Interface
 
-* **1. Display the people on the Left, and the spotlighted person's task on the right**
-Our first idea was reserving the right side of the main window for only a specific person's task. The advantage of this is that it would be able to spotlight a single
-person's tasks and the details regarding those tasks. However, this would make it more difficult to compare tasks between two people, and may result in too much information being displayed.
-
-Additonally, this implementation results in having no single list of Tasks, which means that displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user. 
-
-* **1. Display all the people on the Left, and the spotlighted person's task on the right**
-Our first idea was reserving the right side of the main window for only a specific person's task. The advantage of this is that it would be able to spotlight a single
-person's tasks and the details regarding those tasks. However, this would make it more difficult to compare tasks between two people, and may result in too much information being displayed.
-
-Additonally, this implementation results in having no single list of Tasks, which means that displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user. 
-
-* **2. Display all the people on the Left, and all tasks on the right**
-The next design proposal was to display all the people on the Left, and all tasks on the right. This would allow the sorting and filtering of tasks to be carried our much easier. However, it could still result in too much information being present, which could overwhelm the user.
+* **Alternative 1 :** Display the people on the Left, and the spotlighted person's task on the right
+    * Pros: Able to spotlight a single person's tasks and the details regarding those tasks
+    * Cons: Displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user
+* **Alternative 2:** Display all the people on the Left, and all tasks on the right
+    * Pros: Allow the sorting and filtering of tasks to be carried our much easier
+    * Cons: Could result in too much information being present, which could overwhelm the user.
 
 
 ### \[Proposed\] Undo/redo feature
