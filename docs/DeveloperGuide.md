@@ -70,7 +70,7 @@ by a big-picture design overview of the various components before diving into in
 * Background textures - [Dirt block](https://minecraft.fandom.com/wiki/Dirt)
 * Background textures - [Grass block](https://minecraft.fandom.com/wiki/Grass_Block)
 * Background textures - [Bedrock](https://minecraft.fandom.com/wiki/Bedrock)
-* [Creeper texture](https://en.wikipedia.org/wiki/File:Creeper_(Minecraft).png)
+* [Creeper texture](https://minecraft.fandom.com/wiki/Creeper?file=Charged_Creeper_JE1_BE1.png)
 * [Creeper explosion texture](https://toppng.com/show_download/244692/explosion-pixel-art/large)
 * Creeper explosion audio: Self-recorded in game
 
@@ -100,7 +100,7 @@ is comfortable with the command line interface (CLI).
 
 * plays Minecraft multiplayer with friends regularly
 * has many Minecraft friends (online and offline) from all over the world
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * prefers typing to mouse interactions and types fast
 * is comfortable using the Minecraft command line, and by hence extension, using CLI apps
 
@@ -171,7 +171,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts is defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -212,7 +212,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" height="250" />
 
 
 The `Model` component,
@@ -256,17 +256,25 @@ The `edit` feature allows users to edit details of their friends.
 
 #### Implementation
 
-The edit feature is facilitated through the `EditCommand` and `EditCommandParser` classes. In
+The edit feature is facilitated through the `EditCommand` and `EditCommandParser` classes. First, the friend to 
+be edited is identified through the index of the person in the list of friends. Then, in
 the `EditCommand` class, there is a `EditPersonDescriptor` nested class which takes in all
-the updated details of the friend to be edited.
+the updated details of the friend to be edited. For the fields that are not updated, the 
+original fields will be used in the `EditPersonDescriptor` class.
 
-MineFriends will then call the "createEditedPerson" method which will create a new person
-with new details. This will then invoke a call to the `ModelManager` class to set the new person
-in the addressBook.
+MineFriends will then call the `createEditedPerson` method which will create a new person
+with new details. This will then invoke a call to the `ModelManager` class to replace the target person
+with the edited person in the addressBook.
 
 The following class diagram shows the organization of the classes for `edit`.
 
-<img src="images/EditCommand.png" width="250" />
+<img src="images/editCommand.png" width="250" />
+
+The following sequence diagram shows the flow of the execution of the
+edit command. Some details related to the general parsing and execution of 
+commands are omitted as they have been explained under [logic](#logic-component).
+
+<img src="images/EditCommandSequenceDiagram.png" height="280"/>
 
 ### *Suggest a Friend*
 
@@ -285,7 +293,7 @@ a `PersonSuggestionPredicate` such that the predicate can be used to filter
 through the list of all friends to get a list of suggested friends.
 
 The `PersonSuggestionPredicate` is made up of two parts, a collection of `DayTimeInWeek` and a collection of `Keyword`. 
-Minefriends will find all persons that is available for **any** of the `DayTimeInWeek` and contains **all** the keywords in 
+Minefriends will find all friends that are available for **any** of the `DayTimeInWeek` and contains **all** the keywords in 
 the collection of `Keyword`.
 
 The following sequence diagram shows the flow of the execution of the suggest command.
@@ -307,19 +315,19 @@ to write simpler and cleaner code.
 
 #### Alternatives considered
 
-1. The `Model` instance can be passed directly to the `SuggestCommand` in which the `SuggestCommand` can
-   modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
-   maintainability of the code.
+The `Model` instance can be passed directly to the `SuggestCommand` in which the `SuggestCommand` can
+modify the `filteredPersons` list directly. However, this leads to tighter coupling which reduces the 
+maintainability of the code.
 
-### Autocomplete Commands
+### *Autocomplete Commands*
 
-The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
+The autocomplete feature matches the current text to all the commands for the user when the user types in the command box.
 
 #### Implementation
 
 The autocomplete feature is facilitated through the `TextFields` class under the ControlsFX library.
-The `TextFields` class provides a static method `bindAutoCompletion` that will create a new auto-completion binding between
-the given TextField using the given auto-complete suggestions.
+The `TextFields` class provides a static method `bindAutoCompletion` that will create a new autocompletion binding between
+the given TextField using the given autocomplete suggestions.
 
 Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
 The object will display a list of suggestions that matches the current text in the text field.
@@ -334,11 +342,11 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 ### *Available timings*
 
-The user can save the available timings of a friend to their profile, as a time interval throughout the week. 
+The user can save the available timings of a friend to their profile, as a time interval during the week. 
 
 #### Implementation
 
-The available timings of a friend is stored as a `TimeInterval` attribute in the `Person` class. 
+The available timings of a friend are stored as `TimeInterval` attributes in the `Person` class. 
 Each `TimeInterval` object will have two `DayTimeInWeek` fields, representing its start time and its end time.
 
 The time stamp that is parsed into the `DayTimeInWeek` class is then saved as the number of elapsed minutes since Monday 12am.
@@ -350,22 +358,21 @@ The `isAvailable()` method takes in a time stamp as a `DayTimeInWeek` object, an
 
 The following class diagram shows the relationship between the classes:
 
-<img src="images/TimeIntervalClassDiagram.png" width="550" />
+<img src="images/TimeIntervalClassDiagram.png" width="275" />
 
-### *Servers, GameType and Socials as Coloured Tags in Friend's profile*
-Whenever the user updates the in-game preferences or social handles of a friend, it is displayed as 
+### *Servers, GameTypes and Socials as Coloured Tags in Friend's profile*
+Whenever the user updates the in-game preferences or social handles of a friend, they are displayed as 
 distinct coloured tags under the friend's profile.
 
 #### Implementation
 
 The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
-and configured using the `DarkTheme.css` **FXML** file.
+and configured using the `DarkTheme.css` file.
 
 The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
 Inside the `PersonCard` class, there are multiple `FlowPane` fields, each representing a type of user preference.
-Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
 
-Everytime the user updates a friend's information, a new `PersonCard` object is created. The object 
+Everytime the user updates a friend's information, a new `PersonCard` object is created. The `PersonCard` object 
 will retrieve the corresponding friend's information using the `toDisplayString()` method in the `Person` class, and add
 their in-game preferences and social handles as labelled tags under the friend's profile.
 
@@ -374,7 +381,7 @@ easy differentiation of information.
 
 The following class diagram shows the relationship between the classes in the UI system:
 
-<img src="images/TagClassDiagram.png" width="250" />
+<img src="images/PersonTagClassDiagram.png" width="250" />
 
 #### Design Considerations:
 
@@ -391,7 +398,6 @@ The following class diagram shows the relationship between the classes in the UI
     * Easy to implement as the format is consistent for all information.
   * Cons:
     * Too many tags displayed can make it harder to users to find the information they need in one glance.
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -524,29 +530,29 @@ Priority legend
 * Medium: Good to have
 * Low: Unlikely to have
 
-| Priority | As a             | I want to                                          | so that I can                                                                  |
-|---------|------------------|----------------------------------------------------|--------------------------------------------------------------------------------|
-| High    | new user         | see usage instructions                             | learn how to use Minefriends                                                   |
-| High    | Minecraft player | add my friends to Minefriends                      | remember information about them                                                |
-| High    | Minefraft player | remove a friend from Minefriends                   | keep an accurate list of my Minecraft friends                                  |
-| High    | Minecraft player | view all my friends                                | have an overview of my Minecraft social contacts                               |
-| High    | Minecraft player | save all my friends' information                   | retrieve them on subsequent uses of Minefriends                                |
-| High    | Minecraft player | receive suggestions on which friends to play with  | play Minecraft with the right friend at the right time                         |
-| High    | Minecraft player | know my friend's name                              | address them correctly                                                         |
-| High    | Minecraft player | know my friend's Minecraft username                | recognize them on Minecraft servers                                            |
-| High    | Minecraft player | know my friend's phone number                      | call/sms them when I want to play with them                                    |
-| High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                     |
-| High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests with me at that point in time |
-| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time    |
-| High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                                 |
-| Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                     |
-| Medium  | Minecraft player | know my friend's physical address                  | go to their houses an play together                                            |
-| Medium  | Minecraft player | know my friend's country                           | be mindful of timezone differences when playing                                |
-| Medium  | Minecraft player | note down additional information about my friends  | remember other noteworthy information about them                               |
-| Medium  | Minecraft player | know what servers my friends have been banned from | avoid those servers when playing with them                                     |
-| Low     | Minecraft player | secure my information behind a password            | other people cannot intrude upon my privacy                                    |
-| Low     | Minecraft player | know my friend's in-game skin                      | I can recognize them in game                                                   |
-| Low     | Minecraft player | find new friends through Minefriends               | have more friends to play Minecraft with                                       |
+| Priority | As a             | I want to                                          | so that I can                                                               |
+|---------|------------------|----------------------------------------------------|-----------------------------------------------------------------------------|
+| High    | new user         | see usage instructions                             | learn how to use Minefriends                                                |
+| High    | Minecraft player | add my friends to Minefriends                      | remember information about them                                             |
+| High    | Minefraft player | remove a friend from Minefriends                   | keep an accurate list of my Minecraft friends                               |
+| High    | Minecraft player | view all my friends                                | have an overview of my Minecraft social contacts                            |
+| High    | Minecraft player | save all my friends' information                   | retrieve them on subsequent uses of Minefriends                             |
+| High    | Minecraft player | receive suggestions on which friends to play with  | play Minecraft with the right friend at the right time                      |
+| High    | Minecraft player | know my friend's name                              | address them correctly                                                      |
+| High    | Minecraft player | know my friend's Minecraft username                | recognize them on Minecraft servers                                         |
+| High    | Minecraft player | know my friend's phone number                      | call/text them when I want to play with them                                |
+| High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                  |
+| High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests                            |
+| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time |
+| High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                              |
+| Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                  |
+| Medium  | Minecraft player | know my friend's physical address                  | go to their houses to play together                                         |
+| Medium  | Minecraft player | know my friend's country                           | be mindful of timezone differences when playing                             |
+| Medium  | Minecraft player | note down additional information about my friends  | remember other noteworthy information about them                            |
+| Medium  | Minecraft player | know what servers my friends have been banned from | avoid those servers when playing with them                                  |
+| Low     | Minecraft player | secure my information behind a password            | other people cannot intrude upon my privacy                                 |
+| Low     | Minecraft player | know my friend's in-game skin                      | I can recognize them in game                                                |
+| Low     | Minecraft player | find new friends through Minefriends               | have more friends to play Minecraft with                                    |
 
 
 
@@ -554,7 +560,7 @@ Priority legend
 
 ## **Appendix B: Use cases**
 
-(For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Minefriends` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a friend**
 
@@ -662,7 +668,7 @@ Priority legend
 
 **MSS**
 
-1. User requests to suggest friends in the list who matches the given keyword or available time interval.
+1. User requests to suggest friends in the list who matches the given keywords and time intervals.
 2. MineFriends shows the list of friends matched.
 
    Use case ends.
@@ -710,6 +716,7 @@ Priority legend
 6.  Should be able to be used by a person who has never used a CLI program before.
 7.  Not required to handle the messaging send between the friends.
 8.  Not required to handle the app on mobile platform.
+9.  Not required to handle the display of the User Interface properly if the window is smaller than 1280 x 720 pixels in resolution.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -735,65 +742,98 @@ For a complete glossary of Minecraft terms, please visit this page on the
 
 ### Other terminologies
 
-| Terminology   | Definition                                                                  |
-|---------------|-----------------------------------------------------------------------------|
-| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X         |
-| Socials       | A person's social media account information, such as their Telegram handle  |
-| CLI           | An acronym for "command line interface"                                     |
+| Terminology   | Definition                                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Person        | A contact that is created in the app                                                                               |
+| Friend        | A person that is created in the app                                                                                |
+| Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
+| CLI           | An acronym for "command line interface"                                                                            |
+| GUI           | An acronym for "graphical user interface"                                                                          |
+
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix E: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. 
+These instructions only provide a starting point for testers to work on;
+testers are expected to do more exploratory testing.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: 
+
+**Note:** Please follow the test cases **in order** as some of the later test cases
+depend on the state resulting from the earlier test cases.
 
 </div>
 
 ### Launch and shutdown
 
-1. Initial launch
+Initial launch
+1. Download the jar file and copy into an empty folder
+2. Double-click the jar file
 
-   1. Download the jar file and copy into an empty folder
+**Expected:** Shows a window with an empty contact list
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Adding a friend
 
-1. Saving window preferences
+Run `add n/Victoria Tan m/vicky12345 ms/myserver@127.0.0.1 gt/Minecraft BTS gt/survival s/fb@Victoria Tan s/ig@vicky1234 t/amiga 
+p/+3412345678901 e/victoria.tan@gmail.com a/500 Calle de las Flores, Madrid c/Spain ti/sun@0900-sun@2300 ti/mon@1500-mon@1900`
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+**Expected:** Creates a new person called `Victoria Tan` in the friend list, with all the above-listed attributes. 
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Run `add n/Alma m/almaaaa1`
 
-1. _{ more test cases …​ }_
+**Expected:** Creates a new person called `Alma` in the friend list, with all the above-listed attributes.
 
-### Deleting a person
+### Deleting a friend
 
-1. Deleting a person while all persons are being shown
+Run `delete 2`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+**Expected:** Removes the contact with name `Alma` from the friend list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Editing a friend
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Run `edit 1 a/Plaza Mayor, Sta. Cruz de Tenerife, Canary Islands`
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+**Expected:** The address for `Victoria Tan` is replaced with `Plaza Mayor, Sta. Cruz de Tenerife, Canary Islands`.
 
-1. _{ more test cases …​ }_
+Run `edit 1 t/spanish t/french t/noEnglish`
 
-### Saving data
+**Expected:** The tags for `Victoria Tan` are replaced with the aforementioned three. `amiga` is no longer there.
 
-1. Dealing with missing/corrupted data files
+### Suggesting friends
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Run `add n/Alma m/almaaaa1`
 
-2. _{ more test cases …​ }_
+Run `suggest k/Alma`
+
+**Expected:** Only `Alma` shows up.
+
+Run `suggest dt/mon@1855`
+
+**Expected:** Only `Victoria Tan` shows up.
+
+Run `list`
+
+**Expected:** Both friends show up.
+
+### Data persistence
+
+Exit Minefriends, then reopen it.
+
+**Expected:** The data from the last session remains the same.
+
+### Help Screen
+
+Initial launch: `data/addressbook.json` is not present.
+
+**Expected:** The help window is opened. The help window should contain a list of commands and their descriptions.
+
+Run `help`
+
+**Expected:** Help window opens with a list of commands and their descriptions. The window size may not be optimum.
 
 ## **Appendix F: Effort**
 
@@ -813,7 +853,6 @@ This includes, but is not limited to:
 * Adding and designing a help window to show the user a list of commands
 * Adding the auto-complete feature to the command box
 
-Amongst these changes, we had the hardest time redesigning the `Person` model, as we have encountered various bugs after
-we have modified it to include additional fields, in the end we took many hours to fix more than 200 test cases related to it. 
-Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model, which 
-took quite a few iterations before we got it to a point where we felt comfortable with it.
+Amongst these changes, we had the hardest time redesigning the `Person` model, as we encountered various bugs after
+we had modified it to include additional fields, thus in the end we took many hours to fix more than 200 test cases related to it. 
+Due to our iterative approach, we had to redesign other features to fit the needs of a redesigned `Person` model.

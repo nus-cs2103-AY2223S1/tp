@@ -49,26 +49,27 @@ To navigate to see a particular command, you can click on the link in blue.
   * [saving](#saving-the-data)
 * [FAQ](#faq)
 * [Summary of commands](#command-summary)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/tag/v1.3).
+2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases).
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
 5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/StartupUi.png)
 
 <div markdown="block" class="alert alert-info">
 
 **Important Note:**<br>
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
-<ol start="5">
+
 6. Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-</ol>
+
 Some sample commands you can try out:
 
    * **`list`** : Lists all of your friends.
@@ -87,7 +88,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 1. **Topbar**. You can find access the help screen here.
 2. **Command box**. You can type in your commands here.
 3. **Command result display** You can see the results of your command execution here.
-4. **List of friends** You can see all your Minecraft listed here.
+4. **List of friends** You can see all your Minecraft friends listed here.
 5. **Data file name** You can see where the data is being loaded from.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -100,7 +101,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 * You need to replace the `UPPER_CASE` fields with your desired words.<br>
   e.g. in `add n/NAME m/MINECRAFT_NAME`, you can replace `NAME` and `MINECRAFT_NAME` with names of your choice. <br>
-  `add n/Amy Bee m/amybee123` is an example of a valid command.
+  e.g. `add n/Amy Bee m/amybee123`
 
 * Items in square brackets are optional and can be left out.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/Amy Bee t/friend` or as `n/Amy Bee`.
@@ -108,7 +109,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 * For items with a `*`, you can provide more than one of such item.<br>
   e.g. `n/NAME [t/TAG]*` can be used as `n/Amy Bee`, `n/Amy Bee t/friend` or `n/Amy Bee t/friend t/bestie`.
 
-* The words you give can be in any order.<br>
+* You can provide the fields in any order.<br>
   e.g. if the command specifies the fields to be in the order`n/NAME p/PHONE_NUMBER`, 
   arranging them in an alternative order such as `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -121,7 +122,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 Format: `help`
 
-In the `Help` window, upon choosing a specific command, a description,
+In the `Help` window, upon choosing a specific command, a description
 and an example will be shown for that specific command along with the
 specific parameters for that command.
 
@@ -140,10 +141,10 @@ Example:<br>
 Upon typing `help` or clicking on the `help` option, a help window
 as such will appear:
 
-![HelpWindow](images/HelpWindow.png)
+<img src="images/HelpWindow.png" width="275" />
 
 You can choose a specific command by clicking on the drop-down menu in order to view the
-to view the information for that command.
+information for that command.
 
 ### Adding a friend: `add`
 Format (fields in `[ ]` are optional, `*` indicates multiple entry): `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
@@ -154,20 +155,20 @@ This command allows you to add a person to your friend list.
 #### Details of each field:
 
 The following table lists all the fields that you can include when you add your friends,
-as well as provide you with additional information for your understanding. 
+it also provides you with additional information for your understanding. 
 
-| Field | Command | Status | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
-| ----- | --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name | `n/NAME` | **Compulsory** | Name of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
-| Minecraft name | `m/MINECRAFT_NAME` | **Compulsory, Unique** | In-game username of your friend. Minecraft usernames cannot contain spaces. Minecraft usernames are used to identify your friends uniquely in Minefriends (and Minecraft too), so they must be unique. <br><br> <div markdown="block" class="alert alert-info">  If you type in `add n/John Doe` without the friend's Minecraft name, there will be an error thrown. Similarly, if you type in `add m/johndoe123` without the friend's name, there will be an error thrown. </div>                                                                                                            |
-| Phone Number | `[p/PHONE_NUMBER]` | **Optional** | Contact number of your friend.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Email | `[e/EMAIL]` | **Optional** | Email address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Address | `[a/ADDRESS]` | **Optional** | Physical address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   
-| Country | `[c/COUNTRY]` | **Optional** | The country in which your friend resides in. <br><br> There should **not** be any numbers in the country                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
- | Minecraft server | `[ms/MINECRAFT_SERVER]*` | **Optional, Multiple** | The minecraft servers that your friend plays on. <br><br> Minecraft servers are in the format of `ServerName@ServerAddress`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Social Handle | `[s/SOCIAL]*` | **Optional, Multiple** | The social media handles of your friend, such as their Instagram username, Telegram handle etc. <br><br> Social handles are in the format of `SocialMedia@Username`.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Game Type | `[gt/GAME_TYPE]*` | **Optional, Multiple** | Game types refer to the different ways to play multiplayer Minecraft. <br><br>  They can be anything, such as `survival games`, `skyblock` or `creative`.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Tag | `[t/TAG]*` | **Optional, Multiple** | Tags are used to provide additional information about your friend. <br><br> They can be anything, as long as there is no spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Field | Command | Status | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 
+| ----- | --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name | `n/NAME` | **Compulsory** | Name of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 
+| Minecraft name | `m/MINECRAFT_NAME` | **Compulsory, Unique** | In-game username of your friend. Minecraft usernames cannot contain spaces. Minecraft usernames are used to identify your friends uniquely in Minefriends (and Minecraft too), so they must be unique. <br><br>  If you type in `add n/John Doe` without the friend's Minecraft name, there will be an error thrown. Similarly, if you type in `add m/johndoe123` without the friend's name, there will be an error thrown.                                                                                                                                                                    |
+| Phone Number | `[p/PHONE_NUMBER]` | **Optional** | Contact number of your friend.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Email | `[e/EMAIL]` | **Optional** | Email address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Address | `[a/ADDRESS]` | **Optional** | Physical address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   
+| Country | `[c/COUNTRY]` | **Optional** | The country in which your friend resides in. <br><br> There should **not** be any numbers in the country                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+ | Minecraft server | `[ms/MINECRAFT_SERVER]*` | **Optional, Multiple** | The minecraft servers that your friend plays on. <br><br> Minecraft servers are in the format of `ServerName@ServerAddress`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Social Handle | `[s/SOCIAL]*` | **Optional, Multiple** | The social media handles of your friend, such as their Instagram username, Telegram handle etc. <br><br> Social handles are in the format of `SocialMedia@Username`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Game Type | `[gt/GAME_TYPE]*` | **Optional, Multiple** | Game types refer to the different ways to play multiplayer Minecraft. <br><br>  They can be anything, such as `survival games`, `skyblock` or `creative`.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Tag | `[t/TAG]*` | **Optional, Multiple** | Tags are used to provide additional information about your friend. <br><br> They can be anything, as long as there are no spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Time Interval | `[ti/TIME_INTERVAL]*` | **Optional, Multiple** | This refers to the timings in which your friend is available. <br><br> Time interval comes in the format `day@hhmm-day@hhmm`, such as `mon@2100-mon@2300`, with the hours and minutes in 24-hour format. The first date-time being the start and the second date-time being the end of their availability period. `day` can be `mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun` only. <br><br> If the start and end time interval for a friend are the same, it is treated as one point in time at that exact moment. To indicate availability across the whole week, use `mon@0000-sun@2359`. |
 
 <div markdown="block" class="alert alert-info">
@@ -227,7 +228,7 @@ The following explains what you should do to edit a particular person.
 
 **Important Note:**<br>
 * Editing a field with multiple entries will **overwrite all existing values of that field**.<br>
-  e.g. `edit 1 t/amiga` will remove all existing tag of the first person and replace them with only `amiga`
+  e.g. `edit 1 t/amiga` will remove all existing tags of the first person and replace them with only `amiga`
 
 * For fields with multiple entries, you can remove all the person’s information in that field by typing the prefix (eg: `t/`) without
 including any information after the prefix.
@@ -301,7 +302,7 @@ Example: <br>
 * Only **full words** will be matched. (e.g. `Am` will not match `Amy`)
 
 * Persons matching at least one keyword will be returned
-  (e.g. `Amy Tan` will return `Amy Bee`, `Benson Tan`)
+  (e.g. `Amy Tan` will return `Amy Bee` and `Benson Tan`)
 <br>        
 Example:<br>
 `find amy benson` returns `Amy Bee` and `Benson Tan`<br>
@@ -311,7 +312,7 @@ Example:<br>
 
 Suggest friends to play with given a set of constraints.
 This command is very versatile. You can find friends based on any attribute of them, including
-their availble timings to play.
+their available timings to play.
 
 Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
 
@@ -348,14 +349,14 @@ will also not be matched
 
 `suggest k/Victoria`
 will return friends subjected to the only condition:
-1. Attributes contain the `Keyword` `Victoria` (ignore case)
+* Attributes contain the `Keyword` `Victoria` (ignore case)
 
 `suggest dt/tue@2125`
 will return friends subjected to the only condition:
-1. Is available at Tuesday 9:25pm
+* Is available at Tuesday 9:25pm
 
 If you type `suggest dt/now` on Sunday 8:00pm, you will return friends subjected to the only condition:
-1. Is available at Sunday 8:00pm
+* Is available at Sunday 8:00pm
 
 ### Listing all friends: `list`
 Format: `list`<br>
@@ -428,14 +429,46 @@ the second `Enter` key press will execute the command.
 
 ## Command summary
 
-| Action      | Format                                                                                                                                                                          | Examples                                                                                  |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`        | `add n/Benson m/benson01 p/92881083 e/bensontan@hotmail.com a/ 4 Leith road s/ig@bensontan01 t/bff` |
-| **List**    | `list`                                                                                                                                                                          |                                                                                           |    
-| **Edit**    | `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` | `edit 2 n/Amy Bee t/`                                                                     |                                                                                                                                                                         |
-| **Find**    | `find KEYWORD [MORE_KEYWORDS]*`                                                                                                                  |`find Amy Benson`                                                                          |
-| **Delete**  | `delete INDEX`                                                                                                                                         |`delete 3`                                                                                 |
-| **Suggest** | `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`                                                              |`suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky`                                                                                          |
-| **Clear**   | `clear`                                                                                                                                                                         |                                                                                           |
-| **Exit**    | `exit`                                                                                                                                                                          |                                                                                           |
-| **Help**    | `help`                                                                                                                                                                          |                                                                                           |
+| Action      | Meaning                                             | Format                                                                                                                                                                              | Examples                                                                                  |
+|-------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **Add**     | Adds a new friend into Minefriends                  | `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`            | `add n/Benson m/benson01 p/92881083 e/bensontan@hotmail.com a/ 4 Leith road s/ig@bensontan01 t/bff`                                                                              |
+| **List**    | Lists out all of your friends in Minefriends        | `list`                                                                                                                                                                              |                                                                                                                                                                          |    
+| **Edit**    | Change some details of a certain friend             | `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` | `edit 2 n/Amy Bee t/`                                                                                                                                                    |                                                                                                                                                                         |
+| **Find**    | Find a certain friend (or friends) by their names   | `find KEYWORD [MORE_KEYWORDS]*`                                                                                                                                                     | `find Amy Benson`                                                                                                                                                                   |
+| **Delete**  | Delete a certain friend from Minefriends            | `delete INDEX`                                                                                                                                                                      | `delete 3`                                                                                                                                                                          |
+| **Suggest** | Filter out friends by keywords or by a day and time | `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`                                                                                                                                       | `suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky`                                                                                                                                |
+| **Clear**   | Clear all friends from Minefriends                  | `clear`                                                                                                                                                                             |                                                                                                                                                                                     |
+| **Exit**    | Leave the application                               | `exit`                                                                                                                                                                              |                                                                                                                                                                                     |
+| **Help**    | Get help on how to use the application              | `help`                                                                                                                                                                              |                                                                                                                                                                                     |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+### Minecraft-related terminologies
+
+| Terminology        | Definition                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------|
+| **Minecraft**      | An open world sandbox game, [official website](https://www.minecraft.net/en-us)                  |
+| **Minefriends**    | The name of our app                                                                              | 
+| **Username**       | The uniquely identifiable Minecraft username of each player                                      |                                                  
+| **Server**         | A multiplayer Minecraft server                                                                   |
+| **Player**         | A person who plays Minecraft                                                                     |
+| **Mojang Studios** | The company that created and owns Minecraft                                                      |
+| **Microsoft**      | The company that bought over Mojang Studios in 2014                                              |  
+| **Game mode**      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
+| **Game type**      | A synonym for game mode                                                                          | 
+
+For a complete glossary of Minecraft terms, please visit this page on the
+[Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
+
+### Other terminologies
+
+| Terminology   | Definition                                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
+| Person        | A contact that is created in the app                                                                               |
+| Friend        | A person that is created in the app                                                                                |
+| Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
+| CLI           | An acronym for "command line interface"                                                                            |
+| GUI           | An acronym for "graphical user interface"                                                                          |
