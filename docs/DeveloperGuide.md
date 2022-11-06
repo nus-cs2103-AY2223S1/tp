@@ -250,6 +250,7 @@ removing the old appointment and adding the newly edited appointment. `Person` a
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
+<br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
 
 *Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
