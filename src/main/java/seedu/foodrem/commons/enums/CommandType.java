@@ -39,7 +39,8 @@ public enum CommandType {
     RESET_COMMAND("reset") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Clears all items and tags in FoodRem.\n\n"
+            return getCommandWord() + ": Clears all data in FoodRem. "
+                    + "This includes all items and tags currently stored.\n\n"
                     + "Example:\n"
                     + getCommandWord();
         }
@@ -140,7 +141,7 @@ public enum CommandType {
     NEW_COMMAND("new") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Creates a new item with the provided information. "
+            return getCommandWord() + ": Creates a new item with the provided item name. "
                     + "All fields apart from ITEM_NAME are optional.\n\n"
                     + "Format:\n"
                     + getCommandWord() + " "
@@ -178,7 +179,7 @@ public enum CommandType {
     SORT_COMMAND("sort") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Sorts the list of currently displayed items by the provided criteria.\n"
+            return getCommandWord() + ": Sorts all items in FoodRem according to the specified criteria.\n"
                     + "Available criteria includes sorting by name, quantity, unit, bought date, expiry date, "
                     + "price and remarks.\n\n"
                     + "Format (Only one of the optional prefix should be present):\n"
