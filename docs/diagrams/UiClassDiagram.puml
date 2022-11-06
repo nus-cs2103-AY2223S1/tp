@@ -39,7 +39,7 @@ MainWindow *--> "0..1" HelpWindow
 
 VenueTabView *-down-> "1" BookingTableView
 VenueTabView *-down-> "1" VenueListView
-VenueListView *-down-> "0..*" VenueListCard
+VenueListView *-down-> "*" VenueListCard
 
 UiManager -right-> Logic
 MainWindow -right-> Logic

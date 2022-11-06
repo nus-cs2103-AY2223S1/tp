@@ -584,6 +584,8 @@ The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one abov
 
 As our [target user](#target-user-profile) would benefit greatly from being able to manage venues and bookings in RC4, we have decided to add a venue booking system in **RC4HDB**.
 
+<br>
+
 #### Planning the Ui
 
 Using the top-down approach, we started by deciding on how we could display booking data in a format that our **target user** would benefit most. 
@@ -591,6 +593,8 @@ Using the top-down approach, we started by deciding on how we could display book
 After consideration, we came up with two different formats for booking representation:
 * Booking list display for each venue
 * Weekly timetable (similar to NUSMods)
+
+<br>
 
 ##### Booking list
 
@@ -602,6 +606,8 @@ Cons:
 * Does not represent empty time slots well
 * Not temporally intuitive
 
+<br>
+
 ##### Weekly timetable
 
 Pros:
@@ -612,42 +618,95 @@ Pros:
 
 Cons:
 * Difficult to implement adhoc bookings
+* Only able to display the week's bookings for a single venue at a time
 
 After considering both choices, we decided that a weekly timetable format would better serve our **target user**. However, due to limitations in time, we decided to implement only recurrent bookings and leave adhoc bookings to be implemented in a future iteration.
 
+<br>
+
 #### Ui implementation
 
-[Comment]: <> (to be added in)
+Considering the fact that our Ui has no space for a timetable to be added in, we decided to make use of `Tab` and `TabView` from the JavaFX library. This allows us to keep our [`ResidentTableView`](#resident-information), while adding our timetable. However, we realised that users will need a way to view what venues are currently being tracked in **RC4HDB**. Thus, we decided to complement our timetable with a `ListView` which contains the list of venues being tracked.
+
+With this, we went on implementing the following Ui parts:
+* `VenueTabView`
+* `BookingTableView`
+* `VenueListView`
+* `VenueListCard`
+
+<br>
+
+##### Venue tab view
+
+This is just the Ui container component which contains the `BookingTableView` and `VenueListView`. We included this to reduce the clutter from having everything in the `MainWindow` class.
+
+<br>
+
+##### Booking table view
+
+In order to implement a table-like timetable format, we made use of the `TableView` class in the JavaFX library. This allows us to easily achieve a table-like Ui graphic. Each row of the table will correspond to the bookings for a day of the week, with the columns corresponding to the time period of the booking, in 1-hour units.
+
+<br>
+
+##### Venue list view
+
+To complement our `BookingTableView`, we added a `VenueListView` to display the venues that are currently being tracked by **RC4HDB**. The `VenueListView` is implemented with a `ListView` as a base, and each venue in the list is wrapped by a `VenueListCard` class which serves to beautify the list.
+
+<br>
+
+##### Interaction between each Ui part
+
+The following diagram describes the interactions between each newly introduced Ui component.
+
+![VenueBookingUiClassDiagram](images/VenueBookingUiClassDiagram.png)
+
+<br>
 
 #### Planning the data format
 
 After deciding on how we would like to display our venue and booking data, we had to design our `Venue` and `Booking` data classes to fit our chosen `Ui` design.
 
+<br>
+
 ##### Booking data
 
 Considering that we are only going to implement `RecurrentBooking`, we minimally require:
-* an association to the venue that is being booked by the booking
+* an association to the venue or venue identifier that is being booked by the booking
 * an association to the resident that is making the booking
 * a time period for the booking
 * a day of the week for the booking
+
+<br>
 
 ##### Venue data
 
 In order to be able to keep track of venues, we implemented a `Venue` class, which has a unique identifier, in the form of `VenueName`. `VenueName` was implemented with the `Name` field in `Resident` in mind, as both are `VenueName` and `Name` served similar purposes before `Name` was no longer the unique identifier for `Resident`. Since each booking was tagged to a venue, we decided to add a list of bookings in `Venue`, to keep track of the bookings made for each venue.
 
+<br>
+
+##### Daily schedule
+
+However, considering our usage of a `TableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to the table to represent a timetable of the bookings for a week, for a specified venue.
+
+<br>
+
 #### Data format implementation
 
-[Comment]: <> (to be added in)
+Considering the requirements for venue and booking data, we have come up with the following design to suit our venue and booking data needs.
+
+![VenueBookingClassDiagram](images/VenueBookingClassDiagram.png)
+
+<br>
+
+#### Model updates
+
+With the new forms of data that **RC4HDB** has to keep track of, the `Model` component has to be updated to accommodate the venue and booking data. However, since bookings are stored 
+
+<br>
 
 #### Storage updates
 
 [Comment]: <> (to be added in)
-
-#### Model updates
-
-[Comment]: <> (to be added in)
-
-<br>
 
 ---
 
