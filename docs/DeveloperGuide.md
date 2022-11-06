@@ -344,23 +344,23 @@ If the index provided is not a positive integer or not a valid number, Cobb will
 provide a valid input. Similarly, if the index provided is valid but exceeds the number of elements currently in the list,
 Cobb will be able to identify that there is a bounds mismatch and inform the user to provide a valid input within bounds.
 
-Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableArrayList`, which is an array-like
+Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableList`, which is an array-like
 data structure provided by JavaFX which fires off reports about all of its changes to associated listeners. This means that
-any changes to the structure or objects in the `ObservableArrayList` will be recorded by its listeners, causing the updated
+any changes to the structure or objects in the `ObservableList` will be recorded by its listeners, causing the updated
 list to be displayed correctly on the user's screen.
 
 #### Design Considerations
 **Aspect: How entries are indexed in a list**
-* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableArrayList`.
+* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableList`.
   If the list is filtered or sorted, then the entries' relative positions will change according to this new version of the
   list.
     * Pros:
         * Users will be able to quickly ascertain the index of an entry in the list simply by finding the entry in the list.
-        * Indices of visible entries in the `ObservableArrayList` will always be in the range `[1,n]` inclusive, where n
+        * Indices of visible entries in the `ObservableList` will always be in the range `[1,n]` inclusive, where n
           is the number of entries currently visible in the list. This gives the indices order and structure.
         * No index field needs to be created for `Buyer` and `Property` objects.
     * Cons:
-        * The relative index of an entry will change depending on the current structure of the `ObservableArrayList`. This 
+        * The relative index of an entry will change depending on the current structure of the `ObservableList`. This 
           means that a property that has index `1` might not have the same index after the property list is filtered.
 
 * **Alternative 2**: Entries in a list are indexed by an internal `EntryID` parameter that is automatically generated 
@@ -503,7 +503,7 @@ The tradeoffs for this approach is examined below:
 
 ### Filtering buyers and properties
 
-In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableArrayList` that stores 
+In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableList` that stores 
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
 being tested, consequently, they might give different outputs when applied to a given list.
 
@@ -525,7 +525,7 @@ concrete predicate classes were implemented:
 5. `FilterPropsByOwnerNamePredicate`
 
 Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
-`Predicate`, which is then used to filter the `ObservableArrayList` directly.
+`Predicate`, which is then used to filter the `ObservableList` directly.
 
 The UML diagram below represents the overall structure of the predicates for `Buyers` and `Properties`.
 
@@ -545,18 +545,20 @@ The UML diagram below represents the overall structure of the predicates for `Bu
 
 ### Sorting buyers and properties
 
-To sort `Buyers` and `Properties`, the `ObservableArrayList` that stores references to these objects and displays them on the user's screen
+To sort `Buyers` and `Properties`, the `ObservableList` that stores references to these objects and displays them on the user's screen
 is modified directly to a sorted version. These changes are propagated directly to the `FilteredList`, enabling users to sort
-a previously filtered list. As the `FilteredList` is based on the `ObservableArrayList`, users can also sort the list first,
+a previously filtered list. As the `FilteredList` is based on the `ObservableList`, users can also sort the list first,
 then filter it. This results in users being able to build sort and filter functions on top of each other to more powerfully
 manipulate the list based on their needs.
 
-A `Comparator` is used to sort the `ObservableArrayList`. Different comparators with different conditions are used to sort the
+A `Comparator` is used to sort the `ObservableList`. Different comparators with different conditions are used to sort the
 list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
+
 `Buyer`: `BuyerComparator`
 1. `BuyerNameComparator`: sort by buyer's name
 2. `PriceRangeComparator`: sort by buyer's price range
 3. `PriorityComparator`: sort by buyer's priority
+
 `Property`: `PropertyComparator`
 4. `PropertyNameComparator`: sort by property's name
 5. `PriceComparator`: sort by property's price
@@ -573,9 +575,13 @@ The UML diagrams below represent the overall structure of the `Comparator`s used
 
 ![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
 
+Below is a Seqeunce Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
+
+![SortBuyersSequenceDiagram](images/SortSequenceDiagram.png)
+
 #### Design Considerations:
 Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
-sorted version without modifying the underlying data structure `ObservableArrayList`. This is
+sorted version without modifying the underlying data structure `ObservableList`. This is
 to preserve the chronological order in which users enter the entries so that it can still be displayed with the `list` command.
 
 However, this meant that we needed to have both `FilteredList` and `SortedList` stored and vary which one is displayed to users
@@ -592,7 +598,7 @@ stacking of `filter` and `sort` functions, that is, a user is unable to filter o
 
 Hence, the above-mentioned design was used. We included chronological sorting as well using `TimeComparator`
 so that the user is able to return to the original state of the list,
-since sorting by name, for example, would permanently modify the `ObservableArrayList`.
+since sorting by name, for example, would permanently modify the `ObservableList`.
 
 ### Matching properties to a buyer, and vice versa
 
@@ -669,23 +675,23 @@ automation of matching between suitable properties and buyers
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                        | I want to …​                                                                          | So that I can…​                                              |
-|----------|------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | property agent                                 | add new buyers                                                                        |                                                              |
-| `* * *`  | property agent                                 | add new properties                                                                    |                                                              |
-| `* *`    | property agent                                 | edit contact and property information offline                                         | keep the information updated                                 |
-| `* *`    | property agent                                 | delete existing contact and propety entries                                           | remove redundant information, to keep dataset neat           |
-| `* *`    | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)   | easily update any changes                                    |
-| `* *`    | property agent                                 | find and filter for certain characteristics                                           | easily find matches                                          |
-| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         |                                                              |
-| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          |                                                              |
-| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do                         |
-| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client |
-| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       | easily make sense of information presented                   |
-| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients                           |
-| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress                                            |
-| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily            |
-| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap                     |
+| Priority | As a …​                                        | I want to …​                                                                          | So that I can…​                                                   |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | property agent                                 | add new buyers                                                                        |                                                                   |
+| `* * *`  | property agent                                 | add new properties                                                                    |                                                                   |
+| `* *`    | property agent                                 | edit contact and property information offline                                         | keep the information updated                                      |
+| `* *`    | property agent                                 | delete existing contact and propety entries                                           | remove redundant information, to keep dataset neat                |
+| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria                     | easily find information using their order |
+| `* *`    | property agent                                 | find and filter for certain characteristics                                           | easily find matches                                               |
+| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         |                                                                   |
+| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          |                                                                   |
+| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do                              |
+| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client      |
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       | easily make sense of information presented                        |
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients                                |
+| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress                                                 |
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily                 |
+| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap                          |
 
 ### Use cases
 
@@ -754,6 +760,7 @@ Use case ends.
 
 1. User chooses to list properties.
 2. User executes list properties command.
+3. Cobb displays a list of all properties saved.
 
 Use case ends.
 
@@ -763,6 +770,7 @@ Use case ends.
 
 1. User chooses to list buyers
 2. User executes list buyers command.
+3. Cobb displays a list of all buyers saved.
 
 Use case ends.
 
@@ -783,6 +791,26 @@ Use case ends.
 1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
 2. User finds buyers that are no longer relevant (e.g. already bought a house).
 3. User executes delete command on these buyers.
+
+### Use case: Sort properties
+
+**MSS:**
+
+1. User chooses to sort properties by a specified field in a specified order.
+2. User executes sort properties command on the currently displayed properties list.
+3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+
+Use case ends.
+
+### Use case: Sort buyers
+
+**MSS:**
+
+1. User chooses to sort buyers by a specified field in a specified order.
+2. User executes sort buyers command on the currently displayed buyer list.
+3. Cobb displays the last-shown buyer list in a sorted order according to the specified criteria.
+
+Use case ends.
 
 ### Use case: Match buyer to properties
 
