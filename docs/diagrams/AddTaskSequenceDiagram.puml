@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InTrackParser" as InTrackParser LOGIC_COLOR
 participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
-participant "d:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant "at:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,16 +33,16 @@ create AddTaskCommand
 AddTaskCommandParser -> AddTaskCommand
 activate AddTaskCommand
 
-AddTaskCommand --> AddTaskCommandParser : d
+AddTaskCommand --> AddTaskCommandParser : at
 deactivate AddTaskCommand
 
-AddTaskCommandParser --> InTrackParser : d
+AddTaskCommandParser --> InTrackParser : at
 deactivate AddTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddTaskCommandParser -[hidden]-> InTrackParser
 destroy AddTaskCommandParser
 
-InTrackParser --> LogicManager : d
+InTrackParser --> LogicManager : at
 deactivate InTrackParser
 
 LogicManager -> AddTaskCommand : execute()
