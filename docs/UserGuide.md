@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-![Ui](images/ug/Ui.png)
+![Ui](images/Ui.png)
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
 managers to help them communicate and collaborate with their teams smoothly.
@@ -88,6 +88,9 @@ This guide contains all you need to get started on working with GithubContact.
 * Each attribute prefix can be replaced with its **alias**.
   e.g. instead of using `add name/John Doe address/Clementi`, `add n/John Doe a/Clementi` will fulfill the same function.
   The full list of prefix aliases can be found [here](#prefix-aliases).
+
+* **Advanced users** may manually edit the data file located in `[JAR file location]/data/addressbook.json`. Note that if
+  an invalid input is made here, the data file will be discarded and GithubContact will create a new, empty data file.
 
 </div>
 
@@ -377,6 +380,12 @@ After executing `help delete`:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GithubContact home folder.
 
+**Q**: How do I add more than 1 email address/ phone number?
+**A**: Unfortunately, this iteration of GithubContact only supports one email address/ phone number.
+
+**Q**: How do I save my data?
+**A**: GithubContact automatically saves your data locally and retrieves it the next time you open it.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -398,6 +407,7 @@ After executing `help delete`:
 <div style="page-break-after: always;"></div>
 
 ## Parameter Input Formats
+
 | Attribute | Input Format                                                                                                                                                                                                                                                                                                                 |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name      | Should only contain alphanumeric characters, spaces or dashes, and it should not be blank.                                                                                                                                                                                                                                   |
