@@ -147,7 +147,7 @@ The `Person` component,
 
 * is composed of `Name`, `Phone`, `Email`, `Address` mandatory attributes
 * references any number of `Tags` from the `UniqueTagList` in `Addressbook`. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
-* references any number of `Assignments` stored in a `Hashmap<String, ArrayList<Assignment>>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
+* references any number of `Assignments` stored in a `Hashmap<key:String, value:ArrayList<ssignment>>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
 
 **Group** : [`Group.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
 
@@ -439,7 +439,7 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Deleting tasks from a `Person` does not require modification of the `Person` object.
   - Cons:
     - If the `Person` is part of multiple groups, retrieving all tasks to display on their card requires referencing multiple `Group` objects.
-- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:Assignment>` where the String is the group name.
+- Alternative 2 (Current Option): `Person` object stores `Assignments` as a HashMap of `<key:String, value:ArrayList<ssignment>>` where the String is the group name.
   - Pros:
     - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
   - Cons:
@@ -455,9 +455,9 @@ It is facilitated by the following operations:
 
 - `Model#assignTaskAll(GroupName, Task, Workload, [Deadline]` - Creates an `Assignment` with `Task` (description),
   `Workload` and optional `Deadline`. This `Assignment` will be added to all members in the group
-  with the input groupname. A member who has a duplicate assignment is skipped over.
+  with the input groupname. A member who has the same task name is skipped over.
 - `Model#deleteTask(GroupName, Name, Task)`. Deletes the `Assignment` with description `Task` from all members
-  in the group with the input groupname. A member who does not have this assignment is skipped over.
+  in the group with the input groupname. A member who does not have this task is skipped over.
 
 Given below is an example usage scenario and how tasks are assigned/deleted in bulk.
 
