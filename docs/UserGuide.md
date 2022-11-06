@@ -144,31 +144,71 @@ continue!
 
 #### 4.2.2. Viewing list of modules: `mlist`
 
-Shows a list of all modules in ProfNUS.
-You can click on each module to view more details about the module.
-
-![mlist](images/userguide/mlist.png)
+You can use this command to view the list of all modules that you have added into ProfNUS!
 
 **Format:** `mlist`
 
+**Example:**
+
+![mlist](images/userguide/mlist.png)
+
+
 #### 4.2.3. Viewing more details of a module in the list of modules: `vtarget`
 
-You can also choose to use a CLI-command to get more information about a module in ProfNUS
-at your specified `INDEX`.
-More information such as name of the module and module description,
-as well as any tags given to the module will be displayed.
+You can use this command to get more information about a module in ProfNUS.
+
+You will be able to see more information, such as the name of the module and the module description,
+as well as any tags given to the module upon using this command!
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Refer to section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters
+- View more specific information about a module at your specified index.
+- The index refers to the index number shown in the displayed module list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
+  Otherwise, **no** information about a module will be display by ProfNUS.
+
+</div>
 
 **Format:** `vtarget INDEX`
 
-**Examples:** `vtarget 3`
+**Example:** 
+
+Now, let's use the `vtarget` command to see how you can view more information about a module.
+
+**Step 1**: Type the command `vtarget 1` in the command box.
+![vtarget_step1](images/userguide/vtarget_step1.png)
+
+**Step 2**: Press enter, and you will be able to see more information about a module now!
+![vtarget_step2](images/userguide/vtarget_step2.png)
 
 #### 4.2.4. Viewing module details: `mview`
 
 Shows a list of students and tutors in the module.
 
+**Format:** `mview c/MODULE_CODE`
+
+**Example:**
+
+Now, let's use the `mview` command to view all the students and tutors in a module.
+
+**Step 1**: Type the command `mview c/cs1101s` in the command box.
+
+![mview_step1](images/userguide/mview_step1.png)
+
+**Step 2**: Press enter, and you will be able to see the list of students and teaching assistants for that module now!
 ![mlist](images/userguide/mview.png)
 
-**Format:** `mview c/MODULE_CODE`
 
 * Views the list of students and tutors at the specified `MODULE_CODE`.
 
