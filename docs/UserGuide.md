@@ -23,7 +23,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 ## Table of Contents
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -603,7 +603,7 @@ Format: `contact sort s/SORT_TYPE`
 
 </div>
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
@@ -633,7 +633,7 @@ Format: `task sort s/SORT_TYPE`
 
 </div>
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
