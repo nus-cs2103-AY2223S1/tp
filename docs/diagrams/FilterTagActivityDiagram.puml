@@ -1,0 +1,18 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters filtertag command;
+if () then ([else])
+  :Error:Invalid command format;
+  stop
+([tag name provided]) elseif () then ([else])
+  :Error: Tag does not exist;
+  stop
+ else ([tag exists in model])
+endif
+  -:Model filters Item List for items that are tagged with the tag specified.
+  ::FilterTag Command successfully executes.
+Item gets tagged with tag.;
+stop
+
+@enduml
