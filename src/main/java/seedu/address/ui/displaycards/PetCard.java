@@ -114,21 +114,21 @@ public class PetCard extends UiPart<Region> {
 
         // Set the pet photo to fill the holder
 
-        // TODO: implement this using storage instead of a dummy image
+        // For now the image is just a dummy image
         Image image = new Image(this.getClass().getResourceAsStream("/images/dummy_pet_image.png"));
         petPhoto.setImage(image);
     }
 
     @FXML
     void handleCertificatesLink(ActionEvent event) throws URISyntaxException, IOException {
-        // TODO: implement this
+        // For now
         System.out.println("Certificates link clicked!");
         Desktop.getDesktop().browse(new URI("http://www.google.com"));
     }
 
     @FXML
     void handleVaccinationLink(ActionEvent event) throws URISyntaxException, IOException {
-        // TODO: implement this
+        // For now clicking the hyperlink will just open the browser
         System.out.println("Vaccination link clicked!");
         Desktop.getDesktop().browse(new URI("http://www.google.com"));
     }

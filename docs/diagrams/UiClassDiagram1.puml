@@ -65,7 +65,6 @@ SupplierListPanel --> "*" SupplierCard
 OrderListPanel --> "*" OrderCard
 PetListPanel --> "*" PetCard
 BuyerCard --> "*" OrderCard
-DelivererCard --> "*" OrderCard
 SupplierCard --> "*" PetCard
 
 BuyerCard .right.> Model

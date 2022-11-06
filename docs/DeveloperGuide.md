@@ -336,6 +336,7 @@ significant digit has a carry. In the latter case, we append another `'a'` as th
 
 <img src="images/uniqueIdIllustration.png" width="300"/>
 
+
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and
 concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
@@ -351,7 +352,7 @@ Initially, there is only one `PersonListPanel` that displays the person list usi
 However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
 Therefore, it is necessary to have a **separate list panel** for each of these three types of `Person`.
 
-In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess,
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess (not implemented for deliverers yet),
 besides their contact information.
 A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is
 difficult for users to obtain information quickly.
@@ -385,8 +386,6 @@ indicating that (s)he is a `Buyer`.
 each `Order` that the `Buyer` has made. Each `Order` is also given an index in the list.
 
 <img src="images/BuyerCard.png" width="700"/>
-
-The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
 
 In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
 Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each

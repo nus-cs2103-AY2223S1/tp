@@ -27,7 +27,7 @@ import seedu.address.model.pet.Pet;
  */
 public class ModelManager implements Model {
 
-    //@@author Russel-reused
+    //@@author Hongyi6328-reused
     //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
     //with minor modification, it is a pretty good way to organise and extend the acceptable date formats.
     public static final String[] ACCEPTABLE_DATE_FORMATS = new String[]{

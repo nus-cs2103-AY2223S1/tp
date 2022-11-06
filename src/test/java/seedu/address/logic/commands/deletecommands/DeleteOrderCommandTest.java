@@ -1,41 +1,47 @@
 package seedu.address.logic.commands.deletecommands;
-/*
-//import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalOrders.getTypicalOrdersAddressBook;
 
-//import org.junit.jupiter.api.Test;
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.order.Order;
+import seedu.address.model.order.Order;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteOrderCommand}.
  */
-/*
+
 public class DeleteOrderCommandTest {
 
     private Model modelForOrders = new ModelManager(getTypicalOrdersAddressBook(), new UserPrefs());
 
-     Order List Tests
     @Test
     public void execute_validIndexUnfilteredOrderList_success() {
-        Order personToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Order orderToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        ModelManager expectedModel = new ModelManager(modelForOrders.getAddressBook(), new UserPrefs());
-        expectedModel.deleteOrder(personToDelete);
+        //set up modelForOrders
+        modelForOrders.updateFilteredOrderList(order -> true);
+        modelForOrders.switchToOrderList();
+
+        //set up expected model
+        Model expectedModel = new ModelManager(modelForOrders.getAddressBook(), new UserPrefs());
+        expectedModel.deleteOrder(orderToDelete);
+        expectedModel.updateFilteredOrderList(order -> true);
 
         assertCommandSuccess(deleteOrderCommand, modelForOrders, expectedMessage, expectedModel);
     }
@@ -52,15 +58,18 @@ public class DeleteOrderCommandTest {
     @Test
     public void execute_validIndexFilteredOrderList_success() {
         showOrderAtIndex(modelForOrders, INDEX_FIRST);
-
-        Order personToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Order orderToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
+        //set up modelForOrders
+        modelForOrders.updateFilteredOrderList(order -> true);
+        modelForOrders.switchToOrderList();
 
+        //set up expected model
         Model expectedModel = new ModelManager(modelForOrders.getAddressBook(), new UserPrefs());
-        expectedModel.deleteOrder(personToDelete);
-        showNoOrder(expectedModel);
+        expectedModel.deleteOrder(orderToDelete);
+        expectedModel.updateFilteredOrderList(order -> true);
 
         assertCommandSuccess(deleteOrderCommand, modelForOrders, expectedMessage, expectedModel);
     }
@@ -100,16 +109,15 @@ public class DeleteOrderCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-        }
+    }
 
     /**
      * Updates {@code model}'s filtered list to show no Orders.
      */
-/*
+
     private void showNoOrder(Model model) {
         model.updateFilteredOrderList(p -> false);
 
         assertTrue(model.getFilteredOrderList().isEmpty());
     }
 }
-*/
