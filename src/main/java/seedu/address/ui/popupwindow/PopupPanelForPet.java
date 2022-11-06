@@ -78,7 +78,6 @@ public class PopupPanelForPet extends PopUpPanel {
 
     @Override
     public Command generateCommand() {
-        // TODO: modify AddPetCommand
         return null;
     }
 
@@ -97,7 +96,8 @@ public class PopupPanelForPet extends PopUpPanel {
         Color color = ParserUtil.parseColor(colorField.getText());
         ColorPattern colorPattern = ParserUtil.parseColorPattern(colorPatternField.getText());
         Price price = ParserUtil.parsePrice(priceField.getText());
-        // TODO: update these dummy initialisation
+
+        // Since the current version does not allow the users to upload documents, dummy instantiations are used
         VaccinationStatus vaccinationStatus = new VaccinationStatus(false);
         Set<PetCertificate> certificates = new HashSet<>();
         return new Pet(name, supplier, color, colorPattern, dateOfBirth, species,

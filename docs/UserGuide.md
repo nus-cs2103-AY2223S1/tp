@@ -125,7 +125,7 @@ of the terms commonly used in PetCode.
 3. Copy the file to the folder you want to use as the _home folder_ for your PetCode app.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app
-   contains some sample data and the pet images are unchangeable in the current version of PetCode. <br>
+   contains some sample data and the pet images are unchangeable in the current version of PetCode. Clicking the hyperlinks under the pet image will just open your browser and does nothing more. <br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press ENTER to execute it. e.g. typing **`help`** and pressing ENTER will
@@ -897,7 +897,7 @@ In future versions of PetCode, some information will be auto-updated. For exampl
 `Vaccination status` will be set to `true` once the system detects the vaccination proof file, and `pet certificates` will be set to the titles of the pet certificate documents uploaded.
 You will also be able to transfer orders from buyers to suppliers and then to deliverers. The `order status` will be auto-updated from `Pending` to `Negotiating` to `Delivering` in the process.
 
-This is the reason why you are unable to modify some information, and why some information, although you can enter and store in PetCode, is not displayed in the UI, in the current version.
+This is the reason why you are unable to modify some information or interact with certain UI elements, and why some information, although you can enter and store in PetCode, is not displayed in the UI, in the current version.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]

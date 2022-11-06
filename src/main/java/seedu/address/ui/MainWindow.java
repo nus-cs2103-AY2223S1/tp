@@ -94,7 +94,7 @@ public class MainWindow extends UiPart<Stage> {
         menuItem.setAccelerator(keyCombination);
 
         /*
-         * TODO: the code below can be removed once the bug reported here
+         * The code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
          * is fixed in later version of SDK.
          *
@@ -127,10 +127,6 @@ public class MainWindow extends UiPart<Stage> {
         // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        // TODO: debug this
-        //        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        //        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
