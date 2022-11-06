@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * An UI component that displays information of a {@code ModuleClass}.
+ * A UI component that displays information of a {@code ModuleClass}.
  */
 public class ModuleClassCard extends UiPart<Region> {
 

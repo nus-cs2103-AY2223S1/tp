@@ -33,6 +33,9 @@ public class Index {
 
     /**
      * Creates a new {@code Index} using a zero-based index.
+     *
+     * @param zeroBasedIndex Zero-based index.
+     * @return Index object representing the zero-based index.
      */
     public static Index fromZeroBased(int zeroBasedIndex) {
         return new Index(zeroBasedIndex);
@@ -40,6 +43,9 @@ public class Index {
 
     /**
      * Creates a new {@code Index} using a one-based index.
+     *
+     * @param oneBasedIndex One-based index.
+     * @return Index object representing the one-based index.
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return new Index(oneBasedIndex - 1);

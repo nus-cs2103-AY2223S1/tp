@@ -19,7 +19,9 @@ public class AddsCommandParser implements Parser<AddsCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddsCommand
      * and returns a AddsCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format.
+     *
+     * @param args Command arguments provided by the user.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public AddsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION, PREFIX_DATE);

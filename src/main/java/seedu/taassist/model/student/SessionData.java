@@ -23,6 +23,9 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
     /**
      * Constructs a {@code SessionData} with the given session and grade.
      * The grade is rounded to 2 decimal places.
+     *
+     * @param session Session to keep track.
+     * @param grade Grade given to {@code session}.
      */
     public SessionData(Session session, Double grade) {
         requireAllNonNull(session, grade);
@@ -35,6 +38,12 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
         this.grade = Math.round(grade * 100.0) / 100.0;
     }
 
+    /**
+     * Checks if a given double a valid grade.
+     *
+     * @param grade Grade to check against.
+     * @return True if {@code grade} is a valid grade.
+     */
     public static boolean isValidGrade(Double grade) {
         return GRADE_MIN <= grade && grade <= GRADE_MAX;
     }

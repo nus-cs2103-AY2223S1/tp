@@ -8,7 +8,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * Tests that a {@code Student} is part of a class.
+ * Tests if a {@code Student} is part of a module class.
  */
 public class IsPartOfClassPredicate implements Predicate<Student> {
     private final ModuleClass targetClass;
@@ -26,8 +26,8 @@ public class IsPartOfClassPredicate implements Predicate<Student> {
     /**
      * Tests if a Student object is part of the target class.
      *
-     * @param student The Student object to test.
-     * @return True, if the Student object is part of the target class.
+     * @param student Student object to test.
+     * @return True if the Student object is part of the target class.
      */
     @Override
     public boolean test(Student student) {

@@ -48,7 +48,7 @@ class JsonAdaptedModuleClass {
     /**
      * Converts this Json-friendly adapted module class object into the model's {@code ModuleClass} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted module class.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted module class.
      */
     public ModuleClass toModelType() throws IllegalValueException {
         if (className == null) {

@@ -7,7 +7,7 @@ package seedu.taassist.model.uniquelist;
 public interface Identity<T> {
 
     /**
-     * Returns true if this obejct and {@code other} have the same identity.
+     * Returns true if this object and {@code other} have the same identity.
      */
     boolean isSame(T other);
 }

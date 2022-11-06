@@ -16,7 +16,9 @@ public class ScoresCommandParser implements Parser<ScoresCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ScoresCommand
      * and returns a ScoresCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Command arguments provided by the user.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public ScoresCommand parse(String args) throws ParseException {
         requireNonNull(args);

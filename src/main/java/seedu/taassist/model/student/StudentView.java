@@ -27,7 +27,7 @@ public class StudentView {
     /**
      * Constructs a {@code StudentView} with the provided {@code Student}.
      *
-     * @param student the student.
+     * @param student Student of interest.
      */
     public StudentView(Student student) {
         requireNonNull(student);
@@ -38,8 +38,8 @@ public class StudentView {
     /**
      * Constructs a {@code StudentView} with the provided {@code Student} and {@code Optional<SessionData>}.
      *
-     * @param student the student.
-     * @param sessionData the (optional) session data.
+     * @param student Student of interest.
+     * @param sessionData Optional session data.
      */
     private StudentView(Student student, Optional<SessionData> sessionData) {
         requireAllNonNull(student, sessionData);
@@ -54,7 +54,7 @@ public class StudentView {
     /**
      * Returns true if {@code StudentView} has been queried with a session data.
      *
-     * @return true if and only if session data was queried.
+     * @return True if and only if session data was queried.
      */
     public boolean hasSession() {
         return sessionData != null;
@@ -64,8 +64,8 @@ public class StudentView {
      * Returns an {@code Optional} value encapsulating the {@code SessionData}. The returned {@code Optional} is empty
      * if the queried session data doesn't exist in the encapsulated {@code Student}.
      *
-     * @return an {@code Optional} value encapsulating the queried {@code SessionData}.
-     * @throws IllegalStateException if {@code StudentView} has not been queried.
+     * @return {@code Optional} value encapsulating the queried {@code SessionData}.
+     * @throws IllegalStateException If {@code StudentView} has not been queried.
      */
     public Optional<SessionData> getSessionData() {
         if (!hasSession()) {
@@ -75,12 +75,12 @@ public class StudentView {
     }
 
     /**
-     * Creates a new {@StudentView} instance with the provided {@code ModuleClass} and {@code Session} being queried
-     * from the encapsulated {@code Student}.
+     * Creates a new {@code StudentView} instance with the provided {@code ModuleClass} and {@code Session} being
+     * queried from the encapsulated {@code Student}.
      *
-     * @param targetClass the target {@code ModuleClass}.
-     * @param targetSession the target {@code Session}.
-     * @return a new {@StudentView} instance.
+     * @param targetClass Target {@code ModuleClass}.
+     * @param targetSession Target {@code Session}.
+     * @return New {@code StudentView} instance.
      */
     public StudentView withSession(ModuleClass targetClass, Session targetSession) {
         requireAllNonNull(targetClass, targetSession);
@@ -88,9 +88,9 @@ public class StudentView {
     }
 
     /**
-     * Creates a new {@StudentView} instance without any queried {@code SessionData}.
+     * Creates a new {@code StudentView} instance without any queried {@code SessionData}.
      *
-     * @return a new {@StudentView} instace.
+     * @return New {@code StudentView} instance.
      */
     public StudentView withoutSession() {
         return new StudentView(student);

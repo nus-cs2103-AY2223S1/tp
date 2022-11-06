@@ -24,7 +24,7 @@ class JsonAdaptedSession {
     private final LocalDate date;
 
     /**
-     * Contructs a {@code JsonAdaptedSession} with the given {@code sessionName}.
+     * Contracts a {@code JsonAdaptedSession} with the given {@code sessionName}.
      */
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("name") String sessionName, @JsonProperty("date") LocalDate date) {
@@ -45,7 +45,7 @@ class JsonAdaptedSession {
     /**
      * Converts this Json-friendly adapted session object into the model's {@code Session} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted session.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted session.
      */
     public Session toModelType() throws IllegalValueException {
         if (sessionName == null) {

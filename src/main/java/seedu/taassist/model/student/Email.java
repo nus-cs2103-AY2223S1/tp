@@ -45,7 +45,10 @@ public class Email {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Checks if a given string represents a valid email.
+     *
+     * @param test String representation of an email.
+     * @return True if {@code test} is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.isEmpty() || test.matches(VALIDATION_REGEX);
@@ -71,5 +74,4 @@ public class Email {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

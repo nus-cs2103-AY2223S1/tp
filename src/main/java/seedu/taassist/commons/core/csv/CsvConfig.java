@@ -1,7 +1,7 @@
 package seedu.taassist.commons.core.csv;
 
 /**
- * Container for CSV file configurations.
+ * Contains CSV file configurations.
  */
 public class CsvConfig {
     public static final String CSV_EXTENSION = ".csv";
