@@ -365,6 +365,10 @@ Format: `marklesson INDEX`
 Example:
 * `marklesson 2` marks the 2nd lesson as completed.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Lessons that have been marked as completed will get shifted to the bottom of the lesson list.
+</div>
+
 ### Marking a lesson as not completed : `unmarklesson`
 
 Marks a lesson as not completed.
