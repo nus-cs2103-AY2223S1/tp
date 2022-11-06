@@ -9,7 +9,7 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Formats full help instructions for every command for display.
  */
 public class HelpCommand extends Command {
     public static final String DEFAULT_HELP_MESSAGE = "Please refer to the user guide.";
@@ -24,7 +24,7 @@ public class HelpCommand extends Command {
                     + "in the command box, where COMMAND_WORD is any one of the following:\n"
                     + CommandType.listAllCommandWords() + ".\n\n"
                     + MORE_INFORMATION;
-    public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FORMAT_GENERAL;
+    public static final String NOT_A_COMMAND = "\"%s\" is not a valid command.\n\n" + HELP_FORMAT_GENERAL;
     private static final String SHOWING_HELP_MESSAGE = "Opened help window.";
     private static final String HELP_FORMAT_SPECIFIC = "%s\n\n" + HELP_FORMAT_GENERAL;
 
@@ -38,27 +38,45 @@ public class HelpCommand extends Command {
         this.message = message;
     }
 
+    /**
+     * Returns a command help message.
+     */
     public static String getCommandHelpMessage(CommandType command) {
         return String.format(HELP_FORMAT_SPECIFIC, command.getUsage());
     }
 
+    /**
+     * Returns a general help message.
+     */
     public static String getGeneralHelpMessage() {
         return HELP_FORMAT_GENERAL;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<String> execute(Model model) {
         return new CommandResult<>() {
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public String getOutput() {
                 return SHOWING_HELP_MESSAGE;
             }
 
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public boolean shouldShowHelp() {
                 return true;
             }
 
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public String getHelpText() {
                 assert message != null;
@@ -66,6 +84,9 @@ public class HelpCommand extends Command {
             }
 
             // TODO: Test this
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public boolean equals(Object other) {
                 if (other == this) {
@@ -87,10 +108,18 @@ public class HelpCommand extends Command {
         };
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return HELP_COMMAND.getUsage();
     }
 
+    /**
+     * Returns {@code true} if both {@link HelpCommand} are equal.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this

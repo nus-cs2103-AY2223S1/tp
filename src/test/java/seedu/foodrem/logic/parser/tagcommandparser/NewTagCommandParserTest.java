@@ -15,6 +15,9 @@ import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
+/**
+ * A class to test the NewTagCommandParser.
+ */
 public class NewTagCommandParserTest {
     private static final int MAX_LENGTH = 20;
     private static final String EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS =

@@ -21,6 +21,9 @@ import seedu.foodrem.model.item.itemcomparators.ItemQuantityComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemRemarkComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemUnitComparator;
 
+/**
+ * A class to test the SortCommand.
+ */
 class SortCommandTest {
     private final Model model = new ModelManager(getSortFoodRem(), new UserPrefs());
 

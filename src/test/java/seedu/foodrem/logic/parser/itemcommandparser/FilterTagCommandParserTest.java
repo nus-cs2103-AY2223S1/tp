@@ -12,6 +12,9 @@ import seedu.foodrem.logic.commands.itemcommands.FilterTagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
+/**
+ * A class to test the FilterTagCommandParser.
+ */
 public class FilterTagCommandParserTest {
     private final FilterTagCommandParser parser = new FilterTagCommandParser();
 

@@ -1,3 +1,4 @@
+/* @@author */
 package seedu.foodrem.model.util;
 
 import java.util.HashSet;

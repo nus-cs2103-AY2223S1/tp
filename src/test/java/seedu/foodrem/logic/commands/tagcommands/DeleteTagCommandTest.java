@@ -22,6 +22,9 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.TagsWithMessage;
 
+/**
+ * A class to test the DeleteTagCommand.
+ */
 public class DeleteTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in FoodRem";
     private static final String EXPECTED_SUCCESS_MESSAGE = "Tag deleted:";

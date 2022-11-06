@@ -29,6 +29,9 @@ import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
+/**
+ * A class to test the HelpCommandParser.
+ */
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
             + "dec, del, edit, filtertag, find, inc, list, new, rmk, sort, view, " // Item commands
@@ -64,7 +67,7 @@ class HelpCommandParserTest {
         assertEquals(EXPECTED_ALL_COMMANDS, CommandType.listAllCommandWords());
 
         // Not a command constant
-        assertEquals("\"testing\" is not a valid command\n\n"
+        assertEquals("\"testing\" is not a valid command.\n\n"
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + EXPECTED_ALL_COMMANDS

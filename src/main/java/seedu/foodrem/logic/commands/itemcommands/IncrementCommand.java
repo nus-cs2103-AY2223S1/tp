@@ -59,6 +59,9 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getTagSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -76,15 +79,23 @@ public class IncrementCommand extends Command {
                 "Incremented successfully and updated item as follows:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
+    public static String getUsage() {
+        return INCREMENT_COMMAND.getUsage();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof IncrementCommand
                 && index.equals(((IncrementCommand) other).index)
                 && quantity.equals(((IncrementCommand) other).quantity));
-    }
-
-    public static String getUsage() {
-        return INCREMENT_COMMAND.getUsage();
     }
 }
