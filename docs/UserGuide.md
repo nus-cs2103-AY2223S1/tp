@@ -106,7 +106,7 @@ SoConnect currently can run smoothly on these operating systems:
 2. MacOS
 3. Windows
 
-You only need to download [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases), regardless of which one is your operating system.
+You can download and use [`SoConnect.jar`](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases) on any of the above operating systems. 
 
 --------------------------------------------------------------------------------------------------------------------
 
