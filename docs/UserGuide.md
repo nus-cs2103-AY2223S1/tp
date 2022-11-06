@@ -9,6 +9,8 @@ FABook is your **dependable assistant** who **reminds you of meetings** and **co
 
 This user guide will help you get started and understand how FABook can **seamlessly streamline your daily lives**.
 
+<div style="page-break-after: always;"></div>
+
 # Table of Contents
 
 * TOC
@@ -43,8 +45,6 @@ This user guide will help you get started and understand how FABook can **seamle
 
 [Return to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Familiar With Your User Interface
@@ -60,6 +60,8 @@ This user guide will help you get started and understand how FABook can **seamle
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Legend
@@ -69,25 +71,25 @@ This user guide will help you get started and understand how FABook can **seamle
 
 <div markdown="block" class="alert alert-block alert-info">
 
-4. :white_check_mark: **Input Shortcut:**
+ 4. :white_check_mark: **Input Shortcut:**
 
 </div>
 
 <div markdown="block" class="alert alert-block alert-success">
 
-5. :bulb: **Note:**
+ 5. :bulb: **Note:**
 
 </div>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
-6. :heavy_exclamation_mark: **Caution:**
+ 6. :heavy_exclamation_mark: **Caution:**
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-7. :information_source: **Information**
+ 7. :information_source: **Information**
 
 </div>
 
@@ -157,6 +159,8 @@ Format: `list`
 You can replace `list` with `l` for convenience.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Creation
 
@@ -234,6 +238,8 @@ Example given: `filepath 2 f/C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf`
 
 Other example:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+
+<div style="page-break-after: always;"></div>
 
 ### Retrieving
 
@@ -406,6 +412,8 @@ As this command syncs with your device's system clock, please make sure the curr
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Updating
 
 #### Updating your client's information : `update`
@@ -505,6 +513,8 @@ Examples:
 * `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second client in the displayed list,
    one at 9 October 2023 23:50, the other at 28 February 2020 15:16.
 
+<div style="page-break-after: always;"></div>
+
 ### Deletion
 
 #### Deleting a client : `delete`
@@ -590,6 +600,8 @@ If you run this command by accident, you can [undo](#undoing-a-previous-command-
 You can replace `clear` with `cl` for convenience.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Command Flow
 #### Undoing a previous command : `undo`

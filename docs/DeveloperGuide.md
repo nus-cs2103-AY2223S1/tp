@@ -23,6 +23,8 @@ The intended target audience of this guide is for
 * Developers looking to understand the architecture and follow the design to build the system
 * Maintainers who are looking to understand how the system was built in order to be able to perform any enhancement or reengineering work.
 
+<div style="page-break-after: always;"></div>
+
 ### How to use this guide?
 
 #### Recommended prerequisites
@@ -78,6 +80,8 @@ You may refer to the [table of contents](#table-of-contents) below to quick jump
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,6 +245,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -476,6 +482,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Choice 2 : Saves the entire address book.**
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -872,6 +880,8 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
