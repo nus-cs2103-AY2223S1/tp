@@ -476,7 +476,7 @@ Danger zone! This command is irreversible- it is not possible to retrieve entrie
 
 ### Exiting the program
 
-You're done logging your expenses for the day. Let's exit the application.
+You're done logging your expenses and income for the day. Let's exit the application.
 
 Format: `exit` <br/>
 Exits the program.
