@@ -526,6 +526,10 @@ The UML diagrams below represent the overall structure of the `Comparator`s used
 
 ![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
 
+Below is a Seqeunce Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableArrayList`.
+
+![SortBuyersSequenceDiagram](images/SortSequenceDiagram.png)
+
 #### Design Considerations:
 Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
 sorted version without modifying the underlying data structure `ObservableArrayList`. This is
