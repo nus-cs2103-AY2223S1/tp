@@ -26,7 +26,10 @@ public class ItemPriceValidator implements Validator {
                 "The item price should not be negative.");
     }
 
-    static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
+    /**
+     * Validates a given numeric String. This is to be used during construction.
+     */
+    public static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
                                       String messageNotANumber, String messageTooPrecise, String messageTooLarge,
                                       String messageIsNegative) {
         boolean isParsable = ValidationUtil.isParsableDouble(numericString);
