@@ -17,6 +17,9 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
+/**
+ * A class to test the UntagCommandParser.
+ */
 public class UntagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.getUsage());

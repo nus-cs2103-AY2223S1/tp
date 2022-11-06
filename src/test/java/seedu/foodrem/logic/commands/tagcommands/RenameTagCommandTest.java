@@ -19,6 +19,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.viewmodels.TagToRename;
 
+/**
+ * A class to test the RenameTagCommand.
+ */
 public class RenameTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in FoodRem.";
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in FoodRem.";

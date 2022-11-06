@@ -12,6 +12,9 @@ import seedu.foodrem.logic.commands.itemcommands.RemarkCommand;
 import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.testutil.MessageToUser;
 
+/**
+ * A class to test the RemarkCommandParser.
+ */
 class RemarkCommandParserTest {
     private final RemarkCommandParser parser = new RemarkCommandParser();
 

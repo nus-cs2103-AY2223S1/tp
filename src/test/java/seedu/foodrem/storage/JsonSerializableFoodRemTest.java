@@ -12,6 +12,9 @@ import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
+/**
+ * A class to test JsonSerializableFoodRem.
+ */
 public class JsonSerializableFoodRemTest {
     private static final Path TEST_DATA_FOLDER = Paths
             .get("src", "test", "data", "JsonSerializableFoodRemTest");
@@ -21,8 +24,6 @@ public class JsonSerializableFoodRemTest {
             .resolve("invalidItemFoodRem.json");
     private static final Path DUPLICATE_ITEM_FILE = TEST_DATA_FOLDER
             .resolve("duplicateItemFoodRem.json");
-    private static final Path DUPLICATE_TAG_FILE = TEST_DATA_FOLDER
-            .resolve("duplicateTagFoodRem.json");
     private static final Path INVALID_TAG_FILE = TEST_DATA_FOLDER
             .resolve("invalidTagFoodRem.json");
     private static final Path TYPICAL_FOODREM_FILE = TEST_DATA_FOLDER
