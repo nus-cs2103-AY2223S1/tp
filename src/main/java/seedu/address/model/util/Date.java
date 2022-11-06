@@ -36,12 +36,13 @@ public abstract class Date implements Comparable<Date> {
      * with respect to a givenDate {@code givenDate}.
      */
     public boolean isInPeriod(DateKeyword keyword, LocalDate givenDate) {
+        requireNonNull(keyword);
+        requireNonNull(givenDate);
+
         LocalDate startDate;
         LocalDate endDate;
 
         switch (keyword) {
-        case ALL_TIME:
-            return true;
         case TOMORROW:
             startDate = givenDate.plusDays(1);
             endDate = givenDate.plusDays(1);
@@ -55,11 +56,8 @@ public abstract class Date implements Comparable<Date> {
             endDate = givenDate.plusDays(7);
             break;
         default:
-            startDate = null;
-            endDate = null;
+            return true;
         }
-        requireNonNull(startDate);
-        requireNonNull(endDate);
 
         return isAfterDate(startDate) && isBeforeDate(endDate);
     }

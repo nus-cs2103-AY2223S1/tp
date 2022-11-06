@@ -1,10 +1,13 @@
 package seedu.address.model.client;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import seedu.address.model.util.Date;
+
 
 /**
  * Represents a client's birthday in MyInsuRec.
@@ -60,6 +63,7 @@ public class Birthday extends Date {
      * Returns a new Birthday with respect to the given date {@code givenDate}.
      */
     public static Birthday upcomingBirthday(Birthday birthday, LocalDate givenDate) {
+        requireAllNonNull(birthday, givenDate);
         LocalDate birthdayDate = birthday.date;
         int yearDifference = givenDate.getYear() - birthdayDate.getYear();
         return new Birthday(birthdayDate.plusYears(yearDifference));
