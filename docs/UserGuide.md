@@ -277,7 +277,7 @@ Examples:<br>
 Edits a buyer’s details with specified information in specified categories.<br>
 Syntax: `editbuyer INDEX [-n NAME] [-ph PHONE] [-e EMAIL] [-a ADDRESS] [-r PRICE RANGE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>]`
 
-The `INDEX` indicates the buyer in the list we are choosing to edit.
+The `INDEX` indicates the buyer in the [Buyer List](#2-buyer-list) to be edited.<br>
 The `-n` flag indicates the buyer's new name.<br>
 The `-ph` flag indicates the buyer's new phone number.<br>
 The `-e` flag indicates the buyer's new email.<br>
@@ -300,7 +300,7 @@ Examples:<br>
 Edits a property’s details with specified information in specified categories.<br>
 Syntax: `editprop INDEX [-n NAME] [-p PRICE] [-a ADDRESS] [-d DESCRIPTION] [-c CHARACTERISTICS] [-owner OWNER NAME] [-ph OWNER PHONE]`
 
-The `INDEX` indicates the property in the list we are choosing to edit.
+The `INDEX` indicates the property in the [Property List](#3-property-list) to be edited.<br>
 The `-n` flag indicates the property's new name.<br>
 The `-p` flag indicates the property’s new price.<br>
 The `-a` flag indicates the property’s new address.<br>
@@ -372,7 +372,7 @@ buyers and properties in the database! Use the [List Commands](#list-commands) t
 
 #### Filter buyers in database (multiple conditions): `filterbuyers`
 
-Filters buyers in the database according to multiple given conditions, and updates the [BuyerList](#2-buyer-list).
+Filters buyers in the database according to multiple given conditions, and updates the [Buyer List](#2-buyer-list).
 
 Syntax: `filterbuyers [-p PRICE] [-c CHARACTERISTICS] [-pr PRIORITY<HIGH, NORMAL, LOW>] [-fuzzy]`
 
@@ -460,7 +460,7 @@ at least one of the buyer's characteristics.
 
 Syntax: `matchbuyer INDEX [-strict]`
 
-The `INDEX` indicates which buyer in the list we are choosing to match.<br>
+The `INDEX` indicates the buyer in the [Buyer List](#2-buyer-list) to be matched.<br>
 The `-strict` flag indicates to reduce the matches to only properties that match *all* the buyer's characteristics.<br>
 
 Examples:<br>
@@ -474,7 +474,7 @@ desire at least one of the property's characteristic.
 
 Syntax: `matchprop INDEX [-strict]`
 
-The `INDEX` indicates which property in the list we are choosing to match.<br>
+The `INDEX` indicates the property in the [Property List](#3-property-list) to be matched.<br>
 The `-strict` flag indicates to reduce the matches to only buyers that desire *all* the property's characteristics.<br>
 
 Examples:<br>
