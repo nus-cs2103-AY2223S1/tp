@@ -1,22 +1,57 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
+import static seedu.address.testutil.TypicalTeams.FIRST;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.TeamNameConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.team.TeamName;
 
-// TODO: Add implementation for tests
 class SetTeamCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    @Test
-    void execute_setTeamAlreadySet_throwsCommandException() {
+    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+
+    private final Command commandToBeTested = new SetTeamCommand();
+
+    private final CommandLine commandLine = new CommandLine(commandToBeTested)
+            .registerConverter(TeamName.class, new TeamNameConverter());
+    @BeforeEach
+    public void setUp() {
+        model.addTeam(FIRST);
+        expectedModel.addTeam(FIRST);
     }
 
     @Test
-    void testEquals() {
+    public void execute_setTeamToNewTeam_success() {
+        commandLine.parseArgs(new String[]{"first"});
+        expectedModel.setTeam(FIRST);
+        CommandResult expectedResult = new CommandResult(
+                String.format(SetTeamCommand.MESSAGE_SET_TEAM_SUCCESS, FIRST));
+        assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
+
+    @Test
+    public void execute_setToTeamNotExist_throwsCommandException() {
+        commandLine.parseArgs(new String[]{"second"});
+        assertThrows(CommandException.class, SetTeamCommand.MESSAGE_TEAM_NOT_EXISTS, ()
+                -> commandToBeTested.execute(model));
+    }
+
+    @Test
+    public void execute_setTeamAlreadySet_throwsCommandException() {
+        commandLine.parseArgs(new String[]{"default"});
+        assertThrows(CommandException.class, SetTeamCommand.MESSAGE_TEAM_ALREADY_SET, ()
+                -> commandToBeTested.execute(model));
+    }
+
 }
