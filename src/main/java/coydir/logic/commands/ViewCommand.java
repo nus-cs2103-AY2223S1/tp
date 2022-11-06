@@ -19,7 +19,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer, not too large, i.e. < 2^31 - 1)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing Person's particulars: %1$s";
@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, personToView.getName()),
                     index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
     }
 

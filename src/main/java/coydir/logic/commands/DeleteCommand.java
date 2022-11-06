@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the employee ID used in the displayed person list.\n"
-            + "Parameters: ID (must be a positive integer)\n"
+            + "Parameters: ID (must be a positive integer, not too large, i.e. < 2^31 - 1)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Override
