@@ -168,7 +168,7 @@ Here is everything you need to install and set up *MyInsuRec*. For the best poss
 * macOS
 * Linux
 
-You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [10.1 Checking your system's Java version](#10-troubleshooting).
+You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [10.1 Checking your system's Java version](#101-checking-your-systems-java-version).
 
 ### 5.2 Installation Instructions
 
@@ -322,7 +322,11 @@ This subsection covers all client-related commands.
 
 Add a new client to _MyInsuRec_.
 
-Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...`
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+A client can have any number of products (including 0).
+</div>
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
@@ -379,7 +383,7 @@ Examples:
 * List all clients with their birthdays in the next week
   * `listClient b/week`
 
-<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
+<div markdown="block" class="alert alert-warning">**:exclamation: Caution:**
 
 * Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 
@@ -430,7 +434,11 @@ Examples:
 
 Edit details of the specified client.
 
-Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...`
+
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+A client can have any number of products (including 0).
+</div>
 
 * Edit the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#712-list-clients-listclient) command.
@@ -742,24 +750,24 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 
 ## 9. Command summary
 
-| Action                                               | Format                                                                                         | Examples                                                                                                                                         |
-|------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add client**](#711-add-client-addclient)          | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`              | • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
-| [**List clients**](#712-list-clients-listclient)     | <code>listClient [pd/PRODUCT &#124;&#124; b/BIRTHDAY]</code>                                   | • `listClient` <br> • `listClient pd/Product1` <br> • `listClient b/tomorrow` <br> • `listClient b/week` <br> • `listClient b/month`             |
-| [**View client**](#713-view-client-viewclient)       | `viewClient i/INDEX`                                                                           | • `viewClient i/1`                                                                                                                               |
-| [**Delete client**](#714-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
-| [**Edit client**](#715-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
-| [**Add meeting**](#721-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
-| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/PERIOD]`                                                                       | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
-| [**View meeting**](#723-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
-| [**Delete meeting**](#724-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
-| [**Edit meeting**](#725-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
-| [**Add product**](#731-add-product-addproduct)       | `addProduct pd/PRODUCT`                                                                        | • `addProduct pd/Product1`                                                                                                                       |
-| [**List products**](#732-list-products-listproduct)  | `listProduct`                                                                                  | • `listProduct`                                                                                                                                  |
-| [**Delete product**](#733-delete-product-delproduct) | `delProduct i/INDEX`                                                                           | • `delProduct i/1`                                                                                                                               |
-| [**Help**](#741-view-help-help)                      | `help`                                                                                         | `help`                                                                                                                                           |
-| [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
-| [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                        | `clear`                                                                                                                                          |
+| Action                                               | Format                                                                                            | Examples                                                                                                                                         |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add client**](#711-add-client-addclient)          | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...`              | • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
+| [**List clients**](#712-list-clients-listclient)     | <code>listClient [pd/PRODUCT &#124;&#124; b/BIRTHDAY]</code>                                      | • `listClient` <br> • `listClient pd/Product1` <br> • `listClient b/tomorrow` <br> • `listClient b/week` <br> • `listClient b/month`             |
+| [**View client**](#713-view-client-viewclient)       | `viewClient i/INDEX`                                                                              | • `viewClient i/1`                                                                                                                               |
+| [**Delete client**](#714-delete-client-delclient)    | `delClient i/INDEX`                                                                               | • `delClient i/1`                                                                                                                                |
+| [**Edit client**](#715-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...` | • `editClient i/1 n/John Smith`                                                                                                                  |
+| [**Add meeting**](#721-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`                              | • `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`                                                                           |
+| [**List meetings**](#722-list-meetings-listmeeting)  | `listMeeting [d/PERIOD]`                                                                          | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**View meeting**](#723-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                             | • `viewMeeting i/1`                                                                                                                              |
+| [**Delete meeting**](#724-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                              | • `delMeeting i/1`                                                                                                                               |
+| [**Edit meeting**](#725-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                     | • `i/1 dn/Follow up team meeting`                                                                                                                |
+| [**Add product**](#731-add-product-addproduct)       | `addProduct pd/PRODUCT`                                                                           | • `addProduct pd/Product1`                                                                                                                       |
+| [**List products**](#732-list-products-listproduct)  | `listProduct`                                                                                     | • `listProduct`                                                                                                                                  |
+| [**Delete product**](#733-delete-product-delproduct) | `delProduct i/INDEX`                                                                              | • `delProduct i/1`                                                                                                                               |
+| [**Help**](#741-view-help-help)                      | `help`                                                                                            | `help`                                                                                                                                           |
+| [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                            | `exit`                                                                                                                                           |
+| [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                           | `clear`                                                                                                                                          |
 
 [Return to the top](#)
 
