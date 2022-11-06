@@ -27,6 +27,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            assert index.getOneBased() > 0 : "index should be positive integer";
         } catch (ParseException pe) {
             if (pe.getMessage().equals(MESSAGE_INVALID_COMMAND_FORMAT)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));

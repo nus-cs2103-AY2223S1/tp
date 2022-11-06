@@ -84,15 +84,15 @@ public class InternshipCard extends UiPart<Region> {
         appliedDate.setMinWidth(Region.USE_PREF_SIZE);
 
         applicationStatus.setText(applicationStatusString);
+        applicationStatus.getStyleClass().add(applicationStatusString.toLowerCase());
+        applicationStatus.setMinWidth(Region.USE_PREF_SIZE);
+
         description.setText(internship.getDescription().value);
 
         handleTags();
         handleInterviewDateTimeLine();
         handleLinkTooltip();
         handleApplicationStatusTooltip();
-
-        applicationStatus.getStyleClass().add(applicationStatusString.toLowerCase());
-        applicationStatus.setMinWidth(Region.USE_PREF_SIZE);
     }
 
     /**
