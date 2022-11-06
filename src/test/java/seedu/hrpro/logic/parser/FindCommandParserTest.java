@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.logic.commands.FindCommand;
+import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -18,6 +19,16 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, "&%", ProjectName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validArgWithInvalidArg_throwsParseException() {
+        assertParseFailure(parser, "proj ()", ProjectName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
