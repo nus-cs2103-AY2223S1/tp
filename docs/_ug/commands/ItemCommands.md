@@ -199,7 +199,7 @@ The command will produce a detailed view of this item.
 **Assumptions:**
 
 * The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
-* Initially, the "Onion" item has a `QUANTITY` value of 8.
+* Initially, the "Onion" item has a "Quantity" of 8.
 {% endcapture %}
 {%
   include command-format.md
@@ -226,7 +226,7 @@ The command will produce a detailed view of this item.
 **Assumptions:**
 
 * The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
-* Initially, the "Onion" item has a `QUANTITY` value of 11.
+* Initially, the "Onion" item has a "Quantity" of 11.
 {% endcapture %}
 {%
   include command-format.md
@@ -261,6 +261,7 @@ The command will produce a detailed view of this item.
 
 * The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
 * Initially, the "Onion" item has the following values:
+  * Unit: kg
   * Bought Date: 10-10-2022
   * Expiry Date: 10-11-2022
   * Price: 6.00
