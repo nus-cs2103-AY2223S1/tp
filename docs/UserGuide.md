@@ -390,7 +390,7 @@ The data of all the internship applications is saved automatically to the hard d
 ## FAQ
 
 **Q**: What should I do if the program crashes?<br>
-**A**: Screenshot the error message (if any) and report to us via [email](mailto:seer@comp.nus.edu.sg) or GitHub issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
+**A**: Screenshot the error message (if any) and report the error to us via GitHub issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
 We will assist you as soon as possible.
 
 **Q**: Is **CinternS** supported on mobile platforms?<br>
