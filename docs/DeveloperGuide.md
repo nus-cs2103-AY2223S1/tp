@@ -733,17 +733,19 @@ Hence, to prevent confusion we chose Alternative 1.
 
 **Target user profile**:
 
-* Tech-Savvy NUS CS Student
+* Tech-Savvy NUS Student
 * Reasonably fast typer
 * Comfortable using CLI apps
-* Forgets which friends has common modules with him
+* Forgets which friends have common modules with him
 * Takes a lot of modules
 * Takes modules where information are spread over multiple websites
 * Tends to work at night
 
 **Value proposition**:
-* This app aims to be a unified platform that helps the user manage his academic details.
-* This application will be the go-to place to access all module links, information and deadlines without needing to tediously navigate through multiple different websites.
+
+**Plannit** is an **all-in-one application** that streamlines the execution of module
+deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+**module-mates** (i.e., students in the same module) to increase their productivity.
 
 
 

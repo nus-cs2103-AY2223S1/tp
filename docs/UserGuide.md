@@ -3,27 +3,26 @@ layout: page
 title: User Guide
 ---
 
-* **Plannit** is an **all-in-one application** that streamlines the execution of module
-  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
-  **module-mates** (i.e., students in the same module) to increase their productivity.
-
-
-* Plannit will be the **go-to platform** for them to access all modules links and information
-without needing to tediously navigate through multiple websites.
-
-
-* Plannit allows tracking of student contacts by module.
-Students do not have to worry about forgetting which friend takes which module.
-
-
-* Plannit is **optimized for use via a Command Line Interface (CLI)**
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+**Plannit** is an **all-in-one application** that streamlines the execution of module
+deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+**module-mates** (i.e., students in the same module) to increase their productivity.
+
+Plannit will be the **go-to platform** for them to access all modules links and information
+without needing to tediously navigate through multiple websites.
+
+Plannit allows tracking of student contacts by module.
+Students do not have to worry about forgetting which friend takes which module.
+
+Plannit is **optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
+
+
 ## 0. How to use this guide
 This guide is targeted at new users who are looking at learning more about 
 our app.
