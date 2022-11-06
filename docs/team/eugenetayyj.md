@@ -65,4 +65,5 @@ Given below are my contributions to the project.
 
   * **Community**:
     * [PRs reviewed by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/pulls?q=commenter%3Aeugenetayyj).
+    * [Issues created by me](https://github.com/AY2223S1-CS2103T-T10-2/tp/issues?q=is%3Aissue+author%3Aeugenetayyj)
     * Reported bugs and suggestions for other teams in the class: [PE-D Issues Link](https://github.com/eugenetayyj/ped/issues)
