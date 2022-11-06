@@ -60,7 +60,7 @@ public class ViewTimetableCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(ViewTimeTableCommand.SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
                 false, false, false, false, false,
-                false, true, false,
+                false, false, true, false,
                 false, false);
         CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult,
                 expectedModel);
@@ -72,7 +72,7 @@ public class ViewTimetableCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(ViewTimeTableCommand.SHOWING_VERTICAL_TIMETABLE_MESSAGE),
                 false, false, false, false, false,
-                false, false, true,
+                false, false, false, true,
                 false, false);
         CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(1), model, expectedCommandResult,
                 expectedModel);
@@ -90,7 +90,7 @@ public class ViewTimetableCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                     String.format(ViewTimeTableCommand.SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
                     false, false, false, false, false,
-                    false, true, false,
+                    false, false, true, false,
                     false, false);
         CommandTestUtil.assertCommandSuccess(new ViewTimeTableCommand(0), model, expectedCommandResult,
                     expectedModel);

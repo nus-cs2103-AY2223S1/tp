@@ -58,7 +58,8 @@ public class ClearScheduleCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
             ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS,
                 false, false, false, false,
-                false, true, false, false);
+                false, false, true, false,
+                false, false, false);
 
         assertCommandSuccess(new ClearScheduleCommand(), curModel, expectedCommandResult, expectedModel);
     }
@@ -82,9 +83,10 @@ public class ClearScheduleCommandTest {
         expectedModel.clearSchedules(allModuleCodes);
 
         CommandResult expectedCommandResult = new CommandResult(
-                ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS, false, false,
-                false, false,
-                false, true, false, false);
+                ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS,
+                false, false, false, false,
+                false, false, true, false,
+                false, false, false);
 
         assertCommandSuccess(clearScheduleCommand, model, expectedCommandResult, expectedModel);
     }
@@ -99,7 +101,7 @@ public class ClearScheduleCommandTest {
 
         CommandResult expectedCommandResult = new CommandResult(
                 ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS, false, false,
-                false, false,
+                false, false, false,
                 false, true, false, false);
 
         assertCommandSuccess(clearScheduleCommand, model, expectedCommandResult, expectedModel);
@@ -116,7 +118,7 @@ public class ClearScheduleCommandTest {
 
         CommandResult expectedCommandResult = new CommandResult(
                 ClearScheduleCommand.MESSAGE_CLEAR_ALL_SCHEDULES_SUCCESS, false, false,
-                false, false,
+                false, false, false,
                 false, true, false, false);
 
         assertCommandSuccess(clearScheduleCommand, model, expectedCommandResult, expectedModel);
