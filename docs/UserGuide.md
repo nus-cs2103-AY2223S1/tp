@@ -246,23 +246,16 @@ Only the following are accepted for `TYPE`:
 * `stu` for Student
 * `prof` for Professor
 * `ta` for Teaching Assistant
-* All are case-insensitive
-* More than one type can be provided
+* All are case-insensitive and more than one `TYPE` can be provided
 
 Examples:
 * `find typ/stu ta` -> Returns contacts who are students OR teaching assistants.
-* * `find typ/stu prof` -> Returns contacts who are students OR professors.
+* `find typ/stu prof` -> Returns contacts who are students OR professors.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ### 3.3.2 List contact: `list`
 
 Displays all contacts stored in application.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-After executing find command, only the contacts that matches your input will be displayed. This list command would make the application display all of your stored contacts again.
-</div>
 
 Format: `list`
 
@@ -294,25 +287,17 @@ Before executing the above command:<br>
 
 ![before sorting](images/BeforeSortName.png)
 
-After executing the command: ![after sorting](images/AfterSortName.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `A-Z` order.
-</div>
+After executing the command: <br>
+![after sorting](images/AfterSortName.png)
 
 Format: `sort Z-A n/`
 
 Example Command: `sort Z-A n/`
 
 After executing the command:<br>
-
 ![after sorting descending](images/AfterSortNameDesc.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `Z-A` order.
-</div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 #### 3.3.3.2 Sort by moduleCode
 
@@ -326,38 +311,32 @@ Before executing the above command:
 
 ![before sorting](images/BeforeModuleCode.png)
 
-After executing the above command: 
+<div style="page-break-after: always;"></div>
 
+After executing the above command: <br>
 ![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in ascending order. 
 The level of a module is defined by the value of the 4-digits within the module code whereby
 higher in numerical value means a high-level module.
 </div>
 
 Suppose the level of module code is the same (evey module has the same 4-digit), shown below:
-
 ![same level](images/SameLevel.png)
 
 After executing the command `sort A-Z m/`:
-
 ![sort same level](images/SortSameLevel.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in ascending order.
 Suppose two module codes have the same level (4-digit code), the two module codes will be sorted
 alphabetically.
 </div>
 
-You can also sort module codes in a descending manner whereby higher level module codes will appear higher. 
 Format: `sort Z-A m/`, sorts in descending order
 
 Example Command: `sort Z-A m/`
 
-After executing the above command: ![after sorting](images/SortReverse.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted descending order.
-</div>
+After executing the above command: 
+![after sorting](images/SortReverse.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -389,9 +368,6 @@ The contact list will be displayed as a pie chart. The pie chart is located to t
 ![piechart](images/UiPiechart.png)
 
 This pie chart shows how many of each type of contact you have, and updates itself whenever the list changes. You can use this to have a quick overview of your social network.
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.6 Fast Template Command
 
