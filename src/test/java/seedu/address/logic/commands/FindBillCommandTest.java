@@ -35,8 +35,8 @@ public class FindBillCommandTest {
     public void equals() {
         Optional<Predicate<Name>> firstNamePredicate = Optional.of(name -> name.fullName.toLowerCase()
                 .contains("MEIER".toLowerCase()));
-        Optional<Predicate<PaymentStatus>> firstPaymentStatusPredicate = Optional.of(paymentStatus -> paymentStatus.toString().toLowerCase()
-                .contains("PAID".toLowerCase()));
+        Optional<Predicate<PaymentStatus>> firstPaymentStatusPredicate = Optional.of(paymentStatus -> paymentStatus
+                .toString().toLowerCase().contains("PAID".toLowerCase()));
         Optional<Predicate<BillDate>> firstBillDatePredicate = Optional.of(billDate -> billDate.toString()
                 .contains("2022-"));
         Optional<Predicate<Amount>> firstAmountPredicate = Optional.of(amount -> amount.toString().toLowerCase()
@@ -44,8 +44,8 @@ public class FindBillCommandTest {
 
         Optional<Predicate<Name>> secondNamePredicate = Optional.of(name -> name.fullName.toLowerCase()
                 .contains("pauLINE".toLowerCase()));
-        Optional<Predicate<PaymentStatus>> secondPaymentStatusPredicate = Optional.of(paymentStatus -> paymentStatus.toString().toLowerCase()
-                .contains("UNpaiD".toLowerCase()));
+        Optional<Predicate<PaymentStatus>> secondPaymentStatusPredicate = Optional.of(paymentStatus -> paymentStatus
+                .toString().toLowerCase().contains("UNpaiD".toLowerCase()));
         Optional<Predicate<BillDate>> secondBillDatePredicate = Optional.of(billDate -> billDate.toString()
                 .contains("-08".toLowerCase()));
         Optional<Predicate<Amount>> secondAmountPredicate = Optional.of(amount -> amount.toString().toLowerCase()
@@ -125,8 +125,8 @@ public class FindBillCommandTest {
         String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 1);
         Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
                 .contains("MEIER".toLowerCase()));
-        Optional<Predicate<PaymentStatus>> testPredicate = Optional.of(paymentStatus -> paymentStatus.toString().toLowerCase()
-                .contains("PAID".toLowerCase()));
+        Optional<Predicate<PaymentStatus>> testPredicate = Optional.of(paymentStatus -> paymentStatus
+                .toString().toLowerCase().contains("PAID".toLowerCase()));
         Optional<Predicate<BillDate>> slotPredicate = Optional.of(billDate -> billDate.toString()
                 .contains("2020-"));
         Optional<Predicate<Amount>> doctorPredicate = Optional.of(amount -> amount.toString().toLowerCase()
