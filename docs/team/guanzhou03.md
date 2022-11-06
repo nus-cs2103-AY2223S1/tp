@@ -29,9 +29,13 @@ Contributions to the UG:
 * Added `delete`, `cancel`, `hide patients`, `hide appts`, `unhide patients`, `unhide appts` feature description and examples.
 * Updated screenshot for `help` command.
 * Updated command summary.
+* Added glossary of terms to define.
 
 Contributions to the DG:
-Added explanations and UML diagrams for `cancel` command.
+* Added explanations and UML diagrams for `cancel` command.
+* Added explanations and UML diagram for `hide` commands.
+* Added glossary of terms to define.
+
 
 Contributions to team-based tasks:
 * Created and set up the organisation and repository in the initial stages of the project.
