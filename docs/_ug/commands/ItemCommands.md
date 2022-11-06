@@ -69,7 +69,6 @@ Initially, FoodRem only contains the following items:
 1. Brown Sugar
 1. Tomato
 1. Carrot
-
 {% endcapture %}
 {%
   include command-format.md
@@ -90,25 +89,26 @@ Initially, FoodRem only contains the following items:
 * This command is useful to view all items again after using the [Find Command](#search-for-an-item-find).
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-list
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+FoodRem contains the following items, each with their own attributes:
 
-```text
-Listed all items
-```
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="list"
+  itemListBox="images/itemCommands/itemListBox/list.png"
+%}
 
-Item List Box:
-
-```text
-1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
-```
+---
 
 #### Sort all items by an attribute: `sort`
 
