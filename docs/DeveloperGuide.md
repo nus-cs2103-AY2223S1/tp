@@ -202,8 +202,7 @@ This new `Person` object replaces the original `Person` object in the `Model` co
 
 The sequence diagram below details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteDebtSequenceDiagram.png)
-
+<img src="images/DeleteDebtSequenceDiagram.png" width="1100" />
 
 An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagram below.
 
