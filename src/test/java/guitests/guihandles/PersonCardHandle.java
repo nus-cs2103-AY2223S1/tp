@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Provides a handle to a person card in the person list panel.
  */
@@ -89,3 +91,4 @@ public class PersonCardHandle extends NodeHandle<Node> {
                 .collect(Collectors.toList()));
     }
 }
+// @@author

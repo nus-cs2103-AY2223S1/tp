@@ -13,6 +13,8 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.HelpWindowHandle;
 import javafx.stage.Stage;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 public class HelpWindowTest extends GuiUnitTest {
 
     private HelpWindow helpWindow;
@@ -68,3 +70,4 @@ public class HelpWindowTest extends GuiUnitTest {
         assertTrue(helpWindow.getRoot().isFocused());
     }
 }
+// @@author

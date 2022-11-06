@@ -10,6 +10,8 @@ import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.Person;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A set of assertion methods useful for writing GUI tests.
  */
@@ -72,3 +74,4 @@ public class GuiTestAssert {
         assertEquals(expected, resultDisplayHandle.getText());
     }
 }
+// @@author

@@ -2,6 +2,8 @@ package guitests.guihandles;
 
 import javafx.stage.Stage;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Provides a handle for {@code MainWindow}.
  */
@@ -49,3 +51,4 @@ public class MainWindowHandle extends StageHandle {
     }
 
 }
+// @@author

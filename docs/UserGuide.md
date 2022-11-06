@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Friendnancial's User Guide
+title: User Guide
 ---
-Friendnancial is a tool to help financial advisors manage their clients and friends. It provides an address book with features implemented specifically for financial advisors such as storing insurance information and reminders. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
+Friendnancial is a tool to help **financial advisors** manage their clients and friends. It provides an **address book** with features implemented specifically for financial advisors such as storing **insurance information** and **reminders**. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
 
 Friendnancial is a **desktop application, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, saving your precious time.
 
@@ -10,13 +10,16 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Short Glossary for non-technical Users.
-* **GUI**: Graphical User Interface - A system of interactive visual components for computer software
-* **CLI**: Command Line Interface - A text based user interface to run programs
-* **Index**: A number indicating the order of a person within the contact list, used in conjunction with commands
-* **Parameter**: Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe`
+## Short Glossary For Non-technical Users
 
-## Quick start
+| Technical Terms | Meaning                                                                                   | 
+|-----------------|-------------------------------------------------------------------------------------------|
+| **GUI**         | Graphical User Interface - A system of interactive visual components for computer software| 
+| **CLI**         | Command Line Interface - A text based user interface to run programs                      | 
+| **Index**       | A number indicating the order of a person within the contact list, used in conjunction with commands|
+| **Parameter**   | Refers to the information typed along with the commands. For example the command <br/>`add n/John Doe` means that the parameter is `n/John Doe` |
+
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -71,7 +74,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 
 ## Contact Management
 
-### Adding a person: `add`
+### Adding A Person: `add`
 
 Adds a contact to Friendnancial.
 
@@ -89,7 +92,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/01-01-1999`
 
-### Editing a person : `edit`
+### Editing A Person : `edit`
 
 Edits an existing person in the address book.
 
@@ -109,7 +112,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a person : `delete`
+### Deleting A Person : `delete`
 
 Deletes the specified person from Friendnancial.
 
@@ -126,7 +129,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete n/Edric` deletes the contact with the `NAME` matching `Edric` unless more than one match is found.
 
-### Updating insurance information about a contact : `insurance`
+### Updating Insurance Information About A Person : `insurance`
 
 Edits whether a contact has the four main types of insurance, namely health, disability, critical illness and life insurance.
 
@@ -149,12 +152,12 @@ Examples:
 * `insurance 2` sets the 2nd person to not have any of the insurances.
 * `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
 
-![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdateNew.png)
 
 
 ## Reminder
 
-### Adding a reminder : `remind`
+### Adding A Reminder : `remind`
 
 Adds a reminder for a specified contact.
 
@@ -169,7 +172,7 @@ Format: `remind INDEX r/REMINDER d/DATE`
 Examples:
 * `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd contact in the currently displayed list.
 
-### Deleting a reminder : `deleteR`
+### Deleting A Reminder : `deleteR`
 
 Deletes a reminder from the list of reminders.
 
@@ -185,13 +188,13 @@ Examples:
 
 ## Utilities
 
-### Listing all persons : `list`
+### Listing All Persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Locating persons by keyword: `find`
+### Locating Persons By Keyword: `find`
 
 Finds persons by the given keywords.
 
@@ -217,7 +220,7 @@ Examples:
 * `find a/#06-40` will display a contact with the address `Serangoon Gardens, #06-40`
 * `find a/06` or `find a/06-40` will not display a contact with the address `Serangoon Gardens, #06-40`
 
-### Clearing all entries : `clear`
+### Clearing All Entries : `clear`
 
 Clears all entries from Friendnancial, which includes the contacts and the reminders.
 
@@ -226,7 +229,7 @@ Format: `clear`
 
 ## Others
 
-### Viewing help : `help`
+### Viewing Help : `help`
 
 Shows a message explaining how to access the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
@@ -234,13 +237,13 @@ Shows a message explaining how to access the User Guide page. The link can be co
 
 Format: `help`
 
-### Exiting the program : `exit`
+### Exiting Program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving Data
 
 Friendnancial data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -256,7 +259,7 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|

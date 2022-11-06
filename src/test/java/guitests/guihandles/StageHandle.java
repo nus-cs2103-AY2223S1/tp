@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Provides access to a stage in a JavaFx application for GUI testing purposes.
  */
@@ -61,3 +63,4 @@ public abstract class StageHandle {
         return node.orElseThrow(NodeNotFoundException::new);
     }
 }
+// @@author

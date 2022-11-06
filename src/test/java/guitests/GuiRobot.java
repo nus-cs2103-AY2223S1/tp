@@ -8,6 +8,8 @@ import org.testfx.api.FxRobot;
 import guitests.guihandles.exceptions.StageNotFoundException;
 import javafx.stage.Stage;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Robot used to simulate user actions on the GUI.
  * Extends {@link FxRobot} by adding some customized functionality and workarounds.
@@ -120,3 +122,4 @@ public class GuiRobot extends FxRobot {
     private class EventTimeoutException extends RuntimeException {
     }
 }
+// @@author

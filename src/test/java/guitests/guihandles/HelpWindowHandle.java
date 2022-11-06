@@ -3,6 +3,8 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.stage.Stage;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A handle to the {@code HelpWindow} of the application.
  */
@@ -23,3 +25,4 @@ public class HelpWindowHandle extends StageHandle {
         return new GuiRobot().isWindowShown(HELP_WINDOW_TITLE);
     }
 }
+// @@author

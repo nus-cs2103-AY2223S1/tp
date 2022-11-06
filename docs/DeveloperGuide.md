@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Our project is built on the AddressBook-Level3 project created by the [SE-EDU](https://se-education.org/docs/templates.html) initiative.
+* Our project uses test code adapted from AddressBook-Level4 projected created by [SE-EDU](https://se-education.org/addressbook-level4/) initiative.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -547,12 +548,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use Case 6: Filtering contacts**
+**Use Case 6: Finding contacts**
 
 **MSS**
 
-1. User requests to filter contacts based on a given field
-2. Friendnancial shows the list of people that match the criteria
+1. User requests to finding contacts based on a given field.
+2. Friendnancial shows the list of people that match the criteria.
 
     Use case ends.
 
@@ -563,9 +564,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1b. The user does not indicate any prefix.
+* 1a. The user enters multiple prefixes.
 
-  * 1b1. Friendnancial shows all the people in the list of people.
+    * 1a1. Friendnancial shows an error message.
+
+      Use case ends.
+
+* 1b. The user does not indicate any prefix or parameters.
+
+  * 1b1. Friendnancial shows all the contacts in the list.
 
     Use case ends.
 
@@ -607,47 +614,275 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launching the application
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder and navigate to the folder.
 
-   1. Double-click the jar file Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
+   1. Ensure that you have the correct version of `java 11` installed by doing `java --version`.
+
+   1. Run the command `java -jar Friendnancial.jar` : Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to the desired size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by rerunning the command `java -jar Friendnancial.jar`.<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a person
+
+1. Adding a person successfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/John Doe p/98765432 e/johndoe@successfultest.com a/John Street, Block 123, #01-01 b/18-08-2000 t/friend`<br>
+      Expected: A contact named John Doe has been added to Friendnancial with all optional and required fields present.
+
+   1. Test Case: `add n/Jane Doe p/92345678 e/janedoe@successfultest.com a/Jane Street, Block 321 #01-01 b/18-09-2000`<br>
+      Expected: A contact named Jane Doe has been added to Friendnancial with all required fields present.
+
+1. Adding a person unsuccessfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/Johnny Doe p/98761234 a/Johnny Street, Block 231, #04-21 b/18-07-2000`<br>
+      Expected: No contact named Johnny Doe is added to Friendnancial. Error details are shown in the status message in the application. The command fails with missing required fields.
+
+   1. Test Case: `add n/Daniel s/o Danny p/98765431 e/daniel@failingtest.come a/Daniel Street, Block 132, #04-23 b/18-01-2000`<br>
+      Expected: No contact named Daniel s/o Danny is added to Friendnancial. Error details are shown in the status message in the application. Only alphenumeric values are allowed for names.
+
+
+### Editing a person
+
+1. Editing a person while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `edit 1 p/12345678`<br>
+      Expected: First contact has their phone field updated and the display has been updated to reflect this change. Details of the edit are shown in the status message. Single edit changes are allowed.
+
+   1. Test Case: `edit 1 p/123456789 e/newemail@email.com`<br>
+      Expected: First contact has their phone and email field updated and the display has been updated to reflect change. Details of the edit are shown in the status message. Multiple fields can be updated at once.
+
+1. Editing a person while persons are being shown unsuccessfully
+
+    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+    1. Test Case: `edit 1`<br>
+       Expected: First contact has no fields updated. Error details are shown in the status message. Must specify fields to edit.
+
+    1. Test Case: `edit 0`<br>
+       Expected: No fields are updated at all across all contacts. Error details are shown in the status message. Index must be positive integer.
+
+1. Editing a person while no persons are being shown.
+
+    1. Prerequisites: List of contacts contains no persons.
+
+    1. Test Case: `edit 1 p/98765432`<br>
+       Expected: No fields are updated. Error details are shown in the status message. There must be persons in the list of contacts to edit.
+
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while persons are being shown successfully
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test Case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Deleting by index.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test Case: `delete n/[VALID NAME]`<br>
+      Expected: The contact with the matching `NAME` is deleted from the list. Details of the deleted contact shown in the status message. Deleting by valid name.
+
+1. Deleting a person while persons are being shown unsuccessfully.
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Deleting by wrong index.
+
+   1. Test Case: `delete n/[INVALID NAME]`<br>
+      Expected: No person is deleted. Error details shown in the status message. Deleting by wrong name.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while no persons are being shown
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `delete n/[VALID NAME]`<br>
+      Expected: No contacts are deleted. Error details are shown in the status message. Deleting when no contacts are shown.
+
+   1. Test Case: `delete 1`<br>
+      Expected: No contacts are deleted. Error details are shown in the status message. Deleting when no contacts are shown.
+
+
+### Updating insurance
+
+1. Updating a person's insurance while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 1 hi/`<br>
+      Expected: First contact is shown to have health insurance and no other insurance. Details of the updated insurance policy are shown in the status message. Updating single insurance.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: First contact is shown to have no insurance. Details of the removed insurance policies are shown in the status message. Removing insurance.
+
+   1. Test Case: `insurance 1 hi/ di/ ci/ li/`<br>
+      Expected: First contact is shown to have all types of insurance. Details of the updated insurance policies are shown in the status message. Updating all insurance.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 0 hi/`<br>
+      Expected: No insurance policies are updated. Error details shown in the status message. Updating insurance with wrong index.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: No insurance policies are updated. Error details are shown in the status message. Updating insurance when no contacts are shown.
+
+
+### Adding a reminder
+
+1. Adding a reminder to a person while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `remind 1 r/Test Task d/18-09-2025`<br>
+      Expected: Add a reminder tied to person at index 1 with specified details. Details of the reminder are shown in the status message.
+
+1. Adding a reminder to a person while persons are being shown unsuccessfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `remind 0 r/Test Task d/18-09-2026`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Incorrect index to add a reminder to.
+
+   1. Test Case: `remind 1 r/Testing Task d/1926-07-22`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Wrong date format.
+
+1. Add a reminder to a person while no persons are being shown.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `remind 1 r/Testing Testing 1, 2, 3 d/18-09-2024`<br>
+      Expected: No reminders are added. Error details are shown in the status message. There must be persons in the list of contacts to add reminder.
+
+
+### Deleting a reminder
+
+1. Deleting a reminder successfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 1`<br>
+      Expected: Deletes the reminder at index 1. Details of the deleted reminder are shown in the status message.
+
+1. Deleting a reminder unsuccessfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 0`<br>
+      Expected: No reminder is deleted from the list of remindres. Error details are shown in the status message. Incorrect reminder index.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+### Listing all contacts
+
+1. Listing all contacts
+
+   1. Run the `list` command.
+      Expected: All the contacts in Friendnancial are displayed to the user.
+
+   1. Users can then view all contacts as desired.
+
+
+### Finding specific contacts
+
+1. Finding contacts while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find n/[VALID NAME]`<br>
+      Expected: Finds contact that have matching valid names. Details of the find command are shown in the status message. Single field search.
+
+   1. Test Case: `find t/[VALID TAG]`<br>
+      Expected: Finds contact that have matching valid tags. Details of the find command are shown in the status message.
+
+   1. Test Case: `find b/[VALID BIRTHDAY]`<br>
+      Expected: Finds contact that have matching valid birthdays. Details of the find command are shown in the status message.
+
+   1. Test Case: `find`<br>
+      Expected: Finds all contacts. Details of the find command are shown in the status message.
+
+   1. Test Case: `find n/[VALID NAME] t/[VALID TAG]`<br>
+      Expected: Finds contacts that match all the details giving. Details of the find command are shown in the status message. Multiple field search.
+
+1. Find contacts while persons are being shown unsuccessfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find x/`<br>
+      Expected: Find command fails. Error details are shown in the status message.
+
+1. Find contacts while no persons are being shown.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `find`<br>
+      Expected: Finds no contacts. Find details are shown in the status message. No persons are found.
+
+
+### Viewing help
+
+1. Viewing the help menu
+
+   1. Run the `help` command or click the help button on the display.
+      Expected: A popup appears displaying the link to the user guide.
+
+   1. Users can copy the link and visit the User Guide for more information.
+
+
+### Clearing all entries
+
+1. Clearing all entries
+
+   1. Run the `clear` command from the application.<br>
+      Expected: All contacts and reminders are cleared from the display of the application.
+
+   1. You may then add new contacts to the application as desired.
+
+
+### Exiting the Application
+
+1. Closing the application when finished
+
+   1. Exit the application using the `exit` command or by closing the window.<br>
+   Expected: The application will close and all the changes made will be saved.
+
+   1. You may then reopen the application and continue using it.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Access to the `/data` folder that will be created in the same folder containing the `Friendnancial.jar` file.
 
-1. _{ more test cases …​ }_
+   1. Test Case: Navigate to the `/data` folder that is in the same folder containing the `Friendnancial.jar` file and delete the `addressbook.json` file. Then reopen the application. <br>
+      Expected: The application will be repopulated with the initial starting data and no changes saved.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
