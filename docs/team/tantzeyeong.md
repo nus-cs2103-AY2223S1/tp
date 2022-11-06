@@ -45,6 +45,7 @@ All of my code contributions can be found [here](https://nus-cs2103-ay2223s1.git
   - Project-management:
     - Managed milestones for team repository.
     - Managed release [v1.3.trial](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases/tag/v1.3.trial) on GitHub.
+    - Kept track of weekly deliverables.
   - Documentation
     - User Guide
       - Added documentation for `find` command / search by multiple fields feature.
