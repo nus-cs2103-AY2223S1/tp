@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+left to right direction
+actor User as user
+package JeeqTracker{
+    package "Client"{
+        usecase "Add Client" as UC1
+        usecase "Delete Client" as UC2
+        usecase "Edit Client" as UC3
+        usecase "Find Client" as UC12
+    }
+    package "Transaction"{
+        usecase "Buy Transaction" as UC4
+        usecase "Sell Transaction" as UC5
+        usecase "Delete Transaction" as UC6
+        usecase "Edit Transaction" as UC7
+        usecase "Sort Transactions" as UC11
+    }
+    package "Remark"{
+        usecase "Add Remark" as UC8
+        usecase "Edit Remark" as UC10
+        usecase "Delete Remark" as UC9
+    }
+}
+
+user ----> UC1
+user ----> UC2
+user ----> UC3
+user ----> UC4
+user ----> UC5
+user ----> UC6
+user ----> UC7
+user ----> UC8
+user ----> UC9
+user ----> UC10
+user ----> UC11
+user ----> UC12
+
+
+@enduml
