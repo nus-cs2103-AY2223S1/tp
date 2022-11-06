@@ -2,9 +2,16 @@ package seedu.clinkedin.model.person;
 
 import org.junit.jupiter.api.Test;
 
+import static seedu.clinkedin.testutil.Assert.assertThrows;
+
 class UniqueTagTypeMapTest {
 
     private final UniqueTagTypeMap uniqueTagTypeMap = new UniqueTagTypeMap();
+
+    @Test
+    public void contains_nullTagType_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagTypeMap.contains(null));
+    }
 
     @Test
     void createTagType() {
