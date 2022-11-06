@@ -107,9 +107,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackAScholarParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -296,7 +296,7 @@ Given below is an example usage scenario and how the remove operation is handled
    a window asking for the user's confirmation to remove the applicants. After the user confirms, `RemoveCommand#confirmRemove()` is called which
    in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
 
-5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
+5. `RemoveCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
 
 The following sequence diagram shows how the remove operation works:
 
@@ -312,9 +312,11 @@ The following activity diagram summarizes what happens when a user executes a re
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
-### Find applicant by find name feature
+### Find feature
 
 #### Implementation
+
+We will use find name as an example.
 
 The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
 
@@ -379,13 +381,82 @@ The following sequence diagram shows how the edit operation works:
 
 The following activity diagram summarizes what happens when a user executes a edit command:
 
-
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+### Pin applicant feature
 
+
+#### Implementation
+
+The pin operation is facilitated by `PinCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the pin operation is handled by TrackAScholar:
+1. The user enters `pin 1`, for example, to pin an existing applicant at index 1 in the list.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `pin` and
+   the argument `1`.
+2. `TrackAScholarParser` identifies the `pin` command and `PinCommandParser` will be instantiated which calls `PinCommandParser#parse()`.
+3. `PinCommandParser#parse()` now parses the argument and creates a new `Index` before initializing a `PinCommand`
+    with the new `Index` as an argument.
+4. `LogicManager#execute()` now calls `PinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
+   `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+5. `PinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful pinning of an applicant.
+
+The following sequence diagram shows how the pin operation works:
+
+![Interactions Inside the Logic Component for the `pin` Command example](images/PinSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a pin command:
+
+![Pin command activity diagram](images/PinCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+### UnPin applicant feature
+
+#### Implementation
+
+The unpin operation is facilitated by `UnPinCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the unpin operation is handled by TrackAScholar:
+1. The user enters `unpin Alex Yeoh`, for example, to unpin a pinned applicant with full name matching `Alex Yeoh`.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `unpin` and
+   the argument `Alex Yeoh`.
+2. `TrackAScholarParser` identifies the `unpin` command and `UnPinCommandParser` will be instantiated which calls `UnPinCommandParser#parse()`.
+3. `UnPinCommandParser#parse()` now parses the argument and creates a new `Name` before initializing a `UnPinCommand`
+   with the new `Name` as an argument.
+4. `LogicManager#execute()` now calls `UnPinCommand#execute()`, which creates a new `Applicant` object with the updated `Pin` field.
+   `Model#setApplicant()` is later invoked, which updates the existing applicant with the new applicant.
+5. `UnPinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful unpinning of an applicant.
+
+The following sequence diagram shows how the unpin operation works:
+
+![Interactions Inside the Logic Component for the `unpin` Command example](images/UnPinSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a unpin command:
+
+![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Proposed features**
+
+Coming soon in future iterations.
+
+For future iterations we plan to implement 2 new features.
+
+1. Sending of application results directly to email of the applicants.
+This will help applicant be notified of their result more quickly.
+It will also cut down the workload for admin staff.
+In this current iteration we still have to message the client manually.
+
+2. Exporting of Json file into Excel.
+The university admin staff might want to process or analyse the result in a more sophisticated manner.
+Excel is needed to aid in more sophisticated analysis as it has more functions.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)

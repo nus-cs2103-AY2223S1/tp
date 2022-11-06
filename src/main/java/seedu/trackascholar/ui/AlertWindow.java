@@ -26,6 +26,9 @@ public class AlertWindow {
         closeButton.setId("closeBtn");
         confirmationAlert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         confirmationAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        //@@author benjytan45678
+        //Reused from https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html
+        // with minor modifications
         confirmationAlert.showAndWait()
                 .filter(response -> response.getButtonData() == ButtonBar.ButtonData.YES)
                 .ifPresent(response ->
