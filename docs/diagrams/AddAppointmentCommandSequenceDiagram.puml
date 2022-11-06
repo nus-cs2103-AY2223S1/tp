@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+skinparam ParticipantFontSize 25
+
 skinparam Sequence {
     ArrowFontSize 20
 }
@@ -19,10 +21,10 @@ participant ":Model" as Model MODEL_COLOR
 participant ":Appointment" as Appointment MODEL_COLOR
 end box
 
-[-> LogicManager : execute("aa 1 d/21-01-2023 \n 12:30 l/Starbucks")
+[-> LogicManager : execute(command_details)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-01-2023 \n 12:30 l/Starbucks")
+LogicManager -> AddressBookParser : parseCommand(command_details)
 activate AddressBookParser
 
 create AddAppointmentCommandParser
@@ -32,7 +34,7 @@ activate AddAppointmentCommandParser
 AddAppointmentCommandParser  --> AddressBookParser
 deactivate AddAppointmentCommandParser
 
-AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-01-2023 \n 12:30 l/Starbucks")
+AddressBookParser -> AddAppointmentCommandParser  : parse(command_values)
 activate AddAppointmentCommandParser
 
 create Appointment
