@@ -12,7 +12,7 @@ dateFormat:
     "yyyy": A 4-digit year. For example, "2019" would represent the year 2019.
 
 lastValueOfDuplicates: >-
-  If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+  If two or more values of the same [[ parameter ]] are provided, only the last value for that parameter will be taken.
 
 priceIsWithoutSymbol: >-
   `PRICE` do not require you to include the currency. Only include the value.
