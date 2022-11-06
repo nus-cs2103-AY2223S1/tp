@@ -2,8 +2,8 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static friday.testutil.TypicalIndexes.INDEX_FIFTH_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static friday.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_SEVENTH_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 import static friday.testutil.TypicalStudents.getTypicalFriday;
@@ -28,10 +28,10 @@ public class MarkMasteryCheckCommandTest {
 
     @Test
     public void execute_studentAlreadyMarked_throwsCommandException() {
-        Student fourthStudent = model.getStudentList().get(INDEX_FOURTH_STUDENT.getZeroBased());
-        MarkMasteryCheckCommand markCommand = new MarkMasteryCheckCommand(INDEX_FOURTH_STUDENT);
+        Student fifthStudent = model.getStudentList().get(INDEX_FIFTH_STUDENT.getZeroBased());
+        MarkMasteryCheckCommand markCommand = new MarkMasteryCheckCommand(INDEX_FIFTH_STUDENT);
 
-        String expectedMessage = fourthStudent.getName() + MarkMasteryCheckCommand.MESSAGE_ALREADY_MARKED;
+        String expectedMessage = fifthStudent.getName() + MarkMasteryCheckCommand.MESSAGE_ALREADY_MARKED;
 
         assertCommandFailure(markCommand, model, expectedMessage);
     }

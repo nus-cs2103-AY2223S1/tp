@@ -2,8 +2,8 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
+import static friday.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_SEVENTH_STUDENT;
 import static friday.testutil.TypicalStudents.getTypicalFriday;
 
@@ -27,10 +27,11 @@ public class UnmarkMasteryCheckCommandTest {
 
     @Test
     public void execute_studentNotMarked_throwsCommandException() {
-        Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        UnmarkMasteryCheckCommand unmarkCommand = new UnmarkMasteryCheckCommand(INDEX_FIRST_STUDENT);
+        Student secondStudent = model.getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+        UnmarkMasteryCheckCommand unmarkCommand = new UnmarkMasteryCheckCommand(INDEX_SECOND_STUDENT);
 
-        String expectedMessage = String.format(UnmarkMasteryCheckCommand.MESSAGE_NOT_MARKED, firstStudent.getName());
+        String expectedMessage = String.format(UnmarkMasteryCheckCommand.MESSAGE_NOT_MARKED,
+                secondStudent.getName());
 
         assertCommandFailure(unmarkCommand, model, expectedMessage);
     }
