@@ -81,5 +81,4 @@ class DeleteTaskCommandTest {
                 -> commandToBeTested.execute(model));
 
     }
-
 }

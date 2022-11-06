@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -14,8 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class DeleteCommandTest {
-    Model model = new ModelManager();
-    Model expectedModel = new ModelManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new DeleteCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
@@ -32,4 +31,5 @@ class DeleteCommandTest {
                 Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, DeleteCommand.COMMAND_WORD);
         assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }
+
 }

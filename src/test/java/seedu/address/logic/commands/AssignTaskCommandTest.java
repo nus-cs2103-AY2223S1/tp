@@ -9,9 +9,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 import static seedu.address.testutil.TypicalTasks.TASK_1_DETAILS;
-import static seedu.address.testutil.TypicalTasks.TASK_2;
 import static seedu.address.testutil.TypicalTasks.TASK_2_NO_ASSIGNEE;
-import static seedu.address.testutil.TypicalTasks.TASK_3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,7 +66,7 @@ class AssignTaskCommandTest {
 
     @Test
     public void execute_assignMultiple_success() {
-        commandLine.parseArgs("2", FLAG_ASSIGNEE_STR, "2","3");
+        commandLine.parseArgs("2", FLAG_ASSIGNEE_STR, "2", "3");
         Task taskCopy = new TaskBuilder(TASK_2_NO_ASSIGNEE).build();
         Task assignedTask = taskCopy.addAssignee(BENSON).addAssignee(CARL);
         expectedModel.setTask(TASK_2_NO_ASSIGNEE, assignedTask);
@@ -101,5 +99,5 @@ class AssignTaskCommandTest {
         assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }
 
-
 }
+

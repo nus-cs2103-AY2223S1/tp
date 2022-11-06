@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 

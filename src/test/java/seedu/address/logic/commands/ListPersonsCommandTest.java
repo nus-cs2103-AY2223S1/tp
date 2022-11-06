@@ -6,12 +6,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.IndexConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

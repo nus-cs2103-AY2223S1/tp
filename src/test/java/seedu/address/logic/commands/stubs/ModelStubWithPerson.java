@@ -10,6 +10,9 @@ import seedu.address.model.person.Person;
 public class ModelStubWithPerson extends ModelStub {
     private final Person person;
 
+    /**
+     * Creates a new ModelStub with single person.
+     */
     public ModelStubWithPerson(Person person) {
         requireNonNull(person);
         this.person = person;

@@ -13,8 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class SortCommandTest {
-    Model model = new ModelManager();
-    Model expectedModel = new ModelManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new SortCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
@@ -31,5 +31,4 @@ class SortCommandTest {
                 Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, SortCommand.COMMAND_WORD);
         assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }
-
 }

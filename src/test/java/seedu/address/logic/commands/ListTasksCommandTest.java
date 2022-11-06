@@ -84,5 +84,4 @@ class ListTasksCommandTest {
                 String.format(ListTasksCommand.MESSAGE_LIST_COMPLETE_TASKS_SUCCESS, 1));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
-
 }

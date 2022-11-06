@@ -1,9 +1,6 @@
 package seedu.address.logic.commands.stubs;
 
-import static java.util.Objects.requireNonNull;
-
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,7 +10,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTruthTable;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.TruthTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;

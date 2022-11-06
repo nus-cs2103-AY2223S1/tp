@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import picocli.CommandLine;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;

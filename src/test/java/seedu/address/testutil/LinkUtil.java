@@ -1,21 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.AddLinkCommand;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Link;
-import seedu.address.model.team.Task;
-import seedu.address.model.team.Team;
 
 /**
  * Utility class that helps to convert links to commands.

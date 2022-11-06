@@ -3,14 +3,12 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
-import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

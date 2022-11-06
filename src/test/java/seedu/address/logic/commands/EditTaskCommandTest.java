@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -30,7 +29,6 @@ import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
-import seedu.address.testutil.TypicalPersons;
 import seedu.address.testutil.TypicalTasks;
 
 class EditTaskCommandTest {
@@ -88,7 +86,7 @@ class EditTaskCommandTest {
         model.updateFilteredTaskList(predicate);
         Task validTask = model.getFilteredTaskList().get(0);
 
-        expectedModel.setTask(TASK_3,validTask);
+        expectedModel.setTask(TASK_3, validTask);
 
         commandLine.parseArgs(TaskUtil.convertEditTaskToArgs(validTask, 1, 1));
         CommandResult expectedResult = new CommandResult(String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,

@@ -64,15 +64,15 @@ class AssignTaskRandomlyCommandTest {
     @Test
     public void execute_allAssigned_throwsCommandException() {
         commandLine.parseArgs("1");
-        assertThrows(CommandException.class, AssignTaskRandomlyCommand.MESSAGE_ALL_MEMBERS_ASSIGNED,
-                () -> commandToBeTested.execute(model));
+        assertThrows(CommandException.class,
+                AssignTaskRandomlyCommand.MESSAGE_ALL_MEMBERS_ASSIGNED, () -> commandToBeTested.execute(model));
     }
 
     @Test
     public void execute_invalidTaskIndexOutOfBounds_throwsCommandException() {
         int invalidTaskIndex = model.getFilteredTaskList().size() + 1;
         commandLine.parseArgs(String.valueOf(invalidTaskIndex));
-        String resultString =String.format(
+        String resultString = String.format(
                 AssignTaskRandomlyCommand.MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, invalidTaskIndex);
         assertThrows(CommandException.class, resultString, () -> commandToBeTested.execute(model));
     }

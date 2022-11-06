@@ -24,7 +24,7 @@ public class TypicalTasks {
     public static final Task TASK_3 = new Task(new TaskName("task three"), List.of(TypicalPersons.ALICE), false,
             LocalDateTime.of(2022, 12, 12, 23, 59));
 
-    public static final Task TASK_ONLY_ALICE =  new Task(new TaskName("task alice"), List.of(TypicalPersons.ALICE),
+    public static final Task TASK_ONLY_ALICE = new Task(new TaskName("task alice"), List.of(TypicalPersons.ALICE),
             false, LocalDateTime.of(2022, 12, 12, 23, 59));
     public static final Task TASK_3_NO_DEADLINE = new Task(new TaskName("task three"), List.of(TypicalPersons.ALICE),
             false,

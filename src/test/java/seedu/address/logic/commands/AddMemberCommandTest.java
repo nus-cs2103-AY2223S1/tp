@@ -4,28 +4,18 @@ import static seedu.address.logic.commands.AddMemberCommand.MESSAGE_ADD_MEMBER_S
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EmailConverter;
 import seedu.address.logic.parser.IndexConverter;
-import seedu.address.logic.parser.NameConverter;
-import seedu.address.logic.parser.PhoneConverter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.testutil.LinkUtil;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -70,9 +60,5 @@ public class AddMemberCommandTest {
         commandLine.parseArgs(new String[] {outOfBoundsIndex.toString()});
         assertThrows(CommandException.class, AddMemberCommand.MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, ()
                 -> commandToBeTested.execute(model));
-    }
-
-    @Test
-    public void equals() {
     }
 }

@@ -17,8 +17,8 @@ import seedu.address.model.ModelManager;
  */
 
 public class FindCommandTest {
-    Model model = new ModelManager();
-    Model expectedModel = new ModelManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new FindCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);

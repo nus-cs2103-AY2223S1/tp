@@ -4,15 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
-import static seedu.address.testutil.TypicalTasks.TASK_CODE;
 import static seedu.address.testutil.TypicalTeams.FIRST;
-import static seedu.address.testutil.TypicalTeams.SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import picocli.CommandLine;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TeamNameConverter;
 import seedu.address.model.Model;

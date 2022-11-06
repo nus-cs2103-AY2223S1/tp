@@ -59,6 +59,4 @@ class SortMemberCommandTest {
         commandLine.parseArgs(new String[] {"res"});
         assertCommandSuccess(commandToBeTested, model, SortMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
-
 }
