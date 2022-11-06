@@ -39,7 +39,7 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
-    Path getArchivedTaskBookFilePath();
+    Path getArchivedTaskListFilePath();
 
     /**
      * Sets the user prefs' address book file path.
@@ -49,12 +49,12 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyTaskList addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskList */
+    ReadOnlyTaskList getAddressBook();
 
-    ReadOnlyAddressBook getArchivedAddressBook();
+    ReadOnlyTaskList getArchivedTaskList();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.
@@ -93,7 +93,7 @@ public interface Model {
 
     ObservableList<Task> getFilteredArchivedTaskList();
 
-    ObservableList<Task> getArchivedTaskList();
+    ObservableList<Task> getObservableArchivedTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
@@ -123,9 +123,9 @@ public interface Model {
 
     void updateFilteredArchivedTaskList(Predicate<Task> predicate);
 
-    void setArchivedTaskBook(ReadOnlyAddressBook addressBook);
+    void setArchivedTaskList(ReadOnlyTaskList addressBook);
 
-    void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath);
+    void setArchivedTaskListFilePath(Path archivedTaskBookFilePath);
 
     /**
      * @return archived task list to be printed in CommandResult.

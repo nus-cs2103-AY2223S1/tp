@@ -95,7 +95,7 @@ public class ArchiveWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        archivedTaskListPanel = new TaskListPanel(logic.getArchivedTaskList());
+        archivedTaskListPanel = new TaskListPanel(logic.getObservableArchivedTaskList());
         archiveListPanelPlaceholder.getChildren().add(archivedTaskListPanel.getRoot());
     }
 }

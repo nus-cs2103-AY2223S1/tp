@@ -7,7 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.CARLS;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,11 +17,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ArchivedTaskBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ArchivedTaskList;
+import seedu.address.model.ReadOnlyTaskList;
 
-public class JsonArchivedTaskBookTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonArchivedTaskBookStorageTest");
+public class JsonArchivedTaskListTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonArchivedTaskListStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,9 +31,9 @@ public class JsonArchivedTaskBookTest {
         assertThrows(NullPointerException.class, () -> readArchivedTaskBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readArchivedTaskBook(String filePath) throws Exception {
-        return new JsonArchivedTaskBookStorage(Paths.get(filePath))
-                .readArchivedTaskBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyTaskList> readArchivedTaskBook(String filePath) throws Exception {
+        return new JsonArchivedTaskListStorage(Paths.get(filePath))
+                .readArchivedTaskList(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -49,44 +49,44 @@ public class JsonArchivedTaskBookTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readArchivedTaskBook("notJsonFormatArchivedTaskBook.json"));
+        assertThrows(DataConversionException.class, () -> readArchivedTaskBook("notJsonFormatArchivedTaskList.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readArchivedTaskBook("invalidTaskArchivedTaskBook.json"));
+        assertThrows(DataConversionException.class, () -> readArchivedTaskBook("invalidTaskArchivedTaskList.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidTaskArchivedTaskBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-                readArchivedTaskBook("invalidAndValidTaskArchivedTaskBook.json"));
+                readArchivedTaskBook("invalidAndValidTaskArchivedTaskList.json"));
     }
 
     @Test
     public void readAndSaveArchivedTaskBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempArchivedTaskBook.json");
-        ArchivedTaskBook original = getTypicalArchivedTaskBook();
-        JsonArchivedTaskBookStorage jsonArchivedTaskBookStorage = new JsonArchivedTaskBookStorage(filePath);
+        Path filePath = testFolder.resolve("TempArchivedTaskList.json");
+        ArchivedTaskList original = getTypicalArchivedTaskList();
+        JsonArchivedTaskListStorage jsonArchivedTaskBookStorage = new JsonArchivedTaskListStorage(filePath);
 
 
         // Save in new file and read back
-        jsonArchivedTaskBookStorage.saveArchivedTaskBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonArchivedTaskBookStorage.readArchivedTaskBook(filePath).get();
-        assertEquals(original, new ArchivedTaskBook(readBack));
+        jsonArchivedTaskBookStorage.saveArchivedTaskList(original, filePath);
+        ReadOnlyTaskList readBack = jsonArchivedTaskBookStorage.readArchivedTaskList(filePath).get();
+        assertEquals(original, new ArchivedTaskList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(HOON);
         original.removeTask(CARLS);
-        jsonArchivedTaskBookStorage.saveArchivedTaskBook(original, filePath);
-        readBack = jsonArchivedTaskBookStorage.readArchivedTaskBook(filePath).get();
-        assertEquals(original, new ArchivedTaskBook(readBack));
+        jsonArchivedTaskBookStorage.saveArchivedTaskList(original, filePath);
+        readBack = jsonArchivedTaskBookStorage.readArchivedTaskList(filePath).get();
+        assertEquals(original, new ArchivedTaskList(readBack));
 
         // Save and read without specifying file path
         original.addTask(IDA);
-        jsonArchivedTaskBookStorage.saveArchivedTaskBook(original); // file path not specified
-        readBack = jsonArchivedTaskBookStorage.readArchivedTaskBook().get(); // file path not specified
-        assertEquals(original, new ArchivedTaskBook(readBack));
+        jsonArchivedTaskBookStorage.saveArchivedTaskList(original); // file path not specified
+        readBack = jsonArchivedTaskBookStorage.readArchivedTaskList().get(); // file path not specified
+        assertEquals(original, new ArchivedTaskList(readBack));
     }
 
     @Test
@@ -97,10 +97,10 @@ public class JsonArchivedTaskBookTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveArchivedTaskBook(ReadOnlyAddressBook archivedTaskBook, String filePath) {
+    private void saveArchivedTaskBook(ReadOnlyTaskList archivedTaskBook, String filePath) {
         try {
-            new JsonArchivedTaskBookStorage(Paths.get(filePath))
-                    .saveArchivedTaskBook(archivedTaskBook, addToTestDataPathIfNotNull(filePath));
+            new JsonArchivedTaskListStorage(Paths.get(filePath))
+                    .saveArchivedTaskList(archivedTaskBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -108,7 +108,7 @@ public class JsonArchivedTaskBookTest {
 
     @Test
     public void saveArchivedTaskBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveArchivedTaskBook(new ArchivedTaskBook(), null));
+        assertThrows(NullPointerException.class, () -> saveArchivedTaskBook(new ArchivedTaskList(), null));
     }
 
 }

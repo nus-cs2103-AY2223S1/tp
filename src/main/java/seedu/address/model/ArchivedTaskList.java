@@ -7,24 +7,24 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.UniquePersonList;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at ArchivedTaskBook level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class ArchivedTaskBook implements ReadOnlyAddressBook {
+public class ArchivedTaskList implements ReadOnlyTaskList {
 
-    private final UniquePersonList archivedTasks;
+    private final UniqueTaskList archivedTasks;
 
-    public ArchivedTaskBook() {
-        archivedTasks = new UniquePersonList();
+    public ArchivedTaskList() {
+        archivedTasks = new UniqueTaskList();
     }
 
     /**
      * Creates an ArchivedTaskBook using the Persons in the {@code toBeCopied}
      */
-    public ArchivedTaskBook(ReadOnlyAddressBook toBeCopied) {
+    public ArchivedTaskList(ReadOnlyTaskList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -36,9 +36,9 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code ArchivedTaskBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTaskList newData) {
         requireNonNull(newData);
-        setArchivedTasks(newData.getPersonList());
+        setArchivedTasks(newData.getTaskList());
     }
 
     //// task-level operations
@@ -80,15 +80,15 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Task> getPersonList() {
+    public ObservableList<Task> getTaskList() {
         return archivedTasks.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ArchivedTaskBook // instanceof handles nulls
-                && archivedTasks.equals(((ArchivedTaskBook) other).archivedTasks));
+                || (other instanceof ArchivedTaskList // instanceof handles nulls
+                && archivedTasks.equals(((ArchivedTaskList) other).archivedTasks));
     }
 
     @Override

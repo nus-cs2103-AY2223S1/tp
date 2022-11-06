@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,9 +24,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 
 public class ListModuleCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(),
-            getTypicalArchivedTaskBook(), new UserPrefs());
+            getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void equals() {

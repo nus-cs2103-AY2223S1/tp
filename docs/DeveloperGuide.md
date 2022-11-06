@@ -10,7 +10,7 @@ title: Developer Guide
 ## **1. Introduction**
 
 ### **1.1 Purpose**
-This document describes the architecture and software design decisions for our CLI-based task management app notionUS.
+This document describes the architecture and software design decisions for our CLI-based task management app NotionUS.
 While the document is in general for anyone who wants to understand the system, it is primarily targeted towards the
 designers, developers and software testers of notionUS.
 
@@ -24,7 +24,7 @@ implementation of our features in the "Implementation" section.
 ## **2. Acknowledgements**
 
 
-* [AddressBook Level-3](https://se-education.org/addressbook-level3/)
+* This project is based on the [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,15 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *4. *Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
-</div>
+## **4. Design**
 
 ### 4.1 Architecture
 
@@ -62,14 +54,14 @@ is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the App.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -82,7 +74,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -126,8 +118,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -163,6 +154,7 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -174,25 +166,28 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
-* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
+* stores the archived `Task` objects in another `UniqueTaskList` object
+* stores the filter status when the task list is filtered and also updates when the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+For the `Task` class,
+* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
 ### 4.5 Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram-0.png" width="550" />
 
 The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage`, `ArchivedTaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -207,25 +202,31 @@ Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 5.1 Hide Command
+### 5.1 Archive Command
 
-In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (
-archived) tasks will still be stored and can be retrieved using `listAllCommand`.
+A user is able to archive a task when a task is completed or has been due. This helps to reduce clutter whenever a user enters the command. 
+Archived tasks will be stored and can be retrieved using `showarchive`.
 
 Command takes input
 
-* `archive <index>` where `<index>` is the index of the tasks based on the displayed index shown in Main Window.
-* `archive -d date` where `date` should be formatted as `YYYY-MM-DD` and all tasks before and on `date` will be hidden (
-  archived).
+* `archive TASK_NUMBER` where `TASK_NUMBER` is the index of the tasks based on the displayed index shown in Main Window.
 
-Command result will tell us number of tasks remaining.
+Command result will if the task is archived successfully. Should there be a duplicate of the same task in the archived task list. The new archived task will be removed from current task list. 
 
-Should `date` be improperly formatted or `<index>` entered is out of bound, a generic CommandResult and an error message
+Should the `TASK_NUMBER` entered is out of bound, a generic CommandResult and an error message
 will be given. Model will not be updated.
 
-Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound.
+Below is the sequence diagram for an execution of `archive TASK_NUMBER`, assuming `TASK_NUMBER` is not out of bound.
 
-![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram.png)
+![Sequence diagram when command `archive 1` is executed](images/ArchiveSequenceDiagram-0.png)
+
+The above sequence diagram shows how the archive command works when user input `archive 1` is entered. 
+It first parses the index of the task to archive to retrieve the task. Next, it removes the task from the task list and adds it to the archived task list. 
+
+Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` does not allow the user to modify or edit the tasks stored in archived task list. 
+
+The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`. 
+The .json file for archived task is named as `archivedTaskList.json`
 
 ### 5.2 Mark/unmark feature
 
@@ -628,17 +629,17 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse. (Usability)
 6. The error rate of the commands entered by the user should not exceed 5%. (Usability)
-7. Should take an user less than 1 day to familiarise with all the main commands used for the application. (Usability -
+7. Should take a user less than 1 day to familiarise with all the main commands used for the application. (Usability -
    learnability)
-8. An user who returned to the interface after stopping for some time should be able to use the application efficiently
+8. A user who returned to the interface after stopping for some time should be able to use the application efficiently
    right away. (Usability - memorability)
 9. Should provide a pleasant user experience and a high user satisfactory level. (Usability - satisfaction)
 10. Should not face any error or system failure 95% of the time. (Reliability)
 11. Should support the use of the UK English language. (Localisation)
 12. Should be available to users 99% of the time. (Availability)
-13. Maintainence should not take up more than 20 minutes when an error is encountered. (Maintainability)
+13. Maintenance should not take up more than 20 minutes when an error is encountered. (Maintainability)
 14. Should be easily moved from one computing environment to another without any change in its behaviour or performance.
-    ie. should not require an installer.  (Portability)
+    i.e. should not require an installer.  (Portability)
 15. Should take less than 2GB of storage space.
 16. Data should be stored locally in the user's operating device.
 
@@ -666,17 +667,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### 8.2 Deleting a task
 
@@ -695,7 +696,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+1. _{ more test cases …​ }_
 
 ### 8.3 Saving data
 

@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,20 +24,20 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskList.
      *
      * @see seedu.address.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskList getAddressBook();
 
-    ReadOnlyAddressBook getArchivedAddressBook();
+    ReadOnlyTaskList getArchivedTaskList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Task> getFilteredPersonList();
 
     ObservableList<Task> getFilteredArchivedTaskList();
 
-    ObservableList<Task> getArchivedTaskList();
+    ObservableList<Task> getObservableArchivedTaskList();
 
     /**
      * Returns the current filter of the list view.

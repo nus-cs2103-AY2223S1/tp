@@ -12,6 +12,8 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "taskList\n:TaskList" as taskList MODEL_COLOR
+participant "archivedTaskList\n:ArchivedTaskList" as archivedTaskList MODEL_COLOR
 end box
 
 [-> LogicManager : execute("archive 1")
@@ -52,6 +54,8 @@ activate ArchiveCommand
 ArchiveCommand -> Model : archive(1)
 activate Model
 
+Model -> taskList: deleteTask
+Model -> archivedTaskList: addTask
 Model --> ArchiveCommand
 deactivate Model
 

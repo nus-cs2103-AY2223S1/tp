@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import seedu.address.model.UserPrefs;
  */
 public class UnmarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -49,7 +49,7 @@ public class UnmarkCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(outOfBoundIndex);
 

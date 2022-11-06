@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,10 +26,10 @@ import seedu.address.model.task.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code ListNameCommand}.
  */
 public class ListNameCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(),
 
-            getTypicalArchivedTaskBook(), new UserPrefs());
+            getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void equals() {

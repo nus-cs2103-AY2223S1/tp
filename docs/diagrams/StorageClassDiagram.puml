@@ -18,26 +18,38 @@ package "AddressBook Storage" #F4F6F6{
 Class "<<interface>>\nTaskListStorage" as TaskListStorage
 Class JsonTaskListStorage
 Class JsonSerializableTaskList
+}
+
+package "ArchivedTaskListStorage" #F4F6F6{
+Class "<<interface>>\nArchivedTaskListStorage" as ArchivedTaskListStorage
+Class JsonArchivedTaskListStorage
+Class JsonSerializableArchivedTaskList
+}
+
 Class JsonAdaptedTask
 Class JsonAdaptedTag
 }
 
-}
-
 Class HiddenOutside #FFFFFF
+
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" TaskListStorage
+StorageManager -up-> "1" ArchivedTaskListStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> TaskListStorage
+Storage -left-|> ArchivedTaskListStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskListStorage .up.|> TaskListStorage
 JsonTaskListStorage ..> JsonSerializableTaskList
 JsonSerializableTaskList --> "*" JsonAdaptedTask
 JsonAdaptedTask --> "*" JsonAdaptedTag
+JsonArchivedTaskListStorage .up.|> ArchivedTaskListStorage
+JsonArchivedTaskListStorage ..> JsonSerializableArchivedTaskList
+JsonSerializableArchivedTaskList --> "*" JsonAdaptedTask
 
 @enduml

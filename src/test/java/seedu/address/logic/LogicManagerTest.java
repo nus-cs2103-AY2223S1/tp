@@ -23,14 +23,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.logic.commands.list.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ArchivedTaskBook;
+import seedu.address.model.ArchivedTaskList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonArchivedTaskBookStorage;
+import seedu.address.storage.JsonArchivedTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -47,10 +47,10 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("taskBook.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("taskList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        JsonArchivedTaskBookStorage archivedTaskBookStorage =
-                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+        JsonArchivedTaskListStorage archivedTaskBookStorage =
+                new JsonArchivedTaskListStorage(temporaryFolder.resolve("archivedTaskList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -81,8 +81,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        JsonArchivedTaskBookStorage archivedTaskBookStorage =
-                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+        JsonArchivedTaskListStorage archivedTaskBookStorage =
+                new JsonArchivedTaskListStorage(temporaryFolder.resolve("archivedTaskList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
@@ -137,7 +137,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new ArchivedTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new ArchivedTaskList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -163,7 +163,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyTaskList addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
@@ -171,13 +171,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonArchivedTaskBookIoExceptionThrowingStub extends JsonArchivedTaskBookStorage {
-        private JsonArchivedTaskBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonArchivedTaskListIoExceptionThrowingStub extends JsonArchivedTaskListStorage {
+        private JsonArchivedTaskListIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveArchivedTaskBook(ReadOnlyAddressBook archivedTaskBook, Path filePath) throws IOException {
+        public void saveArchivedTaskList(ReadOnlyTaskList archivedTaskBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

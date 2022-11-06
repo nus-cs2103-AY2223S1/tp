@@ -12,50 +12,50 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaskList data stored as a json file on the hard disk.
  */
-public class JsonArchivedTaskBookStorage implements ArchivedTaskBookStorage {
+public class JsonArchivedTaskListStorage implements ArchivedTaskListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonArchivedTaskBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonArchivedTaskListStorage.class);
 
     private final Path filePath;
 
-    public JsonArchivedTaskBookStorage(Path filePath) {
+    public JsonArchivedTaskListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getArchivedTaskBookFilePath() {
+    public Path getArchivedTaskListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook() throws DataConversionException, IOException {
-        return readArchivedTaskBook(filePath);
+    public Optional<ReadOnlyTaskList> readArchivedTaskList() throws DataConversionException, IOException {
+        return readArchivedTaskList(filePath);
     }
 
     /**
-     * Similar to {@link #readArchivedTaskBook()}.
+     * Similar to {@link #readArchivedTaskList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath)
+    public Optional<ReadOnlyTaskList> readArchivedTaskList(Path filePath)
             throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableArchivedTaskBook> jsonTaskBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableArchivedTaskBook.class);
+        Optional<JsonSerializableArchivedTaskList> jsonTaskList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableArchivedTaskList.class);
 
-        if (!jsonTaskBook.isPresent()) {
+        if (!jsonTaskList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonTaskBook.get().toModelType());
+            return Optional.of(jsonTaskList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -63,22 +63,22 @@ public class JsonArchivedTaskBookStorage implements ArchivedTaskBookStorage {
     }
 
     @Override
-    public void saveArchivedTaskBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveArchivedTaskBook(addressBook, filePath);
+    public void saveArchivedTaskList(ReadOnlyTaskList addressBook) throws IOException {
+        saveArchivedTaskList(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveArchivedTaskBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveArchivedTaskList(ReadOnlyTaskList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
     @Override
-    public void saveArchivedTaskBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveArchivedTaskList(ReadOnlyTaskList addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableArchivedTaskBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableArchivedTaskList(addressBook), filePath);
     }
 
 

@@ -13,8 +13,11 @@ Package Model <<Rectangle>>{
     Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
     Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
     Class "<<interface>>\nModel" as Model
+    Class ArchivedTaskList
     Class TaskList
-    Class ModelManager
+    Class ModelManager {
+        filterStatus
+    }
     Class UserPrefs
     Class UniqueTaskList
     Class Task {
@@ -32,16 +35,19 @@ Package Model <<Rectangle>>{
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+ArchivedTaskList .up.|> ReadOnlyTaskList
 TaskList .up.|> ReadOnlyTaskList
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyTaskList
-ModelManager -left-> "1" TaskList
+ModelManager -> "1" TaskList
+ModelManager -> "1" ArchivedTaskList
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaskList *--> "1" UniqueTaskList
+TaskList *--> "1  " UniqueTaskList
+ArchivedTaskList *--> "1" UniqueTaskList
 
 UniqueTaskList -r-> "all ~* " Task : \t
 

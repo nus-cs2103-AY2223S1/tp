@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.nio.file.Path;
 
@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ArchivedTaskBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ArchivedTaskList;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -28,8 +28,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        JsonArchivedTaskBookStorage archivedTaskBookStorage =
-                new JsonArchivedTaskBookStorage(getTempFilePath("archive"));
+        JsonArchivedTaskListStorage archivedTaskBookStorage =
+                new JsonArchivedTaskListStorage(getTempFilePath("archive"));
         storageManager = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
     }
 
@@ -58,10 +58,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        TaskList original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyTaskList retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new TaskList(retrieved));
     }
 
     @Test
@@ -76,14 +76,14 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        ArchivedTaskBook original = getTypicalArchivedTaskBook();
-        storageManager.saveArchivedTaskBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readArchivedTaskBook().get();
-        assertEquals(original, new ArchivedTaskBook(retrieved));
+        ArchivedTaskList original = getTypicalArchivedTaskList();
+        storageManager.saveArchivedTaskList(original);
+        ReadOnlyTaskList retrieved = storageManager.readArchivedTaskList().get();
+        assertEquals(original, new ArchivedTaskList(retrieved));
     }
 
     @Test
     public void getArchivedTaskBookFilePath() {
-        assertNotNull(storageManager.getArchivedTaskBookFilePath());
+        assertNotNull(storageManager.getArchivedTaskListFilePath());
     }
 }
