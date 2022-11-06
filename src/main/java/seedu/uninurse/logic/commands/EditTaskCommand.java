@@ -104,10 +104,6 @@ public class EditTaskCommand extends EditGenericCommand {
                 editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()));
         }
 
-        if (patientToEdit.getTasks().hasTask(updatedTask)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
-        }
-
         try {
             TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 

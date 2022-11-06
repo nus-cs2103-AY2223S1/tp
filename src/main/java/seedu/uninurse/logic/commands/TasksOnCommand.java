@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
@@ -10,29 +10,28 @@ import seedu.uninurse.model.task.DateTime;
  * Shows all tasks that are for a particular day.
  */
 public class TasksOnCommand extends DisplayTasksGenericCommand {
-
-    public static final CommandType COMMAND_TYPE = CommandType.SCHEDULE;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a list of tasks for the given date. The date must be in dd-mm-yy format.\n"
             + "Format: " + COMMAND_WORD + " DATE\n"
             + "Example: " + COMMAND_WORD + " 25-4-22";
-
     public static final String MESSAGE_SUCCESS = "Showing Tasks for %1$s";
+    public static final CommandType COMMAND_TYPE = CommandType.SCHEDULE;
 
     private final DateTime dayToCheck;
 
     /**
-     * Creates a TasksOnCommand to get the tasks on the specified {@code DateTime}.
+     * Constructs a TasksOnCommand.
+     *
+     * @param dateTime for the TasksOnCommand.
      */
     public TasksOnCommand(DateTime dateTime) {
-        requireNonNull(dateTime);
-        dayToCheck = dateTime;
+        requireAllNonNull(dateTime);
+        this.dayToCheck = dateTime;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
 
         model.setDayOfInterest(dayToCheck);
 
@@ -52,7 +51,7 @@ public class TasksOnCommand extends DisplayTasksGenericCommand {
         }
 
         // state check
-        TasksOnCommand e = (TasksOnCommand) other;
-        return dayToCheck.equals(e.dayToCheck);
+        TasksOnCommand o = (TasksOnCommand) other;
+        return dayToCheck.equals(o.dayToCheck);
     }
 }

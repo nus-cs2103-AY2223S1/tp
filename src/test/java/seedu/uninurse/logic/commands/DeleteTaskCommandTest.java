@@ -57,7 +57,7 @@ class DeleteTaskCommandTest {
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), deletedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -65,7 +65,7 @@ class DeleteTaskCommandTest {
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
-                DeleteTaskCommand.DELETE_TASK_COMMAND_TYPE, expectedModel);
+                DeleteTaskCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -88,7 +88,7 @@ class DeleteTaskCommandTest {
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS,
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), deletedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -97,7 +97,7 @@ class DeleteTaskCommandTest {
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
-                DeleteTaskCommand.DELETE_TASK_COMMAND_TYPE, expectedModel);
+                DeleteTaskCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

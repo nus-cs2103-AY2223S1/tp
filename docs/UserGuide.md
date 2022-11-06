@@ -216,7 +216,14 @@ Example: `p/91234567`
 
 ### `e/EMAIL`
 
-_Use the one from MESSAGE_CONSTRAINTS_
+`EMAIL` should be in the form of `local-part@domain`, where:
+* `local-part` contains only alphanumeric characters and the special characters `+`, `_`, `.`, `-`, and may not start or end with any special characters.
+* `domain` is made up domain labels separated by periods, where `domain` must:
+  - end with a domain label at least 2 characters long.
+  - have each domain label start and end with alphanumeric characters.
+  - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Example: `johndoe@gmail.com`
 
 ### `a/ADDRESS`
 
@@ -232,17 +239,13 @@ Example:`t/12-A nursing home`
 
 ### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-* `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
-* `DATE TIME` must be of the form dd-MM-yy HHmm, but the time is optional. <br>
-  e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
-* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
-* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
-* `INTERVAL TIME_PERIOD` is used to specify a recurring task i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
-* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non recurring task, i.e one off task.
-* `TIME_PERIOD` can be: `day`/`days`, `week`/`weeks`, `month`/`months` or `year`/`years`
-* `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
-* Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
-* Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
+The task parameter has the following constraints:
+
+* `TASK_DESCRIPTION` accepts any values.
+* `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`. <br>
+   e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
+* `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/ week(s)/ month(s)/year(s)` where `X` is a positive integer.
+   e.g. `3 days`, `7 weeks`, `1 month`, `2 months`
 
 Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
@@ -457,11 +460,21 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 
 :information_source: **Notes:**
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
-* Note that tasks are automatically sorted in chronological order upon being added, i.e if a task on `25-10-22` is added, this task's `TASK_INDEX` would be based on its chronological order in the patients task list. E.g the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
-* If a `TIME` of `2400` if provided, it would simply be translated into `0000` hours of the next day. <br>
-  e.g `2-11-22 2400` will be automatically be inferred as `3-11-22 0000`.
+* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
+* `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
+* `INTERVAL TIME_PERIOD` is used to specify a recurring task i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non recurring task, i.e one off task.
+* Note that tasks are automatically sorted in chronological order upon being added. <br> 
+  e.g. the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
 * If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
   e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution**
+If you enter a `TIME` of `2400`, then the date and time will be set to `0000` hours of the next day.
 
 </div>
 
@@ -490,10 +503,6 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
-* If a `TIME` of `2400` if provided, it would simply be translated into `0000` hours of the next day. <br>
-  e.g `2-11-22 2400` will be automatically be inferred as `3-11-22 0000`.
-* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
-  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
 
 </div>
 
@@ -507,7 +516,8 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
-* Note that you cannot edit only the time portion of the task, to change the time you would have to provide the date as well, e.g to change from `25-10-22 0800` to `25-10-22 0900`, the edit would have to involve the full date and time `d/ | 25-10-22 0900`.
+* You must always provide a `DATE` if you want to change the `TIME`. <br>
+  e.g. to change from `25-10-22 0800` to `25-10-22 0900`, the edit would be `d/| 25-10-22 0900`.
 
 </div>
 
