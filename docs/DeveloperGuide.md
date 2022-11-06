@@ -464,6 +464,10 @@ as these fields should be unique to each person.
 
 The entry time field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
 
+The activity diagram for the creation of a buyer can be seen below.
+
+![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
+
 ### Creating a property
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
@@ -482,6 +486,10 @@ there could very well be two distinct properties that exist which have both the 
 use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
 
 The entry time was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+
+The activity diagram for the creation of a property can be seen below.
+
+![Add property activity diagram](images/AddPropertyActivityDiagram.png)
 
 ### Owner specification within a property
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.

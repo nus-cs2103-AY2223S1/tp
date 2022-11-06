@@ -7,21 +7,17 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([User provided all required parameters])
-:Buyer's name, phone, email and address are parsed;
-:New entryTime is created for the buyer;
-if () then ([priceRange provided])
-:Buyer's priceRange is parsed;
-else([else])
-endif
+:Property's name, price, address, description,\n ownerName and ownerPhone are parsed;
+:New entryTime is created for the property;
 if () then ([characteristics provided])
-:Buyer's characteristics is parsed;
+:Property's characteristics is parsed;
+note left
+    For a property, only its
+    characteristics are optional.
+end note
 else([else])
 endif
-if () then ([priority provided])
-:Buyer's priority is parsed;
-else([else])
-endif
-#palegreen:New Buyer is returned;
+#palegreen:New Property is returned;
 stop
 else([User failed to provide required parameters correctly])
 #pink:Cobb displays an error;
