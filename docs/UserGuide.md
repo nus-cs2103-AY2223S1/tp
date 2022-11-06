@@ -868,12 +868,14 @@ Note that it is case-sensitive, which means <code>help</code> works but <code>He
 If you have written the correct command word, but it still does not work, then an error displayed will show you the correct usage
 or why your command is not working. Note that the prefixes are case-sensitive too. If you want to know more details about the command, please refer to that command in the <a href="#features">Features</a> section.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: How do I transfer my data to another Computer?</summary>
 <br>
 <strong>A</strong>: Install the app in the other computer and overwrite the default data folder it creates with the data folder that contains the data of your previous ArtBuddy home folder.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: Why isn't my file path being recognised by ArtBuddy?</summary>
@@ -883,6 +885,7 @@ So do check that the file path you specified starts with a '/'. Please also make
 not fall under the limitations of file paths in ArtBuddy mentioned in the <a href="#limitations-with-file-paths-in-cli">Appendix: Limitations with file paths in CLI</a>.
 If all else fails, you can try <a href="#adding-by-graphical-interface">uploading the image via GUI</a> instead!
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: What makes two customers different when adding a customer by <code>addcus</code>?</summary>
@@ -898,6 +901,7 @@ At the moment, we only support alphanumeric english characters with space for ou
 <strong>A</strong>: We decided that to avoid confusion, for every customer the title of the commissions must be unique. Therefore, if the customer you
 want to add a commission to already has the same title commission it won't be allowed.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: What makes two iterations different when adding an iteration by <code>additer</code>?</summary>
@@ -905,6 +909,7 @@ want to add a commission to already has the same title commission it won't be al
 <strong>A</strong>: We decided that for each commission the description of the iterations must be unique. Therefore, if the commission you
 want to add an iteration to already has the same description iteration it won't be allowed.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: Why am I allowed to insert more than 2 significant digits in commission fee?</summary>
@@ -913,6 +918,7 @@ want to add an iteration to already has the same description iteration it won't 
 So you can write the fee value in dollars but with more significant digits for more accurate calculations.
 But in the GUI, for the ease of your eyes, we display it in 2 significant digits only.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: Why am I allowed to insert dates that are in the past?</summary>
@@ -920,6 +926,7 @@ But in the GUI, for the ease of your eyes, we display it in 2 significant digits
 <strong>A</strong>: We expect that you've successfully had customers and commissions before using our application.
 We enabled adding past dates for archival purposes so that you can make the best out of our statistical features.
 </details>
+<br><br>
 
 <details>
 <summary><strong>Q</strong>: What are file paths and root directories?</summary>
@@ -927,6 +934,8 @@ We enabled adding past dates for archival purposes so that you can make the best
 <strong>A</strong>: We don't expect you to have a lot of technical knowledge about a computer file system.
 But we provide you a good explanation to answer your question in the <a href="#what-are-file-paths-and-root-directories">Appendix]</a>.
 </details>
+<br><br>
+
 <div align="right">
 
 [ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
