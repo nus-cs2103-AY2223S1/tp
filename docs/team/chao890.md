@@ -48,7 +48,7 @@ Given below are my contributions to the project.
 * Added implementation details for:
   * `add-leave` command
   * `delete-leave` command
-* Refactored diagrams
+* Refactored diagrams and command names 
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues.
