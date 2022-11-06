@@ -11,9 +11,28 @@ public enum Day {
     MONDAY("monday"), TUESDAY("tuesday"), WEDNESDAY("wednesday"), THURSDAY("thursday"), FRIDAY("friday"),
     SATURDAY("saturday"), SUNDAY("sunday");
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Day should only contain letters, and should be spelt out in full.";
-    public static final String VALIDATION_REGEX = "(?i)monday|tuesday|wednesday|thursday|friday|saturday|sunday";
+    public static final String MESSAGE_CONSTRAINTS = "Day should be a valid day of the week.\n";
+    public static final String MESSAGE_DID_YOU_MEAN_MONDAY =
+            "Did you mean \"monday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_TUESDAY =
+            "Did you mean \"tuesday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_WEDNESDAY =
+            "Did you mean \"wednesday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_THURSDAY =
+            "Did you mean \"thursday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_FRIDAY =
+            "Did you mean \"friday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_SATURDAY =
+            "Did you mean \"saturday\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_SUNDAY =
+            "Did you mean \"sunday\"? ";
+    public static final String VALIDATION_REGEX = "(?i)mon|monday"
+            + "|tue|tues|tuesday"
+            + "|wed|wednesday"
+            + "|thu|thur|thurs|thursday"
+            + "|fri|friday"
+            + "|sat|saturday"
+            + "|sun|sunday";
     public final String day;
 
     Day(String day) {

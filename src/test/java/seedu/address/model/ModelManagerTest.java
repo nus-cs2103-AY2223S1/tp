@@ -3,20 +3,30 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalStudents.STUDENT1;
+import static seedu.address.testutil.TypicalStudents.STUDENT2;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TuitionClassBuilder;
+import seedu.address.testutil.TutorBuilder;
 
 public class ModelManagerTest {
 
@@ -39,7 +49,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setTutorAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, LIGHT_THEME_STRING));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -56,7 +66,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, LIGHT_THEME_STRING);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
@@ -104,13 +114,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasPerson(STUDENT1));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.addPerson(STUDENT1);
+        assertTrue(modelManager.hasPerson(STUDENT1));
     }
 
     @Test
@@ -127,11 +137,6 @@ public class ModelManagerTest {
     public void hasTuitionClass_personInDatabase_returnsTrue() {
         modelManager.addTuitionClass(TUITIONCLASS1);
         assertTrue(modelManager.hasTuitionClass(TUITIONCLASS1));
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
@@ -156,8 +161,63 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void sortList_executeForStudentList_sortAlpha() {
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(new StudentBuilder().withName("Mary").build());
+        studentList.add(new StudentBuilder().withName("Charlie").build());
+        studentList.add(new StudentBuilder().withName("Sam").build());
+        studentList.add(new StudentBuilder().withName("Wendy").build());
+        studentList.add(new StudentBuilder().withName("Mike").build());
+
+        Model studentModel = new ModelManager();
+        for (Student s : studentList) {
+            studentModel.addPerson(s);
+        }
+        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.ALPHA);
+        studentList.sort(Comparator.comparing(student -> student.getName().fullName));
+        assertEquals(studentList, studentModel.getFilteredStudentList());
+    }
+
+    @Test
+    public void sortList_executeForTutorList_sortReverse() {
+        List<Tutor> tutorList = new ArrayList<>();
+        tutorList.add(new TutorBuilder().withName("Mary").build());
+        tutorList.add(new TutorBuilder().withName("Charlie").build());
+        tutorList.add(new TutorBuilder().withName("Sam").build());
+        tutorList.add(new TutorBuilder().withName("Wendy").build());
+        tutorList.add(new TutorBuilder().withName("Mike").build());
+
+        Model tutorModel = new ModelManager();
+        for (Tutor s : tutorList) {
+            tutorModel.addPerson(s);
+        }
+        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.REVERSE);
+        Collections.reverse(tutorList);
+        assertEquals(tutorList, tutorModel.getFilteredTutorList());
+    }
+
+    @Test
+    public void sortList_executeForTuitionClassList_sortDefault() {
+        List<TuitionClass> tuitionClassList = new ArrayList<>();
+        tuitionClassList.add(new TuitionClassBuilder().withName("P5MATH").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P2SCIENCE").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P4ENG").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("SEC2GEOG").build());
+        tuitionClassList.add(new TuitionClassBuilder().withName("P1ARTS").build());
+
+        Model tuitionClassModel = new ModelManager();
+        for (TuitionClass tc : tuitionClassList) {
+            tuitionClassModel.addTuitionClass(tc);
+        }
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.ALPHA);
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.REVERSE);
+        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.DEFAULT);
+        assertEquals(tuitionClassList, tuitionClassModel.getFilteredTuitionClassList());
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(STUDENT1).withPerson(STUDENT2).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -177,14 +237,6 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

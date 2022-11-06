@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -51,9 +51,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHOOL,
-                        PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                        PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_RELATIONSHIP);
 
         Index index;
 
@@ -62,6 +62,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(listType)), pe);
+        }
+
+        if (areAnyPrefixesPresent(argMultimap, PREFIX_RELATIONSHIP)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(listType)));
         }
 
         EditDescriptor editDescriptor;
@@ -96,7 +101,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     private EditPersonDescriptor extractFromMapForPerson(ArgumentMultimap argMultimap) throws ParseException {
-        if (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME)) {
+        if (areAnyPrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_TIME)) {
             throw new ParseException(
                     String.format(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(listType))));
@@ -129,8 +134,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor(extractFromMapForPerson(argMultimap));
-        if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
-            editStudentDescriptor.setSchool(ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get()));
+        if (argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).isPresent()) {
+            editStudentDescriptor.setSchool(
+                    ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).get()));
         }
         if (argMultimap.getValue(PREFIX_LEVEL).isPresent()) {
             editStudentDescriptor.setLevel(ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get()));
@@ -140,8 +146,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     private EditTutorDescriptor extractFromMapForTutor(ArgumentMultimap argMultimap) throws ParseException {
         //check if unnecessary fields are there
-        if (areAnyPrefixesPresent(argMultimap,
-                PREFIX_SCHOOL, PREFIX_LEVEL)) {
+        if (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL)) {
             throw new ParseException(
                     String.format(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(listType))));
@@ -162,7 +167,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     private EditTuitionClassDescriptor extractFromMapForClass(ArgumentMultimap argMultimap) throws ParseException {
         //check if unnecessary fields are there
         if (areAnyPrefixesPresent(argMultimap,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL, PREFIX_QUALIFICATION,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_QUALIFICATION,
                 PREFIX_INSTITUTION)) {
             throw new ParseException(
                     String.format(
@@ -173,8 +178,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTuitionClassDescriptor.setName(ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            editTuitionClassDescriptor.setSubject(ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get()));
+        if (argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).isPresent()) {
+            editTuitionClassDescriptor.setSubject(
+                    ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).get()));
         }
         if (argMultimap.getValue(PREFIX_LEVEL).isPresent()) {
             editTuitionClassDescriptor.setLevel(ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get()));

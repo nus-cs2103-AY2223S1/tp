@@ -2,12 +2,12 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
@@ -15,14 +15,12 @@ import static seedu.address.testutil.TypicalTutors.TUTOR2;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.tutor.Tutor;
@@ -38,18 +36,13 @@ public class AddressBookTest {
     private final AddressBook addressBook = new AddressBook();
 
     @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
-    }
-
-    @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalStudentsAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -57,7 +50,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateStudents_throwDuplicatePersonException() {
         // Two students with the same identity fields
-        Student editedStudent = new StudentBuilder(STUDENT1).withSchool("Woodlands Primary School").build();
+        Student editedStudent = new StudentBuilder(STUDENT1).build();
         List<Student> newStudents = Arrays.asList(STUDENT1, editedStudent);
         List<Tutor> newTutors = Arrays.asList();
         List<TuitionClass> newTuitionClasses = Arrays.asList();
@@ -68,7 +61,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateTutors_throwDuplicatePersonException() {
-        Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
+        Tutor editedTutor = new TutorBuilder(TUTOR1).build();
         List<Student> newStudents = Arrays.asList();
         List<Tutor> newTutors = Arrays.asList(TUTOR1, editedTutor);
         List<TuitionClass> newTuitionClasses = Arrays.asList();
@@ -95,7 +88,7 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasPerson(STUDENT1));
     }
 
     @Test
@@ -105,24 +98,24 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudent_studentWithSameFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(STUDENT1);
-        Student editedStudent = new StudentBuilder(STUDENT1).withSchool("Woodlands Primary School").build();
+        Student editedStudent = new StudentBuilder(STUDENT1).build();
         assertTrue(addressBook.hasPerson(editedStudent));
     }
 
     @Test
     public void editStudent_checkIfEdited() {
-        Student editedStudent = new StudentBuilder(STUDENT1).withName("Benson Meier").build();
+        Student editedStudent = new StudentBuilder(STUDENT2).build();
         addressBook.addPerson(STUDENT1);
         addressBook.setPerson(STUDENT1, editedStudent);
         assertTrue(addressBook.hasPerson(STUDENT2));
     }
 
     @Test
-    public void hasTutor_tutorWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTutor_tutorWithSameFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TUTOR1);
-        Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
+        Tutor editedTutor = new TutorBuilder(TUTOR1).build();
         assertTrue(addressBook.hasPerson(editedTutor));
     }
 
@@ -171,11 +164,56 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getTuitionClassList().remove(0));
     }
 
+    @Test
+    public void equals() {
+        // same object -> returns true
+        assertTrue(addressBook.equals(addressBook));
+
+        // same lists of entities -> returns true
+        AddressBook addressBook2 = new AddressBook();
+        assertTrue(addressBook.equals(addressBook2));
+
+        //different student list -> returns false
+        addressBook.addPerson(STUDENT1);
+        assertFalse(addressBook.equals(addressBook2));
+
+        // different tutor list -> returns false
+        addressBook2.addPerson(STUDENT1);
+        addressBook.addPerson(TUTOR1);
+        assertFalse(addressBook.equals(addressBook2));
+
+        // different tuition class list -> returns false
+        addressBook2.addPerson(TUTOR1);
+        addressBook.addTuitionClass(TUITIONCLASS1);
+        assertFalse(addressBook.equals(addressBook2));
+    }
+
+    @Test
+    public void hash() {
+        AddressBook addressBook2 = new AddressBook();
+
+        // same lists of entities -> returns true
+        assertEquals(addressBook.hashCode(), addressBook2.hashCode());
+
+        // different student list
+        addressBook2.addPerson(STUDENT1);
+        assertNotEquals(addressBook.hashCode(), addressBook2.hashCode());
+
+        // different tutor list -> returns different hashcode
+        addressBook2.removePerson(STUDENT1);
+        addressBook2.addPerson(TUTOR1);
+        assertNotEquals(addressBook.hashCode(), addressBook2.hashCode());
+
+        // different tuition class list -> returns different hashcode
+        addressBook2.removePerson(TUTOR1);
+        addressBook2.addTuitionClass(TUITIONCLASS1);
+        assertNotEquals(addressBook.hashCode(), addressBook2.hashCode());
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Tutor> tutors = FXCollections.observableArrayList();
         private final ObservableList<TuitionClass> tuitionClasses = FXCollections.observableArrayList();
@@ -185,11 +223,6 @@ public class AddressBookTest {
             this.students.setAll(students);
             this.tutors.setAll(tutors);
             this.tuitionClasses.setAll(tuitionClasses);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
         }
 
         @Override

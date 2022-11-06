@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandResult.CommandType.EDIT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_CLASS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_STUDENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_TUTOR;
@@ -23,9 +24,16 @@ import static seedu.address.logic.commands.CommandTestUtil.showTuitionClassAtInd
 import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN1;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN2;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +79,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         expectedModel.setPerson(model.getFilteredStudentList().get(0), editedStudent);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUTOR_LIST);
@@ -88,7 +97,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.setPerson(model.getFilteredTutorList().get(0), editedTutor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
@@ -103,7 +113,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -129,7 +140,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         expectedModel.setPerson(lastStudent, editedStudent);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, indexLastStudent.getZeroBased());
 
         // tutor
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
@@ -153,7 +165,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.setPerson(lastTutor, editedTutor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, indexLastTutor.getZeroBased());
 
         // tuition class
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
@@ -176,7 +189,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.setTuitionClass(lastClass, editedClass);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, indexLastClass.getZeroBased());
     }
 
     @Test
@@ -193,7 +207,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         // tutor
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
@@ -207,7 +222,8 @@ public class EditCommandTest {
         expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         // class
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
@@ -221,7 +237,8 @@ public class EditCommandTest {
         expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -242,7 +259,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         expectedModel.setPerson(model.getFilteredStudentList().get(0), editedStudent);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         // tutor
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
@@ -260,7 +278,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.setPerson(model.getFilteredTutorList().get(0), editedTutor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
 
         // class
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
@@ -278,7 +297,8 @@ public class EditCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -419,6 +439,57 @@ public class EditCommandTest {
                 new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_existingPersonClassList_success() {
+        Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> classList = new ArrayList<>();
+        classList.add(TUITIONCLASS1);
+        classList.add(TUITIONCLASS2);
+        model.setTuitionClasses(classList);
+
+
+        AddressBook expectedAddressBook = new AddressBook();
+        TuitionClass editedClass = new TuitionClassBuilder(TUITIONCLASS1).withName("updatedName").build();
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends")
+                .withSchool("Keming Primary School")
+                .withLevel("PRIMARY3")
+                .withNextOfKin(NEXTOFKIN1)
+                .withTuitionClasses(
+                        editedClass, TUITIONCLASS2)
+                .build());
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Benson Meier")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends")
+                .withSchool("Zheng Hua Secondary School")
+                .withLevel("SECONDARY2")
+                .withNextOfKin(NEXTOFKIN2)
+                .withTuitionClasses(
+                        editedClass, TUITIONCLASS2)
+                .build());
+
+        Model expectedModel = new ModelManager(expectedAddressBook, new UserPrefs());
+        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> expectedClassList = new ArrayList<>();
+        expectedClassList.add(new TuitionClassBuilder(TUITIONCLASS1).withName("updatedName").build());
+        expectedClassList.add(TUITIONCLASS2);
+        expectedModel.setTuitionClasses(expectedClassList);
+
+        EditTuitionClassDescriptor editTuitionClassDescriptor = new EditTuitionClassDescriptor();
+        editTuitionClassDescriptor.setName(new seedu.address.model.tuitionclass.Name("updatedName"));
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, editTuitionClassDescriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test

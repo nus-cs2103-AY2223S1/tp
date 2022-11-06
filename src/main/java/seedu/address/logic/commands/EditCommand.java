@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -9,8 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENT;
@@ -54,15 +54,15 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entry identified "
-            + "by the index number used in the displayed list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the index number used in the displayed list.\n "
+            + "\nExisting values will be overwritten by the input values.\n"
+            + "\nParameters:\n INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "\nExample:\n " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -90,54 +90,36 @@ public class EditCommand extends Command {
     public static String getMessageUsage(Model.ListType listType) {
         switch (listType) {
         case STUDENT_LIST:
-            return COMMAND_WORD + ": Edits the details of the student identified "
-                    + "by the index number used in the displayed student list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_PHONE + "PHONE] "
                     + "[" + PREFIX_EMAIL + "EMAIL] "
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
-                    + "[" + PREFIX_SCHOOL + "SCHOOL] "
+                    + "[" + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_PHONE + "91234567 "
-                    + PREFIX_EMAIL + "johndoe@example.com "
-                    + PREFIX_SCHOOL + "Katong Primary School";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         case TUTOR_LIST:
-            return COMMAND_WORD + ": Edits the details of the tutor identified "
-                    + "by the index number used in the displayed tutor list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_PHONE + "PHONE] "
                     + "[" + PREFIX_EMAIL + "EMAIL] "
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
                     + "[" + PREFIX_QUALIFICATION + "QUALIFICATION] "
                     + "[" + PREFIX_INSTITUTION + "INSTITUTION] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_PHONE + "91234567 "
-                    + PREFIX_EMAIL + "johndoe@example.com "
-                    + PREFIX_QUALIFICATION + "MSc";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         case TUITIONCLASS_LIST:
-            return COMMAND_WORD + ": Edits the details of the class identified "
-                    + "by the index number used in the displayed class list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
-                    + "[" + PREFIX_SUBJECT + "SUBJECT] "
+                    + "[" + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
                     + "[" + PREFIX_DAY + "DAY] "
                     + "[" + PREFIX_TIME + "TIME] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_SUBJECT + "Mathematics "
-                    + PREFIX_DAY + "Monday "
-                    + PREFIX_TIME + "12:00-14:00";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         default:
             return MESSAGE_USAGE;
@@ -168,11 +150,14 @@ public class EditCommand extends Command {
 
             model.setTuitionClass(classToEdit, editedClass);
             model.updateFilteredTuitionClassList(PREDICATE_SHOW_ALL_TUITIONCLASS);
-            return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
+            return new CommandResult(
+                    String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass), EDIT, index.getZeroBased());
         }
 
         Person personToEdit = (Person) lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editDescriptor);
+
+        assert (!(personToEdit instanceof NextOfKin));
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -184,7 +169,8 @@ public class EditCommand extends Command {
         } else {
             model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), EDIT, index.getZeroBased());
     }
 
     /**
@@ -203,6 +189,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        Person editedPerson = null;
+
         if (editPersonDescriptor instanceof EditStudentDescriptor && personToEdit instanceof Student) {
             EditStudentDescriptor editStudentDescriptor = (EditStudentDescriptor) editDescriptor;
             Student studentToEdit = (Student) personToEdit;
@@ -211,8 +199,8 @@ public class EditCommand extends Command {
             Level updatedLevel = editStudentDescriptor.getLevel().orElse(studentToEdit.getLevel());
             NextOfKin updatedNextOfKin = studentToEdit.getNextOfKin();
             List<TuitionClass> tuitionClasses = studentToEdit.getTuitionClasses();
-            return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSchool,
-                    updatedLevel, updatedNextOfKin, tuitionClasses);
+            editedPerson = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedSchool, updatedLevel, updatedNextOfKin, tuitionClasses);
 
         } else if (editPersonDescriptor instanceof EditTutorDescriptor && personToEdit instanceof Tutor) {
             EditTutorDescriptor editTutorDescriptor = (EditTutorDescriptor) editDescriptor;
@@ -222,11 +210,13 @@ public class EditCommand extends Command {
             Qualification updatedQualification =
                     editTutorDescriptor.getQualification().orElse(tutorToEdit.getQualification());
             List<TuitionClass> tuitionClasses = tutorToEdit.getTuitionClasses();
-            return new Tutor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedQualification,
-                    updatedInstitution, tuitionClasses);
+            editedPerson = new Tutor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedQualification, updatedInstitution, tuitionClasses);
+        } else {
+            assert false;
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return editedPerson;
     }
 
     private static TuitionClass createEditedClass(TuitionClass classToEdit, EditDescriptor editDescriptor) {

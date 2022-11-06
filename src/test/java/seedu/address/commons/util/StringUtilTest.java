@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -7,6 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class StringUtilTest {
 
@@ -138,6 +141,137 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+    //---------------- Tests for removeDuplicateWhitespace --------------------------------------
+    @Test
+    public void removeDuplicateWhitespace_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.removeDuplicateWhitespace(null));
+    }
+
+    @Test
+    public void removeDuplicateWhitespace_validInputs_correctResult() {
+        //dont do anything
+        assertEquals("", StringUtil.removeDuplicateWhitespace(""));
+        assertEquals("abc", StringUtil.removeDuplicateWhitespace("abc"));
+        assertEquals("a b c", StringUtil.removeDuplicateWhitespace("a b c"));
+
+
+        assertEquals(" ", StringUtil.removeDuplicateWhitespace("    "));
+        assertEquals("a b c", StringUtil.removeDuplicateWhitespace("a   b   c"));
+        assertEquals(" abc ", StringUtil.removeDuplicateWhitespace("   abc   "));
+    }
+    //---------------- Tests for removeDuplicateComma--------------------------------------
+    @Test
+    public void removeDuplicateComma_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.removeDuplicateComma(null));
+    }
+
+    @Test
+    public void removeDuplicateComma_validInputs_correctResult() {
+        //dont do anything
+        assertEquals("", StringUtil.removeDuplicateComma(""));
+        assertEquals("abc", StringUtil.removeDuplicateComma("abc"));
+        assertEquals("a,b,c", StringUtil.removeDuplicateComma("a,b,c"));
+
+
+        assertEquals(",", StringUtil.removeDuplicateComma(",,,,"));
+        assertEquals("a,b,c", StringUtil.removeDuplicateComma("a,,,b,,,c"));
+        assertEquals(",abc,", StringUtil.removeDuplicateComma(",,,abc,,,"));
+    }
+    //---------------- Tests for capitaliseOnlyFirstLetter--------------------------------------
+    @Test
+    public void capitaliseOnlyFirstLetter_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.capitaliseOnlyFirstLetter(null));
+    }
+
+    @Test
+    public void capitaliseOnlyFirstLetter_validInputs_correctResult() {
+        //dont do anything
+        assertEquals("", StringUtil.capitaliseOnlyFirstLetter(""));
+        assertEquals("Abc", StringUtil.capitaliseOnlyFirstLetter("Abc"));
+
+        assertEquals("A Better Car", StringUtil.capitaliseOnlyFirstLetter("a better car"));
+    }
+
+    //---------------- Tests for removeWhitespaceForLevel--------------------------------------
+    @Test
+    public void removeWhitespaceForLevel_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.removeWhitespaceForLevel(null));
+    }
+
+    @Test
+    public void removeWhitespaceForLevel_validInputs_correctResult() {
+        //dont do anything
+        assertEquals("", StringUtil.removeWhitespaceForLevel(""));
+        assertEquals("a b c", StringUtil.removeWhitespaceForLevel("a b c"));
+        assertEquals("primary3", StringUtil.removeWhitespaceForLevel("primary3"));
+        assertEquals("secondary3", StringUtil.removeWhitespaceForLevel("secondary3"));
+
+        assertEquals("primary3", StringUtil.removeWhitespaceForLevel("primary 3"));
+        assertEquals("secondary3", StringUtil.removeWhitespaceForLevel("secondary 3"));
+        assertEquals("primary3", StringUtil.removeWhitespaceForLevel("primary    3"));
+        assertEquals("secondary3", StringUtil.removeWhitespaceForLevel("secondary    3"));
+    }
+
+    //---------------- Tests for convertShortFormLevel--------------------------------------
+    @Test
+    public void convertShortFormLevel_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.convertShortFormLevel(null));
+    }
+
+    @Test
+    public void convertShortFormLevel_validInputs_correctResult() {
+        //dont do anything
+        assertEquals("", StringUtil.convertShortFormLevel(""));
+        assertEquals("a b c", StringUtil.convertShortFormLevel("a b c"));
+        assertEquals("problem3", StringUtil.convertShortFormLevel("problem3"));
+        assertEquals("second3", StringUtil.convertShortFormLevel("second3"));
+        assertEquals("primary3", StringUtil.convertShortFormLevel("primary3"));
+        assertEquals("secondary3", StringUtil.convertShortFormLevel("secondary3"));
+
+        assertEquals("primary3", StringUtil.convertShortFormLevel("p3"));
+        assertEquals("secondary3", StringUtil.convertShortFormLevel("s3"));
+        assertEquals("primary3", StringUtil.convertShortFormLevel("pri3"));
+        assertEquals("secondary3", StringUtil.convertShortFormLevel("sec3"));
+
+        assertEquals("primary3", StringUtil.convertShortFormLevel("p  3"));
+        assertEquals("secondary3", StringUtil.convertShortFormLevel("s  3"));
+    }
+
+    //---------------- Tests for formatTime--------------------------------------
+    @Test
+    public void formatTime_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.formatTime(null));
+    }
+
+    @Test
+    public void formatTime_unacceptedTimeFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> StringUtil.formatTime(""));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13:00:20"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("10"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13am"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13pm"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13:00am"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13:00pm"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("1300am"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("1300pm"));
+    }
+
+    @Test
+    public void formatTime_validInputs_correctResult() throws Exception {
+        assertEquals("10:00", StringUtil.formatTime("10am"));
+        assertEquals("22:00", StringUtil.formatTime("10pm"));
+        assertEquals("10:30", StringUtil.formatTime("10:30am"));
+        assertEquals("22:30", StringUtil.formatTime("10:30pm"));
+        assertEquals("10:30", StringUtil.formatTime("10:30"));
+        assertEquals("10:30", StringUtil.formatTime("1030"));
+        assertEquals("01:30", StringUtil.formatTime("130"));
+        assertEquals("01:30", StringUtil.formatTime("1:30"));
+
+        //formatTime not meant to catch these as its only a format converter
+        assertEquals("10:99", StringUtil.formatTime("10:99"));
+        assertEquals("99:00", StringUtil.formatTime("99:00"));
     }
 
 }

@@ -124,7 +124,11 @@ public class StudentBuilder extends PersonBuilder {
         return this;
     }
 
-    @Override
+    /**
+     * Builds {@code Student} object.
+     *
+     * @return A Student object.
+     */
     public Student build() {
         return new Student(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
                 this.getTags(), school, level, nextOfKin, tuitionClasses);

@@ -17,13 +17,24 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "[default/alpha/reverse]";
+    public static final String FEEDBACK_MESSAGE = "Valid sort command format:\n"
+            + "sort default/alpha/reverse\n";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sort the current list by chronological, alphabetical or reverse order.\n"
+            + "\nParameters:\n"
+            + "default OR\n"
+            + "alpha OR\n"
+            + "reverse \n"
+            + "\nExample: \n" + COMMAND_WORD + " alpha\n";
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 
-    private static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
-    private static final String ALPHA_SORT_SUCCESS = "alphabetically";
-    private static final String REVERSE_SORT_SUCCESS = "in reverse order";
+    public static final String DEFAULT_SORT_SUCCESS = "from oldest to newest updated entry";
+
+    public static final String ALPHA_SORT_SUCCESS = "alphabetically";
+
+    public static final String REVERSE_SORT_SUCCESS = "in reverse order";
 
     private SortBy method;
     private String successMsg;
@@ -53,7 +64,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         ListType type = model.getCurrentListType();
         model.sortList(type, this.method);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg), true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg));
     }
 
     @Override

@@ -10,8 +10,34 @@ public enum Subject {
     EMATH("emath"), AMATH("amath");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Subject name should only contain letters, and should be spelt out in full.";
-    public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology|emath|amath";
+            "Subject should only contain alphabetical characters, "
+                    + "and should be one of the valid subjects spelt out in full.\n"
+                    + "The valid subjects are:\n"
+                    + "1. English\n"
+                    + "2. Mathematics\n"
+                    + "3. Physics\n"
+                    + "4. Chemistry\n"
+                    + "5. Biology\n"
+                    + "6. Elementary Mathematics\n"
+                    + "7. Additional Mathematics\n";
+
+    public static final String MESSAGE_DID_YOU_MEAN_ENGLISH = "Did you mean \"English\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_MATHEMATICS = "Did you mean \"Math\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_PHYSICS = "Did you mean \"Physics\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_CHEMISTRY = "Did you mean \"Chemistry\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_BIOLOGY = "Did you mean \"Biology\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_EMATH = "Did you mean \"EMath\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_AMATH = "Did you mean \"AMath\"?";
+
+
+    public static final String VALIDATION_REGEX = "(?i)english|eng|"
+            + "mathematics|maths{0,1}|"
+            + "physics|phys{0,1}|"
+            + "chemistry|chem|"
+            + "biology|bio|"
+            + "(e|elem|elementary)\\s*(mathematics|maths{0,1})|"
+            + "(a|add|additional)\\s*(mathematics|maths{0,1})";
+
     public final String subject;
 
     Subject(String subject) {

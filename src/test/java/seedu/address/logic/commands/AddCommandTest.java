@@ -283,16 +283,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasTuitionClass(TuitionClass tuitionClass) {
             throw new AssertionError("This method should not be called.");
         }
@@ -363,6 +353,11 @@ public class AddCommandTest {
 
         @Override
         public void sortList(ListType type, SortCommand.SortBy method) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void export() {
             throw new AssertionError("This method should not be called");
         }
     }

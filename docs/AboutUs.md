@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ongwenpin.png" width="200px">
 
-[[github](http://github.com/ongwenpin)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ongwenpin)] [[portfolio](team/ongwenpin.md)]
 
 * Role: Developer
 * Responsibilities: Model

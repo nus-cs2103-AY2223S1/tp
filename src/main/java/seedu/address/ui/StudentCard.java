@@ -1,14 +1,19 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.person.student.Student;
 
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class StudentCard extends PersonCard {
+public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentCard.fxml";
 
@@ -22,22 +27,26 @@ public class StudentCard extends PersonCard {
 
     public final Student student;
     @FXML
-    protected Label level;
-    // TO BE CHANGED
-    //@FXML
-    //protected Label nextOfKin;
+    protected HBox cardPane;
     @FXML
-    protected Label school;
+    protected Label name;
+    @FXML
+    protected Label id;
+    @FXML
+    protected FlowPane classes;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex) {
-        super(student, displayedIndex, FXML);
+        super(FXML);
         this.student = student;
-        level.setText("Level: " + student.getLevel().level);
-        //nextOfKin.setText("Next of Kin: " + student.getNextOfKin().getName());
-        school.setText("School: " + student.getSchool().school);
+        id.setText(displayedIndex + ". ");
+        name.setText(student.getName().fullName);
+        student.getTuitionClasses().stream()
+                .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
+                .forEach(tuitionClass -> classes.getChildren()
+                        .add(new Label(tuitionClass.getName().name)));
     }
 
     @Override

@@ -2,11 +2,14 @@ package seedu.address.model.person.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -27,9 +30,9 @@ public class Student extends Person {
     private static int id = 0;
     private final School school;
     private final Level level;
-    private final NextOfKin nextOfKin;
+    private NextOfKin nextOfKin;
     private final List<TuitionClass> tuitionClasses = new ArrayList<>();
-    private final String uniqueId;
+    private final HashMap<Integer, Object> uniqueId = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -42,7 +45,7 @@ public class Student extends Person {
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
-        this.uniqueId = id + "student";
+        this.uniqueId.put(1, id);
     }
 
 
@@ -60,7 +63,7 @@ public class Student extends Person {
         this.level = level;
         this.nextOfKin = nextOfKin;
         this.tuitionClasses.addAll(tuitionClasses);
-        this.uniqueId = id + "student";
+        this.uniqueId.put(1, id);
     }
 
     public School getSchool() {
@@ -79,8 +82,12 @@ public class Student extends Person {
         return tuitionClasses;
     }
 
-    public String getUniqueId() {
+    public HashMap<Integer, Object> getUniqueId() {
         return uniqueId;
+    }
+
+    public void updateTimeAddedToList() {
+        this.uniqueId.put(0, Instant.now());
     }
 
     public void minusId() {
@@ -108,6 +115,21 @@ public class Student extends Person {
     }
 
     /**
+     * Add {@code nextOfKin} to student.
+     */
+    public void addNextOfKin(NextOfKin nextOfKin) throws CommandException {
+        requireAllNonNull(nextOfKin);
+        if (this.nextOfKin != null && this.nextOfKin.equals(nextOfKin)) {
+            throw new CommandException("trying to assign same nextOfKin");
+        }
+        this.nextOfKin = nextOfKin;
+    }
+
+    public void removeNextOfKin() {
+        this.nextOfKin = null;
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -130,6 +152,31 @@ public class Student extends Person {
                 && otherStudent.getSchool().equals(getSchool())
                 && otherStudent.getLevel().equals(getLevel())
                 && otherStudent.getTuitionClasses().equals(getTuitionClasses());
+    }
+
+    /**
+     * Returns true if this student and {@code otherPerson} are same except tags and classes.
+     * This defines a weaker notion of equality between two persons.
+     */
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof Student)) {
+            return false;
+        }
+
+        return otherPerson != null
+                && otherPerson instanceof Student
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && ((Student) otherPerson).getSchool().equals(getSchool())
+                && ((Student) otherPerson).getLevel().equals(getLevel());
+
     }
 
     @Override

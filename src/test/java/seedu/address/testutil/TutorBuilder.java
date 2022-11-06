@@ -118,7 +118,6 @@ public class TutorBuilder extends PersonBuilder {
      *
      * @return A Tutor object.
      */
-    @Override
     public Tutor build() {
         return new Tutor(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
                 this.getTags(), qualification, institution, tuitionClasses);

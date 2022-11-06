@@ -1,0 +1,64 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class "{abstract} \nPerson " as Person {
+  name : Name
+  phone : Phone
+  email : Email
+  address : Address
+  tags : Set<Tag>
+}
+
+Class Student
+Class School
+Class "Level" as StudentLevel
+Class NextOfKin
+
+Class Tutor
+Class Qualification
+Class Institution
+
+Class TuitionClass
+Class "Name" as TuitionClassName
+Class Subject
+Class "Level" as TuitionClassLevel
+Class Day
+Class Time
+Class "Tag" as TuitionClassTag
+
+Class NextOfKin
+Class Relationship
+
+Class HiddenOutside #FFFFFF
+show Person members
+hide Person methods
+
+Person <|-- Student
+Person <|-- Tutor
+Person <|-- NextOfKin
+
+Student *--> School
+Student *--> StudentLevel
+Student *--> NextOfKin
+Student *--> "~*" TuitionClass
+
+Tutor *--> Qualification
+Tutor *--> Institution
+Tutor *--> "~*" TuitionClass
+
+TuitionClass *--> TuitionClassName
+TuitionClass *--> Subject
+TuitionClass *--> TuitionClassLevel
+TuitionClass *--> Day
+TuitionClass *--> Time
+TuitionClass *--> "~*" TuitionClassTag
+
+NextOfKin *--> Relationship
+
+@enduml

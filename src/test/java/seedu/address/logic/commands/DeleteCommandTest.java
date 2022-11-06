@@ -9,20 +9,29 @@ import static seedu.address.logic.commands.CommandTestUtil.showTuitionClassAtInd
 import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN1;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN2;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -44,7 +53,7 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(studentModel.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(studentToDelete);
 
-        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel, studentToDelete);
     }
 
     @Test
@@ -68,7 +77,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(studentToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, studentModel, expectedMessage, expectedModel, studentToDelete);
     }
 
     @Test
@@ -96,7 +105,7 @@ public class DeleteCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.deletePerson(tutorToDelete);
 
-        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel, tutorToDelete);
     }
 
     @Test
@@ -122,7 +131,7 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(tutorToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tutorModel, expectedMessage, expectedModel, tutorToDelete);
     }
 
     @Test
@@ -151,7 +160,7 @@ public class DeleteCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.deleteTuitionClass(tuitionClassToDelete);
 
-        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel, tuitionClassToDelete);
     }
 
     @Test
@@ -178,7 +187,7 @@ public class DeleteCommandTest {
         expectedModel.deleteTuitionClass(tuitionClassToDelete);
         showNoEntity(expectedModel);
 
-        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, tuitionClassModel, expectedMessage, expectedModel, tuitionClassToDelete);
     }
 
     @Test
@@ -192,6 +201,49 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, tuitionClassModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_existingPersonClassList_success() {
+        Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> classList = new ArrayList<>();
+        classList.add(TUITIONCLASS1);
+        classList.add(TUITIONCLASS2);
+        model.setTuitionClasses(classList);
+
+
+        AddressBook expectedAddressBook = new AddressBook();
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends")
+                .withSchool("Keming Primary School")
+                .withLevel("PRIMARY3")
+                .withNextOfKin(NEXTOFKIN1)
+                .withTuitionClasses(TUITIONCLASS2)
+                .build());
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Benson Meier")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends")
+                .withSchool("Zheng Hua Secondary School")
+                .withLevel("SECONDARY2")
+                .withNextOfKin(NEXTOFKIN2)
+                .withTuitionClasses(TUITIONCLASS2)
+                .build());
+
+        Model expectedModel = new ModelManager(expectedAddressBook, new UserPrefs());
+        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> expectedClassList = new ArrayList<>();
+        expectedClassList.add(TUITIONCLASS2);
+        expectedModel.setTuitionClasses(expectedClassList);
+
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENTITY_SUCCESS, TUITIONCLASS1);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel, TUITIONCLASS1);
     }
 
     @Test
@@ -224,6 +276,9 @@ public class DeleteCommandTest {
         model.updateFilteredTutorList(t -> false);
         model.updateFilteredTuitionClassList(c -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredStudentList().isEmpty());
+        assertTrue(model.getFilteredTutorList().isEmpty());
+        assertTrue(model.getFilteredTuitionClassList().isEmpty());
+
     }
 }

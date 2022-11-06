@@ -82,6 +82,11 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Exports the address books to csv
+     */
+    void export();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
@@ -153,18 +158,6 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered person list
      */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
     ObservableList<Student> getFilteredStudentList();
 
     /**
@@ -216,5 +209,5 @@ public interface Model {
     /**
      * The type of the current list.
      **/
-    enum ListType { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST }
+    enum ListType { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST }
 }

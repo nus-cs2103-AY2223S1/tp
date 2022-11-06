@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -24,12 +25,15 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigned the person identified by the index "
+    public static final String FEEDBACK_MESSAGE = "Valid unassign command format:\n"
+            + "unassign INDEX " + PREFIX_NAME + "CLASS NAME\n";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": \nUnassigned the person identified by the index "
             + "number used in the displayed person list from the specified class if it exists.\n"
-            + "Parameters: unassign"
+            + "\nParameters: \nunassign"
             + "INDEX (must be a positive integer)"
             + "[" + PREFIX_NAME + " CLASS NAME] \n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
+            + "\nExample: \n" + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
 
     public static final String MESSAGE_UNASSIGNED_STUDENT_SUCCESS = "Unassigned Student: %1$s";
     public static final String MESSAGE_UNASSIGNED_TUTOR_SUCCESS = "Unassigned Tutor: %1$s";
@@ -68,7 +72,8 @@ public class UnassignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeUnassigned = model.getTuitionClass(className);
                 studentToUnassign.unassignClassFromStudent(tuitionClassToBeUnassigned);
-                return new CommandResult(String.format(MESSAGE_UNASSIGNED_STUDENT_SUCCESS, studentToUnassign));
+                return new CommandResult(String.format(MESSAGE_UNASSIGNED_STUDENT_SUCCESS, studentToUnassign),
+                        ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (TuitionClassNotAssignedException e) {
@@ -83,7 +88,9 @@ public class UnassignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssignedFrom = model.getTuitionClass(className);
                 tutorToUnassign.unassignClassFromTutor(tuitionClassToBeAssignedFrom);
-                return new CommandResult(String.format(MESSAGE_UNASSIGNED_TUTOR_SUCCESS, tutorToUnassign));
+                return new CommandResult(
+                        String.format(MESSAGE_UNASSIGNED_TUTOR_SUCCESS, tutorToUnassign),
+                        ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (TuitionClassNotAssignedException e) {

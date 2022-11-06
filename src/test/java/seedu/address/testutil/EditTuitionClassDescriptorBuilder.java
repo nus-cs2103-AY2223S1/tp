@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
@@ -80,7 +79,7 @@ public class EditTuitionClassDescriptorBuilder {
     public EditTuitionClassDescriptorBuilder withTime(String startTime, String endTime) {
         try {
             descriptor.setTime(new Time(startTime, endTime));
-        } catch (ParseException e) {
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException();
         }
         return this;

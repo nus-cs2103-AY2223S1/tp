@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
@@ -53,8 +52,7 @@ public interface AddressBookStorage {
      * @see #getAddressBookFilePath(AddressBookCategories)
      *      A single addressBook for Tutors, Students and TuitionClasses.
      */
-    Optional<ReadOnlyAddressBook> readAllAddressBook()
-            throws DataConversionException, IllegalValueException, IOException;
+    Optional<ReadOnlyAddressBook> readAllAddressBook();
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the proper storage.

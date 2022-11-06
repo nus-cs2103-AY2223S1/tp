@@ -77,8 +77,11 @@ public class NextOfKinBuilder extends PersonBuilder {
         return this;
     }
 
-
-    @Override
+    /**
+     * Builds {@code NextOfKin} object.
+     *
+     * @return A NextOfKin object.
+     */
     public NextOfKin build() {
         return new NextOfKin(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
                 this.getTags(), relationship);

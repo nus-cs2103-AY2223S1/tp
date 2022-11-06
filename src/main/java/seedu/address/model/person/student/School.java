@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class School {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "School names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "School name should only contain alphanumeric characters and spaces, and should not be left blank.\n";
 
     /*
      * The first character of the school names must not be a whitespace,

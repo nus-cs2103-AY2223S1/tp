@@ -9,12 +9,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
@@ -40,11 +42,54 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_studentWithSameFieldsInList_returnsTrue() {
         uniqueStudentList.add(STUDENT1);
-        Student editedStudent1 = new StudentBuilder(STUDENT1).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedStudent1 = new StudentBuilder(STUDENT1).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStudentList.contains(editedStudent1));
+    }
+
+    @Test
+    public void contains_studentWithSameNameInList_returnsFalse() {
+        uniqueStudentList.add(STUDENT1);
+        Student editedStudent1 = new StudentBuilder(STUDENT2).withName(STUDENT1.getName().fullName)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+    }
+
+    @Test
+    public void contains_studentWithDifferentFieldInList_returnsFalse() {
+        uniqueStudentList.add(STUDENT1);
+
+        Student editedStudent1 = new StudentBuilder(STUDENT1).withName(STUDENT2.getName().fullName)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withPhone(STUDENT2.getPhone().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withEmail(STUDENT2.getEmail().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withAddress(STUDENT2.getAddress().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withSchool(STUDENT2.getSchool().school)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withLevel(STUDENT2.getLevel().name())
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        //2 fields different
+        editedStudent1 = new StudentBuilder(STUDENT1).withEmail(STUDENT2.getEmail().value)
+                .withLevel(STUDENT2.getLevel().name())
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
     }
 
     @Test
@@ -166,5 +211,19 @@ public class UniqueStudentListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueStudentList.asUnmodifiableObservableStudentList().remove(0));
+    }
+
+    @Test
+    public void sort_default_success() {
+        ArrayList<Student> expected = new ArrayList<>(Arrays.asList(
+                new StudentBuilder().withName("Zedd").build(),
+                new StudentBuilder().withName("Adam").build(),
+                new StudentBuilder().withName("Macey").build()));
+        expected.forEach(uniqueStudentList::add);
+        uniqueStudentList.sort(SortCommand.SortBy.ALPHA);
+        uniqueStudentList.sort(SortCommand.SortBy.REVERSE);
+        uniqueStudentList.sort(SortCommand.SortBy.DEFAULT);
+        ArrayList<Student> actual = new ArrayList<>(uniqueStudentList.internalList);
+        assertEquals(expected, actual);
     }
 }

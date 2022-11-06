@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,6 +19,9 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.storage.ExportStudentCsv;
+import seedu.address.storage.ExportTuitionClassCsv;
+import seedu.address.storage.ExportTutorCsv;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +31,6 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Tutor> filteredTutors;
     private final FilteredList<TuitionClass> filteredTuitionClass;
@@ -49,7 +52,6 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         this.filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
         this.filteredTuitionClass = new FilteredList<>(this.addressBook.getTuitionClassList());
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.type = ListType.STUDENT_LIST;
     }
 
@@ -155,7 +157,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -193,6 +194,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void export() {
+        ExportStudentCsv studentCsv = new ExportStudentCsv(getStudentAddressBookFilePath());
+        ExportTutorCsv tutorCsv = new ExportTutorCsv(getTutorAddressBookFilePath());
+        ExportTuitionClassCsv tuitionClassCsv = new ExportTuitionClassCsv(getTuitionClassAddressBookFilePath());
+        try {
+            studentCsv.generateCsv();
+            tutorCsv.generateCsv();
+            tuitionClassCsv.generateCsv();
+            logger.info("All files converted to csv");
+        } catch (IOException e) {
+            logger.warning("An error occurred while converting the files to csv format :\n\t" + e.getMessage());
+        }
+    }
+
+    @Override
     public void sortList(ListType type, SortBy method) {
         switch (type) {
         case STUDENT_LIST:
@@ -209,22 +225,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
@@ -312,7 +312,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredTutors.equals(other.filteredTutors)
                 && filteredTuitionClass.equals(other.filteredTuitionClass);

@@ -1,11 +1,16 @@
 package seedu.address.commons.util;
 
+import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Helper functions for handling strings.
@@ -59,10 +64,187 @@ public class StringUtil {
         requireNonNull(s);
 
         try {
-            int value = Integer.parseInt(s);
+            int value = parseInt(s);
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns a string removing consecutive duplicate whitespaces.
+     */
+    public static String removeDuplicateWhitespace(String str) {
+        requireNonNull(str);
+
+        Pattern pattern = Pattern.compile("\\s+");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll(" ");
+    }
+
+    /**
+     * Returns a string removing consecutive duplicate commas.
+     */
+    public static String removeDuplicateComma(String str) {
+        requireNonNull(str);
+
+        Pattern pattern = Pattern.compile(",+");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll(",");
+    }
+
+    /**
+     * Returns a string capitalising every first letter of each word.
+     */
+    public static String capitaliseOnlyFirstLetter(String str) {
+        requireNonNull(str);
+
+        str = str.toLowerCase();
+        Pattern pattern = Pattern.compile("\\s\\p{Alpha}");
+        Matcher matcher = pattern.matcher(str);
+        str = matcher.replaceAll(matchResult -> matchResult.group().toUpperCase());
+        pattern = Pattern.compile("\\p{Alpha}");
+        matcher = pattern.matcher(str);
+        return matcher.replaceFirst(matchResult -> matchResult.group().toUpperCase());
+    }
+
+    //mainly for Level parsing here
+    /**
+     * Returns a string after removing whitespace Primary/Secondary and digit.
+     */
+    public static String removeWhitespaceForLevel(String level) {
+        requireNonNull(level);
+
+        Pattern pattern = Pattern.compile("(?i)primary\\s*|secondary\\s*");
+        Matcher matcher = pattern.matcher(level);
+        return matcher.replaceAll(matchResult -> matchResult.group().contains("primary") ? "primary" : "secondary");
+    }
+
+    /**
+     * Returns a string converting short form academic levels to full form.
+     */
+    public static String convertShortFormLevel(String level) {
+        requireNonNull(level);
+
+        //allow p, pri, s, sec
+        Pattern pattern = Pattern.compile("(?i)(pri|sec|p|s)\\s*\\d");
+        Matcher matcher = pattern.matcher(level);
+        return matcher.replaceAll(matchResult1 -> {
+            Pattern p = Pattern.compile("(?i)(pri|sec|p|s)\\s*");
+            Matcher m = p.matcher(matchResult1.group());
+            return m.replaceAll(matchResult2 ->
+                    matchResult2.group().toLowerCase().contains("p") ? "primary" : "secondary");
+        });
+    }
+
+    //for Time parsing
+    /**
+     * Returns a string converting plausible time formats to format accepted by LocalTime parser.
+     * @throws ParseException if invalid hours provided for 12-hour format.
+     */
+    public static String formatTime(String time) throws ParseException {
+        requireNonNull(time);
+
+        //add 0 padding to make up 2 digit hour
+        if (time.matches("\\p{Digit}{1,2}(am|pm)")) {
+            if (time.contains("am")) {
+                int hours = parseInt(time.substring(0, time.length() - 2));
+                if (hours > 12 || hours == 0) {
+                    throw new ParseException("invalid time");
+                }
+                if (hours == 12) {
+                    return "00:00";
+                } else {
+                    time = hours + ":00";
+                    return time.length() < 5
+                            ? "0" + time
+                            : time;
+                }
+            } else if (time.contains("pm")) {
+                int hours = parseInt(time.substring(0, time.length() - 2));
+                if (hours > 12 || hours == 0) {
+                    throw new ParseException("invalid time");
+                }
+                if (hours != 12) {
+                    hours += 12;
+                }
+                return hours + ":00";
+            }
+        } else if (time.matches("\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}(am|pm){0,1}")) {
+            if (time.matches("\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}")) {
+                if (time.contains(":")) {
+
+                    if (time.equals("24:00")) { //because a PE-D student argued that not accepting 24:00 is a bug lol
+                        time = "00:00";
+                    }
+
+                    return time.length() < 5
+                            ? "0" + time
+                            : time;
+                } else {
+
+                    if (time.equals("2400")) { //because a PE-D student argued that not accepting 24:00 is a bug lol
+                        time = "0000";
+                    }
+
+                    return time.length() < 4
+                            ? "0" + time.substring(0, 1) + ":" + time.substring(1)
+                            : time.substring(0, 2) + ":" + time.substring(2);
+                }
+            } else if (time.matches("\\p{Digit}{1,2}:{0,1}\\p{Digit}{2}(am|pm)")) {
+                if (time.contains("am")) {
+                    if (time.contains(":")) {
+                        int hours = parseInt(time.substring(0, time.length() - 5));
+                        if (hours > 12 || hours == 0) {
+                            throw new ParseException("invalid time");
+                        }
+                        if (hours == 12) {
+                            time = "0" + time.substring(time.length() - 5);
+                        }
+                        return time.length() < 7
+                                ? "0" + time.substring(0, time.length() - 2)
+                                : time.substring(0, time.length() - 2);
+                    } else {
+                        int hours = parseInt(time.substring(0, time.length() - 4));
+                        if (hours > 12 || hours == 0) {
+                            throw new ParseException("invalid time");
+                        }
+                        if (hours == 12) {
+                            time = "0" + time.substring(time.length() - 4);
+                        }
+                        return time.length() < 6
+                                ? "0" + time.substring(0, 1) + ":" + time.substring(1, time.length() - 2)
+                                : time.substring(0, 2) + ":" + time.substring(2, time.length() - 2);
+                    }
+                } else if (time.contains("pm")) {
+                    if (time.contains(":")) {
+                        int hours = parseInt(time.substring(0, time.length() - 5));
+                        if (hours > 12 || hours == 0) {
+                            throw new ParseException("invalid time");
+                        }
+                        if (hours != 12) {
+                            hours += 12;
+                            time = hours + time.substring(time.length() - 5);
+                        }
+                        return time.substring(0, time.length() - 2);
+
+                    } else {
+                        int hours = parseInt(time.substring(0, time.length() - 4));
+                        if (hours > 12 || hours == 0) {
+                            throw new ParseException("invalid time");
+                        }
+                        if (hours != 12) {
+                            hours += 12;
+                            time = hours + time.substring(time.length() - 4);
+                        }
+                        return time.substring(0, 2) + ":" + time.substring(2, time.length() - 2);
+                    }
+                }
+            }
+        } else {
+            throw new ParseException("invalid format");
+        }
+        assert false;
+        return "";
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -25,12 +26,15 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
+    public static final String FEEDBACK_MESSAGE = "Valid assign command format:\n"
+            + "assign INDEX " + PREFIX_NAME + "CLASS NAME\n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign the person identified by the index "
             + "number used in the displayed person list to the specified class if it exists.\n"
-            + "Parameters: assign"
+            + "\nParameters:\n assign"
             + "INDEX (must be a positive integer)"
-            + "[" + PREFIX_NAME + " CLASS NAME] \n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
+            + "[" + PREFIX_NAME + " CLASS NAME]\n"
+            + "\nExample:\n " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
 
     public static final String MESSAGE_ASSIGN_STUDENT_SUCCESS = "Assigned Student: %1$s";
     public static final String MESSAGE_ASSIGN_TUTOR_SUCCESS = "Assigned Tutor: %1$s";
@@ -69,7 +73,8 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssigned = model.getTuitionClass(className);
                 studentToAssign.assignClassToStudent(tuitionClassToBeAssigned);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign));
+                return new CommandResult(
+                        String.format(MESSAGE_ASSIGN_STUDENT_SUCCESS, studentToAssign), ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {
@@ -84,7 +89,8 @@ public class AssignCommand extends Command {
             try {
                 TuitionClass tuitionClassToBeAssignedTo = model.getTuitionClass(className);
                 tutorToAssign.assignClassToTutor(tuitionClassToBeAssignedTo);
-                return new CommandResult(String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign));
+                return new CommandResult(
+                        String.format(MESSAGE_ASSIGN_TUTOR_SUCCESS, tutorToAssign), ASSIGN, index.getZeroBased());
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             } catch (DuplicateTuitionClassException e) {

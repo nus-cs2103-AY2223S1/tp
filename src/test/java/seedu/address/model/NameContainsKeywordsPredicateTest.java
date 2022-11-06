@@ -17,7 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -55,26 +54,6 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate<String> firstPredicate =
                 new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
         assertThrows(ClassCastException.class, () -> firstPredicate.test("Invalid type"));
-    }
-
-    @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
-        NameContainsKeywordsPredicate<Person> predicate =
-                new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
-
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
@@ -127,22 +106,6 @@ public class NameContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("P2MATH", "123"));
         assertTrue(predicate.test(TUITIONCLASS1));
-    }
-
-    @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
-
-        // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
     @Test

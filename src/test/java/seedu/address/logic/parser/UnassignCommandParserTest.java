@@ -29,6 +29,6 @@ public class UnassignCommandParserTest {
     @Test
     public void parse_invalidArgs_throwParseException() {
         assertParseFailure(parser, "abc",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.FEEDBACK_MESSAGE));
     }
 }

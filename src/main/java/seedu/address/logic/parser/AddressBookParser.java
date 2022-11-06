@@ -16,9 +16,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListStudentCommand;
-import seedu.address.logic.commands.ListTuitionClassCommand;
-import seedu.address.logic.commands.ListTutorCommand;
+import seedu.address.logic.commands.NextOfKinCommand;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -49,7 +48,7 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -63,35 +62,33 @@ public class AddressBookParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD: //todo
+        case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindCommandParser(listType).parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ListStudentCommand.COMMAND_WORD:
-            return new ListStudentCommand();
-
-        case ListTutorCommand.COMMAND_WORD:
-            return new ListTutorCommand();
-
-        case ListTuitionClassCommand.COMMAND_WORD:
-            return new ListTuitionClassCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
+
+        case ShowCommand.COMMAND_WORD:
+            return new ShowCommandParser().parse(arguments);
 
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
 
         case UnassignCommand.COMMAND_WORD:
             return new UnassignCommandParser().parse(arguments);
+
+        case NextOfKinCommand.COMMAND_WORD:
+            return new NextOfKinCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
