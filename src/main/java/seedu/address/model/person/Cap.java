@@ -14,7 +14,7 @@ public class Cap {
         + "in the format of CAP_VALUE" + CAP_SEPARATOR + "MAXIMUM_CAP_VALUE and adhere to the following constraints:\n"
         + "- CAP_VALUE and MAXIMUM_CAP_VALUE should be positive numerical values and should not exceed 100.0\n"
         + "- CAP_VALUE and MAXIMUM_CAP_VALUE should not contain symbols and alphabets\n"
-        + "e.g. 4.0/5.0";
+        + "e.g. 4.0" + CAP_SEPARATOR + "5.0";
     public static final double MINIMUM = 0.0;
     public static final String VALIDATION_REGEX = "[\\s]*[0-9][\\s]*[.]?[\\s]*[0-9]*[\\s]*";
     public final double value;
