@@ -7,6 +7,11 @@ package seedu.modquik.model.reminder;
 public class ReminderDescription {
     public final String description;
 
+    /**
+     * Constructs a {@code ReminderDescription}.
+     *
+     * @param description A valid description.
+     */
     public ReminderDescription(String description) {
         this.description = description;
     }
