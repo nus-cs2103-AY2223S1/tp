@@ -34,7 +34,7 @@ public class CopyCommandTest {
     }
 
     @Test
-    public void execute_correctStage_firstItinerary() {
+    public void execute_correctStage_correctOutput() {
         // copy does not work on linux
         if (SystemUtils.IS_OS_LINUX) {
             return;
