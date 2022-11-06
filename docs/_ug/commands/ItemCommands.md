@@ -11,21 +11,21 @@ Example of an [Item](#item):
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
-* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
-* The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
-  * "dd": Day of the month. For example, "10" would represent the 10th day of the month.
-  * "mm": Month of the year, ranging from 1 to 12 for January to December respectively. For example, "05" would represent May.
-  * "yyyy": A 4-digit year. For example, "2019" would represent the year 2019.
+* {{ site.data.constraints.boughtNotAfterExpiry }}
+* {{ site.data.constraints.dateFormat.summary }}
+  * {{ site.data.constraints.dateFormat.day }}
+  * {{ site.data.constraints.dateFormat.month }}
+  * {{ site.data.constraints.dateFormat.year }}
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if it is not provided.
 * The default value for `QUANTITY` and `PRICE` is `0`.
 * The default value for `UNIT` is blank.
 * The value of `REMARKS` will be `-` if is it not provided.
-* `PRICE` do not require you to include the currency. Only include the value.
+* {{ site.data.constraints.priceIsWithoutSymbol }}
 ```
 
 ```note
 * You cannot create an item and tag it at the same time.
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+* {{ site.data.constraints.lastValueOfDuplicates }}
 ```
 
 **Example:**
@@ -246,13 +246,16 @@ The command will produce a detailed view of this item.
 
 ```info
 * All fields are optional. However, you need to include at least one parameter.
-* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
-* The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
-  * dd: Day of the month. For example, "10" would represent the 10th day of the month.
-  * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
-  * yyyy: The current year. For example, "2019" would represent the year 2019.
-* `PRICE` do not require you to include the currency. Only include the value.
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+* {{ site.data.constraints.boughtNotAfterExpiry }}
+* {{ site.data.constraints.dateFormat.summary }}
+  * {{ site.data.constraints.dateFormat.day }}
+  * {{ site.data.constraints.dateFormat.month }}
+  * {{ site.data.constraints.dateFormat.year }}
+* {{ site.data.constraints.priceIsWithoutSymbol }}
+```
+
+```note
+* {{ site.data.constraints.lastValueOfDuplicates }}
 ```
 
 **Example:**
