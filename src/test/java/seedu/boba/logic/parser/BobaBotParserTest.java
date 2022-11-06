@@ -153,10 +153,18 @@ public class BobaBotParserTest {
 
     @Test
     public void parseCommand_calculate() throws ParseException {
-        assertTrue(parser.parseCommand(CalculateCommand.COMMAND_WORD) instanceof CalculateCommand);
+        // assertTrue(parser.parseCommand(CalculateCommand.COMMAND_WORD) instanceof CalculateCommand);
         CalculateCommand calculateCommand = (CalculateCommand) parser.parseCommand(
                 CalculateCommand.COMMAND_WORD + " 1+1*9/3");
         assertEquals(new CalculateCommand(" 1+1*9/3"), calculateCommand);
+    }
+
+    @Test
+    public void parseCommand_calculate_2() throws Exception {
+        List<String> keywords = Arrays.asList("1", "+", "1");
+        CalculateCommand command = (CalculateCommand) parser.parseCommand(
+                CalculateCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new CalculateCommand(" 1 + 1"), command);
     }
 
     @Test

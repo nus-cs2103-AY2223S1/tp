@@ -30,9 +30,9 @@ public class CalculateCommand extends Command {
     /**
      * Message for calculator.
      */
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + "Calculate an arithmetic expression"
-            + "Example: " + COMMAND_WORD + "3 * (1 + 2.4)";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
+            + "Calculate an arithmetic expression \n"
+            + "Example: " + COMMAND_WORD + " 3*(1+2.4)";
 
     /**
      * Logger to record all the calculations performed
