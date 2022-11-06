@@ -1,5 +1,6 @@
 package seedu.address.model.teammate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,5 +33,13 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+    }
+
+    @Test
+    public void testEquals() {
+        Address a1 = new Address("Test");
+        Address a2 = new Address("Test");
+        assertTrue(a1.equals(a2) && a2.equals(a1));
+        assertEquals(a1.hashCode(), a2.hashCode());
     }
 }

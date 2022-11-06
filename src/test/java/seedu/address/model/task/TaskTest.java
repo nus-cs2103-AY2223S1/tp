@@ -29,7 +29,6 @@ public class TaskTest {
         assertTrue(TASK_ONE.isSameTask(editedTaskOne));
 
         // different title, all other attributes same -> returns false
-        // TODO: Update test
         editedTaskOne = new TaskBuilder(TASK_ONE).withTitle(VALID_TITLE_TASK_TWO).build();
         assertFalse(TASK_ONE.isSameTask(editedTaskOne));
 

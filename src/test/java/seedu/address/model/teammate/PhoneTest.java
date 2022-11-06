@@ -1,5 +1,6 @@
 package seedu.address.model.teammate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,5 +37,13 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+
+    @Test
+    public void testEquals() {
+        Phone p1 = new Phone("123456789");
+        Phone p2 = new Phone("123456789");
+        assertTrue(p1.equals(p2) && p2.equals(p1));
+        assertEquals(p1.hashCode(), p2.hashCode());
     }
 }

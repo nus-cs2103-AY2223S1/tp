@@ -2,6 +2,7 @@ package seedu.address.model.teammate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -167,5 +168,25 @@ public class UniqueTeammateListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueTeammateList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        UniqueTeammateList utl1 = new UniqueTeammateList();
+        UniqueTeammateList utl2 = new UniqueTeammateList();
+
+        // same values -> returns true
+        assertEquals(utl1, utl2);
+        assertEquals(utl1.hashCode(), utl2.hashCode());
+
+        // same object -> returns true
+        assertEquals(utl1, utl1);
+        assertEquals(utl1.hashCode(), utl1.hashCode());
+
+        // null -> returns false
+        assertNotEquals(null, utl1);
+
+        // different type -> returns false
+        assertNotEquals(5, utl1);
     }
 }
