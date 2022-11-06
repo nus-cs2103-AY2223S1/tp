@@ -622,16 +622,130 @@ readability of the code.
 2. The additional complexities and potential for new bugs can be mitigated 
    by robust unit and integration testing.
 
-### Goto module feature
+### Search and Navigation
 
-#### Implementation
+#### Find module feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Find person feature is similar and will be omitted.
+</div>
 
-Goto module mechanism is facilitated by `GoToCommand`, `ModuleCodeMatchesKeywordPredicate` and `GoToCommandParser`.
-It allows users to navigate to a specific module given their respective module code. <br>
+##### Implementation
 
-It uses the following methods provided by `ModelManager` which implements the `Model` interface.
-* `ModelManager#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
-* `ModelManager#setHomeStatus()`: Sets the home status of Plannit.
+Find module mechanism is facilitated by the `FindModuleCommand` and `FindModuleCommandParser`.
+
+It allows users to obtain a list of modules starting with the keyword provided.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user searches for modules in Plannit.
+
+**Step 1**. The user requests to search for a module in the Plannit by
+inputting the `find-module` command followed by a keyword.
+E.g.:
+```
+find-module CS
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` and `FindModuleCommandParser`
+to parse the user input. After validating the arguments provided by the user, the user input
+is used to instantiate a `ModuleCodeStartsWithKeywordPredicate` object.
+
+**Step 3**: A `FindModuleCommand` object is instantiated using the `ModuleCodeStartsWithKeywordPredicate`
+obtained in **Step 2** which is returned to the `LogicManager`.
+
+**Step 4**: `LogicManager` calls the `FindModuleCommand#execute()` method. This method will first
+obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
+is currently at home.
+
+**Step 5**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
+to the `ModuleCodeStartsWithKeywordPredicate` object instantiated in **Step 2**.
+
+**Step 6**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `find-module` command:
+
+![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModuleCommandParser`
+and `FindModuleCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `FindModuleCommand`:
+
+![FindModuleActivityDiagram](images/FindModuleActivityDiagram.png)
+
+#### List module feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+List person feature is similar and will be omitted.
+</div>
+
+##### Implementation
+
+List module mechanism is facilitated by the `ListModuleCommand`.
+
+It allows users to obtain a list of every module in Plannit.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user list all modules in Plannit.
+
+**Step 1**. The user requests to list all modules in Plannit by
+inputting the `list-module` command.
+E.g.:
+```
+list-module CS
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` to parse the user input.
+After validating the arguments provided by the user, the user input is used to instantiate
+a `ListModuleCommand` object, which is returned to the `LogicManger`.
+
+**Step 3**: `LogicManager` calls the `ListModuleCommand#execute()` method. This method will first
+obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
+is currently at home.
+
+**Step 4**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
+to the `Model#PREDICATE_SHOW_ALL_MODULES` predicate.
+
+**Step 5**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `list-module` command:
+
+![ListModuleSequenceDiagram](images/ListModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListModuleCommand` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `ListModuleCommand`:
+
+![ListModuleActivityDiagram](images/ListModuleActivityDiagram.png)
+
+#### Navigate to module feature
+
+##### Implementation
+
+Navigate to module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
+
+It allows users to navigate to a specific module given their respective module code, displaying information
+(i.e. tasks, links and persons) that are associated to that module.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated with that `Module`
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#updateFilteredPersonList()`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
+* `Model#setHomeStatus()`: Sets the home status of Plannit.
 
 Given below is an example usage scenario and how the mechanism
 behaves when a user navigates to a module in Plannit.
@@ -643,39 +757,38 @@ E.g.:
 goto CS1231
 ```
 
-**Step 2**: The `LogicManager` calls the `LogicManager#execute()` method on the
-user input `String`.
+**Step 2**: The `LogicManager` uses the `AddressBookParser` and `GoToCommandParser`
+to parse the user input. After validating the arguments provided by the user, the user input
+is used to perform the following actions: <br>
+* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil#parseModuleCode()`
+* Instantiate a `ModuleCodeMatchesKeywordPredicate` object
 
-**Step 3**: The `LogicManager#execute()` method first parses the user input
-`String` into a `Command` object using the `AddressBookParser#parseCommand()`
-method.
+**Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
+obtained in **Step 2** which is returned to the `LogicManager`.
 
-**Step 4**: The command word, `goto`, is extracted from the user input and
-a new `GoToCommandParser` is instantiated to parse the arguments.
+**Step 4**: `LogicManager` calls the `GoToCommand#execute()` method. This method will first
+obtain the `Module` associated with the `ModuleCode` obtained in **Step 2** by calling
+`Model#getModuleUsingModuleCode()`.
 
-**Step 5**: The `GoToCommandParser#parse()` method is then called to
-parse the arguments. After validating the arguments provided by the user, a
-new `ModuleCodeMatchesKeywordPredicate` is instantiated with the provided module code.
+**Step 5**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
+to the `ModuleCodeMatchesKeywordPredicate` object instantiated in **Step 2**.
 
-**Step 6**: The `ModuleCodeMatchesKeywordPredicate` object is then used to instantiate
-a `GoToCommand` object that is returned to the `LogicManager`.
+**Step 6**: A `PersonIsInModulePredicate` object is then instantiated with the `Module` object obtained in **Step 4**.
 
-**Step 7**: The `GoToCommand#execute()` method is then called by the
-`LogicManager`.
+**Step 7**: The person list is then filtered using the `Model#updateFilteredPersonList()` method according
+to the `PersonIsInModulePredicate` object instantiated in **Step 6**.
 
-**Step 8**: The current module list via `ModelManager#updateFilteredModuleList()`,
-filtering the module list according to the predicate object instantiated in **Step 5**.
+**Step 8**: The home status of Plannit is set to false via `Model#SetHomeStatus()`.
 
-**Step 9**: The home status is set to false via `ModelManager#SetHomeStatus()`.
-
-**Step 10**: A new `CommandResult` object is returned, indicating success.
+**Step 9**: A new `CommandResult` object is returned, indicating success.
 
 The following sequence diagram summarizes what happens when a user executes the `goto` command:
 
 ![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+and `GoToCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -684,11 +797,50 @@ The following activity diagram summarizes what happens when a user executes a `G
 
 ![GoToActivityDiagram](images/GoToActivityDiagram.png)
 
+#### Navigate to home feature
+
+##### Implementation
+
+Navigate to home mechanism is facilitated by the `HomeCommand`.
+
+It navigates users back to the home page of Plannit, showing all modules and persons stored in Plannit.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#goToHomePage()`: Sets home status to true and update module list and person list to show all modules and persons respectively, reflecting the changes accordingly in the GUI
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user navigates back to the home page of Plannit.
+
+**Step 1**. The user requests to go home by inputting the `home` command.
+E.g.:
+```
+home
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` to instantiate
+a `HomeCommand` object, which is returned to the `LogicManger`.
+
+**Step 3**: `LogicManager` calls the `HomeCommand#execute()` method. This method will then
+call the `Model#goToHomePage()` method which perform the following actions:
+* Set home status to true
+* Update module list to show all modules
+* Update person list to show all persons
+
+**Step 5**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `home` command:
+
+![HomeSequenceDiagram](images/HomeSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeCommand`should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Design consideration:
 
-##### Aspect: How find executes
+##### Aspect: How `goto` executes
 
-* **Alternative 1 (current choice):** Navigate to a single module by module code and updating home status.
+* **Alternative 1 (current choice):** Navigate to a single module by module code and update home status.
     * Pros:
         * Provides an intuitive and more versatile way for users to navigate between modules.
         * Provides an intuitive usage of commands by limiting the scope of possible commands usable
@@ -704,12 +856,13 @@ The following activity diagram summarizes what happens when a user executes a `G
     * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
 
 ##### Rationale behind current choice:
-* Alternative 1 was chosen as it provides a more intuitive way for prospective users.
+1. Alternative 1 was chosen as it provides a more intuitive way for prospective users.
 
-* The following commands`list-module`, `find-module` are implemented to allow users to filter
-  the module list via module code prefix and reset the filtered module list while in home page. <br>
-  It is not meant to be used in tandem with `goto` command. Instead, `home` command should be used to navigate back to the home page
-  after usage of the `goto` command.
+2. The following commands `list-module` and `find-module` are disabled as they are not meant to be used in tandem with `goto` command
+   as the filtering of modules is not needed when there exist only one module.
+
+3. The following commands `list-person` and `find-person` are disabled as they are not meant to be used in tandem with `goto` command
+   as essential persons within a module (i.e. professors, tutor assistant and friends) are likely to be limited in numbers.
 
 Hence, to prevent confusion we chose Alternative 1.
 
@@ -751,36 +904,29 @@ Hence, to prevent confusion we chose Alternative 1.
 
 Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have)
 
-| Priority | As a … | I want to … | So that I can…|
-| - | - | - | - |
-| `High` | User | Add a contact | View them in future settings |
-| `High` | User | Delete a contact | Trim my contact list to keep it updated |
-| `High` | User | Add a module into Plannit | Add details of the module |
-| `High` | User | Delete a module into Plannit | Remove unnecessary modules after the semester ends |
-| `High` | User | Add tasks for each module into Plannit | Keep track of tasks for each module |
-| `High` | User | Delete tasks from module on Plannit | Remove tasks that have been completed |
-| `High` | User | Add links | Store the links on Plannit for easy reference
-| `High` | User | Delete links | Remove the links when the semester ends |
-| `High` | User | Easily navigate through different modules | Quickly view relevant modules details |
-| `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks |
-| `Medium` | User | Edit module details | Rectify mistakes and update module details when needed |
-| `Medium` | User | Edit a contact | Rectify mistakes and update contact details when needed |
-| `Medium` | User | Sort tasks by deadlines | I can prioritise which tasks to complete first |
-| `Medium` | User | Set different priorities to prioritise my tasks	| I know is important and should be done first |
-| `Medium` | Forgetful Student | Organise contacts by module | I can discuss difficult assignment questions with them and delete them once the semester is completed |
-| `Medium` | Organised Person | Filter contacts by tags | Search for contacts relevant for my case |
-| `Medium` | Expert User | Search a keyword	| Go to the module which has the relevant topic I have in mind |
-| `Medium` | User | Detect (and delete) duplicate items | Avoid adding a same item twice |
-| `Medium` | New potential user | See the app populated with sample data | Easily see how the app will look like when it is in use |
-| `Medium` | Forgetful student | Group contacts by tags	| Find out which friends are taking what modules |
-| `Medium` | Expert User | Purge existing module data | Save time deleting all the module data when the semester ends |
-| `Medium` | User |	Batch delete by module | I can forget the pain of dropping modules |
-| `Low` | Forgetful Student	| Set a reminder to update me on my submission dates | Prevent any minor slip-ups in my work |
-| `Low` | Morning Lark | Configure the application to light mode | See the words clearly under the sun |
-| `Low` | Expert User | Archive existing data | Restore the data in case I mess up |
-| `Low` | User | Undo the latest commands | Recover the data which I accidentally deleted |
-| `Low` | User who is easily bored | Set different themes for the application | Enjoy different visuals  |
-| `Low` | User | Find free times | Add more dates/schedule more meetings |
+| Priority | As a … | I want to … | So that I can…                                                                                               |
+| -------- | ------ | ----------- |--------------------------------------------------------------------------------------------------------------|
+| `High` | User | Add a contact | View them in future settings                                                                                 |
+| `High` | User | Delete a contact | Trim my contact list to keep it updated                                                                      |
+| `High` | User | Add a module into Plannit | Add details of the module                                                                                    |
+| `High` | User | Delete a module into Plannit | Remove unnecessary modules after the semester ends                                                           |
+| `High` | User | Add tasks for each module into Plannit | Keep track of tasks for each module                                                                          |
+| `High` | User | Delete tasks from module on Plannit | Remove tasks that have been completed                                                                        |
+| `High` | User | Add links | Store the links on Plannit for easy reference                                                                
+| `High` | User | Delete links | Remove the links when the semester ends                                                                      |
+| `High` | User | Easily navigate through different modules | Quickly view relevant modules details                                                                        |
+| `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks                                                                        |
+| `Medium` | User | Edit module details | Rectify mistakes and update module details when needed                                                       |
+| `Medium` | User | Edit a contact | Rectify mistakes and update contact details when needed                                                      |
+| `Medium` | User | Set different priorities to prioritise my tasks	| I know is important and should be done first                                                                 |
+| `Medium` | Forgetful Student | Organise contacts by module | I can discuss difficult assignment questions with them and delete them once the semester is completed        |
+| `Medium` | Organised Person | Filter contacts by names | Search for contacts relevant for my case                                                                     |
+| `Medium` | Expert User | Search a keyword	| Go to the module which has the relevant topic I have in mind                                                 |
+| `Medium` | User | Detect (and delete) duplicate items | Avoid adding a same item twice                                                                               |
+| `Medium` | New potential user | See the app populated with sample data | Easily see how the app will look like when it is in use                                                      |
+| `Medium` | Forgetful student | Group contacts by tags	| Find out which friends are taking what modules                                                               |
+| `Medium` | Expert User | Purge existing module data | Save time deleting all the module data when the semester ends                                                |
+| `Low` | Expert User | Archive existing data | Restore the data in case I mess up                                                                           |
 
 ### Use cases
 
@@ -822,21 +968,50 @@ Use case ends.
   Use case resumes at step 2.
 
 #### Use case: UC03 - Find module
+**Preconditions**:
+* User is on the home page.
+
 **Main Success Scenario (MSS)**
-1. User chooses to search up a module's information.
-2. Plannit requests for module code.
-3. User enters the module code.
-4. Plannit searches for module and displays module details.
+1. User chooses to search up on modules with module code starting with specific keyword.
+2. Plannit requests for keyword.
+3. User enters the keyword.
+4. Plannit searches and displays a list of modules with module code starting with the specified keyword.
 
 Use case ends.
 
-Extensions:
-* 3a. Plannit detects that the specified module does not exist.
-    * 3a1. Plannit displays a text, informing that the specified module does not exist.
+#### Use case: UC04 - List module
+**Preconditions**:
+* User is on the home page.
 
-  Use case ends.
+**Main Success Scenario (MSS)**
+1. User chooses to obtain every module in Plannit.
+2. Plannit returns a list with every module in Plannit.
 
-#### Use case: UC04 - Add a task
+Use case ends.
+
+#### Use case: UC05 - Find person
+**Preconditions**:
+* User is on the home page.
+
+**Main Success Scenario (MSS)**
+1. User chooses to search up on person with names starting with specific keyword.
+2. Plannit requests for keyword.
+3. User enters the keyword.
+4. Plannit searches and displays a list of persons with names starting with the specified keyword.
+
+Use case ends.
+
+#### Use case: UC06 - List person
+**Preconditions**:
+* User is on the home page.
+
+**Main Success Scenario (MSS)**
+1. User chooses to obtain every person in Plannit.
+2. Plannit returns a list with every person in Plannit.
+
+Use case ends.
+
+#### Use case: UC07 - Add a task
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -860,7 +1035,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC05 - Delete a task
+#### Use case: UC08 - Delete a task
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -885,7 +1060,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC06 - Swap task
+#### Use case: UC09 - Swap task
 **Precondition**
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -910,7 +1085,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC07 - Add a Module Link
+#### Use case: UC10 - Add a Module Link
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -932,7 +1107,7 @@ Extension:
 
   Use case ends.
 
-#### Use case: UC08 - Delete a Module Link
+#### Use case: UC11 - Delete a Module Link
 **Main Success Scenario (MSS)**
 1. User requests for the deletion of a module-specific link.
 2. Plannit deletes the entered link from the specific module.
@@ -950,8 +1125,7 @@ Extension:
 
   Use case ends.
 
-
-#### Use case: UC09 - Add a contact
+#### Use case: UC12 - Add a contact
 **Main Success Scenario (MSS)**
 1.  User chooses to add a contact.
 2.  Plannit requests for the to-be-added contact detail.
@@ -979,7 +1153,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC10 - Delete a contact
+#### Use case: UC13 - Delete a contact
 **Main Success Scenario (MSS)**
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
@@ -995,7 +1169,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC11 - Find contact
+#### Use case: UC14 - Find contact
 **Main Success Scenario (MSS)**
 1. User chooses to search up his friend's email.
 2. Plannit requests for name of friend.
@@ -1010,41 +1184,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC12 - Add person to module
-**Main Success Scenario (MSS)**
-1. User chooses to add a person to a module (have an association between person and module).
-2. Plannit requests for module code of the module and name of person.
-3. User enters the module's module code and person's name.
-4. Plannit searches for both the module and person and adds the person to the module.
-
-Use case ends.
-
-Extensions:
-* 3a. Plannit detects that the specified module does not exist.
-    * 3a1. Plannit displays a text, informing that the specified module does not exist.
-* 3b. Plannit detects that the specified contact does not exist.
-    * 3b1. Plannit displays a text, informing that the specified contact does not exist.
-
-  Use case ends.
-
-#### Use case: UC13 - Delete person from module
-**Main Success Scenario (MSS)**
-1. User chooses to delete a person from a module (delete the association between person and module).
-2. Plannit requests for module code of the module and name of person.
-3. User enters the module's module code and person's name.
-4. Plannit searches for both the module and person and deletes the person from the module.
-
-Use case ends.
-
-Extensions:
-* 3a. Plannit detects that the specified module does not exist.
-    * 3a1. Plannit displays a text, informing that the specified module does not exist.
-* 3b. Plannit detects that the specified contact does not exist.
-    * 3b1. Plannit displays a text, informing that the specified contact does not exist.
-
-  Use case ends.
-
-#### Use case: UC14 - Navigate to Home Page
+#### Use case: UC15 - Navigate to Home Page
 **Main Success Scenario (MSS)**
 1.  User requests to navigate to Home Page.
 2.  Plannit displays the Home Page.
@@ -1057,31 +1197,20 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC15 - Navigate to Module
+#### Use case: UC16 - Navigate to Module
 **Main Success Scenario (MSS)**
-1.  User requests to navigate to a specific module.
-2.  Plannit displays the module details.
+1. User requests to navigate to a specific module.
+2. Plannit requests for the module code of the specific module.
+3. User enters the module code.
+4. Plannit displays the module details.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Module does not exist.
+* 1a. Module with given module code does not exist.
 
     * 1a1. Plannit displays an error message.
-
-  Use case ends.
-
-#### Use case: UC16 - Navigate to Contact Page
-**Main Success Scenario (MSS)**
-1.  User requests to navigate to the Contact Page.
-2.  Plannit displays the Contact Page.
-
-Use case ends.
-
-**Extensions**
-
-* 1a. Plannit is already at the Contact Page.
 
   Use case ends.
 
@@ -1191,9 +1320,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete-module m/CS2109S` assuming module with module code CS2109S does not exist in Plannit.<br>
        Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete-module`, `delete-module dummy`, `...` <br>
        Expected: Similar to previous.
-    
+
 
 ### Adding a contact
 

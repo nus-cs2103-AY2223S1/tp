@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes a list module command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+if () then ([is at home page]
+)
+:Filter module list to show all modules;
+:Show success message;
+:Show not at home page error message;
+else ([else]
+)
+:Show error message with valid command format;
+endif
+stop
+@enduml

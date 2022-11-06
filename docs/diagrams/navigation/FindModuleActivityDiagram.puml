@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes a find module command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:FindModuleCommandParser parses the user input;
+
+if () then ([user input is valid]
+)
+:Create a new ModuleCodeStartsWithKeywordPredicate from user input;
+    if () then ([is at home page]
+    )
+    :Filters module list according to ModuleCodeStartsWithKeywordPredicate;
+    :Show success message;
+    else ([else]
+    )
+    :Show not at home page error message;
+    endif
+else ([else]
+)
+:Show error message with valid command format;
+endif
+stop
+@enduml
