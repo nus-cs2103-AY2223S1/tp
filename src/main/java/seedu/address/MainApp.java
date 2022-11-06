@@ -85,7 +85,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialArchivedData;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample task list");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -100,7 +100,7 @@ public class MainApp extends Application {
         //storage and data for archived tasks
         try {
             archivedTaskBookOptional = storage.readArchivedTaskBook();
-            if (!archivedTaskBookOptional.isPresent()) {
+            if (archivedTaskBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample task list");
             }
             initialArchivedData = archivedTaskBookOptional.orElseGet(SampleDataUtil::getSampleArchivedTaskBook);

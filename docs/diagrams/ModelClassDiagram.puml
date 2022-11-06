@@ -14,7 +14,9 @@ Package Model <<Rectangle>>{
     Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
     Class "<<interface>>\nModel" as Model
     Class TaskList
-    Class ModelManager
+    Class ModelManager {
+        -filterStatus: String = ""
+    }
     Class UserPrefs
     Class UniqueTaskList
     Class Task {

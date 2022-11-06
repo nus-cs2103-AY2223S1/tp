@@ -82,7 +82,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -174,6 +174,7 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
+* stores the filter status when the task list is filtered and also updates when the list changes.
 * to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -551,17 +552,17 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse. (Usability)
 6. The error rate of the commands entered by the user should not exceed 5%. (Usability)
-7. Should take an user less than 1 day to familiarise with all the main commands used for the application. (Usability -
+7. Should take a user less than 1 day to familiarise with all the main commands used for the application. (Usability -
    learnability)
-8. An user who returned to the interface after stopping for some time should be able to use the application efficiently
+8. A user who returned to the interface after stopping for some time should be able to use the application efficiently
    right away. (Usability - memorability)
 9. Should provide a pleasant user experience and a high user satisfactory level. (Usability - satisfaction)
 10. Should not face any error or system failure 95% of the time. (Reliability)
 11. Should support the use of the UK English language. (Localisation)
 12. Should be available to users 99% of the time. (Availability)
-13. Maintainence should not take up more than 20 minutes when an error is encountered. (Maintainability)
+13. Maintenance should not take up more than 20 minutes when an error is encountered. (Maintainability)
 14. Should be easily moved from one computing environment to another without any change in its behaviour or performance.
-    ie. should not require an installer.  (Portability)
+    i.e. should not require an installer.  (Portability)
 15. Should take less than 2GB of storage space.
 16. Data should be stored locally in the user's operating device.
 
@@ -589,17 +590,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### 8.2 Deleting a task
 
@@ -618,7 +619,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+1. _{ more test cases …​ }_
 
 ### 8.3 Saving data
 
