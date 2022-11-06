@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     clutter by only displaying the tasks of modules indicated by the user.
   * Highlights:<br>
     This enhancement needed an observable `Boolean` 
-    value to indicated to the UI whether to display the tasks. This proved 
+    value to indicate to the UI whether to display the tasks. This proved 
     highly challenging to implement, with much research having to be done on 
     the best (and simplest) method to do so. Furthermore, this feature 
     involved implementation of a GUI functionality, which was not something
