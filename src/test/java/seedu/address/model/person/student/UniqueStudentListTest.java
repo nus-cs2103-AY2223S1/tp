@@ -42,11 +42,54 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_studentWithSameFieldsInList_returnsTrue() {
         uniqueStudentList.add(STUDENT1);
-        Student editedStudent1 = new StudentBuilder(STUDENT1).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedStudent1 = new StudentBuilder(STUDENT1).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStudentList.contains(editedStudent1));
+    }
+
+    @Test
+    public void contains_studentWithSameNameInList_returnsFalse() {
+        uniqueStudentList.add(STUDENT1);
+        Student editedStudent1 = new StudentBuilder(STUDENT2).withName(STUDENT1.getName().fullName)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+    }
+
+    @Test
+    public void contains_studentWithDifferentFieldInList_returnsFalse() {
+        uniqueStudentList.add(STUDENT1);
+
+        Student editedStudent1 = new StudentBuilder(STUDENT1).withName(STUDENT2.getName().fullName)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withPhone(STUDENT2.getPhone().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withEmail(STUDENT2.getEmail().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withAddress(STUDENT2.getAddress().value)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withSchool(STUDENT2.getSchool().school)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        editedStudent1 = new StudentBuilder(STUDENT1).withLevel(STUDENT2.getLevel().name())
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
+
+        //2 fields different
+        editedStudent1 = new StudentBuilder(STUDENT1).withEmail(STUDENT2.getEmail().value)
+                .withLevel(STUDENT2.getLevel().name())
+                .build();
+        assertFalse(uniqueStudentList.contains(editedStudent1));
     }
 
     @Test

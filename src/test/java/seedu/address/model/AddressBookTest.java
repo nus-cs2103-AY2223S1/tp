@@ -50,7 +50,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateStudents_throwDuplicatePersonException() {
         // Two students with the same identity fields
-        Student editedStudent = new StudentBuilder(STUDENT1).withSchool("Woodlands Primary School").build();
+        Student editedStudent = new StudentBuilder(STUDENT1).build();
         List<Student> newStudents = Arrays.asList(STUDENT1, editedStudent);
         List<Tutor> newTutors = Arrays.asList();
         List<TuitionClass> newTuitionClasses = Arrays.asList();
@@ -61,7 +61,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateTutors_throwDuplicatePersonException() {
-        Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
+        Tutor editedTutor = new TutorBuilder(TUTOR1).build();
         List<Student> newStudents = Arrays.asList();
         List<Tutor> newTutors = Arrays.asList(TUTOR1, editedTutor);
         List<TuitionClass> newTuitionClasses = Arrays.asList();
@@ -98,24 +98,24 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudent_studentWithSameFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(STUDENT1);
-        Student editedStudent = new StudentBuilder(STUDENT1).withSchool("Woodlands Primary School").build();
+        Student editedStudent = new StudentBuilder(STUDENT1).build();
         assertTrue(addressBook.hasPerson(editedStudent));
     }
 
     @Test
     public void editStudent_checkIfEdited() {
-        Student editedStudent = new StudentBuilder(STUDENT1).withName("Benson Meier").build();
+        Student editedStudent = new StudentBuilder(STUDENT2).build();
         addressBook.addPerson(STUDENT1);
         addressBook.setPerson(STUDENT1, editedStudent);
         assertTrue(addressBook.hasPerson(STUDENT2));
     }
 
     @Test
-    public void hasTutor_tutorWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTutor_tutorWithSameFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TUTOR1);
-        Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
+        Tutor editedTutor = new TutorBuilder(TUTOR1).build();
         assertTrue(addressBook.hasPerson(editedTutor));
     }
 
