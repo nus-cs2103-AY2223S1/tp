@@ -821,6 +821,27 @@ testers are expected to do more *exploratory* testing.
    3. Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
       4. Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
+### 6.2 Viewing a client
+
+1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
+
+2. Test case: `viewClient i/1`
+   Expected: The details of the client who is at the first index is shown.
+
+3. Test case: `viewClient i/a`
+   Expected: The index is not numeric, so there will be an error.
+
+4. Test case: `viewClient i/2`
+   Expected: Index is larger than the size of client list, so there will be an error.
+
+5. Test case: `viewClient i/0`
+   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+
+6. Test case: `viewClient i/`
+   Expected: Index is not provided, so there will be an error.
+
+7. Test case: `viewClient 1`
+   Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 6.2 Deleting a client
 
@@ -863,6 +884,28 @@ Deleting a client while all clients are being shown
 
 1. Test case: `listMeeting adsfadsf`
     2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+
+### 6.2 Viewing a meeting
+
+1. Prerequisites: View a specific meeting's details using the `viewMeeting` command. There is exactly one meeting in the list.
+
+2. Test case: `viewMeeting i/1`
+   Expected: The details of the meeting who is at the first index is shown.
+
+3. Test case: `viewMeeting i/a`
+   Expected: The index is not numeric, so there will be an error.
+
+4. Test case: `viewMeeting i/2`
+   Expected: Index is larger than the size of meeting list, so there will be an error.
+
+5. Test case: `viewMeeting i/0`
+   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+
+6. Test case: `viewMeeting i/`
+   Expected: Index is not provided, so there will be an error.
+
+7. Test case: `viewMeeting 1`
+   Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 6.4 Adding a product
 
