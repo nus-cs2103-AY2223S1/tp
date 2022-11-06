@@ -56,6 +56,10 @@ public class TaskAddCommand extends Command {
      */
     public TaskAddCommand(TaskName taskName, TaskDescription taskDesc, TaskDeadline taskDeadline,
                           List<String> studentNames) {
+        requireNonNull(taskName);
+        requireNonNull(taskDesc);
+        requireNonNull(taskDeadline);
+        requireNonNull(studentNames);
         this.taskName = taskName;
         this.taskDescription = taskDesc;
         this.taskDeadline = taskDeadline;

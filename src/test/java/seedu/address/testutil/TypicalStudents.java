@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DAVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIFFANI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalTasks.TASK2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,6 +96,9 @@ public class TypicalStudents {
         ab.addTutorialGroup(new TutorialGroup("T01"));
         ab.addTutorialGroup(new TutorialGroup("T02"));
         ab.addTutorialGroup(new TutorialGroup("T03"));
+
+        ab.addTask(new TaskBuilder().build());
+        ab.addTask(new TaskBuilder(TASK2).build());
 
         return ab;
     }
