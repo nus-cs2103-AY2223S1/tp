@@ -61,14 +61,14 @@ public class TestUtil {
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the module in the {@code model}'s module list at {@code index}.
      */
     public static Task getTask(Model model, Index index) {
         return model.getFilteredTaskList().get(index.getZeroBased());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the module in the {@code model}'s module list at {@code index}.
      */
     public static Module getModule(Model model, Index index) {
         return model.getFilteredModuleList().get(index.getZeroBased());

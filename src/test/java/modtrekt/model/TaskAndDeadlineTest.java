@@ -24,7 +24,7 @@ public class TaskAndDeadlineTest {
     @Test
     public void prioritizeTask_isDeadline_returnsDeadline() {
         Task deadline = new Deadline(new Description("desc"), new ModCode("CS2102"),
-                LocalDate.of(2022, 04, 12), false,
+                LocalDate.of(2022, 4, 12), false,
                 Task.Priority.NONE);
         Task newDeadline = deadline.setPriority(Task.Priority.HIGH);
         assertTrue(newDeadline instanceof Deadline);

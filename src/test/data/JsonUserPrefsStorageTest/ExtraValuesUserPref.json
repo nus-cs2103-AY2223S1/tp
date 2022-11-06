@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "taskBookFilePath" : "data\\taskbook.json",
+  "moduleListFilePath" : "data\\modulelist.json"
 }

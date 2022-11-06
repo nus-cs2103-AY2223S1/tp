@@ -13,14 +13,14 @@ import modtrekt.model.module.Module;
 public class ModuleUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code module}.
      */
-    public static String getAddCommand(Module person) {
-        return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(person);
+    public static String getAddCommand(Module module) {
+        return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code module}'s details.
      */
     public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
