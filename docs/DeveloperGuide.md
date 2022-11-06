@@ -884,6 +884,7 @@ Use case ends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### UC8: List all groups
 
