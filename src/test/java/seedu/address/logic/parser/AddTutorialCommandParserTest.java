@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_TUTORIAL1;
@@ -15,7 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_TUTORIAL1;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTutorials.TUTORIAL1;
