@@ -53,8 +53,7 @@ public class CliSyntax {
     public static final String FLAG_TASK_INDEX_DESCRIPTION = "Index of task (must be a positive integer)";
     public static final String FLAG_TASK_NAME_DESCRIPTION = "Name of task (e.g. \"merge PR#12\")";
     public static final String FLAG_TASK_DEADLINE_DESCRIPTION = "Deadline of task (e.g. 2023-02-25 23:59)";
-    public static final String FLAG_TASK_ASSIGNEES_DESCRIPTION = "Index of member in Team list "
-            + "(must be a positive integer)";
+    public static final String FLAG_TASK_ASSIGNEES_DESCRIPTION = "Index of members (must be positive integers)";
     public static final String FLAG_MEMBER_NAME_DESCRIPTION = "Name of member (e.g. \"John Doe\")";
     public static final String FLAG_MEMBER_INDEX_DESCRIPTION = "Index of member (must be a positive integer)";
     public static final String FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Alice Bob)";

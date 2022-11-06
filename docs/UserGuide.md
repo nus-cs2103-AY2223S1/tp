@@ -305,7 +305,7 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 
 <div markdown="block" class="alert alert-primary">
 **:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
-[here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
+<a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
 </div>
 
 ### Aliases
@@ -372,27 +372,34 @@ Consequently, the commands are split into **5** main sections:
   - For e.g. `-n name -p 98765432` is the same as `-p 98765432 -n name`
 - Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
   must be specified
-  - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following are valid
+  - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
     1. `-n name`
     2. `-p 98765432`
     3. `-e new@email.com`
     4. `-t developer`
 - Flags wrapped with brackets (`()`) and separated with `|` indicates that you must specify only 1 flag inside the 
   brackets
-  - For `(-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`, the following are valid
+  - For `(-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`, the following examples are valid
     1. `-n one two`
     2. `-e three four`
   - However, the following are invalid
     1. `-n one two -e three four`
-    2. ` ` (when nothing is entered)
+    2. when both flags are empty
 - Flags/Parameters with ellipsis (`...`) behind them means that more than 1 parameter can be specified
-  - For `[-t [TAGS...]]...`, the following are valid
+  - For `[-t [TAGS...]]...`, the following examples are valid
     1. `-t`
     2. `-t one`
     3. `-t one two`
     4. `-t one -t two`
 - If an extra parameter is specified, the command will not execute and an error message will be displayed
   - For e.g. `help with extra words` will display an error message
+- Flags can be combined if they all begin with `-`, where the flags are clustered. Find out more
+  <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
+  - For `[-hci]`, the following examples are valid
+    1. `-h`
+    2. `-hc`
+    3. `-ci`
+    4. `-hci`
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -416,7 +423,7 @@ Adds a person to TruthTable.
 
 | Flags           | Required           | Remarks                                 |
 |-----------------|:-------------------|-----------------------------------------|
-| `-h`, `--help`  |                    | Shows help message                      |
+| `-h`, `--help`  |                    | Shows help message for this command     |
 | `-e`, `--email` | :heavy_check_mark: | Email of person (e.g. truth@table.com)  |
 | `-n`, `--name`  | :heavy_check_mark: | Name of person (e.g. "Truth Table")     |
 | `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)         |
@@ -441,9 +448,9 @@ Shows a list of all persons in TruthTable.
 
 **Format:** `list persons [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Command Aliases:**
 - `list p`
@@ -458,7 +465,7 @@ Edits an existing person in TruthTable.
 
 | Flags           | Required   | Remarks                                 |
 |-----------------|:-----------|-----------------------------------------|
-| `-h`, `--help`  |            | Shows help message                      |
+| `-h`, `--help`  |            | Shows help message for this command     |
 | `-e`, `--email` | :asterisk: | Email of person (e.g. truth@table.com)  |
 | `-n`, `--name`  | :asterisk: | Name of person (e.g. "Truth Table")     |
 | `-p`,`--phone`  | :asterisk: | Phone of person (e.g. 98765432)         |
@@ -470,8 +477,8 @@ Edits an existing person in TruthTable.
 [persons section](#persons-section) 
 * `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
-* When editing tags, the existing tags of the person will be replaced by the new tags specified.
-* You can remove all the person’s tags by typing `-t` without specifying any tags after it.
+* When editing tags, the existing tags of the person will be **completely replaced** by the new tags specified.
+* So, you can remove all the person’s tags by typing `-t` without specifying any tags after it.
 
 **Command Aliases:**
 - `edit p`
@@ -490,9 +497,9 @@ Finds person whose names contain any of the given keywords.
 
 **Format:** `find person [-h] <KEYWORDS>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 * Only the name is searched.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
@@ -515,11 +522,11 @@ Finds person whose names contain any of the given keywords.
 
 Deletes the specified person from TruthTable.
 
-**Format:** `delete person <PERSON_INDEX>`
+**Format:** `delete person [-h] <PERSON_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 * Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
 [persons section](#persons-section)
@@ -545,9 +552,9 @@ the team.
 
 **Format:** `add member [-h] <PERSON_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 * `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
 
@@ -565,11 +572,11 @@ the team.
 
 Delete a team member from the user’s team.
 
-**Format:** `delete member <MEMBER_INDEX>`
+**Format:** `delete member [-h] <MEMBER_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 * `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
 
@@ -593,11 +600,11 @@ should not use both `-n` and `-e` in the `find member` command.
 
 **Format:** `find member [-h] (-n=<NAME_KEYWORDS> | -e=<EMAIL_KEYWORDS>)`
 
-| Flags           | Required | Remarks                     |
-|-----------------|:---------|-----------------------------|
-| `-h`, `--help`  |          | Shows help message          |
-| `-n`, `--name`  | :hash:   | Keywords to filter by name  |
-| `-e`, `--email` | :hash:   | Keywords to filter by email |
+| Flags           | Required | Remarks                             |
+|-----------------|:---------|-------------------------------------|
+| `-h`, `--help`  |          | Shows help message for this command |
+| `-n`, `--name`  | :hash:   | Keywords to filter by name          |
+| `-e`, `--email` | :hash:   | Keywords to filter by email         |
 
 :hash: - exactly one flag must be specified
 
@@ -621,11 +628,11 @@ should not use both `-n` and `-e` in the `find member` command.
 
 View all the members currently in the team, in the form of a list.
 
-**Format:** `list members`
+**Format:** `list members [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Command Aliases:**
 - `list m`
@@ -635,17 +642,17 @@ View all the members currently in the team, in the form of a list.
 #### Sort members : `sort members`
 Sorts all members in the current team by name and displays them in the member list.
 
-**Format:** `sort members <ORDER>`
+**Format:** `sort members [-h] <ORDER>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
-| Order Value | Description                                                                       |
-|-------------|-----------------------------------------------------------------------------------|
-| `asc`       | Sorts your team members in **alphabetical** order (based on their names).         |
-| `dsc`       | Sorts your team members in **reverse alphabetical** order (based on their names). |
-| `res`       | **Resets** the order of the team members shown                                    |
+| Order Value | Description                                                                  |
+|-------------|------------------------------------------------------------------------------|
+| `asc`       | Sorts team members in **alphabetical** order (based on their names).         |
+| `dsc`       | Sorts team members in **reverse alphabetical** order (based on their names). |
+| `res`       | **Resets** the order of the team members shown                               |
 
 **Command Aliases:**
 - `sort m`
@@ -653,7 +660,9 @@ Sorts all members in the current team by name and displays them in the member li
 - `so m`
 
 **Examples:**
-* `sort members asc`
+* `sort members asc` sorts team members in **ascending** order.
+* `sort members dsc` sorts team members in **descending** order.
+* `sort members res` **resets** the order of team members shown.
 
 ### Commands to Manage Teams
 
@@ -667,11 +676,11 @@ Add a new team to your list of teams, an error will be displayed if the team nam
 Team name must consist only of alphanumeric characters (i.e., **spaces are NOT allowed**).
 </div>
 
-**Format:** `add team [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
+**Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
 | Flags                 | Required | Remarks                                               |
 |-----------------------|:---------|-------------------------------------------------------|
-| `-h`, `--help`        |          | Shows help message                                    |
+| `-h`, `--help`        |          | Shows help message for this command                   |
 | `-d`, `--description` |          | Description of team (e.g. "A team to manage CS2103T") | 
 
 **Command Aliases:**
@@ -690,11 +699,11 @@ Team name must consist only of alphanumeric characters (i.e., **spaces are NOT a
 Updates the [selected team](#current-team-section) and changes the current "working" team to another. An error is 
 displayed if team does not exist.
 
-**Format:** `set team <TEAM_NAME>`
+**Format:** `set team [-h] <TEAM_NAME>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Command Aliases:**
 - `set te`
@@ -707,11 +716,11 @@ displayed if team does not exist.
 
 #### Edit current team `edit team`
 
-**Format:** `edit team ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
+**Format:** `edit team [-h] ([-n=<TEAM_NAME>] [-d=<DESCRIPTION>])`
 
 | Flags                 | Required   | Remarks                                               |
 |-----------------------|:-----------|-------------------------------------------------------|
-| `-h`, `--help`        |            | Shows help message                                    |
+| `-h`, `--help`        |            | Shows help message for this command                   |
 | `-n`, `--name`        | :asterisk: | Name of team (e.g. "CS2103T")                         |
 | `-d`, `--description` | :asterisk: | Description of team (e.g. "A team to manage CS2103T") | 
 
@@ -733,11 +742,11 @@ Delete an existing team, and an error is displayed if
 - The target team does not exist, or
 - The target team is the only existing team.
 
-**Format:** `delete team <TEAM_NAME>`
+**Format:** `delete team [-h] <TEAM_NAME>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Command Aliases:**
 - `delete te`
@@ -754,77 +763,116 @@ Summary of commands can be found [here](#summary-of-task-commands)
 
 #### Add task to team : `add task`
 
-Add a new task to your current team. The task name is compulsory, while other fields such as assignee index and
-deadline are optional.
+Add a new task to your current team. Each task can have multiple assignees and a deadline.
 
-Multiple assignees can be assigned to the same task directly, by specifying the indices of each assignee in the 
-member list, separated by spaces.
-e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "Merge PR".
+**Format:** `add task [-h] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]... <TASK_NAME>`
 
-**Format:** `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
+| Flags              | Required | Remarks                                                      |
+|--------------------|:---------|--------------------------------------------------------------|
+| `-h`, `--help`     |          | Shows help message for this command                          |
+| `-d`, `--deadline` |          | Deadline of task (e.g. 2023-02-25 23:59)                     |  
+| `-a`, `--assignee` |          | Index of members in [members section](#current-team-section) |
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+  around the parameter**.
+* `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
 
-**Examples:** 
+**Command Aliases:**
+- `add ta`
+- `a task`
+- `a ta`
 
-* `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assign the task to the
-first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
-* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task to the current team's
-task list, with the name "Review PR", assign the task
-to the first and third member in your team list and set the deadline of the task to be 02-Dec-2022 23:59.
+**Examples:**
+
+* `add task "Create PR"` will add a task with the name "Create PR", to the current team's task list.
+* `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assigned to the first 
+member in the members list with a deadline of 2nd Dec 2022 23:59, to the current team's task list.
+* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assigned to the first 
+and third member in your members list with a deadline of 2nd Dec 2022 23:59, to the current team's task list.
 
 #### Edit task in team : `edit task`
 
-Edits a specified task in the current team. The task index is compulsory, while the other fields are optional and
-will be overwritten accordingly.
+Edits a specified task in the current team. 
 
-Multiple assignees can be assigned at one time, by specifying the indices of each of the members, separated by spaces.
-e.g. `edit task 1 -a 1 3 4` will assign members 1, 3 and 4.
+**Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
 
-**Format:** `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
+| Flags              | Required   | Remarks                                                      |
+|--------------------|:-----------|--------------------------------------------------------------|
+| `-h`, `--help`     |            | Shows help message for this command                          |
+| `-n`, `--name`     | :asterisk: | Name of task (e.g. "merge PR#12")                            |
+| `-d`, `--deadline` | :asterisk: | Deadline of task (e.g. 2023-02-25 23:59)                     |
+| `-a`, `--assignee` | :asterisk: | Index of members in [members section](#current-team-section) |
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+:asterisk: - at least one of the flags must be specified
+
+* Edits the person at the specified `TASK_INDEX`, which refers to the index number shown in the
+  [team members section](#current-team-section)
+* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+  around the parameter**.
+* `TASK_INDEX` and `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* Each field only updates if the flag for that field is specified.
+* When editing assignees, the existing assignees of the task will be **completely replaced** by the new assignees 
+  specified.
+* So, you can remove all the assignees of the task by typing `-a` without specifying any assignees after it.
+
+**Command Aliases:**
+- `edit ta`
+- `e task`
+- `e ta`
 
 **Examples:** 
 
 * `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task
-list, setting the name as "Merge PR", setting the assignee as the first member in the team list and deadline
-as "02-Dec-2022 23:59".
+list, setting the name as "Merge PR", assignees as the first member in the team list, and deadline
+as 2nd Dec 2022 23:59.
 * `edit task 1 "Update UG" -d 2022-12-02 23:59` will edit the first task in the current team's task
-list, setting the name as "Update UG" and changing the deadline as "02-Dec-2022 23:59". The assignees are not changed
-in this case.
+list, setting the name as "Update UG" and deadline as 2nd Dec 2022 23:59. The assignees are not modified
+in this example.
+* `edit task 1 -a` will edit the first task in the current team's task list, removing all assignees from the task. 
+The name and deadline are not modified in this example.
 
 #### Assign task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
-the task is not found in the user’s team.
+Assign an existing task to a team member in the user’s team.
 
-**Format:** `assign task TASK_INDEX -a MEMBER_INDEX`
+**Format:** `assign task [-h] -a[=<ASSIGNEES>...] [-a[=<ASSIGNEES>...]]... <TASK_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags              | Required           | Remarks                                                      |
+|--------------------|:-------------------|--------------------------------------------------------------|
+| `-h`, `--help`     |                    | Shows help message for this command                          |
+| `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section) |
+
+* `TASK_INDEX` and `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
+
+**Command Aliases:**
+- `assign ta`
+- `as task`
+- `as ta`
 
 **Examples:** 
 
+- `assign task 1 -a` will not do anything.
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
-- `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
+- `assign task 2 -a 1 2` will assign the second task on the task list to the first and second member in the team.
 
 #### Assign task to random team member: `assign random`
 
-Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
-not found in the user’s team or if there are no team members to assign the task to (if the team is empty,
+Assign an existing task to a random team member in the user’s team. This command will not work if the team is empty
 or if the task has already been assigned to all members of the team.
 
-**Format:** `assign random TASK_INDEX`
+**Format:** `assign random [-h] <TASK_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `assign r`
+- `as random`
+- `as r`
 
 **Examples:** 
 
@@ -832,31 +880,43 @@ or if the task has already been assigned to all members of the team.
 
 #### Set Deadline for task: `set deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team.
-If a deadline has been set for the task before, a new deadline will be set if command is run again.
-The deadline must be specified in `YYYY-MM-DD HH:MM` format.
+Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:MM` format.
 
-**Format:** `set deadline TASK_INDEX DEADLINE`
+**Format:** `set deadline [-h] <TASK_INDEX> <DEADLINE>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
+  around the parameter**.
+
+**Command Aliases:**
+- `set d`
+- `s deadline`
+- `s d`
 
 **Examples:** 
 
-- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
-11.59pm.
+- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 Dec 2023 23:59
 
 #### Delete task from team : `delete task`
 
-Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
-the user’s team, i.e., when the index exceeds the number of tasks.
+Delete an existing task from the team at the given task index.
 
-**Format:** `delete task TASK_INDEX`
+**Format:** `delete task [-h] <TASK_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `delete ta`
+- `d task`
+- `d ta`
 
 **Examples:** 
 
@@ -864,13 +924,18 @@ the user’s team, i.e., when the index exceeds the number of tasks.
 
 #### Mark tasks as done: `mark`
 
-Mark a specified task as done. To undo this command, see the `unmark` command below.
+Mark a specified task as done. To undo this command, see the [unmark command](#unmark-tasks-as-done-unmark)
 
-**Format:** `mark TASK_INDEX`
+**Format:** `mark [-h] <TASK_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `m`
 
 **Examples:** 
 
@@ -878,13 +943,18 @@ Mark a specified task as done. To undo this command, see the `unmark` command be
 
 #### Unmark tasks as done: `unmark`
 
-Mark a specified task as incomplete. This will undo the `mark` command.
+Mark a specified task as incomplete. This will undo the [mark command](#mark-tasks-as-done-mark).
 
-**Format:** `unmark TASK_INDEX`
+**Format:** `unmark [-h] <TASK_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `u`
 
 **Examples:** 
 
@@ -892,78 +962,112 @@ Mark a specified task as incomplete. This will undo the `mark` command.
 
 #### Find tasks : `find task`
 
-Find all tasks in the current team whose names contain any of the given keywords.
+Find all tasks in the current team whose names matches any of the given keywords.
 
-To reset the task list, see `list tasks` command below.
+To reset the task list, see the [list tasks command](#list-tasks-in-team-list-tasks).
 
-**Format:** `find task -n TASK_NAME`
+**Format:** `find task [-h] <KEYWORDS>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
+* Only the task name is searched.
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
 * The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
-* Only the name is searched.
-* Only full words will be matched e.g. `user` will not match `userguide`
-* Persons matching at least one keyword will be returned (e.g. `user` will return `user guide`, `user stories`)
+* Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
+* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will return `use case`, `user 
+  guide`.
+
+**Command Aliases:**
+- `find ta`
+- `f task`
+- `f ta`
 
 **Examples:**
 * `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
 #### List tasks in team: `list tasks`
 
-View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
-remaining tasks.
+View all the tasks in the [currently selected team](#current-team-section). These tasks can also be filtered based on 
+whether they are complete or incomplete tasks.
 
-The command `list tasks` can also be used to view all tasks again after the `find task` command has been run since 
-`find task` command filters the current team’s tasks with some keyword(s).
+This command can also be used to view all tasks again after using the [`find task` command](#find-tasks--find-task) 
+as the `find task` command filters the current team’s tasks based on some keyword(s).
 
-**Format:** `list tasks [-i] [-c]`
+**Format:** `list tasks [-hci]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags                | Required | Remarks                             |
+|----------------------|:---------|-------------------------------------|
+| `-h`, `--help`       |          | Shows help message for this command |
+| `-c`, `--complete`   |          | Filter for completed tasks          |
+| `-i`, `--incomplete` |          | Filter for incomplete tasks         |
+
+**Command Aliases:**
+- `list ta`
+- `l tasks`
+- `l ta`
 
 **Examples:** 
 - `list tasks` will list all the tasks of the current team.
 - `list tasks -i` will list all the incomplete tasks of the current team.
 - `list tasks -c` will list all the completed tasks of the current team.
+- `list tasks -ic` will list all tasks of the current team.
 
 #### View summary of task assignments in team: `summary`
 
-View the number of tasks assigned to each user in the team.
+View the number of tasks assigned to each member in the team.
 
-**Format:** `summary`
+**Format:** `summary [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+**Command Aliases:**
+- `sum`
+- `su`
 
 #### Sort tasks : `sort tasks`
 
-Sorts all tasks in the current team by name and displays them in the task list
+Sorts all tasks in the current team by name and displays them in the task list.
 
-**Format:** `sort tasks ORDER`
+**Format:** `sort tasks [-h] <ORDER>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+| Order Value | Description                                                           |
+|-------------|-----------------------------------------------------------------------|
+| `asc`       | Sorts tasks in **alphabetical** order (based on their names).         |
+| `dsc`       | Sorts tasks in **reverse alphabetical** order (based on their names). |
+| `res`       | **Resets** the order of the tasks shown                               |
+
+**Command Aliases:**
+- `sort ta`
+- `so tasks`
+- `so ta`
 
 **Examples:**
-* `sort tasks asc` sorts the tasks in **ascending** order.
-* `sort tasks dsc` sorts the tasks in **descending** order.
+* `sort tasks asc` sorts tasks in **ascending** order.
+* `sort tasks dsc` sorts tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
 
 #### Filter tasks by team member : `tasksof`
 
-Find all tasks in your current team that have been assigned to a particular team member.
+Find all tasks that have been assigned to a particular member in the currently selected team.
 
-**Format:** `tasksof MEMBER_INDEX`
+**Format:** `tasksof [-h] <MEMBER_INDEX>`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
+
+* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
+
+**Command Aliases:**
+- `to`
 
 **Examples:**
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
@@ -976,11 +1080,11 @@ Summary of commands can be found [here](#summary-of-link-commands)
 
 Add a new link to the user's currently selected team.
 
-**Format:** `add link -n NAME -l URL`
+**Format:** `add link [-h] -n NAME -l URL`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Examples:** 
 
@@ -992,9 +1096,9 @@ Edit an existing link in the user's currently selected team.
 
 **Format:** `edit link LINK_INDEX [-n NAME] [-l URL]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Examples:** 
 
@@ -1005,11 +1109,11 @@ Edit an existing link in the user's currently selected team.
 
 Delete the specified link from the user's currently selected team.
 
-**Format:** `delete link LINK_INDEX`
+**Format:** `delete link [-h] LINK_INDEX`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 **Examples:** 
 
@@ -1023,41 +1127,41 @@ Summary of commands can be found [here](#summary-of-general-commands)
 
 Deletes all the people from the application.
 
-**Format:** `clear`
+**Format:** `clear [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 #### Switching between light and dark theme: `theme`
 
 Toggles between light theme and dark theme.
 
-**Format:** `theme`
+**Format:** `theme [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 #### Exiting the program : `exit`
 
 Exits the program.
 
-**Format:** `exit`
+**Format:** `exit [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 #### Viewing help : `help`
 
 Shows the URL to this help page, which will list all available commands.
 
-**Format:** `help`
+**Format:** `help [-h]`
 
-| Flags             | Required | Remarks                                                |
-|-------------------|:---------|--------------------------------------------------------|
-| `-h`, `--help`    |          | Shows help message                                     |
+| Flags          | Required | Remarks                             |
+|----------------|:---------|-------------------------------------|
+| `-h`, `--help` |          | Shows help message for this command |
 
 #### Saving the data
 
@@ -1170,6 +1274,7 @@ the data of your previous TruthTable home folder.
 |--------------------------|---------|
 | Command                  |         |
 | Parameter                |         |
+| Positional Parameter     ||
 | Index                    |         |
 | Alias                    |         | 
 | Command Line Interface   |         |

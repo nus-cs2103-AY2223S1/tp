@@ -43,7 +43,6 @@ public class SetDeadlineCommand extends Command {
             description = FLAG_TASK_DEADLINE_DESCRIPTION)
     private LocalDateTime deadline;
 
-
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
     private boolean help;

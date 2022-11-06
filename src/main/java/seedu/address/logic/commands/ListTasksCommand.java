@@ -22,8 +22,12 @@ import seedu.address.model.team.Task;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = ListTasksCommand.COMMAND_WORD,
-        aliases = {ListTasksCommand.ALIAS}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ListTasksCommand.COMMAND_WORD, aliases = {ListTasksCommand.ALIAS},
+        mixinStandardHelpOptions = true, sortOptions = false,
+        customSynopsis = {ListTasksCommand.FULL_COMMAND + " ["
+                + FLAG_HELP_STR + "] ["
+                + FLAG_COMPLETE_TASKS_STR + "] ["
+                + FLAG_INCOMPLETE_TASKS_STR + "]" })
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "tasks";
     public static final String ALIAS = "ta";
@@ -43,15 +47,15 @@ public class ListTasksCommand extends Command {
 
 
     @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG},
-            description = FLAG_COMPLETE_TASK_DESCRIPTION)
+            description = FLAG_COMPLETE_TASK_DESCRIPTION, order = 2)
     private boolean hasCompleteFlag;
 
     @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG}, description =
-            FLAG_INCOMPLETE_TASK_DESCRIPTION)
+            FLAG_INCOMPLETE_TASK_DESCRIPTION, order = 3)
     private boolean hasIncompleteFlag;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
-            description = FLAG_HELP_DESCRIPTION)
+            description = FLAG_HELP_DESCRIPTION, order = 1)
     private boolean help;
 
     @CommandLine.Spec
@@ -68,7 +72,7 @@ public class ListTasksCommand extends Command {
 
         requireNonNull(model);
 
-        if ((hasCompleteFlag == hasIncompleteFlag)) {
+        if (hasCompleteFlag == hasIncompleteFlag) {
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
             return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
                     model.getFilteredTaskList().size()));
@@ -77,7 +81,7 @@ public class ListTasksCommand extends Command {
             return new CommandResult(String.format(MESSAGE_LIST_COMPLETE_TASKS_SUCCESS,
                     model.getFilteredTaskList().size()));
         } else if (hasIncompleteFlag) {
-            model.updateFilteredTaskList((task) -> !task.isComplete());
+            model.updateFilteredTaskList(task -> !task.isComplete());
             return new CommandResult(String.format(MESSAGE_LIST_INCOMPLETE_TASKS_SUCCESS,
                     model.getFilteredTaskList().size()));
         }
