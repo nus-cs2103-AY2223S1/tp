@@ -8,6 +8,8 @@ import seedu.foodrem.model.item.Item;
 
 /**
  * A utility class containing a list of {@code item} objects to be used in tests related to sorting.
+ *
+ * @author
  */
 public class ItemsToSort {
     public static final Item NI_Q1_U114_B119_E18_P13_R3 = new ItemBuilder().withItemName("NI Q1 U114 B119 E18 P13 R3")
