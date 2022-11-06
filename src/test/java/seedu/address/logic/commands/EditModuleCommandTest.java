@@ -11,20 +11,24 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertTasksHaveSameExamSuccess;
 import static seedu.address.logic.commands.EditExamCommand.MESSAGE_EXAM_NOT_EDITED;
+import static seedu.address.logic.commands.EditModuleCommand.MESSAGE_TASKS_EXAMS_RELATED_MODIFIED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FORTH_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTEENTH_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SIXTH_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRTEENTH_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TWELVE_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -40,6 +44,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditExamDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ExamBuilder;
@@ -54,9 +59,9 @@ public class EditModuleCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredListWithNoDuplicatesAndNoTaskOrExamsRelated_success() {
+    public void execute_allFieldsSpecifiedUnfilteredListWithModuleUnrelatedToAnyTaskAndExam_success() {
         Module editedModule = new ModuleBuilder(new Module(new ModuleCode("CS3213"),
-                new ModuleName("Final Exam"), new ModuleCredit(4))).build();
+                new ModuleName("Final Examinations"), new ModuleCredit(4))).build();
         EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
         EditModuleCommand editModuleCommand =
                 new EditModuleCommand(INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM, descriptor);
@@ -71,40 +76,136 @@ public class EditModuleCommandTest {
         assertTasksHaveSameExamSuccess(model, expectedModel);
     }
 
-//    @Test
-//    public void execute_someFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked_success() {
-//        Exam editedExam = new Exam(new Module(new ModuleCode("CS2030S")),
-//                new ExamDescription("CA PAPER"), model.getFilteredExamList().get(3).getExamDate());
-//        EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
-//        EditExamCommand editExamCommand = new EditExamCommand(INDEX_FORTH_EXAM, descriptor);
-//        String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-//        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-//        expectedModel.replaceExam(model.getFilteredExamList().get(3), editedExam, false);
-//        assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
-//        assertTasksHaveSameExamSuccess(model, expectedModel);
-//    }
-//
-//    public void linkHelper(Model model, Index examIndex, Index taskIndex) throws CommandException {
-//        LinkExamCommand linkExamCommand = new LinkExamCommand(examIndex, taskIndex);
-//        linkExamCommand.execute(model);
-//    }
-//
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredListWithoutTaskLinkedToTheSpecificExam_success()
-//            throws CommandException {
-//        Exam editedExam = new ExamBuilder(new Exam(new Module(new ModuleCode("CS2030S")),
-//                new ExamDescription("Final Exam"), new ExamDate("01-11-2023"))).build();
-//        EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
-//        EditExamCommand editExamCommand = new EditExamCommand(INDEX_FORTH_EXAM, descriptor);
-//        linkHelper(model, INDEX_THIRD_EXAM, INDEX_TWELVE_TASK);
-//        String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-//        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-//        linkHelper(expectedModel, INDEX_THIRD_EXAM, INDEX_TWELVE_TASK);
-//        Exam exam = model.getFilteredExamList().get(3);
-//        expectedModel.replaceExam(exam, editedExam, false);
-//        assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
-//        assertTasksHaveSameExamSuccess(model, expectedModel);
-//    }
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredListWithModuleUnrelatedToAnyTaskAndExam_success() {
+        Module editedModule = new ModuleBuilder().withModuleCode("CS3213").withModuleName("Final Examinations").build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand =
+                new EditModuleCommand(INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(model.getFilteredModuleList()
+                .get(INDEX_MODULE_UNRELATED_TO_ANY_TASK_OR_EXAM.getZeroBased()), editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    public void linkHelper(Model model, Index examIndex, Index taskIndex) throws CommandException {
+        LinkExamCommand linkExamCommand = new LinkExamCommand(examIndex, taskIndex);
+        linkExamCommand.execute(model);
+    }
+
+    @Test
+    public void execute_allFieldsSpecifiedWithModuleRelatedToTasksNotExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_FOURTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleCode("CS3213")
+                .withModuleName("Programming").withModuleCredit(5).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FOURTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit())
+                + MESSAGE_TASKS_EXAMS_RELATED_MODIFIED;
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForTask(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedWithModuleRelatedToTasksNotExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_FOURTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleCode("CS3213")
+                .withModuleName("Programming").build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FOURTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit())
+                + MESSAGE_TASKS_EXAMS_RELATED_MODIFIED;
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForTask(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    @Test
+    public void execute_moduleCodeFieldUnspecifiedWithModuleRelatedToTasksNotExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_FOURTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleName("Programming").withModuleCredit(5).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FOURTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    @Test
+    public void execute_allFieldsSpecifiedWithModuleRelatedToTasksAndExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_SIXTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleCode("CS3213")
+                .withModuleName("Programming").withModuleCredit(5).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_SIXTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit())
+                + MESSAGE_TASKS_EXAMS_RELATED_MODIFIED;
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForTask(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForExam(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedWithModuleRelatedToTasksAndExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_SIXTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleCode("CS3213").withModuleCredit(5).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_SIXTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit())
+                + MESSAGE_TASKS_EXAMS_RELATED_MODIFIED;
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForTask(moduleToEdit, editedModule);
+        expectedModel.updateModuleFieldForExam(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
+
+    @Test
+    public void execute_moduleCodeFieldUnspecifiedWithModuleRelatedToTasksAndExams_success() {
+        Module moduleToEdit = model.getFilteredModuleList().get(INDEX_SIXTH_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleToEdit).withModuleName("Programming").withModuleCredit(5).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_SIXTH_MODULE, descriptor);
+
+        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedModule.getModuleCode(), editedModule.getModuleName(), editedModule.getModuleCredit());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.replaceModule(moduleToEdit, editedModule);
+
+        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
+        assertTasksHaveSameExamSuccess(model, expectedModel);
+    }
 //
 //    //tasks link to that exam but exam field edits only the description and date, module remains same.
 //    @Test
