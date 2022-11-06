@@ -63,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -102,7 +102,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TuthubParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a tutor).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -218,7 +218,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `ModelManager#getFilteredTutorList()` - Returns the `filteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
-Given below is an example usage scenario when the user is finding tutors whose names contains alex.
+Given below is an example usage scenario when the user is finding tutors whose names contain alex.
 
 Step 1: The user enter the command `find n/alex`.
 
@@ -240,7 +240,7 @@ Step 5: The execution ends, returning a `CommandResult` object that has the succ
     - Cons: Took more time to think of and implement.
 - **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findbyname`, `findbyemail`)
     - Pros: Easier to implement individual commands for each attribute.
-    - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remeber.
+    - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remember.
 
 ### View Feature
 <ins>Implementation</ins>
@@ -380,34 +380,31 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Target user profile**:
 
-* tech-savvy tuition agents
-* has to manage a significant number (up to hundreds) of tutor profiles
-* seeks a more organised and systematic way of managing profiles as compared to excel sheets
+* **National University of Singapore (NUS) Professors**
+* has to manage a significant number (up to hundreds) of teaching assistant (TA) profiles
+* seeks a more organised and systematic way of managing profiles as compared to Excel sheets
 * prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* _Problem_: Multiple entries of the same tutor information as they have to repeatedly enter the same information when applying for different jobs
-* _Solution_: Our tuthub detects duplicate tutor profiles and merges the additional information into the existing profile.
-  <br/><br/>
-* _Problem_: Too many tutors with no specific way to organise them systematically.
-* _Solution_: Our tuthub can categorise the tutors based on different criteria and provides features to search for profiles easily.
+
+TutHub helps professors find TAs efficiently by consolidating information in an easy-to-read, easy-to-search manner by providing a systematic and visual way to categorise or sort profiles according to modules, year, performance, etc.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I can …​                             | So that I can…​                                                                   |
-|--------| --------------------------------------|--------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *` | NUS Computing Professor                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
-| `* * *` | NUS Computing Professor                                  | add a new tutor                      | track their profiles                                                                      |
-| `* * *` | NUS Computing Professor                                  | find a specific tutor by name easily | filter tutor names                                                                        |
-| `* * *` | NUS Computing Professor                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
-| `* * *` | NUS Computing Professor                                  | save data                            | there is a local backup on the computer                                                   |
-| `* * *` | NUS Computing Professor                                  | exit the program                     |                                                                                           |
-| `* *`  | NUS Computing Professor                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
+| Priority | As a …​                                | I can …​                             | So that I can…​                                                                            |
+|----------|----------------------------------------|--------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | NUS Computing Professor                | list all tutor profiles              | get a quick view of all available tutors                                                   |
+| `* * *`  | NUS Computing Professor                | add a new tutor                      | track their profiles                                                                       |
+| `* * *`  | NUS Computing Professor                | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
+| `* * *`  | NUS Computing Professor                | find a specific tutor by name easily | filter tutor names                                                                         |
+| `* * *`  | NUS Computing Professor                | delete a tutor profile               | remove tutors that are no longer available for work                                        |
+| `* * *`  | NUS Computing Professor                | save data                            | there is a local backup on the computer                                                    |
+| `* * *`  | NUS Computing Professor                | exit the program                     |                                                                                            |
 
 
 ### Use cases
