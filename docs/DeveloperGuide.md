@@ -505,7 +505,7 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
   * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
 ### UI Implementation
-**Home Screen**
+#### Home Screen
 
 <img class="center" src="images/UiMainScreen.png" width="600" />
 
@@ -521,7 +521,7 @@ It was designed with the following considerations:
 * Operations on students can be performed conveniently by showing the list of all students on the main window, such as deleting, adding and finding students whenever required.
 * As we are targeting users with higher preference on CLI than GUI, putting the command input box at the bottom of the window may be more instinctive for their usage, due to the high similarity with the implementation of command terminals from various operating systems.
 
-**Focus Mode**
+#### Focus Mode
 
 <img class="center" src="images/UiFocusScreen.png" width="600" />
 
