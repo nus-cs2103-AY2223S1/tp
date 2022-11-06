@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 * **New Feature**: <br>
 `ListDeadlineCommand` - version 1.3 of ListDeadlineCommand to allow users to view the deadline lists of a specific student
 (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/155)
-  * What it does: 
+  * What it does:
     * Allow professor to view the progress updates uploaded by his student through deadline lists.
   * Justification:
     * This feature improves the product since it provides a convenient way for professor to keep track of the progress made by his student
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
     * User Guide:
       * Added notes in `notes about the command format` to address the issue regarding the output of `HelpCommand` (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/209)
       * Phrased the description of `HelpCommand` differently to avoid ambiguity (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/209)
-    * Developer Guide: 
+    * Developer Guide:
       * Changed the format of some unmatched benefits and corrected the benefit of keywords searching (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/79)
       * Added the explanation of `HelpCommand` feature of version 1.2 (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/122)
 
