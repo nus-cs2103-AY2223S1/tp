@@ -6,9 +6,9 @@ skinparam ClassBorderColor #000000
 title After command "clear"
 
 package States <<rectangle>> {
-    class State1 as "__hb0:AddressBook__" #FEFECE
-    class State2 as "__hb1:AddressBook__" #FEFECE
-    class State3 as "__hb3:AddressBook__" #FEFECE
+    class State1 as "__hb0:HobbyList__" #FEFECE
+    class State2 as "__hb1:HobbyList__" #FEFECE
+    class State3 as "__hb3:HobbyList__" #FEFECE
 }
 
 State1 -[hidden]right-> State2
