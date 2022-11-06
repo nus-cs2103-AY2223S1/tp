@@ -374,25 +374,27 @@ Step 3. The `delete` command then deletes the student by calling `Model#deletePe
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
 Sorting by default means sorting by oldest to newest updated entry. Editing an entry is considered updating it.  
-*(To be added)*: sort by class timings, level.
+__Proposed implementation__: sort by class timings and levels.
 
 #### Implementation
 <img src="images/SortSequenceDiagram.png">
 The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.  
 
-Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
-Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.
+Since the list displayed is linked to each `Student`, `Tutor` and `TuitionClass` internal list through an observer, we can just sort it and the displayed list will be updated accordingly. The list to be sorted will be the one that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, where default uses a custom-defined comparator, and sorting in reverse is done using `java.util.Collections`.
 
 <table markdown="block">
 <tr>
-<td>Sort by</td> <td>methods</td>
+<td>Sort by</td> <td>Method</td> <td>Remarks</td>
 </tr>
+
 <tr>
 <td>Default</td>
 <td>
+
 ```java
 (first, second) -> {
-    HashMap&ltInteger, Object&gt a = first.getUniqueId();
+    HashMap<Integer, Object> a = first.getUniqueId();
     HashMap<Integer, Object> b = second.getUniqueId();
     Instant t = (Instant) a.get(0);
     int result = t.compareTo((Instant) b.get(0));
@@ -403,24 +405,29 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
     }
 ```
 </td>
+<td>
+
+`uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. `Instant.now()` is not precise enough, thus their sequence number is used instead to sort. 
+</td>
 </tr>
+
 <tr>
 <td>Alphabetical</td>
-<td>`Comparator.compare&#40;Tutor::getName&#41;`</td>
+<td>
+
+`Comparator.compare(Tutor::getName)`
+</td>
+<td>For the  case where the tutor list is the one currently being displayed.</td>
+</tr>
+
+<tr>
+<td>Reverse</td>
+<td>
+
+`Collections.reverse(internalList)`
+</td>
 </tr>
 </table>
-
-
-
-[//]: # (| Sort by 	     | methods 	|)
-
-[//]: # (|---------------|---	|)
-
-[//]: # (| Default 	     | Comparator.compare&#40;Student::getUniqueId&#41; 	|)
-
-[//]: # (| Alphabetical 	 | Comparator.compare&#40;Tutor::getName&#41; 	|)
-
-[//]: # (| Reverse 	     | Collections.reverse&#40;internalList&#41; 	|)
 
 #### Design considerations:
 
