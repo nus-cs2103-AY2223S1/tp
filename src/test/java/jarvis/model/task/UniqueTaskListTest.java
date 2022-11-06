@@ -42,8 +42,8 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(MISSION1);
-        Task editedAlice = new TaskBuilder(MISSION1).build();
-        assertTrue(uniqueTaskList.contains(editedAlice));
+        Task editedMission = new TaskBuilder(MISSION1).build();
+        assertTrue(uniqueTaskList.contains(editedMission));
     }
 
     @Test
@@ -90,10 +90,10 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(MISSION1);
-        Task editedAlice = new TaskBuilder(MISSION1).build();
-        uniqueTaskList.setTask(MISSION1, editedAlice);
+        Task editedMission = new TaskBuilder(MISSION1).build();
+        uniqueTaskList.setTask(MISSION1, editedMission);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(editedAlice);
+        expectedUniqueTaskList.add(editedMission);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -170,5 +170,25 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns true
+        assertTrue(uniqueTaskList.equals(uniqueTaskList));
+
+        // same internal list -> returns true
+        UniqueTaskList uniqueTaskListCopy = new UniqueTaskList();
+        assertTrue(uniqueTaskList.equals(uniqueTaskListCopy));
+
+        // different type -> returns false
+        assertFalse(uniqueTaskList.equals(5));
+
+        // null -> returns false
+        assertFalse(uniqueTaskList.equals(null));
+
+        // different internal list -> returns false
+        uniqueTaskListCopy.add(MISSION1);
+        assertFalse(uniqueTaskList.equals(uniqueTaskListCopy));
     }
 }

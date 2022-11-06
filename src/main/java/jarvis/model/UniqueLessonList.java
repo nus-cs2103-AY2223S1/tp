@@ -109,6 +109,10 @@ public class UniqueLessonList implements Iterable<Lesson> {
             throw new DuplicateLessonException();
         }
 
+        if (!editedLesson.equals(target) && hasPeriodClash(editedLesson)) {
+            throw new LessonClashException();
+        }
+
         internalList.set(index, editedLesson);
         FXCollections.sort(internalList, LESSON_COMPARATOR);
     }

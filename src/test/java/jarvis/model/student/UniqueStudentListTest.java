@@ -165,4 +165,36 @@ public class UniqueStudentListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueStudentList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void getNumStudents() {
+        // empty list
+        assertEquals(0, uniqueStudentList.getNumStudents());
+
+        uniqueStudentList.add(ALICE);
+        assertEquals(1, uniqueStudentList.getNumStudents());
+
+        uniqueStudentList.remove(ALICE);
+        assertEquals(0, uniqueStudentList.getNumStudents());
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns true
+        assertTrue(uniqueStudentList.equals(uniqueStudentList));
+
+        // same internal list -> returns true
+        UniqueStudentList uniqueStudentListCopy = new UniqueStudentList();
+        assertTrue(uniqueStudentList.equals(uniqueStudentListCopy));
+
+        // different type -> returns false
+        assertFalse(uniqueStudentList.equals(5));
+
+        // null -> returns false
+        assertFalse(uniqueStudentList.equals(null));
+
+        // different internal list -> returns false
+        uniqueStudentListCopy.add(ALICE);
+        assertFalse(uniqueStudentList.equals(uniqueStudentListCopy));
+    }
 }
