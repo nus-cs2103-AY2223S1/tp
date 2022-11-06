@@ -9,6 +9,7 @@ title: User Guide
 
 <div style="page-break-after: always;"></div>
 
+## Table of Contents
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -524,13 +525,17 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 <div style="page-break-after: always;"></div>
 
 ## 8. Glossary of Terminologies
-* **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
+* **Command**: An instruction to perform an action in Gim, preceded by a colon, i.e. `:instruction` 
+* **Command Line Interface (CLI)**: Interface that relies on keyboard inputs to interact with the system.
+* **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
+* **Graphical User Interface (GUI)**: Interface that relies on mouse inputs on visible components to interact with the system.
+* **Index**: Number associated to an Exercise in the Exercise List.
+* **JavaScript Object Notation (JSON)**: Filetype used for storing the user's data that can be edited using a text editor. 
 * **Parameters**: Inputs for commands that you come up with.
-* **Index** : Number associated to an Exercise in the Exercise List. 
-* **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
-* **Reps** : Number of times you perform a specific exercise.
-* **Sets** : Number of cycles of reps that you complete.
-* **Weight**: Total weight (include barbell if applicable, exclude body weight).
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
+* **Reps**: Number of times you perform a specific exercise.
+* **Sets**: Number of cycles of reps that you complete.
+* **Vim**: A text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
+* **Weight**: Total weight (include barbell if applicable, exclude body weight).
 
 <a href="#top">Back To Top</a>
