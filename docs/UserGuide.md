@@ -319,6 +319,7 @@ Adds a new task to the task panel.
 Format: `task add TITLE`
 
 * `TITLE` refers to the task and **cannot be empty**.
+* Tasks with the same `TITLE` cannot be added and will result in an error message.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the current task list only shows completed task (via `task list -c`), the newly added will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
@@ -529,7 +530,6 @@ Arrow data are saved in the hard disk automatically after any command that chang
 Arrow data are saved as JSON files, one for Teammates and one for Task Panel.
 * Teammates: `[JAR file location]/data/addressbook.json`
 * TaskPanel: `[JAR file location]/data/taskpanel.json`
-Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -542,6 +542,10 @@ Features to implement in the coming versions.
 
 ### Sort Teammates by name
 Sort Teammates by alphabetical order of their names. Currently, it is difficult to search for specific Teammates if the list becomes too long. This feature would allow easier finding of Teammates as there is an order in the list of Teammates.
+
+### Recurring Tasks
+Extensive project management is planned for future iterations, to allow for better planning. This will also add the ability to
+add tasks of the same name (different projects) since categorisation will be done by projects instead.
 
 
 --------------------------------------------------------------------------------------------------------------------
