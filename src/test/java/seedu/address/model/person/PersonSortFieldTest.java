@@ -36,37 +36,37 @@ public class PersonSortFieldTest {
     @Test
     public void isValidSortField_validSortField_returnsTrue() {
         // Sort field name
-        assertTrue(PersonSortField.isValidSortField("n"));
-        assertTrue(PersonSortField.isValidSortField("N"));
+        assertTrue(PersonSortField.isValidPersonSortField("n"));
+        assertTrue(PersonSortField.isValidPersonSortField("N"));
 
         // Sort field gender
-        assertTrue(PersonSortField.isValidSortField("g"));
-        assertTrue(PersonSortField.isValidSortField("G"));
+        assertTrue(PersonSortField.isValidPersonSortField("g"));
+        assertTrue(PersonSortField.isValidPersonSortField("G"));
 
         // Sort field DOB
-        assertTrue(PersonSortField.isValidSortField("d"));
-        assertTrue(PersonSortField.isValidSortField("D"));
+        assertTrue(PersonSortField.isValidPersonSortField("d"));
+        assertTrue(PersonSortField.isValidPersonSortField("D"));
     }
 
     @Test
     public void isValidSortField_invalidSortField_returnsFalse() {
         // Null sort field
-        assertThrows(NullPointerException.class, () -> PersonSortField.isValidSortField(null));
+        assertThrows(NullPointerException.class, () -> PersonSortField.isValidPersonSortField(null));
 
         // Empty string
-        assertFalse(PersonSortField.isValidSortField(""));
+        assertFalse(PersonSortField.isValidPersonSortField(""));
 
         // Whitespace
-        assertFalse(PersonSortField.isValidSortField(" "));
+        assertFalse(PersonSortField.isValidPersonSortField(" "));
 
         // Incorrect single letter
-        assertFalse(PersonSortField.isValidSortField("x"));
+        assertFalse(PersonSortField.isValidPersonSortField("x"));
 
         // Incorrect multiple letters
-        assertFalse(PersonSortField.isValidSortField("xyz"));
+        assertFalse(PersonSortField.isValidPersonSortField("xyz"));
 
         // Special characters
-        assertFalse(PersonSortField.isValidSortField("*"));
+        assertFalse(PersonSortField.isValidPersonSortField("*"));
     }
 
 }
