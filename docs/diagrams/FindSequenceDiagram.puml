@@ -57,7 +57,7 @@ deactivate Model
 alt student list
 
 create StudentContainsKeywordsPredicate
-FindCommand --> StudentContainsKeywordsPredicate
+FindCommand -> StudentContainsKeywordsPredicate
 activate StudentContainsKeywordsPredicate
 
 StudentContainsKeywordsPredicate --> FindCommand : s
@@ -72,7 +72,7 @@ deactivate Model
 else tutor list
 
 create TutorContainsKeywordsPredicate
-FindCommand --> TutorContainsKeywordsPredicate
+FindCommand -> TutorContainsKeywordsPredicate
 activate TutorContainsKeywordsPredicate
 
 TutorContainsKeywordsPredicate --> FindCommand : t
@@ -87,7 +87,7 @@ deactivate Model
 else tuition class list
 
 create TuitionClassContainsKeywordsPredicate
-FindCommand --> TuitionClassContainsKeywordsPredicate
+FindCommand -> TuitionClassContainsKeywordsPredicate
 activate TuitionClassContainsKeywordsPredicate
 
 TuitionClassContainsKeywordsPredicate --> FindCommand : c
