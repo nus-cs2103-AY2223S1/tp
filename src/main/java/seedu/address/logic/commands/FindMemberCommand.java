@@ -11,13 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DES
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.EmailContainsKeywordsPredicateConverter;
+import seedu.address.logic.parser.NameContainsKeywordsPredicateConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -35,7 +34,7 @@ public class FindMemberCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'find member' command is used to find a member in the current team.\n";
 
-    public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s)%2$s. \n"
+    public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s): %2$s\n"
             + "Type `list members` to show all members again.";
 
     public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
@@ -61,7 +60,7 @@ public class FindMemberCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMembersList(predicate.getPredicate());
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), predicate.keywordsToString()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), predicate.getKeywords()));
     }
 
     @Override
@@ -72,24 +71,28 @@ public class FindMemberCommand extends Command {
     }
 
     private static class Exclusive {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1..*",
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1",
+                paramLabel = "nameKeywords",
+                parameterConsumer = NameContainsKeywordsPredicateConverter.class,
                 description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
-        private String[] nameKeywords;
+        private NameContainsKeywordsPredicate nameContainsKeywordsPredicate;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, arity = "1..*",
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, arity = "1",
+                paramLabel = "emailKeywords",
+                parameterConsumer = EmailContainsKeywordsPredicateConverter.class,
                 description = FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION)
-        private String[] emailKeywords;
+        private EmailContainsKeywordsPredicate emailContainsKeywordsPredicate;
 
-        Predicate<Person> getPredicate() {
-            return nameKeywords == null
-                    ? new EmailContainsKeywordsPredicate(List.of(emailKeywords))
-                    : new NameContainsKeywordsPredicate(List.of(nameKeywords));
+        public Predicate<Person> getPredicate() {
+            return nameContainsKeywordsPredicate == null
+                    ? emailContainsKeywordsPredicate
+                    : nameContainsKeywordsPredicate;
         }
 
-        String keywordsToString() {
-            return nameKeywords == null
-                    ? Stream.of(emailKeywords).reduce("", (a, b) -> a + " " + b)
-                    : Stream.of(nameKeywords).reduce("", (a, b) -> a + " " + b);
+        public String getKeywords() {
+            return nameContainsKeywordsPredicate == null
+                    ? emailContainsKeywordsPredicate.getKeywordsAsString()
+                    : nameContainsKeywordsPredicate.getKeywordsAsString();
         }
 
         @Override
@@ -98,8 +101,8 @@ public class FindMemberCommand extends Command {
                 return true;
             } else if (other instanceof Exclusive) {
                 Exclusive target = (Exclusive) other;
-                return Arrays.equals(nameKeywords, target.nameKeywords)
-                        && Arrays.equals(emailKeywords, target.emailKeywords);
+                return nameContainsKeywordsPredicate.equals(target.nameContainsKeywordsPredicate)
+                        && emailContainsKeywordsPredicate.equals(target.emailContainsKeywordsPredicate);
             } else {
                 return false;
             }

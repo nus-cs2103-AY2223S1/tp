@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
 
 
@@ -30,7 +31,7 @@ public class JsonAdaptedLink {
      * Converts a given {@code Link} into this class for Jackson use.
      */
     public JsonAdaptedLink(Link source) {
-        displayedName = source.getDisplayedName().fullName;
+        displayedName = source.getDisplayedName().linkName;
         url = source.getUrl().value;
     }
 
@@ -49,7 +50,7 @@ public class JsonAdaptedLink {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
-        final Name modelName = new Name(displayedName);
+        final LinkName modelName = new LinkName(displayedName);
 
         if (url == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Url.class.getSimpleName()));

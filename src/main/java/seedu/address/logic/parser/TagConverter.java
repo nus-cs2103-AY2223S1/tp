@@ -2,16 +2,16 @@ package seedu.address.logic.parser;
 
 import picocli.CommandLine;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.tag.Tag;
 
 /**
- * Converter from {@code String} to {@code Address}.
+ * Converter from {@code String} to {@code Tag}.
  */
-public class AddressConverter implements CommandLine.ITypeConverter<Address> {
+public class TagConverter implements CommandLine.ITypeConverter<Tag> {
     @Override
-    public Address convert(String value) throws Exception {
+    public Tag convert(String value) throws Exception {
         try {
-            return ParserUtil.parseAddress(value);
+            return ParserUtil.parseTag(value);
         } catch (ParseException e) {
             throw new CommandLine.TypeConversionException(e.getMessage());
         }

@@ -1,7 +1,6 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,19 +15,10 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task names should not be blank and cannot begin with a whitespace";
-
-    /*
-     * The first character of the task name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     /**
      * Name of the task.
      */
-    private final String name;
+    private final TaskName name;
 
     /**
      * Team member(s) assigned to be in charge of this task.
@@ -53,9 +43,8 @@ public class Task {
      * @param completionStatus Boolean representing whether the task is completed
      * @param deadline         Datetime representing deadline of the task
      */
-    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
+    public Task(TaskName name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees = new UniquePersonList();
         this.assignees.setPersons(assignees);
@@ -72,24 +61,12 @@ public class Task {
      * @param completionStatus Boolean representing whether the task is completed
      * @param deadline         Datetime representing deadline of the task
      */
-    private Task(String name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
+    private Task(TaskName name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees = assignees;
         this.completionStatus = completionStatus;
         this.deadline = deadline;
-    }
-
-    /**
-     * Returns true if a given string is a valid name for a task.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    public boolean isValidIndex(int test) {
-        return test < getAssigneesList().size();
     }
 
     @Override
@@ -97,7 +74,7 @@ public class Task {
         return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
-    public String getName() {
+    public TaskName getName() {
         return name;
     }
 
@@ -135,50 +112,28 @@ public class Task {
         }
     }
 
-    public String getDeadlineStorage() {
+    public String getDeadlineInputAsString() {
         if (deadline == null) {
             return "";
         } else {
-            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            return deadline.format(DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
         }
     }
 
-    /**
-     * Returns true if two tasks have the same name, members that task is assigned to and deadline.
-     *
-     * @param other the other task to be compared with.
-     * @return true if the tasks are considered equal, false otherwise.
-     */
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Task // instanceof handles nulls
-                && name.equals(((Task) other).name))
-                && assignees.equals(((Task) other).assignees)
-                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
+    public String getDateInputAsString() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
-
-    /**
-     * Assigns a Task to a person and returns a new Task
-     */
-    public Task assignTo(Person assignee) {
-        assignees.add(assignee);
-        return new Task(name, assignees, completionStatus, this.deadline);
-    }
-
-    /**
-     * Checks if task has already been assigned to the specified assignee.
-     *
-     * @param assignee The specified assignee.
-     * @return true if the task has been assigned to the assignee before, false otherwise.
-     */
-    public boolean checkAssignee(Person assignee) {
-        return this.assignees.contains(assignee);
+    public String getTimeInputAsString() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("HH:mm"));
+        }
     }
 
     /**
@@ -208,9 +163,15 @@ public class Task {
     }
 
     /**
-     * Removes the person from the assignee list, if exists.
-     *
-     * @param person assignee to be removed.
+     * Assigns a {@code Task} to the specified {@code Person} and returns a new {@code Task}
+     */
+    public Task addAssignee(Person assignee) {
+        assignees.add(assignee);
+        return new Task(name, assignees, completionStatus, this.deadline);
+    }
+
+    /**
+     * Removes the specified {@code Person} from the assignee list, if they exist.
      */
     public Task removeAssignee(Person person) {
         assignees.remove(person);
@@ -218,11 +179,49 @@ public class Task {
     }
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson} in the assignees list for all tasks.
-     * {@code target} must exist in assignee list.
+     * Replaces the specified person {@code target} with {@code editedPerson} in the assignees list for all tasks.
+     * Note: {@code target} must exist in assignee list.
      */
     public Task setAssignee(Person target, Person editedPerson) {
         assignees.setPerson(target, editedPerson);
         return new Task(name, assignees, completionStatus, deadline);
     }
+
+    /**
+     * Checks if {@code Task} has already been assigned to the specified assignee.
+     *
+     * @param assignee The specified assignee.
+     * @return true if the task has been assigned to the assignee before, false otherwise.
+     */
+    public boolean checkAssignee(Person assignee) {
+        return this.assignees.contains(assignee);
+    }
+
+    /**
+     * Clears all assignees from a task and returns a new Task
+     */
+    public Task clearAssignees() {
+        return new Task(name, List.of(), completionStatus, this.deadline);
+    }
+
+    /**
+     * Returns true if two tasks have the same name, members that task is assigned to and deadline.
+     *
+     * @param other the other task to be compared with.
+     * @return true if the tasks are considered equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Task // instanceof handles nulls
+                && name.equals(((Task) other).name))
+                && assignees.equals(((Task) other).assignees)
+                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 }

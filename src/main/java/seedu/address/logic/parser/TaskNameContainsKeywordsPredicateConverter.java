@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Stack;
 
 import picocli.CommandLine;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
 /**
- * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
+ * Converter from {@code String} to {@code TaskNameContainsKeywordsPredicate}.
  */
-public class NameContainsKeywordsPredicateConverter implements CommandLine.IParameterConsumer {
+public class TaskNameContainsKeywordsPredicateConverter implements CommandLine.IParameterConsumer {
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+";
-    public static final String MESSAGE_CONSTRAINTS = "Keywords should only contain alphanumeric characters without"
-            + "any spaces";
+    public static final String VALIDATION_REGEX = "[^\\s'\"]+";
+    public static final String MESSAGE_CONSTRAINTS = "Keywords should not contain any space or quotation marks (' and"
+            + "\")";
 
     @Override
     public void consumeParameters(Stack<String> args, CommandLine.Model.ArgSpec argSpec,
@@ -29,6 +29,6 @@ public class NameContainsKeywordsPredicateConverter implements CommandLine.IPara
             keywords.add(keyword);
         }
 
-        argSpec.setValue(new NameContainsKeywordsPredicate(keywords));
+        argSpec.setValue(new TaskNameContainsKeywordsPredicate(keywords));
     }
 }

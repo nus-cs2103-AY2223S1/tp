@@ -16,9 +16,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 
 /**
  * Edits the details of an existing task in TruthTable.
@@ -77,7 +79,7 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         assert editTaskDescriptor != null;
 
-        String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDeadline;
         if (editTaskDescriptor.getDeadline().isEmpty()) {
             updatedDeadline = taskToEdit.getDeadline().orElse(null);
@@ -100,9 +102,8 @@ public class EditTaskCommand extends Command {
             return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
-            editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
-        }
+
+        editTaskDescriptor.setAssignees((arguments.assignees));
         if (arguments.deadline != null) {
             editTaskDescriptor.setDeadline(arguments.deadline);
         }
@@ -118,20 +119,20 @@ public class EditTaskCommand extends Command {
         Task taskToEdit = taskList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         List<Person> memberList = model.getTeam().getTeamMembers();
+
         if (editTaskDescriptor.getAssignees().isPresent()) {
-            for (int i = 0; i < arguments.assignees.length; i++) {
-                if (Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) < 1
-                        || Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) > memberList.size()) {
+            List<Index> assignees = editTaskDescriptor.getAssignees().get();
+            for (Index index: assignees) {
+                if (index.getZeroBased() >= memberList.size()) {
                     throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
                 }
             }
-            List<Person> assigneePersonList = new java.util.ArrayList<>(List.of());
-            for (String index : editTaskDescriptor.assignees) {
-                int assigneeIndex = Integer.parseInt(index);
-                assigneePersonList.add(memberList.get(assigneeIndex - 1));
-            }
+            List<Person> assigneePersonList = assignees.stream()
+                    .map(index -> memberList.get(index.getZeroBased()))
+                    .collect(Collectors.toList());
+
             for (Person assignee : assigneePersonList) {
-                editedTask.assignTo(assignee);
+                editedTask.addAssignee(assignee);
             }
         }
         if (!taskToEdit.equals(editedTask) && model.getTeam().hasTask(editedTask)) {
@@ -162,28 +163,30 @@ public class EditTaskCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
-        private String name;
+        private TaskName name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
         private LocalDateTime deadline;
 
-        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, description =
                 FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
-        private String[] assignees;
+        private List<Index> assignees = new ArrayList<>();
 
         @Override
         public boolean equals(Object other) {
             if (other == this) {
                 return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name == null ? false : this.name.equals(target.name)
-                        && this.deadline == null ? false : this.deadline.equals(target.deadline)
-                        && Arrays.equals(assignees, target.assignees);
-            } else {
+            }
+
+            if (!(other instanceof Arguments)) {
                 return false;
             }
+
+            Arguments target = (Arguments) other;
+            return this.name != null && this.name.equals(target.name)
+                    && this.deadline != null && this.deadline.equals(target.deadline)
+                    && this.assignees.equals(target.assignees);
         }
     }
 
@@ -192,11 +195,11 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private String name;
+        private TaskName name;
 
         private LocalDateTime deadline;
 
-        private List<String> assignees;
+        private List<Index> assignees;
 
         public EditTaskDescriptor() {
         }
@@ -217,11 +220,11 @@ public class EditTaskCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, deadline);
         }
 
-        public Optional<String> getName() {
+        public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(String name) {
+        public void setName(TaskName name) {
             this.name = name;
         }
 
@@ -233,11 +236,11 @@ public class EditTaskCommand extends Command {
             this.deadline = date;
         }
 
-        public Optional<List<String>> getAssignees() {
+        public Optional<List<Index>> getAssignees() {
             return Optional.ofNullable(assignees);
         }
 
-        public void setAssignees(List<String> assignees) {
+        public void setAssignees(List<Index> assignees) {
             this.assignees = assignees;
         }
 

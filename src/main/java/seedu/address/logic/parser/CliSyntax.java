@@ -6,8 +6,6 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Flag definitions for commands */
-    public static final String FLAG_ADDRESS_STR = "-a";
-    public static final String FLAG_ADDRESS_STR_LONG = "--address";
     public static final String FLAG_ASSIGNEE_STR = "-a";
     public static final String FLAG_ASSIGNEE_STR_LONG = "--assignee";
     public static final String FLAG_COMPLETE_TASKS_STR = "-c";
@@ -36,8 +34,6 @@ public class CliSyntax {
     public static final String FLAG_PERSON_NAME_DESCRIPTION = "Name of person (e.g. \"John Doe\")";
     public static final String FLAG_PERSON_PHONE_DESCRIPTION = "Phone of person (e.g. 98765432)";
     public static final String FLAG_PERSON_EMAIL_DESCRIPTION = "Email of person (e.g. johnd@example.com)";
-    public static final String FLAG_PERSON_ADDRESS_DESCRIPTION = "Address of person (e.g. \"311, Clementi Ave 2, "
-            + "#02-25\")";
     public static final String FLAG_PERSON_INDEX_DESCRIPTION = "Index of person (must be a positive integer)";
     public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\"";
     public static final String FLAG_LINK_NAME_DESCRIPTION = "Name of link (e.g. \"Meeting #1\")";
@@ -56,6 +52,7 @@ public class CliSyntax {
     public static final String FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Alice Bob)";
     public static final String FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. johnd@example"
             + ".com alexy@example.com)";
+    public static final String FLAG_TASK_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Meetings Bugs)";
     public static final String FLAG_COMPLETE_TASK_DESCRIPTION = "Filter for completed tasks";
     public static final String FLAG_INCOMPLETE_TASK_DESCRIPTION = "Filter for incomplete tasks";
     public static final String FLAG_SORT_ORDER_DESCRIPTION = "Sort by order specified (e.g. asc, dsc, res)";

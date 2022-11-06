@@ -221,7 +221,7 @@ public class Team {
      * @param person The specified member that task is assigned to
      */
     public void assignTask(Task task, Person person) {
-        task.assignTo(person);
+        task.addAssignee(person);
     }
 
     //// link related operations

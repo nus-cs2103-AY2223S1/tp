@@ -1,7 +1,6 @@
 package seedu.address.model.team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.TASK_1;
@@ -16,20 +15,6 @@ public class TaskTest {
     @Test
     public void null_constructor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Task(null, List.of(), false, null));
-    }
-
-    @Test
-    public void invalidName_constructor_throwsInvalidArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Task(" ", List.of(), false, null));
-    }
-
-    @Test
-    public void isValidName() {
-        assertTrue(Task.isValidName("task"));
-        assertTrue(Task.isValidName("123"));
-        assertTrue(Task.isValidName("task 123"));
-        assertFalse(Task.isValidName(" "));
-        assertFalse(Task.isValidName(" task"));
     }
 
     @Test
