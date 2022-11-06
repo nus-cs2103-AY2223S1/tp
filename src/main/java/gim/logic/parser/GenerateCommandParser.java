@@ -54,7 +54,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
     private GenerateCommand getGenerateCommandWithIndices(ArgumentMultimap argMultimap) throws ParseException {
         String indicesAsString = argMultimap.getPreamble();
         String level = argMultimap.getValue(PREFIX_LEVEL).orElse("");
-        ArrayList<Index> indices = validateIndices(indicesAsString);
+        ArrayList<Index> indices = getIndices(indicesAsString);
         ValidLevel validLevel = validateLevel(level);
         return new GenerateCommand(indices, validLevel);
     }
@@ -73,26 +73,31 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
     }
 
     // validate and return ArrayList of indices if all indices are valid
-    private ArrayList<Index> validateIndices(String indicesAsString) throws ParseException {
+    private ArrayList<Index> getIndices(String indicesAsString) throws ParseException {
         if (!indicesAsString.matches(INDEX_VALIDATION_REGEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INCORRECT_INDEX_FORMAT));
         }
         try {
-            ArrayList<Index> indices = new ArrayList<>();
             String[] indicesArr = indicesAsString.split(",");
-            for (String indexString : indicesArr) {
-                Index index = ParserUtil.parseIndex(indexString);
-                indices.add(index);
-            }
-            return indices;
+            return parseIndices(indicesArr);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX), ive);
         }
     }
 
-    // validate against ValidLevels and return difficulty level
+    // parses array of Strings into array of Indexes
+    private ArrayList<Index> parseIndices(String[] indicesArr) throws ParseException {
+        ArrayList<Index> indices = new ArrayList<>();
+        for (String indexString : indicesArr) {
+            Index index = ParserUtil.parseIndex(indexString);
+            indices.add(index);
+        }
+        return indices;
+    }
+
+    // validate against ValidLevels and return the level if valid
     private ValidLevel validateLevel(String level) throws ParseException {
         if (level.isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

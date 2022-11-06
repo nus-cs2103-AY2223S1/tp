@@ -19,4 +19,22 @@ public class MediumGenerator implements Generator {
         double suggestedWeight = factor * Double.parseDouble(exercisePR.getWeight().value);
         return String.format("%s: %.2fkg %s", exercisePR.getName(), suggestedWeight, setsAndReps);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MediumGenerator)) {
+            return false;
+        }
+
+        // state check
+        MediumGenerator e = (MediumGenerator) other;
+        return exercisePR.equals(e.exercisePR);
+    }
 }
+
