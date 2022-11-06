@@ -14,7 +14,7 @@ import seedu.modquik.model.ModelType;
 import seedu.modquik.model.student.Student;
 
 /**
- * Deletes a person identified using it's displayed index from the ModQuik.
+ * Deletes a person identified using it's displayed index from ModQuik.
  */
 public class DeleteStudentCommand extends Command {
 

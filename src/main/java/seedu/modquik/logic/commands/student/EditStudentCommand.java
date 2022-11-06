@@ -39,7 +39,7 @@ import seedu.modquik.model.tag.Tag;
 import seedu.modquik.model.tutorial.TutorialName;
 
 /**
- * Edits the details of an existing person in the modquik book.
+ * Edits the details of an existing person in ModQuik.
  */
 public class EditStudentCommand extends Command {
 

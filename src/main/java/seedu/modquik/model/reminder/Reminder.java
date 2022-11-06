@@ -8,7 +8,7 @@ import java.util.Objects;
 import seedu.modquik.model.datetime.Datetime;
 
 /**
- * Represents a Reminder in the modquik book.
+ * Represents a Reminder in ModQuik.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {

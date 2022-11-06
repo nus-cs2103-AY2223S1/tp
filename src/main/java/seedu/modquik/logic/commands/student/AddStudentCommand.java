@@ -21,7 +21,7 @@ import seedu.modquik.model.ModelType;
 import seedu.modquik.model.student.Student;
 
 /**
- * Adds a person to the modquik book.
+ * Adds a person to ModQuik.
  */
 public class AddStudentCommand extends Command {
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modquik.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the modquik book.
+ * Represents a Person's email in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -36,7 +36,7 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid email modquik.
+     * @param email A valid email address.
      */
     public Email(String email) {
         requireNonNull(email);
