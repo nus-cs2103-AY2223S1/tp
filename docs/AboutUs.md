@@ -34,8 +34,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/CedricChia123)]
 [[portfolio](team/cedricchia123.md)]
 
-* Role: TBC
-* Responsibilities: TBC
+* Role: Developer
+* Responsibilities: Integration, Documentation
 
 ### Aloysius Neo
 
