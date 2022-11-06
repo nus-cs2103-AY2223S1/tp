@@ -284,7 +284,7 @@ tuition classes in the student/tutor.
   * Cons: Hard and tedious to implement the storing of information in Json. 
 
 
-### \[Implemented\] Find by fields feature
+### \[Implemented\] Search by multiple fields feature
 
 #### Implementation
 
