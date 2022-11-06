@@ -22,9 +22,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
+import seedu.address.model.TaskPanel;
+import seedu.address.testutil.TaskBuilder;
 
 public class AssignTaskCommandTest {
 
@@ -40,39 +44,62 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidTeammateAddIndex_throwsCommandException() {
+    public void execute_invalidSingleTeammateAddIndex_throwsCommandException() {
         Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
-        HashSet<Index> invalidAssignedTeammates = new HashSet<>();
-        invalidAssignedTeammates.add(outOfBoundTeammateIndex);
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, invalidAssignedTeammates,
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(outOfBoundTeammateIndex)), new HashSet<>(), new HashSet<>(), new HashSet<>());
+
+        assertCommandFailure(assignTaskCommand, model,
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndex.getOneBased()) + '\n');
+    }
+
+    @Test
+    public void execute_invalidMultipleTeammateAddIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndexOne = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        Index outOfBoundTeammateIndexTwo = Index.fromOneBased(model.getFilteredTeammateList().size() + 2);
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(Arrays.asList(outOfBoundTeammateIndexTwo,
+                outOfBoundTeammateIndexOne)),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                        outOfBoundTeammateIndexTwo.getOneBased()) + '\n'
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndexOne.getOneBased()) + '\n');
     }
 
     @Test
     public void execute_invalidTeammateDeleteIndex_throwsCommandException() {
         Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
-        HashSet<Index> invalidAssignedTeammates = new HashSet<>();
-        invalidAssignedTeammates.add(outOfBoundTeammateIndex);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(), invalidAssignedTeammates, new HashSet<>());
+                new HashSet<>(), new HashSet<>(List.of(outOfBoundTeammateIndex)), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
-                        outOfBoundTeammateIndex.getOneBased()) + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                        outOfBoundTeammateIndex.getOneBased()) + '\n');
     }
 
     @Test
-    public void execute_invalidTeammateAddName_throwsCommandException() {
+    public void execute_invalidSingleTeammateAddName_throwsCommandException() {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(List.of("NotAName")), new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
-                        "NotAName") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                        "NotAName") + "\n");
+    }
+
+    @Test
+    public void execute_invalidMultipleTeammateAddName_throwsCommandException() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
+                new HashSet<>(Arrays.asList("NotAName", "NonName")), new HashSet<>(), new HashSet<>());
+
+        assertCommandFailure(assignTaskCommand, model,
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
+                        "NotAName") + "\n" + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
+                        "NonName") + "\n");
     }
 
     @Test
@@ -82,27 +109,249 @@ public class AssignTaskCommandTest {
 
         assertCommandFailure(assignTaskCommand, model,
                 String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME,
-                        "NotAName") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                        "NotAName") + "\n");
     }
 
     @Test
-    public void execute_teammateToAddAlreadyAdded_throwsCommandException() {
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(List.of("Alice Pauline")), new HashSet<>(), new HashSet<>());
+    public void execute_invalidTeammateAddNameAndIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(outOfBoundTeammateIndex)), new HashSet<>(Arrays.asList("NotAName")),
+                new HashSet<>(), new HashSet<>());
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(AssignTaskCommand.MESSAGE_REPEATED_CONTACT,
-                        "Alice Pauline") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndex.getOneBased()) + "\n"
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME, "NotAName") + "\n");
     }
 
     @Test
-    public void execute_teammateToDeleteNotAssigned_throwsCommandException() {
+    public void execute_invalidTeammateDeleteNameAndIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndex = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(List.of("George Best")));
+                new HashSet<>(), new HashSet<>(List.of(outOfBoundTeammateIndex)),
+                new HashSet<>(Arrays.asList("NotAName")));
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(AssignTaskCommand.MESSAGE_CONTACT_DOES_NOT_EXIT,
-                        "George Best") + "\n" + AssignTaskCommand.MESSAGE_PARTIAL_SUCCESS);
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndex.getOneBased()) + "\n"
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME, "NotAName") + "\n");
+    }
+
+    @Test
+    public void execute_invalidTeammateDeleteAddNameAndIndex_throwsCommandException() {
+        Index outOfBoundTeammateIndexOne = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        Index outOfBoundTeammateIndexTwo = Index.fromOneBased(model.getFilteredTeammateList().size() + 1);
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(outOfBoundTeammateIndexOne)), new HashSet<>(Arrays.asList("NotAName")),
+                new HashSet<>(List.of(outOfBoundTeammateIndexTwo)), new HashSet<>(Arrays.asList("NonName")));
+
+        assertCommandFailure(assignTaskCommand, model,
+                String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndexOne.getOneBased()) + "\n"
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_INDEX_CUSTOM,
+                        outOfBoundTeammateIndexTwo.getOneBased()) + "\n"
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME, "NotAName") + "\n"
+                        + String.format(Messages.MESSAGE_INVALID_TEAMMATE_NAME, "NonName") + "\n");
+    }
+
+    @Test
+    public void execute_validTeammateAddIndex_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier", "Alice Pauline").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateAddName_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(), new HashSet<>(List.of("Benson Meier")),
+                new HashSet<>(), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier", "Alice Pauline").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateDeleteIndex_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(), new HashSet<>(),
+                new HashSet<>(List.of(INDEX_FIRST_TEAMMATE)), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask = new TaskBuilder(taskToEdit).withContacts().build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateDeleteName_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(List.of("Alice Pauline")));
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts().build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateAddAndDeleteName_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(), new HashSet<>(List.of("Benson Meier")),
+                new HashSet<>(), new HashSet<>(List.of("Alice Pauline")));
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateAddAndDeleteIndex_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(List.of(INDEX_FIRST_TEAMMATE)), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateAddAndDeleteMix_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(List.of("Alice Pauline")));
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validTeammateAddAndDeleteMultiple_success() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(Arrays.asList(INDEX_SECOND_TEAMMATE, INDEX_THIRD_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(List.of("Alice Pauline")));
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask =
+                new TaskBuilder(taskToEdit).withContacts("Benson Meier", "Carl Kurz").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_teammateToAddAlreadyAdded_successWithInfo() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(List.of(INDEX_FIRST_TEAMMATE)), new HashSet<>(),
+                new HashSet<>(), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask = new TaskBuilder(taskToEdit).withContacts("Alice Pauline").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_REPEATED_CONTACT, "Alice Pauline") + "\n"
+                + String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_teammateToDeleteNotAssigned_successWithInfo() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(), new HashSet<>(),
+                new HashSet<>(List.of(INDEX_SECOND_TEAMMATE)), new HashSet<>());
+
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TEAMMATE.getZeroBased());
+
+        Task editedTask = new TaskBuilder(taskToEdit).withContacts("Alice Pauline").build();
+
+        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_CONTACT_DOES_NOT_EXIT, "Benson Meier") + "\n"
+                + String.format(AssignTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
