@@ -25,24 +25,19 @@ Example of an [Item](#item):
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-New item added:
-Name: Potato
-Quantity: 70 kg
-Bought Date: 22-02-2022
-Expiry Date: 22-03-2022
-Price: $0
-Remarks: -
-Tags: {}
-```
+Initially, FoodRem does not contain an item with the name "Potato".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022"
+  commandOutputBox="images/itemCommands/commandOutputBox/new.png"
+%}
 
 ---
 
