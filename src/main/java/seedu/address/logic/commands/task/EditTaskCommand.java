@@ -17,7 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
@@ -91,7 +91,7 @@ public class EditTaskCommand extends TaskCommand {
      * @throws CommandException
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,
-                                         List<Person> personList) throws CommandException {
+                                         List<Teammate> teammateList) throws CommandException {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());

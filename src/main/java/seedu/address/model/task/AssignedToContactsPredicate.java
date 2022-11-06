@@ -11,7 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.teammate.Teammate;
 
 /**
  * Tests that a {@code Task}'s assigned contacts contains a specified set of contacts.
@@ -40,7 +40,7 @@ public class AssignedToContactsPredicate implements Predicate<Task> {
      * @param personIndexes the indices which correspond to contacts in the model's address book
      */
     public AssignedToContactsPredicate(Model model, Set<Index> personIndexes) throws CommandException {
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Teammate> lastShownPersonsList = model.getFilteredPersonList();
 
         for (Index personIndex : personIndexes) {
             if (personIndex.getZeroBased() >= lastShownPersonsList.size()) {

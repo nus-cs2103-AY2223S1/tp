@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ContainsTagPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.teammate.ContainsTagPredicate;
+import seedu.address.model.teammate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

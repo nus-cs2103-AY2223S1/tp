@@ -15,7 +15,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 
@@ -87,7 +87,7 @@ public class AssignTaskCommand extends TaskCommand {
         }
         Task taskToModify = lastShownTaskList.get(taskIndex.getZeroBased());
 
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Teammate> lastShownPersonsList = model.getFilteredPersonList();
 
         Set<Contact> contactsToAdd = getAllContacts(personAddIndexes, personAddNames, lastShownPersonsList);
         Set<Contact> contactsToDelete = getAllContacts(personDeleteIndexes, personDeleteNames, lastShownPersonsList);
@@ -124,24 +124,24 @@ public class AssignTaskCommand extends TaskCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
     }
 
-    private Set<Contact> personIndexesToContacts(Set<Index> personIndexes, List<Person> personList) {
+    private Set<Contact> personIndexesToContacts(Set<Index> personIndexes, List<Teammate> teammateList) {
         Set<Contact> assignedContacts = new HashSet<>();
         for (Index personIndex : personIndexes) {
-            if (personIndex.getZeroBased() >= personList.size()) {
+            if (personIndex.getZeroBased() >= teammateList.size()) {
                 invalidIndexes.add(personIndex);
                 continue;
             }
             Contact contactToAssign =
-                new Contact(personList.get(personIndex.getZeroBased()).getName().fullName);
+                new Contact(teammateList.get(personIndex.getZeroBased()).getName().fullName);
             assignedContacts.add(contactToAssign);
         }
         return assignedContacts;
     }
 
-    private Set<Contact> personNamesToContacts(Set<String> personNames, List<Person> personList) {
+    private Set<Contact> personNamesToContacts(Set<String> personNames, List<Teammate> teammateList) {
         Set<Contact> assignedContacts = new HashSet<>();
         for (String personName : personNames) {
-            String matchingPersonsName = Contact.corrNameInPersonsList(personList, personName);
+            String matchingPersonsName = Contact.corrNameInPersonsList(teammateList, personName);
             if (matchingPersonsName.isEmpty()) {
                 invalidNames.add(personName);
                 continue;
@@ -152,9 +152,9 @@ public class AssignTaskCommand extends TaskCommand {
         return assignedContacts;
     }
 
-    private Set<Contact> getAllContacts(Set<Index> personIndexes, Set<String> personNames, List<Person> personList) {
-        Set<Contact> contactsFromIndex = personIndexesToContacts(personIndexes, personList);
-        Set<Contact> contactsFromName = personNamesToContacts(personNames, personList);
+    private Set<Contact> getAllContacts(Set<Index> personIndexes, Set<String> personNames, List<Teammate> teammateList) {
+        Set<Contact> contactsFromIndex = personIndexesToContacts(personIndexes, teammateList);
+        Set<Contact> contactsFromName = personNamesToContacts(personNames, teammateList);
         contactsFromIndex.addAll(contactsFromName);
         return contactsFromIndex;
     }

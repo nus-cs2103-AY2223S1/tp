@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.teammate.Address;
+import seedu.address.model.teammate.Email;
+import seedu.address.model.teammate.Name;
+import seedu.address.model.teammate.Teammate;
+import seedu.address.model.teammate.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,13 +30,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Teammate teammate) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(teammate.getName());
+        descriptor.setPhone(teammate.getPhone());
+        descriptor.setEmail(teammate.getEmail());
+        descriptor.setAddress(teammate.getAddress());
+        descriptor.setTags(teammate.getTags());
     }
 
     /**

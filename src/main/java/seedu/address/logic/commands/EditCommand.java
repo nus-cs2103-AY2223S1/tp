@@ -20,11 +20,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.teammate.Address;
+import seedu.address.model.teammate.Email;
+import seedu.address.model.teammate.Name;
+import seedu.address.model.teammate.Teammate;
+import seedu.address.model.teammate.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.AssignedToContactsPredicate;
 import seedu.address.model.task.Contact;
@@ -73,30 +73,30 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Teammate> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Teammate teammateToEdit = lastShownList.get(index.getZeroBased());
+        Teammate editedTeammate = createEditedPerson(teammateToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!teammateToEdit.isSamePerson(editedTeammate) && model.hasPerson(editedTeammate)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        updateTasksAssignedContacts(model, personToEdit, editedPerson);
-        model.setPerson(personToEdit, editedPerson);
+        updateTasksAssignedContacts(model, teammateToEdit, editedTeammate);
+        model.setPerson(teammateToEdit, editedTeammate);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTeammate));
     }
 
-    private void updateTasksAssignedContacts(Model model, Person personToEdit,
-                                             Person editedPerson) throws CommandException {
-        Contact contactToEdit = new Contact(personToEdit.getName().fullName);
-        Contact editedContact = new Contact(editedPerson.getName().fullName);
+    private void updateTasksAssignedContacts(Model model, Teammate teammateToEdit,
+                                             Teammate editedTeammate) throws CommandException {
+        Contact contactToEdit = new Contact(teammateToEdit.getName().fullName);
+        Contact editedContact = new Contact(editedTeammate.getName().fullName);
         model.updateFilteredTaskList(new AssignedToContactsPredicate(contactToEdit));
         List<Task> lastShownTaskList = new ArrayList<>(model.getFilteredTaskList());
         for (Task task : lastShownTaskList) {
@@ -113,16 +113,16 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Teammate createEditedPerson(Teammate teammateToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert teammateToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(teammateToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(teammateToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(teammateToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(teammateToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(teammateToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Teammate(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override

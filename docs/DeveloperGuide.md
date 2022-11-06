@@ -94,7 +94,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses either the `AddressBookParser` class or the `TaskPanelParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`, `AddTaskCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add a teammate).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("task add New task")` API call.
@@ -272,7 +272,7 @@ where the `get` methods return `Optional<T>` objects containing the value to be 
 
 #### Current Implementation
 
-The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of persons is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of person can also be done through specifying the full name of the person, which is matched with the target `Person` in the filtered `AddressBook`.
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Person` in the filtered `AddressBook`.
 
 ![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
 
@@ -353,11 +353,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th teammate in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new teammate. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -365,7 +365,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the teammate was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -410,7 +410,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the teammate being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | 16  | **       | As a user, I can edit the details of a task, so that I can update the deadline or the deliverables.                                                                              |
 | 17  | **       | As a user, I can create a task without assigning it to any contact, so that I can always choose to assign it later when I have more details of the task or project.              |
 | 18  | **       | As a user, I can filter tasks by whether or not it has been assigned to a contact, so that I can identify the tasks I have to assign later on.                                   |
-| 19  | *        | As a user, I can associate a task with multiple contacts, so that I can assign a task with a higher workload to more than one person to work on it.                              |
+| 19  | *        | As a user, I can associate a task with multiple contacts, so that I can assign a task with a higher workload to more than one teammate to work on it.                              |
 | 20  | *        | As a user, I can associate a task with a project (which are collections of tasks), so that I can group related tasks together and separate them by the many projects I may have. |
 | 21  | *        | As a user, I can tag tasks to milestones/versions, so that I can ensure each version is ready by the delivery date.                                                              |
 | 22  | *        | As a user, I can associate a contact with a project, so that I can assign a task to only contacts with the specific project.                                                     |
@@ -486,12 +486,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Arrow` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a person**
+**Use case: UC01 - Add a teammate**
 
 **MSS**
 
-1. User requests to add person and provides name, number and email address.
-2. Arrow adds person to list of persons.
+1. User requests to add teammate and provides name, number and email address.
+2. Arrow adds teammate to list of teammates.
 
    Use case ends.
 
@@ -503,12 +503,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: UC02 - List all persons**
+**Use case: UC02 - List all teammates**
 
 **MSS**
 
-1. User requests to list all persons.
-2. Arrow shows a list of all persons.
+1. User requests to list all teammates.
+2. Arrow shows a list of all teammates.
 
    Use case ends.
 
@@ -518,14 +518,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC03 - Delete a person**
+**Use case: UC03 - Delete a teammate**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  Arrow deletes the person.
+1.  User requests to list teammates.
+2.  Arrow shows a list of teammates.
+3.  User requests to delete a specific teammate in the list.
+4.  Arrow deletes the teammate.
 
     Use case ends.
 
@@ -541,14 +541,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC04 - Edit a person**
+**Use case: UC04 - Edit a teammate**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
-3.  User requests to edit a specific person in the list and provides new information.
-4.  Arrow updates the person.
+1.  User requests to list teammates.
+2.  Arrow shows a list of teammates.
+3.  User requests to edit a specific teammate in the list and provides new information.
+4.  Arrow updates the teammate.
 
     Use case ends.
 
@@ -691,12 +691,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC11 - Find a person by name**
+**Use case: UC11 - Find a teammate by name**
 
 **MSS**
 
-1. User requests to find a person and provides keyword(s) to search for.
-2. Arrow shows a list of all persons with names containing keyword.
+1. User requests to find a teammate and provides keyword(s) to search for.
+2. Arrow shows a list of all teammates with names containing keyword.
 
    Use case ends.
 
@@ -706,22 +706,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC12 - Assign persons to a task**
+**Use case: UC12 - Assign teammates to a task**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
+1.  User requests to list teammates.
+2.  Arrow shows a list of teammates.
 3.  User requests to list tasks.
 4.  Arrow shows a list of tasks.
-5.  User requests to assign/unassign persons in the persons list to a specific task in the tasks list.
-6.  Arrow assigns/unassigns the persons to the task.
+5.  User requests to assign/unassign teammates in the teammates list to a specific task in the tasks list.
+6.  Arrow assigns/unassigns the teammates to the task.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The persons list is empty.
+* 1a. The teammates list is empty.
 
   Use case ends.
 
@@ -729,13 +729,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 5a. The given task and/or person index is invalid.
+* 5a. The given task and/or teammate index is invalid.
 
     * 5a1. Arrow shows an error message.
 
       Use case resumes at step 4.
 
-* 5b. The given person name is invalid.
+* 5b. The given teammate name is invalid.
 
     * 5b1. Arrow shows an error message.
 
@@ -770,7 +770,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 teammates without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to hold up to 500 tasks without a noticeable sluggishness in performance for typical usage.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Any changes to the data should be saved permanently and automatically.
@@ -814,17 +814,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a teammate
 
-1. Deleting a person while all persons are being shown
+1. Deleting a teammate while all teammates are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all teammates using the `list` command. Multiple teammates in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No teammate is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.

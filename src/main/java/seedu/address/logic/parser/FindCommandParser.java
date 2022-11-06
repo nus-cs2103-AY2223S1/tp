@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ContainsTagPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.teammate.ContainsTagPredicate;
+import seedu.address.model.teammate.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

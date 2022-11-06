@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateTaskException;
-import seedu.address.model.person.exceptions.TaskNotFoundException;
+import seedu.address.model.teammate.exceptions.DuplicateTaskException;
+import seedu.address.model.teammate.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks to be completed.

@@ -5,8 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Locale;
 
-import seedu.address.model.person.Person;
-
+import seedu.address.model.teammate.Teammate;
 
 
 /**
@@ -42,10 +41,10 @@ public class Contact {
      * Returns person's name (with proper capitalisation) if a given string is a name that belongs to one of the persons
      * in the list of persons. Otherwise returns an empty string.
      */
-    public static String corrNameInPersonsList(List<Person> personList, String test) {
-        for (Person person : personList) {
-            if (person.getName().fullName.toLowerCase(Locale.ROOT).equals(test.toLowerCase(Locale.ROOT))) {
-                return person.getName().fullName;
+    public static String corrNameInPersonsList(List<Teammate> teammateList, String test) {
+        for (Teammate teammate : teammateList) {
+            if (teammate.getName().fullName.toLowerCase(Locale.ROOT).equals(test.toLowerCase(Locale.ROOT))) {
+                return teammate.getName().fullName;
             }
         }
         return "";

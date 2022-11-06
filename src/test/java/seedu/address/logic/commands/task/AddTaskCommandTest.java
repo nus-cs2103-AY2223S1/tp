@@ -21,7 +21,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskPanel;
-import seedu.address.model.person.Person;
+import seedu.address.model.teammate.Teammate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -118,7 +118,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -133,22 +133,22 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Teammate teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Teammate target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Teammate target, Teammate editedTeammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Teammate> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,7 +158,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Teammate> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

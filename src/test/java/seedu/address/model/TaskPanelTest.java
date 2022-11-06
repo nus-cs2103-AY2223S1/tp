@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateTaskException;
+import seedu.address.model.teammate.exceptions.DuplicateTaskException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 

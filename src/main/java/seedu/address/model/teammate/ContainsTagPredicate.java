@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.teammate;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s tags contains a specified set of tags.
  */
-public class ContainsTagPredicate implements Predicate<Person> {
+public class ContainsTagPredicate implements Predicate<Teammate> {
 
     private final Set<String> tags = new HashSet<>();
 
@@ -21,8 +21,8 @@ public class ContainsTagPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return person.getTags().stream().map(x -> x.tagName.trim().toLowerCase()).anyMatch(tags::contains);
+    public boolean test(Teammate teammate) {
+        return teammate.getTags().stream().map(x -> x.tagName.trim().toLowerCase()).anyMatch(tags::contains);
     }
 
     @Override

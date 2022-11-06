@@ -238,13 +238,13 @@ Deletes the specified Teammate from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the teammate at the specified `INDEX`.
+* The index refers to the index number shown in the displayed teammate list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd teammate in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st teammate in the results of the `find` command.
 
 Note:
 * This teammate will also be deleted from all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
@@ -257,17 +257,17 @@ Edits an existing Teammate in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the teammate at the specified `INDEX`. The index refers to the index number shown in the displayed teammate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `TAG` can only be 1 word.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the teammate will be removed i.e. adding of tags is not cumulative.
+* You can remove all the teammate’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teammate to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd teammate to be `Betsy Crower` and clears all existing tags.
 
 Note:
 * This teammate's details will also be edited under all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
@@ -276,7 +276,7 @@ Note:
 ---
 ### Finding Teammate(s) based on name/keyword/tags: `find`
 
-Finds persons whose names contain any of the given name/keywords, or persons who contain any of the given tags.
+Finds teammates whose names contain any of the given name/keywords, or teammates who contain any of the given tags.
 
 Format: `find [NAME/KEYWORD]… [t/TAG]…`
 
@@ -323,7 +323,7 @@ Format: `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`
 * Dates containing non-alphanumeric characters such as `11-11-2022` will not be accepted and an error message will be thrown.
 * If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 * If task does not have a deadline, you can put `by/?` and there will be no deadline.
-* `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* `PERSON_INDEX` refers to the index number shown in the displayed teammate list.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the current task list only shows completed task (via `task list -c`), the newly added will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
@@ -339,15 +339,15 @@ Examples:
 Assigns or unassigns the specified teammate from address book to a task from task panel.
 
 Format: `task assign TASK_INDEX [+@PERSON_INDEX]…​ [+@PERSON_NAME]…​ [-@PERSON_INDEX]…​ [-@PERSON_NAME]…​`
-* +@: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
-* -@: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
+* +@: Assigns the teammates at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* -@: Unassigns the teammates at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have 0 or more assigned teammates.
 </div>
 
 Examples:
-* `task assign 1 +@1 +@Alex Yeoh -@Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
+* `task assign 1 +@1 +@Alex Yeoh -@Bernice Yu` assigns the 1st teammate and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 ---
 ### Marking completed Tasks: `task mark`
@@ -480,11 +480,11 @@ For ease of understanding, many of these common use cases have been detailed bel
 `Format: task list @PERSON_INDEX...`
 - The `@` parameter allows you to search for tasks that are assigned to **all** the contact(s) you specify.
 - Shows the tasks of the specified `PERSON_INDEX`.
-- The contact refers to the index number shown in the displayed person list.
+- The contact refers to the index number shown in the displayed teammate list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
 ##### Example
-- `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+- `task list @1 @2` returns all tasks that are assigned to **both** the 1st and 2nd teammates from the address book.
 
 #### 5. Filtering by Deadline
 `Format: task list before/DATE after/DATE`
@@ -508,7 +508,7 @@ Edits an existing task in the task list.
 
 Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 
-* Edits the person at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the teammate at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed teammate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields (TITLE, DEADLINE, PROJECT) must be provided. If none are provided, the application will give an error.
 * Existing values will be updated to the input values.
 
