@@ -15,9 +15,13 @@ import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.testutil.TypicalIndexes;
 
+/**
+ * A class to test the EditCommandParser.
+ */
 public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getUsage());
+    private static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final EditCommandParser parser = new EditCommandParser();
 
@@ -27,7 +31,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

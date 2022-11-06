@@ -12,6 +12,9 @@ import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.DecrementCommand;
 import seedu.foodrem.model.item.ItemQuantity;
 
+/**
+ * A class to test the DecrementCommandParser.
+ */
 class DecrementCommandParserTest {
     private final DecrementCommandParser parser = new DecrementCommandParser();
 

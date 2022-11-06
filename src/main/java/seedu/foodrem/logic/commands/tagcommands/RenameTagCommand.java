@@ -46,6 +46,11 @@ public class RenameTagCommand extends Command {
         return CommandResult.from(new TagToRename(originalTag, renamedTag, "Tag renamed:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return RENAME_TAG_COMMAND.getUsage();
     }

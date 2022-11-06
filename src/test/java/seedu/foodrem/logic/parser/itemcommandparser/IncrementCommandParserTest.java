@@ -12,6 +12,9 @@ import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.model.item.ItemQuantity;
 
+/**
+ * A class to test the IncrementCommandParser.
+ */
 class IncrementCommandParserTest {
     private final IncrementCommandParser parser = new IncrementCommandParser();
 

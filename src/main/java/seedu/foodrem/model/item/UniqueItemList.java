@@ -31,6 +31,8 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Returns {@code true} if the list contains an equivalent item as the given argument.
+     *
+     * @return true if the item list contains the item, false otherwise.
      */
     public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
@@ -39,6 +41,8 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Returns true is the storage is full, false otherwise.
+     *
+     * @return true if the storage is full, false otherwise.
      */
     public boolean isStorageFull() {
         return internalList.size() == MAX_ITEMS;
@@ -47,6 +51,8 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Adds an item to the list.
      * The item must not already exist in the list.
+     *
+     * @param toAdd the item to add.
      */
     public void add(Item toAdd) {
         requireNonNull(toAdd);
@@ -63,6 +69,9 @@ public class UniqueItemList implements Iterable<Item> {
      * Replaces the item {@code target} in the list with {@code editedItem}.
      * {@code target} must exist in the list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the list.
+     *
+     * @param target the item to be removed from the list.
+     * @param editedItem the item to be added to the list.
      */
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
@@ -82,6 +91,8 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Removes the equivalent item from the list.
      * The item must exist in the list.
+     *
+     * @param toRemove the item to be removed from the list.
      */
     public void remove(Item toRemove) {
         requireNonNull(toRemove);
@@ -90,6 +101,11 @@ public class UniqueItemList implements Iterable<Item> {
         }
     }
 
+    /**
+     * Replaces all the items in the list.
+     *
+     * @param replacement the new item list.
+     */
     public void setItems(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -98,13 +114,14 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Replaces the contents of this list with {@code items}.
      * {@code items} must not contain duplicate items.
+     *
+     * @param items the new item list.
      */
     public void setItems(List<Item> items) {
         requireAllNonNull(items);
         if (!itemsAreUnique(items)) {
             throw new DuplicateItemException();
         }
-
         internalList.setAll(items);
     }
 
@@ -115,11 +132,17 @@ public class UniqueItemList implements Iterable<Item> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the iterator of the internalList.
+     */
     @Override
     public Iterator<Item> iterator() {
         return internalList.iterator();
     }
 
+    /**
+     * Returns {@code true} if both {@link UniqueItemList} have the same items.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
@@ -127,6 +150,9 @@ public class UniqueItemList implements Iterable<Item> {
                 && internalList.equals(((UniqueItemList) other).internalList));
     }
 
+    /**
+     * Returns the hashCode of the unique item list.
+     */
     @Override
     public int hashCode() {
         return internalList.hashCode();
@@ -134,6 +160,8 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Returns {@code true} if {@code items} contains only unique items.
+     *
+     * @return true if the items contain only unique items, false otherwise.
      */
     private boolean itemsAreUnique(List<Item> items) {
         for (int i = 0; i < items.size() - 1; i++) {

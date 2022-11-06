@@ -27,6 +27,9 @@ import seedu.foodrem.storage.StorageManager;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.TypicalItems;
 
+/**
+ * A class to test LogicManager.
+ */
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
     private static final String EXPECTED_SUCCESS_MESSAGE = "Listed all items";
@@ -88,11 +91,6 @@ public class LogicManagerTest {
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
-
-    //@Test
-    //public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
-    //    assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
-    //}
 
     /**
      * Executes the command and confirms that

@@ -43,6 +43,7 @@ Here are some links to other documentations you might find useful:
 ## Requirements
 
 This section shares with you useful information regarding the non-technical aspects of development. This includes:
+
 1. [Product Scope](#product-scope)
 1. [User Stories](#user-stories)
 1. [Use Cases](#use-cases)

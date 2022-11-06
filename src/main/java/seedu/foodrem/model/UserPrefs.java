@@ -1,3 +1,4 @@
+/* @@author */
 package seedu.foodrem.model;
 
 import static java.util.Objects.requireNonNull;
