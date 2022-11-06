@@ -62,7 +62,7 @@ public class AssignCommand extends Command {
         List<Student> studentsToAssign;
         try {
             studentsToAssign = IndexUtil.getAtIndices(lastShownList, indices);
-        } catch (IndexOutOfBoundsException pe) {
+        } catch (IndexOutOfBoundsException ioobe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 

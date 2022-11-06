@@ -6,10 +6,6 @@ participant ":GradeCommand" as GradeCommand LOGIC_COLOR
 participant "<<class>>\nIndexUtil" as Util LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant "oldStudent:Student" as OldStudent LOGIC_COLOR
-participant "newStudent:Student" as Student LOGIC_COLOR
-participant ":StudentModuleData" as SMD LOGIC_COLOR
-participant "newData:StudentModuleData" as NSMD LOGIC_COLOR
-participant "s:SessionData" as SD LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -38,35 +34,10 @@ loop for each oldStudent in studentsToGrade
     GradeCommand -> OldStudent: updateGrade(focusedClass, session, grade)
     activate OldStudent
 
-    OldStudent -> SMD: updateGrade(session, grade)
-    activate SMD
-
-    SMD -> SMD : removeSession(session)
-    activate SMD
-    create NSMD
-    SMD -> NSMD
-    activate NSMD
-    NSMD --> SMD
-    deactivate NSMD
-    SMD --> SMD: newData
-    deactivate SMD
-
-    create SD
-    SMD -> SD
-    activate SD
-    SD --> SMD
-    deactivate SD
-
-    SMD -> SMD: add s to session data list of newData
-
-    SMD --> OldStudent: newData
-    deactivate SMD
-
-    create Student
-    OldStudent -> Student
-    activate Student
-    Student --> OldStudent
-    deactivate Student
+    ref over OldStudent #fffff
+        construct new student
+        with updated grade
+    end ref
 
     OldStudent --> GradeCommand: newStudent
     deactivate OldStudent
