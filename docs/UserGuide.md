@@ -318,10 +318,6 @@ inputs that ArtBuddy requires to execute some commands properly. For instance, t
 needs to know the name of the customer which you'll need to pass into ArtBuddy as a command parameter.
 <br><br>For ArtBuddy to understand these command parameters, you need to attach a ['prefix'](#glossary) in front of
 each of these parameters.
-<br><br>If a parameter is optional, for example address in customer, it will be indicated as <code>[a/ADDRESS]</code> with
-square brackets around it to indicate optionality.
-<br><br>If a parameter can take multiple values, for example tags in customer, it will be indicated as <code>[t/TAGS]...</code> with
-three dots after it to indicate multiple values.
 
 <div markdown="block" class="alert alert-info">
 
