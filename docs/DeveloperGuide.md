@@ -3,15 +3,53 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+# **Developer Guide**
+
+# **Welcome to SoCompiler Developer Guide**
+
+This guide is for anyone who wants to know more about the development of SoCompiler, as well as how SoCompiler works behind the scenes.
+
+___________________________________________________________________________________
+
+## **Introduction**
+
+SoCompiler is the sole app that university students will need to streamline their everyday routines. Students can save their semester's module information in SoCompiler to ensure they never forget about them. SoCompiler also helps to store contact information for students to easily find everything they need about their classes in a one-stop application.
+
+
+## **Table of Contents**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up & Getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+  * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+  * [Module Class](#module-class)
+  * [Delete Module Feature](#delete-module-feature)
+  * [Find Module Feature](#find-module-feature)
+  * [Add Module Feature](#add-module-feature)
+* [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix-Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix-Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Deleting a person](#deleting-a-person)
+  * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+SoCompiler is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project for Software Engineering students enrolled in CS2103.
+### Credit for code adapted from external sources
+* Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,6 +60,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The design of SoCompiler is similar to AddressBook-Level3, and follows the Model View Controller(MVC) design pattern.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -163,12 +202,6 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 ### Storage component
 
 **
@@ -199,10 +232,6 @@ This section describes some noteworthy details on how certain features are imple
 ### Module Class
 
 #### Implementation
-
-#### Implemented by: Sun Yu Ting
-
-#### Modified by: Tin Jingyao
 
 The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class
 facilitates the storing of various information related to a student's module that he/she is currently taking.
@@ -242,7 +271,6 @@ For the five classes,
 
 #### Implementation
 
-
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
 
 * `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
@@ -278,8 +306,6 @@ The following sequence diagram shows how the DeleteModule operation works:
 
 #### Implementation
 
-#### Implemented by: Xu Daofu
-
 The FindModule command extends `Command`, and takes in an `ModuleCodeContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
 * `FindModuleCommand#execute()`
 
@@ -302,7 +328,7 @@ The following sequence diagram shows how the FindModule operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-=======
+
 ### Add Module feature
 
 #### Implementation
@@ -319,26 +345,21 @@ Given below is an example usage scenario, and an object diagram to show the obje
 Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book
 state.
 
-Step 2. The user
-executes `addm m/moduleName l/lectureDetails t/tutorialDetails z/zoomLink a/assignment1 a/assignment2` command to add a
-module with the corresponding details in the address book. The `addm` command
-calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`. The `AddModuleCommandParser` then
-tokenizes the user input string and returns an ArgumentMultimap object that maps prefixes to their respective argument
-values.
-
-Methods in `ParserUtil` is are then called to parse each individual object obtained from the ArgumentMultimap using
-their corresponding parsers. Then, a new `module` with the corresponding details is created. A `AddModuleCommand` is
-created, which
-calls `Model#addModule()`, and adds the newly created module to the model object.
+Step 2. The user executes `addm m/CS1101S` command to add a module with the corresponding details in the address book. 
+* The `addm` command calls `AddressBookParser#parseCommand()`, which creates a `AddModuleCommandParser`. 
+* The `AddModuleCommandParser` then tokenizes the user input string and returns an `ArgumentMultimap` object that maps 
+prefixes to their respective argument values. 
+* Methods in `ParserUtil` is are then called to parse each individual object obtained from the `ArgumentMultimap` using
+their corresponding parsers. 
+* Then, a new `Module` with the corresponding details is created. 
+* After creating the `Module`, an `AddModuleCommand` is created, which calls `Model#addModule()`, 
+and adds the newly created module to the model object.
 
 The following object diagram illustrates the above example:
-(to be added)
-[//]: # (![AddModuleObjectDiagram]&#40;images/AddModuleObjectDiagram.png&#41;)
+![AddModuleObjectDiagram](images/AddModuleObjectDiagram.png)
 
 The following sequence diagram shows how the AddModule operation works:
-(to be added)
-[//]: # (![AddModuleSequenceDiagram]&#40;images/AddModuleSequenceDiagram.png&#41;)
-
+![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -433,12 +454,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
+    
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -662,7 +679,7 @@ otherwise)
 
       Use case ends.
 
-**Use case:UC10 Edit entry in list of persons**
+**Use case:UC10 Edit entry in list of modules**
 
 **MSS**
 
@@ -687,13 +704,11 @@ otherwise)
 
       Use case ends.
 
-* 3c. The given name already exists.
+* 3c. The given module code already exists.
 
     * 3c1. SoCompiler shows an error message
 
       Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -704,8 +719,6 @@ otherwise)
    commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be backward compatible with data stored in earlier versions of the system.
 5. The product is not required to handle interaction with other users.
-
-*{More to be added}*
 
 ### Glossary
 
