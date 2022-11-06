@@ -417,11 +417,11 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 **Aspect: How entities can be unpinned:**
 
-* **Alternative 1 (current choice):** The `Client#togglePin()` method is called which sets the `Pin` attribute from `true` back to `false`. The same command used to pin is also used to unpin the entity.
+* **Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
     * Pros: Less duplication of code and less commands for the user to remember.
     * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
 
-* **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
+* **Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
     * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
     * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
 
