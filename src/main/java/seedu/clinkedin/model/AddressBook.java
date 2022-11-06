@@ -19,7 +19,7 @@ import seedu.clinkedin.model.tag.TagType;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private Map<Prefix, TagType> prefixMap;
+    private final Map<Prefix, TagType> prefixMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
