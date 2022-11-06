@@ -336,13 +336,13 @@ Deleted data can not be retrieved. Do use this command cautiously!
 ### Format for resident fields
 
 `n/NAME`
-* Whitespaces are allowed *i.e. `n/Michael B. Jordan` is allowed*
+* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*
 
 `p/PHONE_NUMBER`
 * Must be an **8**-digit non-negative integer
 
 `e/EMAIL`
-* Must follow the formatting for all standard emails *i.e. `e/Example@email.com` is accepted*
+* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*
 * Can be both valid or invalid emails
 
 `r/FLOOR-UNIT`
@@ -351,17 +351,17 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `g/GENDER`
 * `M` or `F`
-* Not case-sensitive
+* Not case-sensitive *i.e. `m` and `f` is also valid*
 
 `h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
 * Must be either `A`, `D`, `L`, `N`, `U`
 * `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
-* Not case-sensitive
+* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*
 
 `m/MATRIC_NUMBER`
 * Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
-* Not case-sensitive
+* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
 
 `t/TAG`
 * Represents any other key that could be used to identify a resident
