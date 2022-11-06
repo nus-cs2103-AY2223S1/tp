@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
+import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
@@ -18,14 +19,21 @@ public class ExamBuilder {
     private Module module;
     private ExamDescription examDescription;
     private ExamDate examDate;
+    private int numOfCompletedTasks;
+    private int totalNumOfTasks;
 
     /**
      * Creates a {@code ExamBuilder} with the default details.
      */
     public ExamBuilder() {
-        module = new Module(new ModuleCode(DEFAULT_MODULE));
+        Module m = new Module(new ModuleCode(DEFAULT_MODULE));
+        DistinctModuleList list = new DistinctModuleList();
+        list.addModule(m);
         examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
         examDate = new ExamDate(DEFAULT_DATE);
+        module = new Module(new ModuleCode(DEFAULT_MODULE));
+        numOfCompletedTasks = 0;
+        totalNumOfTasks = 0;
     }
 
     /**
@@ -35,6 +43,8 @@ public class ExamBuilder {
         module = examToCopy.getModule();
         examDescription = examToCopy.getDescription();
         examDate = examToCopy.getExamDate();
+        numOfCompletedTasks = examToCopy.getNumOfCompletedTasks();
+        totalNumOfTasks = examToCopy.getTotalNumOfTasks();
     }
 
     /**
@@ -61,7 +71,24 @@ public class ExamBuilder {
         return this;
     }
 
-    public Exam build() {
-        return new Exam(module, examDescription, examDate);
+    /**
+     * Sets the {@code numOfCompletedTasks} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withNumOfCompletedTasks(int numOfCompletedTasks) {
+        this.numOfCompletedTasks = numOfCompletedTasks;
+        return this;
     }
+
+    /**
+     * Sets the {@code totalNumOfTasks} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withTotalNumOfTasks(int totalNumOfTasks) {
+        this.totalNumOfTasks = totalNumOfTasks;
+        return this;
+    }
+
+    public Exam build() {
+        return new Exam(module, examDescription, examDate, totalNumOfTasks, numOfCompletedTasks);
+    }
+
 }

@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
@@ -154,6 +153,7 @@ public interface Model {
 
     void replaceModule(Module target, Module editedModule);
 
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -204,6 +204,7 @@ public interface Model {
      */
     void updateFilteredExamList(Predicate<Exam>predicate);
 
+
     /**
      * Updates the exam field in task by replacing the previous exam with the new exam.
      * @param previousExam The exam in the task's exam field.
@@ -241,4 +242,5 @@ public interface Model {
      * @param module The module in the exam's module field.
      */
     void deleteExamsWithModule(Module module);
+
 }

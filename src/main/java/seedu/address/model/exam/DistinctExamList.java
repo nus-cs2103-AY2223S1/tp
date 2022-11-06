@@ -13,6 +13,7 @@ import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.DistinctTaskList;
+import seedu.address.model.task.Task;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -115,6 +116,16 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
+     * Counts the number of tasks in {@code tasks} linked to each exam in the exam list
+     * and updates this number in each exam.
+     *
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateTotalNumOfTasksForAllExams(DistinctTaskList tasks) {
+        examList.forEach(exam -> updateTotalNumOfTasks(exam, tasks));
+    }
+
+    /**
      * Counts the number of completed tasks in {@code tasks} linked to {@code exam},
      * and updates this number in {@code exam}.
      * {@code exam} must exist in the exam list.
@@ -136,6 +147,16 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
+     * Counts the number of completed tasks in {@code tasks} linked to each exam in the exam list,
+     * and updates this number in each exam.
+     *
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateNumOfCompletedTasksForAllExams(DistinctTaskList tasks) {
+        examList.forEach(exam -> updateNumOfCompletedTasks(exam, tasks));
+    }
+
+    /**
      * Resets number of tasks and number of completed tasks of all exams to 0.
      */
     public void resetAllTaskCount() {
@@ -148,19 +169,36 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
-     * Replaces exam by changing its given module field from {@code previousModule}
-     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * Replaces all exams that have their module field as {@code previousModule} by changing its given module field
+     * to {@code newModule}. It also links all tasks in {@code taskList} which has an exam having
+     * {@code previousModule} to the corresponding exam with {@code newModule}.
+     *
+     * @param taskList The list of tasks.
      * @param previousModule The module in the exam's module field.
      * @param newModule The new module which will replace the previous module in the exams's module field.
      */
-    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
-        requireAllNonNull(previousModule, newModule);
+    public void updateModuleFieldForExam(DistinctTaskList taskList, Module previousModule, Module newModule) {
+        requireAllNonNull(taskList, previousModule, newModule);
         examList.forEach(exam -> {
             if (exam.getModule().equals(previousModule)) {
                 Exam editedExam = exam.edit(newModule, null, null);
-                replaceExam(exam, editedExam, false);
+                updateExamFieldForTask(taskList, exam, editedExam);
             }
         });
+    }
+
+    /**
+     * Unlinks all tasks from {@code previousExam} and links these tasks to {@code newExam}. It also replaces
+     * the {@code previousExam} with {@code newExam}.
+     *
+     * @param taskList The list of tasks.
+     * @param previousExam The exam to be replaced and linked to.
+     * @param newExam The exam which will replace {@code previousExam} and will be linked to.
+     */
+    public void updateExamFieldForTask(DistinctTaskList taskList, Exam previousExam, Exam newExam) {
+        List<Task> unlinkedTasks = taskList.unlinkTasksFromExam(previousExam);
+        replaceExam(previousExam, newExam, false);
+        taskList.linkTasksToExam(newExam, unlinkedTasks);
     }
 
     /**

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalExams.EXAMONE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,25 +68,26 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void hasExam_nullExam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasExam(null));
+    }
+    @Test
+    public void hasExam_examPresent_returnsTrue() {
+        modelManager.addExam(EXAMONE);
+        assertTrue(modelManager.hasExam(EXAMONE));
+    }
+
+    @Test
+    public void hasExam_examNotPresent_returnsFalse() {
+        assertFalse(modelManager.hasExam(EXAMONE));
+    }
+
+
 
     /*
     @Test

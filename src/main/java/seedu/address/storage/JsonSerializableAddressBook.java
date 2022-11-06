@@ -22,9 +22,13 @@ import seedu.address.model.task.Task;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_MODULE_NOT_PRESENT = "This module does not exist";
-    public static final String MESSAGE_DUPLICATE_MODULE = "There are duplicate module(s) "
+    public static final String MESSAGE_DUPLICATE_MODULE = "There is/are duplicate module(s) "
             + "present in the module list";
+    public static final String MESSAGE_DUPLICATE_EXAM = "There is/are duplicate exam(s) "
+            + "present in the exam list";
     public static final String INVALID_EXAM_LINKED = "Invalid exam is linked to the task";
+    public static final String MESSAGE_DUPLICATE_TASK = "There is/are duplicate task(s) "
+            + "present in the task list";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedExam> exams = new ArrayList<>();
@@ -68,6 +72,9 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedExam jsonAdaptedExam: exams) {
             Exam exam = jsonAdaptedExam.toModelType();
+            if (addressBook.hasExam(exam)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EXAM);
+            }
             if (!addressBook.hasModule(exam.getModule())) {
                 throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
             }
@@ -75,6 +82,9 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedTask jsonAdaptedTask: tasks) {
             Task task = jsonAdaptedTask.toModelType();
+            if (addressBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
             if (!addressBook.hasModule(task.getModule())) {
                 throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
             }

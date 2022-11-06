@@ -16,6 +16,8 @@ import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
 import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
+import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;
+import seedu.address.model.task.exceptions.TaskAlreadyUnmarkedException;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -39,7 +41,7 @@ public class Task {
     public Task(Module module, TaskDescription description) {
         this.module = module;
         this.description = description;
-        this.status = TaskStatus.INCOMPLETE;
+        status = TaskStatus.INCOMPLETE;
         priorityTag = null;
         deadlineTag = null;
         linkedExam = null;
@@ -120,7 +122,11 @@ public class Task {
      * Returns true if both tasks have the same data fields.
      */
     public boolean isSameTask(Task otherTask) {
-        return this.equals(otherTask);
+        if (otherTask == null) {
+            return false;
+        }
+        return otherTask == this || (this.getModule().equals(otherTask.getModule())
+                && this.getDescription().equals(otherTask.getDescription()));
     }
 
     /**
@@ -131,10 +137,15 @@ public class Task {
     }
 
     /**
-     * Marks the task as complete
-     * and returns the task.
+     * Marks the task as complete and returns the task.
+     *
+     * @return a task with identical fields as {@this}, but labelled as complete.
+     * @throws TaskAlreadyMarkedException if the task is already marked.
      */
     public Task mark() {
+        if (isComplete()) {
+            throw new TaskAlreadyMarkedException();
+        }
         return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
@@ -231,10 +242,15 @@ public class Task {
     }
 
     /**
-     * Unmarks (labels as incomplete) the task
-     * and returns the task.
+     * Unmarks (labels as incomplete) the task and returns the task.
+     *
+     * @return a task with identical fields as {@this} but labelled as incomplete.
+     * @throws TaskAlreadyUnmarkedException if the task is already unmarked.
      */
     public Task unmark() {
+        if (!isComplete()) {
+            throw new TaskAlreadyUnmarkedException();
+        }
         return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
@@ -257,9 +273,10 @@ public class Task {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code this}
-     * edited with {@code newModule} and {@code newTaskDescription}.
+     * edited with {@code newModule} and {@code newTaskDescription}. Preserves the link between the task
+     * and its corresponding exam even if the module is changed.
      */
-    public Task edit(Module newModule, TaskDescription newTaskDescription) {
+    public Task editWithoutUnlinkingExam(Module newModule, TaskDescription newTaskDescription) {
         requireAnyNonNull(newModule, newTaskDescription);
         Module updatedModule = module;
         TaskDescription updatedDescription = description;
@@ -269,7 +286,7 @@ public class Task {
         if (newTaskDescription != null) {
             updatedDescription = newTaskDescription;
         }
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
@@ -287,6 +304,25 @@ public class Task {
         return new Task(module, description, status, priorityTag, deadlineTag, null);
     }
 
+    /**
+     * Checks whether the two tasks have the exact same fields.
+     *
+     * @param otherTask The other task being compared against.
+     * @return true if the two Task objects have the same module, description, status, priority tag, deadline tag and
+     *         linked exam, else return false.
+     */
+    public boolean hasAllSameFields(Task otherTask) {
+        return this.module.equals(otherTask.module)
+            && this.description.equals(otherTask.description)
+            && this.status.equals(otherTask.status)
+            && (!hasPriorityTag() && !otherTask.hasPriorityTag()
+                || this.priorityTag.equals(otherTask.priorityTag))
+            && (!hasDeadlineTag() && !otherTask.hasDeadlineTag()
+                || this.deadlineTag.equals(otherTask.deadlineTag))
+            && (!isLinked() && !otherTask.isLinked()
+                || this.linkedExam.equals(otherTask.linkedExam));
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -299,7 +335,10 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
-                && otherTask.getModule().equals(getModule());
+                && otherTask.getModule().equals(getModule())
+                && otherTask.getStatus().equals(getStatus())
+                && Objects.equals(otherTask.getDeadlineTag(), getDeadlineTag())
+                && Objects.equals(otherTask.getPriorityTag(), getPriorityTag());
     }
 
     @Override
