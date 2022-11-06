@@ -14,10 +14,11 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
 ![PetCode Logo](images/PetCode Logo.png)
 {: refdef}
 
-##Table of Contents
+<h2>Table of Contents</h2>
 
 - **[Acknowledgements](#acknowledgements)**
 - **[Setting up, getting started](#setting-up-getting-started)**
+- **[Design](#design)**
 - **[Architecture](#architecture)**
   * [UI Component](#ui-component)
   * [Logic Component](#logic-component)
