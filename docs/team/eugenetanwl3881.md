@@ -42,18 +42,18 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * Added documentation for the commands `list`, `find`, `exit` ([[PR#77]])
-    * Add FAQ into UG ([[PR#178]])
-    * Add Command Summary Table ([[PR#152]])
+    * Added documentation for the commands `list`, `find`, `exit` [[PR#77]]
+    * Add FAQ into UG [[PR#178]]
+    * Add Command Summary Table [[PR#152]]
     * Updating sections and fixing bugs for UG ([[PR#261]], [[PR#292]], [[PR#306]], [[PR#420]] )
 
   * Developer Guide:
     * Added User Stories and Use Cases in DG ([[PR#79]], [[PR#142]])
-    * Added NFRs in DG ([[PR#57]])
+    * Added NFRs in DG [[PR#57]]
     * Added implementation details of the `newtag` and `tag` feature. ([[PR#230]], [[PR#464]])
-    * DG User Stories Table  ([[PR#419]])
-    * Added Instructions for Manual testing ([[PR#505]])
-    * Added Effort Section ([[PR#503]])
+    * DG User Stories Table  [[PR#419]]
+    * Added Instructions for Manual testing [[PR#505]]
+    * Added Effort Section [[PR#503]]
     * Updating and fixing bugs in DG ([[PR#36]],[[PR#278]], [[PR#281]], [[PR#287]], [[PR#319]], [[PR#334]], [[PR#419]])
 
 * **Community**:
