@@ -44,6 +44,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
@@ -71,15 +73,17 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### UI component
 
@@ -98,9 +102,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it can display `Person`, `Group`, `Assignment` objects residing in the `Model`.
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### Logic component
 
@@ -133,9 +137,9 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -152,6 +156,8 @@ The `Model` component,
 unmodifiable `ObservableList<Person>` and `ObservableList<Group>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the lists change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 **Person** : [`Person.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
@@ -175,6 +181,8 @@ The `Group` component,
 * is composed of `GroupName` mandatory attribute
 * references any number of `Persons` from the `UniquePersonList` in Addressbook. This allows `AddressBook` to only require one `Person` object per unique person, instead of each `Group` needing their own `Person` objects.
 
+<div style="page-break-after: always;"></div>
+
 **Assignment** : [`Assignment.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Assignment.java)
 
 The `Assignment` component,
@@ -197,15 +205,17 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+<div style="page-break-after: always;"></div>
+
 --- 
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ## **Implementation**
 
@@ -283,9 +293,9 @@ For simplicity, only the `DeleteGroupCommand`'s execution is shown below. Both c
     - Run risk of not accounting for future features, have to design workarounds that weaken the data structure.
     - May violate immutability principle employed in the existing system architecture.
 
------
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### **\[Developed\] Add/Delete member feature**
 
@@ -364,9 +374,9 @@ For simplicity, only the `DeleteGroupMemberCommand`'s execution is shown below. 
     - Deleting group/performing groupwide assignment or deletion of task is even more difficult as
       will have to perform linear scan of the entire `Person` list to surface affected members.
     
------
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### **\[Developed\] Display/List Group feature**
 
@@ -403,9 +413,9 @@ For simplicity, only the `DisplayGroupCommand`'s execution is shown below. Both 
 
 <img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
-----
-
 <div style="page-break-after: always;"></div>
+
+---
 
 ### **\[Developed\] Assign/Delete Task feature**
 
@@ -489,10 +499,10 @@ For simplicity, only the `DeleteTaskCommand`'s execution is shown below. Both co
     - Since a `Person` object can be in multiple `Groups`, storing all tasks in `Person` incurs less overhead when all those tasks are displayed in the assignments view.
   - Cons:
     - Deleting tasks from a `Person` requires modification of the `Person` object. This is compounded when multiple `Person`s are updated in one command i.e. bulk commands.
-
-----
-
+    
 <div style="page-break-after: always;"></div>
+
+---
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
@@ -579,10 +589,10 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
     - Since task objects are replaced, no duplication of tasks exists.
   - Cons:
     - In addition to the difficulties mentioned in Alternative 1, must also replace tasks inside a `Person` object; most difficult option to implement.
-
-----
-
+    
 <div style="page-break-after: always;"></div>
+
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -594,7 +604,8 @@ For simplicity, only the `DeleteTaskAllCommand`'s execution is shown below. Both
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+---
+
 ## **Appendix: Requirements**
 ### Product scope
 **Target user profile**:
@@ -649,6 +660,7 @@ Project team leaders with many projects, members and tasks to assign.
 <div style="page-break-after: always;"></div>
 
 ---
+
 ## Use cases
 
 For all use cases below, the **System** is `TABS` and the **Actor** is the user, unless specified otherwise.
@@ -1201,6 +1213,8 @@ Use case ends.
 Use case ends.
 
 <div style="page-break-after: always;"></div>
+
+---
 
 ## Non-functional requirements
 
