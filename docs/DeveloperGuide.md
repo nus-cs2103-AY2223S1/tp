@@ -7,6 +7,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+PayMeLah is a desktop application that helps users track the debts that they are owed. It uses a Command Line Interface (CLI), and executes commands input by the user accordingly to perform actions such as adding a person/debt to track, sorting the data etc.
+
+This Developer Guide documents the architecture, design choices, and implementations of key features of PayMeLah.
+
+If you are a developer that recently joined the PayMeLah development team, or a developer who is simply interested in the inner workings of PayMeLah, this guide would be able to provide you with the relevant technical details.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -158,24 +167,25 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `AddDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the specified `Person`.
 
-To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`. To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
+Consider a scenario where the user wishes to add a $10 food debt to multiple people. To speed up adding similar `Debt` objects to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` takes in a `Set` of multiple indices. For each `Person` that an `Index` corresponds to, a new `Debt` object will be added to the `DebtList` of the specified `Person`. Some commands such as marking debts as paid, or possible future extensions such as editing a debt, may require modifying a `Debt` object in the `DebtList` of a `Person`. To ensure that modifying this `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, during execution of `adddebt`, each `Debt` object is only added to one `DebtList`, and an `equal` instance of `Debt` is created and added for each other `DebtList`.
 
 To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` can take in optional `<date>` and `<time>` parameters. By making these parameters optional, a default behaviour can be implemented such that when neither parameter is specified, a `Debt` object with the current date and time is created. This will improve the efficiency at which users can input new `Debt` objects for the (expected) most common scenario where they add the `Debt` into PayMeLah on the actual day the debt occurred.
 
-An example of the new objects in the internal state when a valid `adddebt` command provided by the user, `adddebt 1 2 d/food m/10`, has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify the date and time parameters in their command.
+Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
 <img src="images/AddDebtObjectDiagram.png" width="450" />
 
-The activity diagram below details the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
+The activity diagrams below detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
+<img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
 
-### Clear debts feature - `cleardebts`
+### Clear debts feature: `cleardebts`
 
 #### Implementation
 This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
@@ -187,7 +197,7 @@ The `ClearDebtsCommand` object will create a new `Person` object with identical 
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
 
-### Delete debt feature - `deletedebt`
+### Delete debt feature: `deletedebt`
 
 #### Implementation
 This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
@@ -202,10 +212,12 @@ This new `Person` object replaces the original `Person` object in the `Model` co
 
 The sequence diagram below details such behaviour of PayMeLah when a user enters `deletedebt 1 debt/2 3` to be executed.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteDebtSequenceDiagram.png)
+<img src="images/DeleteDebtSequenceDiagram.png" width="1100" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagram below.
+An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagrams below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
 <img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
@@ -230,15 +242,15 @@ This feature is facilitated by `ListDebtorsCommandParser` and `ListDebtorsComman
 
 The `DebtGreaterEqualAmountPredicate` constructor takes in a `Money` object, and returns a `Predicate<Person>` that tests whether a `Person`'s total amount owed is greater than or equal to the `Money` parameter. When a user requests to list debtors who owe over a certain amount of money, `ListDebtorsCommandParser` will create a `DebtGreaterEqualAmountPredicate` using the amount provided. The resulting `ListDebtorsCommand` will use this predicate to communicate to the Model which Persons to display: the ones that pass the predicate's test. Note that this command does not modify the internal list of Persons in the Model, only the displayed list.
 
-As an example, suppose the user requests to list debtors who owe more than $10. The object diagram below shows the relationships between the noteworthy objects.
+As an example, suppose the user requests to list debtors who owe more than $10 using the command `listdebtors m/10`. The sequence diagram below shows the illustrates the events that take place.
 
-**(Insert object diagram here)**
+<img src="images/ListDebtorsSequence.png" width="1000" />
 
 To cater to a common use case where the user might want to simply list all debtors regardless of the amount they owe, `ListDebtorsCommandParser` can also handle requests without an amount specified. In such a case, it will create a predicate that simply checks whether a Person's DebtList is empty.
 
 The activity diagram below details the behaviour of PayMeLah when a user requests to list debtors. Note the difference in behaviour depending on whether the user specifies an amount.
 
-**(Insert activity diagram here)**
+<img src="images/ListDebtorsActivity.png" width="600" />
 
 * **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0.01 as the amount
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
@@ -262,89 +274,26 @@ The activity diagram below details all the possible behaviour of PayMeLah when a
 
 <img src="images/MarkActivityDiagram.png" width="450" />
 
-### \[Proposed\] Undo/redo feature
+### Undo feature: `undo`
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This feature is achieved by saving `addressBookHistories` in the `ModelManager` as a `LinkedBlockingDeque`. Before PayMeLah executes a command that modifies its AddressBook, a copy of the AddressBook will be pushed into this double ended queue. This deque also enforces a capacity of 10; when the dequeue is full and another AddressBook is about to be pushed into it, the oldest AddressBook will be discarded.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+When the user gives an `undo` command, the most recent AddressBook will be popped from the `addressBookHistories` and replace the current one.
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How undo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: May have performance issues in terms of memory usage (currently mediated by limiting the capacity of `addressBookHistories` to 10).
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -693,3 +642,31 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Effort**
+
+* Summary of new features/enhancements compared to AB3:
+  * Functional code
+    * Introduction of `model.debt` package inclusive of 8 classes, to track debts in addition to persons. Great effort was expanded in integrating the package to existing AB3.
+    * Implementation of 11 new `commands` classes (and corresponding `parser` classes) related to managing debts and searching through the person list.
+    * Refactoring and enhancement of `find` command to be significantly more comprehensive and effective
+    * Updating of GUI
+  * Test code
+    * Addition of `testutil` classes related to `model.debt` package
+    * Significant effort to consistently maintain coverage around the initial 70% from AB3 by always adding new test code with each new feature in the same iteration.
+    * Heavy effort in maintaining and passing existing tests to prevent regressions when adding new fields to existing AB3 code and when enhancing code with new fields across iterations.
+  * Documentation
+    * Greatly expanded UG with more tutorials, examples and explanations for users
+    * Increased user-friendliness of UG significantly
+    * Maintenance (inclusive of revisions and updates) of existing DG documentation
+    * Inclusion of new features and corresponding insights in DG
+    
+* Challenges faced:
+  * Learning of regex to ensure continuity with AB3 parse format
+  * Learning of JavaFX to update GUI
+  * Learning of Jackson to maintain data file
+  * Learning of PlantUML to update DG
