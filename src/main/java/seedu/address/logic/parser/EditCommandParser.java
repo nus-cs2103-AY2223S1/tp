@@ -45,17 +45,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
                 PREFIX_DATE_AND_SLOT_INDEX, PREFIX_UNAVAILABLE_DATE, PREFIX_UNAVAILABLE_DATE_INDEX);
 
         Uid uid;
 
-        if (argMultimap.getValue(PREFIX_UID).isPresent()) {
-            uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
-        } else {
+        if (argMultimap.getValue(PREFIX_UID).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+        uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {

@@ -77,9 +77,8 @@ public class ListCommand extends Command {
                     .contains(address.orElse(x.getAddress()).value.toLowerCase());
             boolean categoryMatch = x.getCategory().equalsIgnoreCase(category.orElse(x.getCategory()));
             boolean genderMatch = x.getGender().equalsIgnoreCase(gender.orElse(x.getGender()));
-
             boolean tagMatch;
-            if (x.getTags().size() == 0) {
+            if (x.getTags().isEmpty()) {
                 tagMatch = tag.isEmpty();
             } else {
                 Predicate<Tag> tagPredicate = y -> {
