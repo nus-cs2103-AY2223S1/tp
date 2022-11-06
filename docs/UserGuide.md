@@ -380,7 +380,8 @@ Takes an item from the itinerary and puts it back into the Wishlist.
 
 Format: `unplan INDEX`
 
-* Unschedules the item at the specified `INDEX`. The index refers to the index number displayed in the list of scheduled items in the list of days.
+* Unschedules the item at the specified `INDEX`. 
+* The index refers to the index number displayed in the list of scheduled items in the list of days, the format being `[DAY NUMBER]`.`[ITEM INDEX]`.
 * When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
