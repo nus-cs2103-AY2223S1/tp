@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
+import taskbook.logic.commands.categoryless.ExitCommand;
 import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
@@ -162,7 +163,7 @@ public class ContactEditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ExitCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new ContactEditCommand(TypicalIndexes.INDEX_SECOND_PERSON,
