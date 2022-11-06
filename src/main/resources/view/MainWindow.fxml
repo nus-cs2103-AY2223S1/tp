@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="670.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="670.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/myStudent_icon.png" />
     </icons>
@@ -160,7 +160,7 @@
                </children>
             </StackPane>
             </VBox>
-            <StackPane fx:id="animationPanel" mouseTransparent="true" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: black;" visible="false">
+            <StackPane fx:id="animationPanel" mouseTransparent="true" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: black;">
                <children>
                <VBox fx:id="startAnimationPanel" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
