@@ -19,7 +19,7 @@ public class ListClientCommand extends Command {
 
     public static final String COMMAND_WORD = "listClient";
     public static final String MESSAGE_SUCCESS = "Listed all clients";
-    public static final String MESSAGE_USAGE = "Usage: listClient OR listClient pd/PRODUCT OR b/PERIOD";
+    public static final String MESSAGE_USAGE = "Usage: listClient OR listClient pd/PRODUCT OR listClient b/PERIOD";
 
     private final Object object;
 
