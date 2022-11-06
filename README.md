@@ -1,6 +1,6 @@
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W08-2/tp/branch/master/graph/badge.svg?token=3BMHR6HHNQ)](https://codecov.io/gh/AY2223S1-CS2103T-W08-2/tp) [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
-![Ui](docs/images/ug/Ui.png)
+![Ui](docs/images/Ui.png)
 
 * GithubContact is **an address book integrated with Github Public API**, targeted at programmers and help them communicate smoothly.
   Example usages:

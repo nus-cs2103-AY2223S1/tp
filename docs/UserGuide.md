@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-![Ui](images/ug/Ui.png)
+![Ui](images/Ui.png)
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
 managers to help them communicate and collaborate with their teams smoothly.
