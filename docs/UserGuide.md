@@ -265,14 +265,21 @@ Format: `find -p NAME [MORE_NAMES]`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
+
+    
+    
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
 **Tips:**
-    
-* The search is case-insensitive. e.g., `bishan` will match `Bishan`.  
-* Only the name is searched. 
-* Only complete strings will be matched , `PINNACLE` will not match `PINNACLE@DUXTON`. 
-* The order of the keywords does not matter. e.g., `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`. 
-* Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `PINNACLE@DUXTON Bishan` will return `PINNACLE@DUXTON`, `Bishan 8`. 
-    
+
+* The search is case-insensitive. e.g., `bishan` will match `Bishan`.
+* Only the name is searched.
+* Only complete strings will be matched , `PINNACLE` will not match `PINNACLE@DUXTON`.
+* The order of the keywords does not matter. e.g., `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`.
+* Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `PINNACLE@DUXTON Bishan` will return `PINNACLE@DUXTON`, `Bishan 8`.
 
 </div>
 
