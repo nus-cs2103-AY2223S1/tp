@@ -47,7 +47,7 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Pupilist.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Pupilist.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -96,7 +96,7 @@ Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
 
 Examples:
 
-* `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
+* `add n/Farisa p/87159999 lp/Sec 4 Chemistry` adds a new student with the name "Farisa", a phone number of "87159999", and a lesson plan of "Sec 4 Chemistry".
 
 #### Adding Homework to student: `hw`
 
@@ -111,7 +111,7 @@ Format: `hw INDEX h/HOMEWORK`
 
 Examples:
 
-* `hw 1 h/math assignment` adds math assignment to first student in Pupilist.
+* `hw 1 h/math assignment` adds "math assignment" to the first student in Pupilist.
 
 #### Adding Grade Progress to student: `grade`
 
@@ -127,7 +127,7 @@ Format: `grade INDEX g/GRADE_PROGRESS`
 
 Examples:
 
-* `grade 1 g/Math: D+` adds Math: D+ grade to first student in Pupilist.
+* `grade 1 g/Math: D+` adds "Math: D+" grade to the first student in Pupilist.
 
 #### Adding Attendance to student : `attendance`
 
@@ -173,7 +173,7 @@ Format: `lesson INDEX lp/LESSON_PLAN`
 
 Examples:
 
-* `lesson 1 lp/science` changes lesson plan of the first student to science.
+* `lesson 1 lp/science` changes the lesson plan of the first student to "science".
 
 ### Editing details
 
@@ -200,7 +200,7 @@ It requires at least one of the optional fields:
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
+  `edit h/2 math tutorial` updates the second index of `Alex Yeoh`'s homework list to `math tutorial`.
 
 #### Marking specific field in student: `mark`
 
@@ -222,7 +222,7 @@ Format: `mark [h/ a/]INDEX`
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `mark h/1` marks `Alex Yeoh`'s *homework at first index*
+  `mark h/1` marks the first index of `Alex Yeoh`'s homework list
   ![result for 'mark Alex Yeoh'](images/markAlexYeoh.png)
 
 #### Unmarking specific field in student: `unmark`
@@ -245,7 +245,7 @@ Format: `unmark [h/ a/]INDEX`
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `unmark a/1` unmarks `Alex Yeoh`'s *attendance at first index*
+  `unmark a/1` unmarks the first index `Alex Yeoh`'s attendance list
   ![result for 'unmark Alex Yeoh'](images/unmarkAlexYeoh.png)
 
 ### Removing details
@@ -269,9 +269,9 @@ Format: `remove [h/ a/ g/ s/]INDEX`
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `remove h/2` removes `Alex Yeoh`'s *homework at second index*
+  `remove h/2` removes the second index of `Alex Yeoh`'s homework list
 * `view John Doe` returns `John Doe` <br>
-  `remove h/2 a/1` removes `John Doe`'s *homework at second index* and *attendance at first index*
+  `remove h/2 a/1` removes the second index of `John Doe`'s homework list and the first index of `John Doe`'s attendance list.
 
 #### Deleting a student : `delete`
 
@@ -289,7 +289,7 @@ Examples:
 
 #### Clearing all entries : `clear`
 
-This command clears all entries from Pupilist.<br>
+This command clears all contacts from Pupilist.<br>
 **Usage**: All modes
 
 Format: `clear`
@@ -440,7 +440,7 @@ _Details coming soon ..._
 | a/     | Attendance                | Numbers in the format of `YYYY-MM-DD` <br>where YYYY are four numbers making up the year, MM are two numbers making up the month and DD are two numbers making up the day.  | a/2022-12-08         |
 | g/     | Subject and its grade     | Word description related to subject and grade.                                                                                                                              | g/Math: A+           |
 | h/     | Homework                  | Word description related to homework.                                                                                                                                       | hw/Science Worksheet |
-| lp/    | Lesson plan               | Word description related to lesson plan.                                                                                                                                    | lp/Diversity         |
+| lp/    | Lesson plan               | Word description related to lesson plan. Required field.                                                                                                                    | lp/Diversity         |
 | n/     | Name                      | Only numbers and letters. Spaces are allowed. Required field.                                                                                                               | n/Alex Ho            |
 | p/     | Phone number              | Numbers only. Spaces are not allowed and at least 3 numbers. Required field.                                                                                                | p/97402341           |
 | s/     | Session timing of lessons | Numbers in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and mm are two numbers making up the minute. | s/tue 08:30          |

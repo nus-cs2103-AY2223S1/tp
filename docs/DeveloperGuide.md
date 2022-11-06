@@ -137,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="750" />
+<img src="images/StorageClassDiagram.png" width="850" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -170,7 +170,13 @@ Step 1. The user launches the application for the first time. The address book w
 
 Step 2. The user executes `lessonplan 1 lp/Biology` to overwrite the lesson plan of the first person in the address book.
 
-The functionality and sequence is implemented as described in the Logic component.
+The following sequence shows how adding a lesson plan works:
+
+![LessonPlanSequenceDiagram](images/LessonPlanSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `LessonPlanCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Homework Feature
 
@@ -208,7 +214,7 @@ The following sequence shows how adding homework works:
 Step 3. The user decides to edit the homework to Science instead of Maths.
 They go into full view mode with the `view` command and execute `edit 1 h/Science worksheet`, which calls `HomeworkList#editAtIndex()` and replaces the old description with the new one.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Format of homework command:**
 
@@ -243,7 +249,7 @@ The `GradeProgress` command calls `GradeProgress#addGradeProgress(GradeProgress)
 
 Step 3. Upon successful entry of grade inputs, the `CommandResult()` message will be invoked.
 
-#### Design Consideration
+#### Design considerations
 
 Aspect: How grade progress command executes
 - Alternative 1 (current choice): Creates a new `Person` object and overwrites current 'Person' object
@@ -326,7 +332,7 @@ Step 4. The user executes a `view Alice Pauline` command which puts the `Person`
 Step 5. The user executes a `remove s/3` command which removes the instance of `Session` in index 2 of the `SessionList` of the `Person` (since SessionList implementation uses zero-based indexing) displayed in the GUI in view mode. The Session 
 	instances in the `SessionList` of the `Person` in view are then immediately sorted using the `Session` class `compareTo` implementation.
 		
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to encapsulate user input in Session**
 
@@ -373,7 +379,7 @@ The following sequence shows how adding attendance works:
 Step 3. The user decides to edit the attendance to 2022-08-12 instead.
 They go into full view mode with the `view` command and execute `edit 1 a/2022-08-12`, which calls `AttendanceList#editAtIndex()` and replaces the old description with the new one.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Format of user input in Attendance**
 
@@ -415,7 +421,7 @@ The following activity diagram summarises what happens when a user executes the 
 :information_source: **Note** The lifeline for `RemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design Consideration
+#### Design considerations
 
 **Aspect: Where to implement Remove function**
 
@@ -458,6 +464,7 @@ The following sequence shows how viewing the schedule works:
 </div>
 
 #### Design considerations
+
 **Aspect: Retrieval of individual sessions**
 * **Alternative 1 (current choice):** An association class between `Session` and `Person`
   * Pros: Simple to retrieve a `Person` and a `Session` when bound together
@@ -540,7 +547,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -617,12 +624,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Pupilist` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add attendance**
+**Use case: Mark attendance**
 
 **MSS**
-1. User requests to find a student attendance record.
+1. User requests to view a student.
 2. Pupilist shows the Student name and his attendance record.
-3. User chooses to increment attendance record of student to mark him as attended.
+3. User chooses to mark an index of the student's attendance record.
 4. Pupilist tells User that the command is successful.
 	
 	Use case ends.
@@ -719,13 +726,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. Pupilist detects an error in the selected index.
+* 3a. The lesson plan description is invalid.
+    * 3a1. Pupilist shows an error message.
 
-    * 3a1. Pupilist displays an error message.
+      Use case resumes at step 2.
+ 
+* 3b. Pupilist detects an error in the selected index.
+
+    * 3b1. Pupilist displays an error message.
 
       Use case resumes at step 3.
 
-    *{More to be added}*
+**Use case: Remove homework**
+
+**MSS**
+1. User requests to view a student.
+2. Pupilist shows the student's name and details.
+3. User chooses to remove an index of the student's homework.
+4. Pupilist tells User that the command is successful.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No Student specified found.
+    * 1a1. Pupilist tells user no such student found.
+      Use case resumes at step 1
+  
+* 3a. The given index is invalid.
+
+    * 3a1. Pupilist shows an error message.
+
+      Use case resumes at step 3.
+
+  *{More to be added}*
 
 ### Non-Functional Requirements
 

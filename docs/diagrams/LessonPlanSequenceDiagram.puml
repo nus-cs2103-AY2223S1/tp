@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LessonPlanCommandParser" as LessonPlanCommandParser LOGIC_COLOR
+participant "lp:LessonPlanCommand" as LessonPlanCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "editedPerson:Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("lesson 1 lp/Biology")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("lesson 1 lp/Biology")
+activate AddressBookParser
+
+create LessonPlanCommandParser
+AddressBookParser -> LessonPlanCommandParser
+activate LessonPlanCommandParser
+
+LessonPlanCommandParser --> AddressBookParser
+deactivate LessonPlanCommandParser
+
+AddressBookParser -> LessonPlanCommandParser : parse("1 lp/Biology")
+activate LessonPlanCommandParser
+
+create LessonPlanCommand
+LessonPlanCommandParser -> LessonPlanCommand
+activate LessonPlanCommand
+
+LessonPlanCommand --> LessonPlanCommandParser : lp
+deactivate LessonPlanCommand
+
+LessonPlanCommandParser --> AddressBookParser : lp
+deactivate LessonPlanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LessonPlanCommandParser -[hidden]-> AddressBookParser
+destroy LessonPlanCommandParser
+
+AddressBookParser --> LogicManager : lp
+deactivate AddressBookParser
+
+LogicManager -> LessonPlanCommand : execute()
+activate LessonPlanCommand
+
+create Person
+LessonPlanCommand -> Person
+activate Person
+
+Person --> LessonPlanCommand
+deactivate Person
+
+LessonPlanCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> LessonPlanCommand
+deactivate Model
+
+create CommandResult
+LessonPlanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LessonPlanCommand
+deactivate CommandResult
+
+LessonPlanCommand --> LogicManager : result
+deactivate LessonPlanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
