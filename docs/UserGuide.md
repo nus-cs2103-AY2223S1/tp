@@ -360,8 +360,11 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  <!-- TODO: ![result for 'find alex david'](images/findAlexDavidResult.png) -->
-  [Sample UI To be added]
+* `find tom` returns `Tom Aito`
+
+    ![Ui](images/ui/ui-find-before.png)
+    ![Ui](images/ui/ui-find-after.png)
+    <br><br>
 
 **See Also:**
 [`filter`](#538-filtering-the-students-filter)
