@@ -9,8 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* In order to change the contents page for User Guide and Developer Guide to follow numbering order, we reused code from https://github.com/lesterong/tp/blob/master/docs/assets/css/style.scss with minor modifications.
+* We have reused code from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Caramel.css and https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Cinnamon.css
+for styling our User Interface (UI).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -196,6 +197,7 @@ For `list appts`, it follows a similar
 process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
 behaviour as executing both `list patients` and `list appts`.
 
+#### Design considerations:
 
 **Aspect: How the command is implemented:**
 * **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
@@ -208,13 +210,14 @@ behaviour as executing both `list patients` and `list appts`.
 
 We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
-### Cancel Feature 
+### Cancel Feature
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
-It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates <br>
-operations which require selecting appointments from an appointment list. The logical flow of using this command is shown in the
-activity diagram given below.
+It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates
+operations which require selecting appointments from an appointment list.
+
+The logical flow of using this command is shown in the activity diagram given below.
 
 ![Activity Diagram](images/CancelActivityDiagram.png)
 
@@ -222,8 +225,10 @@ The `AddressBookParser` will first check for the `cancel` command word. The canc
 is facilitated by the `CancelCommandParser` and `CancelCommand` classes. The `CancelCommandParser`
 parses the user input and obtains the index inputted by the user, before creating the cancel command to
 execute the deletion of the appointment from the current appointment list.
+
 Given below is an overview of how the cancel command executes the deletion of an appointment to delete the
 first appointment (index 1) in the appointment list:
+
 ![Cancel Command](images/CancelSequenceDiagram.png)
 
 #### Design considerations:
@@ -243,7 +248,59 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
+### Hide Feature
+- The `hide patients` command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
+then any patients that match that tag or name will be hidden.
+For example, `hide patients t/nose t/ear` will hide all patients that has either a nose or ear tag.
+- The `hide appts` command works in exactly the same way, but the conditions are the reason, tag, and status of
+the appointment. For example, `hide appts s/marked` will hide all appointments that are marked.
+
+#### Implementation
+The key idea of hide and other organisational commands is to allow users to successively filter out patients,
+so that they can operate on a small list that they are interested in. For example, `hide patients n/Alex` and then
+followed by `hide patients t/ear` should apply both hide commands successively, each time hide is applied on the current
+shown list instead of the entire patient list.
+
+To implement this, and to ensure that hide works well with other organisational features such as find and unhide, we
+maintain an overarching HiddenPredicateSingleton which captures the state of the current patient and appointment list.
+This singleton serves as a global predicate which is updated every time an organisational command is entered.
+
+Each time the command is executed, the current patient/appointment predicate will be combined with (AND operation)
+a predicate that is the complement of the given condition, since entries that satisfy the model predicate will be shown
+, and thus to hide we will have to apply a NOT operation to the given condition e.g `hide patients t/ear` means we should
+combine the current patient list predicate with a predicate that will fail if the patient tag contains ear.
+The activity diagram below will illustrate a hide patient process. A similar process applies for hide appointment.
+
+![Hide Patients](images/HidePatientsActivityDiagram.png)
+
+
+#### Design considerations:
+**Aspect: How hide patient/appointment executes:**
+
+* **Current choice:** Making use of a singleton class to capture the state of the patient/appointment list at all times.
+* A singleton pattern is used here, because we only should have a single instance of HiddenPredicate to act as a global
+variable that holds the state of the current list shown to the user. If more than one object is created by mistake,
+there is a risk that our organisational commands no longer work correctly, as the same global predicate must be shared
+among all organisational commands such as find/group/hide/unhide.
+
+**Aspect: Whether hide should hide by any match or all match**
+* **Current choice:** Making hide any match, meaning patients/appts that match any of the keywords will be hidden.
+E.g: `hide appts s/unmarked t/ear` will hide all appointments that is either unmarked OR has a ear tag.
+* **Alternative:** Making hide all match meaning `hide appts s/unmarked t/ear` only hides appointments that satisfy
+both the status and tag conditions.
+* We decided to go with any match so that it is easier for users if they want to hide many types of entries at one go,
+as opposed to all match since the user will have to key in hide many times successively.
+
+**Aspect: How hide patients should affect appointment list**
+* **Current choice:** Hiding patients will also hide their appointments, and unhiding patients will also unhide their appointments <br>
+**Explanation:** We decided on this implementation because hiding a patient would imply that the user has no interest in this patient, and thus the appointments of the patient are also hidden so that the user can focus on other patients that he did not hide. Similarly, unhiding a patient implies that the user has interest in the particular patient, and thus the patient's appointments will also be shown.
+On the other hand, hiding and unhiding appointments does not affect the patient list as the user may only be interested in going through the appointments.
+* **Alternative:** Hiding/Unhiding patients do not affect appointment list at all <br>
+This approach is easier to implement, as we do not have to worry about the appointment list and we only need to update the patient list. However, we wanted to make it more convenient for the user, as there is no good way to hide appointments of a particular patient if we have no interest in the patient. 
+
 ### Group Patient Feature
+
+#### Implementation
 
 The group mechanism implements the following operations:
 
@@ -277,6 +334,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Group Appointment Feature
 
+#### Implementation
+
 The group mechanism implements the following operations:
 
 * Group appointments according to their tags or patient.
@@ -289,7 +348,7 @@ Step 1. The user launches the application for the first time. The `idENTify` wil
 appointment list.
 
 Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `
-(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on 
+(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on
 the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
@@ -310,6 +369,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Ungroup Feature
 
+#### Implementation
+
 The ungroup mechanism implements the following operations:
 
 * Either ungroup appointments or ungroup patients.
@@ -326,10 +387,10 @@ Step 2. The user executes `group appts k/KEY` command to group appointments by t
 the screen or executes `group patients` command to group patients by their tags, causing the modified list of
 patients after the `group patients` command executes to show on the screen.
 
-Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup 
+Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup
 patients.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or
 appointments, ungroup commands will make no effect on the current addressbook list on the screen.
 </div>
 
@@ -346,8 +407,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How ungroup executes:**
 
-* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort 
-  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
+* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort
+  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt
   list will be sorted by datetime.
 
 ### Book Feature
@@ -368,7 +429,7 @@ The newly added `Appointment` object will also be saved in the JSON file through
 
 Given below are some example usage scenarios and how the book feature behaves in each scenario.
 
-Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`. 
+Scenario 1: User inputs `book 1 r/Sore Throat d/2022-12-10 12:00`.
 
 The `ParserUtil#ParseAppointment()` will detect that both the given reason and date are valid, and creates an appointment object to be stored in the specified `Person`, only if the `Person` does not have an existing appointment at that date(Scenario 6).
 
@@ -392,7 +453,7 @@ Scenario 6: User tries to book an appointment with the same time as other appoin
 
 <img src="images/BookCommandObjectDiagram.png" width="450" />
 
-This object diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
+This object diagram illustrates the above scenario. As the specified person has already booked an appointment in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
 
 The following sequence diagram helps to provide a clearer picture to how the book operation works:
 
@@ -444,9 +505,11 @@ If any of the prefixes contain invalid values or no prefix values were provided,
 
 * **Alternative 2:** Edit the existing `Appointment` object itself.
   * Pros: Only have to edit the required fields.
-  * Cons: Editing the existing object may not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
+  * Cons: Editing the existing object does not reflect the changes in the Appointment listview as compared to setting a new object, hence requiring more Observable fields.
 
 ### Mark/Unmark Feature
+
+#### Implementation
 
 The parameters involved in the `mark`/`unmark` commands is the same as that of the `cancel` command. 
 All 3 commands take in a single parameter denoting the desired appointment number to modify. 
@@ -483,15 +546,38 @@ constructor directly
 
 ### Find Feature
 
+#### Implementation
+
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
 
-The `find` command,
-* Takes in 2 classes `CombinedPersonPredicate` and `CombinedAppointmentPredicate` which inherit from the java `Predicate` class.
-* `CombinedPersonPredicate` stores all person related search parameters and tests for all patients that satisfies all
-of them.
-* `CombinedAppointmentPredicate` stores all appointment related search parameters and tests for all appointments that
-satisfies all of them.
-* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all the relevant patient and appointments.
+The `find` command takes in 2 predicates `CombinedPersonPredicate`, `CombinedAppointmentPredicate` and a boolean `isAppointmentPredicateUsed`.
+* `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
+  the search terms.
+* `CombinedAppointmentPredicate` stores all appointment related search fields and tests for all appointments that
+  satisfies all the search terms.
+* `isAppointmentPredicateUsed` tracks if there are any appointment related search terms are specified by the user. 
+
+These 3 fields are generated and supplied by the `FindCommandParser`, which takes in the user inputs during a `find` command, 
+and sorts the input into the 2 predicate classes accordingly as shown in the diagram above, 
+in addition to also producing the value of `isAppointmentPredicateUsed`.
+
+To facilitate the idea of returning only relevant results to the user, the `execute()` method of `FindCommand` follows a 3-step process.
+1. `personFulfillingBothPredicates`, the predicate to display all patients that satisfy the `CombinedPersonPredicate` is generated first. If `isAppointmentPredicateUsed` is `true`,
+the predicate is also modified to check if the patient has at least 1 appointment that satisfies the `CombinedAppointmentPredicate`. 
+As such, the `isAppointmentPredicateUsed` field ensures  that patients with no appointments are still displayed when a user inputs 
+only patient related search parameters.
+2. `appointmentFulfillingBothPredicates` is generated next. It is a predicate that displays all appointments that satisfy the `CombinedAppointmentPredicate` with a patient owner that
+satisfies the `personFufillingBothPredicates` predicated generated in step 1.
+3. To display only results in the current patient and appointment lists shown to the user that satisfies all the search terms,
+The 2 predicates generated in step 1 and 2 are combined with the current active predicate in the model.
+
+The logical flow of this command is summarised in the activity diagram below.
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+Ultimately, this ensures that for an entry to be displayed:
+* A patient must satisfy all patient search terms and have at least 1 appointment that satisfies all the appointment search terms, if provided.
+* An appointment must satisfy all appointment search terms and belong to a patient that satisfies all the patient search terms.
+* The entry must also exist in the list prior to the execution of the find command.
 
 #### Design considerations:
 
@@ -540,7 +626,7 @@ and store the relevant search terms into each predicate. Combine those search te
 
 **Target User Profile:**
 * Tech savvy admin staff in Ear, Nose, Throat (ENT) department
-* Has a need to manage a significant number of contacts
+* Has a need to manage a significant number of patients/appointments
 * Prefer desktop apps over other types
 * Can type fast
 * Prefer typing to mouse interactions
@@ -585,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use Case: UC01 - Show a list of all patients**
 
@@ -596,12 +682,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all patients.
 2. idENTify shows a list of all patients.
 
-
     Use case ends.
 
 **Extensions**
 - 2a. The list is empty.
-
 
      Use case ends.
 
@@ -613,14 +697,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all appointments.
 2. idENTify shows a list of all appointments.
 
-
      Use case ends.
-
-
 
 **Extensions**
 - 2a. The list is empty.
-
 
     Use case ends.
 
@@ -633,9 +713,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User adds the patient by entering the command and the patient details.
 2. idENTify adds the patient.
 
-
      Use case ends.
-
 
 **Extensions**
 
@@ -686,7 +764,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a1. idENTify shows an error message.
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
     Use case resumes at step 3.
 
 **Use Case: UC06 - cancel an appointment**
@@ -706,7 +784,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. idENTify detects an error in the entered data.
   - 2a1. idENTify shows an error message.
   - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct. 
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
     Use case resumes at step 3.
 
@@ -770,8 +848,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
-2.  User requests to mark a specified appointment for a specified patient.
-3.  idENTify marks the selected appointment.
+2.  User requests to unmark a specified appointment for a specified patient.
+3.  idENTify unmarks the selected appointment.
 
 
     Use case ends.
@@ -836,7 +914,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of patients(UC01)<ins>.
 2.  idENTify displays the patient list sorted by their names.
 
-
     Use case ends.
 
 **Extensions**
@@ -845,10 +922,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. idENTify compares their other information.
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
+   
+      Use case ends.
 
-
-    Use case ends.
-    
 **Use Case: UC14 - sort the appointment list**
 
 **Guarantees:** The appointment list will be sorted in ascending order.
@@ -856,7 +932,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  idENTify displays the appointment list sorted by their datetime.
-
 
     Use case ends.
 
@@ -867,8 +942,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their patient information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC15 - group patients**
 
@@ -877,7 +951,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to group patients.
 2. idENTify displays the patient list grouped by their tags.
-
 
     Use case ends.
 
@@ -888,8 +961,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC16 - group appointments**
 
@@ -899,7 +971,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to group appointments with some criterion.
 2. idENTify displays the appointment list grouped according to the specified criterion.
 
-
     Use case ends.
 
 **Extensions**
@@ -908,7 +979,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1a1. idENTify shows an error message.
     - 1a2. User enters new data.
     - Steps 1a1-1a2 are repeated until the data entered are correct.
-  
+
       Use case resumes at step 2.
 
 
@@ -917,8 +988,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted appointment list.
 
-
-    Use case ends.
+      Use case ends.
 
 **Use Case: UC17 - ungroup patients**
 
@@ -927,7 +997,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to ungroup patients.
 2. idENTify displays the patient list <ins>sorted by default(UC13)<ins>.
-
 
     Use case ends.
 
@@ -940,7 +1009,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ungroup appointments.
 2. idENTify displays the appointment list <ins>sorted by default(UC14)<ins>.
 
-
     Use case ends.
 
 
@@ -951,7 +1019,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to hide patients with specified conditions.
 2. idENTify displays the patient list without hidden patients.
-
 
     Use case ends.
 
@@ -972,8 +1039,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to hide appointments with specified conditions.
 2. idENTify displays the appointment list without hidden appointments.
 
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -992,8 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to unhide patients.
 2. idENTify displays the <ins>whole patient list (UC01)<ins>.
 
-
-    Use case ends.
+   Use case ends.
 
 
 **Use Case: UC22 - unhide appointments**
@@ -1003,7 +1068,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User enters command to unhide appointments.
 2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
-
 
     Use case ends.
 
@@ -1016,7 +1080,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to clear all entries of current patient and appointment lists.
 2. idENTify displays an empty patient list and an empty appointment list.
 
-
     Use case ends.
 
 **Use Case: UC24 - show help page**
@@ -1027,24 +1090,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters command to ask for help about how to use the app.
 2. idENTify shows a page including some information to help users.
 
-
     Use case ends.
 
-**Use Case: UC24 - show command history**
+**Use Case: UC25 - show command history**
 
 **MSS**
-1. User enters command to view previous commands.
+1. User enters key to view previous commands.
 2. idENTify shows previous commands to users.
-
 
     Use case ends.
 
-**Use Case: UC25 - exit the app**
+**Use Case: UC26 - exit the app**
 
 **MSS**
 1. User enters command to exit.
 2. idENTify saves current data and exits.
-
 
     Use case ends.
 
@@ -1123,7 +1183,7 @@ testers are expected to do more *exploratory* testing.
    1. Expected results:
       1. An invalid command format error message appears.
       2. No new entries are added.
-      
+   
 ### Deleting a patient
 Section Prerequisites: Completed all the steps in the previous section `Adding a patient`.
 
@@ -1131,7 +1191,7 @@ Section Prerequisites: Completed all the steps in the previous section `Adding a
    1. Expected results:
       1. An acknowledgement message regarding the patient deleted appears.
       2. The patient should no longer appear in the patient list.
-   
+
 2. Test case: `delete 6`. It should be a patient with at least 1 upcoming appointment.
    1. Expected results:
       1. Similar to previous
@@ -1156,7 +1216,7 @@ Section Prerequisite: Completed all the steps in the previous section `Deleting 
       1. Similar to previous, but with a new appointment entry with reason `Rhinitis`, date `2020-10-10` and state `Recurring every 1 year` should appear instead.
 
 3. Test case `book`
-   1. Expected result: 
+   1. Expected result:
       1. An invalid command format error message appears.
       2. No new entries are added.
 
@@ -1196,12 +1256,12 @@ Section Prerequisite: At least 1 appointment exists in the patient list.
    1. Expected results:
        1. An acknowledgement message that the appointment's information was edited appears.
        2. The appointment entry contains the updated reason.
-  
+
 2. Test case: `edit appts`
    1. Expected results:
        1. An invalid command format error message appears.
        2. No entries in the patient or appointment lists were modified.
-      
+   
 ### Marking appointments as complete
 Section Prerequisite: The 2nd appointment in the appointment list should be unmarked. If the appointment is marked or missing, replace the `2` in the following commands with another appointment entry that is currently unmarked.
 
@@ -1218,9 +1278,9 @@ Section Prerequisite: The 2nd appointment in the appointment list should be unma
 ### Marking appointments as incomplete
 Section Prerequisite: Completed all the steps in the previous section `Marking appointments as complete`.
 
-Repeat the same test cases in the previous section, but using `unmark 2` instead. 
+Repeat the same test cases in the previous section, but using `unmark 2` instead.
 
-The expected results should be similar as those in the previous section, but with acknowledgment messages indicating 
+The expected results should be similar as those in the previous section, but with acknowledgment messages indicating
 that the appointment was unmarked, and that the appointment's marked status changes from `[X]` to `[]`.
 
 ### Listing results
@@ -1257,12 +1317,12 @@ attached to them.
    1. Expected results:
       1. An acknowledgement message that all patients are grouped appears.
       2. Entries in the patient list with similar tags should be grouped together, with behaviour as specified in the user guide.
-      
+
 2. Test case: `ungroup patients`
    1. Expected results:
        1. An acknowledgement message that all patients are ungrouped appears.
        2. The changes to the patient list that occurred in the previous test case should be reverted.
-       
+
 3. Test case: `group appts k/tag`
    1. Expected result: Similar to test case 1, but with appointments grouped with their tags instead.
 
@@ -1305,7 +1365,7 @@ displaying the number of filtered results should appear after every valid input.
    1. Expected results:
       1. Only appointments containing the reason `Checkup` appear in the appointment list.
       2. Only patients with at least 1 such appointment will appear in the patient list.
-      
+
 ### Dealing with save data issues
 
 1. Test Case: Dealing with missing files
@@ -1317,7 +1377,7 @@ displaying the number of filtered results should appear after every valid input.
    3. Expected result: A new file will be created with some sample patients and appointments.
 
 2. Test case: Dealing with corrupted files
-   1. If save data is corrupted, the application will open with an empty data file. 
+   1. If save data is corrupted, the application will open with an empty data file.
    2. To simulate a missing file:
       1. Head to the location of your save data, in the same way as the previous test case.
       2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
@@ -1327,9 +1387,9 @@ displaying the number of filtered results should appear after every valid input.
 
 ## **Appendix: Effort**
 Our project was harder than Address Book Level3(AB3) because AB3 only deals with Persons, while our project includes Appointments as well. There was a huge learning curve at the start as we were very unfamiliar with what most of the classes do. After familiarizing ourselves with some of the necessary classes to implement our new enhancements, we also had a hard time writing new test cases as our new features caused the existing test cases to fail. It took a long time for us to figure out that the existing static variables used for the test cases were the problem as our new test cases involved altering the list of appointments in those variables.
-   
-In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for appointments. We found out that changes to our appointment fields, such as marking them as completed, were not properly reflected on the listviews. We had to spent time researching how to use the Observer pattern(ie. Extractors) to reflect such changes. We also had to differentiate similar commands by using a descriptor word(patients/appts), and spent some time learning regex in order to update the AddressBookParser's pattern checking. As our mark, unmark, edit appts and cancel features also used the same mechanism to retrieve the specified appointment, we had to spent time refactoring our Parser classes to reduce duplication of such code.
-   
+
+In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for appointments. We found out that changes to our appointment fields, such as marking them as completed, were not properly reflected on the listviews. We had to spent time researching how to use the Observer pattern(ie. Callback) to reflect such changes. We also had to differentiate similar commands by using a descriptor word(patients/appts), and spent some time learning regex in order to update the AddressBookParser's pattern checking. As our mark, unmark, edit appts and cancel features also used the same mechanism to retrieve the specified appointment, we had to spent time refactoring our Parser classes to reduce duplication of such code.
+
 In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
-   
-Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
+
+Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a team.

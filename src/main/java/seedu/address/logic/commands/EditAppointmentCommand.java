@@ -40,7 +40,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 "
             + PREFIX_REASON + "Sore Throat "
             + PREFIX_DATE + "2022-10-12 16:30 "

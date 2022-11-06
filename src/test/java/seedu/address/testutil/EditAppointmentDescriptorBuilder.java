@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.tag.Tag;
@@ -69,7 +68,7 @@ public class EditAppointmentDescriptorBuilder {
         return this;
     }
 
-    public EditAppointmentCommand.EditAppointmentDescriptor build() {
+    public EditAppointmentDescriptor build() {
         return descriptor;
     }
 }

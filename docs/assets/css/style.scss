@@ -35,6 +35,9 @@ h4 {
   counter-reset: h5;
 }
 
+h5 {
+  counter-reset: h6;
+}
 
 h2:before {
   content: counter(h2, decimal) ". ";
@@ -56,6 +59,10 @@ h5:before {
   counter-increment: h5;
 }
 
+h6:before {
+  content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) "." counter(h6, decimal) ". ";
+  counter-increment: h6;
+}
 
 #markdown-toc, #markdown-toc ul {
   list-style-type: none;
@@ -81,6 +88,11 @@ h5:before {
 // Fourth Level
 #markdown-toc > li > ul > li > ul > li > ul > li {
   margin-left: 34px;
+}
+
+// Fifth Level
+#markdown-toc > li > ul > li > ul > li > ul > li > ul > li {
+  margin-left: 42px;
 }
 
 #markdown-toc li:before {

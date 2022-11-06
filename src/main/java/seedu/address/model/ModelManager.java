@@ -116,26 +116,28 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
-        updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
+        updateFilteredAppointmentList(HiddenPredicateSingleton
+                .getInstance().getCurrApptPredicate());
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
+        updateFilteredAppointmentList(HiddenPredicateSingleton
+                .getInstance().getCurrApptPredicate());
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
+        updateFilteredPersonList(HiddenPredicateSingleton.getInstance().getCurrPersonPredicate());
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
+        updateFilteredPersonList(HiddenPredicateSingleton.getInstance().getCurrPersonPredicate());
     }
 
     //=========== Filtered Person List Accessors =============================================================

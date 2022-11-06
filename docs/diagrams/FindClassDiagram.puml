@@ -6,11 +6,10 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Class "<<interface>>\nPredicate" as Predicate
 
-CombinedPersonPredicate .up.|> Predicate
-CombinedAppointmentPredicate .up.|> Predicate
-
-FindCommand -left-> "1" CombinedPersonPredicate
-FindCommand -right-> "1" CombinedAppointmentPredicate
+show FindCommand fields
+class FindCommand {
+    isUsingAppointmentPredicate: boolean
+}
 
 show CombinedPersonPredicate fields
 class CombinedPersonPredicate {
@@ -27,4 +26,10 @@ class CombinedAppointmentPredicate {
     startDateTime : LocalDateTime
     endDateTime : LocalDateTime
 }
+
+CombinedPersonPredicate .up.|> Predicate
+CombinedAppointmentPredicate .up.|> Predicate
+
+FindCommand -left-> "1" CombinedPersonPredicate
+FindCommand -right-> "1" CombinedAppointmentPredicate
 @enduml

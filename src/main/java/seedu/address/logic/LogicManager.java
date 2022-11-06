@@ -51,7 +51,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        commandHistory.add(commandText);
+        commandHistory.addCommand(commandText);
 
         try {
             storage.saveAddressBook(model.getAddressBook());

@@ -14,6 +14,7 @@ import java.util.List;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate.HideBy;
 
 
 
@@ -22,6 +23,8 @@ import seedu.address.model.person.predicates.HideAppointmentPredicate;
  */
 public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCommand> {
 
+    private HideBy cond;
+    private List<String> val;
     /**
      * Parses given arguments in the context of the FilterPatientCommand
      * and returns a FilterPatientCommand object for execution.
@@ -33,30 +36,36 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_TAG,
                 PREFIX_STATUS);
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
         }
+        processArgMultiMap(argMultimap);
+        return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
+    }
 
-        HideAppointmentPredicate.HideBy cond;
-        List<String> val;
+    /**
+     * Assigns the correct keywords and condition from the argument map to hide appointments by.
+     * @param argMultimap The given argument map to be processed.
+     * @throws ParseException If the arguments found are invalid.
+     */
+    private void processArgMultiMap(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
-            cond = HideAppointmentPredicate.HideBy.KEYWORD;
+            cond = HideBy.KEYWORD;
             if (val.stream().anyMatch(x -> x.equals(""))) {
                 throw new ParseException(MESSAGE_EMPTY_REASON);
             }
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_TAG);
-            cond = HideAppointmentPredicate.HideBy.TAG;
+            cond = HideBy.TAG;
             if (!areValidTags(val)) {
                 throw new ParseException(MESSAGE_INVALID_TAGS);
             }
         } else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getAllValues(PREFIX_STATUS);
-            cond = HideAppointmentPredicate.HideBy.IS_MARKED;
+            cond = HideBy.IS_MARKED;
             if (val.size() > 1) {
                 throw new ParseException(MESSAGE_INVALID_STATUS);
             }
@@ -64,7 +73,6 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
         }
-        return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
     /**

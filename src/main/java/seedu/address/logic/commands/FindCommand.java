@@ -54,21 +54,21 @@ public class FindCommand extends Command {
 
     private final CombinedPersonPredicate personPredicate;
     private final CombinedAppointmentPredicate appointmentPredicate;
-    private final boolean isUsingAppointmentPredicate;
+    private final boolean isAppointmentPredicateUsed;
 
     /**
      * Creates a findCommand to search for specific details in the app.
      *
      * @param personPredicate A predicate for searching person details.
      * @param appointmentPredicate A predicate for searching appointment details.
-     * @param isUsingAppointmentPredicate True if any search fields relating to appointments are entered,
+     * @param isAppointmentPredicateUsed True if any search fields relating to appointments are entered,
      *                                   false otherwise.
      */
     public FindCommand(CombinedPersonPredicate personPredicate, CombinedAppointmentPredicate appointmentPredicate,
-                       boolean isUsingAppointmentPredicate) {
+                       boolean isAppointmentPredicateUsed) {
         this.personPredicate = personPredicate;
         this.appointmentPredicate = appointmentPredicate;
-        this.isUsingAppointmentPredicate = isUsingAppointmentPredicate;
+        this.isAppointmentPredicateUsed = isAppointmentPredicateUsed;
     }
 
     @Override
@@ -80,9 +80,9 @@ public class FindCommand extends Command {
         the appointmentPredicate if any input related to appointments are present (Reason, date),
         and updates the model accordingly.
          */
-        Predicate<Person> personFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? personPredicate
-                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
+        Predicate<Person> personFulfillingBothPredicates = isAppointmentPredicateUsed
+                ? personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate))
+                : personPredicate;
 
         /*
         Creates a Predicate<Appointment> that returns true if an appointment's patient is one who satisfies
@@ -96,15 +96,17 @@ public class FindCommand extends Command {
         Finds all appointments that satisfy the given appointmentPredicate whose patient matches the personPredicate,
         and updates the model accordingly.
          */
-        Predicate<Appointment> appointmentFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? appointmentOfFilteredPersonsPredicate
-                : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
+        Predicate<Appointment> appointmentFulfillingBothPredicates = isAppointmentPredicateUsed
+                ? appointmentOfFilteredPersonsPredicate.and(appointmentPredicate)
+                : appointmentOfFilteredPersonsPredicate;
 
         Predicate<Person> combinedPersonPredicate =
-                HiddenPredicateSingleton.combineWithRegularPredicate(personFulfillingBothPredicates);
+                HiddenPredicateSingleton.getInstance()
+                        .combineWithRegularPredicate(personFulfillingBothPredicates);
 
         Predicate<Appointment> combinedApptPredicate =
-                HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
+                HiddenPredicateSingleton.getInstance()
+                        .combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
 
         model.updateFilteredPersonList(combinedPersonPredicate);
         model.updateFilteredAppointmentList(combinedApptPredicate);
@@ -130,6 +132,6 @@ public class FindCommand extends Command {
         FindCommand otherFindCommand = (FindCommand) other;
         return personPredicate.equals(otherFindCommand.personPredicate)
                 && appointmentPredicate.equals(otherFindCommand.appointmentPredicate)
-                && isUsingAppointmentPredicate == otherFindCommand.isUsingAppointmentPredicate;
+                && isAppointmentPredicateUsed == otherFindCommand.isAppointmentPredicateUsed;
     }
 }

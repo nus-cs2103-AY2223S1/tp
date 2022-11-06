@@ -43,7 +43,8 @@ public class HideAppointmentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Appointment> combinedPredicate = HiddenPredicateSingleton.combineWithApptPredicate(predicate);
+        Predicate<Appointment> combinedPredicate = HiddenPredicateSingleton.getInstance()
+                .combineWithApptPredicate(predicate);
         model.updateFilteredAppointmentList(combinedPredicate);
 
         return new CommandResult(

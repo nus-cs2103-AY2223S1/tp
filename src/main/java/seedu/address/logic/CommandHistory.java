@@ -19,7 +19,7 @@ public class CommandHistory {
      *
      * @param command The command text to be added.
      */
-    public void add(String command) {
+    public void addCommand(String command) {
         requireNonNull(command);
         if (history.size() == maxCapacity) {
             history.remove(0);
@@ -51,12 +51,12 @@ public class CommandHistory {
     }
 
     /**
-     * Resets the index to the last element of the list when starting up the application
+     * Resets the index to the list size when starting up the application
      * and returns the commandHistory.
      *
      * @return The commandHistory with the index reset.
      */
-    public CommandHistory getResetCommandHistory() {
+    public CommandHistory getCommandHistory() {
         if (history.size() >= 1) {
             this.currentIndex = history.size();
         }
