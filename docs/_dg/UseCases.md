@@ -2,9 +2,9 @@
 
 #### Use Case 1: Add Item to Inventory
 
-Preconditions: Item to add does not yet exist in inventory.
+Preconditions: [[ Item ]] to add does not yet exist in inventory.
 
-MSS:
+[[ MSS ]]:
 
 1. User adds a new Item to the inventory.
 1. FoodRem informs user that item has been successfully created.
@@ -28,9 +28,9 @@ Extensions:
 
 #### Use Case 2: Update Item in Inventory
 
-Preconditions: Item to edit exists in inventory.
+Preconditions: [[ Item ]] to edit exists in inventory.
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view all items.
 1. FoodRem shows all items.
@@ -56,9 +56,9 @@ Extensions:
 
 #### Use Case 3: Delete Item from Inventory
 
-Preconditions: Item to delete exists in inventory.
+Preconditions: [[ Item ]] to delete exists in inventory.
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view all items.
 1. FoodRem shows all items.
@@ -78,9 +78,9 @@ Extensions:
 
 #### Use Case 4: Create Tag
 
-Preconditions: Tag does not yet exist in FoodRem.
+Preconditions: [[ Tag ]] does not yet exist in FoodRem.
 
-MSS:
+[[ MSS ]]:
 
 1. User adds a new Tag to the inventory.
 1. FoodRem informs user that tag has been successfully created.
@@ -104,7 +104,7 @@ Extensions:
 
 #### Use Case 5: Find Item
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view items.
 1. FoodRem shows a list containing the items.
@@ -122,9 +122,9 @@ MSS:
 
 #### Use Case 6: Add Tag to Item
 
-Preconditions: Tag has been created in FoodRem.
+Preconditions: [[ Tag ]] has been created in FoodRem.
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view items.
 1. FoodRem shows a list containing the items.
@@ -144,9 +144,9 @@ Extensions:
 
 #### Use Case 7: Rename a tag
 
-Preconditions: Tag has been created in FoodRem.
+Preconditions: [[ Tag ]] has been created in FoodRem.
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view all tags.
 1. FoodRem shows all tags.
@@ -166,9 +166,9 @@ Extensions:
 
 #### Use Case 8: Removing a tag from an item
 
-Preconditions: The tag to be removed is tagged to the item currently.
+Preconditions: The [[ tag ]] to be removed is tagged to the item currently.
 
-MSS:
+[[ MSS ]]:
 
 1. User chooses to view items.
 1. FoodRem shows a list containing the items.
@@ -188,9 +188,9 @@ Extensions:
 
 #### Use Case 9: Increment/Decrement Quantity of Item
 
-MSS:
+[[ MSS ]]:
 
-1. User chooses to view items.
+1. User chooses to view [[ item:items ]].
 1. FoodRem shows a list containing the items.
 1. User increases/decreases the quantity of a specified item in the inventory.
 1. FoodRem informs user that item quantity has been incremented/decremented successfully.
@@ -207,9 +207,9 @@ Extensions:
 
 #### Use Case 10: Sorting List of Items by Criteria
 
-MSS:
+[[ MSS ]]:
 
-1. User chooses to view items.
+1. User chooses to view [[ item:items ]].
 1. FoodRem shows a list containing the items.
 1. User selects a criteria to sort the list by.
 1. The list items are reordered according to the chosen criterion.
