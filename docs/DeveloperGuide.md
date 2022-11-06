@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HobbyList` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an activity**
+**Use case: UC01 - Add an activity**
 
 **MSS**
 
@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: List all activities**
+**Use case: UC02 - List all activities**
 
 **MSS**
 
@@ -450,7 +450,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete an activity**
+**Use case: UC03 - Delete an activity**
 
 **MSS**
 
@@ -473,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find activities in a certain time period**
+**Use case: UC04 - Find activities in a certain time period**
 
 **MSS**
 
@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Find activities whose rating are greater or equal than certain value**
+**Use case: UC05 - Find activities whose rating are greater or equal than certain value**
 
 **MSS**
 
@@ -491,7 +491,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add date of an activity**
+**Use case: UC06 - Add date of an activity**
 
 **MSS**
 
@@ -510,7 +510,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
 
-**Use case: Edit date of an activity**
+**Use case: UC07 - Edit date of an activity**
 
 **MSS**
 
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Select an activity to display its details**
+**Use case: UC08 - Select an activity to display its details**
 
 **MSS**
 
@@ -543,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
          Use case resumes at step 1.
     
-**Use case: Changing command names**
+**Use case: UC09 - Changing command names**
 
 **MSS**
 1. User requests to change command names
@@ -559,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Changing to a different theme**
+**Use case: UC10 - Changing to a different theme**
 
 **MSS**
 1. User change a theme
