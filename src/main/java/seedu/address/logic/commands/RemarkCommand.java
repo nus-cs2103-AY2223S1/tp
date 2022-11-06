@@ -24,9 +24,7 @@ public class RemarkCommand extends Command {
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + "REMARK "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 2 "
-            + "Fast buyer t/favourite";
+            + "Example: " + COMMAND_WORD + " 2 ";
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s; Email: %3$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
