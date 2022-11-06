@@ -1,8 +1,8 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-To let you become more familiar with FoodRem, let's practice executing some commands.
+To let you become more familiar with FoodRem, let's practice executing some [[command:commands]].
 
-To start off, let's try out the `new` command! This command lets you add an [Item](#item) to FoodRem.
+To start off, let's try out the `new` command! This command lets you add an [[item:Item]]to FoodRem.
 
 One of the available commands in FoodRem is the command to create a new item.
 
@@ -13,7 +13,7 @@ One of the available commands in FoodRem is the command to create a new item.
 The first word of every command allows FoodRem to distinguish different commands.
 
 * `new` tells FoodRem that this is the command to create a new item
-* [Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters supplied by you without ambiguity
+* [Flags](#flags) such as `n/` and `qty/` are [[ delimiter:delimiters]] that enable FoodRem to distinguish different parameters supplied by you without ambiguity
 * [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you what you should place in each portion of the command
 
 Notice that there is a pair of square brackets `[]` surrounding some parameters like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these placeholders have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
@@ -24,7 +24,7 @@ The [Placeholder](#placeholders) section covers the restrictions for respective 
 
 **Let's try an example!**
 
-Suppose you just bought 30 kg worth of potatoes, today is 5th September 2022, and you do not feel the need to record an expiry date, price or remarks for this item.
+Suppose you just bought 30 kg worth of potatoes, today is 5th September 2022, and you do not feel the need to record an [[expiry-date:expiry date]], price or remarks for this item.
 
 `ITEM_NAME`: Potatoes
 
@@ -71,7 +71,7 @@ You should now have a better understanding of how commands are formatted and use
 Here is a checklist you can use before running a command:
 
 * [ ] I know the restrictions of the command
-* [ ] I know what parameters are supplied to the command
-* [ ] I know the flags for each parameter to be supplied
-* [ ] I know the restrictions of each placeholder
+* [ ] I know what [[parameter:parameters]] are supplied to the command
+* [ ] I know the [[flag:flags]] for each parameter to be supplied
+* [ ] I know the restrictions of each [[placeholder:placeholder]]
 * [ ] I know the effects of not specifying each optional flag.
