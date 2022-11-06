@@ -122,14 +122,22 @@ public class FindCommandParserTest {
         List<FindPredicate> predicates = new ArrayList<>();
         predicates.add(new PlanTagContainsKeywordsPredicate(Arrays.asList("Savings Plan",
                 "Hospitalisation Plan")));
+
+        // case-insensitive
+        List<FindPredicate> predicates2 = new ArrayList<>();
+        predicates2.add(new PlanTagContainsKeywordsPredicate(Arrays.asList("Savings plan",
+                "Hospitalisation PLan")));
         FindCommand expectedFindCommand =
                 new FindCommand(predicates);
+        //case-insensitive
+        FindCommand expectedFindCommand2 =
+                new FindCommand(predicates2);
         assertParseSuccess(parser , " " + PREFIX_PLANTAG.getPrefix()
                 + "Savings Plan Hospitalisation Plan", expectedFindCommand);
-        // multiple whitespaces between keywords
-        //uncomment once regex is fixed
-        //  assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
-        //  + "Savings Plan \n \t Hospitalisation Plan" , expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
+                + "Savings plan Hospitalisation PLan", expectedFindCommand2);
+        assertParseSuccess(parser, " " + PREFIX_PLANTAG.getPrefix()
+                + "Savings Plan \n \t Hospitalisation Plan" , expectedFindCommand);
     }
 
     @Test

@@ -23,15 +23,15 @@ public class IncomeContainsKeywordsPredicate extends FindPredicate {
         IncomeLevel personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
             if (predicate.equals(">")) {
-                if (personIncome.convertIncomeToLong() >= Integer.parseInt(predicateIncomeName)) {
+                if (personIncome.convertIncomeToLong() >= Long.parseLong(predicateIncomeName)) {
                     return true;
                 }
             } else if (predicate.equals("<")) {
-                if (personIncome.convertIncomeToLong() <= Integer.parseInt(predicateIncomeName)) {
+                if (personIncome.convertIncomeToLong() <= Long.parseLong(predicateIncomeName)) {
                     return true;
                 }
             } else if (predicate.equals("=")) {
-                if (personIncome.convertIncomeToLong() == Integer.parseInt(predicateIncomeName)) {
+                if (personIncome.convertIncomeToLong() == Long.parseLong(predicateIncomeName)) {
                     return true;
                 }
             }
