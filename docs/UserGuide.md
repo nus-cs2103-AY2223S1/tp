@@ -180,8 +180,8 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:** 
 
-* Duplicate person are not allowed.
-  A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
+* Duplicate persons are not allowed.
+  A person is considered to be a duplicate if there already exists a person in the list with the exact same name (case-sensitive).
 * Adding person maintains the current sorted order of the display list (as opposed to adding to the back of the list).
   By default, the list is sorted by date of creation. Refer to [this note under section 4.7.1 for how the sorting works](#471-sorting-persons-in-the-list-sort--p).
 * A person is assumed to be in charge of at most one internship position.
