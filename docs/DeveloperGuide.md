@@ -1687,7 +1687,6 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         * No person is deleted from any module. 
         * An error message with relevant details is displayed to the user.
 
-    
 ### Editing a contact
 
 1. Editing a person in Plannit while the contact to be edited is shown.
@@ -1728,7 +1727,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
        * Person list is updated with an empty list
        * Number of persons listed shown in the status message.
 
-   5. Test case: `find-person`<br>
+   4. Test case: `find-person`<br>
       Expected:
        * Person list remains the same.
        * Command box remains the same.
@@ -1750,7 +1749,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
    * Command box remains the same.
    * Error details shown in the status message.
 
-### Listing all persons
+### Listing all contacts
 
 1. Listing persons while not all persons are shown
    1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
