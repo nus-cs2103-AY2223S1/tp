@@ -49,17 +49,18 @@ To navigate to see a particular command, you can click on the link in blue.
   * [saving](#saving-the-data)
 * [FAQ](#faq)
 * [Summary of commands](#command-summary)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/tag/v1.3).
+2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases).
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
 5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/StartupUi.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -439,4 +440,3 @@ the second `Enter` key press will execute the command.
 | **Clear**   | `clear`                                                                                                                                                                         |                                                                                           |
 | **Exit**    | `exit`                                                                                                                                                                          |                                                                                           |
 | **Help**    | `help`                                                                                                                                                                          |                                                                                           |
-
