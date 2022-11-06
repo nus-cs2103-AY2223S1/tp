@@ -81,10 +81,15 @@ This diagram excludes the instantiation of the objects that represents attribute
 
 ##### Feature Details
 1. The user specifies an item index that represents an `Item` to be edited.  
-1. If an invalid index is provided, the user is prompted to enter the command correctly via an error message.
-1. If an invalid command input is provided, the user will be prompted to enter the command correctly via an error message.
+1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly via an error message.
+1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the command correctly via an error message.
 1. The item is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+1. Finally, if an index that is not in the valid range of the Item List is provided, an error is thrown and the user is prompted to enter the command correctly via an error message.
 1. If step 4 completes without any exceptions, then the new `Item` is successfully edited.
+
+The activity diagram is as such:
+
+![ItemSequenceDiagram](images/EditItemActivityDiagram.png)
 
 ##### Feature Considerations
 Similar to the `new` command, it should be noted that when checking for duplicates in the `UniqueItemList` inside the `Model`, Items cannot have the same name. For example, if an `Item` with the name `Potato` already exists inside the inventory, then you cannot edit an existing `Item` to have the name `Potato`.
