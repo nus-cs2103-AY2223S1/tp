@@ -54,6 +54,9 @@ public class AddFieldCommand extends FieldCommand {
         if (item == null) {
             item = sItem;
         }
+        if (item.getAttribute(ftype).isPresent()) {
+            throw new CommandException(MESSAGE_DUPLICATE);
+        }
         item.addAttribute(new AbstractAttribute<String>(type, data) {
 
         });

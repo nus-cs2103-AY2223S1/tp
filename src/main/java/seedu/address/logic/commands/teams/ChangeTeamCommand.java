@@ -61,7 +61,7 @@ public class ChangeTeamCommand extends TeamInputCommand {
             List<Group> lastShownList = model.getFilteredTeamList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
             }
 
             toSwitch = lastShownList.get(targetIndex.getZeroBased());

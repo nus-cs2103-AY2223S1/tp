@@ -9,6 +9,9 @@ import seedu.address.model.Model;
  * Class with the ability to build a custom command.
  */
 public class CustomCommandBuilder {
+
+    public static final String MESSAGE_CONSTRAINTS = "Custom commands cannot be empty!";
+
     private final String repr;
     private final String commandData;
 
@@ -26,7 +29,7 @@ public class CustomCommandBuilder {
     /**
      * Retrieves the macro shortcut that represent this command.
      *
-     * @return
+     * @return the string representing the macro word.
      */
     public String getRepr() {
         return repr;

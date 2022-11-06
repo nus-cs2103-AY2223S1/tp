@@ -12,10 +12,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FunctionalInterfaces.Changer;
+import seedu.address.commons.util.FunctionalInterfaces.Getter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CmdBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.item.DisplayItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 
@@ -23,6 +27,10 @@ import seedu.address.model.person.exceptions.PersonOutOfBoundException;
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
+    private static final Getter<Person> P_GETTER = (m, i) -> m.getFromFilteredPerson(i);
+    private static final Changer<Person> P_DELETER = (m, item) -> m.deletePerson(item);
+    private static final java.util.function.Predicate<Object> P_TESTER = o -> o instanceof Person;
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -76,11 +84,11 @@ public class DeleteCommandTest {
         DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, String.format(PersonOutOfBoundException.ERR_MSG,
-            model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
+                model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
     }
 
     @Test
-    public void equals() {
+    public void equals() throws CommandException {
         DeleteCommand<Person> deleteFirstCommand = CmdBuilder.makeDelPerson(INDEX_FIRST);
         DeleteCommand<Person> deleteSecondCommand = CmdBuilder.makeDelPerson(INDEX_SECOND);
 
@@ -99,8 +107,23 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        deleteFirstCommand.setInput(P_GETTER.apply(model, INDEX_FIRST));
+        deleteFirstCommandCopy.setInput(P_GETTER.apply(model, INDEX_FIRST));
+
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
     }
 
+    @Test
+    public void setInput_test() throws CommandException {
+        DisplayItem dataStub = model.getFromFilteredPerson(Index.fromZeroBased(1));
+
+        DeleteCommand delCommandStub = new DeleteCommand(Index.fromZeroBased(1), P_GETTER, P_DELETER, P_TESTER);
+
+        delCommandStub.setInput(dataStub);
+
+        assertTrue(delCommandStub.equals(delCommandStub));
+    }
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
@@ -109,4 +132,6 @@ public class DeleteCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+
+
 }

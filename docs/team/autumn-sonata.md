@@ -3,9 +3,21 @@ layout: page
 title: Eric Lee's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: Contactmation
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Contactmation is a desktop project, employee and task management solution.
 
-To be added soon.
 
+### Draft and program the storage components in the AddressBook.
+- Created `JsonAdaptedPerson`, `JsonAdaptedTask` and `JsonAdaptedGroup` along with 
+`JsonAdaptedAbstractDisplayItem` to make sure that the storage of all `model` components
+is easily extensible should the AddressBook expands in the future.
+
+- Saved states of all additional attributes of each `Person`, `Task` and `Group`,
+which includes the `Field`, `Tag`, `CustomCommand`, macros and aliases.
+
+- Saved states of scoping between groups, tasks and persons.
+
+- Updated the introduction, about and advanced feature sections of the user guide. 
+
+- Testing for the storage classes.

@@ -18,7 +18,7 @@ public interface ReadOnlyAddressBook {
 
     /**
      * Returns an unmodifiable view of the teams list.
-     * This list will not contain any duplicate teams but may contains subteams.
+     * This list will not contain any duplicate teams but may contain subteams.
      */
     ObservableList<Group> getTeamsList();
 
