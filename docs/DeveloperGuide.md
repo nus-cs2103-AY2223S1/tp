@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Response to any commands should be displayed within 5 seconds.
 6. A user's individual schedule should not be accessible to other users.
 7. The _GUI_ should display data logic warnings when commands are entered with incomplete fields.
-8. The _GUI_ should be at least 1280 by 720 pixels to clearly display all information.
+8. The _GUI_ should be at least 1000 by 700 pixels to clearly display all information.
 
 ### Glossary
 
