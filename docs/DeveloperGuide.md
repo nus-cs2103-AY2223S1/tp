@@ -294,24 +294,24 @@ on which entity is deleted, which retrieves the respective entity list from the 
 list to update it, and have the UI display the updated filtered entity list.
 
 #### Delete Project Command
-Compulsory prefix: p/<valid project id>
+Compulsory argument: <valid project id>
 Example Use: `project -d 1`
 
 #### Delete Issue Command
-Compulsory prefix: i/<valid issue id>
+Compulsory argument: <valid issue id>
 Example Use: `issue -d 2`
 
 #### Delete Client Command
-Compulsory prefix: p/<valid client id>
+Compulsory argument: <valid client id>
 Example Use: `client -d 3`
 
-#### The following sequence diagram shows how the delete command operation works for adding a project entity:
+#### The following sequence diagram shows how the delete command operation works for deleting a client entity:
 Example: `client -d 1`
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `AddProjectCommand` 
+:information_source: **Note:** The lifeline for `DeleteClientCommand` 
 should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -424,6 +424,58 @@ The following activity diagram summarizes what happens when a user executes a pi
 * **Alternative 2:** An additional unpin command is created e.g. `UnpinClientCommand`, `UnpinProjectCommand`, `UnpinIssueCommand`. Different pin commands `setPinned()`, `setUnpinned()` are used to pin and unpin the entity.
     * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
     * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
+
+### Find Command Feature
+
+A key functionality of DevEnable is the ability to find projects, issues and clients by searching for specific 
+keywords in different attributes of these entities. The command word for finding will be `project`, `issue`, or 
+`client`, depending on which entity it being edited. This is followed by the flag `-f`, representing a Find command.
+Next, it is followed by a series of prefixes-value pairs, one compulsory pair for identifying the entity to be edited, and at least one pair indicating the fields to be edited.
+When a user enters a valid Edit command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance and calls the `ProjectCommandParser#parse`,
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being edited. Within this method, the flag `-e` will be detected, calling `ProjectCommandParser#parseEditProjectCommand`,
+`IssueCommandParser#parseEditIssueCommand`, or `ClientCommandParser#parseEditClientCommand`, depending on which entity is edited, which checks for input and prefix-pair validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Edit Command entity and the `EditProjectCommand#execute`, `EditIssueCommand#execute`, or `EditClientCommand#execute` is called depending on
+which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
+
+#### Edit Project Command
+Compulsory prefix: p/<valid project id>
+Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
+
+#### Edit Issue Command
+Compulsory prefix: i/<valid issue id>
+Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
+Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+
+#### Edit Client Command
+Compulsory prefix: c/<valid client id>
+Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
+Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
+
+#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
+Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+![AddSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Editing of entity fields:**
+
+**Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
+* Pros: Logic is handled within the parser and no creation of a new entity object.
+* Cons: Many new objects being created
+
+**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
+* Pros: No new objects being created.
+* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
+
+**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
+* Pros: Logic is handled within the parser
+* Cons: Creation of a new entity object requiring modification of the entity list
+
+As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
