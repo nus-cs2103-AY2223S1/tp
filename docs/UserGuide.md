@@ -98,16 +98,17 @@ Thank you for choosing StudMap! This user guide will help you navigate our belov
 
 If you’re new to StudMap, this is the tutorial for you! Here are the steps for you to get started:
 
-1. Ensure you have Java 11 or above installed in your computer. Download
-   Java [here](https://www.oracle.com/sg/java/technologies/downloads/).
+1. Ensure you have Java 11 or above installed in your computer. See
+   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for more detailed
+   installation instructions for Java.
 
 2. Download the latest `studmap.jar` [here](https://github.com/AY2223S1-CS2103T-W13-1/tp/releases).
 
 3. Create a folder where you want to use StudMap, and copy `studmap.jar` into it. This will be the home folder
    for StudMap.
 
-4. Double click StudMap.jar to start the app. In a few seconds, you should see a new window similar to the figure below.
-   Notice that StudMap contains some sample data.
+4. Double click on `studmap.jar` to start the app. In a few seconds, you should see a new window similar to the figure
+   below. We have added some sample data for you to play around with before you start using StudMap for yourself.
 
    ![Ui](images/ui/ui-getting-started.png)
 
@@ -116,14 +117,15 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
     * The **Command Box** is where you give instructions to StudMap. These instructions are called [Commands](#commands)
       .
     * The **Reply Box** is where StudMap responds to your instructions.
-    * The **Student List** is a list of your students, each represented by a **student card**. StudMap updates this list as you give it commands to do so.
+    * The **Student List** is a list of your students, each represented by a **student card**. StudMap updates this list
+      as you give it commands to do so.
       <br><br>
 
 5. Zooming in on the left of each student card, you can see the student's particulars:
 
-    ![Ui](images/ui/ui-student-info.png)
+   ![Ui](images/ui/ui-student-info.png)
 
-    Take note of the following elements in the student card:
+   Take note of the following elements in the student card:
 
     * The **Index** and **Student Name** are placed together.
     * **Tags** are text labels for students for easy classification.
@@ -137,11 +139,11 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
 
 6. Zooming in on the right side of each student card, you can see the information you need as a TA:
 
-    ![Ui](images/ui/ui-ta-info.png)
+   ![Ui](images/ui/ui-ta-info.png)
 
-    Take note of the following elements in the student card:
+   Take note of the following elements in the student card:
 
-    <br><br>
+   <br><br>
 
 7. Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
@@ -164,7 +166,7 @@ If you’re new to StudMap, this is the tutorial for you! Here are the steps for
    out this [Example Template](files/example_template.csv), or check out
    [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
-8. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
+9. That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each
    command.
    We hope you enjoy using StudMap!
 
@@ -360,8 +362,8 @@ filtering, such as by their module, see [`filter`](#538-filtering-the-students-f
 
 * `find tom` returns `Tom Aito`
 
-    ![Ui](images/ui/ui-find.png)
-    <br><br>
+  ![Ui](images/ui/ui-find.png)
+  <br><br>
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
