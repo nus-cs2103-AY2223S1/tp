@@ -16,7 +16,7 @@ in tuition centers.
 
 myStudent is adapted from an existing Java Application
 [Address Book (Level 3)](https://se-education.org/addressbook-level3/), and was developed by 
-my team of 5 NUS Computer Science students 
+my team of 5 NUS Computer Science students.
 
 Given below are my contributions to the project.
 
@@ -33,7 +33,7 @@ All of my code contributions can be found [here](https://nus-cs2103-ay2223s1.git
   - Introduced individual field classes for the `Tutor` class
 - Introduced the `TuitionClass` class to Model [#40](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/40)
   - Introduced individual field classes for the `TuitionClass` class
-- Find by fields feature [#118](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/118)
+- Search by multiple fields feature `Find` [#118](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/118)
   - Description: This feature allows users to search for a `Student`, `Tutor` or `TuitionClass` based on multiple fields. Previously, the find command could only search for `Persons` based only on their name. Now, the new find feature gives users the flexibility of searching by more many more fields at the same time.
   - Benefits: The enhancement added drastically improves the efficiency of the find feature as users now have more options to reduce displayed list to their desired outcome. Being able to input multiple keywords to match multiple fields of an entity at the same time also significantly increases the efficiency of the user's search.
   - Highlights: This feature required a series of modifications to allow for the command to except multiple `prefixes` and `keywords`, which includes the introduction of the `FindCommandParser`. Furthermore, the command had to account for the different entities involved (`Student`,`Tutor`, `TuitionClass`) and their respective `prefixes`. A substantial amount of tests codes was also needed to be designed ensure the feature was bug-free.
