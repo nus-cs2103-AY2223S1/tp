@@ -1,0 +1,6 @@
+# Installed packages/dependencies
+.bundle/ruby
+
+# Build/output files
+_site
+release

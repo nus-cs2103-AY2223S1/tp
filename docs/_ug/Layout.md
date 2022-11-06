@@ -5,7 +5,7 @@ When you launch FoodRem, FoodRem appears on your screen as a [Graphical User Int
 
 **FoodRem's GUI:**
 
-![FullUiImage](images/FoodRemFullUi.png)
+![FoodRem UI](images/Ui.png)
 
 This table breaks down the different components of FoodRem's GUI.
 

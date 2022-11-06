@@ -7,11 +7,10 @@ import seedu.foodrem.logic.commands.statscommands.StatsCommand;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
-// TODO: Use this class
 /**
  * Parses input arguments and creates a StatsCommand object.
  */
-public class StatsParser implements Parser<StatsCommand> {
+public class StatsCommandParser implements Parser<StatsCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the StatsCommand
      * and returns a StatsCommand object for execution.

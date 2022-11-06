@@ -6,9 +6,6 @@ src/main/resources/docs/
 # VSCode build files
 bin/
 
-# Jekyll libraries
-docs/.bundle/ruby
-
 # IDEA files
 .idea/
 out/
@@ -25,4 +22,3 @@ src/test/data/sandbox/
 
 # MacOS custom attributes files created by Finder
 .DS_Store
-docs/_site/

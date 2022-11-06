@@ -3,18 +3,13 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
-  {:toc}
-
----
+{% include toc.md header=true ordered=true %}
 
 ## Setting Up The Project in Your Computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-
+```warning
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
-
-</div>
+```
 
 First, **fork** this repo, and **clone** the fork into your computer.
 
@@ -35,10 +30,9 @@ If you plan to use Intellij IDEA (highly recommended):
 
    If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
+   ```tip
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
-   </div>
+   ```
 
 1. **Set up CI**
 

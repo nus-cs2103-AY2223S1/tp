@@ -39,7 +39,6 @@ MSS:
 
 Use case ends.
 
-
 Extensions:
 
 * 3a. If the item name does not exist in the inventory, FoodRem will throw an error.

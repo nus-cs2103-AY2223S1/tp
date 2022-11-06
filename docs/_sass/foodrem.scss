@@ -228,9 +228,91 @@ html {
   }
 }
 
+.def-tooltip {
+  position: relative;
+  display: inline-block;
+
+  > a {
+    color: inherit !important;
+    text-decoration: underline dotted;
+  }
+
+  > .popup {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    $width: 180px;
+    width: $width;
+    margin-left: calc(-#{$width} / 2);
+    box-sizing: border-box;
+    padding: 6px 10px;
+
+    background-color: rgba($color: black, $alpha: 0.9);
+    border-radius: 6px;
+    color: white;
+    font-size: small;
+
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    text-align: center;
+
+    // Popup arrow
+    &::after {
+      $arrow-width: 5px;
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -$arrow-width;
+      border-width: $arrow-width;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+
+    :last-child {
+      font-size: smaller;
+      color: lightgray;
+    }
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity ease-in-out 150ms;
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &:hover > .popup {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 article.post {
   a {
     color: #00769a;
+
+    &.header-backlink {
+      color: inherit;
+
+      &:hover {
+        text-decoration: none;
+
+        &::after {
+          content: "\21E6\A0 Back to table of contents";
+          margin-left: 1ch;
+          display: inline-block;
+          vertical-align: middle;
+
+          font-size: max(0.6em, 1rem);
+          color: gray;
+        }
+      }
+    }
   }
 
   li p {

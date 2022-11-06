@@ -51,7 +51,7 @@ public class JsonAdaptedItemTest {
     private static final String VALID_NAME = "Potatoes";
     private static final String VALID_QUANTITY = "10";
     private static final String VALID_UNIT = "kg";
-    private static final String VALID_BOUGHT_DATE = "11-11-2022";
+    private static final String VALID_BOUGHT_DATE = "11-10-2022";
     private static final String VALID_EXPIRY_DATE = "11-11-2022";
     private static final String VALID_PRICE = "10.50";
     private static final String VALID_REMARKS = "For Mashed Potatoes";

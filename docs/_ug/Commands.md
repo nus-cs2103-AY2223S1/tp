@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-This section covers how to use each command in detail.
+This section shares with you on how to use each command in detail.
 Before continuing, ensure you have read the section on [Flags](#flags) and [Placeholders](#placeholders).
 
 What you should expect to find:
@@ -10,11 +10,11 @@ What you should expect to find:
 * A few valid and invalid examples of the command
 * Important points to note
 
-**Note:**
-
+```note
 * For each command, "Format" indicates the syntax of the command.
 * Square brackets indicates an optional parameter.
 * In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
+```
 
 ### General Commands
 
@@ -28,6 +28,6 @@ What you should expect to find:
 
 {% include_relative _ug/commands/TagCommands.md %}
 
-### Statistics Commands
+### Statistics Command
 
 {% include_relative _ug/commands/StatisticsCommands.md %}

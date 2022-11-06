@@ -21,8 +21,8 @@ Here is an example:
 A command consists of:
 
 1. Command Word: Tells FoodRem what action you wish to execute. These actions are covered in [Commands](#commands).
-1. [Flags](#flags): Distinguishes between inputs. This follows before your Placeholder data.
-1. [Placeholders](#placeholders): Represents data that you wish to input. Replace this with valid data. For example, `ITEM_NAME` in `n/ITEM_NAME` can be replaced with `n/Potato`. Placeholders should follow after a Flag.
+1. [Flags](#flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
+1. [Placeholders](#placeholders): Represents data that you wish to input. Replace this with valid data. For example, `ITEM_NAME` in `n/ITEM_NAME` can be replaced with `n/Potato`.
 
 ### Trying your first command
 

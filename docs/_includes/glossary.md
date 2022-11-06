@@ -17,7 +17,7 @@
 
 {% for group in groups %}
 ### {{ group.name }}
-{: .no_toc}
+{: .no_toc .glossary-heading #glossary-{{ group.name | downcase }}}
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <div markdown="1" class="glossary">

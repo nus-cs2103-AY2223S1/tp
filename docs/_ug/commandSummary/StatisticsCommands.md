@@ -13,7 +13,7 @@
 {% capture TABLE %}
 | Action                                                | Format  | Example        |
 |-------------------------------------------------------|---------|----------------|
-| Displays relevant statistics tracked by FoodRem       | :stats: | :statsexample: |
+| Displays all statistics collected by FoodRem          | :stats: | :statsexample: |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->

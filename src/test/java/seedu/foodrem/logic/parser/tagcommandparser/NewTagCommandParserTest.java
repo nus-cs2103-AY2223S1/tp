@@ -2,7 +2,6 @@ package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.foodrem.model.tag.Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS_WITH_WHITESPACE;
 import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
@@ -17,8 +16,10 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class NewTagCommandParserTest {
+    private static final int MAX_LENGTH = 20;
+    private static final String EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS =
+            String.format("The tag name should not exceed %d characters", MAX_LENGTH);
     private final NewTagCommandParser parser = new NewTagCommandParser();
-
     @Test
     public void parse_tags_success() {
         Tag fruitTag = new TagBuilder(FRUITS).build();

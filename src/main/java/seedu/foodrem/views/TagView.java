@@ -39,7 +39,12 @@ public class TagView {
     }
 
     private static String getColor(Tag tag) {
-        final int index = tag.hashCode() % COLORS.length;
-        return COLORS[index];
+        final int index = Math.abs(tag.hashCode() % COLORS.length);
+        try {
+            return COLORS[index];
+        } catch (IndexOutOfBoundsException err) {
+            // This should never occur (Defensive Coding)
+            return COLORS[0];
+        }
     }
 }

@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The REMARKS of an item is a remark/note that the user can add to an item.
+The REMARKS of an item is a note that you can add to an item.
 
 ```info
 * REMARKS is a long text with a limit of 10,000 chracters

@@ -7,7 +7,7 @@ Example of a [Tag](#tag):
 
 **Format**: `newtag n/TAG_NAME`
 
-> Creates a new tag with the provided tag name.
+> Creates a new tag with the provided tag name
 
 **Example Input:**
 
@@ -15,9 +15,7 @@ Example of a [Tag](#tag):
 newtag n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 New tag added: Vegetables
@@ -37,9 +35,7 @@ New tag added: Vegetables
 listtag
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Listed all tags:
@@ -61,9 +57,7 @@ Carrots
 tag 1 n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Item tagged successfully.
@@ -90,9 +84,7 @@ Tags: {Vegetables}
 untag 1 n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Item untagged successfully
@@ -111,7 +103,7 @@ Tags: {}
 
 **Format**: `renametag n/TAG_NAME n/TAG_NAME`
 
-> Renames a tag currently in FoodRem.
+> Renames a tag currently in FoodRem
 
 ```info
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
@@ -123,9 +115,7 @@ The first `TAG_NAME` in the command refers to the current tag you wish to rename
 renametag n/Vegetables n/Veggies
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Original tag: Vegetables
@@ -138,7 +128,7 @@ Renamed tag: Veggies
 
 **Format**: `deletetag n/TAG_NAME`
 
-> Deletes a tag that exists in FoodRem.
+> Deletes a tag that exists in FoodRem
 
 **Example Input:**
 
@@ -146,9 +136,7 @@ Renamed tag: Veggies
 deletetag n/Veggies
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Tag deleted: Veggies
@@ -160,7 +148,7 @@ Tag deleted: Veggies
 
 **Format**: `filtertag n/TAG_NAME`
 
-> Filters and shows items that contain a specific tag.
+> Filters and shows items that contain a specific tag
 
 **Example Input:**
 
@@ -168,9 +156,7 @@ Tag deleted: Veggies
 filtertag n/fruits
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Filtered by tag: fruits

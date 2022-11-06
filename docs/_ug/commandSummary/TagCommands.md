@@ -38,15 +38,15 @@
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Action                          | Format      | Example            |
-|---------------------------------|-------------|--------------------|
-| Create a new tag                | :newtag:    | :newtagexample:    |
-| List all tags available         | :listtag:   | :listtagexample:   |
-| Tag items with a specific tag   | :tag:       | :tagexample:       |
-| Untag items with a specific tag | :untag:     | :untagexample:     |
-| Rename a tag                    | :renametag: | :renametagexample: |
-| Delete a tag                    | :deletetag: | :deletetagexample: |
-| Filter items by tag             | :filtertag: | :filtertagexample: |
+| Action              | Format      | Example            |
+|---------------------|-------------|--------------------|
+| Create a new tag    | :newtag:    | :newtagexample:    |
+| List all tags       | :listtag:   | :listtagexample:   |
+| Tag an item         | :tag:       | :tagexample:       |
+| Untag an item       | :untag:     | :untagexample:     |
+| Rename a tag        | :renametag: | :renametagexample: |
+| Delete a tag        | :deletetag: | :deletetagexample: |
+| Filter items by tag | :filtertag: | :filtertagexample: |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->

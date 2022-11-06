@@ -4,7 +4,31 @@
 
 **Format**: `help [COMMAND_WORD]`
 
-> Displays help for FoodRem.
+> Displays help for FoodRem
+
+```note
+COMMAND_WORD is strictly any of the following:
+* exit
+* help
+* reset
+* dec
+* del
+* edit
+* find
+* inc
+* list
+* new
+* rmk
+* sort
+* view
+* deletetag
+* filtertag
+* listtag
+* newtag
+* renametag
+* tag
+* untag
+```
 
 **Example Input:**
 
@@ -14,9 +38,7 @@ help del
 help help
 ```
 
-**Expected Output:**
-
-A new window will open showing instructions.
+**Expected Output:**<br>A new window will open showing the instructions.
 
 If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a URL to this User Guide.
 
@@ -28,7 +50,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 **Format**: `reset`
 
-> Clears all data in FoodRem. This includes all items and tags currently stored.
+> Clears all items and tags in FoodRem
 
 **Example Input:**
 
@@ -36,9 +58,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 reset
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 FoodRem has been reset!
@@ -50,7 +70,11 @@ FoodRem has been reset!
 
 **Format**: `exit`
 
-> Exits FoodRem.
+> Exits FoodRem
+
+```warning
+The data file is only saved when you exit the application using this command.
+```
 
 **Example Input:**
 
@@ -58,8 +82,6 @@ FoodRem has been reset!
 exit
 ```
 
-**Expected Output:**
-
-FoodRem application will close.
+**Expected Output:**<br>FoodRem application will close.
 
 ---
