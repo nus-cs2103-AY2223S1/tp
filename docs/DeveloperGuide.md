@@ -224,6 +224,37 @@ This is shown in the diagram below:
   * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
   * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
 
+#### Delete Appointment Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser##parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
+
+Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `DeleteAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
+
+Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+
+Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+
+![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
+
+*Figure 11: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+
+#### Design Considerations
+**Aspect: How many `Appointments` can be deleted for each command**
+* **Alternative 1 (current choice):** Delete only one `Appointment` in each command.
+    * Pros: Simpler input validation and length of user input is shorter.
+    * Cons: User has to execute the `da` command multiple times to delete all their desired `Appointments`
+* **Alternative 2**: Multiple `Appointments` can be deleted in each command
+    * Pros: Lower number of commands needed to be executed to delete all the desired `Appointments`
+    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced. 
+
 
 ### \[Proposed\] Undo/redo feature
 
