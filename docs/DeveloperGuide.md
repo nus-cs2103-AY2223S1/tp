@@ -557,7 +557,7 @@ It was designed with the following consideration:
 
 **Target user profile**:
 
-* Works as teaching assistants.
+* Works as teaching assistant.
 * Has a need to keep track of students' grades, attendance, and work submission status of relevant modules.
 * Prefers desktop apps over other types.
 * Can type fast.

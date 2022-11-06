@@ -176,8 +176,10 @@
 .post-content {
   margin-bottom: $spacing-unit;
 
-  h1, h2, h3 { margin-top: $spacing-unit * 2 }
-  h4, h5, h6 { margin-top: $spacing-unit }
+  /*
+   * h1, h2, h3 { margin-top: $spacing-unit * 2 }
+   * h4, h5, h6 { margin-top: $spacing-unit }
+   */
 
   h2 {
     @include relative-font-size(1.75);
@@ -196,14 +198,14 @@
   }
 
   h4 {
-    @include relative-font-size(1.25);
+    @include relative-font-size(1.125);
   }
 
   h5 {
-    @include relative-font-size(1.125);
+    @include relative-font-size(1.0625);
   }
   h6 {
-    @include relative-font-size(1.0625);
+    @include relative-font-size(1.03125);
   }
 }
 
