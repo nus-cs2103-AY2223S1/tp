@@ -26,6 +26,9 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex of the internship in the filtered internship list to delete
+     */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         assert targetIndex.getOneBased() > 0 : "index should be positive integer";
