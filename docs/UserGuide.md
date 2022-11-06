@@ -73,6 +73,7 @@ and `Tim` is the input.
 6. **Characteristics**: The characteristics of a property that a buyer desires. For example, a buyer that has characteristics
    `bright; sunny` is ideally looking for a property that is also `bright` and `sunny`.
 7. **Priority**: The priority of the buyer. Can be `LOW`, `NORMAL` or `HIGH`.
+8. **Entry Time**: The time at which the buyer was added to the database with `addbuyer`.
 
 ### Property-specific terms
 1. **Name**: The name of the property.
@@ -83,6 +84,7 @@ and `Tim` is the input.
    `windy; roomy` is both `windy` and `roomy`.
 6. **Owner Name**: The name of the owner of the property.
 7. **Owner Phone**: The phone number of the owner of the property.
+8. **Entry Time**: The time at which the property was added to the database with `addprop`.
 
 
 ## Interface Layout
@@ -415,6 +417,11 @@ Examples:<br>
 `filterprops -r 500000-1000000 -c bright; sunny -owner GARY -fuzzy`: Filters all properties that have a price in the range $500000 - $1000000 *OR* have characteristics of bright *OR* sunny *OR* is owned by Gary.
 
 ### Sort Commands
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Note that you can only specify **one input** for these commands, as Cobb can only sort by **one** particular condition.
+</div>
+
 #### Sort buyers in database: `sortbuyers`
 
 Sorts buyers in the database according to a single given condition, and updates the [Buyer List](#2-buyer-list).
@@ -448,7 +455,8 @@ Examples:<br>
 #### Match specified buyer to properties: `matchbuyer`
 
 Intelligently matches a buyer in the database to all properties that they might be interested in.
-These properties must be within the buyer's price range and satisfy at least one of the buyer's characteristics.
+If the `-strict` flag is not specified, these properties must be within the buyer's price range and satisfy 
+at least one of the buyer's characteristics.
 
 Syntax: `matchbuyer INDEX [-strict]`
 
@@ -461,7 +469,8 @@ Examples:<br>
 #### Match specified property to buyers: `matchprop`
 
 Intelligently matches a property in the database to all buyers who might be interested in that property.
-These buyers must be able to accept the property's price and desire at least one of the property's characteristics.
+If the `-strict` flag is not specified, these buyers must have a price range that contains the property's price and
+desire at least one of the property's characteristic.
 
 Syntax: `matchprop INDEX [-strict]`
 
