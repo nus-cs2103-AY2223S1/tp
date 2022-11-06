@@ -3,12 +3,13 @@ package seedu.boba.model.customer;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.testutil.CustomerBuilder;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.testutil.CustomerBuilder;
 
 public class AllInfoContainsKeywordsTest {
 
@@ -17,14 +18,17 @@ public class AllInfoContainsKeywordsTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        AllInfoContainsKeywordsPredicate firstPredicate = new AllInfoContainsKeywordsPredicate(firstPredicateKeywordList);
-        AllInfoContainsKeywordsPredicate secondPredicate = new AllInfoContainsKeywordsPredicate(secondPredicateKeywordList);
+        AllInfoContainsKeywordsPredicate firstPredicate =
+                new AllInfoContainsKeywordsPredicate(firstPredicateKeywordList);
+        AllInfoContainsKeywordsPredicate secondPredicate = new
+                AllInfoContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AllInfoContainsKeywordsPredicate firstPredicateCopy = new AllInfoContainsKeywordsPredicate(firstPredicateKeywordList);
+        AllInfoContainsKeywordsPredicate firstPredicateCopy = new
+                AllInfoContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +44,8 @@ public class AllInfoContainsKeywordsTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        AllInfoContainsKeywordsPredicate predicate = new AllInfoContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        AllInfoContainsKeywordsPredicate predicate = new
+                AllInfoContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new CustomerBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
