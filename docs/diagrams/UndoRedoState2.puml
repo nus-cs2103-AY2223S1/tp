@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "add n/David"
+title After command "add c/Apple p/Frontend Developer e/hr@apple.com w/https://www.apple.com/careers s/5000"
 
 package States <<rectangle>> {
     class State1 as "__it0:InTrack__"
