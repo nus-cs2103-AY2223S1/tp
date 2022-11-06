@@ -578,7 +578,7 @@ The `add` task features allows users to add a task or a deadline that they have 
 In order to add tasks or deadlines related to the module, a module would have to be created.
 
 Additionally, the modules to which these tasks belong need to be specified within
-the command. If the user is CD-ed into the module, the module code will not
+the command. If the user is `cd`'d into the module, the module code will not
 be required in the command.
 
 Information regarding tasks/deadlines can be recognised in the CLI using tags.
@@ -625,7 +625,7 @@ potential for bugs.
 
 #### Current implementation
 
-The diagram below showcases the path execution for adding a task, when a user is **NOT** CD-ed
+The diagram below showcases the path execution for adding a task, when a user is **NOT** `cd`'d
 into a module. For ease of understanding, we will be adding a task instead of a deadline. Note that
 the flow is exactly the same for both tasks and deadlines.
 
