@@ -37,12 +37,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given modQuik and userPrefs.
      */
-    public ModelManager(ReadOnlyModQuik addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyModQuik modQuik, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(modQuik, userPrefs);
 
-        logger.fine("Initializing with modquik book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with modquik: " + modQuik + " and user prefs " + userPrefs);
 
-        this.modQuik = new ModQuik(addressBook);
+        this.modQuik = new ModQuik(modQuik);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.modQuik.getPersonList());
         filteredReminders = new FilteredList<>(this.modQuik.getReminderList());
@@ -134,7 +134,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModQuik}
      */
     @Override
     public ObservableList<Student> getFilteredPersonList() {
@@ -238,7 +238,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModQuik}
      */
     @Override
     public ObservableList<Reminder> getFilteredReminderList() {
@@ -317,7 +317,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModQuik}
      */
     @Override
     public ObservableList<Tutorial> getFilteredTutorialList() {
@@ -381,7 +381,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModQuik}
      */
     @Override
     public ObservableList<Consultation> getFilteredConsultationList() {

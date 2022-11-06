@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty modquik book will be used instead if errors occur when reading {@code storage}'s modquik book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyModQuik> addressBookOptional;
+        Optional<ReadOnlyModQuik> modQuikOptional;
         ReadOnlyModQuik initialData;
         try {
-            addressBookOptional = storage.readModQuik();
-            if (!addressBookOptional.isPresent()) {
+            modQuikOptional = storage.readModQuik();
+            if (!modQuikOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModQuik");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleModQuik);
+            initialData = modQuikOptional.orElseGet(SampleDataUtil::getSampleModQuik);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModQuik");
             initialData = new ModQuik();
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping ModQuik ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
