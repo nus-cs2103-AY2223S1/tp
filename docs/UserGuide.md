@@ -200,10 +200,13 @@ This will help you understand the guide better!
 Adds a student to StudMap.
 </div>
 
+<div markdown="span" class="alert alert-info">
+:nut_and_bolt: <b>Format:</b>
+`add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
+</div>
+
 New student attending your class? Add them into StudMap to start managing their records! This is one of the ways you can
 add a student into StudMap.
-
-**Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: <b>Tip:</b>
