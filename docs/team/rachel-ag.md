@@ -39,26 +39,20 @@ management tasks done faster than traditional GUI apps. Given below are my contr
     (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141)).
     * Justification: As an app that is optimized for use via CLI, we strive to minimize the need of a mouse to reduce the 
   number of switches between keyboard and mouse.
-    * Highlights: \[to be added soon\]
 
 * **Code contributed**: 
 [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rachel-ag&breakdown=true)
 
-* **Project management**: \[to be added soon\]
-
 * **Enhancements to existing features**: 
   * Wrote additional tests to increase coverage (Pull request [\#64](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/64))
-  * Updated `help` command to display the command summary (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/77))
-  * Updated `help` command to execute automatically when user run the app for the first time (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/77))
-  * Modify help page design and making it resizable and scrollable (Pull request [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102))
-  * Made small changes to GUI to make it more user-friendly (Pull request [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
+  * Updated `help` command to display the command summary and execute automatically when user run the app for the first time (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/77))
+  * Made small changes to GUI to make it more user-friendly (Pull requests [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102), [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
   * Fixed bugs from Practical Examination Dry Run (Pull requests [\#176](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/176), [\#214](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/214), [\#215](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/215), [\#217](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/217), [\#224](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/224))
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `add` (Pull requests [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29), [\#68](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/68))
         * Added documentation for the features `help` (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141))
-        * Modify command summary to include `undo`, `redo` (Pull request [\#110](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/110))
         * Added undo compatibility in command summary (Pull request [\#138](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/138))
         * Added the glossary section (Pull request [\#138](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/138))
     * Developer Guide:
@@ -72,4 +66,3 @@ management tasks done faster than traditional GUI apps. Given below are my contr
     * Reported an above-average number of bugs in the PE-D (Examples: Bug [\#2](https://github.com/Rachel-AG/ped/issues/2), Bug [\#4](https://github.com/Rachel-AG/ped/issues/4))
     * PRs reviewed (with non-trivial review comments): [\#38](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/38), [\#225](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/225)
 
-* **Tools**: \[to be added soon\]
