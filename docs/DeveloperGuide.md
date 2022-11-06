@@ -623,6 +623,7 @@ Project team leaders with many projects, members and tasks to assign.
 * see an estimate of how much workload each member has.
 * receive information regarding upcoming deadlines.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -774,6 +775,8 @@ Use case ends.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 ### UC4: List every person
 
