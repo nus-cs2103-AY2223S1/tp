@@ -104,18 +104,6 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     }
 
     /**
-     * Replaces the given Exercise {@code target} in the list with {@code editedExercise}.
-     * {@code target} must exist in the exercise tracker.
-     * The Exercise identity of {@code editedExercise} can be the same as another existing Exercise
-     * in the exercise tracker.
-     */
-    public void setExercise(Exercise target, Exercise editedExercise) {
-        requireNonNull(editedExercise);
-
-        exerciseList.setExercise(target, editedExercise);
-    }
-
-    /**
      * Removes {@code key} from this {@code ExerciseTracker}.
      * {@code key} must exist in the exercise tracker.
      */

@@ -118,12 +118,6 @@ public class ModelManager implements Model {
         return added;
     }
 
-    @Override
-    public void setExercise(Exercise target, Exercise editedExercise) {
-        requireAllNonNull(target, editedExercise);
-        exerciseTracker.setExercise(target, editedExercise);
-    }
-
     //=========== Filtered Exercise List Accessors =============================================================
 
     /**

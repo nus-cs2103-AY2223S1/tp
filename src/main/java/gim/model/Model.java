@@ -86,14 +86,6 @@ public interface Model {
     Exercise addExercise(Exercise exercise);
 
     /**
-     * Replaces the given exercise {@code target} with {@code editedExercise}.
-     * {@code target} must exist in the exercise tracker.
-     * The exercise identity of {@code editedExercise} can be the same as another existing exercise
-     * in the exercise tracker.
-     */
-    void setExercise(Exercise target, Exercise editedExercise);
-
-    /**
      * Returns a view of the filtered exercise list.
      */
     ObservableList<Exercise> getFilteredExerciseList();
