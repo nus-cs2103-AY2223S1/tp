@@ -487,17 +487,32 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
 
 1. View a Line Graph of all expenditures in a specified month
     - Examples: `view t/e mo/2022-01` where we specify the month to be January 2022.
-    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application
+    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application. 
+   The List Display will also be filtered to show only expenditures in Jan 2022.
 
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
 
 2. View a Line Graph of all incomes in a specified month
     - Examples: `view t/i mo/2022-01`
     - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
+    The List Display will also be filtered to show only income in Jan 2022.
 
-- The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
-  accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
-  error.
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
+accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
+error.
+</div>
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+You can think of the view entries by month command as applying a month filter to the entry list, 
+and view entries by category command as clearing any filters on the entry list.
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+Note that if you manually toggle between the income list display and expenditure list display, all filters (if any)
+will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
+</div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, simply use the [`view t/e` command](#view-entries-by-category).
