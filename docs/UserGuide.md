@@ -43,21 +43,21 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
-4. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
+4. Open command prompt/terminal within the same directory of the folder and type `java -jar BookFace.jar` to start the app. The GUI will appear similar to the image below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list users`** :
+    * **`list users`**
 
-    * **`add user n/John Smith p/87006163 e/student123@gmail.com`** :
+    * **`add user n/John Smith p/87006163 e/student123@gmail.com`**
 
-    * **`delete user 1`** :
+    * **`delete user 1`**
 
-    * **`clear all`** :
+    * **`clear all`**
 
-    * **`exit`** : Exits the app.
+    * **`exit`**
 
 6. Refer to the [Features](#features) below for details of each command.
 </div>
@@ -77,7 +77,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be ignored (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -92,7 +92,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
 delete the user that is currently displayed.
 
-* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `\p` in `p/999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/John` will be interpreted as `999999` and not `999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`.
+* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/John` will be interpreted as `999999` and not `999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`.
 </div>
 
 ### Adding a book : `add book`
