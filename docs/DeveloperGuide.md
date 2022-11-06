@@ -2,6 +2,14 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img src="./images/GimLogo.png"/>
+</p>
+
+<div style="page-break-after: always;"></div>
+
+**Table of Contents**
 * Table of Contents
 {:toc}
 
