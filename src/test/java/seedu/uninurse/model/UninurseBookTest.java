@@ -3,10 +3,10 @@ package seedu.uninurse.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_ROOM;
+import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_CONDITION_AMY;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalPersons.ALICE;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.ALICE;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.person.exceptions.DuplicatePersonException;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 public class UninurseBookTest {
 
@@ -46,7 +46,7 @@ public class UninurseBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
+        Person editedAlice = new PatientBuilder(ALICE).withConditions(VALID_CONDITION_AMY).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         UninurseBookStub newData = new UninurseBookStub(newPersons);
 
@@ -72,7 +72,7 @@ public class UninurseBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInUninurseBook_returnsTrue() {
         uninurseBook.addPerson(ALICE);
-        Patient editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
+        Patient editedAlice = new PatientBuilder(ALICE).build();
         assertTrue(uninurseBook.hasPerson(editedAlice));
     }
 

@@ -37,9 +37,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the list of patients */
-    ObservableList<Patient> getPatientList();
-
     /**
      * Returns the user prefs' uninurse book file path.
      */

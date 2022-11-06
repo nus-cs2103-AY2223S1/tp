@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;
@@ -27,7 +27,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditTagCommand.
@@ -68,7 +68,7 @@ public class EditTagCommandTest {
 
         Tag initialTag = patientToEdit.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
 
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
@@ -77,7 +77,7 @@ public class EditTagCommandTest {
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
@@ -99,7 +99,7 @@ public class EditTagCommandTest {
 
         Tag initialTag = patientToEdit.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
 
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
@@ -110,7 +110,7 @@ public class EditTagCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
         showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);

@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.Task;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteTaskCommand}.
@@ -53,7 +53,7 @@ class DeleteTaskCommandTest {
         // use third person in TypicalPersons since there is one task to delete
         Patient patientToDeleteTask =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToDeleteTask).withTasks().build();
+        Patient editedPatient = new PatientBuilder(patientToDeleteTask).withTasks().build();
         Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
@@ -62,7 +62,7 @@ class DeleteTaskCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), deletedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteTask, editedPatient);
+        expectedModel.setPatient(patientToDeleteTask, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
@@ -84,7 +84,7 @@ class DeleteTaskCommandTest {
 
         Patient patientToDeleteTask =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTasks().build();
         Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -95,7 +95,7 @@ class DeleteTaskCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), deletedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteTask, editedPatient);
+        expectedModel.setPatient(patientToDeleteTask, editedPatient);
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 

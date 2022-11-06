@@ -91,10 +91,6 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PatientNotFoundException();
         }
 
-        if (!patient.isSamePerson(editedPatient) && contains(editedPatient)) {
-            throw new DuplicatePersonException();
-        }
-
         internalPatientList.set(index, editedPatient);
     }
 
@@ -151,6 +147,7 @@ public class UniquePersonList implements Iterable<Person> {
         requireAllNonNull(person);
 
         int index = internalPatientList.indexOf(person);
+
         if (index == -1) {
             throw new PatientNotFoundException();
         }

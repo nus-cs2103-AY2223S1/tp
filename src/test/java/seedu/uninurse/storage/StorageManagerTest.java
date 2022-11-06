@@ -2,7 +2,7 @@ package seedu.uninurse.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import java.nio.file.Path;
 

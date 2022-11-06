@@ -1,6 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.PersonListTracker;
-import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * An UI component that displays information of a redone command.
@@ -33,8 +32,8 @@ public class RedoCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on UninurseBook level 4</a>
      */
 
-    public final Optional<List<Patient>> originalPatients;
-    public final Optional<List<Patient>> updatedPatients;
+    public final Optional<List<Person>> originalPersons;
+    public final Optional<List<Person>> updatedPersons;
 
     @FXML
     private Label oldlabel;
@@ -52,31 +51,22 @@ public class RedoCard extends UiPart<Region> {
      */
     public RedoCard(PersonListTracker personListTracker) {
         super(FXML);
-        // TODO: fix typecasting
-        updatedPatients = personListTracker.getAddedPersons().map(list -> {
-            List<Patient> newList = new ArrayList<>();
-            list.forEach(item -> newList.add((Patient) item));
-            return newList;
-        });
-        originalPatients = personListTracker.getDeletedPersons().map(list -> {
-            List<Patient> newList = new ArrayList<>();
-            list.forEach(item -> newList.add((Patient) item));
-            return newList;
-        });
+        updatedPersons = personListTracker.getAddedPersons();
+        originalPersons = personListTracker.getDeletedPersons();
         oldlabel.setText("Original Patients:");
         newlabel.setText("Updated Patients:");
 
-        if (originalPatients.isPresent()) {
+        if (originalPersons.isPresent()) {
             oldPersonPlaceholder.getChildren().add(new UpdatedPersonListPanel(
-                    FXCollections.observableList(originalPatients.get())).getRoot());
+                    FXCollections.observableList(originalPersons.get())).getRoot());
         } else {
             oldPersonPlaceholder.getChildren().add(new Label("DELETED"));
             oldPersonPlaceholder.setStyle(RED_STYLE);
         }
 
-        if (updatedPatients.isPresent()) {
+        if (updatedPersons.isPresent()) {
             newPersonPlaceholder.getChildren().add(new UpdatedPersonListPanel(
-                    FXCollections.observableList(updatedPatients.get())).getRoot());
+                    FXCollections.observableList(updatedPersons.get())).getRoot());
         } else {
             newPersonPlaceholder.getChildren().add(new Label("DELETED"));
             newPersonPlaceholder.setStyle(RED_STYLE);
@@ -98,7 +88,7 @@ public class RedoCard extends UiPart<Region> {
 
         // state check
         RedoCard card = (RedoCard) other;
-        return originalPatients.equals(card.originalPatients)
-                && updatedPatients.equals(card.updatedPatients);
+        return originalPersons.equals(card.originalPersons)
+                && updatedPersons.equals(card.updatedPersons);
     }
 }

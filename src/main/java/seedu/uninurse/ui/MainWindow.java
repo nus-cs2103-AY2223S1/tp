@@ -215,7 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isListTask()) {
-                outputPanel.handleListTask(logic.getPatientList());
+                outputPanel.handleListTask(logic.getFilteredPersonList());
             }
 
             if (commandResult.isTaskRelated()) {
@@ -247,7 +247,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isFind()) {
-                outputPanel.handleFind(logic.getPatientList());
+                outputPanel.handleFind(logic.getFilteredPersonList());
             }
 
             return commandResult;

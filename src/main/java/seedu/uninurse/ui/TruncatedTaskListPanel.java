@@ -7,6 +7,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Panel containing the list of all patients with a truncated task list.
@@ -15,16 +16,16 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
     private static final String FXML = "TruncatedTaskListPanel.fxml";
 
     @FXML
-    private ListView<Patient> truncatedTaskListView;
+    private ListView<Person> truncatedTaskListView;
     @FXML
     private Label header;
 
     /**
-     * Creates a {@code TruncatedTaskListPanel} with the given list of {@code patients}.
+     * Creates a TruncatedTaskListPanel with the given list of persons.
      */
-    public TruncatedTaskListPanel(ObservableList<Patient> patients) {
+    public TruncatedTaskListPanel(ObservableList<Person> persons) {
         super(FXML);
-        this.truncatedTaskListView.setItems(patients);
+        this.truncatedTaskListView.setItems(persons);
         this.truncatedTaskListView.setCellFactory(listview -> new TruncatedTaskListViewCell());
 
         this.header.setText("All Patient's Tasks:");
@@ -33,7 +34,7 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code TruncatedTaskListCard}.
      */
-    class TruncatedTaskListViewCell extends ListCell<Patient> {
+    class TruncatedTaskListViewCell extends ListCell<Person> {
         TruncatedTaskListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
@@ -41,13 +42,15 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
         }
 
         @Override
-        protected void updateItem(Patient patient, boolean empty) {
-            super.updateItem(patient, empty);
-            if (empty || patient == null) {
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+            if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TruncatedTaskListCard(patient).getRoot());
+                if (person instanceof Patient) {
+                    setGraphic(new TruncatedTaskListCard((Patient) person).getRoot());
+                }
             }
         }
     }

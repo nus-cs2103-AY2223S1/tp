@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteTagCommand.
@@ -56,7 +56,7 @@ public class DeleteTagCommandTest {
         // use third person in TypicalPersons since there is one tag to delete
         Patient patientToDeleteTag =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToDeleteTag).withTags().build();
+        Patient editedPatient = new PatientBuilder(patientToDeleteTag).withTags().build();
         Tag deletedTag = patientToDeleteTag.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteTagCommand deleteTagCommand =
@@ -66,7 +66,7 @@ public class DeleteTagCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), deletedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteTag, editedPatient);
+        expectedModel.setPatient(patientToDeleteTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
@@ -88,7 +88,7 @@ public class DeleteTagCommandTest {
 
         Patient patientToDeleteTag =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased())))
                 .withTags().build();
         Tag deletedTag = patientToDeleteTag.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -100,7 +100,7 @@ public class DeleteTagCommandTest {
                 editedPatient.getName().toString(), deletedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteTag, editedPatient);
+        expectedModel.setPatient(patientToDeleteTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,

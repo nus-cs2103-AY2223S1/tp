@@ -25,38 +25,39 @@ import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Person;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 public class AddPatientCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patient validPerson = new PersonBuilder().build();
+    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
+        Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddPatientCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Collections.singletonList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(Collections.singletonList(validPatient), modelStub.patientsAdded);
+        assertEquals(validPatient, modelStub.patientOfInterest);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Patient validPerson = new PersonBuilder().build();
-        AddPatientCommand addCommand = new AddPatientCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicatePatient_throwsCommandException() {
+        Patient validPatient = new PatientBuilder().build();
+        AddPatientCommand addCommand = new AddPatientCommand(validPatient);
+        ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
         assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Patient alice = new PersonBuilder().withName("Alice").build();
-        Patient bob = new PersonBuilder().withName("Bob").build();
+        Patient alice = new PatientBuilder().withName("Alice").build();
+        Patient bob = new PatientBuilder().withName("Bob").build();
         AddPatientCommand addAliceCommand = new AddPatientCommand(alice);
         AddPatientCommand addBobCommand = new AddPatientCommand(bob);
 
@@ -73,7 +74,7 @@ public class AddPatientCommandTest {
         // null -> returns false
         assertNotEquals(null, addAliceCommand);
 
-        // different person -> returns false
+        // different patient -> returns false
         assertNotEquals(addAliceCommand, addBobCommand);
     }
 
@@ -243,43 +244,50 @@ public class AddPatientCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single patient.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithPatient extends ModelStub {
+        private final Patient patient;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPatient(Patient patient) {
+            requireNonNull(patient);
+            this.patient = patient;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.patient.isSamePerson(person);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the patient being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        private final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPatientAdded extends ModelStub {
+        private final ArrayList<Patient> patientsAdded = new ArrayList<>();
+        private Patient patientOfInterest;
 
-        ModelStubAcceptingPersonAdded() {
+        ModelStubAcceptingPatientAdded() {
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return patientsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public PersonListTracker addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public PersonListTracker addPatient(Patient patient) {
+            requireNonNull(patient);
+            patientsAdded.add(patient);
             return new PersonListTracker();
+        }
+
+        @Override
+        public void setPatientOfInterest(Patient patient) {
+            requireNonNull(patient);
+            patientOfInterest = patient;
         }
 
         @Override

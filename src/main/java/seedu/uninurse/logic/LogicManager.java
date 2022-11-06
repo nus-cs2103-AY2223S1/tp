@@ -72,11 +72,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Patient> getPatientList() {
-        return model.getPatientList();
-    }
-
-    @Override
     public Path getUninurseBookFilePath() {
         return model.getUninurseBookFilePath();
     }

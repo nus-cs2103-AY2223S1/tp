@@ -250,21 +250,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object other) {
         // short circuit if same object
-        if (obj == this) {
+        if (other == this) {
             return true;
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (!(other instanceof ModelManager)) {
             return false;
         }
 
         // state check
-        ModelManager other = (ModelManager) obj;
-        return persistentUninurseBook.equals(other.persistentUninurseBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        ModelManager o = (ModelManager) other;
+        return persistentUninurseBook.equals(o.persistentUninurseBook)
+                && userPrefs.equals(o.userPrefs)
+                && filteredPersons.equals(o.filteredPersons);
     }
 }

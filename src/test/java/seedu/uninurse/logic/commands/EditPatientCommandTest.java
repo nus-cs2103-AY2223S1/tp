@@ -11,7 +11,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPatientCommand.
@@ -34,14 +34,14 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Patient editedPerson = new PersonBuilder().build();
-        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPerson).build();
+        Patient editedPatient = new PatientBuilder().build();
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPatient(model.getPatient(model.getFilteredPersonList().get(0)), editedPerson);
+        expectedModel.setPatient(model.getPatient(model.getFilteredPersonList().get(0)), editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
                 EditPatientCommand.COMMAND_TYPE, expectedModel);
@@ -49,20 +49,20 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Patient lastPerson = model.getPatient(model.getFilteredPersonList().get(indexLastPerson.getZeroBased()));
+        Index indexLastPatient = Index.fromOneBased(model.getFilteredPersonList().size());
+        Patient lastPatient = model.getPatient(model.getFilteredPersonList().get(indexLastPatient.getZeroBased()));
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Patient editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
+        PatientBuilder patientInList = new PatientBuilder(lastPatient);
+        Patient editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
-        EditPatientCommand editPatientCommand = new EditPatientCommand(indexLastPerson, descriptor);
+        EditPatientCommand editPatientCommand = new EditPatientCommand(indexLastPatient, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPatient(lastPerson, editedPerson);
+        expectedModel.setPatient(lastPatient, editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
                 EditPatientCommand.COMMAND_TYPE, expectedModel);
@@ -71,9 +71,9 @@ public class EditPatientCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON, new EditPatientDescriptor());
-        Patient editedPerson = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
@@ -83,45 +83,45 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-
-        Patient personInFilteredList =
+        Patient patientInFilteredList =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Patient editedPatient = new PatientBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditPatientCommand.MESSAGE_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPatient(model.getPatient(model.getFilteredPersonList().get(0)), editedPerson);
+        expectedModel.setPatient(model.getPatient(model.getFilteredPersonList().get(0)), editedPatient);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
                 EditPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Patient firstPerson = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPerson).build();
+    public void execute_duplicatePatientUnfilteredList_failure() {
+        Patient firstPatient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPatient).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editPatientCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicatePatientFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in uninurse book
-        Patient personInList = model.getUninurseBook().getPatientList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit patient in filtered list into a duplicate in uninurse book
+        Patient patientInList = model.getPatient(
+                model.getUninurseBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
-                new EditPatientDescriptorBuilder(personInList).build());
+                new EditPatientDescriptorBuilder(patientInList).build());
 
         assertCommandFailure(editPatientCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidPatientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(outOfBoundIndex, descriptor);
@@ -134,11 +134,11 @@ public class EditPatientCommandTest {
      * but smaller than size of uninurse book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidPatientIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of uninurse book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPatientList().size());
 
         EditPatientCommand editPatientCommand = new EditPatientCommand(outOfBoundIndex,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -162,7 +162,7 @@ public class EditPatientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(5));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(INDEX_SECOND_PERSON, DESC_AMY)));

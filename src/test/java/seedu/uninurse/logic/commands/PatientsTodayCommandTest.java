@@ -2,7 +2,7 @@ package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.testutil.TestUtil.getCurrentDate;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 class PatientsTodayCommandTest {
     private Model model;
@@ -34,7 +34,7 @@ class PatientsTodayCommandTest {
 
     @Test
     public void execute_onePatientToday_showsOnePatient() throws Exception {
-        Patient patientForToday = new PersonBuilder()
+        Patient patientForToday = new PatientBuilder()
                                         .withTasks(new NonRecurringTask("test",
                                                 new DateTime(getCurrentDate()))).build();
 

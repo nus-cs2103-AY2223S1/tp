@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
 import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddConditionCommand.
@@ -52,7 +52,7 @@ public class AddConditionCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddCondition =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToAddCondition)
+        Patient editedPatient = new PatientBuilder(patientToAddCondition)
                 .withConditions(TYPICAL_CONDITION_DIABETES).build();
         int lastConditionIndex = editedPatient.getConditions().size() - 1;
         Condition addedCondition = editedPatient.getConditions().get(lastConditionIndex);
@@ -63,7 +63,7 @@ public class AddConditionCommandTest {
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatient(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,
@@ -83,7 +83,7 @@ public class AddConditionCommandTest {
 
         Patient patientToAddCondition =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withConditions(TYPICAL_CONDITION_DIABETES).build();
         int lastConditionIndex = editedPatient.getConditions().size() - 1;
@@ -95,7 +95,7 @@ public class AddConditionCommandTest {
                 editedPatient.getName(), addedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatient(patientToAddCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage, AddConditionCommand.COMMAND_TYPE,

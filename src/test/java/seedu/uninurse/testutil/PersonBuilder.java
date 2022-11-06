@@ -1,24 +1,17 @@
 package seedu.uninurse.testutil;
 
-import seedu.uninurse.model.condition.ConditionList;
-import seedu.uninurse.model.medication.Medication;
-import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
-import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
-import seedu.uninurse.model.task.Task;
-import seedu.uninurse.model.task.TaskList;
 import seedu.uninurse.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Patient objects.
+ * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -29,10 +22,6 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private TagList tags;
-    private ConditionList conditions;
-    private MedicationList medications;
-    private TaskList tasks;
-    private RemarkList remarks;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,29 +32,21 @@ public class PersonBuilder {
         this.email = new Email(DEFAULT_EMAIL);
         this.address = new Address(DEFAULT_ADDRESS);
         this.tags = new TagList();
-        this.conditions = new ConditionList();
-        this.medications = new MedicationList();
-        this.tasks = new TaskList();
-        this.remarks = new RemarkList();
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of personToCopy.
      */
-    public PersonBuilder(Patient personToCopy) {
+    public PersonBuilder(Person personToCopy) {
         this.name = personToCopy.getName();
         this.phone = personToCopy.getPhone();
         this.email = personToCopy.getEmail();
         this.address = personToCopy.getAddress();
         this.tags = personToCopy.getTags();
-        this.conditions = personToCopy.getConditions();
-        this.medications = personToCopy.getMedications();
-        this.tasks = personToCopy.getTasks();
-        this.remarks = personToCopy.getRemarks();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Patient} that we are building.
+     * Sets the Name of the Person that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -73,57 +54,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code conditions} into a {@code ConditionList} and
-     * set it to the {@code Patient} that we are building.
-     */
-    public PersonBuilder withConditions(String... conditions) {
-        this.conditions = SampleDataUtil.getConditionList(conditions);
-        return this;
-    }
-
-    /**
-     * Parses the {@code Medication} into a {@code MedicationList} and
-     * set it to the {@code Patient} that we are building.
-     */
-    public PersonBuilder withMedications(Medication... medications) {
-        this.medications = SampleDataUtil.getMedicationList(medications);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tasks} into a {@code TaskList} and set it to the {@code Patient} that we are building.
-     */
-    public PersonBuilder withTasks(Task... tasks) {
-        this.tasks = SampleDataUtil.getTaskList(tasks);
-        return this;
-    }
-
-    /**
-     * Parses the {@code remarks} into a {@code RemarkList} and set it to the {@code Patient} that we are building.
-     */
-    public PersonBuilder withRemarks(String... remarks) {
-        this.remarks = SampleDataUtil.getRemarkList(remarks);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code TagList} and set it to the {@code Patient} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagList(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Patient} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Patient} that we are building.
+     * Sets the Phone of the Person that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -131,15 +62,31 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Patient} that we are building.
+     * Sets the Email of the Person that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Patient build() {
-        return new Patient(name, phone, email, address, tags, conditions, medications, tasks, remarks);
+    /**
+     * Sets the Address of the Person that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Parses the tags into a TagList and set it to the Person that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagList(tags);
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags);
     }
 
 }

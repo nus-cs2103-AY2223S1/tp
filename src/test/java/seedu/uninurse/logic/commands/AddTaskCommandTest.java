@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_STRING;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
 import static seedu.uninurse.testutil.TypicalTasks.TASK_INSULIN;
 
@@ -29,7 +29,7 @@ import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddTaskCommand}.
@@ -57,7 +57,7 @@ public class AddTaskCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTask =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToAddTask)
+        Patient editedPatient = new PatientBuilder(patientToAddTask)
                 .withTasks(new NonRecurringTask(VALID_TASK_DESC_FIRST,
                         new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
@@ -69,7 +69,7 @@ public class AddTaskCommandTest {
                 editedPatient.getName().toString(), addedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTask, editedPatient);
+        expectedModel.setPatient(patientToAddTask, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage,
@@ -90,7 +90,7 @@ public class AddTaskCommandTest {
 
         Patient patientToAddTask =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTasks(new NonRecurringTask(VALID_TASK_DESC_FIRST,
                         new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
@@ -103,7 +103,7 @@ public class AddTaskCommandTest {
                 editedPatient.getName().toString(), addedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTask, editedPatient);
+        expectedModel.setPatient(patientToAddTask, editedPatient);
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
@@ -132,7 +132,7 @@ public class AddTaskCommandTest {
         Task duplicateTask = new NonRecurringTask(VALID_TASK_DESC_FIRST, new DateTime(DATE_TIME_STRING));
         TaskList updatedTaskList = patient.getTasks().add(duplicateTask);
         Patient patientWithTask = new Patient(patient, updatedTaskList);
-        model.setPerson(patient, patientWithTask);
+        model.setPatient(patient, patientWithTask);
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, duplicateTask);
         assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);

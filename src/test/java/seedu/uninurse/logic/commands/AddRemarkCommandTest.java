@@ -11,7 +11,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalRemarks.REMARK_MEDICAL_ALLERGY;
 import static seedu.uninurse.testutil.TypicalRemarks.REMARK_WHEELCHAIR;
 import static seedu.uninurse.testutil.TypicalRemarks.TYPICAL_REMARK_MEDICAL_ALLERGY;
@@ -26,7 +26,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddRemarkCommand}.
@@ -55,7 +55,7 @@ public class AddRemarkCommandTest {
         Remark remarkToAdd = new Remark(TYPICAL_REMARK_MEDICAL_ALLERGY);
         Patient patientToAddRemark =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToAddRemark)
+        Patient editedPatient = new PatientBuilder(patientToAddRemark)
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, remarkToAdd);
@@ -63,7 +63,7 @@ public class AddRemarkCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), remarkToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddRemark, editedPatient);
+        expectedModel.setPatient(patientToAddRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -84,7 +84,7 @@ public class AddRemarkCommandTest {
         Remark remarkToAdd = new Remark(TYPICAL_REMARK_MEDICAL_ALLERGY);
         Patient patientToAddRemark =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 
@@ -94,7 +94,7 @@ public class AddRemarkCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
-        expectedModel.setPerson(patientToAddRemark, editedPatient);
+        expectedModel.setPatient(patientToAddRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -117,10 +117,10 @@ public class AddRemarkCommandTest {
     public void execute_invalidDuplicateRemark_throwsCommandException() {
         Patient patientToAddRemark =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToAddRemark)
+        Patient editedPatient = new PatientBuilder(patientToAddRemark)
                 .withRemarks(TYPICAL_REMARK_MEDICAL_ALLERGY).build();
 
-        model.setPerson(patientToAddRemark, editedPatient);
+        model.setPatient(patientToAddRemark, editedPatient);
 
         AddRemarkCommand addRemarkCommand = new AddRemarkCommand(INDEX_FIRST_PERSON, REMARK_MEDICAL_ALLERGY);
 

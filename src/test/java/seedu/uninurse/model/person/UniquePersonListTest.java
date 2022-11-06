@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_ROOM;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalPersons.ALICE;
-import static seedu.uninurse.testutil.TypicalPersons.BOB;
+import static seedu.uninurse.testutil.TypicalPatients.ALICE;
+import static seedu.uninurse.testutil.TypicalPatients.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
+        Person editedAlice = new PersonBuilder(ALICE).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 

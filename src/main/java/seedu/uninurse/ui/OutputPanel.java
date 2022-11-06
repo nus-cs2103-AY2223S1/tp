@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  *
@@ -56,8 +57,8 @@ public class OutputPanel extends UiPart<Region> {
     /**
      * Updates the outputView panel accordingly with a list of patient if executed command is ListTask.
      */
-    public void handleListTask(ObservableList<Patient> patients) {
-        TruncatedTaskListPanel truncatedTaskListPanel = new TruncatedTaskListPanel(patients);
+    public void handleListTask(ObservableList<Person> persons) {
+        TruncatedTaskListPanel truncatedTaskListPanel = new TruncatedTaskListPanel(persons);
         truncatedTaskListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
         truncatedTaskListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
 
@@ -137,8 +138,8 @@ public class OutputPanel extends UiPart<Region> {
     /**
      * Updates the outputView panel accordingly with patients if executed command is Find.
      */
-    public void handleFind(ObservableList<Patient> patients) {
+    public void handleFind(ObservableList<Person> persons) {
         outputView.getChildren().clear();
-        outputView.getChildren().add(new UpdatedPersonListPanel(patients).getRoot());
+        outputView.getChildren().add(new UpdatedPersonListPanel(persons).getRoot());
     }
 }

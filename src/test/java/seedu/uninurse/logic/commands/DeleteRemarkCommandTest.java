@@ -13,7 +13,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteRemarkCommand}.
@@ -57,7 +57,7 @@ public class DeleteRemarkCommandTest {
         // use second person in TypicalPersons since there is one remark to delete
         Patient patientToDeleteRemark =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToDeleteRemark).withRemarks().build();
+        Patient editedPatient = new PatientBuilder(patientToDeleteRemark).withRemarks().build();
         Remark deletedRemark = patientToDeleteRemark.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteRemarkCommand deleteRemarkCommand =
@@ -67,7 +67,7 @@ public class DeleteRemarkCommandTest {
                 editedPatient.getName(), deletedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteRemark, editedPatient);
+        expectedModel.setPatient(patientToDeleteRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -89,7 +89,7 @@ public class DeleteRemarkCommandTest {
 
         Patient patientToDeleteRemark =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withRemarks().build();
         Remark deletedRemark = patientToDeleteRemark.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -102,7 +102,7 @@ public class DeleteRemarkCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        expectedModel.setPerson(patientToDeleteRemark, editedPatient);
+        expectedModel.setPatient(patientToDeleteRemark, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);

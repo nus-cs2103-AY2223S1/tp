@@ -3,10 +3,10 @@ package seedu.uninurse.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalPersons.ALICE;
-import static seedu.uninurse.testutil.TypicalPersons.HOON;
-import static seedu.uninurse.testutil.TypicalPersons.IDA;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.ALICE;
+import static seedu.uninurse.testutil.TypicalPatients.HOON;
+import static seedu.uninurse.testutil.TypicalPatients.IDA;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonUninurseBookStorageTest {
     }
 
     @Test
-    public void readUninurseBook_invalidPersonUninurseBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readUninurseBook("invalidPersonUninurseBook.json"));
+    public void readUninurseBook_invalidPatientUninurseBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readUninurseBook("invalidPatientUninurseBook.json"));
     }
 
     @Test
-    public void readUninurseBook_invalidAndValidPersonUninurseBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readUninurseBook("invalidAndValidPersonUninurseBook.json"));
+    public void readUninurseBook_invalidAndValidPatientUninurseBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readUninurseBook("invalidAndValidPatientUninurseBook.json"));
     }
 
     @Test
@@ -72,18 +72,17 @@ public class JsonUninurseBookStorageTest {
         assertEquals(original, new UninurseBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
+        original.addPatient(HOON);
         original.removePerson(ALICE);
         jsonUninurseBookStorage.saveUninurseBook(original, filePath);
         readBack = jsonUninurseBookStorage.readUninurseBook(filePath).get();
         assertEquals(original, new UninurseBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addPatient(IDA);
         jsonUninurseBookStorage.saveUninurseBook(original); // file path not specified
         readBack = jsonUninurseBookStorage.readUninurseBook().get(); // file path not specified
         assertEquals(original, new UninurseBook(readBack));
-
     }
 
     @Test

@@ -3,10 +3,10 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.uninurse.testutil.TypicalPersons.CARL;
-import static seedu.uninurse.testutil.TypicalPersons.ELLE;
-import static seedu.uninurse.testutil.TypicalPersons.FIONA;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.CARL;
+import static seedu.uninurse.testutil.TypicalPatients.ELLE;
+import static seedu.uninurse.testutil.TypicalPatients.FIONA;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import java.util.Arrays;
 import java.util.Collections;

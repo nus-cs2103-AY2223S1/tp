@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteConditionCommand.
@@ -56,7 +56,7 @@ public class DeleteConditionCommandTest {
         // use third person in TypicalPersons since there is one condition to delete
         Patient patientToDeleteCondition =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToDeleteCondition).withConditions().build();
+        Patient editedPatient = new PatientBuilder(patientToDeleteCondition).withConditions().build();
         Condition deletedCondition = patientToDeleteCondition.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteConditionCommand deleteConditionCommand =
@@ -66,7 +66,7 @@ public class DeleteConditionCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), deletedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteCondition, editedPatient);
+        expectedModel.setPatient(patientToDeleteCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,
@@ -88,7 +88,7 @@ public class DeleteConditionCommandTest {
 
         Patient patientToDeleteCondition =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased())))
                 .withConditions().build();
         Condition deletedCondition = patientToDeleteCondition.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -100,7 +100,7 @@ public class DeleteConditionCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), deletedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteCondition, editedPatient);
+        expectedModel.setPatient(patientToDeleteCondition, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DeleteConditionCommand.COMMAND_TYPE,

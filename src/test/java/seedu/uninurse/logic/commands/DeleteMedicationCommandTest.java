@@ -15,7 +15,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteMedicationCommand}.
@@ -58,7 +58,7 @@ public class DeleteMedicationCommandTest {
         // use second person in TypicalPersons since there is one medication to delete
         Patient patientToDeleteMedication =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToDeleteMedication).withMedications().build();
+        Patient editedPatient = new PatientBuilder(patientToDeleteMedication).withMedications().build();
         Medication deletedMedication = patientToDeleteMedication.getMedications().get(
                 INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
@@ -69,7 +69,7 @@ public class DeleteMedicationCommandTest {
                 editedPatient.getName(), deletedMedication);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToDeleteMedication, editedPatient);
+        expectedModel.setPatient(patientToDeleteMedication, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -91,7 +91,7 @@ public class DeleteMedicationCommandTest {
 
         Patient patientToDeleteMedication =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withMedications().build();
         Medication deletedMedication = patientToDeleteMedication.getMedications().get(
@@ -105,7 +105,7 @@ public class DeleteMedicationCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        expectedModel.setPerson(patientToDeleteMedication, editedPatient);
+        expectedModel.setPatient(patientToDeleteMedication, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);

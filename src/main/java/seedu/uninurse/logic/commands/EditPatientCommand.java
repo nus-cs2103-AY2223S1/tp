@@ -136,9 +136,9 @@ public class EditPatientCommand extends EditGenericCommand {
         }
 
         // state check
-        EditPatientCommand e = (EditPatientCommand) other;
-        return index.equals(e.index)
-                && editPatientDescriptor.equals(e.editPatientDescriptor);
+        EditPatientCommand o = (EditPatientCommand) other;
+        return index.equals(o.index)
+                && editPatientDescriptor.equals(o.editPatientDescriptor);
     }
 
     /**
@@ -215,12 +215,12 @@ public class EditPatientCommand extends EditGenericCommand {
             }
 
             // state check
-            EditPatientDescriptor e = (EditPatientDescriptor) other;
+            EditPatientDescriptor o = (EditPatientDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+            return getName().equals(o.getName())
+                    && getPhone().equals(o.getPhone())
+                    && getEmail().equals(o.getEmail())
+                    && getAddress().equals(o.getAddress());
         }
     }
 }

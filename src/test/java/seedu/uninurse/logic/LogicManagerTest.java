@@ -8,7 +8,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalPersons.AMY;
+import static seedu.uninurse.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,7 +30,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.storage.JsonUninurseBookStorage;
 import seedu.uninurse.storage.JsonUserPrefsStorage;
 import seedu.uninurse.storage.StorageManager;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddPatientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Patient expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

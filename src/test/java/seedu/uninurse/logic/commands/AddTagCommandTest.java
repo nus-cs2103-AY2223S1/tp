@@ -9,7 +9,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddTagCommand.
@@ -52,7 +52,7 @@ public class AddTagCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTag =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(patientToAddTag).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient editedPatient = new PatientBuilder(patientToAddTag).withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
         Tag addedTag = editedPatient.getTags().get(lastTagIndex);
 
@@ -61,7 +61,7 @@ public class AddTagCommandTest {
         String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatient(patientToAddTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, AddTagCommand.COMMAND_TYPE, expectedModel);
@@ -89,7 +89,7 @@ public class AddTagCommandTest {
 
         Patient patientToAddTag =
                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Patient editedPatient = new PersonBuilder(model.getPatient(
+        Patient editedPatient = new PatientBuilder(model.getPatient(
                 model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
@@ -100,7 +100,7 @@ public class AddTagCommandTest {
         String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatient(patientToAddTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage,

@@ -15,7 +15,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditConditionCommand.
@@ -68,7 +68,7 @@ public class EditConditionCommandTest {
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
@@ -77,7 +77,7 @@ public class EditConditionCommandTest {
                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName(), initialCondition, CONDITION_DIABETES);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
@@ -100,7 +100,7 @@ public class EditConditionCommandTest {
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
@@ -111,7 +111,7 @@ public class EditConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
         showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editConditionCommand, model, expectedMessage, EditConditionCommand.COMMAND_TYPE,
