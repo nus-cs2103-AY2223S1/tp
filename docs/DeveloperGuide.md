@@ -947,7 +947,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Data should be stored consistently upon closing and reopening the app.
+4. Data should be stored consistently even after closing and reopening the app.
 5. System should be usable by a Computing student who has never applied to an internship before.
 6. System should be easily usable by the majority of Year 2+ Computing students.
 7. The application is not required to support any other language other than English.
