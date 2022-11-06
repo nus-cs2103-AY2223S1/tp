@@ -40,7 +40,7 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 [[portfolio](team/Chustinjeng.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Functional developer and test cases
 
 ### Shawn Tan
 
