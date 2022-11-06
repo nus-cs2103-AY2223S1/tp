@@ -59,7 +59,7 @@ To navigate to see a particular command, you can click on the link in blue.
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
 5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/StartupUi.png)
 
 <div markdown="block" class="alert alert-info">
 
