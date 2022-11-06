@@ -88,7 +88,7 @@ public class WideInternshipListPanel extends UiPart<Region> {
         tipsPanel.setTipsHeader(internshipStage.value);
 
         if (internshipStage.hasNoTips()) {
-            tipsPanel.noTipsPopulate();
+            //Default tips panel has no tips label
             return tipsPanel;
         }
 
