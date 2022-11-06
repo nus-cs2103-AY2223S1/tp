@@ -256,7 +256,7 @@ Optional arguments (at least one field):
 </div>
 
 Examples:
-*  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
+*  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the property with index of 1 to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
 *  `edit -p 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
 
 ### Locating properties by name: `find -p`
@@ -306,7 +306,7 @@ Examples:
 
 Returns a list of properties whose tags contain any of the given keywords.
 
-Format: `filter -p TAG...`
+Format: `filter -p TAG [MORE_TAGS]`
 
 
 <div markdown="block" class="alert alert-primary">
@@ -533,7 +533,7 @@ Examples:
 
 Returns a list of client profiles whose tags contain any of the given keywords.
 
-Format: `filter -c TAG...`
+Format: `filter -c TAG [MORE_TAGS]`
 
 <div markdown="block" class="alert alert-primary">
 
