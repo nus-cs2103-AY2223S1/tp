@@ -341,7 +341,7 @@ Examples:
 
 Returns all the properties with the specified type.
 
-Format: `type -p TYPE`
+Format: `type -p PROPERTY_TYPE`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -352,7 +352,9 @@ Format: `type -p TYPE`
 </div>
  
 Examples:
-* `type -p HDB condo` returns all properties that are HDBs or Condos.
+* `type -p HDB condo` returns all properties that are HDBs or Condos
+* `type -p hdb` returns all properties that are HDBs
+* `type -p LANdEd` returns all properties that are LANDED
 
 ### Selecting a property: `select -p INDEX`
 
@@ -461,6 +463,12 @@ Format: `find -c NAME [MORE_NAMES]`
 * Client profiles matching at least one keyword will be returned (i.e., `OR` search). e.g., `Sean Lee` will return `Sean Tan`, `Bob Lee`
 
 </div>
+
+Returns a filtered list of clients according to specified tags.
+
+TAG have to be fully specified (i.e. no partial tags like 'high' instead of 'high-end')
+
+Format: `filter -c TAG...`
 
 Examples:
 * `find -c Janice` returns `Janice Tan` and `Janice Ong`

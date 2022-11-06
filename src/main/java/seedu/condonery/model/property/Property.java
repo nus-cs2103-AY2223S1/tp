@@ -82,11 +82,10 @@ public class Property {
     }
 
     /**
-     * Returns an immutable interested client set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns interested client set
      */
     public Set<Client> getInterestedClients() {
-        return Collections.unmodifiableSet(interestedClients);
+        return interestedClients;
     }
 
     /**
@@ -156,6 +155,15 @@ public class Property {
     }
 
     /**
+     * Checks if the Client is interested in this particular Property.
+     * @param client Client to find
+     * @return true if Client is interested in Property, false otherwise
+     */
+    public boolean hasInterestedClient(Client client) {
+        return interestedClients.contains(client);
+    }
+
+    /**
      * Returns true if both properties have the same identity and data fields.
      * This defines a stronger notion of equality between two properties.
      */
@@ -208,9 +216,10 @@ public class Property {
         Set<Client> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested client(s): ");
-            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString()));
+            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString() + ", "));
         }
-        return builder.toString();
+        String result = builder.toString();
+        return result.substring(0, result.length() - 2);
     }
 
 }

@@ -3,7 +3,6 @@ package seedu.condonery.logic.commands.client;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
@@ -12,7 +11,6 @@ import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.property.Property;
 
 /**
  * Selects a client to view its details.
@@ -51,8 +49,7 @@ public class SelectClientCommand extends Command {
         Client clientToSelect = lastShownList.get(targetIndex.getZeroBased());
         model.updateFilteredClientList(client -> client.equals(clientToSelect));
 
-        Set<Property> interestedProperties = clientToSelect.getInterestedProperties();
-        model.updateFilteredPropertyList(property -> interestedProperties.contains(property));
+        model.updateFilteredPropertyList(property -> property.hasInterestedClient(clientToSelect));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientToSelect.getName().toString()));
     }

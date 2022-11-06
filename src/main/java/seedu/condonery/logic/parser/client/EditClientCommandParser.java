@@ -49,6 +49,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         }
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+                && !argMultimap.getValue(PREFIX_INTERESTEDPROPERTIES).isPresent()
                 && !argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()
                 && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
