@@ -17,7 +17,6 @@ import java.util.HashSet;
 import seedu.rc4hdb.logic.commands.residentcommands.RemoveCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
-import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.Specifier;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
@@ -26,7 +25,7 @@ import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 /**
  * Parses input arguments and creates a new RemoveCommand object
  */
-public class RemoveCommandParser implements Parser<RemoveCommand> {
+public class RemoveCommandParser implements CommandParser<RemoveCommand> {
 
     private Specifier specifier;
 
