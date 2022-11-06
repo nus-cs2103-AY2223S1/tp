@@ -10,7 +10,6 @@ title: Developer Guide
 ## **Table of Contents**
 
 * [**Introduction**](#introduction)
-* [**Acknowledgements**](#acknowledgements)
 * [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
@@ -20,10 +19,12 @@ title: Developer Guide
     * [Common classes](#common-classes)
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
-    * [Displaying results](#changes-in-displaying-results)
-    * [Show/Hide fields](#showhide-feature-for-resident-fields)
+    * [Displaying data](#displaying-data)
+    * [Show/Hide fields](#show-onlyhide-only-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
+    * [Command history](#command-history)
+* [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
 * [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
@@ -36,6 +37,7 @@ title: Developer Guide
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
     * [Venue management](#venue-management)
+    * [Quality-of-life](#quality-of-life)
 
 ---
 
@@ -69,22 +71,6 @@ With our resident and venue functionalities in place, we wish to enhance RC4HDB 
 ### Getting started
 
 A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#joining-us).
-
----
-
-## **Acknowledgements**
-
-[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
-
-RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
-a starting point for Software Engineering (SE) students enrolled in CS2103T.
-
-### Credits for code adapted from external sources
-
-1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
-   * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
-   * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
-3. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
 
 ---
 
@@ -561,21 +547,29 @@ Due to file switching requiring an update to not only `Storage`, but also `Model
 
 ### Command history
 
-`CommandHistory` allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
-As our implementation of `CommandHistory` only tracks past successfully executed commands, the `CommandHistory` does not have any
-dependencies to `Model` and `Storage`, but it does to `Logic`.
+The command history functionality allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
+The functionality consists of four classes, `CommandHistoryParser`, `CommandHistory`, `ForwardHistory` and `BackwardHistory`.
+
+The `CommandHistoryParser` determines the `KEY` that was pressed by the user, and propagates the action to be taken, down to either
+the `ForwardHistory` or `BackwardHistory` classes. 
+
+These two classes extend from `CommandHistory`, which internally holds two stacks. The stacks maintain the order of retrieval of commands by
+popping from one stack and pushing to the other. These actions are performed by the `ForwardHistory` and `BackwardHistory` classes as mentioned above.
 
 The class diagram of `CommandHistory` is as follows.
 
-![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram-0.png)
+![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram.png)
+
+While not mentioned in the diagram, the determination of a successful command is handled by the `Parsers` within the `Logic` component,
+and therefore has an implicit dependency on them. Furthermore, as the list of successful commands are tracked in the `Ui` component,
+and there is no need for the history to persist between instances, there is no dependency on the `Storage` component. There is also no
+dependency on `Model`, as the functionalities are independent of it.
 
 To illustrate how `CommandHistory` works, an activity diagram when using the `UP_ARROW_KEY` is provided below.
 
-![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram-0.png)
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
-Internally, the `CommandHistory` is implemented using two stacks, which pops and pushes the most recently browsed command
-between the two, thereby maintaining its ordering.
-
+The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -660,6 +654,22 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+---
+
+## **Acknowledgements**
+
+[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides a starting point for Software Engineering (SE) students enrolled in CS2103T.
+
+### Credits for code adapted from external sources
+
+1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
+   * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
+   * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
+2. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
+3. `NoSelectionModel` was adapted from [this thread](https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse) on StackOverflow.
 
 ---
 
@@ -1182,6 +1192,11 @@ testers are expected to do more *exploratory* testing.
   * [Viewing a venue](#viewing-a-venue)
   * [Adding a booking](#adding-a-booking)
   * [Deleting a booking](#deleting-a-booking)
+* [**Quality-of-life**](#quality-of-life)
+  * [Command history](#browsing-recently-used-commands)
+  * [Opening help window](#getting-help)
+  * [Accessing command input box](#accessing-the-command-input-box)
+  * [Switching tabs](#switching-tabs))
 
 ---
 
@@ -1535,7 +1550,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Quality-of-life
 
-We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section before proceeding, as the following largely tests the functionality from that section.
+We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section before proceeding, as the following largely tests the functionality from that section.
 
 #### Browsing recently-used commands
 
@@ -1587,7 +1602,7 @@ We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section 
    2. Test case: Pressing `F3`<br>
       Expected: Command input box is in focus and ready for user command.
 
-#### Switching from tabs
+#### Switching tabs
 
 1. Switching between `Resident` and `Bookings` tab
 
