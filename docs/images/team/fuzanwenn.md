@@ -101,6 +101,7 @@ Given below are my contributions to the project.
 * Added test cases for NameContainsKeywordsPredicateAppointment class.
 * Added test cases for DeleteAppointmentCommand class.
 * Added test cases for AddBillCommandParser class.
+* Added test cases for FindBillCommandParser class.
 
 ### Review/mentoring contributions:
 
