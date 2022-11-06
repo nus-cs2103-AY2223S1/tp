@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for
-use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can
-type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -13,41 +13,32 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 --------------------------------------------------------------------------------------------------------------------
 ## Quickstart
 
-1. Ensure you have Java 11 or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest FRIDAY.jar from here
+2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the home folder for your FRIDAY system.
+3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Startup.png](images/Startup.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+    * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
+
+    * **`list`** : Lists all students.
+    
+    * **`delete 2`** : Deletes the 2nd student shown in the current list.
+
+    * **`clear`** : Deletes all students.
+
+    * **`exit`** : Exits FRIDAY.
+   
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-![Startup.png](images/Startup.png)
+
 ## Features
-
-1. Add students
-2. Delete students
-3. Edit details of students
-   1. Name
-   2. Telegram handle
-   3. Consultation dates
-   4. Dates of Mastery Checks
-   6. Remarks
-4. Record grades of students
-5. Find individual student details
-6. View all students
-7. Mark Mastery Checks of students
-8. Unmark Mastery Checks of students
-8. Sort students
-9. Add aliases
-10. Delete aliases
-11. View all aliases
-12. Get user guide link
-13. Get help
-
---------------------------------------------------------------------------------------------------------------------
-
-## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,6 +68,9 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list, 
+   so it ` **must be a positive integer** 1, 2, 3, …​
+
 </div>
 
 ### Clearing all existing data: `clear`
@@ -88,27 +82,37 @@ Format: `clear`
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
-All student names and Telegram handles must be unique.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* All student names and Telegram handles in FRIDAY must be unique.
+* Names and Telegram handles are case-insensitive.
+* Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
 
-Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16`
+Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
 
 Outcome: a student named Alex Yeoh is added.
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
 
-Deletes the student at the given index from FRIDAY.
+Deletes the student at the given index from FRIDAY. 
 
 Format: `delete INDEX`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
+The index of the student must be specified and there should be exactly one INDEX parameter.
+</div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.
 </div>
 
@@ -180,16 +184,35 @@ Format: `list`
 ### Sorting students: `sort`
 
 Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
-If the `find` command was run before this, using `sort` will undo the result and all students will be sorted.
 
 Format: `sort CRITERIA/ORDER`
 
-* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `a` (ascending) or `d` (descending)
-* Names and Telegram handles are sorted in alphabetical order
-* Consultations and Mastery Checks are sorted by time
-* Grades are sorted in numerical order
-* Students with missing details (e.g. missing Telegram handles) will be shown first when sorted in descending order.
+* `CRITERIA` can be 
+  * `n` (name) 
+  * `t` (Telegram handle)
+  * `c` (consultation)
+  * `m` (Mastery Check)
+  * `ra1` (Reading Assessment 1)
+  * `ra2` (Reading Assessment 2)
+  * `pa` (Practical Assessment)
+  * `mt` (Midterm Test)
+  * `ft` (Final Examination)
+* `ORDER` can be 
+  * `a` (ascending)
+  * `d` (descending)
+
+How criteria are sorted:
+* Names and Telegram handles - alphabetical order
+* Consultations and Mastery Checks - chronological order
+* Grades - numerical order
+
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+* If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
+* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
+  will be shown before students with Telegram handles.
+</div>
 
 Example: enter `sort m/a` with an unsorted list of students.
 ![SortCommand.png](images/SortCommand.png)
@@ -209,7 +232,6 @@ The index of the student can be seen from the student list.<br>
 </div>
 
 Example after entering `mark 1`:
-
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
 
 ### Unmarking a student's Mastery Check: `unmark`
@@ -224,7 +246,6 @@ The index of the student can be seen from the student list.<br>
 </div>
 
 Example after entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
-
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 
 ### Adding aliases: `alias`
@@ -270,34 +291,53 @@ Format: `guide`
 Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
 It also includes a link to this User Guide if needed.
 
-
 Format: `help`
 
-[Table of Contents](#table-of-contents)
+### Exiting FRIDAY : `exit`
+
+Exits FRIDAY.
+
+Format: `exit`
+
+### Saving the data
+
+FRIDAY's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+FRIDAY's student and alias data is saved as a JSON file at `[JAR file location]/data/friday.json`.<br>
+Advanced users are welcome to update data directly by editing the data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-Question: Which computers can run this software?
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install FRIDAY in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FRIDAY home folder.
 
-Answer: All computers can run this software as it not limited by hardware. 
-        However on the software side Windows computers minimally must be of version 7. 
-        All versions above Windows 7 should be compatible.
-        All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
+**Q**: I accidentally made the data file invalid and now my old data does not show in FRIDAY. How do I fix this?<br>
+**A**: To retrieve the old data, revert all invalid changes in the data file **before running any commands** in FRIDAY.
 
-Question: What if I am not good at typing. Is FRIDAY for me?
+**Q**: Which computers can run this software?<br>
+**A**: All computers can run this software as it not limited by hardware. However on the software side Windows computers <br>
+       minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
 
-Answer: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typer you will be saving time as compared to pen and paper or an excel sheet.
-        Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
+**Q**: What if I am not good at typing. Is FRIDAY for me?<br>
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typer <br>
+       you will be saving time as compared to pen and paper or an excel sheet. <br>
+       Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
 
-Question: What are the additional features coming to FRIDAY?
-
-Answer: FRIDAY is always expanding to serve you better. In the near future you can expect to see.
-        1. Shared databases
-        2. Larger storage limits
-        3. Cloud compatibility
-        4. Easy import and export of data
+**Q**: What are the additional features coming to FRIDAY?<br>
+**A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see. 
+       1. Shared databases 
+       2. Larger storage limits 
+       3. Cloud compatibility 
+       4. Easy import and export of data
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -321,10 +361,9 @@ Answer: FRIDAY is always expanding to serve you better. In the near future you c
 | **View all alias**                           | `aliaslist`                                                                                              |
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
 | **Getting Help**                             | `help`                                                                                                   |
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## Glossary
+| **Exiting FRIDAY**                           | `exit`                                                                                                   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+##Glossary
 
 1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
 
@@ -351,4 +390,3 @@ Answer: FRIDAY is always expanding to serve you better. In the near future you c
 12. Mastery Check: A pass/fail for of assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
 13. Alias: A nickname or an alternate name for a command that you can set.
-

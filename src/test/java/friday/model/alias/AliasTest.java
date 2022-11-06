@@ -27,6 +27,8 @@ public class AliasTest {
         // invalid alias
         assertFalse(Alias.isValidAlias(AddCommand.COMMAND_WORD)); // alias in reserved keyword
         assertFalse(Alias.isValidAlias(DeleteCommand.COMMAND_WORD)); // alias in reserved keyword
+        assertFalse(Alias.isValidAlias("")); // alias is an empty string
+        assertFalse(Alias.isValidAlias("hello world")); // alias contains more than 1 word
 
         // valid name
         assertTrue(Alias.isValidAlias(VALID_ALIAS_1)); // valid alias

@@ -19,6 +19,10 @@ public class Prefix {
         return getPrefix();
     }
 
+    public String getPrefixWithoutSlash() {
+        return prefix.replace("/", "");
+    }
+
     @Override
     public int hashCode() {
         return prefix == null ? 0 : prefix.hashCode();

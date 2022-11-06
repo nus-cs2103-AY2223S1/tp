@@ -5,7 +5,7 @@ skinparam arrowcolor LOGIC_COLOR_T3
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR_T3
-participant ":FindCommandParser" as FridayParser LOGIC_COLOR_T3
+participant "fcp:FindCommandParser" as FindCommandParser LOGIC_COLOR_T3
 participant "fc:FindCommand" as FindCommand LOGIC_COLOR_T3
 participant "r:CommandResult" as CommandResult LOGIC_COLOR_T3
 end box
@@ -17,23 +17,26 @@ end box
 [-> LogicManager : execute("find alice")
 activate LogicManager
 
-LogicManager -> FridayParser : parse("find alice")
-activate FridayParser
+
+LogicManager -> FindCommandParser : parse("find alice")
+activate FindCommandParser
 
 create FindCommand
-FridayParser -> FindCommand : findCommand(p)
+FindCommandParser -> FindCommand : findCommand(p)
 activate FindCommand
 
-FindCommand --> FridayParser : fc
+FindCommand --> FindCommandParser : fc
 deactivate FindCommand
 
-FridayParser --> LogicManager : fc
-deactivate FridayParser
+FindCommandParser --> LogicManager : fc
+deactivate FindCommandParser
+FindCommandParser [hidden]-> LogicManager
+destroy FindCommandParser
 
-LogicManager -> FindCommand : fc.execute(m)
+LogicManager -> FindCommand : execute(m)
 activate FindCommand
 
-FindCommand [MODEL_COLOR]-> Model : m.updateFilteredStudentList(p)
+FindCommand [MODEL_COLOR]-> Model : updateFilteredStudentList(p)
 activate Model
 
 Model [MODEL_COLOR]-> FilteredList : fs.setPredicate(p)
@@ -42,6 +45,7 @@ activate FilteredList
 
 FilteredList -[MODEL_COLOR]--> Model :
 deactivate FilteredList
+
 
 Model -[MODEL_COLOR]--> FindCommand
 deactivate Model
@@ -54,6 +58,9 @@ CommandResult --> FindCommand : r
 deactivate CommandResult
 FindCommand --> LogicManager : r
 deactivate FindCommand
+'spacing
+FindCommand [hidden]--> LogicManager
+destroy FindCommand
 
 
 [<--LogicManager : r

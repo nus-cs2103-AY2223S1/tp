@@ -104,21 +104,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered student list and selected student in {@code actualModel} remain unchanged
+     * - the friday, filtered student list and selected student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Friday expectedAddressBook = new Friday(actualModel.getFriday());
+        Friday expectedFriday = new Friday(actualModel.getFriday());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getFriday());
+        assertEquals(expectedFriday, actualModel.getFriday());
         assertEquals(expectedFilteredList, actualModel.getStudentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s friday.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getStudentList().size());
