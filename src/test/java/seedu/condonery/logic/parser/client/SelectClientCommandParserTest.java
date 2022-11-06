@@ -5,6 +5,7 @@ import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFail
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.client.SelectClientCommand;
 import seedu.condonery.logic.parser.ParserUtil;

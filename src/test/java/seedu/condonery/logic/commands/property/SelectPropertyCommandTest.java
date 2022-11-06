@@ -3,16 +3,10 @@ package seedu.condonery.logic.commands.property;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.condonery.model.Model;
-import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.UserPrefs;
 
 public class SelectPropertyCommandTest {
 

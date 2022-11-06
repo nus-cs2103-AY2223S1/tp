@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.model.client.exceptions.DuplicateClientException;
 import seedu.condonery.model.client.exceptions.UniqueClientNotFoundException;
 
@@ -19,7 +20,7 @@ public class UniqueClientListTest {
     public void duplicateClientInList() {
         UniqueClientList clients = new UniqueClientList();
         clients.add(AMY_CLIENT);
-        assertEquals(clients.getUniqueClientByName(AMY_CLIENT.getName().toString()),AMY_CLIENT);
+        assertEquals(clients.getUniqueClientByName(AMY_CLIENT.getName().toString()), AMY_CLIENT);
     }
 
     @Test
@@ -64,8 +65,8 @@ public class UniqueClientListTest {
         UniqueClientList clients = new UniqueClientList();
         clientsList.add(AMY_CLIENT);
         clients.setClients(clientsList);
-        assertThrows(UniqueClientNotFoundException.class,
-                () -> clients.getUniqueClientByName(BOB_CLIENT.getName().toString()));
+        assertThrows(UniqueClientNotFoundException.class, () ->
+                clients.getUniqueClientByName(BOB_CLIENT.getName().toString()));
     }
 
     @Test
