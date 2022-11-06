@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/24Donovan24)]
 [[portfolio](team/24donovan24.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Ervin Kin Zhe Zheng
 
@@ -27,8 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ErvinK123)]
 [[portfolio](team/ervink123.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
 
 ### Kavan Tan
 
@@ -38,7 +37,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kavantan.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Kok Ee Suan
 
@@ -48,7 +46,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ee-suan.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Steven Lim
 
@@ -58,4 +55,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/stevenlimhw.md)]
 
 * Role: Developer
-* Responsibilities: Backend
