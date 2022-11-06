@@ -194,22 +194,14 @@ This will help you understand the guide better!
 
 ### 5.3.1 Adding a student: `add`
 
-
-<div markdown="span" class="alert alert-info">
-:wrench: <b>Function:</b>
-Adds a student to StudMap.
-</div>
-
-<div markdown="span" class="alert alert-info">
-:nut_and_bolt: <b>Format:</b>
-`add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
-</div>
+**Function:** Adds a student to StudMap.
 
 New student attending your class? Add them into StudMap to start managing their records! This is one of the ways you can
 add a student into StudMap.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: <b>Tip:</b>
+**Format:** `add n/NAME m/MODULE id/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
 </div>
 
@@ -227,12 +219,13 @@ A student can have any number of tags (including 0)
 
 ### 5.3.2 Deleting a student: `delete`
 
-Deletes the specified student from the StudMap.
+**Function:** Deletes the specified student from the StudMap.
 
-Did your student withdraw from the module midway through the semester? You can remove him from so that your StudMap
+Did your student withdraw from the module midway through the semester? You can remove them from so that your StudMap
 remains clutter-free!
 
-<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+<div markdown="span" class="alert alert-primary">
+:bulb: <b>Tip:</b>
 You can use [Find](#536-locating-students-by-name-find) to help locate the student you wish to delete first. <br>
 </div>
 
@@ -247,9 +240,23 @@ You can use [Find](#536-locating-students-by-name-find) to help locate the stude
 * `list` followed by `delete 2` deletes the 2nd student in the StudMap.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+**See Also:**
+[`Clear`](#533-clearing-all-entries-clear)
+
 ### 5.3.3 Clearing all entries: `clear`
 
-Clears all entries from the StudMap.
+**Function:** Clears all entries from the StudMap.
+
+Need to start afresh? Delete all the entries from StudMap with this command.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: <b>Caution:</b>
+This can be dangerous! Make sure you back up your data before executing this command.
+See <a href="#553-backing-up-data">here</a> for more instructions.<br>
+</div>
+
+**See Also**
+[`Delete`](#532-deleting-a-student-delete)
 
 **Format:** `clear`
 
@@ -599,16 +606,21 @@ Exits the program.
 StudMap data are saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
 
-### 5.5.3 Editing the data file
+### 5.5.3 Backing up data
 
-StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. Advanced users are welcome to update data
-directly by editing that data file.
+StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. You can make a copy of this file if you
+want to back up your data.
+
+### 5.5.4 Editing the data file
+
+As mentioned above, your StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. Advanced users
+are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run.
 </div>
 
-### 5.5.4 Viewing help: `help`
+### 5.5.5 Viewing help: `help`
 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
@@ -651,7 +663,7 @@ the data of your previous StudMap home folder.
 | **[Add tag](#548-adding-tag-to-student-tag)**                                    | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`                                                                                                                                         |
 | **[Remove tag](#549-removing-tag-from-student-untag)**                           | `untag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`                                                                                                                                     |
 | **[Exit](#551-exiting-the-program-exit)**                                        | `exit`                                                                                                                                                                                                   |
-| **[Help](#554-viewing-help-help)**                                               | `help`                                                                                                                                                                                                   |
+| **[Help](#555-viewing-help-help)**                                               | `help`                                                                                                                                                                                                   |
 
 ---
 
