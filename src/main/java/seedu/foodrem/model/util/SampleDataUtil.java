@@ -112,7 +112,7 @@ public class SampleDataUtil {
             new Item(new ItemName("Potatoes"),
                      new ItemQuantity("9.3"),
                      new ItemUnit("Kg"),
-                     ItemBoughtDate.of("14-11-2022"),
+                     ItemBoughtDate.of("14-10-2022"),
                      ItemExpiryDate.of("24-12-2022"),
                      new ItemPrice("2.80"),
                      new ItemRemark("For seasonal meal"),
