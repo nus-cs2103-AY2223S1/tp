@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR
+Participant ":FridayParser" as fridayParser LOGIC_COLOR
+Participant "lc:ListCommand" as listCommand LOGIC_COLOR
+Participant "r:CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+Participant "m:ModelManager" as modelManager MODEL_COLOR
+Participant ":FilteredList" as filteredList MODEL_COLOR
+end box
+
+[-> logicManager : execute("ls")
+activate logicManager LOGIC_COLOR
+
+logicManager -[LOGIC_COLOR]> fridayParser : parseCommand("ls",m)
+activate fridayParser LOGIC_COLOR
+
+fridayParser -[MODEL_COLOR]> modelManager : getKeyword("ls")
+activate modelManager MODEL_COLOR
+
+modelManager --[MODEL_COLOR]> fridayParser : "list"
+deactivate modelManager
+
+create listCommand
+fridayParser -[LOGIC_COLOR]> listCommand :
+activate listCommand LOGIC_COLOR
+
+listCommand --[LOGIC_COLOR]> fridayParser : lc
+deactivate listCommand
+
+fridayParser --[LOGIC_COLOR]> logicManager : lc
+deactivate fridayParser
+
+logicManager -[LOGIC_COLOR]> listCommand : execute(m)
+activate listCommand  LOGIC_COLOR
+
+listCommand -[MODEL_COLOR]> modelManager : updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)
+activate modelManager MODEL_COLOR
+
+modelManager -[MODEL_COLOR]> filteredList : setPredicate(PREDICATE_SHOW_ALL_STUDENTS)
+activate filteredList MODEL_COLOR
+
+filteredList --[MODEL_COLOR]> modelManager :
+deactivate filteredList
+
+modelManager --[MODEL_COLOR]> listCommand :
+deactivate modelManager
+
+create commandResult
+listCommand -[LOGIC_COLOR]> commandResult :
+activate commandResult LOGIC_COLOR
+
+commandResult --[LOGIC_COLOR]> listCommand : ""r""
+deactivate commandResult
+
+listCommand --[LOGIC_COLOR]> logicManager : ""r""
+deactivate listCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+listCommand -[hidden]-> logicManager
+destroy listCommand
+
+[<[LOGIC_COLOR]--logicManager
+deactivate logicManager
+@enduml
