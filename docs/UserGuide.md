@@ -250,7 +250,7 @@ To add a **tutor**,<br>
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,<br><p></p>
+* Generally,
   * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
     <p></p>
   * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
@@ -316,39 +316,39 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 * If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
 
 
-* Generally,<br><p></p>
-    * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
-      <p></p>
-    * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
-      The valid subjects are:
-      1. English
-      2. Mathematics
-      3. Physics
-      4. Chemistry
-      5. Biology
-      6. Elementary Mathematics
-      7. Additional Mathematics
+* Generally,
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank. Also, there should not be an existing class with the same name.
+    <p></p>
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full. 
+    The valid subjects are:
+    1. English
+    2. Mathematics
+    3. Physics
+    4. Chemistry
+    5. Biology
+    6. Elementary Mathematics
+    7. Additional Mathematics
     
-      (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
-    * `<level>` field should be one of the valid academic levels.
-      The valid academic levels are:
-        1. Primary 1 to 6
-        2. Secondary 1 to 4
+    (Abbreviations are also allowed, e.g., "Eng" or "Amath".)
+  * `<level>` field should be one of the valid academic levels.
+    The valid academic levels are:
+      1. Primary 1 to 6
+      2. Secondary 1 to 4
 
-      (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
-    * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
-      <p></p>
-    * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
-      1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
-      2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
-         Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
-         Some valid examples are:
-          - 12pm - 3pm
-          - 1:00pm 2:00pm
-          - 2200 to 2400
-          - 23:00 - 00:00
-         <p></p>
-    * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+    (Abbreviations are also allowed, e.g., "P1" or "Sec 3".)
+  * `<day>` field should be a valid day of the week. (Abbreviations are also allowed, e.g., "Mon" or "Thurs".)
+    <p></p>
+  * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
+    1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
+    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
+       Note that all timings are considered to be on the same day (**including** midnight, i.e., 12am or 00:00, if specified as the end time, symbolises the end of the same day).
+       Some valid examples are:
+        - 12pm - 3pm
+        - 1:00pm 2:00pm
+        - 2200 to 2400
+        - 23:00 - 00:00
+       <p></p>
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 
 Examples:
@@ -443,7 +443,7 @@ To edit a **class**, <br>
           - end with a domain label at least 2 characters long
           - have each domain label start and end with alphanumeric characters
           - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-      <p></p>
+    <p></p>
   * `<address>` field can take any values but should not be left blank.
     <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
@@ -482,7 +482,7 @@ To edit a **class**, <br>
           - 1:00pm 2:00pm
           - 2200 to 2400
           - 23:00 - 00:00
-      <p></p>
+    <p></p>
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
@@ -769,7 +769,7 @@ Sorts the current list chronologically, alphabetically, or in reverse order.
 
 Format: `sort <order>`
 
-* `<order>` field should be a valid sort order. The valid orders are as follows:<br><p></p>
+* `<order>` field should be a valid sort order. The valid orders are as follows:
   * **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
     <p></p>   
   * **alpha**: Sorts the list alphabetically with reference to the name.
