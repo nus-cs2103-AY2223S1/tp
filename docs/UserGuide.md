@@ -52,7 +52,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
   e.g `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used any number of times including zero times.<br>
 
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/fast learner`, `tag/fast learner tag/good at recursion` etc.
 
@@ -92,8 +92,8 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 * Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+* A student can have any number of tags (including 0).
 </div>
 
 Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
@@ -108,25 +108,30 @@ Deletes the student at the given index from FRIDAY.
 Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-The index of the student must be specified and there should be exactly one INDEX parameter.
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student can be seen from the student list.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+* The index of the student can be seen from the student list.
 </div>
 
 ### Editing a student: `edit`
 
 Edits a student's details in FRIDAY.
 
-Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
-The name, Telegram handle, consultation, mastery check, and tag(s) are optional, but there should be at least one parameter.<br>
-A student can have any number of tags (including 0).
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
+* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are optional, but there should be at least one parameter for the `edit` command to be valid..<br>
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+* The index of the student can be seen from the student list.
+* A student can have any number of tags (including 0).
 </div>
 
 ### Editing a remark for a student: `remark`
