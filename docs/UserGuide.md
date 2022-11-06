@@ -76,7 +76,7 @@ In order to help you pay attention, we have used some icons along with highlight
 
 ### 4.3. Formatting and Notation
 
-In case you are wondering why certain texts are styled differently, here are the meaning behind:
+In case you are wondering why certain texts are styled differently, here are the meaning behind them:
 
 1. Words in big size, numbered and in purple color are section titles and subtitles.
 2. **Words in bold** are phrases that we want you to read.
