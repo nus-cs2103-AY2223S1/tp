@@ -1,9 +1,13 @@
 package seedu.workbook.model.internship;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
@@ -29,14 +33,18 @@ public class InternshipTest {
         // null -> returns false
         assertFalse(ALICE.isSameInternship(null));
 
-        // same company, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameInternship(editedAlice));
-
-        // different company, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withCompany(VALID_COMPANY_BOB).build();
+        // different role same stage, returns false
+        Internship editedAlice = new InternshipBuilder(ALICE).withRole(VALID_ROLE_BOB).build();
         assertFalse(ALICE.isSameInternship(editedAlice));
+
+        // different company same stage, returns false
+        Internship editedAliceCompanyOnly = new InternshipBuilder(ALICE).withCompany(VALID_COMPANY_BOB).build();
+        assertFalse(ALICE.isSameInternship(editedAliceCompanyOnly));
+
+        // same company and role, different stage -> returns true as company and role are defining factors of
+        // the same internship application
+        Internship editedAliceCompanyAndRole = new InternshipBuilder(ALICE).withStage(VALID_STAGE_BOB).build();
+        assertTrue(ALICE.isSameInternship(editedAliceCompanyAndRole));
 
         // company differs in case, all other attributes same -> returns true
         Internship editedBob = new InternshipBuilder(BOB).withCompany(VALID_COMPANY_BOB.toLowerCase()).build();
@@ -75,9 +83,25 @@ public class InternshipTest {
         editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different stage -> returns false
+        editedAlice = new InternshipBuilder(ALICE).withStage(VALID_STAGE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different role -> returns false
+        editedAlice = new InternshipBuilder(ALICE).withRole(VALID_ROLE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different datetime -> returns false
+        editedAlice = new InternshipBuilder(ALICE).withDateTime(VALID_DATETIME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
         editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        assertEquals(new InternshipBuilder(ALICE).build().hashCode(), new InternshipBuilder(ALICE).build().hashCode());
     }
 }

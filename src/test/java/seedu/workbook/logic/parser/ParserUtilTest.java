@@ -130,4 +130,12 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseTags_collectionWithSomeEmptyTags_returnsTagSetWithoutEmptyTags() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, WHITESPACE, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
 }
