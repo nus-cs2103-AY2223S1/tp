@@ -305,7 +305,6 @@ After executing the command:<br>
 ![after sorting descending](images/AfterSortNameDesc.png)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 #### 3.3.3.2 Sort by moduleCode
 
@@ -319,25 +318,22 @@ Before executing the above command:
 
 ![before sorting](images/BeforeModuleCode.png)
 
-After executing the above command: 
+<div style="page-break-after: always;"></div>
 
+After executing the above command:
 ![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in ascending order. 
 The level of a module is defined by the value of the 4-digits within the module code whereby
 higher in numerical value means a high-level module.
 </div>
 
 Suppose the level of module code is the same (evey module has the same 4-digit), shown below:
-
 ![same level](images/SameLevel.png)
 
 After executing the command `sort A-Z m/`:
-
 ![sort same level](images/SortSameLevel.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in ascending order.
 Suppose two module codes have the same level (4-digit code), the two module codes will be sorted
 alphabetically.
 </div>
@@ -347,10 +343,8 @@ Format: `sort Z-A m/`, sorts in descending order
 
 Example Command: `sort Z-A m/`
 
-After executing the above command: ![after sorting](images/SortReverse.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted descending order.
-</div>
+After executing the above command: 
+![after sorting](images/SortReverse.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
