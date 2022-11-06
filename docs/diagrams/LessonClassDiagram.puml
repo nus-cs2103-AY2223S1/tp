@@ -50,14 +50,11 @@ Lesson *---> LessonAttendance
 Lesson *---> LessonNotes
 Studio *--> StudioParticipation
 
-
 LessonDesc -[hidden]right-> TimePeriod
 TimePeriod -[hidden]right-> LessonAttendance
 LessonAttendance -[hidden]right-> LessonNotes
 LessonNotes -[hidden]right-> StudioParticipation
 LessonNotes -[hidden]right-> StudioParticipation
-
-'UserPrefs -[hidden]-> Consult
 MasteryCheck -[hidden]r-> Consult
 Studio -[hidden]r-> MasteryCheck
 
