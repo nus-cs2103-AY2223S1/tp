@@ -192,19 +192,19 @@ The command history is facilitated by `CommandSession`. The aim of `CommandSessi
 lightweight wrapper around the command execution process, handling the reading and writing to and
 from the command history.
 
-Within `CommandSession`, we make use of a `ListIterator` to keep track of which position the user is
-currently at in the command history. Additionally, the use of `ListIterator` allows us to create a
-generator-like method to update and retrieve the user position in the command history.
+Within `CommandSession`, we make use of an index pointer (`commandHistoryPos`) to keep track of which 
+position the user is currently at in the command history. The use of the index pointer allows us to 
+create a generator-like method to update and retrieve the user position in the command history.
 
 - `CommandSession::getPreviousCommand()`
-    - Retrieves the previous command in the command history, and updates the internal `ListIterator`
+    - Retrieves the previous command in the command history, and updates the internal index pointer
       to the next position (upward) in the command history.
 
 - `CommandSession::getNextCommand()`
-    - Retrieves the next command in the command history, and updates the internal `ListIterator` to
+    - Retrieves the next command in the command history, and updates the internal index pointer to
       the next position (downwards) in the command history.
 
-> Note that both of these operations are not pure, since the internal `ListIterator`
+> Note that both of these operations are not pure, since the internal index pointer
 > is updated after an invocation of either operations.
 
 #### Design considerations
