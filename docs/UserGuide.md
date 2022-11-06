@@ -184,6 +184,8 @@ Here are some general guidelines for you to better understand the command format
 
 <sub>[return to table of contents ⬆](#table-of-contents)</sub>
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 > This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#command-format)!
 
@@ -516,7 +518,7 @@ If your changes to the data file makes its format invalid, OmniHealth will disca
 
 <sub>[return to table of contents ⬆](#table-of-contents)</sub>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 **Q**: My computer doesn't have Java 11! How can I install it? <br>
@@ -541,7 +543,7 @@ The data file can be found in the JSON file under `[JAR file location]/data/pati
 
 <sub>[return to table of contents ⬆](#table-of-contents)</sub>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
