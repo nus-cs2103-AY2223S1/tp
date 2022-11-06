@@ -240,6 +240,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+Note:
+* This teammate will also be deleted from all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
+* Enter `task list` to view all tasks again.
+
 ---
 ### Editing a Teammate's information : `edit`
 
@@ -257,6 +261,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Note:
+* This teammate's details will also be edited under all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
+* Enter `task list` to view all tasks again.
 
 ---
 ### Finding Teammate(s) based on name/keyword/tags: `find`
