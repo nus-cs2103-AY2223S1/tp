@@ -1320,3 +1320,11 @@ testers are expected to do more *exploratory* testing.
 | A new predicate class needs to be created for each field to be filtered by | Optional predicates are used instead                                                                            |
 | Find by one entity, i.e. Person                                            | Find by multiple entities separately, i.e. Patient, Appointment and Bill                                        |
 | Can only find using full words                                             | Can find using partial and full words, numbers and special characters depending on respective field constraints |
+
+* Object Entity
+
+| AB3                | HealthContact                                    |
+|--------------------|--------------------------------------------------|
+| Person             | Patient, Appointment and Bill                    |
+| Persons themselves | Links patients with their appointments and bills |
+  
