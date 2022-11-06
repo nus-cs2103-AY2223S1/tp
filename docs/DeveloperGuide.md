@@ -765,7 +765,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use Case: UC06 - cancel an appointment**
+**Use Case: UC06 - Cancel an appointment**
 
 
 **Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
@@ -786,7 +786,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use Case: UC07 - find a patient**
+**Use Case: UC07 - Find a patient**
 
 **Guarantees:**  A list of patients that matches the given query if applicable.
 1.  User requests to find a patient.
@@ -802,7 +802,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC08 - find an appointment**
+**Use Case: UC08 - Find an appointment**
 
 **Guarantees:**  A list of appointments that matches the given query if applicable.
 1.  User requests to find an appointment.
@@ -818,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC09 - mark an appointment**
+**Use Case: UC09 - Mark an appointment**
 
 **Guarantees:** The appointment will be marked as done only if the data entered are correct.
 
@@ -840,7 +840,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use Case: UC10 - unmark an appointment**
+**Use Case: UC10 - Unmark an appointment**
 
 **Guarantees:** The appointment will be unmarked as not done only if the data entered are correct.
 
@@ -862,7 +862,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use Case: UC11 - edit a patient**
+**Use Case: UC11 - Edit a patient**
 
 **Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
 
@@ -883,7 +883,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
- **Use Case: UC12 - edit an appointment**
+ **Use Case: UC12 - Edit an appointment**
 
 **Guarantees:** The appointment will have its fields edited only if the data entered are correct.
 
@@ -904,7 +904,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use Case: UC13 - sort the patient list**
+**Use Case: UC13 - Sort the patient list**
 
 **Guarantees:** The patient list will be sorted in ascending order.
 
@@ -923,7 +923,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
       Use case ends.
 
-**Use Case: UC14 - sort the appointment list**
+**Use Case: UC14 - Sort the appointment list**
 
 **Guarantees:** The appointment list will be sorted in ascending order.
 
@@ -942,7 +942,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: UC15 - group patients**
+**Use Case: UC15 - Group patients**
 
 **Guarantees:** Patients will be grouped by their tags.
 
@@ -961,7 +961,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: UC16 - group appointments**
+**Use Case: UC16 - Group appointments**
 
 **Guarantees:** Appointments will be grouped by their some criteria.
 
@@ -988,7 +988,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: UC17 - ungroup patients**
+**Use Case: UC17 - Ungroup patients**
 
 **Guarantees:** The patient list will be the same as before grouping.
 
@@ -999,7 +999,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use Case: UC18 - ungroup appointments**
+**Use Case: UC18 - Ungroup appointments**
 
 **Guarantees:** The appointment list will be the same as before grouping.
 
@@ -1010,7 +1010,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use Case: UC19 - hide patients**
+**Use Case: UC19 - Hide patients**
 
 **Guarantees:** Patients satisfying given conditions will not be shown.
 
@@ -1029,7 +1029,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use Case: UC20 - hide appointments**
+**Use Case: UC20 - Hide appointments**
 
 **Guarantees:** Appointments satisfying given conditions will not be shown.
 
@@ -1048,7 +1048,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use Case: UC21 - unhide patients**
+**Use Case: UC21 - Unhide patients**
 
 **Guarantees:** The patient list will be the same as before hiding.
 
@@ -1059,7 +1059,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 
-**Use Case: UC22 - unhide appointments**
+**Use Case: UC22 - Unhide appointments**
 
 **Guarantees:** The appointment list will be the same as before hiding.
 
@@ -1070,7 +1070,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use Case: UC23 - clear entries**
+**Use Case: UC23 - Clear entries**
 
 **Guarantees:** All entries will be cleared.
 
@@ -1080,7 +1080,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC24 - show help page**
+**Use Case: UC24 - Show help page**
 
 **Guarantees:** A help page will be provided.
 
@@ -1090,7 +1090,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC25 - show command history**
+**Use Case: UC25 - Show command history**
 
 **MSS**
 1. User enters key to view previous commands.
@@ -1098,7 +1098,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC26 - exit the app**
+**Use Case: UC26 - Exit the app**
 
 **MSS**
 1. User enters command to exit.
