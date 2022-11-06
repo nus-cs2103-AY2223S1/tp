@@ -180,11 +180,11 @@ public class ScheduleGridPanel extends UiPart<Region> {
     /**
      * Sets the style of gridPane
      */
-    public void setGridPaneStyle(Theme theme) {
-        if (theme.equals(Theme.DARK)) {
-            gridPane.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
-        } else {
-            gridPane.setStyle("-fx-background-color: rgba(245,241,207,0.89)");
-        }
-    }
+    // public void setGridPaneStyle(Theme theme) {
+    //     if (theme.equals(Theme.DARK)) {
+    //       gridPane.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
+    //   } else {
+    //       gridPane.setStyle("-fx-background-color: rgba(245,241,207,0.89)");
+    //   }
+    //}
 }

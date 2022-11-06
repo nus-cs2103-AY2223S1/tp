@@ -197,11 +197,11 @@ public class MainWindow extends UiPart<Stage> {
 
         applyTheme(Theme.DARK);
         scheduleGridPanel.setScrollPaneStyle(theme);
-        scheduleGridPanel.setGridPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
         scheduleGridPanelVertical.setScrollPaneStyle(theme);
-        scheduleGridPanelVertical.setGridPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
 
-        resultDisplay.setFeedbackToUser("Welcome to ProfNUS!");
+        // resultDisplay.setFeedbackToUser("Welcome to ProfNUS!");
 
     }
 
@@ -323,9 +323,9 @@ public class MainWindow extends UiPart<Stage> {
         scheduleGridPanelVertical.constructVerticalTimetable();
 
         scheduleGridPanel.setScrollPaneStyle(theme);
-        scheduleGridPanel.setGridPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
         scheduleGridPanelVertical.setScrollPaneStyle(theme);
-        scheduleGridPanelVertical.setGridPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
 
         if (timetableModel == 0) { // horizontal Timetable
             tabPane.getSelectionModel().select(TIMETABLE);
@@ -386,9 +386,9 @@ public class MainWindow extends UiPart<Stage> {
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         scheduleGridPanel.setScrollPaneStyle(theme);
-        scheduleGridPanel.setGridPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
         scheduleGridPanelVertical.setScrollPaneStyle(theme);
-        scheduleGridPanelVertical.setGridPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
@@ -397,9 +397,9 @@ public class MainWindow extends UiPart<Stage> {
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
         scheduleGridPanel.setScrollPaneStyle(theme);
-        scheduleGridPanel.setGridPaneStyle(theme);
+        // scheduleGridPanel.setGridPaneStyle(theme);
         scheduleGridPanelVertical.setScrollPaneStyle(theme);
-        scheduleGridPanelVertical.setGridPaneStyle(theme);
+        // scheduleGridPanelVertical.setGridPaneStyle(theme);
         resultDisplay.setFeedbackToUser("Switched to dark mode!");
     }
 
