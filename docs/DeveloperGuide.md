@@ -380,7 +380,7 @@ Step 6. The leave to be removed is created based of its index in the `Queue<Leav
 
 Step 7. This returns a `CommandResult` object, which is returned to the `LogicManager`.
 
-### BatchAdd
+### Batch-Add
 
 This feature is created for users to add multiple entries at once.
 In the case of this application, there are two main reasons why our User (HR Executive) would use this.
