@@ -1,18 +1,18 @@
 package seedu.address.model.item;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.HashSet;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 class AbstractDisplayItemTest {
     private Set<Tag> tags;
@@ -71,7 +71,6 @@ class AbstractDisplayItemTest {
     @Test
     void getAttribute_attributeFound_success() {
         Person dummy = buildDefaultPerson("dummy", "friends");
-        dummy
         assertTrue(dummy.getAttribute("friends").isPresent());
     }
 
