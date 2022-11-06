@@ -33,6 +33,11 @@ public class StatsCommand extends Command {
         return CommandResult.from(new Stats(amountWasted, expensiveItems, commonTags));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return STATS_COMMAND.getUsage();
     }

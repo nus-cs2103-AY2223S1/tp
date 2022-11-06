@@ -10,6 +10,9 @@ import seedu.foodrem.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<String> execute(Model model) {
         return new CommandResult<>() {
@@ -44,6 +47,11 @@ public class ExitCommand extends Command {
         };
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return EXIT_COMMAND.getUsage();
     }

@@ -30,6 +30,9 @@ public class ViewCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<Item> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -43,14 +46,22 @@ public class ViewCommand extends Command {
         return CommandResult.from(itemToDisplayInformation);
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
+    public static String getUsage() {
+        return VIEW_COMMAND.getUsage();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof ViewCommand
                 && index.equals(((ViewCommand) other).index));
-    }
-
-    public static String getUsage() {
-        return VIEW_COMMAND.getUsage();
     }
 }

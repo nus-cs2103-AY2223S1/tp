@@ -50,6 +50,11 @@ public class TagCommand extends Command {
         return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item tagged successfully. Updated item:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return TAG_COMMAND.getUsage();
     }

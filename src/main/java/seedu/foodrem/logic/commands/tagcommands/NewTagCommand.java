@@ -44,6 +44,11 @@ public class NewTagCommand extends Command {
         return CommandResult.from(new TagsWithMessage("New tag added:", toAdd));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return NEW_TAG_COMMAND.getUsage();
     }

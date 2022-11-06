@@ -38,6 +38,11 @@ public class DeleteTagCommand extends Command {
         return CommandResult.from(new TagsWithMessage("Tag deleted:", toDelete));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return DELETE_TAG_COMMAND.getUsage();
     }

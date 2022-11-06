@@ -50,6 +50,11 @@ public class UntagCommand extends Command {
         return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item untagged successfully. Updated item:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return UNTAG_COMMAND.getUsage();
     }

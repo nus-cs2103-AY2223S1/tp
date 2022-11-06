@@ -24,6 +24,9 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,6 +42,11 @@ public class DeleteCommand extends Command {
                 "Successfully deleted the following item:"));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return DELETE_COMMAND.getUsage();
     }
