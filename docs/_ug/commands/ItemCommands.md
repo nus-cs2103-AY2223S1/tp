@@ -219,24 +219,19 @@ The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the i
 * If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-dec 1 qty/4
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Decremented Item:
-Name: Onions
-Quantity: 7 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="dec 1 qty/4"
+  commandOutputBox="images/itemCommands/commandOutputBox/dec.png"
+%}
 
 ---
 
