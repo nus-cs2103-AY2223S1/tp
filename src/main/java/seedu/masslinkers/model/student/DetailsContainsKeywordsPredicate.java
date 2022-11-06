@@ -21,7 +21,7 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Student> {
         boolean isStudent = false;
 
         if (student.getPhone() != null) {
-            isStudent = isStudent || keywords.stream().anyMatch(
+            isStudent = keywords.stream().anyMatch(
                     keyword -> StringUtil.containsPartialWordIgnoreCase(student.getPhone().toString(), keyword));
         }
 

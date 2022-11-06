@@ -18,19 +18,19 @@ public class Mod {
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
         GE("General Education"), UE("Unrestricted Elective");
-        private String value;
+        private String modName;
 
-        ModCategory(String value) {
-            this.value = value;
+        ModCategory(String modName) {
+            this.modName = modName;
         }
 
-        public String getValue() {
-            return value;
+        public String getModName() {
+            return modName;
         }
 
         @Override
         public String toString() {
-            return this.getValue();
+            return this.getModName();
         }
     }
 

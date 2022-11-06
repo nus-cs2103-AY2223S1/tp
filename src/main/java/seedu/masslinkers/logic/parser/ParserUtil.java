@@ -47,9 +47,9 @@ public class ParserUtil {
         checkForPrefix(trimmedIndex);
 
         // checks if index has extraneous characters
-        String[] splittedArgs = trimmedIndex.split("\\s+");
-        if (splittedArgs.length > 1) {
-            List<String> illegalChars = Arrays.stream(splittedArgs)
+        String[] splitArgs = trimmedIndex.split("\\s+");
+        if (splitArgs.length > 1) {
+            List<String> illegalChars = Arrays.stream(splitArgs)
                     .filter(x -> !StringUtil.isNonZeroUnsignedInteger(x))
                     .collect(Collectors.toList());
             // if there is more than 2 valid indexes
@@ -242,9 +242,9 @@ public class ParserUtil {
      * @throws ParseException When an invalid prefix is found.
      */
     private static void checkForPrefix(String args) throws ParseException {
-        String[] splittedArgs = args.split("\\s+");
-        if (splittedArgs.length > 1) {
-            Set<String> stringsWithInvalidPrefix = Arrays.stream(splittedArgs)
+        String[] splitArgs = args.split("\\s+");
+        if (splitArgs.length > 1) {
+            Set<String> stringsWithInvalidPrefix = Arrays.stream(splitArgs)
                     .filter(x -> x.matches(PREFIX_REGEX)).collect(Collectors.toSet());
             if (!stringsWithInvalidPrefix.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX,
@@ -261,8 +261,8 @@ public class ParserUtil {
      * @return The index of the student in String.
      */
     public static String getIndexFromCommand(String args) throws ParseException {
-        String[] splittedArgs = args.split("\\s+");
-        List<String> validIndexes = Arrays.stream(splittedArgs)
+        String[] splitArgs = args.split("\\s+");
+        List<String> validIndexes = Arrays.stream(splitArgs)
                 .filter(x -> INDEX_FORMAT.matcher(x.trim()).matches())
                 .collect(Collectors.toList());
 
@@ -272,8 +272,8 @@ public class ParserUtil {
         }
 
         // valid index is not after the command word
-        if (!validIndexes.get(0).equals(splittedArgs[0])) {
-            throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splittedArgs[0]));
+        if (!validIndexes.get(0).equals(splitArgs[0])) {
+            throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splitArgs[0]));
         }
 
         return validIndexes.iterator().next();

@@ -18,7 +18,7 @@ import seedu.masslinkers.model.student.UniqueStudentList;
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class MassLinkers implements ReadOnlyMassLinkers {
-    private final UniqueStudentList students;
+    private UniqueStudentList students;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

@@ -11,7 +11,7 @@ import seedu.masslinkers.model.interest.Interest;
  */
 class JsonAdaptedInterest {
 
-    private final String interestName;
+    private String interestName;
 
     /**
      * Constructs a {@code JsonAdaptedInterest} with the given {@code interestName}.

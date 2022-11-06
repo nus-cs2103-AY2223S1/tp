@@ -78,7 +78,7 @@ public class MainApp extends Application {
         ReadOnlyMassLinkers initialData;
         try {
             massLinkersOptional = storage.readMassLinkers();
-            if (!massLinkersOptional.isPresent()) {
+            if (massLinkersOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample MassLinkers");
             }
             initialData = massLinkersOptional.orElseGet(SampleDataUtil::getSampleMassLinkers);

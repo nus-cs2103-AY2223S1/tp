@@ -12,7 +12,7 @@ import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
 /**
- * Panel containing the list of students.
+ * Panel containing the list of modules.
  */
 public class ModListPanel extends UiPart<Region> {
     private static final String FXML = "ModListPanel.fxml";
@@ -48,7 +48,7 @@ public class ModListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
-    class ModListViewCell extends ListCell<Mod> {
+    static class ModListViewCell extends ListCell<Mod> {
         @Override
         protected void updateItem(Mod module, boolean isEmpty) {
             super.updateItem(module, isEmpty);
