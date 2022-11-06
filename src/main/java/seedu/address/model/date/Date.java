@@ -19,7 +19,7 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS_DOB = "Date must be before current date for date of births";
 
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid date values.";
-
+    private static final String DATE_DELIMITER = "/";
     private static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
 
     //for changing to storage friendly format
@@ -55,7 +55,6 @@ public class Date implements Comparable<Date> {
      * Checks if a given string follows the valid Date input format.
      * @return boolean
      */
-    //Solution below adapted from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidDateFormat(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -66,7 +65,7 @@ public class Date implements Comparable<Date> {
      */
     public static boolean isValidDateValue(String test) {
         try {
-            String[] parsedDate = test.split("/", 3);
+            String[] parsedDate = test.split(DATE_DELIMITER, 3);
             //To catch corner case of Year 0 which should not exist but #of is unable to detect
             if (Integer.parseInt(parsedDate[2]) == 0) {
                 return false;
@@ -80,11 +79,20 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns true if the {@code LocalDate} specified is after the current date, false otherwise.
+     * Returns true if a given string is after the current date.
+     * @param test string input, the format check for test should be done before calling this function.
      */
-    public static boolean isAfterCurrentDate(String date) {
-        LocalDate dateToCheck = LocalDate.parse(date, logFormatter);
+    public static boolean isAfterCurrentDate(String test) {
+        LocalDate dateToCheck = LocalDate.parse(test, logFormatter);
         return dateToCheck.isAfter(LocalDate.now());
+    }
+
+    /**
+     * Returns the integer age of a person.
+     */
+    public int toAge() {
+        LocalDate currDate = LocalDate.now();
+        return Period.between(this.date, currDate).getYears();
     }
 
     @Override
@@ -98,14 +106,6 @@ public class Date implements Comparable<Date> {
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
-    }
-
-    /**
-     * Returns the integer age of a person.
-     */
-    public int toAge() {
-        LocalDate currDate = LocalDate.now();
-        return Period.between(this.date, currDate).getYears();
     }
 
     @Override
