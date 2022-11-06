@@ -1,6 +1,8 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_COMPLETED_PROJECT;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_DEADLINE;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_DATETIME;
@@ -33,10 +35,6 @@ public class AddDeadlineCommand extends Command {
             + PREFIX_DEADLINE_DATETIME + "13-02-2022 11:11 ";
 
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this "
-            + "student's deadline list";
-    public static final String MESSAGE_COMPLETE_PROJECT = "This student has finished the FYP already, so deadlines "
-            + "could not be added";
 
     private final Deadline toAdd;
     private StudentId studentId;
@@ -61,7 +59,7 @@ public class AddDeadlineCommand extends Command {
 
         // Can only add deadlines for incomplete projects.
         if (student.getProjectStatus().equals(new ProjectStatus("DONE"))) {
-            throw new CommandException(MESSAGE_COMPLETE_PROJECT);
+            throw new CommandException(MESSAGE_COMPLETED_PROJECT);
         }
         if (model.hasDeadline(student, toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEADLINE);

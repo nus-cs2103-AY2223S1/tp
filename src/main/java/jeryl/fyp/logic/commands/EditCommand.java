@@ -1,6 +1,8 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
@@ -47,7 +49,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager.";
+
     private final StudentId studentId;
     private final EditStudentDescriptor editStudentDescriptor;
 
@@ -70,7 +72,7 @@ public class EditCommand extends Command {
         Index targetIndex = model.getIndexByStudentId(studentId);
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
 
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
