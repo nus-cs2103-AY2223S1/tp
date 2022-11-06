@@ -61,7 +61,7 @@ public class LoanCommandParser implements Parseable<LoanCommand> {
             String parsedString = stringbuilder.toString().trim();
             // The first two if cases are added to "override" prettytimeparser for some date formats as it is
             // unable to parse formats such as 26/10/2022 and handle invalid date cases properly.
-            // Edited from https://stackoverflow.com/questions/62054264/check-invalid-date-by-localdate
+            // Solution below adapted from https://stackoverflow.com/questions/62054264/check-invalid-date-by-localdate
             if (parsedString.matches("^([0-9][0-9])/([0-9][0-9])/([0-9][0-9])?[0-9][0-9]$")) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 formatter = formatter.withResolverStyle(ResolverStyle.SMART);
