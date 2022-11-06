@@ -21,6 +21,7 @@ Given below are my contributions to the project.
     * Check documentation of overall code and ensures uniformity.
     * Ensure project deliverables are done on time.
     * Fixed minor bugs[\#117](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/117)
+    * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
     * Changed the icon of the current application
@@ -40,6 +41,6 @@ Given below are my contributions to the project.
         * Created UML Diagrams for Attendance delete command. [\#86](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/86)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#206]()
+    * PRs reviewed (with non-trivial review comments): [\#206](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/206)
     * Reported bugs and suggestions for other teams in the class ([Practical Dry Run](https://github.com/Evande1/ped/issues))
 
