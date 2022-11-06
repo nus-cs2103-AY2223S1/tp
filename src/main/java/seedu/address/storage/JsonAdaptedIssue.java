@@ -7,22 +7,17 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Pin;
-import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
 import seedu.address.model.issue.Urgency;
-import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectId;
 
 /**
  * Jackson-friendly version of {@link Issue}.
  */
 class JsonAdaptedIssue {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
 
     private final String title;
     private final String urgency;
@@ -72,82 +67,13 @@ class JsonAdaptedIssue {
      */
     public Issue toModelType(AddressBook addressBook) throws IllegalValueException {
 
-        if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Title.class.getSimpleName()));
-        }
-        if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
-        }
-        final Title modelTitle = new Title(title);
-
-        if (urgency == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Urgency.class.getSimpleName()));
-        }
-
-        if (!Urgency.isValidUrgencyString(urgency)) {
-            throw new IllegalValueException(Urgency.MESSAGE_CONSTRAINTS);
-        }
-
-        final Urgency modelUrgency = Urgency.valueOf(urgency);
-
-        Deadline modelDeadline;
-
-        if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
-        }
-
-        if (deadline.isEmpty()) {
-            modelDeadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
-        } else {
-            if (!Deadline.isValidDeadline(deadline)) {
-                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            modelDeadline = new Deadline(deadline);
-        }
-
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
-        }
-        final Status modelStatus = new Status(Boolean.valueOf(status));
-
-        if (project == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-            Project.class.getSimpleName()));
-        }
-        final Project modelProject;
-        try {
-            modelProject = HasIntegerIdentifier.getElementById(
-                    addressBook.getProjectList(), Integer.parseInt(project));
-        } catch (NotFoundException e) {
-            throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
-        }
-
-        Pin modelPin;
-        if (pin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Pin.class.getSimpleName()));
-        }
-        if (!Pin.isValidPin(pin)) {
-            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
-        }
-        modelPin = new Pin(Boolean.parseBoolean(pin));
-
-        if (issueId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IssueId.class.getSimpleName()));
-        }
-        if (!IssueId.isValidIssueId(issueId)) {
-            throw new IllegalValueException(IssueId.MESSAGE_CONSTRAINTS);
-        }
-        final IssueId modelIssueId = new IssueId(Integer.parseInt(issueId));
-
-        assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
-
+        final Title modelTitle = StorageUtil.readTitleFromStorage(title);
+        final Urgency modelUrgency = StorageUtil.readUrgencyFromStorage(urgency);
+        final Deadline modelDeadline = StorageUtil.readDeadlineFromStorage(deadline, Issue.class.getSimpleName());
+        final Status modelStatus = StorageUtil.readStatusFromStorage(status);
+        final Project modelProject = StorageUtil.readProjectFromStorage(project, addressBook);
+        final Pin modelPin = StorageUtil.readPinFromStorage(pin, Issue.class.getSimpleName());
+        final IssueId modelIssueId = StorageUtil.readIssueIdFromStorage(issueId);
         return new Issue(modelTitle, modelDeadline, modelUrgency, modelStatus,
                 modelProject, modelIssueId, modelPin);
     }

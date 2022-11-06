@@ -31,14 +31,16 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_CLIENT_NOT_FOUND = "Client id %1$d does not exist in the project book";
 
+    public static final String MESSAGE_CLIENT_ALREADY_HAS_THAT_NAME = "This client already has that name";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Edits a client in the project book. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_MOBILE + "MOBILE "
-            + PREFIX_CLIENT_ID + "ID \n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_MOBILE + "MOBILE] "
+            + PREFIX_CLIENT_ID + "CLIENT ID \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
@@ -75,6 +77,9 @@ public class EditClientCommand extends ClientCommand {
         if (newName != null) {
             for (Client c : model.getFilteredClientList()) {
                 if (c.getClientName().equals(newName)) {
+                    if (toEditClient.getClientName().equals(newName)) {
+                        throw new CommandException(MESSAGE_CLIENT_ALREADY_HAS_THAT_NAME);
+                    }
                     throw new CommandException(MESSAGE_DUPLICATE_CLIENT_NAME);
                 }
             }

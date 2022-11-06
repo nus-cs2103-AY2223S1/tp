@@ -41,15 +41,14 @@ public class IssueCard extends UiPart<Region> {
     /**
      * Creates a {@code IssueCard} with the given {@code Issue} and index to display.
      */
-    public IssueCard(Issue issue, int displayedIndex) {
+    public IssueCard(Issue issue) {
         super(FXML);
         this.issue = issue;
-        title.setText(issue.getTitle().uiRepresentation()
-                + " " + issue.getIssueId().uiRepresentation()
-                + (issue.isPinned() ? " \uD83D\uDCCC" : ""));
+        String issueIdString = issue.getIssueId().uiRepresentation();
+        title.setText(issue.getTitle().uiRepresentation(issue.isPinned(), issueIdString));
         deadline.setText(issue.getDeadline().uiRepresentation());
         urgency.setText(issue.getUrgency().uiRepresentation());
-        project.setText("Project: " + issue.getProject().toString());
+        project.setText(issue.getProject().uiRepresentation());
         status.setText(issue.getStatus().uiRepresentation());
     }
 

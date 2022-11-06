@@ -2,6 +2,7 @@ package seedu.address.logic.commands.issue;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ISSUE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
@@ -46,6 +47,9 @@ public class MarkIssueCommand extends IssueCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         ui.showIssues();
+        if (!model.hasIssueId(this.issueId.getIdInt())) {
+            throw new CommandException(MESSAGE_ISSUE_NOT_FOUND);
+        }
         Issue toMarkIssue = model.getIssueById(issueId.getIdInt());
         toMarkIssue.setStatus(newStatus);
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);

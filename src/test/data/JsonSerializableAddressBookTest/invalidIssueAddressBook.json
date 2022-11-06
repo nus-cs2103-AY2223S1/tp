@@ -8,17 +8,18 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
     "urgency" : "X",
-    "deadline" : "20201",
+    "deadline" : "20212",
     "status" : "x",
     "issueId" : "1",
-    "project" : "5"
+    "project" : "1",
+    "pin" : "false"
   } ]
 }

@@ -29,9 +29,9 @@ public class EditIssueCommand extends IssueCommand {
             + ": Edits an issue in the project book. \n"
             + "Parameters: "
             + PREFIX_ISSUE_ID + "ISSUE_ID "
-            + PREFIX_TITLE + "TITLE "
-            + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3) "
+            + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3)] "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_ISSUE_ID + "1 "
@@ -62,11 +62,9 @@ public class EditIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showIssues();
-
         if (!HasIntegerIdentifier.containsId(model.getFilteredIssueList(), issueId.getIdInt())) {
             throw new CommandException(String.format(MESSAGE_ISSUE_NOT_FOUND, issueId.getIdInt()));
         }
-
         Issue toEditIssue = model.getIssueById(issueId.getIdInt());
 
         if (newTitle != null) {

@@ -8,10 +8,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "1"
+    "projectId" : "1",
+    "pin" : "false"
   }, {
     "name" : "Team Project",
     "repository" : "johndoe/tp",
@@ -21,10 +21,10 @@
       "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "2"
+    "projectId" : "2",
+    "pin" : "false"
   }, {
     "name" : "Group Project",
     "repository" : "johndoe/gp",
@@ -34,10 +34,10 @@
       "mobile" : "99272758",
       "email" : "berniceyu@example.com",
       "clientId" : "2",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "3"
+    "projectId" : "3",
+    "pin" : "false"
   }, {
     "name" : "Personal Project",
     "repository" : "johndoe/pp",
@@ -47,10 +47,10 @@
       "mobile" : "93210283",
       "email" : "charlotte@example.com",
       "clientId" : "3",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "4"
+    "projectId" : "4",
+    "pin" : "false"
   }, {
     "name" : "Random Project",
     "repository" : "johndoe/rp",
@@ -60,10 +60,10 @@
       "mobile" : "91031282",
       "email" : "lidavid@example.com",
       "clientId" : "4",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "5"
+    "projectId" : "5",
+    "pin" : "false"
   }, {
     "name" : "Final Year Project",
     "repository" : "johndoe/fyp",
@@ -73,10 +73,10 @@
       "mobile" : "92492021",
       "email" : "irfan@example.com",
       "clientId" : "5",
-      "projects" : [ ]
+      "pin" : "false"
     },
-    "issues" : [ ],
-    "projectId" : "6"
+    "projectId" : "6",
+    "pin" : "false"
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
@@ -84,41 +84,47 @@
     "deadline" : "2022-01-01",
     "status" : "false",
     "issueId" : "1",
-    "project" : "1"
+    "project" : "1",
+    "pin" : "false"
   }, {
     "title" : "Fix loading screen bug",
     "urgency" : "MEDIUM",
     "deadline" : "2022-10-04",
     "status" : "true",
     "issueId" : "2",
-    "project" : "2"
+    "project" : "2",
+    "pin" : "false"
   }, {
     "title" : "Implement filter command",
     "urgency" : "LOW",
     "deadline" : "2022-09-03",
     "status" : "false",
     "issueId" : "3",
-    "project" : "2"
+    "project" : "2",
+    "pin" : "false"
   }, {
     "title" : "Update collision logic",
     "urgency" : "HIGH",
     "deadline" : "2023-07-14",
     "status" : "true",
     "issueId" : "4",
-    "project" : "3"
+    "project" : "3",
+    "pin" : "false"
   }, {
     "title" : "Create Developer Guide",
     "urgency" : "HIGH",
     "deadline" : "2022-02-04",
     "status" : "true",
     "issueId" : "5",
-    "project" : "4"
+    "project" : "4",
+    "pin" : "false"
   }, {
     "title" : "Change default behaviour",
     "urgency" : "MEDIUM",
     "deadline" : "2022-02-19",
     "status" : "false",
     "issueId" : "6",
-    "project" : "5"
+    "project" : "5",
+    "pin" : "false"
   } ]
 }

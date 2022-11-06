@@ -119,6 +119,23 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
 
     }
 
+    /**
+     * Returns the UI string representation of the project.
+     */
+    public String uiRepresentation() {
+        return "Project: " + this.toString();
+    }
+
+    /**
+     * Returns the UI string representation of the issue list.
+     */
+    public String issueListUiRepresentation() {
+        return issueList.size()
+                + (issueList.size() == 1 ? " issue (" : " issues (")
+                + getCompletedIssueCount() + " complete, "
+                + getIncompleteIssueCount() + " incomplete)";
+    }
+
     public ProjectId getProjectId() {
         return projectId;
     }

@@ -31,6 +31,11 @@ public class Repository {
         public String toString() {
             return "";
         }
+
+        @Override
+        public String uiRepresentation() {
+            return "No Repository Set";
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -73,7 +78,7 @@ public class Repository {
         return repository.matches(VALIDATION_REGEX);
     }
 
-    public String getUiRepresentation() {
+    public String uiRepresentation() {
         return "https://github.com/" + projectRepository;
     }
 

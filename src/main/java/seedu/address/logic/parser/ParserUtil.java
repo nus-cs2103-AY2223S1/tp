@@ -281,7 +281,7 @@ public class ParserUtil {
                 trimmedStatus.equalsIgnoreCase("completed")
                         || trimmedStatus.equalsIgnoreCase("incomplete");
         if (!isValidStringCounterpart) {
-            throw new ParseException(Status.MESSAGE_STRING_CONSTRAINTS);
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -490,5 +490,16 @@ public class ParserUtil {
             throw new ParseException(Client.MESSAGE_INVALID_CLIENT_ID_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parse a string to get only the first word of said string.
+     * @param str string to parse
+     * @return the first word of the string
+     */
+    public static String getFirstWord(String str) {
+        requireNonNull(str);
+
+        return str.split(" ", 2)[0];
     }
 }

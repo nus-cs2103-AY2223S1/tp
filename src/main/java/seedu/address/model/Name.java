@@ -82,6 +82,14 @@ public class Name {
     }
 
     /**
+     * Returns the UI string representation of the name.
+     */
+    public String uiRepresentation(boolean isPinned, String id) {
+        return this.fullName + " " + id
+                + (isPinned ? " \uD83D\uDCCC" : "");
+    }
+
+    /**
      * Returns the String representation of the Client Name.
      * @return String representing the Client Name
      */

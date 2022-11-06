@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes pin command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Entity is not pinned])
+    :Set entity status to pinned;
+else ([else])
+    :Set entity status to unpinned;
+endif
+:Sort entity list;
+stop
+@enduml

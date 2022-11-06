@@ -10,15 +10,16 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ClientCommandParser" as ClientCommandParser LOGIC_COLOR
 participant ":ListClientCommand" as ListClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-[-> MainWindow : executeCommand(client -l)
+[-> MainWindow : executeCommand("client -l")
 activate MainWindow
 
-MainWindow --> LogicManager : execute(client -l)
+MainWindow --> LogicManager : execute("client -l")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(client -l)
+LogicManager -> AddressBookParser : parseCommand("client -l")
 activate AddressBookParser
 
 create ClientCommandParser
@@ -26,7 +27,7 @@ AddressBookParser -> ClientCommandParser
 activate ClientCommandParser
 ClientCommandParser --> AddressBookParser
 deactivate ClientCommandParser
-AddressBookParser -> ClientCommandParser : parse(-l)
+AddressBookParser -> ClientCommandParser : parse("-l")
 activate ClientCommandParser
 
 create ListClientCommand
@@ -42,8 +43,15 @@ deactivate ClientCommandParser
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> ListClientCommand : execute(model, ui)
+LogicManager -> ListClientCommand : execute()
 activate ListClientCommand
+
+create CommandResult
+ListClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListClientCommand
+deactivate CommandResult
 
 ListClientCommand --> LogicManager : result
 deactivate ListClientCommand
