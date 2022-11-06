@@ -800,19 +800,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   1. Run the jar file via `java -jar MyInsuRec.jar` 
-      1. Expected: Shows the GUI with a set of sample clients and products. The window size may not be optimum.
+   2. Run the jar file via `java -jar MyInsuRec.jar` 
+      - Expected: Shows the GUI with a set of sample clients and products. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.
+      - Expected: The most recent window size and location is retained.
 
-1. _Subsequent launches, with data edited
+3. Subsequent launches, with data edited
    1. Run the jar file via `java -jar MyInsuRec.jar`
-      2. Expected: Shows the GUI with the correct edited data.
+      - Expected: Shows the GUI with the correct edited data.
 
 ### 6.2 Adding a client
 
@@ -820,112 +820,138 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-   1. Prerequisites: No other client have the exact same name.
+   1. Prerequisites: No other client have the exact same name. The product `ProductTest` has not been added.
 
-   1. Test case: `addClient n/John Tan p/89134083`
-      2. Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
+   2. Test case: `addClient n/John Tan p/89134083`
+      - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
 
-   1. Test case: `addClient n/Trevor Tan p/89134083`
-       2. Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
+   3. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
 
-   1. Test case: `addClient n/Trevor Tan p/89134083`
-       2. Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
+   4. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
 
-   1. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
-       2. Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
+   5. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
+      - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
     
-   1. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
-      2. Expected: No client is added as the product `ProductTest` is not added beforehand.
-   3. Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
-      4. Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+   6. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
+      - Expected: No client is added as the product `ProductTest` is not added beforehand.
+      
+   7. Test case: `addClient n/Tom p/90231494 pd/ProductTest`, suppose `ProductTest` is added.
+      - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
-### 6.2 Viewing a client
+   8. Test case: `addClient Tom p/12345678`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
+   
+   9. Test case: `addClient n/Tom p/`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
+
+   10. Test case: `addClient n/Tom p/1234567`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
+
+### 6.3 Viewing a client
 
 1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
 
 2. Test case: `viewClient i/1`
-   Expected: The details of the client who is at the first index is shown.
+   - Expected: The details of the client who is at the first index is shown.
 
 3. Test case: `viewClient i/a`
-   Expected: The index is not numeric, so there will be an error.
+   - Expected: The index is not numeric, so there will be an error.
 
 4. Test case: `viewClient i/2`
-   Expected: Index is larger than the size of client list, so there will be an error.
+   - Expected: Index is larger than the size of client list, so there will be an error.
 
 5. Test case: `viewClient i/0`
-   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+   - Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
 6. Test case: `viewClient i/`
-   Expected: Index is not provided, so there will be an error.
+   - Expected: Index is not provided, so there will be an error.
 
 7. Test case: `viewClient 1`
-   Expected: Prefix for index is not provided, so there will be an invalid command format error.
+   - Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
-### 6.2 Deleting a client
+### 6.4 Deleting a client
 
 Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all clients using the `listClient` command. Multiple clients in the list.
+   1. Prerequisites: List all clients using the `listClient` command. At least one client is in the list.
 
-   1. Test case: `delClient i/1`
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delClient i/1`
+      - Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delClient i/0`
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delClient` OR `delClient 1`
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format. 
 
-   1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   4. Test case: `delClient i/0` OR `delClient i/-1` OR `delClient i/` or `delClient i/x` (where x is larger than the list size).
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
 
-### 6.3 Listing meetings
+
+### 6.5 Listing meetings
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
 </div>
 
 1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
-   2. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
+   1. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
+      1. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
+      2. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
       3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
 
-1. Test case: `listMeeting`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+2. Test case: `listMeeting`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-1. Test case: `listMeeting d/tomorrow`
-    2. Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+3. Test case: `listMeeting d/tomorrow`
+   - Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
 
-1. Test case: `listMeeting d/week`
-    2. Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+4. Test case: `listMeeting d/week`
+   - Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
 
-1. Test case: `listMeeting d/month`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+5. Test case: `listMeeting d/month`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-1. Test case: `listMeeting adsfadsf`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+6. Test case: `listMeeting adsfadsf`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
-### 6.2 Viewing a meeting
+### 6.6 Viewing a meeting
 
 1. Prerequisites: View a specific meeting's details using the `viewMeeting` command. There is exactly one meeting in the list.
 
 2. Test case: `viewMeeting i/1`
-   Expected: The details of the meeting who is at the first index is shown.
+   - Expected: The details of the meeting who is at the first index is shown.
 
 3. Test case: `viewMeeting i/a`
-   Expected: The index is not numeric, so there will be an error.
+   - Expected: The index is not numeric, so there will be an error.
 
 4. Test case: `viewMeeting i/2`
-   Expected: Index is larger than the size of meeting list, so there will be an error.
+   - Expected: Index is larger than the size of meeting list, so there will be an error.
 
 5. Test case: `viewMeeting i/0`
-   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+   - Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
 6. Test case: `viewMeeting i/`
-   Expected: Index is not provided, so there will be an error.
+   - Expected: Index is not provided, so there will be an error.
 
 7. Test case: `viewMeeting 1`
-   Expected: Prefix for index is not provided, so there will be an invalid command format error.
+   - Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
-### 6.4 Adding a product
+### 6.7 Deleting a Meeting
+
+Deleting a meeting while all meetings are being shown
+
+1. Prerequisites: List all meetings using the `listMeeting` command. At least one meeting in the list.
+
+2. Test case: `delMeeting i/1`
+    - Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message. Timestamp in the status bar is updated.
+
+3. Test case: `delMeeting` OR `delMeeting 1`
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format.
+
+4. Test case: `delMeeting i/0` OR `delMeeting i/-1` OR `delMeeting i/` or `delMeeting i/x` (where x is larger than the list size).
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
+
+### 6.8 Adding a product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
@@ -933,25 +959,25 @@ Deleting a client while all clients are being shown
 
 1. Prerequisites: No other product have the exact same name.
 
-1. Test case: `addProduct pd/MyInsureCare`
-    2. Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
+2. Test case: `addProduct pd/MyInsureCare`
+   - Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
 
-1. Test case: `addProduct pd/`
-    2. Expected: Empty fields are not allowed, so no product is added.
+3. Test case: `addProduct pd/`
+   - Expected: Empty fields are not allowed, so no product is added.
 
-### 6.5 Listing products
+### 6.9 Listing products
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
 
 </div>
 
 1. Test case: `listProduct`
-    2. Expected: The list of product view shows up.
+   - Expected: The list of product view shows up.
 
-1. Test case: `listProduct adfafio3`
-    2. Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
+2. Test case: `listProduct adfafio3`
+   - Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
 
-### 6.6 Delete product
+### 6.10 Delete product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
 
@@ -959,11 +985,11 @@ Deleting a client while all clients are being shown
 
 1. Prerequisites: There is at least one product already added.
 
-1. Test case: `delProduct i/1`
-    2. Expected: The list of product view shows up (if not already in it), and the first product is deleted.
+2. Test case: `delProduct i/1`
+   - Expected: The list of product view shows up (if not already in it), and the first product is deleted.
 
-1. Test case: `delProduct i/-1`
-    2. Expected: No product is deleted and an error message shows up as the index is invalid.
+3. Test case: `delProduct i/-1`
+   - Expected: No product is deleted and an error message shows up as the index is invalid.
 
 ## 7. Appendix: Effort
 
