@@ -41,6 +41,7 @@ title: PennyWise Developer Guide
     * [View PieChart](#view-piechart)
     * [Summary statistics](#summary-statistics)
     * [Saving data](#saving-data)
+  * [**Appendix: Effort*](#appendix-effort)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -805,3 +806,60 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+In this section, we will give an overview of the overall challenges faced as well as the achievements of the project,
+in order to provide a glimpse of how much effort that we have put in.
+
+In general, PennyWise was not an easy application to develop. We have spent much time tailoring our product requirements, value
+proposition, user stories and use cases, before implementing all the features that we have planned out, as well as some nice-to-have features.
+Furthermore, there have been a great amount of work in writing test cases, enabling us to achieve a code coverage of close to
+70%.
+
+### Challenges Faced
+
+#### Models
+
+In [AddressBook Level-3](https://github.com/se-edu/addressbook-level3), there were only 1 `Person` class, which made it straightforward
+to define fields and actions associated with a `Person`. However, in PennyWise, we have both an `Income` class and an `Expense`
+class. Thus, all instances of `AddressBook` and its related entities had to be removed and refactored throughout the project.
+Furthermore, we needed to take great care in implementing an `Entry` class, which acts as a parent of the `Income` and `Expenditure`
+class so that we can take advantage of polymorphism and improve code reusability.
+
+#### Commands
+
+While many of the commands use the same syntactical structure as in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3),
+we have augmented the capabilities of several commands. For instance, the `list` command in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
+was used to update the list of persons shown in the Address Book. However, we have augmented it as a `view` command, which
+not only allow students to view the list of expense or income entries in the application, but at the same time, updates
+the corresponding graph displayed to the student, providing an instant visualisation of their expense or income entries.
+This required us to take great care in managing the state of the application, ensuring a single source of truth that is
+consistent for data on the list panel or graph panel.
+
+#### UI
+
+In comparison to [AddressBook Level-3](https://github.com/se-edu/addressbook-level3), PennyWise integrates the JavaFX Charts
+package to create line graphs and pie charts in the application from scratch. In order to do so, we have faced multiple
+challenges in ensuring that the charts were responsive and colour-themed with the application. Furthermore, we also had to
+tackle aspects regarding customising the axis labels and chart legends, which required much time.
+
+In addition, PennyWise features a unique tab-based layout which differs from [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)'s
+single layout format. Using a tab-based layout required us to put in more thought on how and what data to render based on the
+tab that is visible. Furthermore, it required us to manipulate the tab toggling for certain commands. Nevertheless, we believe
+that adding a tab-based layout is a great addition to provide a modern touch to the application, and helps to make full use
+of the screen real-estate.
+
+Finally, implementing and styling the UI was not easy. PennyWise's UI is responsive and respects a unified colour theme and
+consistent font family. This helps to provide a standardised and modern look-and-feel to the application. Many rounds of
+iterations went into designing PennyWise, requiring us to overhaul the existing CSS file in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3).
+
+### Achievements of the Project
+
+We are happy that we have managed to overcome the technicalities and challenges of the project. Even though the process was a
+bumpy one, we achieved the features that we have set out for ourselves and wrote extensive tests to improve code coverage.
+This was reflected in the ease of testability and low bug count in PE-D.
+
+All in all, it has been a wonderful learning experience for all of us!
