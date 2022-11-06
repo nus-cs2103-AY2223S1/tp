@@ -29,7 +29,7 @@ public class ItemPriceValidator implements Validator {
     /**
      * Validates a given numeric String. This is to be used during construction.
      */
-    public static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
+    static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
                                       String messageNotANumber, String messageTooPrecise, String messageTooLarge,
                                       String messageIsNegative) {
         boolean isParsable = ValidationUtil.isParsableDouble(numericString);
