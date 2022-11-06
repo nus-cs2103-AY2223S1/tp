@@ -207,8 +207,6 @@ public class PredicateParser {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
-
-
     }
 
     /**
