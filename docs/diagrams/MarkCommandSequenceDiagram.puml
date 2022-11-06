@@ -54,8 +54,8 @@ hrProParser --> logicManager
 deactivate hrProParser
 
 logicManager -> markCommand : execute()
-activate markCommand
 deactivate logicManager
+activate markCommand
 
 markCommand -> modelManager : markTask(INDEX)
 activate modelManager
@@ -64,8 +64,10 @@ modelManager -> hrPro : markTask(INDEX)
 activate hrPro
 
 hrPro --> modelManager
+deactivate hrPro
 
 modelManager --> markCommand
+deactivate modelManager
 
 create commandResult
 markCommand -> commandResult :

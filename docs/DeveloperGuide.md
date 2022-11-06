@@ -371,7 +371,7 @@ This method will be used to sort the tasks by their deadline.
 
 The following sequence diagram shows how the `sorttask` command will run throughout HR Pro Max++.
 
-![sorttask command](images/SortTaskCommandSequenceDiagram.png)
+![sorttask command](images/SortTaskSequenceDiagram.png)
 
 ### Design Considerations:
 
@@ -441,8 +441,9 @@ An alternative implementation of the `delstaff` command could be to implement it
   * Pros: Easier to implement then the current implementation 
   * Cons: Does not require Staff to be displayed to be deleted, user would be able to randomly delete Staff, and may lose track of where they are deleting Staff from.
 
-### Add Staff to Project
-#### Implementation
+## Add Staff to Project
+
+### Implementation
 
 The feature to add Staff is facilitated by the `AddStaffCommand`. It extends the `Command` class with functionality
 to add a `Staff` to a `Project`, both of which are provided via the `addStaff` command.
@@ -492,8 +493,9 @@ Finding project to add is not straightforward since only `ProjectName` is passed
     - Cons: Hard to implement. The `Project` `equals()` method checks for equality on all the parameters of a project, so
       simply creating a blank `Project` won't do.`
 
-### Edit Staff in Project
-#### Implementation
+## Edit Staff in Project
+
+### Implementation
 The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to 
 edit the `Staff` at a certain place in the Staff list belonging to a given `Project`, using the `INDEX` and `ProjectName` provided to the `EditStaffCommand`.
 The `Project` must be the `Project` which has its `StaffList` currently displayed in the staff panel.
@@ -535,7 +537,7 @@ a `CommandException` is thrown.
 Sequence diagram for the `EditStaffCommand`
 ![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
 
-#### Design Considerations:
+### Design Considerations:
 **Aspect: Checking if the `Project`'s `Stafflist` is currently displayed**
 - **Alternative 1**: `EditStaffCommand` checks if the `Stafflist` of the `Project` whose `Staff` is to be edited is currently displayed (Current Implementation)
   - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
@@ -550,8 +552,9 @@ Sequence diagram for the `EditStaffCommand`
     - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to 
     ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from. 
 
-### Find Staff in Project
-#### Implementation 
+## Find Staff in Project
+
+### Implementation 
 
 The find staff feature is facilitated by the `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
 active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
@@ -587,7 +590,7 @@ Sequence diagram for the `FindStaffCommand`
 Activity diagram for the `FindStaffCommand`
 ![FindStaffCommandActivityDiagram](images/FindStaffCommandActivityDiagram.png)
 
-#### Design Considerations:
+### Design Considerations:
 **Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
 
 - **Alternative 1**: Parse based on keywords (Current Implementation)
