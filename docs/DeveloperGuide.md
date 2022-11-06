@@ -318,7 +318,7 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
-<img src="images/DeleteReviewActivityDiagram.png" width="450" />
+<img src="images/DeleteReviewActivityDiagram.png" width="350" />
 
 ### Review editing feature
 
@@ -502,7 +502,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="450" />
+<img src="images/CommitActivityDiagram.png" width="350" />
 
 #### Design considerations:
 
