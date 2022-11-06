@@ -9,8 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* The implementation of the status field was adapted from this [project's implementation of a similar feature](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
-
+* The implementation of the status field was adapted from this [project's implementation of a similar feature.](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+* HobbyList's User Guide is adapted from [AB-3's User Guide.](https://se-education.org/addressbook-level3/UserGuide.html)
+* HobbyList's Developer Guide is adapted from [AB-3's Developer Guide.](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
