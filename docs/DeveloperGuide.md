@@ -20,7 +20,7 @@ title: Developer Guide
 * [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying data](#displaying-data)
-    * [Show/Hide fields](#show-onlyhide-only-feature-for-resident-fields)
+    * [Showing/hiding table columns](#manipulating-table-columns-using-showonly-and-hideonly)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
     * [Command history](#command-history)
@@ -198,13 +198,14 @@ the abstraction of commands.
 The `Model` component,
 
 * stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
-  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively)
+  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively).
 * stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
-  separate `ObservableList` objects
-    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an `ObservableList`.
+  separate `ObservableList` objects.
+    * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an unmodifiable `ObservableList`.
+    * The `visibleFields` and `hiddenFields` are also exposed to the outside as unmodifiable `ObservableList` instances.
     * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
 * stores a `UserPref` object that represents the user's preferences.
-* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
@@ -338,7 +339,7 @@ of any sizeable overhead.
 
 ---
 
-### Show only/hide only commands
+### Manipulating table columns using `showonly` and `hideonly`
 
 #### Changes to Model component:
 
@@ -347,59 +348,73 @@ update its columns based on user commands that affected the model. There needed 
 `ResidentTableView` class to synchronise its columns with the corresponding field lists in `ModelManager`. 
 From the below diagram, we can see that there is no association between `ModelManager` and `ResidentTableView`. 
 
-![MainWindowRelationships](images/MainWindowRelationships.png)
+![Reference relationships between MainWindow and the other components](images/MainWindowRelationships.png)
 
-One possible implementation was to store a reference to the `ResidentTableView` in `ModelManager`, to update the 
+One possible implementation was to store a reference to `ResidentTableView` in `ModelManager`, to update the 
 UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
 between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-Our solution for this was to use getters to obtain the unmodifiable `ObservableList<String>` instances of the 
-fields to show and hide from `ModelManager`, before passing them into the constructor of `ResidentTableView`. 
-Within `ResidentTableView`, we attached listeners to each of these unmodifiable lists, updating the column visibilities 
-whenever the base `ObservableList<String>` objects in `ModelManager` changed.
+Our solution for this was to pass the field lists from `ModelManager` to `LogicManager` and then to `MainWindow`, 
+as *unmodifiable* `ObservableList<String>` instances. These unmodifiable instances were then passed as arguments 
+into the constructor of `ResidentTableView`, where we attached listeners to each of the lists. These listeners 
+would update the column visibilities whenever the base `ObservableList<String>` instances in `ModelManager` changed.
 
-This allowed us to apply the Observer pattern in our code, thereby minimising the coupling between `ResidentTableView`
-and `ModelManager`.
+This allowed us to apply the Observer pattern in our code, as the `ModelManager` class being observed is not coupled 
+to the `ResidentTableView` class that is observing it (i.e. observing the field lists in `ModelManager`).
 
 One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
 instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
-around and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
-(unmodifiable) list is held, it would end up being garbage collected. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
+and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
+(unmodifiable) list is held, it would end up being garbage collected, and the automatic UI updates would not work 
+correctly. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
 
 <br>
+
+#### Restrictions on manipulating columns:
+
+We decided to provide users with the flexibility of displaying or hiding any combination of the columns in the table 
+view, with two exceptions: 
+
+1. The user can only specify columns to show or hide that are in the current table view. 
+   
+    * This is to make the showing and hiding of columns more intuitive, as compared to our [previous implementation](#optional-reading-predecessors-to-showonly-and-hideonly). 
+
+2. The user must have at least one column on his screen.
+
+    * This is to avoid confusion with the table view shown when the list of residents is empty.
+
+The activity diagram shown below for the column manipulation feature models the intended behaviour of RC4HDB based on 
+user input, assuming the user enters the valid command format.
+
+![Activity diagram for intended behaviour of RC4HDB for column manipulation feature](images/ManipulatingColumnsActivityDiagram.png)
 
 #### Use of abstract classes for `showonly` and `hideonly`
 
 The `hideonly` command alone is sufficient for users to hide their unwanted columns from the table view. However, 
-we added support for both commands in order to improve the quality-of-life of RC4HDB users. Users can save time by 
-using the complement command depending on the relative number of fields they want to show or hide. 
+we added support for both commands in order to improve the quality-of-life for RC4HDB users. Users can save time by 
+using the complement command (`showonly` vs `hideonly`) depending on the relative number of fields they want to show or hide. 
 
-After making this change, however, there were instances of undesirable code duplication in both the commands and the 
-command parsers for the `showonly` and `hideonly` features.
+After making this change, however, there were instances of undesirable code duplication in the commands and command
+parsers for the `showonly` and `hideonly` features. For example, some input validation and utility methods were 
+common among these classes.
 
-Our solution was to abstract these commonalities into an abstract class, namely, `ColumnManipulatorCommand` for 
-the `showonly` and `hideonly` commands (as well as `list` and `reset), and `ColumnManipulatorCommandParser` for the 
-`showonly` and`hideonly` command parsers.
+Our solution was to abstract some of these commonalities into an abstract class, namely, 
+`ColumnManipulatorCommand` for the `showonly` and `hideonly` commands (as well as `list` and `reset`), 
+and `ColumnManipulatorCommandParser` for the `showonly` and`hideonly` command parsers. The UML diagram for the 
+inheritance relationship is shown below. 
 
-![AbstractClassesForShowHideFeature](images/AbstractClassesForShowHideFeature.png)
+![Use of abstract classes for column manipulation feature](images/AbstractClassesForShowHideFeature.png)
 
-Some of these commonalities include input validation for the column identifiers, as well as utility methods for 
-generating the complement list from a given list. 
-
-Adding these abstract classes also increased the extendability of our application, as one of the future developments
-for our application would be to implement column manipulation features for the venue booking tables.
+Adding these abstract classes also increased the extensibility of our application, as one of the future developments
+for RC4HDB would be to implement the column manipulation features for the venue booking tables.
 
 <br>
 
 #### Choice of `ObservableList<String>` over `ObservableList<Field>`
 
-While the lists of fields to show and hide could be represented in either an `ObservableList<String>`
-or an `ObservableList<Field>`, we decided to use an `ObservableList<String>` to minimise the additional need for 
-getters if `Field` was used instead. 
-
-The only information required by the lists of fields to show and hide in `ModelManager` was the column identifier, 
-and hence the use of an `ObservableList<Field>` was redundant as none of the additional `Field` attributes 
-had to be referenced.
+The only information required by the `ResidentTableView` (to manipulate the columns) is the field identifier. Hence, the use of an 
+`ObservableList<Field>` is redundant as none of the additional `Field` attributes need to be referenced. Using an 
+`ObservableList<Field>` would also require the use of getters to extract the field identifier, which was unnecessary.
 
 <br>
 
@@ -408,8 +423,8 @@ had to be referenced.
 For our previous iteration of RC4HDB, the `showonly` and `hideonly` features were handled by the `list /i` and 
 `list /e` features, which have since been removed. 
 
-For these overloaded `list` commands, the user could show or hide columns by specifying which columns should be 
-included or excluded when listing. 
+For these overloaded `list` commands, the user could show or hide columns by specifying columns to include or exclude
+when listing. 
 
 However, there were two main issues with `list /i` and `list /e`:
 
@@ -421,7 +436,10 @@ excluded from the table had to be re-specified if additional columns were to be 
    
 While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
 to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
-commands. To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
+commands. The feature to restore the full set of resident fields was implemented in the `reset` command, which does 
+not affect the list of residents.
+
+To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
 
 <br>
@@ -574,6 +592,7 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
 
+<<<<<<< HEAD
 <br>
 
 ---
@@ -727,88 +746,13 @@ Due to our application being [CLI](#command-line-interface-cli-oriented) oriente
 ---
 
 ### \[Proposed\] Undo/redo feature (To be removed)
+=======
+<!--
+### \[Proposed\] Export feature
+>>>>>>> baafcf51577a98cb45f524b7831b8ca51b960f17
 
 #### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+-->
 
 ---
 
@@ -870,26 +814,38 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
 They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
-1. High `* * *` - must have
-2. Moderate `* *` - nice to have
-3. Low `*` - unlikely to have
+1. 🟥 High: Must have
+2. 🟧 Medium: Good to have
+3. 🟨 Low: Nice to have
 
-| Priority | As a ...      | I want to ...                                                                      | So that ...                                                                         | Story Type |
-|----------|---------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------|
-| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                                                     | Story      |
-| `***`    | user          | view the full list of residents                                                    |                                                                                     | Story      |
-| `***`    | advanced user | show, hide and reset columns without affecting the list of residents displayed     | I can de-clutter my screen without affecting the current list of residents          | Story      |
-| `***`    | user          | import my old data into the application                                            |                                                                                     | Story      |
-| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                                                     | Story      |
-| `**`     | advanced user | give residents roles                                                               | I can further categorize them                                                       | Epic       |
-| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names                                         | Story      |
-| `**`     | user          | export residents' data in a familiar format                                        |                                                                                     | Story      |
-| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use                                    | Story      |
-| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                                                     | Story      |
-| `**`     | user          | use the system without referring to the user guide                                 |                                                                                     | Story      |
-| `**`     | user          | switch between different data files                                                |                                                                                     | Story      |
-| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations                                         | Epic       |
-| `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
+
+| Priority | As a ...          | I want to ...                                       | So that I can ...                                           |
+|----------|-------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| 🟥       | basic user        | add new entries                                     | keep track of new residents                                 |
+| 🟥       | basic user        | delete existing entries                             | remove residents who have left RC4                          |
+| 🟥       | basic user        | edit existing entries                               | update any outdated or wrongly entered information          |
+| 🟥       | basic user        | view all existing entries                           | get an overview of all residents                            |
+| 🟥       | basic user        | search for existing entries                         | view their resident information                             |
+| 🟥       | intermediate user | filter through entries via certain keywords         | view these residents                                        |
+| 🟥       | basic user        | add new venues                                      | make these venues available for booking                     |
+| 🟥       | basic user        | delete existing venues                              | prevent any bookings to be made                             |
+| 🟥       | basic user        | add new bookings                                    | block certain time periods                                  |
+| 🟥       | basic user        | delete existing bookings                            | free up these time periods for others                       |
+| 🟥       | basic user        | view all bookings for a venue                       | see which time periods are free for booking                 |
+| 🟥       | basic user        | view all existing venues                            | view all existing venues                                    |
+| 🟥       | basic user        | switch between the resident tab and bookings tab    | better visualize my data                                    |
+| 🟧       | intermediate user | hide certain columns                                | de-clutter my screen                                        |
+| 🟧       | intermediate user | show previously hidden columns                      | get back to working on those data                           |
+| 🟧       | intermediate user | delete multiple entries at a time                   | save time from individually removing them                   |
+| 🟧       | basic user        | search for residents using a portion of their names | still find them without having to remember their full names |
+| 🟧       | basic user        | add miscellaneous information to entries            | keep track of a little more information                     |
+| 🟧       | advanced user     | create a new data file                              | maintain another list of residents                          |
+| 🟧       | advanced user     | delete a file                                       | remove unused list of residents                             |
+| 🟧       | advanced user     | switch between files                                | work on different files on the same system                  |
+| 🟧       | advanced user     | import my data into the application                 | use RC4HDB to perform my tasks                              |
+| 🟧       | new user          | see sample data                                     | how the application would like when in use                  |
+| 🟧       | new user          | use the system without referring to the guide       | concentrate on my task                                      |
+| 🟨       | basic user        | access commands I have previously entered           | save time on retyping them                                  |
 
 *{More to be added}*
 
