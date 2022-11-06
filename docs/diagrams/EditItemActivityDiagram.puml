@@ -1,7 +1,7 @@
 @startuml
 !pragma useVerticalIf on
 start
-:User enters tag command;
+:User enters edit command;
 if () then ([else])
   :Error: Invalid index provided;
   stop
