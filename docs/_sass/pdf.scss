@@ -110,6 +110,18 @@
         // For PrinceXML compatibility
         text-decoration: underline;
         text-underline-style: dotted;
+
+        // Only works on PrinceXML
+        &::after {
+          content: attr(data-entry_data);
+          float: footnote page;
+          font-size: 0.6rem;
+          text-align: left;
+          color: inherit;
+
+          // Make it look nice(r) on Chrome
+          vertical-align: top;
+        }
       }
     }
   }
