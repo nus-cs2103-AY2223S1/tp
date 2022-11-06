@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupinheritance 3
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyLessonBook" as ReadOnlyLessonBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class LessonBook
+Class ModelManager
+Class UserPrefs
+
+Class UniqueLessonList
+Class "{abstract}\nLesson" as Lesson
+Class Studio
+Class MasteryCheck
+Class Consult
+Class LessonAttendance
+Class LessonNotes
+Class LessonDesc
+Class TimePeriod
+Class StudioParticipation
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+LessonBook .up.|> ReadOnlyLessonBook
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyLessonBook
+ModelManager -left-> "1" LessonBook
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+LessonBook *--> "1" UniqueLessonList
+UniqueLessonList --> "~* all" Lesson
+Studio -u-|> Lesson
+MasteryCheck -u-|> Lesson
+Consult --|> Lesson
+
+Lesson *---> LessonDesc
+Lesson *---> TimePeriod
+Lesson *---> LessonAttendance
+Lesson *---> LessonNotes
+Studio *--> StudioParticipation
+
+
+LessonDesc -[hidden]right-> TimePeriod
+TimePeriod -[hidden]right-> LessonAttendance
+LessonAttendance -[hidden]right-> LessonNotes
+LessonNotes -[hidden]right-> StudioParticipation
+LessonNotes -[hidden]right-> StudioParticipation
+
+'UserPrefs -[hidden]-> Consult
+MasteryCheck -[hidden]r-> Consult
+Studio -[hidden]r-> MasteryCheck
+
+ModelManager -->"~* filtered" Lesson
+@enduml
