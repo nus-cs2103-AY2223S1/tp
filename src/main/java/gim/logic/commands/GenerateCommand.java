@@ -134,8 +134,11 @@ public class GenerateCommand extends Command {
 
         // state check
         GenerateCommand e = (GenerateCommand) other;
-        return indices.equals(e.indices)
-                && level.equals(e.level);
+        if (indices != null) {
+            return indices.equals(e.indices) && level.equals(e.level);
+        } else {
+            return nameSet.equals(e.nameSet) && level.equals(e.level);
+        }
     }
 
     @Override

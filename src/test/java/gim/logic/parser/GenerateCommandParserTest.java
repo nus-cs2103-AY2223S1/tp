@@ -5,14 +5,22 @@ import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_INVALID_LEVEL;
 import static gim.commons.core.Messages.MESSAGE_MISSING_LEVEL;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static gim.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static gim.testutil.TypicalExercises.BICEP_CURLS;
+import static gim.testutil.TypicalExercises.DEADLIFT;
 import static gim.testutil.TypicalIndexes.INDEX_LIST_FIRST_SECOND;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import gim.logic.commands.GenerateCommand;
 import gim.logic.generators.ValidLevel;
+import gim.model.exercise.Name;
+
 
 
 public class GenerateCommandParserTest {
@@ -20,6 +28,9 @@ public class GenerateCommandParserTest {
     public static final String EASY_STRING = "eaSy";
     // whitespaces between indices
     public static final String INDEX_ONE_TWO_STRING = "1, 2  ";
+    public static final String NAMES_STRING_ONE = "BICEP CURLS ";
+    public static final String NAMES_STRING_TWO = "DEADLIFT ";
+
     private GenerateCommandParser parser = new GenerateCommandParser();
 
 
@@ -27,6 +38,18 @@ public class GenerateCommandParserTest {
     public void parse_indicesSpecified_success() {
         String userInput = INDEX_ONE_TWO_STRING + PREFIX_LEVEL + EASY_STRING;
         GenerateCommand expectedCommand = new GenerateCommand(INDEX_LIST_FIRST_SECOND, ValidLevel.EASY);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_namesSpecified_success() {
+        Set<Name> names = new HashSet<>();
+        names.add(BICEP_CURLS.getName());
+        names.add(DEADLIFT.getName());
+
+        String userInput = " " + PREFIX_NAME + NAMES_STRING_ONE + PREFIX_NAME + NAMES_STRING_TWO
+                + PREFIX_LEVEL + EASY_STRING;
+        GenerateCommand expectedCommand = new GenerateCommand(names, ValidLevel.EASY);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
