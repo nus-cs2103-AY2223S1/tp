@@ -40,6 +40,7 @@ our app.
 | :bulb:               | A relevant tip which you may find helpful.                                  |
 | :information_source: | Information that you should **must** note of when using a specific feature. |
 | :eye:                | A feature related to the section you are currently looking at.              |
+| :exclamation:        | A disclaimer related to the section you are currently looking at.           |
 
 
 ## 1. Quick start
@@ -441,11 +442,11 @@ Link aliases will be paired with link URLs according to their respective order o
 Plannit provides no guarantee of the link URL's existence.
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Link URL**    | `l/`  | <li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li> |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Link URL**    | `l/`  | {::nomarkdown}<ul><li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li></ul>{:/} |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * Each link must belong to a specific module.
@@ -482,10 +483,10 @@ If there exists a link alias that is detected as invalid within a chained comman
 none of the links in the command will be deleted.
 
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul> {:/} |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -505,8 +506,8 @@ In the above example, we are deleting the links with the URL `https://www.nusmod
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 Here's a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                     | After executing the command                                                     |
-|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Before executing the command                                                       | After executing the command                                                       |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-link-before.PNG"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.PNG"/></p>{:/} |
 
 #### 2.3.3. Open link
@@ -528,10 +529,10 @@ Permissions from your operating system may be required for some users to open li
 (They are enabled by default for most users)
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                |
-|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
-| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
+| Field           | Flag  | Constraints                                                                                                                                                                                                            |
+|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                |
+| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}  |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -552,6 +553,10 @@ from the module with module code `CS2040`, using their corresponding link alias 
 <br>
 
 ### 2.4. Contacts
+The terms "contact" and "person" have similar meanings and for the majority of the time, can be understood as referring
+to the same entity. The only scenario that calls for a distinction is when you are inputting a command word; we use person instead 
+of contact.
+
 #### 2.4.1. Add person
 You may add a contact to Plannit using the `add-person` command.
 
@@ -568,10 +573,16 @@ Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 
 Example:
 ```
-add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+add-person n/Bobbie e/bobbie@gmail.com p/91234567
 ```
-In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
-`91234567` into Plannit.
+In the above example, we are adding a contact with name `Bobbie`, email `bobbie@gmail.com`, and phone number
+`91234567` into Plannit. Here's a screenshot of Plannit before and after executing the command:
+
+
+| Before executing the command                                                                                                                               | After executing the command                                                                                   |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Adding a person to Plannit will bring you back to the home page.
@@ -620,9 +631,16 @@ Format: `delete-person n/NAME`
 
 Example:
 ```
-delete-person n/Dinosaur Lim
+delete-person n/Bobbie
 ```
-In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
+In the above example, we are deleting the contact with name `Bobbie` from Plannit. Here's a screenshot of Plannit before
+and after executing the command:
+
+
+| Before executing the command                                                                                                                                  | After executing the command                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-after.png"/></p><p>Bobbie has been deleted!</p>{:/} |
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a person from Plannit will bring you back to the home page.
@@ -647,11 +665,17 @@ Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 Example:
 
 ```
-delete-person-from-module m/CS2103T n/Dinosaur Lim
+delete-person-from-module m/CS2103T n/Charlotte Oliveiro
 ```
-In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+In the above example, we are deleting the person `Charlotte Oliveiro` from the module `CS2103T`. Here's
+a screenshot of Plannit before and after executing the command:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
+| Before executing the command                                                                                                                                              | After executing the command                                                                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-person-from-module-after.png"/></p><p>Charlotte Oliveiro has been deleted from the module CS2103T!</p>{:/} |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a person will bring you back to the home page.
 </div>
 
@@ -671,20 +695,21 @@ Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 
 Examples:
 ```
-edit-person 1 n/Dinosaur Lim
+edit-person 2 n/Charmander
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim` in Plannit.
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
+`Charmander` in Plannit.
 ```
-edit-person 1 e/dinosaurlim@gmail.com
+edit-person 2 n/Charmander e/charmander@gmail.com
 ```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the
-email `dinosaurlim@gmail.com`in Plannit.
-```
-edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
-```
-In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
-`Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
+In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
+`Charmander` and email `charmander@gmail.com`in Plannit. Here's a screenshot of Plannit before and after executing the 
+command for the last example:
+
+
+| Before executing the command                                                                                                                                | After executing the command                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/edit-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/edit-person-after.png"/></p><p>Bernice Yu has been edited to Charmander!</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a person will bring you back to the home page.
