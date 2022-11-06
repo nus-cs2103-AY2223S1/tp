@@ -519,7 +519,7 @@ Getting patients with an appointment on a specified date involves the following 
 4. the `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
    to be returned in a `CommandResult`
 5. the model is updated such that the *filtered* list only displays patients who have an appointment on the specified 
-   date.
+   date. 
 
 The date inputted is parsed using `LocalDate`
 
