@@ -12,7 +12,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +38,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Overview
+## **Command Overview**
 
 <div markdown="block" class="alert alert-info">
 
@@ -117,7 +117,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features in Condonery
+## **Features in Condonery**
 
 ### Undoing commands : `undo`
 
@@ -168,7 +168,7 @@ If your changes to the data file makes its format invalid, both the Property dir
 
 </div>
 
-## Property Directory Features
+## **Property Directory Features**
 
 ### Adding a property: `add -p`
 
@@ -405,7 +405,7 @@ Clears all properties from the property directory.
 
 Format: `clear -p`
 
-## Client Directory Features
+## **Client Directory Features**
 
 ### Adding a client profile: `add -c`
 
@@ -574,7 +574,7 @@ Format: `clear -c`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -582,7 +582,7 @@ the data of your previous Property directory and Client directory home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 **Property Directory**
 
