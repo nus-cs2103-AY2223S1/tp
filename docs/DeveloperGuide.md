@@ -1280,6 +1280,7 @@ testers are expected to do more *exploratory* testing.
 ### Marking tasks as done (and undone)
 
 1. **Marking a task that is shown as done:**
+
     1. Pre-requisites:
        - You have exactly least one undone task (see `add task`).
        - You are not currently `cd`'d into a module (`cd ..` if you are).
@@ -1290,12 +1291,14 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is marked as done and an error message is displayed.
 
 1. **Hiding the done tasks:**
+
     1. Pre-requisites:
        - You have just completed the previous test case - there should only be 1 task and it should be done.
     1. Test case: `list task`<br>
        Expected: The task is no longer shown in the UI.
 
 1. **Showing the done tasks:**
+
     1. Pre-requisites:
        - You have just completed the previous test case - no tasks should be visible in the UI.
     1. Test case: `list task -a`<br>
@@ -1304,6 +1307,7 @@ testers are expected to do more *exploratory* testing.
        Expected: A syntax error message is displayed, because the flag is case-sensitive.
 
 1. **Unmarking as task that is shown as done:**
+
     1. Pre-requisites:
         - You have just completed the previous test case - there should only be 1 task and it should be done and visible.
     1. Test case: `undone task 1`<br>
