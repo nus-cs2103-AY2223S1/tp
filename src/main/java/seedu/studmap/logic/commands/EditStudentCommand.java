@@ -28,8 +28,8 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
 
     /**
      * @param indexListGenerator Function that produces list of indices of students
-     *                         in the filtered student list to edit
-     * @param studentEditor    details to edit the student(s) with
+     *                           in the filtered student list to edit
+     * @param studentEditor      details to edit the student(s) with
      */
     protected EditStudentCommand(IndexListGenerator indexListGenerator, T studentEditor) {
         this.indicesToEdit = indexListGenerator;
@@ -62,6 +62,7 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
+        ArrayList<Student> studentsToEdit = new ArrayList<>();
         ArrayList<Student> editedStudents = new ArrayList<>();
         ArrayList<Student> uneditedStudents = new ArrayList<>();
 
@@ -73,8 +74,11 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
+            studentsToEdit.add(lastShownList.get(index.getZeroBased()));
+        }
 
-            Student studentToEdit = lastShownList.get(index.getZeroBased());
+        for (Student studentToEdit : studentsToEdit) {
+
             StudentEditor.EditResult editResult = studentEditor.editStudent(studentToEdit);
             Student editedStudent = editResult.editedStudent;
 
