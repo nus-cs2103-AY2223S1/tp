@@ -35,4 +35,18 @@ public class LocationTest {
         assertTrue(Location.isValidLocation("Leng Inc; 1234 Market St; "
                 + "San Francisco CA 2349879; USA")); // long location
     }
+
+    @Test
+    public void isSimilarLocation() {
+        Location baseLocation = new Location("Location");
+
+        assertTrue(baseLocation.similarTo(baseLocation)); // same object
+        assertTrue(baseLocation.similarTo(new Location("Location"))); // same spelling
+        assertTrue(baseLocation.similarTo(new Location("location"))); // all lowercase
+        assertTrue(baseLocation.similarTo(new Location("LOCATION"))); // all uppercase
+
+        assertFalse(baseLocation.similarTo(new Location("Location "))); // extra trailing whitespace
+        assertFalse(baseLocation.similarTo(new Location("Locationn"))); // different spelling
+        assertFalse(baseLocation.similarTo(null)); // null object
+    }
 }
