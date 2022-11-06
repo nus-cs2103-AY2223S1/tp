@@ -349,7 +349,7 @@ The process for deleting `transaction` and `remark` is almost the same as the pr
 This product is for **home-based business owners / reseller** who need help in keeping track of clients' contacts,
 transaction records, and remarks about the client.
 
-It is particularly meant for people with these characteristics:
+JeeqTracker is designed specifically for people with these characteristics:
 
 * needs to get things done extremely fast
 * prefer desktop applications over other types
@@ -505,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Mainstream OS | Windows, Linux, Unix, OS-X                                                                    |
 | Client        | People who the user wants to have transactions with, or have already transacted with the user |
 | Remark        | Characteristics of a client (e.g. Punctual, Friendly)                                         |
-| Transaction   | can only be a **buy** or **sell** transaction, not a trade                                    |
+| Transaction   | Can only be a **buy** or **sell** transaction, not a trade                                    |
 
 
 --------------------------------------------------------------------------------------------------------------------
