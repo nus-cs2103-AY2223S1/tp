@@ -38,10 +38,11 @@ for easy reference. So, let's [get started](#installation)!
 - [Features](#features)
   - [General Commands](#general-commands)
     - [Viewing help](#viewing-help-help): `help`
+    - [Listing all patients](#listing-all-patients-list): `list`
+    - [Listing all records of a patient](#listing-all-records-of-a-patient-rlist): `rlist`
     - [Displaying the full list](#displaying-the-full-list-showall): `showall`
     - [Exiting the program](#exiting-the-program-exit): `exit`
   - [Patient Commands](#patient-commands)
-    - [Listing all patients](#listing-all-patients-list): `list`
     - [Adding a patient](#adding-a-patient-add): `add`
     - [Deleting a patient](#deleting-a-patient-delete): `delete`
     - [Editing a patient](#editing-a-patient-edit): `edit`
@@ -51,7 +52,6 @@ for easy reference. So, let's [get started](#installation)!
     - [Adding an appointment](#adding-an-appointment-appt): `appt`
     - [Clearing an appointment](#clearing-an-appointment-apptcl): `apptcl`
   - [Record Commands](#record-commands)
-    - [Listing all records of a patient](#listing-all-records-of-a-patient-rlist): `rlist`
     - [Adding a record](#adding-a-record-radd): `radd`
     - [Deleting a record](#deleting-a-record-rdelete): `rdelete`
     - [Editing a record](#editing-a-record-redit): `redit`
