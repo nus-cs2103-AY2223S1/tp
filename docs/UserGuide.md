@@ -423,10 +423,11 @@ Format: `task do TASK_INDEX by/DATE...`
 
 ### Sorting tasks by deadline: `task sort`
 
-Sorts the task list by deadline
+Sorts the task list by deadline. Tasks with earlier deadlines will be put at the top, while tasks without any deadlines will be at the bottom.
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Additional Notes:**<br>
-* After this command is ran, the task panel will only show incomplete tasks. 
+* After this command is run, the task panel will only show incomplete tasks. 
 <br>
 </div>
 
@@ -671,4 +672,4 @@ Details of each task can be added, which helps the team managers no fear of leav
 
 --------------------------------------------------------------------------------------------------------------------
 
-### This is the end of Arrow user guide, if you reach this far, thank you for your reading and hope you enjoying using our app :)
+This is the end of Arrow User Guide. If you have reached this far, thank you for reading and hope you enjoy using our app :)
