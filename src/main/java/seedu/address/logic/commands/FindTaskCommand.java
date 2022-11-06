@@ -60,11 +60,4 @@ public class FindTaskCommand extends Command {
                 String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size(), predicate.getKeywordsAsString()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindTaskCommand // instanceof handles nulls
-                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
-    }
-
 }

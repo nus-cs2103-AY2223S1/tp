@@ -66,10 +66,4 @@ public class SortMemberCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SortMemberCommand // instanceof handles nulls
-                && order.equals(((SortMemberCommand) other).order));
-    }
 }

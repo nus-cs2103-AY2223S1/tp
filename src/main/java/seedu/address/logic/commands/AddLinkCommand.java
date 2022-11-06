@@ -75,11 +75,4 @@ public class AddLinkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddLinkCommand // instanceof handles nulls
-                && name.equals(((AddLinkCommand) other).name))
-                && url.equals(((AddLinkCommand) other).url);
-    }
 }

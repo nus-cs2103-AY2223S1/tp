@@ -78,12 +78,4 @@ public class AddTeamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_TEAM_SUCCESS, team));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddTeamCommand // instanceof handles nulls
-                && teamName.equals(((AddTeamCommand) other).teamName)) // state check
-                && description != null && description.equals(((AddTeamCommand) other).description);
-    }
-
 }

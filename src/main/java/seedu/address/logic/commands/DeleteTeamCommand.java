@@ -77,11 +77,4 @@ public class DeleteTeamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, targetTeamInTeamList));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteTeamCommand // instanceof handles nulls
-                && teamName.equals(((DeleteTeamCommand) other).teamName)); // state check
-    }
-
 }

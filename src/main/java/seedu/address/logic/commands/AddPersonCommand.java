@@ -97,24 +97,4 @@ public class AddPersonCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof AddPersonCommand)) {
-            return false;
-        }
-
-        // state check
-        AddPersonCommand o = (AddPersonCommand) other;
-        return name.equals(o.name)
-                && phone.equals(o.phone)
-                && email.equals(o.email)
-                && tags != null && tags.equals(o.tags);
-    }
-
 }

@@ -71,9 +71,4 @@ public class TasksOfCommand extends Command {
                 String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size(), member.getName()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other instanceof TasksOfCommand
-                && index.equals(((TasksOfCommand) other).index);
-    }
 }

@@ -71,12 +71,6 @@ public class FindMemberCommand extends Command {
                 String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), predicate.getKeywords()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindMemberCommand // instanceof handles nulls
-                && predicate.equals(((FindMemberCommand) other).predicate)); // state check
-    }
 
     private static class Exclusive {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1",
@@ -103,17 +97,5 @@ public class FindMemberCommand extends Command {
                     : nameContainsKeywordsPredicate.getKeywordsAsString();
         }
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Exclusive) {
-                Exclusive target = (Exclusive) other;
-                return nameContainsKeywordsPredicate.equals(target.nameContainsKeywordsPredicate)
-                        && emailContainsKeywordsPredicate.equals(target.emailContainsKeywordsPredicate);
-            } else {
-                return false;
-            }
-        }
     }
 }

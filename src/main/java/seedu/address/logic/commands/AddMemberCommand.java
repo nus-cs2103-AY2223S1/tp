@@ -69,10 +69,4 @@ public class AddMemberCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_MEMBER_SUCCESS, toAdd));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddMemberCommand // instanceof handles nulls
-                && index == (((AddMemberCommand) other).index)); // state check
-    }
 }

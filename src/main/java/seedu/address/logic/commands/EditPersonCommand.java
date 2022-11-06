@@ -135,24 +135,6 @@ public class EditPersonCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditPersonCommand)) {
-            return false;
-        }
-
-        // state check
-        EditPersonCommand e = (EditPersonCommand) other;
-        return index.equals(e.index)
-                && arguments.equals(e.arguments);
-    }
-
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_PERSON_NAME_DESCRIPTION)
         private Name name;
@@ -169,20 +151,6 @@ public class EditPersonCommand extends Command {
                 arity = "*")
         private Set<Tag> tags;
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name != null && this.name.equals(target.name)
-                        && this.phone != null && this.phone.equals(target.phone)
-                        && this.email != null && this.email.equals(target.email)
-                        && this.tags != null && this.tags.equals(target.tags);
-            } else {
-                return false;
-            }
-        }
     }
 
     /**

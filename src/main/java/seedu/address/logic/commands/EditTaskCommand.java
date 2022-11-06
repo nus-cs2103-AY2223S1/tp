@@ -153,23 +153,6 @@ public class EditTaskCommand extends Command {
 
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditTaskCommand)) {
-            return false;
-        }
-
-        // state check
-        EditTaskCommand e = (EditTaskCommand) other;
-        return index.equals(e.index) && arguments.equals(e.arguments);
-    }
-
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
         private TaskName taskName;
@@ -182,21 +165,6 @@ public class EditTaskCommand extends Command {
                 FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private List<Index> assignees = new ArrayList<>();
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            if (!(other instanceof Arguments)) {
-                return false;
-            }
-
-            Arguments target = (Arguments) other;
-            return this.taskName != null && this.taskName.equals(target.taskName)
-                    && this.deadline != null && this.deadline.equals(target.deadline)
-                    && this.assignees.equals(target.assignees);
-        }
     }
 
     /**
@@ -251,26 +219,6 @@ public class EditTaskCommand extends Command {
 
         public void setAssignees(List<Index> assignees) {
             this.assignees = assignees;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTaskCommand.EditTaskDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTaskCommand.EditTaskDescriptor e = (EditTaskCommand.EditTaskDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getDeadline().equals(e.getDeadline())
-                    && getAssignees().equals(e.getAssignees());
         }
 
     }

@@ -112,12 +112,4 @@ public class AddTaskCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddTaskCommand // instanceof handles nulls
-                && taskName.equals(((AddTaskCommand) other).taskName)) // state check
-                && assignees.equals(((AddTaskCommand) other).assignees)
-                && deadline != null && deadline.equals(((AddTaskCommand) other).deadline);
-    }
 }

@@ -75,11 +75,4 @@ public class SetDeadlineCommand extends Command {
                 taskList.get(index.getZeroBased()).getDeadlineAsString()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SetDeadlineCommand // instanceof handles nulls
-                && index.equals(((SetDeadlineCommand) other).index))
-                && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
-    }
 }

@@ -65,10 +65,4 @@ public class UnmarkCommand extends Command {
                 unmarkedTask.getName()));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UnmarkCommand // instanceof handles nulls
-                && index == (((UnmarkCommand) other).index)); // state check
-    }
 }

@@ -108,24 +108,6 @@ public class EditLinkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditLinkCommand)) {
-            return false;
-        }
-
-        // state check
-        EditLinkCommand e = (EditLinkCommand) other;
-        return index.equals(e.index)
-                && arguments.equals(e.arguments);
-    }
-
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_LINK_NAME_DESCRIPTION)
         private LinkName name;
@@ -133,18 +115,6 @@ public class EditLinkCommand extends Command {
         @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name != null && this.name.equals(target.name)
-                        && this.url != null && this.url.equals(target.url);
-            } else {
-                return false;
-            }
-        }
     }
 
     /**
@@ -188,24 +158,6 @@ public class EditLinkCommand extends Command {
 
         public void setUrl(Url url) {
             this.url = url;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditLinkCommand.EditLinkDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditLinkCommand.EditLinkDescriptor e = (EditLinkCommand.EditLinkDescriptor) other;
-
-            return getName().equals(e.getName()) && getUrl().equals(e.getUrl());
         }
 
     }

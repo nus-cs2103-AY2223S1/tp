@@ -80,11 +80,4 @@ public class SetTeamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeamInTeamList));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SetTeamCommand // instanceof handles nulls
-                && teamName.equals(((SetTeamCommand) other).teamName)); // state check
-    }
-
 }

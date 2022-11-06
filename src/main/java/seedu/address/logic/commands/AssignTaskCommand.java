@@ -102,11 +102,4 @@ public class AssignTaskCommand extends Command {
                 taskList.get(index.getZeroBased())));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AssignTaskCommand // instanceof handles nulls
-                && index.equals(((AssignTaskCommand) other).index)) // state check
-                && assignees.equals(((AssignTaskCommand) other).assignees);
-    }
 }
