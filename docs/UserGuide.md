@@ -550,6 +550,10 @@ from the module with module code `CS2040`, using their corresponding link alias 
 <br>
 
 ### 2.4. Contacts
+The terms "contact" and "person" has similar meanings and for the majority of the time, can be understood as referring
+to the same entity. The only scenario that calls for a distinction is when you are inputting a command word; we use person instead 
+of contact.
+
 #### 2.4.1. Add person
 You may add a contact to Plannit using the `add-person` command.
 
@@ -569,7 +573,7 @@ Example:
 add-person n/Bobbie e/bobbie@gmail.com p/91234567
 ```
 In the above example, we are adding a contact with name `Bobbie`, email `bobbie@gmail.com`, and phone number
-`91234567` into Plannit.
+`91234567` into Plannit. Here's a screenshot of Plannit before and after executing the command:
 
 
 | Before executing the command                                                                                                                               | After executing the command                                                                                   |
@@ -626,7 +630,8 @@ Example:
 ```
 delete-person n/Bobbie
 ```
-In the above example, we are deleting the contact with name `Bobbie` from Plannit.
+In the above example, we are deleting the contact with name `Bobbie` from Plannit. Here's a screenshot of Plannit before
+and after executing the command:
 
 
 | Before executing the command                                                                                                                                  | After executing the command                                                                                        |
@@ -659,7 +664,8 @@ Example:
 ```
 delete-person-from-module m/CS2103T n/Charlotte Oliveiro
 ```
-In the above example, we are deleting the person `Charlotte Oliveiro` from the module `CS2103T`.
+In the above example, we are deleting the person `Charlotte Oliveiro` from the module `CS2103T`. Here's
+a screenshot of Plannit before and after executing the command:
 
 
 | Before executing the command                                                                                                                                              | After executing the command                                                                                                                                        |
@@ -694,8 +700,8 @@ In the above example, we are editing the contact with a displayed-index number o
 edit-person 2 n/Charmander e/charmander@gmail.com
 ```
 In the above example, we are editing the contact with a displayed-index number of '2' on the screen to now have the name
-`Charmander` and email `charmander@gmail.com`in Plannit.  
-Screenshots for the last example:
+`Charmander` and email `charmander@gmail.com`in Plannit. Here's a screenshot of Plannit before and after executing the 
+command for the last example:
 
 
 | Before executing the command                                                                                                                                | After executing the command                                                                                                       |
