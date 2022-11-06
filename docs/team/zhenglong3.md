@@ -21,6 +21,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for renaming command names.
+        * Formatted the user guide to be more readable.
     * Developer Guide:
         * Added implementation details of renaming commands.
 
