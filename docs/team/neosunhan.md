@@ -34,7 +34,6 @@ Given below are my contributions to the project.
     * Added annotated image to explain the different components of the GUI
   * Developer Guide:
     * Updated UML diagrams for `Logic` and `Model` components
-    * Added Class diagram for Lesson subclasses
     * Added implementation details for `marktask` and `unmarktask` feature
 
 * **Community**:
