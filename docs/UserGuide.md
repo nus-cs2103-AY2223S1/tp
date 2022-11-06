@@ -906,6 +906,7 @@ exactly the same name and the same email, even all attributes being identical. T
 than one role in our app.
 Two pets are considered as the same if they have all the same attributes. Two orders are different even they have all
 the same attributes.
+For example, `"John"` is the same as `"John"`, not the same as `"john"`, `"  john   "`, or `"jOhn"`.
 
 [Go back to [Table of Contents](#table-of-contents)]
 

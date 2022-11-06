@@ -89,6 +89,8 @@ Given below are my contributions to the project.
         * Adding a pet to a supplier
         * Adding an order to a buyer
         * Prefix Summary
+        * FAQs
+        * Other miscellaneous parts and proofreading
     * Developer Guide:
         * Target user profile
         * Value proposition
@@ -96,6 +98,7 @@ Given below are my contributions to the project.
         * Use cases
         * Match command implementation
         * Unique ID implementation
+        * Other miscellaneous parts and proofreading
 
 * **Community**:
     * Created the team's organization and team repo
@@ -113,5 +116,5 @@ Given below are my contributions to the project.
       , [\#172](https://github.com/AY2223S1-CS2103T-W17-3/tp/issues/172))
 
 * **Tools**:
-    * Used JavaFX to tweak the UI.
+    * Used JavaFX to develop the UI.
 
