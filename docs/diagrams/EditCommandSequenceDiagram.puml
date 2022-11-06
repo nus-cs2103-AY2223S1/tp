@@ -55,11 +55,4 @@ deactivate Model
 [<-- EditCommand: CommandResult
 deactivate EditCommand
 
-
-
-
-
-
-
-
 @enduml
