@@ -13,13 +13,10 @@ Given below are my contributions to the project.
 * What it does: Add modules inputted by the user to a batchmate.
 * Justification: It is a crucial core feature.
 * Highlights: 
-  * Add a `ModCommandParser` class to parse all mod commands. 
-  * Add an abstract class `ModCommand`. 
-  * Add a class `ModAddCommand` that extends `ModCommand`. 
+  * Add a `ModCommandParser` class to parse all mod commands, an abstract class `ModCommand` and a class `ModAddCommand` that extends `ModCommand`. 
   * Modify the `add` command to also accept mods with the prefix `m/`. 
   * Modify the `edit` command to throw an exception when a user attempts to edit the mods. 
-  * Add tests for `ModAddCommand`, `ModCommandParser`, `Mod`. 
-  * Update tests for `EditCommand`, `AddCommandParser`, `EditCommandParser`, `ParserUtil`.
+  * Add and update tests.
 
 #### New Feature: Module Categorisation
 * What it does: Categorises a mod using the first 2 characters of the module name.
@@ -29,20 +26,16 @@ Given below are my contributions to the project.
     * Wrote tests for mod categorisation in `ParserUtil`. 
 
 #### New Enhancement: Sorting of modules
-* What it does:
-    * Sorts mods by their completion (taking in front) and then by their `modName` in lexicographic order.
-* Justification:
-    * Bring greater convenience for the user when looking for mods via the mod panel.
+* What it does: Sorts mods by their completion (taking in front) and then by their `modName` in lexicographic order.
+* Justification: Bring greater convenience for the user when looking for mods via the mod panel.
 * Highlights:
     * Add a new `ModComparator` class to compare 2 mods.
     * Change `Person` to return a `SortedList`.
     * Add tests for `ModComparator`.
 
 #### New Enhancement: Input validation for GitHub and Telegram fields
-* What it does:
-    * Ensure that the GitHub username and Telegram handle provided by the user is valid.
-* Justification:
-    * Having an invalid GitHub username or Telegram handle would result in the user not being able to contact that person.
+* What it does: Ensure that the GitHub username and Telegram handle provided by the user is valid.
+* Justification: Having an invalid GitHub username or Telegram handle would result in the user not being able to contact that person.
 * Highlights:
     * Used regex to check for input validity for GitHub and Telegram.
     * Edit warning message for invalid input.

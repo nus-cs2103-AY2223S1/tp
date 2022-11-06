@@ -18,6 +18,7 @@ public class Mod {
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
         GE("General Education"), UE("Unrestricted Elective");
+
         private String modName;
 
         ModCategory(String modName) {
