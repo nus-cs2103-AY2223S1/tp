@@ -33,27 +33,27 @@ Given below are my contributions to the project.
   - Implemented a right panel
     - Created a right panel to display information from `view` and `view-department` command. Update the necessary parsers to send a signal to `MainWindow` class whenever there is an update to the information displayed. The right panel will then update to display the latest information.
     - Why: To ensure that all the information displayed is up-to-date. So users don't need to manually update, which brings about more convenience to the users.
-  - Adjust GUI settings
+  - Enhanced GUI settings
     - Make changes to GUI settings. Specifically:
-      - Change the position of the `ResultDisplay` and `CommandBox`
-      - Change the minimum width and height of the program so the content won't be blocked when users try to resize the window.
+      - Change the position of the `ResultDisplay` and `CommandBox`.
+      - Change the minimum width and height of the program so that the content won't be blocked when users try to resize the window.
       - Slightly increase the height of the `ResultDisplay` to contains more result, hence less scrolling required.
     - Why: Enhance user experience
 - **Existing Features**
-  - Adjust the `PersonListCard` class
+  - Enhanced the `PersonListCard` class
     - Remove unnecessary information that were previously displayed on each of the `PersonListCard`.
-    - Why: To enhance user experience by abstracting out some less necessary information.
+    - Why: This enhances the user experience by removing additional unimportant information.
 
 - **Contributions to the UG**
   - Added documentation for following parts:
-    - `view` command
-    - `list` command
-    - `view-department` command
+    - `view` command.
+    - `list` command.
+    - `view-department` command.
 
 - **Contributions to the DG**
   - Added implementation details for:
-    - `view`
-    - [To Be Updated]
+    - `view`.
+    - [To Be Updated].
 
 - **Reviewing Contributions**
   - Pull Requests reviewed:
