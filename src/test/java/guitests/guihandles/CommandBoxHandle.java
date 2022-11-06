@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A handle to the {@code CommandBox} in the GUI.
  */
@@ -41,3 +43,4 @@ public class CommandBoxHandle extends NodeHandle<TextField> {
         return getRootNode().getStyleClass();
     }
 }
+// @@author

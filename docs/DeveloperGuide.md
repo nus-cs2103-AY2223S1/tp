@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Our project is built on the AddressBook-Level3 project created by the [SE-EDU](https://se-education.org/docs/templates.html) initiative.
+* Our project uses test code adapted from AddressBook-Level4 projected created by [SE-EDU](https://se-education.org/addressbook-level4/) initiative.
 
 --------------------------------------------------------------------------------------------------------------------
 

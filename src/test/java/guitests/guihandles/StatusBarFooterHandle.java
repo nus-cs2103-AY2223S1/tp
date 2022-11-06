@@ -3,6 +3,8 @@ package guitests.guihandles;
 import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * A handle for the {@code StatusBarFooter} at the footer of the application.
  */
@@ -74,3 +76,4 @@ public class StatusBarFooterHandle extends NodeHandle<Node> {
         return !lastRememberedSaveLocation.equals(getSaveLocation());
     }
 }
+// @@author

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 public class ResultDisplayTest extends GuiUnitTest {
 
     private ResultDisplay resultDisplay;
@@ -33,3 +35,4 @@ public class ResultDisplayTest extends GuiUnitTest {
         assertEquals("Dummy feedback to user", resultDisplayHandle.getText());
     }
 }
+// @@author

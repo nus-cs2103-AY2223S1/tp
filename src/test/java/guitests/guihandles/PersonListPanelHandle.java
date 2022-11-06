@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import seedu.address.model.person.Person;
 
+// @@author pyokagan-reused
+// Test code adapted from AddressBook Level 4 https://se-education.org/addressbook-level4/ with modifications
 /**
  * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
  */
@@ -157,3 +159,4 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
         return getRootNode().getItems().size();
     }
 }
+// @@author
