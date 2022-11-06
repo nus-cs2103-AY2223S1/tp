@@ -57,4 +57,10 @@ public class AddEventCommand extends Command {
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddEventCommand // instanceof handles nulls
+                && toAdd.equals(((AddEventCommand) other).toAdd));
+    }
 }
