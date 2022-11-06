@@ -6,6 +6,7 @@ title: User Guide
 YellowBook is a **desktop application for university students** who are involved in many projects to organize their project contacts and tasks.
 YellowBook is optimised for use via a Command Line Interface (CLI).
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -13,7 +14,7 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
 
 2. Download the latest `yellowbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-4/tp/releases).
 
@@ -22,14 +23,7 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`listC`** : Lists all contacts.
-
-   * **`addC`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to YellowBook.
-
-   * **`deleteC`**`3` : Deletes the 3rd contact shown in the current contact list.
+5. Try out some commands from the [Sample Usage](#sample-usage) section.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -78,36 +72,6 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-## General Features
-
-### Viewing help : `help`
-
-Shows a window with a link to this user guide and latest release of YellowBook.
-
-### Exiting YellowBook : `exit`
-
-Closes the YellowBook program.
-
-### Undoing a command : `undo`
-
-Undoes the last command.
-
-Format: `undo`
-
-* For exceptionally large contact/task lists, it may take a few seconds to undo the command.
-
-* Undo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
-
-### Redoing a command : `redo`
-
-Redoes the last command.
-
-Format: `redo`
-
-* For exceptionally large contact/task lists, it may take a few seconds to redo the command.
-
-* Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
 
 ## Section 1: Contacts
 
@@ -237,6 +201,7 @@ Example:
 
 * `copyC CS2103T` returns a string of emails of contacts that contain the label `CS2103T`.
 
+[[Back to Table of Contents](#table-of-contents)]
 
 ## Section 2: Tasks
 
@@ -485,13 +450,14 @@ Unarchives a task in the task list, adding it to the main task list.
 
 Format: `unarchiveT INDEX`
 
+[[Back to Table of Contents](#table-of-contents)]
+
 ## Section 3: Labels
 
 These commands allow you to further organise people and tasks into subgroups depending on the nature of the project you
 are working on together.
 Whether it be a software engineering module or a business pitch, you can customise every person and task.
 With our label feature, managing your numerous projects on the go has just gotten a lot easier.
-
 
 ### Listing all labels: `listL`
 
@@ -575,6 +541,40 @@ The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
 
+[[Back to Table of Contents](#table-of-contents)]
+
+## General Features
+
+### Viewing help : `help`
+
+Shows a window with a link to this user guide and latest release of YellowBook.
+
+### Exiting YellowBook : `exit`
+
+Closes the YellowBook program.
+
+### Undoing a command : `undo`
+
+Undoes the last command.
+
+Format: `undo`
+
+* For exceptionally large contact/task lists, it may take a few seconds to undo the command.
+
+* Undo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
+
+### Redoing a command : `redo`
+
+Redoes the last command.
+
+Format: `redo`
+
+* For exceptionally large contact/task lists, it may take a few seconds to redo the command.
+
+* Redo is not available for commands that do not modify the contact/task data (e.g. listC, listT, help, findC, findT, filterC, filterT etc.)
+
+[[Back to Table of Contents](#table-of-contents)]
+
 ## Automatic tab switching
 
 Depending on the command you enter, you will see the open tab in the GUI switch automatically.
@@ -600,6 +600,8 @@ Advanced users who wish to edit the data file should note the following:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
 </div>
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
