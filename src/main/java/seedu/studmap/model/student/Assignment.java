@@ -1,5 +1,7 @@
 package seedu.studmap.model.student;
 
+import seedu.studmap.commons.exceptions.IllegalValueException;
+
 /**
  * Represents an Assignment object in StudMap.
  * Guarantees: immutable; identifier is valid as declared in {@link #isValidAttributeIdentifier(String)} (String)}
@@ -13,7 +15,7 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
     public static final String ASSIGNMENT_RECEIVED = "Received";
     public static final String ASSIGNMENT_NEW = "New";
     public static final String MESSAGE_STATUS_CONSTRAINTS = "Assignment marking status should be one of "
-            + ASSIGNMENT_NEW + ", " + ASSIGNMENT_RECEIVED + " or " + ASSIGNMENT_RECEIVED + ".";
+            + ASSIGNMENT_NEW + ", " + ASSIGNMENT_RECEIVED + " or " + ASSIGNMENT_MARKED + ".";
 
 
     /**
@@ -94,7 +96,7 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
         /**
          * Translates a string value of {@code Status} to an enum value.
          */
-        public static Status fromString(String value) throws IllegalArgumentException {
+        public static Status fromString(String value) throws IllegalValueException {
             switch (value) {
             case ASSIGNMENT_MARKED:
                 return MARKED;
@@ -103,7 +105,7 @@ public class Assignment extends MultiStateAttribute<String, Assignment.Status> {
             case ASSIGNMENT_NEW:
                 return NEW;
             default:
-                throw new IllegalArgumentException(MESSAGE_STATUS_CONSTRAINTS);
+                throw new IllegalValueException(MESSAGE_STATUS_CONSTRAINTS);
             }
         }
     }
