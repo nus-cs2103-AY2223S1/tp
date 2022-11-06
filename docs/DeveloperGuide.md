@@ -377,9 +377,11 @@ Sorting by default means sorting by oldest to newest updated entry. Editing an e
 *(To be added)*: sort by class timings, level.
 
 #### Implementation
+<img src="images/SortSequenceDiagram.png">
+The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.  
+
 Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
-Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
-** *TODO: add PlantUML diagram* ** 
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.
 
 
 | Sort by 	     | methods 	|
