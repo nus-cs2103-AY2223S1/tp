@@ -150,7 +150,7 @@ public class DayTest {
                 "        ★★★★★" + System.lineSeparator() +
                 "        Cost $100.00" + System.lineSeparator() +
                 "        Duration 60 mins" + System.lineSeparator() +
-                "        Time: 23:00 - 00:00" + System.lineSeparator() +
+                "        Time: 23:00 - 00:00 (next day)" + System.lineSeparator() +
                 "    " + System.lineSeparator();
         String actualString = dayStub.getTextRepresentation();
         assertEquals(expectedString, actualString);
