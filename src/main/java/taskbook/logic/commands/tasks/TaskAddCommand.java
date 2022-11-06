@@ -37,7 +37,7 @@ public abstract class TaskAddCommand extends Command {
 
     /**
      * Creates a TaskAddCommand to add a task with the specified
-     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
+     * {@code Name name}, {@code Description description} and {@code Assignment assignment}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new task.
@@ -53,7 +53,8 @@ public abstract class TaskAddCommand extends Command {
 
     /**
      * Creates a TaskAddCommand to add a task with the specified
-     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
+     * {@code Name name}, {@code Description description},
+     * {@code Assignment assignment} and {@code Set tags}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new task.
@@ -69,15 +70,15 @@ public abstract class TaskAddCommand extends Command {
         this.tags.addAll(tags);
     }
 
-    public Task createTodo() {
+    protected Task createTodo() {
         return new Todo(name, assignment, description, isDone, tags);
     }
 
-    public Task createDeadline(LocalDate date) {
+    protected Task createDeadline(LocalDate date) {
         return new Deadline(name, assignment, description, isDone, date , tags);
     }
 
-    public Task createEvent(LocalDate date) {
+    protected Task createEvent(LocalDate date) {
         return new Event(name, assignment, description, isDone, date , tags);
     }
 
@@ -92,6 +93,7 @@ public abstract class TaskAddCommand extends Command {
         if (name.fullName.equalsIgnoreCase(Name.SELF.fullName)) {
             return;
         }
+
         Person personToAddTask = model.findPerson(name);
         if (personToAddTask == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);

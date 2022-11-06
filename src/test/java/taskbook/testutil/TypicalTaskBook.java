@@ -79,15 +79,15 @@ public class TypicalTaskBook {
     // Typical Tasks
     public static final Deadline EATING = new DeadlineBuilder().withPersonName(ALICE)
             .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(true)
-            .withDeadlineDate(NOV_NINE).build();
+            .withTags("weightLoss").withDeadlineDate(NOV_NINE).build();
 
     public static final Todo SLEEPING = new TodoBuilder().withPersonName(BENSON)
             .withAssignment(Assignment.FROM).withDescription("sleep early").withIsDone(false)
-            .build();
+            .withTags("habits").build();
 
     public static final Event PARTYING = new EventBuilder().withPersonName(CARL)
             .withAssignment(Assignment.TO).withDescription("party at kevin's house")
-            .withEventDate(OCT_ELEVEN).withIsDone(true).build();
+            .withTags("party").withEventDate(OCT_ELEVEN).withIsDone(true).build();
 
     private TypicalTaskBook() {} // prevents instantiation
 

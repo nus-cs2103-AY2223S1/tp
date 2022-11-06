@@ -1,12 +1,15 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static taskbook.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,32 +29,35 @@ public class TaskUnmarkCommandTest {
         TaskUnmarkCommand taskUnmarkSecondCommand = new TaskUnmarkCommand(INDEX_SECOND_TASK);
 
         // same object -> returns true
-        assertTrue(taskUnmarkFirstCommand.equals(taskUnmarkFirstCommand));
+        assertEquals(taskUnmarkFirstCommand, taskUnmarkFirstCommand);
 
         // same values -> returns true
         TaskUnmarkCommand taskUnmarkFirstCommandCopy = new TaskUnmarkCommand(INDEX_FIRST_TASK);
-        assertTrue(taskUnmarkFirstCommand.equals(taskUnmarkFirstCommandCopy));
+        assertEquals(taskUnmarkFirstCommand, taskUnmarkFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(taskUnmarkFirstCommand.equals(1));
+        assertNotEquals(1, taskUnmarkFirstCommand);
 
         // null -> returns false
-        assertFalse(taskUnmarkFirstCommand.equals(null));
+        assertNotEquals(null, taskUnmarkFirstCommand);
 
         // different task -> returns false
-        assertFalse(taskUnmarkFirstCommand.equals(taskUnmarkSecondCommand));
+        assertNotEquals(taskUnmarkFirstCommand, taskUnmarkSecondCommand);
     }
 
     @Test
     public void execute_validUnmark_success() {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         Deadline task = TypicalTaskBook.EATING;
+        List<String> tags = new ArrayList<>();
+
         Deadline editedTask = new DeadlineBuilder()
                 .withName(task.getName())
                 .withAssignment(task.getAssignment())
                 .withDescription(task.getDescription().description)
                 .withIsDone(false)
                 .withDeadlineDate(task.getDate())
+                .withTags(task.getTags())
                 .build();
         TaskUnmarkCommand unmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TASK);
 

@@ -101,6 +101,14 @@ public class DeadlineBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Deadline} that we are building.
+     */
+    public DeadlineBuilder withTags(Set<Tag> tags) {
+        this.tags.addAll(tags);
+        return this;
+    }
+
+    /**
      * Builds a {@code Deadline} based on the parameters stored in the {@code DeadlineBuilder}.
      */
     public Deadline build() {

@@ -62,9 +62,16 @@ public class ContactDeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ContactDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((ContactDeleteCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ContactDeleteCommand)) {
+            return false;
+        }
+
+        ContactDeleteCommand otherCommand = (ContactDeleteCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex);
     }
 
     /**

@@ -36,8 +36,8 @@ public class TaskTodoCommand extends TaskAddCommand {
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
 
     /**
-     * Creates a TaskTodoCommand to add a task with the specified
-     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
+     * Creates a TaskTodoCommand to add a to-do with the specified
+     * {@code Name name}, {@code Description description} and {@code Assignment assignment}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new to-do.
@@ -48,8 +48,8 @@ public class TaskTodoCommand extends TaskAddCommand {
     }
 
     /**
-     * Creates a TaskTodoCommand to add a task with the specified
-     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
+     * Creates a TaskTodoCommand to add a to-do with the specified
+     * {@code Name name}, {@code Description description} and {@code Assignment assignment}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new to-do.

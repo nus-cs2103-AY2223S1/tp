@@ -23,7 +23,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 ## Table of Contents
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -603,7 +603,7 @@ Format: `contact sort s/SORT_TYPE`
 
 </div>
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
@@ -614,7 +614,7 @@ Alphabetical sorting will prioritize valid letters by their ASCII values, meanin
 Example:
 
 1. `contact sort s/a` dislays a contact list where names are sorted by alphabetical order.
-   1. Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering of the list will be: Alpha, Betsy, alfonzo.
+   * Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering of the list will be: Alpha, Betsy, alfonzo.
 
 #### Sorting tasks : `task sort`
 
@@ -633,18 +633,18 @@ Format: `task sort s/SORT_TYPE`
 
 </div>
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about alphabetical sorting:**<br>
 
-Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `task sort s/a`. This order is reversed for `task sort s/ca`.
+Alphabetical sorting for tasks are not case sensitive. Between any lower-case letter and their capital counterpart, there is no guarantee on the order of the sort.
 
 </div>
 
 Example:
 
 1. `task sort s/a` displays a task list sorted by description alphabetical order.
-   1. Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
+   * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order of the list will be: Do homework, Walk the dog, do chores.
 
 ### Marking a task : `task mark`
 

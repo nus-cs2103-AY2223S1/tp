@@ -72,21 +72,33 @@ public class TaskFindCommand extends Command {
                                 + getFilters()));
     }
 
+    private boolean isSameQuery(TaskFindCommand command) {
+        return this.query == null || command.query == null
+                ? this.query == command.query
+                : this.query.toUpperCase().equals(command.query.toUpperCase());
+    }
+
+    private boolean isSameAssignment(TaskFindCommand command) {
+        return this.assignment == null || command.assignment == null
+                ? this.assignment == command.assignment
+                : this.assignment.equals(command.assignment);
+    }
+
+    private boolean isSameDoneStatus(TaskFindCommand command) {
+        return this.done == null || command.done == null
+                ? this.done == command.done
+                : this.done.equals(command.done);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof TaskFindCommand)) {
             return false;
         }
         TaskFindCommand command = (TaskFindCommand) other;
-        boolean sameQuery = this.query == null || command.query == null
-                            ? this.query == command.query
-                            : this.query.toUpperCase().equals(command.query.toUpperCase());
-        boolean sameAssignment = this.assignment == null || command.assignment == null
-                                    ? this.assignment == command.assignment
-                                    : this.assignment.equals(command.assignment);
-        boolean sameDone = this.done == null || command.done == null
-                            ? this.done == command.done
-                            : this.done.equals(command.done);
+        boolean sameQuery = isSameQuery(command);
+        boolean sameAssignment = isSameAssignment(command);
+        boolean sameDone = isSameDoneStatus(command);
         return sameQuery && sameAssignment && sameDone;
     }
 }
