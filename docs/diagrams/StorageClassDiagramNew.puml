@@ -21,7 +21,6 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 Class JsonAdaptedGroup
-Class JsonAdaptedAssignment
 }
 
 }
@@ -41,7 +40,6 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedPerson --> "*" JsonAdaptedAssignment
 JsonSerializableAddressBook --> "*" JsonAdaptedGroup
 
 JsonAdaptedGroup -[hidden]-> JsonAdaptedPerson
