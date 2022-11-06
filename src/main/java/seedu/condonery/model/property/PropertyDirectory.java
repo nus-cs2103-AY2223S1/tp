@@ -70,6 +70,18 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     }
 
     /**
+     * Returns Property with the exact name.
+     */
+    public Property getPropertyByExactName(String name) {
+        for (Property property : this.properties) {
+            if (property.getName().toString().equals(name)) {
+                return property;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Adds a property to the address book.
      * The property must not already exist in the address book.
      */

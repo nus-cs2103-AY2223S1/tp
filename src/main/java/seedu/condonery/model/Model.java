@@ -126,6 +126,11 @@ public interface Model {
     boolean hasClient(Client client);
 
     /**
+     * Returns a client with the exact name.
+     */
+    Client getClientByExactName(String name);
+
+    /**
      * Returns true if a client whos name contains the given String exists in the client directory.
      */
     boolean hasClientName(String substring);
@@ -144,6 +149,11 @@ public interface Model {
      * Returns true if a property whos name contains the given String exists in the property directory.
      */
     boolean hasPropertyName(String substring);
+
+    /**
+     * Returns a property with the exact name.
+     */
+    Property getPropertyByExactName(String name);
 
     /**
      * Returns true if only one unique property whos name contains the given String exists in the property directory.

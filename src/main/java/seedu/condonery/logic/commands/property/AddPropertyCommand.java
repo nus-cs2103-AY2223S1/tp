@@ -11,7 +11,6 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
@@ -69,31 +68,6 @@ public class AddPropertyCommand extends Command {
         this.hasImage = hasImage;
     }
 
-    /**
-     * Gets an updated sucess message based on the presence of missing clients or duplicate clients.
-     */
-    private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
-        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
-
-        if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
-            newSuccessMessage = newSuccessMessage + "No rejected client names.";
-        } else {
-            if (!missingClients.isEmpty()) {
-                newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
-                        .stream()
-                        .collect(Collectors.joining(" "))
-                        + ". ";
-            }
-            if (!duplicateClients.isEmpty()) {
-                newSuccessMessage = newSuccessMessage + "Duplicate clients: " + duplicateClients
-                        .stream()
-                        .collect(Collectors.joining(" "))
-                        + ". ";
-            }
-        }
-        return newSuccessMessage;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -124,23 +98,22 @@ public class AddPropertyCommand extends Command {
             builder.append("More than 1 client matches the search result for: ");
             duplicateClients.forEach(client -> builder.append(client + ", "));
             String result = builder.toString();
-            String errorMessage = result.substring(0, result.length() - 2) + ". You may like to refine your search.";
+            String errorMessage = result.substring(0, result.length() - 2)
+                + ". You might want to make your search more specific, or use the exact name of the client";
             throw new CommandException(errorMessage);
         }
 
         Property newPropertyToAdd = parser.getNewProperty();
 
-        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
-
         model.addProperty(newPropertyToAdd);
         if (this.hasImage) {
             return new CommandResult(
-                    String.format(newMessageSuccess, newPropertyToAdd),
+                    String.format(MESSAGE_SUCCESS, newPropertyToAdd),
                     false,
                     false,
                     "property-" + newPropertyToAdd.getCamelCaseName());
         }
-        return new CommandResult(String.format(newMessageSuccess, newPropertyToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newPropertyToAdd));
     }
 
     @Override
