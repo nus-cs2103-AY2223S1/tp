@@ -2,11 +2,12 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_SEVENTH_STUDENT;
 import static friday.testutil.TypicalStudents.getTypicalFriday;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,6 @@ import friday.model.ModelManager;
 import friday.model.UserPrefs;
 import friday.model.student.Student;
 import friday.testutil.StudentBuilder;
-
-import java.time.LocalDate;
 
 public class UnmarkMasteryCheckCommandTest {
 
