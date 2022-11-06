@@ -45,20 +45,6 @@ public class AddPersonCommand extends Command {
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
             "The 'add person' command is used to add a new person to TruthTable.\n";
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Adds a person to the TruthTable. "
-            + "Parameters: "
-            + FLAG_NAME_STR + " NAME "
-            + FLAG_PHONE_STR + " PHONE "
-            + FLAG_EMAIL_STR + " EMAIL "
-            + FLAG_ADDRESS_STR + " ADDRESS "
-            + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " \"John Doe\" "
-            + FLAG_PHONE_STR + " 98765432 "
-            + FLAG_EMAIL_STR + " johnd@example.com "
-            + FLAG_ADDRESS_STR + " \"311, Clementi Ave 2, #02-25\" "
-            + FLAG_TAG_STR + " UX Designer "
-            + FLAG_TAG_STR + " CSS Expert";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contacts list";
 

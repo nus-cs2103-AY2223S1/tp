@@ -28,12 +28,6 @@ public class DeleteTaskCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'delete task' command is used to delete a task from the current team's task list.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Deletes the task identified by the index number used in the task list.\n"
-            + ": Run `list_tasks` to see tasks for your current team.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
-
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)

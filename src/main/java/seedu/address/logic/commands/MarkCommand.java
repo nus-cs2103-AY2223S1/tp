@@ -23,11 +23,6 @@ public class MarkCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Marks the specified existing task as complete.\n"
-            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + FULL_COMMAND + " 1";
-
     public static final String MESSAGE_MARK_SUCCESS = "Marked as complete: [x] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";

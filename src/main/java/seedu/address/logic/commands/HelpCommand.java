@@ -20,9 +20,6 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE =
             "The 'help' command is used to view a list of all commands.\n";
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Shows program usage instructions.\n"
-            + "Example: " + FULL_COMMAND;
-
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @CommandLine.Spec

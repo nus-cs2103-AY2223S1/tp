@@ -25,11 +25,6 @@ public class FindPersonCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'find person' command is used to find a person in TruthTable.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + FULL_COMMAND + " alice bob charlie";
-
     @CommandLine.Parameters(arity = "1", paramLabel = "keywords",
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,
             description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)

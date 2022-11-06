@@ -27,12 +27,6 @@ public class DeleteMemberCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'delete member' command is used to delete a member from the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Deletes the person identified by the index number used in the members list.\n"
-            + ": Run `list_members` to see members in your current team.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)

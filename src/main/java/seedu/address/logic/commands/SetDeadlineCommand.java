@@ -28,12 +28,6 @@ public class SetDeadlineCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'set deadline' command is used to set a deadline for a task.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Sets a deadline to the specified existing task.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) \n"
-            + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
-            + "Example: " + FULL_COMMAND + " 1" + " 2023-02-25 23:59";
-
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";

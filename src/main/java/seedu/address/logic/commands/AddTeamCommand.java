@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
@@ -30,18 +29,6 @@ public class AddTeamCommand extends Command {
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
     public static final String HELP_MESSAGE =
             "The 'add team' command is used to create a new team in TruthTable.\n";
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a new team \n"
-            + "Parameters: "
-            + " TEAM_NAME "
-            + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
-            + "Example:\n"
-            + "1. " + FULL_COMMAND + " "
-            + "CS2103T "
-            + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2102 ";
 
     public static final String MESSAGE_ADD_TEAM_SUCCESS = "Added team: %1$s";
 

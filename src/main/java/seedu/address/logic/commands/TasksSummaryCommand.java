@@ -27,10 +27,6 @@ public class TasksSummaryCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'summary' command is used to view the summary of how tasks have been assigned in the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Displays a summary of how tasks have been assigned in the current team.\n"
-            + "Example: " + FULL_COMMAND;
-
     public static final String MESSAGE_TASK_SUMMARY = "Task Summary: \n%1$s";
 
     @CommandLine.Spec

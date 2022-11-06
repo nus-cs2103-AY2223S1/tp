@@ -30,15 +30,6 @@ public class AddLinkCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'add link' command is used to add links relevant to the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a new link \n"
-            + "Parameters: "
-            + FLAG_NAME_STR + " NAME "
-            + FLAG_URL_STR + " PHONE \n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " Google "
-            + FLAG_URL_STR + " https://google.com";
-
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in team";

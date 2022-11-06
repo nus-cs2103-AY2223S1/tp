@@ -38,18 +38,6 @@ public class EditTeamCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'edit team' command is used to edit a team's details.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Edits the current team \n"
-            + "Parameters: "
-            + "[" + FLAG_NAME_STR + " TEAM_NAME] "
-            + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
-            + "Example:\n"
-            + "1. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2103T "
-            + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2102 ";
-
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

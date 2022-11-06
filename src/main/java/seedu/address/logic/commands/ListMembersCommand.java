@@ -24,10 +24,6 @@ public class ListMembersCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'list members' command is used to list all the members of the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Lists all the members of the current team.\n"
-            + "Example: " + FULL_COMMAND;
-
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
     private boolean help;

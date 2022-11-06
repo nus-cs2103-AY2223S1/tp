@@ -32,13 +32,6 @@ public class FindTaskCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'find task' command is used to find a task in the current team's task list.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all tasks whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: "
-            + FLAG_NAME_STR + " NAME \n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " teams feature ";
-
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s)%2$s. \n"
             + "Type `list tasks` to show all tasks again.";
 

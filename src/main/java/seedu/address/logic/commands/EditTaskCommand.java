@@ -42,17 +42,6 @@ public class EditTaskCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'edit task' command is used to edit a task's details.\n";
 
-    public static final String MESSAGE_USAGE =
-            FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
-                    + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) "
-                    + FLAG_NAME_STR + " NAME "
-                    + FLAG_DEADLINE_STR + " DEADLINE \n"
-                    + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
-                    + "Example: " + FULL_COMMAND + " 1 "
-                    + FLAG_NAME_STR + " \"Review PR\" "
-                    + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
-                    + FLAG_ASSIGNEE_STR + "1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";

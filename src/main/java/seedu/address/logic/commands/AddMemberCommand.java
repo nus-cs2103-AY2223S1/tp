@@ -25,11 +25,6 @@ public class AddMemberCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds the person with the specified name into the current team.\n"
-            + "Parameters: MEMBER_INDEX\n"
-            + "Example: " + FULL_COMMAND + " 1";
-
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";

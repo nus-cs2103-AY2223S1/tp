@@ -30,11 +30,6 @@ public class SetTeamCommand extends Command {
             "The 'set team' command is used to change the current working team.\n";
 
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Sets the current team to an existing team. \n"
-            + "Parameters: TEAM_NAME\n"
-            + "Example: " + FULL_COMMAND + " project";
-
     public static final String MESSAGE_SET_TEAM_SUCCESS = "Set current team: %1$s";
 
     public static final String MESSAGE_TEAM_ALREADY_SET = "You are already on this team!";

@@ -35,18 +35,6 @@ public class AddTaskCommand extends Command {
     public static final String HELP_MESSAGE =
             "The 'add task' command is used to add a new task to the current team's task list.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a task to the current team.\n"
-            + "Parameters:"
-            + " NAME "
-            + FLAG_DEADLINE_STR + " DEADLINE "
-            + FLAG_ASSIGNEE_STR + " ASSIGNEE "
-            + "Example: " + FULL_COMMAND + " "
-            + " \"Review PR\" "
-            + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
-            + FLAG_ASSIGNEE_STR + " 1 "
-            + FLAG_ASSIGNEE_STR + " 2 ";
-
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
     public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
