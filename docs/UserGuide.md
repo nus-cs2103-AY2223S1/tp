@@ -150,7 +150,7 @@ java -version
 | Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.             |
 | Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
 | Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/`. |
-| Single-valued attribute | A patient's detail that consist of a single value. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.                                                                                      |
+| Single-valued attribute | A patient's detail that consist of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.  |
 | Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `MEDICATION`, `CONDITION`, `REMARK`.                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -210,6 +210,8 @@ _To be cleaned up_
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
 ### Single-Valued Attributes
+
+A patient's single-valued attributes are also referred to as the patient's contact details, which consist of the following.
 
 #### `n/NAME`
 
@@ -367,8 +369,7 @@ Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTIO
 
 :information_source: **Notes:**
 * You cannot add duplicate patients.
-* A patient with the exact same details (e.g. phone number, tags, medications, etc.) are considered duplicates.
-* Patients with the same name but different details are considered to be distinct.
+* Patients with the exact same name, phone, email, and address are considered duplicates; otherwise, they are considered to be distinct.
 
 </div>
 
@@ -395,7 +396,7 @@ Examples:
 
 <br>
 
-### Editing a patient’s single-valued attributes: `edit` `-p`
+### Editing a patient’s contact details: `edit` `-p`
 
 You can edit the contact details of an existing patient in the patient list with the `edit` command.
 
@@ -445,9 +446,7 @@ Examples:
 
 <br>
 
-### Editing a patient’s multi-valued attributes
-
-<div markdown="block" class="alert alert-success">
+<div markdown="block" class="alert alert-success" id="edit-multi-valued-attributes">
 
 :bulb: **Tip:** You can understand the commands about muti-valued attributes as follows.
 
@@ -474,17 +473,6 @@ Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
 
 Example:
 * `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Notes**:
-* Attribute `t` refers to a `TAG`.
-* Attribute `d` refers to a `TASK_DESCRIPTION`.
-* Attribute `c` refers to a `CONDITION`.
-* Attribute `m` refers to a `MEDICATION`.
-* Attribute `r` refers to a `REMARK`.
-
-</div>
 
 </div>
 
@@ -514,6 +502,12 @@ Examples:
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Editing a tag: `edit` `-p` `-t`
@@ -534,6 +528,12 @@ Examples:
 * `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag of the 2nd patient in the patient list to `high-risk`.
 * `find Betsy` followed by `edit -p 1 -t 2 t/high-risk` edits the 2nd tag of the 1st patient in the results of the `find Betsy` command to `high-risk`.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Deleting a tag: `delete` `-p` `-t`
@@ -545,6 +545,12 @@ Format: **`delete`** `-p PATIENT_INDEX -t TAG_INDEX`
 Examples:
 * `list` followed by `delete -p 2 -t 3` deletes the 3rd tag of the 2nd patient in the patient list.
 * `find Betsy` followed by `delete -p 1 -t 2` deletes the 2nd tag of the 1st patient in the results of the `find Betsy` command.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
 
 <br>
 
@@ -583,7 +589,13 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 
-:bulb **Tip:** You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
+:bulb: **Tip:** You can add multiple tasks at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
 
 </div>
 
@@ -619,6 +631,12 @@ Examples:
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Deleting a task: `delete` `-p` `-d`
@@ -630,6 +648,12 @@ Format: **`delete`** `-p PATIENT_INDEX -d TASK_INDEX`
 Examples:
 * `list` followed by `delete -p 2 -d 3` deletes the 3rd task of the 2nd patient in the patient list.
 * `find Betsy` followed by `delete -p 1 -d 2` deletes the 2nd task of the 1st patient in results of the `find` command.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
 
 <br>
 
@@ -658,6 +682,12 @@ Examples:
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Editing a medical condition: `edit` `-p` `-c`
@@ -678,6 +708,12 @@ Examples:
 * `list` followed by `edit -p 2 -c 3 c/Diabetes` edits the 3rd condition of the 2nd patient in the patient list to `Diabetes`.
 * `find Betsy` followed by `edit -p 1 -c 2 c/Diabetes` edits the 2nd condition of the 1st patient in the results of the `find Betsy` command to `Diabetes`.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Deleting a medical condition: `delete` `-p` `-c`
@@ -689,6 +725,12 @@ Format: **`delete`** `-p PATIENT_INDEX -c CONDITION_INDEX`
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
 * `find Betsy` followed by `delete -p 1 -c 2` deletes the 2nd condition of the 1st patient in the results of the `find Betsy` command.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
 
 <br>
 
@@ -718,6 +760,12 @@ Examples:
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Editing a medication: `edit` `-p` `-m`
@@ -740,6 +788,12 @@ Examples:
 * `list` followed by `edit -p 1 -m 1 d/Amoxicillin` edits the medication type of the 1st medication of the 1st patient in the patient list to `Amoxicillin`, while retaining the original dosage.
 * `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in results of the `find Alice` command, while retaining the original medication type.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Deleting a medication: `delete` `-p` `-m`
@@ -751,6 +805,12 @@ Format: **`delete`** `-p PATIENT_INDEX -m MEDICATION_INDEX`
 Examples:
 * `list` followed by `delete -p 2 -m 3` deletes the 3rd medication of the 2nd patient in the patient list.
 * `find Alice` followed by `delete -p 1 -m 2` deletes the 2nd medication of the 1st patient in the results of the `find Alice` command.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
 
 <br>
 
@@ -779,6 +839,12 @@ Examples:
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Editing a remark: `edit` `-p` `-r`
@@ -799,6 +865,12 @@ Examples:
 * `list` followed by `edit -p 2 -r 3 r/Allergic to Amoxicillin` edits the 3rd remark of the 2nd patient in the patient list to `Allergic to Amoxicillin`.
 * `find Rachel` followed by `edit -p 1 -r 2 r/Allergic to Amoxicillin` edits the 2nd remark of the 1st patient in the results of the `find Rachel` command to `Allergic to Amoxicillin`.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
+
 <br>
 
 ### Deleting a remark: `delete` `-p` `-r`
@@ -810,6 +882,12 @@ Format: **`delete`** `-p PATIENT_INDEX -r REMARK_INDEX`
 Examples:
 * `list` followed by `delete -p 2 -r 3` deletes the 3rd remark of the 2nd patient in the patient list.
 * `find Rachel` followed by `delete -p 1 -r 2` deletes the 2nd remark of the 1st patient in the results of the `find Rachel` command.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can refer to [this tip](#edit-multi-valued-attributes) to better understand the commands about muti-valued attributes.
+
+</div>
 
 <br>
 
