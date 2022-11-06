@@ -535,14 +535,14 @@ Sequence diagram for the `EditStaffCommand`
 ![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
 
 #### Design Considerations:
-**Aspect: Checking if the `Project` is the currently displayed `Project`**
-- **Alternative 1**: `EditStaffCommand` checks if the `Project` to edit the staff is the current displayed `Project`(Current Implementation)
-    - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
-  This approach also forces users to call the `view` command on the `Project` that they want to edit the staff from, which helps to avoid
-  errors in editing, since HR Pro Max++ has yet to feature an `undo` command. 
-    - Cons: Users who are not aware of the fact that the `Project` that has the `Staff` to be edited, has to be `view`-ed, 
-  might be unsure of where the errors are coming from. The solution the team has come up with is to state explicitly in the User Guide, that
-  the `Project` to be edited in must be the currently displayed `Project`. 
+**Aspect: Checking if the `Project`'s `Stafflist` is currently displayed**
+- **Alternative 1**: `EditStaffCommand` checks if the `Stafflist` of the `Project` whose `Staff` is to be edited is currently displayed (Current Implementation)
+  - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
+    This approach also forces users to call the `view` command on the `Project` that they want to edit the staff from, which helps to avoid
+    errors in editing, since HR Pro Max++ has yet to feature an `undo` command.
+  - Cons: Users who are not aware that the `Project` containing the `Staff` to be edited has to have its Staff list displayed using the `view` command,
+    might experience errors without an immediately discernible source. The solution the team has come up with is to state explicitly in the User Guide, that
+    the `Project` with the `Staff` to be edited in must be the `Project` with its `StaffList` currently displayed in the staff panel.
 - **Alternative 2**: `EditStaffCommand` does not check if the `Project` is the currently displayed `Project` list.
     - Pros: Users might have an easier experience with using the command, since they are not required to call `view` before
   `editstaff`. This streamlines the user experience and leads to higher productivity.
