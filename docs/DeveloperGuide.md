@@ -30,7 +30,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/diagrams/DeleteCommandUML.png" width="280" />
+<img src="images/diagrams/ArchitectureDiagram.png" width="280" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
