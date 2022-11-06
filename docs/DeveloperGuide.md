@@ -556,9 +556,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all surveyees are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all surveyees using the `list` command. Multiple surveyees in the list.
 
     2. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -566,10 +566,24 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
+    4. Test case: `delete s/Enviromental Survey`<br>
+       Expected: Surveyees with survey named `Environmental Survey` would only be deleted if that was the only survey that the surveyee has, otherwise, `Environmental Survey` would be removed from the list of surveys the surveyee has (surveyee is not deleted in this case).
+
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Mark a survey as completed
+
+1. Mark a survey completed while all surveyees are shown
+    
+    1. Prerequisites: List all surveyees using the `list` command. Multiple surveyees in the list.
+    
+    2. Test case: `mark 1 s/Environmental Survey`
+       Expected: If the first surveyee has the survey `Environmental Survey`, then the survey would be marked as done. Otherwise, error is shown.
+
+### Mark a survey as completed
+
+1. Omitted as it is similar to `Mark a survey as completed`.
 
 ### Appending surveys/tags to a surveyee
 
@@ -644,3 +658,5 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding out that the `updateItem()` method was the reason for the buggy implementation of the compacted and expanded PersonCard took some time. There was a need to read a lot of documentation to find the fix.
 2. Finding out how to change the stylesheet took some time. AB3 did not seem to use `Scene` due to the use of `FXMLLoader` and I needed to get the scene to get the stylesheet. Took a few hours to find out that the `Stage` class had a `getScene()` method.
+3. Given that we want `delete` to support both deleting by index and deleting by attributes, it is rather tricky to settle on an implementation as there were many alternative choices that we could have taken. At the end, we settled on implementing all the necessary details in `DeleteCommand` itself since increasing the amount of abstraction would actually increase coupling. So, we opted to contain all the code in the Command class itself. This is a recurring theme throughout the different commands that we chose to add.
+4. Since we wanted to support a surveyee having multiple surveys, we had to change the definition of a unique surveyee in the app and change the corresponding code to adapt to this change. For instance, in the add command, we had to check whether the new surveyee to be added differs only by the survey name. If it was the case that only the survey name was different, then, we had to get existing person in the app and set it to a new copy with the new survey name added to the list of surveys. So, it became rather nuanced and involved.

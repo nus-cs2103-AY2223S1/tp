@@ -362,7 +362,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Survin home folder.
 
-**Q**: What is a unique person?
+**Q**: What is a unique person?<br>
 **A**: A person is uniquely characterised by their name, phone number and email. You cannot have 2 people with the same name, phone number, and email.
 
 ---
