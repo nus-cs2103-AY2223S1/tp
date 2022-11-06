@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each 
+The *Sequence Diagram* below shows how the components interact with each
 other for the scenario where the user issues the command `delete-person 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
@@ -101,7 +101,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` 
+The Sequence Diagram below illustrates the interactions within the `Logic`
 component for the `execute("delete-person 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete-person 1` Command](images/DeletePersonSimplifiedSequenceDiagram.png)
@@ -129,12 +129,12 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e.:
-  * all `Person` objects (which are contained in a `UniquePersonList` object).
-  * all `Module` objects (which are contained in a `UniqueModuleList` object).
+    * all `Person` objects (which are contained in a `UniquePersonList` object).
+    * all `Module` objects (which are contained in a `UniqueModuleList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` 
+* does not depend on any of the other three components (as the `Model`
   represents data entities of the domain, they should make sense on their own without depending on other components).
 
 ### Storage component
@@ -260,7 +260,7 @@ they are more likely to remember what each alias means in the long run.
 Aliases are also especially useful in differentiating between similar named
 URLs, i.e., same domain but the remainder of the url has no semantic meaning to the user (e.g. zoom links).
 
-Link Storage: 
+Link Storage:
 TreeSet was selected as to ensure a consistent sorting order across all modules such that users
 will spend the least amount of the time searching for their required alias for each module,
 thus boosting their productivity.
@@ -280,13 +280,13 @@ The UML class diagram of the `Person`-related parts of the Model component is sh
 
 With reference to the diagram above, here are the ways in which different classes in the Model component interact with the `Person` class:
 - A `UniquePersonList` object holds all the `Person` objects in Plannit.
-  - This `UniquePersonList` object is stored in the `AddressBook` class.
+    - This `UniquePersonList` object is stored in the `AddressBook` class.
 - The `ModelManager` class stores a filtered list of `Person` objects, which is the list used to determine which
-`Person` objects to display on the GUI.
+  `Person` objects to display on the GUI.
 
 #### Delete Person Feature
-One feature related to contacts is the delete person feature, where a contact is deleted from Plannit. This 
-particular feature is highlighted because its implementation involves additional interactions with the `Module` 
+One feature related to contacts is the delete person feature, where a contact is deleted from Plannit. This
+particular feature is highlighted because its implementation involves additional interactions with the `Module`
 component.
 
 #### Implementation of delete person feature
@@ -298,18 +298,18 @@ The delete person mechanism is facilitated by `DeletePersonCommand` and `DeleteP
 
 Given below is an example usage scenario and how the delete person mechanism behaves at each important step.
 Before proceeding on with this section, it is highly recommended that you read the
-[Module-Person association](#Module-and-Person-association) section to be able to fully comprehend the example scenario 
+[Module-Person association](#Module-and-Person-association) section to be able to fully comprehend the example scenario
 below.
 
-**Step 1**. There currently exists 3 persons in Plannit, with 2 of them already 
+**Step 1**. There currently exists 3 persons in Plannit, with 2 of them already
 added to a module.
 
 ![DeletePersonStep1ObjectDiagram](images/DeletePersonStep1ObjectDiagram.png)
 
-**Step 2**. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person 
+**Step 2**. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person
 (that is currently displayed on the GUI) in the address book. Upon execution, `UniqueModuleList#removePersonFromModules
-()` and `UniquePersonList#remove()` are eventually called. `UniqueModuleList#removePersonFromModules()` removes all 
-occurrences of the person in every module. 
+()` and `UniquePersonList#remove()` are eventually called. `UniqueModuleList#removePersonFromModules()` removes all
+occurrences of the person in every module.
 
 ![DeletePersonStep2ObjectDiagram](images/DeletePersonStep2ObjectDiagram.png)
 
@@ -327,12 +327,12 @@ The following sequence diagram shows how the delete person operation works.
 
 #### Implementation
 
-A `Module` class is used to represent a module. A `Module` contains a `ModuleCode` and an 
+A `Module` class is used to represent a module. A `Module` contains a `ModuleCode` and an
 optional `ModuleTitle`. Here are the ways in which different classes in the `Model` component interact
 with `Module`:
 - A `UniqueModuleList` represents the list of `Module` objects.
 - The list of modules is stored in the `AddressBook` class.
-- The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module` 
+- The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module`
   objects, and a separate instance variable storing the list of filtered `Module` objects.
 
 The UML class diagram of the `Module`-related parts of `Model` component is shown below:
@@ -343,34 +343,34 @@ We have implemented the following `Command` classes:
 - `AddModuleCommand` allows the user to add a module to Plannit.
 - `DeleteModuleCommand` allows the user to delete a module from Plannit.
 
-The Storage component has been updated for persistent storage of modules. `JsonAdaptedModule` 
+The Storage component has been updated for persistent storage of modules. `JsonAdaptedModule`
 has been added to represent a `Module` object in JSON format.
 
-Below shows a description of an example scenario for adding a command. Deletion of a command is 
-similar except that the corresponding deletion class is used instead. 
+Below shows a description of an example scenario for adding a command. Deletion of a command is
+similar except that the corresponding deletion class is used instead.
 
 **Step 1**: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
 
-**Step 2**: `addressBookParser`, the parser for Plannit, will parse the user command to return an 
+**Step 2**: `addressBookParser`, the parser for Plannit, will parse the user command to return an
 `AddModuleCommand` object.
 
-**Step 3**: The resulting `AddModuleCommand` object is then executed. The validity of the input 
-module code provided is checked. This involves a check of whether the input is a duplicate module 
-(case-insensitive, removing leading and trailing whitespaces). 
+**Step 3**: The resulting `AddModuleCommand` object is then executed. The validity of the input
+module code provided is checked. This involves a check of whether the input is a duplicate module
+(case-insensitive, removing leading and trailing whitespaces).
 
-**Step 4**: After successful checks, the module `CS2105` will be added into Plannit. 
+**Step 4**: After successful checks, the module `CS2105` will be added into Plannit.
 
 **Step 5**: The `saveAddressBook()` method of `StorageManager` is called to save the newly-updated list
-of modules to a JSON file. 
+of modules to a JSON file.
 
-**Step 6**: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules 
-into JSON format, so that it can be saved into a file. The file will be read whenever Plannit 
+**Step 6**: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules
+into JSON format, so that it can be saved into a file. The file will be read whenever Plannit
 starts up so that it can load saved module and person data.
 
-**Step 7**: Plannit Graphical User Interface (GUI) displays message that the addition of module has 
-been successful. 
+**Step 7**: Plannit Graphical User Interface (GUI) displays message that the addition of module has
+been successful.
 
-The following activity diagram summarizes what happens when the user requests to add module to 
+The following activity diagram summarizes what happens when the user requests to add module to
 Plannit via `add-module` command.
 
 ![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
@@ -379,34 +379,34 @@ Plannit via `add-module` command.
 
 Aspect: The class-level design of how to integrate the `Module` class to the `Model` component.
 
-* **Alternative 1 (current choice):** Reuse the same `AddressBook` to also store the list of 
+* **Alternative 1 (current choice):** Reuse the same `AddressBook` to also store the list of
   unique `Module` objects.
 
     * Pros: A duplicate class `AddressBook` for `Model` methods is not necessary.
 
-    * Cons: `AddressBook`, `ModelManager` and other classes would need to be updated to include 
-`Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
-the `Module`-related methods.
+    * Cons: `AddressBook`, `ModelManager` and other classes would need to be updated to include
+      `Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
+      the `Module`-related methods.
 
 * **Alternative 2:** Create another `AddressBook`-like class to store the list of `Module` objects.
 
-    * Pros: Functionality for `Person` and `Module` are now separate. This better adheres to the 
-Single Responsibility Principle because `AddressBook` only does operations regarding `Person` 
-rather than doing operations regarding both `Person` and `Module`.
+    * Pros: Functionality for `Person` and `Module` are now separate. This better adheres to the
+      Single Responsibility Principle because `AddressBook` only does operations regarding `Person`
+      rather than doing operations regarding both `Person` and `Module`.
 
-    * Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook` 
-need to be duplicated into separate classes to support `Module`.
+    * Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook`
+      need to be duplicated into separate classes to support `Module`.
 
-Rationale behind current choice: 
-1. Duplicating `AddressBook` will result in duplicating dependent classes such as 
-`ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
-the implementation. For example, the storage component will now need to deal with two `AddressBook` 
-instances, hence requiring either two separate storage files, or changing the implementation 
-to combine the contents of the two different `AddressBook`-like classes into one file. Combining 
-`Person` and `Module` into one `AddressBook` would avoid this issue.
-2. While dealing with lists of `Person` and `Module` objects are two different functionalities, 
-both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not 
-significantly decrease.
+Rationale behind current choice:
+1. Duplicating `AddressBook` will result in duplicating dependent classes such as
+   `ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
+   the implementation. For example, the storage component will now need to deal with two `AddressBook`
+   instances, hence requiring either two separate storage files, or changing the implementation
+   to combine the contents of the two different `AddressBook`-like classes into one file. Combining
+   `Person` and `Module` into one `AddressBook` would avoid this issue.
+2. While dealing with lists of `Person` and `Module` objects are two different functionalities,
+   both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not
+   significantly decrease.
 
 ### Module and Person association
 
@@ -417,8 +417,8 @@ associated to a module. The relationship between `Person` and `Model` is display
 
 #### Add Person To Module Feature
 One feature related to the module-person association is the add person to module feature. The feature allows an already
-existing contact in Plannit to have an association with a module. This particular feature is highlighted because it is 
-an implementation that involves interactions between two different kinds of `Model` objects, namely `Person` and 
+existing contact in Plannit to have an association with a module. This particular feature is highlighted because it is
+an implementation that involves interactions between two different kinds of `Model` objects, namely `Person` and
 `Module`. Note that the implementation of this feature is largely similar to the other feature under this section,
 namely the delete person from module feature.
 
@@ -427,22 +427,22 @@ The add person to module mechanism is facilitated by `AddPersonToModuleCommand` 
 `AddPersonToModuleCommandParser` parses the user input in a meaningful way and uses it to create a `AddPersonToModuleCommand`.
 `AddPersonToModuleCommand` then calls the `Model#getModuleUsingModuleCode()` and `Model#getPersonUsingName()` operations
 to obtain the concerned module and person instances. Note that the specified instances must be in the currently filtered
-display lists, else an exception is thrown. The obtained module instance is then copied over and used to construct a 
+display lists, else an exception is thrown. The obtained module instance is then copied over and used to construct a
 new module object. Finally, the person instance of concern is added to the newly created module object, and we then replace
 the old module object in `UniqueModuleList` with the new module object.
 
 
 Given below is an example usage scenario and how the add person to module mechanism behaves at each important step.
 
-**Step 1**. There currently exists 2 persons (Alan and Emma) in Plannit, and the user wants to add an association 
+**Step 1**. There currently exists 2 persons (Alan and Emma) in Plannit, and the user wants to add an association
 between Alan and the module CS2106.
 
 ![AddPersonToModuleStep1ObjectDiagram](images/AddPersonToModuleStep1ObjectDiagram.png)
 
-**Step 2**. The user executes `add-person-to-module m/CS2106 n/Alan` command and this creates a 
+**Step 2**. The user executes `add-person-to-module m/CS2106 n/Alan` command and this creates a
 `addPersonToModuleCommand`. Upon execution, `Model#getModuleUsingModuleCode()` and `Model#getPersonUsingName()` are used
 to obtain the existing CS2106 module and Alan person instances. `AddPersonToModuleCommand#createModuleWithAddedPerson()`
-is then called to create a new CS2106 module instance by copying all fields of the old CS2106 instance and also adding 
+is then called to create a new CS2106 module instance by copying all fields of the old CS2106 instance and also adding
 the Alan person instance in.
 
 ![AddPersonToModuleStep2ObjectDiagram](images/AddPersonToModuleStep2ObjectDiagram.png)
@@ -467,23 +467,23 @@ from memory.
       of modules as well.
 
 * **Alternative 3:** Have an association class that models the "person is taking module" association.
-  * Pros: The dependencies of the `Module` and `Person` class does not increase as no direct reference to the other type
-    is now required.
-  * Cons: Harder to implement as this requires creation of new classes and many more test cases.
+    * Pros: The dependencies of the `Module` and `Person` class does not increase as no direct reference to the other type
+      is now required.
+    * Cons: Harder to implement as this requires creation of new classes and many more test cases.
 
 Rationale behind current choice:
-1. Despite the benefit of having code that fully reflects the relationship in the real world, going for a simpler 
-  implementation helps to reduce code complexity and lowers risk of bugs.
+1. Despite the benefit of having code that fully reflects the relationship in the real world, going for a simpler
+   implementation helps to reduce code complexity and lowers risk of bugs.
 2. Despite the benefit of having lower dependencies, the use of an association class substantially increases the risk of
-  bugs as the implementation would be very different from existing (heavily-tested) code.
+   bugs as the implementation would be very different from existing (heavily-tested) code.
 
 
 ### Task component
 
 #### Implementation
 
-A `Task` class is used to represent a task that is to be completed by the 
-user. Tasks are assigned to a specific module. The following `Command` 
+A `Task` class is used to represent a task that is to be completed by the
+user. Tasks are assigned to a specific module. The following `Command`
 classes were implemented to allow users to interact with `Task` objects:
 - `AddTaskCommand` allows the user to add a task to a specified `Module` in
   Plannit.
@@ -492,9 +492,9 @@ classes were implemented to allow users to interact with `Task` objects:
 - `SwapTaskCommand` allows the user to swap the order of `Task`s within a
   specified `Module` in Plannit.
 
-Each `Module` within the `UniqueModuleList` stores a `TaskList` 
-instance, which in turn stores a list of `Task` objects. This `TaskList` 
-object is used to maintain the list of `Task` objects within the module by 
+Each `Module` within the `UniqueModuleList` stores a `TaskList`
+instance, which in turn stores a list of `Task` objects. This `TaskList`
+object is used to maintain the list of `Task` objects within the module by
 supporting operations to add, delete and swap tasks.
 
 ![TaskListClassDiagram](images/AddDeleteSwapTaskFeature/TaskListClassDiagram.png)
@@ -513,7 +513,7 @@ Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the 
 
 However, there exists two key differences:
 1. `TaskList` is used to store `Task` objects as opposed to the storage of
-   `Module` in `UniqueModuleList` and `Person` in `UniquePersonList` 
+   `Module` in `UniqueModuleList` and `Person` in `UniquePersonList`
    respectively.
 2. A different `TaskList` instance exists in each `Module` object, meaning
    multiple instances of the `TaskList` object can exist within an
@@ -521,7 +521,7 @@ However, there exists two key differences:
    `UniqueModuleList` instance and one `UniquePersonList` instance in the
    `AddressBook` instance.
 
-Here's a (partial) object diagram of an `AddressBook` instance to 
+Here's a (partial) object diagram of an `AddressBook` instance to
 demonstrate the above point:
 ![AddressBookObjectDiagram](images/AddDeleteSwapTaskFeature/AddressBookObjectDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
@@ -531,7 +531,7 @@ There is only one instance of `UniquePersonList` (in purple) and
 </div>
 
 Given below is an example usage scenario and how the mechanism
-behaves when a user adds a new `Task` with the `add-task` command. The behavior 
+behaves when a user adds a new `Task` with the `add-task` command. The behavior
 for the deleting and swapping of tasks is highly similar.
 
 **Step 1**. The user requests to add a task into a module present in Plannit by
@@ -543,13 +543,13 @@ E.g.:
 add-task m/CS1231 td/Submit the weekly assignment
 ```
 
-**Step 2**: The `LogicManager` uses the `AddressBookParser`  and 
+**Step 2**: The `LogicManager` uses the `AddressBookParser`  and
 `AddTaskCommandParser` to parse the user input. After validating the
 arguments provided by the user, the `ModuleCode` of the module to add the
 task to and the task description of the new task is extracted by the `AddTaskCommandParser`.
 
 **Step 3**: An `AddTaskToModuleDescriptor` object is then instantiated to
-contain the extracted `ModuleCode` and a new `Task` with the extracted task 
+contain the extracted `ModuleCode` and a new `Task` with the extracted task
 description.
 
 **Step 4**: This `AddTaskToModuleDescriptor` is used to instantiate an
@@ -592,8 +592,8 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
       design principles.
 
 Rationale behind current choice:
-1. Despite the additional complexities, it is good practice to adhere with the 
-SOLID design principles. 
+1. Despite the additional complexities, it is good practice to adhere with the
+   SOLID design principles.
 2. Furthermore, the additional complexities and potential for new bugs can
    be mitigated by robust unit and integration testing.
 
@@ -614,12 +614,12 @@ SOLID design principles.
 
 Rationale behind current choice:
 
-1. Despite the additional complexities, a `Task` object is likely to have 
-additional fields (e.g. `Date`, `Priority`) in future iterations. Should we 
-pass fields directly in to the constructor as arguments, the number of 
-parameters in the constructor would increase. This would greatly affect the 
-readability of the code. 
-2. The additional complexities and potential for new bugs can be mitigated 
+1. Despite the additional complexities, a `Task` object is likely to have
+   additional fields (e.g. `Date`, `Priority`) in future iterations. Should we
+   pass fields directly in to the constructor as arguments, the number of
+   parameters in the constructor would increase. This would greatly affect the
+   readability of the code.
+2. The additional complexities and potential for new bugs can be mitigated
    by robust unit and integration testing.
 
 ### Search and Navigation
@@ -914,7 +914,7 @@ Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have
 | `High` | User | Delete a module into Plannit | Remove unnecessary modules after the semester ends                                                           |
 | `High` | User | Add tasks for each module into Plannit | Keep track of tasks for each module                                                                          |
 | `High` | User | Delete tasks from module on Plannit | Remove tasks that have been completed                                                                        |
-| `High` | User | Add links | Store the links on Plannit for easy reference                                                                
+| `High` | User | Add links | Store the links on Plannit for easy reference
 | `High` | User | Delete links | Remove the links when the semester ends                                                                      |
 | `High` | User | Easily navigate through different modules | Quickly view relevant modules details                                                                        |
 | `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks                                                                        |
@@ -1069,9 +1069,9 @@ Use case ends.
 * Task list of module has at least two tasks.
 
 **Main Success Scenario (MSS)**
-1. User requests to swap the order of two tasks belonging to a module in the 
+1. User requests to swap the order of two tasks belonging to a module in the
    list.
-2. Plannit displays to the user the list of tasks with the order of the two 
+2. Plannit displays to the user the list of tasks with the order of the two
    tasks swapped.
 
 **Extensions**
@@ -1293,90 +1293,257 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+<!-- @@author cheeheng -->
+Assumption: The sample data is loaded into Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Sample data is automatically loaded into Plannit when <code>data/addressbook.json</code> is not found. 
+
+To load the sample data, close Plannit (if a Plannit instance is active) and delete `data/addressbook.json` if it exists.
+Remember to perform a backup before deletion if necessary. Then, open Plannit.
+
+</div>
+
+<!-- @@author ekweirui -->
+### Launching the application
 
 1. Initial launch
 
-    1. Download the `JAR` file and copy into an empty folder
+    1. Download the `JAR` file and copy it into an empty folder
 
-    2. Double-click the `JAR` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the `JAR` file or run `java -jar plannit.jar` using the terminal.
+       Expected:
+        * Shows the GUI with a set of sample contacts.
+        * The window size may not be optimum.
 
 2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    2. Re-launch the app by double-clicking the `JAR` file.<br>
-        Expected: The most recent window size and location is retained.
-    
+    1. Re-launch the app by double-clicking the `JAR` file.<br>
+       Expected:
+        * The most recent window size and location is retained.
+
+<!-- @@author cheeheng -->
+### Adding a module
+1. Adding a module
+    1. Test case: `add-module m/MA2104`<br>
+       Expected:
+        * Module `MA2104` included in module list.
+        * Result display shows `MA2104` successfully added.
+        * Plannit returns to home page.
+
+    2. Test case: `add-module m/CS2103T`<br>
+       Expected:
+        * No module is added.
+        * Result display shows `CS2103T` cannot be added because module already exists.
+
+    3. Test case: `add-module m/MA2104 t/Multivariable Calculus`<br>
+       Expected:
+        * Module `MA2104` with module title `Multivariable Calculus` included in module list.
+        * Result display shows `MA2104` successfully added. Plannit returns to home page.
+
+    4. Other incorrect `add-module` command (e.g., `add-module`, `add-module MA2104`)<br>
+       Expected:
+        * No module is added.
+        * Result display shows incorrect command format.
+
+### Editing a module
+
+1. Editing a module
+    1. Test case: `edit-module 5 m/MA2104`, assuming there are less than 5 modules currently displayed in Plannit<br>
+       Expected:
+        * No module is edited.
+        * Plannit notifies user of invalid index.
+
+    2. Test case: `edit-module 0.4 m/MA2104`<br>
+       Expected:
+        * No module is edited.
+        * Result display shows error message that indices must be integer.
+
+    3. Test case: `edit-module 1 m/MA2104`, assuming there is at least 1 module currently displayed in Plannit<br>
+       Expected:
+        * Module code of first module changed to `MA2104`.
+        * Plannit automatically sorts resulting list of modules in lexicographical order.
+
+    4. Other incorrect `edit-module` commands (e.g., `edit-module`, `edit-module 32`)<br>
+       Expected:
+        * No module is edited.
+        * Result display shows error message about incorrect command format.
 
 ### Deleting a module
 
 1. Deleting a module with the module being displayed currently.
 
-    1. Prerequisites: The module to be deleted is currently listed. If not, use the `home` command to do so
-       automatically.
+    1. Prerequisites: List all modules using the `list` command. At least one module in the list.
 
-    2. Test case: `delete-module m/CS2106` assuming module with module code CS2106 exists in Plannit.<br>
-       Expected: Module with module code CS2106 is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
-
-    3. Test case: `delete-module m/CS2109S` assuming module with module code CS2109S does not exist in Plannit.<br>
-       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
-
-    4. Other incorrect delete commands to try: `delete-module`, `delete-module dummy`, `...` <br>
-       Expected: Similar to previous.
-
-
-### Adding a contact
-
-1. Adding a person to Plannit
-
-    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
-
-    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+    1. Test case: `delete-module m/CS2103T`<br>
        Expected:
-        * A person with name Amy is added to Plannit.
+        * Module `CS2103T` is deleted from the list.
+        * Details of the deleted module shown in the result display.
+
+    1. Test case: `delete-module m/MA2104`<br>
+       Expected:
+        * No module is deleted.
+        * Error details shown in the result display.
+        * Currently-displayed module list and person list remain the same.
+
+    1. Other incorrect delete commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+       Expected:
+        * Similar to previous.
+
+2. Deleting module while some, but not all, modules are being shown
+    1. Prerequisites: Search module using `find-module` or navigate to module using `goto`. The following test case assumes `goto CS2103T` is the most recent command before the deletion.
+
+    1. Test case: `delete-module m/CS2103T`<br>
+       Expected:
+        * Module `CS2103T` is deleted from the list.
+        * Details of the deleted module shown in the result display.
+
+    1. Test case: `delete-module m/MA2104`<br>
+       Expected:
+        * No module is deleted.
+        * Error details shown in the result display. Module list and person list remain the same.
+
+    1. Test case: `delete-module m/GE3238`<br>
+       Expected: Similar to (3).
+        * Note: GE3238 exists on Plannit but gets filtered away by `goto CS2103T`.
+
+    1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+       Expected: Similar to (3).
+
+<!-- @@author Tan-Jia-Rong -->
+### Finding modules
+
+Prerequisites:
+* Must be at the home page.
+* Multiple modules in Plannit.
+
+1. Finding modules while all modules are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+
+    1. Test case: `find-module cS`<br>
+       Expected:
+        * Module list is updated with modules with module code starting with `cS`<br>(case-insensitive).
+        * Number of modules listed shown in the status message.
+
+    1. Test case: `find-module Dummy`<br>
+       Assumption: There are no modules whose module codes start with `Dummy` in Plannit.
+       Expected:
+        * Module list is updated to show an empty list.
+        * Number of module listed shown in the status message.
+
+    1. Test case: `find-module`<br>
+       Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+1. Finding modules while not all modules are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+          <br>
+    1. Test case: `find-module CS2103T`<br>
+       Assumption: Module `CS2103T` is not in the current module list<br>
+       Expected:
+        * Module list is updated with module code starting with `CS2103T`<br>(case-insensitive).
+        * Number of modules listed shown in the status message.
+
+1. Other incorrect `find-module` usage to try:
+    * Finding modules while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Listing all modules
+
+Prerequisites:
+* Must be at the home page
+* Not all modules are shown in the module list
+
+1. Listing modules while not all modules are shown
+
+    1. Test case: `list-module`<br>
+       Expected:
+        * Module list is updated to show all modules.
         * A success message is displayed to the user.
 
-    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+    1. Test case: `list-module 44321`<br>
        Expected:
-        * No person is added to Plannit because there is a missing field (phone number).
-        * Error details indicating invalid command format displayed to the user.
+        * Same as the previous
 
-    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+1. Other incorrect `list-module` usage to try:
+    * Listing all modules while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+<!-- @@author teoyuqi -->
+### Adding a task
+1. Adding a task to a module in Plannit
+    1. Prerequisites: List all modules using the `list` command.
+
+    1. Test case: `add-task m/CS2103T td/Complete week 7's weekly assignments`<br>
        Expected:
-        * No person is added to Plannit.
-        * An error message with relevant details is displayed to the user.
+        * A new task with the description "Complete week 7's weekly assignments" will be added under the `CS2103T` module.
+        * Details of the module with the new task is shown in the result display.
 
 
-### Adding a contact to module
+    1. Test case: `add-task m/CS3203 td/Complete week 7's weekly assignments`<br>
+       Expected: 
+       * No task is added.
+       * Modules in module list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
+    1. Other incorrect `add-task` commands to try: `add-task m/CS2103T`, `add-task`<br>
+      Expected: Similar to previous.
 
-1. Adding a person to a module
+### Deleting a task
+1. Deleting a task from a module in Plannit
 
-    1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
+    1. Prerequisites: List all modules using the `list` command.
 
-    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`, assuming both `MA2001` and `Alex Yeoh` are currently displayed on Plannit.
+    1. Test case: `delete-task m/CS2103T tn/2`<br>
        Expected:
-        * `Alex Yeoh` is added to `MA2001`.
-        * Result display shows successful addition of `Alex Yeoh` to `MA2001`.
-        * Subsequently, if `goto MA2001` is executed next, `Alex Yeoh` should be one of the persons listed.
+        * Second task of `CS2103T` is deleted.
+        * Details of the module with the deleted task is shown in the result display.
 
-    3. Test case: `add-person-to-module m/MA2001 n/David Li`
+
+    1. Test case: `delete-task m/CS3203 tn/2`<br>
        Expected:
-        * No person is added to module.
-        * Result display shows an error message stating that `David Li` has already been added to `MA2001`.
+       * No tasks are deleted.
+       * Modules in module list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
 
-    4. Test case:
-       `add-person-to-module m/GE3238 n/David Li`, assuming `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit.
+    1. Other incorrect delete commands to try: `delete-task`, `delete-task m/CS2103T`, `delete-task tn/2`,`delete-task m/CS2103T tn/x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Swapping the order of a pair of tasks
+1. Swapping the order of two tasks in a module in Plannit
+    1. Prerequisites: List all modules using the `list` command.
+
+    1. Test case: `swap-task m/CS2103T ts/1 2`<br>
        Expected:
-        * No person is added to module.
-        * Result display shows an error message stating that the input person is not in the currently displayed list.
+        * Positions of the first and second task of `CS2103T` are swapped.
+        * Details of the module with the deleted task is shown in the result display.
 
-    5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
+    1. Test case: `swap-task m/CS3203 ts/1 2`<br>
        Expected:
-        * No person is added to module. 
-        * Result display shows that the command format is invalid.
+        * No task are swapped.
+        * Modules in module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
 
+    1. Other incorrect swap-task commands to try: `swap-task`, `swap-task m/CS2103T`, `swap-task ts/1 x`,`swap-task m/CS2103T ts/1 x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
 
+<!-- @@author shwene -->
 ### Adding a link
 
 1. Adding a link to a module in Plannit
@@ -1433,6 +1600,61 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect open commands to try: `open-link`, `open-link m/CS2103T`, `open-link m/CS2103T m/CS2106`<br>
        Expected: Similar to previous.
 
+<!-- @@author ekweirui -->
+### Adding a contact
+
+1. Adding a person to Plannit
+
+    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
+       Expected:
+        * A person with name Amy is added to Plannit.
+        * A success message is displayed to the user.
+
+    1. Test case: `add-person n/Amy e/amy@gmail.com`<br>
+       Expected:
+        * No person is added to Plannit because there is a missing field (phone number).
+        * Error details indicating invalid command format displayed to the user.
+
+    1. Other incorrect add person commands to try: `add-person`, `add-person x`, `add-person p/81234567 e/amy@gmail.com` <br>
+       Expected:
+        * No person is added to Plannit.
+        * An error message with relevant details is displayed to the user.
+
+<!-- 
+    @@author cheeheng
+    (except for one missing prerequisite ekweirui added in)
+-->
+### Adding a contact to module
+
+1. Adding a person to a module
+
+    1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
+
+    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`, assuming both `MA2001` and `Alex Yeoh` are currently displayed on Plannit.
+       Expected:
+        * `Alex Yeoh` is added to `MA2001`.
+        * Result display shows successful addition of `Alex Yeoh` to `MA2001`.
+        * Subsequently, if `goto MA2001` is executed next, `Alex Yeoh` should be one of the persons listed.
+
+    3. Test case: `add-person-to-module m/MA2001 n/David Li`
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that `David Li` has already been added to `MA2001`.
+
+    4. Test case:
+       `add-person-to-module m/GE3238 n/David Li`, assuming `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit.
+       Expected:
+        * No person is added to module.
+        * Result display shows an error message stating that the input person is not in the currently displayed list.
+
+    5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
+       Expected:
+        * No person is added to module.
+        * Result display shows that the command format is invalid.
+
+<!-- @@author ekweirui -->
 ### Deleting a contact
 
 1. Deleting a person from Plannit while the contact to be deleted is shown.
@@ -1454,7 +1676,6 @@ testers are expected to do more *exploratory* testing.
         * No person is deleted.
         * An error message with relevant details is displayed to the user.
 
-
 ### Deleting a contact from module
 
 1. Deleting a person from module while both the specified module and person are displayed on screen.
@@ -1463,20 +1684,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
        Expected:
-        * Contact with name David Li is deleted from the CS2103T module. 
+        * Contact with name David Li is deleted from the CS2103T module.
         * A successful message stating that a person got deleted from CS2103T is displayed to the user.
 
     1. Test case: `delete-person-from-module m/CS2103T n/Bob`, assuming Bob is not added to the module CS2103T<br>
        Expected:
-        * No person is deleted from CS2103T. 
+        * No person is deleted from CS2103T.
         * Error message detailing the fact that Bob is currently not displayed in list is displayed.
 
     1. Other incorrect delete person from module commands to try: `delete-person-from-module`, `delete-person-from-module a/CS2103T n/Bob`<br>
        Expected:
-        * No person is deleted from any module. 
+        * No person is deleted from any module.
         * An error message with relevant details is displayed to the user.
 
-    
+
 ### Editing a contact
 
 1. Editing a person in Plannit while the contact to be edited is shown.
@@ -1485,24 +1706,161 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit-person 1 n/Armin`<br>
        Expected:
-        * First contact on the list is edited to have the name Armin. 
+        * First contact on the list is edited to have the name Armin.
         * Details of the edited contact displayed to the user.
 
     1. Test case: `edit-person x n/Bob` (where x is larger than index of the last person)<br>
        Expected:
-        * No person is edited. 
+        * No person is edited.
         * Error message detailing the fact an invalid index is provided is displayed to the user.
 
     1. Other incorrect edit person commands to try: `edit-person`, `edit-person n/Bob`, `edit-person 1 m/Bob`<br>
        Expected:
-        * No person is edited. 
+        * No person is edited.
         * An error message with relevant details is displayed to the user.
-    
 
-### Saving data
+<!-- @@author Tan-Jia-Rong -->
 
-1. Dealing with missing/corrupted data files
+### Finding contacts
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Prerequisites:
+* Must be at the home page.
+* Multiple persons in Plannit.
 
-1. _{ more test cases … }_
+1. Finding persons while all persons are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+
+    1. Test case: `find-person Alex`<br>
+       Expected:
+        * Person list is updated with persons whose names starting with `Alex`<br>(case-insensitive).
+        * Number of persons listed shown in the status message.
+
+    1. Test case: `find-person Dummy`<br>
+       Assumption: There are no persons whose names start with `Dummy` in Plannit.
+       Expected:
+        * Person list is updated with an empty list
+        * Number of persons listed shown in the status message.
+
+    1. Test case: `find-person`<br>
+       Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+1. Finding persons while not all persons are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+          <br>
+    1. Test case: `find-person Bernice`<br>
+       Assumption: Person `Bernice` is not in the current person list<br>
+       Expected:
+        * Person list is updated with persons whose names starts with `Bernice`<br>(case-insensitive).
+        * Number of persons listed shown in the status message.
+
+1. Other incorrect `find-person` usage to try:
+    * Finding persons while not at home page <br>
+      Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Listing all persons
+
+Prerequisites:
+* Must be at the home page
+
+1. Listing persons while not all persons are shown
+
+    1. Test case: `list-person`<br>
+       Expected:
+        * Person list is updated to show all persons.
+        * Success message is shown in the status message.
+
+    1. Test case: `list-person 12345`<br>
+       Expected:
+        * Same as the previous.
+
+1. Other incorrect `list-person` usage to try:
+    * Listing all persons while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Navigating between modules
+
+1. Navigating to a module
+
+    1. Test case: `goto CS2103T`<br>
+       Expected:
+        * Module list is updated with the module `CS2103T`.
+        * Person list is updated with persons associated with `CS2103T`.
+        * Task list is expanded to show tasks associated with the module.
+        * Success message is shown in the status message.
+
+    1. Test case: `goto CS1234`<br>
+
+       Assumption: Module `CS1234` is not in Plannit<br>
+
+       Expected:
+        * Module list remains the same.
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Navigating back home
+
+1. Navigating back to home page
+
+    1. Test case: `home`<br>
+       Expected:
+        * Module list is updated with all modules.
+        * Person list is updated with all persons.
+        * Success message is shown in the status message.
+
+    1. Test case: `home 1234`<br>
+       Expected:
+        * Same as previous.
+
+### Viewing help
+
+1. Test case: `help`<br>
+   Expected:
+    * A help screen is shown.
+
+### Exiting the program
+
+1. Test case: `exit`<br>
+   Expected:
+    * The program closes.
+
+<!-- @@author teoyuqi -->
+## **Appendix: Effort**
+### Initial design
+Although we described Plannit as a morph of the original AB3, there was substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
+
+### Implementation
+While AB3 deals with only persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
+
+We also added the concept of having a home page, where detailed information of modules are hidden. This was introduced with the aim to reduce clutter by only displaying the relevant information required by the user. This functionality introduced a whole host of obstacles for us, including, but not limited to:
+* Behavioural decisions regarding whether a command can be executed away from the home page.
+* Behavioural decisions regarding whether a command redirects the user back to the home page.
+* Creating an observable `Boolean` variable in `Model` for the `Ui` components to listen to.
+* Relevant `Ui` modifications.
+* Manual testing to ensure the navigation to and from the home page is as expected.
+
+Although the general colour scheme of the GUI was not modified, changes were still necessary to allow the application's window to now display all the additional features to users (e.g. modules, tasks, links, etc.).
+
+<!-- @@author cheeheng -->
+### Project Achievements
+As a team, we have successfully morphed Plannit from AB3. Plannit is an **all-in-one application** that streamlines the execution of module deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and **module-mates** (i.e., students in the same module) to increase their productivity.
+
+Some statistics of Plannit project include (as of 5th November 2022, 21:31:50 UTC+8):
+- 12th in most LOC written (including but not limited to documentation code, functional code and test code)
+- 5000+ lines of functional code (on top of AB3)
+- 7000+ lines of test code (on top of AB3)
+- One of the teams with the most review comments (>450)
+- Code coverage exceeding 78%
