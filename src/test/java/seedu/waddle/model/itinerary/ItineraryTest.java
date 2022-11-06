@@ -59,14 +59,6 @@ public class ItineraryTest {
     }
 
     @Test
-    public void getTimeString_correctOutput() {
-        String expectedString = "Dates: 2022-10-14 - 2022-10-15";
-        String actualString = new ItineraryBuilder().withDuration("2").build()
-                .getTimeString(Text.INDENT_NONE);
-        assertEquals(expectedString, actualString);
-    }
-
-    @Test
     public void equals() {
         // same values -> returns true
         Itinerary summerCopy = new ItineraryBuilder(SUMMER).build();
