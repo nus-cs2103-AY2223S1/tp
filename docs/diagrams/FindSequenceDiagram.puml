@@ -39,7 +39,7 @@ activate FindCommand
 FindCommand [MODEL_COLOR]-> Model : updateFilteredStudentList(p)
 activate Model
 
-Model [MODEL_COLOR]-> FilteredList : fs.setPredicate(p)
+Model [MODEL_COLOR]-> FilteredList : setPredicate(p)
 activate FilteredList
 
 
