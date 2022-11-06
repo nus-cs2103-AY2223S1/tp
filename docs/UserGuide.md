@@ -323,7 +323,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `PHONE_NUMBER` should contain only numbers and be at least 8 digits long.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 * `BIRTHDAY` in the future are not acceptable.
-* `PRODUCT` must exists already.
+* `PRODUCT` must exists already. Reuse `pd\` prefix to add each product to the client.
 * If a `NAME` already exists in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
@@ -426,7 +426,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
 * If you wish to edit a client's `NAME` and the `NAME` already exists in _MyInsuRec_, it will result in an error!
-* Editing the client's products replaces all existing products with the products specified.
+* Editing the client's products replaces all existing products with the products specified. Reuse `pd\` prefix to add each product to the edited client.
 
 Use case:
 1. A client changed his address! Update the client details instead of having to removing the old record and creating a new record.
