@@ -138,7 +138,7 @@ This action is irreversible!
 
 
 Format: `clear`
-Example Usage: `help`
+Example Usage: `clear`
 Example Result: Clears all Application data.
 
 ### Exiting the program : `exit`
