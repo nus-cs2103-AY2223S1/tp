@@ -80,6 +80,8 @@ are an experienced user, the a command summary at the bottom can get you up to s
 
 9. Refer to the Features below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ## About the user guide
 
 ### Layout of window
@@ -226,6 +228,8 @@ Examples:
 Sample execution of command `add mod CCA -n Volleyball -cr 0`:
 ![add-mod-verbose-sample](images/UserGuidePictures/add-mod-verbose-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Removing a module: `remove module`
 
 Deletes a module from the program. You have to specify a module code to delete.
@@ -247,6 +251,8 @@ Examples:
 Sample execution of command `remove mod CS2100`:
 ![remove-mod-sample](images/UserGuidePictures/remove-mod-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Entering a module: `cd`
 
 Sets the current module page to the specified module.
@@ -265,6 +271,8 @@ Examples:
 Sample execution of command `cd CS2100`:
 ![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Exiting a module: `cd`
 
 Exits the current module page to revert to showing all modules.
@@ -278,6 +286,8 @@ Examples:
 
 Sample execution of command `cd ..`:
 ![cd-default-sample](images/UserGuidePictures/cd-default-sample.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Marks a module as done: `done module`
 
@@ -300,6 +310,8 @@ Examples:
 Sample execution of command `done module CS2100`:
 ![done-module-sample](images/UserGuidePictures/done-module-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Marks undone a module: `undone module`
 
 Marks a module as undone.
@@ -318,6 +330,8 @@ Examples:
 Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
 ![undone-module-sample](images/UserGuidePictures/undone-module-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all modules: `list module`
 
 Shows all the modules you have added.
@@ -333,6 +347,8 @@ Examples:
 
 Sample execution of command `list module -a`:
 ![list-module-sample](images/UserGuidePictures/list-modules-sample.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Editing modules: `edit module`
 
@@ -352,6 +368,8 @@ Examples:
 - `edit module ST2334 -c CS2040S -cr 4 -n "Data Structures and Algorithms"`
 
 ![](./images/UserGuidePictures/edit_module.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Tasks
 
@@ -383,6 +401,8 @@ Examples (Not CD'd into a module):
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 ![add-task-sample](images/UserGuidePictures/add-task-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Removing a task: `remove task`
 
 Removes a task under a specific module.
@@ -400,6 +420,8 @@ Examples:
 Sample execution of command `remove task 1` with 2 active tasks displayed:
 ![remove-task-sample](images/UserGuidePictures/remove-task-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Marking a task as done: `done task`
 
 Marks a task as done, specified via its index in the task list.
@@ -414,6 +436,8 @@ Examples:
 Sample execution of command `done task 1` with 6 active tasks displayed:
 ![done-task-sample](images/UserGuidePictures/done-task-sample.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Marking a task as undone: `undone task`
 
 Marks a task as undone, specified via its index in the task list.
@@ -427,6 +451,8 @@ Examples:
 
 Sample execution of command `undone task 6` with 6 active tasks displayed:
 ![undone-task-sample](images/UserGuidePictures/undone-task-sample.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all tasks: `list task`
 
@@ -475,6 +501,8 @@ Examples:
 - `edit task 3 -p low -ds "finals exams" -c CS2103T`
 
 ![](./images/UserGuidePictures/edit_task.png)
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
