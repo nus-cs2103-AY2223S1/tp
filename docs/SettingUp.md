@@ -39,17 +39,10 @@ If you plan to use Intellij IDEA (highly recommended):
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
    </div>
 
-1. **Set up CI**
+2. **Set up CI**
 
    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
 
-1. **Learn the design**
+3. **Learn the design**
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [CinternS’s architecture](DeveloperGuide.md#architecture).
-
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
-
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Adding a new command](tutorials/AddRemark.md)
-   * [Removing fields](tutorials/RemovingFields.md)
