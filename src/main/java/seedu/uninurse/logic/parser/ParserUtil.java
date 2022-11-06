@@ -456,8 +456,7 @@ public class ParserUtil {
      * Parses the value of {@code String option} from {@code String arguments}.
      */
     private static Optional<String> parseOption(String arguments, String option) {
-        requireAllNonNull(arguments);
-        requireAllNonNull(option);
+        requireAllNonNull(arguments, option);
         String[] options = arguments.trim().split("\\s+");
         Optional<String> ret = Optional.empty();
         for (int i = 0; i < options.length; i++) {
@@ -476,8 +475,7 @@ public class ParserUtil {
      * and return them in a {@code ArgumentMultimap}.
      */
     public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
-        requireAllNonNull(arguments);
-        requireAllNonNull(options);
+        requireAllNonNull(arguments, options);
         ArgumentMultimap optionValues = new ArgumentMultimap();
         for (int i = 0; i < options.length; i++) {
             Optional<String> value = parseOption(arguments, options[i].toString());
@@ -493,8 +491,7 @@ public class ParserUtil {
      * and return the resulting {@code String}.
      */
     private static String eraseOption(String arguments, String option) {
-        requireAllNonNull(arguments);
-        requireAllNonNull(option);
+        requireAllNonNull(arguments, option);
         String[] options = arguments.trim().split("\\s+");
         int ret = -1;
         for (int i = 0; i < options.length; i++) {
@@ -517,8 +514,7 @@ public class ParserUtil {
      * and return the resulting {@code String}.
      */
     public static String eraseOptions(String arguments, Prefix... options) {
-        requireAllNonNull(arguments);
-        requireAllNonNull(options);
+        requireAllNonNull(arguments, options);
         for (int i = 0; i < options.length; i++) {
             arguments = eraseOption(arguments, options[i].toString());
         }
@@ -529,8 +525,7 @@ public class ParserUtil {
      * Checks if in the given argumentMultimap, *only* the given validOptions occur.
      */
     public static boolean optionsOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
-        requireAllNonNull(argumentMultimap);
-        requireAllNonNull(validOptions);
+        requireAllNonNull(argumentMultimap, validOptions);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
                 Arrays.stream(validOptions).anyMatch(x -> x.equals(option))
@@ -541,8 +536,7 @@ public class ParserUtil {
      * Checks if in the given argumentMultimap, *only* the given validParameters occur.
      */
     public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
-        requireAllNonNull(argumentMultimap);
-        requireAllNonNull(validParameters);
+        requireAllNonNull(argumentMultimap, validParameters);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(option ->
                 Arrays.stream(validParameters).anyMatch(x -> x.equals(option))
