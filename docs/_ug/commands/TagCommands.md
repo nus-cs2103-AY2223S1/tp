@@ -31,19 +31,23 @@ FoodRem does not already contain a tag called "Vegetables".
 
 > List all tags in FoodRem
 
-**Example Input:**
+**Example:**
 
-```text
-listtag
-```
+{% capture notes %}
+**Assumption:**
 
-**Example Output:**<br>Command Output Box:
+Initially, FoodRem contains only the following three tags:
 
-```text
-Listed all tags:
-Vegetables
-Carrots
-```
+* Fruits
+* Meat
+* Vegetables
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="listtag"
+  commandOutputBox="images/tagCommands/commandOutputBox/listtag.png"
+%}
 
 ---
 
