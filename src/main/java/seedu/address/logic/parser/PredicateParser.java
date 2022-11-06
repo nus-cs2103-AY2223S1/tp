@@ -44,11 +44,11 @@ public class PredicateParser {
     private static final String PHONE_PREFIX = "ph";
 
     //For pets
-    private static final String COLOR_PREFIX = "p_c";
-    private static final String PET_NAME_PREFIX = "p_n";
-    private static final String PRICE_PREFIX = "p_p";
-    private static final String SPECIES_PREFIX = "p_s";
-    private static final String VACCINATION_PREFIX = "p_v";
+    private static final String COLOR_PREFIX = "p_c/";
+    private static final String PET_NAME_PREFIX = "p_n/";
+    private static final String PRICE_PREFIX = "p_p/";
+    private static final String SPECIES_PREFIX = "p_s/";
+    private static final String VACCINATION_PREFIX = "p_v/";
 
     //For orders
     private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar/";
@@ -171,32 +171,36 @@ public class PredicateParser {
      * and returns a Predicate.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public static Predicate<Pet> parsePet(String input) throws ParseException {
-        String[] nameKeywords = input.trim().split("/", 2);
-        if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
+    public static Predicate<Pet> parsePet(String input, String prefix) throws ParseException {
+
+        input = input.trim();
+
+        if (input.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
-        String query = nameKeywords[1].trim();
-        switch (nameKeywords[0].trim()) {
+        String[] inputs = input.split("\\s+");
+        switch (prefix) {
         case COLOR_PREFIX:
-            return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new ColorContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case PET_NAME_PREFIX:
-            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case PRICE_PREFIX:
-            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
+            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(input)));
         case SPECIES_PREFIX:
-            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
+            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(inputs));
         case VACCINATION_PREFIX:
-            query = query.trim();
-            if (!query.equals(Boolean.toString(true)) && !query.equals(Boolean.toString(false))) {
+            input = input.trim();
+            if (!input.equals(Boolean.toString(true)) && !input.equals(Boolean.toString(false))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
-            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
+            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(input));
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
+
+
     }
 
     /**
