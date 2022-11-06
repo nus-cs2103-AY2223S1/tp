@@ -245,17 +245,19 @@ public class Application {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(company)
-                .append("; Position applied: ")
+                .append(";\nPosition applied: ")
                 .append(position)
-                .append("; Contact number: ")
+                .append(";\nContact number: ")
                 .append(contact)
-                .append("; Email: ")
+                .append(";\nEmail: ")
                 .append(email)
-                .append("; Apply on: ")
-                .append(date);
+                .append(";\nApplied on: ")
+                .append(date)
+                .append(";\nCurrent status: ")
+                .append(status);
 
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append(";\nTags: ");
             tags.forEach(builder::append);
         }
 

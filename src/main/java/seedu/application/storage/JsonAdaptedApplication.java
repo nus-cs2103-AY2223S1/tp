@@ -48,38 +48,6 @@ class JsonAdaptedApplication {
     private final String interviewTime;
     private final String location;
 
-
-    /*
-    @JsonCreator
-    public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
-                                  @JsonProperty("email") String email, @JsonProperty("position") String position,
-                                  @JsonProperty("date") String date,
-                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                  @JsonProperty("isArchived") boolean isArchived)
-                                  ) {
-        this.company = company;
-        this.contact = contact;
-        this.email = email;
-        this.position = position;
-        this.date = date;
-<<<<<<< HEAD
-        this.isArchived = isArchived;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
-<<<<<<< HEAD
-=======
->>>>>>> master
-
-        this.round = "";
-        this.interviewDate = "";
-        this.interviewTime = "";
-        this.location = "";
-    }
-
-     */
-
-
     /**
      * Constructs a {@code JsonAdaptedApplication} with the given application details with non-empty Interview.
      */
