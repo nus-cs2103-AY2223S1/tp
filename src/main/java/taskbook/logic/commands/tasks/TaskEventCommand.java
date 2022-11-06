@@ -42,7 +42,7 @@ public class TaskEventCommand extends TaskAddCommand {
     private final LocalDate date;
 
     /**
-     * Creates a TaskEventCommand to add a task with the specified
+     * Creates a TaskEventCommand to add an event with the specified
      * {@code Name name}, {@code Description description},
      * {@code Assignment assignment} and {@code LocalDate date}.
      *
@@ -58,7 +58,7 @@ public class TaskEventCommand extends TaskAddCommand {
     }
 
     /**
-     * Creates a TaskEventCommand to add a task with the specified
+     * Creates a TaskEventCommand to add an event with the specified
      * {@code Name name}, {@code Description description},
      * {@code Assignment assignment}, {@code LocalDate date} and {@code Set tags}.
      *
