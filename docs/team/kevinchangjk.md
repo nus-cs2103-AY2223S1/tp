@@ -62,8 +62,11 @@ Given below are my contributions to the project.
 
 - Edited implementation details for:
   - `find`
-- Added implementation details for:
-  - [To Be Updated]
+- Added documentation for the following parts:
+  - Non-functional requirements
+  - Glossary
+  - Manual testing
+  - Table of contents
 
 ### Contributions to team-based tasks
 
