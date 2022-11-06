@@ -27,8 +27,8 @@ public class JsonSerializableFridayTest {
         JsonSerializableFriday dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableFriday.class).get();
         Friday fridayFromFile = dataFromFile.toModelType();
-        Friday typicalStudentsAddressBook = TypicalStudents.getTypicalFridayForTest();
-        assertEquals(fridayFromFile, typicalStudentsAddressBook);
+        Friday typicalStudentsFriday = TypicalStudents.getTypicalFridayForTest();
+        assertEquals(fridayFromFile, typicalStudentsFriday);
     }
 
     @Test

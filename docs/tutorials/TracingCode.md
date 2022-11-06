@@ -232,7 +232,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * @param source future changes to this will not affect the created
      * {@code JsonSerializableFriday}.
      */
-    public JsonSerializableFriday(ReadOnlyAddressBook source) {
+    public JsonSerializableFriday(ReadOnlyFriday source) {
         students.addAll(
             source.getStudentList()
                   .stream()
@@ -241,7 +241,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     }
     ```
 
-1. It appears that a `JsonAdaptedStudent` is created for each `Student` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedStudent` is created for each `Student` and then added to the `JsonSerializableFriday`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
