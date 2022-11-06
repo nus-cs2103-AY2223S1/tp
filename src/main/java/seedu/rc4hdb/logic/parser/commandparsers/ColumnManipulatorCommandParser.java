@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand;
-import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a parser for commands that can interact with Model to manipulate columns in the UI table.
  */
-public abstract class ColumnManipulatorCommandParser implements Parser<ColumnManipulatorCommand> {
+public abstract class ColumnManipulatorCommandParser implements CommandParser<ColumnManipulatorCommand> {
 
     public static final String INTENDED_USAGE_FORMAT = "Please enter the %s command followed by"
             + " at least one column to %s.\n"

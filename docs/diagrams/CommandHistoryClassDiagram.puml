@@ -4,17 +4,20 @@
 skinparam ClassFontColor #FFFFFF
 skinparam ClassBorderColor #FFFFFF
 
-
-package UI {
+package Ui {
     class CommandBox as "CommandBox" UI_COLOR_T3
+    package History {
+        class Forward as "ForwardHistory" UI_COLOR_T3
+        class Backward as "BackwardHistory" UI_COLOR_T3
+        class Parser as "CommandHistoryParser" UI_COLOR_T3
+        class Parent as "<<interface>>\nCommandHistory" UI_COLOR_T3
+    }
 }
 
-class Forward as "ForwardHistory" #FDD400
-class Backward as "BackwardHistory" #FDD400
-class Parent as "CommandHistory" #FDD400
-
-CommandBox -down-> "1" Parent
-Parent <|-- "1" Forward
-Parent <|-- "1" Backward
+CommandBox -down-> "1" Parser
+Parser --> "1" Forward
+Parser --> "1" Backward
+Forward --|> Parent
+Backward --|> Parent
 
 @end

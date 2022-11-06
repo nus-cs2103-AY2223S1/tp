@@ -2,8 +2,11 @@ package seedu.rc4hdb.testutil;
 
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BOB;
+import static seedu.rc4hdb.testutil.TypicalResidents.CARL;
+import static seedu.rc4hdb.testutil.TypicalVenues.FUNCTION_ROOM_NAME;
 import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
@@ -26,8 +29,11 @@ public class TypicalBookings {
     public static final String MONDAY_STRING = "MON";
     public static final String TUESDAY_STRING = "TUE";
 
+    public static final String WEDNESDAY_STRING = "WED";
+
     public static final Day MONDAY = new Day(MONDAY_STRING);
     public static final Day TUESDAY = new Day(TUESDAY_STRING);
+    public static final Day WEDNESDAY = new Day(WEDNESDAY_STRING);
 
     /* Meeting room bookings */
     public static final RecurrentBooking MR_ALICE_MONDAY_5_TO_6PM =
@@ -44,5 +50,44 @@ public class TypicalBookings {
 
     public static final RecurrentBooking MR_BOB_TUESDAY_6_TO_7PM =
             new RecurrentBooking(MEETING_ROOM_VENUE_NAME, BOB, HP_6_TO_7PM, TUESDAY);
+
+    /* Function room booking */
+    public static final RecurrentBooking MR_CARL_FRIDAY_5_TO_7PM =
+            new RecurrentBooking(FUNCTION_ROOM_NAME, CARL, HP_5_TO_7PM, MONDAY);
+
+    /* Typical Booking Descriptors */
+    public static final BookingDescriptor DESC_MR_ALICE_MONDAY_5_TO_6PM =
+            new BookingDescriptorBuilder(MR_ALICE_MONDAY_5_TO_6PM).build();
+
+    public static final BookingDescriptor DESC_MR_ALICE_MONDAY_6_TO_7PM =
+            new BookingDescriptorBuilder(MR_ALICE_MONDAY_6_TO_7PM).build();
+
+    public static final BookingDescriptor DESC_MR_ALICE_MONDAY_5_TO_7PM =
+            new BookingDescriptorBuilder(MR_ALICE_MONDAY_5_TO_7PM).build();
+
+    public static final BookingDescriptor DESC_MR_ALICE_TUESDAY_6_TO_7PM =
+            new BookingDescriptorBuilder(MR_ALICE_TUESDAY_6_TO_7PM).build();
+
+    public static final BookingDescriptor DESC_MR_BOB_TUESDAY_6_TO_7PM =
+            new BookingDescriptorBuilder(MR_BOB_TUESDAY_6_TO_7PM).build();
+
+    public static final BookingDescriptor DESC_MR_CARL_MONDAY_5_TO_7PM =
+            new BookingDescriptorBuilder(MR_CARL_FRIDAY_5_TO_7PM).build();
+
+    public static final RecurrentBooking MR_BOB_WEDNESDAY_6_TO_7PM =
+            new RecurrentBooking(MEETING_ROOM_VENUE_NAME, BOB, HP_6_TO_7PM, WEDNESDAY);
+
+    /**
+     * Returns a booking descriptor with contents equal to MR_ALICE_MONDAY_5_TO_6PM.
+     * @return An example booking descriptor for testing purposes
+     */
+    public static BookingDescriptor getExampleBookingDescriptor() {
+        BookingDescriptor bookingDescriptor = new BookingDescriptor();
+        bookingDescriptor.setResident(ALICE);
+        bookingDescriptor.setDayOfWeek(MONDAY);
+        bookingDescriptor.setVenueName(MEETING_ROOM_VENUE_NAME);
+        bookingDescriptor.setHourPeriod(HP_5_TO_6PM);
+        return bookingDescriptor;
+    }
 
 }
