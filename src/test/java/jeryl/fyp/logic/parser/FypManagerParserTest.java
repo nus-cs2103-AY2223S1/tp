@@ -120,6 +120,8 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(
                 HelpCommand.COMMAND_WORD + " " + DeleteStudentCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(
+                HelpCommand.COMMAND_WORD + " " + AddStudentCommand.ALTERNATIVE_COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
@@ -159,7 +161,8 @@ public class FypManagerParserTest {
                 instanceof SortProjectNameCommand);
 
         // sort
-        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD) instanceof SortProjectNameCommand);
+        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD)
+                instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
     }
