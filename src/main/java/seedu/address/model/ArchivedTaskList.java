@@ -13,18 +13,18 @@ import seedu.address.model.task.UniquePersonList;
  * Wraps all data at ArchivedTaskBook level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class ArchivedTaskBook implements ReadOnlyAddressBook {
+public class ArchivedTaskList implements ReadOnlyAddressBook {
 
     private final UniquePersonList archivedTasks;
 
-    public ArchivedTaskBook() {
+    public ArchivedTaskList() {
         archivedTasks = new UniquePersonList();
     }
 
     /**
      * Creates an ArchivedTaskBook using the Persons in the {@code toBeCopied}
      */
-    public ArchivedTaskBook(ReadOnlyAddressBook toBeCopied) {
+    public ArchivedTaskList(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -87,8 +87,8 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ArchivedTaskBook // instanceof handles nulls
-                && archivedTasks.equals(((ArchivedTaskBook) other).archivedTasks));
+                || (other instanceof ArchivedTaskList // instanceof handles nulls
+                && archivedTasks.equals(((ArchivedTaskList) other).archivedTasks));
     }
 
     @Override

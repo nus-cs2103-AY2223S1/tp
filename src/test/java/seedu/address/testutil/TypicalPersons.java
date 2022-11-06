@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.ArchivedTaskBook;
+import seedu.address.model.ArchivedTaskList;
 import seedu.address.model.task.Task;
 
 /**
@@ -111,8 +111,8 @@ public class TypicalPersons {
         return ab;
     }
 
-    public static ArchivedTaskBook getTypicalArchivedTaskBook() {
-        ArchivedTaskBook atb = new ArchivedTaskBook();
+    public static ArchivedTaskList getTypicalArchivedTaskList() {
+        ArchivedTaskList atb = new ArchivedTaskList();
         for (Task task: getTypicalArchivedTasks()) {
             atb.addTask(task);
         }

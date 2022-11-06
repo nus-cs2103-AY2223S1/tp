@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class ArchivedTaskBookTest {
+public class ArchivedTaskListTest {
 
-    private final ArchivedTaskBook archivedTaskBook = new ArchivedTaskBook();
+    private final ArchivedTaskList archivedTaskList = new ArchivedTaskList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), archivedTaskBook.getPersonList());
+        assertEquals(Collections.emptyList(), archivedTaskList.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> archivedTaskBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> archivedTaskList.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyArchivedTaskBook_replacesData() {
-        ArchivedTaskBook newData = getTypicalArchivedTaskBook();
-        archivedTaskBook.resetData(newData);
-        assertEquals(newData, archivedTaskBook);
+        ArchivedTaskList newData = getTypicalArchivedTaskList();
+        archivedTaskList.resetData(newData);
+        assertEquals(newData, archivedTaskList);
     }
 
     @Test
@@ -49,38 +49,38 @@ public class ArchivedTaskBookTest {
         Task editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BETA)
                 .withTags(VALID_TAG_HIGH_PRIORITY).build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
-        ArchivedTaskBookTest.ArchivedTaskBookStub newData = new ArchivedTaskBookTest.ArchivedTaskBookStub(newTasks);
+        ArchivedTaskListTest.ArchivedTaskBookStub newData = new ArchivedTaskListTest.ArchivedTaskBookStub(newTasks);
 
-        assertThrows(DuplicatePersonException.class, () -> archivedTaskBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> archivedTaskList.resetData(newData));
     }
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> archivedTaskBook.hasTask(null));
+        assertThrows(NullPointerException.class, () -> archivedTaskList.hasTask(null));
     }
 
     @Test
     public void hasTask_taskNotInArchivedTaskBook_returnsFalse() {
-        assertFalse(archivedTaskBook.hasTask(ALICE));
+        assertFalse(archivedTaskList.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskInArchivedTaskBook_returnsTrue() {
-        archivedTaskBook.addTask(ALICE);
-        assertTrue(archivedTaskBook.hasTask(ALICE));
+        archivedTaskList.addTask(ALICE);
+        assertTrue(archivedTaskList.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInArchivedTaskBook_returnsTrue() {
-        archivedTaskBook.addTask(ALICE);
+        archivedTaskList.addTask(ALICE);
         Task editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BETA)
                 .withTags(VALID_TAG_HIGH_PRIORITY).build();
-        assertTrue(archivedTaskBook.hasTask(editedAlice));
+        assertTrue(archivedTaskList.hasTask(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> archivedTaskBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> archivedTaskList.getPersonList().remove(0));
     }
 
     /**

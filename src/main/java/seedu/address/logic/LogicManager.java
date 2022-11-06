@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
-            storage.saveArchivedTaskBook(model.getArchivedAddressBook());
+            storage.saveArchivedTaskList(model.getArchivedTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -61,8 +61,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getArchivedAddressBook() {
-        return model.getArchivedAddressBook();
+    public ReadOnlyAddressBook getArchivedTaskList() {
+        return model.getArchivedTaskList();
     }
 
     @Override
@@ -81,8 +81,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Task> getArchivedTaskList() {
-        return model.getArchivedTaskList();
+    public ObservableList<Task> getObservableArchivedTaskList() {
+        return model.getObservableArchivedTaskList();
     }
 
     @Override

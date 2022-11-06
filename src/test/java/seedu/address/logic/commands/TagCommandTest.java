@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class TagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -44,7 +44,7 @@ public class TagCommandTest {
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(),
-                model.getArchivedAddressBook(), new UserPrefs());
+                model.getArchivedTaskList(), new UserPrefs());
         expectedModel.setTask(taskToTag, taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class TagCommandTest {
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                model.getArchivedAddressBook(), new UserPrefs());
+                model.getArchivedTaskList(), new UserPrefs());
         expectedModel.setTask(taggedTask, taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class TagCommandTest {
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                model.getArchivedAddressBook(), new UserPrefs());
+                model.getArchivedTaskList(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);

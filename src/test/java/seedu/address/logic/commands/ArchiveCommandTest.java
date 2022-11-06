@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskList;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.task.Task;
  * {@code ArchiveCommand}.
  */
 public class ArchiveCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +34,7 @@ public class ArchiveCommandTest {
         String expectedMessage = String.format(archiveCommand.MESSAGE_ARCHIVED_TASK_SUCCESS, taskToArchive);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(),
-                model.getArchivedAddressBook(), new UserPrefs());
+                model.getArchivedTaskList(), new UserPrefs());
         expectedModel.archivedTask(taskToArchive);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class ArchiveCommandTest {
 
         String expectedMessage = String.format(archiveCommand.MESSAGE_ARCHIVED_TASK_SUCCESS, taskToArchive);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getArchivedAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getArchivedTaskList(), new UserPrefs());
         expectedModel.archivedTask(taskToArchive);
         showNoPerson(expectedModel);
 
