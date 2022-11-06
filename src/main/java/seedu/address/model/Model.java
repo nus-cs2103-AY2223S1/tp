@@ -102,9 +102,9 @@ public interface Model {
 
     void addToCommandHistory(String commandInput);
 
-    String nextCommand();
+    String getNextCommand();
 
-    String prevCommand();
+    String getPrevCommand();
 
     void updateCalendarEventList();
 }
