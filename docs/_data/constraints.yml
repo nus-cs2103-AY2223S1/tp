@@ -1,0 +1,18 @@
+boughtNotAfterExpiry: >-
+  The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
+
+dateFormat:
+  summary: >-
+    The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
+  day: >-
+    "dd": Day of the month. For example, "10" would represent the 10th day of the month.
+  month: >-
+    "mm": Month of the year, ranging from 1 to 12 for January to December respectively. For example, "05" would represent May.
+  year: >-
+    "yyyy": A 4-digit year. For example, "2019" would represent the year 2019.
+
+lastValueOfDuplicates: >-
+  If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+
+priceIsWithoutSymbol: >-
+  `PRICE` do not require you to include the currency. Only include the value.

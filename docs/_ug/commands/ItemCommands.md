@@ -11,38 +11,74 @@ Example of an [Item](#item):
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
-* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
-* The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
-  * dd: Day of the month. For example, "10" would represent the 10th day of the month.
-  * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
-  * yyyy: The current year. For example, "2019" would represent the year 2019.
+* {{ site.data.constraints.boughtNotAfterExpiry }}
+* {{ site.data.constraints.dateFormat.summary }}
+  * {{ site.data.constraints.dateFormat.day }}
+  * {{ site.data.constraints.dateFormat.month }}
+  * {{ site.data.constraints.dateFormat.year }}
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if it is not provided.
-* The default values for `QUANTITY` and `PRICE` is `0`.
-* The default values for `UNIT` is blank.
+* The default value for `QUANTITY` and `PRICE` is `0`.
+* The default value for `UNIT` is blank.
 * The value of `REMARKS` will be `-` if is it not provided.
-* `PRICE` do not require you to include the currency. Only include the value.
-* You cannot create an item with a tag immediately.
-* If two or more of the same parameters are provided, the last parameter will be taken.
+* {{ site.data.constraints.priceIsWithoutSymbol }}
 ```
 
-**Example Input:**
-
-```text
-new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022
+```note
+* You cannot create an item and tag it at the same time.
+* {{ site.data.constraints.lastValueOfDuplicates }}
 ```
 
-**Expected Output:**<br>Command Output Box:
+**Example:**
 
-```text
-New item added:
-Name: Potato
-Quantity: 70 kg
-Bought Date: 22-02-2022
-Expiry Date: 22-03-2022
-Price: $0
-Remarks: -
-Tags: {}
+{% capture notes %}
+**Assumption:**
+
+FoodRem does not already contain an item with the name "Potato".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022"
+  commandOutputBox="images/itemCommands/commandOutputBox/new.png"
+%}
+
+---
+
+#### Search for an item: `find`
+
+**Format:** `find KEYWORD [KEYWORDS]...`
+
+> Finds all items in FoodRem whose names contain [[ substring:substrings]] of the KEYWORDS
+
+<!-- TODO: Remove duplicate autoglossary (just pick one) -->
+```info
+* The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
+* The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
+* The result will be items where each of the `KEYWORDS` are present in the `ITEM_NAME` as a [[ substring ]]. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
 ```
+
+```tip
+* You can use the [List Command](#list-all-items-list) in the next section to display all items again!
+```
+
+**Example:**
+
+{% capture notes %}
+**Assumption:**
+
+Initially, FoodRem only contains the following items:
+
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="find b sug"
+  itemListBox="images/itemCommands/itemListBox/find.png"
+%}
 
 ---
 
@@ -53,64 +89,27 @@ Tags: {}
 > List all items in FoodRem
 
 ```info
-* This command is useful to view all items again after using the [Find Command](#Find)
+* This command is useful to view all items again after using the [Find Command](#search-for-an-item-find).
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-list
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+FoodRem contains the following items, each with their own attributes:
 
-```text
-Listed all items
-```
-
-Item List Box:
-
-```text
-1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
-```
-
----
-
-#### Search for an item: `find`
-
-**Format:** `find KEYWORD [KEYWORDS]...`
-
-> Finds all items in FoodRem whose names contain substrings of the KEYWORDS
-
-```info
-* The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
-* The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be items in which any of the words in `ITEM_NAME` contains a substring of the `KEYWORDS`. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
-```
-
-```tip
-* You can use the [List Command](#list-all-items-list) to display all items again!
-```
-
-**Example Input:**
-
-```text
-find potato carrot cucumbers
-```
-
-**Expected Output:**<br>Command Output Box:
-
-```text
-1 item listed!
-```
-
-Item List Box:
-
-```text
-1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-```
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="list"
+  itemListBox="images/itemCommands/itemListBox/list.png"
+%}
 
 ---
 
@@ -132,28 +131,27 @@ Item List Box:
 
 ```warning
 * You should only provide one sorting criteria.
-* The sort can only be done in an ascending order.
+* The sort can only be done in ascending order.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-sort n/
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+FoodRem contains the following items:
 
-```text
-3 items sorted!
-```
-
-Item List Box:
-
-```text
-1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
-```
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="sort n/"
+  itemListBox="images/itemCommands/itemListBox/sort.png"
+%}
 
 ---
 
@@ -167,23 +165,21 @@ Item List Box:
 * Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-view 1
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
 
-```text
-Name: Onions
-Quantity: 8 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The command will produce a detailed view of this item.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="view 1"
+  commandOutputBox="images/itemCommands/commandOutputBox/view.png"
+%}
 
 ---
 
@@ -195,27 +191,23 @@ Tags: {vegetables}
 
 ```info
 * If a quantity is not provided, the item quantity will be incremented by 1.
-* If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+* If two or more `QUANTITY` values are provided, only the last `QUANTITY` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-inc 1 qty/3
-```
+{% capture notes %}
+**Assumptions:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Incremented Item:
-Name: Onions
-Quantity: 11 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has a "Quantity" of 8.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="inc 1 qty/3"
+  commandOutputBox="images/itemCommands/commandOutputBox/inc.png"
+%}
 
 ---
 
@@ -226,27 +218,23 @@ Tags: {vegetables}
 
 ```info
 * If a quantity is not provided, the item quantity will be decremented by 1.
-* If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+* If two or more `QUANTITY` values are provided, only the last `QUANTITY` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-dec 1 qty/4
-```
+{% capture notes %}
+**Assumptions:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Decremented Item:
-Name: Onions
-Quantity: 7 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has a "Quantity" of 11.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="dec 1 qty/4"
+  commandOutputBox="images/itemCommands/commandOutputBox/dec.png"
+%}
 
 ---
 
@@ -258,33 +246,38 @@ Tags: {vegetables}
 
 ```info
 * All fields are optional. However, you need to include at least one parameter.
-* The `BOUGHT_DATE` should not be after the `EXPIRY_DATE`.
-* The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
-  * dd: Day of the month. For example, "10" would represent the 10th day of the month.
-  * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
-  * yyyy: The current year. For example, "2019" would represent the year 2019.
-* `PRICE` do not require you to include the currency. Only include the value.
-* If two or more of the same parameters are provided, the last parameter will be taken.
+* {{ site.data.constraints.boughtNotAfterExpiry }}
+* {{ site.data.constraints.dateFormat.summary }}
+  * {{ site.data.constraints.dateFormat.day }}
+  * {{ site.data.constraints.dateFormat.month }}
+  * {{ site.data.constraints.dateFormat.year }}
+* {{ site.data.constraints.priceIsWithoutSymbol }}
 ```
 
-**Example Input:**
-
-```text
-edit 1 qty/100 n/Potatoes
+```note
+* {{ site.data.constraints.lastValueOfDuplicates }}
 ```
 
-**Expected Output:**<br>Command Output Box:
+**Example:**
 
-```text
-Edited Item:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+{% capture notes %}
+**Assumptions:**
+
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+* Initially, the "Onion" item has the following values:
+  * Unit: kg
+  * Bought Date: 10-10-2022
+  * Expiry Date: 10-11-2022
+  * Price: 6.00
+  * Remarks: -
+  * Tags: Vegetables
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="edit 1 qty/100 n/Spring Onion"
+  commandOutputBox="images/itemCommands/commandOutputBox/edit.png"
+%}
 
 ---
 
@@ -296,27 +289,22 @@ Tags: {vegetables}
 
 ```info
 * If no remark is provided, the current remark will be cleared.
-* If two or more `REMARKS` are provided, the last `REMARKS` will be taken.
+* If two or more `REMARKS` values are provided, only the last `REMARKS` will be taken.
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-rmk 1 r/For Party
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Remark Added:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: For Party
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="rmk 1 r/For party!"
+  commandOutputBox="images/itemCommands/commandOutputBox/rmk.png"
+%}
 
 ---
 
@@ -326,23 +314,18 @@ Tags: {vegetables}
 
 > Deletes the item at the specified index
 
-**Example Input:**
+**Example:**
 
-```text
-del 1
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
-
-```text
-Deleted Item:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="del 1"
+  commandOutputBox="images/itemCommands/commandOutputBox/del.png"
+%}
 
 ---
