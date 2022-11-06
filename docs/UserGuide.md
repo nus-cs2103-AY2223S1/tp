@@ -168,6 +168,8 @@ incomes, you need to tell PennyWise the following:
 To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with
 the application.
 
+When you first open up the application, this is the *default view*, which shows the list of expenditures (or incomes):
+
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
 |                                       `Component`                                        |                                                       `Explanation`                                                        |
@@ -494,6 +496,11 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
 - The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
   accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
   error.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, simply use the [`view t/e` command](#view-entries-by-category).
+If you would like to switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the [`view t/i` command](#view-entries-by-category).
+</div>
 
 ### Clearing all entries
 
