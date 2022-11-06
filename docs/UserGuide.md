@@ -210,28 +210,6 @@ Tasks can be archived once they are completed, so you can keep track of your pro
 Monitor your progress, track deadlines and archive tasks with a few simple commands.
 Leave your task management to YellowBook, so you can do your best work.
 
-### Listing all non-archived tasks: `listT`
-
-Shows all (non-archived) tasks stored in the task list.
-
-Format: `listT`
-
-* By default, tasks are marked as unarchived when they are first added.
-
-* Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.
-
-* Task can be archived using the [`archiveT`](#archiving-a-task-archivet) command.
-
-### Listing all archived tasks: `listAT`
-
-Shows all archived tasks stored in the task list. Tasks can be unarchived 
-
-Format: `listAT`
-
-* Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
-
-* Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
-
 ### Adding a task: `addT`
 
 Adds a task to the task list.
@@ -259,6 +237,28 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
+
+### Listing all non-archived tasks: `listT`
+
+Shows all (non-archived) tasks stored in the task list.
+
+Format: `listT`
+
+* By default, tasks are marked as unarchived when they are first added.
+
+* Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.
+
+* Task can be archived using the [`archiveT`](#archiving-a-task-archivet) command.
+
+### Listing all archived tasks: `listAT`
+
+Shows all archived tasks stored in the task list. Tasks can be unarchived
+
+Format: `listAT`
+
+* Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
+
+* Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
 
 ### Removing a tasks: `deleteT`
 
