@@ -9,7 +9,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
+
+Libraries used:
+
+* [JavaFX](https://openjfx.io/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +78,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +91,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -98,7 +103,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -p 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -110,11 +115,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -234,6 +239,9 @@ The sequence diagram is given below.
 
 The sequence diagram is given below.
 ![LinkSequence](images/LinkSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
+![LinkActivity](images/LinkActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -355,40 +363,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                                                                                             | So that I can…​                                                                                        |
-|----------|------------------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| * * *    | First time user  | I can see a summary of commands                                                                          | I can know the functionalities of the app quickly                                                      |
-| * * *    | First time user  | I can delete internship status                                                                           | so that I know that I have finished my interview process with the company                              |
-| * * *    | First time user  | I can see suggested information I need to fill in while I'm adding a contact                             | I don't have to keep referring to the help page to know the information I can add (email, company etc) |
-| * * *    | Second time user | I can pre-load my data from the previous session                                                         | I do not need to re-add everyone again                                                                 |
-| * * *    | Second time user | I can purge all current data                                                                             | I can get rid of sample contacts I used for exploring the app                                          |
-| * * *    | Lazy user        | search contacts by groups or tags                                                                        | I do not need to manually filter them                                                                  |
-| * * *    | User             | I can edit contacts                                                                                      | I do not need to delete and re-add to fix a typo error                                                 |
-| * * *    | User             | delete contacts individually                                                                             |                                                                                                        |
-| * * *    | User             | add the company name to each contact                                                                     | I know which company the contact is representing                                                       |
-| * * *    | User             | navigate the address book easily                                                                         | using the address book should not be a headache by itself                                              |
-| * * *    | User             | I can sort contact by interview status                                                                   | so that I can know which company interview I can prepare for                                           |
-| * * *    | User             | I can sort contact by interview date                                                                     | so that I can know when to prepare for interview                                                       |
-| * * *    | User             | I can see a reminder of the next upcoming interview on the homescreen                                    | so that I know the upcoming interview without opening the address book                                 |
-| * *      | First time user  | I can view user guide                                                                                    | so that I can know all the functions                                                                   |
-| * *      | First time user  | I can see the app populated with sample contacts                                                         | I can easily see how the app will look like when it is in use                                          |
-| * *      | Second time user | see tips suggesting shortcuts or shortforms                                                              | I can potentially achieve faster commands and actions                                                  |
-| * *      | Second time user | see a summary of the internship information I have keyed in so far on starting the app                   | I can know where I left off from the last time I used the app                                          |
-| * *      | Forgetful user   | search contacts by the time it was added                                                                 | I can figure out whom I added at that time                                                             |
-| * *      | Expert user      | Create tags with different priorities                                                                    | Sort contacts by priority                                                                              |
-| * *      | Expert user      | Mass import contacts directly                                                                            | Use the app on another device                                                                          |
-| * *      | Expert user      | Mass edit contacts (e.g. find and replace/set)                                                           | Set common information amongst groups of contacts quickly                                              |
-| * *      | User             | archive contacts                                                                                         | I know which internships I've been rejected from                                                       |
-| * *      | User             | Add colors to tags and contacts                                                                          | Distinguish between contacts easier in the GUI                                                         |
-| * *      | User             | I can purge all interview status                                                                         | so that I can still save all contact after I have found a job                                          |
-| *        | First time user  | I can update the application process attached to a company (application date, round1, interview dates..) | I can see my progress for the internships                                                              |
-| *        | Lazy user        | Leaving halfway when inputting contact information saves it as draft and lets me continue from last time | I dont lose my progress when accidentally leaving or can leave temporarily to work on it next time     |
-| *        | Forgetful user   | I can sort the companies by upcoming interview dates                                                     | I can see a clear timeline and prevent clashing dates                                                  |
-| *        | Expert user      | Create email templates per company                                                                       | Easily draft up internship application emails                                                          |
-| *        | User             | add job roles to each contact                                                                            | I know which role I'm contacting that particular person for (front-end, back-end etc)                  |
-| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                                     | Make the app more visually appealing                                                                   |
-
-*{More to be added}*
+| Priority | As a …​          | I want to …​                                                                           | So that ​                                                                                              |
+|----------|------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| * * *    | First time user  | See a summary of commands                                                              | I can know the functionalities of the app quickly                                                      |
+| * * *    | First time user  | Delete internship status                                                               | I know that I have finished my interview process with the company                                      |
+| * *      | First time user  | View the user guide                                                                    | I can know all the functions                                                                           |
+| * *      | First time user  | See the app populated with sample contacts when launching the app for the first time   | I can easily see how the app will look like when it is in use                                          |
+| * *      | First time user  | See a help message when I use a command word incorrectly                               | I can easily learn how to use individual commands without the need to keep referring to the user guide |
+| * * *    | Second time user | Pre-load my data from the previous session                                             | I do not need to re-add everyone again                                                                 |
+| * * *    | Second time user | Purge all current data                                                                 | I can get rid of sample contacts I used for exploring the app                                          |
+| * *      | Second time user | See a summary of the internship information I have keyed in so far on starting the app | I can know where I left off from the last time I used the app                                          |
+| * * *    | Lazy user        | Find contacts by name                                                                  | I do not need to manually filter them                                                                  |
+| * * *    | Lazy user        | Find internships by company and role                                                   | I do not need to manually filter them                                                                  |
+| * * *    | User             | Edit contacts and internships individually                                             | I do not need to delete and re-add to fix a typo error                                                 |
+| * * *    | User             | Delete contacts and internships individually                                           | I can remove contacts and internships that I no longer need                                            |
+| * * *    | User             | Add the company name to each contact                                                   | I know which company the contact is representing                                                       |
+| * * *    | User             | Add internship status to each internship                                               | I know whether I have been accepted, rejected or still awaiting reply                                  |
+| * * *    | User             | Sort internships by internship status                                                  | I can know which company interview I can prepare for                                                   |
+| * * *    | Forgetful user   | Sort internships by upcoming interview dates                                           | I can see a clear timeline and prevent clashing dates                                                  |
+| * *      | User             | Add roles to each internship                                                           | I know which role I am applying for (front-end, back-end etc)                                          |
+| * *      | User             | Add a company to each internship                                                       | I know which company I am apply for (Google, Shopee etc)                                               |
+| * * *    | User             | Link a contact to an internship as its contact person                                  | I know who to contact for potential updates if I need to                                               |
+| * * *    | User             | Unlink a contact and an internship                                                     | I can remove the contact person for an internship once I no longer need it                             |
+| * *      | Expert user      | Mass import contacts directly                                                          | I can use the app on another device                                                                    |
+| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                   | I can make the app more visually appealing                                                             |
 
 ### Use cases
 
