@@ -1220,8 +1220,6 @@ Use case ends.
 
 --- 
 
-<div style="page-break-after: always;"></div>
-
 ## Non-functional requirements
 
 1. Should work on any **mainstream** OS (Windows, Linux, Unix, OS-X) as long as it has `Java 11` or above installed.
