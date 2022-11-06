@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img class="center" src="images/ArchitectureDiagram.png" width="280" />
+<img class="center" src="images/ArchitectureDiagram.png" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -57,7 +57,7 @@ The rest of the App consists of four components.
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img class="center" src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img class="center" src="images/ArchitectureSequenceDiagram.png" />
 
 Each of the four main components (also shown in the diagram above):
 
@@ -66,7 +66,7 @@ Each of the four main components (also shown in the diagram above):
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img class="center" src="images/ComponentManagers.png" width="300" />
+<img class="center" src="images/ComponentManagers.png" />
 
 The sections below give more details of each component.
 
@@ -93,7 +93,7 @@ The `UI` component:
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img class="center" src="images/LogicClassDiagram.png" width="550"/>
+<img class="center" src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TaAssistParser` class to parse the user command.
@@ -110,7 +110,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img class="center" src="images/ParserClasses.png" width="600"/>
+<img class="center" src="images/ParserClasses.png"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `TaAssistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaAssistParser` returns back as a `Command` object.
@@ -118,13 +118,13 @@ How the parsing works:
 
 The following sequence diagram shows how a generic command `XYZCommand` is parsed from user input with the help of `XYZCommandParser`.
 
-<img class="center" src="images/XYZCommandParserSequenceDiagram.png" width="800"/>
+<img class="center" src="images/XYZCommandParserSequenceDiagram.png"/>
 
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/model/Model.java)
 
-<img class="center" src="images/ModelClassDiagram.png" width="450" />
+<img class="center" src="images/ModelClassDiagram.png" />
 
 The `Model` component:
 
@@ -141,7 +141,7 @@ The `Model` component:
 
 The `UniqueList` class is a generic class that stores a collection of unique elements. In TA-Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
-<img class="center" src="images/TaAssistObjectDiagram.png" width="600"/>
+<img class="center" src="images/TaAssistObjectDiagram.png"/>
 
 #### ModuleClass, Student, and related classes 
 
@@ -158,13 +158,13 @@ equality than the `equals` method. More details regarding this can be found in t
 
 The relationship between these classes is shown in the following class diagram:
 
-<img class="center" src="images/StudentAndModuleClassDiagram.png" width="600"/>
+<img class="center" src="images/StudentAndModuleClassDiagram.png"/>
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/storage/Storage.java)
 
-<img class="center" src="images/StorageClassDiagram.png" width="550" />
+<img class="center" src="images/StorageClassDiagram.png" />
 
 The `Storage` component:
 * Can save both TA-Assist data and user preference data in json format, and read them back into corresponding objects.
@@ -191,13 +191,13 @@ For instance, consider the following hypothetical scenario:
 
 Assume the current state of `TaAssist` is as follows:
 
-<img class="center" src="images/ImpleIdentityObjectDiagram.png" width="600" />
+<img class="center" src="images/ImpleIdentityObjectDiagram.png" />
 
 Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have
 to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of
 `TaAssist` will now look like the one below:
 
-<img class="center" src="images/ImpleIdentityObjectDiagram2.png" width="700" />
+<img class="center" src="images/ImpleIdentityObjectDiagram2.png" />
 
 Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents
 are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict
@@ -242,7 +242,7 @@ In addition, methods such as `addSessions` and `removeSessions` are also provide
 
 For example, the following sequence diagram shows how the command `adds s/Lab1` creates a `Session` named "Lab1" and adds it inside the focused class.
 
-<img class="center" src="images/AddsCommandSequenceDiagram.png" width="1000"/>
+<img class="center" src="images/AddsCommandSequenceDiagram.png"/>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
@@ -334,7 +334,7 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
       objects are referencing the same object.
 
 ### Assigning students to module classes
-<img class="center" src="images/AssignCommandSequenceDiagram.png" width="500" />
+<img class="center" src="images/AssignCommandSequenceDiagram.png" />
 
 Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student.
 
@@ -371,7 +371,7 @@ Giving grades for a session is only possible when a `ModuleClass` is focused. It
 `StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect
 the given grade.
 
-<img class="center" src="images/GradeCommandSequenceDiagram.png" width="700" />
+<img class="center" src="images/GradeCommandSequenceDiagram.png" />
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
@@ -381,7 +381,7 @@ student indices, session name, and grade.
 **Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
 current curated list of students in `Model`. For each student, steps 3 to 5 are repeated.
 
-<img class="center" src="images/StudentGradeUpdate.png" width="700" />
+<img class="center" src="images/StudentGradeUpdate.png" />
 
 **Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
 The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
@@ -404,7 +404,7 @@ Viewing session-wise grades of a student is only possible when a `ModuleClass` i
 the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
 the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
 
-<img class="center" src="images/ViewCommandSequenceDiagram.png" width="700" />
+<img class="center" src="images/ViewCommandSequenceDiagram.png" />
 
 Given bellow are the steps taken when the user wants to view a student's session-wise grades:
 
@@ -445,7 +445,7 @@ The `Logic` component calls these methods in `Model` to execute commands that re
 
 For example, the following sequence diagram shows how the `focus` command activates focus mode:
 
-<img class="center" src="images/FocusCommandSequenceDiagram.png" width="400" />
+<img class="center" src="images/FocusCommandSequenceDiagram.png" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
@@ -507,7 +507,7 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 ### UI Implementation
 #### Home Screen
 
-<img class="center" src="images/UiMainScreen.png" width="600" />
+<img class="center" src="images/UiMainScreen.png" />
 
 The main screen consists of the following components:
 * `ResultDisplay` shows the results produced by the command input from the user; 
@@ -523,7 +523,7 @@ It was designed with the following considerations:
 
 #### Focus Mode
 
-<img class="center" src="images/UiFocusScreen.png" width="600" />
+<img class="center" src="images/UiFocusScreen.png" />
 
 The screen upon entering the focus mode consists of components:
 * `ResultDisplay`, as aforementioned, shows the results produced by the command input from the user;
@@ -534,7 +534,7 @@ The screen upon entering the focus mode consists of components:
 
 Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted in red to the users.
 
-<img class="center" src="images/UiGrading.png" width="600" />
+<img class="center" src="images/UiGrading.png" />
 
 It was designed with the following consideration:
 * As sessions are usually time-sensitive, with those added later often being the more relevant sessions, sorting the sessions with the newest session at the front facilitate users in finding the sessions they are concerned with recently.
