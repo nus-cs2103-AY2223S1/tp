@@ -34,34 +34,34 @@ public class AddGenericCommandParser implements Parser<AddGenericCommand> {
 
         ArgumentMultimap parameters = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (ParserUtil.optionsOnlyContains(options)) {
+        if (ParserUtil.optionsExactlyContains(options)) {
             return new AddPatientCommandParser().parse(args);
         }
 
         // args contain an option other than PATIENT_INDEX
-        if (!ParserUtil.optionsOnlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
+        if (!ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
             throw new ParseException(ParserUtil.MESSAGE_INVALID_OPTIONS);
         }
 
         String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
 
-        if (ParserUtil.parametersOnlyContains(parameters, PREFIX_TASK_DESCRIPTION)) {
+        if (ParserUtil.parametersExactlyContains(parameters, PREFIX_TASK_DESCRIPTION)) {
             return new AddTaskCommandParser().parse(patientIndex + " " + args);
         }
 
-        if (ParserUtil.parametersOnlyContains(parameters, PREFIX_TAG)) {
+        if (ParserUtil.parametersExactlyContains(parameters, PREFIX_TAG)) {
             return new AddTagCommandParser().parse(patientIndex + " " + args);
         }
 
-        if (ParserUtil.parametersOnlyContains(parameters, PREFIX_CONDITION)) {
+        if (ParserUtil.parametersExactlyContains(parameters, PREFIX_CONDITION)) {
             return new AddConditionCommandParser().parse(patientIndex + " " + args);
         }
 
-        if (ParserUtil.parametersOnlyContains(parameters, PREFIX_MEDICATION)) {
+        if (ParserUtil.parametersExactlyContains(parameters, PREFIX_MEDICATION)) {
             return new AddMedicationCommandParser().parse(patientIndex + " " + args);
         }
 
-        if (ParserUtil.parametersOnlyContains(parameters, PREFIX_REMARK)) {
+        if (ParserUtil.parametersExactlyContains(parameters, PREFIX_REMARK)) {
             return new AddRemarkCommandParser().parse(patientIndex + " " + args);
         }
 

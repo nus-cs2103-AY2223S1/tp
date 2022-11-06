@@ -30,7 +30,7 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_TAG)) {
+        if (!ParserUtil.parametersExactlyContains(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));
         }

@@ -30,7 +30,7 @@ public class EditMedicationCommandParser implements Parser<EditMedicationCommand
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_MEDICATION)) {
+        if (!ParserUtil.parametersExactlyContains(argMultimap, PREFIX_MEDICATION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditMedicationCommand.MESSAGE_USAGE));
         }

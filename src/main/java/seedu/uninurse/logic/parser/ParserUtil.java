@@ -522,9 +522,9 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if in the given argumentMultimap, *only* the given validOptions occur.
+     * Checks if in the given argumentMultimap, *exactly* the given validOptions occur.
      */
-    public static boolean optionsOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
+    public static boolean optionsExactlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
         requireAllNonNull(argumentMultimap, validOptions);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
@@ -533,13 +533,24 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if in the given argumentMultimap, *only* the given validParameters occur.
+     * Checks if in the given argumentMultimap, *exactly* the given validParameters occur.
      */
-    public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
+    public static boolean parametersExactlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
         requireAllNonNull(argumentMultimap, validParameters);
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(parameter ->
                 Arrays.stream(validParameters).anyMatch(x -> x.equals(parameter))
                         ^ !argumentMultimap.getValue(parameter).isPresent());
+    }
+
+    /**
+     * Checks if in the given argumentMultimap, no parameters other than the given validParameters occur.
+     */
+    public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
+        requireAllNonNull(argumentMultimap, validParameters);
+        // option in validOptions or !isPresent())
+        return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(parameter ->
+                Arrays.stream(validParameters).anyMatch(x -> x.equals(parameter))
+                        || !argumentMultimap.getValue(parameter).isPresent());
     }
 }

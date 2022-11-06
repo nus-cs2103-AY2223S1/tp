@@ -30,7 +30,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_TASK_DESCRIPTION)) {
+        if (!ParserUtil.parametersExactlyContains(argMultimap, PREFIX_TASK_DESCRIPTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTaskCommand.MESSAGE_USAGE));
         }

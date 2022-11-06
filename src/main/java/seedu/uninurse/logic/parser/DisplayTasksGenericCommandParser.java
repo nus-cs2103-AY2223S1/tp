@@ -30,21 +30,21 @@ public class DisplayTasksGenericCommandParser implements Parser<DisplayTasksGene
 
         ArgumentMultimap parameters = ArgumentTokenizer.tokenize(args);
 
-        if (ParserUtil.optionsOnlyContains(options)
+        if (ParserUtil.optionsExactlyContains(options)
                 && parameters.getPreamble().trim().equals(SPECIAL_CHARACTER_TODAY)) {
             return new PatientsTodayCommand();
         }
 
-        if (ParserUtil.optionsOnlyContains(options)) {
+        if (ParserUtil.optionsExactlyContains(options)) {
             return new TasksOnCommandParser().parse(args);
         }
 
-        if (ParserUtil.optionsOnlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
+        if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
                 && options.getValue(PREFIX_OPTION_PATIENT_INDEX).get().equals(SPECIAL_CHARACTER_ALL)) {
             return new ListTaskCommand();
         }
 
-        if (ParserUtil.optionsOnlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
+        if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)) {
             return new ViewTaskCommandParser().parse(
                     options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " " + args);
         }

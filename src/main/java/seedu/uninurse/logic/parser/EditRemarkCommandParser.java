@@ -30,7 +30,7 @@ public class EditRemarkCommandParser implements Parser<EditRemarkCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_REMARK)) {
+        if (!ParserUtil.parametersExactlyContains(argMultimap, PREFIX_REMARK)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditRemarkCommand.MESSAGE_USAGE));
         }

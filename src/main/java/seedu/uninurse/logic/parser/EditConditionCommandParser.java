@@ -30,7 +30,7 @@ public class EditConditionCommandParser implements Parser<EditConditionCommand> 
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
-        if (!ParserUtil.parametersOnlyContains(argMultimap, PREFIX_CONDITION)) {
+        if (!ParserUtil.parametersExactlyContains(argMultimap, PREFIX_CONDITION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditConditionCommand.MESSAGE_USAGE));
         }
