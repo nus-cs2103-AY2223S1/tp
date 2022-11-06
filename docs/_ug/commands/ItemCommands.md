@@ -63,25 +63,25 @@ Tags: {}
 * You can use the [List Command](#list-all-items-list) in the next section to display all items again!
 ```
 
-**Example Input:**
+**Example:**
 
-```text
-find potato carrot cucumbers
-```
+{% capture notes %}
+**Assumption:**
 
-**Expected Output:**<br>Command Output Box:
+Initially, FoodRem only contains the following items:
 
-```text
-1 item listed!
-```
+1. Sugarcane Juice Box
+1. Brown Sugar
+1. Tomato
+1. Carrot
 
-Item List Box:
-
-```text
-1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-```
-
----
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="find b sug"
+  itemListBox="images/itemCommands/itemListBox/find.png"
+%}
 
 ---
 
