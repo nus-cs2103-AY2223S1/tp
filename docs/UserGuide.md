@@ -208,12 +208,12 @@ Examples:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A new event that has the same event title as an existing event in the application cannot be added to the application.<br><br>
 
-For example, if the application currently has a event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
+For example, if the application currently has an event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
 will not run and will output the error message `This event already exists in the address book`.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** To add an event with starting time during 12am, only input `t/00:00` is allowed. Input `t/24:00` will not be allowed.
+:information_source: **Note:** To add an event with the time of 12am, only input `t/00:00` is allowed. Meanwhile, the input of `t/24:00` is not allowed.
 </div>
 
 
