@@ -22,6 +22,7 @@ The Item functionality is represented by an internal `UniqueItemList` stored in 
 Each `Item` can store a number of attributes. The related attributes are:
 * `ItemName`: The name of the Item. 
 * `ItemQuantity`: The number of units of an Item.
+* `ItemUnit`: The unit of measurement of an Item.
 * `ItemBoughtDate`: The date when the Item was bought.
 * `ItemExpiryDate`: The date when the Item expires.
 * `ItemPrice`: The cost of one unit of the Item.
@@ -98,6 +99,8 @@ The `sort` feature sorts the list of items currently displayed to the user by sp
 * Unit
 * Bought Date
 * Expiry Date
+* Price
+* Remarks 
 
 Currently, sorting is performed ascendingly. A future implementation will allow sorting either ascendingly or descendingly.
 
@@ -112,6 +115,5 @@ Currently, sorting is performed ascendingly. A future implementation will allow 
 
 ##### Feature Considerations
 
-There is a `SortedList` obtained from an immutable item list. When the `SortCommand` is executed to sort the list of items, one or more comparators are chosen depending on the provided sorting criteria. the comparators are combined into one comparator. The `SortedList` are sorted in the specified order of the Comparators. The UI tracks changes to the `SortedList` and displays the updated sorted item list.
+There is a `SortedList` obtained from an immutable item list. When the `SortCommand` is executed to sort the list of items, depending on the input, the appropriate comparator is chosen and applied. The UI tracks changes to the `SortedList` and displays the updated sorted item list.
 
-Notably, the `SortedList` wraps around a `FilteredList`, which wraps around an immutable `ObservableList`.
