@@ -1296,6 +1296,7 @@ testers are expected to do more *exploratory* testing.
 <!-- @@author cheeheng -->
 Assumption: The sample data is loaded into Plannit.
 
+<!-- @@author ekweirui -->
 ### Launching the application
 
 1. Initial launch
@@ -1315,6 +1316,7 @@ Assumption: The sample data is loaded into Plannit.
        Expected:
         * The most recent window size and location is retained.
 
+<!-- @@author cheeheng -->
 ### Adding a module
 1. Adding a module
     1. Test case: `add-module m/MA2104`<br>
@@ -1401,6 +1403,137 @@ Assumption: The sample data is loaded into Plannit.
 
     1. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected: Similar to (3).
+
+<!-- @@author Tan-Jia-Rong -->
+### Finding modules
+
+Prerequisites:
+* Must be at the home page.
+* Multiple modules in Plannit.
+
+1. Finding modules while all modules are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+
+    1. Test case: `find-module cS`<br>
+       Expected:
+        * Module list is updated with modules with module code starting with `cS`<br>(case-insensitive).
+        * Number of modules listed shown in the status message.
+
+    1. Test case: `find-module Dummy`<br>
+       Assumption: There are no modules whose module codes start with `Dummy` in Plannit.
+       Expected:
+        * Module list is updated to show an empty list.
+        * Number of module listed shown in the status message.
+
+    1. Test case: `find-module`<br>
+       Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+1. Finding modules while not all modules are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+          <br>
+    1. Test case: `find-module CS2103T`<br>
+       Assumption: Module `CS2103T` is not in the current module list<br>
+       Expected:
+        * Module list is updated with module code starting with `CS2103T`<br>(case-insensitive).
+        * Number of modules listed shown in the status message.
+
+1. Other incorrect `find-module` usage to try:
+    * Finding modules while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Listing all modules
+
+Prerequisites:
+* Must be at the home page
+* Not all modules are shown in the module list
+
+1. Listing modules while not all modules are shown
+
+    1. Test case: `list-module`<br>
+       Expected:
+        * Module list is updated to show all modules.
+        * A success message is displayed to the user.
+
+    1. Test case: `list-module 44321`<br>
+       Expected:
+        * Same as the previous
+
+1. Other incorrect `list-module` usage to try:
+    * Listing all modules while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+<!-- @@author teoyuqi -->
+### Adding a task
+1. Adding a task to a module in Plannit
+    1. Prerequisites: List all modules using the `list` command.
+
+    1. Test case: `add-task m/CS2103T td/Complete week 7's weekly assignments`<br>
+       Expected:
+        * A new task with the description "Complete week 7's weekly assignments" will be added under the `CS2103T` module.
+        * Details of the module with the new task is shown in the result display.
+
+
+    1. Test case: `add-task m/CS3203 td/Complete week 7's weekly assignments`<br>
+       Expected: 
+       * No task is added.
+       * Modules in module list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
+    1. Other incorrect `add-task` commands to try: `add-task m/CS2103T`, `add-task`<br>
+      Expected: Similar to previous.
+
+### Deleting a task
+1. Deleting a task from a module in Plannit
+
+    1. Prerequisites: List all modules using the `list` command.
+
+    1. Test case: `delete-task m/CS2103T tn/2`<br>
+       Expected:
+        * Second task of `CS2103T` is deleted.
+        * Details of the module with the deleted task is shown in the result display.
+
+
+    1. Test case: `delete-task m/CS3203 tn/2`<br>
+       Expected:
+       * No tasks are deleted.
+       * Modules in module list remains the same.
+       * Command box remains the same.
+       * Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete-task`, `delete-task m/CS2103T`, `delete-task tn/2`,`delete-task m/CS2103T tn/x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Swapping the order of a pair of tasks
+1. Swapping the order of two tasks in a module in Plannit
+    1. Prerequisites: List all modules using the `list` command.
+
+    1. Test case: `swap-task m/CS2103T ts/1 2`<br>
+       Expected:
+        * Positions of the first and second task of `CS2103T` are swapped.
+        * Details of the module with the deleted task is shown in the result display.
+
+    1. Test case: `swap-task m/CS3203 ts/1 2`<br>
+       Expected:
+        * No task are swapped.
+        * Modules in module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+    1. Other incorrect swap-task commands to try: `swap-task`, `swap-task m/CS2103T`, `swap-task ts/1 x`,`swap-task m/CS2103T ts/1 x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
 
 <!-- @@author shwene -->
 ### Adding a link
@@ -1577,4 +1710,149 @@ Assumption: The sample data is loaded into Plannit.
        Expected:
         * No person is edited. 
         * An error message with relevant details is displayed to the user.
-<!-- @@author -->
+
+<!-- @@author Tan-Jia-Rong -->
+
+### Finding contacts
+
+Prerequisites:
+* Must be at the home page.
+* Multiple persons in Plannit.
+
+1. Finding persons while all persons are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+
+    1. Test case: `find-person Alex`<br>
+       Expected:
+        * Person list is updated with persons whose names starting with `Alex`<br>(case-insensitive).
+        * Number of persons listed shown in the status message.
+
+    1. Test case: `find-person Dummy`<br>
+       Assumption: There are no persons whose names start with `Dummy` in Plannit.
+       Expected:
+        * Person list is updated with an empty list
+        * Number of persons listed shown in the status message.
+
+    1. Test case: `find-person`<br>
+       Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+1. Finding persons while not all persons are being shown
+
+    * Additional Prerequisites:
+        * Must be at the home page.
+          <br>
+    1. Test case: `find-person Bernice`<br>
+       Assumption: Person `Bernice` is not in the current person list<br>
+       Expected:
+        * Person list is updated with persons whose names starts with `Bernice`<br>(case-insensitive).
+        * Number of persons listed shown in the status message.
+
+1. Other incorrect `find-person` usage to try:
+    * Finding persons while not at home page <br>
+      Expected:
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Listing all persons
+
+Prerequisites:
+* Must be at the home page
+
+1. Listing persons while not all persons are shown
+
+    1. Test case: `list-person`<br>
+       Expected:
+        * Person list is updated to show all persons.
+        * Success message is shown in the status message.
+
+    1. Test case: `list-person 12345`<br>
+       Expected:
+        * Same as the previous.
+
+1. Other incorrect `list-person` usage to try:
+    * Listing all persons while not at home page <br>
+      Expected:
+        * Module list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Navigating between modules
+
+1. Navigating to a module
+
+    1. Test case: `goto CS2103T`<br>
+       Expected:
+        * Module list is updated with the module `CS2103T`.
+        * Person list is updated with persons associated with `CS2103T`.
+        * Task list is expanded to show tasks associated with the module.
+        * Success message is shown in the status message.
+
+    1. Test case: `goto CS1234`<br>
+
+       Assumption: Module `CS1234` is not in Plannit<br>
+
+       Expected:
+        * Module list remains the same.
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
+
+### Navigating back home
+
+1. Navigating back to home page
+
+    1. Test case: `home`<br>
+       Expected:
+        * Module list is updated with all modules.
+        * Person list is updated with all persons.
+        * Success message is shown in the status message.
+
+    1. Test case: `home 1234`<br>
+       Expected:
+        * Same as previous.
+
+### Viewing help
+
+1. Test case: `help`<br>
+   Expected:
+    * A help screen is shown.
+
+### Exiting the program
+
+1. Test case: `exit`<br>
+   Expected:
+    * The program closes.
+
+<!-- @@author teoyuqi -->
+## **Appendix: Effort**
+### Initial design
+Although we described Plannit as a morph of the original AB3, there was substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
+
+### Implementation
+While AB3 deals with only persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
+
+We also added the concept of having a home page, where detailed information of modules are hidden. This was introduced with the aim to reduce clutter by only displaying the relevant information required by the user. This functionality introduced a whole host of obstacles for us, including, but not limited to:
+* Behavioural decisions regarding whether a command can be executed away from the home page.
+* Behavioural decisions regarding whether a command redirects the user back to the home page.
+* Creating an observable `Boolean` variable in `Model` for the `Ui` components to listen to.
+* Relevant `Ui` modifications.
+* Manual testing to ensure the navigation to and from the home page is as expected.
+
+Although the general colour scheme of the GUI was not modified, changes were still necessary to allow the application's window to now display all the additional features to users (e.g. modules, tasks, links, etc.).
+
+<!-- @@author cheeheng -->
+### Project Achievements
+As a team, we have successfully morphed Plannit from AB3. Plannit is an **all-in-one application** that streamlines the execution of module deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and **module-mates** (i.e., students in the same module) to increase their productivity.
+
+Some statistics of Plannit project include (as of 5th November 2022, 21:31:50 UTC+8):
+- 12th in most LOC written (including but not limited to documentation code, functional code and test code)
+- 5000+ lines of functional code (on top of AB3)
+- 7000+ lines of test code (on top of AB3)
+- One of the teams with the most review comments (>450)
+- Code coverage exceeding 78%
