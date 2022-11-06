@@ -19,14 +19,14 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Implemented features:](#implemented-features)
-    - [Record features:]
+    - Record features:
       - [Add record feature](#implemented-add-record-feature)
       - [List records feature](#implemented-list-records-feature)
       - [Delete record feature](#implemented-delete-record-feature)
       - [Edit record feature](#implemented-edit-record-feature)
       - [Find records feature](#implemented-find-records-feature)
       - [Clear all records feature](#implemented-clear-all-records-feature)
-    - [Appointment features:]
+    - Appointment features:
       - [Add appointment feature](#implemented-add-appointment-feature)
       - [Clear appointment feature](#implemented-clear-appointment-feature)
   - [Proposed features:](#proposed-features)
