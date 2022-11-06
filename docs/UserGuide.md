@@ -34,6 +34,8 @@ tutorial for you to get familiar with the commands and command formats.
 
 This user guide also provides comprehensive explanations so that you know how to use all the [features](#features) in YellowBook.
 
+[[Back to Table of Contents](#table-of-contents)]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -50,6 +52,8 @@ This user guide also provides comprehensive explanations so that you know how to
 5. Try out some commands from the [Sample Usage](#sample-usage) section.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,6 +75,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -646,6 +651,8 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous YellowBook home folder.
+
+[[Back to Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
 
