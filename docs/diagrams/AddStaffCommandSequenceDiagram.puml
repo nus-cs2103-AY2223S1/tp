@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HrProParser" as HrProParser LOGIC_COLOR
 participant ":AddStaffCommandParser" as AddStaffCommandParser LOGIC_COLOR
 participant "command:AddStaffCommand" as AddStaffCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand()
-activate AddressBookParser
+LogicManager -> HrProParser : parseCommand()
+activate HrProParser
 
 create AddStaffCommandParser
-AddressBookParser -> AddStaffCommandParser
+HrProParser -> AddStaffCommandParser
 activate AddStaffCommandParser
 
-AddStaffCommandParser --> AddressBookParser
+AddStaffCommandParser --> HrProParser
 deactivate AddStaffCommandParser
 
-AddressBookParser -> AddStaffCommandParser : parse()
+HrProParser -> AddStaffCommandParser : parse()
 activate AddStaffCommandParser
 
 create AddStaffCommand
@@ -36,11 +36,11 @@ activate AddStaffCommand
 AddStaffCommand --> AddStaffCommandParser
 deactivate AddStaffCommand
 
-AddStaffCommandParser --> AddressBookParser : command
+AddStaffCommandParser --> HrProParser : command
 deactivate AddStaffCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+HrProParser --> LogicManager : command
+deactivate HrProParser
 
 LogicManager -> AddStaffCommand : execute()
 activate AddStaffCommand

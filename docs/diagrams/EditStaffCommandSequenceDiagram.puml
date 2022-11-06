@@ -3,30 +3,30 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HrProParser" as HrProParser LOGIC_COLOR
 participant ":EditStaffCommandParser" as EditStaffCommandParser LOGIC_COLOR
 participant ":EditStaffCommand" as EditStaffCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-end box 
+end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-end box 
+end box
 
 [-> LogicManager:execute()
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand()
-activate AddressBookParser
+LogicManager -> HrProParser : parseCommand()
+activate HrProParser
 
 create EditStaffCommandParser
-AddressBookParser -> EditStaffCommandParser 
+HrProParser -> EditStaffCommandParser
 activate EditStaffCommandParser
 
-EditStaffCommandParser --> AddressBookParser
+EditStaffCommandParser --> HrProParser
 deactivate EditStaffCommandParser
 
-AddressBookParser -> EditStaffCommandParser : parse()
+HrProParser -> EditStaffCommandParser : parse()
 activate EditStaffCommandParser
 
 create EditStaffCommand
@@ -35,11 +35,11 @@ activate EditStaffCommand
 EditStaffCommand --> EditStaffCommandParser
 deactivate EditStaffCommand
 
-EditStaffCommandParser --> AddressBookParser: command
+EditStaffCommandParser --> HrProParser: command
 deactivate EditStaffCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+HrProParser --> LogicManager : command
+deactivate HrProParser
 
 LogicManager -> EditStaffCommand : execute()
 activate EditStaffCommand
