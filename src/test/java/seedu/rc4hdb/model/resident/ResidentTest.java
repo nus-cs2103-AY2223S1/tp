@@ -40,6 +40,8 @@ public class ResidentTest {
         assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build()));
         assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build()));
         assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withRoom(VALID_ROOM_BOB).build()));
+        // email uniqueness is case-insensitive
+        assertTrue(ALICE.isSameResident(new ResidentBuilder(ALICE).withEmail(VALID_EMAIL_BOB.toUpperCase()).build()));
 
         // EP: all 4 of the following not same:
         // matricNumber, phone, email and room -> return false
