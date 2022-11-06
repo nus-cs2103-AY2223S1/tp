@@ -13,7 +13,7 @@ import seedu.travelr.model.component.Title;
 /**
  * Represents the AddEventToTripCommandParser.
  */
-public class AddEventToTripCommandParser {
+public class AddEventToTripCommandParser implements Parser<AddEventToTripCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
