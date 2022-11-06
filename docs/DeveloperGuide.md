@@ -164,7 +164,7 @@ The class group feature allows a student to have a class group. The feature cons
 The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
 
-#### Class Group command implementation:
+#### Class Group command implementation
 
 The following is a more detailed explanation on how ```ClassCommand``` works.
 
@@ -176,7 +176,7 @@ updates the class group field of a student.
 
 ![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Command Syntax**
 - Current implementation: Using the command word ````class````
@@ -187,7 +187,7 @@ which sets the class group field of the student with index ```1``` to ```CS2030S
 - Pros: Faster for user who can type fast
 - Cons: Does not follow the format as other commands making it confusing for the user.
 
-### Student Attendance feature ###
+### Student Attendance feature
 The student attendance feature keeps track of student's attendance. The feature consists of commands namely,
 - ```AttendanceAddCommand``` - Adds an attendance list to the student in the class list.
 - ```AttendanceDeleteCommand``` - Removes the attendance list to the student in the class list.
@@ -205,7 +205,7 @@ The attendance commands when executed will use methods exposed by the ```Model``
 2. The ```AttendanceCommandParser#parse``` will select another AttendanceParser to parse in the arguments.
 3. The arguments are tokenized and the respective refined inputs of each argument is created.
 
-#### Add Attendance command implementation:
+#### Add Attendance command implementation
 
 The following is a more detailed explanation on how ```AttendanceAddCommand``` works.
 
@@ -217,7 +217,7 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
-#### Mark Attendance command implementation:
+#### Mark Attendance command implementation
 
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
 
@@ -226,7 +226,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
-#### Delete Attendance command Implementation:
+#### Delete Attendance command Implementation
 
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
 
@@ -240,7 +240,7 @@ Activity diagram for AttendanceDeleteCommand
 ![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
 Sequence diagram for AttendanceDeleteCommand
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Command Syntax**
 - Current implementation: Using 2 command word syntax \n E.g. ```attendance add```
@@ -261,7 +261,7 @@ This feature comprises a single ```UploadPictureCommand```
 
 The command when executed uses methods exposed by the ```Model``` interface and ```ImageStorage``` Class.
 
-#### Upload picture command implementation:
+#### Upload picture command implementation
 
 The following is a more detailed explanation of how the `UploadPictureCommand` works.
 1. After the successful parsing of user input into ```UploadPictureCommandParser```, the ```UploadPictureCommand``` object is created.
@@ -275,7 +275,7 @@ Activity diagram for PictureUploadCommand
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
 Sequence diagram for PictureUploadCommand
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to select an image**
 - Current implementation: A file chooser window is opened.
@@ -309,7 +309,7 @@ This feature uses the following commands:
 
 These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
 
-##### Add Task command implementation:
+##### Add Task command implementation
 
 The following is a more detailed explanation on how the `TaskCommand` works.
 1. If the title or description fields are missing or invalid, a `ParserException` will be thrown and the new `Task` will not be added.
@@ -332,7 +332,7 @@ Sequence diagram for TaskCommand
 
 Activity diagram for TaskCommand
 
-#### Edit Task command implementation:
+#### Edit Task command implementation
 
 The following is a more detailed explanation on how the `EditTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -350,7 +350,7 @@ Sequence diagram for EditTaskCommand
 
 Activity diagram for EditTaskCommand
 
-#### Remove Task command implementation:
+#### Remove Task command implementation
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -359,7 +359,7 @@ The following is a more detailed explanation on how the `RemoveTaskCommand` work
 4. Next, similar to `TaskCommand`, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
 5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Storage for `TaskBook`**
 - Current implementation: A totally new storage class, serializer class and data file specifically for `Task`
@@ -450,7 +450,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -479,7 +479,7 @@ The feature uses the command :
 
 The improved feature allows user to leave certain fields empty if they do not have the information to fill them.
 
-#### The `add` Command Implementation:
+#### The `add` Command Implementation
 
 The following is a more detailed explanation on how the new `add` feature works.
 
