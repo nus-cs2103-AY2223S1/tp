@@ -377,6 +377,10 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseTime("13pm - 14pm"));
         assertThrows(ParseException.class, () -> ParserUtil.parseTime("13am - 14am"));
         assertThrows(ParseException.class, () -> ParserUtil.parseTime("12:00 until 13:00"));
+
+        //endtime before start time
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("12:00 - 11:00"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("23:00 - 00:01"));
     }
 
     @Test
@@ -406,6 +410,13 @@ public class ParserUtilTest {
         assertEquals(new Time("16:00", "17:00"), ParserUtil.parseTime("16:00   -   17:00"));
         assertEquals(new Time("16:00", "17:00"), ParserUtil.parseTime("16:00   to   17:00"));
         assertEquals(new Time("16:00", "17:00"), ParserUtil.parseTime("16:00     17:00"));
+
+        //allow end on midnight
+        assertEquals(new Time("23:00", "00:00"), ParserUtil.parseTime("11pm - 12am"));
+        assertEquals(new Time("23:00", "00:00"), ParserUtil.parseTime("23:00 - 00:00"));
+
+        //24:00
+        assertEquals(new Time("23:00", "00:00"), ParserUtil.parseTime("23:00 - 24:00"));
     }
 
 
