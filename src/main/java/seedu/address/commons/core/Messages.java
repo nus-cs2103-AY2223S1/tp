@@ -25,7 +25,7 @@ public class Messages {
             "Please provide a module index greater than 0 and less than %d";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
     public static final String MESSAGE_INVALID_TASK_INDEX =
-        "Please provide a positive integer for the index of a task.";
+        "Please provide an integer greater than 0 and less than 2147483648 for the index of a task.";
     public static final String MESSAGE_MODULE_NOT_FOUND = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";

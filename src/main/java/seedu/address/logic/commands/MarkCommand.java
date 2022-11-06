@@ -25,7 +25,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Successfully Marked Task: %1$s";
     public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already marked!";
-
+    public static final String MESSAGE_NO_TASK_IN_THE_LIST =
+        "There is no task in the task list so mark operation cannot be done!";
 
     private final Index targetIndex;
 
@@ -37,6 +38,10 @@ public class MarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_TASK_IN_THE_LIST);
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
