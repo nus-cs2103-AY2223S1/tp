@@ -3,6 +3,17 @@ layout: page
 title: Developer Guide
 ---
 
+<div align="center">
+<h1> PetCode Developer Guide</h1>
+Welcome to the PetCode Developer guide!<br><br>
+
+PetCode is a desktop app that helps <b>store and manage contact information for your pet sales coordination business</b>.
+</div>
+
+{:refdef: style="text-align: center;"}
+![PetCode Logo](images/PetCode Logo.png)
+{: refdef}
+
 ##Table of Contents
 
 - **[Acknowledgements](#acknowledgements)**
