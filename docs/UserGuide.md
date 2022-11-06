@@ -150,6 +150,10 @@ Simply type in:
     * Example: For `c/TikTok`, `Tiktok` represents the actual `company` field to be added.
 4. Repeat steps 3 and 4 to add or update more fields in a single command
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
@@ -163,6 +167,10 @@ Simply type in:
 3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
 4. Double-click the file to start the app.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Adding your first internship application
 
@@ -189,6 +197,10 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
    If you would like to clear the sample data, use the [`clear` command](#clearing-all-internship-applications-clear).
 
 6. FindMyIntern offers so much more in managing your internship applications. Check out the [commands section](#commands) for more commands you can use.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 

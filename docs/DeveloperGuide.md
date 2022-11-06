@@ -2,6 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+
+## **Table of Contents**
+{:.no_toc}
+
 * Table of Contents
 {:toc}
 
@@ -28,6 +32,10 @@ IBM Plex Sans Open Font License: [https://github.com/IBM/plex/blob/master/LICENS
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +87,10 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -95,6 +107,10 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Logic component
 
@@ -125,6 +141,10 @@ How the parsing works:
 * When called upon to parse a user command, the `FindMyInternParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FindMyInternParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -144,6 +164,9 @@ The `Model` component,
 
 </div>
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Storage component
 
@@ -155,6 +178,10 @@ The `Storage` component,
 * can save both findMyIntern data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `FindMyInternStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Common classes
 
@@ -196,6 +223,10 @@ The following activity diagram summarizes what happens when a user executes an a
     - Pros: Allow multiple internships with the same company
     - Cons: Need to check for both duplicate company names and duplicate tags
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### Find `Internships` from keywords
 
 #### Implementation
@@ -227,26 +258,54 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
       - Pros: Allow quick searching for company or tag
       - Cons: Less specific internship list
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 ### Filter by `ApplicationStatus` feature
+
+#### What it does
+
+The filter by `ApplicationStatus` feature allows users to filter internship applications according to specific application statuses.
+The command format is `filter APPLICATION_STATUS`, where `filter` is the command and `APPLICATION_STATUS` is either `applied`, `shortlisted`, `interviewed`, `accepted`, or `rejected`.
 
 #### Implementation
 
-`FilterCommand` was implemented similar to how `FindCommand` was implemented.
-* A `FilterCommandParser` object is created, which parses the user input by passing it to `ApplicationStatus`, then returns the relevant `FilterCommand`.
-* `FilterCommand` takes in a `InternshipHasApplicationStatusPredicate`.
-* `InternshipHasApplicationStatusPredicate` implements `Predicate<Internship>`, and holds the `ApplicationStatus` that the user is filtering for.
+There are some similarities between how the filter feature and the find feature were implemented.
 
-When `execute` of `FilterCommand` is run, the `InternshipHasApplicationStatusPredicate` is passed into the model to filter the Internship list. 
+* The filter feature makes use of `FilterCommand`, `FilterCommandParser`, `ApplicationStatus`, and `InternshipHasApplicationStatusPredicate`.
+  * `InternshipHasApplicationStatusPredicate` implements `Predicate<Internship>`, and holds the `ApplicationStatus` that the user is filtering for.
+* It also calls `Model#updateFilteredInternshipList(Predicate<Internship>)` which filters the `Internship` list with the user-specified `ApplicationStatus`.
+
+#### Command execution
+
+1. User enters filter command with valid application status.
+2. `FindMyInternParser` parses the input and creates a `FilterCommandParser` object.
+3. `FilterCommandParser` parses the input by passing it to `ApplicationStatus`.
+4. A new `InternshipHasApplicationStatusPredicate` object is created from the returned `ApplicationStatus`.
+5. `FilterCommandParser` creates a new `FilterCommand` object which accepts the `InternshipHasApplicationStatusPredicate` object.
+6. When `FilterCommand#execute(model)` is run, it updates the model with the `InternshipHasApplicationStatusPredicate` and filters the `Internship` list with the user-specified application status.
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
 <img src="images/FilterCommandActivityDiagram.png" width="450" />
+
+The sequence diagram below illustrates the interactions within the `Logic` component as explained above.
+
+<img src="images/FilterSequenceDiagram.png" width="1000" />
 
 #### Design Considerations
 
 * The implementation is similar to `FindCommand` as both have the same idea of filtering/finding something in the list.
 * The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.
 * This implementation would allow easy extension should there be more `ApplicationStatus` added, since parsing of user input is done by `ApplicationStatus`.
+* The `filter` command does not require `PREFIX_APPPLICATION_STATUS` (`s/`).
+  * This is in contrast to `mark` command which requires and takes in both `Index` and `ApplicationStatus`, and therefore requires the `PREFIX_APPLICATION_STATUS` to correctly parse input.
+  * While having `PREFIX_APPPLICATION_STATUS` would be more consistent, it is redundant and unintuitive since the command only takes in one input, `ApplicationStatus`.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Mark `Internship` feature
 
@@ -274,6 +333,10 @@ The following activity diagram summarizes what happens when a user executes a ma
   - **Alternative 2 (current choice)**: Have a fixed set of `applicationStatus` that can be passed in
     - Pros: Allow easy filtering by `ApplicationStatus`
     - Cons: Fixed variation of `applicationStatus`
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Sort `Internships` feature
 	
@@ -304,6 +367,10 @@ The following sequence diagram illustrates how the list is updated when the user
         - Pros: Allow user to view internship applications in the original order it was added 
         - Cons: Have to re-enter the sort command when the reopens the application
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -330,7 +397,9 @@ The following sequence diagram illustrates how the list is updated when the user
 
 **Value proposition**: convenient and user-friendly app to manage and keep track of internship applications
 
-
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### User stories
 
@@ -353,6 +422,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 *{More to be added}*
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Use cases
 
@@ -477,6 +550,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 ### Non-Functional Requirements
 
@@ -489,6 +565,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **ApplicationStatus**: Internship application status which is either `applied`, `shortlisted`, `interviewed`, `accepted`, or `rejected`
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,3 +626,7 @@ testers are expected to do more *exploratory* testing.
    1. To simulate a corrupted data file, open `findmyintern.json` in a text editor software and delete the first `{`.
    2. Run `findmyintern.jar`. <br>
       Expected: The GUI will show an empty list of internship applications. A new empty `findmyintern.json` file is created.
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
