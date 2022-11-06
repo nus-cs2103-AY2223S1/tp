@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.boba.logic.commands.exceptions.CommandException;
+import seedu.boba.logic.parser.CalculationParser;
 import seedu.boba.model.BobaBotModel;
 
 
@@ -53,7 +54,7 @@ public class CalculateCommand extends Command {
 
         requireNonNull(bobaBotModel);
         String calcResult =
-                ArithmeticExpressionReader.parseCalculation(this.expression);
+                CalculationParser.parseCalculation(this.expression);
         String feedback = "Calculator:\n";
         feedback += this.expression + " = " + calcResult;
         logger.log(Level.INFO, feedback);
@@ -181,7 +182,7 @@ public class CalculateCommand extends Command {
         public static String parseCalculation(String userInput) {
             String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
             String resultStr;
-            System.out.println(userInput);
+            // System.out.println(userInput);
             assert OPERATORS.containsKey("+") : "Don't have addition";
             assert OPERATORS.containsKey("-") : "Don't have subtraction";
             assert OPERATORS.containsKey("*") : "Don't have multiplication";
