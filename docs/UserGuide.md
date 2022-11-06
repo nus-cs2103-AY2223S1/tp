@@ -265,7 +265,7 @@ Format: `find -p NAME [MORE_NAMES]`
 
 <div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
 
 * The search is case-insensitive. e.g., `bishan` will match `Bishan`.
 * Only the name is searched.
@@ -287,9 +287,9 @@ Deletes the property at the specified INDEX from the property directory.
 
 Format: `delete -p INDEX`
 
-<div markdown="block" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
 
 * The `INDEX` refers to the index number shown in the currently displayed property directory.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -307,9 +307,9 @@ Returns a list of properties whose tags contain any of the given keywords.
 Format: `filter -p TAG...`
 
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Arguments provided must be an exact string match for the tag i.e., 'high-end' instead of 'high'.
   * Recall that tags associated with each property are singular words.
@@ -327,9 +327,9 @@ Returns a list of properties within a specified price range.
 
 Format: `range -p l/100,000 u/1,000,000`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable).
 * Lower price boundary (`l/LOWER_BOUND`) cannot be higher than upper price boundary (`u/UPPER_BOUND`).
@@ -345,10 +345,10 @@ Returns all the properties with the specified status.
 
 Format: `status -p STATUS`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
-    
+:bulb: **Tips:**
+
 * Only valid arguments for `STATUS` are `AVAILABLE`, `PENDING` and `SOLD` (case-insensitive).
 * Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `SOLD pending` will return properties with `PROPERTY_STATUS` of `SOLD` or `PENDING`.
     
@@ -365,9 +365,9 @@ Returns all the properties with the specified type.
 
 Format: `type -p TYPE`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Only valid arguments for `TYPE` are `CONDO`, `HDB` and `LANDED` (case-insensitive).
 * Properties matching at least one keyword will be returned (i.e., `OR` search). e.g., `HDB condo` will return properties with `PROPERTY_TYPE` of `HDB` or `CONDO`.
@@ -383,9 +383,9 @@ Returns the property at the specified index while displaying the list of interes
 
 Format: `select -p INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Selects the property at the specified `INDEX`. 
 * The `INDEX` refers to the index number shown in the currently displayed property directory. 
@@ -422,9 +422,9 @@ Optional arguments:
 * `-i` [IMAGE]
 * `ip/INTERESTED_PROPERTY`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tip:**
+:bulb: **Tips:**
 
 * A client can have any number of tags (including 0)
 * A client can have any number of interested clients (including 0)
@@ -463,9 +463,9 @@ Optional arguments:
 * `-i` [IMAGE]
 * `ip/INTERESTED_PROPERTY`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
 
 * Edits the client profile at the specified `INDEX`.
   * The `INDEX` refers to the index number shown in the currently displayed client directory.
@@ -489,9 +489,9 @@ Finds clients whose names contain any of the given keywords.
 
 Format: `find -c NAME [MORE_NAMES]`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * The search is case-insensitive. e.g., `janice` will match `Janice`.
 * Only the name is searched.
@@ -514,9 +514,9 @@ Deletes the client profile at the specified INDEX from the client directory.
 
 Format: `delete -c INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * The `INDEX` refers to the index number shown in the currently displayed client directory. 
 * The `INDEX` must be a positive integer 1, 2, 3...
@@ -533,9 +533,9 @@ Returns a list of client profiles whose tags contain any of the given keywords.
 
 Format: `filter -c TAG...`
 
-<div markdown="span" class="alert alert-primary">:bulb:
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Arguments provided must be an exact string match for the tag i.e., 'best-friend' instead of 'friend'. 
   * Recall that tags associated with each client are singular words. 
@@ -553,9 +553,9 @@ Selects the specified client profile in the client directory for its details to 
 
 Format: `select -c INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="block" class="alert alert-primary">
 
-**Tips:**
+:bulb: **Tips:**
     
 * Selects the client at the specified `INDEX`. 
 * The `INDEX` refers to the index number shown in the currently displayed client directory. 
