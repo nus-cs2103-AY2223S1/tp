@@ -1,10 +1,16 @@
 package seedu.address.logic.parser.tag;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_2101;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalTags.*;
+import static seedu.address.testutil.TypicalTags.CS2101;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,8 +27,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
 
 public class DeleteTagCommandParserTest {
-    private DeleteTagCommandParser parser = new DeleteTagCommandParser();
-
     private static boolean deleteTagFromContact;
     private static boolean deleteTagFromTask;
     private static Index contactIndex;
@@ -30,6 +34,8 @@ public class DeleteTagCommandParserTest {
     private static List<String> tagList;
     private static EditPersonDescriptor editPersonDescriptor;
     private static EditTaskDescriptor editTaskDescriptor;
+
+    private DeleteTagCommandParser parser = new DeleteTagCommandParser();
 
     public void initialise() {
         tagList = new ArrayList<>();

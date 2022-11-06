@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tag;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTagAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
