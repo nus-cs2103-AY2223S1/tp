@@ -422,7 +422,7 @@ inheritance relationship is shown below.
 
 ![Use of abstract classes for column manipulation feature](images/AbstractClassesForShowHideFeature.png)
 
-Adding these abstract classes also increased the extendability of our application, as one of the future developments
+Adding these abstract classes also increased the extensibility of our application, as one of the future developments
 for RC4HDB would be to implement the column manipulation features for the venue booking tables.
 
 <br>
@@ -453,8 +453,8 @@ excluded from the table had to be re-specified if additional columns were to be 
    
 While it was convenient for the column manipulation feature to be bundled with the list command, we ultimately decided
 to decrease coupling between both features, by replacing `list /i` and `list /e` with the `showonly` and `hideonly` 
-commands. Restoring the full set of resident fields was implemented in the `reset` command, which does not affect the 
-list of residents.
+commands. The feature to restore the full set of resident fields was implemented in the `reset` command, which does 
+not affect the list of residents.
 
 To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
