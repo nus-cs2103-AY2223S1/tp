@@ -199,7 +199,8 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 * **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
-  will be placed at the end of the task list.
+  will be placed at the end of the task list. You can have a task with no deadline by either not providing the `-d`
+  flag, or providing the `-d` flag with no parameter.
 * **Ordering of tasks** - Tasks are first ordered by their deadlines, followed by the module name and then the task
   name, in alphabetical order.
 </div>
