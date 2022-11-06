@@ -94,6 +94,16 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getPinnedApplicantList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getPinnedApplicantList().remove(0));
+    }
+
+    @Test
+    public void getAllApplicants_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getAllApplicants().remove(0));
+    }
+
+    @Test
     public void equals() {
         TrackAScholar trackAScholar = new TrackAScholarBuilder().withApplicant(ALICE).withApplicant(BENSON).build();
         TrackAScholar differentTrackAScholar = new TrackAScholar();

@@ -167,14 +167,14 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Applicant> getPinnedApplicantList() {
-        FilteredList<Applicant> pinnedList = new FilteredList<>(this.trackAScholar.getApplicantList());
+        final FilteredList<Applicant> pinnedList = new FilteredList<>(this.trackAScholar.getApplicantList());
         pinnedList.setPredicate(PREDICATE_SHOW_PINNED_APPLICANTS);
         return pinnedList;
     }
 
     @Override
     public ObservableList<Applicant> getAllApplicants() {
-        FilteredList<Applicant> applicantList = new FilteredList<>(this.trackAScholar.getApplicantList());
+        final FilteredList<Applicant> applicantList = new FilteredList<>(this.trackAScholar.getApplicantList());
         applicantList.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
         return applicantList;
     }
