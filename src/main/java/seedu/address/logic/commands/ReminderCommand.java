@@ -64,4 +64,12 @@ public class ReminderCommand extends Command {
         String message = !reminder.task.isEmpty() ? MESSAGE_ADD_REMINDER_SUCCESS : MESSAGE_DELETE_REMINDER_SUCCESS;
         return String.format(message, personToEdit);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReminderCommand // instanceof handles nulls
+                && (index != null && index.equals(((ReminderCommand) other).index))
+                && (reminder != null && reminder.equals(((ReminderCommand) other).reminder))); // state check
+    }
 }
