@@ -9,19 +9,13 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to
-manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module
-as them to seek help or collaboration.
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
 
-This app is optimized for use via a **Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
-
-
+This app is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## How to use this guide?
 
-For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
-understanding of CodeConnect.
+For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive understanding of CodeConnect.
 
 However, you may also choose to head over to the relevant sections as described below:
 
@@ -29,14 +23,17 @@ However, you may also choose to head over to the relevant sections as described 
 - [Features](#features) - To learn the different features and commands used in CodeConnect
 - [Command Summary](#Command summary) - To have a complete overview of all the features and their respective command.
 
-
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java 11 or above installed on your computer.
+
+1. Ensure you have Java `11` or above installed in your computer.
+   * [Instructions for doing this](https://superuser.com/questions/1221096/) are available on the internet.
+   * If not, [install it](https://docs.oracle.com/en/java/javase/11/install/).
 
 2. Download the latest `CodeConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_.
+3. Copy the file to the folder you want to store CodeConnect's data in.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
@@ -49,9 +46,9 @@ However, you may also choose to head over to the relevant sections as described 
 
    * **`add`** `Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
 
-   * **`del`** `1` : Deletes the 1st task shown in the current list.
+   * **`del`** `1` : Deletes the 1<sup>st</sup> task shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts. Good for removing the sample data before adding your own. 
 
    * **`exit`** : Exits the app.
 
