@@ -1,12 +1,10 @@
 package seedu.travelr.model.list;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -37,6 +35,7 @@ public class Itineraries extends EventList {
 
     /**
      * Returns whether an Event with the specified title exist in the events
+     *
      * @param title the title to be searched
      * @return true if the events contains an event with the specified title
      */
@@ -47,6 +46,7 @@ public class Itineraries extends EventList {
 
     /**
      * Returns the internalList
+     *
      * @return the internalList
      */
     @Override
@@ -67,27 +67,6 @@ public class Itineraries extends EventList {
         addEvent(toAdd);
     }
 
-    /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
-     */
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EventNotFoundException();
-        }
-
-        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.set(index, editedEvent);
-        removeEvent(target);
-        addEvent(editedEvent);
-    }
 
     /**
      * Sets the internalList
@@ -96,7 +75,6 @@ public class Itineraries extends EventList {
         addEvents(collections);
         internalList.setAll(collections);
     }
-
 
     /**
      * Removes the equivalent person from the list.
@@ -108,24 +86,6 @@ public class Itineraries extends EventList {
             throw new EventNotFoundException();
         }
         removeEvent(toRemove);
-    }
-
-    public void setEvents(EventList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.getInternalList());
-    }
-
-    /**
-     * Replaces the contents of this list with {@code trips}.
-     * {@code trips} must not contain duplicate trips.
-     */
-    public void setEvents(List<Event> events) {
-        requireAllNonNull(events);
-        if (!eventsAreUnique(events)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.setAll(events);
     }
 
     /**
@@ -157,20 +117,6 @@ public class Itineraries extends EventList {
         internalList.sort(comp);
     }
 
-    /**
-     * Returns true if {@code trips} contains only unique trips.
-     */
-    private boolean eventsAreUnique(List<Event> events) {
-        for (int i = 0; i < events.size() - 1; i++) {
-            for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameEvent(events.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public Event getEvent(Event event) {
         Object[] temp = events.toArray();
         int size = temp.length;
@@ -198,10 +144,6 @@ public class Itineraries extends EventList {
 
     public void addEvents(Set<Event> events) {
         this.events.addAll(events);
-    }
-
-    public void removeEvent(int i) {
-        events.remove(events.toArray()[i - 1]);
     }
 
     public void removeEvent(Event event) {
