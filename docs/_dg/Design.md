@@ -1,6 +1,6 @@
 <!--markdownlint-disable-file first-line-h1 -->
 
-This section gives you a high-level overview of how the application is structured and what the key components of FoodRem.
+This section gives you a high-level overview of how the application is structured and what the key components of FoodRem are.
 
 The [Architecture](#architecture) section gives an overview of how the main components in FoodRem interact with one another. 
 
