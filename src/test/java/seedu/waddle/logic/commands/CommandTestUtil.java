@@ -39,7 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_COUNTRY_WINTER = "Japan";
     public static final String VALID_COUNTRY_TEST = "Test Country";
 
-    public static final String VALID_START_DATE_SUMMER = "2022-08-01";
+    public static final String VALID_START_DATE_SUMMER = "2023-08-01";
     public static final String VALID_START_DATE_WINTER = "2023-01-01";
     public static final String VALID_START_DATE_TEST = "2011-11-11";
     public static final String VALID_DURATION_SUMMER = "26";
