@@ -1,7 +1,5 @@
 package jeryl.fyp.ui;
 
-import static javafx.scene.control.OverrunStyle.CLIP;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
