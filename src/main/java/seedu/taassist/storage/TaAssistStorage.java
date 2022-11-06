@@ -22,6 +22,7 @@ public interface TaAssistStorage {
      * Returns TaAssist data as a {@link ReadOnlyTaAssist}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
+     * @return TaAssist data as a {@link ReadOnlyTaAssist}.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */

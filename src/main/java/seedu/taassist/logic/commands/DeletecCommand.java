@@ -14,7 +14,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Deletes moduleClasses identified bby their classNames from TA-Assist.
+ * Deletes {@code ModuleClass}-es identified by their classNames from TA-Assist.
  */
 public class DeletecCommand extends Command {
 

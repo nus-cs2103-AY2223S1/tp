@@ -12,7 +12,7 @@ import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 
 /**
- * Displays students' scores for a session within the focused class.
+ * Displays students' scores for a session within the currently focused class.
  */
 public class ScoresCommand extends Command {
 

@@ -17,7 +17,7 @@ import seedu.taassist.model.student.SessionData;
 import seedu.taassist.model.student.Student;
 
 /**
- * Displays the grades of a student from the current focused module class.
+ * Displays the grades of a student within the currently focused module class.
  */
 public class ViewCommand extends Command {
 
