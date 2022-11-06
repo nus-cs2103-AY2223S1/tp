@@ -9,4 +9,4 @@ One challenge we ran into during the project was implementing a batch feature fo
 
 ### Revamping of UI
 
-We wanted a simple yet appelaing  user interface for our application users. As such we decided to change the original UI of AB3 into our own new FoodRem UI. As our team is not familiar with JavaFX initially, it took us considerable time and effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application.
+We wanted a simple yet appealing user interface for our application users. As such we decided to change the original UI of AB3 into our own new FoodRem UI. As our team is not familiar with JavaFX initially, it took us considerable time and effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application.
