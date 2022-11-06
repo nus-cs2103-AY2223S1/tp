@@ -20,19 +20,18 @@ public class VersionedAddressBook extends AddressBook {
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         addressBookStateList = new ArrayList<>();
         addressBookStateList.add(new AddressBook(initialState));
+        super.resetData(initialState);
         currentStatePointer = 0;
     }
 
     /**
      * Saves a copy of the current {@code AddressBook} state at the end of the state list.
-     *
-     * @param addressBook Address book to be added to state list.
      */
-    public void commit(ReadOnlyAddressBook addressBook) {
+    public void commit() {
         if (currentStatePointer < addressBookStateList.size() - 1) {
             addressBookStateList.subList(currentStatePointer + 1, addressBookStateList.size()).clear();
         }
-        addressBookStateList.add(new AddressBook(addressBook));
+        addressBookStateList.add(super.getCopyOfAddressBook());
         currentStatePointer++;
     }
 
@@ -74,4 +73,6 @@ public class VersionedAddressBook extends AddressBook {
     public ReadOnlyAddressBook getCurrentState() {
         return addressBookStateList.get(currentStatePointer);
     }
+
+
 }
