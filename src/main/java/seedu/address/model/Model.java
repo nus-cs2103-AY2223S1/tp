@@ -88,8 +88,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns a sorted list of the reminder list */
-    SortedList<Pair<Person, Reminder>> getSortedReminderList();
+    /** Returns a sorted list of the (person, reminder) pairs */
+    SortedList<Pair<Person, Reminder>> getSortedReminderPairs();
 
     /**
      * Adds the given person reminder pair.

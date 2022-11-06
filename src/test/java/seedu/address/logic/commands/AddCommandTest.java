@@ -152,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public SortedList<Pair<Person, Reminder>> getSortedReminderList() {
+        public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
             throw new AssertionError("This method should not be called.");
         }
 

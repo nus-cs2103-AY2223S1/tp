@@ -14,7 +14,6 @@ public class Messages {
     public static final String MESSAGE_MULTIPLE_PERSON_DISPLAYED_NAME = "The person name provided matches multiple"
             + " entries! Please delete by index instead or enter their full name.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
 
     /**
      * Generates a default happy birthday message for each Person.

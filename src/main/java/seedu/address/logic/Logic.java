@@ -51,5 +51,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    SortedList<Pair<Person, Reminder>> getSortedReminderList();
+    SortedList<Pair<Person, Reminder>> getSortedReminderPairs();
 }

@@ -83,7 +83,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public SortedList<Pair<Person, Reminder>> getSortedReminderList() {
-        return model.getSortedReminderList();
+    public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
+        return model.getSortedReminderPairs();
     }
 }

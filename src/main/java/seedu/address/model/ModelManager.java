@@ -170,10 +170,10 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the sorted list of {@code Reminders}
+     * Returns the sorted list of pairs containing a {@code Person} and a {@code Reminder}
      */
     @Override
-    public SortedList<Pair<Person, Reminder>> getSortedReminderList() {
+    public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
         return reminders;
     }
 
