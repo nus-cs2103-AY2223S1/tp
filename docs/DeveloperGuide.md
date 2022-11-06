@@ -188,8 +188,8 @@ The `Model` component,
 
 ## Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
+**API:**
+[`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -503,7 +503,7 @@ _{more aspects and alternatives to be added}_
 
 ## Product scope
 
-**Target user profile**:
+**Target user profile:**
 
 * is a tutor
 * has a need to manage a significant number of students
@@ -513,7 +513,7 @@ _{more aspects and alternatives to be added}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: help tutors better keep track of their students’ progress in their assigned module.
+**Value proposition:** help tutors better keep track of their students’ progress in their assigned module.
 
 ## User stories
 
@@ -598,17 +598,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Glossary
 
-* **Tutor**: Teaching assistant for the specific module
-* **Student**: A person that is partaking in a module.
-* **Module**: The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
+* **Tutor:** Teaching assistant for the specific module
+* **Student:** A person that is partaking in a module.
+* **Module:** The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
   letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
   of the module.
-* **JAR file**: package file format typically used to aggregate many Java class files and associated metadata and
+* **JAR file:** package file format typically used to aggregate many Java class files and associated metadata and
   resources into one file for distribution.
-* **GUI**: main interface that the user interacts with to input commands and view results.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Tag**: A label for students defined by the user, possibly shared by multiple students.
-* **Attribute**: Characteristics of students that all students have.
+* **GUI:** main interface that the user interacts with to input commands and view results.
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Tag:** A label for students defined by the user, possibly shared by multiple students.
+* **Attribute:** Characteristics of students that all students have.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -646,8 +646,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     2. Test case: `delete 1`<br>
-        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-        Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
     3. Test case: `delete 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
