@@ -264,9 +264,9 @@ The activity diagram below details all the possible behaviour of PayMeLah when a
 
 #### Implementation
 
-This feature is achieved by saving `addressBookHistories` in the `ModelManager` as a `LinkedBlockingDequeue`. Before PayMeLah executes a command that modifies its AddressBook, a copy of the AddressBook will be pushed into this double ended queue. This dequeue also enforces a capacity of 10; when the dequeue is full and another AddressBook is about to be pushed into it, the "leftmost" (oldest) AddressBook will be discarded.
+This feature is achieved by saving `addressBookHistories` in the `ModelManager` as a `LinkedBlockingDeque`. Before PayMeLah executes a command that modifies its AddressBook, a copy of the AddressBook will be pushed into this double ended queue. This deque also enforces a capacity of 10; when the dequeue is full and another AddressBook is about to be pushed into it, the oldest AddressBook will be discarded.
 
-When the user gives an `undo` command, the "rightmost" (most recent) AddressBook will be popped from the `addressBookHistories` and replace the current one.
+When the user gives an `undo` command, the most recent AddressBook will be popped from the `addressBookHistories` and replace the current one.
 
 #### Design considerations:
 
