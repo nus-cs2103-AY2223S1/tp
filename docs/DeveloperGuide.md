@@ -535,13 +535,21 @@ Internship applications can stretch over a long period of time, making it hard t
 
 ### User stories
 
-| Priority | As a...                           | I want to...                                                                             | So that I can...                                                     |
+| Priority | As a/an...                         | I want to...                                                                             | So that I can...                                                     |
 |----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| High     | user                              | view a list of all my upcoming interviews                                                | I can recall what interviews I need to attend and when               |
-| High     | user                              | delete entries I've added in previously                                                  | I can change my mind about those entries                             |
-| High     | user with many application emails | add details such as location, date, time and contact person/information for an interview | I need not sieve through my emails to remind myself of these details |
-| Medium   | user applying for many positions  | get a list of all companies and positions applied                                        | I don't accidentally apply for the same position twice               |
-| Low      | user who can type fast            | be able to exit the program without using a mouse                                        | I can use the app more efficiently                                   |
+| High     | user with many applications    | get a list of all existing applications                                                     | avoid accidentally applying for the same company and position twice.              |
+| High     | user                              | delete entries I've added in previously                                                  | change my mind about those entries.                             |
+| High     | user                              | view a list of all my upcoming interviews                                                | recall which interviews I need to attend and their details. |
+| High     | user with many application emails | add details such as round, date, time and any other remark for an interview              | avoid sieving through my emails to remind myself of these details. |
+| Medium     | user with many applications    | find applications by the company name or the position                                       | quickly check the details of the applications I need.              |
+| Medium     | user starting a new round of applications    | clear all existing applications                                       | avoid having to delete applications one by one to start fresh.              |
+| Medium   | user                              | add tags to my applications                                                              | include miscellaneous remarks of note for each application.         |
+| Medium   | user                              | sort my applications by their attributes                                                 | find applications based on their attributes more easily.               |
+| Medium   | user                              | save the sort order that I used most recently                                            | avoid having to sort my applications in the same order I want every time I open the app.      |
+| Medium   | user                              | archive the past applications                                                            | keep those applications for future references to help with my current applications.      |
+| Medium   | user                              | view upcoming interviews happening within 1 week from now                                | prepare for them accordingly.                                   |
+| Medium   | careless user                     | undo/redo the previous command                                                           | reverse the command that I accidentally executed/undid.                                   |
+| Low      | user who can type fast            | be able to exit the program without using a mouse                                        | use the app more efficiently.                                   |
 
 ### Use cases
 
@@ -551,20 +559,24 @@ Internship applications can stretch over a long period of time, making it hard t
 
 **MSS**
 
-1.  User inputs their application details (i.e. company 
-name, position applied, application platform, application 
-date, document submitted, etc.)
+1.  User inputs their application details (i.e. company name, contact number and email of the company, position applied, application date, current application status, etc.)
 2.  CinternS adds the application into the database.
     
     Use case ends.
 
 **Extensions**
 
-* 1a. CinternS detects the user has entered invalid data format.
+* 1a. The command is invalid or not recognised.
 
-  * 1a1. CinternS prompts a warning message and requests the user to reenter.
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 1b. CinternS detects the user has entered invalid data format or missed at least one of the fields (e.g. company, position, etc.).
+
+  * 1b1. CinternS prompts a warning message and requests the user to reenter.
   
-  * 1a2. User inputs the application by using the correct format.
+  * 1b2. User inputs the application with all the required fields and in the correct format.
 
     Use case resumes at step 2.
 
@@ -576,12 +588,18 @@ date, document submitted, etc.)
 
 1.  User requests the list of applications.
 2.  CinternS shows the list of internship applications.
-3.  User requests to delete a specific application in the list
-4.  Cinterns deletes the application.
+3.  User requests to delete a specific application in the list.
+4.  Cinterns deletes the application and any interview that is a part of this application.
 
     Use case ends.
 
 **Extensions**
+
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
 
 * 2a. The list is empty.
 
@@ -606,7 +624,22 @@ date, document submitted, etc.)
 **MSS** 
 
 1. User enters the command to list all existing internship applications.
-2. CinternS responds with the list of internship applications and their current status.
+2. CinternS responds with the list of internship applications and their current details.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+**Use case: Find an application by company name or position applied**
+
+**MSS** 
+
+1. User enters the command with the keyword(s) to find an application by.
+2. CinternS responds with the list of internship applications matching the keyword(s) and their current details.
    Use case ends.
 
 **Extensions**
@@ -621,6 +654,63 @@ date, document submitted, etc.)
    * 2a1. CinternS shows an error message.
    
      Use case ends.
+
+**Use case: Clear all existing applications**
+
+**MSS** 
+
+1. User enters the command to clear all applications.
+2. CinternS deletes all applications and interviews and responds with empty application and interview windows.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+**Use case: Undo the previous command**
+
+**MSS** 
+
+1. User enters the command to undo the previous command.
+2. CinternS returns the state before the changes made by the previous command.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 2a. No previous commands have been used that have made changes to the list of applications or interviews.
+
+   * 2a1. CinternS shows an error message.
+    
+     Use case resumes at step 1.
+
+**Use case: Redo the previously undone command**
+
+**MSS** 
+
+1. User enters the command to redo the previously undone command.
+2. CinternS returns the state after the changes made by the previously undone command.
+   Use case ends.
+
+**Extensions**
+* 1a. The command is invalid or not recognised.
+
+   * 1a1. CinternS shows an error message and prompts the user to reenter command
+    
+     Use case resumes at step 1.
+
+* 2a. No previous commands have been undone.
+
+   * 2a1. CinternS shows an error message.
+    
+     Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
@@ -672,16 +762,71 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
+      Expected: First application is deleted from the list. Details of the deleted application are shown.
 
-   1. Test case: `delete 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 1`<br>
+      Expected: First application (originally second) is deleted from the list. Its interview is also deleted. Details of the deleted application are shown.
+
+   1. Test case: `delete 0` <br>
+      Expected: No application is deleted. Error details are shown.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### List all existing applications
 
+1. List all applications.
+   1. Test case: `list` <br>
+      Expected: All applications (if any) are shown. Success message is also shown.
+
+### Clear all existing applications
+
+1. Clear all applications.
+   1. Test case: `clear` <br>
+      Expected: All applications (if any) are deleted. Success message is also shown.
+
+### Find an application by company name or position
+
+1. Find an application matching the specified keyword(s).
+   1. Test case: `find Google` <br>
+      Expected: All applications matching keyword "Google" are shown. Success message is also shown.
+
+   1. Test case: `find google` <br>
+      Expected: Similar to previous (case-insensitive).
+
+   1. Test case: `find software` <br>
+      Expected: All applications matching keyword "software" are shown. Success message is also shown.
+
+   1. Test case: `find` <br>
+      Expected: Error details are shown.
+
+### Undo the previous command
+1. Undo a command that has made changes to the application or interview list.
+   1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
+   
+   1. Test case: `undo` <br>
+      Expected: The previous state before the change is restored. Success message is shown.
+
+2. No such previous command to undo.
+   1. Prerequisites: No command used or any command that does not change the application or interview list (e.g. `find`, `sort`, `remind`, etc.)
+   
+   1. Test case: `undo` <br>
+      Expected: Error details are shown.
+
+### Redo the previous command
+1. Redo a command that has made changes to the application or interview list.
+   1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
+   
+   1. Test case: `redo` <br>
+      Expected: The state after the change is restored. Success message is shown.
+
+2. No such previous command to redo.
+   1. Prerequisites: `undo` is not used.
+   
+   1. Test case: `redo` <br>
+      Expected: Error details are shown.
+
+   
 ### Saving data
 
 1. Dealing with missing/corrupted data files
