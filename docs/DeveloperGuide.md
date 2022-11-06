@@ -547,8 +547,8 @@ Internship applications can stretch over a long period of time, making it hard t
 **MSS**
 
 1.  User inputs their application details (i.e. company 
-name, position applied, application platform, application 
-date, document submitted, etc.)
+name, position applied, application 
+date, status, etc.)
 2.  CinternS adds the application into the database.
     
     Use case ends.
@@ -569,7 +569,7 @@ date, document submitted, etc.)
 
 **MSS**
 
-1.  User requests the list of applications.
+1.  User requests the list of internship applications.
 2.  CinternS shows the list of internship applications.
 3.  User requests to delete a specific application in the list
 4.  Cinterns deletes the application.
@@ -594,6 +594,67 @@ date, document submitted, etc.)
     
       Use case resumes at step 2.
 
+<br>
+
+**Use case:  Archive an internship application**
+
+**MSS**
+
+1.  User requests the list of internship applications.
+2.  CinternS shows the list of internship applications.
+3.  User requests to archive a specific application in the list
+4.  CinternS archives the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+<br>
+
+**Use case:  Retrieve an internship application**
+
+**MSS**
+
+1.  User requests the list of archived internship applications.
+2.  CinternS shows the list of archived internship applications.
+3.  User requests to retrieve a specific application in the list
+4.  CinternS retrieves the application.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not a number).
+
+    * 3a1. CinternS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is out of bound.
+
+    * 3b1. CinternS shows an error message.
+
+      Use case resumes at step 2.
 <br>
 
 **Use case: List all existing internship applications**
@@ -636,6 +697,7 @@ date, document submitted, etc.)
 
 ## **Appendix: Instructions for manual testing**
 
+
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -666,16 +728,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -684,3 +746,60 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Data archiving
+
+1. Archiving an application while all unarchived application shown
+    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+    2. Test case: `archive 1`<br>
+       Expected: First application is archived from the list. Details of the archived application shown in the status message.
+
+    3. Test case: `archive 0`<br>
+       Expected: No application is archived. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Archiving an application while all archived application shown
+   1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+   2. Test case: `archive 1`<br>
+      Expected: No application is archived. Error details shown in the status message. Status bar remains the same.
+
+   3. Other incorrect archive commands in this situation are similar to section 1 above.
+
+3. Retrieving an application while all unarchived application shown
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Expected: No application is retrieved. Error details shown in the status message. Status bar remains the same.
+
+   3. Test case: `retrieve 0`<br>
+      Expected: No application is retrieved. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect retrieve commands to try: `retrieve`, `retrieve x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+4. Retrieving an application while all archived application shown
+    1. Prerequisites: List all archived applications using the `list-archive` command. Multiple applications in the list.
+
+    2. Test case: `retrieve 1`<br>
+       Expected: First application is retrieved from the list. Details of the retrieved application shown in the status message.
+
+    3. Other incorrect retrieve commands in this situation are similar to section 3 above.
+
+5. Data archiving with `FindCommand`
+   1. Prerequisites: Use `FindCommand` with multiple keywords that match multiple applications in CinternS. Multiple applications in the list.
+
+   2. Test case: `retrieve 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : First application is retrieved from the list. Details of the retrieved application shown in the status message.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : No application is retrieved. Error details shown in the status message. Status bar remains the same.
+
+   3. Test case: `archive 1`<br>
+      Situation 1: First application is an archived application.<br>
+      Expected   : No application is retrieved. Error details shown in the status message. Status bar remains the same.<br>
+      Situation 2: First application is an unarchived application.<br>
+      Expected   : First application is archived from the list. Details of the archived application shown in the status message.
