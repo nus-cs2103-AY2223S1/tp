@@ -26,8 +26,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/tanxuanyun)]
 [[portfolio](team/tanxuanyun.md)]
 
-* Role: `to be added soon`
-* Responsibilities: `to be added soon`
+* Role: Developer
+* Responsibilities: 
+  * Integration of components 
+  * In-charge of logic component 
 
 ### Lee Cheng Da
 
