@@ -1210,8 +1210,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 100 modules without a noticeable sluggishness in performance (i.e. should take less than 1 second to load)
 3. A user with above 80 wpm typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The interface should be user-friendly enough such that a user who has never seen the user guide should be able to use it.
-
-*{More to be added}*
+5. The product is designed to be used by one user.
+6. The data should only be stored locally and the text file should be human editable.
+7. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+8. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+9. The product file size should not exceed 100MB.
+10. The document file size should not exceed 15MB.
+11. The DG and UG should be PDF-Friendly.
+12. The data should be saved every time a command alters the data.
 
 ### Glossary
 
@@ -1240,14 +1246,62 @@ testers are expected to do more *exploratory* testing.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Marking a module as done
+
+1. Marking a module as done while all modules are being shown
+
+    1. Prerequisites: All modules are shown, and user is not currently cd-ed into a module. cs2101 is added to the module list.
+    2. Test case: `done mod cs2101`
+       Expected: Module cs2101 will have a tag `done` added to it. All tasks related to cs2101 will be marked as done.
+    3. Test case: `done mod cs2103t`
+       Expected: No module is marked as `done` as cs2103t is not added to the system. Error details shown in the status message.
+
+2. Marking a module as done while cd-ing to a module
+
+    1. Prerequisites: CD to a specific module.
+    2. Test case: `done mod cs2101`
+       Expected: No module is marked as `done` as user is cd-ed to a module. Error details shown in the status message.
+
+### Unmarking a module
+
+1. Unmarking a module while all modules are being shown
+
+    1. Prerequisites: All modules are shown, and user is not currently cd-ed into a module. cs2101 is added to the module list and is marked as `done`.
+    2. Test case: `undone mod cs2101`
+       Expected: Module cs2101's `done` tag is removed. All tasks related to cs2101 will not be affected.
+    3. Test case: `undone mod cs2103t`
+       Expected: No module's tag is removed as cs2103t is not added to the system. Error details shown in the status message.
+
+2. Unmarking a module while the module is not marked as done
+
+    1. Prerequisites: All module are shown, and user is not currently cd-ed into a module. cs2101 is added to the module list and is not marked as `done`.
+    2. Test case: `undone mod cs2101`
+       Expected: No module's tag is removed as cs2101 is not marked as done yet. Error details shown in the status message.
+
+3. Unmarking a module as done while cd-ing to a module
+
+    1. Prerequisites: CD to a specific module.
+    2. Test case: `undone mod cs2101`
+       Expected: No module's tag is removed as user is cd-ed to a module. Error details shown in the status message.
+
+### List modules
+
+1. List active modules 
+
+   1. Test case: `list mod`
+      Expected: All modules that don't contain `done` tag will be displayed.
+
+2. List all modules
+
+    1. Test case: `list mod -a`
+       Expected: All modules will be displayed.
 
 ### Removing a task
 
