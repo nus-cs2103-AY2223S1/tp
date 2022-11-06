@@ -45,7 +45,7 @@ public class DebtCard extends UiPart<Region> {
     private Label isPaid;
 
     /**
-     * Creates a {@code DebtCode} with the given {@code Debt} and index to display.
+     * Creates a {@code DebtCard} with the given {@code Debt} and index to display.
      */
     public DebtCard(Debt debt, int displayedIndex) {
         super(FXML);
