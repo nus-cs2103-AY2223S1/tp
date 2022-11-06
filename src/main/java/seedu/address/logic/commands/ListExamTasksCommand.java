@@ -27,6 +27,9 @@ public class ListExamTasksCommand extends Command {
 
     public static final String MESSAGE_NO_RESULTS = "No tasks found from exam: %1$s";
 
+    public static final String MESSAGE_NO_EXAM_IN_LIST =
+            "There is no exam in the exam list so showt operation cannot be done!";
+
     private final Index examIndex;
 
     /**
@@ -43,8 +46,13 @@ public class ListExamTasksCommand extends Command {
         requireNonNull(model);
         List<Exam> lastShownExamList = model.getFilteredExamList();
 
+        if (lastShownExamList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_EXAM_IN_LIST);
+        }
+
         if (examIndex.getZeroBased() >= lastShownExamList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, lastShownExamList.size() + 1));
         }
 
         Exam examToCheck = lastShownExamList.get(examIndex.getZeroBased());

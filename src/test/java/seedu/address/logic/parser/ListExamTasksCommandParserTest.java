@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXAM_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -26,7 +27,18 @@ public class ListExamTasksCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // empty string
+        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ListExamTasksCommand.MESSAGE_USAGE));
+
+        // wrong type
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ListExamTasksCommand.MESSAGE_USAGE));
+
+        // big integer
+        assertParseFailure(parser, "2147483648", MESSAGE_INVALID_EXAM_INDEX);
+
+        // negative integer
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_EXAM_INDEX);
     }
 }

@@ -34,5 +34,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE =
             "Please provide an exam index greater than 0 and less than %d";
     public static final String MESSAGE_INVALID_EXAM_INDEX =
-            "Please provide a positive integer for the index of an exam.";
+            "Please provide an integer greater than 0 and less than 2147483648 for the index of an exam.";
 }
