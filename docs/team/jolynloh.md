@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jolynloh&breakdown=true)
 
 * **Enhancements to existing features**:
-    * Refactored code base to suit the purpose of the software as an internship application management app, including updating GUI elements and selecting appropriate icons (Pull request [#58](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/58))
+    * Modified code base to suit the purpose of the software as an internship application management app, including updating GUI elements and selecting appropriate icons (Pull request [#58](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/58))
     * Update tests for various commands to fit internship applications (Pull request [#77](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/77))
 
 * **Documentation**:
