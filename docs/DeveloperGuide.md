@@ -249,7 +249,11 @@ The `add` command is an important command that is commonly used in BookFace. It 
 
 #### Design consideration:
 
-Since `add` is used for the operations of both adding a book and adding a user, `AddSubCommand` is created to handle differentiating between adding a book and adding a user.
+Since `add` is used for the operations of both adding a book and adding a user, the enum `AddSubCommand` is created within `Parser` of the `Logic` component to handle differentiating between adding a book and adding a user.
+
+The activity diagram for adding a user or a book is as follows:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
 
 #### Adding a book with `add book`
 
@@ -260,10 +264,7 @@ The updating of the model is represented in the following sequence diagram:
 ![AddBookSequenceDiagram](images/AddSequenceDiagram.png)
 
 #### Adding a user with `add user`
-Add user follow the same logic as add book, but uses `AddUserArgumentsParser` and `AddUserCommand` in place of the add book variants.
-
-The activity diagram for add user is as follows:
-
+`add user` follows the same logic and thus closely follows the sequence diagram of `add book`, but uses `AddUserArgumentsParser` and `AddUserCommand` in place of the `add book` variants.
 
 ### Delete feature
 #### Deleting a book/user
