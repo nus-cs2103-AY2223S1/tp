@@ -154,17 +154,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Show grade feature
+### Show grade chart feature
 
-#### Proposed Implementation
+This feature allows user to navigate to view grade chart of students without mouse which is crucial as target users are who can type fast and prefer typing over other means of input.
 
-The proposed show grade mechanism is implemented mainly using the help of `AddressBook#getGradeData`. It extends the `Command` class and implements `ShowGradeCommand#excute`. The `show grade` command can be used to show a student's grade pie chart and the value of each categorical data.
+#### Implementation
 
 The following sequence diagram shows how the show grade command works.
 
 ![ShowGradeSequenceDiagram](images/ShowGradeSequenceDiagram.png)
 
-Given below is an example usage scenario and how the show grade mechanism behaves at each step.
+The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, GRADE_CHART)` that is returned to `LogicManager` and passed to `MainWindow`. The `MainWindow` then calls `handleShowChart()` which calls `ModelManager#getStudentChartData()` to get the data and then update the main display to grade chart.
+
+`GRADE_CHART` is an element in enumeration `ModelType` which determines what content is displayed in main screen.
 
 ### Extract emails
 
