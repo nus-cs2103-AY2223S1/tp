@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-With our ArtBuddy, we would like to revolutionize the way commission-based artists have been managing their business
+With our ArtBuddy, we would like to power up the way commission-based artists have been managing their business
 and help them reach to their maximum potential. With our passion for arts, we have realized that we don't have a suitable application
 that helps artists manage their business. With our application, artists will be able to leave all their administrative tasks to ArtBuddy
 and focus on creating their best art.
