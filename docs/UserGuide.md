@@ -80,12 +80,12 @@ Commands have to be written in the correct format to be used. The format for eac
 
    ![Ui](images/Ui.png)
 
-   <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The following picture shows the different components of the GUI.
-        <img src="images/Ui_annotated.png" alt="Annotated UI">
-   </div>
+5. Type the command in the Command Box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   <div markdown="span" class="alert alert-primary">
+   :bulb: **Tip:** The following picture shows the different components of the GUI.
+       <img src="images/Ui_annotated.png" alt="Annotated UI" border="1">
+   </div>
    Some example commands you can try:
 
    * **`liststudent`** : Shows an expanded list of all students.
