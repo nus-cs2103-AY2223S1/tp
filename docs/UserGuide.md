@@ -14,7 +14,7 @@ You can add modules to the app, allowing you to store important information like
 
 You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
 
-If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional GUI apps.
+If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional [GUI](#graphical-user-interface) apps.
 
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
@@ -62,12 +62,12 @@ For first-time users, we also recommend you to first read through the various [p
 3. Move the downloaded file to the folder you want to use as the _home folder_ for your SoCompiler. For example, you can just move it to your Desktop for ease of access.
 
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The [GUI](#graphical-user-interface) similar to the one below should appear in a few seconds. Note how the app
    contains some sample data.<br>
 
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it.
+5. Type a command in the command box and press Enter to execute it.
 
 6. Refer to the [Command Summary](#command-summary) below for details of each command.
 
