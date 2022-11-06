@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nPredicate" as Predicate
+Class "{abstract}\nAbstractFilterPropsPredicate" as AbstractFilterPropsPredicate {
++ test(Property property)
+}
+Class "{abstract}\nAbstractFilterBuyersPredicate" as AbstractFilterBuyersPredicate {
++ test(Buyer buyer)
+}
+class BuyerNameContainsSubstringPredicate {
+- String string
+}
+class FilterBuyersByPricePredicate {
+- Price price
+}
+class FilterBuyersByPriorityPredicate {
+- Priority priority
+}
+class FilterBuyersContainingAllCharacteristicsPredicate {
+- Characteristics characteristics
+}
+class FilterBuyersContainingAnyCharacteristicsPredicate {
+- Characteristics characteristics
+}
+class FilterPropsByOwnerNamePredicate {
+- Name name
+}
+class FilterPropsByPricePredicate {
+- Price price
+}
+class FilterPropsContainingAllCharacteristicsPredicate {
+- Characteristics characteristics
+}
+class FilterPropsContainingAnyCharacteristicsPredicate {
+- Characteristics characteristics
+}
+class PropertyNameContainsSubstringPredicate{
+- String string
+}
+
+
+AbstractFilterBuyersPredicate .up.|> Predicate
+AbstractFilterPropsPredicate .up.|> Predicate
+
+BuyerNameContainsSubstringPredicate --l|> AbstractFilterBuyersPredicate
+FilterBuyersByPricePredicate --r|> AbstractFilterBuyersPredicate
+FilterBuyersByPriorityPredicate --d|> AbstractFilterBuyersPredicate
+FilterBuyersContainingAllCharacteristicsPredicate --up|> AbstractFilterBuyersPredicate
+FilterBuyersContainingAnyCharacteristicsPredicate --up|> AbstractFilterBuyersPredicate
+
+FilterPropsByOwnerNamePredicate --l|> AbstractFilterPropsPredicate
+FilterPropsByPricePredicate --r|> AbstractFilterPropsPredicate
+FilterPropsContainingAllCharacteristicsPredicate --d|> AbstractFilterPropsPredicate
+FilterPropsContainingAnyCharacteristicsPredicate --up|> AbstractFilterPropsPredicate
+PropertyNameContainsSubstringPredicate --up|> AbstractFilterPropsPredicate
+@enduml
