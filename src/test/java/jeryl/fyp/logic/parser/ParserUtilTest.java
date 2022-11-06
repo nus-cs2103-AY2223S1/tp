@@ -1,6 +1,6 @@
 package jeryl.fyp.logic.parser;
 
-import static jeryl.fyp.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
