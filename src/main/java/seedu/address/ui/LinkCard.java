@@ -51,7 +51,7 @@ public class LinkCard extends UiPart<Region> {
             content.putString(link.getUrl().toString());
             clipboard.setContent(content);
             linkName.setVisited(false);
-            resultDisplay.setFeedbackToUser("Copied URL to clipboard: " + link.getUrl().toString());
+            resultDisplay.setFeedbackToUser("Copied link to clipboard: " + link.getUrl().toString());
         });
         linkName.setVisited(false);
         linkName.setWrapText(true);
