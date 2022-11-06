@@ -112,7 +112,10 @@ public class CommandSuggestor {
         ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInputArray[1]);
+            if(userInput.charAt(userInput.length() - 1) == ' ') {
+                userInput = userInput.substring(0, userInput.length() - 1);
+            }
+            return userInput + suggestArguments(argPrefixes, userInputArray[1]);
         } else {
             return suggestedCommand + suggestArguments(argPrefixes, "");
         }
