@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 import static seedu.address.testutil.TypicalTeammates.getTypicalAddressBook;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +33,6 @@ import seedu.address.model.task.DeadlineIsAfterPredicate;
 import seedu.address.model.task.DeadlineIsBeforePredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsKeywordPredicate;
-import seedu.address.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListTasksCommand.
