@@ -212,7 +212,7 @@ Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/INTERVIEW_DATE] [l/LINK_INDEX]
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`).
+:bulb: **Tip:** Instead of typing the full `STATUS` name, just enter the first letter of the intended `STATUS` (e.g. `s/b` is a shortcut for `s/BOOKMARKED`).
 </div>
 
 Examples:
@@ -303,12 +303,12 @@ Examples:
 Finds persons whose fields contain any of the given keywords.
 
 Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS...] [t/ TAG_KEYWORDS...] [c/ COMPANY_KEYWORDS...]`
-- The search is case-insensitive. e.g **hans** will match **Hans**
-- The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
+- The search is case-insensitive. e.g **hans** will match **Hans**.
+- The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**.
 - Only the fields corresponding to the specified prefixes will be searched,
-  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+  and all the specified fields must contain at least one of the specified keywords to be added to the search result.
 - Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
-- Partial words will be matched. e.g. **Han** will match **Hans**
+- Partial words will be matched. e.g. **Han** will match **Hans**.
 
 Examples:
 - `find -p n/john jon` finds persons with `NAME` that contains **john** or **jon**.
@@ -325,20 +325,21 @@ Format: `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ ROLE_KEYWORDS...] [s/ STATUS_
 - The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
 - Only the fields corresponding to the specified prefixes will be searched,
-  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+  and all the specified fields must contain at least one of the specified keywords to be added to the search result.
 - Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview date.
-- Partial words will be matched e.g. **app** will match **Apple** and **applications**.
+- Partial words will be matched e.g. **app** will match **Apple** and **applications**. 
 
 Examples:
 - `find -i c/pte ltd` finds internships with `COMPANY_NAME` that contains **pte** or **ltd**. 
 - `find -i r/engineer analyst` finds internships with `ROLE` that contains **engineer** or **analyst**. 
-- `find -i s/pending bookmarked` finds internships with `STATUS` that contains **pending** or **bookmarked**. 
+- `find -i s/pending bookmarked` finds internships with `STATUS` that starts with **pending** or **bookmarked**. 
 - `find -i c/pte ltd r/engineer analyst s/pending bookmarked` finds internships with all 3 of the above. 
   e.g. An internship with `COMPANY_NAME` **ABC LTD**, `ROLE` **Data Analyst**, and `STATUS` **BOOKMARKED** can be found with this command. 
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** The shortcuts for internship statuses don't work here since partial words will be matched. 
-e.g. `e` will match with `ACCEPTED`,`REJECTED`, `PENDING`, `COMPLETED` and `BOOKMARKED` since they all contain the letter `e`.
+:exclamation: **Caution:** For `STATUS` searching in particular, the `STATUS` must also start with the keyword. 
+i.e. `find -i s/a` will only find internships with `STATUS` **ACCEPTED** even though both **ACCEPTED** and **BOOKMARKED** 
+contain the letter **a**. This is to match the behaviour of `STATUS` shortcuts as mentioned in [this tip under section 4.1.2](#412-adding-an-internship-add--i).
 </div>
 
 ## 4.6. Delete Command
