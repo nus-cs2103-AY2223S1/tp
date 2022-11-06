@@ -1,6 +1,6 @@
 ---
 layout: page
-title: uNivUSal Developer Guide
+title: Developer Guide
 ---
 
 * [Acknowledgements](#acknowledgements)
