@@ -29,12 +29,12 @@ public class AddConsultationCommand extends Command {
             + PREFIX_TIME + "TIMESLOT "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "JakeLim "
+            + PREFIX_NAME + "Review past year paper with Anna "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_VENUE + "COM1-0203 "
             + PREFIX_DATE_DAY + "2022-12-31 "
-            + PREFIX_TIME + "1500-1800 "
-            + PREFIX_DESCRIPTION + "Review past year paper";
+            + PREFIX_TIME + "15:00-18:00 "
+            + PREFIX_DESCRIPTION + "AY2019-2020 Question 3,6,8 and AY2020-2021 Question 3,5,16";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in ModQuik";
