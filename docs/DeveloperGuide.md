@@ -452,13 +452,13 @@ The tradeoffs for this approach is examined below:
       * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
       the owner is deleted.
 
-### Filtering buyers and properties: Overall structure
+### Filtering buyers and properties
 
 In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableArrayList` that stores 
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
 being tested, consequently, they might give different outputs when applied to a given list.
 
-#### Design Considerations
+#### Design Considerations:
 In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
 `AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
@@ -478,7 +478,7 @@ concrete predicate classes were implemented:
 Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
 `Predicate`, which is then used to filter the `ObservableArrayList` directly.
 
-The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
+The UML diagram below represents the overall structure of the predicates for `Buyers` and `Properties`.
 
 ![FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
 
@@ -493,6 +493,57 @@ The below UML diagram represents the overall structure of the predicates for `Bu
    to filter out entries that contain *at least one* of the given characteristics.
 4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
    contain the parameter provided to `-n` as a *substring*.
+
+### Sorting buyers and properties
+
+To sort `Buyers` and `Properties`, the `ObservableArrayList` that stores references to these objects and displays them on the user's screen
+is modified directly to a sorted version. These changes are propagated directly to the `FilteredList`, enabling users to sort
+a previously filtered list. As the `FilteredList` is based on the `ObservableArrayList`, users can also sort the list first,
+then filter it. This results in users being able to build sort and filter functions on top of each other to more powerfully
+manipulate the list based on their needs.
+
+A `Comparator` is used to sort the `ObservableArrayList`. Different comparators with different conditions are used to sort the
+list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
+`Buyer`: `BuyerComparator`
+1. `BuyerNameComparator`: sort by buyer's name
+2. `PriceRangeComparator`: sort by buyer's price range
+3. `PriorityComparator`: sort by buyer's priority
+`Property`: `PropertyComparator`
+4. `PropertyNameComparator`: sort by property's name
+5. `PriceComparator`: sort by property's price
+Both:
+6. `TimeComparator`: sort by entry's time of creation
+
+A `BuyerComparator` compares two `Buyer`s by using the `Comparator` stored in it on the corresponding `Buyer` fields.
+For example, if a `BuyerComparator` contains a `BuyerNameComparator`, the two `Buyer`s are compared by their `Name`s using the `BuyerNameComparator`.
+As we allow sorting only by one criterion at a time, a `BuyerComparator` will only contain one field `Comparator`. 
+
+The UML diagrams below represent the overall structure of the `Comparator`s used.
+
+![BuyerComparatorsClassDiagram](images/SortBuyerComparatorsClassDiagram.png)
+
+![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
+
+#### Design Considerations:
+Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
+sorted version without modifying the underlying data structure `ObservableArrayList`. This is
+to preserve the chronological order in which users enter the entries so that it can still be displayed with the `list` command.
+
+However, this meant that we needed to have both `FilteredList` and `SortedList` stored and vary which one is displayed to users
+on entering a command. As such, the last-shown list changes depending on the last command entered. To keep track of this,
+we used a flag which would be updated everytime a `filter` or `sort` command was used. All `Command`s that referred to an
+entry on the displayed list were adapted to take relative indices from the last-shown list indicated by the flag. The `Model`
+component also needed access to the `UI` component's `BuyerPanelList` and `PropertyPanelList` in order to display
+the corresponding `FilteredList` or `SortedList` based on changes to the flag. To reduce coupling, we would have had to
+apply the Observer pattern.
+
+We decided against this as the complicated design made it more bug-prone. In addition, it did not allow for
+stacking of `filter` and `sort` functions, that is, a user is unable to filter on top of a sorted list or vice versa as the
+`FilteredList` and `SortedList` are independent and separate from each other.
+
+Hence, the above-mentioned design was used. We included chronological sorting as well using `TimeComparator`
+so that the user is able to return to the original state of the list,
+since sorting by name, for example, would permanently modify the `ObservableArrayList`.
 
 ### Matching properties to a buyer, and vice versa
 
