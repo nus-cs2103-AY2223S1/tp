@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.STATS_DESC_AGE;
 import static seedu.address.logic.commands.CommandTestUtil.STATS_DESC_GENDER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,17 +56,17 @@ public class MakeStatsCommandParserTest {
 
     @Test
     public void parse_success() {
-        MakeStatsCommand expectedCommand = new MakeStatsCommand(INDEX_FIRST_EVENT, Boolean.TRUE);
+        MakeStatsCommand expectedCommand = new MakeStatsCommand(INDEX_FIRST, Boolean.TRUE);
 
         //gender type
-        assertParseSuccess(parser, INDEX_FIRST_EVENT.getOneBased() + STATS_DESC_GENDER, expectedCommand);
+        assertParseSuccess(parser, INDEX_FIRST.getOneBased() + STATS_DESC_GENDER, expectedCommand);
 
         //age type
-        assertParseSuccess(parser, INDEX_FIRST_EVENT.getOneBased() + STATS_DESC_AGE,
-                new MakeStatsCommand(INDEX_FIRST_EVENT, Boolean.FALSE));
+        assertParseSuccess(parser, INDEX_FIRST.getOneBased() + STATS_DESC_AGE,
+                new MakeStatsCommand(INDEX_FIRST, Boolean.FALSE));
 
         //additional whitespace at preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + INDEX_FIRST_EVENT.getOneBased()
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + INDEX_FIRST.getOneBased()
                 + PREAMBLE_WHITESPACE + STATS_DESC_GENDER, expectedCommand);
     }
 }

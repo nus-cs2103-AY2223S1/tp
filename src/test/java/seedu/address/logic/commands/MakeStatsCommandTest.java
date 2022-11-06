@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TOO_LARGE_EVENT;
 
 import org.junit.jupiter.api.Test;
@@ -21,12 +21,12 @@ public class MakeStatsCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         //Generate age based statistics
-        assertCommandSuccess(new MakeStatsCommand(INDEX_FIRST_EVENT, Boolean.FALSE),
+        assertCommandSuccess(new MakeStatsCommand(INDEX_FIRST, Boolean.FALSE),
                 model, new CommandResult(MakeStatsCommand.SHOWING_STATS_MESSAGE,
                 false, true, false), expectedModel);
 
         //Generate gender based statistics
-        assertCommandSuccess(new MakeStatsCommand(INDEX_FIRST_EVENT, Boolean.TRUE),
+        assertCommandSuccess(new MakeStatsCommand(INDEX_FIRST, Boolean.TRUE),
                 model, new CommandResult(MakeStatsCommand.SHOWING_STATS_MESSAGE,
                 false, true, false), expectedModel);
     }
@@ -40,7 +40,7 @@ public class MakeStatsCommandTest {
                 model, MakeStatsCommand.INDEX_OUT_OF_BOUNDS_MESSAGE);
 
         //Event has no person tagged to it
-        assertCommandFailure(new MakeStatsCommand(INDEX_SECOND_EVENT, Boolean.TRUE),
+        assertCommandFailure(new MakeStatsCommand(INDEX_SECOND, Boolean.TRUE),
                 model, MakeStatsCommand.NO_STATS_MESSAGE);
     }
 }
