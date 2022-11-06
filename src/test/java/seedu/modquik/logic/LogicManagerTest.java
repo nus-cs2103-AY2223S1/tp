@@ -29,12 +29,7 @@ import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelManager;
 import seedu.modquik.model.ReadOnlyModQuik;
 import seedu.modquik.model.UserPrefs;
-import seedu.modquik.model.commons.ModuleCode;
-import seedu.modquik.model.commons.Venue;
-import seedu.modquik.model.datetime.WeeklyTimeslot;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
 import seedu.modquik.storage.JsonModQuikStorage;
 import seedu.modquik.storage.JsonUserPrefsStorage;
 import seedu.modquik.storage.StorageManager;
@@ -92,8 +87,6 @@ public class LogicManagerTest {
                 + TELEGRAM_DESC_AMY + MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        model.addTutorial(new Tutorial(new TutorialName("F01"), new ModuleCode("CS2103T"), new Venue("Zoom"),
-                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
         expectedModel.addPerson(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

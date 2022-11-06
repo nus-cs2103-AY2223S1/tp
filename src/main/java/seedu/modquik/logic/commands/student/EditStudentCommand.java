@@ -63,8 +63,6 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in ModQuik.";
-    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
-    public static final String MESSAGE_NON_EXISTING_TUTORIAL = "The tutorial does not exist in Modquik";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -95,14 +93,6 @@ public class EditStudentCommand extends Command {
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        if (!model.hasModuleCode(editedStudent.getModuleCode())) {
-            throw new CommandException(MESSAGE_NON_EXISTING_MODULE);
-        }
-
-        if (!model.hasTutorialName(editedStudent.getTutorialName())) {
-            throw new CommandException(MESSAGE_NON_EXISTING_TUTORIAL);
         }
 
         model.setPerson(studentToEdit, editedStudent);

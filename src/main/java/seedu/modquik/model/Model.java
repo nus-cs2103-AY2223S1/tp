@@ -6,12 +6,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import seedu.modquik.commons.core.GuiSettings;
-import seedu.modquik.model.commons.ModuleCode;
 import seedu.modquik.model.consultation.Consultation;
 import seedu.modquik.model.reminder.Reminder;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
 
 /**
  * The API of the Model component.
@@ -249,8 +247,4 @@ public interface Model {
     boolean reminderIsMarked(Reminder reminderToMark);
 
     void unmarkReminder(Reminder reminderToUnmark);
-
-    boolean hasModuleCode(ModuleCode moduleCode);
-
-    boolean hasTutorialName(TutorialName tutorialName);
 }

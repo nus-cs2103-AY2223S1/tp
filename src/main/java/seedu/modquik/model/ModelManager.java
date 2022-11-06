@@ -14,12 +14,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.scene.chart.PieChart;
 import seedu.modquik.commons.core.GuiSettings;
 import seedu.modquik.commons.core.LogsCenter;
-import seedu.modquik.model.commons.ModuleCode;
 import seedu.modquik.model.consultation.Consultation;
 import seedu.modquik.model.reminder.Reminder;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
 
 /**
  * Represents the in-memory model of the modquik book data.
@@ -289,30 +287,6 @@ public class ModelManager implements Model {
         modQuik.setTutorial(target, editedTutorial);
     }
 
-
-    /**
-     * Returns if there exists a moduleCode.
-     */
-    public boolean hasModuleCode(ModuleCode moduleCode) {
-        for (Tutorial tutorial : modQuik.getTutorialList()) {
-            if (tutorial.getModule().equals(moduleCode)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns if there exists a tutorial name.
-     */
-    public boolean hasTutorialName(TutorialName tutorialName) {
-        for (Tutorial tutorial : modQuik.getTutorialList()) {
-            if (tutorial.getName().equals(tutorialName)) {
-                return true;
-            }
-        }
-        return false;
-    }
     //=========== Filtered Tutorial List Accessors =============================================================
 
     /**

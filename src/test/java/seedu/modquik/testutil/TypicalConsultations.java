@@ -18,13 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.modquik.model.ModQuik;
-import seedu.modquik.model.commons.ModuleCode;
-import seedu.modquik.model.commons.Venue;
 import seedu.modquik.model.consultation.Consultation;
-import seedu.modquik.model.datetime.WeeklyTimeslot;
-import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.model.tutorial.TutorialName;
-
 
 /**
  * A utility class containing a list of {@code Consultation} objects to be used in tests.
@@ -75,10 +69,6 @@ public class TypicalConsultations {
         for (Consultation consultation : getTypicalConsultations()) {
             ab.addConsultation(consultation);
         }
-        ab.addTutorial(new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"), new Venue("COM1"),
-                WeeklyTimeslot.fromFormattedString("1", "15:00", "17:00")));
-        ab.addTutorial(new Tutorial(new TutorialName("F17"), new ModuleCode("CS2101"), new Venue("COM2"),
-                WeeklyTimeslot.fromFormattedString("2", "15:00", "17:00")));
         return ab;
     }
 
