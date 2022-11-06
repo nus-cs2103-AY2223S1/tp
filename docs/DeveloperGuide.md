@@ -338,7 +338,21 @@ The sort mechanism for `transactions` is facilitated by a `SortCommandParser` an
 
 The `SortCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is `SortCommand` which will be executed to achieve the sort functionality.
 
-This process of sorting the transactions by latest transaction of the first client in the list is depicted by the following sequence diagram (for user input `sort 1 latest`):
+The operation is exposed in the `logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the sort transaction mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![BuyState0](images/BuyState0-initial_state.png)
+
+Step 2. The user executes `sort 1 latest` command to sort the transaction of the client at index 1 by the latest transactions first.
+
+Step 3. The `Execute` of `SortCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
+get the client at the index to copy. The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
+
+Step 4. The `MainWindow#excecuteCommand()` will read that the `commandText` is a sort command and call `MainWindow#handleSortTransaction()` to sort the client's transaction by 
+latest or oldest transactions.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
