@@ -312,21 +312,18 @@ The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the i
 
 **Example Input:**
 
-```text
-del 1
-```
+**Example:**
 
-**Expected Output:**<br>Command Output Box:
+{% capture notes %}
+**Assumption:**
 
-```text
-Deleted Item:
-Name: Onions
-Quantity: 100 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: -
-Tags: {vegetables}
-```
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="del 1"
+  commandOutputBox="images/itemCommands/commandOutputBox/del.png"
+%}
 
 ---
