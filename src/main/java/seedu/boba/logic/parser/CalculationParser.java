@@ -1,5 +1,6 @@
 package seedu.boba.logic.parser;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +77,7 @@ public class CalculationParser {
     private static boolean haveHigherOperator(Stack<String> stack, String currToken) {
         return !stack.empty()
                 && isOperator(stack.peek())
-                && comparePrecedence(stack.peek(), currToken) > 0;
+                && comparePrecedence(stack.peek(), currToken) >= 0;
     }
     private static boolean isLeftParenthesis(String token) {
         return token.equals("(");
@@ -160,7 +161,7 @@ public class CalculationParser {
      */
     public static String parseCalculation(String userInput) {
         // RegEx to identify the tokens, a single number will not be split
-        System.out.println(userInput);
+        // System.out.println(userInput);
         String regex = "(?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/])";
         String resultStr;
         // System.out.println(userInput);
@@ -173,13 +174,15 @@ public class CalculationParser {
         String[] inputTokens = userInput.split(regex);
         // Filter out the the empty spaces
         inputTokens = Arrays.stream(inputTokens).filter(s -> !s.trim().equals("")).toArray(String[]::new);
-        System.out.println(Arrays.toString(inputTokens));
+        // System.out.println(Arrays.toString(inputTokens));
         // Convert tokens into RPN
         ArrayList<String> rpn = tokensToRpn(inputTokens);
         // Feed the rpn string to rpntoDouble to give result
         Double finalResult = calculateResultFromRpn(rpn);
         // Round result to 2 d.p.
         DecimalFormat df = new DecimalFormat("#.##");
+        // May round 5 to 0 sometimes without this line
+        df.setRoundingMode(RoundingMode.HALF_UP);
         resultStr = df.format(finalResult);
 
         return resultStr;

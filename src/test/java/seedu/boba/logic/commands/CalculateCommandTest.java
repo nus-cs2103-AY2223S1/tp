@@ -44,7 +44,7 @@ public class CalculateCommandTest {
 
     @Test
     public void execute_validExpression_success() {
-        String expectedMessage = CalculateCommand.FEEDBACK_HEADER + "1+1 = 2.00";
+        String expectedMessage = CalculateCommand.FEEDBACK_HEADER + "1+1 = 2";
         String exp = "1+1";
         CalculateCommand calculateCommand = new CalculateCommand(exp);
 
