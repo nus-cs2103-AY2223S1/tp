@@ -405,13 +405,13 @@ Example Use: `client -s c/1`
 
 **Aspect: How sorted entities are stored in the Model:**
 
-* **Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
-    * Pros: Saves lots of space
-    * Cons: Sort commands manipulate the original entity list in order to change the display on view
+**Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
+* Pros: Saves lots of space
+* Cons: Sort commands manipulate the original entity list in order to change the display on view
 
-* **Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
-    * Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
-    * Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
+**Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
+* Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
+* Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
     
 Alternative 1 was chosen because it saves space when sorting entities. The command to set default view of each entity helped overcome the cons of directly manipulating of the original list. This meant rebooting the app removed the previous entity sort order and revert to the default order. 
 
@@ -452,13 +452,13 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 **Aspect: How entities can be unpinned:**
 
-* **Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
-    * Pros: Less duplication of code and less commands for the user to remember.
-    * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
+**Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
+* Pros: Less duplication of code and less commands for the user to remember.
+* Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
 
-* **Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
-    * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
-    * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
+**Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
+* Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
+* Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
 
 ### Find Command Feature
 
