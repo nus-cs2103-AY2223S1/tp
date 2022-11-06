@@ -59,15 +59,39 @@ This user guide will help you get started and understand how FABook can **seamle
 --------------------------------------------------------------------------------------------------------------------
 
 ## Legend
-1. :white_check_mark: : **Input Shortcut**
-2. :bulb: :  **Note**
-3. :heavy_exclamation_mark: : **Caution**
+1. Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites 
+2. Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
+3. Text in `code snippets such as this` are used to show inputs and their format
+
+<div markdown="block" class="alert alert-block alert-info">
+
+4. :white_check_mark: **Input Shortcut:**
+
+</div>
+
+<div markdown="block" class="alert alert-block alert-success">
+
+5. :bulb: **Note:**
+
+</div>
+
+<div markdown="block" class="alert alert-block alert-danger">
+
+6. :heavy_exclamation_mark: **Caution:**
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+7. :information_source: **Information**
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:information_source: Overview of commands:**<br>
 
