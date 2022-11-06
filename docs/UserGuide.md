@@ -288,7 +288,7 @@ Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer must be a positive integer 1, 2, 3, …
 
 Examples:
-- `link p/1 i/1` links the person at index **1** to the internship at index **1**
+- `link p/1 i/1` links the person at index **1** to the internship at index **1**.
 
 ### 4.4.2. Unlinking a person and an internship : `unlink`
 
@@ -301,9 +301,9 @@ Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
-- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**
-- `unlink p/1` unlinks person at index **1** and its linked internship
-- `unlink i/1` unlinks internship at index **1** and its linked person
+- `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**.
+- `unlink p/1` unlinks person at index **1** and its linked internship.
+- `unlink i/1` unlinks internship at index **1** and its linked person.
 
 ## 4.5. Find Command
 
