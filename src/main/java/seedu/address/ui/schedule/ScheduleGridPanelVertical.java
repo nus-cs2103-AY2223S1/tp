@@ -178,9 +178,9 @@ public class ScheduleGridPanelVertical extends UiPart<Region> {
         }
     }
 
-    /**
-     * Sets the style of gridPane
-     */
+    // /**
+    //  * Sets the style of gridPane
+    //  */
     // public void setGridPaneStyle(Theme theme) {
     //    if (theme.equals(Theme.DARK)) {
     //        gridPaneVertical.setStyle("-fx-background-color: rgba(29,29,35,0.71)");
