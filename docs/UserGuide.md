@@ -83,7 +83,7 @@ Commands have to be written in the correct format to be used. The format for eac
 5. Type the command in the Command Box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
    <div markdown="span" class="alert alert-primary">
-   :bulb: **Tip:** The following picture shows the different components of the GUI.
+   :bulb: **Tip:** The following diagram shows the different components of the GUI. <br>
        <img src="images/Ui_annotated.png" alt="Annotated UI" border="1">
    </div>
    Some example commands you can try:
