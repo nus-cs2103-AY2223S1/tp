@@ -42,9 +42,9 @@ public class TaskDeadlineCommand extends TaskAddCommand {
     private final LocalDate date;
 
     /**
-     * Creates a TaskDeadlineCommand to add a task with the specified
+     * Creates a TaskDeadlineCommand to add a deadline with the specified
      * {@code Name name}, {@code Description description},
-     * {@code Task.Assignment assignment} and {@code LocalDate date}.
+     * {@code Assignment assignment} and {@code LocalDate date}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new deadline.
@@ -58,14 +58,15 @@ public class TaskDeadlineCommand extends TaskAddCommand {
     }
 
     /**
-     * Creates a TaskDeadlineCommand to add a task with the specified
+     * Creates a TaskDeadlineCommand to add a deadline with the specified
      * {@code Name name}, {@code Description description},
-     * {@code Task.Assignment assignment} and {@code LocalDate date}.
+     * {@code Assignment assignment}, {@code LocalDate date} and {@code Set tags}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new deadline.
      * @param assignment Represents deadline assigned to user or others.
      * @param date Represents the date for the new deadline.
+     * @param tags Represent the set of tags for the new deadline.
      */
     public TaskDeadlineCommand(Name name, Description description, Assignment assignment,
                                LocalDate date, Set<Tag> tags) {

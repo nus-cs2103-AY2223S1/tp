@@ -28,6 +28,7 @@ public class TaskDeleteCommand extends Command {
             + "Parameters: " + CliSyntax.PREFIX_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + TaskCategoryParser.CATEGORY_WORD + " "
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
+
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task deleted: %1$s";
 
     private final Index targetIndex;
@@ -58,8 +59,15 @@ public class TaskDeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TaskDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((TaskDeleteCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TaskDeleteCommand)) {
+            return false;
+        }
+
+        TaskDeleteCommand otherCommand = (TaskDeleteCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex);
     }
 }

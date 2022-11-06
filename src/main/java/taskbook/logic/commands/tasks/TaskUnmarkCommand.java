@@ -64,8 +64,15 @@ public class TaskUnmarkCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TaskUnmarkCommand // instanceof handles nulls
-                && targetIndex.equals(((TaskUnmarkCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TaskUnmarkCommand)) {
+            return false;
+        }
+
+        TaskUnmarkCommand otherCommand = (TaskUnmarkCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex);
     }
 }
