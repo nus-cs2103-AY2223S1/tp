@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/thamruicong.png" width="200px">
 
-[github](http://github.com/thamruicong) [portfolio](team/thamruicong.md)
+[[github](http://github.com/thamruicong)] [[portfolio](team/thamruicong.md)]
 
 * Role: Developer
 * Responsibilities: Coding, Approving Pull Requests
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/zzthian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/zzthian)]
 [[portfolio](team/zzthian.md)]
 
 * Role: Developer
