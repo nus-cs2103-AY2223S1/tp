@@ -14,7 +14,8 @@ import java.util.Date;
  */
 public class FormatDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "The date given should be in the format of YYYY-MM-DD. Leading zeros are required as well.";
+            "The date given should be in the format of YYYY-MM-DD. Please input a valid/existing date. "
+                   + "Leading zeros are required as well.";
 
     public static final String VALIDATION_REGEX =
                 "^(((\\d{3}[1-9]|\\d{2}[1-9]\\d|\\d[1-9]\\d{2}|[1-9]\\d{3})(\\-)(((0[13578]|1[02])(\\-)"
