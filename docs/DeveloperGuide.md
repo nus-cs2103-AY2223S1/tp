@@ -255,8 +255,16 @@ students' grades for the assessments.
 #### Implementation
 The `grade` command is executed by `GradeCommand`. In CS1101S, the 5 main examinations are Reading Assessment 1, Reading Assessment 2, Practical Assessment, Midterm exam, and Final exam, which are denoted by "ra1", "ra2", "pa", "mt", and "ft" respectively.
 
-For each student, there are 5 grades, each with the result scored by the student, in percentages between 0% and 100% inclusive, and the name of the examination it is associated with.
+For each student, there are 5 grades, each with the result scored by the student, in percentages between 0% and 100% inclusive, and up to 2 decimal places, and the name of the examination it is associated with.
 The grades are then stored in a `GradesList` which is unique for every student and has a fixed length of 5 for every student managed by the user.
+
+![Grade Command Activity Diagram](images/GradeCommandActivityDiagram.png)
+
+The 5 grades are stored as `Grade` objects in a unique `GradesList` for each student. `GradesList` uses a `HashMap` for
+the data structure in storing the `Grade` objects as it allows for fast access of the individual grades. It is also 
+useful for potential future implementation where there may be more grades in the module, hence allowing FRIDAY to be
+expandable and adaptable for such possible scenarios. `ArrayList` is only utilised when the order of the grades is 
+necessary, such as when displaying the grades in the GUI and for storage purposes.
 
 Given below is an example usage scenario and how the grading mechanism behaves at each step.
 
@@ -265,12 +273,12 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 
 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
 
-The following Sequence Diagram shows the aforementioned steps.
+The following Sequence Diagram summarises the aforementioned steps.
 <img src="images/GradeSequenceDiagram.png" width="574" />
 
 #### Design considerations
 
-**Aspect: Should we allow users to determine the examinations:**
+**Aspect: Should we allow users to determine the examinations**
 * **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
   * Pros: Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement.
   * Cons: Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).
@@ -278,7 +286,7 @@ The following Sequence Diagram shows the aforementioned steps.
   * Pros: Provides freedom for users and flexibility for changes in the grading system of the module.
   * Cons: Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to.
 
-**Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.):**
+**Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.)**
 * **Alternative 1 (current choice): Standardise scoring of each grade in terms of percentage:**
   * Pros: Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement.
   * Cons: Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.
