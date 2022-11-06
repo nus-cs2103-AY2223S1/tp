@@ -8,10 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class LectureDetailsTest {
 
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new LectureDetails(null));
-    }
 
     @Test
     public void constructor_invalidLectureDetail_throwsIllegalArgumentException() {
@@ -21,8 +17,6 @@ public class LectureDetailsTest {
 
     @Test
     public void isValidLectureDetailsDescription() {
-        // null lecture details
-        assertThrows(NullPointerException.class, () -> LectureDetails.areValidLectureDetails(null));
 
         // invalid lecture details
         assertFalse(LectureDetails.areValidLectureDetails(" ")); // Empty string
