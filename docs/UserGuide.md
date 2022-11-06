@@ -44,21 +44,21 @@ If you can type fast, Condonery can get your contact management tasks done faste
 **:information_source: Notes about the command format:**<br>
 
 * Flags -p and -c after each command word represent interactions with the property and client directory respectively.
-    * e.g., `add -p` adds a property in the property directory while `add -c` adds a client in the client directory.
+    * `add -p` adds a property in the property directory while `add -c` adds a client in the client directory.
 * Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
-    * e.g., in `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
+    * In `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
 * Items in square brackets are optional.<br>
-    * e.g., `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
+    * `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-    * e.g., `[t/TAG]…​` can be used as ` ` (i.e., 0 times), `t/friend`, `t/friend t/family` etc.
+    * `[t/TAG]…​` can be used as ` ` (i.e., 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order.<br>
-    * e.g., if the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
+    * If the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-    * e.g., if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
+    * If you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 * Extraneous arguments for commands that do not have any parameters (such as `help`, `exit`, `list -p`, `list -c`, `clear -p`  and `clear -c`) will be ignored.<br>
-    * e.g., if the command specifies `help 123`, it will be interpreted as `help`.
+    * If the command specifies `help 123`, it will be interpreted as `help`.
 
-<div>
+</div>
 
 
 ### Prefix list
