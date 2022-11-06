@@ -360,6 +360,19 @@ The following class diagram shows the relationship between the classes:
 
 <img src="images/TimeIntervalClassDiagram.png" width="275" />
 
+Furthermore, in order to use the `Suggest` command to find friends who are playing at the
+current moment, the `SuggestCommandParser` invokes the `parseDayTimeInWeek` method of the 
+`ParserUtil` class to convert the current time to a `DayTimeAndWeek` object. Inbuilt Java APIs
+such as `LocalDateTime` and `DayOfWeek` are used to get the current time.
+
+The following sequence diagram explains how the current time is parsed into
+a `DayTimeInWeek` object, starting from the `parseDayTimeInWeek` method 
+of `ParserUtil`. Following which, you may refer to the [Suggest](#suggest-a-friend) section which
+explains in greater detail how the `Suggest` command functions to find friends who are available at 
+certain timings.
+
+<img src="images/SuggestNowSequenceDiagram.png" />
+
 ### *Servers, GameTypes and Socials as Coloured Tags in Friend's profile*
 Whenever the user updates the in-game preferences or social handles of a friend, they are displayed as 
 distinct coloured tags under the friend's profile.

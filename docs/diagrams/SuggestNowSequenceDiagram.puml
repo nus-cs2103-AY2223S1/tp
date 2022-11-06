@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":CurrentTimeConverter" as CurrentTimeConverter LOGIC_COLOR
+participant "currentTime:LocalDateTime" as currentTime LOGIC_COLOR
+
+[-> ParserUtil: parseDayTimeInWeek(dayTimeInWeek)
+activate ParserUtil
+
+ParserUtil -> CurrentTimeConverter: findTimeNowInString()
+activate CurrentTimeConverter
+
+CurrentTimeConverter -> currentTime: now()
+activate currentTime
+
+currentTime -> currentTime: getDayOfWeek()
+activate currentTime
+
+currentTime --> currentTime: currentDay
+deactivate currentTime
+
+currentTime --> CurrentTimeConverter
+deactivate currentTime
+
+CurrentTimeConverter -> CurrentTimeConverter: convertDayOfWeekToString()
+activate CurrentTimeConverter
+
+CurrentTimeConverter --> CurrentTimeConverter: currentDayInString
+deactivate CurrentTimeConverter
+
+CurrentTimeConverter -> currentTime: format()
+activate currentTime
+
+currentTime --> CurrentTimeConverter: formattedTime
+deactivate currentTime
+
+CurrentTimeConverter --> ParserUtil
+deactivate CurrentTimeConverter
+
+[<-- ParserUtil: DayTimeInWeek
+deactivate ParserUtil
+
+@enduml
