@@ -1313,7 +1313,7 @@ testers are expected to do more *exploratory* testing.
     1. Pre-requisites:
         - You have just completed the previous test case - there should only be at least 1 task and it should be done and visible.
     1. Test case: `undone task 1` (replace `1` with the top-most undone task number) <br>
-       Expected: The first task (topmost in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
+       Expected: The undone task (topmost among those undone in the UI) is unmarked (the "done" label disappears) and a success message is displayed.
     1. Test case: `undone task 1` followed by another `undone task 1` <br>
        Expected: An error message saying that the task is already marked as undone is displayed.
     1. Test case: `undone task 0`<br>
