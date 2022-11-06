@@ -21,7 +21,7 @@ import java.util.Set;
 
 import seedu.modquik.commons.core.index.Index;
 import seedu.modquik.logic.commands.student.EditStudentCommand;
-import seedu.modquik.logic.commands.student.EditStudentCommand.EditPersonDescriptor;
+import seedu.modquik.logic.commands.student.EditStudentCommand.EditStudentDescriptor;
 import seedu.modquik.logic.parser.ArgumentMultimap;
 import seedu.modquik.logic.parser.ArgumentTokenizer;
 import seedu.modquik.logic.parser.Parser;
@@ -56,49 +56,49 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
                     MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(StudentParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editStudentDescriptor.setName(StudentParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editPersonDescriptor.setId(StudentParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
+            editStudentDescriptor.setId(StudentParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editStudentDescriptor.setPhone(StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editStudentDescriptor.setEmail(StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            editPersonDescriptor.setTelegram(StudentParserUtil.parseTelegram(
+            editStudentDescriptor.setTelegram(StudentParserUtil.parseTelegram(
                     argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editPersonDescriptor.setTutorialModule(ParserUtil
+            editStudentDescriptor.setTutorialModule(ParserUtil
                     .parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            editPersonDescriptor.setTutorialName(TutorialParserUtil
+            editStudentDescriptor.setTutorialName(TutorialParserUtil
                     .parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get()));
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
-            editPersonDescriptor.setAttendance(StudentParserUtil
+            editStudentDescriptor.setAttendance(StudentParserUtil
                     .parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
         }
         if (argMultimap.getValue(PREFIX_PARTICIPATION).isPresent()) {
-            editPersonDescriptor.setParticipation(StudentParserUtil
+            editStudentDescriptor.setParticipation(StudentParserUtil
                     .parseParticipation(argMultimap.getValue(PREFIX_PARTICIPATION).get()));
         }
         if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
-            editPersonDescriptor.setGrade(StudentParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+            editStudentDescriptor.setGrade(StudentParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStudentCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditStudentCommand(index, editPersonDescriptor);
+        return new EditStudentCommand(index, editStudentDescriptor);
     }
 
     /**

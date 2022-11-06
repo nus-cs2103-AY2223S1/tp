@@ -2,7 +2,7 @@ package seedu.modquik.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import java.nio.file.Path;
 
