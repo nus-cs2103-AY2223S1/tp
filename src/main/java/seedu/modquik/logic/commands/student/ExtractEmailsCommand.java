@@ -23,7 +23,7 @@ public class ExtractEmailsCommand extends Command {
     public static final String MESSAGE_SUCCESS =
             "Copied link to clipboard! Open it by pasting link in the address bar of a browser.";
 
-    static String WEBMAIL_DEEPLINK = "https://outlook.office.com/mail/deeplink/compose?to=";
+    private static final String WEBMAIL_DEEPLINK = "https://outlook.office.com/mail/deeplink/compose?to=";
 
     private static String generateUrl(Collection<Student> students) {
 
