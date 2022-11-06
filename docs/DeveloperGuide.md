@@ -303,7 +303,7 @@ If the application stage has tips and the button is pressed, the `TipsWindow` UI
 
 If the application stage does not have tips, the tips button will be set to hidden and the `TipsWindow` will not be populated and will be inaccessible.
 
-For more details on the UI implementation, please refer to the [Responsive UI]() section of the DG.
+For more details on the UI implementation, please refer to the [Responsive UI](#responsive-ui-feature) section of the DG.
 
 ##### Wide UI implementation
 In the wide UI layout, the tips are shown to the right of the internship list using the `TipsPanel` that extends `UiPart<Region>`. A listener is implemented in the `WideInternshipListPanel` to check which `NarrowInternshipCard` is currently selected.
