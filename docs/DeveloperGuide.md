@@ -112,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img class="center" src="images/ParserClasses.png"/>
 
-How the parsing works:
+How the parsing works: <a name="parsing"></a>
 * When called upon to parse a user command, the `TaAssistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaAssistParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -375,7 +375,7 @@ the given grade.
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
-**Step 1**: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
+**Step 1**: The user input is [parsed similar to other commands](#parsing)) and a `GradeCommand` object is created using the given 
 student indices, session name, and grade. 
 
 **Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
@@ -408,7 +408,7 @@ the session-wise grade can be read from the list of `SessionData` stored inside 
 
 Given bellow are the steps taken when the user wants to view a student's session-wise grades:
 
-**Step 1**: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `ViewCommand` object is created using the given student index. 
 
 **Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
 curated list of students in `Model`.  
