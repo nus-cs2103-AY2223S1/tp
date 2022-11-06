@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -205,6 +207,8 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Filter application status feature
@@ -239,6 +243,8 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Sort applicants by name, scholarship or status feature.
@@ -272,6 +278,8 @@ The following sequence diagram shows how the sort operation works:
 The following activity diagram summarizes what happens when a user executes a sort command:
 
 ![Filter command activity diagram](images/SortCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,6 +318,8 @@ is abstracted out as this sequence diagram aims only to demonstrate the interact
 The following activity diagram summarizes what happens when a user executes a remove command:
 
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Find feature
@@ -385,6 +395,8 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Pin applicant feature
@@ -413,6 +425,8 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ![Pin command activity diagram](images/PinCommandActivityDiagram.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ### UnPin applicant feature
 
@@ -437,7 +451,9 @@ The following sequence diagram shows how the unpin operation works:
 
 The following activity diagram summarizes what happens when a user executes a unpin command:
 
-![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+![UnPin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -456,6 +472,7 @@ In this current iteration we still have to message the client manually.
 The university admin staff might want to process or analyse the result in a more sophisticated manner.
 Excel is needed to aid in more sophisticated analysis as it has more functions.
 
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -534,6 +551,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC02 - Delete an applicant**
@@ -566,6 +585,8 @@ be able to view the applicant from the list.
   * 1c2. User agrees by typing YES to confirm deletion. <br>
       Use case ends.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC03 - Edit personal details of an applicant**
@@ -596,6 +617,8 @@ be able to view the applicant from the list.
   * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
       Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC04 - List Applicants**
@@ -616,6 +639,8 @@ be able to view the applicant from the list.
 * 1b. TrackAScholar has no applicants stored.
 
     * 1a1. TrackAScholar shows an empty applicant list.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -643,6 +668,7 @@ be able to view the applicant from the list.
     * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
     * Use case resumes from step 2.
 
+[Return to top](#table-of-contents)
 
 *{More to be added}*
 
@@ -660,12 +686,17 @@ be able to view the applicant from the list.
 
 *{More to be added}*
 
+[Return to top](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **MSS**: Main Success Scenario
 * **GUI**: Graphical user interface allows users to interact with a software through visual components instead of the command line
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -695,6 +726,30 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding an applicant
+1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
+      an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin low`.
+   
+      1. Test case: <br>
+                    ```
+                    add n/Benjamin low 
+                    p/98765431 
+                    e/benLow@gmail.com 
+                    s/NUS Global Merit Scholarship 
+                    as/pending 
+                    m/Medicine 
+                    m/Mathematics
+                    ``` 
+                   <br>
+         Expected: An applicant named Benjamin Low with the above characteristics
+                   will be added to the applicant list and displayed on TrackAScholar GUI.
+                 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting an applicant
 
 1. Deleting an applicant while all applicants are being shown
@@ -710,7 +765,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
 
 ### Import trackAScholarImport File
 
@@ -720,7 +775,24 @@ testers are expected to do more *exploratory* testing.
 
 [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)
 
+--------------------------------------------------------------------------------------------------------------------
 
+### Pinning an applicant
+
+1. Pinning an existing applicant while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving data
 
@@ -772,4 +844,6 @@ our commitment to improving the features and testability of TrackAScholar and im
   * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
   maintaining readability of our code. This is evident from the lack of long methods and nesting within TrackAScholar 
   code base.
+
+[Return to top](#table-of-contents)
   
