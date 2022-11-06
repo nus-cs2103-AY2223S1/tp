@@ -338,7 +338,7 @@ Format: `task assign TASK_INDEX [+@PERSON_INDEX]…​ [+@PERSON_NAME]…​ [-@
 * -@: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A task can have any number of assigned contacts (including 0)
+A task can have 0 or more assigned teammates.
 </div>
 
 Examples:
