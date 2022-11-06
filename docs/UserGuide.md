@@ -206,6 +206,14 @@ if it is open. </div>
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
 to help you modify resident data within **RC4HDB**.
 
+Note:
+* **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
+* Two residents are considered duplicate if they satisfy any of the following conditions:
+  * have the same **matriculation number**
+  * have the same **phone number**
+  * have the same **email**
+  * have the same **room**
+
 ---
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -221,7 +229,7 @@ The resident [fields](#glossary-of-terms) can be found [here](#format-for-reside
 
 ### Adding a resident : `add`
 
-Adds a resident into **RC4HDB**.
+Adds a resident into **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
@@ -243,7 +251,7 @@ Examples:
 
 ### Editing an existing resident : `edit`
 
-Edits the data of an existing resident in **RC4HDB**.
+Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
@@ -376,16 +384,14 @@ Lists *all* the residents in the **RC4HDB** database. If the table view is showi
 calling `list` will restore and display the full list of residents.
 
 Format:
-
-- `list` to display *all* residents from the database with *all* columns shown in the table.
+* `list` to display *all* residents from the database with *all* columns shown in the table.
   Calling `list` on our sample data will produce the following result:
   
 
   ![list command](images/ug-photos/list_command.png)
 
 Note:
-
-- Any input entered after the `list` command will be ignored.
+* Any input entered after the `list` command will be ignored.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -427,13 +433,13 @@ Sequential examples:
 
 Note:
 
-- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-  - This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
-- Letters *must* be separated by a single whitespace.
-- The order of each letter does not matter.
-- Duplicate letters are ignored. 
-- There needs to be at least one column shown in the table at all times.
-- You can always use `reset` to restore the full table view!
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+  * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored. 
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -470,13 +476,13 @@ Sequential examples:
 
 Note:
 
-- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-    - This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
-- Letters *must* be separated by a single whitespace.
-- The order of each letter does not matter.
-- Duplicate letters are ignored.
-- There needs to be at least one column shown in the table at all times.
-- You can always use `reset` to restore the full table view!
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -494,9 +500,9 @@ Use this when you have called `showonly` or `hideonly` on the table!
 Format: `reset`
 
 Note:
-- Any input entered after the `reset` command will be ignored.
-- This command is different from the `list` command in that it does not affect the list of residents being displayed.
-  - However, both commands cause the full set of resident fields to be displayed in the table.
+* Any input entered after the `reset` command will be ignored.
+* This command is different from the `list` command in that it does not affect the list of residents being displayed.
+  * However, both commands cause the full set of resident fields to be displayed in the table.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
