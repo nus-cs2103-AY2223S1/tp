@@ -140,6 +140,12 @@ If you are new to **Arrow**, here provides some tips for you to enter commands e
 
 **:information_source: Notes about the command format:**<br>
 
+* The task list shows only **INCOMPLETE** tasks. 
+Once a task has been marked (either by the command or the by ticking the white box), 
+it will be completed and disappears from the task panel as it is NOT incomplete.
+
+* To view the task list with both complete and incomplete ones, using `task list -a`.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -344,13 +350,19 @@ Examples:
 
 Unmarks a task and sets it as incomplete.
 
+Note;
+* To unmark a task, we need to show the full list of tasks with the completed (disappeared) tasks.
+* By executing `task list -a` command, we can fully display the task panel with both complete and incomplete tasks.
+* Thus we can `unmark` a task from complete to incomplete.
+
 Format: `task unmark TASK_INDEX`
+* Show the full task lists by using `task list -a`.
 * Unmarks the task at the specified `TASK_INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
+* `task list -a` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
 
 ---
 ### Deleting a Task: `task delete`
@@ -607,6 +619,8 @@ To improve the speed of your actions and quality of your life while using the ap
 since there could be many projects and each project may have so many items to keep in track.
 Thus, **Arrow** has a task panel list to keep every task organized. 
 Details of each task can be added, which helps the team managers no fear of leaving out any progress.
+
+    Also the task panel list only shows the incomplete tasks.
 
 
 * **Teammate List**
