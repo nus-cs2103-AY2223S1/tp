@@ -10,15 +10,17 @@ idENTify - ENT doctors treat patients who often have chronic conditions and our 
 ### Summary of Contributions
 Given below are my contributions to the project.
 
-Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wingkei67&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+Code contributed: 
+- [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wingkei67&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
 Enhancements implemented:
-* `add` command enhancement: Allows addition of patients without optional fields and duplicate patients.
-* `group patients` command: Allows the model to group patients based on their tags.
-* `group appts` command: Allows the model to group appointments based on some keys. e.g. group by appointment tag, status or date.
-* `ungroup` command: Allows the model to ungroup patients or appointments.
-* `sort patients` feature: Enables the model to auto-sort patients in the patient list.
-* `sort appts` features: Enables the model to auto-sort appointments in the appointment list.
-* Implement light and dark modes for our app.
+* Improve `add` command: Allows addition of patients without optional fields and duplicate patients.
+* Implement `group patients` command: Allows the model to group patients based on their tags.
+* Implement `group appts` command: Allows the model to group appointments based on some keys. e.g. group by appointment tag, status or date.
+* Implement `ungroup` command: Allows the model to ungroup patients or appointments.
+* Implement `sort patients` feature: Enables the model to auto-sort patients in the patient list.
+* Implement `sort appts` features: Enables the model to auto-sort appointments in the appointment list.
+* Design light and dark modes for our app's GUI.
 * Beautify the styles and layouts of our GUI.
 
 Contributions to the UG:
