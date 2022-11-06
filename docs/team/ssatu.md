@@ -30,10 +30,11 @@ Given below are my contributions to the project.
   * Highlights: It utilises the indexing multiple lists of data (policy list and client list), and the functionality of switching between different views.
 
 
-* **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ssatu&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
+* **Code contributed**: [Reposense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ssatu&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * TODO
+  * PRs reviewed and merged:
+    * 200, 191, 101, 93, 89, 80, 70, 54, 31
 
 * **Documentation**:
   * User Guide:
@@ -41,15 +42,18 @@ Given below are my contributions to the project.
     * Updated segments on assigning policies to clients.
     * Updated segments on deleting, listing and viewing assigned policies.
     * Standardisation and editing of user commands.
+    * FAQs for policy applications.
 
   * Developer Guide:
     * Updated Storage class diagrams for Storage component.
-    * Added implementation for PolicyAssignCommand and Sequence diagram.
+    * Added implementation for PolicyAssignCommand and sequence/activity diagram.
     * Updated use cases and Non-functional Requirements.
+    * Appendix: Manual tests for policy functions.
+    * Effort section to explain the work behind LTNS.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 7
-  * Contributed to forum discussions:  1 original post
+  * PRs reviewed (with non-trivial review comments): 9
+  * Contributed to forum discussions:  2 original posts
   * Reported bugs and suggestions for other teams in the class: For UserGuide and DeveloperGuide
 
 * **Tools**:
