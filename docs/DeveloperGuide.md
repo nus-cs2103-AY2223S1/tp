@@ -274,22 +274,22 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 
 **Design Considerations**
 
-Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
+- Option 1 (Current design): We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
-- Pros:
-  - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
+  - Pros:
+    - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
 
-- Cons:
-  - The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
+  - Cons:
+    - The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
 
-Alternative Design: Split `DeleteCommand` into two different commands, `DeleteStudentByNameCommand` and `DeleteStudentByIDCommand`.
+- Option 2: Split `DeleteCommand` into two different commands, `DeleteStudentByNameCommand` and `DeleteStudentByIDCommand`.
 
-- Pros:
-  - There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
+  - Pros:
+    - There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
 
-- Cons:
-  - Additional classes need to be implemented.
-  - The command name is long.
+  - Cons:
+    - Additional classes need to be implemented.
+    - The command name is long.
 
 #### 4.2.3 Edit command
 
@@ -430,10 +430,10 @@ The `ViewClassCommand` instance now interacts with the `ModelManager` to execute
 
 **Design Considerations**
 
-* **Alternative 1**: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
+* Option 1: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
   * Pros: Users will not need to learn a different command.
   * Cons: There is still a need to differentiate the filter logic as class name requires an exact match, while name only requires it to contain the keywords.
-* **Alternative 2**: Separate `ViewClassCommand` and `FindCommand`. (Current Implementation)
+* Option 2 (Current Design): Separate `ViewClassCommand` and `FindCommand`. 
   * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
   * Cons: Users have an additional command to learn.
 
@@ -445,7 +445,7 @@ The `ToggleViewCommand` toggles the application to display or hide all students'
 
 **Implementation**
 
-The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
+The following activity diagram summarises the events that occur when the user executes the `ToggleViewCommand`.
 
 ![ToggleView Activity Diagram](images/ToggleViewCommandActivityDiagram.png)
 
@@ -467,12 +467,12 @@ With the above sequence, the UI is successfully updated to display the relevant 
 
 **Design Considerations**
 
-- Alternative 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute.
   - Pros:
     - Does not introduce coupling between UI and Model.
   - Cons: 
     - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects.
-- Alternative 2 (current choice): updates `FilteredStudentList` such that it triggers the listener in `StudentListPanel` to update the `StudentListViewCell`. 
+- Option 2 (Current design): updates `FilteredStudentList` such that it triggers the listener in `StudentListPanel` to update the `StudentListViewCell`. 
   - Pros:
     - No need to edit every student in the `FilteredStudentList`.
     - Attribute is associated with the list and not each student. Only need to maintain 1 attribute.
@@ -516,21 +516,19 @@ The following sequence diagram depicts how different components such as `Logic` 
 
 **Design Considerations**
 
-1. Sorting the list of students according to grade
-- Option 1: sort the filtered list of students after retrieving the class
+Sorting the list of students according to grade
+- Option 1: sort the filtered list of students after retrieving the class.
   - Pros:
-    - Will not modify the current `StudentRecord`
-    - Will not unnecessarily sort students not in the class of interest
+    - Will not modify the current `StudentRecord`.
+    - Will not unnecessarily sort students not in the class of interest.
   - Cons:
-    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour
-    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping
-    needs to be done to sort the filtered list
-- Option 2 (current choice): sort the entire student record, then filter to retrieve class
+    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour.
+    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping needs to be done to sort the filtered list.
+- Option 2 (Current design): sort the entire student record, then filter to retrieve class.
   - Pros:
-    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name,
-    each time an `addStudent` command or `edit` command is run
+    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name, each time an `addStudent` command or `edit` command is run.
   - Cons:
-    - Reorders the whole `StudentRecord` each time the sorting is done
+    - Reorders the whole `StudentRecord` each time the sorting is done.
 
 Click <a href="#top">here</a> to return to the top.
 
@@ -555,15 +553,15 @@ Click <a href="#top">here</a> to return to the top.
 **Target User Profile**
 
 Ministry of Education (MOE) Teachers who:
-* Teaches 3 to 5 classes a year
-* Manages about 60 to 100 students with varying needs
-* Is required to identify students who need additional academic assistance and contact their parents if necessary
-* Finds paperwork time-consuming and messy
-* Finds it tedious to manually keep track of the academic progress of each individual student
-* Finds it tedious to manually identify students who are performing poorly academically
-* Finds Excel spreadsheet complex and difficult to use
-* Prefers typing to mouse interactions
-* Types fast and is reasonably comfortable using CLI apps
+* Teaches 3 to 5 classes a year.
+* Manages about 60 to 100 students with varying needs.
+* Is required to identify students who need additional academic assistance and contact their parents if necessary.
+* Finds paperwork time-consuming and messy.
+* Finds it tedious to manually keep track of the academic progress of each individual student.
+* Finds it tedious to manually identify students who are performing poorly academically.
+* Finds Excel spreadsheet's functions and formulas complex and difficult to use.
+* Prefers typing to mouse interactions.
+* Types fast and is reasonably comfortable using CLI apps.
 
 **Value Proposition**
 
@@ -823,6 +821,8 @@ Prerequisites: Existing student records do not have the names or IDs that will b
 
 ### 7.3 Editing a student record
 
+Prerequisites: There are at least 2 student records in classify and no students have the name 'Jacob Teo'.
+
 1. Test case: `edit 1 exam/CA2 70 exam/SA1 60`
    * Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
 
@@ -831,20 +831,25 @@ Prerequisites: Existing student records do not have the names or IDs that will b
 
 ### 7.4 Deleting a student record
 
-Prerequisites: List all persons using the `list` command. Multiple students in the list.
+Prerequisites: A student with name "Alex Yeoh" and ID "123A" exists in Classify.  
 
-1. Test case: `delete 1`
-   * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** Test cases 1 and 2 are independent of each other.
+To perform them consecutively, you may use `addStudent nm/Alex Yeoh id/123A class/1A` after Test case 1 to add the student record back into classify.
+</div>
 
-2. Test case: `delete 0`
-   * Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `delete nm/Alex Yeoh`
+   * Expected: Alex Yeoh's student record is removed from the list. Details of the deleted student record are shown in the status message. 
+
+2. Test case: `delete id/123A`
+   * Expected: Similar to expected result in Test case 1. 
 
 3. Other incorrect delete commands to try: `delete`, `delete x`
-   * Expected: Similar to previous.
+   * Expected: The command entered by the user is highlighted red. The status message shows invalid format error message.
 
 ### 7.5 Finding a student record
 
-Prerequisites: Students with "Alex" in their name or "123A" as their ID exist in the list.
+Prerequisites: Students with "Alex" in their name or "123A" as their ID exist in the list. You may use `addStudent nm/Alex Yeoh id/123A class/1A` to add the student record into Classify.
 
 1. Test case: `find nm/Alex`
    * Expected: Students with "Alex" in their name appears in the list.
@@ -868,8 +873,14 @@ Prerequisites: Class provided must exist within the student records.
 
 ### 7.8 Toggling view
 
+Prerequisites for Test case 1: Classify currently shows the parent details in each student card UI.
+
 1. Test case: `toggleView`
-   * Expected: Shows/hides parent details in each student card UI.
+   * Expected: Hides parent details in each student card UI.
+
+Prerequisites for Test case 2: Classify currently hide the parent details in each student card UI.
+2. Test case: `toggleView`
+    * Expected: Shows parent details in each student card UI.
 
 ### 7.9 Calculating exam statistics
 
