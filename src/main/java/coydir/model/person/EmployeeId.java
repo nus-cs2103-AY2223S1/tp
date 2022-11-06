@@ -83,7 +83,7 @@ public class EmployeeId {
             return false;
         }
         int testValue = Integer.parseInt(test);
-        return testValue < count && !allIds.contains(testValue);
+        return testValue > 0 && testValue < count && !allIds.contains(testValue);
     }
 
     /**
@@ -93,8 +93,18 @@ public class EmployeeId {
         EmployeeId.count = count;
     }
 
+    /**
+     * Gets the current employee count, plus one.
+     */
     public static int getCount() {
         return count;
+    }
+
+    /**
+     * Gets the size of the hash set containing all ids.
+     */
+    public static int getCurrentIdsCount() {
+        return allIds.size();
     }
 
     @Override

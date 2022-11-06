@@ -11,7 +11,6 @@ import coydir.logic.commands.FindCommand;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Name;
 import coydir.model.person.PersonMatchesKeywordsPredicate;
-import coydir.model.person.Position;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -43,9 +42,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
             keywordPosition = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_POSITION).get());
-            if (!Position.isValidPosition(keywordPosition)) {
-                throw new ParseException(Position.MESSAGE_CONSTRAINTS);
-            }
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             keywordDepartment = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_DEPARTMENT).get());

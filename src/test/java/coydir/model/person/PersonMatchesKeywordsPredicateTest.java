@@ -23,8 +23,8 @@ public class PersonMatchesKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = new ArrayList<>(Collections.singletonList("first"));
-        List<String> secondPredicateKeywordList = new ArrayList<>(Arrays.asList("first", "second", ""));
+        List<String> firstPredicateKeywordList = new ArrayList<>(Arrays.asList("first", "second", "third"));
+        List<String> secondPredicateKeywordList = new ArrayList<>(Collections.singletonList("first"));
 
         PersonMatchesKeywordsPredicate firstPredicate = preparePredicate(firstPredicateKeywordList);
         PersonMatchesKeywordsPredicate secondPredicate = preparePredicate(secondPredicateKeywordList);
