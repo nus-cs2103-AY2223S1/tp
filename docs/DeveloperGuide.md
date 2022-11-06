@@ -590,15 +590,11 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file Expected: Shows the GUI with a set of sample Contacts and Meetings. The window size may not be optimum.
 
 1. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
    
@@ -607,24 +603,20 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: Have at least one person with the tag `Friends`
    2. Test Case: `findtag friends` <br>
       Expected: A success message should appear. Persons with the tag `friends` will appear on the contact list.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
-
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
    1. Test Case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated. Furthermore, if the Person is included in a meeting, they should be deleted from the meeting as well. 
-
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated. Furthermore, if the Person is included in a meeting, they should be deleted from the meeting as well.
    1. Test Case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. Deleting a person while they are the last person in a meeting
    1. Prerequisite: Have a Person be the last person in a meeting. Assume that this "Last Person" has an Index of 1
-
    2. Test Case: `delete 1` <br>
       Expected: Person is not deleted and an error message stating that the meeting Person at Index 1 is the last member of must be deleted first.
 
