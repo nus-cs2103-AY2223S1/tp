@@ -461,7 +461,7 @@ being tested, consequently, they might give different outputs when applied to a 
 #### Design Considerations
 In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
 `AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
-we are working with, for example `AbstractFilterBuyerPredicate` or `AbstractFilterPropsPredicate`. 
+we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
 
 Additionally, since users
 are only allowed to filter using certain conditions as defined in the behaviour of the `filter` commands, concrete classes

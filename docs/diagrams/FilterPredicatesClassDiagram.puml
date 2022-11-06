@@ -1,73 +1,57 @@
 @startuml
 'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
-interface Predicate<T>
-abstract class AbstractFilterPropsPredicate {
+Class "<<interface>>\nPredicate" as Predicate
+Class "{abstract}\nAbstractFilterPropsPredicate" as AbstractFilterPropsPredicate {
 + test(Property property)
 }
-abstract class AbstractFilterBuyerPredicate {
+Class "{abstract}\nAbstractFilterBuyersPredicate" as AbstractFilterBuyersPredicate {
 + test(Buyer buyer)
 }
 class BuyerNameContainsSubstringPredicate {
 - String string
-+ test(Buyer buyer)
-+ equals(Object other)
 }
-class FilterBuyerByPricePredicate {
+class FilterBuyersByPricePredicate {
 - Price price
-+ test(Buyer buyer)
-+ equals(Object other)
 }
-class FilterBuyerByPriorityPredicate {
+class FilterBuyersByPriorityPredicate {
 - Priority priority
-+ test(Buyer buyer)
-+ equals(Object other)
 }
-class FilterBuyerContainingAllCharacteristicsPredicate {
+class FilterBuyersContainingAllCharacteristicsPredicate {
 - Characteristics characteristics
-+ test(Buyer buyer)
-+ equals(Object other)
 }
-class FilterBuyerContainingAnyCharacteristicsPredicate {
+class FilterBuyersContainingAnyCharacteristicsPredicate {
 - Characteristics characteristics
-+ test(Buyer buyer)
-+ equals(Object other)
 }
 class FilterPropsByOwnerNamePredicate {
 - Name name
-+ test(Property property)
-+ equals(Object other)
 }
 class FilterPropsByPricePredicate {
 - Price price
-+ test(Property property)
-+ equals(Object other)
 }
 class FilterPropsContainingAllCharacteristicsPredicate {
 - Characteristics characteristics
-+ test(Property property)
-+ equals(Object other)
 }
 class FilterPropsContainingAnyCharacteristicsPredicate {
 - Characteristics characteristics
-+ test(Property property)
-+ equals(Object other)
 }
 class PropertyNameContainsSubstringPredicate{
 - String string
-+ test(Property property)
-+ equals(Object other)
 }
 
 
-AbstractFilterBuyerPredicate .up.|> Predicate
+AbstractFilterBuyersPredicate .up.|> Predicate
 AbstractFilterPropsPredicate .up.|> Predicate
 
-BuyerNameContainsSubstringPredicate --l|> AbstractFilterBuyerPredicate
-FilterBuyerByPricePredicate --r|> AbstractFilterBuyerPredicate
-FilterBuyerByPriorityPredicate --d|> AbstractFilterBuyerPredicate
-FilterBuyerContainingAllCharacteristicsPredicate --up|> AbstractFilterBuyerPredicate
-FilterBuyerContainingAnyCharacteristicsPredicate --up|> AbstractFilterBuyerPredicate
+BuyerNameContainsSubstringPredicate --l|> AbstractFilterBuyersPredicate
+FilterBuyersByPricePredicate --r|> AbstractFilterBuyersPredicate
+FilterBuyersByPriorityPredicate --d|> AbstractFilterBuyersPredicate
+FilterBuyersContainingAllCharacteristicsPredicate --up|> AbstractFilterBuyersPredicate
+FilterBuyersContainingAnyCharacteristicsPredicate --up|> AbstractFilterBuyersPredicate
 
 FilterPropsByOwnerNamePredicate --l|> AbstractFilterPropsPredicate
 FilterPropsByPricePredicate --r|> AbstractFilterPropsPredicate
