@@ -47,7 +47,7 @@ public class ModelManager implements Model {
         this.hrPro = new HrPro(hrPro);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.hrPro.getProjectList());
-        filteredStaff = new FilteredList<Staff>(this.hrPro.getStaffList());
+        filteredStaff = new FilteredList<>(this.hrPro.getStaffList());
         filteredTasks = new FilteredList<>(this.hrPro.getTaskList());
     }
 

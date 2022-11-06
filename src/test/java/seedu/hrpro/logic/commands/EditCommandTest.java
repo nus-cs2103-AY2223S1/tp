@@ -40,12 +40,17 @@ public class EditCommandTest {
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PROJECT, descriptor);
 
+        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
+        Project expectedTargetProject = expectedModel.getFilteredProjectList().get(0);
+        editedProject.getStaffList().setStaffs(expectedTargetProject.getStaffList());
+        expectedModel.setProject(expectedTargetProject, editedProject);
+
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new HrPro(model.getHrPro()), new UserPrefs());
-        expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
-
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        // Resets model
+        model = new ModelManager(getTypicalHrPro(), new UserPrefs());
     }
 
     @Test

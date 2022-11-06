@@ -11,7 +11,6 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,12 +28,15 @@ public class FindStaffCommandTest {
     public void execute_zeroKeywords_noStaffFound() {
         Model model = new ModelManager(getTypicalHrPro(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalHrPro(), new UserPrefs());
-        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW, 0);
+
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_SINGULAR_OVERVIEW, 1);
+
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand = new FindStaffCommand(predicate);
         expectedModel.updateFilteredStaffList(predicate);
+
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStaffList());
+        assertEquals(expectedModel.getFilteredStaffList(), model.getFilteredStaffList());
     }
 
     @Test
