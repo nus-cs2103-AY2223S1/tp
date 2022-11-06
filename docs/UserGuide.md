@@ -211,7 +211,7 @@ Shows you either the list of commands available or information about a particula
 
 <div markdown="block" class="alert alert-light">
 
-**:computer: Format:** Format: `help [c/COMMAND]`
+**:computer: Format:** `help [c/COMMAND]`
 
 </div>
 
@@ -228,7 +228,7 @@ Shows you a list of all contacts in your TaskBook in the order they were added.<
 
 <div markdown="block" class="alert alert-light">
 
-**:computer: Format:** Format: `contact list`
+**:computer: Format:** `contact list`
 
 </div>
 
