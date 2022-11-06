@@ -112,6 +112,9 @@ class JsonAdaptedPerson {
         } else if (!Date.isValidDateValue(dob)) {
             throw new IllegalValueException(String.format(Date.MESSAGE_VALUE_CONSTRAINTS, dob));
         }
+        if (Date.isAfterCurrentDate(dob)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS_DOB);
+        }
         final Date modelDob = new Date(dob);
         if (uid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Uid.class.getSimpleName()));

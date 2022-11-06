@@ -58,7 +58,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
        only `p/56785678`, will be taken by the command as its parameter input.
   e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
        only `d/01/01/2022`, which is a valid parameter input, will be taken by the command as its parameter input.
-  e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid, 
+  e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
        only `d/A/B/C`, which is an invalid parameter input, is considered.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -90,6 +90,7 @@ Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
 - Date format accepted is: `dd/mm/yyyy`.
+- Date of birth cannot be after the current date.
 - The genders accepted by the contact list are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
@@ -145,7 +146,8 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: `dd/mm/yyyy`.
-- The genders accepted by the application are: `M`/`m`/`Male`/`male`
+- Date of birth cannot be after the current date.
+- The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
@@ -217,7 +219,7 @@ Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 - Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 - At least one of the optional fields must be provided.
-- Existing values will be updated to the input values. 
+- Existing values will be updated to the input values.
 - Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
 
 Examples:
@@ -352,7 +354,7 @@ Example:
 :information_source: **Note:** If the pie chart created only contains one slice (100% of the pie chart), a white line
 that is the length of the pie chart's radius will also be present. <br><br>
 
-This issue is a bug pertaining to the JavaFX library. 
+This issue is a bug pertaining to the JavaFX library.
 </div>
 
 ### Clearing all entries : `clear`
