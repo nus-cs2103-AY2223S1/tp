@@ -8,6 +8,7 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.modquik.model.ModelType.CONSULTATION;
 
 import java.util.List;
 import java.util.Optional;
@@ -90,7 +91,7 @@ public class EditConsultationCommand extends Command {
 
         model.setConsultation(consultToEdit, editedConsult);
         model.updateFilteredConsultationList(Model.PREDICATE_SHOW_ALL_CONSULTATIONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsult));
+        return new CommandResult(String.format(MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsult), CONSULTATION);
     }
 
     /**
