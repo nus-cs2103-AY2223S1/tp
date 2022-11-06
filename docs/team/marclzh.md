@@ -2,8 +2,6 @@
 layout: page 
 title: Marcus Lee's Project Portfolio Page
 ---
-### Project: OmniHealth
-
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
 upcoming appointments. As a private clinician, you can manage and monitor your patient database all in one location.
 OmniHealth allows you to manage and search for your patient's details and records with ease with its management system,
@@ -33,7 +31,8 @@ Given below are my contributions to the project.
     * Highlights: This feature entailed adding code to most of the areas of OmniHealth, including its model, UI and test
       cases, as well as requiring changes to existing commands.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code
+  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 <div style="page-break-after: always;"></div>
 
@@ -61,9 +60,8 @@ Given below are my contributions to the project.
           , [\#98](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/98))
         * Added details on date validation for features that include
           dates. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
-        * Improved continuity of UG, allowing for better
-          flow. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
-        * Amended various issues found by other students. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
+        * Improved continuity of UG, allowing for better flow and amended various issues raised by other
+          students. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
     * Developer Guide:
         * Added implementation details of the `Clear Record`
           feature. [\#89](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/89)
