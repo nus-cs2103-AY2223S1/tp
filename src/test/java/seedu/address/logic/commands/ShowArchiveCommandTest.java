@@ -1,23 +1,17 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
- */
-public class ListAllCommandTest {
+public class ShowArchiveCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -30,12 +24,13 @@ public class ListAllCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(ShowArchiveCommand.MESSAGE_SUCCESS, false, false, true);
+        assertCommandSuccess(new ShowArchiveCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_help_success() {
+        CommandResult expectedCommandResult = new CommandResult(ShowArchiveCommand.MESSAGE_SUCCESS, false, false, true);
+        assertCommandSuccess(new ShowArchiveCommand(), model, expectedCommandResult, expectedModel);
     }
 }

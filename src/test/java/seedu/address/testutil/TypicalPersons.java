@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ArchivedTaskBook;
 import seedu.address.model.task.Task;
 
 /**
@@ -57,6 +58,31 @@ public class TypicalPersons {
             .withDeadline("2022-09-23")
             .withIsDone(true).build();
 
+    //for Archived Task Book
+    public static final Task CARLS = new PersonBuilder().withName("Chapter 2 Revision")
+            .withModule("CS2100")
+            .withDeadline("2022-11-11")
+            .withTags("revision")
+            .withIsDone(true)
+            .build();
+    public static final Task DAN = new PersonBuilder().withName("Problem Set C")
+            .withModule("CS2040S")
+            .withDeadline("2022-11-09")
+            .withIsDone(true)
+            .build();
+    public static final Task EVE = new PersonBuilder().withName("Tutorial 7")
+            .withModule("MA2001")
+            .withDeadline("2022-12-09")
+            .withIsDone(false).build();
+    public static final Task FIONN = new PersonBuilder().withName("Tutorial 4")
+            .withModule("MA2001")
+            .withDeadline("2022-09-16")
+            .withIsDone(false).build();
+    public static final Task GEORGIA = new PersonBuilder().withName("Assignment 4")
+            .withModule("MA2001")
+            .withDeadline("2022-12-30")
+            .withIsDone(true).build();
+
     // Manually added
     public static final Task HOON = new PersonBuilder().withName("Hoon Meier").withModule("CS2015")
             .withDeadline("2022-12-01").build();
@@ -85,7 +111,20 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static ArchivedTaskBook getTypicalArchivedTaskBook() {
+        ArchivedTaskBook atb = new ArchivedTaskBook();
+        for (Task task: getTypicalArchivedTasks()) {
+            atb.addTask(task);
+        }
+        return atb;
+    }
+
     public static List<Task> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    public static List<Task> getTypicalArchivedTasks() {
+        return new ArrayList<>(Arrays.asList(CARLS, DAN, EVE, FIONN, GEORGIA));
+    }
+
 }

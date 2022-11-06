@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalArchivedTaskBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,7 @@ import seedu.address.testutil.PersonBuilder;
 // TODO: Add in not changing isdone test
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalArchivedTaskBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,7 +45,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                getTypicalAddressBook(), new UserPrefs());
+                getTypicalArchivedTaskBook(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
