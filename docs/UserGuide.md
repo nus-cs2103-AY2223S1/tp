@@ -176,9 +176,9 @@ It appears when you execute the `help` command.
   e.g. if the command specifies `[-n NAME] [-ph PHONE NUMBER]`, `[-ph PHONE NUMBER] [-n NAME]` is also acceptable.
 
 
-* For commands immediately followed by an `INDEX`, it is the index of the entry on the currently visible list that you want to execute the command on.
-  Note that if an entry is not currently displayed on the list, then the command cannot be executed on it.
-  e.g. `deletebuyer 7`.
+* For commands immediately followed by an `INDEX`, `INDEX` refers to the index of the entry on the currently visible list that you want to execute the command on.
+  Note that if an entry is not currently displayed on the list, then the command cannot be executed on it,
+  e.g. `deletebuyer 7` if the list is only 5 entries long.
 
 
 * If commands are missing specific parameters required for it to execute, an error message will be displayed that contains 
