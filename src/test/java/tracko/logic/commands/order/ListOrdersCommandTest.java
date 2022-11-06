@@ -2,6 +2,7 @@ package tracko.logic.commands.order;
 
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static tracko.logic.commands.order.ListOrdersCommand.MESSAGE_SUCCESS;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
@@ -27,12 +28,12 @@ public class ListOrdersCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListOrdersCommand(), model, MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showOrderAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListOrdersCommand(), model, MESSAGE_SUCCESS, expectedModel);
     }
 }
