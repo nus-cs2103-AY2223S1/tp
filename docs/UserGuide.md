@@ -418,10 +418,11 @@ Format: `task do TASK_INDEX by/DATE...`
 
 ### Sorting tasks by deadline: `task sort`
 
-Sorts the task list by deadline
+Sorts the task list by deadline. Tasks with earlier deadlines will be put at the top, while tasks without any deadlines will be at the bottom.
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Additional Notes:**<br>
-* After this command is ran, the task panel will only show incomplete tasks. 
+* After this command is run, the task panel will only show incomplete tasks. 
 <br>
 </div>
 
@@ -561,19 +562,19 @@ This summary provides a list of useful and straightforward instructions on how t
 
 ### Task Commands
 
-| Command           | Format                                                                                               | Example                                                                                            |
-|-------------------|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Task add          | `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`                                           | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| Command           | Format                                                                                                 | Example                                                                                            |
+|-------------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Task add          | `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`                                             | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | Task assign       | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​` | `task assign 3 +@/1 +@/Alex Yeoh @-/2`                                                             |
-| Task list         | `task list`                                                                                          | -                                                                                                  |
-| Task mark         | `task mark TASK_INDEX`                                                                               | `task mark 1`                                                                                      |
-| Task unmark       | `task unmark TASK_INDEX`                                                                             | `task unmark 1`                                                                                    |
-| Task delete       | `task delete INDEX`                                                                                  | `task delete 3`                                                                                    |
-| Task set deadline | `task do TASK_INDEX by/DATE...`                                                                      | `task do 1 by/tomorrow`                                                                            |
-| Task sort         | `task sort`                                                                                          | -                                                                                                  |
-| Task filter       | `task list`                                                                                          | -                                                                                                  |
+| Task list         | `task list`                                                                                            | -                                                                                                  |
+| Task mark         | `task mark TASK_INDEX`                                                                                 | `task mark 1`                                                                                      |
+| Task unmark       | `task unmark TASK_INDEX`                                                                               | `task unmark 1`                                                                                    |
+| Task delete       | `task delete INDEX`                                                                                    | `task delete 3`                                                                                    |
+| Task set deadline | `task do TASK_INDEX by/DATE...`                                                                        | `task do 1 by/tomorrow`                                                                            |
+| Task sort         | `task sort`                                                                                            | -                                                                                                  |
+| Task filter       | `task list`                                                                                            | -                                                                                                  |
 | Task edit         | `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@PERSONS_INDEX] ... [-@PERSONS_INDEX]...` | `task edit 2 ti/Finish bar by/tomorrow`                                                            |
-| Task project      | `task project`                                                                                       | -                                                                                                  |
+| Task project      | `task project`                                                                                         | -                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -656,4 +657,4 @@ Details of each task can be added, which helps the team managers no fear of leav
 
 --------------------------------------------------------------------------------------------------------------------
 
-### This is the end of Arrow user guide, if you reach this far, thank you for your reading and hope you enjoying using our app :)
+This is the end of Arrow User Guide. If you have reached this far, thank you for reading and hope you enjoy using our app :)
