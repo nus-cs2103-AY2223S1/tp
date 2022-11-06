@@ -36,6 +36,7 @@ deactivate AddTagCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
+destroy AddTagCommandParser
 
 LogicManager -> AddTagCommand : execute()
 activate AddTagCommand

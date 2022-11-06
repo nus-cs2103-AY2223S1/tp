@@ -47,7 +47,11 @@ This user guide also provides comprehensive explanations so that you know how to
 3. Copy the file to the folder you want to use as the _home folder_ for your YellowBook.
 
 4. Double-click the file to start the app. The GUI, as shown in the image below, should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+<figure>
+<img src="images/Ui.png" alt="Ui" style="width:100%">
+<figcaption align = "center"><i>Fig.1 - App UI</i></figcaption>
+</figure>
 
 5. Try out some commands from the [Sample Usage](#sample-usage) section.
 
@@ -65,9 +69,29 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
+<figure>
+<img src="images/listC.png" alt="listC" style="width:100%">
+<figcaption align = "center"><i>Fig.2 - Result of listC</i></figcaption>
+</figure>
+
+<figure>
+<img src="images/listT.png" alt="listT" style="width:100%">
+<figcaption align = "center"><i>Fig.3 - Result of listT</i></figcaption>
+</figure>
+
 3. Now that you can navigate between the contact and task lists, let's add a new contact. Type `addC n/Elmo p/91238888 e/elmo@sesamestreet.com a/sesame street` in the command box and press Enter to execute it. You should see a message indicating that the contact has been added successfully and Elmo will appear in your contact list.
 
+<figure>
+<img src="images/step3.png" alt="step3" style="width:100%">
+<figcaption align = "center"><i>Fig.4 - Result of addC</i></figcaption>
+</figure>
+
 4. YellowBook also allows you to add tasks, to add homework task with deadline of 25 December 2022. Type `addT d/complete homework D/25-12-2022` in the command box and press Enter to execute it. You should see a message indicating that the task has been added successfully and the task will appear in your task list.
+
+<figure>
+<img src="images/step4.png" alt="step4" style="width:100%">
+<figcaption align = "center"><i>Fig.5 - Result of addT</i></figcaption>
+</figure>
 
 5. Now that you know the basic commands, try following the guide for the label command to tag the newly added `Elmo` contact as `friend`.
 
@@ -242,6 +266,11 @@ Example:
 
 * `copyC CS2103T` returns a string of emails of contacts that contain the label `CS2103T`.
 
+<figure>
+<img src="images/copyC.png" alt="copyC" style="width:100%">
+<figcaption align = "center"><i>Fig.6 - Result of copyC when applied to contacts with the label "CS2103T"</i></figcaption>
+</figure>
+
 [[Back to Table of Contents](#table-of-contents)]
 
 ## Section 2: Tasks
@@ -300,6 +329,11 @@ Format: `listAT`
 * Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
 
 * Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
+
+<figure>
+<img src="images/listAT.png" alt="listAT" style="width:100%">
+<figcaption align = "center"><i>Fig.7 - Result of listAT</i></figcaption>
+</figure>
 
 ### Deleting a task: `deleteT`
 
@@ -388,6 +422,11 @@ Examples:
 
 * `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
 
+<figure>
+<img src="images/markT.png" alt="markT" style="width:100%">
+<figcaption align = "center"><i>Fig.8 - Result of markT when applied to the first task in the list</i></figcaption>
+</figure>
+
 ### Marking task as incomplete: `unmarkT`
 
 Marks a task in the task list as incomplete.
@@ -437,6 +476,11 @@ Example:
 
 * `remindT 12-09-2022` will list all tasks with deadlines up to and including 12-09-2022.
 
+<figure>
+<img src="images/remindT.png" alt="remindT" style="width:100%">
+<figcaption align = "center"><i>Fig.9 - Result of remindT when only one task is on 12-09-2022 or earlier</i></figcaption>
+</figure>
+
 ### Showing the percentage of tasks with the specified tags that are completed: `progressT`
 
 Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
@@ -459,6 +503,11 @@ Example:
 
 * `progressT cs2103t` will show the percentage of tasks with label `cs2103t` that are completed, then list all tasks with labels matching at least one keyword.
 
+<figure>
+<img src="images/progressT.png" alt="progressT" style="width:100%">
+<figcaption align = "center"><i>Fig.10 - Result of progressT where only one of two GEA1000 tasks has been completed</i></figcaption>
+</figure>
+
 ### Sorting all tasks by deadline: `sortD`
 
 Sorts all tasks in the task list by deadline.
@@ -468,6 +517,11 @@ Sorts all tasks in the task list by deadline.
 * The list remains in this sorted order until a different sort command is used.
 
 Format: `sortD`
+
+<figure>
+<img src="images/sortD.png" alt="sortD" style="width:100%">
+<figcaption align = "center"><i>Fig.11 - Result of sortD</i></figcaption>
+</figure>
 
 ### Sorting all tasks by id: `sortI`
 
@@ -480,6 +534,11 @@ Sorts all tasks in the task list by id.
 * The list remains in this sorted order until a different sort command is used.
 
 Format: `sortI`
+
+<figure>
+<img src="images/sortI.png" alt="sortI" style="width:100%">
+<figcaption align = "center"><i>Fig.12 - Result of sortI</i></figcaption>
+</figure>
 
 [[Back to Table of Contents](#table-of-contents)]
 
@@ -501,10 +560,6 @@ With our label feature, managing your numerous projects on the go has just gotte
 :bulb: Multiple labels can be specified.<br>
 
 </div>
-
-### Listing all labels: `listL`
-
-Shows a list of all existing labels in the address book.
 
 ### Adding a label to a contact/task: `addL`
 
@@ -532,12 +587,16 @@ Example:
 
 * `addL c/3 t/12 l/CS2103T` will add the label "CS2103T" to the 3rd contact on the contact list and 12th task on the task list.
 
-### Removing a label from a contact/task: `deleteL`
+### Listing all labels: `listL`
 
-Removes a label from an existing contact/task in YellowBook.
+Shows a list of all existing labels in the address book.
 
-If contact/task is last remaining contact/task with said label, label is removed from the label list.
-Otherwise, it is only removed from the specified contact/task label list.
+### Deleting a label from a contact/task: `deleteL`
+
+Deletes a label from an existing contact/task in YellowBook.
+
+If contact/task is last remaining contact/task with said label, label is deleted from the label list.
+Otherwise, it is only deleted from the specified contact/task label list.
 
 Only a maximum of one contact and one task can be edited within the same command.
 
@@ -557,7 +616,7 @@ Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
-* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact and 14th task on the task list.
+* `deleteL c/12 t/14 l/CS2101` will remove the label "CS2101" from the 12th contact on the contact list and 14th task on the task list.
 
 ### Deleting all contacts and tasks by label: `deleteA`
 
@@ -572,6 +631,12 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
 <div markdown="span" class="alert alert-warning">:warning: Label does not exist.
 </div>
+
+<figure>
+<img src="images/deleteA.png" alt="deleteA" style="width:100%">
+<figcaption align = "center"><i>Fig.13 - Result of deleteA when applied to all contacts/tasks from GEA1000</i></figcaption>
+</figure>
+
 
 [[Back to Table of Contents](#table-of-contents)]
 
