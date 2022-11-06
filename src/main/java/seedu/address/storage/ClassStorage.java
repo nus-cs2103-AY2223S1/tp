@@ -81,7 +81,7 @@ public class ClassStorage {
      *
      * @return HashMap object.
      */
-    public static HashMap<LocalDate, List<Student>> initialiseClass() throws IOException {
+    private static HashMap<LocalDate, List<Student>> initialiseClass() throws IOException {
         HashMap<LocalDate, List<Student>> map = new HashMap<>();
         ObservableList<Student> listOfStudents = teachersPet.getStudentList();
         for (Student student : listOfStudents) {

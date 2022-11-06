@@ -45,6 +45,9 @@ You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Design
+
+This section gives you a high-level overview of how **Teacher’s Pet** is structured and how the main components interact with one another.
+
 ### Architecture
 
 <img src="images/DG-images/ArchitectureDiagram.png" width="280" />
@@ -698,12 +701,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                                             |
-|---------------|--------------------------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X                             |
-| CLI           | Command Line Interface                                 |
-| Class         | The 1-1 tutoring time slot of a student                |
-| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
+| Terms         | Definition                                                                                              |
+|---------------|---------------------------------------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                              |
+| CLI           | Command Line Interface                                                                                  |
+| Class         | The 1-1 tutoring time slot of a student                                                                 |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                                                  |
+| Use case      | It describes an interaction between the user and the system for a specific functionality of the system. |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
