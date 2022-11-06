@@ -13,7 +13,7 @@ import seedu.travelr.model.component.Title;
 /**
  * Represents the AddEventToTripCommandParser.
  */
-public class AddEventToTripCommandParser {
+public class AddEventToTripCommandParser implements Parser<AddEventToTripCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -22,6 +22,7 @@ public class AddEventToTripCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEventToTripCommand parse(String args) throws ParseException {
+        System.out.println(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_TRIP);
 

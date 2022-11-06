@@ -13,7 +13,7 @@ import seedu.travelr.model.component.Title;
 /**
  * Represents the DeleteEventFromTripCommandParser.
  */
-public class DeleteEventFromTripCommandParser {
+public class DeleteEventFromTripCommandParser implements Parser<DeleteEventFromTripCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

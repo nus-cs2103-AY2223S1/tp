@@ -11,7 +11,7 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 /**
  * Represents the AddEventToTripCommandParser.
  */
-public class UnmarkDoneTripCommandParser {
+public class UnmarkDoneTripCommandParser implements Parser<UnmarkDoneTripCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
