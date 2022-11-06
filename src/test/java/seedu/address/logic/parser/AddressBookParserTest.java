@@ -33,7 +33,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListStuCommand;
+import seedu.address.logic.commands.MarkQCommand;
 import seedu.address.logic.commands.MarkTutorialCommand;
+import seedu.address.logic.commands.UnmarkQCommand;
 import seedu.address.logic.commands.UnmarkTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Response;
@@ -103,6 +105,22 @@ public class AddressBookParserTest {
         DeleteQCommand command = (DeleteQCommand) parser.parseCommand(
                 DeleteQCommand.COMMAND_WORD + " " + INDEX_FIRST_QUESTION.getOneBased());
         assertEquals(new DeleteQCommand(INDEX_FIRST_QUESTION), command);
+    }
+
+    @Test
+    public void parseCommand_markq() throws Exception {
+        MarkQCommand command = (MarkQCommand) parser.parseCommand(
+                MarkQCommand.COMMAND_WORD + " " + INDEX_FIRST_QUESTION.getOneBased()
+        );
+        assertEquals(new MarkQCommand(INDEX_FIRST_QUESTION), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkq() throws Exception {
+        UnmarkQCommand command = (UnmarkQCommand) parser.parseCommand(
+                UnmarkQCommand.COMMAND_WORD + " " + INDEX_FIRST_QUESTION.getOneBased()
+        );
+        assertEquals(new UnmarkQCommand(INDEX_FIRST_QUESTION), command);
     }
 
     @Test
