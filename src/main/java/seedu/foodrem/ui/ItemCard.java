@@ -3,6 +3,7 @@ package seedu.foodrem.ui;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -53,8 +54,14 @@ public class ItemCard extends UiPart<Region> {
 
         quantity.setText(ItemView.buildItemQuantityAndUnitStringFrom(item));
         quantity.setTextAlignment(TextAlignment.RIGHT);
+        createTagsUi(item.getTagSet());
+    }
 
-        final List<Tag> tagList = new ArrayList<>(item.getTagSet());
+    /**
+     * Creates a tag ui to display the tags.
+     */
+    private void createTagsUi(Set<Tag> tagSet) {
+        final List<Tag> tagList = new ArrayList<>(tagSet);
         tagList.sort(Comparator.comparing(Tag::getName));
 
         int currentLength = 0;
@@ -69,7 +76,7 @@ public class ItemCard extends UiPart<Region> {
             tags.getChildren().add(TagView.from(tag, true));
         }
 
-        final int size = item.getTagSet().size();
+        final int size = tagSet.size();
         if (size > currentIndex) {
             final Label overflowLabel = new Label(String.format("+%d more...", size - currentIndex));
             overflowLabel.getStyleClass().add("tags-overflow-label");
