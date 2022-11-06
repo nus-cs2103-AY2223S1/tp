@@ -108,7 +108,7 @@ public class ParserUtilTest {
     @Test
     public void parseLessonDesc_validDescWithWhiteSpace_returnsLessonDesc() throws Exception {
         String lessonDescWithWhiteSpace = WHITESPACE + VALID_LESSON_DESC + WHITESPACE;
-        LessonDesc expectedLessonDesc = new LessonDesc(lessonDescWithWhiteSpace);
+        LessonDesc expectedLessonDesc = new LessonDesc(VALID_LESSON_DESC);
         assertEquals(expectedLessonDesc, ParserUtil.parseLessonDesc(lessonDescWithWhiteSpace));
     }
 
