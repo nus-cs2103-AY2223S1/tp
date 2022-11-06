@@ -59,6 +59,9 @@ public class DecrementCommand extends Command {
                 itemToDecrement.getTagSet());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -76,6 +79,9 @@ public class DecrementCommand extends Command {
                 "Decremented successfully and updated item as follows:"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
@@ -84,6 +90,11 @@ public class DecrementCommand extends Command {
                 && quantity.equals(((DecrementCommand) other).quantity));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return DECREMENT_COMMAND.getUsage();
     }

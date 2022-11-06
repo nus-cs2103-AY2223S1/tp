@@ -16,10 +16,16 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs the FindCommand.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
@@ -28,10 +34,18 @@ public class FindCommand extends Command {
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getCurrentList().size()));
     }
 
+    /**
+     * Returns a string representing how to use the command.
+     *
+     * @return a string representing how to use the command.
+     */
     public static String getUsage() {
         return FIND_COMMAND.getUsage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
