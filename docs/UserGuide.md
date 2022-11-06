@@ -147,6 +147,8 @@ Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip:** A patient can have up to 3 different tags.
+  
+</div>
 
 Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
