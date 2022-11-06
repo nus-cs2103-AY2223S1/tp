@@ -17,30 +17,16 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-
-        boolean isStudent = false;
-
-        if (student.getPhone() != null) {
-            isStudent = isStudent || keywords.stream().anyMatch(
-                    keyword -> StringUtil.containsPartialWordIgnoreCase(student.getPhone().toString(), keyword));
-        }
-
-        if (student.getEmail() != null) {
-            isStudent = isStudent || keywords.stream().anyMatch(
-                    keyword -> StringUtil.containsPartialWordIgnoreCase(student.getEmail().toString(), keyword));
-        }
-
-        if (student.getGitHub() != null) {
-            isStudent = isStudent || keywords.stream().anyMatch(
-                    keyword -> StringUtil.containsPartialWordIgnoreCase(student.getGitHub().username, keyword));
-        }
-
-        return isStudent
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName, keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(student.getTelegram().toString(), keyword)
-                );
+        return keywords.stream().anyMatch(
+                keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName, keyword))
+                || keywords.stream().anyMatch(
+                        keyword -> StringUtil.containsPartialWordIgnoreCase(student.getTelegram().toString(), keyword))
+                || (student.getGitHub() != null && keywords.stream().anyMatch(
+                        keyword -> StringUtil.containsPartialWordIgnoreCase(student.getGitHub().toString(), keyword)))
+                || (student.getEmail() != null && keywords.stream().anyMatch(
+                        keyword -> StringUtil.containsPartialWordIgnoreCase(student.getEmail().toString(), keyword)))
+                || (student.getPhone() != null && keywords.stream().anyMatch(
+                        keyword -> StringUtil.containsPartialWordIgnoreCase(student.getPhone().toString(), keyword)));
     }
 
     @Override

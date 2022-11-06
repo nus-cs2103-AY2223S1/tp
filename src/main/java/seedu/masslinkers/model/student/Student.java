@@ -204,7 +204,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name and telegram.
+     * Returns true if both students have the same Telegram handle/GitHub username/email/phone.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -215,25 +215,10 @@ public class Student {
             return false;
         }
 
-        boolean hasOverlaps = false;
-
-        if (otherStudent.getTelegram() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getTelegram().equals(getTelegram());
-        }
-
-        if (otherStudent.getEmail() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getEmail().equals(getEmail());
-        }
-
-        if (otherStudent.getGitHub() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getGitHub().equals(getGitHub());
-        }
-
-        if (otherStudent.getPhone() != null) {
-            hasOverlaps = hasOverlaps || otherStudent.getPhone().equals(getPhone());
-        }
-
-        return hasOverlaps;
+        return (otherStudent.getTelegram() != null && otherStudent.getTelegram().equals(getTelegram()))
+                || (otherStudent.getEmail() != null && otherStudent.getEmail().equals(getEmail()))
+                || (otherStudent.getGitHub() != null && otherStudent.getGitHub().equals(getGitHub()))
+                || (otherStudent.getPhone() != null && otherStudent.getPhone().equals(getPhone()));
     }
     /**
      * Returns true if both students have the same identity and data fields.
