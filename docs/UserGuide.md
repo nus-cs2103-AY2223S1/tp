@@ -44,20 +44,9 @@ For first-time users, we also recommend you to first read through the various [p
         - [Edit](#editing-a-module-editm)
         - [Delete](#deleting-a-module-deletem)
         - [Find](#finding-a-module-findm)
-- [Person Fields](#person-fields)
-    - [Name](#name)
-    - [Phone number](#phone-number)
-    - [Module code](#module-code)
-    - [Email address](#email-address)
-    - [Telegram handle](#telegram-handle)
-    - [Person tags](#tags)
-- [Module Fields](#module-fields)
-    - [Module Code](#module-code)
-    - [Lecture Details](#lecture-details)
-    - [Lecture Zoom Link](#lecture-zoom-link)
-    - [Tutorial Details](#tutorial-details)
-    - [Tutorial Zoom Link](#tutorial-zoom-link)
-    - [Assignment Details](#assignment-details)
+- [Field Details](#field-details)
+    - [Person Fields](#person-fields)
+    - [Module Fields](#module-fields)
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 - [Glossary](#glossary)
@@ -336,6 +325,8 @@ Examples:
 
 ------------------------------------------------------------------------------------------------------------------------
 
+# Field Details
+
 ## Person Fields
 
 | Field Type      | Field Description                         | Identifier | Optional | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -346,10 +337,6 @@ Examples:
 | Email Address   | A person's email address                  | e/         | ✓        | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
 | Telegram Handle | A person's telegram                       | tg/        | ✓        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
 | Tags            | A person's tag                            | t/         | ✓        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-[Back to top](#welcome-to-socompilers-user-guide)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Module Fields
 
