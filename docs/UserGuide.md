@@ -390,7 +390,7 @@ E.g. `grade edit 1 1 gr/T`
 
 **:information_source: Notes:**<br>
 
-- `index` must be a positive integer and a valid index
+- Both `studentIndex` and `taskIndex` must be positive integers and valid indices
 </div>
 
 #### Display assignment grade status
@@ -405,7 +405,7 @@ E.g. `grade view 3 7`
 
 **:information_source: Notes:**<br>
 
-- `index` must be a positive integer and a valid index
+- Both `studentIndex` and `taskIndex` must be positive integers and valid indices
 </div>
 
 ### General
