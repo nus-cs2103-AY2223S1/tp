@@ -99,6 +99,10 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <img src="images/DebtList.png" width="800" /> <br>
 
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
+</div>
+
 <div style="page-break-after: always;"></div>
 
 <div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-secondary">
