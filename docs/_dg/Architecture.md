@@ -25,7 +25,7 @@ The rest of the App consists of four components.
 
 #### How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the Item List Box.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the [[ item-list-box:Item List Box ]].
 
 ![](images/ArchitectureSequenceDiagram.png)
 

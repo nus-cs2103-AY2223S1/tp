@@ -16,7 +16,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 #### Create a new Item
 
-1. Test case: `new n/Potato qty/2 u/kg bgt/10-10-2022  exp/11-11-2022 p/4 r/favourite` <br> Expected Output in Item List Box: New item added into the list. <br> Expected Output in Command Output Box: New item added message and its details.
+1. Test case: `new n/Potato qty/2 u/kg bgt/10-10-2022  exp/11-11-2022 p/4 r/favourite` <br> Expected Output in [[ item-list-box:Item List Box ]]: New item added into the list. <br> Expected Output in [[ command-output-box:Command Output Box ]]: New item added message and its details.
 1. Test case: `new qty/2` <br> Expected Output in Command Box: Error message for invalid command format.
 
 #### List all items

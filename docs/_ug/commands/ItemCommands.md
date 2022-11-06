@@ -169,7 +169,7 @@ The command will sort the items by their names.
 {% capture notes %}
 **Assumption:**
 
-The currently displayed Item List Box in FoodRem shows the item named "Onion" at INDEX value 1.
+The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Onion" at INDEX value 1.
 
 The command will produce a detailed view of this item.
 {% endcapture %}
