@@ -92,6 +92,8 @@ The GUI should be updated as shown below:
 
    You can also continue reading the [**command features**](#command-features) section to read more about how to use each command!
 
+Click to return to: [Quick Start](#quick-start), [Back to Top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## GUI Features
@@ -127,6 +129,8 @@ You can jump to the following sections:
 * [Viewing Specific Tasks](#viewing-specific-tasks)
 * [Archive Management](#archive-management)
 * [Exiting The Program](#exiting-the-program--exit)
+
+Click to return to: [Back to Top](#)
 
 ### Command Structure
 
