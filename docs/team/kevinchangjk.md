@@ -71,6 +71,7 @@ Given below are my contributions to the project.
 ### Contributions to team-based tasks
 
 - Helped to create and distribute issues.
+- Wrote test code for features that I upgraded (find, edit, and ID)
 - Contributed to manual testing of application to find bugs.
 - Oversaw backend development and upheld code quality.
 
