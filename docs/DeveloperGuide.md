@@ -347,12 +347,10 @@ Given below is an example usage scenario and how the group mechanism behaves at 
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 appointment list.
 
-Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `
-(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on
-the screen.
+Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `(k/patient)`,
+causing the modified list of appointments after the `group appts k/KEY` command executes to show on the screen.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("group appts k/KEY")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("group appts k/KEY")` API call.
 
 ![Interactions Inside the Logic Component for the `group appts k/KEY` Command](images/GroupAppointmentSequenceDiagram.png)
 
@@ -382,8 +380,8 @@ Given below is an example usage scenario and how the group mechanism behaves at 
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 patient and appointment list.
 
-Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `
-(k/patient)`, causing the modified list of appointments after the `group appts k/KEY` command executes to show on
+Step 2. The user executes `group appts k/KEY` command to group appointments by their tags `(k/tag)` or patient `(k/patient)`, 
+causing the modified list of appointments after the `group appts k/KEY` command executes to show on
 the screen or executes `group patients` command to group patients by their tags, causing the modified list of
 patients after the `group patients` command executes to show on the screen.
 
