@@ -61,7 +61,7 @@ Given below are my contributions to the project.
         * Updated user stories (Pull request [#293](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/293))
         * Added delete client/transaction/remark in `Appendix: Manual testing section` (Pull request [#298](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/298))
         * Added use cases for delete client/transaction/remark (Pull request [#301](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/301))
-        * Added use case diagram for use cases overview (Pull request [#301](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/294))
+        * Added use case diagram for use cases overview (Pull request [#301](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/301))
 
 
 * **Community**:
