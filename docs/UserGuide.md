@@ -302,8 +302,8 @@ Example:
 
 :information_source: **What is the difference between address and location?** <br>
 
-* **Address** is the specific street number and unit number of the place. <br>
-* **Location** is the country this person is based. <br>
+ * **Address** is the specific street number and unit number of the place. <br>
+ * **Location** is the country this person is based. <br>
 
 Since PetCode caters to international pet sale, it is good to have location as a separate attribute.
 Different countries have different regulations on pet sale, and you may need to filter persons by their locations for some reason.
@@ -605,8 +605,8 @@ Examples:
 For example, if you want to delete a buyer by `delete-b 1`, do ensure at index 1 is a buyer.
 This is to make sure you know what you are deleting and do not delete a contact or item by accident, since there is no `undo` command yet. <br>
 
-* To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find). <br>
-* To ensure at the index is an item, use [List command](#listing-contacts-or-items--list) or [Filter command](#filtering-items-by-attributes--filter).
+ * To ensure at the index is a contact, use [List command](#listing-contacts-or-items--list) or [Find command](#finding-contacts-using-keywords--find). <br>
+ * To ensure at the index is an item, use [List command](#listing-contacts-or-items--list) or [Filter command](#filtering-items-by-attributes--filter).
 
 </div>
 
@@ -687,9 +687,9 @@ Examples:
 
 :information_source: Notes: <br>
 
-* Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.
-* This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
-* The above principles also apply to the sub-commands of `find` given below.
+ * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed. 
+ * This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
+ * The above principles also apply to the sub-commands of `find` given below.
 
 </div>
 
@@ -759,8 +759,8 @@ Please provide **at least one** attribute when using this command.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **What is the difference between find command and filter command?** <br>
-* Find command: Finds **contact(s)**; only **one** attribute is allowed. <br>
-* Filter command: Filters **item(s)**; **multiple** attributes are allowed. 
+ * Find command: Finds **contact(s)**; only **one** attribute is allowed. <br>
+ * Filter command: Filters **item(s)**; **multiple** attributes are allowed. 
 
 </div>
 
@@ -768,10 +768,10 @@ Please provide **at least one** attribute when using this command.
 
 :information_source: Notes: <br>
 
-* This command is case-insensitive, meaning `filter-o o_st/Pending` is equivalent to `filter-o o_st/pending`. <br>
-* Having multiple prefixes of the same type is allowed, but only the latest input will be taken.
+ * This command is case-insensitive, meaning `filter-o o_st/Pending` is equivalent to `filter-o o_st/pending`. <br>
+ * Having multiple prefixes of the same type is allowed, but only the latest input will be taken.
   For example, `filter-o o_st/Pending o_st/Delivering` is equivalent to `filter-o o_st/Delivering`. <br>
-* When multiple attributes are given, items that fulfil **all** attributes are filtered out.
+ * When multiple attributes are given, items that fulfil **all** attributes are filtered out.
 
 </div>
 
