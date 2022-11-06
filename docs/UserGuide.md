@@ -23,7 +23,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 ## Table of Contents
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
