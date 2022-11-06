@@ -67,4 +67,12 @@ public class ModelBuilder {
     public Model build() {
         return new ModelManager(addressBook, userPrefs, commandHistory);
     }
+
+    /**
+     * Returns a Model with an empty
+     * By default, the set of appointments field is created but is empty
+     */
+    public Model buildEmpty() {
+        return new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+    }
 }

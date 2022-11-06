@@ -32,13 +32,14 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Location;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.ModelBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentBothFields_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model actualModel = new ModelBuilder().buildEmpty();
         Appointment appointmentToEdit = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_21_JAN_2023)
                                             .withLocation(VALID_LOCATION_NUS).build();
@@ -47,7 +48,7 @@ public class EditAppointmentCommandTest {
                     .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model expectedModel = new ModelBuilder().buildEmpty();
         Appointment editedAppointment = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_23_JAN_2023)
                                             .withLocation(VALID_LOCATION_WESTMALL).build();
@@ -71,7 +72,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentLocationFieldOnly_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model actualModel = new ModelBuilder().buildEmpty();
         Appointment appointmentToEdit = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_21_JAN_2023)
                                             .withLocation(VALID_LOCATION_NUS).build();
@@ -80,7 +81,7 @@ public class EditAppointmentCommandTest {
                 .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model expectedModel = new ModelBuilder().buildEmpty();
         Appointment editedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_WESTMALL).build();
@@ -103,7 +104,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentDateFieldOnly_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model actualModel = new ModelBuilder().buildEmpty();
         Appointment appointmentToEdit = new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build();
@@ -112,7 +113,7 @@ public class EditAppointmentCommandTest {
                 .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model expectedModel = new ModelBuilder().buildEmpty();
         Appointment editedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_23_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
@@ -136,7 +137,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editNonExistingAppointment_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model testModel = new ModelBuilder().buildEmpty();
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT).build();
         testModel.addPerson(testPerson);
 
@@ -153,8 +154,8 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_editAppointmentWithInvalidPersonIndex_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+    public void execute_editAppointmentWithOutOfBoundsPersonIndex_failure() {
+        Model testModel = new ModelBuilder().buildEmpty();
 
         Index outOfBoundsPersonIndex =
                 Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
@@ -171,8 +172,8 @@ public class EditAppointmentCommandTest {
         assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
     }
     @Test
-    public void execute_editAppointmentWithInvalidAppointmentIndex_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+    public void execute_editAppointmentWithOutOfBoundsAppointmentIndex_failure() {
+        Model testModel = new ModelBuilder().buildEmpty();
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -183,10 +184,6 @@ public class EditAppointmentCommandTest {
         Index outOfBoundsAppointmentIndex =
                 Index.fromOneBased(testModel.getFilteredPersonList().get(0)
                                                         .getAppointments().size() + 1);
-        Appointment editedAppointment = new AppointmentBuilder()
-                                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                                        .withLocation(VALID_LOCATION_WESTMALL).build();
-
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_22_JAN_2023));
@@ -202,7 +199,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentWithDuplicateDateTime_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model testModel = new ModelBuilder().buildEmpty();
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -230,7 +227,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentWithUnchangedLocation_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Model testModel = new ModelBuilder().buildEmpty();
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
