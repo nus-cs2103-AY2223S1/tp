@@ -261,8 +261,8 @@ For your convenience, please download the import template here: [template csv](f
 1. Remove the default list of students by typing `clear`
 2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
    ![example CSV](images/exampleCSV.png)
-   *Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)*
 <br/>
+   *Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)*
 3. Type the `import` command and select the CSV file you have modified
 4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
 
