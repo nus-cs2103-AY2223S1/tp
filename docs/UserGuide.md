@@ -265,6 +265,8 @@ You will remain on the home page after executing the `find-module` command. This
 from the behavior of [`goto`](#251-navigate-between-modules) command, where the person list will be
 updated with the persons associated with the module.
 
+</div>
+
 #### 2.1.5. List module
 When you are on the home page, you may obtain the list of every module in Plannit.
 
@@ -275,7 +277,6 @@ Here's a screenshot of Plannit before and after executing the command:
 | Before executing the command                                                                                                                                | After executing the command                                                                                                                                 |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="right"><i>Notice that the module list has been updated!</i><p/>{:/} |
-
 
 <br>
 
