@@ -522,15 +522,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User submits a blank or invalid criterion prefix.
 
-     * 1a1. InterNUS notifies the user that the criterion prefix is invalid.
+     * 1a1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
     
-       Use case resumes at step 1.
+       Use case ends.
 
 * 1b. User submits more than 1 criterion prefixes.
 
-     * 1b1. InterNUS notifies the user that only 1 criterion prefix can be specified.
+     * 1b1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
 
-       Use case resumes at step 1.
+       Use case ends.
 
 *{More to be added}*
 
@@ -630,12 +630,9 @@ testers are expected to do more *exploratory* testing.
       Expected: Person list is sorted by the company's names that each person is working at. Persons without an attached company name are listed at the bottom of the list.
 
    1. Test case: `sort -p n/ c/`<br>
-      Expected: Error is thrown to show that only 1 criterion prefix can be used.
+      Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
 
-   1. Test case: `sort -p`<br>
-      Expected: Error is thrown to show that there should be a recognisable criterion prefix.
-
-   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
       Expected: Similar to previous.
 
 2. Sorts person list while not all persons are being shown
@@ -649,12 +646,9 @@ testers are expected to do more *exploratory* testing.
    Expected: Person list is sorted by the company's names that each remaining person is working at. Remaining persons without an attached company name are listed at the bottom of the list.
 
    1. Test case: `sort -p n/ c/`<br>
-   Expected: Error is thrown to show that only 1 criterion prefix can be used.
+   Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
 
-   1. Test case: `sort -p`<br>
-   Expected: Error is thrown to show that there should be a recognisable criterion prefix.
-
-   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `...`.<br>
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
    Expected: Similar to previous.
 
 ### Saving data
