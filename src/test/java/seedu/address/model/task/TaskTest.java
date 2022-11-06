@@ -44,7 +44,7 @@ public class TaskTest {
     }
 
     @Test
-    public void editTaskDesc() {
+    public void editTaskDesc_success() {
         Task editedStudy = new TaskBuilder(STUDY).build();
         Name newName = new Name("SLEEP");
         LocalDate newDeadline = STUDY.getDeadline().get();

@@ -123,7 +123,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void deleteTeam_teamInModeManager_teamIsRemoved() {
+    public void deleteTeam_teamInModelManager_teamIsRemoved() {
         modelManager.addTeam(FRONTEND);
         Team teamToDelete = modelManager.getTeam(FRONTEND.getName());
         modelManager.deleteTeam(teamToDelete);
@@ -144,13 +144,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void teamHasTask_teamHasTasks_returnsTrue() {
+    public void teamHasTask_taskInTeam_returnsTrue() {
         modelManager.addTeam(FRONTEND);
         assertTrue(modelManager.teamHasTask(INDEX_FIRST_TEAM, STUDY));
     }
 
     @Test
-    public void teamHasTask_teamHasNoTasks_returnsFalse() {
+    public void teamHasTask_taskNotInTeam_returnsFalse() {
         modelManager.addTeam(FRONTEND);
         assertFalse(modelManager.teamHasTask(INDEX_FIRST_TEAM, COOK));
     }
