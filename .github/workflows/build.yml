@@ -11,6 +11,8 @@ on:
 jobs:
   jarfile:
     runs-on: ubuntu-20.04
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
@@ -49,3 +51,35 @@ jobs:
           asset_path: ./build/libs/foodrem.jar
           asset_name: foodrem.jar
           asset_content_type: application/java-archive
+  pdfs:
+    needs: jarfile
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@main
+      - name: Set up PATH
+        run: echo "$HOME/.gem/ruby/2.7.0/bin" >> $GITHUB_PATH
+      - name: Set up server dependencies
+        working-directory: ${{ github.workspace }}/docs
+        run: gem install --user-install bundler && bundle install
+      - name: Create PDFs of UG and DG
+        working-directory: ${{ github.workspace }}/docs
+        run: ./make-pdf.sh
+      - name: Upload UG to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.jarfile.outputs.upload_url }}
+          asset_path: ./docs/release/UserGuide.pdf
+          asset_name: UserGuide.pdf
+          asset_content_type: application/pdf
+      - name: Upload DG to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.jarfile.outputs.upload_url }}
+          asset_path: ./docs/release/DeveloperGuide.pdf
+          asset_name: DeveloperGuide.pdf
+          asset_content_type: application/pdf
