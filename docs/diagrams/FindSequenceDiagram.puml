@@ -27,6 +27,12 @@ create FindCommandParser
 AddressBookParser -> FindCommandParser
 activate FindCommandParser
 
+FindCommandParser --> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse("n/John a/Clementi")
+activate FindCommandParser
+
 FindCommandParser -> FindCommandParser : validateArguments(argMultimap)
 activate FindCommandParser
 FindCommandParser -> FindCommandParser
