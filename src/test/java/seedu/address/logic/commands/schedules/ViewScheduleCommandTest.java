@@ -4,31 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalSchedules.getTypicalModuleSet;
 import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
-import seedu.address.model.module.schedule.Weekdays;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ViewScheduleCommand.
@@ -102,7 +96,8 @@ public class ViewScheduleCommandTest {
         assertCommandSuccess(
                 new ViewScheduleCommand(weekdayPredicate, noModules), model,
                 new CommandResult(String.format(
-                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
+                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW,
+                                model.getFilteredScheduleList().size())),
                         false, false, false, false,
                         false, false, true, false, false),
                 expectedModel);
@@ -110,7 +105,8 @@ public class ViewScheduleCommandTest {
         assertCommandSuccess(
                 new ViewScheduleCommand(weekdayPredicateTwo, noModules), model,
                 new CommandResult(String.format(
-                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
+                        String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW,
+                                model.getFilteredScheduleList().size())),
                         false, false, false, false,
                         false, false, true, false, false),
                 expectedModel);
@@ -118,7 +114,7 @@ public class ViewScheduleCommandTest {
     }
 
     @Test
-    public void execute_ModuleCodePredicate_showScheduleOfModules() {
+    public void execute_moduleCodePredicate_showScheduleOfModules() {
         ArrayList<String> modulesList = new ArrayList<>();
         modulesList.add("CS2102");
         Set<String> modulesSet = new HashSet<>();
@@ -130,7 +126,8 @@ public class ViewScheduleCommandTest {
 
         expectedModel.updateFilteredScheduleList(modulePredicate);
         CommandResult expectedResult = new CommandResult(String.format(
-                String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, expectedModel.getFilteredScheduleList().size())),
+                String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW,
+                        expectedModel.getFilteredScheduleList().size())),
                 false, false, false, false,
                 false, false, true, false, false);
 
@@ -146,7 +143,8 @@ public class ViewScheduleCommandTest {
                 new CommandResult(String.format(String.format(
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,
-                false, false, true, false, false), expectedModel);
+                false, false, true, false, false),
+                expectedModel);
     }
 
     @Test
