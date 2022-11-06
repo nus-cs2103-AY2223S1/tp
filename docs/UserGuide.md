@@ -139,7 +139,7 @@ Format: `listC`
 
 ### Deleting a contact: `deleteC`
 
-Removes the specified contact and all its associated information from the address book.
+Deletes the specified contact and all its associated information from the address book.
 
 Format: `deleteC INDEX`
 
