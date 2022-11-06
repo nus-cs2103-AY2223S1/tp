@@ -6,10 +6,10 @@ skinparam classBackgroundColor MODEL_COLOR
 skinparam classAttributeIconSize 0
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyModQuik" as ReadOnlyModQuik
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class ModQuik
 Class ModelManager
 Class UserPrefs
 
@@ -68,32 +68,32 @@ show Reminder members
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModQuik .up.|> ReadOnlyModQuik
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .right.> ReadOnlyAddressBook
-ModelManager -right-> "1" AddressBook
+Model .right.> ReadOnlyModQuik
+ModelManager -right-> "1" ModQuik
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *-down-> "1" UniqueStudentList
+ModQuik *-down-> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 Student *--> ModuleCode
 Student *--> TutorialName
 Student *--> "*" Tag
 
-AddressBook *-down-> "1" UniqueConsultationList
+ModQuik *-down-> "1" UniqueConsultationList
 UniqueConsultationList --> "~* all" Consultation
 Consultation *--> ModuleCode
 Consultation *--> Venue
 Consultation *--> DatetimeRange
 
-AddressBook *-down-> "1" UniqueReminderList
+ModQuik *-down-> "1" UniqueReminderList
 UniqueReminderList --> "~* all" Reminder
 Reminder *--> Datetime
 
-AddressBook *-down-> "1" UniqueTutorialList
+ModQuik *-down-> "1" UniqueTutorialList
 UniqueTutorialList --> "~* all" Tutorial
 Tutorial *--> TutorialName
 Tutorial *--> ModuleCode
