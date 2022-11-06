@@ -801,6 +801,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error details are shown.
 
 ### Undo the previous command
+
 1. Undo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.)
    
@@ -814,6 +815,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error details are shown.
 
 ### Redo the previous command
+
 1. Redo a command that has made changes to the application or interview list.
    1. Prerequisites: Any command that changes the application or interview list (e.g. `add`, `delete`, `clear`, etc.) and `undo` are used, in this order.
    
@@ -826,6 +828,43 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `redo` <br>
       Expected: Error details are shown.
 
+### Adding an interview
+
+1. Adding an interview to an application without interview.
+    1. Prerequisites: Targeted application does not contain an existing interview.
+
+    1. Test case: `interview 1 ir/Technical interview id/2022-12-12 it/1400 il/Zoom`<br>
+       Expected: Interview is successfully added to the application with display index 1, success message with application and interview details is shown.
+
+    2. Test case: `interview 1 ir/Technical interview it/1400 il/Zoom`<br>
+       Expected: Missing interview date field. Interview is not added. Error details are shown.
+
+    3. Test case: `interview 0 ir/Technical interview it/1400 il/Zoom`<br>
+       Expected: Interview failed to be added. Error details are shown.
+
+2. Adding an interview to an application with an existing interview.
+    1. Prerequisites: Targeted application does contain an existing interview.
+
+    1. Test case: `interview 1 ir/Technical interview id/2022-12-12 it/1400 il/Zoom`<br>
+       Expected: Interview is successfully edited to the application with display index 1 by overwriting the old interview, success message with application and interview details is shown.
+
+3. Adding a duplicated interview to an application.
+    1. Prerequisites: Interview with clashing interview date and time is already existing in one of the other applications, e.g. `ir/Technical interview id/2022-12-12 it/1400 il/Zoom`.
+
+    2. Test case: `interview 1 ir/Online assessment id/2022-12-12 it/1400 il/Online`.
+       Expected: Interview failed to be added. Error details are shown.
+
+### Removing an interview
+
+1. Removing an interview from an application.
+    1. Test case: `remove-i 1`<br>
+       Expected: Interview with displayed index 1 is successfully removed from its application, success message with interview details is shown.
+
+    2. Test case: `remove-i 0`<br>
+       Expected: Interview failed to be added. Error details are shown.
+
+    3. Other incorrect `remove-i` commands to try: `remove-i`, `remove-i x`, `...` (where x is larger than the interview list size)<br>
+       Expected: Similar to previous.
    
 ### Saving data
 
