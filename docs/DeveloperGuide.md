@@ -737,11 +737,11 @@ testers are expected to do more *exploratory* testing.
 ### Adding an applicant
 1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
-      an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin low`.
+      an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin Low`.
    
    1. Test case: 
       ```
-      add n/Benjamin low 
+      add n/Benjamin Low 
       p/98765431 
       e/benLow@gmail.com 
       s/NUS Global Merit Scholarship 
@@ -766,7 +766,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case:
       ```
-      add n/Alex Yeoh
+      add n/Charles Shum
       m/Computer Science
       ```
       Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
@@ -777,7 +777,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing an applicant
 1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
-    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+    1. Prerequisites: List all applicants using the `list` command. Two applicants in the list. The list contains
        an applicant named `Alex Yeoh` with the following characteristics:
        ```
        Name: Alex Yeoh 
@@ -786,11 +786,25 @@ testers are expected to do more *exploratory* testing.
        Scholarship Name: NUS Global Merit Scholarship
        Email: alexyeoh@yahoo.com
        Phone Number: 87438807
+       ``` 
+       and another applicant named `Shamus Lee` with the following characteristics:
        ```
+       Name: Shamus Lee 
+       Major(s): Business
+       Application Status: pending
+       Scholarship Name: NUS Sports Scholarship
+       Email: shamusLee@yahoo.com
+       Phone Number: 87433287
+       ``` 
 
     1. Test case: `edit 1 n/Samuel Low e/samuelLow@gmail.com` <br>
        Expected: The name and email of the first applicant in the list will be modified to `Samuel Low` and `samuelLow@gmail.com`
        respectively, while the rest of the characteristics remains the same.
+
+   1. Test case: `edit 1 n/Shamus Lee` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating the first applicant's name cannot be changed to `Shamus Lee` since an applicant with 
+      name `Shamus Lee` exists in TrackAScholar.
 
     1. Test case: `edit 1 m/` <br>
        Expected: The major(s) of the first applicant in the list will be 
@@ -849,6 +863,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `pin 1`<br>
        Expected: First applicant in the list is pinned. Details of the pinned applicant shown in the status message. 
        Pinned Applicant will be shown on the right list panel. Timestamp in the status bar is updated.
+    
+    1. Test case: `pin 1` followed by `pin 1` <br>
+       Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+       indicating that the first applicant has already been pinned.
 
     1. Test case: `pin 0`<br>
        Expected: No applicant is pinned. Error details shown in the status message. Status bar remains the same.
@@ -868,7 +886,11 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `unpin Alex Yeoh`<br>
        Expected: Existing applicant with name `Alex Yeoh` in the list is unpinned. Applicant will be removed from
        the right list panel. Details of the unpinned applicant shown in the status message. Timestamp in the status bar is updated.
-
+   
+   1. Test case: `unpin Alex Yeoh` followed by `unpin Alex Yeoh` <br>
+      Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that the applicant named `Alex Yeoh` has already been unpinned.
+   
     1. Test case: `unpin Benjamin Loy`<br>
        Expected: No changes displayed on TrackAScholar GUI as the list does not contain an applicant with name `Benjamin Loy`.
        Error details shown in the status message. Status bar remains the same.
