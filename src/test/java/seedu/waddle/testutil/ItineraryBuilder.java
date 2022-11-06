@@ -17,7 +17,7 @@ public class ItineraryBuilder {
     public static final String DEFAULT_START_DATE = "2022-10-14";
     public static final String DEFAULT_DURATION = "1";
     public static final String DEFAULT_PEOPLE = "1";
-    public static final String DEFAULT_BUDGET = "100.00";
+    public static final String DEFAULT_BUDGET = "2000.00";
 
     private Description name;
     private Country country;
@@ -42,7 +42,7 @@ public class ItineraryBuilder {
      * Initializes the ItineraryBuilder with the data of {@code itineraryToCopy}.
      */
     public ItineraryBuilder(Itinerary itineraryToCopy) {
-        name = itineraryToCopy.getName();
+        name = itineraryToCopy.getDescription();
         country = itineraryToCopy.getCountry();
         startDate = itineraryToCopy.getStartDate();
         duration = itineraryToCopy.getDuration();

@@ -4,6 +4,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.model.itinerary.Description;
 
 /**
@@ -34,16 +35,32 @@ public class Item {
         return description;
     }
 
+    public String getDescriptionString(int indents) {
+        return Text.indent(this.description.toString(), indents);
+    }
+
     public Priority getPriority() {
         return priority;
+    }
+
+    public String getPriorityString(int indents) {
+        return Text.indent("★".repeat(this.priority.getValue()), indents);
     }
 
     public Cost getCost() {
         return this.cost;
     }
 
+    public String getCostString(int indents) {
+        return Text.indent("Cost $" + Text.MONEY_PRINT_FORMATTER.format(this.cost.getValue()), indents);
+    }
+
     public Duration getDuration() {
         return duration;
+    }
+
+    public String getDurationString(int indents) {
+        return Text.indent("Duration " + this.duration + " mins", indents);
     }
 
     public LocalTime getStartTime() {
@@ -55,23 +72,26 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        LocalTime end = this.startTime.plusMinutes(this.duration.getDuration());
-        // if the time overflows to next day (including 00:00), set to 23:59
-        if (end.isBefore(this.startTime) || end.equals(LocalTime.MIDNIGHT)) {
-            return LocalTime.parse("23:59");
+        LocalTime endTime = this.startTime.plusMinutes(this.duration.getValue());
+        if (this.startTime.isBefore(LocalTime.MAX) && endTime.equals(LocalTime.MIDNIGHT)) {
+            return LocalTime.MAX;
         }
-        return end;
+        return endTime;
     }
 
-    public String getTimeString() {
+    public String getTimeString(int indents) {
         if (this.startTime != null) {
+            String endTime = getEndTime().toString();
+            if (getEndTime().equals(LocalTime.MAX)) {
+                endTime = LocalTime.MIDNIGHT.toString();
+            }
             if (this.duration != null) {
-                return this.startTime + " - " + getEndTime();
+                return Text.indent("Time: " + this.startTime + " - " + endTime, indents);
             } else {
-                return this.startTime.toString();
+                return Text.indent("Time: " + this.startTime, indents);
             }
         }
-        return "(Not planned)";
+        return Text.indent("Time: (Not planned)", indents);
     }
 
     public void resetStartTime() {
@@ -94,13 +114,15 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("; Priority: ")
-                .append(getPriority())
-                .append("; Cost: ")
-                .append(getCost())
-                .append("; Duration: ")
-                .append(getDuration());
+        builder.append(getDescriptionString(Text.INDENT_NONE))
+                .append(System.getProperty("line.separator"))
+                .append(getPriorityString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getCostString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getDurationString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getTimeString(Text.INDENT_FOUR));
         return builder.toString();
     }
 }

@@ -13,7 +13,7 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Adds an itinerary to waddle.
+ * Adds an itinerary to Waddle.
  */
 public class AddCommand extends Command {
 
@@ -21,12 +21,12 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Itinerary to waddle. "
             + "Parameters: "
-            + "[" + PREFIX_DESCRIPTION + "NAME] "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_START_DATE + "START_DATE "
+            + PREFIX_ITINERARY_DURATION + "DURATION "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
-            + "[" + PREFIX_START_DATE + "START DATE] "
-            + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
-            + "[" + PREFIX_PEOPLE + "PEOPLE] "
-            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
+            + "[" + PREFIX_PEOPLE + "NUMBER_OF_WADDLERS] "
+            + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Summer Trip "
             + PREFIX_COUNTRY + "India "
@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_PEOPLE + "4 "
             + PREFIX_BUDGET + "1000 ";
 
-    public static final String MESSAGE_SUCCESS = "New itinerary added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New itinerary added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ITINERARY = "This itinerary already exists";
 
     private final Itinerary toAdd;

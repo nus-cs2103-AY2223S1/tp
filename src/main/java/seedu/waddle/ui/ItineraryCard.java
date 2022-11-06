@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.waddle.model.itinerary.Budget;
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -49,18 +49,12 @@ public class ItineraryCard extends UiPart<Region> {
         super(FXML);
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
-        name.setText(itinerary.getName().description);
-        country.setText("Country: " + itinerary.getCountry().toString());
-        time.setText("Dates: " + itinerary.getTimeString());
-        duration.setText("Duration: " + itinerary.getDuration().toString() + " Days");
-        people.setText("Waddlers: " + itinerary.getPeople().numOfPeople);
-        Budget itineraryBudget = itinerary.getBudget();
-        if (itineraryBudget.getSpending() == 0) {
-            budget.setText("Budget: $" + itineraryBudget.getValue());
-        } else {
-            budget.setText("Budget: $" + itineraryBudget.getValue() + ", $"
-                    + itineraryBudget.calculateLeftOverBudget() + " remaining");
-        }
+        name.setText(itinerary.getDescriptionString(Text.INDENT_NONE));
+        country.setText(itinerary.getCountryString(Text.INDENT_NONE));
+        time.setText(itinerary.getTimeString(Text.INDENT_NONE));
+        duration.setText(itinerary.getDurationString(Text.INDENT_NONE));
+        people.setText(itinerary.getPeopleString(Text.INDENT_NONE));
+        budget.textProperty().bind(itinerary.getObservableBudgetString(Text.INDENT_NONE));
     }
 
     @Override

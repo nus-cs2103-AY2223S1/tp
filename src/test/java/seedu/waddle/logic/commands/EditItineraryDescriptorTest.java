@@ -6,7 +6,7 @@ import static seedu.waddle.logic.commands.CommandTestUtil.DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 
@@ -37,7 +37,7 @@ public class EditItineraryDescriptorTest {
 
         // different name -> returns false
         EditItineraryDescriptor editedSummer =
-                new EditItineraryDescriptorBuilder(DESC_SUMMER).withName(VALID_NAME_WINTER).build();
+                new EditItineraryDescriptorBuilder(DESC_SUMMER).withName(VALID_ITINERARY_DESC_WINTER).build();
         assertFalse(DESC_SUMMER.equals(editedSummer));
 
         // different country -> returns false

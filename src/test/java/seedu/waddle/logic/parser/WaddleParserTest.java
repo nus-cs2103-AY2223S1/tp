@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.ClearCommand;
 import seedu.waddle.logic.commands.DeleteCommand;
@@ -35,6 +36,9 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         Itinerary itinerary = new ItineraryBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ItineraryUtil.getAddCommand(itinerary));
         assertEquals(new AddCommand(itinerary), command);
@@ -42,12 +46,18 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITINERARY.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_ITINERARY), command);
@@ -55,6 +65,9 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         Itinerary itinerary = new ItineraryBuilder().build();
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(itinerary).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
@@ -71,6 +84,9 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
@@ -85,18 +101,27 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
+        // switch to home page
+        StageManager.getInstance().setHomeStage();
+
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
             -> parser.parseCommand("unknownCommand"));
     }

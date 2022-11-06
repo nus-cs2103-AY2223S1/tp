@@ -27,7 +27,7 @@ public class ItineraryUtil {
      */
     public static String getItineraryDetails(Itinerary itinerary) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_DESCRIPTION + itinerary.getName().description + " ");
+        sb.append(PREFIX_DESCRIPTION + itinerary.getDescription().description + " ");
         sb.append(PREFIX_COUNTRY + itinerary.getCountry().country + " ");
         sb.append(PREFIX_START_DATE + itinerary.getStartDate().toString() + " ");
         sb.append(PREFIX_ITINERARY_DURATION + itinerary.getDuration().toString() + " ");

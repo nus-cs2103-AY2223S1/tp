@@ -25,7 +25,7 @@ public class JsonAdaptedItineraryTest {
     private static final String INVALID_PEOPLE = "three";
     private static final String INVALID_BUDGET = "$4000";
 
-    private static final String VALID_NAME = SUMMER.getName().toString();
+    private static final String VALID_NAME = SUMMER.getDescription().toString();
     private static final String VALID_COUNTRY = SUMMER.getCountry().toString();
     private static final String VALID_START_DATE = SUMMER.getStartDate().toString();
     private static final String VALID_DURATION = SUMMER.getDuration().toString();

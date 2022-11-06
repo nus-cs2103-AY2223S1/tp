@@ -27,10 +27,10 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
      */
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                                           PREFIX_COST, PREFIX_ITEM_DURATION);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_ITEM_DURATION,
+                                           PREFIX_PRIORITY, PREFIX_COST);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_ITEM_DURATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                    AddItemCommand.MESSAGE_USAGE));

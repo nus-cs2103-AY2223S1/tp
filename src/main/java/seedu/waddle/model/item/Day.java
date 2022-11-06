@@ -1,11 +1,15 @@
 package seedu.waddle.model.item;
 
+import static seedu.waddle.commons.core.Messages.MESSAGE_CONFLICTING_ITEMS;
+import static seedu.waddle.commons.core.Messages.MESSAGE_ITEM_PAST_MIDNIGHT;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
-import seedu.waddle.commons.core.Messages;
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.PdfFieldInfo;
 import seedu.waddle.logic.PdfFiller;
@@ -23,7 +27,7 @@ public class Day {
         }
     };
     private final int dayNumber;
-    private UniqueItemList itemList;
+    private final UniqueItemList itemList;
 
     /**
      * Constructor.
@@ -42,14 +46,17 @@ public class Day {
      * @throws CommandException Conflicting items message thrown if there are time conflicts.
      */
     public void addItem(Item item) throws CommandException {
-        ArrayList<Item> conflictingItems = getConflictingItems(item);
+        Optional<ArrayList<Item>> conflictingItems = getConflictingItems(item);
+        if (conflictingItems.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_ITEM_PAST_MIDNIGHT, item.getDescription()));
+        }
         StringBuilder conflicts = new StringBuilder();
-        if (!conflictingItems.isEmpty()) {
-            for (Item cItem : conflictingItems) {
+        if (!conflictingItems.get().isEmpty()) {
+            for (Item cItem : conflictingItems.get()) {
                 conflicts.append("    ").append(cItem.getDescription()).append(": ").append(cItem.getStartTime())
                         .append(" - ").append(cItem.getEndTime()).append("\n");
             }
-            throw new CommandException(String.format(Messages.MESSAGE_CONFLICTING_ITEMS, conflicts));
+            throw new CommandException(String.format(MESSAGE_CONFLICTING_ITEMS, conflicts));
         }
         this.itemList.add(item);
         this.itemList.sort(startTimeComparator);
@@ -84,28 +91,39 @@ public class Day {
     }
 
     /**
-     * For a given item, return a list of items that conflict in time.
+     * For a given item, return an Optional list of items that conflict in time.
+     * An Optional with an empty list is returned if there are no conflicts.
+     * If the item goes past midnight (not allowed), an empty Optional is returned.
+     * If there are conflicting items, an Optional with the list of conflicting items are returned.
      *
      * @param newItem The item to check for.
      * @return A list of conflicting items, possibly an empty list.
      */
-    private ArrayList<Item> getConflictingItems(Item newItem) {
+    private Optional<ArrayList<Item>> getConflictingItems(Item newItem) {
         ArrayList<Item> conflictingItems = new ArrayList<>();
+        // item goes past midnight and overflows
+        if (newItem.getEndTime().isBefore(newItem.getStartTime())
+                || newItem.getEndTime().equals(newItem.getStartTime())) {
+            return Optional.empty();
+        }
+        // check for conflicting items
         for (Item item : this.itemList) {
             // same start time
             boolean sameStartTime = item.getStartTime().equals(newItem.getStartTime());
-            // start time of new item is within the duration of a preceding item
-            boolean startTimeConflict = newItem.getStartTime().isAfter(item.getStartTime())
-                && newItem.getStartTime().isBefore(item.getEndTime());
-            // end time of new item eats into a proceeding item
-            boolean endTimeConflict = newItem.getEndTime().isAfter(item.getStartTime())
-                    && newItem.getEndTime().isBefore(item.getEndTime());
+            // if new start time is before item start time
+            // conflict if new end time is after item start time
+            boolean startTimeConflict = newItem.getStartTime().isBefore(item.getStartTime())
+                    && newItem.getEndTime().isAfter(item.getStartTime());
+            // if new start time is after item start time
+            // conflict if new start time is before item end time
+            boolean endTimeConflict = newItem.getStartTime().isAfter(item.getStartTime())
+                    && newItem.getStartTime().isBefore(item.getEndTime());
 
             if (sameStartTime || startTimeConflict || endTimeConflict) {
                 conflictingItems.add(item);
             }
         }
-        return conflictingItems;
+        return Optional.of(conflictingItems);
     }
 
     public int getItemSize() {
@@ -137,7 +155,7 @@ public class Day {
         vacantSlots.append((this.dayNumber + 1)).append(":").append(System.getProperty("line.separator"));
 
         ArrayList<Period> vacantPeriods = new ArrayList<>();
-        Period toBeSplit = new Period(LocalTime.MIN, LocalTime.parse("23:59"));
+        Period toBeSplit = new Period(LocalTime.MIN, LocalTime.MAX);
         for (Item item : this.itemList) {
             vacantPeriods.addAll(splitTimeSlot(toBeSplit, new Period(item.getStartTime(), item.getEndTime())));
             if (vacantPeriods.size() > 0) {
@@ -153,8 +171,8 @@ public class Day {
             vacantPeriods.add(toBeSplit);
         }
         for (Period period : vacantPeriods) {
-            vacantSlots.append("    ").append(period.getStart()).append(" - ")
-                    .append(period.getEnd()).append(System.getProperty("line.separator"));
+            vacantSlots.append("    ").append(period.getStartString()).append(" - ")
+                    .append(period.getEndString()).append(System.getProperty("line.separator"));
         }
 
         return vacantSlots.toString();
@@ -175,18 +193,51 @@ public class Day {
         return splitPeriods;
     }
 
+    /**
+     * Generates a text representation of the day.
+     *
+     * @return The text representation.
+     */
+    public String getTextRepresentation() {
+        StringBuilder dayText = new StringBuilder();
+        dayText.append("Day ").append((this.dayNumber + 1)).append(System.lineSeparator());
+        StringBuilder itemsText = new StringBuilder();
+        int itemCount = 1;
+        for (Item item : this.itemList) {
+            itemsText.append(itemCount).append(". ").append(item.toString())
+                    .append(System.lineSeparator());
+            if (itemCount < this.itemList.getSize()) {
+                itemsText.append(System.lineSeparator());
+            }
+            itemCount++;
+        }
+        dayText.append(Text.indent(itemsText.toString(), Text.INDENT_FOUR))
+                .append(System.lineSeparator());
+
+        return dayText.toString();
+    }
+
     public List<PdfFieldInfo> getPdfFieldInfoList() {
         List<PdfFieldInfo> fieldList = new ArrayList<>();
-        PdfFieldInfo day = new PdfFieldInfo("day", "Day " + Integer.toString(dayNumber + 1));
-        fieldList.add(day);
-        for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
-            if (i < this.itemList.getSize()) {
-                Item item = this.itemList.get(i);
-                PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString());
-                PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
+        for (int i = 0; i < this.itemList.getSize(); i++) {
+            Item item = this.itemList.get(i);
+            PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString(Text.INDENT_NONE));
+            PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
+            fieldList.add(time);
+            fieldList.add(activity);
+        }
+        int remainder = (fieldList.size() / 2) % PdfFiller.MAX_DISPLAY;
+        if (remainder != 0) {
+            for (int i = 0; i < PdfFiller.MAX_DISPLAY - remainder; i++) {
+                int nextPos = remainder + i;
+                PdfFieldInfo time = new PdfFieldInfo("time" + nextPos, "");
+                PdfFieldInfo activity = new PdfFieldInfo("item" + nextPos, "");
                 fieldList.add(time);
                 fieldList.add(activity);
-            } else {
+            }
+        }
+        if (fieldList.size() == 0) {
+            for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
                 PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
                 PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
                 fieldList.add(time);

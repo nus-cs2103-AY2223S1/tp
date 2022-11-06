@@ -8,9 +8,9 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  */
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
-            "Budget should only contain numbers.";
+            "Budget must be a value from $0 to $1,000,000.";
     public static final String VALIDATION_REGEX = "\\d+([.][0-9]+)?$";
-    private float initialBudget;
+    private final float initialBudget;
     private float spending;
 
     /**
@@ -21,7 +21,8 @@ public class Budget {
     public Budget(String budgetStr) {
         requireNonNull(budgetStr);
         checkArgument(isValidBudget(budgetStr), MESSAGE_CONSTRAINTS);
-        this.initialBudget = Float.parseFloat(budgetStr);
+        // round off the decimal to 2dp (money)
+        this.initialBudget = Math.round(Float.parseFloat(budgetStr) * 100.0F) / 100.0F;
         this.spending = 0;
     }
 
@@ -34,11 +35,11 @@ public class Budget {
         }
         float budget;
         try {
-            budget = Float.valueOf(test);
+            budget = Float.parseFloat(test);
         } catch (NumberFormatException e) {
             return false;
         }
-        return budget >= 0;
+        return budget >= 0 && budget <= 1000000;
     }
 
 
@@ -52,7 +53,7 @@ public class Budget {
     }
 
     public void updateSpending(float amount) {
-        this.spending += amount;
+        this.spending = Math.round((this.spending + amount) * 100.0F) / 100.0F;
     }
 
     public float calculateLeftOverBudget() {
@@ -64,7 +65,7 @@ public class Budget {
     }
 
     public void setSpending(float amt) {
-        this.spending = amt;
+        this.spending = Math.round(amt * 100.0F) / 100.0F;;
     }
 
     @Override

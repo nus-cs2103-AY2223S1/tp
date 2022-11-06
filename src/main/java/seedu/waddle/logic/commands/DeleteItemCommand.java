@@ -13,7 +13,7 @@ import seedu.waddle.model.itinerary.Itinerary;
 
 
 /**
- * Adds an item to an itinerary.
+ * Deletes an item from the itinerary.
  */
 public class DeleteItemCommand extends Command {
 
@@ -22,7 +22,7 @@ public class DeleteItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the item identified by the index number used in the displayed item list. "
             + "Parameters: "
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must exist in the Wishlist or day list)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted item: %1$s";
@@ -53,7 +53,7 @@ public class DeleteItemCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (targetIndex.getDayIndex() == null) {
-            if (targetIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+            if (targetIndex.getTaskIndex().getZeroBased() >= itinerary.getUnscheduledSize()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
             }
         } else {

@@ -6,7 +6,7 @@ import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 import seedu.waddle.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all itineraries in Waddle to the user.
  */
 public class ListCommand extends Command {
 

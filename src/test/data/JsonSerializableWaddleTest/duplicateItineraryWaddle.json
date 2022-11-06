@@ -1,6 +1,6 @@
 {
   "itineraries" : [ {
-    "name" : "Spring Trip",
+    "description" : "Spring Trip",
     "country" : "Australia",
     "startDate" : "2022-01-01",
     "duration" : "25",
@@ -84,7 +84,7 @@
       "items" : [ ]
     } ]
   }, {
-    "name" : "Spring Trip",
+    "description" : "Spring Trip",
     "country" : "Australia",
     "startDate" : "2022-01-01",
     "duration" : "25",

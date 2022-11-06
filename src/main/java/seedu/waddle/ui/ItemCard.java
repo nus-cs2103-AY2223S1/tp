@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.model.item.Item;
 
 /**
@@ -42,11 +43,11 @@ public class ItemCard extends UiPart<Region> {
         } else {
             this.id.setText(displayedIndex + ". ");
         }
-        this.description.setText(item.getDescription().description);
-        this.priority.setText("★".repeat(item.getPriority().getStars()));
-        this.duration.setText("Duration: " + item.getDuration() + " mins");
-        this.time.setText("Time: " + item.getTimeString());
-        this.cost.setText("Cost: $" + item.getCost().getValue());
+        this.description.setText(item.getDescriptionString(Text.INDENT_NONE));
+        this.priority.setText(item.getPriorityString(Text.INDENT_NONE));
+        this.duration.setText(item.getDurationString(Text.INDENT_NONE));
+        this.time.setText(item.getTimeString(Text.INDENT_NONE));
+        this.cost.setText(item.getCostString(Text.INDENT_NONE));
     }
 
     @Override

@@ -12,7 +12,7 @@ import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Waddle data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code WaddleStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(WaddleStorage waddleStorage, UserPrefsStorage userPrefsStorage) {
         this.waddleStorage = waddleStorage;
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveWaddle(ReadOnlyWaddle addressBook) throws IOException {
-        saveWaddle(addressBook, waddleStorage.getWaddleFilePath());
+    public void saveWaddle(ReadOnlyWaddle waddle) throws IOException {
+        saveWaddle(waddle, waddleStorage.getWaddleFilePath());
     }
 
     @Override
-    public void saveWaddle(ReadOnlyWaddle addressBook, Path filePath) throws IOException {
+    public void saveWaddle(ReadOnlyWaddle waddle, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        waddleStorage.saveWaddle(addressBook, filePath);
+        waddleStorage.saveWaddle(waddle, filePath);
     }
 
 }

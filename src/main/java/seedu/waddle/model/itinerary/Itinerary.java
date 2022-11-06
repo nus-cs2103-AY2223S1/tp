@@ -8,28 +8,34 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.waddle.commons.core.Messages;
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Itinerary in Waddle.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Itinerary {
 
     // Details field
-    private final Description name;
+    private final Description description;
     private final Country country;
     private final Date startDate;
     private final ItineraryDuration duration;
     private final People people;
     private final Budget budget;
+    private final StringProperty observableBudgetString;
     private final UniqueItemList unscheduledItemList;
     private final List<Day> days;
     private final Comparator<Item> priorityComparator = new Comparator<Item>() {
@@ -42,15 +48,16 @@ public class Itinerary {
     /**
      * Every field must be present and not null.
      */
-    public Itinerary(Description name, Country country, Date startDate, ItineraryDuration duration,
+    public Itinerary(Description description, Country country, Date startDate, ItineraryDuration duration,
                      People people, Budget budget) {
-        requireAllNonNull(name, startDate, duration);
-        this.name = name;
+        requireAllNonNull(description, startDate, duration);
+        this.description = description;
         this.country = country;
         this.startDate = startDate;
         this.duration = duration;
         this.people = people;
         this.budget = budget;
+        this.observableBudgetString = new SimpleStringProperty();
         this.unscheduledItemList = new UniqueItemList();
         this.days = new ArrayList<>();
         for (int i = 0; i < duration.getValue(); i++) {
@@ -59,8 +66,8 @@ public class Itinerary {
         }
     }
 
-    public Description getName() {
-        return name;
+    public Description getDescription() {
+        return description;
     }
 
     public Country getCountry() {
@@ -73,17 +80,6 @@ public class Itinerary {
 
     public ItineraryDuration getDuration() {
         return this.duration;
-    }
-
-    public String getTimeString() {
-        if (this.startDate != null) {
-            if (this.duration != null) {
-                return this.startDate + " - " + this.startDate.getValue().plusDays(this.duration.getValue());
-            } else {
-                return this.startDate.toString();
-            }
-        }
-        return "(Not planned)";
     }
 
     public People getPeople() {
@@ -107,10 +103,18 @@ public class Itinerary {
             if (i < getDuration().getValue()) {
                 this.days.set(i, dayList.get(i));
             } else {
+                // transfer all items from extra days to unscheduled item list
                 for (Item item : dayList.get(i).deleteDay()) {
                     addItem(item);
+                    this.budget.updateSpending(-item.getCost().getValue());
                 }
             }
+        }
+    }
+
+    public void setUnscheduledItems(UniqueItemList unscheduledItemList) {
+        for (Item item : unscheduledItemList) {
+            addItem(item);
         }
     }
 
@@ -124,7 +128,7 @@ public class Itinerary {
         }
 
         return otherItinerary != null
-                && otherItinerary.getName().equals(getName());
+                && otherItinerary.getDescription().equals(getDescription());
     }
 
     public boolean hasItem(Item item) {
@@ -137,6 +141,11 @@ public class Itinerary {
      * @param item Item to be added.
      */
     public void addItem(Item item) {
+        for (Day day: days) {
+            if (day.hasItem(item)) {
+                throw new DuplicateItemException();
+            }
+        }
         this.unscheduledItemList.add(item);
         sortUnscheduledItemList();
     }
@@ -169,10 +178,13 @@ public class Itinerary {
                 day.addItem(target);
                 throw e;
             }
+            this.budget.updateSpending(-target.getCost().getValue());
+            this.budget.updateSpending(editedItem.getCost().getValue());
+            this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
         }
     }
 
-    public int getItemSize() {
+    public int getUnscheduledSize() {
         return this.unscheduledItemList.getSize();
     }
 
@@ -182,6 +194,54 @@ public class Itinerary {
 
     private void sortUnscheduledItemList() {
         this.unscheduledItemList.sort(priorityComparator);
+    }
+
+    public Item getItem(MultiIndex index) {
+        if (index.getDayIndex() == null) {
+            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
+        } else {
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
+            return day.getItem(index.getTaskIndex());
+        }
+    }
+
+    /**
+     * Plan an item.
+     *
+     * @param itemIndex Index of item in unscheduled list.
+     * @param dayNumber Day to include this item.
+     * @param startTime startTime of the item.
+     * @return The planned item.
+     * @throws CommandException When adding item to specific day leads to conflict in time.
+     */
+    public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
+        Item item;
+        try {
+            item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        }
+
+        if (this.budget.calculateLeftOverBudget() - item.getCost().getValue() < 0) {
+            throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
+        }
+        item.setStartTime(startTime);
+        Day day;
+        try {
+            day = this.days.get(dayNumber.dayNumber.getZeroBased());
+            day.addItem(item);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_INDEX);
+        } catch (CommandException e) {
+            // if time conflict detected, reset the time of the item
+            item.resetStartTime();
+            throw e;
+        }
+
+        this.unscheduledItemList.remove(itemIndex.getZeroBased());
+        this.budget.updateSpending(item.getCost().getValue());
+        this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
+        return item;
     }
 
     /**
@@ -196,35 +256,30 @@ public class Itinerary {
         addItem(unplannedItem);
         sortUnscheduledItemList();
         this.budget.updateSpending(-unplannedItem.getCost().getValue());
+        this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
         return unplannedItem;
     }
 
     /**
-     * Plan an item.
-     *
-     * @param itemIndex Index of item in unscheduled list.
-     * @param dayNumber Day to include this item.
-     * @param startTime startTime of the item.
-     * @return The planned item.
-     * @throws CommandException When adding item to specific day leads to conflict in time.
+     * Calculates the total spending and updates the budget
      */
-    public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
-        Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
-        item.setStartTime(startTime);
-        Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
-        day.addItem(item);
-        this.unscheduledItemList.remove(itemIndex.getZeroBased());
-        this.budget.updateSpending(item.getCost().getValue());
-        return item;
+    public float calculateSpending() {
+        float totalSpending = 0;
+        for (Day day : this.days) {
+            for (Item item : day.getItemList()) {
+                totalSpending += item.getCost().getValue();
+            }
+        }
+        this.budget.setSpending(totalSpending);
+        return totalSpending;
     }
 
-    public Item getItem(MultiIndex index) {
-        if (index.getDayIndex() == null) {
-            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
-        } else {
-            Day day = this.days.get(index.getDayIndex().getZeroBased());
-            return day.getItem(index.getTaskIndex());
+    public String getVacantSlots() {
+        StringBuilder vacantSlots = new StringBuilder();
+        for (Day day : this.days) {
+            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
         }
+        return vacantSlots.toString();
     }
 
     public ObservableList<ObservableList<Item>> getUnmodifiableItemGroups() {
@@ -237,12 +292,66 @@ public class Itinerary {
         return FXCollections.unmodifiableObservableList(itemGroups);
     }
 
-    public String getVacantSlots() {
-        StringBuilder vacantSlots = new StringBuilder();
-        for (Day day : this.days) {
-            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
+    public String getDescriptionString(int indents) {
+        return Text.indent(this.description.toString(), indents);
+    }
+
+    public String getCountryString(int indents) {
+        return Text.indent("Country: " + this.country, indents);
+    }
+
+    public String getDurationString(int indents) {
+        return Text.indent("Duration: " + this.duration.getValue() + " Days", indents);
+    }
+
+    public String getTimeString(int indents) {
+        if (this.startDate != null) {
+            if (this.duration != null) {
+                return Text.indent("Dates: " + this.startDate + " - "
+                        + this.startDate.getValue().plusDays(this.duration.getValue() - 1), indents);
+            } else {
+                return Text.indent("Dates: " + this.startDate, indents);
+            }
         }
-        return vacantSlots.toString();
+        return Text.indent("Dates: (Not planned)", indents);
+    }
+
+    public String getPeopleString(int indents) {
+        return Text.indent("Waddlers: " + this.people, indents);
+    }
+
+    public String getBudgetString(int indents) {
+        String budgetString = Text.MONEY_PRINT_FORMATTER.format(this.budget.getValue());
+        String leftOverString = Text.MONEY_PRINT_FORMATTER.format(this.budget.calculateLeftOverBudget());
+        if (this.budget.getSpending() == 0) {
+            return Text.indent("Budget: $" + budgetString, indents);
+        } else {
+            return Text.indent("Budget: $" + budgetString + ", $"
+                    + leftOverString + " remaining", indents);
+        }
+    }
+
+    public StringProperty getObservableBudgetString(int indents) {
+        this.observableBudgetString.set(getBudgetString(indents));
+        return this.observableBudgetString;
+    }
+
+    /**
+     * Generates a text representation of the day.
+     *
+     * @return The text representation.
+     */
+    public String getTextRepresentation() {
+        StringBuilder itineraryText = new StringBuilder();
+        itineraryText.append(this)
+                .append(System.lineSeparator()).append(System.lineSeparator());
+        StringBuilder daysText = new StringBuilder();
+        for (Day day : this.days) {
+            daysText.append(day.getTextRepresentation());
+        }
+        itineraryText.append(daysText);
+
+        return itineraryText.toString();
     }
 
     /**
@@ -260,7 +369,7 @@ public class Itinerary {
         }
 
         Itinerary otherItinerary = (Itinerary) other;
-        return otherItinerary.getName().equals(getName())
+        return otherItinerary.getDescription().equals(getDescription())
                 && otherItinerary.getCountry().equals(getCountry())
                 && otherItinerary.getStartDate().equals(getStartDate())
                 && otherItinerary.getDuration().equals(getDuration())
@@ -271,31 +380,24 @@ public class Itinerary {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, country, startDate, duration, people, budget);
+        return Objects.hash(description, country, startDate, duration, people, budget);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Country: ")
-                .append(getCountry())
-                .append("; Start Date: ")
-                .append(getStartDate())
-                .append("; Duration: ")
-                .append(getDuration())
-                .append("; Number of people: ")
-                .append(getPeople())
-                .append("; Budget: ")
-                .append(getBudget())
-                .append("; Leftover Budget: ")
-                .append(getBudget().calculateLeftOverBudget());
+        builder.append(getDescriptionString(Text.INDENT_NONE))
+                .append(System.getProperty("line.separator"))
+                .append(getCountryString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getDurationString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getTimeString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getPeopleString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getBudgetString(Text.INDENT_FOUR));
 
         return builder.toString();
     }
-
-    public void setSpending(Budget budget) {
-        this.budget.setSpending(budget.getSpending());
-    }
-
 }

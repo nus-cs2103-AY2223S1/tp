@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.waddle.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Itinerary}'s {@code Description} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Itinerary> {
     private final List<String> keywords;
@@ -18,7 +18,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Itinerary> {
     @Override
     public boolean test(Itinerary itinerary) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(itinerary.getName().description, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(itinerary.getDescription()
+                        .description, keyword));
     }
 
     @Override

@@ -34,12 +34,12 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
-            + "[" + PREFIX_PRIORITY + "PRIORITY]"
-            + "[" + PREFIX_COST + "COST]"
-            + "[" + PREFIX_ITEM_DURATION + "DURATION]"
-            + "[" + PREFIX_START_TIME + "START TIME]...\n"
+            + "Parameters: INDEX (must exist in the Wishlist or day list) "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
+            + "[" + PREFIX_COST + "COST] "
+            + "[" + PREFIX_ITEM_DURATION + "DURATION] "
+            + "[" + PREFIX_START_TIME + "START_TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Visit the Eiffel Tower ";
 
@@ -90,7 +90,7 @@ public class EditItemCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (multiIndex.getDayIndex() == null) {
-            if (multiIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+            if (multiIndex.getTaskIndex().getZeroBased() >= itinerary.getUnscheduledSize()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
             }
             Item itemToEdit = itinerary.getItem(multiIndex);
@@ -111,6 +111,12 @@ public class EditItemCommand extends Command {
             }
             Item itemToEdit = itinerary.getItem(multiIndex);
             Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+            //if new cos causes over budget throw command exception
+            if (itinerary.getBudget().calculateLeftOverBudget()
+                    + itemToEdit.getCost().getValue() - editedItem.getCost().getValue() < 0) {
+                throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
+            }
+
             if (!itemToEdit.isSameItem(editedItem) && day.hasItem(editedItem)) {
                 throw new CommandException(MESSAGE_DUPLICATE_ITEM);
             }

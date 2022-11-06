@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-W11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103-W11-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W11-4/tp/branch/master/graph/badge.svg?token=45LHH4UIGB)](https://codecov.io/gh/AY2223S1-CS2103T-W11-4/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](images/Ui.png)
 
 ###Introduction
 

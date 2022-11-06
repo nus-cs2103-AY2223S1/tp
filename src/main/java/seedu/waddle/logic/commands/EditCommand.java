@@ -38,10 +38,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
-            + "[" + PREFIX_START_DATE + "START DATE] "
+            + "[" + PREFIX_START_DATE + "START_DATE] "
             + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
-            + "[" + PREFIX_PEOPLE + "PEOPLE] "
-            + "[" + PREFIX_BUDGET + "BUDGET]...\n"
+            + "[" + PREFIX_PEOPLE + "NUMBER_OF_WADDLERS] "
+            + "[" + PREFIX_BUDGET + "BUDGET]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COUNTRY + "Australia "
             + PREFIX_START_DATE + "2022-07-30 ";
@@ -73,7 +73,7 @@ public class EditCommand extends Command {
                                                    EditItineraryDescriptor editItineraryDescriptor) {
         assert itineraryToEdit != null;
 
-        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
+        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getDescription());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
@@ -83,8 +83,9 @@ public class EditCommand extends Command {
 
         Itinerary editedItinerary = new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
                 updatedPeople, updatedBudget);
-        editedItinerary.setSpending(itineraryToEdit.getBudget());
+        editedItinerary.setUnscheduledItems(itineraryToEdit.getUnscheduledItemList());
         editedItinerary.setDays(itineraryToEdit.getDays());
+        editedItinerary.calculateSpending();
         return editedItinerary;
     }
 
@@ -99,6 +100,10 @@ public class EditCommand extends Command {
 
         Itinerary itineraryToEdit = lastShownList.get(index.getZeroBased());
         Itinerary editedItinerary = createEditedItinerary(itineraryToEdit, editItineraryDescriptor);
+
+        if (editedItinerary.calculateSpending() > editedItinerary.getBudget().getValue()) {
+            throw new CommandException(Messages.MESSAGE_ITINERARY_OVER_BUDGET);
+        }
 
         if (!itineraryToEdit.isSameItinerary(editedItinerary) && model.hasItinerary(editedItinerary)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITINERARY);

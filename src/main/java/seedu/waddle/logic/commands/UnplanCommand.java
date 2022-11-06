@@ -18,7 +18,7 @@ public class UnplanCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unschedules an item identified "
             + "by the index number used in the day list.\n"
-            + "Parameters: DAY_INDEX.TASK_INDEX (must be an existing index) "
+            + "Parameters: DAY_INDEX.TASK_INDEX (must exist in the day list) "
             + "Example: " + COMMAND_WORD + " 1.2 ";
 
     public static final String MESSAGE_SUCCESS = "Item unscheduled: %1$s";
@@ -46,7 +46,7 @@ public class UnplanCommand extends Command {
         Item unplannedItem;
         try {
             unplannedItem = itinerary.unplanItem(multiIndex);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new CommandException(MESSAGE_INVALID_INDEX_NUMBER);
         }
 

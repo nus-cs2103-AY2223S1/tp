@@ -11,14 +11,14 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Moves to the planning stage of the selected itinerary.
  */
 public class SelectCommand extends Command {
     public static final String COMMAND_WORD = "select";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": selects an itinerary for planning "
             + "by the index number used in the last itineraries listing.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must exist in the itinerary list)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_SELECT_ITINERARY_SUCCESS = "Selected Itinerary: %1$s";
@@ -55,7 +55,7 @@ public class SelectCommand extends Command {
         // instead of going to wish stage by default
 
         // return command result with stage change to wish by default for now (refer above)
-        return new CommandResult(String.format(MESSAGE_SELECT_ITINERARY_SUCCESS, selectedItinerary.getName()),
+        return new CommandResult(String.format(MESSAGE_SELECT_ITINERARY_SUCCESS, selectedItinerary.getDescription()),
                 Stages.WISH);
     }
 
