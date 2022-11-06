@@ -396,7 +396,7 @@ Format:
   Calling `list` on our sample data will produce the following result:
   
 
-  ![list command](images/ug-photos/list_command.png)
+  ![list command](images/ug-photos/list_photo.png)
 
 Note:
 * Any input entered after the `list` command will be ignored.
@@ -423,7 +423,7 @@ Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) t
 `showonly n g h` will produce the following result:
 
 
-![showonly](images/ug-photos/showonly_command.png)
+![showonly](images/ug-photos/showonly_photo.png)
 
 As you can see,`showonly` displays only the specified columns and preserves the filter! This is one way you can 
 use our commands in conjunction with one another.
@@ -466,7 +466,7 @@ Residents found using `find` *stay displayed* in the table! (click [here](#locat
 
 Format: `hideonly LETTER [MORE_LETTERS]`
 
-![hideonly](images/ug-photos/hideonly_command.png)
+![hideonly](images/ug-photos/hideonly_photo.png)
 
 The following examples are to be performed one after the other:
 
@@ -525,7 +525,7 @@ Format: `find NAME [ADDITIONAL_NAMES]`
 
 Calling `find el an` on our sample data will produce the following result:
 
-![find_command](images/ug-photos/find_command.png)
+![find_command](images/ug-photos/find_photo.png)
 
 As you can see, the residents with names containing either "el" or "an", and are listed as the result of the `find` command.
 
@@ -713,7 +713,7 @@ add, remove bookings for those venues.
 
 To view the bookings, you will have to click on the tab labelled as bookings.
 
-![Booking tab](images/venue_tab_ui.png)
+![Booking tab](images/ug-photos/booking_photo.png)
 
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
