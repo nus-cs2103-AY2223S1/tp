@@ -38,7 +38,7 @@ If this is the first time you are using this user guide, it is highly recommende
         + [Adding a supplier](#adding-a-supplier--add-s)
         + [Adding an order to a buyer](#adding-an-order-to-a-buyer--add-o)
         + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-p)
-        + [Adding a person with a popup window](#adding-a-contact-with-a-popup-window--add) 
+        + [Adding a person with a popup window](#adding-a-contact-with-a-popup-window--add)
     * [Matching pets to an order](#matching-pets-to-an-order--match)
     * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
     * [Editing attributes of a contact](#editing-attributes-of-a-contact--edit)
@@ -73,7 +73,7 @@ This section will provide an overview of PetCode and explain key terms.
 
 PetCode is a free, open-source application designed for pet sales coordinators for contact information management.
 
-Due to the nature of a pet sales coordination business, you most likely have **a lot of information you need to deal with**. 
+Due to the nature of a pet sales coordination business, you most likely have **a lot of information you need to deal with**.
 For example, what orders have you received? Which orders have not been fulfilled? How should you match this order with
 the pets available? What is the contact information of your pet buyers, pet suppliers and delivery services?
 
@@ -117,7 +117,7 @@ of the terms commonly used in PetCode.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. Please kindly refer 
+1. Ensure you have Java `11` or above installed in your Computer. Please kindly refer
    [here](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
 
 2. Download the latest `petcode.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-2/tp/releases).
@@ -492,7 +492,7 @@ The followings are two ways to use this command:
 
 <div markdown="1" class="alert alert-primary">
 
-**:bulb: Tip:** **Useful keyboard shortcuts for the pop-up window:** 
+**:bulb: Tip:** **Useful keyboard shortcuts for the pop-up window:**
 
 | Keyboard shortcut | Associated action                                                                      |
 |:-----------------:|:---------------------------------------------------------------------------------------|
@@ -556,7 +556,7 @@ weightages for different fields, such as price, age, species and so on.
 
 Format: `match INDEX`
 
-Example: 
+Example:
 * To match the first order in the display list to pets in the storage: `match 1`
 
 <div markdown="span" class="alert alert-warning">
@@ -644,7 +644,7 @@ For example, if you want to edit a buyer by `edit-b 1`, do ensure at index 1 is 
 
 </div>
 
-Examples: 
+Examples:
 * `edit-b 1 n/Alex`, modifies the name of the Buyer contact at index 1 of Buyer List to Alex, if index is found.
 * `edit-s 3 n/Bobby ph/884321` modifies the name to Bobby and phone to 884321, of the Supplier contact at index 3 of Supplier List to Alex, if index is found.
 
@@ -685,9 +685,9 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Notes: <br>
+:information_source: **Notes**: <br>
 
- * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed. 
+ * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.
  * This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
  * The above principles also apply to the sub-commands of `find` given below.
 
@@ -760,7 +760,7 @@ Please provide **at least one** attribute when using this command.
 
 :information_source: **What is the difference between find command and filter command?** <br>
  * Find command: Finds **contact(s)**; only **one** attribute is allowed. <br>
- * Filter command: Filters **item(s)**; **multiple** attributes are allowed. 
+ * Filter command: Filters **item(s)**; **multiple** attributes are allowed.
 
 </div>
 
@@ -846,8 +846,8 @@ Format: `sort KEY [ATTRIBUTE]…​`
 |:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 |         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort buyer name`, <br> `sort b p n`       |
 |        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort supplier e`, <br> `sort s address`   |
-|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort d location`,  <br>`sort deliverer n` |           
-|         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`           |          
+|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br>                                                                                        | `sort d location`,  <br>`sort deliverer n` |
+|         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`           |
 |          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`            |
 
 <div markdown="span" class="alert alert-info">

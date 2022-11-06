@@ -38,7 +38,7 @@ title: Developer Guide
   * [Non-functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
 - **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
-  * [Launch and shutdown](#launch-and-shutdown) 
+  * [Launch and shutdown](#launch-and-shutdown)
   * [Delete a buyer](#deleting-a-buyer)
   * [Saving data](#saving-data)
 - **[Appendix: Effort](#appendix-effort)**
@@ -47,8 +47,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* The features Add, Edit, Delete were reused with minimal changes from the past project 
-  [Address Book Level 3](https://github.com/nus-cs2103-AY2223S1/tp) ([UG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/UserGuide.md), [DG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/DeveloperGuide.md)). 
+* The features Add, Edit, Delete were reused with minimal changes from the past project
+  [Address Book Level 3](https://github.com/nus-cs2103-AY2223S1/tp) ([UG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/UserGuide.md), [DG](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/DeveloperGuide.md)).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,9 +213,9 @@ Each `DeleteCommand` parser then returns the respective `DeleteCommand` to `Addr
 i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br>
 This way of implementation is done for commands that are very similar but have different `COMMAND_WORD`s, such as the
 AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br>
-Given below is the Parser classes diagram for the `DeleteCommand`. 
+Given below is the Parser classes diagram for the `DeleteCommand`.
 **`ParserUtil` and `Index` classes are omitted from the diagram to reduce graph complexity.**<br>
-<img src="images/DeleteCommandParserClasses.png" width="1500" />
+<img src="images/DeleteCommandParserClasses.png" width="1500" height="250"/>
 
 </div>
 
@@ -317,7 +317,7 @@ This section describes some noteworthy details on how certain features and funct
 ### Unique ID Mechanism
 
 #### Motivation for unique ID
-The `Buyer` object has a reference to `Order` object(s) and an `Order` object also has reference to a `Buyer` object. 
+The `Buyer` object has a reference to `Order` object(s) and an `Order` object also has reference to a `Buyer` object.
 Similarly, the `Supplier` object has a reference to `Pet` object(s) and vice versa.
 This bidirectional association makes it difficult to implement some JSON-related classes and methods,
 since the JSON-adapted models will recursively write these references into the `.json` file for infinite number of times.
@@ -439,11 +439,11 @@ Given below is the sequence diagram showing how the command line `add supplier` 
 
 **How the pop-window for adding a `Supplier` is created:**
 
-1. Based on the graph above, after the user enters the command line "add supplier", `MainWindow` calls `LogicManager#execute(String)`. 
+1. Based on the graph above, after the user enters the command line "add supplier", `MainWindow` calls `LogicManager#execute(String)`.
 2. The user input is then parsed by `AddressBookParser` and an `AddCommandWithPopup` instance is created.
 3. `LogicManager` then executes the `AddCommandWithPopup` and returns the `CommandResult` back to the `MainWindow`
-4. The `MainWindow` recognises from the result that a pop-up window is required for adding a `Supplier`, and invokes the `handleAddByPopup` method in itself. 
-5. The `handleAddByPopup` method then creates a `AddCommandPopupWindow`, which has a `StackPane`. The `StackPane` is in turn filled by a `PopupPanelForSupplier`. 
+4. The `MainWindow` recognises from the result that a pop-up window is required for adding a `Supplier`, and invokes the `handleAddByPopup` method in itself.
+5. The `handleAddByPopup` method then creates a `AddCommandPopupWindow`, which has a `StackPane`. The `StackPane` is in turn filled by a `PopupPanelForSupplier`.
 6. The filled `AddCommandPopupWindow` is displayed to the user.
 
 After the pop-up window is created, the user enters information about the `Supplier` in the provided text fields and saves the inputs. The sequence diagram below illustrates how the pop-up window deals with user inputs on saving step by step.
@@ -451,12 +451,12 @@ After the pop-up window is created, the user enters information about the `Suppl
 <img src="images/PopupWindowSequenceDiagram2.png"/>
 
 **How the user's input for a `Supplier` in the pop-window is saved:**
-1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`). 
-2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing. 
-3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself. 
+1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`).
+2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing.
+3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself.
 4. The generation of a `Supplier` invokes the corresponding static methods in the `ParserUtil` class for each of the supplier's attribute, until all inputs are parsed.
-5. **(NOT SHOWN IN DIAGRAM)** When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call. 
-6. The generated `Supplier` (with / without `Pet`) is used to create an `AddSupplierCommand` instance, which is then returned to the `AddCommandPopupWindow`. 
+5. **(NOT SHOWN IN DIAGRAM)** When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call.
+6. The generated `Supplier` (with / without `Pet`) is used to create an `AddSupplierCommand` instance, which is then returned to the `AddCommandPopupWindow`.
 7. The `AddCommandPopupWindow` executes the `AddSupplierCommand` instance, and gets back the `CommandResult`.
 
 The following activity diagram summarises how the UI responds to an add command with the pop-up window.
@@ -723,9 +723,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ##### Buyer side
 
-| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                                      |         
+| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                                      |
 |----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                                            |                       
+| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                                            |
 | `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                                                |
 | `* * *`  | pet sale coordinator                   | add an order to a buyer                                                                                                                                               | know what they want to buy and what their requirements are.                          |
 | `* * *`  | pet sale coordinator                   | be able to find all contacts (Buyers, Suppliers, Deliverers) by attributes (e.g Email)                                                                                | not waste time searching for a specific contact details.                             |
@@ -810,7 +810,7 @@ Use case ends.
 **MSS**
 
 1. User specifies whether (s)he is searching for a Buyer, Supplier or Deliverer, or any kind of contact and the target attribute.
-3. PetCode searches for all Buyers, Suppliers or Deliverers with that specified target attribute. 
+3. PetCode searches for all Buyers, Suppliers or Deliverers with that specified target attribute.
 4. PetCode displays these Buyers, Suppliers, Deliverers or all three.
 
 Use case ends.
@@ -943,24 +943,20 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a buyer
 
 1. Deleting a buyer while all buyers are being shown
 
     1. Prerequisites: List all buyers using the `list buyer` command. Multiple buyers in the list.
 
-    1. Test case: `delete-b 1`<br>
+    2. Test case: `delete-b 1`<br>
        Expected: First buyer is deleted from the list. Details of the deleted contact shown in the message in the result display box.
 
-    1. Test case: `delete-b 0`<br>
+    3. Test case: `delete-b 0`<br>
        Expected: No person is deleted. Error details shown in the message in the result display box.
 
-    1. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -971,8 +967,40 @@ testers are expected to do more *exploratory* testing.
 
 2. Dealing with invalid data in data file
 
-   1. Open the `addressbok.json` file. Change one of the fields to an invalid data, e.g change one of the `personCategory` 
+   1. Open the `addressbok.json` file. Change one of the fields to an invalid data, e.g change one of the `personCategory`
       fields under the `buyers` to be `invalid`. Launch the application.<br>
       Expected: Application starts up with no sample data.
 
 ## **Appendix: Effort**
+Our group feels that we have put in **much more effort** than what was required for this project. We faced several difficulties
+in maintaining several entity types. Due to the nature of our product, we had to handle five different entities - `Buyer`,
+`Supplier`, `Deliverer`, `Order` and `Pet`. Each entity also contains several attributes which makes it even more difficult
+to manage. Moreover, we had to account for how these entities and their attributes are displayed to the user in the `MainWindow` of our application.
+This led to a lot of issues with the UI as we had to ensure that the logic of each command and the information displayed to the users
+are coherent.
+
+Due to the existence of five entities, we also had to extend the commands for each of these entities. For instance, we could no
+longer have just one `AddPersonCommand` but had to extend the add command to be `AddBuyerCommand`, `AddSupplierCommand`,
+`AddDelivererCommand`, `AddOrderCommand` and `AddPetCommand`. The same goes for several other commands such as the `DeleteCommand`,
+`EditCommand`, `ListCommand` etc. On top of the fundamental commands, we have also implemented a few other commands such as the
+`MatchCommand`, `SortCommand` and `FilterCommand` to address the needs of our target user.
+
+Furthermore, since we wanted a smooth user experience for our product, we came up with a `AddCommandWithPopup` feature
+where users can add a `Buyer` and `Supplier` contact along with their respective `Order` and `Pet` using a popup window
+instead of the command box. This is to reduce the user's frustration in handling multiple prefixes when adding these contacts.
+However, to make it appeal more to CLI users, we also implemented shortcut keys in this feature so that users can simply
+use their keyboard to fill in contact details and item details.
+
+The addition of all these classes demanded a lot of refactoring to the code base of AB3. For instance, we had to update
+the `Storage` component to store all of these entities in a json-readable format. Furthermore, we had to design many testcases
+to ensure that our code was working how we wanted it to. All of these refactoring took a lot of time, effort and teamwork to accomplish.
+
+Lastly, we spent a lot of time updating and proofreading the User Guide and Developer Guide to ensure that our users and
+future developers would understand how our product works. There was a lot of changes made to the User Guide and Developer
+Guide due to the addition of many new entities and commands.
+
+Overall, as our team is dedicated to making our product address the needs of our users and improving the user experience
+when using our product, we have spent **a lot of time and effort** on this project. We have built upon the original AB3
+code base by leaps and bounds (as evident by the number of lines of code written by our team ~30 kLoC). We sincerely wish
+that our users would find our product addresses their needs and that future developers would be interested in contributing
+to our product.
