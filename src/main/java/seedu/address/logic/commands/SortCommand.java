@@ -16,11 +16,15 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the list of contact by "
             + "specified field either in increasing or decreasing order.\n"
-            + "Example: " + COMMAND_WORD + " increasing "
+            + "Example: " + COMMAND_WORD + " A-Z "
             + PREFIX_NAME;
 
     public static final String MESSAGE_SUCCESS = "Contacts sorted successfully";
-    public static final String MESSAGE_NOT_SELECTED = "At least one field  must be selected.";
+    public static final String MESSAGE_NOT_SELECTED = "At least one field must be selected.\n"
+            + "Pick from either:\n"
+            + "- n/\n"
+            + "- m/";
+    public static final String MULTIPLE_SELECTED = "Please only pick either n/ or m/. Do not pick both.";
     private final Order order;
     private final SortPersonListDescriptor sortPersonListDescriptor;
 

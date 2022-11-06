@@ -12,7 +12,7 @@ package seedu.address.commons.core.order;
 public class Order {
     private static final String DECREASING_ALPHABETICAL = "Z-A";
     private static final String INCREASING_ALPHABETICAL = "A-Z";
-    public static final String VALID_ORDER = "list: "
+    public static final String VALID_ORDER = "Please add in either (but not both): "
             + "\n"
             + "-" + DECREASING_ALPHABETICAL
             + "\n"
