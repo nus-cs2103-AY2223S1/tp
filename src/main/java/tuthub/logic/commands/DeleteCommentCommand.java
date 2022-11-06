@@ -27,7 +27,7 @@ public class DeleteCommentCommand extends Command {
     public static final String MESSAGE_INVALID_DELETE_COMMENT_COMMAND = "Invalid deletecomment command.";
 
     public static final String MESSAGE_INVALID_TUTOR_NO_COMMENTS = MESSAGE_INVALID_DELETE_COMMENT_COMMAND
-            + " The tutor %1$s does not have any comments.";
+            + " The tutor %1$s does not have any comments";
 
     public static final String MESSAGE_INVALID_COMMENT_INDEX = MESSAGE_INVALID_DELETE_COMMENT_COMMAND
             + " The comment index provided is invalid";
