@@ -8,7 +8,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
