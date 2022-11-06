@@ -591,8 +591,8 @@ Example:
 > Note that this example will probably not work for you because you'll need to replace the file path
 with a valid file path.
 
-* <code>additer n/<em>First Draft</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Draft 1.png</em> f/<em>Looks great</em></code> creates an iteration 
-with the description "First Draft", date 28 October 2022, image at file path <code>p/<em>/Users/John/Downloads/Draft 1.png</em></code>, 
+* <code>additer n/<em>First Draft</em> d/<em>2022-10-28</em> p/<em>/Users/John/Downloads/Draft 1.png</em> f/<em>Looks great</em></code> creates an iteration
+with the description "First Draft", date 28 October 2022, image at file path <code>p/<em>/Users/John/Downloads/Draft 1.png</em></code>,
 and feedback "Looks great".
 
 
@@ -737,7 +737,7 @@ Shows you a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
- 
+
 ### Clearing all the customers: `clear`
 Clears all your customers from ArtBuddy, including their commissions and iterations.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

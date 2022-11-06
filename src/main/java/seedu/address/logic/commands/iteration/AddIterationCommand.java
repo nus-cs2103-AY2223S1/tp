@@ -64,7 +64,7 @@ public class AddIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage... storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {
@@ -79,7 +79,7 @@ public class AddIterationCommand extends Command {
         }
 
         try {
-            Path imageCopyPath = saveImage(storage[0], toAdd);
+            Path imageCopyPath = saveImage(storage, toAdd);
 
             Iteration toActuallyAdd = new Iteration(
                 toAdd.getDate(),

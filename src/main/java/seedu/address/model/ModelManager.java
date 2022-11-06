@@ -70,14 +70,12 @@ public class ModelManager implements Model {
         selectedCustomer.addListener((selectedCustomer, oldCustomer, newCustomer) ->
                 setSelectedCustomerCommissions(newCustomer));
 
-        // Temporarily set selected customer to the first customer.
-        // TODO: Should be fixed by implementer of the opencus command.
+        // Sets selected customer to the first customer in filtered customer list.
         if (filteredCustomers.size() > 0) {
             selectCustomer(filteredCustomers.get(0));
         }
 
-        // Temporarily sets selected commission to the first commission
-        // TODO: Should be fixed by implementer of the opencom command
+        // Sets selected commission to the first commission in filtered commission list.
         List<Commission> commissionList = getFilteredCommissionList();
         if (commissionList != null && commissionList.size() > 0) {
             selectCommission(commissionList.get(0));

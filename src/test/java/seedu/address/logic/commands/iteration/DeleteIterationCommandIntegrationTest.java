@@ -48,7 +48,7 @@ public class DeleteIterationCommandIntegrationTest {
 
     @Test
     public void execute_selectedCommissionDeleteNonExistentIteration_throwsCommandException() {
-        assertCommandFailure(new DeleteIterationCommand(INDEX_SECOND), model,
+        assertCommandFailure(new DeleteIterationCommand(INDEX_SECOND), model, null,
                 Messages.MESSAGE_INVALID_ITERATION_DISPLAYED_INDEX);
     }
 
@@ -57,7 +57,7 @@ public class DeleteIterationCommandIntegrationTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.selectCommission(null);
         assertCommandFailure(new DeleteIterationCommand(INDEX_FIRST),
-                model,
+                model, null,
                 Messages.MESSAGE_NO_ACTIVE_COMMISSION);
     }
 

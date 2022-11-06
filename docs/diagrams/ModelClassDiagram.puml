@@ -29,30 +29,33 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+Model .left.> ReadOnlyUserPrefs
+Model .right.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *---> "1" UniqueCustomerList
-UniqueCustomerList -down-> "~*" Customer: all
+AddressBook *---> UniqueCustomerList: all customers
+AddressBook *---> UniqueCommissionList: all commissions
+UniqueCustomerList -down-> "~*" Customer
 Customer *--> Name
 Customer *--> Phone
 Customer *--> Email
 Customer *--> "0..1" Address
 Customer *--> "*" Tag
-Customer *--> UniqueCommissionList
+Customer *-> UniqueCommissionList : commissions
 
 ModelManager -> "~*" Commission : filtered
 ModelManager -> "0..1" Commission : selected
-ModelManager -----> "\n0..1" Customer : selected
+ModelManager -> "0..1" Customer : selected
 
-UniqueCommissionList --> "~*" Commission : all
+UniqueCommissionList --> "~*" Commission
+ModelManager -> "~*" Customer: sorted+filtered
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Tag
+Tag -[hidden]right-> UniqueCommissionList
 
-ModelManager -> "~*" Customer: filtered
 @enduml

@@ -23,13 +23,7 @@ import seedu.address.model.commission.Commission;
  * {@code DeleteCommissionCommand}.
  */
 class DeleteCommissionCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_noSelectedCustomer_throwsCommandException() {
-        model.selectCustomer(null);
-        assertCommandFailure(new DeleteCommissionCommand(INDEX_FIRST), model, Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-    }
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
@@ -42,7 +36,7 @@ class DeleteCommissionCommandTest {
         String expectedMessage = String.format(DeleteCommissionCommand.MESSAGE_DELETE_COMMISSION_SUCCESS,
                 commissionToDelete);
 
-        CommandResult result = assertDoesNotThrow(() -> deleteCommissionCommand.execute(model));
+        CommandResult result = assertDoesNotThrow(() -> deleteCommissionCommand.execute(model, null));
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
         assertFalse(model.getSelectedCustomer().getValue().getCommissionList().contains(commissionToDelete));
@@ -52,7 +46,7 @@ class DeleteCommissionCommandTest {
     public void execute_indexTooHigh_throwsCommandException() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         DeleteCommissionCommand deleteCommissionCommand = new DeleteCommissionCommand(INDEX_FIRST);
-        assertCommandFailure(deleteCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommissionCommand, model, null, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 
     @Test

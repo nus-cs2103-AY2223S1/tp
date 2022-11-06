@@ -34,7 +34,7 @@ public class DeleteCustomerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Customer> lastShownList = model.getSortedFilteredCustomerList();
 

@@ -64,7 +64,7 @@ public class AddIterationCommandIntegrationTest {
     public void execute_selectedCommissionAddDuplicateIteration_throwsCommandException() {
         Iteration duplicateIteration = new IterationBuilder().build();
         model.getSelectedCommission().getValue().addIteration(duplicateIteration);
-        assertCommandFailure(new AddIterationCommand(duplicateIteration), model,
+        assertCommandFailure(new AddIterationCommand(duplicateIteration), model, null,
                 String.format(AddIterationCommand.MESSAGE_DUPLICATE_ITERATION, CAT_COMMISSION_TITLE));
     }
 
