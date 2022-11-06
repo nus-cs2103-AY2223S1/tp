@@ -37,16 +37,17 @@ public class EditClientCommand extends Command {
     public static final String COMMAND_WORD = "edit -c";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified "
-            + "client in Condonery. "
+            + "client in Condonery. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_INTERESTEDPROPERTIES + "INTERESTED_PROPERTIES]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice Tan"
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_TAG + "Condo"
-            + PREFIX_INTERESTEDPROPERTIES + "duxton";
+            + PREFIX_INTERESTEDPROPERTIES + "Duxton";
 
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Client successfully edited: %1$s";

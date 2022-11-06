@@ -3,6 +3,7 @@ package seedu.condonery.logic.commands.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
@@ -26,7 +27,7 @@ public class AddPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "add -p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Condonery. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Condonery. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -34,6 +35,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + "PRICE "
             + "[" + PREFIX_IMAGE_UPLOAD + "] "
             + "[" + PREFIX_PROPERTY_STATUS + "PROPERTY_STATUS] "
+            + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED_CLIENT ]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
@@ -41,6 +43,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + "1000000 "
             + PREFIX_PROPERTY_TYPE + "HDB "
             + PREFIX_PROPERTY_STATUS + "SOLD "
+            + PREFIX_INTERESTEDCLIENTS + "Bobby "
             + PREFIX_TAG + "High-End ";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
