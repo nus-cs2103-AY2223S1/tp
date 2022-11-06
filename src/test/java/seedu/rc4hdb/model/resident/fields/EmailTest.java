@@ -2,6 +2,8 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,19 @@ public class EmailTest {
     @Test
     public void constructor_validEmail_constructEmail() {
         assertTrue(new Email("valid@email.com") instanceof Email);
+    }
+
+    @Test
+    public void equalsIgnoreCase() {
+        // null email
+        assertFalse(new Email(VALID_EMAIL_AMY).equalsIgnoreCase(null));
+
+        // EP: same characters case-insensitive -> return true
+        assertTrue(new Email(VALID_EMAIL_AMY).equalsIgnoreCase(new Email(VALID_EMAIL_AMY)));
+        assertTrue(new Email(VALID_EMAIL_AMY).equalsIgnoreCase(new Email(VALID_EMAIL_AMY.toUpperCase())));
+
+        // EP: different characters
+        assertFalse(new Email(VALID_EMAIL_AMY).equalsIgnoreCase(new Email(VALID_EMAIL_BOB)));
     }
 
     @Test
