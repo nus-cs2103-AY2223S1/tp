@@ -33,7 +33,7 @@
 
 !define USER_COLOR #000000
 
-skinparam BackgroundColor #FFFFFFF
+skinparam BackgroundColor #FFFFFF
 
 skinparam Shadowing false
 
@@ -60,7 +60,7 @@ skinparam Sequence {
 }
 
 skinparam Participant {
-    FontColor #FFFFFFF
+    FontColor #FFFFFF
     Padding 20
 }
 
