@@ -2,9 +2,10 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents
 
-* Table of Contents
+# **Table of Contents**
+
+* **Table of Contents**
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://github.com/AY2223S1-CS2103T-T09-3/tp/tree/master/docs/diagrams) to learn how to create and edit diagrams.
 </div>
 
-## Architecture
+## **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -71,7 +72,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-## UI component
+## **UI component**
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/Ui.java)
 
@@ -88,14 +89,14 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays objects such as `Project` residing in the `Model`.
 
-### Current implementation
+### **Current implementation**
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
 There are 3 main columns, which from left to right are for `Task`, `Project` and `Staff` from model.
 Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
 
-## Logic component
+## **Logic component**
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/logic/Logic.java)
 
@@ -124,7 +125,7 @@ How the parsing works:
 * When called upon to parse a user command, the `HrProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HrProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
+## **Model component**
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
@@ -168,7 +169,7 @@ The `Task` class,
 
 * stores the details of a particular task (i.e. `TaskDescription`, `TaskDeadline`).
 
-## Storage component
+## **Storage component**
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/storage/Storage.java)
 
@@ -179,7 +180,7 @@ The `Storage` component,
 * inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-## Common classes
+## **Common classes**
 
 Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
@@ -189,9 +190,9 @@ Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## \[Proposed\] Undo/redo feature
+## **\[Proposed\] Undo/redo feature**
 
-### Proposed Implementation
+### **Proposed Implementation**
 
 The proposed undo/redo mechanism is facilitated by `VersionedHrPro`. It extends `HrPro` with an undo/redo history, stored internally as an `hrProStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -254,7 +255,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-### Design considerations:
+### **Design considerations**
 
 **Aspect: How undo & redo executes:**
 
@@ -269,9 +270,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-## View Command
+## **View Command**
 
-### Implementation:
+### **Implementation**
 * The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
 * This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
 * The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
@@ -282,15 +283,15 @@ The following sequence diagram shows how the view command works.
 
 ![view command](images/ViewCommandSequenceDiagram.png)
 
-### Design considerations:
+### **Design considerations**
 * The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
 * We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
 * The last viewed staff list would also be saved in `Storage` for convenience to users.
 
-## Task List
+## **Task List**
 
-### Implementation
+### **Implementation**
 `Task List` is implemented in a way that is similar to
 `Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
 classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
@@ -304,7 +305,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskStructure.png)
 
-### Design considerations:
+### **Design considerations**
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
@@ -313,16 +314,16 @@ there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
-## Find Task
+## **Find Task**
 
-### Implementation
+### **Implementation**
 Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask`
 command to match part of the `TaskDescription`.
 
 The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
 ![img.png](images/FindTaskDiagram.png)
 
-### Design considerations:
+### **Design considerations**
 
 * We chose to find tasks by their `TaskDescription` as users are more likely to search for tasks by name.
 * We allowed for partial matching of the keyword to the `TaskDescription` as users may not remember the full name or a full word of the task.
@@ -332,9 +333,9 @@ The following sequence diagram shows how the `findTask` command will run through
     * Cons: More tasks will be displayed to the users as there may be more `TaskDescription` that partially matches the keyword.
 
 
-## Mark and unmark task
+## **Mark and unmark task**
 
-### Implementation
+### **Implementation**
 Tasks can be marked as either completed or not completed. The implementation would
 be to add a new field `TaskMark` into each `Task` object, with `TaskMark` only accepting a `true` or
 `false` value.
@@ -352,13 +353,13 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
-### Design Considerations:
+### **Design Considerations**
 * We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`,
 so as to make it easier for the user to identify the completion status of the `Task` at a glance.
 
-## Sort task
+## **Sort task**
 
-### Implementation
+### **Implementation**
 Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object
 and only allow the `TaskDeadline` field to accept a `LocalDate` value.
 
@@ -370,18 +371,18 @@ This method will be used to sort the tasks by their deadline.
 
 The following sequence diagram shows how the `sorttask` command will run throughout HR Pro Max++.
 
-![sorttask command](images/SortTaskCommandSequenceDiagram.png)
+![sorttask command](images/SortTaskSequenceDiagram.png)
 
-### Design Considerations:
+### **Design Considerations**
 
 * We chose to sort the tasks by their deadlines because it is more significant information compared to for example, the task description.
 * Sorting tasks is an irreversible process. The user will not be able to undo the sorting of tasks.
     * Pros: Less memory and simpler implementation as there is no need to store the original order of the tasks.
     * Cons: Some users might want to undo the sorting to view the tasks in the original order.
 
-## Delete Staff from a project
+## **Delete Staff from a project**
 
-### Implementation
+### **Implementation**
 
 For each Project, there is a Unique Staff list and removing Staff object from this list
 will remove Staff that are part of the project. This can be done using a delete command
@@ -432,7 +433,7 @@ The activity diagram below shows the logic flow of the `delstaff` command.
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 
-### Design Considerations:
+### **Design Considerations**
 
 An alternative implementation of the `delstaff` command could be to implement it in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
@@ -440,8 +441,9 @@ An alternative implementation of the `delstaff` command could be to implement it
   * Pros: Easier to implement then the current implementation
   * Cons: Does not require Staff to be displayed to be deleted, user would be able to randomly delete Staff, and may lose track of where they are deleting Staff from.
 
-### Add Staff to Project
-#### Implementation
+## **Add Staff to Project**
+
+### **Implementation**
 
 The feature to add Staff is facilitated by the `AddStaffCommand`. It extends the `Command` class with functionality
 to add a `Staff` to a `Project`, both of which are provided via the `addStaff` command.
@@ -477,7 +479,7 @@ Step 4. The `Staff` is added to the `Project`. The `execute()` method updates th
 Sequence diagram for the execution of `AddStaffCommand`
 ![AddStaffCommandExecution](images/AddStaffCommandSequenceDiagram.png)
 
-### Design Considerations:
+### **Design Considerations**
 **Aspect: Whether to pass `Project` through `Index` or `ProjectName`**
 - **Alternative 1**: Users pass in the `Index` of the `Project` in the displayed `ProjectList` (Current Implementation)
   - Pros: This makes an easier command for users to use, since instead of typing `pn/Some Project Name`, users can instead
@@ -490,9 +492,11 @@ Sequence diagram for the execution of `AddStaffCommand`
   - Cons: Users will have to know the full name of the project, and this approach does not allow rooms for typos, so a careless
     user might add a staff to the wrong project.
 
-### Edit Staff in Project
-#### Implementation
-The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to
+
+## **Edit Staff in Project**
+
+### **Implementation**
+The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to 
 edit the `Staff` at a certain place in the Staff list belonging to a given `Project`, using the `INDEX` and `ProjectName` provided to the `EditStaffCommand`.
 The `Project` must be the `Project` which has its `StaffList` currently displayed in the staff panel.
 
@@ -533,7 +537,7 @@ a `CommandException` is thrown.
 Sequence diagram for the `EditStaffCommand`
 ![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
 
-#### Design Considerations:
+### **Design Considerations**
 **Aspect: Checking if the `Project`'s `Stafflist` is currently displayed**
 - **Alternative 1**: `EditStaffCommand` checks if the `Stafflist` of the `Project` whose `Staff` is to be edited is currently displayed (Current Implementation)
   - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
@@ -548,8 +552,8 @@ Sequence diagram for the `EditStaffCommand`
     - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to
     ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from.
 
-### Find Staff in Project
-#### Implementation
+## **Find Staff in Project**
+### **Implementation**
 
 The find staff feature is facilitated by the `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
 active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
@@ -585,7 +589,7 @@ Sequence diagram for the `FindStaffCommand`
 Activity diagram for the `FindStaffCommand`
 ![FindStaffCommandActivityDiagram](images/FindStaffCommandActivityDiagram.png)
 
-#### Design Considerations:
+### **Design Considerations**
 **Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
 
 - **Alternative 1**: Parse based on keywords (Current Implementation)
@@ -613,7 +617,7 @@ Activity diagram for the `FindStaffCommand`
 
 # **Appendix: Requirements**
 
-## Product scope
+## **Product scope**
 
 **Target user profile**:
 
@@ -640,7 +644,7 @@ know who to find and how to contact them.
 * Team lead can record down different tasks that are needed to be done for their various projects to be reminded
 
 
-## User stories
+## **User stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -672,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team lead | sort task by deadline                        | know which task is more urgent                |
 | `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  |
 
-## Use cases
+## **Use cases**
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -857,6 +861,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JAR** Stands for Java Archive, and is a file format used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
 * **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`\`).
 * **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # **Appendix: Instructions for manual testing**

@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.testutil.TaskBuilder;
 
+/**
+ * Contains test cases for TaskDescriptionContainsKeywordsPredicateTest.
+ */
 public class TaskDescriptionContainsKeywordsPredicateTest {
 
     @Test

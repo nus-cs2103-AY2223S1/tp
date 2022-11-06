@@ -8,18 +8,30 @@ import static seedu.hrpro.testutil.Assert.assertThrows;
 import static seedu.hrpro.testutil.TypicalProjects.APPLE;
 import static seedu.hrpro.testutil.TypicalProjects.BANANA;
 import static seedu.hrpro.testutil.TypicalStaff.STAFF_1;
+import static seedu.hrpro.testutil.TypicalStaff.STAFF_ANDY;
+import static seedu.hrpro.testutil.TypicalStaff.STAFF_JAY;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.hrpro.commons.core.GuiSettings;
+import seedu.hrpro.commons.core.index.Index;
+import seedu.hrpro.model.project.Project;
+import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.testutil.HrProBuilder;
+import seedu.hrpro.testutil.ProjectBuilder;
+import seedu.hrpro.testutil.StaffBuilder;
 
+/**
+ * Contains test cases for ModelManager
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
@@ -122,6 +134,51 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getProjectWithName_returnTrue() {
+        Optional<Project> invalidProject = modelManager.getProjectWithName(new ProjectName("No project"));
+
+        assertTrue(invalidProject.isEmpty());
+
+        ModelManager copyModelManager = setUpModelManager();
+        Project copyProjectToAdd = new ProjectBuilder(APPLE).build();
+        Staff staff = new StaffBuilder(STAFF_ANDY).build();
+        copyProjectToAdd.getStaffList().add(staff);
+        ProjectName projectName = copyProjectToAdd.getProjectName();
+        Optional<Project> validProject = copyModelManager.getProjectWithName(projectName);
+
+        assertTrue(!validProject.isEmpty());
+        assertTrue(validProject.get().equals(copyProjectToAdd));
+
+        modelManager = new ModelManager();
+    }
+
+    @Test
+    public void isSuccessStaffDelete_test() {
+        ModelManager copyModelManager = setUpModelManager();
+        Project projectBeingViewed = copyModelManager.getFilteredProjectList().get(0);
+        Project anoProj = copyModelManager.getFilteredProjectList().get(1);
+        Index index = Index.fromOneBased(1);
+
+        assertTrue(copyModelManager.isSuccessStaffDelete(projectBeingViewed, index));
+
+        ModelManager anoModelManager = setUpModelManager();
+        assertFalse(anoModelManager.isSuccessStaffDelete(anoProj, index));
+    }
+
+    @Test
+    public void isSuccessStaffEdit_test() {
+        ModelManager copyModelManager = setUpModelManager();
+        Staff editWith = new StaffBuilder(STAFF_JAY).build();
+        Project projectBeingViewed = copyModelManager.getFilteredProjectList().get(0);
+        Project anoProj = copyModelManager.getFilteredProjectList().get(1);
+        Staff displayStaff = new StaffBuilder(STAFF_ANDY).build();
+        Staff anoStaff = new StaffBuilder(STAFF_1).build();
+
+        assertTrue(copyModelManager.isSuccessStaffEdit(projectBeingViewed, displayStaff, editWith));
+        assertFalse(copyModelManager.isSuccessStaffEdit(anoProj, anoStaff, editWith));
+    }
+
+    @Test
     public void equals() {
         HrPro hrPro = new HrProBuilder().withProject(APPLE)
                 .withProject(BANANA).withTask(TASK_1).withStaff(STAFF_1).build();
@@ -157,5 +214,21 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setHrProFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(hrPro, differentUserPrefs)));
+    }
+
+    private ModelManager setUpModelManager() {
+        ModelManager copyModelManager = new ModelManager();
+        Project projectToAdd = new ProjectBuilder(APPLE).build();
+        Staff staff = new StaffBuilder(STAFF_ANDY).build();
+        projectToAdd.getStaffList().add(staff);
+
+        Project anoProj = new ProjectBuilder().build();
+        Staff anoStaff = new StaffBuilder().build();
+        anoProj.getStaffList().add(anoStaff);
+
+        copyModelManager.addProject(projectToAdd);
+        copyModelManager.addProject(anoProj);
+        copyModelManager.setFilteredStaffList(projectToAdd.getStaffList());
+        return copyModelManager;
     }
 }

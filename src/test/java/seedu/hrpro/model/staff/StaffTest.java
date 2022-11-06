@@ -21,6 +21,9 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.testutil.StaffBuilder;
 import seedu.hrpro.testutil.TypicalStaff;
 
+/**
+ * Contains test cases for Staff.
+ */
 public class StaffTest {
 
     @Test

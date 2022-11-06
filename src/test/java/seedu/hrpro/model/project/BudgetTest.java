@@ -6,6 +6,9 @@ import static seedu.hrpro.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains test cases for Budget.
+ */
 public class BudgetTest {
 
     @Test
@@ -31,6 +34,7 @@ public class BudgetTest {
         assertFalse(Budget.isValidBudget("9011p041")); // alphabets within digits
         assertFalse(Budget.isValidBudget("9312 1534")); // spaces within digits
         assertFalse(Budget.isValidBudget("01534")); // begins with 0
+        assertFalse(Budget.isValidBudget("-3")); // - is a special characters that are not allowed
 
         // valid budget numbers
         assertTrue(Budget.isValidBudget("3"));

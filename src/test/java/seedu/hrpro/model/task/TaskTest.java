@@ -6,6 +6,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_ALPH
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_BRAVO;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_ALPHA;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_BRAVO;
+import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_TASKMARK_BRAVO;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_1;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_ALPHA;
 
@@ -14,6 +15,9 @@ import org.junit.jupiter.api.Test;
 import seedu.hrpro.testutil.TaskBuilder;
 import seedu.hrpro.testutil.TypicalTasks;
 
+/**
+ * Contains test cases for task.
+ */
 public class TaskTest {
     @Test
     public void isSameTask() {
@@ -25,6 +29,10 @@ public class TaskTest {
 
         // same name, all other attributes different -> returns true
         Task editedTask1 = new TaskBuilder(TASK_1).withDeadline(VALID_TASKDEADLINE_BRAVO).build();
+        assertTrue(TASK_1.isSameTask(editedTask1));
+
+        // same name, all other attributes different -> returns true
+        editedTask1 = new TaskBuilder(TASK_1).withMark(VALID_TASKMARK_BRAVO).build();
         assertTrue(TASK_1.isSameTask(editedTask1));
 
         // different description, all other attributes same -> returns false
@@ -63,8 +71,12 @@ public class TaskTest {
         Task editedTask1 = new TaskBuilder(TASK_1).withDescription(VALID_TASKDESCRIPTION_BRAVO).build();
         assertFalse(TASK_1.equals(editedTask1));
 
-        // different contact -> returns false
+        // different deadline -> returns false
         editedTask1 = new TaskBuilder(TASK_1).withDeadline(VALID_TASKDEADLINE_ALPHA).build();
+        assertFalse(TASK_1.equals(editedTask1));
+
+        //different TaskMark -> returns false
+        editedTask1 = new TaskBuilder(TASK_1).withMark(VALID_TASKMARK_BRAVO).build();
         assertFalse(TASK_1.equals(editedTask1));
     }
 }
