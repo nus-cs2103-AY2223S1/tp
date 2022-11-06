@@ -265,10 +265,7 @@ Examples:
   |       Before        |       After      |
   |:-------------------------:|:-------------------------:|
   |![before layout](images/BeforeFind.png) |![after layout](images/AfterFind.png) |
-* `find s/Interview` returns `Technical Interview` and `Behavioural Interview`:
-  |       Before         |       After       |
-  |:-------------------------:|:-------------------------:|
-  |![before layout](images/BeforeFindInterview.png) |![after layout](images/AfterFindInterview.png) |
+
 
 ### 5.6. Deleting your internship application
 
