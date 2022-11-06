@@ -679,6 +679,60 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Sorting the applications list
+
+1. Default sort setting
+
+    1. Prerequisites: Use an instance of CinternS that has never ran a `sort` command yet. Multiple applications in the list.
+
+    1. Expected: The list is being sorted in chronological order of application date.
+
+1. Sorting the application list
+
+    1. Prerequisites: Multiple different applications in the list. Multiple applications with interviews.
+
+    1. Test case: `sort`<br>
+       Expected: The applications list is sorted in chronological order of application date. This is the default sort order when no parameters are supplied to the `sort` command. The interview list should not change.
+
+    1. Test case: `sort o/company`<br>
+       Expected: The applications list is sorted in alphabetical order of company. The interview list should not change.
+
+    1. Test case: `sort r/`<br>
+       Expected: The applications list is sorted in reverse chronological order of application date. The interview list should not change.
+    
+    1. Test case: `sort o/interview r/`<br>
+       Expected: The applications list is sorted in reverse chronological order of interview date. Applications with no interviews are all at the bottom of the list. The interview list should not change.
+
+    1. Test case: `sort o/email`<br>
+       Expected: The application list order does not change. Error details are shown.
+
+1. Adding applications to sorted list
+    
+   1. Add an application into the list.<br>
+       Expected: It appears in the application list in the correct position such that the list remains sorted in its current order.
+
+1. Modifying interviews in sorted list
+    
+    1. Prerequisites: Sort the applications list by interview (either in forward or reverse order). Multiple different applications in list. Multiple applications with interviews and without interviews.
+
+    1. Test case: Add an interview to an application without an interview.<br>
+        Expected: The application moves from near the bottom of the application list to the correct position such that the list remains sorted in order of interview date.
+
+    1. Test case: Remove an interview from an application with an interview.<br>
+        Expected: The application moves to near the bottom of the application list together with the other applications with no interview.
+
+    1. Test case: Modify the interview date of an application with an interview.<br>
+        Expected: The application moves to the correct position in the application list such that the list remains sorted in order of interview date.
+
+1. Saving sort setting
+
+    1. Prerequisites: Multiple different applications in the list.
+    
+    1. Run a sort command, for example `sort o/position r/`. Close the app. 
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The list is still sorted in the order used before closing the app.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
