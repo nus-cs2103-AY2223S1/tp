@@ -642,7 +642,67 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
-*{More to be added}*
+#### **Use case: UC08 - Edit a client**
+
+**MSS**
+
+1.  User requests to list all clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to edit a specific client in the list
+4.  JeeqTracker edits the client
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to edit a client.
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at 2.
+
+#### **Use case: UC09 - Edit a transaction**
+
+**MSS**
+
+1.  User requests to view transaction details of a client
+2.  JeeqTracker displays a list of transactions of that client
+3.  User requests to edit a specific transaction in the transaction list
+4.  JeeqTracker edits the transaction
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to edit a client.
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at 2.
+
+#### **Use case: UC10 - Edit a remark**
+
+This use case exactly similar to use case UC09. Instead of `transaction`, `remark` will be used for this use case
+
+_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -745,7 +805,41 @@ testers are expected to do more *exploratory* testing.
 
     1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
 
-1. _{ more test cases …​ }_
+### Editing a client
+
+1. Editing a client in the client list.
+
+   1. Test case: `edit 1 m/client n/JohnDoe`<br/>Expected: First client's name is changed to JohnDoe. Details of the edited client shown in the `Application's Reply` panel.
+   2. Test case: `edit 0 m/client`<br/>Expected: No client is edited. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
+
+### Editing a transaction
+
+1. Editing a transaction while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
+    2. Test case: `edit 1 m/transaction g/Oranges q/100`<br/>Expected: First transaction goods name and quantity is edited in the list. Details of the edited transaction shown in the `Application's Reply` panel.
+    3. Test case: `edit 0 m/transaction`<br/>Expected: No transaction is edited. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect edit transaction commands to try: `edit`, `edit x m/transaction` (where x is larger than the transaction list size),`edit 1 m/transaction q/12g/`edit 1`<br/>Expected: Similar to previous.
+
+2. Editing a transaction while more than one client is shown in the client list.
+    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+    2. Test case: `edit 1 m/transaction g/Apples`<br/>Expected: No transaction is edited. Error details shown in the `Application's Reply` panel.
+
+### Editing a remark
+
+1. Editing a remark while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). One or multiple remarks in the transaction list panel.
+    2. Test case: `edit 1 m/remark new Edited Remark`<br/>Expected: First remark is edited in the list to be `new Edited Remark`. Details of the edited remark shown in the `Application's Reply` panel.
+    3. Test case: `edit 0 m/remark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect edit remark commands to try: `edit`, `edit x m/remark` (where x is larger than the transaction list size)<br/>Expected: Similar to previous.
+
+2. Editing a remark while more than one client is shown in the client list.
+    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+    2. Test case: `edit 1 m/remark newRemark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
+
+_{ more test cases …​ }_
 
 ## **Appendix: Effort**
 
