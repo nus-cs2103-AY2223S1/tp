@@ -1,11 +1,11 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jarvis.logic.commands.CommandTestUtil.LESSON_INDEX;
+import static jarvis.logic.commands.CommandTestUtil.NOTE_INDEX;
 import static jarvis.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static jarvis.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
-import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
-import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+import static jarvis.logic.commands.CommandTestUtil.STUDENT_INDEX;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -18,9 +18,6 @@ public class DeleteNoteCommandParserTest {
     private static final Index noteIndex = Index.fromZeroBased(0);
     private static final Index lessonIndex = Index.fromZeroBased(0);
     private static final Index studentIndex = Index.fromZeroBased(0);
-    private static final String NOTE_INDEX = " " + PREFIX_NOTE_INDEX + noteIndex.getOneBased();
-    private static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + lessonIndex.getOneBased();
-    private static final String LESSON_INDEX = " " + PREFIX_LESSON_INDEX + studentIndex.getOneBased();
 
     private DeleteNoteCommandParser parser = new DeleteNoteCommandParser();
 

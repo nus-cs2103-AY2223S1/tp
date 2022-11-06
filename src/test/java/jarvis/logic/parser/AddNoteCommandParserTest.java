@@ -1,11 +1,14 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jarvis.logic.commands.CommandTestUtil.BLANK_NOTE_DESC;
+import static jarvis.logic.commands.CommandTestUtil.EMPTY_NOTE_DESC;
+import static jarvis.logic.commands.CommandTestUtil.LESSON_INDEX;
+import static jarvis.logic.commands.CommandTestUtil.NOTE_DESC;
 import static jarvis.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static jarvis.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
-import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+import static jarvis.logic.commands.CommandTestUtil.STUDENT_INDEX;
+import static jarvis.logic.commands.CommandTestUtil.VALID_NOTE;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -13,18 +16,11 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.AddNoteCommand;
+import jarvis.testutil.TypicalIndexes;
 
 public class AddNoteCommandParserTest {
-    private static final Index lessonIndex = Index.fromZeroBased(0);
-    private static final Index studentIndex = Index.fromZeroBased(0);
-    private static final String validNote = "valid note";
-    private static final String emptyNote = "";
-    private static final String blankNote = "    ";
-    private static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + lessonIndex.getOneBased();
-    private static final String LESSON_INDEX = " " + PREFIX_LESSON_INDEX + studentIndex.getOneBased();
-    private static final String NOTE_DESC = " " + PREFIX_NOTE + validNote;
-    private static final String EMPTY_NOTE_DESC = " " + PREFIX_NOTE + emptyNote;
-    private static final String BLANK_NOTE_DESC = " " + PREFIX_NOTE + blankNote;
+    private static final Index lessonIndex = TypicalIndexes.INDEX_FIRST;
+    private static final Index studentIndex = TypicalIndexes.INDEX_FIRST;
 
     private AddNoteCommandParser parser = new AddNoteCommandParser();
 
@@ -32,13 +28,13 @@ public class AddNoteCommandParserTest {
     public void parse_allFieldsPresent_success() {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + LESSON_INDEX + STUDENT_INDEX + NOTE_DESC,
-                new AddNoteCommand(lessonIndex, studentIndex, validNote));
+                new AddNoteCommand(lessonIndex, studentIndex, VALID_NOTE));
         // parsing for overall notes
         assertParseSuccess(parser, LESSON_INDEX + NOTE_DESC,
-                new AddNoteCommand(lessonIndex, null, validNote));
+                new AddNoteCommand(lessonIndex, null, VALID_NOTE));
         // parsing for student notes
         assertParseSuccess(parser, LESSON_INDEX + STUDENT_INDEX + NOTE_DESC,
-                new AddNoteCommand(lessonIndex, studentIndex, validNote));
+                new AddNoteCommand(lessonIndex, studentIndex, VALID_NOTE));
     }
 
 

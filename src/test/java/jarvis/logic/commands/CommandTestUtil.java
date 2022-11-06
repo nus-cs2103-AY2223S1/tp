@@ -1,8 +1,13 @@
 package jarvis.logic.commands;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
+import static jarvis.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
+import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,12 +28,13 @@ import jarvis.model.StudentBook;
 import jarvis.model.Task;
 import jarvis.model.TaskBook;
 import jarvis.testutil.EditStudentDescriptorBuilder;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // students
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_MATRIC_NUM_AMY = "A0344534D";
@@ -41,6 +47,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
 
+    public static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
+
+    // tasks
     public static final String VALID_TASK_DESC_MISSION1 = "Mark mission 1";
     public static final String VALID_TASK_DEADLINE_MISSION1 = "2022-10-23";
 
@@ -49,6 +58,22 @@ public class CommandTestUtil {
 
     public static final String INVALID_TASK_DEADLINE = " " + PREFIX_DEADLINE + "2022-55-55";
 
+    // lessons
+    public static final String LESSON_INDEX = " " + PREFIX_LESSON_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
+    public static final String NOTE_INDEX = " " + PREFIX_NOTE_INDEX + TypicalIndexes.INDEX_FIRST.getOneBased();
+
+    public static final String VALID_NOTE = "This is a valid note";
+    public static final String BLANK_NOTE = "    ";
+    public static final String EMPTY_NOTE = "";
+
+    public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
+    public static final String BLANK_NOTE_DESC = " " + PREFIX_NOTE + BLANK_NOTE;
+    public static final String EMPTY_NOTE_DESC = " " + PREFIX_NOTE + EMPTY_NOTE;
+
+    public static final String STUDIO_PARTICIPATION = " " + PREFIX_PARTICIPATION + 100;
+    public static final String INVALID_STUDIO_PARTICIPATION = " " + PREFIX_PARTICIPATION + 1000;
+
+    // others
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
