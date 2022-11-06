@@ -18,6 +18,10 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         this.taskIndex = Index.fromOneBased(taskIndex);
     }
 
+    public CanHelpWithTaskPredicate(Index taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+
     /**
      * Builds a {@code CanHelpWithTaskPredicate} using a given task instead of its index.
      *

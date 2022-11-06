@@ -7,9 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -26,6 +30,9 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      */
     public FindContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_TASK);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+        }
         Prefix searchPrefix = getSearchPrefix(argMultimap);
 
         if (searchPrefix.equals(PREFIX_NAME)) {
@@ -34,7 +41,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             List<String> keywordsSpaceSeparated = new ArrayList<>();
             for (String string : strings) {
                 for (String keyword : string.split("\\s+")) {
-                    keywordsSpaceSeparated.add(keyword);
+                    keywordsSpaceSeparated.add(ParserUtil.parseName(keyword).toString());
                 }
             }
             // ["name", "name name"] -> ["name", "name", "name"]
@@ -42,9 +49,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
 
-            List<String> strings = argMultimap.getAllValues(PREFIX_MODULE);
+            Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
+            List<String> moduleNames = moduleList.stream().map(module -> module.toString()).collect(Collectors.toList());
             List<String> keywordsSpaceSeparated = new ArrayList<>();
-            for (String string : strings) {
+            for (String string : moduleNames) {
                 for (String keyword : string.split("\\s+")) {
                     keywordsSpaceSeparated.add(keyword);
                 }
@@ -54,11 +62,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
 
-            int taskIndex = Integer.parseInt(argMultimap.getValue(PREFIX_TASK).get());
-            if (taskIndex < 1) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
-            }
+            Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
             return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 
         } else {
