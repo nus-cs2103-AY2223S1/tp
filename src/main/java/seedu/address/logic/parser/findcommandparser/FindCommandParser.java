@@ -47,6 +47,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PersonCategory.getFromString("Buyer"));
     }
 
+    /**
+     * Returns if a string input contains more than one prefix.
+     *
+     * @param input String input given by user.
+     * @return           Whether the input has more than one prefix.
+     */
     public boolean moreThanOnePrefix(String input) {
         int totalPrefixesPresent = countOccurrences(PREFIX_ADDRESS.getPrefix(), input)
                 + countOccurrences(PREFIX_EMAIL.getPrefix(), input)
@@ -57,10 +63,17 @@ public class FindCommandParser implements Parser<FindCommand> {
         return totalPrefixesPresent > 1;
     }
 
+    /**
+     * Counts the number of occurrences of prefix in string.
+     *
+     * @param prefix Prefix to count.
+     * @param input String input given by user.
+     * @return           Number of occurrences of that prefix.
+     */
     public int countOccurrences(String prefix, String input) {
         int limit = input.length() - prefix.length();
         int count = 0;
-        for (int i = 0; i < limit; i++) {
+        for (int i = 0; i < limit + 1; i++) {
             if (input.substring(i, i + prefix.length()).equals(prefix)) {
                 count += 1;
             }
