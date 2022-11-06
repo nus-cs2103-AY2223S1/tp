@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * What it does: A simple feature that allows user to review his overall applications' statistic.
     * Justification: This feature assists user in reviewing his internship application performance quickly especially when there are many applications added in CinternS.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=eesung00&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=eesung00&breakdown=true)
 
 * **Project management**:
     * Managed releases `v1.2` - `v1.3` (2 releases) on Github.

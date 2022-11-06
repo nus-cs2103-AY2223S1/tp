@@ -227,6 +227,10 @@ Examples:
 
 ### Adding / Editing an interview: `interview`
 
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
+Interview, being one of the branches of the application process, plays a crucial part in every application. It helps users have a better understanding on how the current application process is going on.
+</div>
+
 Adds an interview to an existing application or edits an existing interview in an application.
 
 Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
@@ -242,6 +246,7 @@ Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATIO
 * The index cannot be greater than the number of applications in the displayed list.
 * All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
+* Added interviews are automatically sorted in chronological order by default when displaying in the interview list.
 * Currently, we only support **ONE** interview in each of the application. _[COMING SOON: Multiple interviews in one application.]_
 * _[COMING SOON: Checks to prevent adding an interview to an application depending on the status. E.g. If you are adding an interview to an application that already has the `offered` status, CinternS will block it and notify you of the problem.]_
 

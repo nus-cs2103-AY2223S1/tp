@@ -19,6 +19,7 @@ Application *--> "1" Contact
 Application *--> "1" Position
 Application *--> "1" Email
 Application *--> "1" Date
+Application *--> "1" Status
 Application *--> "0..1" Interview
 
 Interview *--> "1" Round

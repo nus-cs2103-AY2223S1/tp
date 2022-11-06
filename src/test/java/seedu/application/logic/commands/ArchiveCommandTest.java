@@ -30,6 +30,7 @@ public class ArchiveCommandTest {
                 applicationToArchive);
 
         ModelManager expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
+        showApplicationByArchiveStatus(expectedModel, false);
         expectedModel.archiveApplication(applicationToArchive);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
