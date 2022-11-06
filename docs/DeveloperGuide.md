@@ -692,3 +692,31 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Effort**
+
+* Summary of new features/enhancements compared to AB3:
+  * Functional code
+    * Introduction of `model.debt` package inclusive of 8 classes, to track debts in addition to persons. Great effort was expanded in integrating the package to existing AB3.
+    * Implementation of 11 new `commands` classes (and corresponding `parser` classes) related to managing debts and searching through the person list.
+    * Refactoring and enhancement of `find` command to be significantly more comprehensive and effective
+    * Updating of GUI
+  * Test code
+    * Addition of `testutil` classes related to `model.debt` package
+    * Significant effort to consistently maintain coverage around the initial 70% from AB3 by always adding new test code with each new feature in the same iteration.
+    * Heavy effort in maintaining and passing existing tests to prevent regressions when adding new fields to existing AB3 code and when enhancing code with new fields across iterations.
+  * Documentation
+    * Greatly expanded UG with more tutorials, examples and explanations for users
+    * Increased user-friendliness of UG significantly
+    * Maintenance (inclusive of revisions and updates) of existing DG documentation
+    * Inclusion of new features and corresponding insights in DG
+    
+* Challenges faced:
+  * Learning of regex to ensure continuity with AB3 parse format
+  * Learning of JavaFX to update GUI
+  * Learning of Jackson to maintain data file
+  * Learning of PlantUML to update DG
