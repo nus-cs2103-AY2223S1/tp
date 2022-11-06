@@ -23,9 +23,9 @@ title: Developer Guide
     * [Product Scope](#product-scope)
     * [User Stories](#user-stories)
     * [Use cases](#use-cases)
-      * [Deleting a client]()
-      * [Deleting a transaction]()
-      * [Deleting a remark]()
+      * [Delete a client](#use-case-uc01---delete-a-client)
+      * [Delete a transaction](#use-case-uc02---delete-a-transaction)
+      * [Delete a remark](#use-case-uc03---delete-a-remark)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -355,7 +355,7 @@ The sequence diagram above is applicable for deleting `transaction` and `remark`
     - `deleteClient(1)` is changed to `deleteRemark(1)`
 
 There are certain **restrictions** in place when deleting a `transaction` or `remark`. 
-Take a look at use cases for [delete transaction]() and [delete remark]()
+Take a look at use cases for [delete transaction](#use-case-uc02---delete-a-transaction) and [delete remark](#use-case-uc03---delete-a-remark)
 
 #### Design Considerations:
 
@@ -436,7 +436,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `JeeqTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use case: Delete a client**
+The **use case diagram** below showcases the tasks that the user can perform in JeeqTracker
+
+![Use Case Diagram](images/UseCaseDiagram.png)
+
+Users are able to perform several tasks within the application that is broken down into **Client tasks**, **Transaction tasks**, and **Remark tasks**. For a more detailed interaction between user and the system, read the use case descriptions below.
+
+#### **Use case: UC01 - Delete a client**
 
 **MSS**
 
@@ -453,11 +459,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given client name does not exist in the list.
+* 3a. The given client does not exist in the list.
 
     * 3a1. JeeqTracker shows an error message.
 
       Use case resumes at step 2.
+
+#### **Use case: UC02 - Delete a transaction**
+
+**MSS**
+
+1. User requests to view transaction details with a client
+2. JeeqTracker shows a list of transactions that the user has with that client
+3. User requests to delete a specific transaction in the transaction list
+4. JeeqTracker deletes the transaction
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The transaction list is empty
+
+    Use case ends.
+* 3a. The transaction does not exist in the list
+    
+    Use case resumes at step 2.
+
+#### **Use case: UC03 - Delete a remark**
+
+1. User requests to view remark details of a client
+2. JeeqTracker displays a list of remarks of that client
+3. User requests to delete a specific remark in the remark list
+4. JeeqTracker deletes the remark
+
+    Use case ends.
+
+**Extensions**
+* 2a. The remark list is empty
+
+    Use case ends
+* The remark does not exist in the list
+
+    Use case resumes at step 2.
 
 **Use case: Find a Client**
 
