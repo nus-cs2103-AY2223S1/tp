@@ -11,7 +11,7 @@ import seedu.address.ui.GuiTab;
  */
 public class ListCommissionCommand extends Command {
     public static final String COMMAND_WORD = "listcom";
-    public static final String MESSAGE_SUCCESS = "Listed all commissions of selected customer";
+    public static final String MESSAGE_SUCCESS = "Displayed the unfiltered list of commissions.";
 
     @Override
     public CommandResult execute(Model model, Storage storage) {

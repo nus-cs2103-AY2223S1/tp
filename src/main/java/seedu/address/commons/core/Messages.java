@@ -31,6 +31,7 @@ public class Messages {
     public static final String MESSAGE_NOT_AN_IMAGE = "The file at the given path is not an image";
     public static final String MESSAGE_INVALID_PATH = "The path provided was invalid: %1$s";
 
+    public static final String MESSAGE_KEYWORD_EMPTY = "Keywords should not be blank or empty";
 
     public static final String MESSAGE_OPEN_CUSTOMER_SUCCESS = "Opened Customer: %1$s";
     public static final String MESSAGE_OPEN_COMMISSION_SUCCESS = "Opened Commission: %1$s";

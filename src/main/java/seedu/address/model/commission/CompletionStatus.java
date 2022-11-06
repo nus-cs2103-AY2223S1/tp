@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
  * Guarantees: immutable.
  */
 public class CompletionStatus {
-    public static final String MESSAGE_CONSTRAINTS = "The commission completion status provided is invalid";
+    public static final String MESSAGE_CONSTRAINTS = "The commission completion status provided is invalid. "
+            + "Accepted inputs for completed: T, True, Yes, Y/ for incomplete: F, False, N, No. (Case Insensitive)";
     private static final Pattern TRUE_REGEX = Pattern.compile("\\AT|TRUE|YES|Y\\z", Pattern.CASE_INSENSITIVE);
     private static final Pattern FALSE_REGEX = Pattern.compile("\\AF|FALSE|NO|N\\z", Pattern.CASE_INSENSITIVE);
     private static final Pattern VALIDATION_REGEX = Pattern.compile(TRUE_REGEX + "|" + FALSE_REGEX,
