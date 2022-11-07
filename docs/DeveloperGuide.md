@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `project -d 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -94,9 +94,10 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command to result in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddClientCommand`). More specifically,
-   1. If the command is specific to an entity (e.g. `Project`, `Client` or `Issue`), this results in a `CommandParser` object (More specifically, an object of one of its subclasses e.g., `ClientCommandParser`)), which then yields a `Command` object.
+   1. If the command is specific to an entity (e.g. `Project`, `Client` or `Issue`), this results in a `CommandParser` object (More specifically, an object of one of its subclasses e.g., `ClientCommandParser`).
+      1. This `XYZCommandParser` object then yields a `Command` object (more specifically, a derived class of `ProjectCommand`, `ClientCommand` or `IssueCommand` respectively).
    2. Otherwise, it results in a `Command` Object directly.
-2. The resulting `Command` object is executed by the `LogicManager`.
+2. The resulting `Command` object is then executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -115,12 +116,23 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `ClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `ClientCommandParser`, `IssueCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+#### Entity Initialisation
+
+* In some instances, we note that an entity object (`Project`, `Issue` or `Client`) object cannot be created together with the `XYZCommand` object, since we may need access to the `model` object at the point of initialisation (for instance, to generate the next ID number when creating an entity).
+* Given this, we opt to _partially initialise_ entity objects using the clas `XYZWithoutModel`.
+* These are done mainly when creating the `AddXYZCommand` objects.
+
+The sequence diagram below illustrates the partial initialisation logic during the creation and execution of a `AddProjectCommand` object.
+
+<img src="images/ParserPartialInitialisationSequenceDiagram.png" width="450" />
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="1000" />
 
 The `Model` component,
+
 
 * stores the project book data i.e., all `Project`, `Client`, and `Issue` objects (which are contained in separate `UniqueEntityList` objects).
 * stores the currently 'selected' `Project`, `Client`, or `Issue` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>`, `ObservableList<Client>` or `ObservableList<Issue>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
