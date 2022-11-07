@@ -30,6 +30,8 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 
 #### Contributions to team-based tasks
 - [Refactoring](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/53): Changed project structure, class names and variable names to fit our product.
+- Documentation: Utilised local Jekyll server to improve iteration speed for everyone
+    - Instead of merging and deploying buggy/incorrectly formatted markdown, I can simply checkout teammates' branches to verify the correctness of more complex markdown elements
 
 #### Review/mentoring contributions
 - Integration: Managed team repo, handled releases.
