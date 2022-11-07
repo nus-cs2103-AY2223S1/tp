@@ -34,7 +34,7 @@ public class FilterPropertiesCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_OWNER_NAME + " OWNER NAME]"
+            + "[" + PREFIX_OWNER_NAME + " OWNER NAME] "
             + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CHARACTERISTICS + " Near MRT; Kid-Friendly " + PREFIX_FUZZY;

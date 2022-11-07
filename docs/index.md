@@ -3,7 +3,7 @@ layout: page
 title: Cobb
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-F12-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-F12-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-F12-1/tp/branch/master/graph/badge.svg?token=IIS9IA9J5L)](https://codecov.io/gh/AY2223S1-CS2103T-F12-1/tp)
 ![Ui](images/Ui.png)
 
