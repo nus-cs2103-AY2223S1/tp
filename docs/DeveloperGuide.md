@@ -19,8 +19,8 @@ designers, developers and software testers of notionUS.
 
 ### **1.2 Scope**
 As the goal of this document is to cover and explain the architecture and design decisions, we first discuss
-the high-level architecture and software design under the "Design" section. Then we go into details of 
-implementation of our features in the "Implementation" section. 
+the high-level architecture and software design under the "Design" section. Then we go into details of
+implementation of our features in the "Implementation" section.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,14 +207,14 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 5.1 Archive Command
 
-A user is able to archive a task when a task is completed or has been due. This helps to reduce clutter whenever a user enters the command. 
+A user is able to archive a task when a task is completed or has been due. This helps to reduce clutter whenever a user enters the command.
 Archived tasks will be stored and can be retrieved using `showarchive`.
 
 Command takes input
 
 * `archive TASK_NUMBER` where `TASK_NUMBER` is the index of the tasks based on the displayed index shown in Main Window.
 
-Command result will if the task is archived successfully. Should there be a duplicate of the same task in the archived task list. The new archived task will be removed from current task list. 
+Command result will if the task is archived successfully. Should there be a duplicate of the same task in the archived task list. The new archived task will be removed from current task list.
 
 Should the `TASK_NUMBER` entered is out of bound, a generic CommandResult and an error message
 will be given. Model will not be updated.
@@ -223,12 +223,12 @@ Below is the sequence diagram for an execution of `archive TASK_NUMBER`, assumin
 
 ![Sequence diagram when command `archive 1` is executed](images/ArchiveSequenceDiagram-0.png)
 
-The above sequence diagram shows how the archive command works when user input `archive 1` is entered. 
-It first parses the index of the task to archive to retrieve the task. Next, it removes the task from the task list and adds it to the archived task list. 
+The above sequence diagram shows how the archive command works when user input `archive 1` is entered.
+It first parses the index of the task to archive to retrieve the task. Next, it removes the task from the task list and adds it to the archived task list.
 
-Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` does not allow the user to modify or edit the tasks stored in archived task list. 
+Archive command is facilitated by the `ArchivedTaskList`. `ArchivedTaskList` does not allow the user to modify or edit the tasks stored in archived task list.
 
-The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`. 
+The addition of `ArchivedTaskList` requires a separate storage system for the archived tasks, which forms under `ArchivedTaskListStorage`.
 The .json file for archived task is named as `archivedTaskList.json`
 
 ### 5.2 Mark/unmark feature
@@ -244,16 +244,16 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
 
-### 5.3 List feature 
+### 5.3 List feature
 
 #### 5.3.1 Implementation
 
 The list feature filters the displayed task list based on the filters entered by user. Its mechanism is facilitated by `ListCommand` and `ListCommandParser`, as well as their subclasses (E.g. `ListDeadlineCommand`, `ListDeadlineCommandParser`).
 
-Multiple filters can be applied in a single `ListCommand`. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T". 
+Multiple filters can be applied in a single `ListCommand`. For example, `ls -u --module CS2103T` would list all tasks that are unmarked and under the `Module` "CS2103T".
 
 `ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
-The list of predicates will subsequently be reduced into a single predicate. 
+The list of predicates will subsequently be reduced into a single predicate.
 
 This table summarizes the respective flags that users can use to apply filters of their choice.
 
@@ -264,27 +264,27 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 
 | Flag        | Effect                                          | Format                        |
 |-------------|-------------------------------------------------|-------------------------------|
-| `-a`        | List all tasks                                  | `ls -a`                       | 
-| `-u`        | List all unmarked tasks                         | `ls -u`                       | 
-| `-m`        | List all marked tasks                           | `ls -m`                       | 
-| `--module`* | List all tasks under the same module            | `ls --module MODULE`          | 
-| `-t`*       | List all tasks containing the same tag          | `ls -t TAG`                   | 
-| `-d`*       | List all tasks with deadline on or after a date | `ls -d DATE`                  | 
-| `-n`*       | List all task names with the matching keywords  | `ls -n KEYWORD`               | 
+| `-a`        | List all tasks                                  | `ls -a`                       |
+| `-u`        | List all unmarked tasks                         | `ls -u`                       |
+| `-m`        | List all marked tasks                           | `ls -m`                       |
+| `--module`* | List all tasks under the same module            | `ls --module MODULE`          |
+| `-t`*       | List all tasks containing the same tag          | `ls -t TAG`                   |
+| `-d`*       | List all tasks with deadline on or after a date | `ls -d DATE`                  |
+| `-n`*       | List all task names with the matching keywords  | `ls -n KEYWORD`               |
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**
 Flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. <br>
 These commands have a corresponding `Parser` that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each `Parser` implements the `parse` method in `Parser` interface. In which, validity checks are conducted. <br>
-Example: 
-* In `ListDeadlineCommandParser`, argument is verified to contain only numbers in `YYYY-MM-DD` format 
+Example:
+* In `ListDeadlineCommandParser`, argument is verified to contain only numbers in `YYYY-MM-DD` format
 </div>
 
-This feature uses the following methods from the `Model` interface: 
-* `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
-* `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.  
+This feature uses the following methods from the `Model` interface:
+* `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
+* `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
 
-#### 5.3.2 Usage scenario 
+#### 5.3.2 Usage scenario
 
 Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command.
 
@@ -294,28 +294,28 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 **Step 3.** `TaskListParser` calls the `ListCommandParser#parse(String)` method. `ListCommandParser` self-invocates `ListCommandParser#getPredicate(String)` for each flag found (i.e. `-u`, `--module`).
 
-**Step 4.** `ListCommandParser#getPredicate("-u")` directly returns an instance of `TaskIsDonePredicate` as the `-u` flag does not expect a parameter. 
+**Step 4.** `ListCommandParser#getPredicate("-u")` directly returns an instance of `TaskIsDonePredicate` as the `-u` flag does not expect a parameter.
 
-**Step 5.** Meanwhile, `ListCommandParser#getPredicate("--module CS2103T")` returns an instance of `ListModuleCommandParser` as the `--module` flag expects a parameter, that has to be parsed. 
+**Step 5.** Meanwhile, `ListCommandParser#getPredicate("--module CS2103T")` returns an instance of `ListModuleCommandParser` as the `--module` flag expects a parameter, that has to be parsed.
 
-**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method.  
+**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method.
 * `ListModuleCommandParser` conducts a validity check by calling `ParserUtil#parseModule(String)`. If the module is invalid, a `ParseException` will be thrown and execution will halt.
   * Details of `ParserUtil#parseModule(String)` are omitted as they are not significant to demonstrate execution of the `ListCommand`.
-* A new instance of `ModuleContainsKeywordsPredicate` is created and returned. 
+* A new instance of `ModuleContainsKeywordsPredicate` is created and returned.
 
 **Step 7.** A new `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
 
-Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**. 
+Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**.
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1.png)
 
-**Step 8.** `LogicManager` calls the `ListCommand#execute()` method. 
+**Step 8.** `LogicManager` calls the `ListCommand#execute()` method.
 
 **Step 9.** The two predicates passed in are reduced into one `predicate`. The current `taskList` is updated by calling `Model#updateFilteredTaskList(predicate)`.
 
-**Step 10.** `Model#updateFilterStatus(String)` is called twice to update the list of filters being applied to the current displayed `taskList`. 
+**Step 10.** `Model#updateFilterStatus(String)` is called twice to update the list of filters being applied to the current displayed `taskList`.
 
-**Step 11.** A new `CommandResult` object is returned, signifying that command execution was successful. 
+**Step 11.** A new `CommandResult` object is returned, signifying that command execution was successful.
 
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` from **Step 8** to **Step 11**.
 
@@ -406,16 +406,15 @@ Below is an example usage scenario for autocomplete:
 Step 1. The user opens the app, which initialises the `CommandBox` which then initialises the `ContextMenu` and a
 `CommandList` of all the possible commands that be used in the app.
 
-Step 2. The user would like to edit a task that has in NotionUS, and knows that the command begins with an `e`, typing 
+Step 2. The user would like to edit a task that has in NotionUS, and knows that the command begins with an `e`, typing
 it into the command box. A list of possible commands appears as a popup `ContextMenu` below the
 command box, containing the commands of `edit` and `exit`.
 
 Step 3. When the popup appears, the user can use the `up` and `down` key to traverse the list to the command of choice.
-Once the user would like to use that command, the user hits `Enter` and the command is filled into the command box. 
+Once the user would like to use that command, the user hits `Enter` and the command is filled into the command box.
 This closes the popup.
 
-Step 4. The user adds the required additional information if required and then hits `Enter` to perform the command as 
-per normal.
+Step 4. The user adds the required additional information if required and then hits `Enter` to perform the command as per normal.
 
 Below is an activity diagram to display how the feature works:
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
@@ -427,7 +426,7 @@ Below is an activity diagram to display how the feature works:
 * **Alternative 1: (current implementation)** Filters command list down everytime the user input changes.
   * Pros: Easy to implement.
   * Cons: Inefficient as full list is filtered every time.
-* **Alternative 2:** Filter the current command list if the start of current input matches start of commands already 
+* **Alternative 2:** Filter the current command list if the start of current input matches start of commands already
 in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
@@ -784,8 +783,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add -n PYP -m CS2100 -t finals`<br>
        Expected: `PYP` is added into the list. Details of the added task shown in the status message.
        `PYP` is inserted behind all other tasks that contain a deadline.
-
-
+    
 2. Adding a task while only unmarked tasks are being shown
 
     1. Prerequisites: List all tasks using the `ls -u` command. Multiple tasks in the list.
@@ -807,7 +805,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete 0`<br>
        Expected: No task is deleted. Error details shown in the status message.
 
-2. Deleting a task while only tasks due after or on `2022-10-11` are being shown 
+2. Deleting a task while only tasks due after or on `2022-10-11` are being shown
 
    1. Prerequisites: List tasks using the `ls -d 2022-10-11` command. Multiple tasks in the list.
 
@@ -816,7 +814,7 @@ testers are expected to do more *exploratory* testing.
       Task IDs of remaining tasks updated.
 
    3. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. 
+      Expected: No task is deleted. Error details shown in the status message.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -826,9 +824,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-    1. Open `addressbook.json`. There are some pre-loaded tasks in this file. 
+    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
 
-    2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch. 
+    2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
 
     3. Launch NotionUS by double-clicking the jar file. <br>
        Expected: No tasks will be shown on the GUI.
@@ -843,25 +841,24 @@ testers are expected to do more *exploratory* testing.
 
     1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
 
-    2. Delete `addressbook.json` manually. 
+    2. Delete `addressbook.json` manually.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
 ### 8.5 Loading saved data
 
-1. Restoring task list from previous launch 
+1. Restoring task list from previous launch
 
-   1. Launch NotionUS by double-clicking the jar file. Clear the current task list by entering `clear`. 
+   1. Launch NotionUS by double-clicking the jar file. Clear the current task list by entering `clear`.
    
    2. Prerequisites: List all tasks using the `ls -a` command. Task list is empty.
    
-   3. Add 2 tasks into the task list by entering the following commands: 
+   3. Add 2 tasks into the task list by entering the following commands:
       1. `add -n Tutorial 1 -m CS2103T -d 2022-11-29`
-      2. `add -n PYP -m CS2101` 
+      2. `add -n PYP -m CS2101`
+      Expected: Task list displayed contains 2 tasks.
       
-      Expected: Task list displayed contains 2 tasks. 
-      
-   4. Exit NotionUS by entering `exit` or closing the window. 
+   4. Exit NotionUS by entering `exit` or closing the window.
    
-   5. Relaunch NotionUS by double-clicking the jar file. 
-      Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.  
+   5. Relaunch NotionUS by double-clicking the jar file.
+      Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.
