@@ -198,7 +198,7 @@ The following sequence diagram shows how the next command history navigation wor
 
 ![NextCommandHistorySequenceDiagram](images/NextCommandHistorySequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Saving invalid commands:**
 
@@ -256,9 +256,9 @@ The following sequence diagram shows how a sort by description alphabetical comm
 
 ![SortDescriptionAlphabeticalSequenceDiagram.png](images/SortDescriptionAlphabeticalSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
-#### Aspect: Sorting command structure:
+**Aspect: Sorting command structure:**
 
 * **Alternative 1 (current choice):** Have an abstract sort command from which all other sort commands must inherit from.
     * Pros: Follows Open-Closed Principle
@@ -267,7 +267,7 @@ The following sequence diagram shows how a sort by description alphabetical comm
     * Pros: Less code required
     * Cons: Violates Open-Closed Principle
 
-#### Aspect: Sorted List structure:
+**Aspect: Sorted List structure:**
 
 * **Current choice:** Wrap the task list in a `FilteredList`, and the `FilteredList` in a `SortedList`.
     * Rationale: Commands on the filtered list will also be reflected in the sorted list. This means that the `Ui` can display `sortedTasks`, which reflects both filter and sorting order.
@@ -339,7 +339,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -400,7 +400,7 @@ The following sequence diagram shows how the task mark command works:
 
 The task unmark command follows a similar sequence diagram.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Mutability of boolean isDone field:**
 
@@ -437,7 +437,7 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 
 ![TagTaskSequenceDiagram](images/TagTaskSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Untagging tasks:**
 
