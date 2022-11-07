@@ -76,13 +76,6 @@ Given below are my contributions to the project.
   * Fix extra whitespace in autoglossary items [[PR#511]]
   * Add and style PR badge for PPP [[PR#513]]
   * Fix PDF building script [[PR#514]]
-  * Minify HTML output [[PR#469]]
-  * Add link checker [[PR#507]]
-  * Auto build PDFs together with JAR file [[PR#508]]
-  * Make PPP checking more lenient [[PR#510]]
-  * Fix extra whitespace in autoglossary items [[PR#511]]
-  * Add and style PR badge for PPP [[PR#513]]
-  * Fix PDF building script [[PR#514]]
 
 <!-- TODO: Categorise everything -->
 <!-- * **New Feature**: Added the ability to undo/redo previous commands.
