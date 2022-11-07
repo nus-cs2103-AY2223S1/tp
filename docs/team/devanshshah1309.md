@@ -44,7 +44,7 @@ Given below are my contributions to the project.
         * Updated the UI Class Diagram to indicate the different UI components and how they interact with one another.
         * Added the Glossary section and updated the Non-Functional Requirements.
         * Updated other UML diagrams based on changes made to the model and logic components, and improved language in several places.
-* Testing
+* **Testing**
   * Wrote unit tests for features that I implemented ([PR #30](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/30))
   * Manual testing and reporting of bugs encountered in the application, as well as UG and DG ([Issues raised](https://github.com/AY2223S1-CS2103T-W13-4/tp/issues?q=is%3Aissue+author%3ADevanshshah1309+is%3Aclosed))
 * **Reviewing and Mentoring Contributions**:
