@@ -31,6 +31,13 @@ Given below are my contributions to the project.
     * It reverts the user's last command.
 * RedoCommand
    * It reverts the user's last undo.
+* UndoCommandTest and UndoCommandParserTest
+* RedoCommandTest and RedoCommandParserTest
+* SortPatientCommandTest and SortPatientCommandParserTest
+* SortBillCommandTest and SortBillCommandParserTest
+* SortAppointmentCommandTest and SortAppointmentCommandParserTest
+* AddBillCommandTest and AddBillCommandParserTest
+* Modified CommandTestUtil to include new fields for testing
    
 ### Contributions to the User Guide:
 * Added documentation and screenshots for:
@@ -39,10 +46,13 @@ Given below are my contributions to the project.
     * SortBillCommand
     * UndoCommand
     * RedoCommand
-* Quickstart guide
+* Contributed to Quickstart guide
 
 ### Contributions to the Developer Guide:
-to be added soon
+* Added the __Undo/Redo Feature__ section with 2 Sequence diagrams and 3 State diagrams
+* Added the __Sort Feature__ section with 1 Sequence diagram
+* Added the __User Stories__
+
 
 ### Contributions to the team-based tasks:
 * Created milestones
@@ -50,6 +60,11 @@ to be added soon
 * Maintained the issue tracker
 * Released JAR files
 * Updated user docs not specific to feature
+* Updated developer docs not specific to feature
+* Facilitated team meeting discussions
+* Added test cases for existing features that were not assigned to me
+* Added developer docs not specific to feature as mentioned above (Appendix: Effort, User Stories)
+
 
 ### Review/mentoring contributions:
 * Reviewed PRs
@@ -61,7 +76,11 @@ to be added soon
 to be added soon
 
 ### Tools:
-to be added soon
+* IntelliJ IDEA
+* Gradle
+* PlantUML
+* CheckStyle
+* SourceTree
 
 ### Project management:
 to be added soon
