@@ -37,22 +37,23 @@ public class HelpWindow extends UiPart<Stage> {
     private static final double DURATION_FOR_TEXT_ANIMATION = 0.1;
     private static final String PATIENT_SEARCH_TEXT = "Add Patient";
     private static final String ADD_DEMO_INPUT_PATIENT = "add c/P n/John Doe g/M p/98765432 e/johnd@example.com "
-            + "a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney dt/2022-11-11T12:30 v/True";
+            + "a/311, Clementi Ave 2, #02-25 t/asthma ds/2022-11-11,2";
     private static final String ADD_DEMO_OUTPUT_PATIENT = "New Patient added: Category: P Uid: 10; Name: John Doe;"
             + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
-            + " Tags: [owesMoney][friends]; Home Visits Date and Time:11/11/2022 12:30 , ; Visit Status: visited";
+            + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00";
     private static final String NURSE_SEARCH_TEXT = "Add Nurse";
-    private static final String ADD_DEMO_INPUT_NURSE = "add c/N n/Cola t/Pediatric e/cola@example.com g/F p/98345432"
-            + " a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03 t/heartDiseaseSpecialist";
+    private static final String ADD_DEMO_INPUT_NURSE = "add c/N n/Cola t/pediatric e/cola@example.com g/F p/98345432"
+            + " a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03 t/heartDiseaseSpecialist ud/2022-12-12";
     private static final String ADD_DEMO_OUTPUT_NURSE = "New person added: Category: N Uid: 3; Name: Cola;"
             + " Gender: F; Phone: 98345432; Email: cola@example.com; "
-            + "Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][Pediatric]";
+            + "Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][pediatric];"
+            + " Unavailable Date: 12/12/2022";
     private static final String ADD_PATIENT_USAGE_HELP = "Add Patient \n"
-            + "add c/Category n/Name g/Gender p/Phone e/Email a/Address v/Visted "
-            + "[t/tag] [dt/Date&Time (2022-11-11T12:30)] *[] is optional. ";
+            + "add c/P n/Name g/Gender p/Phone e/Email a/Address "
+            + "[t/tag] [ds/Date&Slot] *[] is optional. ";
     private static final String ADD_NURSE_USAGE_HELP = "Add Nurse\n"
-            + "add c/Category n/Name g/Gender p/Phone e/Email a/Address v/Visited "
-            + "[t/tag] *[] is optional. ";
+            + "add c/Category n/Name g/Gender p/Phone e/Email a/Address "
+            + "[t/tag] [ud/Unavailable Date] *[] is optional. ";
     private static final String CLEAR_SEARCH_TEXT = "Clear All";
     private static final String CLEAR_DEMO_INPUT = "clear";
     private static final String CLEAR_DEMO_OUTPUT = "Healthcare Xpress record system has been cleared!";
@@ -65,38 +66,85 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String EDIT_NAME_DEMO_INPUT = "edit id/12 n/Kola";
     private static final String EDIT_NAME_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: F;"
             + " Phone: 98345432; Email: cola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][Pediatric]";
+            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
     private static final String EDIT_GENDER_SEARCH_TEXT = "Edit Gender";
     private static final String EDIT_GENDER_DEMO_INPUT = "edit id/12 g/M";
     private static final String EDIT_GENDER_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola;"
             + " Gender: M; Phone: 98345432; Email: cola@example.com;"
-            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][Pediatric]";
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
     private static final String EDIT_PHONE_SEARCH_TEXT = "Edit Phone";
     private static final String EDIT_PHONE_DEMO_INPUT = "edit id/12 p/88888888";
     private static final String EDIT_PHONE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
             + " Phone: 88888888; Email: cola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][Pediatric]";
+            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
     private static final String EDIT_EMAIL_SEARCH_TEXT = "Edit Email";
     private static final String EDIT_EMAIL_DEMO_INPUT = "edit id/12 e/Kola@example.com";
     private static final String EDIT_EMAIL_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
             + " Phone: 88888888; Email: Kola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][Pediatric]";
+            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
     private static final String EDIT_ADDRESS_SEARCH_TEXT = "Edit Address";
-    private static final String EDIT_ADDRESS_DEMO_INPUT = "edit id/12 a/Blk 768 Woodlands Ave 6, Singapore 730768 ";
+    private static final String EDIT_ADDRESS_DEMO_INPUT = "edit id/12 a/Blk 768 Woodlands Ave 6,Singapore 730768 ";
     private static final String EDIT_ADDRESS_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola;"
             + " Gender: M; Phone: 88888888; Email: Kola@example.com;"
-            + " Address: Blk 768 Woodlands Ave 6, Singapore 730768; Tags: [heartDiseaseSpecialist][Pediatric]";
+            + " Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
+            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
     private static final String EDIT_TAG_SEARCH_TEXT = "Edit Tag";
-    private static final String EDIT_TAG_DEMO_INPUT = "edit id/12 t/Pediatric";
+    private static final String EDIT_TAG_DEMO_INPUT = "edit id/12 t/pediatric";
     private static final String EDIT_TAG_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
             + " Phone: 88888888; Email: Kola@example.com; Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
-            + " Tags: [Pediatric]";
+            + " Tags: [pediatric]; Unavailable Date: 12/12/2022";
+    private static final String ADD_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date (add)";
+    private static final String ADD_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 ud/2022-12-14";
+    private static final String ADD_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; "
+            + "Gender: M; Phone: 88888888; Email: Kola@example.com; Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
+            + " Tags: [pediatric]; Unavailable Date: 12/12/2022, 14/12/2022";
+    private static final String EDIT_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
+            + "(edit specific Unavailable Date)";
+    private static final String EDIT_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 ud/2022-12-13 udi/2";
+    private static final String EDIT_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; "
+            + "Gender: M; Phone: 88888888; Email: Kola@example.com; Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
+            + " Tags: [pediatric]; Unavailable Date: 12/12/2022, 13/12/2022";
+    private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
+            + "(delete specific Unavailable Date)";
+    private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 udi/2";
+    private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; "
+            + "Name: Kola; Gender: M; Phone: 88888888; Email: Kola@example.com; "
+            + "Address: Blk 768 Woodlands Ave 6, Singapore 730768; Tags: [pediatric]; Unavailable Date: 12/12/2022";
+    private static final String DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
+            + "(delete all Unavailable Date)";
+    private static final String DELETE_ALL_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 ud/";
+    private static final String DELETE_ALL_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; "
+            + "Name: Kola; Gender: M; Phone: 88888888; Email: Kola@example.com; "
+            + "Address: Blk 768 Woodlands Ave 6, Singapore 730768; Tags: [pediatric]";
+    private static final String ADD_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot (add)";
+    private static final String ADD_DATE_SLOT_DEMO_INPUT = "edit id/10 ds/2022-12-14,3";
+    private static final String ADD_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; Name: John Doe;"
+            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
+            + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00, 14/12/2022 14:00";
+    private static final String EDIT_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot (edit specific Date and Slot)";
+    private static final String EDIT_DATE_SLOT_DEMO_INPUT = "edit id/10 ds/2022-12-13,3 dsi/2";
+    private static final String EDIT_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; Name: John Doe;"
+            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
+            + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00, 13/12/2022 14:00";
+    private static final String DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot "
+            + "(delete specific Date and Slot)";
+    private static final String DELETE_SPECIFIC_DATE_SLOT_DEMO_INPUT = "edit id/10 dsi/2";
+    private static final String DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; Name: John Doe;"
+            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
+            + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00";
+    private static final String DELETE_ALL_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot "
+            + "(delete all Date and Slot)";
+    private static final String DELETE_ALL_DATE_SLOT_DEMO_INPUT = "edit id/10 ds/";
+    private static final String DELETE_ALL_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; Name: John Doe;"
+            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
+            + " Tags: [asthma]";
     private static final String EDIT_MIX_SEARCH_TEXT = "Edit Mix";
     private static final String EDIT_MIX_DEMO_INPUT = "edit id/12 g/F p/98345432 "
             + "a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03";
     private static final String EDIT_MIX_DEMO_OUTPUT = "dited person: Category: N Uid: 12; Name: Kola; Gender: F;"
             + " Phone: 98345432; Email: Kola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [Pediatric]";
+            + " Tags: [pediatric]; Unavailable Date: 12/12/2022";
     private static final String EXIT_SEARCH_TEXT = "Exit Program";
     private static final String EXIT_DEMO_INPUT = "exit";
     private static final String EXIT_DEMO_OUTPUT = "Thank you for using Healthcare Xpress!";
@@ -134,8 +182,10 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String DELETE_USAGE_HELP = "Delete Person from list: \n"
             + "delete id/ID ";
     private static final String EDIT_USAGE_HELP = "Edit Person from list: \n"
-            + "edit [c/Category] [n/Name] [g/gender] [p/Phone] [e/Email] [a/Address] [t/Tags] [dt/Date&Time]"
-            + "*[] is optional.";
+            + "edit [n/Name] [g/gender] [p/Phone] [e/Email] [a/Address] [t/Tags] [ds/Date&Slot] [dsi/Date&Slot Index] "
+            + "[ud/Unavailable Date] [udi/Unavailable Date Index]"
+            + "*[] is optional.\n" + "*Date and Slot and its index is only applicable to Patient.\n"
+            + "*Unavailable Date and its index is only applicable to Nurse. ";
     private static final String EXIT_USAGE_HELP = "";
     private static final String FIND_USAGE_HELP = "Find a person from the list that contains keyword\n"
             + "find KEYWORD";
@@ -151,23 +201,43 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_VISIT_STATUS_SEARCH_TEXT = "List (Visit Status)";
     private static final String LIST_VISIT_STATUS_DEMO_INPUT = "list c/P v/true";
     private static final String LIST_VISIT_STATUS_DEMO_OUTPUT = UPCOMING_FEATURE;
-    private static final String ASSIGN_SEARCH_TEXT = "Assign date";
-    private static final String ASSIGN_DEMO_INPUT = "assign id/2 id/3 dsi/2";
-    private static final String ASSIGN_DEMO_OUTPUT = "3's dateslot/dateslots assigned to 2.";
+    private static final String ASSIGN_SPECIFIC_SEARCH_TEXT = "Assign Specific HomeVisit Date&Slot";
+    private static final String ASSIGN_SPECIFIC_DEMO_INPUT = "assign id/2 id/3 dsi/2";
+    private static final String ASSIGN_SPECIFIC_DEMO_OUTPUT = "3's dateslot/dateslots assigned to 2."
+            + " (Assign the second date slot of patient with uid of 3 to nurse with uid of 2) ";
+    private static final String ASSIGN_ALL_SEARCH_TEXT = "Assign All HomeVisit Date&Slot from A Patient";
+    private static final String ASSIGN_ALL_DEMO_INPUT = "assign id/2 id/3";
+    private static final String ASSIGN_ALL_DEMO_OUTPUT = "3's dateslot/dateslots assigned to 2."
+            + " (Assign all the date slot of patient with uid of 3 to nurse with uid of 2) ";
     private static final String ASSIGN_USAGE_HELP = "Assigns dateslots of the patient with the specified "
             + "‘PATIENT_ID’ to the nurse with the specified ‘NURSE_ID’.\n"
             + "assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]\n"
             + "*[] is optional";
-    private static final String DEASSIGN_SEARCH_TEXT = "Deassign date";
-    private static final String DEASSIGN_DEMO_INPUT = "deassign id/3 dsi/1";
-    private static final String DEASSIGN_DEMO_OUTPUT = "3 's dateslot/homevisit has been deassigned.";
-    private static final String DEASSIGN_USAGE_HELP = "Deassign a specific patient’s date slot from a nurse.\n"
+    private static final String DEASSIGN_ALL_PATIENT_SEARCH_TEXT = "Deassign All HomeVisit Date&Slot from a Patient";
+    private static final String DEASSIGN_ALL_PATIENT_DEMO_INPUT = "deassign id/3";
+    private static final String DEASSIGN_ALL_PATIENT_DEMO_OUTPUT = "3 's dateslot/homevisit has been deassigned. "
+            + "(All the date and slot from patient with uid of 3 has been deassigned)";
+    private static final String DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT = "Deassign Specific HomeVisit Date&Slot "
+            + "from a Patient";
+    private static final String DEASSIGN_SPECIFIC_PATIENT_DEMO_INPUT = "deassign id/3 dsi/1";
+    private static final String DEASSIGN_SPECIFIC_PATIENT_DEMO_OUTPUT = "3 's dateslot/homevisit has been deassigned. "
+            + "(The first date and slot from patient with uid of 3 has been deassigned)";
+    private static final String DEASSIGN_ALL_NURSE_SEARCH_TEXT = "Deassign All HomeVisits from a Nurse";
+    private static final String DEASSIGN_ALL_NURSE_DEMO_INPUT = "deassign id/2";
+    private static final String DEASSIGN_ALL_NURSE_DEMO_OUTPUT = "2 's dateslot/homevisit has been deassigned. "
+            + "(All the homevisits from nurse with uid of 2 has been deassigned)";
+    private static final String DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT = "Deassign Specific HomeVisit "
+            + "from a Nurse";
+    private static final String DEASSIGN_SPECIFIC_NURSE_DEMO_INPUT = "deassign id/2 dsi/1";
+    private static final String DEASSIGN_SPECIFIC_NURSE_DEMO_OUTPUT = "2 's dateslot/homevisit has been deassigned. "
+            + "(The first homevisit from nurse with uid of 2 has been deassigned)";
+    private static final String DEASSIGN_USAGE_HELP = "Deassign dateslot / homevisit.\n"
             + "deassign id/ID [dsi/DATE_AND_SLOT_INDEX]\n"
-            + "*[] is optional";
+            + "*[] is optional\n";
     private static final String UNMARK_USAGE_HELP = "Unmarks the patient with the specified ‘ID’ as having been failed"
             + " visited.\n"
             + "unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX";
-    private static final String UNMARK_SEARCH_TEXT = "Unmarks a target";
+    private static final String UNMARK_SEARCH_TEXT = "Unmarks a patient's date and slot";
     private static final String UNMARK_DEMO_INPUT = "unmark id/7 dsi/1";
     private static final String UNMARK_DEMO_OUTPUT = "Unmarked Patient as fail to visit: Category: P; Uid: 7;"
             + " Name: Irfan Ibrahim; Phone: 92492021; Email: irfan@example.com; Gender: M; "
@@ -197,11 +267,16 @@ public class HelpWindow extends UiPart<Stage> {
             + "Format: updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL";
     private final List<String> commandList = Arrays.asList(PATIENT_SEARCH_TEXT, NURSE_SEARCH_TEXT, CLEAR_SEARCH_TEXT,
             DELETE_SEARCH_TEXT, EDIT_NAME_SEARCH_TEXT, EDIT_GENDER_SEARCH_TEXT, EDIT_PHONE_SEARCH_TEXT,
-            EDIT_EMAIL_SEARCH_TEXT, EDIT_TAG_SEARCH_TEXT, EDIT_MIX_SEARCH_TEXT, EXIT_SEARCH_TEXT,
-            FIND_SEARCH_TEXT, HELP_SEARCH_TEXT, LIST_NTH_SEARCH_TEXT, LIST_ADDRESS_SEARCH_TEXT,
+            EDIT_EMAIL_SEARCH_TEXT, EDIT_TAG_SEARCH_TEXT, ADD_UNAVAILABLE_DATE_SEARCH_TEXT,
+            EDIT_UNAVAILABLE_DATE_SEARCH_TEXT, DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT,
+            DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT, ADD_DATE_SLOT_SEARCH_TEXT, EDIT_DATE_SLOT_SEARCH_TEXT,
+            DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT, DELETE_ALL_DATE_SLOT_SEARCH_TEXT, EDIT_MIX_SEARCH_TEXT,
+            EXIT_SEARCH_TEXT, FIND_SEARCH_TEXT, HELP_SEARCH_TEXT, LIST_NTH_SEARCH_TEXT, LIST_ADDRESS_SEARCH_TEXT,
             LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT,
-            LIST_VISIT_STATUS_SEARCH_TEXT, LIST_ASSIGN_SEARCH_TEXT, ASSIGN_SEARCH_TEXT, DEASSIGN_SEARCH_TEXT,
-            UNMARK_SEARCH_TEXT, CHECK_SIMILAR_SEARCH_TEXT, UPDATE_CONTACT_SEARCH_TEXT);
+            LIST_VISIT_STATUS_SEARCH_TEXT, LIST_ASSIGN_SEARCH_TEXT, ASSIGN_SPECIFIC_SEARCH_TEXT, ASSIGN_ALL_SEARCH_TEXT,
+            DEASSIGN_ALL_PATIENT_SEARCH_TEXT, DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, DEASSIGN_ALL_NURSE_SEARCH_TEXT,
+            DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT, UNMARK_SEARCH_TEXT, UNDO_UNMARK_SEARCH_TEXT,
+            CHECK_SIMILAR_SEARCH_TEXT, UPDATE_CONTACT_SEARCH_TEXT);
     private final HashMap<String, String[]> dictionary = new HashMap<String, String[]>();
     private final HashMap<String, String> dictionaryForUsageHelp = new HashMap<String, String>();
 
@@ -266,6 +341,22 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(EDIT_EMAIL_SEARCH_TEXT, new String[] { EDIT_EMAIL_DEMO_INPUT, EDIT_EMAIL_DEMO_OUTPUT });
         dictionary.put(EDIT_ADDRESS_SEARCH_TEXT, new String[] { EDIT_ADDRESS_DEMO_INPUT, EDIT_ADDRESS_DEMO_OUTPUT });
         dictionary.put(EDIT_TAG_SEARCH_TEXT, new String[] { EDIT_TAG_DEMO_INPUT, EDIT_TAG_DEMO_OUTPUT });
+        dictionary.put(ADD_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] { ADD_UNAVAILABLE_DATE_DEMO_INPUT,
+                ADD_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(EDIT_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] { EDIT_UNAVAILABLE_DATE_DEMO_INPUT,
+                EDIT_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] {
+                DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_INPUT, DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] {
+                DELETE_ALL_UNAVAILABLE_DATE_DEMO_INPUT, DELETE_ALL_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(ADD_DATE_SLOT_SEARCH_TEXT, new String[] { ADD_DATE_SLOT_DEMO_INPUT,
+                ADD_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(EDIT_DATE_SLOT_SEARCH_TEXT, new String[] { EDIT_DATE_SLOT_DEMO_INPUT,
+                EDIT_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT, new String[] { DELETE_SPECIFIC_DATE_SLOT_DEMO_INPUT,
+                DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(DELETE_ALL_DATE_SLOT_SEARCH_TEXT, new String[] { DELETE_ALL_DATE_SLOT_DEMO_INPUT,
+                DELETE_ALL_DATE_SLOT_DEMO_OUTPUT });
         dictionary.put(EDIT_MIX_SEARCH_TEXT, new String[] { EDIT_MIX_DEMO_INPUT, EDIT_MIX_DEMO_OUTPUT });
         dictionary.put(EXIT_SEARCH_TEXT, new String[] { EXIT_DEMO_INPUT, EXIT_DEMO_OUTPUT });
         dictionary.put(FIND_SEARCH_TEXT, new String[] { FIND_DEMO_INPUT, FIND_DEMO_OUTPUT });
@@ -279,8 +370,18 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(LIST_VISIT_STATUS_SEARCH_TEXT,
                 new String[] { LIST_VISIT_STATUS_DEMO_INPUT, LIST_VISIT_STATUS_DEMO_OUTPUT });
         dictionary.put(LIST_MIX_SEARCH_TEXT, new String[] { LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT });
-        dictionary.put(ASSIGN_SEARCH_TEXT, new String[] { ASSIGN_DEMO_INPUT, ASSIGN_DEMO_OUTPUT });
-        dictionary.put(DEASSIGN_SEARCH_TEXT, new String[] { DEASSIGN_DEMO_INPUT, DEASSIGN_DEMO_OUTPUT });
+        dictionary.put(ASSIGN_SPECIFIC_SEARCH_TEXT, new String[] { ASSIGN_SPECIFIC_DEMO_INPUT,
+                ASSIGN_SPECIFIC_DEMO_OUTPUT });
+        dictionary.put(ASSIGN_ALL_SEARCH_TEXT, new String[] { ASSIGN_ALL_DEMO_INPUT,
+                ASSIGN_ALL_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_ALL_PATIENT_SEARCH_TEXT, new String[] { DEASSIGN_ALL_PATIENT_DEMO_INPUT,
+                DEASSIGN_ALL_PATIENT_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, new String[] { DEASSIGN_SPECIFIC_PATIENT_DEMO_INPUT,
+                DEASSIGN_SPECIFIC_PATIENT_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_ALL_NURSE_SEARCH_TEXT, new String[] { DEASSIGN_ALL_NURSE_DEMO_INPUT,
+                DEASSIGN_ALL_NURSE_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT, new String[] { DEASSIGN_SPECIFIC_NURSE_DEMO_INPUT,
+                DEASSIGN_SPECIFIC_NURSE_DEMO_OUTPUT });
         dictionary.put(UNMARK_SEARCH_TEXT, new String[] { UNMARK_DEMO_INPUT, UNMARK_DEMO_OUTPUT });
         dictionary.put(UNDO_UNMARK_SEARCH_TEXT, new String[] { UNDO_UNMARK_DEMO_INPUT, UNDO_UNMARK_DEMO_OUTPUT });
         dictionary.put(CHECK_SIMILAR_SEARCH_TEXT, new String[] { CHECK_SIMILAR_DEMO_INPUT, CHECK_SIMILAR_DEMO_OUTPUT });
@@ -302,6 +403,14 @@ public class HelpWindow extends UiPart<Stage> {
         dictionaryForUsageHelp.put(EDIT_EMAIL_SEARCH_TEXT, EDIT_USAGE_HELP);
         dictionaryForUsageHelp.put(EDIT_ADDRESS_SEARCH_TEXT, EDIT_USAGE_HELP);
         dictionaryForUsageHelp.put(EDIT_TAG_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(ADD_UNAVAILABLE_DATE_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_UNAVAILABLE_DATE_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(ADD_DATE_SLOT_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_DATE_SLOT_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(DELETE_ALL_DATE_SLOT_SEARCH_TEXT, EDIT_USAGE_HELP);
         dictionaryForUsageHelp.put(EDIT_MIX_SEARCH_TEXT, EDIT_USAGE_HELP);
         dictionaryForUsageHelp.put(EXIT_SEARCH_TEXT, EXIT_USAGE_HELP);
         dictionaryForUsageHelp.put(FIND_SEARCH_TEXT, FIND_USAGE_HELP);
@@ -314,8 +423,12 @@ public class HelpWindow extends UiPart<Stage> {
         dictionaryForUsageHelp.put(LIST_MIX_SEARCH_TEXT, LIST_USAGE_HELP);
         dictionaryForUsageHelp.put(LIST_VISIT_STATUS_SEARCH_TEXT, UPCOMING_FEATURE);
         dictionaryForUsageHelp.put(LIST_ASSIGN_SEARCH_TEXT, UPCOMING_FEATURE);
-        dictionaryForUsageHelp.put(ASSIGN_SEARCH_TEXT, ASSIGN_USAGE_HELP);
-        dictionaryForUsageHelp.put(DEASSIGN_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(ASSIGN_SPECIFIC_SEARCH_TEXT, ASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(ASSIGN_ALL_SEARCH_TEXT, ASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_ALL_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_ALL_NURSE_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
         dictionaryForUsageHelp.put(UNMARK_SEARCH_TEXT, UNMARK_USAGE_HELP);
         dictionaryForUsageHelp.put(UNDO_UNMARK_SEARCH_TEXT, UNDO_UNMARK_USAGE_HELP);
         dictionaryForUsageHelp.put(CHECK_SIMILAR_SEARCH_TEXT, CHECK_SIMILAR_USAGE_HELP);
