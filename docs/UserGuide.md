@@ -489,7 +489,7 @@ Format: `remindT DEADLINE`
 
 <div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
-* Do not adhere to [deadline constraints](#section-2-tasks).<br>
+* Do not adhere to deadline constraints. Deadline must be in dd-mm-yyyy format.<br>
 
 </div>
 
