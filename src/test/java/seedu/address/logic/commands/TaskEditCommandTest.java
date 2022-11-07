@@ -1,15 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -21,6 +11,18 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalTasks.COOK;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -35,10 +37,12 @@ public class TaskEditCommandTest {
         TaskEditCommand taskEditCommand = new TaskEditCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK,
                 editedTask.getName(), editedTask.getDeadline().get());
 
-        String expectedMessage = String.format(TaskEditCommand.MESSAGE_SUCCESS, editedTask.getName(), editedTask.getDeadline().get());
+        String expectedMessage = String.format(TaskEditCommand.MESSAGE_SUCCESS,
+                editedTask.getName(), editedTask.getDeadline().get());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.editTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK, editedTask.getName(), editedTask.getDeadline().get());
+        expectedModel.editTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK,
+                editedTask.getName(), editedTask.getDeadline().get());
 
         assertCommandSuccess(taskEditCommand, model, expectedMessage, expectedModel);
     }
@@ -66,7 +70,8 @@ public class TaskEditCommandTest {
         Task oldTask = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased())
                 .getTask(INDEX_FIRST_TASK.getZeroBased());
 
-        String expectedMessage = String.format(TaskEditCommand.MESSAGE_SUCCESS, oldTask.getName(), editedTask.getDeadline().get());
+        String expectedMessage = String.format(TaskEditCommand.MESSAGE_SUCCESS,
+                oldTask.getName(), editedTask.getDeadline().get());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.editTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK, null, editedTask.getDeadline().get());
