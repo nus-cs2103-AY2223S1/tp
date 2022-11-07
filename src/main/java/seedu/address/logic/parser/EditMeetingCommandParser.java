@@ -35,14 +35,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                         PREFIX_DESCRIPTION);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        } catch (ParseException | NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMeetingCommand.MESSAGE_USAGE), e);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {

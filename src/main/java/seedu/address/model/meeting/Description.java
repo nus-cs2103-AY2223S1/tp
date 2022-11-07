@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions can consist of any valid character except newlines.";
+            "Descriptions can consist of any valid character.";
     public static final String VALIDATION_REGEX = "(.*?)";
     private final String details;
 
