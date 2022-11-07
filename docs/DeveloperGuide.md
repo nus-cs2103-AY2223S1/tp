@@ -936,7 +936,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all clients using the `list` command. More than one client in the list.
     2. Test case: `edit 1 m/remark newRemark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
 
-### Sorting transactions from a client
+### Sorting transactions of a client
 
 1. Sorting transactions.
 
@@ -944,7 +944,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
    If there are no transactions, the transaction list panel will be empty.
    3. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
-   4. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
+   4. Other incorrect sort commands to try: `sort all latest`, `sort me`, `sort newest`<br/>Expected: Similar to previous.
     
 ### Adding buy/sell transactions
 
@@ -957,6 +957,16 @@ testers are expected to do more *exploratory* testing.
 2. Adding a transaction while more than one client is shown in the client list.
    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
    2. Test case: `buy 1 g/apples price/test q/100`<br/>Expected: No transaction is added. Error details shown in the Application's Reply panel.
+
+### Help Command
+
+1. Executing the Help Command.
+
+    1. Test case: `help`<br/>Expected: Display all the valid commands' usage message.
+    2. Test case: `help buy`<br/>Expected: Display help commands usage message.
+    3. Test case: `help me please`<br/>Expected: Not a valid command. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect help commands to try:`help add buy`, `help 3`, `help elgin`<br/>Expected: Similar to previous.
+
 
 ### Saving data
 
