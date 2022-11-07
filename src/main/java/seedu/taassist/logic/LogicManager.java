@@ -10,6 +10,7 @@ import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.CommandResult;
+import seedu.taassist.logic.commands.actions.StorageAction;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.TaAssistParser;
 import seedu.taassist.logic.parser.exceptions.ParseException;
@@ -49,7 +50,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         if (commandResult.hasStorageAction()) {
-            commandResult = commandResult.performStorageAction(storage);
+            StorageAction storageAction = commandResult.getStorageAction();
+            commandResult = storageAction.act(storage);
         }
 
         try {

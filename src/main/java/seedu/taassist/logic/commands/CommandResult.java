@@ -7,8 +7,6 @@ import java.util.Objects;
 
 import seedu.taassist.logic.commands.actions.StorageAction;
 import seedu.taassist.logic.commands.actions.UiAction;
-import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.storage.Storage;
 
 /**
  * Represents the result of a command execution.
@@ -63,19 +61,12 @@ public class CommandResult {
         return nonNull(uiAction);
     }
 
-    public boolean hasStorageAction() {
-        return nonNull(storageAction);
+    public StorageAction getStorageAction() {
+        return storageAction;
     }
 
-    /**
-     * Performs the {@code StorageAction} on the {@code storage} and returns the result of the action.
-     * The {@code StorageAction} must exist.
-     */
-    public CommandResult performStorageAction(Storage storage) throws CommandException {
-        requireNonNull(storage);
-        assert hasUiAction();
-
-        return storageAction.act(storage);
+    public boolean hasStorageAction() {
+        return nonNull(storageAction);
     }
 
     @Override

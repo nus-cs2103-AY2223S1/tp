@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 #### Project management 
 * Refactored AddressBook to TA-Assist in the whole repository. 
-* Refactored `Tag` to `ModuleClass` in the whole repository. In collaboration with [Lin Zechen](/docs/team/bubbl3t.md).
+* Refactored `Tag` to `ModuleClass` in the whole repository. In collaboration with [Lin Zechen](/team/bubbl3t.md).
 * Authored 29 issues to help keep track of current issues and progress.
 * Reviewed 30 pull requests to ensure quality and consistency across the project.
 
@@ -46,7 +46,8 @@ Given below are my contributions to the project.
 * Added implementation details and sequence diagrams for the `grade` command to the DG. 
 * Added implementation details and sequence diagrams for the `view` command in the DG.
 * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
-* Updated implementation details and sequence diagrams for the `assign` command to reflect new changes. In collaboration with [Lin Zechen](/docs/team/bubbl3t.md).
+* Updated implementation details and sequence diagrams for the `assign` command to reflect new changes. In collaboration with [Lin Zechen](/team/bubbl3t.md).
+  * Updated sequence diagram of `export` command to reflect new changes. In collaboration with [Lin Zechen](/team/bubbl3t.md).
 * Edited UG and DG for consistency and clarity. 
 * Updated styling of the website to make it more visually appealing. 
 
