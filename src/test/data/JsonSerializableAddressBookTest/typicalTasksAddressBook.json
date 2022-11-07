@@ -157,7 +157,7 @@
     "moduleName" : "Data and Algorithms for CS Students",
     "moduleCredit" : "4"
   }, {
-    "moduleCode" : "ma2001",
+    "moduleCode" : "MA2001",
     "moduleName" : "Linear Algebra",
     "moduleCredit" : "4"
   } ],
@@ -185,5 +185,5 @@
       "description": "Midterm",
       "date": "20-11-2023",
       "moduleCode": "ma1521"
-    }]
+    } ]
 }

@@ -23,6 +23,8 @@ public class DeleteModuleCommand extends Command {
             + "Example: m " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE =
+            "\nWarning! All the tasks and exams related to this module have been deleted.";
 
     private final Index targetIndex;
 
@@ -56,8 +58,8 @@ public class DeleteModuleCommand extends Command {
         model.deleteModule(moduleToDelete);
 
         if (areTasksOrExamsDeleted) {
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete) + "\n"
-                    + "Warning! All the tasks and exams related to this module have been deleted.");
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete)
+                    + MESSAGE_DELETE_TASKS_AND_EXAMS_RELATED_TO_MODULE);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }

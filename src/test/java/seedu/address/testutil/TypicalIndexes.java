@@ -53,5 +53,6 @@ public class TypicalIndexes {
     public static final Index INDEX_MODULE_RELATED_TO_TASKS_NOT_EXAMS = Index.fromOneBased(4);
     public static final Index INDEX_MODULE_RELATED_TO_EXAMS_NOT_TASKS = Index.fromOneBased(5);
     public static final Index INDEX_MODULE_RELATED_TO_EXAMS_AND_TASKS = Index.fromOneBased(7);
+
 }
 

@@ -39,7 +39,6 @@ public class TypicalExams {
 
     private TypicalExams() {} // prevents instantiation
 
-
     public static List<Exam> getTypicalExams() {
         return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL, MA1521_MIDTERM));
     }
