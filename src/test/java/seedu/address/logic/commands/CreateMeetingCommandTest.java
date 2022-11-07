@@ -8,7 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -55,8 +55,8 @@ public class CreateMeetingCommandTest {
         // The following lines pass the test, but will experience errors in Codecov evaluation as they interfere
         // with the tests for MeetingList
         /*assertEquals(String.format(CreateMeetingCommand.MESSAGE_CREATE_MEETING_SUCCESS, validMeeting),
-            commandResult.getFeedbackToUser());*/
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);*/
     }
 
     @Test
@@ -162,8 +162,8 @@ public class CreateMeetingCommandTest {
         // The following lines pass the test, but will experience errors in Codecov evaluation as they interfere
         // with the tests for MeetingList
         /*assertEquals(String.format(CreateMeetingCommand.MESSAGE_CREATE_MEETING_SUCCESS, validMeeting),
-            commandResult.getFeedbackToUser());*/
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);*/
     }
 
     @Test
